@@ -1,0 +1,1325 @@
+0. FUNDAMENTOS DE AUTOMATIZACIÓN
+0.1 qué es automatización
+0.2 administración manual frente a automatización
+0.3 infraestructura como código
+0.4 configuración como código
+0.5 gestión de configuración
+0.6 aprovisionamiento
+0.7 orquestación
+0.8 idempotencia
+0.9 estado deseado
+0.10 convergencia
+0.11 configuración declarativa
+0.12 configuración imperativa
+0.13 automatización agentless
+0.14 control node
+0.15 managed node
+0.16 inventory
+0.17 playbook
+0.18 play
+0.19 task
+0.20 module
+0.21 plugin
+0.22 role
+0.23 collection
+0.24 variable
+0.25 fact
+0.26 handler
+0.27 template
+0.28 diferencias Ansible / shell scripts
+0.29 diferencias Ansible / Terraform/OpenTofu
+0.30 diferencias Ansible / Puppet / Chef / Salt
+0.31 arquitectura conceptual de Ansible
+0.32 laboratorio: diseñar una automatización antes de implementarla
+
+
+1. ANSIBLE CORE Y ECOSISTEMA
+1.1 proyecto Ansible
+1.2 ansible-core
+1.3 Ansible Community Package
+1.4 diferencias entre ansible-core y paquete ansible
+1.5 arquitectura general
+1.6 motor de ejecución
+1.7 collections
+1.8 namespaces
+1.9 FQCN
+1.10 ansible.builtin
+1.11 módulos
+1.12 plugins
+1.13 roles
+1.14 inventories
+1.15 variables
+1.16 facts
+1.17 Jinja2
+1.18 transportes
+1.19 Python en el control node
+1.20 Python en managed nodes
+1.21 ciclo de ejecución de una task
+1.22 ciclo de ejecución de un play
+1.23 documentación oficial
+1.24 ciclo de versiones
+1.25 compatibilidad
+1.26 laboratorio: construir el mapa conceptual completo de Ansible
+
+
+2. INSTALACIÓN Y ENTORNO DE TRABAJO
+2.1 requisitos
+2.2 Fedora como control node
+2.3 RHEL como control node
+2.4 Fedora como managed node
+2.5 RHEL como managed node
+2.6 instalación mediante DNF
+2.7 instalación mediante pip
+2.8 instalación mediante pipx
+2.9 virtual environments
+2.10 Python environments
+2.11 ansible --version
+2.12 ansible-config
+2.13 ansible-doc
+2.14 ansible-galaxy
+2.15 ansible-inventory
+2.16 ansible-playbook
+2.17 ansible-vault
+2.18 ansible-console
+2.19 paths de configuración
+2.20 paths de collections
+2.21 paths de roles
+2.22 estructura de proyecto
+2.23 Git para proyectos Ansible
+2.24 laboratorio: construir un entorno reproducible en Fedora/RHEL
+
+
+3. YAML PARA ANSIBLE
+3.1 sintaxis YAML
+3.2 mappings
+3.3 sequences
+3.4 scalars
+3.5 strings
+3.6 números
+3.7 booleanos
+3.8 null
+3.9 listas
+3.10 diccionarios
+3.11 estructuras anidadas
+3.12 indentación
+3.13 quoting
+3.14 multiline strings
+3.15 |
+3.16 >
+3.17 comentarios
+3.18 YAML frente a JSON
+3.19 sintaxis corta
+3.20 sintaxis larga
+3.21 errores frecuentes
+3.22 laboratorio: modelar configuraciones complejas en YAML
+
+
+4. JINJA2 PARA ANSIBLE
+4.1 motor de templates
+4.2 {{ }}
+4.3 {% %}
+4.4 comentarios
+4.5 variables
+4.6 acceso a listas
+4.7 acceso a diccionarios
+4.8 condiciones
+4.9 loops
+4.10 filtros
+4.11 tests
+4.12 default
+4.13 mandatory
+4.14 map
+4.15 select
+4.16 selectattr
+4.17 reject
+4.18 dict2items
+4.19 items2dict
+4.20 manipulación de strings
+4.21 manipulación de listas
+4.22 manipulación de diccionarios
+4.23 templates .j2
+4.24 whitespace control
+4.25 debugging de templates
+4.26 laboratorio: generar configuración desde un modelo de datos
+
+
+5. INVENTARIOS
+5.1 qué es inventory
+5.2 inventory estático
+5.3 formato INI
+5.4 formato YAML
+5.5 hosts
+5.6 grupos
+5.7 grupos hijos
+5.8 all
+5.9 ungrouped
+5.10 aliases
+5.11 rangos
+5.12 variables de host
+5.13 variables de grupo
+5.14 ansible_host
+5.15 ansible_user
+5.16 ansible_port
+5.17 ansible_connection
+5.18 ansible_python_interpreter
+5.19 múltiples inventories
+5.20 inventory directory
+5.21 patrones de hosts
+5.22 intersecciones
+5.23 exclusiones
+5.24 ansible-inventory --list
+5.25 ansible-inventory --graph
+5.26 ansible-inventory --host
+5.27 laboratorio: inventario completo Fedora/RHEL
+
+
+6. CONECTIVIDAD Y TRANSPORTES
+6.1 arquitectura de conexiones
+6.2 OpenSSH
+6.3 claves SSH
+6.4 known_hosts
+6.5 host key checking
+6.6 ssh_config
+6.7 remote_user
+6.8 connection plugins
+6.9 ssh
+6.10 local
+6.11 paramiko
+6.12 network_cli
+6.13 NETCONF
+6.14 HTTPAPI
+6.15 bastion hosts
+6.16 ProxyJump
+6.17 SSH multiplexing
+6.18 ControlMaster
+6.19 ControlPersist
+6.20 timeouts
+6.21 interpreter discovery
+6.22 bootstrap sin Python
+6.23 raw
+6.24 pipelining
+6.25 diagnóstico con -vvvv
+6.26 laboratorio: conectar Fedora/RHEL y dispositivos de red
+
+
+7. COMANDOS AD-HOC
+7.1 concepto
+7.2 ansible
+7.3 patrones de hosts
+7.4 -m
+7.5 -a
+7.6 -b
+7.7 -K
+7.8 ping
+7.9 command
+7.10 shell
+7.11 raw
+7.12 copy
+7.13 file
+7.14 package
+7.15 dnf
+7.16 service
+7.17 systemd_service
+7.18 setup
+7.19 forks
+7.20 verbosity
+7.21 cuándo usar ad-hoc
+7.22 cuándo crear un playbook
+7.23 laboratorio: administrar Fedora/RHEL mediante ad-hoc
+
+
+8. PLAYBOOKS
+8.1 estructura
+8.2 plays
+8.3 hosts
+8.4 tasks
+8.5 modules
+8.6 name
+8.7 become
+8.8 remote_user
+8.9 ejecución secuencial
+8.10 estados ok
+8.11 changed
+8.12 failed
+8.13 skipped
+8.14 unreachable
+8.15 retorno de módulos
+8.16 múltiples plays
+8.17 ansible-playbook
+8.18 --syntax-check
+8.19 --check
+8.20 --diff
+8.21 --limit
+8.22 --start-at-task
+8.23 --step
+8.24 tags
+8.25 verbosity
+8.26 idempotencia
+8.27 laboratorio: construir un playbook completo para Fedora/RHEL
+
+
+9. MÓDULOS
+9.1 arquitectura de módulos
+9.2 FQCN
+9.3 ansible-doc
+9.4 command
+9.5 shell
+9.6 raw
+9.7 copy
+9.8 template
+9.9 file
+9.10 lineinfile
+9.11 blockinfile
+9.12 replace
+9.13 fetch
+9.14 get_url
+9.15 uri
+9.16 package
+9.17 dnf
+9.18 rpm_key
+9.19 service
+9.20 systemd_service
+9.21 user
+9.22 group
+9.23 cron
+9.24 mount
+9.25 assert
+9.26 debug
+9.27 fail
+9.28 stat
+9.29 set_fact
+9.30 wait_for
+9.31 reboot
+9.32 getent
+9.33 selinux
+9.34 seboolean
+9.35 firewalld
+9.36 selección correcta de módulos
+9.37 evitar shell innecesariamente
+9.38 laboratorio: convertir scripts shell en automatización idempotente
+
+
+10. VARIABLES Y PRECEDENCIA
+10.1 variables
+10.2 tipos
+10.3 listas
+10.4 diccionarios
+10.5 play vars
+10.6 task vars
+10.7 host vars
+10.8 group vars
+10.9 host_vars/
+10.10 group_vars/
+10.11 role vars
+10.12 role defaults
+10.13 extra vars
+10.14 registered variables
+10.15 facts
+10.16 magic variables
+10.17 hostvars
+10.18 groups
+10.19 group_names
+10.20 inventory_hostname
+10.21 play_hosts
+10.22 variable precedence
+10.23 variables indefinidas
+10.24 default
+10.25 diseño de modelos de datos
+10.26 laboratorio: modelar una infraestructura Fedora/RHEL mediante variables
+
+
+11. FACTS
+11.1 qué son
+11.2 gather_facts
+11.3 setup
+11.4 ansible_facts
+11.5 distribución
+11.6 versión
+11.7 arquitectura
+11.8 hostname
+11.9 interfaces
+11.10 direcciones IP
+11.11 CPU
+11.12 memoria
+11.13 almacenamiento
+11.14 mounts
+11.15 kernel
+11.16 Python
+11.17 package manager
+11.18 service manager
+11.19 custom facts
+11.20 local facts
+11.21 fact caching
+11.22 facts frente a variables
+11.23 laboratorio: adaptar ejecución según Fedora/RHEL y versión
+
+
+12. CONDICIONALES
+12.1 when
+12.2 comparaciones
+12.3 operadores lógicos
+12.4 membership
+12.5 tests
+12.6 facts en condiciones
+12.7 registered variables
+12.8 condiciones múltiples
+12.9 Fedora frente a RHEL
+12.10 diferencias por versión
+12.11 failed_when
+12.12 changed_when
+12.13 check_mode
+12.14 laboratorio: automatización adaptable a versiones Fedora/RHEL
+
+
+13. LOOPS
+13.1 loop
+13.2 item
+13.3 listas
+13.4 diccionarios
+13.5 loop variables
+13.6 loop_control
+13.7 label
+13.8 index_var
+13.9 pause
+13.10 resultados registrados
+13.11 loops y condiciones
+13.12 transformación previa de datos
+13.13 product
+13.14 subelements
+13.15 zip
+13.16 cuándo evitar loops
+13.17 laboratorio: administrar recursos mediante estructuras de datos
+
+
+14. HANDLERS
+14.1 handlers
+14.2 notify
+14.3 ejecución diferida
+14.4 múltiples notificaciones
+14.5 listen
+14.6 meta: flush_handlers
+14.7 handlers en roles
+14.8 reload frente a restart
+14.9 diseño idempotente
+14.10 laboratorio: configuración → validación → reload/restart
+
+
+15. INCLUDES E IMPORTS
+15.1 reutilización
+15.2 include_tasks
+15.3 import_tasks
+15.4 inclusión dinámica
+15.5 importación estática
+15.6 include_role
+15.7 import_role
+15.8 vars_files
+15.9 diferencias include/import
+15.10 tags
+15.11 condiciones
+15.12 loops
+15.13 diseño modular
+15.14 laboratorio: dividir un playbook monolítico
+
+
+16. BLOCKS Y GESTIÓN DE ERRORES
+16.1 block
+16.2 rescue
+16.3 always
+16.4 ignore_errors
+16.5 ignore_unreachable
+16.6 failed_when
+16.7 changed_when
+16.8 any_errors_fatal
+16.9 max_fail_percentage
+16.10 retries
+16.11 until
+16.12 delay
+16.13 timeout
+16.14 recuperación
+16.15 rollback conceptual
+16.16 manejo de hosts fallidos
+16.17 meta: clear_host_errors
+16.18 laboratorio: ejecutar cambios con recuperación ante fallos
+
+
+17. PRIVILEGE ESCALATION
+17.1 become
+17.2 become_user
+17.3 become_method
+17.4 sudo
+17.5 su
+17.6 passwords
+17.7 become variables
+17.8 sudoers
+17.9 least privilege
+17.10 seguridad
+17.11 separación usuario de automatización / root
+17.12 laboratorio: administración sin acceso root directo
+
+
+18. CONFIGURACIÓN DE ANSIBLE
+18.1 ansible.cfg
+18.2 orden de búsqueda
+18.3 ANSIBLE_CONFIG
+18.4 variables de entorno
+18.5 ansible-config list
+18.6 ansible-config dump
+18.7 ansible-config view
+18.8 inventory
+18.9 forks
+18.10 timeout
+18.11 callbacks
+18.12 collections_paths
+18.13 roles_path
+18.14 interpreter settings
+18.15 SSH settings
+18.16 privilege escalation
+18.17 fact caching
+18.18 inventory caching
+18.19 configuración por proyecto
+18.20 laboratorio: configuración reproducible
+
+
+19. ROLES
+19.1 concepto de role
+19.2 estructura
+19.3 tasks/
+19.4 handlers/
+19.5 templates/
+19.6 files/
+19.7 vars/
+19.8 defaults/
+19.9 meta/
+19.10 tests/
+19.11 role defaults
+19.12 role vars
+19.13 dependencias
+19.14 parámetros
+19.15 reutilización
+19.16 ansible-galaxy role init
+19.17 interfaces de roles
+19.18 contratos de variables
+19.19 argument_specs
+19.20 idempotencia
+19.21 laboratorio: transformar un proyecto en roles reutilizables
+
+
+20. COLLECTIONS Y GALAXY
+20.1 Ansible Galaxy
+20.2 collections
+20.3 namespaces
+20.4 FQCN
+20.5 estructura de collection
+20.6 roles
+20.7 modules
+20.8 plugins
+20.9 playbooks
+20.10 docs
+20.11 galaxy.yml
+20.12 MANIFEST.json
+20.13 ansible-galaxy collection install
+20.14 ansible-galaxy collection build
+20.15 requirements.yml
+20.16 versiones
+20.17 dependencias
+20.18 instalación offline
+20.19 repositorios privados
+20.20 firmas de collections
+20.21 laboratorio: construir una collection propia
+
+
+21. ANSIBLE VAULT Y SECRETOS
+21.1 gestión de secretos
+21.2 ansible-vault create
+21.3 encrypt
+21.4 decrypt
+21.5 edit
+21.6 view
+21.7 rekey
+21.8 encrypt_string
+21.9 vault IDs
+21.10 password files
+21.11 múltiples vaults
+21.12 CI/CD
+21.13 gestores externos
+21.14 HashiCorp Vault
+21.15 AWS Secrets Manager
+21.16 Azure Key Vault
+21.17 Google Secret Manager
+21.18 secretos en Kubernetes
+21.19 diseño seguro
+21.20 laboratorio: proyecto sin secretos en texto plano
+
+
+22. EJECUCIÓN AVANZADA
+22.1 delegate_to
+22.2 local_action
+22.3 run_once
+22.4 serial
+22.5 batches
+22.6 throttle
+22.7 forks
+22.8 strategies
+22.9 linear
+22.10 free
+22.11 async
+22.12 poll
+22.13 tareas largas
+22.14 rolling updates
+22.15 pause
+22.16 wait_for
+22.17 order
+22.18 run_once con delegación
+22.19 laboratorio: actualización gradual de una infraestructura
+
+
+23. INVENTARIO DINÁMICO
+23.1 concepto
+23.2 inventory plugins
+23.3 scripts históricos
+23.4 constructed
+23.5 compose
+23.6 groups
+23.7 keyed_groups
+23.8 caching
+23.9 cloud inventory
+23.10 virtualización
+23.11 NetBox
+23.12 CMDB
+23.13 OpenStack inventory
+23.14 VMware inventory
+23.15 AWS inventory
+23.16 Azure inventory
+23.17 GCP inventory
+23.18 inventarios personalizados
+23.19 laboratorio: construir inventory dinámicamente desde metadata
+
+
+24. PLUGINS Y LOOKUPS
+24.1 arquitectura de plugins
+24.2 action plugins
+24.3 become plugins
+24.4 cache plugins
+24.5 callback plugins
+24.6 connection plugins
+24.7 filter plugins
+24.8 inventory plugins
+24.9 lookup plugins
+24.10 strategy plugins
+24.11 test plugins
+24.12 vars plugins
+24.13 lookup()
+24.14 query()
+24.15 file
+24.16 env
+24.17 template
+24.18 url
+24.19 password
+24.20 fuentes externas
+24.21 plugin loader
+24.22 seguridad de lookups
+24.23 laboratorio: desarrollar filters y lookups propios
+
+
+25. AUTOMATIZACIÓN FEDORA / RHEL
+25.1 Fedora como managed platform
+25.2 RHEL como managed platform
+25.3 diferencias Fedora / RHEL
+25.4 versiones soportadas
+25.5 repositorios
+25.6 DNF
+25.7 RPM
+25.8 paquetes
+25.9 module streams cuando corresponda
+25.10 usuarios
+25.11 grupos
+25.12 sudo
+25.13 filesystem
+25.14 permisos
+25.15 ACL
+25.16 systemd
+25.17 services
+25.18 timers
+25.19 sockets
+25.20 mounts
+25.21 NetworkManager
+25.22 nmcli mediante Ansible
+25.23 hostname
+25.24 resolv.conf y DNS
+25.25 firewalld
+25.26 nftables cuando sea necesario
+25.27 SELinux
+25.28 contexts
+25.29 booleans
+25.30 ports
+25.31 sysctl
+25.32 kernel parameters
+25.33 GRUB
+25.34 OpenSSH
+25.35 authorized_keys
+25.36 sshd_config
+25.37 logs
+25.38 journald
+25.39 cron
+25.40 systemd timers
+25.41 certificates
+25.42 PKI
+25.43 actualizaciones
+25.44 security updates
+25.45 reboot
+25.46 patch management
+25.47 repositorios internos
+25.48 Satellite cuando aplique
+25.49 subscription-manager
+25.50 configuración base
+25.51 hardening
+25.52 CIS/STIG como referencia
+25.53 compliance
+25.54 auditoría
+25.55 laboratorio: construir un servidor Fedora/RHEL desde cero
+25.56 laboratorio: mantener una flota Fedora/RHEL
+
+
+26. NETWORK AUTOMATION
+26.1 fundamentos de automatización de redes
+26.2 diferencias respecto a hosts Linux
+26.3 network collections
+26.4 network_cli
+26.5 NETCONF
+26.6 RESTCONF
+26.7 HTTPAPI
+26.8 persistent connections
+26.9 inventories
+26.10 credentials
+26.11 network facts
+26.12 resource modules
+26.13 configuración declarativa
+26.14 merged
+26.15 replaced
+26.16 overridden
+26.17 deleted
+26.18 gathered
+26.19 rendered
+26.20 parsed
+26.21 backups
+26.22 validación
+26.23 rollback
+26.24 Cisco IOS / IOS-XE
+26.25 Cisco NX-OS
+26.26 Arista EOS
+26.27 Juniper Junos
+26.28 VyOS
+26.29 automatización multivendor
+26.30 NetBox como source of truth
+26.31 VLAN
+26.32 interfaces
+26.33 routing
+26.34 ACL
+26.35 BGP
+26.36 OSPF
+26.37 compliance
+26.38 configuración golden
+26.39 cambios masivos seguros
+26.40 pre-checks
+26.41 post-checks
+26.42 rollback automático
+26.43 laboratorio: red multivendor completa
+
+
+27. CONTENEDORES
+27.1 fundamentos OCI
+27.2 imágenes
+27.3 containers
+27.4 registries
+27.5 Podman
+27.6 Docker
+27.7 Buildah
+27.8 Skopeo
+27.9 containers.podman
+27.10 community.docker
+27.11 imágenes
+27.12 containers
+27.13 pods de Podman
+27.14 volumes
+27.15 networks
+27.16 registries
+27.17 autenticación
+27.18 secrets
+27.19 rootless containers
+27.20 SELinux y containers
+27.21 systemd y containers
+27.22 Quadlet
+27.23 construcción de imágenes
+27.24 Buildah desde automatización
+27.25 Skopeo desde automatización
+27.26 despliegues
+27.27 actualización
+27.28 health checks
+27.29 lifecycle
+27.30 Ansible dentro de containers
+27.31 containers como managed nodes
+27.32 Execution Environments
+27.33 ansible-builder
+27.34 imágenes de Execution Environment
+27.35 dependencias Python
+27.36 dependencias collections
+27.37 dependencias de sistema
+27.38 registries privados
+27.39 laboratorio: plataforma Podman administrada por Ansible
+27.40 laboratorio: construir un Execution Environment reproducible
+
+
+28. KUBERNETES
+28.1 relación Ansible / Kubernetes
+28.2 kubernetes.core
+28.3 kubeconfig
+28.4 API Kubernetes
+28.5 autenticación
+28.6 contexts
+28.7 namespaces
+28.8 Pods
+28.9 Deployments
+28.10 StatefulSets
+28.11 DaemonSets
+28.12 Jobs
+28.13 CronJobs
+28.14 Services
+28.15 ConfigMaps
+28.16 Secrets
+28.17 PersistentVolumes
+28.18 PersistentVolumeClaims
+28.19 StorageClasses
+28.20 RBAC
+28.21 ServiceAccounts
+28.22 k8s
+28.23 k8s_info
+28.24 k8s_exec
+28.25 manifests
+28.26 templates
+28.27 server-side apply
+28.28 patching
+28.29 wait
+28.30 readiness
+28.31 Helm
+28.32 helm module
+28.33 helm_repository
+28.34 operadores
+28.35 Operator SDK
+28.36 Ansible-based operators
+28.37 Custom Resources
+28.38 CRDs
+28.39 Ansible frente a GitOps
+28.40 Argo CD
+28.41 Flux
+28.42 cuándo usar Ansible
+28.43 cuándo usar GitOps
+28.44 laboratorio: desplegar una aplicación Kubernetes completa
+
+
+29. CLOUD AUTOMATION
+29.1 fundamentos cloud
+29.2 APIs
+29.3 autenticación
+29.4 credenciales
+29.5 cloud collections
+29.6 dynamic inventory
+29.7 provisioning
+29.8 configuration management
+29.9 separación provisioning/configuration
+29.10 idempotencia cloud
+29.11 AWS
+29.12 amazon.aws
+29.13 community.aws
+29.14 EC2
+29.15 AMI
+29.16 VPC
+29.17 subnets
+29.18 route tables
+29.19 security groups
+29.20 IAM
+29.21 S3
+29.22 EBS
+29.23 load balancers
+29.24 autoscaling
+29.25 dynamic inventory AWS
+29.26 Azure
+29.27 azure.azcollection
+29.28 resource groups
+29.29 virtual machines
+29.30 virtual networks
+29.31 NSG
+29.32 identities
+29.33 storage
+29.34 load balancers
+29.35 Azure dynamic inventory
+29.36 Google Cloud
+29.37 google.cloud
+29.38 Compute Engine
+29.39 VPC
+29.40 firewall rules
+29.41 IAM
+29.42 storage
+29.43 GCP dynamic inventory
+29.44 OpenStack
+29.45 openstack.cloud
+29.46 compute
+29.47 images
+29.48 networking
+29.49 security groups
+29.50 volumes
+29.51 OpenStack inventory
+29.52 VMware
+29.53 community.vmware
+29.54 vCenter
+29.55 virtual machines
+29.56 templates
+29.57 networking
+29.58 datastores
+29.59 VMware inventory
+29.60 cloud híbrida
+29.61 multicloud
+29.62 gobierno de recursos
+29.63 tagging
+29.64 teardown
+29.65 laboratorio: infraestructura multicloud
+
+
+30. INFRASTRUCTURE AS CODE
+30.1 IaC
+30.2 configuración frente a provisioning
+30.3 Ansible frente a Terraform
+30.4 Ansible frente a OpenTofu
+30.5 Terraform + Ansible
+30.6 OpenTofu + Ansible
+30.7 responsabilidades
+30.8 estado
+30.9 state file
+30.10 outputs
+30.11 outputs → inventory
+30.12 inventory generado
+30.13 provisioning
+30.14 bootstrap
+30.15 configuration
+30.16 lifecycle
+30.17 destroy
+30.18 drift
+30.19 immutable infrastructure
+30.20 Packer
+30.21 creación de imágenes
+30.22 Pulumi
+30.23 patrones híbridos
+30.24 cuándo no usar Ansible para provisioning
+30.25 cuándo sí usar Ansible para provisioning
+30.26 laboratorio: OpenTofu → Ansible → aplicación
+
+
+31. CI/CD PARA ANSIBLE
+31.1 Git
+31.2 estructura de repositorios
+31.3 branches
+31.4 pull requests
+31.5 code review
+31.6 pre-commit
+31.7 yamllint
+31.8 ansible-lint
+31.9 syntax-check
+31.10 check mode
+31.11 diff mode
+31.12 Molecule
+31.13 scenarios
+31.14 prepare
+31.15 converge
+31.16 verify
+31.17 idempotence
+31.18 cleanup
+31.19 destroy
+31.20 pytest
+31.21 ansible-test
+31.22 sanity tests
+31.23 unit tests
+31.24 integration tests
+31.25 GitHub Actions
+31.26 GitLab CI
+31.27 Jenkins
+31.28 pipelines
+31.29 secretos
+31.30 Execution Environments
+31.31 dev
+31.32 staging
+31.33 production
+31.34 deployment
+31.35 promotion
+31.36 rollback
+31.37 artefactos
+31.38 collections build
+31.39 publicación
+31.40 laboratorio: pipeline CI/CD completo
+
+
+32. AWX Y ANSIBLE AUTOMATION PLATFORM
+32.1 necesidad de un automation controller
+32.2 AWX
+32.3 arquitectura AWX
+32.4 web UI
+32.5 API
+32.6 organizaciones
+32.7 usuarios
+32.8 teams
+32.9 credentials
+32.10 credential types
+32.11 projects
+32.12 SCM
+32.13 inventories
+32.14 inventory sources
+32.15 dynamic inventory
+32.16 job templates
+32.17 workflow job templates
+32.18 surveys
+32.19 schedules
+32.20 notifications
+32.21 RBAC
+32.22 instance groups
+32.23 execution nodes
+32.24 Execution Environments
+32.25 jobs
+32.26 stdout
+32.27 artifacts
+32.28 webhooks
+32.29 provisioning callbacks
+32.30 API automation
+32.31 scaling
+32.32 high availability
+32.33 logging
+32.34 auditoría
+32.35 Ansible Automation Platform
+32.36 Automation Controller
+32.37 Automation Hub
+32.38 Private Automation Hub
+32.39 Execution Environments en AAP
+32.40 Automation Mesh
+32.41 credenciales
+32.42 RBAC empresarial
+32.43 integración CI/CD
+32.44 laboratorio: plataforma centralizada de automatización
+
+
+33. EVENT-DRIVEN ANSIBLE
+33.1 automatización basada en eventos
+33.2 Event-Driven Ansible
+33.3 ansible-rulebook
+33.4 rulebooks
+33.5 sources
+33.6 rules
+33.7 conditions
+33.8 actions
+33.9 event sources
+33.10 webhooks
+33.11 Kafka
+33.12 message buses
+33.13 observabilidad
+33.14 logs como eventos
+33.15 métricas como eventos
+33.16 alertas
+33.17 remediation automática
+33.18 Fedora/RHEL remediation
+33.19 network events
+33.20 cloud events
+33.21 Kubernetes events
+33.22 integración con AAP
+33.23 seguridad
+33.24 control de loops
+33.25 debounce
+33.26 rate limiting conceptual
+33.27 idempotencia event-driven
+33.28 laboratorio: detectar → decidir → remediar
+
+
+34. DESARROLLO DE MÓDULOS Y PLUGINS
+34.1 arquitectura interna de ansible-core
+34.2 ciclo interno de ejecución
+34.3 CLI
+34.4 DataLoader
+34.5 InventoryManager
+34.6 VariableManager
+34.7 Play
+34.8 PlaybookExecutor
+34.9 TaskQueueManager
+34.10 strategy
+34.11 worker processes
+34.12 plugin loader
+34.13 templating
+34.14 connection subsystem
+34.15 action subsystem
+34.16 module execution
+34.17 Python para módulos
+34.18 AnsibleModule
+34.19 argument_spec
+34.20 parámetros
+34.21 tipos
+34.22 validación
+34.23 mutually_exclusive
+34.24 required_if
+34.25 required_together
+34.26 exit_json
+34.27 fail_json
+34.28 check mode
+34.29 diff mode
+34.30 idempotencia
+34.31 documentación
+34.32 EXAMPLES
+34.33 RETURN
+34.34 módulos propios
+34.35 module_utils
+34.36 action plugins
+34.37 filter plugins
+34.38 test plugins
+34.39 lookup plugins
+34.40 callback plugins
+34.41 connection plugins
+34.42 inventory plugins
+34.43 strategy plugins
+34.44 vars plugins
+34.45 cache plugins
+34.46 become plugins
+34.47 collections profesionales
+34.48 ansible-test
+34.49 sanity tests
+34.50 unit tests
+34.51 integration tests
+34.52 debugging de módulos
+34.53 backward compatibility
+34.54 versionado
+34.55 laboratorio: desarrollar una collection completa
+
+
+35. SEGURIDAD
+35.1 threat model
+35.2 control node como activo crítico
+35.3 managed nodes
+35.4 SSH
+35.5 claves
+35.6 ssh-agent
+35.7 bastion hosts
+35.8 privilege escalation
+35.9 sudo
+35.10 secretos
+35.11 Ansible Vault
+35.12 gestores externos de secretos
+35.13 credenciales cloud
+35.14 credenciales de red
+35.15 credenciales Kubernetes
+35.16 RBAC
+35.17 AWX/AAP
+35.18 supply chain
+35.19 collections de terceros
+35.20 dependencias
+35.21 firmas
+35.22 contenido confiable
+35.23 Automation Hub
+35.24 private collections
+35.25 logs
+35.26 auditoría
+35.27 least privilege
+35.28 separación de ambientes
+35.29 seguridad de Execution Environments
+35.30 imágenes confiables
+35.31 seguridad CI/CD
+35.32 secrets en pipelines
+35.33 SELinux en control nodes
+35.34 SELinux en managed nodes
+35.35 file permissions
+35.36 no_log
+35.37 riesgos de no_log
+35.38 protección de output
+35.39 laboratorio: hardening completo de una plataforma Ansible
+
+
+36. RENDIMIENTO Y ESCALA
+36.1 modelo de ejecución
+36.2 forks
+36.3 procesos worker
+36.4 SSH multiplexing
+36.5 ControlPersist
+36.6 pipelining
+36.7 fact gathering
+36.8 gather_subset
+36.9 fact caching
+36.10 inventory caching
+36.11 strategy plugins
+36.12 linear
+36.13 free
+36.14 serial
+36.15 throttle
+36.16 async
+36.17 poll
+36.18 optimización de loops
+36.19 optimización de templates
+36.20 optimización de variables
+36.21 reducción de facts
+36.22 grandes inventories
+36.23 miles de hosts
+36.24 límites del control node
+36.25 límites de SSH
+36.26 file descriptors
+36.27 CPU
+36.28 memoria
+36.29 execution nodes
+36.30 instance groups
+36.31 Automation Mesh
+36.32 distribución de carga
+36.33 AWX/AAP a escala
+36.34 observabilidad
+36.35 profiling
+36.36 benchmarking
+36.37 identificación de bottlenecks
+36.38 laboratorio: optimizar automatización a gran escala
+
+
+37. ARQUITECTURA DE AUTOMATIZACIÓN
+37.1 arquitectura mantenible
+37.2 separación inventory / lógica / datos
+37.3 separación código / secretos
+37.4 roles frente a collections
+37.5 interfaces de roles
+37.6 contratos de variables
+37.7 argument_specs
+37.8 data-driven automation
+37.9 source of truth
+37.10 NetBox
+37.11 CMDB
+37.12 APIs
+37.13 inventario dinámico
+37.14 secretos externos
+37.15 entornos dev/staging/prod
+37.16 versionado
+37.17 collections internas
+37.18 dependency management
+37.19 testing
+37.20 CI/CD
+37.21 Execution Environments
+37.22 AWX/AAP
+37.23 Event-Driven Ansible
+37.24 observabilidad
+37.25 recuperación ante fallos
+37.26 blast radius
+37.27 serialización
+37.28 rolling deployments
+37.29 canary deployments
+37.30 blue/green conceptualmente
+37.31 rollback
+37.32 patrones de automatización
+37.33 anti-patrones
+37.34 idempotencia a escala
+37.35 gobernanza
+37.36 control de cambios
+37.37 RBAC
+37.38 auditoría
+37.39 documentación
+37.40 arquitectura empresarial
+37.41 laboratorio: diseñar una arquitectura empresarial de automatización
+
+
+38. PROYECTO FINAL EXPERTO
+38.1 diseñar una plataforma completa
+38.2 definir requisitos
+38.3 definir alcance
+38.4 diseñar arquitectura
+38.5 diseñar repositorio Git
+38.6 crear estructura de collections
+38.7 crear ansible.cfg
+38.8 definir Execution Environment
+38.9 definir dependencies
+38.10 definir inventories por entorno
+38.11 implementar dynamic inventory
+38.12 diseñar group_vars
+38.13 diseñar host_vars
+38.14 diseñar modelo de datos
+38.15 integrar Vault
+38.16 integrar secret manager externo
+38.17 crear collections propias
+38.18 crear roles propios
+38.19 crear plugins propios
+38.20 crear módulos propios
+38.21 automatizar Fedora
+38.22 automatizar RHEL
+38.23 automatizar DNF/RPM
+38.24 automatizar systemd
+38.25 automatizar SELinux
+38.26 automatizar firewalld
+38.27 automatizar OpenSSH
+38.28 automatizar NetworkManager
+38.29 automatizar almacenamiento
+38.30 implementar patch management
+38.31 implementar hardening
+38.32 automatizar dispositivos de red
+38.33 integrar NetBox como source of truth
+38.34 automatizar Podman
+38.35 automatizar Docker cuando corresponda
+38.36 automatizar Buildah
+38.37 automatizar Skopeo
+38.38 desplegar containers rootless
+38.39 desplegar servicios mediante Quadlet
+38.40 construir Execution Environments
+38.41 automatizar Kubernetes
+38.42 desplegar recursos Kubernetes
+38.43 integrar Helm
+38.44 integrar AWS
+38.45 integrar Azure
+38.46 integrar Google Cloud
+38.47 integrar OpenStack
+38.48 integrar VMware
+38.49 integrar Terraform/OpenTofu
+38.50 generar inventory desde IaC
+38.51 implementar provisioning → bootstrap → configuration
+38.52 desplegar AWX/AAP
+38.53 configurar Automation Controller
+38.54 configurar inventories
+38.55 configurar credentials
+38.56 configurar job templates
+38.57 configurar workflows
+38.58 configurar RBAC
+38.59 configurar Execution Nodes
+38.60 configurar Automation Mesh
+38.61 implementar CI/CD
+38.62 integrar ansible-lint
+38.63 integrar yamllint
+38.64 integrar Molecule
+38.65 integrar ansible-test
+38.66 ejecutar sanity tests
+38.67 ejecutar integration tests
+38.68 construir y publicar collections
+38.69 implementar observabilidad
+38.70 implementar Event-Driven Ansible
+38.71 detectar eventos
+38.72 ejecutar remediación automática
+38.73 implementar seguridad
+38.74 implementar least privilege
+38.75 implementar auditoría
+38.76 implementar rolling updates
+38.77 implementar rollback
+38.78 implementar disaster recovery
+38.79 documentar arquitectura
+38.80 documentar operaciones
+38.81 documentar procedimientos de recuperación
+38.82 demostrar reproducibilidad
+38.83 laboratorio: destruir y reconstruir Fedora/RHEL
+38.84 laboratorio: destruir y reconstruir la capa de containers
+38.85 laboratorio: destruir y reconstruir Kubernetes
+38.86 laboratorio: destruir y reconstruir infraestructura cloud
+38.87 laboratorio: provocar fallos de red
+38.88 laboratorio: provocar fallos de SSH
+38.89 laboratorio: provocar fallos de collections
+38.90 laboratorio: provocar fallos de secretos
+38.91 laboratorio: recuperar desde fallo parcial
+38.92 laboratorio: recuperar desde fallo total
+38.93 laboratorio: escalar el número de managed nodes
+38.94 laboratorio: escalar mediante execution nodes
+38.95 laboratorio: ejecutar cambios controlando blast radius
+38.96 laboratorio: automatizar Fedora/RHEL + red + containers + Kubernetes + cloud desde una arquitectura común
+38.97 laboratorio: ejecutar un cambio completo desde Git hasta producción
+38.98 laboratorio: recibir un evento y remediarlo automáticamente
+38.99 auditoría final de seguridad
+38.100 auditoría final de idempotencia
+38.101 auditoría final de rendimiento
+38.102 auditoría final de arquitectura
+38.103 proyecto final: plataforma universal de automatización con Ansible centrada en Fedora/RHEL
