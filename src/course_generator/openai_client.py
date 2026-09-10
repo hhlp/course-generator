@@ -3,10 +3,11 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, cast
 
 from dotenv import load_dotenv
 from openai import OpenAI
+from openai.types import ReasoningEffort
 
 
 @dataclass(slots=True)
@@ -66,19 +67,19 @@ class CourseOpenAI:
         self.client = OpenAI(api_key=api_key)
 
         self.model = os.getenv("OPENAI_MODEL", "gpt-6-astra").strip()
-        self.reasoning_effort = (
-            os.getenv("OPENAI_REASONING_EFFORT", "high").strip().lower()
-        )
+        raw_effort = os.getenv("OPENAI_REASONING_EFFORT", "high").strip().lower()
         self.max_output_tokens = _env_int("OPENAI_MAX_OUTPUT_TOKENS", 50_000)
         self.store = _env_bool("OPENAI_STORE_RESPONSES", False)
 
         valid_efforts = {"low", "medium", "high", "xhigh", "max"}
-        if self.model == "gpt-6-astra" and self.reasoning_effort not in valid_efforts:
+        if self.model == "gpt-6-astra" and raw_effort not in valid_efforts:
             raise ValueError(
                 "OPENAI_REASONING_EFFORT no válido para gpt-6-astra. "
                 f"Valores admitidos: {', '.join(sorted(valid_efforts))}. "
-                f"Recibido: {self.reasoning_effort!r}"
+                f"Recibido: {raw_effort!r}"
             )
+
+        self.reasoning_effort = cast(ReasoningEffort, raw_effort)
 
         if self.model == "gpt-6-astra" and self.max_output_tokens > 128_000:
             raise ValueError(
