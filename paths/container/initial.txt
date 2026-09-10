@@ -1,0 +1,903 @@
+0. Fundamentos de contenedores
+0.1 qué es un contenedor
+0.2 contenedores frente a máquinas virtuales
+0.3 virtualización a nivel de sistema operativo
+0.4 proceso Linux como base de un contenedor
+0.5 aislamiento
+0.6 namespaces
+0.7 PID namespace
+0.8 mount namespace
+0.9 network namespace
+0.10 user namespace
+0.11 UTS namespace
+0.12 IPC namespace
+0.13 cgroup namespace
+0.14 cgroups
+0.15 cgroups v2
+0.16 límites de CPU
+0.17 límites de memoria
+0.18 límites de PIDs
+0.19 capabilities Linux
+0.20 seccomp
+0.21 SELinux y contenedores
+0.22 root frente a rootless
+0.23 filesystem del contenedor
+0.24 copy-on-write
+0.25 imágenes
+0.26 capas
+0.27 contenedores
+0.28 imágenes frente a contenedores
+0.29 registries
+0.30 repositorios
+0.31 tags
+0.32 digests
+0.33 laboratorio: observar los mecanismos Linux que hacen posible un contenedor
+
+1. Estándares OCI
+1.1 qué es OCI
+1.2 Open Container Initiative
+1.3 por qué OCI permite interoperabilidad
+1.4 OCI Image Specification
+1.5 OCI Runtime Specification
+1.6 OCI Distribution Specification
+1.7 image manifest
+1.8 image index
+1.9 image configuration
+1.10 filesystem layers
+1.11 blobs
+1.12 content digest
+1.13 OCI layout
+1.14 OCI archive
+1.15 Docker image format y OCI
+1.16 compatibilidad entre herramientas
+1.17 laboratorio: inspeccionar manualmente una imagen OCI
+
+2. Ecosistema de contenedores
+2.1 Docker
+2.2 Docker Engine
+2.3 Docker CLI
+2.4 dockerd
+2.5 containerd
+2.6 runc
+2.7 Podman
+2.8 conmon
+2.9 crun
+2.10 Buildah
+2.11 Skopeo
+2.12 containers/image
+2.13 containers/storage
+2.14 containers/common
+2.15 Netavark
+2.16 Aardvark DNS
+2.17 OCI runtimes
+2.18 relación Podman / Buildah / Skopeo
+2.19 relación Docker / containerd / runc
+2.20 comparación de arquitecturas
+2.21 daemon frente a daemonless
+2.22 laboratorio: construir el mapa completo del ecosistema
+
+3. Instalación y descubrimiento en Fedora
+3.1 podman
+3.2 buildah
+3.3 skopeo
+3.4 docker
+3.5 moby-engine
+3.6 paquetes containers-common
+3.7 rpm -qi
+3.8 rpm -ql
+3.9 dnf info
+3.10 command -v
+3.11 --version
+3.12 --help
+3.13 man
+3.14 podman info
+3.15 docker info
+3.16 buildah info
+3.17 configuración instalada
+3.18 archivos proporcionados por los RPM
+3.19 laboratorio: inventario completo del stack de contenedores
+
+4. Anatomía de una imagen
+4.1 qué contiene una imagen
+4.2 layers
+4.3 blobs
+4.4 manifest
+4.5 config
+4.6 rootfs
+4.7 history
+4.8 media types
+4.9 architecture
+4.10 operating system
+4.11 annotations
+4.12 labels
+4.13 tags
+4.14 digests
+4.15 image ID
+4.16 tag mutable frente a digest inmutable
+4.17 multi-architecture images
+4.18 manifest lists
+4.19 OCI indexes
+4.20 laboratorio: desmontar conceptualmente una imagen
+
+5. Registries
+5.1 qué es un registry
+5.2 registry frente a repository
+5.3 Docker Hub
+5.4 Quay
+5.5 registries privados
+5.6 pull
+5.7 push
+5.8 login
+5.9 logout
+5.10 autenticación
+5.11 credenciales
+5.12 TLS
+5.13 certificados
+5.14 insecure registries
+5.15 mirrors
+5.16 registry search
+5.17 fully qualified image names
+5.18 short names
+5.19 /etc/containers/registries.conf
+5.20 registries.conf.d
+5.21 auth.json
+5.22 Docker config.json
+5.23 laboratorio: seguir una imagen desde el registry hasta el host
+
+6. Podman — fundamentos
+6.1 arquitectura de Podman
+6.2 daemonless
+6.3 rootful
+6.4 rootless
+6.5 podman info
+6.6 podman version
+6.7 podman pull
+6.8 podman images
+6.9 podman inspect
+6.10 podman create
+6.11 podman run
+6.12 podman ps
+6.13 podman start
+6.14 podman stop
+6.15 podman restart
+6.16 podman kill
+6.17 podman rm
+6.18 podman rmi
+6.19 podman exec
+6.20 podman logs
+6.21 podman top
+6.22 podman stats
+6.23 podman diff
+6.24 podman cp
+6.25 podman export
+6.26 podman import
+6.27 podman save
+6.28 podman load
+6.29 laboratorio: ciclo de vida completo de un contenedor
+
+7. Docker — fundamentos
+7.1 arquitectura Docker
+7.2 Docker CLI
+7.3 Docker daemon
+7.4 Docker Engine
+7.5 Docker API
+7.6 docker info
+7.7 docker version
+7.8 docker pull
+7.9 docker images
+7.10 docker inspect
+7.11 docker create
+7.12 docker run
+7.13 docker ps
+7.14 docker start
+7.15 docker stop
+7.16 docker restart
+7.17 docker kill
+7.18 docker rm
+7.19 docker rmi
+7.20 docker exec
+7.21 docker logs
+7.22 docker top
+7.23 docker stats
+7.24 docker diff
+7.25 docker cp
+7.26 docker export/import
+7.27 docker save/load
+7.28 laboratorio: ciclo de vida completo con Docker
+
+8. Podman frente a Docker
+8.1 similitudes
+8.2 diferencias arquitectónicas
+8.3 daemon frente a daemonless
+8.4 comandos equivalentes
+8.5 imágenes compatibles
+8.6 registries compatibles
+8.7 Dockerfile
+8.8 Containerfile
+8.9 rootless
+8.10 networking
+8.11 storage
+8.12 volumes
+8.13 pods
+8.14 systemd
+8.15 API
+8.16 Docker-compatible API de Podman
+8.17 docker CLI frente a podman CLI
+8.18 podman-docker
+8.19 compatibilidad real
+8.20 diferencias que pueden romper scripts
+8.21 laboratorio: ejecutar el mismo workflow con Podman y Docker
+
+9. Ejecución de contenedores
+9.1 ENTRYPOINT
+9.2 CMD
+9.3 command
+9.4 argumentos
+9.5 PID 1
+9.6 señales
+9.7 SIGTERM
+9.8 SIGKILL
+9.9 foreground
+9.10 detached
+9.11 interactive
+9.12 TTY
+9.13 stdin
+9.14 exit codes
+9.15 restart policies
+9.16 environment variables
+9.17 working directory
+9.18 hostname
+9.19 user
+9.20 grupos
+9.21 capabilities
+9.22 devices
+9.23 privileged
+9.24 read-only
+9.25 tmpfs
+9.26 laboratorio: analizar completamente el proceso dentro del contenedor
+
+10. Storage
+10.1 storage de contenedores
+10.2 writable layer
+10.3 overlayfs
+10.4 overlay
+10.5 copy-on-write
+10.6 graphroot
+10.7 runroot
+10.8 containers/storage
+10.9 storage.conf
+10.10 rootful storage
+10.11 rootless storage
+10.12 volumes
+10.13 named volumes
+10.14 bind mounts
+10.15 tmpfs
+10.16 ownership
+10.17 UID/GID
+10.18 SELinux labels
+10.19 :z
+10.20 :Z
+10.21 volume inspect
+10.22 volume prune
+10.23 Docker volumes
+10.24 Podman volumes
+10.25 laboratorio: seguir los datos desde el host hasta el contenedor
+
+11. Networking
+11.1 network namespaces
+11.2 veth
+11.3 bridges
+11.4 NAT
+11.5 port forwarding
+11.6 DNS
+11.7 localhost dentro de un contenedor
+11.8 host networking
+11.9 bridge networking
+11.10 none
+11.11 rootless networking
+11.12 Netavark
+11.13 Aardvark DNS
+11.14 Docker networking
+11.15 Podman networking
+11.16 network create
+11.17 network inspect
+11.18 network connect
+11.19 network disconnect
+11.20 publicación de puertos
+11.21 comunicación entre contenedores
+11.22 IPv4
+11.23 IPv6
+11.24 firewalld
+11.25 nftables
+11.26 laboratorio: seguir un paquete host → contenedor → red
+
+12. Rootless containers
+12.1 concepto rootless
+12.2 user namespaces
+12.3 UID mapping
+12.4 GID mapping
+12.5 /etc/subuid
+12.6 /etc/subgid
+12.7 newuidmap
+12.8 newgidmap
+12.9 almacenamiento rootless
+12.10 networking rootless
+12.11 puertos privilegiados
+12.12 bind mounts
+12.13 ownership
+12.14 capabilities
+12.15 SELinux
+12.16 diferencias con rootful
+12.17 ventajas de seguridad
+12.18 limitaciones
+12.19 laboratorio: mapear UID host ↔ contenedor
+
+13. Pods con Podman
+13.1 concepto de pod
+13.2 podman pod
+13.3 pod create
+13.4 pod ps
+13.5 pod inspect
+13.6 pod start
+13.7 pod stop
+13.8 pod rm
+13.9 infra container
+13.10 namespaces compartidos
+13.11 networking compartido
+13.12 puertos
+13.13 comunicación localhost
+13.14 pods y Kubernetes
+13.15 laboratorio: aplicación multicontenedor dentro de un pod
+
+14. Containerfile y Dockerfile
+14.1 formato
+14.2 FROM
+14.3 RUN
+14.4 COPY
+14.5 ADD
+14.6 WORKDIR
+14.7 ENV
+14.8 ARG
+14.9 CMD
+14.10 ENTRYPOINT
+14.11 USER
+14.12 EXPOSE
+14.13 VOLUME
+14.14 LABEL
+14.15 SHELL
+14.16 HEALTHCHECK
+14.17 build context
+14.18 .dockerignore
+14.19 .containerignore
+14.20 layers
+14.21 cache
+14.22 multi-stage builds
+14.23 buenas prácticas
+14.24 laboratorio: construir una imagen reproducible
+
+15. Construcción con Podman y Docker
+15.1 podman build
+15.2 docker build
+15.3 build context
+15.4 build arguments
+15.5 cache
+15.6 no-cache
+15.7 tags
+15.8 labels
+15.9 target
+15.10 multi-stage
+15.11 build secrets
+15.12 SSH mounts
+15.13 plataformas
+15.14 arquitectura
+15.15 comparación Podman build / Docker build
+15.16 laboratorio: misma imagen con ambos motores
+
+16. Buildah — fundamentos
+16.1 qué es Buildah
+16.2 relación con Podman
+16.3 Buildah sin daemon
+16.4 buildah images
+16.5 buildah containers
+16.6 buildah from
+16.7 working containers
+16.8 buildah run
+16.9 buildah copy
+16.10 buildah add
+16.11 buildah config
+16.12 buildah mount
+16.13 buildah unmount
+16.14 buildah commit
+16.15 buildah rm
+16.16 buildah rmi
+16.17 buildah inspect
+16.18 buildah bud
+16.19 Containerfile
+16.20 Dockerfile
+16.21 laboratorio: construir una imagen sin ejecutar un runtime de aplicación
+
+17. Buildah — avanzado
+17.1 construcción scriptable
+17.2 build sin Dockerfile
+17.3 working container como entorno de construcción
+17.4 mount del rootfs
+17.5 modificación directa
+17.6 commit
+17.7 layers
+17.8 squash
+17.9 cache
+17.10 multi-stage
+17.11 build args
+17.12 secrets
+17.13 rootless Buildah
+17.14 isolation
+17.15 OCI
+17.16 Docker image format
+17.17 manifest
+17.18 multi-architecture
+17.19 buildah manifest
+17.20 push
+17.21 registries
+17.22 laboratorio: construir programáticamente una imagen OCI
+
+18. Skopeo — fundamentos
+18.1 qué es Skopeo
+18.2 por qué no necesita ejecutar contenedores
+18.3 transports
+18.4 docker://
+18.5 containers-storage:
+18.6 dir:
+18.7 oci:
+18.8 docker-archive:
+18.9 oci-archive:
+18.10 skopeo inspect
+18.11 raw
+18.12 config
+18.13 skopeo list-tags
+18.14 skopeo copy
+18.15 skopeo sync
+18.16 skopeo delete
+18.17 autenticación
+18.18 TLS
+18.19 certificados
+18.20 laboratorio: investigar una imagen remota sin descargarla al runtime
+
+19. Skopeo — avanzado
+19.1 copia registry → registry
+19.2 registry → OCI
+19.3 OCI → registry
+19.4 containers-storage
+19.5 archives
+19.6 preservación de digests
+19.7 multi-arch
+19.8 --all
+19.9 manifests
+19.10 signatures
+19.11 policy
+19.12 sync
+19.13 mirrors
+19.14 air-gapped environments
+19.15 migración de registries
+19.16 automatización
+19.17 laboratorio: migrar un repositorio entre registries
+
+20. Relación Podman + Buildah + Skopeo
+20.1 responsabilidades de cada herramienta
+20.2 Podman para ejecutar
+20.3 Buildah para construir
+20.4 Skopeo para transportar e inspeccionar
+20.5 containers/image compartido
+20.6 containers/storage compartido
+20.7 almacenamiento común
+20.8 imágenes creadas con Buildah usadas por Podman
+20.9 imágenes Podman inspeccionadas con Skopeo
+20.10 Buildah → registry → Skopeo → Podman
+20.11 compatibilidad OCI
+20.12 laboratorio: workflow completo con las tres herramientas
+
+21. Docker Compose y Podman Compose
+21.1 aplicaciones multicontenedor
+21.2 Compose Specification
+21.3 compose.yaml
+21.4 services
+21.5 images
+21.6 build
+21.7 ports
+21.8 volumes
+21.9 networks
+21.10 environment
+21.11 dependencies
+21.12 healthchecks
+21.13 secrets
+21.14 docker compose
+21.15 Podman y Compose
+21.16 diferencias de compatibilidad
+21.17 laboratorio: desplegar una aplicación multicontenedor
+
+22. Podman y systemd
+22.1 por qué integrar contenedores con systemd
+22.2 servicios de usuario
+22.3 servicios del sistema
+22.4 lingering
+22.5 dependencias
+22.6 restart
+22.7 logging
+22.8 journalctl
+22.9 Quadlet
+22.10 .container
+22.11 .volume
+22.12 .network
+22.13 .pod
+22.14 generación de unidades
+22.15 arranque automático
+22.16 rootless + systemd
+22.17 laboratorio: servicio persistente mediante Quadlet
+
+23. Seguridad
+23.1 modelo de amenazas
+23.2 rootless
+23.3 namespaces
+23.4 user namespaces
+23.5 capabilities
+23.6 capability drop
+23.7 no-new-privileges
+23.8 seccomp
+23.9 SELinux
+23.10 container_t
+23.11 container_file_t
+23.12 labels
+23.13 :z / :Z
+23.14 read-only root filesystem
+23.15 privileged
+23.16 devices
+23.17 secrets
+23.18 credenciales
+23.19 registry security
+23.20 image provenance
+23.21 signatures
+23.22 digest pinning
+23.23 vulnerabilidades
+23.24 SBOM
+23.25 mínimo privilegio
+23.26 laboratorio: endurecer un contenedor
+
+24. Configuración containers/*
+24.1 /etc/containers/
+24.2 ~/.config/containers/
+24.3 containers.conf
+24.4 registries.conf
+24.5 registries.conf.d
+24.6 storage.conf
+24.7 policy.json
+24.8 registries.d
+24.9 auth.json
+24.10 system-wide frente a usuario
+24.11 precedencia
+24.12 configuración rootless
+24.13 configuración rootful
+24.14 laboratorio: descubrir de dónde procede cada configuración
+
+25. Docker Engine — administración
+25.1 daemon.json
+25.2 dockerd
+25.3 systemd
+25.4 Docker socket
+25.5 Docker API
+25.6 storage driver
+25.7 networking
+25.8 logging drivers
+25.9 registry mirrors
+25.10 insecure registries
+25.11 data-root
+25.12 proxies
+25.13 daemon troubleshooting
+25.14 laboratorio: inspeccionar completamente Docker Engine
+
+26. Logging y observabilidad
+26.1 stdout
+26.2 stderr
+26.3 container logs
+26.4 podman logs
+26.5 docker logs
+26.6 journald
+26.7 logging drivers
+26.8 events
+26.9 podman events
+26.10 docker events
+26.11 stats
+26.12 inspect
+26.13 top
+26.14 procesos
+26.15 cgroups
+26.16 métricas
+26.17 laboratorio: reconstruir qué ocurrió con un contenedor
+
+27. Recursos y rendimiento
+27.1 CPU
+27.2 memory
+27.3 swap
+27.4 PIDs
+27.5 block I/O
+27.6 cpuset
+27.7 cgroups v2
+27.8 resource limits
+27.9 OOM
+27.10 OOM killer
+27.11 ulimits
+27.12 runtime statistics
+27.13 rootless limitations
+27.14 laboratorio: provocar y diagnosticar límites de recursos
+
+28. Imágenes avanzadas
+28.1 reproducibilidad
+28.2 image history
+28.3 layer optimization
+28.4 cache
+28.5 multi-stage
+28.6 distroless
+28.7 minimal images
+28.8 Fedora minimal
+28.9 scratch
+28.10 UID no privilegiado
+28.11 metadata
+28.12 labels
+28.13 SBOM
+28.14 provenance
+28.15 firmas
+28.16 multi-platform
+28.17 manifest lists
+28.18 OCI indexes
+28.19 laboratorio: diseñar una imagen de producción
+
+29. Multi-arquitectura
+29.1 amd64/x86_64
+29.2 arm64/aarch64
+29.3 platform
+29.4 architecture
+29.5 variant
+29.6 manifest lists
+29.7 OCI indexes
+29.8 podman manifest
+29.9 buildah manifest
+29.10 Docker buildx
+29.11 emulación
+29.12 QEMU
+29.13 binfmt_misc
+29.14 build nativo frente a emulado
+29.15 push multi-arch
+29.16 Skopeo y multi-arch
+29.17 laboratorio: crear y analizar una imagen multi-arquitectura
+
+30. API y automatización
+30.1 Docker API
+30.2 Docker socket
+30.3 Podman API
+30.4 podman system service
+30.5 compatibilidad Docker API
+30.6 curl
+30.7 REST
+30.8 sockets Unix
+30.9 automatización shell
+30.10 scripting con Podman
+30.11 scripting con Buildah
+30.12 scripting con Skopeo
+30.13 pipelines
+30.14 exit codes
+30.15 salida JSON
+30.16 jq
+30.17 laboratorio: administrar contenedores sin utilizar directamente la CLI
+
+31. CI/CD
+31.1 contenedores en pipelines
+31.2 build
+31.3 test
+31.4 tag
+31.5 push
+31.6 promoción
+31.7 registries
+31.8 credenciales
+31.9 secrets
+31.10 Buildah en CI
+31.11 Skopeo en CI
+31.12 Podman en CI
+31.13 Docker en CI
+31.14 rootless builds
+31.15 reproducibilidad
+31.16 digest pinning
+31.17 SBOM
+31.18 firma
+31.19 laboratorio: pipeline completo image → test → registry
+
+32. Kubernetes y CRI — contexto
+32.1 por qué Kubernetes usa contenedores OCI
+32.2 Kubernetes no es Docker
+32.3 OCI runtime
+32.4 CRI
+32.5 containerd
+32.6 CRI-O
+32.7 runc
+32.8 crun
+32.9 pods
+32.10 imágenes
+32.11 registries
+32.12 Podman pods frente a Kubernetes pods
+32.13 YAML
+32.14 Podman y Kubernetes YAML
+32.15 transición conceptual hacia Kubernetes
+32.16 laboratorio: relacionar el stack local con Kubernetes
+
+33. Troubleshooting — contenedores
+33.1 metodología de diagnóstico
+33.2 contenedor no arranca
+33.3 contenedor termina inmediatamente
+33.4 exit code
+33.5 ENTRYPOINT incorrecto
+33.6 CMD incorrecto
+33.7 imagen no encontrada
+33.8 pull falla
+33.9 autenticación falla
+33.10 TLS falla
+33.11 permisos
+33.12 UID/GID
+33.13 user namespace
+33.14 volume permission denied
+33.15 SELinux AVC
+33.16 capabilities
+33.17 seccomp
+33.18 privileged
+33.19 puerto no accesible
+33.20 DNS
+33.21 networking
+33.22 storage
+33.23 overlay
+33.24 no space left
+33.25 OOM
+33.26 cgroups
+33.27 logs
+33.28 inspect
+33.29 events
+33.30 journalctl
+33.31 laboratorio: diagnóstico sistemático de un contenedor roto
+
+34. Troubleshooting — imágenes y registries
+34.1 build falla
+34.2 Containerfile
+34.3 build context
+34.4 COPY falla
+34.5 cache inesperada
+34.6 arquitectura incorrecta
+34.7 manifest desconocido
+34.8 digest mismatch
+34.9 tag incorrecto
+34.10 registry authentication
+34.11 certificados
+34.12 TLS
+34.13 proxy
+34.14 rate limits
+34.15 Skopeo inspect
+34.16 Skopeo copy
+34.17 Buildah inspect
+34.18 manifests
+34.19 blobs
+34.20 laboratorio: diagnosticar una cadena build → registry → pull
+
+35. Troubleshooting — Podman frente a Docker
+35.1 funciona en Docker pero no en Podman
+35.2 funciona en Podman pero no en Docker
+35.3 root frente a rootless
+35.4 networking
+35.5 volumes
+35.6 SELinux
+35.7 capabilities
+35.8 Docker socket
+35.9 Podman socket
+35.10 Compose
+35.11 systemd
+35.12 storage
+35.13 diferencias de CLI
+35.14 diferencias de API
+35.15 laboratorio: portar una aplicación Docker a Podman
+
+36. Análisis interno
+36.1 podman inspect
+36.2 docker inspect
+36.3 buildah inspect
+36.4 skopeo inspect
+36.5 JSON
+36.6 jq
+36.7 /proc
+36.8 namespaces del proceso
+36.9 nsenter
+36.10 lsns
+36.11 cgroups
+36.12 systemd-cgls
+36.13 mounts
+36.14 findmnt
+36.15 network namespaces
+36.16 ip
+36.17 nft
+36.18 storage
+36.19 overlayfs
+36.20 SELinux
+36.21 ausearch
+36.22 laboratorio: reconstruir manualmente la realidad de un contenedor
+
+37. Interoperabilidad completa
+37.1 Dockerfile → Docker
+37.2 Dockerfile → Podman
+37.3 Containerfile → Podman
+37.4 Containerfile → Buildah
+37.5 Docker build → Skopeo
+37.6 Buildah build → Docker
+37.7 Buildah build → Podman
+37.8 Skopeo → Docker registry
+37.9 Skopeo → containers-storage
+37.10 OCI archive
+37.11 Docker archive
+37.12 registry
+37.13 digest
+37.14 manifests
+37.15 multi-arch
+37.16 laboratorio: mover una misma imagen por todo el ecosistema
+
+38. Laboratorio integral
+38.1 diseñar aplicación
+38.2 crear Containerfile
+38.3 construir con Buildah
+38.4 inspeccionar con Buildah
+38.5 inspeccionar con Skopeo
+38.6 crear manifest multi-arch
+38.7 publicar en registry
+38.8 verificar digest
+38.9 descargar con Podman
+38.10 ejecutar rootless
+38.11 configurar volumes
+38.12 configurar networking
+38.13 aplicar SELinux
+38.14 limitar capabilities
+38.15 limitar recursos
+38.16 integrar con systemd/Quadlet
+38.17 observar logs
+38.18 diagnosticar fallos
+38.19 ejecutar equivalente con Docker
+38.20 comparar resultados
+38.21 documentar arquitectura completa
+
+39. Proyecto final — container-debugger
+39.1 objetivos
+39.2 detección Podman/Docker
+39.3 inventario del host
+39.4 versiones
+39.5 runtime
+39.6 OCI runtime
+39.7 storage
+39.8 networking
+39.9 registries
+39.10 configuración
+39.11 imágenes
+39.12 contenedores
+39.13 pods
+39.14 volumes
+39.15 networks
+39.16 inspect automático
+39.17 análisis de PID
+39.18 namespaces
+39.19 cgroups
+39.20 capabilities
+39.21 mounts
+39.22 SELinux
+39.23 puertos
+39.24 DNS
+39.25 logs
+39.26 events
+39.27 image manifest
+39.28 digest
+39.29 análisis mediante Skopeo
+39.30 análisis mediante Buildah
+39.31 comparación Podman/Docker
+39.32 detección de problemas
+39.33 informe JSON
+39.34 informe humano
+39.35 modo verbose
+39.36 modo diagnóstico
+39.37 proyecto final: implementar container-debugger

@@ -1,0 +1,243 @@
+20. Fundamentos de Watchdog
+20.1 qué es un watchdog
+20.2 watchdog timer
+20.3 keepalive
+20.4 timeout
+20.5 reset
+20.6 watchdog hardware
+20.7 watchdog software
+20.8 watchdog del kernel
+20.9 soft lockup
+20.10 hard lockup
+20.11 NMI watchdog
+20.12 watchdog framework
+20.13 watchdog driver
+20.14 /dev/watchdog
+20.15 /dev/watchdog0
+20.16 daemon watchdog
+20.17 watchdog de systemd
+20.18 diferencias fundamentales: lockup detector ≠ watchdog framework ≠ watchdog hardware ≠ /dev/watchdog ≠ daemon watchdog ≠ systemd watchdog
+21. Configuración Watchdog del kernel Fedora
+21.1 uname -r
+21.2 /boot/config-$(uname -r)
+21.3 CONFIG_WATCHDOG
+21.4 CONFIG_WATCHDOG_CORE
+21.5 CONFIG_WATCHDOG_NOWAYOUT
+21.6 CONFIG_SOFT_WATCHDOG
+21.7 CONFIG_HARDLOCKUP_DETECTOR
+21.8 CONFIG_WQ_WATCHDOG
+21.9 built-in = y
+21.10 module = m
+21.11 disabled
+21.12 laboratorio: descubrir todo el soporte watchdog compilado en el kernel Fedora actual
+22. Lockup detectors del kernel
+22.1 soft lockup
+22.2 hard lockup
+22.3 NMI
+22.4 heartbeat del detector
+22.5 kernel.watchdog
+22.6 kernel.soft_watchdog
+22.7 kernel.nmi_watchdog
+22.8 kernel.watchdog_thresh
+22.9 kernel.watchdog_cpumask
+22.10 /proc/sys/kernel/watchdog
+22.11 /proc/sys/kernel/soft_watchdog
+22.12 /proc/sys/kernel/nmi_watchdog
+22.13 /proc/sys/kernel/watchdog_thresh
+22.14 /proc/sys/kernel/watchdog_cpumask
+22.15 laboratorio: investigar todos los sysctl watchdog
+23. watchdog_thresh
+23.1 significado
+23.2 hard lockup threshold
+23.3 soft lockup threshold
+23.4 relación entre ambos
+23.5 sysctl
+23.6 cambio temporal
+23.7 persistencia
+23.8 /etc/sysctl.conf
+23.9 /etc/sysctl.d/
+23.10 laboratorio
+24. Parámetros Watchdog en kernel command line
+24.1 /proc/cmdline
+24.2 nowatchdog
+24.3 watchdog_thresh=
+24.4 nmi_watchdog=
+24.5 softlockup_panic=
+24.6 hardlockup_panic=
+24.7 grubby --info=ALL
+24.8 agregar argumentos
+24.9 eliminar argumentos
+24.10 persistencia
+24.11 laboratorio: boot parameter ↓ kernel ↓ /proc ↓ sysctl
+25. Watchdog Framework del kernel
+25.1 arquitectura
+25.2 watchdog core
+25.3 watchdog_device
+25.4 watchdog_ops
+25.5 watchdog_info
+25.6 register_watchdog_device()
+25.7 unregister_watchdog_device()
+25.8 userspace API
+25.9 /dev/watchdogN
+25.10 ioctl
+25.11 WDIOC_GETSUPPORT
+25.12 WDIOC_GETSTATUS
+25.13 WDIOC_GETBOOTSTATUS
+25.14 WDIOC_KEEPALIVE
+25.15 WDIOC_SETTIMEOUT
+25.16 WDIOC_GETTIMEOUT
+25.17 WDIOC_GETTIMELEFT
+25.18 magic close
+25.19 nowayout
+25.20 laboratorio: userspace ↓ /dev/watchdog0 ↓ watchdog core ↓ driver ↓ hardware
+26. Drivers Watchdog
+26.1 drivers/watchdog/
+26.2 detectar drivers disponibles
+26.3 lsmod
+26.4 modinfo
+26.5 modprobe
+26.6 parámetros de módulo
+26.7 timeout
+26.8 heartbeat
+26.9 nowayout
+26.10 iTCO_wdt
+26.11 softdog
+26.12 IPMI watchdog
+26.13 otros drivers según hardware
+26.14 laboratorio: identificar el watchdog de nuestra máquina
+27. Descubrir parámetros de drivers
+27.1 modinfo <driver>
+27.2 parm:
+27.2.1 /sys/module/
+27.2.2 /sys/module/<driver>/parameters/
+27.5 parámetros actuales
+27.6 parámetros cargables
+27.7 modprobe driver parametro=valor
+27.8 /etc/modprobe.d/
+27.9 options driver ...
+27.10 initramfs
+27.11 dracut
+27.12 laboratorio: documentación ↓ modinfo ↓ sysfs ↓ modprobe.d ↓ driver
+28. /dev/watchdog y sysfs
+28.1 /dev/watchdog
+28.2 /dev/watchdog0
+28.3 múltiples watchdogs
+28.4 major/minor
+28.5 udev
+28.6 /sys/class/watchdog/
+28.7 /sys/class/watchdog/watchdog0/
+28.8 identity
+28.9 state
+28.10 status
+28.11 timeout
+28.12 timeleft
+28.13 bootstatus
+28.14 nowayout
+28.15 laboratorio: mapear /dev/watchdog0 hasta el driver
+29. Paquete watchdog de Fedora
+29.1 dnf install watchdog
+29.2 rpm -qi watchdog
+29.3 rpm -ql watchdog
+29.4 watchdog
+29.5 wd_identify
+29.6 wd_keepalive
+29.7 /etc/watchdog.conf
+29.8 /etc/watchdog.d/
+29.9 watchdog.service
+29.10 watchdog-ping.service
+29.11 man watchdog
+29.12 man watchdog.conf
+29.13 laboratorio: investigar completamente el paquete
+30. watchdog.conf en profundidad
+30.1 watchdog-device
+30.2 watchdog-timeout
+30.3 interval
+30.4 realtime
+30.5 priority
+30.6 max-load-1
+30.7 max-load-5
+30.8 max-load-15
+30.9 memory
+30.10 temperature
+30.11 file
+30.12 change
+30.13 pidfile
+30.14 ping
+30.15 interface
+30.16 test-binary
+30.17 repair-binary
+30.18 retry-timeout
+30.19 repair-maximum
+30.20 laboratorio: construir watchdog.conf progresivamente
+31. Watchdog y red
+31.1 por qué watchdog puede usar ping
+31.2 ping como health check
+31.3 comprobar gateway
+31.4 comprobar router
+31.5 comprobar servidor remoto
+31.6 diferencia: SSH → comunicación cliente-servidor watchdog ping → comprobación de salud
+31.7 laboratorio
+32. systemd Watchdog
+32.1 watchdog de PID 1
+32.2 watchdog hardware
+32.3 RuntimeWatchdogSec=
+32.4 RebootWatchdogSec=
+32.5 KExecWatchdogSec=
+32.6 watchdog de servicios
+32.7 WatchdogSec=
+32.8 sd_notify()
+32.9 WATCHDOG=1
+32.10 WatchdogSignal=
+32.11 RuntimeWatchdogSec= vs WatchdogSec=
+32.12 laboratorio: crear un servicio systemd con watchdog
+33. Watchdog + kernel panic
+33.1 panic
+33.2 kernel.panic
+33.3 panic_on_oops
+33.4 softlockup_panic
+33.5 hardlockup_panic
+33.6 panic + watchdog
+33.7 reboot automático
+33.8 laboratorio controlado
+34. Diagnóstico Watchdog
+34.1 dmesg
+34.2 journalctl -k
+34.3 journalctl -b
+34.4 journalctl -u watchdog
+34.5 sysctl
+34.6 /proc
+34.7 /sys
+34.8 lsmod
+34.9 modinfo
+34.10 modprobe
+34.11 /dev/watchdog*
+34.12 /sys/class/watchdog/
+34.13 wd_identify
+34.14 systemctl
+34.15 laboratorio: diagnosticar un watchdog que no funciona
+35. Seguridad y riesgos
+35.1 riesgo de reboot accidental
+35.2 probar primero en VM
+35.3 nowayout
+35.4 magic close
+35.5 watchdog demasiado agresivo
+35.6 false positives
+35.7 servicios críticos
+35.8 estrategias de prueba segura
+36. Laboratorio final Watchdog
+36.1 inventariar CONFIG_WATCHDOG*
+36.2 inventariar lockup detectors
+36.3 inventariar sysctl
+36.4 inventariar kernel command line
+36.5 descubrir drivers
+36.6 descubrir parámetros
+36.7 identificar hardware
+36.8 localizar /dev/watchdog*
+36.9 recorrer /sys/class/watchdog/
+36.10 recorrer /sys/module/<driver>/
+36.11 analizar daemon watchdog
+36.12 analizar systemd watchdog
+36.13 analizar logs
+36.14 simular fallo de forma segura
+36.15 verificar recuperación
+36.16 construir mapa completo del ecosistema Watchdog

@@ -1,0 +1,372 @@
+0. Fundamentos de firewall en Linux
+0.1 qué es un firewall
+0.2 filtrado de paquetes
+0.3 firewall stateful frente a stateless
+0.4 flujo básico de un paquete
+0.5 ingress / egress
+0.6 interfaces de red
+0.7 direcciones IPv4 e IPv6
+0.8 protocolos TCP / UDP / ICMP
+0.9 puertos
+0.10 conexiones y estados
+0.11 NAT
+0.12 masquerading
+0.13 forwarding
+0.14 firewall del host frente a firewall de red
+0.15 dónde encaja firewalld
+
+1. Arquitectura de firewalld
+1.1 qué es firewalld
+1.2 firewalld como daemon
+1.3 firewalld.service
+1.4 firewall-cmd
+1.5 firewall-offline-cmd
+1.6 firewall-config
+1.7 D-Bus
+1.8 backend nftables
+1.9 firewalld frente a nftables
+1.10 firewalld frente a iptables
+1.11 relación: firewalld ↓ nftables ↓ Netfilter ↓ kernel
+1.12 arquitectura completa del subsistema
+
+2. Instalación y estado en Fedora
+2.1 rpm -q firewalld
+2.2 dnf info firewalld
+2.3 rpm -ql firewalld
+2.4 systemctl status firewalld
+2.5 systemctl enable firewalld
+2.6 systemctl start firewalld
+2.7 systemctl restart firewalld
+2.8 firewall-cmd --state
+2.9 firewall-cmd --version
+2.10 journalctl -u firewalld
+
+3. Configuración y archivos
+3.1 /etc/firewalld/
+3.2 /usr/lib/firewalld/
+3.3 configuración del proveedor frente a administrador
+3.4 /etc/firewalld/firewalld.conf
+3.5 /etc/firewalld/zones/
+3.6 /etc/firewalld/services/
+3.7 /etc/firewalld/policies/
+3.8 /etc/firewalld/helpers/
+3.9 /etc/firewalld/icmptypes/
+3.10 /usr/lib/firewalld/zones/
+3.11 /usr/lib/firewalld/services/
+3.12 precedencia /etc frente a /usr/lib
+3.13 inspeccionar configuración instalada mediante RPM
+
+4. Modelo runtime y permanent
+4.1 configuración runtime
+4.2 configuración permanent
+4.3 diferencias entre ambas
+4.4 --permanent
+4.5 firewall-cmd --reload
+4.6 firewall-cmd --complete-reload
+4.7 pérdida de cambios runtime
+4.8 runtime-to-permanent
+4.9 laboratorio de cambios temporales y persistentes
+
+5. Zonas
+5.1 qué es una zona
+5.2 modelo de confianza
+5.3 firewall-cmd --get-zones
+5.4 firewall-cmd --get-active-zones
+5.5 firewall-cmd --get-default-zone
+5.6 firewall-cmd --set-default-zone
+5.7 drop
+5.8 block
+5.9 public
+5.10 external
+5.11 dmz
+5.12 work
+5.13 home
+5.14 internal
+5.15 trusted
+5.16 target de una zona
+5.17 comparar todas las zonas de Fedora
+
+6. Interfaces y zonas
+6.1 asignación de interfaces
+6.2 --get-zone-of-interface
+6.3 --add-interface
+6.4 --change-interface
+6.5 --remove-interface
+6.6 interfaces sin asignación explícita
+6.7 zona por defecto
+6.8 NetworkManager y firewalld
+6.9 conexión de NetworkManager → zona
+6.10 nmcli connection show
+6.11 connection.zone
+6.12 laboratorio con varias interfaces
+
+7. Sources
+7.1 qué es un source
+7.2 asociar redes a zonas
+7.3 --add-source
+7.4 --remove-source
+7.5 --query-source
+7.6 IPv4
+7.7 IPv6
+7.8 interfaces frente a sources
+7.9 selección de zona según origen
+
+8. Servicios
+8.1 concepto de servicio firewalld
+8.2 firewall-cmd --get-services
+8.3 firewall-cmd --info-service
+8.4 --add-service
+8.5 --remove-service
+8.6 --query-service
+8.7 ssh
+8.8 http
+8.9 https
+8.10 dns
+8.11 cockpit
+8.12 definición XML de servicios
+8.13 crear un servicio personalizado
+
+9. Puertos
+9.1 abrir un puerto
+9.2 --add-port
+9.3 --remove-port
+9.4 --query-port
+9.5 TCP
+9.6 UDP
+9.7 rangos de puertos
+9.8 servicios frente a puertos
+9.9 cuándo usar cada modelo
+
+10. Protocolos
+10.1 --add-protocol
+10.2 --remove-protocol
+10.3 --query-protocol
+10.4 TCP / UDP frente a protocolos IP
+10.5 ICMP
+10.6 IPv6-ICMP
+10.7 protocolos definidos en /etc/protocols
+
+11. ICMP
+11.1 función de ICMP
+11.2 ICMP types
+11.3 firewall-cmd --get-icmptypes
+11.4 --add-icmp-block
+11.5 --remove-icmp-block
+11.6 --query-icmp-block
+11.7 echo-request
+11.8 echo-reply
+11.9 ICMP y diagnóstico de red
+11.10 ICMP en IPv6
+11.11 por qué bloquear ICMP indiscriminadamente es problemático
+
+12. Rich Rules
+12.1 qué es una rich rule
+12.2 sintaxis
+12.3 rule
+12.4 family
+12.5 source
+12.6 destination
+12.7 service
+12.8 port
+12.9 protocol
+12.10 accept
+12.11 reject
+12.12 drop
+12.13 log
+12.14 limit
+12.15 masquerade
+12.16 forward-port
+12.17 reglas por IP
+12.18 reglas por subred
+12.19 reglas con logging
+12.20 laboratorio completo de rich rules
+
+13. Policies
+13.1 concepto de policy
+13.2 diferencia zona ↔ policy
+13.3 ingress zones
+13.4 egress zones
+13.5 target
+13.6 services
+13.7 ports
+13.8 rich rules
+13.9 policies para tráfico entre zonas
+13.10 HOST
+13.11 ANY
+13.12 laboratorio router/firewall
+
+14. Forwarding
+14.1 forwarding IP
+14.2 forwarding dentro de firewalld
+14.3 tráfico host frente a tráfico forwarded
+14.4 sysctl
+14.5 net.ipv4.ip_forward
+14.6 IPv6 forwarding
+14.7 zonas y forwarding
+14.8 policies y forwarding
+14.9 convertir Fedora en router
+
+15. NAT
+15.1 fundamentos de NAT
+15.2 SNAT
+15.3 DNAT
+15.4 masquerading
+15.5 --add-masquerade
+15.6 --query-masquerade
+15.7 port forwarding
+15.8 --add-forward-port
+15.9 redirección local
+15.10 redirección hacia otra máquina
+15.11 laboratorio gateway NAT
+
+16. Connection tracking
+16.1 Netfilter conntrack
+16.2 NEW
+16.3 ESTABLISHED
+16.4 RELATED
+16.5 INVALID
+16.6 flujo TCP
+16.7 tabla conntrack
+16.8 conntrack-tools
+16.9 relación conntrack ↔ firewalld
+
+17. Direct interface y reglas de bajo nivel
+17.1 concepto histórico de direct rules
+17.2 limitaciones
+17.3 interacción con nftables
+17.4 por qué evitarla en diseños nuevos
+17.5 alternativas modernas
+17.6 rich rules
+17.7 policies
+
+18. firewalld y nftables
+18.1 arquitectura Netfilter
+18.2 hooks
+18.3 tables
+18.4 chains
+18.5 rules
+18.6 nft list ruleset
+18.7 localizar reglas generadas por firewalld
+18.8 prioridad de chains
+18.9 paquetes atravesando Netfilter
+18.10 INPUT
+18.11 OUTPUT
+18.12 FORWARD
+18.13 prerouting
+18.14 postrouting
+18.15 firewalld como generador/gestor de reglas nftables
+
+19. Logging y diagnóstico
+19.1 journalctl -u firewalld
+19.2 firewall-cmd --state
+19.3 firewall-cmd --list-all
+19.4 firewall-cmd --list-all-zones
+19.5 nft list ruleset
+19.6 ss
+19.7 ss -lntup
+19.8 tcpdump
+19.9 ping
+19.10 traceroute
+19.11 nc
+19.12 curl
+19.13 conntrack
+19.14 seguir un paquete desde aplicación hasta red
+
+20. firewalld + systemd
+20.1 firewalld.service
+20.2 dependencias
+20.3 orden de arranque
+20.4 NetworkManager
+20.5 servicios que necesitan puertos
+20.6 systemctl
+20.7 journalctl
+20.8 diagnóstico conjunto
+
+21. firewalld + SELinux
+21.1 dos controles diferentes
+21.2 firewall controla tráfico
+21.3 SELinux controla acceso de procesos
+21.4 abrir puerto ≠ autorizar servicio SELinux
+21.5 semanage port
+21.6 tipos de puerto SELinux
+21.7 ejemplo HTTP en puerto no estándar
+21.8 firewall-cmd --add-port
+21.9 semanage port -a
+21.10 diagnóstico firewall ↔ SELinux
+
+22. IPv6
+22.1 firewalld dual-stack
+22.2 IPv4 frente a IPv6
+22.3 ICMPv6
+22.4 Neighbor Discovery
+22.5 rich rules family=ipv6
+22.6 NAT IPv6
+22.7 forwarding IPv6
+22.8 errores frecuentes al proteger IPv6
+
+23. Seguridad y diseño
+23.1 principio de mínimo privilegio
+23.2 abrir únicamente servicios necesarios
+23.3 zonas según nivel de confianza
+23.4 evitar trusted innecesariamente
+23.5 limitar por source
+23.6 logging
+23.7 rate limiting
+23.8 servicios personalizados
+23.9 runtime para pruebas
+23.10 permanent después de validar
+
+24. Investigación de problemas
+24.1 "el servicio no responde"
+24.2 comprobar proceso
+24.3 comprobar socket
+24.4 comprobar interfaz
+24.5 comprobar zona
+24.6 comprobar servicio/puerto
+24.7 comprobar routing
+24.8 comprobar nftables
+24.9 comprobar SELinux
+24.10 comprobar tcpdump
+24.11 comprobar conntrack
+24.12 metodología completa de troubleshooting
+
+25. Laboratorios
+25.1 inspeccionar completamente firewalld en Fedora
+25.2 descubrir zona activa
+25.3 abrir/cerrar SSH temporalmente
+25.4 runtime frente a permanent
+25.5 crear servicio personalizado
+25.6 restringir SSH a una subred
+25.7 crear rich rule
+25.8 logging + rate limit
+25.9 múltiples interfaces y zonas
+25.10 NetworkManager + zonas
+25.11 crear una policy
+25.12 Fedora como router
+25.13 NAT/masquerading
+25.14 port forwarding
+25.15 analizar nft list ruleset
+25.16 seguir conexión con conntrack
+25.17 capturar tráfico con tcpdump
+25.18 diagnosticar bloqueo por firewalld
+25.19 distinguir bloqueo firewalld/SELinux
+25.20 laboratorio final: construir y auditar un firewall Fedora
+
+26. Proyecto final - firewalld-debugger
+26.1 detectar interfaces
+26.2 detectar conexiones NetworkManager
+26.3 mostrar zonas
+26.4 mostrar sources
+26.5 mostrar servicios
+26.6 mostrar puertos
+26.7 mostrar rich rules
+26.8 mostrar policies
+26.9 comprobar forwarding
+26.10 comprobar masquerading
+26.11 inspeccionar nftables
+26.12 inspeccionar sockets con ss
+26.13 inspeccionar conntrack
+26.14 comprobar estado de firewalld.service
+26.15 consultar journal
+26.16 detectar posibles conflictos SELinux
+26.17 reconstruir el camino de un paquete

@@ -1,0 +1,436 @@
+0. Fundamentos
+0.1 qué es systemd
+0.2 por qué Fedora usa systemd
+0.3 systemd como PID 1
+0.4 init tradicional frente a systemd
+0.5 arquitectura general de systemd
+0.6 demonios y componentes de systemd
+0.7 unidades
+0.8 dependencias
+0.9 activación bajo demanda
+0.10 transacciones de systemd
+0.11 cgroups y seguimiento de procesos
+0.12 systemd en Fedora
+0.13 laboratorio: explorar PID 1
+
+1. systemctl
+1.1 systemctl
+1.2 systemctl status
+1.3 systemctl start
+1.4 systemctl stop
+1.5 systemctl restart
+1.6 systemctl reload
+1.7 systemctl try-restart
+1.8 systemctl reload-or-restart
+1.9 systemctl enable
+1.10 systemctl disable
+1.11 systemctl reenable
+1.12 systemctl mask
+1.13 systemctl unmask
+1.14 systemctl preset
+1.15 systemctl is-active
+1.16 systemctl is-enabled
+1.17 systemctl is-failed
+1.18 systemctl list-units
+1.19 systemctl list-unit-files
+1.20 systemctl show
+1.21 systemctl cat
+1.22 systemctl edit
+1.23 systemctl revert
+1.24 systemctl daemon-reload
+1.25 systemctl daemon-reexec
+1.26 laboratorio completo de systemctl
+
+2. Unidades systemd
+2.1 concepto de Unit
+2.2 .service
+2.3 .socket
+2.4 .target
+2.5 .timer
+2.6 .path
+2.7 .mount
+2.8 .automount
+2.9 .swap
+2.10 .device
+2.11 .slice
+2.12 .scope
+2.13 unidades template @
+2.14 instancias de unidades
+2.15 aliases
+2.16 laboratorio: inventario de unidades Fedora
+
+3. Localización y precedencia de unidades
+3.1 /usr/lib/systemd/system
+3.2 /etc/systemd/system
+3.3 /run/systemd/system
+3.4 prioridad de directorios
+3.5 unidades proporcionadas por RPM
+3.6 unidades creadas por el administrador
+3.7 drop-ins
+3.8 *.d/override.conf
+3.9 systemctl edit
+3.10 no modificar /usr/lib/systemd/system
+3.11 laboratorio: override de un servicio Fedora
+
+4. Anatomía de un .service
+4.1 [Unit]
+4.2 [Service]
+4.3 [Install]
+4.4 Description=
+4.5 Documentation=
+4.6 ExecStart=
+4.7 ExecStartPre=
+4.8 ExecStartPost=
+4.9 ExecReload=
+4.10 ExecStop=
+4.11 ExecStopPost=
+4.12 Environment=
+4.13 EnvironmentFile=
+4.14 WorkingDirectory=
+4.15 User=
+4.16 Group=
+4.17 RuntimeDirectory=
+4.18 StateDirectory=
+4.19 CacheDirectory=
+4.20 LogsDirectory=
+4.21 PIDFile=
+4.22 Restart=
+4.23 RestartSec=
+4.24 TimeoutStartSec=
+4.25 TimeoutStopSec=
+4.26 laboratorio: crear nuestro primer servicio
+
+5. Type= de servicios
+5.1 Type=simple
+5.2 Type=exec
+5.3 Type=forking
+5.4 Type=oneshot
+5.5 Type=notify
+5.6 Type=notify-reload
+5.7 Type=dbus
+5.8 Type=idle
+5.9 cuándo utilizar cada Type
+5.10 laboratorio comparativo
+
+6. Dependencias
+6.1 Requires=
+6.2 Wants=
+6.3 Requisite=
+6.4 BindsTo=
+6.5 PartOf=
+6.6 Conflicts=
+6.7 Before=
+6.8 After=
+6.9 dependencia frente a orden
+6.10 Wants frente a Requires
+6.11 RequiresMountsFor=
+6.12 systemctl list-dependencies
+6.13 systemctl list-dependencies --reverse
+6.14 laboratorio: grafo de dependencias
+
+7. Targets
+7.1 qué es un target
+7.2 multi-user.target
+7.3 graphical.target
+7.4 rescue.target
+7.5 emergency.target
+7.6 basic.target
+7.7 network.target
+7.8 network-online.target
+7.9 default.target
+7.10 systemctl get-default
+7.11 systemctl set-default
+7.12 isolate
+7.13 laboratorio: analizar el arranque de Fedora
+
+8. Habilitación de servicios
+8.1 qué hace realmente enable
+8.2 [Install]
+8.3 WantedBy=
+8.4 RequiredBy=
+8.5 Alias=
+8.6 symlinks en *.wants/
+8.7 habilitado ≠ iniciado
+8.8 static units
+8.9 indirect units
+8.10 generated units
+8.11 preset
+8.12 Fedora systemd presets
+
+9. Journald
+9.1 systemd-journald
+9.2 journalctl
+9.3 journalctl -b
+9.4 journalctl -b -1
+9.5 journalctl -u
+9.6 journalctl -f
+9.7 journalctl --since
+9.8 journalctl --until
+9.9 journalctl -p
+9.10 journalctl -k
+9.11 campos del journal
+9.12 _PID
+9.13 _UID
+9.14 _SYSTEMD_UNIT
+9.15 MESSAGE_ID
+9.16 journalctl -o verbose
+9.17 almacenamiento persistente
+9.18 journald.conf
+9.19 vacuum
+9.20 laboratorio de debugging con journalctl
+
+10. Timers
+10.1 .timer
+10.2 reemplazar cron
+10.3 OnCalendar=
+10.4 OnBootSec=
+10.5 OnStartupSec=
+10.6 OnUnitActiveSec=
+10.7 OnUnitInactiveSec=
+10.8 Persistent=
+10.9 AccuracySec=
+10.10 RandomizedDelaySec=
+10.11 systemd-analyze calendar
+10.12 systemctl list-timers
+10.13 laboratorio: backup mediante timer
+
+11. Socket activation
+11.1 socket activation
+11.2 .socket
+11.3 ListenStream=
+11.4 ListenDatagram=
+11.5 Accept=
+11.6 Socket ↔ Service
+11.7 activación bajo demanda
+11.8 laboratorio socket-activated service
+
+12. Path activation
+12.1 .path
+12.2 PathExists=
+12.3 PathChanged=
+12.4 PathModified=
+12.5 DirectoryNotEmpty=
+12.6 laboratorio: ejecutar servicio ante cambios
+
+13. Mounts y automount
+13.1 .mount
+13.2 /etc/fstab y systemd
+13.3 systemd-fstab-generator
+13.4 nombres escapados
+13.5 systemd-escape
+13.6 .automount
+13.7 x-systemd.*
+13.8 laboratorio mounts Fedora
+
+14. Generators
+14.1 systemd generators
+14.2 ejecución temprana
+14.3 /run/systemd/generator
+14.4 systemd-fstab-generator
+14.5 systemd-getty-generator
+14.6 unidades generadas
+14.7 laboratorio: inspeccionar generators
+
+15. Cgroups y recursos
+15.1 cgroup v2 en Fedora
+15.2 systemd como gestor de cgroups
+15.3 service
+15.4 scope
+15.5 slice
+15.6 system.slice
+15.7 user.slice
+15.8 machine.slice
+15.9 systemd-cgls
+15.10 systemd-cgtop
+15.11 CPUWeight=
+15.12 CPUQuota=
+15.13 MemoryMax=
+15.14 MemoryHigh=
+15.15 TasksMax=
+15.16 laboratorio: limitar recursos
+
+16. systemd-run
+16.1 unidades transient
+16.2 systemd-run
+16.3 --scope
+16.4 --unit
+16.5 --property
+16.6 ejecución con límites
+16.7 laboratorio systemd-run
+
+17. Servicios de usuario
+17.1 systemctl --user
+17.2 systemd --user
+17.3 ~/.config/systemd/user
+17.4 /usr/lib/systemd/user
+17.5 default.target de usuario
+17.6 login sessions
+17.7 loginctl
+17.8 linger
+17.9 loginctl enable-linger
+17.10 laboratorio: servicio de usuario
+
+18. systemd-tmpfiles
+18.1 systemd-tmpfiles
+18.2 tmpfiles.d
+18.3 creación de directorios
+18.4 permisos
+18.5 limpieza automática
+18.6 systemd-tmpfiles --create
+18.7 integración con paquetes RPM
+
+19. systemd-sysusers
+19.1 systemd-sysusers
+19.2 sysusers.d
+19.3 usuarios de sistema
+19.4 grupos de sistema
+19.5 usuarios declarativos
+19.6 relación con packaging Fedora
+
+20. Seguridad y sandboxing
+20.1 modelo de seguridad de servicios
+20.2 NoNewPrivileges=
+20.3 PrivateTmp=
+20.4 PrivateDevices=
+20.5 ProtectSystem=
+20.6 ProtectHome=
+20.7 ProtectKernelTunables=
+20.8 ProtectKernelModules=
+20.9 ProtectControlGroups=
+20.10 RestrictNamespaces=
+20.11 RestrictAddressFamilies=
+20.12 CapabilityBoundingSet=
+20.13 AmbientCapabilities=
+20.14 SystemCallFilter=
+20.15 DynamicUser=
+20.16 systemd-analyze security
+20.17 laboratorio: endurecer un daemon
+
+21. Credenciales
+21.1 systemd credentials
+21.2 LoadCredential=
+21.3 SetCredential=
+21.4 credenciales cifradas
+21.5 systemd-creds
+21.6 secretos frente a Environment=
+21.7 laboratorio
+
+22. Boot
+22.1 Fedora boot sequence
+22.2 firmware
+22.3 bootloader
+22.4 kernel
+22.5 initramfs
+22.6 systemd PID 1
+22.7 initrd.target
+22.8 switch-root
+22.9 basic.target
+22.10 multi-user.target
+22.11 graphical.target
+
+23. systemd-analyze
+23.1 systemd-analyze
+23.2 time
+23.3 blame
+23.4 critical-chain
+23.5 plot
+23.6 dot
+23.7 verify
+23.8 security
+23.9 calendar
+23.10 cat-config
+23.11 laboratorio: optimización del boot
+
+24. Debugging
+24.1 servicio que no arranca
+24.2 systemctl status
+24.3 journalctl -u
+24.4 systemctl show
+24.5 systemctl cat
+24.6 systemd-analyze verify
+24.7 dependencias fallidas
+24.8 start-limit-hit
+24.9 reset-failed
+24.10 procesos huérfanos
+24.11 timeouts
+24.12 ciclos de dependencias
+24.13 debugging del boot
+24.14 rescue.target
+24.15 emergency.target
+24.16 laboratorio completo de diagnóstico
+
+25. systemd y Fedora RPM packaging
+25.1 paquetes que instalan unidades systemd
+25.2 %{_unitdir}
+25.3 /usr/lib/systemd/system
+25.4 BuildRequires: systemd-rpm-macros
+25.5 %systemd_post
+25.6 %systemd_preun
+25.7 %systemd_postun_with_restart
+25.8 presets Fedora
+25.9 sysusers.d
+25.10 tmpfiles.d
+25.11 daemon-reload durante transacciones
+25.12 laboratorio: RPM + servicio systemd
+
+26. D-Bus y systemd
+26.1 D-Bus
+26.2 systemd sobre D-Bus
+26.3 org.freedesktop.systemd1
+26.4 busctl
+26.5 busctl tree
+26.6 busctl introspect
+26.7 laboratorio
+
+27. Internals
+27.1 Manager
+27.2 Unit
+27.3 Job
+27.4 Transaction
+27.5 dependencia
+27.6 cola de jobs
+27.7 estados de una unidad
+27.8 load state
+27.9 active state
+27.10 substate
+27.11 serialización del Manager
+27.12 daemon-reexec internamente
+27.13 laboratorio de internals
+
+28. Árbol completo de procesos
+28.1 pstree -p
+28.2 systemd-cgls
+28.3 systemctl status PID
+28.4 systemctl status $(pidof ...)
+28.5 /proc/PID/cgroup
+28.6 system.slice
+28.7 reconstruir servicio ↔ proceso ↔ cgroup
+
+29. Laboratorios Fedora reales
+29.1 analizar sshd.service
+29.2 analizar NetworkManager.service
+29.3 analizar firewalld.service
+29.4 analizar dbus-broker.service
+29.5 analizar systemd-journald.service
+29.6 analizar systemd-logind.service
+29.7 analizar rpm-ostreed donde proceda
+29.8 descubrir paquete RPM propietario de una unidad
+29.9 inspeccionar sus macros de instalación
+29.10 reconstruir su grafo de dependencias
+
+30. Proyecto final — systemd-debugger
+30.1 identificar una unidad
+30.2 localizar el archivo real
+30.3 identificar paquete RPM
+30.4 mostrar drop-ins
+30.5 mostrar propiedades efectivas
+30.6 mostrar dependencias
+30.7 mostrar dependencias inversas
+30.8 mostrar proceso principal
+30.9 mostrar cgroup
+30.10 mostrar journal
+30.11 analizar errores
+30.12 analizar seguridad
+30.13 analizar tiempo de arranque
+30.14 generar grafo Graphviz
+30.15 proyecto final: mini-systemd-debugger

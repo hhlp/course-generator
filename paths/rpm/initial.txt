@@ -1,0 +1,1589 @@
+0. Fundamentos de RPM y Fedora
+0.1 Qué es un paquete RPM
+0.2 RPM como formato y como sistema de gestión
+0.3 RPM binario vs SRPM
+0.4 estructura interna de un RPM
+0.5 cabecera RPM
+0.6 payload
+0.7 metadata
+0.8 rpmbuild
+0.9 árbol ~/rpmbuild
+0.10 BUILD
+0.11 BUILDROOT
+0.12 RPMS
+0.13 SOURCES
+0.14 SPECS
+0.15 SRPMS
+0.16 macros RPM
+0.17 macros globales
+0.18 macros locales
+0.19 rpm --eval
+0.20 rpm --showrc
+0.21 Name
+0.22 Version
+0.23 Release
+0.24 Epoch
+0.25 NEVRA
+0.26 arquitectura
+0.27 noarch
+0.28 BuildArch
+0.29 %{_arch}
+0.30 Requires
+0.31 BuildRequires
+0.32 Provides
+0.33 Conflicts
+0.34 Obsoletes
+0.35 weak dependencies
+0.36 Recommends
+0.37 Suggests
+0.38 Supplements
+0.39 Enhances
+0.40 archivos .spec
+0.41 Sintaxis general de un .spec
+0.42 Tags y secciones de un .spec
+0.43 %description
+0.44 %prep
+0.45 %build
+0.46 %install
+0.47 %check
+0.48 %files
+0.49 %changelog
+0.50 Buildroot y macros de rutas
+0.51 %{buildroot}
+0.52 %{_bindir}, %{_libdir}, %{_datadir}, %{_sysconfdir}
+0.53 Fuentes y parches
+0.54 Source / Source0
+0.55 Patch
+0.56 %autosetup
+0.57 %autopatch
+0.58 Construcción de paquetes
+0.59 rpmbuild -ba
+0.60 rpmbuild -bb
+0.61 rpmbuild -bs
+0.62 Inspección de RPMs
+0.63 rpm -q
+0.64 rpm -qi
+0.65 rpm -ql
+0.66 rpm -qf
+0.67 rpm -qp
+0.68 rpm -q --requires
+0.69 rpm -q --provides
+0.70 Instalación y eliminación
+0.71 rpm -i
+0.72 rpm -U
+0.73 rpm -e
+0.74 rpm -V
+0.75 Firma e integridad
+0.76 rpm -K / rpm --checksig
+0.77 checksums y firmas
+0.78 claves RPM
+0.79 RPM y DNF
+0.80 Diferencia entre rpm y dnf
+0.81 Repositorios RPM
+0.82 metadata de repositorio
+0.83 repodata
+0.84 createrepo_c
+0.85 Introducción al versionado RPM
+0.86 EVR
+0.87 comparación de versiones
+0.88 rpmdev-vercmp
+
+1. SPEC y construcción de paquetes
+1.1 estructura completa de un SPEC
+1.2 cabecera del SPEC
+1.3 Summary
+1.4 License
+1.5 URL
+1.6 Source
+1.7 Patch
+1.8 %description
+1.9 %prep
+1.10 %setup
+1.11 %autosetup
+1.12 aplicación de patches
+1.13 %build
+1.14 %install
+1.15 %{buildroot}
+1.16 %check
+1.17 %files
+1.18 ownership de archivos
+1.19 ownership de directorios
+1.20 %dir
+1.21 %doc
+1.22 %license
+1.23 %config
+1.24 %config(noreplace)
+1.25 atributos y permisos
+1.26 %attr
+1.27 %defattr
+1.28 globs y patrones en %files
+1.29 exclusión de archivos con %exclude
+1.30 archivos generados durante el build
+1.31 subpackages
+1.32 %package
+1.33 %description subpackage
+1.34 %files subpackage
+1.35 dependencias entre paquete principal y subpackages
+1.36 %changelog
+1.37 Construcción
+1.38 rpmbuild -ba
+1.39 rpmbuild -bb
+1.40 rpmbuild -bs
+1.41 construir RPM
+1.42 construir SRPM
+1.43 dónde aparecen los artefactos generados
+1.44 inspeccionar el RPM construido
+1.45 inspeccionar el SRPM construido
+1.46 Sources y patches
+1.47 Source0
+1.48 múltiples Sources
+1.49 Patch0
+1.50 múltiples Patches
+1.51 %{SOURCE0}
+1.52 %{PATCH0}
+1.53 Condicionales:
+1.54 condicionales RPM
+1.55 %if
+1.56 %else
+1.57 %endif
+1.58 %ifarch
+1.59 %ifnarch
+1.60 condiciones mediante macros
+1.61 Macros
+1.62 macros propias
+1.63 %global
+1.64 %define
+1.65 diferencia %global vs %define
+1.66 macros parametrizadas
+1.67 argumentos de macros
+1.68 expansión de macros
+1.69 expansión recursiva
+1.70 %{?macro}
+1.71 %{!?macro:...}
+1.72 rpm --eval aplicado al SPEC
+1.73 BuildRoot histórico y %{buildroot} moderno
+1.74 errores comunes en un SPEC
+1.75 rpmlint
+1.76 rpm --query sobre el paquete construido
+1.77 rpm -qlp
+1.78 rpm -qip
+1.79 rpm -q --scripts
+1.80 rpm -q --requires
+1.81 rpm -q --provides
+1.82 reconstruir un SRPM con rpmbuild --rebuild
+1.83 instalar un SRPM con rpm -i
+1.84 obtener SPEC y Sources desde un SRPM
+1.85 laboratorio final: SPEC completo desde cero
+
+2. RPM por dentro: transacciones, dependencias y solver
+2.1 instalación
+2.2 actualización
+2.3 downgrade
+2.4 eliminación
+2.5 transacción RPM
+2.6 %pretrans
+2.7 %pre
+2.8 instalación de archivos
+2.9 %post
+2.10 %preun
+2.11 eliminación de archivos
+2.12 %postun
+2.13 %posttrans
+2.14 significado de $1 en scriptlets
+2.15 entorno de ejecución de los scriptlets
+2.16 fallo de scriptlets y efectos sobre la transacción
+2.17 Requires(pre)
+2.18 Requires(post)
+2.19 Requires(preun)
+2.20 Requires(postun)
+2.21 Requires(pretrans)
+2.22 Requires(posttrans)
+2.23 triggers
+2.24 file triggers
+2.25 transfiletriggers
+2.26 orden de ejecución de triggers
+2.27 dependencias RPM
+2.28 dependencias versionadas
+2.29 dependencias automáticas
+2.30 EVR
+2.31 Epoch
+2.32 Version
+2.33 Release
+2.34 comparación de EVR
+2.35 rpmvercmp
+2.36 ~
+2.37 ^
+2.38 rich dependencies
+2.39 and
+2.40 or
+2.41 if / unless
+2.42 with / without
+2.43 Provides
+2.44 virtual Provides
+2.45 Provides versionados
+2.46 Conflicts
+2.47 Obsoletes
+2.48 Requires vs Provides
+2.49 Conflicts vs Obsoletes
+2.50 actualización y reemplazo de paquetes
+2.51 resolución de dependencias
+2.52 RPM vs DNF
+2.53 repositorios y metadata
+2.54 repodata
+2.55 primary.xml / primary.xml.zst
+2.56 libdnf5
+2.57 libsolv
+2.58 arquitectura interna RPM → DNF → libdnf5 → libsolv
+2.59 Pool
+2.60 Repo
+2.61 Solvable
+2.62 Id
+2.63 Reldep
+2.64 whatprovides
+2.65 jobs del solver
+2.66 candidate selection
+2.67 SAT solving
+2.68 variables SAT
+2.69 literals
+2.70 clauses
+2.71 rules
+2.72 dependency rules
+2.73 conflict rules
+2.74 job rules
+2.75 propagation
+2.76 decisions
+2.77 decision queue
+2.78 decision levels
+2.79 reasons
+2.80 conflicts
+2.81 conflict analysis
+2.82 backtracking
+2.83 learned rules
+2.84 SAT
+2.85 UNSAT
+2.86 problem rules
+2.87 problems
+2.88 solutions
+2.89 solution elements
+2.90 inspección del solver con testsolv
+2.91 laboratorio libsolv desde C
+2.92 crear Pool
+2.93 crear Repo
+2.94 crear Solvable
+2.95 construir Provides / Requires / Conflicts
+2.96 construir Reldep
+2.97 crear job
+2.98 solver_solve()
+2.99 inspeccionar decisiones
+2.100 inspeccionar rules
+2.101 provocar UNSAT
+2.102 diagnosticar problemas y soluciones
+2.103 laboratorio RPMs reales
+2.104 construir paquetes A/B/C/D/E
+2.105 crear repositorio con createrepo_c
+2.106 instalar mediante DNF
+2.107 inspeccionar metadata generada
+2.108 comprobar Provides / Requires / Conflicts reales
+2.109 reproducir el problema con testsolv
+2.110 reproducir el problema con libsolv C
+2.111 comparar DNF ↔ testsolv ↔ libsolv
+2.112 Proyecto final: mini-solver-debugger
+2.112.1  Crear estructura del proyecto
+2.112.2  Makefile y compilación con libsolv
+2.112.3  Crear y destruir Pool
+2.112.4  Crear Repo
+2.112.5  Crear Solvables A/B/C/D/E
+2.112.6  Añadir Name / EVR / Arch
+2.112.7  Añadir Provides
+2.112.8  Añadir Requires
+2.112.9  Añadir Conflicts
+2.112.10 Preparar Pool y repositorio
+2.112.11 Implementar CLI
+2.112.12 Construir Job de instalación
+2.112.13 Crear Solver
+2.112.14 Ejecutar solver_solve()
+2.112.15 Detectar SAT / UNSAT
+2.112.16 Mostrar decision queue
+2.112.17 Mostrar decision levels
+2.112.18 Mostrar reasons
+2.112.19 Mostrar rules
+2.112.20 Mostrar dependency rules
+2.112.21 Mostrar conflict rules
+2.112.22 Mostrar job rules
+2.112.23 Mostrar problems
+2.112.24 Mostrar problem rules
+2.112.25 Mostrar solutions
+2.112.26 Mostrar solution elements
+2.112.27 Crear Transaction
+2.112.28 Mostrar instalaciones
+2.112.29 Mostrar eliminaciones
+2.112.30 Mostrar actualizaciones
+2.112.31 Relacionar decisiones con transacción
+2.112.32 Escenario SAT simple
+2.112.33 Escenario con Requires encadenados
+2.112.34 Escenario con proveedor alternativo
+2.112.35 Escenario con conflicto
+2.112.36 Escenario con backtracking
+2.112.37 Escenario UNSAT
+2.112.38 Explicar conflicto paso a paso
+2.112.39 Construir RPM A/B/C/D/E reales
+2.112.40 Crear repositorio con createrepo_c
+2.112.41 Inspeccionar repomd.xml
+2.112.42 Inspeccionar primary metadata
+2.112.43 Inspeccionar filelists metadata
+2.112.44 Inspeccionar metadata generada
+2.112.45 Cargar metadata RPM real en libsolv
+2.112.46 Comparar RPM metadata ↔ Solvable
+2.112.47 Resolver A/B/C/D/E desde metadata real
+2.112.48 Provocar SAT con RPM reales
+2.112.49 Provocar UNSAT con RPM reales
+2.112.50 Comparar resultado con DNF
+2.112.51 Comparar resultado con testsolv
+2.112.52 Leer repositorios RPM externos
+2.112.53 Leer repomd.xml desde libsolv
+2.112.54 Importar primary.xml
+2.112.55 Importar filelists.xml
+2.112.56 Importar metadata adicional
+2.112.57 Trabajar con repositorios grandes
+2.112.58 Buscar paquetes por nombre
+2.112.59 Buscar paquetes por NEVRA
+2.112.60 Buscar paquetes por Provides
+2.112.61 Mostrar Requires reales
+2.112.62 Mostrar Provides reales
+2.112.63 Mostrar Conflicts reales
+2.112.64 Mostrar Obsoletes reales
+2.112.65 Mostrar proveedores de una dependencia
+2.112.66 Resolver instalación de paquete real
+2.112.67 Resolver eliminación de paquete real
+2.112.68 Resolver actualización de paquete real
+2.112.69 Leer archivos .solv
+2.112.70 Generar archivos .solv
+2.112.71 Guardar cache .solv
+2.112.72 Reutilizar cache .solv
+2.112.73 Cargar varios repositorios .solv
+2.112.74 Prioridad entre repositorios
+2.112.75 Distinguir installed repo y available repos
+2.112.76 Crear installed repo artificial
+2.112.77 Simular sistema instalado
+2.112.78 Resolver installed + repositorios
+2.112.79 Analizar proveedores entre repositorios
+2.112.80 Analizar conflictos entre repositorios
+2.112.81 Añadir --repo
+2.112.82 Añadir --solv
+2.112.83 Añadir --installed
+2.112.84 Añadir --install
+2.112.85 Añadir --erase
+2.112.86 Añadir --update
+2.112.87 Añadir --provides
+2.112.88 Añadir --requires
+2.112.89 Añadir --whatprovides
+2.112.90 Añadir --whatrequires
+2.112.91 Añadir --rules
+2.112.92 Añadir --decisions
+2.112.93 Añadir --reasons
+2.112.94 Añadir --problems
+2.112.95 Añadir --solutions
+2.112.96 Añadir --transaction
+2.112.97 Añadir --all
+2.112.98 Añadir --verbose
+2.112.99 Analizar paquete concreto de Fedora
+2.112.100 Seleccionar paquete por nombre
+2.112.101 Seleccionar paquete por NEVRA
+2.112.102 Mostrar metadata completa del paquete
+2.112.103 Mostrar Requires del paquete
+2.112.104 Mostrar Provides del paquete
+2.112.105 Mostrar Conflicts / Obsoletes
+2.112.106 Seguir Requires → Providers
+2.112.107 Construir subgrafo de dependencias
+2.112.108 Resolver instalación del paquete
+2.112.109 Mostrar reglas generadas
+2.112.110 Mostrar decisiones generadas
+2.112.111 Mostrar transacción final
+2.112.112 Analizar RPM local
+2.112.113 Abrir metadata de un .rpm
+2.112.114 Convertir RPM local en Solvable
+2.112.115 Mostrar NEVRA del RPM
+2.112.116 Mostrar Provides del RPM
+2.112.117 Mostrar Requires del RPM
+2.112.118 Mostrar Conflicts del RPM
+2.112.119 Mostrar Obsoletes del RPM
+2.112.120 Detectar Requires automáticos
+2.112.121 Añadir RPM local a un Repo temporal
+2.112.122 Resolver RPM local contra Fedora
+2.112.123 Resolver RPM local contra varios repos
+2.112.124 Mostrar dependencias no satisfechas
+2.112.125 Mostrar proveedores candidatos
+2.112.126 Diagnosticar conflicto del RPM local
+2.112.127 Añadir --rpm
+2.112.128 Añadir --against
+2.112.129 Añadir --rpm --solve
+2.112.130 Añadir --rpm --rules
+2.112.131 Añadir --rpm --problems
+2.112.132 Añadir --rpm --transaction
+2.112.133 Analizar archivo SPEC
+2.112.134 Parsear Name
+2.112.135 Parsear Version
+2.112.136 Parsear Release
+2.112.137 Parsear Epoch
+2.112.138 Parsear BuildArch
+2.112.139 Extraer Requires explícitos
+2.112.140 Extraer BuildRequires
+2.112.141 Extraer Provides explícitos
+2.112.142 Extraer Conflicts
+2.112.143 Extraer Obsoletes
+2.112.144 Extraer Recommends
+2.112.145 Extraer Suggests
+2.112.146 Extraer Supplements
+2.112.147 Extraer Enhances
+2.112.148 Construir modelo de dependencias desde SPEC
+2.112.149 Convertir dependencias SPEC en Reldep
+2.112.150 Resolver Requires del SPEC
+2.112.151 Resolver BuildRequires del SPEC
+2.112.152 Mostrar proveedores de BuildRequires
+2.112.153 Detectar BuildRequires imposibles
+2.112.154 Detectar Requires imposibles
+2.112.155 Analizar Conflicts del SPEC
+2.112.156 Analizar Obsoletes del SPEC
+2.112.157 Añadir --spec
+2.112.158 Añadir --spec --requires
+2.112.159 Añadir --spec --buildrequires
+2.112.160 Añadir --spec --provides
+2.112.161 Añadir --spec --solve
+2.112.162 Añadir --spec --against
+2.112.163 Limitaciones del análisis directo de SPEC
+2.112.164 Diferencia Requires explícitos ↔ automáticos
+2.112.165 Diferencia SPEC ↔ metadata RPM final
+2.112.166 Macros RPM que afectan dependencias
+2.112.167 Condicionales %if / %bcond
+2.112.168 Expansión de macros del SPEC
+2.112.169 Usar rpm --specfile para ayudar al parser
+2.112.170 Evitar reimplementar completamente el parser RPM
+2.112.171 Analizar SRPM
+2.112.172 Leer metadata del .src.rpm
+2.112.173 Obtener SPEC del SRPM
+2.112.174 Mostrar BuildRequires
+2.112.175 Resolver BuildRequires contra repos
+2.112.176 Simular entorno de build
+2.112.177 Detectar BuildRequires no satisfechos
+2.112.178 Diagnosticar SRPM no construible
+2.112.179 Añadir --srpm
+2.112.180 Añadir --srpm --buildrequires
+2.112.181 Añadir --srpm --solve
+2.112.182 Añadir --srpm --against
+2.112.183 Pipeline SPEC → rpmbuild
+2.112.184 Construir SRPM desde SPEC
+2.112.185 Construir RPM binario
+2.112.186 Obtener metadata final
+2.112.187 Detectar Requires automáticos
+2.112.188 Detectar Provides automáticos
+2.112.189 Comparar SPEC ↔ SRPM
+2.112.190 Comparar SPEC ↔ RPM binario
+2.112.191 Comparar Requires explícitos ↔ finales
+2.112.192 Comparar Provides explícitos ↔ finales
+2.112.193 Resolver RPM generado contra Fedora
+2.112.194 Diagnóstico completo SPEC → RPM → solver
+2.112.195 Añadir --build
+2.112.196 Añadir --spec --build
+2.112.197 Añadir --spec --build --solve
+2.112.198 Añadir --spec --build --against
+2.112.199 Mostrar diferencias SPEC ↔ RPM generado
+2.112.200 Analizar un proyecto empaquetado real
+2.112.201 Código fuente ↔ SPEC
+2.112.202 Qué puede inferirse del código fuente
+2.112.203 Qué no debe inferir el mini-solver
+2.112.204 Dependencias de compilación vs dependencias RPM
+2.112.205 Integración con herramientas externas
+2.112.206 Mantener libsolv como núcleo de resolución
+2.112.207 Seguir paquete real de extremo a extremo
+2.112.208 SPEC
+2.112.209 SRPM
+2.112.210 RPM binario
+2.112.211 repodata
+2.112.212 Solvable
+2.112.213 Reldep
+2.112.214 Rule
+2.112.215 Decision
+2.112.216 Conflict
+2.112.217 Solution
+2.112.218 Transaction
+2.112.219 Caso práctico: dependencia rota
+2.112.220 Caso práctico: proveedor alternativo
+2.112.221 Caso práctico: conflicto entre paquetes
+2.112.222 Caso práctico: Obsoletes
+2.112.223 Caso práctico: actualización imposible
+2.112.224 Caso práctico: BuildRequires imposible
+2.112.225 Caso práctico: RPM local incompatible
+2.112.226 Caso práctico: dos repos incompatibles
+2.112.227 Caso práctico: installed repo vs actualización
+2.112.228 Caso práctico: SPEC resoluble pero RPM no resoluble
+2.112.229 Inspeccionar propagation real
+2.112.230 Inspeccionar decision queue real
+2.112.231 Inspeccionar decision levels reales
+2.112.232 Inspeccionar reasons reales
+2.112.233 Inspeccionar conflict rules reales
+2.112.234 Analizar backtracking real
+2.112.235 Analizar UNSAT real
+2.112.236 Interpretar solutions reales
+2.112.237 Comparar mini-solver-debugger ↔ testsolv
+2.112.238 Comparar jobs
+2.112.239 Comparar rules
+2.112.240 Comparar decisions
+2.112.241 Comparar problems
+2.112.242 Comparar solutions
+2.112.243 Comparar transactions
+2.112.244 Comparar mini-solver-debugger ↔ DNF
+2.112.245 Comparar selección de paquetes
+2.112.246 Comparar proveedores elegidos
+2.112.247 Comparar actualización
+2.112.248 Comparar eliminación
+2.112.249 Comparar transacción
+2.112.250 Entender diferencias de política DNF/libsolv
+2.112.251 Arquitectura final del programa
+2.112.252 Separar frontend CLI
+2.112.253 Separar carga de repositorios
+2.112.254 Separar carga de RPM
+2.112.255 Separar análisis de SPEC
+2.112.256 Separar análisis de SRPM
+2.112.257 Separar solver
+2.112.258 Separar debugger
+2.112.259 Separar transaction
+2.112.260 API interna del proyecto
+2.112.261 Mejorar formato de salida
+2.112.262 Modo compacto
+2.112.263 Modo verbose
+2.112.264 Modo debug
+2.112.265 Salida JSON
+2.112.266 Salida machine-readable
+2.112.267 IDs internos ↔ nombres legibles
+2.112.268 Gestión robusta de errores
+2.112.269 Cleanup de Pool
+2.112.270 Cleanup de Repo
+2.112.271 Cleanup de Solver
+2.112.272 Cleanup de Queue
+2.112.273 Cleanup de Transaction
+2.112.274 Detección de metadata corrupta
+2.112.275 Detección de repositorio inválido
+2.112.276 Detección de RPM inválido
+2.112.277 Detección de SPEC inválido
+2.112.278 Pruebas unitarias
+2.112.279 Pruebas del parser CLI
+2.112.280 Pruebas de creación de Solvables
+2.112.281 Pruebas de Reldep
+2.112.282 Pruebas SAT
+2.112.283 Pruebas UNSAT
+2.112.284 Pruebas de transaction
+2.112.285 Pruebas con RPM local
+2.112.286 Pruebas con SPEC
+2.112.287 Pruebas con SRPM
+2.112.288 Pruebas con repo real
+2.112.289 Pruebas contra testsolv
+2.112.290 Pruebas contra DNF
+2.112.291 Documentar arquitectura
+2.112.292 Documentar CLI
+2.112.293 Documentar formatos soportados
+2.112.294 Documentar limitaciones
+2.112.295 Documentar ejemplos Fedora
+2.112.296 Documentar ejemplos RPM local
+2.112.297 Documentar ejemplos SPEC
+2.112.298 Documentar ejemplos SRPM
+2.112.299 README final
+2.112.300 mini-solver-debugger v1.0
+
+3. Comando rpm en profundidad
+3.1 Consultar RPMs instalados
+3.1.1 rpm -q
+3.1.2 rpm -qa
+3.1.3 rpm -qi
+3.1.4 rpm -ql
+3.1.5 rpm -qc
+3.1.6 rpm -qd
+3.1.7 rpm -qf
+3.1.8 rpm -q --requires
+3.1.9 rpm -q --provides
+3.1.10 rpm -q --whatprovides
+3.1.11 rpm -q --whatrequires
+3.1.12 rpm -q --scripts
+3.1.13 rpm -q --triggers
+3.1.14 rpm -q –changelog
+3.2 Consultar RPMs sin instalar
+3.2.1 rpm -qp
+3.2.2 rpm -qpi
+3.2.3 rpm -qpl
+3.2.4 rpm -qpR
+3.2.5 rpm -qp --provides
+3.2.6 rpm -qp --scripts
+3.3 Queryformat
+3.3.1 rpm --queryformat
+3.3.2 %{NAME}
+3.3.3 %{VERSION}
+3.3.4 %{RELEASE}
+3.3.5 %{ARCH}
+3.3.6 arrays de tags
+3.3.7 formatos
+3.3.8 condiciones
+3.3.9 rpm --querytags
+3.4 Instalación y eliminación
+3.4.1 rpm -i
+3.4.2 rpm -U
+3.4.3 rpm -F
+3.4.4 rpm -e
+3.4.5 test
+3.4.6 nodeps
+3.4.7 replacepkgs
+3.4.8 replacefiles
+3.4.9 oldpackage
+3.4.10 force
+3.5 Verificación
+3.5.1 rpm -V
+3.5.2 rpm -Va
+3.5.3 S — tamaño
+3.5.4 M — modo/permisos
+3.5.5 5 — digest del contenido
+3.5.6 D — dispositivo
+3.5.7 L — enlace simbólico
+3.5.8 U — usuario
+3.5.9 G — grupo
+3.5.10 T — timestamp
+3.5.11 P — capabilities
+3.6 Firmas
+3.6.1 rpm -K
+3.6.2 rpm --checksig
+3.6.3 rpmkeys
+3.6.4 claves GPG/OpenPGP
+3.6.5 importación de claves
+3.6.6 firma de RPMs
+3.7 Base de datos RPM
+3.7.1 rpmdb
+3.7.2 rpmdb --verifydb
+3.7.3 rpm --rebuilddb
+3.7.4 corrupción de rpmdb
+3.7.5 recuperación
+3.7.6 rpm -q --dump
+3.7.7 rpm -q --fileprovide / información asociada a archivos
+3.7.8 rpm -q --conflicts
+3.7.9 rpm -q --obsoletes
+3.7.10 rpm -q --recommends
+3.7.11 rpm -q --suggests
+3.7.12 rpm -q --supplements
+3.7.13 rpm -q --enhances
+3.7.14 rpm -q --requires --resolve y límites de resolución de RPM
+3.7.15 consultas por capability frente a consultas por nombre de paquete
+3.7.16 rpm -q --last
+3.7.17 rpm -qa --last
+3.7.18 rpm -q --state
+3.7.19 rpm -V y archivos %config
+3.7.20 códigos de tipo de archivo en la verificación (c, d, g, l, r, etc.)
+3.7.21 diferencias entre verificación de metadata, contenido y firma
+3.7.22 rpmdb --rebuilddb frente a rpm --rebuilddb según versión de RPM
+3.7.23 ubicación y backend moderno de rpmdb
+3.7.24 bloqueo y consistencia transaccional de rpmdb
+3.7.25 Laboratorio final: investigar completamente un RPM
+3.8 Interfaces y ejecutables especializados de RPM
+3.8.1 ejecutables que forman el ecosistema RPM
+3.8.2 rpmquery
+3.8.2.1 rpmquery frente a rpm -q
+3.8.2.2 consultas con rpmquery
+3.8.3 rpmverify
+3.8.3.1 rpmverify frente a rpm -V / rpm --verify
+3.8.3.2 verificación con rpmverify
+3.8.4 rpmkeys
+3.8.4.1 rpmkeys frente a rpm -K / rpm --checksig
+3.8.4.2 gestión e inspección de claves con rpmkeys
+3.8.5 rpmsign
+3.8.5.1 firma de paquetes con rpmsign
+3.8.5.2 rpmsign frente a rpm --addsign / --resign
+3.8.6 rpmdb
+3.8.6.1 administración de rpmdb con rpmdb
+3.8.6.2 rpmdb frente a las opciones equivalentes de rpm
+3.8.7 rpm2cpio
+3.8.7.1 extraer el payload de un RPM sin instalarlo
+3.8.7.2 rpm2cpio + cpio
+3.8.8 rpmbuild
+3.8.8.1 relación entre rpm y rpmbuild
+3.8.8.2 modos principales de rpmbuild
+3.8.9 rpmspec
+3.8.9.1 inspeccionar un SPEC sin construirlo
+3.8.9.2 expansión y análisis de SPEC con rpmspec
+3.8.10 rpmdeps
+3.8.10.1 herramienta histórica de RPM frente a proyectos externos
+3.8.10.2 bogdando/rpmdeps
+3.8.11 generación e inspección de dependencias
+3.8.11.1 rpm -qR
+3.8.11.2 rpm -qpR
+3.8.11.3 rpm --whatrequires
+3.8.11.4 rpm --whatprovides
+3.8.11.5 dnf repoquery
+3.8.11.6 bogdando/rpmdeps
+3.8.12 rpmgraph
+3.8.12.1 herramienta histórica/no disponible en nuestra instalación
+3.8.11.2 alternativa externa: mambelli/rpmdepsgraph
+3.8.13 visualizar relaciones de dependencias
+3.8.13.1 rpmdepsgraph.sh
+3.8.13.2 formato Graphviz DOT
+3.8.13.3 dot
+3.8.13.4 dnf repoquery --tree
+3.8.13.5 comparación con libsolv / mini-solver-debugger
+3.8.14 arquitectura de las herramientas RPM
+3.8.15 qué ejecutables son frontends especializados
+3.8.16 relación entre rpm, librpm y sus herramientas
+3.8.17 localizar todos los ejecutables RPM instalados
+3.8.18 identificar a qué paquete pertenece cada ejecutable
+3.8.19 inspeccionar symlinks, binarios y wrappers
+3.8.20 comparar --help de rpm, rpmquery y rpmverify
+3.8.21 comparar interfaces equivalentes
+3.8.22 opciones exclusivas de cada herramienta
+3.8.23 compatibilidad y evolución entre versiones de RPM
+3.8.24 laboratorio: inventario completo de herramientas RPM
+3.8.25 laboratorio: comparar rpmquery con rpm -q
+3.8.26 laboratorio: comparar rpmverify con rpm -V
+3.8.27 laboratorio: inspeccionar claves con rpmkeys
+3.8.28 laboratorio: inspeccionar rpmdb
+3.8.29 laboratorio: extraer un RPM con rpm2cpio
+3.8.30 laboratorio: analizar un SPEC con rpmspec
+3.8.31 laboratorio final: mapa completo del ecosistema RPM
+
+4. Repositorios RPM y DNF
+4.1 Fundamentos de repositorios RPM
+4.1.1 Estructura de un repositorio
+4.1.2 repodata/
+4.1.3 repomd.xml
+4.1.4 primary.xml / primary.xml.gz / metadata primaria
+4.1.5 filelists
+4.1.6 other metadata
+4.1.7 checksums e identificación de metadata
+4.1.8 relación RPM → repository metadata → DNF/libsolv
+
+4.2 createrepo_c
+4.3 createrepo_c
+4.3.1 Crear un repositorio local
+4.3.2 Actualizar un repositorio existente
+4.3.3 createrepo_c --update
+4.3.4 inspeccionar repodata/ generado
+4.3.5 añadir/eliminar RPMs y regenerar metadata
+
+4.4 Configuración de repositorios
+4.4.1 Archivos .repo
+4.4.2 /etc/yum.repos.d/
+4.4.3 baseurl
+4.4.4 metalink
+4.4.5 mirrorlist
+4.4.6 enabled
+4.4.7 gpgcheck
+4.4.8 repo_gpgcheck
+4.4.9 gpgkey
+4.4.10 cost
+4.4.11 variables como $releasever y $basearch
+
+4.5 Consultas DNF
+4.5.1 dnf repolist
+4.5.2 dnf repoquery
+4.5.3 dnf provides
+4.5.4 dnf list
+4.5.5 dnf info
+4.5.6 dnf search
+4.5.7 dnf repoquery --requires
+4.5.8 dnf repoquery --provides
+4.5.9 dnf repoquery --whatrequires
+4.5.10 dnf repoquery --installed / consultas del sistema instalado
+
+4.6 Transacciones DNF
+4.6.1 dnf install
+4.6.2 dnf upgrade
+4.6.3 dnf downgrade
+4.6.4 dnf remove
+4.6.5 dnf reinstall
+4.6.6 dnf distro-sync
+
+4.7 Resolución de dependencias
+4.7.1 Qué hace DNF antes de ejecutar RPM
+4.7.2 construcción del sack de paquetes
+4.7.3 paquetes instalados + paquetes de repositorios
+4.7.4 selección de candidatos
+4.7.5 relación DNF ↔ libdnf ↔ libsolv
+4.7.6 best
+4.7.7 allowerasing
+4.7.8 skip-broken
+4.7.9 weak dependencies en DNF
+4.7.10 install_weak_deps
+
+4.8 Política de selección de paquetes
+4.8.1 exclude / excludepkgs
+4.8.2 includepkgs
+4.8.3 prioridades de repositorios cuando corresponda
+4.8.4 coste de repositorios
+4.8.5 repositorios habilitados/deshabilitados por operación
+4.8.6 enablerepo
+4.8.7 disablerepo
+
+4.9 Caché y metadata
+4.9.1 Caché de DNF
+4.9.2 metadata descargada
+4.9.3 metadata_expire
+4.9.4 dnf makecache
+4.9.5 dnf clean metadata
+4.9.6 dnf clean packages
+4.9.7 dnf clean all
+4.9.8 qué ocurre cuando cambia repomd.xml
+
+4.10 Seguridad del repositorio
+4.10.1 Firma GPG de paquetes RPM
+4.10.2 gpgcheck en profundidad
+4.10.3 importación y gestión de claves RPM
+4.10.4 rpm --import
+4.10.5 rpm -qa 'gpg-pubkey*'
+4.10.6 Repositorio local firmado
+4.10.7 Firma de metadata
+4.10.8 repo_gpgcheck en profundidad
+4.10.9 firma de repomd.xml
+4.10.10 diferencia entre confiar en el paquete y confiar en la metadata
+
+4.11 Laboratorio final
+4.11.1 Construir varios RPMs propios
+4.11.2 Crear el repositorio con createrepo_c
+4.11.3 Configurar local-test.repo
+4.11.4 Instalar desde el repositorio usando DNF
+4.11.5 Añadir una versión nueva de un paquete
+4.11.6 actualizar repodata
+4.11.7 observar la actualización mediante DNF
+4.11.8 introducir dependencias entre RPMs
+4.11.9 introducir Provides, Conflicts y versiones alternativas
+4.11.10 observar qué candidato selecciona DNF
+4.11.11 probar --best, --allowerasing y --skip-broken
+4.11.12 inspeccionar las mismas dependencias con repoquery
+4.11.13 comparar metadata RPM con metadata del repositorio
+4.11.14 seguir el camino completo: SPEC ↓ RPM ↓ createrepo_c ↓ repodata ↓ DNF ↓ libdnf ↓ libsolv ↓ transacción RPM
+
+5. Integración con el sistema Fedora systemd
+
+5.1 Integración con systemd
+5.1.1 systemd units
+5.1.2 %systemd_post
+5.1.3 %systemd_preun
+5.1.4 %systemd_postun_with_restart
+5.1.5 systemd presets
+
+5.2 Gestión de recursos del sistema
+5.2.1 tmpfiles.d
+5.2.2 sysusers.d
+
+5.3 Integración con dispositivos e IPC
+5.3.1 udev rules
+5.3.2 D-Bus
+
+5.4 Logs y tareas periódicas
+5.4.1 logrotate
+5.4.2 cron
+5.4.3 systemd timers
+
+5.5 Integración con el escritorio
+5.5.1 desktop files
+5.5.2 desktop-file-validate
+5.5.3 icons
+5.5.4 AppStream
+5.5.5 metainfo.xml
+5.5.6 MIME types
+
+5.6 Integración y selección de software
+5.6.1 alternatives
+
+5.7 Filesystem Hierarchy
+5.7.1 filesystem hierarchy de Fedora
+5.7.2 /usr/bin
+5.7.3 /usr/lib
+5.7.4 /usr/lib64
+5.7.5 /usr/share
+5.7.6 /etc
+5.7.7 /var
+
+5.9 SELinux
+5.9.1 file contexts
+5.9.2 policies y paquetes SELinux
+
+5.10 Kernel
+5.10.1 kernel modules y relación con RPM
+
+6. Calidad, seguridad y reproducibilidad
+
+6.1 Herramientas de análisis y revisión
+6.1.1 rpmlint
+6.1.2 fedora-review
+6.1.3 rpminspect
+
+6.2 Normativa Fedora
+6.2.1 Fedora Packaging Guidelines
+6.2.2 MUST, SHOULD y recomendaciones de empaquetado
+6.2.3 errores habituales que impiden aceptar un paquete en Fedora
+
+6.3 Licencias
+6.3.1 licencias de software y empaquetado
+6.3.2 SPDX
+6.3.3 License: tag
+6.3.4 múltiples licencias en un mismo paquete
+6.3.5 licencia del código vs licencia de archivos individuales
+6.3.6 %license y archivos de licencia
+
+6.4 Integridad y procedencia de las fuentes
+6.4.1 fuentes upstream
+6.4.2 Source0 y procedencia verificable
+6.4.3 verificación de Source
+6.4.4 SHA256
+6.4.5 firmas GPG upstream
+6.4.6 verificación manual de una release upstream
+6.4.7 spectool y descarga/verificación de fuentes
+
+6.5 Builds herméticos
+6.5.1 builds offline
+6.5.2 prohibición de descargar durante %build
+6.5.3 prohibición de descargar durante %install y %check
+6.5.4 dependencias declaradas mediante BuildRequires
+6.5.5 diferencias entre entorno de desarrollo y entorno limpio de construcción
+
+6.6 Bundling y vendoring
+
+6.6.1 bundled dependencies
+6.6.2 vendoring
+6.6.3 cuándo una dependencia se considera bundled
+6.6.4 problemas de seguridad del bundling
+6.6.5 Provides para bundled libraries cuando corresponda
+
+6.7 Builds reproducibles
+6.7.1 reproducible builds
+6.7.2 fuentes de no determinismo
+6.7.3 timestamps
+6.7.4 orden de archivos
+6.7.5 rutas del entorno de compilación
+6.7.6 locale y timezone
+6.7.7 SOURCE_DATE_EPOCH
+6.7.8 comparar dos builds
+6.7.9 diffoscope
+
+6.8 Hardening
+6.8.1 compiler hardening
+6.8.2 flags de compilación de Fedora
+6.8.3 %{build_cflags}
+6.8.4 %{build_cxxflags}
+6.8.5 %{build_ldflags}
+6.8.6 PIE
+6.8.7 PIC vs PIE
+6.8.8 RELRO
+6.8.9 BIND_NOW / full RELRO
+6.8.10 NX
+6.8.11 FORTIFY
+6.8.12 stack protector
+6.8.13 Stack Clash protection
+6.8.14 CET
+6.8.15 comprobar el hardening de un binario ELF
+
+6.9 Información de depuración
+6.9.1 debuginfo
+6.9.2 debugsource
+6.9.3 separación automática de símbolos de depuración
+6.9.4 build IDs
+6.9.5 .note.gnu.build-id
+6.9.6 relación entre ejecutable y paquete debuginfo
+6.9.7 cuándo no se genera debuginfo y cómo diagnosticarlo
+
+6.10 Calidad del contenido del RPM
+6.10.1 ownership correcto
+6.10.2 ownership de directorios
+6.10.3 permisos
+6.10.4 propietarios y grupos
+6.10.5 %attr y cuándo evitarlo
+6.10.6 archivos duplicados entre subpackages
+6.10.7 archivos no empaquetados
+6.10.8 directorios vacíos
+6.10.9 archivos inesperados dentro del buildroot
+6.10.10 detectar contaminación del buildroot
+
+6.11 Tests
+6.11.1 tests durante el build
+6.11.2 %check
+6.11.3 tests que requieren red
+6.11.4 tests que no pueden ejecutarse en el entorno de build
+6.11.5 tests opcionales vs obligatorios
+6.11.6 tests que fallan y por qué no deben ignorarse indiscriminadamente
+
+6.12 Construcción en entorno limpio
+6.12.1 por qué probar un RPM fuera de nuestra máquina
+6.12.2 mock
+6.12.3 configuración de mock
+6.12.4 construir un SRPM con mock
+6.12.5 construir un RPM en un chroot limpio
+6.12.6 detectar BuildRequires ausentes mediante mock
+6.12.7 diferencias entre rpmbuild local y mock
+6.12.8 revisar logs de mock
+
+6.13 Validación final
+6.13.1 inspeccionar el SPEC
+6.13.2 inspeccionar el SRPM
+6.13.3 inspeccionar los RPM binarios
+6.13.4 ejecutar rpmlint
+6.13.5 ejecutar fedora-review
+6.13.6 analizar con rpminspect
+6.13.7 construir nuevamente con mock
+6.13.8 instalar el paquete resultante
+6.13.9 ejecutar tests funcionales
+6.13.10 comprobar instalación, actualización y eliminación
+
+6.14 Laboratorio final
+6.14.1 Auditoría completa de un RPM antes de enviarlo a Fedora
+
+7. Fedora Packaging Workflow profesional
+
+7.1 Dist-git y fedpkg
+7.1.1 Fedora dist-git
+7.1.2 estructura de un repositorio dist-git
+7.1.3 sources
+7.1.4 .gitignore en dist-git
+7.1.5 lookaside cache
+7.1.6 fedpkg
+7.1.7 fedpkg clone
+7.1.8 fedpkg prep
+7.1.9 fedpkg srpm
+7.1.10 fedpkg local
+7.1.11 fedpkg mockbuild
+7.1.12 fedpkg build
+7.1.13 fedpkg scratch-build
+7.1.14 fedpkg lint
+7.1.15 fedpkg sources
+7.1.16 fedpkg new-sources
+
+7.2 Mock y entornos limpios
+7.2.1 mock
+7.2.2 configuración de mock
+7.2.3 chroots
+7.2.4 buildroot limpio
+7.2.5 builds reproducibles en entornos limpios
+7.2.6 construir para distintas versiones de Fedora
+7.2.7 mock --rebuild
+7.2.8 SRPM → RPM mediante mock
+7.2.9 root cache de mock
+7.2.10 limpiar/recrear el entorno de mock
+
+7.3 Koji
+
+7.4 Koji
+7.4.1 arquitectura de Koji
+7.4.2 Koji buildroots
+7.4.3 Koji tags
+7.4.4 targets
+7.4.5 build tags vs destination tags
+7.4.6 builds oficiales
+7.4.7 scratch builds
+7.4.8 consultar builds con koji
+7.4.9 descargar builds y artefactos
+7.4.10 logs de construcción
+7.4.11 relación fedpkg build → Koji
+
+7.5 Bodhi y actualizaciones
+7.5.1 Bodhi
+7.5.2 crear una actualización
+7.5.3 builds asociados a una actualización
+7.5.4 updates-testing
+7.5.5 testing → stable
+7.5.6 karma
+7.5.7 feedback de testers
+7.5.8 gating
+7.5.9 tests automáticos
+7.5.10 requisitos para pasar a stable
+7.5.11 actualizaciones críticas y fixes
+
+7.6 Rawhide y ciclo de Fedora
+7.6.1 Rawhide
+7.6.2 desarrollo continuo en Rawhide
+7.6.3 branching de Fedora
+7.6.4 Rawhide branch
+7.6.5 stable branches
+7.6.6 Fedora release branches
+7.6.7 actualización de un paquete en Rawhide
+7.6.8 actualización en una Fedora estable
+7.6.9 backports
+7.6.10 diferencias Rawhide vs stable
+7.6.11 freezes del ciclo Fedora
+
+7.7 COPR
+
+7.8 COPR
+7.8.1 proyectos COPR
+7.8.2 paquetes COPR
+7.8.3 COPR repositories
+7.8.4 COPR chroots
+7.8.5 COPR builds
+7.8.6 builds desde SRPM
+7.8.7 builds desde SCM
+7.8.8 integración Git/COPR
+7.8.9 diferencias COPR vs Koji
+7.8.10 cuándo usar COPR y cuándo un paquete oficial Fedora
+
+7.9 Proceso de entrada de un paquete en Fedora
+7.9.1 Fedora Package Review
+7.9.2 Bugzilla
+7.9.3 crear un Review Request
+7.9.4 SPEC y SRPM para revisión
+7.9.5 fedora-review dentro del proceso oficial
+7.9.6 reviewer
+7.9.7 sponsor
+7.9.8 Fedora Packager Group
+7.9.9 aprobación del paquete
+7.9.10 creación del repositorio dist-git
+7.9.11 importación inicial
+7.9.12 primer build oficial
+7.9.13 primera actualización Bodhi
+
+7.10 Mantenimiento
+
+7.10.1 package ownership
+7.10.2 maintainers
+7.10.3 co-maintainers
+7.10.4 provenpackagers
+7.10.5 ACLs del paquete
+7.10.6 permisos commit / approve / admin
+7.10.7 recibir y gestionar bugs
+7.10.8 actualizar versiones upstream
+7.10.9 actualizar Source
+7.10.10 actualizar patches
+7.10.11 changelog del paquete
+7.10.12 rebuilds masivos de Fedora
+
+7.11 Branches, releases y backports
+7.11.1 branches Fedora
+7.11.2 crear/requestear branches
+7.11.3 Rawhide
+7.11.4 stable branches
+7.11.5 flujo de cambios entre branches
+7.11.6 updates
+7.11.7 releases
+7.11.8 backports
+7.11.9 cherry-pick entre branches
+7.11.10 cuándo no hacer un backport
+
+7.12 Fin de vida del paquete
+7.12.1 orphan packages
+7.12.2 adoptar un paquete huérfano
+7.12.3 dejar un paquete orphan
+7.12.4 retirement
+7.12.5 proceso de retirement
+7.12.6 paquete retirado en Rawhide
+7.12.7 paquetes retirados en releases estables
+7.12.8 unretirement
+
+7.13 Laboratorio final
+7.13.1 preparar un paquete como candidato real a Fedora
+7.13.2 validar SPEC y SRPM
+7.13.3 ejecutar fedora-review
+7.13.4 construir con mock
+7.13.5 probar varias releases de Fedora
+7.13.6 publicar primero mediante COPR
+7.13.7 simular Package Review
+7.13.8 trabajar con dist-git
+7.13.9 realizar scratch build en Koji
+7.13.10 realizar build oficial
+7.13.11 crear update en Bodhi
+7.13.12 pasar de testing a stable
+7.13.13 actualizar upstream y realizar un segundo release
+7.13.14 backport del fix a una rama estable
+
+8. Diagnóstico y troubleshooting RPM
+
+8.1 Problemas de construcción
+8.1.1 paquete que no construye
+8.1.2 paquete que construye pero no instala
+8.1.3 dependencia inexistente
+8.1.4 dependency loop
+8.1.5 file conflicts
+8.1.6 Provides incorrecto
+8.1.7 Obsoletes incorrecto
+8.1.8 Conflicts incorrecto
+8.1.9 scriptlet que falla
+
+8.2 Verificación de paquetes instalados
+8.2.1 rpm -V para detectar modificaciones
+8.2.2 interpretar salida de rpm -V
+8.2.3 rpm -Va
+8.2.4 verificar un archivo concreto
+8.2.5 verificar configuración modificada
+
+8.3 RPM database
+8.3.1 rpmdb
+8.3.2 rpmdb dañada
+8.3.3 rpm --rebuilddb
+8.3.4 rpmdb --verifydb
+8.3.5 bloqueos y problemas de base de datos RPM
+
+8.4 Firmas e integridad
+8.4.1 firma inválida
+8.4.2 rpm --checksig
+8.4.3 claves GPG ausentes
+8.4.4 claves GPG incorrectas
+8.4.5 checksum incorrecto
+8.4.6 distinguir fallo de firma de fallo de checksum
+
+8.5 Problemas de repositorios
+8.5.1 repository metadata corrupta
+8.5.2 metadata desactualizada
+8.5.3 dnf clean
+8.5.4 dnf clean metadata
+8.5.5 dnf clean packages
+8.5.6 dnf clean all
+8.5.7 regenerar cache
+8.5.8 dnf makecache
+8.5.9 refresh
+
+8.6 Diagnóstico de dependencias
+8.6.1 repoquery para depuración
+8.6.2 dnf repoquery --requires
+8.6.3 dnf repoquery --provides
+8.6.4 dnf repoquery --whatrequires
+8.6.5 dnf repoquery --whatprovides
+8.6.6 dnf provides
+8.6.7 dependencias satisfechas por archivos
+8.6.8 dependencias virtuales
+8.6.9 dependencias versionadas
+8.6.10 dependencia no declarada
+
+8.7 Solver DNF / libsolv
+8.7.1 debugsolver
+8.7.2 salida del solver
+8.7.3 reglas generadas por libsolv
+8.7.4 libsolv testcase
+8.7.5 reproducir un problema mediante testcase
+8.7.6 testcase_mangle
+8.7.7 testsolv
+8.7.8 SAT vs UNSAT
+8.7.9 identificar la regla que provoca UNSAT
+8.7.10 soluciones propuestas por el solver
+
+8.8 Transacciones
+8.8.1 analizar transactions
+8.8.2 dnf history
+8.8.3 dnf history info
+8.8.4 dnf history list
+8.8.5 dnf history undo
+8.8.6 dnf history redo
+8.8.7 dnf history rollback
+8.8.8 transacción interrumpida
+8.8.9 paquetes parcialmente actualizados
+8.8.10 problemas durante upgrade
+
+8.9 Ownership y estado del sistema
+8.9.1 paquete huérfano
+8.9.2 detectar paquetes huérfanos
+8.9.3 archivos sin propietario
+8.9.4 detectar qué paquete posee un archivo
+8.9.5 rpm -qf
+8.9.6 dnf provides
+8.9.7 archivos presentes pero no registrados en RPMDB
+8.9.8 archivos registrados pero ausentes del filesystem
+
+8.10 Arquitecturas
+8.10.1 incompatibilidad de arquitectura
+8.10.2 noarch vs arquitectura nativa
+8.10.3 multilib
+8.10.4 conflictos x86_64 / i686
+
+8.11 Problemas de versionado
+8.11.1 downgrade accidental
+8.11.2 detectar downgrade
+8.11.3 Epoch incorrecto
+8.11.4 comparar EVR
+8.11.5 rpmdev-vercmp
+8.11.6 Release incorrecto
+8.11.7 versiones upstream problemáticas
+8.11.8 orden inesperado con ~ y ^
+
+8.12 Macros y SPEC
+8.12.1 errores de macros
+8.12.2 macro no definida
+8.12.3 expansión inesperada de macros
+8.12.4 rpm --eval para depuración
+8.12.5 rpm --showrc
+8.12.6 rpmspec --parse
+8.12.7 rpmspec --query
+
+8.13 Problemas del entorno de build
+8.13.1 buildroot contamination
+8.13.2 dependencia disponible en la máquina pero no declarada
+8.13.3 build que funciona localmente pero falla en mock
+8.13.4 herramientas utilizadas accidentalmente desde /usr/local
+8.13.5 variables de entorno que contaminan el build
+8.13.6 dependencia no declarada
+8.13.7 BuildRequires ausente
+8.13.8 reproducir errores con mock
+8.13.9 mock --rebuild
+8.13.10 mock --shell
+8.13.11 mock --chroot
+8.13.12 logs de mock
+8.13.13 root.log
+8.13.14 build.log
+8.13.15 state.log
+
+8.14 Diagnóstico de binarios
+8.14.1 binario que instala pero no arranca
+8.14.2 shared library missing
+8.14.3 ldd
+8.14.4 readelf -d
+8.14.5 objdump -p
+8.14.6 SONAME incorrecto
+8.14.7 DT_NEEDED inesperado
+8.14.8 RPATH / RUNPATH incorrecto
+8.14.9 símbolo ELF no encontrado
+8.14.10 versiones GLIBC_*
+8.14.11 versiones GLIBCXX_*
+8.14.12 versiones CXXABI_*
+8.14.13 ld.so --list
+8.14.14 LD_DEBUG
+
+8.15 Diagnóstico de scriptlets y triggers
+8.15.1 inspeccionar scriptlets instalados
+8.15.2 rpm -q --scripts
+8.15.3 inspeccionar triggers
+8.15.4 rpm -q --triggers
+8.15.5 scriptlet devuelve código distinto de cero
+8.15.6 distinguir error RPM de error del programa ejecutado
+8.15.7 problemas en %post
+8.15.8 problemas en %preun
+8.15.9 problemas en %postun
+8.15.10 file triggers que fallan
+8.15.11 transfiletriggers que fallan
+
+8.16 systemd y paquetes
+8.16.1 paquete instalado pero servicio no arranca
+8.16.2 systemctl status
+8.16.3 journalctl -u
+8.16.4 systemctl cat
+8.16.5 unit file incorrecta
+8.16.6 preset incorrecto
+8.16.7 daemon-reload
+
+8.17 SELinux
+8.17.1 paquete funciona con SELinux permissive pero falla enforcing
+8.17.2 AVC denials
+8.17.3 ausearch
+8.17.4 journalctl para AVC
+8.17.5 file contexts incorrectos
+8.17.6 restorecon
+
+8.18 Permisos y ownership
+8.18.1 permisos incorrectos
+8.18.2 usuario/grupo inexistente
+8.18.3 archivos con ownership incorrecto
+8.18.4 directorios creados incorrectamente
+8.18.5 tmpfiles.d como fuente del problema
+8.18.6 sysusers.d como fuente del problema
+
+8.19 Repositorios avanzados
+8.19.1 paquete visible en RPM pero no en DNF
+8.19.2 paquete presente en repo pero repoquery no lo encuentra
+8.19.3 arquitectura filtrada
+8.19.4 excludes
+8.19.5 modular filtering cuando corresponda
+8.19.6 repositorios duplicados
+8.19.7 prioridades entre repositorios
+8.19.8 paquete instalado desde repositorio inesperado
+8.19.9 identificar repositorio origen
+
+8.20 Comparación y diagnóstico de RPMs
+8.20.1 comparar dos RPM
+8.20.2 rpm -qp
+8.20.3 rpm -qpl
+8.20.4 rpm -qpR
+8.20.5 rpm -qp --provides
+8.20.6 rpm -qp --scripts
+8.20.7 comparar metadata de dos builds
+8.20.8 comparar file lists
+8.20.9 comparar dependencias
+8.20.10 comparar payload
+
+8.21 Herramientas Fedora de diagnóstico
+8.21.1 rpmlint como herramienta diagnóstica
+8.21.2 rpminspect
+8.21.3 fedora-review para detectar errores de packaging
+8.21.4 koji build logs
+8.21.5 diagnosticar fallo en Koji
+8.21.6 comparar build local vs Koji
+8.21.7 scratch build para reproducir problemas
+
+8.22 Metodología de troubleshooting
+8.22.1 clasificar el fallo: build / dependency / transaction / filesystem / runtime / repository / solver
+8.22.2 reproducir el fallo de forma mínima
+8.22.3 eliminar variables externas
+8.22.4 comprobar RPM metadata antes del filesystem
+8.22.5 comprobar repositorio antes del solver
+8.22.6 comprobar solver antes de modificar paquetes
+8.22.7 recopilar evidencias
+8.22.8 logs
+8.22.9 queryformats útiles para diagnóstico
+8.22.10 construir un caso mínimo reproducible
+
+8.23 Laboratorios finales
+8.23.1 laboratorio: BuildRequires ausente
+8.23.2 laboratorio: Requires inexistente
+8.23.3 laboratorio: conflicto de archivos
+8.23.4 laboratorio: Provides incorrecto
+8.23.5 laboratorio: scriptlet que falla
+8.23.6 laboratorio: RPM modificado detectado con rpm -V
+8.23.7 laboratorio: metadata de repositorio corrupta
+8.23.8 laboratorio: conflicto SAT/UNSAT
+8.23.9 laboratorio: problema reproducido con libsolv testcase
+8.23.10 laboratorio: build contaminado que falla en mock
+8.23.11 laboratorio: biblioteca ELF ausente
+8.23.12 laboratorio: SELinux bloquea el paquete
+8.23.13 diagnóstico completo de un paquete roto
+8.23.14 examen final: desde el síntoma hasta la causa raíz
+
+9. LABORATORIO FINAL — RPM / DNF / libsolv Repositorio: pkg-A pkg-B pkg-C pkg-D pkg-E
+
+9.1 Preparación del laboratorio
+9.1.1 diseñar el universo A/B/C/D/E
+9.1.2 crear los cinco SPEC
+9.1.3 construir los RPM
+9.1.4 inspeccionar metadata RPM
+9.1.5 crear repositorio con createrepo_c
+9.1.6 configurar repositorio .repo
+9.1.7 inspeccionar repodata
+
+9.2 Dependencias básicas
+9.2.1 Provides
+9.2.2 virtual Provides
+9.2.3 Requires
+9.2.4 Requires versionados
+9.2.5 múltiples proveedores
+9.2.6 proveedor alternativo
+
+9.3 Conflictos y reemplazos
+9.3.1 Conflicts
+9.3.2 conflicto directo
+9.3.3 conflicto transitivo
+9.3.4 Obsoletes
+9.3.5 Provides + Obsoletes
+9.3.6 reemplazo de paquetes
+
+9.4 Weak dependencies
+9.4.1 Recommends
+9.4.2 Suggests
+9.4.3 Supplements
+9.4.4 Enhances
+9.4.5 instalación con weak deps
+9.4.6 instalación sin weak deps
+
+9.5 Versionado
+9.5.1 EVR
+9.5.2 upgrade
+9.5.3 downgrade
+9.5.4 Epoch
+9.5.5 seleccionar versiones alternativas
+
+9.6 Transacciones
+9.6.1 instalación A/B/C/D/E
+9.6.2 eliminación
+9.6.3 actualización
+9.6.4 downgrade
+9.6.5 transaction ordering
+
+9.7 Scriptlets
+9.7.1 %pre
+9.7.2 %post
+9.7.3 %preun
+9.7.4 %postun
+9.7.5 %pretrans
+9.7.6 %posttrans
+9.7.7 observar $1
+9.7.8 provocar fallo de scriptlet
+9.7.9 estudiar el resultado de la transacción
+
+9.8 Triggers
+9.8.1 triggers RPM
+9.8.2 triggerin
+9.8.3 triggerun
+9.8.4 triggerpostun
+9.8.5 file triggers
+9.8.6 transfiletriggers
+
+9.9 Repositorios
+9.9.1 repositorio versión 1
+9.9.2 modificar paquetes
+9.9.3 regenerar metadata
+9.9.4 repositorio versión 2
+9.9.5 múltiples repositorios
+9.9.6 paquetes duplicados entre repos
+9.9.7 prioridades / selección de candidatos
+9.9.8 metadata corrupta
+9.9.9 limpiar y regenerar caché
+
+9.10 GPG
+9.10.1 crear clave de laboratorio
+9.10.2 firmar RPM
+9.10.3 rpm --checksig
+9.10.4 gpgcheck
+9.10.5 paquete sin firmar
+9.10.6 firma inválida
+9.10.7 clave no importada
+9.10.8 repo_gpgcheck
+9.10.9 firmar metadata del repositorio
+
+9.11 DNF
+9.11.1 dnf repoquery
+9.11.2 dnf provides
+9.11.3 dnf install
+9.11.4 dnf upgrade
+9.11.5 dnf downgrade
+9.11.6 dnf remove
+9.11.7 best
+9.11.8 allowerasing
+9.11.9 skip-broken
+9.11.10 weak deps desde DNF
+9.11.11 historial de transacciones
+9.11.12 estudiar errores del solver
+
+9.12 libsolv
+9.12.1 importar el repositorio
+9.12.2 Pool
+9.12.3 Repo
+9.12.4 Solvable
+9.12.5 Id
+9.12.6 Reldep
+9.12.7 whatprovides
+9.12.8 jobs
+9.12.9 solver_solve()
+9.12.10 decision queue
+9.12.11 decision levels
+9.12.12 reasons
+9.12.13 rules
+9.12.14 literals
+9.12.15 problems
+9.12.16 problem rules
+9.12.17 solutions
+9.12.18 solution elements
+9.12.19 learned rules
+
+9.13 SAT / UNSAT
+9.13.1 caso SAT simple
+9.13.2 caso SAT con proveedor alternativo
+9.13.3 caso SAT con weak dependency
+9.13.4 caso SAT durante upgrade
+9.13.5 caso SAT con Obsoletes
+9.13.6 UNSAT por Requires imposible
+9.13.7 UNSAT por Conflicts
+9.13.8 UNSAT por versiones incompatibles
+9.13.9 UNSAT por ciclo + restricciones
+9.13.10 UNSAT por proveedor eliminado
+9.13.11 analizar las cláusulas responsables
+
+9.14 Comparación final
+9.14.1 mismo problema visto desde RPM
+9.14.2 mismo problema visto desde repodata
+9.14.3 mismo problema visto desde DNF
+9.14.4 mismo problema visto desde libsolv
+9.14.5 mismo problema expresado como testcase libsolv
+9.14.6 comparar decisiones DNF / libsolv
+9.14.7 reconstruir la explicación SAT completa
+9.14.8 experimento final A/B/C/D/E
+9.14.9 provocar SAT
+9.14.10 provocar UNSAT
+9.14.11 diagnosticar UNSAT
+9.14.12 corregir únicamente metadata RPM
+9.14.13 regenerar repositorio
+9.14.14 repetir con DNF
+9.14.15 comprobar la nueva solución en libsolv
+
+9.15 mini-rpm-solver-debugger

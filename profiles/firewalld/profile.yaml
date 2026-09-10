@@ -1,0 +1,47 @@
+name: firewalld
+title: FIREWALLD EN PROFUNDIDAD — FEDORA
+platform: Fedora Linux
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+lesson_structure:
+  objective:
+    required: true
+    position: first
+  reading:
+    required: true
+  lab:
+    required: false
+  common_errors:
+    required: false
+  important_idea:
+    required: false
+  remember:
+    required: true
+    position: last
+    min_items: 3
+    max_items: 7
+quality:
+  forbid_generic_scaffold: true
+  require_topic_specific_headings: true
+  require_topic_specific_examples: true
+  require_self_contained_lesson: true
+  audit_before_save: true
+  repair_on_fail: true
+output:
+  format: markdown
+  zip_block: true
+  write_index: true
+  write_manifest: true
+artifacts:
+  enabled: true
+  default_strategy: auto
+  overrides: {}
+  project_policy:
+    integrator_projects: auto
+    diagnostic_projects: auto
+    require_project_for_every_block: false
+validation:
+  enabled: false
+  commands: []

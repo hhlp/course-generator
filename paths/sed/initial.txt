@@ -1,0 +1,710 @@
+0. Fundamentos
+
+0.1 qué es sed
+0.2 origen y filosofía de sed
+0.3 sed como stream editor
+0.4 edición de flujos frente a edición interactiva
+0.5 relación entre sed, shell, grep y awk
+0.6 cuándo utilizar sed
+0.7 cuándo no utilizar sed
+0.8 entrada estándar stdin
+0.9 salida estándar stdout
+0.10 error estándar stderr
+0.11 pipes
+0.12 redirecciones <, > y >>
+0.13 archivos como entrada
+0.14 múltiples archivos como entrada
+0.15 comportamiento línea por línea
+0.16 sintaxis general sed [opciones] 'programa' archivo
+0.17 comandos sed
+0.18 direcciones
+0.19 scripts sed
+0.20 GNU sed
+0.21 comprobar sed --version
+0.22 documentación man sed
+0.23 info sed
+0.24 sed --help
+0.25 diferencias generales GNU sed / BSD sed / POSIX sed
+0.26 laboratorio: explorar GNU sed instalado en Fedora
+
+1. Primer contacto
+
+1.1 imprimir entrada con sed
+1.2 comportamiento por defecto
+1.3 impresión automática
+1.4 opción -n
+1.5 comando p
+1.6 diferencia entre salida automática y p
+1.7 seleccionar una línea
+1.8 seleccionar varias líneas
+1.9 seleccionar rangos
+1.10 $ como última línea
+1.11 direcciones numéricas
+1.12 direcciones mediante patrones
+1.13 combinar dirección y comando
+1.14 varios comandos
+1.15 opción -e
+1.16 comandos separados por ;
+1.17 bloques {}
+1.18 scripts mediante -f
+1.19 comentarios en scripts sed
+1.20 laboratorio: primeras transformaciones
+
+2. Sustitución con s
+
+2.1 comando s
+2.2 estructura s/patrón/reemplazo/
+2.3 primera coincidencia
+2.4 flag g
+2.5 sustitución de la N-ésima coincidencia
+2.6 flag p
+2.7 combinación gp
+2.8 delimitador /
+2.9 delimitadores alternativos
+2.10 sustituciones que contienen rutas
+2.11 carácter & en reemplazo
+2.12 escapar &
+2.13 referencias \1, \2...
+2.14 grupos de captura
+2.15 texto vacío
+2.16 eliminar mediante sustitución
+2.17 insertar prefijos
+2.18 insertar sufijos
+2.19 sustituir solamente líneas seleccionadas
+2.20 múltiples sustituciones
+2.21 orden de las sustituciones
+2.22 flag i de GNU sed
+2.23 flag I
+2.24 flag w
+2.25 laboratorio: construir transformaciones con s
+
+3. Expresiones regulares en sed
+
+3.1 regex y sed
+3.2 BRE — Basic Regular Expressions
+3.3 ERE — Extended Regular Expressions
+3.4 opción -E
+3.5 ^
+3.6 $
+3.7 .
+3.8 *
+3.9 expresiones entre []
+3.10 rangos
+3.11 clases POSIX
+3.12 [[:digit:]]
+3.13 [[:alpha:]]
+3.14 [[:alnum:]]
+3.15 [[:space:]]
+3.16 [[:blank:]]
+3.17 [[:lower:]]
+3.18 [[:upper:]]
+3.19 [[:punct:]]
+3.20 negación [^...]
+3.21 agrupación BRE
+3.22 agrupación ERE
+3.23 alternancia con ERE
+3.24 cuantificador +
+3.25 cuantificador ?
+3.26 {m,n}
+3.27 backreferences
+3.28 regex greedy
+3.29 consecuencias del comportamiento greedy
+3.30 patrones ambiguos
+3.31 locale y regex
+3.32 laboratorio: regex aplicadas a datos reales
+
+4. Direccionamiento
+
+4.1 concepto de dirección
+4.2 dirección numérica
+4.3 dirección $
+4.4 dirección regex
+4.5 dirección negada !
+4.6 rangos inicio,fin
+4.7 rangos numéricos
+4.8 rangos mediante regex
+4.9 dirección inicial numérica y final regex
+4.10 dirección inicial regex y final numérica
+4.11 comportamiento interno de los rangos
+4.12 rangos repetidos
+4.13 0,/regexp/ de GNU sed
+4.14 addr,+N
+4.15 addr,~N
+4.16 dirección first~step
+4.17 bloques direccionados
+4.18 comandos diferentes para rangos diferentes
+4.19 laboratorio: procesamiento selectivo
+
+5. Eliminar, insertar, añadir y cambiar
+
+5.1 comando d
+5.2 diferencia entre sustitución vacía y d
+5.3 eliminar líneas por número
+5.4 eliminar por patrón
+5.5 eliminar rangos
+5.6 comando a
+5.7 añadir texto
+5.8 comando i
+5.9 insertar texto
+5.10 comando c
+5.11 cambiar líneas
+5.12 trabajar con múltiples líneas de texto
+5.13 escapes
+5.14 comportamiento POSIX
+5.15 comportamiento GNU
+5.16 combinar a, i, c y direcciones
+5.17 laboratorio: modificar archivos de configuración simulados
+
+6. Otros comandos fundamentales
+
+6.1 comando q
+6.2 terminar procesamiento
+6.3 código de salida con GNU Q
+6.4 comando =
+6.5 numerar líneas
+6.6 comando l
+6.7 visualizar caracteres invisibles
+6.8 comando r
+6.9 leer otro archivo
+6.10 comando w
+6.11 escribir líneas a otro archivo
+6.12 comando R de GNU sed
+6.13 comando W
+6.14 comando F
+6.15 comando z
+6.16 laboratorio: lectura, escritura y diagnóstico
+
+7. Pattern space
+
+7.1 modelo interno de ejecución de sed
+7.2 qué es pattern space
+7.3 ciclo de ejecución
+7.4 lectura de una línea
+7.5 aplicación del programa
+7.6 impresión automática
+7.7 comienzo del siguiente ciclo
+7.8 cómo d modifica el ciclo
+7.9 cómo q modifica el ciclo
+7.10 cómo n modifica el ciclo
+7.11 pattern space vacío
+7.12 pattern space multilínea
+7.13 observar mentalmente el estado
+7.14 laboratorio: seguir manualmente ciclos de ejecución
+
+8. Hold space
+
+8.1 qué es hold space
+8.2 diferencia pattern space / hold space
+8.3 comando h
+8.4 comando H
+8.5 comando g
+8.6 comando G
+8.7 comando x
+8.8 copiar pattern → hold
+8.9 añadir pattern → hold
+8.10 copiar hold → pattern
+8.11 añadir hold → pattern
+8.12 intercambiar espacios
+8.13 conservar información entre ciclos
+8.14 acumuladores
+8.15 buffers temporales
+8.16 laboratorio: comprender pattern y hold space visualmente
+
+9. Procesamiento multilínea
+
+9.1 por qué sed normalmente procesa líneas individuales
+9.2 comando N
+9.3 añadir siguiente línea al pattern space
+9.4 newline dentro del pattern space
+9.5 comando D
+9.6 diferencia d / D
+9.7 comando P
+9.8 diferencia p / P
+9.9 ventanas de dos líneas
+9.10 ventanas deslizantes
+9.11 patrones que cruzan líneas
+9.12 unir líneas
+9.13 dividir líneas
+9.14 eliminar saltos de línea
+9.15 insertar saltos de línea
+9.16 párrafos
+9.17 bloques de texto
+9.18 laboratorio: transformar estructuras multilínea
+
+10. Flujo de control
+
+10.1 scripts sed como pequeños programas
+10.2 labels
+10.3 sintaxis :label
+10.4 comando b
+10.5 salto incondicional
+10.6 comando t
+10.7 salto después de sustitución correcta
+10.8 comando T de GNU sed
+10.9 loops
+10.10 loops controlados por sustitución
+10.11 condiciones mediante direcciones
+10.12 bloques {}
+10.13 implementar if conceptualmente
+10.14 implementar else conceptualmente
+10.15 implementar bucles
+10.16 evitar bucles infinitos
+10.17 laboratorio: construir un programa sed con control de flujo
+
+11. Shell quoting
+
+11.1 por qué quoting es crítico con sed
+11.2 comillas simples
+11.3 comillas dobles
+11.4 expansión del shell
+11.5 variables dentro de expresiones sed
+11.6 caracteres $
+11.7 backslashes
+11.8 delimitadores
+11.9 valores que contienen /
+11.10 valores que contienen &
+11.11 valores que contienen \
+11.12 inyección accidental en programas sed
+11.13 construir expresiones dinámicas de forma segura
+11.14 cuándo no generar código sed dinámicamente
+11.15 laboratorio: shell + sed
+
+12. Edición in-place
+
+12.1 filosofía original de streams
+12.2 opción GNU -i
+12.3 editar archivo directamente
+12.4 backups con -i
+12.5 sufijos de backup
+12.6 riesgos de -i
+12.7 enlaces simbólicos
+12.8 opción --follow-symlinks
+12.9 permisos
+12.10 propietario
+12.11 metadata
+12.12 atomicidad
+12.13 archivos temporales
+12.14 GNU frente a BSD sed -i
+12.15 estrategia segura temporal + validación + reemplazo
+12.16 laboratorio: edición segura de configuraciones
+
+13. Scripts sed
+
+13.1 cuándo pasar de one-liner a script
+13.2 archivos .sed
+13.3 sed -f
+13.4 múltiples -f
+13.5 combinar -e y -f
+13.6 shebang
+13.7 #!/usr/bin/sed -f
+13.8 comentarios
+13.9 organización de scripts grandes
+13.10 labels descriptivos
+13.11 documentación
+13.12 depuración
+13.13 pruebas
+13.14 datos de entrada de prueba
+13.15 salida esperada
+13.16 scripts idempotentes
+13.17 laboratorio: crear una herramienta .sed
+
+14. GNU sed en profundidad
+
+14.1 GNU extensions
+14.2 -E
+14.3 -i
+14.4 -z
+14.5 --sandbox
+14.6 --debug
+14.7 --posix
+14.8 --follow-symlinks
+14.9 --separate
+14.10 --unbuffered
+14.11 -s
+14.12 -u
+14.13 Q
+14.14 R
+14.15 T
+14.16 W
+14.17 F
+14.18 z
+14.19 direcciones GNU
+14.20 extensiones de sustitución
+14.21 laboratorio: identificar qué partes de un script dependen de GNU sed
+
+15. Procesamiento NUL
+
+15.1 limitaciones del newline como separador
+15.2 nombres de archivo con espacios
+15.3 nombres con newline
+15.4 byte NUL
+15.5 opción -z
+15.6 registros terminados en NUL
+15.7 find -print0
+15.8 interacción con herramientas NUL-aware
+15.9 seguridad al procesar nombres de archivo
+15.10 laboratorio: procesar nombres de archivo problemáticos
+
+16. Entrada y múltiples archivos
+
+16.1 varios archivos en una ejecución
+16.2 flujo lógico continuo
+16.3 $ con múltiples archivos
+16.4 rangos que cruzan archivos
+16.5 -s / --separate
+16.6 reinicio de numeración
+16.7 estados entre archivos
+16.8 F para conocer el archivo actual
+16.9 procesar árboles de archivos
+16.10 combinación con find
+16.11 find -exec
+16.12 xargs
+16.13 problemas con whitespace
+16.14 laboratorio: transformación masiva
+
+17. Texto estructurado
+
+17.1 límites de sed para datos estructurados
+17.2 archivos key=value
+17.3 INI simples
+17.4 configuraciones simples
+17.5 logs
+17.6 listas
+17.7 tablas delimitadas simples
+17.8 CSV y sus dificultades
+17.9 JSON y por qué sed no es un parser JSON
+17.10 XML y sus dificultades
+17.11 YAML y sus dificultades
+17.12 HTML y sus dificultades
+17.13 cuándo utilizar jq
+17.14 cuándo utilizar yq
+17.15 cuándo utilizar un parser real
+17.16 laboratorio: determinar cuándo sed es y no es la herramienta correcta
+
+18. Sed + grep + awk
+
+18.1 filosofía Unix
+18.2 seleccionar con grep
+18.3 transformar con sed
+18.4 estructurar con awk
+18.5 grep | sed
+18.6 cuándo sed puede reemplazar a grep
+18.7 cuándo awk simplifica un script sed complejo
+18.8 pipelines
+18.9 evitar procesos innecesarios
+18.10 legibilidad frente a one-liners extremos
+18.11 laboratorio: resolver el mismo problema con distintas herramientas
+
+19. Sed + find + xargs
+
+19.1 localizar archivos
+19.2 filtrar archivos
+19.3 transformar contenido
+19.4 find -exec sed ... {} +
+19.5 find -exec ... {} \;
+19.6 diferencias entre ambas formas
+19.7 xargs sed
+19.8 delimitación NUL
+19.9 procesamiento paralelo
+19.10 riesgos de modificación masiva
+19.11 backups
+19.12 dry-run
+19.13 laboratorio: modificar un árbol de archivos de forma segura
+
+20. Casos reales en Linux y Fedora
+
+20.1 /etc como fuente de ejemplos
+20.2 no modificar configuraciones reales durante aprendizaje
+20.3 /etc/fstab
+20.4 /etc/hosts
+20.5 archivos .conf
+20.6 archivos .repo
+20.7 archivos systemd
+20.8 SPEC files RPM
+20.9 logs de systemd
+20.10 salida de journalctl
+20.11 salida de rpm
+20.12 salida de dnf
+20.13 salida de ip
+20.14 salida de ss
+20.15 salida de systemctl
+20.16 transformar rutas
+20.17 modificar claves de configuración
+20.18 comentar y descomentar líneas
+20.19 normalizar whitespace
+20.20 extraer secciones
+20.21 laboratorio: toolkit sed para Fedora
+
+21. Transformaciones avanzadas
+
+21.1 invertir líneas
+21.2 invertir caracteres
+21.3 unir líneas según condición
+21.4 separar líneas según condición
+21.5 eliminar líneas duplicadas consecutivas
+21.6 eliminar espacios iniciales
+21.7 eliminar espacios finales
+21.8 normalizar espacios
+21.9 eliminar líneas vacías
+21.10 comprimir múltiples líneas vacías
+21.11 numerar líneas
+21.12 extraer bloques
+21.13 reemplazar solamente dentro de bloques
+21.14 mover contenido
+21.15 intercambiar líneas
+21.16 acumular líneas
+21.17 procesamiento por párrafos
+21.18 implementar pequeñas máquinas de estados
+21.19 laboratorio: biblioteca de transformaciones reutilizables
+
+22. Pattern/hold space avanzado
+
+22.1 pensar en sed como máquina de estados
+22.2 estado persistente
+22.3 acumulación
+22.4 intercambio
+22.5 ventanas deslizantes
+22.6 buffers
+22.7 contador conceptual
+22.8 flags mediante contenido
+22.9 detección de inicio y final de bloques
+22.10 recordar líneas anteriores
+22.11 procesamiento contextual
+22.12 algoritmos clásicos de sed
+22.13 laboratorio: diseñar un algoritmo usando ambos espacios
+
+23. Depuración
+
+23.1 por qué los scripts sed complejos son difíciles de depurar
+23.2 reducir el problema
+23.3 utilizar -n
+23.4 imprimir puntos intermedios
+23.5 comando l
+23.6 caracteres invisibles
+23.7 CRLF
+23.8 tabs frente a espacios
+23.9 locales
+23.10 regex incorrectas
+23.11 quoting incorrecto
+23.12 sed --debug
+23.13 interpretar salida de --debug
+23.14 inspeccionar pattern space
+23.15 inspeccionar comandos ejecutados
+23.16 construir casos mínimos reproducibles
+23.17 laboratorio: depurar scripts deliberadamente rotos
+
+24. Portabilidad POSIX
+
+24.1 POSIX sed
+24.2 GNU sed frente a POSIX sed
+24.3 GNU sed frente a BSD sed
+24.4 extensiones GNU
+24.5 BRE portable
+24.6 ERE y portabilidad
+24.7 opción -E
+24.8 -i no portable
+24.9 escapes no portables
+24.10 comandos GNU no portables
+24.11 direcciones GNU no portables
+24.12 escribir scripts estrictamente POSIX
+24.13 probar con --posix
+24.14 cuándo priorizar portabilidad
+24.15 cuándo aprovechar GNU sed
+24.16 laboratorio: convertir un script GNU sed a POSIX sed
+
+25. Rendimiento
+
+25.1 modelo streaming
+25.2 consumo de memoria
+25.3 archivos grandes
+25.4 pattern spaces gigantes
+25.5 coste de regex
+25.6 múltiples expresiones
+25.7 múltiples procesos frente a un solo sed
+25.8 evitar cat innecesario
+25.9 -u
+25.10 buffering
+25.11 pipelines largos
+25.12 medir con time
+25.13 comparar sed, awk, Perl y herramientas especializadas
+25.14 optimización frente a legibilidad
+25.15 laboratorio: procesar datasets grandes
+
+26. Seguridad y robustez
+
+26.1 datos frente a código sed
+26.2 variables no confiables
+26.3 escaping dinámico
+26.4 delimitadores inesperados
+26.5 regex injection
+26.6 replacement injection
+26.7 archivos arbitrarios
+26.8 symlinks
+26.9 edición in-place
+26.10 permisos
+26.11 backups
+26.12 validación antes de reemplazar
+26.13 --sandbox
+26.14 comandos que interactúan con archivos
+26.15 ejecución desde scripts privilegiados
+26.16 principio de mínimo privilegio
+26.17 laboratorio: endurecer un script sed
+
+27. Diseño de soluciones con sed
+
+27.1 definir entrada
+27.2 definir salida
+27.3 definir invariantes
+27.4 seleccionar registros
+27.5 transformar registros
+27.6 conservar estado cuando sea necesario
+27.7 elegir direcciones
+27.8 elegir regex
+27.9 minimizar complejidad
+27.10 idempotencia
+27.11 validación
+27.12 manejo de errores
+27.13 portabilidad
+27.14 mantenibilidad
+27.15 decidir cuándo abandonar sed por awk/Perl/Python
+27.16 laboratorio: diseñar una solución antes de escribirla
+
+28. One-liners expertos
+
+28.1 anatomía de un buen one-liner
+28.2 selección
+28.3 sustitución
+28.4 extracción
+28.5 normalización
+28.6 bloques
+28.7 multiline processing
+28.8 hold space
+28.9 branching
+28.10 loops
+28.11 pipelines
+28.12 quoting avanzado
+28.13 convertir one-liner en script mantenible
+28.14 explicar un one-liner carácter por carácter
+28.15 detectar one-liners innecesariamente crípticos
+28.16 laboratorio: colección razonada de one-liners
+
+29. Ingeniería de scripts sed
+
+29.1 requisitos
+29.2 diseño
+29.3 implementación
+29.4 fixtures de prueba
+29.5 casos normales
+29.6 edge cases
+29.7 entrada vacía
+29.8 líneas enormes
+29.9 caracteres especiales
+29.10 Unicode y locales
+29.11 CRLF
+29.12 múltiples archivos
+29.13 errores de entrada/salida
+29.14 idempotencia
+29.15 regresiones
+29.16 documentación
+29.17 integración con shell
+29.18 integración en Git
+29.19 CI para transformaciones de texto
+29.20 laboratorio: proyecto sed mantenible
+
+30. Internals y modelo formal
+
+30.1 ciclo completo de ejecución
+30.2 pattern space
+30.3 hold space
+30.4 automatic printing
+30.5 addresses
+30.6 command execution
+30.7 substitutions
+30.8 substitution-success flag
+30.9 branches
+30.10 multiline commands
+30.11 lectura adicional de entrada
+30.12 escritura de salida
+30.13 comienzo de nuevo ciclo
+30.14 EOF
+30.15 interacción entre n, N, d, D, q, b y t
+30.16 modelar sed como máquina de transformación de streams
+30.17 laboratorio: ejecutar manualmente un script complejo paso a paso
+
+31. Laboratorios expertos
+
+31.1 limpiar logs
+31.2 anonimizar datos de logs
+31.3 transformar configuraciones
+31.4 actualizar claves key=value
+31.5 modificar archivos .repo simulados
+31.6 analizar SPEC files
+31.7 extraer secciones de SPEC
+31.8 transformar salida de rpm
+31.9 transformar salida de systemctl
+31.10 transformar salida de journalctl
+31.11 procesamiento multilínea
+31.12 detección de bloques
+31.13 máquina de estados
+31.14 transformación masiva segura
+31.15 versión GNU sed
+31.16 versión POSIX sed
+31.17 pruebas de equivalencia
+
+32. Proyecto final — sed-toolkit
+
+32.1 definir arquitectura de sed-toolkit
+32.2 colección modular de scripts .sed
+32.3 normalize.sed
+32.4 extract.sed
+32.5 replace.sed
+32.6 blocks.sed
+32.7 multiline.sed
+32.8 integración mediante funciones Zsh
+32.9 selección de operaciones
+32.10 lectura desde stdin
+32.11 lectura desde archivos
+32.12 procesamiento de múltiples archivos
+32.13 modo stdout por defecto
+32.14 modo dry-run
+32.15 mostrar diff antes de modificar
+32.16 backups
+32.17 edición segura
+32.18 soporte para pipelines
+32.19 soporte NUL cuando corresponda
+32.20 validación de argumentos
+32.21 protección frente a expresiones dinámicas inseguras
+32.22 logging
+32.23 manejo de errores
+32.24 tests automáticos
+32.25 fixtures
+32.26 pruebas de idempotencia
+32.27 pruebas con archivos grandes
+32.28 pruebas con caracteres especiales
+32.29 comprobar compatibilidad GNU sed
+32.30 identificar dependencias GNU
+32.31 variante POSIX de operaciones seleccionadas
+32.32 documentación
+32.33 manual de ejemplos
+32.34 empaquetado como proyecto
+32.35 integración con Git
+32.36 proyecto final: procesar un árbol de configuraciones Fedora simulado de forma segura
+
+33. Dominio experto
+
+33.1 leer scripts sed ajenos
+33.2 reconstruir su modelo de ejecución
+33.3 detectar errores de pattern space
+33.4 detectar errores de hold space
+33.5 detectar loops incorrectos
+33.6 detectar problemas de portabilidad
+33.7 detectar problemas de quoting
+33.8 detectar problemas de seguridad
+33.9 simplificar programas sed complejos
+33.10 decidir entre sed y awk
+33.11 decidir entre sed y Perl
+33.12 decidir entre sed y Python
+33.13 escribir transformaciones robustas desde cero
+33.14 optimizar sin sacrificar mantenibilidad
+33.15 explicar internamente cualquier script sed
+33.16 proyecto de dominio: resolver una transformación desconocida partiendo únicamente de requisitos y datos de prueba

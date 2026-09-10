@@ -1,0 +1,868 @@
+0. Fundamentos de SELinux
+0.1 qué es SELinux
+0.2 por qué existe SELinux
+0.3 DAC frente a MAC
+0.4 permisos Unix tradicionales
+0.5 límites de DAC
+0.6 control de acceso obligatorio
+0.7 sujetos
+0.8 objetos
+0.9 operaciones
+0.10 decisiones de acceso
+0.11 security context
+0.12 user:role:type:level
+0.13 SELinux user
+0.14 SELinux role
+0.15 SELinux type
+0.16 SELinux domain
+0.17 level
+0.18 sensitivity
+0.19 categories
+0.20 Type Enforcement
+0.21 RBAC
+0.22 MLS
+0.23 MCS
+0.24 política SELinux
+0.25 targeted policy
+0.26 minimum policy
+0.27 MLS policy
+0.28 enforcing
+0.29 permissive
+0.30 disabled
+0.31 SELinux frente a permisos Unix
+0.32 SELinux frente a capabilities
+0.33 SELinux frente a namespaces
+0.34 SELinux frente a systemd sandboxing
+0.35 laboratorio: demostrar una operación permitida por DAC pero bloqueada por SELinux
+
+1. Arquitectura de SELinux en Fedora
+1.1 Linux Security Modules — LSM
+1.2 SELinux como LSM
+1.3 hooks LSM
+1.4 kernel SELinux subsystem
+1.5 Security Server
+1.6 Object Managers
+1.7 Access Vector Cache — AVC
+1.8 SID — Security Identifier
+1.9 contexto ↔ SID
+1.10 policy database
+1.11 política binaria
+1.12 carga de política
+1.13 decisiones de acceso
+1.14 flujo de una operación
+1.14.1 proceso
+1.14.2 syscall
+1.14.3 LSM hook
+1.14.4 SELinux
+1.14.4.1 AVC
+1.14.4.2 Security Server
+1.15 libselinux
+1.16 libsepol
+1.17 libsemanage
+1.18 policycoreutils
+1.19 SETools
+1.20 selinux-policy
+1.21 selinux-policy-targeted
+1.22 selinux-policy-devel
+1.23 checkpolicy
+1.24 audit
+1.25 setroubleshoot
+1.26 container-selinux
+1.27 localizar paquetes SELinux con RPM
+1.28 rpm -qf
+1.29 rpm -ql
+1.30 dnf provides
+1.31 laboratorio: inventario completo del stack SELinux instalado en Fedora
+
+2. Estado y configuración de SELinux
+2.1 getenforce
+2.2 sestatus
+2.3 sestatus -v
+2.4 sestatus -b
+2.5 enforcing
+2.6 permissive
+2.7 disabled
+2.8 setenforce
+2.9 setenforce 0
+2.10 setenforce 1
+2.11 cambio temporal
+2.12 configuración persistente
+2.13 /etc/selinux/config
+2.14 SELINUX=
+2.15 SELINUXTYPE=
+2.16 política activa
+2.17 /etc/selinux/
+2.18 /etc/selinux/targeted/
+2.19 policy store
+2.20 configuración runtime frente a persistente
+2.21 kernel command line y SELinux
+2.22 selinux=0
+2.23 enforcing=0
+2.24 /sys/fs/selinux
+2.25 comprobar si SELinux está montado
+2.26 comprobar policy version
+2.27 estado de SELinux desde /proc y /sys
+2.28 laboratorio: reconstruir el estado completo de SELinux sin depender solo de sestatus
+
+3. Security contexts en profundidad
+3.1 qué es un security context
+3.2 formato user:role:type:level
+3.3 contexto completo
+3.4 contexto parcial
+3.5 SELinux user
+3.6 role
+3.7 type
+3.8 domain
+3.9 sensitivity
+3.10 categories
+3.11 MCS range
+3.12 contexto de procesos
+3.13 contexto de archivos
+3.14 contexto de directorios
+3.15 contexto de ejecutables
+3.16 contexto de dispositivos
+3.17 contexto de sockets
+3.18 contexto de puertos
+3.19 contexto de interfaces
+3.20 contexto de nodos
+3.21 contexto de filesystems
+3.22 contexto de IPC
+3.23 contexto de servicios
+3.24 contexto de usuarios
+3.25 contexto de login
+3.26 contexto actual
+3.27 contexto esperado
+3.28 contexto definido por policy
+3.29 contexto personalizado localmente
+3.30 contexto efectivo
+3.31 id -Z
+3.32 ps -Z
+3.33 ps -eZ
+3.34 ls -Z
+3.35 ls -lZ
+3.36 stat y atributos SELinux
+3.37 getfattr -n security.selinux
+3.38 laboratorio: inventario de contextos de diferentes clases de objetos
+
+4. Descubrir y explorar la política SELinux
+4.1 aprender a buscar en lugar de memorizar
+4.2 política instalada
+4.3 política efectiva
+4.4 configuración local
+4.5 seinfo
+4.6 seinfo -u
+4.7 seinfo -r
+4.8 seinfo -t
+4.9 seinfo -a
+4.10 seinfo -b
+4.11 seinfo -c
+4.12 listar usuarios
+4.13 listar roles
+4.14 listar tipos
+4.15 listar atributos
+4.16 listar booleans
+4.17 listar object classes
+4.18 buscar un tipo concreto
+4.19 buscar un atributo concreto
+4.20 descubrir atributos de un tipo
+4.21 descubrir miembros de un atributo
+4.22 semanage
+4.23 semanage fcontext
+4.24 semanage port
+4.25 semanage login
+4.26 semanage user
+4.27 semanage boolean
+4.28 semanage interface
+4.29 semanage node
+4.30 semanage module
+4.31 matchpathcon
+4.32 comparar contexto actual y esperado
+4.33 localizar definiciones de contexto
+4.34 /etc/selinux/targeted/contexts/
+4.35 contexts/files/
+4.36 file_contexts
+4.37 file_contexts.local
+4.38 file_contexts.subs
+4.39 cuándo consultar archivos internos
+4.40 cuándo usar herramientas de alto nivel
+4.41 laboratorio: investigar un objeto desconocido partiendo únicamente de su ruta
+
+5. Object classes y permissions
+5.1 qué es una object class
+5.2 relación type + class + permission
+5.3 file
+5.4 dir
+5.5 lnk_file
+5.6 chr_file
+5.7 blk_file
+5.8 fifo_file
+5.9 sock_file
+5.10 filesystem
+5.11 process
+5.12 process2
+5.13 tcp_socket
+5.14 udp_socket
+5.15 unix_stream_socket
+5.16 unix_dgram_socket
+5.17 netlink sockets
+5.18 capability
+5.19 capability2
+5.20 service
+5.21 dbus
+5.22 key
+5.23 shm
+5.24 sem
+5.25 msg
+5.26 permisos de file
+5.27 read
+5.28 write
+5.29 open
+5.30 create
+5.31 getattr
+5.32 setattr
+5.33 execute
+5.34 execute_no_trans
+5.35 map
+5.36 permisos de directorio
+5.37 search
+5.38 add_name
+5.39 remove_name
+5.40 permisos de procesos
+5.41 transition
+5.42 sigchld
+5.43 signal
+5.44 object class permissions
+5.45 laboratorio: interpretar reglas SELinux exclusivamente desde class + permissions
+
+6. Types, domains y attributes
+6.1 type
+6.2 domain
+6.3 por qué un dominio también es un tipo
+6.4 tipos de objetos
+6.5 tipos de archivos
+6.6 tipos de ejecutables
+6.7 tipos de datos
+6.8 tipos de dispositivos
+6.9 tipos de puertos
+6.10 atributos
+6.11 typeattribute
+6.12 domain
+6.13 file_type
+6.14 exec_type
+6.15 port_type
+6.16 device_type
+6.17 filesystem_type
+6.18 atributos como agrupación de tipos
+6.19 reglas sobre tipos concretos
+6.20 reglas sobre atributos
+6.21 permisos heredados mediante atributos
+6.22 investigar un type
+6.23 investigar un domain
+6.24 investigar un attribute
+6.25 buscar miembros
+6.26 buscar reglas indirectas
+6.27 evitar conclusiones incorrectas al usar sesearch
+6.28 laboratorio: demostrar un permiso obtenido indirectamente mediante un atributo
+
+7. Type Enforcement y reglas de acceso
+7.1 Type Enforcement
+7.2 source type
+7.3 target type
+7.4 object class
+7.5 permissions
+7.6 regla allow
+7.7 estructura de allow: allow SOURCE TARGET:CLASS PERMISSION;
+7.8 múltiples permisos
+7.9 atributos como source
+7.10 atributos como target
+7.11 dontaudit
+7.12 auditallow
+7.13 neverallow
+7.14 type_transition
+7.15 type_change
+7.16 type_member
+7.17 constraints
+7.18 validatetrans
+7.19 conditional policy
+7.20 reglas directas
+7.21 reglas indirectas
+7.22 permisos efectivos
+7.23 sesearch
+7.24 sesearch --allow
+7.25 sesearch -s
+7.26 sesearch -t
+7.27 sesearch -c
+7.28 sesearch -p
+7.29 combinar filtros
+7.30 preguntar "¿qué puede hacer este dominio?"
+7.31 preguntar "¿quién puede acceder a este tipo?"
+7.32 preguntar "¿qué regla permite esto?"
+7.33 laboratorio: reconstruir manualmente una decisión de acceso
+
+8. Archivos, labels y persistencia
+8.1 labels SELinux en archivos
+8.2 extended attributes
+8.3 security.selinux
+8.4 ls -Z
+8.5 getfattr
+8.6 chcon
+8.7 chcon -t
+8.8 chcon -R
+8.9 limitaciones de chcon
+8.10 restorecon
+8.11 restorecon -v
+8.12 restorecon -R
+8.13 restorecon -F
+8.14 matchpathcon
+8.15 contexto esperado
+8.16 semanage fcontext -l
+8.17 semanage fcontext -a
+8.18 semanage fcontext -m
+8.19 semanage fcontext -d
+8.20 expresiones regulares
+8.21 precedencia de reglas
+8.22 file_contexts
+8.23 file_contexts.local
+8.24 equivalencias de rutas
+8.25 semanage fcontext -a -e
+8.26 restorecond
+8.27 fixfiles
+8.28 relabel
+8.29 /.autorelabel
+8.30 filesystem relabel
+8.31 mount contexts
+8.32 filesystems sin xattr
+8.33 context=
+8.34 defcontext=
+8.35 fscontext=
+8.36 rootcontext=
+8.37 laboratorio: romper, detectar y reparar etiquetas de forma persistente
+
+9. Procesos, dominios y transiciones
+9.1 contexto de proceso
+9.2 ps -eZ
+9.3 dominio de proceso
+9.4 contexto del ejecutable
+9.5 executable type
+9.6 exec_type
+9.7 entrypoint
+9.8 domain transition
+9.9 proceso padre
+9.10 proceso hijo
+9.11 dominio origen
+9.12 dominio destino
+9.13 ejecutable como disparador
+9.14 type_transition
+9.15 transition permission
+9.16 entrypoint permission
+9.17 execute permission
+9.18 execute_no_trans
+9.19 transición automática
+9.20 transición explícita
+9.21 sesearch --type_transition
+9.22 buscar transiciones de un dominio
+9.23 buscar qué ejecutable causa una transición
+9.24 dominios confinados
+9.25 dominios no confinados
+9.26 unconfined_t
+9.27 laboratorio: seguir una transición completa desde proceso padre hasta dominio hijo
+
+10. Puertos, nodos, interfaces y red
+10.1 SELinux y red
+10.2 port types
+10.3 semanage port -l
+10.4 port type
+10.5 protocolo TCP
+10.6 protocolo UDP
+10.7 semanage port -a
+10.8 semanage port -m
+10.9 semanage port -d
+10.10 bind permission
+10.11 name_bind
+10.12 name_connect
+10.13 network interfaces
+10.14 semanage interface
+10.15 network nodes
+10.16 semanage node
+10.17 node types
+10.18 interface types
+10.19 packet types
+10.20 sockets
+10.21 TCP sockets
+10.22 UDP sockets
+10.23 Unix sockets
+10.24 SELinux frente a firewalld
+10.25 SELinux frente a routing
+10.26 SELinux frente a namespaces de red
+10.27 laboratorio: investigar por qué un proceso puede o no utilizar un puerto concreto
+
+11. Usuarios, roles y login mappings
+11.1 usuario Linux
+11.2 usuario SELinux
+11.3 diferencias
+11.4 semanage user -l
+11.5 semanage login -l
+11.6 login mapping
+11.7 __default__
+11.8 roles SELinux
+11.9 object_r
+11.10 user_r
+11.11 staff_r
+11.12 sysadm_r
+11.13 role allow
+11.14 role transition
+11.15 authorized roles
+11.16 user_u
+11.17 staff_u
+11.18 sysadm_u
+11.19 unconfined_u
+11.20 guest_u
+11.21 xguest_u
+11.22 semanage login -a
+11.23 semanage login -m
+11.24 semanage login -d
+11.25 newrole
+11.26 id -Z
+11.27 laboratorio: mapear usuario Linux → usuario SELinux → rol → dominio
+
+
+12. MLS y MCS
+12.1 qué es MLS
+12.2 sensitivity
+12.3 categories
+12.4 levels
+12.5 ranges
+12.6 dominance
+12.7 Bell-LaPadula
+12.8 lectura y escritura en MLS
+12.9 targeted y MCS
+12.10 s0
+12.11 s0:c0,c1
+12.12 rangos MCS
+12.13 categorías dinámicas
+12.14 aislamiento mediante categorías
+12.15 contextos con MCS
+12.16 chcon -l
+12.17 semanage user y ranges
+12.18 laboratorio: comparar dos contextos con diferentes categorías
+
+13. Booleans y conditional policy
+13.1 qué es un boolean
+13.2 conditional policy
+13.3 getsebool
+13.4 getsebool -a
+13.5 setsebool
+13.6 setsebool -P
+13.7 runtime
+13.8 persistencia
+13.9 semanage boolean -l
+13.10 valores actuales
+13.11 valores por defecto
+13.12 reglas condicionadas
+13.13 sesearch con booleans
+13.14 descubrir qué reglas controla un boolean
+13.15 descubrir qué boolean podría afectar a una operación
+13.16 laboratorio: activar y desactivar una rama completa de política y analizar sus reglas
+
+14. Auditoría, AVC y troubleshooting
+14.1 qué es un AVC denial
+14.2 AVC allow
+14.3 audit subsystem
+14.4 auditd
+14.5 /var/log/audit/audit.log
+14.6 journalctl
+14.7 ausearch
+14.8 ausearch -m AVC
+14.9 ausearch -m USER_AVC
+14.10 ausearch -ts
+14.11 ausearch -c
+14.12 interpretar un registro AVC
+14.13 pid
+14.14 comm
+14.15 path
+14.16 scontext
+14.17 tcontext
+14.18 tclass
+14.19 denied {}
+14.20 permissive=
+14.21 audit2why
+14.22 audit2allow
+14.23 diferencias
+14.24 riesgos de audit2allow
+14.25 setroubleshoot
+14.26 sealert
+14.27 detectar contexto incorrecto
+14.28 detectar boolean existente
+14.29 detectar port type incorrecto
+14.30 detectar política faltante
+14.31 detectar bug de aplicación
+14.32 permissive domains
+14.33 semanage permissive
+14.34 dontaudit
+14.35 semodule -DB
+14.36 semodule -B
+14.37 workflow correcto de diagnóstico
+14.37.1 denial
+14.37.1.1 label incorrecto?
+14.37.1.2 configuración incorrecta?
+14.37.1.3 boolean existente?
+14.37.1.4 port type?
+14.37.1.5 transición?
+14.37.1.6 constraint?
+14.37.1.7 policy insuficiente?
+14.38 laboratorio: diagnosticar un AVC sin usar audit2allow como primera solución
+
+15. SETools avanzado
+15.1 arquitectura de SETools
+15.2 seinfo avanzado
+15.3 sesearch avanzado
+15.4 consultar allow
+15.5 consultar neverallow
+15.6 consultar type_transition
+15.7 consultar atributos
+15.8 consultar booleans
+15.9 buscar source
+15.10 buscar target
+15.11 buscar class
+15.12 buscar permissions
+15.13 consultas combinadas
+15.14 análisis directo
+15.15 análisis inverso
+15.16 "¿qué puede hacer este dominio?"
+15.17 "¿quién puede acceder a este tipo?"
+15.18 "¿qué regla permite esto?"
+15.19 "¿por qué no encuentro la regla?"
+15.20 permisos mediante atributos
+15.21 conditional rules
+15.22 transitions
+15.23 constraints
+15.24 apol
+15.25 análisis gráfico de policy
+15.26 laboratorio: reconstruir todos los caminos de acceso entre dos tipos
+
+16. Herramienta semanage en profundidad
+16.1 arquitectura de semanage
+16.2 policy store
+16.3 configuración local
+16.4 semanage fcontext
+16.5 semanage port
+16.6 semanage login
+16.7 semanage user
+16.8 semanage boolean
+16.9 semanage interface
+16.10 semanage node
+16.11 semanage module
+16.12 semanage permissive
+16.13 semanage export
+16.14 semanage import
+16.15 configuración distribuida frente a local
+16.16 precedencia
+16.17 exportar personalizaciones
+16.18 restaurar personalizaciones
+16.19 laboratorio: reconstruir todas las modificaciones SELinux locales de una máquina
+
+17. Policy store y módulos
+17.1 qué es un módulo SELinux
+17.2 modular policy
+17.3 base policy
+17.4 module store
+17.5 /etc/selinux/targeted/active/
+17.6 módulos instalados
+17.7 semodule
+17.8 semodule -l
+17.9 semodule -lfull
+17.10 semodule -i
+17.11 semodule -r
+17.12 semodule -E
+17.13 prioridad de módulos
+17.14 prioridades 100/200/300/etc.
+17.15 módulo .te
+17.16 módulo .if
+17.17 módulo .fc
+17.18 checkmodule
+17.19 semodule_package
+17.20 .mod
+17.21 .pp
+17.22 política HLL/CIL
+17.23 CIL
+17.24 compilación de módulos
+17.25 instalación
+17.26 actualización
+17.27 eliminación
+17.28 laboratorio: inspeccionar y construir un módulo mínimo
+
+18. Desarrollo de políticas SELinux
+18.1 cuándo crear política propia
+18.2 cuándo NO crearla
+18.3 principio de mínimo privilegio
+18.4 archivo .te
+18.5 policy_module()
+18.6 type
+18.7 typeattribute
+18.8 domain_type()
+18.9 files_type()
+18.10 allow
+18.11 dontaudit
+18.12 auditallow
+18.13 neverallow
+18.14 type_transition
+18.15 require
+18.16 gen_require
+18.17 archivo .fc
+18.18 regex de file contexts
+18.19 archivo .if
+18.20 interfaces públicas
+18.21 templates
+18.22 tunables
+18.23 optional_policy
+18.24 dependencias entre módulos
+18.25 domain transitions
+18.26 executable types
+18.27 data types
+18.28 log types
+18.29 runtime types
+18.30 socket types
+18.31 port types
+18.32 compilación
+18.33 instalación
+18.34 prueba en permissive
+18.35 análisis de AVC
+18.36 reducción progresiva de permisos
+18.37 laboratorio: diseñar una policy genérica para un daemon creado únicamente para el laboratorio
+
+19. Reference Policy e interfaces
+19.1 Reference Policy
+19.2 por qué existen interfaces
+19.3 macros frente a reglas allow
+19.4 /usr/share/selinux/devel/
+19.5 include/
+19.6 interfaces
+19.7 templates
+19.8 atributos compartidos
+19.9 interfaces de archivos
+19.10 interfaces de procesos
+19.11 interfaces de red
+19.12 interfaces de logging
+19.13 interfaces de systemd
+19.14 interfaces de usuarios
+19.15 buscar una interface
+19.16 macro-expander
+19.17 expansión de interfaces
+19.18 optional_policy
+19.19 dependencia entre módulos
+19.20 política mantenible
+19.21 laboratorio: reemplazar reglas allow directas por interfaces apropiadas
+
+20. SELinux y RPM
+20.1 relación entre RPM y SELinux
+20.2 paquetes que contienen policy
+20.3 descubrir policy instalada por un RPM
+20.4 rpm -ql
+20.5 rpm -qf
+20.6 file contexts procedentes de paquetes
+20.7 políticas SELinux empaquetadas
+20.8 selinux-policy-devel
+20.9 SPEC y policy
+20.10 subpaquetes SELinux
+20.11 macros SELinux de RPM
+20.12 instalación de módulos
+20.13 actualización
+20.14 eliminación
+20.15 relabel durante transacciones
+20.16 ownership
+20.17 versionado de policy
+20.18 construir RPM
+20.19 construir SRPM
+20.20 mock
+20.21 inspeccionar policy desde un RPM sin instalar
+20.22 laboratorio: paquete RPM mínimo que incluye una política SELinux propia
+
+21. SELinux y systemd
+21.1 init_t
+21.2 lanzamiento de servicios
+21.3 contexto del ejecutable
+21.4 transición de dominio
+21.5 ExecStart
+21.6 dominio resultante
+21.7 SELinuxContext=
+21.8 system_u:system_r
+21.9 journalctl y AVC
+21.10 systemctl status
+21.11 permisos SELinux sobre servicios
+21.12 service class
+21.13 systemd sandboxing
+21.14 ProtectSystem=
+21.15 ProtectHome=
+21.16 PrivateTmp=
+21.17 NoNewPrivileges=
+21.18 CapabilityBoundingSet=
+21.19 namespaces + SELinux
+21.20 capabilities + SELinux
+21.21 laboratorio: seguir desde una unidad systemd hasta el dominio SELinux final
+
+22. SELinux y contenedores
+22.1 SELinux en contenedores
+22.2 container-selinux
+22.3 container_t
+22.4 container_file_t
+22.5 MCS
+22.6 categorías dinámicas
+22.7 aislamiento entre contenedores
+22.8 bind mounts
+22.9 :z
+22.10 :Z
+22.11 diferencia :z / :Z
+22.12 Podman/docker/scopeo/buildha
+22.13 contexto de proceso del contenedor
+22.14 contexto de archivos
+22.15 contexto MCS
+22.16 rootless
+22.17 rootful
+22.18 user namespaces
+22.19 volume labeling
+22.20 udica
+22.21 generar políticas para contenedores
+22.22 laboratorio: demostrar aislamiento MCS entre dos procesos contenerizados
+
+23. Internals de SELinux
+23.1 arquitectura kernel/userspace
+23.2 hooks LSM
+23.3 security blobs
+23.4 SID
+23.5 context_to_sid
+23.6 sid_to_context
+23.7 AVC cache
+23.8 access vectors
+23.9 avc_has_perm
+23.10 security_compute_av
+23.11 policydb
+23.12 object classes internamente
+23.13 permission bits
+23.14 policy load
+23.15 policy version
+23.16 binary policy
+23.17 CIL
+23.18 libselinux
+23.19 libsepol
+23.20 libsemanage
+23.21 getcon()
+23.22 setcon()
+23.23 getfilecon()
+23.24 setfilecon()
+23.25 matchpathcon()
+23.26 selinux_check_access()
+23.27 interfaces /proc
+23.28 interfaces /sys/fs/selinux
+23.29 laboratorio: reconstruir el camino de una decisión SELinux desde userspace hasta kernel
+
+24. Estrategia universal de investigación SELinux
+24.1 partir de una ruta
+24.2 partir de un archivo
+24.3 partir de un directorio
+24.4 partir de un ejecutable
+24.5 partir de un PID
+24.6 partir de un proceso
+24.7 partir de un dominio
+24.8 partir de un type
+24.9 partir de un attribute
+24.10 partir de un user
+24.11 partir de un role
+24.12 partir de un port
+24.13 partir de una interface
+24.14 partir de un node
+24.15 partir de una object class
+24.16 partir de una permission
+24.17 partir de un AVC
+24.18 descubrir contexto actual
+24.19 descubrir contexto esperado
+24.20 descubrir type
+24.21 descubrir atributos
+24.22 descubrir reglas
+24.23 descubrir dominios relacionados
+24.24 descubrir transiciones
+24.25 descubrir booleans
+24.26 descubrir port mappings
+24.27 descubrir personalizaciones locales
+24.28 descubrir módulo propietario
+24.29 descubrir paquete RPM propietario
+24.30 distinguir: estado actual │ configuración local │ policy instalada │ permisos efectivos
+24.31 laboratorio: investigar completamente un objeto SELinux desconocido
+
+25. Laboratorios de investigación
+25.1 investigar un archivo desconocido
+25.2 investigar un directorio desconocido
+25.3 investigar un ejecutable desconocido
+25.4 investigar un PID
+25.5 investigar un dominio
+25.6 investigar un type
+25.7 investigar un attribute
+25.8 investigar una object class
+25.9 investigar una permission
+25.10 investigar una transición
+25.11 investigar un port type
+25.12 investigar un boolean
+25.13 investigar un login mapping
+25.14 investigar un usuario SELinux
+25.15 investigar una etiqueta incorrecta
+25.16 investigar un AVC
+25.17 averiguar por qué algo está permitido
+25.18 averiguar por qué algo está denegado
+25.19 encontrar una regla indirecta mediante atributos
+25.20 encontrar el módulo que introduce una regla
+25.21 encontrar el paquete RPM relacionado
+25.22 comparar policy distribuida y modificaciones locales
+25.23 exportar la configuración SELinux local
+25.24 reconstruir configuración desde cero
+25.25 laboratorio final: auditoría SELinux completa de un sistema Fedora
+
+26. Proyecto final — selinux-debugger universal
+26.1 diseño general
+26.2 arquitectura modular
+26.3 modo --file
+26.4 modo --path
+26.5 modo --process
+26.6 modo --pid
+26.7 modo --type
+26.8 modo --domain
+26.9 modo --attribute
+26.10 modo --context
+26.11 modo --user
+26.12 modo --role
+26.13 modo --class
+26.14 modo --permission
+26.15 modo --port
+26.16 modo --interface
+26.17 modo --node
+26.18 modo --avc
+26.19 modo --package
+26.20 obtener contexto actual
+26.21 obtener contexto esperado
+26.22 descubrir type
+26.23 descubrir atributos
+26.24 descubrir reglas allow
+26.25 descubrir conditional rules
+26.26 descubrir transiciones
+26.27 descubrir booleans
+26.28 descubrir port types
+26.29 descubrir file contexts
+26.30 descubrir personalizaciones semanage
+26.31 buscar AVC relacionados
+26.32 ejecutar audit2why
+26.33 detectar probable label incorrecto
+26.34 detectar contexto esperado diferente
+26.35 detectar boolean relevante
+26.36 detectar port type relevante
+26.37 detectar política realmente ausente
+26.38 detectar reglas indirectas mediante atributos
+26.39 explicar por qué una operación está permitida
+26.40 explicar por qué está denegada
+26.41 modo --why SOURCE │ PERMISSION ▼ CLASS ▼ TARGET
+26.42 correlación con RPM
+26.43 correlación con systemd
+26.44 correlación con procesos
+26.45 correlación con archivos
+26.46 salida humana
+26.47 salida JSON
+26.48 salida Graphviz DOT
+26.49 mapa de relaciones
+26.50 laboratorio/proyecto final: investigar automáticamente un objeto desconocido y justificar cada decisión SELinux encontrada

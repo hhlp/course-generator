@@ -1,0 +1,29 @@
+5.1   template model
+5.2   function templates
+5.3   class templates
+5.4   variable templates
+5.5   alias templates
+5.6   template argument deduction
+5.7   specialization
+5.8   partial specialization
+5.9   dependent names
+5.10  typename
+5.11  template keyword
+5.12  two-phase lookup
+5.13  variadic templates
+5.14  parameter packs
+5.15  pack expansion
+5.16  fold expressions
+5.17  SFINAE
+5.18  enable_if
+5.19  type_traits
+5.20  detection idiom
+5.21  constexpr metaprogramming
+5.22  template metaprogramming
+5.23  Concepts vs SFINAE
+5.24  requires avanzado
+5.25  constrained overload resolution
+5.26  CRTP
+5.27  policy-based design
+5.28  expression templates
+5.29  proyecto generic library

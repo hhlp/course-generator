@@ -1,0 +1,395 @@
+1. Arquitectura de OpenSSH
+1.1 qué es SSH
+1.2 protocolo SSH
+1.3 OpenSSH
+1.4 arquitectura cliente-servidor
+1.5 cliente ssh
+1.6 servidor sshd
+1.7 ssh-keygen
+1.8 ssh-agent
+1.9 ssh-add
+1.10 ssh-copy-id
+1.11 ssh-keyscan
+1.12 sftp
+1.13 scp
+1.14 paquete openssh
+1.15 paquete openssh-clients
+1.16 paquete openssh-server
+1.17 rpm -qi openssh
+1.18 rpm -ql openssh
+1.19 rpm -ql openssh-clients
+1.20 rpm -ql openssh-server
+1.21 laboratorio: construir el mapa completo de OpenSSH instalado en Fedora
+
+2. Descubrir dónde se configura OpenSSH
+2.1 man ssh
+2.2 man sshd
+2.3 man ssh_config
+2.4 man sshd_config
+2.5 man ssh-keygen
+2.6 ssh -V
+2.7 ssh -G host
+2.8 sshd -t
+2.9 sshd -T
+2.10 configuración cliente global
+2.10.1 /etc/ssh/ssh_config
+2.10.2 /etc/ssh/ssh_config.d/
+2.11 configuración cliente de usuario
+2.11.1 ~/.ssh/
+2.11.2 ~/.ssh/config
+2.11.3 ~/.ssh/config.d/
+2.12 configuración cliente de root
+2.12.1 /root/.ssh/
+2.12.2 /root/.ssh/config
+2.12.3 /root/.ssh/config.d/
+2.13 configuración del servidor
+2.13.1 /etc/ssh/sshd_config
+2.13.2 /etc/ssh/sshd_config.d/
+2.14 laboratorio: localizar cada nivel de configuración
+
+3. Include y configuración modular
+3.1 directiva Include
+3.2 Include en ssh_config
+3.3 Include en sshd_config
+3.4 rutas absolutas
+3.5 rutas relativas
+3.6 expansión de ~
+3.7 globbing
+3.8 *.conf
+3.9 ~/.ssh/config como fichero raíz
+3.9.1 ~/.ssh/config Include config.d/*.conf
+3.10 estructura modular recomendada
+3.10.1 ~/.ssh/
+3.10.1.1 config
+3.10.1.2 config.d/
+3.10.1.2.1 10-base.conf
+3.10.1.2.2 20-personal.conf
+3.10.1.2.3 30-work.conf
+3.10.1.2.4 40-lab.conf
+3.10.1.2.5 50-jumphosts.conf
+3.10.1.2.6 90-defaults.conf
+3.10.1.2 known_hosts
+3.10.1.3 keys/
+3.11 estructura equivalente para root
+3.11.1 /root/.ssh/
+3.11.1.1 config
+3.11.1.2 config.d/
+3.11.1.3 known_hosts
+3.11.1.4 keys/
+3.12 Include dentro de Host
+3.13 Include dentro de Match
+3.14 organización por máquinas
+3.15 organización por entorno
+3.16 organización por dominio
+3.17 organización por función
+3.18 configuración modular servidor
+3.18.1 /etc/ssh/
+3.18.2 sshd_config
+3.18.3 sshd_config.d/
+3.18.3.1 10-base.conf
+3.18.3.2 20-auth.conf
+3.18.3.3 30-network.conf
+3.18.3.4 90-hardening.conf
+3.19 laboratorio: dividir ~/.ssh/config en config.d/
+3.20 laboratorio: modularizar /root/.ssh/config
+3.21 laboratorio: modularizar sshd_config
+
+4. Precedencia y configuración efectiva
+4.1 orden de lectura de ssh_config
+4.2 configuración global
+4.3 configuración de usuario
+4.4 Host
+4.5 Include
+4.6 Match
+4.7 first obtained value wins
+4.8 importancia del orden
+4.9 defaults al final
+4.10 prefijos 10-, 20-, 30-, 90-
+4.11 conflictos entre archivos
+4.12 ssh -G host
+4.13 investigar un parámetro efectivo
+4.14 laboratorio:
+4.14.1 comando ssh → ~/.ssh/config → Include → config.d/*.conf → Host → valor efectivo → ssh -G
+
+5. Configuración del cliente SSH
+5.1 Host
+5.2 HostName
+5.3 User
+5.4 Port
+5.5 IdentityFile
+5.6 IdentitiesOnly
+5.7 CertificateFile
+5.8 AddressFamily
+5.9 BindAddress
+5.10 ConnectTimeout
+5.11 ConnectionAttempts
+5.12 ServerAliveInterval
+5.13 ServerAliveCountMax
+5.14 TCPKeepAlive
+5.15 PreferredAuthentications
+5.16 PubkeyAuthentication
+5.17 PasswordAuthentication
+5.18 KbdInteractiveAuthentication
+5.19 StrictHostKeyChecking
+5.20 UserKnownHostsFile
+5.21 HashKnownHosts
+5.22 ProxyJump
+5.23 ProxyCommand
+5.24 LocalForward
+5.25 RemoteForward
+5.26 DynamicForward
+5.27 ExitOnForwardFailure
+5.28 ForwardAgent
+5.29 ForwardX11
+5.30 ControlMaster
+5.31 ControlPath
+5.32 ControlPersist
+5.33 CanonicalizeHostname
+5.34 laboratorio: investigar completamente una conexión cliente
+
+6. Configuración del servidor sshd
+6.1 Port
+6.2 ListenAddress
+6.3 AddressFamily
+6.4 PermitRootLogin
+6.5 PasswordAuthentication
+6.6 PubkeyAuthentication
+6.7 KbdInteractiveAuthentication
+6.8 AuthenticationMethods
+6.9 PermitEmptyPasswords
+6.10 UsePAM
+6.11 AuthorizedKeysFile
+6.12 AuthorizedKeysCommand
+6.13 AuthorizedKeysCommandUser
+6.14 AllowUsers
+6.15 DenyUsers
+6.16 AllowGroups
+6.17 DenyGroups
+6.18 LoginGraceTime
+6.19 MaxAuthTries
+6.20 MaxSessions
+6.21 MaxStartups
+6.22 ClientAliveInterval
+6.23 ClientAliveCountMax
+6.24 AllowTcpForwarding
+6.25 GatewayPorts
+6.26 PermitTunnel
+6.27 X11Forwarding
+6.28 ChrootDirectory
+6.29 ForceCommand
+6.30 Subsystem
+6.31 Banner
+6.32 LogLevel
+6.33 SyslogFacility
+6.34 Include
+6.35 Match User
+6.36 Match Group
+6.37 Match Address
+6.38 Match LocalAddress
+6.39 Match LocalPort
+6.40 sshd -t
+6.41 sshd -T
+6.42 laboratorio: construir y verificar sshd_config modular
+
+7. Criptografía SSH
+7.1 criptografía simétrica
+7.2 criptografía asimétrica
+7.3 hash
+7.4 MAC
+7.5 KEX
+7.6 host keys
+7.7 user keys
+7.8 RSA
+7.9 ECDSA
+7.10 Ed25519
+7.11 private key
+7.12 public key
+7.13 fingerprint
+7.14 Ciphers
+7.15 MACs
+7.16 KexAlgorithms
+7.17 HostKeyAlgorithms
+7.18 PubkeyAcceptedAlgorithms
+7.19 ssh -Q
+7.20 ssh -Q cipher
+7.21 ssh -Q mac
+7.22 ssh -Q kex
+7.23 ssh -Q key
+7.24 crypto-policies de Fedora
+7.25 laboratorio: descubrir algoritmos realmente permitidos
+
+8. Claves SSH
+8.1 ssh-keygen
+8.2 generar claves
+8.3 passphrase
+8.4 permisos
+8.5 claves por máquina
+8.6 claves por entorno
+8.7 IdentityFile
+8.8 directorio ~/.ssh/keys/
+8.9 ssh-copy-id
+8.10 authorized_keys
+8.11 restricciones authorized_keys
+8.12 from=
+8.13 command=
+8.14 restrict
+8.15 no-agent-forwarding
+8.16 no-port-forwarding
+8.17 no-X11-forwarding
+8.18 laboratorio: administrar múltiples identidades SSH
+
+9. ssh-agent
+9.1 qué es ssh-agent
+9.2 SSH_AUTH_SOCK
+9.3 ssh-add
+9.4 ssh-add -l
+9.5 ssh-add -L
+9.6 duración de claves
+9.7 agent forwarding
+9.8 riesgos de ForwardAgent
+9.9 laboratorio
+
+10. Host keys y known_hosts
+10.1 identidad del servidor
+10.2 /etc/ssh/ssh_host_*
+10.3 ssh-keygen -A
+10.4 ~/.ssh/known_hosts
+10.5 /etc/ssh/ssh_known_hosts
+10.6 ssh-keyscan
+10.7 fingerprints
+10.8 MITM
+10.9 StrictHostKeyChecking
+10.10 ssh-keygen -F
+10.11 ssh-keygen -R
+10.12 laboratorio: investigar completamente la identidad de un servidor
+
+11. Bastion hosts y ProxyJump
+11.1 jump host
+11.2 bastion
+11.3 ProxyJump
+11.4 ProxyCommand
+11.5 múltiples saltos
+11.6 configuración modular
+11.6.1 config.d/
+11.6.1.1 40-jumphosts.conf
+11.6.1.2 50-private-networks.conf
+11.7 laboratorio
+
+12. Túneles SSH
+12.1 port forwarding
+12.2 LocalForward
+12.3 RemoteForward
+12.4 DynamicForward
+12.5 SOCKS
+12.6 GatewayPorts
+12.7 ExitOnForwardFailure
+12.8 laboratorio
+
+13. SFTP y SCP
+13.1 sftp
+13.2 scp
+13.3 Subsystem sftp
+13.4 internal-sftp
+13.5 usuarios SFTP-only
+13.6 ChrootDirectory
+13.7 ForceCommand internal-sftp
+13.8 laboratorio
+
+14. OpenSSH + systemd en Fedora
+14.1 sshd.service
+14.2 systemctl status sshd
+14.3 systemctl cat sshd
+14.4 systemctl show sshd
+14.5 systemctl reload sshd
+14.6 systemctl restart sshd
+14.7 dependencias
+14.8 journalctl -u sshd
+14.9 ExecStart
+14.10 configuración efectiva
+14.11 laboratorio: seguir sshd desde systemd hasta el proceso
+
+15. OpenSSH + firewalld
+15.1 servicio ssh
+15.2 firewall-cmd --get-services
+15.3 firewall-cmd --info-service=ssh
+15.4 zonas
+15.5 interfaces
+15.6 servicios
+15.7 puertos
+15.8 cambiar puerto SSH
+15.9 runtime
+15.10 permanent
+15.11 laboratorio: sshd → socket → puerto → firewalld → interfaz
+
+16. OpenSSH + SELinux
+16.1 dominio de sshd
+16.2 ps -eZ
+16.3 contextos de /etc/ssh
+16.4 contextos ~/.ssh
+16.5 ls -Z
+16.6 puertos SELinux
+16.7 ssh_port_t
+16.8 semanage port -l
+16.9 cambiar puerto correctamente
+16.10 AVC
+16.11 ausearch
+16.12 audit2why
+16.13 laboratorio: diagnosticar sshd bloqueado por SELinux
+
+17. Seguridad y hardening OpenSSH
+17.1 reducir superficie de ataque
+17.2 autenticación por clave
+17.3 desactivar contraseña cuando proceda
+17.4 PermitRootLogin
+17.5 AllowUsers / AllowGroups
+17.6 MaxAuthTries
+17.7 MaxStartups
+17.8 forwarding
+17.9 agentes
+17.10 algoritmos
+17.11 crypto-policies Fedora
+17.12 logs
+17.13 laboratorio de hardening
+
+18. Troubleshooting OpenSSH
+18.1 ssh -v
+18.2 ssh -vv
+18.3 ssh -vvv
+18.4 sshd -d
+18.5 sshd -ddd
+18.6 sshd -t
+18.7 sshd -T
+18.8 ssh -G
+18.9 journalctl
+18.10 ss -lntp
+18.11 ps
+18.12 permisos ~/.ssh
+18.13 permisos config
+18.14 permisos private keys
+18.15 permisos authorized_keys
+18.16 SELinux
+18.17 firewalld
+18.18 DNS
+18.19 routing
+18.20 tcpdump
+18.21 laboratorio: investigar completamente un fallo SSH
+
+19. Laboratorio final OpenSSH
+19.1 inventariar paquetes
+19.2 inventariar binarios
+19.3 inventariar configuración
+19.4 modularizar ~/.ssh/config
+19.5 modularizar /root/.ssh/config
+19.6 modularizar sshd_config
+19.7 analizar Include
+19.8 analizar precedencia
+19.9 obtener configuración efectiva
+19.10 investigar claves
+19.11 investigar known_hosts
+19.12 investigar host keys
+19.13 investigar systemd
+19.14 investigar firewalld
+19.15 investigar SELinux
+19.16 investigar crypto-policies
+19.17 mapa completo del ecosistema OpenSSH
+19.20 mini-ssh-debugger

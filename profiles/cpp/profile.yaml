@@ -1,0 +1,160 @@
+name: cpp
+title: C++ EN PROFUNDIDAD
+platform: Fedora Linux
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+lesson_structure:
+  objective:
+    required: true
+    position: first
+  reading:
+    required: true
+  lab:
+    required: false
+  common_errors:
+    required: false
+  important_idea:
+    required: false
+  remember:
+    required: true
+    position: last
+    min_items: 3
+    max_items: 7
+quality:
+  forbid_generic_scaffold: true
+  require_topic_specific_headings: true
+  require_topic_specific_examples: true
+  require_self_contained_lesson: true
+  audit_before_save: true
+  repair_on_fail: true
+output:
+  format: markdown
+  zip_block: true
+  write_index: true
+  write_manifest: true
+artifacts:
+  enabled: true
+  default_strategy: auto
+  overrides:
+    '1.41':
+      strategy: standalone_project
+      project_id: proyecto-final-ppp3
+      knowledge_dependencies:
+      - bloque-1
+      artifact_dependencies: []
+      required_files:
+      - README.md
+      - CMakeLists.txt
+      - src/main.cpp
+      - tests/test_main.cpp
+      validation_required: true
+      project_type: integrator
+    '3.30':
+      strategy: standalone_project
+      project_id: proyecto-cpp17
+      knowledge_dependencies:
+      - bloque-1
+      - bloque-2
+      - bloque-3
+      artifact_dependencies: []
+      required_files:
+      - README.md
+      - CMakeLists.txt
+      - src/main.cpp
+      - tests/test_main.cpp
+      validation_required: true
+      project_type: integrator
+    '4.44':
+      strategy: standalone_project
+      project_id: proyecto-cpp23
+      knowledge_dependencies:
+      - bloque-1
+      - bloque-2
+      - bloque-3
+      - bloque-4
+      artifact_dependencies: []
+      required_files:
+      - README.md
+      - CMakeLists.txt
+      - src/main.cpp
+      - tests/test_main.cpp
+      validation_required: true
+      project_type: integrator
+    '5.29':
+      strategy: standalone_project
+      project_id: generic-library
+      knowledge_dependencies:
+      - bloque-1
+      - bloque-2
+      - bloque-3
+      - bloque-4
+      - bloque-5
+      artifact_dependencies: []
+      required_files:
+      - README.md
+      - CMakeLists.txt
+      - tests/test_main.cpp
+      validation_required: true
+      project_type: integrator
+    '6.36':
+      strategy: standalone_project
+      project_id: proyecto-concurrente
+      knowledge_dependencies:
+      - bloque-1
+      - bloque-2
+      - bloque-3
+      - bloque-4
+      - bloque-5
+      - bloque-6
+      artifact_dependencies: []
+      required_files:
+      - README.md
+      - CMakeLists.txt
+      - src/main.cpp
+      - tests/test_main.cpp
+      validation_required: true
+      project_type: integrator
+    '8.26':
+      strategy: final_integrator_project
+      project_id: proyecto-cpp23-completo
+      knowledge_dependencies:
+      - bloque-1
+      - bloque-2
+      - bloque-3
+      - bloque-4
+      - bloque-5
+      - bloque-6
+      - bloque-7
+      - bloque-8
+      artifact_dependencies: []
+      required_files:
+      - README.md
+      - CMakeLists.txt
+      - src/main.cpp
+      - tests/test_main.cpp
+      validation_required: true
+      project_type: integrator
+  project_policy:
+    integrator_projects: auto
+    diagnostic_projects: auto
+    require_project_for_every_block: false
+validation:
+  enabled: true
+  require_tools: false
+  stop_on_failure: true
+  timeout_seconds: 180
+  commands:
+  - - cmake
+    - -S
+    - .
+    - -B
+    - build
+  - - cmake
+    - --build
+    - build
+  - - ctest
+    - --test-dir
+    - build
+    - --output-on-failure
