@@ -1,0 +1,920 @@
+0. Fundamentos de expresiones regulares
+0.1 qué es una expresión regular
+0.2 para qué sirven las expresiones regulares
+0.3 texto de entrada
+0.4 patrón
+0.5 coincidencia o match
+0.6 búsqueda frente a coincidencia
+0.7 coincidencia completa frente a parcial
+0.8 motor de expresiones regulares
+0.9 dialecto de expresiones regulares
+0.10 sintaxis frente a semántica
+0.11 caracteres literales
+0.12 metacaracteres
+0.13 caracteres especiales
+0.14 escape
+0.15 posición dentro del texto
+0.16 consumir caracteres
+0.17 comprobar sin consumir
+0.18 coincidencias de longitud cero
+0.19 primera expresión regular
+0.20 leer una regex de izquierda a derecha
+0.21 dividir patrones complejos en componentes
+0.22 laboratorio: identificar literales y metacaracteres
+0.23 laboratorio: construir los primeros patrones
+
+
+1. Caracteres literales y escape
+1.1 caracteres literales
+1.2 caracteres con significado especial
+1.3 el carácter \
+1.4 escapar metacaracteres
+1.5 representar un punto literal
+1.6 representar un asterisco literal
+1.7 representar un signo +
+1.8 representar ?
+1.9 representar paréntesis
+1.10 representar corchetes
+1.11 representar llaves
+1.12 representar |
+1.13 representar ^
+1.14 representar $
+1.15 representar \
+1.16 contexto y significado de los metacaracteres
+1.17 caracteres especiales dentro de clases
+1.18 doble escape y capas externas
+1.19 distinguir sintaxis regex de sintaxis del entorno
+1.20 laboratorio: escapar patrones correctamente
+
+
+2. El comodín
+2.1 el metacarácter .
+2.2 qué coincide con .
+2.3 qué puede no coincidir con .
+2.4 newline y .
+2.5 dotall
+2.6 comportamiento dependiente del motor
+2.7 . frente a clases de caracteres
+2.8 patrones demasiado generales
+2.9 uso controlado de .
+2.10 laboratorio
+
+
+3. Clases de caracteres
+3.1 introducción a [...]
+3.2 conjuntos de caracteres
+3.3 rangos
+3.4 [a-z]
+3.5 [A-Z]
+3.6 [0-9]
+3.7 combinar rangos
+3.8 caracteres literales dentro de []
+3.9 negación con [^...]
+3.10 ^ dentro y fuera de una clase
+3.11 - dentro de clases
+3.12 ] dentro de clases
+3.13 \ dentro de clases
+3.14 clases predefinidas
+3.15 \d
+3.16 \D
+3.17 \w
+3.18 \W
+3.19 \s
+3.20 \S
+3.21 significado dependiente del motor
+3.22 ASCII frente a Unicode
+3.23 clases POSIX
+3.24 [:alpha:]
+3.25 [:digit:]
+3.26 [:alnum:]
+3.27 [:space:]
+3.28 [:lower:]
+3.29 [:upper:]
+3.30 [:punct:]
+3.31 [:xdigit:]
+3.32 intersección de clases cuando esté soportada
+3.33 sustracción de clases cuando esté soportada
+3.34 operaciones avanzadas sobre conjuntos
+3.35 laboratorio
+
+
+4. Cuantificadores
+4.1 concepto de repetición
+4.2 *
+4.3 +
+4.4 ?
+4.5 {n}
+4.6 {n,}
+4.7 {n,m}
+4.8 límites inferiores
+4.9 límites superiores
+4.10 cuantificar caracteres
+4.11 cuantificar clases
+4.12 cuantificar grupos
+4.13 cero coincidencias
+4.14 repetición y coincidencias vacías
+4.15 alcance del cuantificador
+4.16 errores frecuentes de alcance
+4.17 cuantificadores anidados
+4.18 laboratorio
+
+
+5. Greedy, lazy y possessive
+5.1 concepto de codicia
+5.2 greedy matching
+5.3 por qué los cuantificadores son normalmente greedy
+5.4 .* y sus consecuencias
+5.5 backtracking provocado por greedy
+5.6 lazy matching
+5.7 *?
+5.8 +?
+5.9 ??
+5.10 {n,m}?
+5.11 greedy frente a lazy
+5.12 lazy no significa necesariamente eficiente
+5.13 possessive quantifiers
+5.14 *+
+5.15 ++
+5.16 ?+
+5.17 {n,m}+
+5.18 possessive frente a greedy
+5.19 possessive y backtracking
+5.20 soporte según motor
+5.21 laboratorio comparativo
+
+
+6. Anclas y posiciones
+6.1 concepto de anchor
+6.2 ^
+6.3 $
+6.4 inicio del texto
+6.5 final del texto
+6.6 inicio de línea
+6.7 final de línea
+6.8 multiline
+6.9 diferencia texto/línea
+6.10 \A
+6.11 \Z
+6.12 \z
+6.13 soporte según motor
+6.14 anclas de longitud cero
+6.15 posición frente a carácter
+6.16 combinaciones de anclas
+6.17 validación completa
+6.18 búsqueda parcial
+6.19 laboratorio
+
+
+7. Límites
+7.1 concepto de boundary
+7.2 \b
+7.3 \B
+7.4 límite de palabra
+7.5 qué significa palabra para un motor
+7.6 \w y \b
+7.7 ASCII y límites
+7.8 Unicode y límites
+7.9 límites personalizados
+7.10 límites mediante lookaround
+7.11 laboratorio
+
+
+8. Alternancia
+8.1 operador |
+8.2 alternativas
+8.3 precedencia
+8.4 alcance de |
+8.5 alternancia y concatenación
+8.6 alternancia dentro de grupos
+8.7 orden de alternativas
+8.8 leftmost-first
+8.9 alternativas con prefijos comunes
+8.10 optimización de alternativas
+8.11 factorizar expresiones
+8.12 laboratorio
+
+
+9. Agrupación
+9.1 (...)
+9.2 por qué agrupar
+9.3 modificar precedencia
+9.4 cuantificar grupos
+9.5 grupos anidados
+9.6 grupos capturadores
+9.7 numeración de grupos
+9.8 grupo 0
+9.9 grupos 1..n
+9.10 capturas anidadas
+9.11 capturas repetidas
+9.12 última captura
+9.13 grupos opcionales
+9.14 grupos no participantes
+9.15 grupos no capturadores
+9.16 (?:...)
+9.17 cuándo evitar capturas
+9.18 laboratorio
+
+
+10. Capturas
+10.1 concepto de captura
+10.2 substring capturado
+10.3 grupos numerados
+10.4 grupos con nombre
+10.5 sintaxis dependiente del motor
+10.6 capturas anidadas
+10.7 capturas dentro de alternativas
+10.8 capturas dentro de repeticiones
+10.9 captura frente a coincidencia
+10.10 grupos que no participan
+10.11 captura vacía
+10.12 inspección conceptual de capturas
+10.13 laboratorio
+
+
+11. Backreferences
+11.1 qué es una backreference
+11.2 diferencia entre grupo y backreference
+11.3 referencias numéricas
+11.4 referencias con nombre
+11.5 repetir texto previamente capturado
+11.6 detectar palabras repetidas
+11.7 backreferences y cuantificadores
+11.8 backreferences y alternativas
+11.9 backreferences y grupos opcionales
+11.10 backreferences y backtracking
+11.11 limitaciones
+11.12 impacto sobre el rendimiento
+11.13 regular expressions matemáticas frente a regex modernas
+11.14 por qué las backreferences cambian el poder expresivo
+11.15 soporte según motor
+11.16 laboratorio
+
+
+12. Introducción a las aserciones
+12.1 qué es una assertion
+12.2 zero-width assertion
+12.3 consumir frente a comprobar
+12.4 posición actual del motor
+12.5 anclas como aserciones
+12.6 límites como aserciones
+12.7 lookaround
+12.8 contexto izquierdo
+12.9 contexto derecho
+12.10 coincidencia sin consumir contexto
+12.11 laboratorio
+
+
+13. Lookahead
+13.1 qué es lookahead
+13.2 lookahead positivo
+13.3 (?=...)
+13.4 lookahead negativo
+13.5 (?!...)
+13.6 posición antes del lookahead
+13.7 qué inspecciona
+13.8 por qué no consume
+13.9 match resultante
+13.10 lookahead al principio
+13.11 lookahead en mitad del patrón
+13.12 lookahead al final
+13.13 lookahead con cuantificadores
+13.14 lookahead con alternativas
+13.15 lookahead con capturas
+13.16 múltiples lookahead consecutivos
+13.17 condiciones AND mediante lookahead
+13.18 exclusión mediante lookahead negativo
+13.19 validaciones mediante lookahead
+13.20 restricciones simultáneas
+13.21 lookahead anidado
+13.22 lookahead y backtracking
+13.23 laboratorio
+
+
+14. Lookbehind
+14.1 qué es lookbehind
+14.2 lookbehind positivo
+14.3 (?<=...)
+14.4 lookbehind negativo
+14.5 (?<!...)
+14.6 inspeccionar hacia la izquierda
+14.7 contexto sin consumirlo
+14.8 match resultante
+14.9 lookbehind de longitud fija
+14.10 por qué históricamente se exige longitud fija
+14.11 alternativas dentro de lookbehind
+14.12 cuantificadores dentro de lookbehind
+14.13 lookbehind de longitudes diferentes
+14.14 lookbehind de longitud acotada
+14.15 lookbehind de longitud variable
+14.16 motores que lo permiten
+14.17 restricciones según motor
+14.18 capturas dentro de lookbehind
+14.19 backreferences y lookbehind
+14.20 lookbehind negativo
+14.21 múltiples lookbehind
+14.22 lookbehind anidado
+14.23 rendimiento
+14.24 laboratorio
+
+
+15. Lookaround avanzado
+15.1 combinar lookahead y lookbehind
+15.2 múltiples condiciones zero-width
+15.3 intersección lógica
+15.4 negación lógica
+15.5 expresar AND
+15.6 expresar NOT
+15.7 aproximaciones a condiciones OR
+15.8 contexto izquierdo y derecho simultáneo
+15.9 extraer contenido sin capturar delimitadores
+15.10 comprobar prefijos sin consumir
+15.11 comprobar sufijos sin consumir
+15.12 exclusiones contextuales
+15.13 límites personalizados
+15.14 lookaround dentro de grupos
+15.15 grupos dentro de lookaround
+15.16 capturas dentro de lookaround
+15.17 lookaround dentro de alternativas
+15.18 alternativas dentro de lookaround
+15.19 lookaround anidado
+15.20 cadenas de assertions
+15.21 assertions antes del texto consumido
+15.22 assertions después del texto consumido
+15.23 patrones formados únicamente por assertions
+15.24 coincidencias zero-width
+15.25 lookaround y backtracking
+15.26 backtracking interno del lookaround
+15.27 interacción con grupos atómicos
+15.28 interacción con cuantificadores posesivos
+15.29 reescribir patrones sin lookaround
+15.30 comparar solución con y sin lookaround
+15.31 portabilidad
+15.32 rendimiento
+15.33 laboratorio avanzado
+
+
+16. Flags y modos
+16.1 qué es un flag
+16.2 case insensitive
+16.3 multiline
+16.4 dotall
+16.5 extended/free-spacing
+16.6 Unicode
+16.7 ASCII
+16.8 locale
+16.9 flags globales
+16.10 flags locales
+16.11 grupos modificadores
+16.12 activar modos dentro del patrón
+16.13 desactivar modos
+16.14 alcance
+16.15 diferencias entre motores
+16.16 laboratorio
+
+
+17. Modo extendido y legibilidad
+17.1 problema de las regex grandes
+17.2 free-spacing
+17.3 espacios ignorados
+17.4 comentarios
+17.5 estructurar expresiones
+17.6 indentación conceptual
+17.7 nombres de grupos
+17.8 documentación
+17.9 patrones mantenibles
+17.10 cuándo dividir una regex
+17.11 laboratorio: refactorizar una regex compleja
+
+
+18. Grupos atómicos
+18.1 qué significa atomicidad
+18.2 (?>...)
+18.3 impedir backtracking
+18.4 funcionamiento interno
+18.5 grupo normal frente a atómico
+18.6 atomicidad y alternativas
+18.7 atomicidad y cuantificadores
+18.8 grupos atómicos frente a possessive
+18.9 optimización
+18.10 cambios semánticos inesperados
+18.11 soporte según motor
+18.12 laboratorio
+
+
+19. Construcciones condicionales
+19.1 concepto de conditional
+19.2 condicionar según participación de grupo
+19.3 sintaxis (?(...))
+19.4 ramas yes/no
+19.5 grupos opcionales
+19.6 condicionales y lookaround
+19.7 condicionales anidados
+19.8 aplicaciones
+19.9 legibilidad
+19.10 soporte según motor
+19.11 laboratorio
+
+
+20. Recursión y subrutinas
+20.1 concepto de subroutine
+20.2 reutilizar grupos
+20.3 subrutinas numeradas
+20.4 subrutinas con nombre
+20.5 recursión
+20.6 recursión del patrón completo
+20.7 recursión de grupos
+20.8 estructuras anidadas
+20.9 paréntesis balanceados
+20.10 limitaciones
+20.11 profundidad
+20.12 rendimiento
+20.13 diferencias entre motores
+20.14 cuándo una regex deja de ser la herramienta adecuada
+20.15 laboratorio
+
+
+21. Unicode
+21.1 Unicode frente a ASCII
+21.2 code point
+21.3 code unit
+21.4 grapheme cluster
+21.5 caracteres compuestos
+21.6 combining marks
+21.7 normalización
+21.8 NFC
+21.9 NFD
+21.10 NFKC
+21.11 NFKD
+21.12 propiedades Unicode
+21.13 \p{...}
+21.14 \P{...}
+21.15 categorías generales
+21.16 scripts
+21.17 letters
+21.18 numbers
+21.19 marks
+21.20 whitespace Unicode
+21.21 \w bajo Unicode
+21.22 \d bajo Unicode
+21.23 \b bajo Unicode
+21.24 grapheme clusters
+21.25 \X cuando esté soportado
+21.26 emoji
+21.27 secuencias de emoji
+21.28 variación entre motores
+21.29 case folding
+21.30 Unicode y case insensitive
+21.31 laboratorio
+
+
+22. Saltos de línea y texto multilínea
+22.1 LF
+22.2 CR
+22.3 CRLF
+22.4 otras terminaciones
+22.5 ^ y $
+22.6 multiline
+22.7 dotall
+22.8 . y newline
+22.9 \R cuando esté disponible
+22.10 procesar bloques
+22.11 texto completo frente a líneas
+22.12 laboratorio
+
+
+23. Reemplazo
+23.1 búsqueda frente a sustitución
+23.2 patrón de búsqueda
+23.3 replacement
+23.4 insertar texto literal
+23.5 reutilizar capturas
+23.6 referencias numéricas
+23.7 referencias con nombre
+23.8 sintaxis dependiente de herramienta/motor
+23.9 reordenar contenido
+23.10 eliminar contenido
+23.11 transformar estructuras
+23.12 lookaround en sustituciones
+23.13 coincidencias vacías durante reemplazo
+23.14 reemplazo global
+23.15 laboratorio
+
+
+24. Cómo funciona un motor Regex
+24.1 patrón frente a motor
+24.2 compilación del patrón
+24.3 ejecución
+24.4 estado
+24.5 posición de entrada
+24.6 transición
+24.7 aceptación
+24.8 motores dirigidos por texto
+24.9 motores dirigidos por regex
+24.10 NFA
+24.11 DFA
+24.12 backtracking NFA
+24.13 Thompson NFA
+24.14 comparación conceptual
+24.15 leftmost-first
+24.16 leftmost-longest
+24.17 POSIX semantics
+24.18 Perl-style semantics
+24.19 consecuencias prácticas
+24.20 laboratorio: seguir manualmente la ejecución
+
+
+25. Backtracking en profundidad
+25.1 qué es backtracking
+25.2 puntos de decisión
+25.3 alternativas
+25.4 cuantificadores
+25.5 pila conceptual de estados
+25.6 greedy y retroceso
+25.7 lazy y retroceso
+25.8 grupos y retroceso
+25.9 capturas y retroceso
+25.10 lookaround y retroceso
+25.11 backreferences y retroceso
+25.12 caminos fallidos
+25.13 explosión combinatoria
+25.14 visualizar el árbol de búsqueda
+25.15 reducir puntos de decisión
+25.16 atomicidad
+25.17 possessive quantifiers
+25.18 refactorización
+25.19 laboratorio
+
+
+26. Rendimiento
+26.1 coste de una expresión regular
+26.2 longitud del patrón
+26.3 longitud de la entrada
+26.4 búsqueda lineal
+26.5 backtracking
+26.6 alternativas ambiguas
+26.7 cuantificadores anidados
+26.8 prefijos comunes
+26.9 .* innecesario
+26.10 clases frente a alternancias
+26.11 anclar búsquedas
+26.12 limitar cuantificadores
+26.13 reducir ambigüedad
+26.14 grupos atómicos
+26.15 cuantificadores posesivos
+26.16 medir antes de optimizar
+26.17 benchmark conceptual
+26.18 comportamiento según motor
+26.19 laboratorio de optimización
+
+
+27. Catastrophic backtracking y ReDoS
+27.1 qué es catastrophic backtracking
+27.2 crecimiento exponencial
+27.3 cuantificadores anidados peligrosos
+27.4 alternativas solapadas
+27.5 entradas adversarias
+27.6 regex denial of service
+27.7 ReDoS
+27.8 patrones vulnerables
+27.9 identificar patrones peligrosos
+27.10 construir casos de prueba seguros
+27.11 limitar repetición
+27.12 eliminar ambigüedad
+27.13 atomic groups
+27.14 possessive quantifiers
+27.15 motores sin backtracking tradicional
+27.16 límites de ejecución
+27.17 regex sobre entrada no confiable
+27.18 auditoría de regex
+27.19 laboratorio defensivo
+
+
+28. POSIX BRE
+28.1 qué es POSIX
+28.2 Basic Regular Expressions
+28.3 sintaxis BRE
+28.4 metacaracteres
+28.5 escapes
+28.6 agrupación
+28.7 repetición
+28.8 intervalos
+28.9 backreferences
+28.10 clases POSIX
+28.11 leftmost-longest
+28.12 limitaciones
+28.13 diferencias con regex Perl-like
+28.14 laboratorio
+
+
+29. POSIX ERE
+29.1 Extended Regular Expressions
+29.2 diferencias BRE/ERE
+29.3 +
+29.4 ?
+29.5 |
+29.6 ()
+29.7 intervalos
+29.8 clases POSIX
+29.9 leftmost-longest
+29.10 ausencia de lookaround
+29.11 diferencias con PCRE
+29.12 portabilidad
+29.13 laboratorio
+
+
+30. Perl-style Regex
+30.1 evolución desde regex clásicas
+30.2 extensiones modernas
+30.3 (?...)-style constructs
+30.4 grupos no capturadores
+30.5 lookaround
+30.6 lazy quantifiers
+30.7 grupos con nombre
+30.8 atomic groups
+30.9 possessive quantifiers
+30.10 backreferences avanzadas
+30.11 condicionales
+30.12 recursión
+30.13 diferencias entre implementaciones
+30.14 laboratorio
+
+
+31. PCRE y PCRE2
+31.1 qué es PCRE
+31.2 qué es PCRE2
+31.3 relación con Perl
+31.4 arquitectura conceptual
+31.5 sintaxis
+31.6 grupos
+31.7 named groups
+31.8 lookahead
+31.9 lookbehind
+31.10 lookbehind variable
+31.11 atomic groups
+31.12 possessive quantifiers
+31.13 subroutines
+31.14 recursion
+31.15 conditionals
+31.16 control verbs
+31.17 backtracking verbs
+31.18 Unicode
+31.19 JIT
+31.20 límites del motor
+31.21 seguridad
+31.22 laboratorio
+
+
+32. Otros modelos de motores
+32.1 por qué no existe una única Regex
+32.2 POSIX
+32.3 Perl
+32.4 PCRE2
+32.5 motores basados en backtracking
+32.6 motores basados en autómatas
+32.7 RE2 como modelo conceptual
+32.8 ausencia deliberada de ciertas características
+32.9 seguridad frente a expresividad
+32.10 compatibilidad
+32.11 portabilidad
+32.12 cómo leer documentación de un motor
+32.13 cómo descubrir características soportadas
+32.14 construir una matriz de capacidades
+32.15 laboratorio
+
+
+33. Regex y teoría de lenguajes
+33.1 alfabetos
+33.2 símbolos
+33.3 cadenas
+33.4 lenguajes
+33.5 lenguaje regular
+33.6 expresión regular formal
+33.7 concatenación
+33.8 unión
+33.9 estrella de Kleene
+33.10 autómata finito
+33.11 DFA
+33.12 NFA
+33.13 equivalencia regex-autómata
+33.14 lenguajes no regulares
+33.15 pumping lemma como concepto
+33.16 regex prácticas frente a regex formales
+33.17 backreferences
+33.18 recursión
+33.19 extensiones más allá de lenguajes regulares
+33.20 laboratorio conceptual
+
+
+34. Diseño sistemático de expresiones
+34.1 definir exactamente el lenguaje aceptado
+34.2 ejemplos positivos
+34.3 ejemplos negativos
+34.4 identificar unidades
+34.5 identificar delimitadores
+34.6 identificar repeticiones
+34.7 identificar alternativas
+34.8 definir límites
+34.9 construir desde componentes pequeños
+34.10 combinar componentes
+34.11 anclar cuando corresponda
+34.12 añadir contexto
+34.13 eliminar ambigüedad
+34.14 probar casos límite
+34.15 probar entradas maliciosas
+34.16 revisar legibilidad
+34.17 revisar portabilidad
+34.18 revisar rendimiento
+34.19 laboratorio
+
+
+35. Depuración de Regex
+35.1 por qué falla una regex
+35.2 minimizar el patrón
+35.3 minimizar la entrada
+35.4 aislar subexpresiones
+35.5 comprobar escapes
+35.6 comprobar grupos
+35.7 comprobar cuantificadores
+35.8 comprobar anchors
+35.9 comprobar flags
+35.10 comprobar dialecto
+35.11 inspeccionar capturas
+35.12 localizar backtracking
+35.13 analizar alternativas
+35.14 casos positivos
+35.15 casos negativos
+35.16 casos límite
+35.17 regresiones
+35.18 laboratorio de debugging
+
+
+36. Testing
+36.1 una regex también necesita pruebas
+36.2 conjunto positivo
+36.3 conjunto negativo
+36.4 boundary cases
+36.5 empty input
+36.6 entradas muy largas
+36.7 Unicode
+36.8 newlines
+36.9 casos adversarios
+36.10 expected match
+36.11 expected captures
+36.12 pruebas de regresión
+36.13 pruebas de rendimiento
+36.14 fuzzing conceptual
+36.15 laboratorio
+
+
+37. Problemas clásicos
+37.1 números enteros
+37.2 números decimales
+37.3 signos
+37.4 hexadecimal
+37.5 identificadores
+37.6 palabras
+37.7 delimitadores
+37.8 listas simples
+37.9 espacios opcionales
+37.10 fechas con formato conocido
+37.11 horas
+37.12 versiones
+37.13 rutas simples
+37.14 extensiones
+37.15 pares clave=valor
+37.16 campos delimitados
+37.17 comentarios simples
+37.18 bloques
+37.19 extracción contextual
+37.20 exclusiones
+37.21 datos multilínea
+37.22 laboratorio
+
+
+38. Qué NO resolver con Regex
+38.1 límites prácticos
+38.2 HTML
+38.3 XML
+38.4 JSON
+38.5 lenguajes de programación
+38.6 estructuras arbitrariamente anidadas
+38.7 parsing frente a pattern matching
+38.8 lexer
+38.9 parser
+38.10 gramáticas
+38.11 cuándo utilizar un parser
+38.12 cuándo una regex sigue siendo apropiada
+38.13 regex como etapa de preprocesamiento
+38.14 laboratorio comparativo
+
+
+39. Portabilidad
+39.1 el mismo patrón no significa universalidad
+39.2 detectar el dialecto
+39.3 BRE
+39.4 ERE
+39.5 Perl-like
+39.6 PCRE2
+39.7 diferencias de escape
+39.8 diferencias de grupos
+39.9 diferencias de backreferences
+39.10 diferencias de lookahead
+39.11 diferencias de lookbehind
+39.12 diferencias de Unicode
+39.13 diferencias de anchors
+39.14 diferencias de flags
+39.15 diferencias de replacement
+39.16 diseñar regex portables
+39.17 cuándo aceptar dependencia del motor
+39.18 laboratorio
+
+
+40. Herramientas y ecosistema
+40.1 separar lenguaje Regex de herramienta
+40.2 identificar qué dialecto utiliza una herramienta
+40.3 documentación del motor
+40.4 documentación de la herramienta
+40.5 POSIX BRE en herramientas Unix
+40.6 POSIX ERE en herramientas Unix
+40.7 PCRE2 en herramientas que lo soporten
+40.8 grep como consumidor de regex
+40.9 sed como consumidor de regex
+40.10 awk como consumidor de regex
+40.11 ripgrep como consumidor de regex
+40.12 herramientas interactivas de experimentación
+40.13 visualizadores de ejecución
+40.14 analizadores de rendimiento
+40.15 límites de los testers online
+40.16 laboratorio: identificar motor y dialecto antes de escribir el patrón
+
+
+41. Lectura experta de patrones
+41.1 tokenizar mentalmente una regex
+41.2 identificar estructura
+41.3 determinar precedencia
+41.4 identificar grupos
+41.5 identificar assertions
+41.6 identificar cuantificadores
+41.7 localizar ambigüedad
+41.8 localizar puntos de backtracking
+41.9 determinar qué consume cada componente
+41.10 determinar qué solamente comprueba
+41.11 seguir posiciones del motor
+41.12 reconstruir capturas
+41.13 predecir el match
+41.14 predecir fallos
+41.15 estimar riesgos de rendimiento
+41.16 laboratorio con patrones complejos
+
+
+42. Construcción experta
+42.1 especificación antes del patrón
+42.2 corrección
+42.3 precisión
+42.4 mantenibilidad
+42.5 legibilidad
+42.6 rendimiento
+42.7 seguridad
+42.8 portabilidad
+42.9 elección consciente del dialecto
+42.10 elección consciente del motor
+42.11 composición
+42.12 refactorización
+42.13 documentación
+42.14 tests
+42.15 benchmark
+42.16 revisión
+42.17 laboratorio integral
+
+
+43. Proyecto final — Regex Analyzer
+43.1 definir el proyecto
+43.2 recibir un patrón
+43.3 recibir muestras de entrada
+43.4 identificar tokens del patrón
+43.5 identificar literales
+43.6 identificar clases
+43.7 identificar cuantificadores
+43.8 identificar grupos
+43.9 identificar capturas
+43.10 identificar backreferences
+43.11 identificar anchors
+43.12 identificar lookahead
+43.13 identificar lookbehind
+43.14 identificar grupos atómicos
+43.15 identificar construcciones dependientes del motor
+43.16 representar la estructura del patrón
+43.17 explicar qué consume cada componente
+43.18 explicar assertions zero-width
+43.19 detectar cuantificadores anidados
+43.20 detectar alternativas potencialmente ambiguas
+43.21 detectar construcciones potencialmente costosas
+43.22 advertir de posibles riesgos ReDoS
+43.23 ejecutar casos positivos
+43.24 ejecutar casos negativos
+43.25 mostrar coincidencias
+43.26 mostrar capturas
+43.27 mostrar posiciones
+43.28 comparar comportamiento entre dialectos cuando sea posible
+43.29 generar informe de análisis
+43.30 proyecto final: construir un Regex Analyzer reutilizable

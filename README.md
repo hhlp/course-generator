@@ -2,9 +2,9 @@
 
 Generador genérico de cursos técnicos profundos, lección por lección y por bloques.
 
-Idea inspirada por : hhlp
-Asistida por       : ChatGPT (Bloques/Python/API)
-Testeado por       : hhlp
+- Idea inspirada por : hhlp
+- Asistida por       : ChatGPT (Bloques/Python/API)
+- Testeado por       : hhlp
 
 ## Arquitectura
 
@@ -56,7 +56,7 @@ Esto permite continuidad incluso entre bloques cuando se declare `extends_previo
 El perfil C++ declara como proyectos independientes:
 
 ```text
-1.41  proyecto final PPP3          → standalone_project
+1.41  proyecto final PPP3         → standalone_project
 3.30  proyecto C++17              → standalone_project
 4.44  proyecto C++23              → standalone_project
 5.29  proyecto generic library    → standalone_project
