@@ -1,0 +1,14 @@
+61. Plugins Zsh
+61.1 qué es un plugin
+61.2 plugin como código shell
+61.3 carga manual
+61.4 fpath
+61.5 frameworks
+61.6 plugin managers
+61.7 dependencias
+61.8 lazy loading
+61.9 startup cost
+61.10 seguridad
+61.11 auditoría
+61.12 evitar dependencias innecesarias
+61.13 laboratorio: escribir plugin propio

@@ -1,0 +1,19 @@
+15. Condicionales
+15.1 if
+15.2 then
+15.3 elif
+15.4 else
+15.5 fi
+15.6 test
+15.7 [
+15.8 [[
+15.9 comparación de strings
+15.10 comparación numérica
+15.11 archivos
+15.12 operadores booleanos
+15.13 pattern matching
+15.14 regex con =~ en Bash
+15.15 BASH_REMATCH
+15.16 [[ ]] en Zsh
+15.17 diferencias Bash/Zsh/POSIX
+15.18 laboratorio

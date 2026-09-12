@@ -1,0 +1,17 @@
+72. Rendimiento de scripts
+72.1 medir
+72.2 time
+72.3 hyperfine
+72.4 strace
+72.5 forks
+72.6 procesos externos
+72.7 builtins
+72.8 parameter expansion
+72.9 arrays
+72.10 pipelines
+72.11 subshells
+72.12 command substitutions
+72.13 lectura de archivos
+72.14 batching
+72.15 cuándo dejar de usar shell
+72.16 laboratorio

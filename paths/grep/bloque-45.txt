@@ -1,0 +1,17 @@
+45. grep, rg y teoría de motores regex
+
+45.1 autómatas finitos
+45.2 NFA
+45.3 DFA
+45.4 Thompson NFA
+45.5 backtracking engines
+45.6 búsqueda de literales
+45.7 prefiltros
+45.8 Aho-Corasick
+45.9 SIMD
+45.10 complejidad temporal
+45.11 complejidad espacial
+45.12 Unicode y automatización
+45.13 por qué diferentes motores tienen diferentes capacidades
+45.14 seguridad frente a regex patológicas
+45.15 laboratorio experimental

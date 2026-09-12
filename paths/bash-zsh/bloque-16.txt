@@ -1,0 +1,10 @@
+16. case
+16.1 sintaxis
+16.2 patrones
+16.3 múltiples patrones
+16.4 ;;
+16.5 ;&
+16.6 ;;&
+16.7 case Zsh
+16.8 fall-through
+16.9 laboratorio

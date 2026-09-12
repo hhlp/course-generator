@@ -1,0 +1,17 @@
+53. Funciones avanzadas Zsh
+53.1 autoload
+53.2 fpath
+53.3 autoload -Uz
+53.4 function files
+53.5 anonymous functions
+53.6 localoptions
+53.7 localtraps
+53.8 zparseopts
+53.9 hook functions
+53.10 add-zsh-hook
+53.11 precmd
+53.12 preexec
+53.13 chpwd
+53.14 periodic
+53.15 zshexit
+53.16 laboratorio

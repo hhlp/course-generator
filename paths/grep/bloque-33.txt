@@ -1,0 +1,15 @@
+33. ripgrep + Git
+
+33.1 rg dentro de repositorios
+33.2 .gitignore
+33.3 buscar archivos tracked y untracked
+33.4 git grep
+33.5 git grep frente a rg
+33.6 git ls-files
+33.7 git ls-files | rg
+33.8 historial frente a working tree
+33.9 buscar commits
+33.10 git log -G
+33.11 git log -S
+33.12 responsabilidades de cada herramienta
+33.13 laboratorio forense de repositorio

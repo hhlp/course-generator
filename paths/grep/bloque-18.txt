@@ -1,0 +1,21 @@
+18. Rendimiento de GNU grep
+
+18.1 cómo pensar el coste de una búsqueda
+18.2 cantidad de archivos
+18.3 cantidad de datos
+18.4 regex frente a fixed strings
+18.5 coste de expresiones complejas
+18.6 locale
+18.7 filesystem cache
+18.8 I/O frente a CPU
+18.9 directorios irrelevantes
+18.10 exclusiones tempranas
+18.11 grep -F
+18.12 LC_ALL=C cuando sea semánticamente válido
+18.13 medir con time
+18.14 hyperfine
+18.15 benchmarks correctos
+18.16 warm cache frente a cold cache
+18.17 laboratorio de benchmarking
+
+PARTE II — RIPGREP

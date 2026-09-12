@@ -1,0 +1,17 @@
+97. Proyecto: CLI Bash/Zsh
+97.1 requisitos
+97.2 comandos
+97.3 subcomandos
+97.4 argumentos
+97.5 configuración
+97.6 logging
+97.7 errores
+97.8 señales
+97.9 concurrencia
+97.10 completion Bash
+97.11 completion Zsh
+97.12 tests
+97.13 documentación
+97.14 packaging
+97.15 integración systemd
+97.16 laboratorio

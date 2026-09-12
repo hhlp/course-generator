@@ -1,0 +1,17 @@
+25. Tipos de archivo en ripgrep
+
+25.1 rg --type-list
+25.2 tipos incorporados
+25.3 rg -t
+25.4 rg -T
+25.5 buscar solamente Rust
+25.6 C/C++
+25.7 Python
+25.8 shell
+25.9 configuración
+25.10 múltiples tipos
+25.11 --type-add
+25.12 definir tipos personalizados
+25.13 --type-clear
+25.14 persistencia mediante configuración
+25.15 laboratorio: búsquedas por lenguaje

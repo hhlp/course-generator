@@ -60,6 +60,47 @@ def load_profile(root: Path, name: str) -> Profile:
     )
 
 
+def resolve_profile_file(profile: Profile, configured: str) -> Path:
+    path = Path(configured)
+    if path.is_absolute():
+        return path
+    return (profile.path.parent / path).resolve()
+
+
+def load_profile_context(profile: Profile, *, strict: bool = True) -> dict[str, str]:
+    files = profile.data.get("files")
+    if not isinstance(files, dict):
+        if strict:
+            raise ConfigError(
+                f"El perfil {profile.path} debe definir files.pedagogy, files.domain "
+                "y files.bibliography."
+            )
+        files = {}
+
+    result: dict[str, str] = {}
+    for key in ("pedagogy", "domain", "bibliography"):
+        configured = files.get(key)
+        if not isinstance(configured, str) or not configured.strip():
+            if strict:
+                raise ConfigError(f"Falta profile.files.{key} en {profile.path}.")
+            result[key] = ""
+            continue
+
+        path = resolve_profile_file(profile, configured)
+        if not path.is_file():
+            if strict:
+                raise ConfigError(f"No existe el archivo de contexto {key}: {path}")
+            result[key] = ""
+            continue
+
+        text = path.read_text(encoding="utf-8").strip()
+        if not text and strict:
+            raise ConfigError(f"El archivo de contexto {key} está vacío: {path}")
+        result[key] = text
+
+    return result
+
+
 def load_prompt(root: Path, name: str) -> str:
     path = root / "prompts" / f"{name}.md"
     if not path.is_file():

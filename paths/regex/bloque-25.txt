@@ -1,0 +1,20 @@
+25. Backtracking en profundidad
+25.1 qué es backtracking
+25.2 puntos de decisión
+25.3 alternativas
+25.4 cuantificadores
+25.5 pila conceptual de estados
+25.6 greedy y retroceso
+25.7 lazy y retroceso
+25.8 grupos y retroceso
+25.9 capturas y retroceso
+25.10 lookaround y retroceso
+25.11 backreferences y retroceso
+25.12 caminos fallidos
+25.13 explosión combinatoria
+25.14 visualizar el árbol de búsqueda
+25.15 reducir puntos de decisión
+25.16 atomicidad
+25.17 possessive quantifiers
+25.18 refactorización
+25.19 laboratorio

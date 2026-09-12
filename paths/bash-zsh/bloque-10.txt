@@ -1,0 +1,21 @@
+10. Entrada y salida
+10.1 file descriptors
+10.2 descriptor 0
+10.3 descriptor 1
+10.4 descriptor 2
+10.5 redirección >
+10.6 >>
+10.7 <
+10.8 2>
+10.9 2>>
+10.10 >&
+10.11 <&
+10.12 2>&1
+10.13 orden de redirecciones
+10.14 /dev/null
+10.15 descriptors personalizados
+10.16 exec
+10.17 {fd}
+10.18 cierre de descriptors
+10.19 duplicación
+10.20 laboratorio: construir topologías de I/O

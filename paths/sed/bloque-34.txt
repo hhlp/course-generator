@@ -1,0 +1,19 @@
+34. Internals y modelo formal
+
+34.1 ciclo completo de ejecución
+34.2 pattern space
+34.3 hold space
+34.4 automatic printing
+34.5 addresses
+34.6 command execution
+34.7 substitutions
+34.8 substitution-success flag
+34.9 branches
+34.10 multiline commands
+34.11 lectura adicional de entrada
+34.12 escritura de salida
+34.13 comienzo de nuevo ciclo
+34.14 EOF
+34.15 interacción entre n, N, d, D, q, b y t
+34.16 modelar sed como máquina de transformación de streams
+34.17 laboratorio: ejecutar manualmente un script complejo paso a paso

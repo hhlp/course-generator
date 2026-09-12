@@ -1,0 +1,38 @@
+0. Fundamentos del shell
+0.1 qué es un shell
+0.2 shell como intérprete de comandos
+0.3 shell interactivo
+0.4 shell no interactivo
+0.5 shell de login
+0.6 shell no-login
+0.7 terminal
+0.8 TTY
+0.9 pseudo-terminal
+0.10 consola
+0.11 stdin
+0.12 stdout
+0.13 stderr
+0.14 file descriptors
+0.15 procesos
+0.16 PID
+0.17 PPID
+0.18 entorno de proceso
+0.19 variables de entorno
+0.20 exit status
+0.21 señales
+0.22 foreground
+0.23 background
+0.24 job control
+0.25 PATH
+0.26 ejecutables
+0.27 builtins
+0.28 funciones
+0.29 aliases
+0.30 scripts
+0.31 shebang
+0.32 POSIX shell
+0.33 /bin/sh
+0.34 Bash
+0.35 Zsh
+0.36 diferencias shell ↔ terminal ↔ terminal emulator
+0.37 laboratorio: construir el mapa shell-terminal-proceso

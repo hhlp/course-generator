@@ -1,0 +1,17 @@
+25. Rendimiento
+
+25.1 modelo streaming
+25.2 consumo de memoria
+25.3 archivos grandes
+25.4 pattern spaces gigantes
+25.5 coste de regex
+25.6 múltiples expresiones
+25.7 múltiples procesos frente a un solo sed
+25.8 evitar cat innecesario
+25.9 -u
+25.10 buffering
+25.11 pipelines largos
+25.12 medir con time
+25.13 comparar sed, awk, Perl y herramientas especializadas
+25.14 optimización frente a legibilidad
+25.15 laboratorio: procesar datasets grandes

@@ -1,0 +1,19 @@
+18. Procesamiento de múltiples archivos
+
+18.1 múltiples archivos de entrada
+18.2 ARGV
+18.3 ARGC
+18.4 FILENAME
+18.5 NR
+18.6 FNR
+18.7 detectar primer registro de cada archivo
+18.8 ARGIND
+18.9 BEGINFILE
+18.10 ENDFILE
+18.11 modificar ARGV
+18.12 eliminar argumentos
+18.13 añadir archivos dinámicamente
+18.14 nextfile
+18.15 errores de apertura
+18.16 ERRNO
+18.17 laboratorio: procesador multiarchivo

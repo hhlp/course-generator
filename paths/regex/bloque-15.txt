@@ -1,0 +1,34 @@
+15. Lookaround avanzado
+15.1 combinar lookahead y lookbehind
+15.2 múltiples condiciones zero-width
+15.3 intersección lógica
+15.4 negación lógica
+15.5 expresar AND
+15.6 expresar NOT
+15.7 aproximaciones a condiciones OR
+15.8 contexto izquierdo y derecho simultáneo
+15.9 extraer contenido sin capturar delimitadores
+15.10 comprobar prefijos sin consumir
+15.11 comprobar sufijos sin consumir
+15.12 exclusiones contextuales
+15.13 límites personalizados
+15.14 lookaround dentro de grupos
+15.15 grupos dentro de lookaround
+15.16 capturas dentro de lookaround
+15.17 lookaround dentro de alternativas
+15.18 alternativas dentro de lookaround
+15.19 lookaround anidado
+15.20 cadenas de assertions
+15.21 assertions antes del texto consumido
+15.22 assertions después del texto consumido
+15.23 patrones formados únicamente por assertions
+15.24 coincidencias zero-width
+15.25 lookaround y backtracking
+15.26 backtracking interno del lookaround
+15.27 interacción con grupos atómicos
+15.28 interacción con cuantificadores posesivos
+15.29 reescribir patrones sin lookaround
+15.30 comparar solución con y sin lookaround
+15.31 portabilidad
+15.32 rendimiento
+15.33 laboratorio avanzado

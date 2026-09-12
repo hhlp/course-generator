@@ -1,0 +1,16 @@
+28. Bitwise y representación numérica
+
+28.1 números en gawk
+28.2 and()
+28.3 or()
+28.4 xor()
+28.5 compl()
+28.6 lshift()
+28.7 rshift()
+28.8 strtonum()
+28.9 hexadecimal
+28.10 octal
+28.11 precisión
+28.12 MPFR/GMP en gawk
+28.13 --bignum
+28.14 laboratorio: manipulación de máscaras y valores binarios

@@ -1,0 +1,16 @@
+43. Historial Bash
+43.1 history
+43.2 HISTFILE
+43.3 HISTSIZE
+43.4 HISTFILESIZE
+43.5 HISTCONTROL
+43.6 HISTIGNORE
+43.7 HISTTIMEFORMAT
+43.8 history expansion
+43.9 !!
+43.10 !$
+43.11 !n
+43.12 fc
+43.13 sincronización entre sesiones
+43.14 shopt histappend
+43.15 laboratorio

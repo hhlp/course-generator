@@ -1,0 +1,24 @@
+0. Fundamentos de expresiones regulares
+0.1 qué es una expresión regular
+0.2 para qué sirven las expresiones regulares
+0.3 texto de entrada
+0.4 patrón
+0.5 coincidencia o match
+0.6 búsqueda frente a coincidencia
+0.7 coincidencia completa frente a parcial
+0.8 motor de expresiones regulares
+0.9 dialecto de expresiones regulares
+0.10 sintaxis frente a semántica
+0.11 caracteres literales
+0.12 metacaracteres
+0.13 caracteres especiales
+0.14 escape
+0.15 posición dentro del texto
+0.16 consumir caracteres
+0.17 comprobar sin consumir
+0.18 coincidencias de longitud cero
+0.19 primera expresión regular
+0.20 leer una regex de izquierda a derecha
+0.21 dividir patrones complejos en componentes
+0.22 laboratorio: identificar literales y metacaracteres
+0.23 laboratorio: construir los primeros patrones

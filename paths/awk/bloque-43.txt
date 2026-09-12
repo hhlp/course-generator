@@ -1,0 +1,25 @@
+43. Networking, coprocesses y comunicación avanzada en gawk
+43.1 AWK y descriptores de entrada/salida
+43.2 pipes unidireccionales
+43.3 coprocesses
+43.4 operador |&
+43.5 protocolo de conversación con un coproceso
+43.6 close() con coprocesses
+43.7 fflush()
+43.8 buffering
+43.9 bloqueos y deadlocks
+43.10 timeouts
+43.11 PROCINFO y control de E/S
+43.12 nombres especiales /inet de gawk
+43.13 TCP
+43.14 UDP
+43.15 cliente de red conceptual
+43.16 servidor de red conceptual
+43.17 límites y portabilidad de /inet
+43.18 riesgos de seguridad
+43.19 datos de red no confiables
+43.20 separación entre parsing y transporte
+43.21 cuándo utilizar sockets desde gawk
+43.22 cuándo utilizar nc/socat/curl y dejar AWK como procesador
+43.23 laboratorio: protocolo textual mediante coproceso
+43.24 laboratorio avanzado: procesar un flujo de red controlado

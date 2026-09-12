@@ -1,0 +1,35 @@
+44. Pruebas de programas AWK
+44.1 por qué probar programas AWK
+44.2 pruebas de one-liners
+44.3 pruebas de scripts .awk
+44.4 fixtures
+44.5 entrada esperada
+44.6 salida esperada
+44.7 stderr esperado
+44.8 exit status esperado
+44.9 golden files
+44.10 diff
+44.11 cmp
+44.12 pruebas positivas
+44.13 pruebas negativas
+44.14 casos límite
+44.15 registros vacíos
+44.16 campos ausentes
+44.17 entradas enormes
+44.18 Unicode y locales
+44.19 diferentes RS/FS
+44.20 múltiples archivos
+44.21 errores de apertura
+44.22 pruebas POSIX
+44.23 pruebas específicas de gawk
+44.24 ejecutar con --lint
+44.25 ejecutar con --posix
+44.26 ejecutar con --traditional
+44.27 matrices de implementaciones awk/gawk/mawk/BWK awk
+44.28 regresiones
+44.29 pruebas de rendimiento
+44.30 generación de datasets
+44.31 integración con shell
+44.32 automatización desde Makefile
+44.33 integración en CI
+44.34 laboratorio: crear una suite de regresión para una aplicación AWK

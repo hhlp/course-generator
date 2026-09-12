@@ -1,0 +1,18 @@
+14. grep + find
+
+14.1 responsabilidades de find y grep
+14.2 seleccionar archivos antes de buscar contenido
+14.3 find ... -exec grep
+14.4 {}
+14.5 \;
+14.6 +
+14.7 diferencia de rendimiento
+14.8 find -exec grep {} +
+14.9 find -print0
+14.10 xargs -0 grep
+14.11 permisos
+14.12 tipos de archivo
+14.13 fechas
+14.14 tamaños
+14.15 búsqueda compleja combinando metadata y contenido
+14.16 laboratorio

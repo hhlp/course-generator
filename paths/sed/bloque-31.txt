@@ -1,0 +1,29 @@
+31. Casos límite y comportamiento difícil
+
+31.1 entrada vacía
+31.2 archivo sin newline final
+31.3 entrada de una sola línea
+31.4 líneas vacías
+31.5 múltiples líneas vacías consecutivas
+31.6 líneas extremadamente largas
+31.7 pattern space multilínea
+31.8 EOF durante N
+31.9 EOF durante operaciones de lectura
+31.10 múltiples archivos
+31.11 archivos vacíos entre archivos no vacíos
+31.12 $ con múltiples archivos
+31.13 -s y EOF
+31.14 rangos que atraviesan archivos
+31.15 regex vacías
+31.16 replacement vacío
+31.17 grupos de captura no participantes
+31.18 caracteres multibyte
+31.19 secuencias de bytes inválidas respecto al locale
+31.20 CRLF
+31.21 NUL en modo normal
+31.22 NUL con -z
+31.23 enlaces simbólicos
+31.24 archivos especiales
+31.25 errores de lectura
+31.26 errores de escritura
+31.27 laboratorio: construir una suite de edge cases

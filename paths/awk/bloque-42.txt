@@ -1,0 +1,29 @@
+42. CSV, datos tabulares y formatos difíciles
+42.1 por qué CSV no es simplemente FS=","
+42.2 campos entrecomillados
+42.3 delimitadores dentro de campos
+42.4 comillas escapadas
+42.5 registros CSV multilínea
+42.6 CRLF
+42.7 cabeceras
+42.8 campos vacíos
+42.9 diferencias CSV ↔ TSV
+42.10 límites de los parsers AWK tradicionales
+42.11 FPAT aplicado a datos delimitados
+42.12 patsplit() aplicado a campos complejos
+42.13 extensiones y modos CSV disponibles en GNU awk según versión
+42.14 detección de capacidades de la versión instalada
+42.15 normalización de datos tabulares
+42.16 validación de número de columnas
+42.17 selección de columnas por nombre
+42.18 transformación de columnas
+42.19 agregación por columnas
+42.20 joins de tablas
+42.21 salida CSV correcta
+42.22 salida TSV
+42.23 salida Markdown
+42.24 cuándo utilizar una herramienta CSV dedicada
+42.25 cuándo utilizar jq para JSON
+42.26 cuándo utilizar yq para YAML
+42.27 cuándo abandonar AWK para un parser formal
+42.28 laboratorio: procesador robusto de datos tabulares

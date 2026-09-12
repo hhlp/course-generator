@@ -1,0 +1,20 @@
+20. Búsquedas fundamentales con rg
+
+20.1 rg PATTERN
+20.2 archivo específico
+20.3 directorio específico
+20.4 varios paths
+20.5 rg -i
+20.6 smart case
+20.7 rg -S
+20.8 rg -v
+20.9 rg -w
+20.10 rg -x
+20.11 rg -F
+20.12 rg -e
+20.13 rg -f
+20.14 rg -o
+20.15 rg -c
+20.16 rg -l
+20.17 rg --files-without-match
+20.18 laboratorio

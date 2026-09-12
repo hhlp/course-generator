@@ -1,0 +1,16 @@
+34. Seguridad
+
+34.1 AWK procesando entrada no confiable
+34.2 command injection
+34.3 system() peligroso
+34.4 pipes construidos dinámicamente
+34.5 quoting
+34.6 nombres de archivo maliciosos
+34.7 regex costosas
+34.8 consumo de memoria
+34.9 límites de recursos
+34.10 datos inesperados
+34.11 validación de campos
+34.12 manejo de errores
+34.13 principio de mínimo privilegio
+34.14 laboratorio: auditar un script AWK inseguro

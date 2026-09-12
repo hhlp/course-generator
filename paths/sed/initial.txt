@@ -611,100 +611,320 @@
 29.19 CI para transformaciones de texto
 29.20 laboratorio: proyecto sed mantenible
 
-30. Internals y modelo formal
 
-30.1 ciclo completo de ejecución
-30.2 pattern space
-30.3 hold space
-30.4 automatic printing
-30.5 addresses
-30.6 command execution
-30.7 substitutions
-30.8 substitution-success flag
-30.9 branches
-30.10 multiline commands
-30.11 lectura adicional de entrada
-30.12 escritura de salida
-30.13 comienzo de nuevo ciclo
-30.14 EOF
-30.15 interacción entre n, N, d, D, q, b y t
-30.16 modelar sed como máquina de transformación de streams
-30.17 laboratorio: ejecutar manualmente un script complejo paso a paso
+30. Semántica precisa de los comandos sed
 
-31. Laboratorios expertos
+30.1 clasificación de comandos
+30.2 comandos que modifican pattern space
+30.3 comandos que modifican hold space
+30.4 comandos que producen salida
+30.5 comandos que consumen entrada
+30.6 comandos que comienzan un nuevo ciclo
+30.7 comandos que terminan sed
+30.8 comandos de branching
+30.9 comandos dependientes del substitution-success flag
+30.10 interacción dirección/comando
+30.11 interacción dirección/rango
+30.12 interacción comando/automatic printing
+30.13 semántica precisa de p
+30.14 semántica precisa de P
+30.15 semántica precisa de d
+30.16 semántica precisa de D
+30.17 semántica precisa de n
+30.18 semántica precisa de N
+30.19 semántica precisa de q
+30.20 semántica precisa de Q
+30.21 semántica precisa de h, H, g, G y x
+30.22 semántica precisa de b, t y T
+30.23 semántica precisa de a, i y c
+30.24 semántica precisa de r y R
+30.25 semántica precisa de w y W
+30.26 semántica precisa de l
+30.27 semántica precisa de =
+30.28 semántica precisa de F
+30.29 semántica precisa de z
+30.30 tabla mental completa de efectos sobre estado, entrada y salida
+30.31 laboratorio: predecir la salida de programas sed sin ejecutarlos
 
-31.1 limpiar logs
-31.2 anonimizar datos de logs
-31.3 transformar configuraciones
-31.4 actualizar claves key=value
-31.5 modificar archivos .repo simulados
-31.6 analizar SPEC files
-31.7 extraer secciones de SPEC
-31.8 transformar salida de rpm
-31.9 transformar salida de systemctl
-31.10 transformar salida de journalctl
-31.11 procesamiento multilínea
-31.12 detección de bloques
-31.13 máquina de estados
-31.14 transformación masiva segura
-31.15 versión GNU sed
-31.16 versión POSIX sed
-31.17 pruebas de equivalencia
 
-32. Proyecto final — sed-toolkit
+31. Casos límite y comportamiento difícil
 
-32.1 definir arquitectura de sed-toolkit
-32.2 colección modular de scripts .sed
-32.3 normalize.sed
-32.4 extract.sed
-32.5 replace.sed
-32.6 blocks.sed
-32.7 multiline.sed
-32.8 integración mediante funciones Zsh
-32.9 selección de operaciones
-32.10 lectura desde stdin
-32.11 lectura desde archivos
-32.12 procesamiento de múltiples archivos
-32.13 modo stdout por defecto
-32.14 modo dry-run
-32.15 mostrar diff antes de modificar
-32.16 backups
-32.17 edición segura
-32.18 soporte para pipelines
-32.19 soporte NUL cuando corresponda
-32.20 validación de argumentos
-32.21 protección frente a expresiones dinámicas inseguras
-32.22 logging
-32.23 manejo de errores
-32.24 tests automáticos
-32.25 fixtures
-32.26 pruebas de idempotencia
-32.27 pruebas con archivos grandes
-32.28 pruebas con caracteres especiales
-32.29 comprobar compatibilidad GNU sed
-32.30 identificar dependencias GNU
-32.31 variante POSIX de operaciones seleccionadas
-32.32 documentación
-32.33 manual de ejemplos
-32.34 empaquetado como proyecto
-32.35 integración con Git
-32.36 proyecto final: procesar un árbol de configuraciones Fedora simulado de forma segura
+31.1 entrada vacía
+31.2 archivo sin newline final
+31.3 entrada de una sola línea
+31.4 líneas vacías
+31.5 múltiples líneas vacías consecutivas
+31.6 líneas extremadamente largas
+31.7 pattern space multilínea
+31.8 EOF durante N
+31.9 EOF durante operaciones de lectura
+31.10 múltiples archivos
+31.11 archivos vacíos entre archivos no vacíos
+31.12 $ con múltiples archivos
+31.13 -s y EOF
+31.14 rangos que atraviesan archivos
+31.15 regex vacías
+31.16 replacement vacío
+31.17 grupos de captura no participantes
+31.18 caracteres multibyte
+31.19 secuencias de bytes inválidas respecto al locale
+31.20 CRLF
+31.21 NUL en modo normal
+31.22 NUL con -z
+31.23 enlaces simbólicos
+31.24 archivos especiales
+31.25 errores de lectura
+31.26 errores de escritura
+31.27 laboratorio: construir una suite de edge cases
 
-33. Dominio experto
 
-33.1 leer scripts sed ajenos
-33.2 reconstruir su modelo de ejecución
-33.3 detectar errores de pattern space
-33.4 detectar errores de hold space
-33.5 detectar loops incorrectos
-33.6 detectar problemas de portabilidad
-33.7 detectar problemas de quoting
-33.8 detectar problemas de seguridad
-33.9 simplificar programas sed complejos
-33.10 decidir entre sed y awk
-33.11 decidir entre sed y Perl
-33.12 decidir entre sed y Python
-33.13 escribir transformaciones robustas desde cero
-33.14 optimizar sin sacrificar mantenibilidad
-33.15 explicar internamente cualquier script sed
-33.16 proyecto de dominio: resolver una transformación desconocida partiendo únicamente de requisitos y datos de prueba
+32. Algoritmos clásicos con sed
+
+32.1 sed como máquina de transformación
+32.2 ciclos de sustitución
+32.3 normalización hasta punto fijo
+32.4 ventanas deslizantes
+32.5 look-behind conceptual mediante hold space
+32.6 recordar la línea anterior
+32.7 look-ahead conceptual mediante N
+32.8 acumuladores
+32.9 invertir líneas
+32.10 invertir caracteres
+32.11 centrar texto
+32.12 numeración selectiva
+32.13 unir líneas
+32.14 separar registros
+32.15 extraer bloques
+32.16 eliminar bloques
+32.17 sustituir solamente dentro de bloques
+32.18 procesamiento por párrafos
+32.19 máquinas de estados
+32.20 implementar flags mediante hold space
+32.21 algoritmos basados en N;P;D
+32.22 algoritmos basados en H y g
+32.23 analizar complejidad
+32.24 reconocer cuándo un algoritmo es demasiado complejo para sed
+32.25 laboratorio: reconstruir algoritmos sed clásicos
+
+
+33. Instrumentación y depuración profunda
+
+33.1 modelo de debugging de sed
+33.2 entrada mínima reproducible
+33.3 salida esperada
+33.4 reducir el programa
+33.5 -n como herramienta de diagnóstico
+33.6 p como probe
+33.7 l como visualizador
+33.8 visualizar whitespace
+33.9 visualizar newlines
+33.10 visualizar pattern space
+33.11 visualizar indirectamente hold space
+33.12 introducir probes temporales
+33.13 GNU sed --debug
+33.14 representación del programa compilado
+33.15 direcciones activas
+33.16 comandos ejecutados
+33.17 pattern space antes y después de comandos
+33.18 substitution-success flag
+33.19 branching
+33.20 rangos activos
+33.21 debugging de procesamiento multilínea
+33.22 debugging de loops
+33.23 debugging de quoting
+33.24 debugging de locales
+33.25 laboratorio: depurar un programa sed complejo
+
+
+34. Internals y modelo formal
+
+34.1 ciclo completo de ejecución
+34.2 pattern space
+34.3 hold space
+34.4 automatic printing
+34.5 addresses
+34.6 command execution
+34.7 substitutions
+34.8 substitution-success flag
+34.9 branches
+34.10 multiline commands
+34.11 lectura adicional de entrada
+34.12 escritura de salida
+34.13 comienzo de nuevo ciclo
+34.14 EOF
+34.15 interacción entre n, N, d, D, q, b y t
+34.16 modelar sed como máquina de transformación de streams
+34.17 laboratorio: ejecutar manualmente un script complejo paso a paso
+
+
+35. GNU sed internals
+
+35.1 obtener el código fuente de GNU sed
+35.2 estructura del proyecto
+35.3 preparar un entorno de construcción en Fedora
+35.4 Autoconf y configure
+35.5 Automake y Makefiles
+35.6 compilar GNU sed
+35.7 ejecutar la testsuite
+35.8 localizar la implementación principal de sed
+35.9 localizar el parser del programa sed
+35.10 localizar el ciclo de ejecución
+35.11 representación interna de comandos
+35.12 representación interna de direcciones
+35.13 representación interna de rangos
+35.14 pattern space internamente
+35.15 hold space internamente
+35.16 buffers internos
+35.17 lectura de entrada
+35.18 escritura de salida
+35.19 implementación de sustitución
+35.20 interfaz con el motor regex
+35.21 implementación de branching
+35.22 implementación de comandos multilínea
+35.23 implementación de -i
+35.24 implementación de -z
+35.25 implementación de --debug
+35.26 manejo de errores
+35.27 locales
+35.28 caracteres multibyte
+35.29 extensiones GNU
+35.30 tests de regresión
+35.31 seguir una transformación desde el parser hasta la salida
+35.32 laboratorio: modificar, compilar y probar una copia de GNU sed
+
+
+36. Laboratorios expertos
+
+36.1 limpiar logs
+36.2 anonimizar datos de logs
+36.3 transformar configuraciones
+36.4 actualizar claves key=value
+36.5 modificar archivos .repo simulados
+36.6 analizar SPEC files
+36.7 extraer secciones de SPEC
+36.8 transformar salida de rpm
+36.9 transformar salida de systemctl
+36.10 transformar salida de journalctl
+36.11 procesamiento multilínea
+36.12 detección de bloques
+36.13 máquina de estados
+36.14 transformación masiva segura
+36.15 versión GNU sed
+36.16 versión POSIX sed
+36.17 pruebas de equivalencia
+
+36.18 transformación idempotente
+36.19 transformación reversible
+36.20 transformación con rollback
+36.21 procesar millones de líneas
+36.22 comparar comportamiento bajo distintos locales
+36.23 comparar implementación GNU y modo POSIX
+36.24 depurar un loop infinito
+36.25 depurar pérdida de líneas por interacción N/D
+36.26 reconstruir un script sed desconocido
+36.27 simplificar un one-liner deliberadamente críptico
+36.28 migrar una solución excesivamente compleja de sed a awk
+
+37. Proyecto final — sed-toolkit
+
+37.1 definir arquitectura de sed-toolkit
+37.2 colección modular de scripts .sed
+37.3 normalize.sed
+37.4 extract.sed
+37.5 replace.sed
+37.6 blocks.sed
+37.7 multiline.sed
+37.8 integración mediante funciones Zsh
+37.9 selección de operaciones
+37.10 lectura desde stdin
+37.11 lectura desde archivos
+37.12 procesamiento de múltiples archivos
+37.13 modo stdout por defecto
+37.14 modo dry-run
+37.15 mostrar diff antes de modificar
+37.16 backups
+37.17 edición segura
+37.18 soporte para pipelines
+37.19 soporte NUL cuando corresponda
+37.20 validación de argumentos
+37.21 protección frente a expresiones dinámicas inseguras
+37.22 logging
+37.23 manejo de errores
+37.24 tests automáticos
+37.25 fixtures
+37.26 pruebas de idempotencia
+37.27 pruebas con archivos grandes
+37.28 pruebas con caracteres especiales
+37.29 comprobar compatibilidad GNU sed
+37.30 identificar dependencias GNU
+37.31 variante POSIX de operaciones seleccionadas
+37.32 documentación
+37.33 manual de ejemplos
+37.34 empaquetado como proyecto
+37.35 integración con Git
+37.36 proyecto final: procesar un árbol de configuraciones Fedora simulado de forma segura
+
+37.37 arquitectura por módulos
+37.38 motor de selección de transformaciones
+37.39 biblioteca POSIX
+37.40 biblioteca GNU
+37.41 detección de capacidades disponibles
+37.42 modo --check
+37.43 modo --dry-run
+37.44 modo --diff
+37.45 modo --backup
+37.46 modo --apply
+37.47 rollback
+37.48 validación post-transformación
+37.49 fixtures de configuraciones Fedora simuladas
+37.50 benchmark
+37.51 suite de compatibilidad
+37.52 suite de seguridad
+37.53 documentación técnica
+37.54 manual de usuario
+37.55 integración opcional con empaquetado RPM
+37.56 proyecto final: sed-toolkit completo
+
+38. Dominio experto
+
+38.1 leer cualquier script sed
+38.2 separar sintaxis del shell de sintaxis sed
+38.3 identificar dialecto
+38.4 identificar dependencias GNU
+38.5 reconstruir direcciones
+38.6 reconstruir rangos
+38.7 reconstruir pattern space
+38.8 reconstruir hold space
+38.9 reconstruir flujo de control
+38.10 reconstruir substitution-success flags
+38.11 reconstruir consumo de entrada
+38.12 detectar pérdida accidental de registros
+38.13 detectar errores de pattern space
+38.14 detectar errores de hold space
+38.15 detectar loops incorrectos
+38.16 demostrar terminación de loops simples
+38.17 detectar problemas de portabilidad
+38.18 detectar problemas de quoting
+38.19 detectar regex injection
+38.20 detectar replacement injection
+38.21 detectar problemas de edición in-place
+38.22 detectar problemas con symlinks
+38.23 detectar problemas con locales
+38.24 detectar problemas multibyte
+38.25 detectar problemas NUL
+38.26 simplificar programas sed complejos
+38.27 transformar one-liners en scripts mantenibles
+38.28 decidir entre sed y grep
+38.29 decidir entre sed y awk
+38.30 decidir entre sed y Perl
+38.31 decidir entre sed y Python
+38.32 decidir cuándo utilizar una herramienta para datos estructurados
+38.33 escribir transformaciones robustas desde cero
+38.34 diseñar transformaciones idempotentes
+38.35 diseñar transformaciones portables
+38.36 optimizar sin sacrificar mantenibilidad
+38.37 explicar internamente cualquier script sed
+38.38 predecir su salida sin ejecutarlo
+38.39 depurarlo sistemáticamente
+38.40 auditarlo para producción
+38.41 proyecto de dominio: recibir únicamente requisitos, entrada y salida esperada y diseñar, implementar, probar, depurar y justificar una solución sed completa

@@ -1,0 +1,22 @@
+8. Arrays
+8.1 arrays indexados Bash
+8.2 declaración
+8.3 asignación
+8.4 lectura
+8.5 longitud
+8.6 índices
+8.7 iteración
+8.8 append
+8.9 eliminación
+8.10 slicing
+8.11 "${array[@]}"
+8.12 "${array[*]}"
+8.13 associative arrays Bash
+8.14 declare -A
+8.15 claves
+8.16 valores
+8.17 arrays Zsh
+8.18 indexación Zsh
+8.19 arrays asociativos Zsh
+8.20 diferencias Bash/Zsh
+8.21 laboratorio: estructuras de datos shell

@@ -1,0 +1,17 @@
+63. Rendimiento interactivo
+63.1 medir antes de optimizar
+63.2 time
+63.3 startup time
+63.4 zprof
+63.5 profiling
+63.6 source cost
+63.7 forks
+63.8 command substitutions
+63.9 completion
+63.10 compinit
+63.11 cache
+63.12 lazy loading
+63.13 async
+63.14 prompt
+63.15 plugins
+63.16 laboratorio: optimizar .zshrc

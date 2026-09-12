@@ -1,0 +1,34 @@
+3. Expresiones regulares en sed
+
+3.1 regex y sed
+3.2 BRE — Basic Regular Expressions
+3.3 ERE — Extended Regular Expressions
+3.4 opción -E
+3.5 ^
+3.6 $
+3.7 .
+3.8 *
+3.9 expresiones entre []
+3.10 rangos
+3.11 clases POSIX
+3.12 [[:digit:]]
+3.13 [[:alpha:]]
+3.14 [[:alnum:]]
+3.15 [[:space:]]
+3.16 [[:blank:]]
+3.17 [[:lower:]]
+3.18 [[:upper:]]
+3.19 [[:punct:]]
+3.20 negación [^...]
+3.21 agrupación BRE
+3.22 agrupación ERE
+3.23 alternancia con ERE
+3.24 cuantificador +
+3.25 cuantificador ?
+3.26 {m,n}
+3.27 backreferences
+3.28 regex greedy
+3.29 consecuencias del comportamiento greedy
+3.30 patrones ambiguos
+3.31 locale y regex
+3.32 laboratorio: regex aplicadas a datos reales

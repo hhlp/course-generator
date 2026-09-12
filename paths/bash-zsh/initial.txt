@@ -1,0 +1,1866 @@
+0. Fundamentos del shell
+0.1 qué es un shell
+0.2 shell como intérprete de comandos
+0.3 shell interactivo
+0.4 shell no interactivo
+0.5 shell de login
+0.6 shell no-login
+0.7 terminal
+0.8 TTY
+0.9 pseudo-terminal
+0.10 consola
+0.11 stdin
+0.12 stdout
+0.13 stderr
+0.14 file descriptors
+0.15 procesos
+0.16 PID
+0.17 PPID
+0.18 entorno de proceso
+0.19 variables de entorno
+0.20 exit status
+0.21 señales
+0.22 foreground
+0.23 background
+0.24 job control
+0.25 PATH
+0.26 ejecutables
+0.27 builtins
+0.28 funciones
+0.29 aliases
+0.30 scripts
+0.31 shebang
+0.32 POSIX shell
+0.33 /bin/sh
+0.34 Bash
+0.35 Zsh
+0.36 diferencias shell ↔ terminal ↔ terminal emulator
+0.37 laboratorio: construir el mapa shell-terminal-proceso
+
+
+1. Entorno Bash y Zsh
+1.1 descubrir shells instalados
+1.2 /etc/shells
+1.3 $SHELL
+1.4 ps
+1.5 pstree
+1.6 getent passwd
+1.7 chsh
+1.8 bash --version
+1.9 zsh --version
+1.10 command -v
+1.11 type
+1.12 whence en Zsh
+1.13 which y sus limitaciones
+1.14 builtin
+1.15 enable
+1.16 help
+1.17 man
+1.18 info
+1.19 laboratorio: inspeccionar el entorno shell
+
+
+2. Sintaxis fundamental
+2.1 palabras
+2.2 tokens
+2.3 operadores
+2.4 comandos simples
+2.5 listas
+2.6 listas secuenciales
+2.7 ;
+2.8 newline
+2.9 comandos compuestos
+2.10 reserved words
+2.11 comentarios
+2.12 nombres
+2.13 asignaciones
+2.14 command name
+2.15 argumentos
+2.16 parsing conceptual
+2.17 parse → expand → redirect → execute
+2.18 laboratorio: analizar comandos sintácticamente
+
+
+3. Quoting
+3.1 por qué existe quoting
+3.2 espacios
+3.3 caracteres especiales
+3.4 escape con \
+3.5 single quotes
+3.6 double quotes
+3.7 ANSI-C quoting $'...'
+3.8 locale translation $"..."
+3.9 quoting dentro de quoting
+3.10 quoting de variables
+3.11 argumentos vacíos
+3.12 "$var"
+3.13 "$@"
+3.14 "$*"
+3.15 printf %q
+3.16 quoting seguro
+3.17 diferencias Bash/Zsh
+3.18 laboratorio: romper y reparar comandos mediante quoting
+
+
+4. Variables
+4.1 variables shell
+4.2 variables de entorno
+4.3 asignación
+4.4 expansión
+4.5 unset
+4.6 export
+4.7 readonly
+4.8 declare
+4.9 typeset
+4.10 local
+4.11 scope
+4.12 scope dinámico
+4.13 variables especiales
+4.14 BASH_VERSION
+4.15 ZSH_VERSION
+4.16 HOME
+4.17 USER
+4.18 LOGNAME
+4.19 HOSTNAME
+4.20 PWD
+4.21 OLDPWD
+4.22 SHLVL
+4.23 RANDOM
+4.24 SECONDS
+4.25 laboratorio: inspeccionar variables y entorno
+
+
+5. Parámetros y expansión de parámetros
+5.1 parámetros
+5.2 parámetros posicionales
+5.3 $0
+5.4 $1...$N
+5.5 $#
+5.6 $@
+5.7 $*
+5.8 $?
+5.9 $$
+5.10 $!
+5.11 $_
+5.12 ${parameter}
+5.13 valores por defecto
+5.14 ${var:-word}
+5.15 ${var:=word}
+5.16 ${var:?word}
+5.17 ${var:+word}
+5.18 longitud
+5.19 eliminación de prefijos
+5.20 eliminación de sufijos
+5.21 sustitución
+5.22 substring
+5.23 transformación de mayúsculas/minúsculas
+5.24 indirect expansion Bash
+5.25 parameter expansion flags Zsh
+5.26 ${(...)...}
+5.27 laboratorio: procesamiento sin procesos externos
+
+
+6. Expansiones del shell
+6.1 orden conceptual de expansiones
+6.2 brace expansion
+6.3 tilde expansion
+6.4 parameter expansion
+6.5 command substitution
+6.6 arithmetic expansion
+6.7 word splitting
+6.8 filename expansion
+6.9 quote removal
+6.10 $(...)
+6.11 backticks
+6.12 $((...))
+6.13 IFS
+6.14 globbing
+6.15 diferencias de expansión Bash/Zsh
+6.16 laboratorio: predecir exactamente argv
+
+
+7. Globbing
+7.1 patrones
+7.2 *
+7.3 ?
+7.4 [...]
+7.5 rangos
+7.6 clases POSIX
+7.7 negación
+7.8 dotfiles
+7.9 nullglob
+7.10 failglob
+7.11 nocaseglob
+7.12 globstar
+7.13 extglob
+7.14 ?()
+7.15 *()
+7.16 +()
+7.17 @()
+7.18 !()
+7.19 glob qualifiers Zsh
+7.20 recursive globbing Zsh
+7.21 extendedglob
+7.22 NOMATCH
+7.23 diferencias glob ↔ regex
+7.24 laboratorio: selección avanzada de archivos
+
+
+8. Arrays
+8.1 arrays indexados Bash
+8.2 declaración
+8.3 asignación
+8.4 lectura
+8.5 longitud
+8.6 índices
+8.7 iteración
+8.8 append
+8.9 eliminación
+8.10 slicing
+8.11 "${array[@]}"
+8.12 "${array[*]}"
+8.13 associative arrays Bash
+8.14 declare -A
+8.15 claves
+8.16 valores
+8.17 arrays Zsh
+8.18 indexación Zsh
+8.19 arrays asociativos Zsh
+8.20 diferencias Bash/Zsh
+8.21 laboratorio: estructuras de datos shell
+
+
+9. Aritmética
+9.1 enteros
+9.2 $((...))
+9.3 ((...))
+9.4 operadores
+9.5 asignación
+9.6 incremento/decremento
+9.7 comparación
+9.8 bitwise
+9.9 bases numéricas
+9.10 variables aritméticas
+9.11 declare -i
+9.12 let
+9.13 arithmetic evaluation Zsh
+9.14 errores frecuentes
+9.15 laboratorio
+
+
+10. Entrada y salida
+10.1 file descriptors
+10.2 descriptor 0
+10.3 descriptor 1
+10.4 descriptor 2
+10.5 redirección >
+10.6 >>
+10.7 <
+10.8 2>
+10.9 2>>
+10.10 >&
+10.11 <&
+10.12 2>&1
+10.13 orden de redirecciones
+10.14 /dev/null
+10.15 descriptors personalizados
+10.16 exec
+10.17 {fd}
+10.18 cierre de descriptors
+10.19 duplicación
+10.20 laboratorio: construir topologías de I/O
+
+
+11. Pipes
+11.1 pipe Unix
+11.2 |
+11.3 procesos conectados
+11.4 buffering
+11.5 exit status del pipeline
+11.6 PIPESTATUS
+11.7 pipefail
+11.8 stderr y pipelines
+11.9 |&
+11.10 subshells en pipelines
+11.11 lastpipe Bash
+11.12 multios Zsh
+11.13 errores frecuentes
+11.14 laboratorio
+
+
+12. Here documents y here strings
+12.1 here document
+12.2 <<EOF
+12.3 delimitador
+12.4 expansión
+12.5 quoting del delimitador
+12.6 <<-
+12.7 tabs
+12.8 here strings
+12.9 <<<
+12.10 seguridad
+12.11 laboratorio
+
+
+13. Comandos y resolución
+13.1 cómo localiza el shell un comando
+13.2 aliases
+13.3 reserved words
+13.4 functions
+13.5 builtins
+13.6 PATH
+13.7 hash table
+13.8 hash
+13.9 type -a
+13.10 command
+13.11 builtin
+13.12 absolute path
+13.13 relative path
+13.14 command_not_found
+13.15 resolución en Zsh
+13.16 rehash
+13.17 laboratorio
+
+
+14. Exit status y lógica
+14.1 éxito y error Unix
+14.2 valores 0–255
+14.3 $?
+14.4 &&
+14.5 ||
+14.6 !
+14.7 listas AND
+14.8 listas OR
+14.9 short-circuit
+14.10 status de funciones
+14.11 status de pipelines
+14.12 laboratorio
+
+
+15. Condicionales
+15.1 if
+15.2 then
+15.3 elif
+15.4 else
+15.5 fi
+15.6 test
+15.7 [
+15.8 [[
+15.9 comparación de strings
+15.10 comparación numérica
+15.11 archivos
+15.12 operadores booleanos
+15.13 pattern matching
+15.14 regex con =~ en Bash
+15.15 BASH_REMATCH
+15.16 [[ ]] en Zsh
+15.17 diferencias Bash/Zsh/POSIX
+15.18 laboratorio
+
+
+16. case
+16.1 sintaxis
+16.2 patrones
+16.3 múltiples patrones
+16.4 ;;
+16.5 ;&
+16.6 ;;&
+16.7 case Zsh
+16.8 fall-through
+16.9 laboratorio
+
+
+17. Bucles
+17.1 for
+17.2 for sobre argumentos
+17.3 C-style for
+17.4 while
+17.5 until
+17.6 select
+17.7 break
+17.8 continue
+17.9 loops anidados
+17.10 lectura segura
+17.11 evitar parsing de ls
+17.12 laboratorio
+
+
+18. read y procesamiento de entrada
+18.1 read
+18.2 IFS=
+18.3 read -r
+18.4 múltiples variables
+18.5 delimitadores
+18.6 timeout
+18.7 lectura desde fd
+18.8 while read
+18.9 último registro sin newline
+18.10 readarray
+18.11 mapfile
+18.12 read Zsh
+18.13 zmodload zsh/mapfile
+18.14 laboratorio
+
+
+19. Funciones
+19.1 definición
+19.2 invocación
+19.3 parámetros
+19.4 return
+19.5 exit status
+19.6 variables locales
+19.7 scope
+19.8 recursión
+19.9 funciones como comandos
+19.10 export -f Bash
+19.11 autoload Zsh
+19.12 funciones Zsh
+19.13 funciones anónimas Zsh
+19.14 laboratorio
+
+
+20. Scripts
+20.1 crear script
+20.2 permisos
+20.3 ejecución
+20.4 shebang
+20.5 /usr/bin/env
+20.6 bash script
+20.7 zsh script
+20.8 argumentos
+20.9 opciones
+20.10 exit
+20.11 códigos de salida
+20.12 organización
+20.13 main conceptual
+20.14 funciones auxiliares
+20.15 constantes
+20.16 configuración
+20.17 laboratorio: primera CLI
+
+
+21. source y entorno
+21.1 source
+21.2 .
+21.3 ejecutar frente a source
+21.4 proceso hijo
+21.5 subshell
+21.6 entorno
+21.7 cambios persistentes
+21.8 librerías shell
+21.9 guardas
+21.10 laboratorio
+
+
+22. Subshells y agrupación
+22.1 (...)
+22.2 {...;}
+22.3 entorno
+22.4 cwd
+22.5 variables
+22.6 exit status
+22.7 procesos
+22.8 command substitution
+22.9 pipelines
+22.10 rendimiento
+22.11 laboratorio
+
+
+23. Procesos
+23.1 fork
+23.2 exec
+23.3 proceso shell
+23.4 procesos externos
+23.5 builtins
+23.6 PID
+23.7 PPID
+23.8 $$
+23.9 BASHPID
+23.10 jobs
+23.11 ps
+23.12 pstree
+23.13 /proc
+23.14 laboratorio
+
+
+24. Job control
+24.1 foreground
+24.2 background
+24.3 &
+24.4 jobs
+24.5 fg
+24.6 bg
+24.7 Ctrl-Z
+24.8 suspend
+24.9 disown
+24.10 nohup
+24.11 wait
+24.12 wait -n
+24.13 job specifications
+24.14 monitor mode
+24.15 job control Zsh
+24.16 laboratorio
+
+
+25. Señales
+25.1 señales Unix
+25.2 SIGINT
+25.3 SIGTERM
+25.4 SIGHUP
+25.5 SIGQUIT
+25.6 SIGKILL
+25.7 SIGSTOP
+25.8 SIGCHLD
+25.9 kill
+25.10 kill builtin
+25.11 trap
+25.12 pseudo-signals EXIT
+25.13 ERR
+25.14 DEBUG
+25.15 RETURN
+25.16 cleanup
+25.17 signals y procesos hijos
+25.18 laboratorio
+
+
+26. Process substitution
+26.1 <(...)
+26.2 >(...)
+26.3 diferencias con command substitution
+26.4 FIFOs
+26.5 /dev/fd
+26.6 múltiples streams
+26.7 Bash
+26.8 Zsh
+26.9 laboratorio
+
+
+27. printf
+27.1 por qué printf frente a echo
+27.2 formato
+27.3 %s
+27.4 %d
+27.5 %f
+27.6 %q
+27.7 anchura
+27.8 precisión
+27.9 escapes
+27.10 printf -v
+27.11 printf Zsh
+27.12 laboratorio
+
+
+28. getopts
+28.1 opciones CLI
+28.2 flags
+28.3 argumentos
+28.4 OPTIND
+28.5 OPTARG
+28.6 errores
+28.7 short options
+28.8 reset de OPTIND
+28.9 getopts en funciones
+28.10 getopts Zsh
+28.11 limitaciones
+28.12 laboratorio: CLI robusta
+
+
+29. Comandos externos y composición Unix
+29.1 cuándo usar builtin
+29.2 cuándo usar programa externo
+29.3 grep desde shell
+29.4 sed desde shell
+29.5 AWK desde shell
+29.6 find desde shell
+29.7 xargs desde shell
+29.8 sort
+29.9 uniq
+29.10 cut
+29.11 tr
+29.12 wc
+29.13 integración con PATHs especializados
+29.14 coste de procesos externos
+29.15 laboratorio: pipeline completo
+
+
+30. Archivos y directorios
+30.1 tests de archivos
+30.2 existencia
+30.3 tipos
+30.4 permisos
+30.5 symlinks
+30.6 stat
+30.7 basename
+30.8 dirname
+30.9 realpath
+30.10 mktemp
+30.11 archivos temporales seguros
+30.12 cleanup
+30.13 laboratorio
+
+
+31. Strings
+31.1 longitud
+31.2 concatenación
+31.3 substring
+31.4 sustitución
+31.5 prefix/suffix
+31.6 case conversion
+31.7 pattern matching
+31.8 split
+31.9 join
+31.10 Bash
+31.11 Zsh
+31.12 laboratorio
+
+
+32. Seguridad del shell
+32.1 command injection
+32.2 eval injection
+32.3 quoting
+32.4 word splitting
+32.5 glob injection
+32.6 option injection
+32.7 nombres que empiezan por -
+32.8 uso de --
+32.9 PATH inseguro
+32.10 archivos temporales
+32.11 race conditions
+32.12 symlink attacks
+32.13 permisos
+32.14 umask
+32.15 secretos
+32.16 variables de entorno
+32.17 credenciales en argv
+32.18 sudo
+32.19 scripts privilegiados
+32.20 setuid scripts y problemas
+32.21 TOCTOU
+32.22 laboratorio: auditar script vulnerable
+
+
+33. Programación defensiva
+33.1 validar argumentos
+33.2 validar estado
+33.3 comprobar dependencias
+33.4 errores
+33.5 mensajes diagnósticos
+33.6 stderr
+33.7 códigos de salida
+33.8 cleanup
+33.9 traps
+33.10 temporary files
+33.11 invariantes
+33.12 idempotencia
+33.13 laboratorio
+
+
+34. set y opciones Bash
+34.1 set
+34.2 set -e
+34.3 errexit
+34.4 limitaciones de errexit
+34.5 set -u
+34.6 nounset
+34.7 set -o pipefail
+34.8 set -x
+34.9 xtrace
+34.10 set -v
+34.11 noclobber
+34.12 noglob
+34.13 POSIX mode
+34.14 "$-"
+34.15 SHELLOPTS
+34.16 BASHOPTS
+34.17 shopt
+34.18 laboratorio
+
+
+35. Strict mode y sus límites
+35.1 set -euo pipefail
+35.2 por qué no es una solución universal
+35.3 contextos ignorados por errexit
+35.4 pipelines
+35.5 command substitutions
+35.6 funciones
+35.7 condiciones
+35.8 nounset y arrays
+35.9 estrategias explícitas de manejo de errores
+35.10 laboratorio
+
+
+36. Debugging Bash
+36.1 bash -n
+36.2 bash -x
+36.3 set -x
+36.4 PS4
+36.5 BASH_SOURCE
+36.6 FUNCNAME
+36.7 BASH_LINENO
+36.8 caller
+36.9 trap DEBUG
+36.10 trap ERR
+36.11 xtrace a descriptor separado
+36.12 BASH_XTRACEFD
+36.13 debugging sistemático
+36.14 laboratorio
+
+
+37. Debugging Zsh
+37.1 zsh -n
+37.2 zsh -x
+37.3 XTRACE
+37.4 PS4
+37.5 funcfiletrace
+37.6 funcsourcetrace
+37.7 funcstack
+37.8 $ZSH_DEBUG_CMD
+37.9 TRAPDEBUG
+37.10 TRAPZERR
+37.11 laboratorio
+
+
+38. ShellCheck
+38.1 análisis estático
+38.2 instalación
+38.3 warnings
+38.4 errores
+38.5 quoting
+38.6 arrays
+38.7 portability
+38.8 directives
+38.9 disable selectivo
+38.10 CI
+38.11 limitaciones
+38.12 laboratorio
+
+
+39. Testing de scripts
+39.1 por qué probar shell
+39.2 unit testing
+39.3 integration testing
+39.4 fixtures
+39.5 temporary directories
+39.6 mocks
+39.7 stubs
+39.8 exit status
+39.9 stdout
+39.10 stderr
+39.11 Bats
+39.12 ShellSpec
+39.13 testing Bash/Zsh
+39.14 laboratorio
+
+
+40. Logging
+40.1 niveles
+40.2 debug
+40.3 info
+40.4 warning
+40.5 error
+40.6 stderr
+40.7 timestamps
+40.8 syslog
+40.9 logger
+40.10 journald
+40.11 structured logging conceptual
+40.12 laboratorio
+
+
+41. Configuración de Bash
+41.1 /etc/profile
+41.2 /etc/bashrc
+41.3 ~/.bash_profile
+41.4 ~/.bash_login
+41.5 ~/.profile
+41.6 ~/.bashrc
+41.7 login shell
+41.8 interactive shell
+41.9 non-interactive shell
+41.10 BASH_ENV
+41.11 orden de carga
+41.12 laboratorio: trazar startup
+
+
+42. Prompt Bash
+42.1 PS1
+42.2 PS2
+42.3 PS3
+42.4 PS4
+42.5 escapes
+42.6 colores
+42.7 command substitution
+42.8 PROMPT_COMMAND
+42.9 rendimiento
+42.10 seguridad
+42.11 laboratorio
+
+
+43. Historial Bash
+43.1 history
+43.2 HISTFILE
+43.3 HISTSIZE
+43.4 HISTFILESIZE
+43.5 HISTCONTROL
+43.6 HISTIGNORE
+43.7 HISTTIMEFORMAT
+43.8 history expansion
+43.9 !!
+43.10 !$
+43.11 !n
+43.12 fc
+43.13 sincronización entre sesiones
+43.14 shopt histappend
+43.15 laboratorio
+
+
+44. Completion Bash
+44.1 programmable completion
+44.2 complete
+44.3 compgen
+44.4 compopt
+44.5 COMPREPLY
+44.6 COMP_WORDS
+44.7 COMP_CWORD
+44.8 COMP_LINE
+44.9 COMP_POINT
+44.10 funciones de completion
+44.11 bash-completion
+44.12 laboratorio: crear completion propia
+
+
+45. Bash avanzado
+45.1 nameref
+45.2 declare -n
+45.3 coproc
+45.4 mapfile avanzado
+45.5 printf -v
+45.6 dynamic fd allocation
+45.7 extdebug
+45.8 compat options
+45.9 restricted shell
+45.10 invocation modes
+45.11 laboratorio
+
+
+46. Bash internals
+46.1 arquitectura conceptual de Bash
+46.2 lexer
+46.3 parser
+46.4 AST conceptual
+46.5 expansions
+46.6 redirections
+46.7 execution
+46.8 builtins
+46.9 functions
+46.10 variables
+46.11 environment
+46.12 jobs
+46.13 signals
+46.14 readline
+46.15 startup
+46.16 source code
+46.17 builtins/
+46.18 lib/
+46.19 parse.y
+46.20 execute_cmd.c
+46.21 subst.c
+46.22 variables.c
+46.23 jobs.c
+46.24 laboratorio: compilar e inspeccionar Bash
+
+
+47. Introducción profunda a Zsh
+47.1 filosofía de Zsh
+47.2 diferencias con Bash
+47.3 compatibilidad
+47.4 emulation modes
+47.5 emulate
+47.6 native Zsh
+47.7 sh emulation
+47.8 ksh emulation
+47.9 opciones
+47.10 módulos
+47.11 funciones
+47.12 laboratorio
+
+
+48. Startup de Zsh
+48.1 /etc/zshenv
+48.2 ~/.zshenv
+48.3 /etc/zprofile
+48.4 ~/.zprofile
+48.5 /etc/zshrc
+48.6 ~/.zshrc
+48.7 /etc/zlogin
+48.8 ~/.zlogin
+48.9 ~/.zlogout
+48.10 ZDOTDIR
+48.11 GLOBAL_RCS
+48.12 RCS
+48.13 orden completo
+48.14 laboratorio: trazar startup
+
+
+49. Opciones Zsh
+49.1 setopt
+49.2 unsetopt
+49.3 option aliases
+49.4 AUTO_CD
+49.5 AUTO_PUSHD
+49.6 EXTENDED_GLOB
+49.7 NULL_GLOB
+49.8 NOMATCH
+49.9 SH_WORD_SPLIT
+49.10 KSH_ARRAYS
+49.11 NO_CLOBBER
+49.12 ERR_EXIT
+49.13 PIPE_FAIL
+49.14 LOCAL_OPTIONS
+49.15 LOCAL_TRAPS
+49.16 LOCAL_PATTERNS
+49.17 laboratorio
+
+
+50. Expansión avanzada Zsh
+50.1 parameter expansion
+50.2 flags
+50.3 ${(q)}
+50.4 ${(Q)}
+50.5 ${(s)}
+50.6 ${(j)}
+50.7 ${(f)}
+50.8 ${(z)}
+50.9 ${(kv)}
+50.10 ${(ok)}
+50.11 ${(u)}
+50.12 nested expansion
+50.13 modifiers
+50.14 :h
+50.15 :t
+50.16 :r
+50.17 :e
+50.18 sustituciones
+50.19 laboratorio
+
+
+51. Globbing avanzado Zsh
+51.1 EXTENDED_GLOB
+51.2 ^ exclusión
+51.3 ~ exclusión
+51.4 ** recursive
+51.5 glob qualifiers
+51.6 tipos de archivo
+51.7 permisos
+51.8 propietario
+51.9 tamaño
+51.10 tiempo
+51.11 orden
+51.12 selección N
+51.13 modifiers
+51.14 numeric glob sort
+51.15 bare glob qualifiers
+51.16 laboratorio: consultas complejas sin find
+
+
+52. Arrays y hashes Zsh
+52.1 arrays
+52.2 índices
+52.3 slicing
+52.4 expansión
+52.5 flags
+52.6 associative arrays
+52.7 keys
+52.8 values
+52.9 ${(k)...}
+52.10 ${(v)...}
+52.11 ${(kv)...}
+52.12 sorting
+52.13 uniqueness
+52.14 filtering
+52.15 laboratorio
+
+
+53. Funciones avanzadas Zsh
+53.1 autoload
+53.2 fpath
+53.3 autoload -Uz
+53.4 function files
+53.5 anonymous functions
+53.6 localoptions
+53.7 localtraps
+53.8 zparseopts
+53.9 hook functions
+53.10 add-zsh-hook
+53.11 precmd
+53.12 preexec
+53.13 chpwd
+53.14 periodic
+53.15 zshexit
+53.16 laboratorio
+
+
+54. Arquitectura modular Zsh
+54.1 ~/.config/zsh/
+54.2 ZDOTDIR
+54.3 modules/
+54.4 functions/
+54.5 completions/
+54.6 plugins/
+54.7 conf.d/
+54.8 carga ordenada
+54.9 autoload frente a source
+54.10 dependencias
+54.11 lazy loading
+54.12 aislamiento
+54.13 laboratorio: construir configuración modular
+
+
+55. ZLE
+55.1 Zsh Line Editor
+55.2 widgets
+55.3 keymaps
+55.4 bindkey
+55.5 emacs mode
+55.6 vi mode
+55.7 zle
+55.8 user-defined widgets
+55.9 BUFFER
+55.10 CURSOR
+55.11 LBUFFER
+55.12 RBUFFER
+55.13 region
+55.14 kill ring
+55.15 hooks
+55.16 laboratorio: widget personalizado
+
+
+56. Completion system Zsh
+56.1 compinit
+56.2 compdef
+56.3 completers
+56.4 contexts
+56.5 tags
+56.6 styles
+56.7 zstyle
+56.8 _arguments
+56.9 _describe
+56.10 _values
+56.11 _files
+56.12 _path_files
+56.13 state machine
+56.14 $state
+56.15 $context
+56.16 $line
+56.17 cache
+56.18 seguridad de compinit
+56.19 compaudit
+56.20 laboratorio: completion completa para una CLI
+
+
+57. Prompt Zsh
+57.1 PROMPT
+57.2 RPROMPT
+57.3 PS1
+57.4 prompt escapes
+57.5 colors
+57.6 promptsubst
+57.7 vcs_info
+57.8 precmd
+57.9 async prompt conceptual
+57.10 transient prompts
+57.11 rendimiento
+57.12 laboratorio
+
+
+58. Historial Zsh
+58.1 HISTFILE
+58.2 HISTSIZE
+58.3 SAVEHIST
+58.4 APPEND_HISTORY
+58.5 INC_APPEND_HISTORY
+58.6 SHARE_HISTORY
+58.7 EXTENDED_HISTORY
+58.8 HIST_IGNORE_DUPS
+58.9 HIST_IGNORE_ALL_DUPS
+58.10 HIST_REDUCE_BLANKS
+58.11 fc
+58.12 history expansion
+58.13 laboratorio
+
+
+59. Directorios en Zsh
+59.1 cd
+59.2 AUTO_CD
+59.3 cdpath
+59.4 pushd
+59.5 popd
+59.6 dirs
+59.7 directory stack
+59.8 AUTO_PUSHD
+59.9 PUSHD_IGNORE_DUPS
+59.10 named directories
+59.11 hash -d
+59.12 ~name
+59.13 chpwd hooks
+59.14 laboratorio
+
+
+60. Módulos Zsh
+60.1 zmodload
+60.2 módulos builtin
+60.3 zsh/stat
+60.4 zsh/datetime
+60.5 zsh/mathfunc
+60.6 zsh/mapfile
+60.7 zsh/files
+60.8 zsh/system
+60.9 zsh/net/socket
+60.10 zsh/zselect
+60.11 zsh/parameter
+60.12 zsh/terminfo
+60.13 zsh/complist
+60.14 laboratorio
+
+
+61. Plugins Zsh
+61.1 qué es un plugin
+61.2 plugin como código shell
+61.3 carga manual
+61.4 fpath
+61.5 frameworks
+61.6 plugin managers
+61.7 dependencias
+61.8 lazy loading
+61.9 startup cost
+61.10 seguridad
+61.11 auditoría
+61.12 evitar dependencias innecesarias
+61.13 laboratorio: escribir plugin propio
+
+
+62. Frameworks Zsh
+62.1 concepto
+62.2 Oh My Zsh
+62.3 arquitectura conceptual
+62.4 plugins
+62.5 themes
+62.6 ventajas
+62.7 costes
+62.8 configuración manual frente a framework
+62.9 migración
+62.10 laboratorio
+
+
+63. Rendimiento interactivo
+63.1 medir antes de optimizar
+63.2 time
+63.3 startup time
+63.4 zprof
+63.5 profiling
+63.6 source cost
+63.7 forks
+63.8 command substitutions
+63.9 completion
+63.10 compinit
+63.11 cache
+63.12 lazy loading
+63.13 async
+63.14 prompt
+63.15 plugins
+63.16 laboratorio: optimizar .zshrc
+
+
+64. Portabilidad
+64.1 POSIX shell
+64.2 Bash-specific
+64.3 Zsh-specific
+64.4 /bin/sh
+64.5 dash
+64.6 Bash POSIX mode
+64.7 Zsh emulate sh
+64.8 arrays
+64.9 [[ ]]
+64.10 process substitution
+64.11 brace expansion
+64.12 printf
+64.13 read
+64.14 portability bugs
+64.15 ShellCheck
+64.16 laboratorio
+
+
+65. Ingeniería de scripts
+65.1 arquitectura
+65.2 separación de responsabilidades
+65.3 funciones pequeñas
+65.4 módulos
+65.5 API interna
+65.6 configuración
+65.7 validación
+65.8 logging
+65.9 errores
+65.10 cleanup
+65.11 testing
+65.12 documentación
+65.13 versionado
+65.14 backward compatibility
+65.15 laboratorio
+
+
+66. Librerías shell
+66.1 source
+66.2 diseño de API
+66.3 namespaces mediante prefijos
+66.4 variables privadas conceptuales
+66.5 funciones públicas
+66.6 dependencias
+66.7 inicialización
+66.8 guards
+66.9 evitar efectos secundarios
+66.10 testing
+66.11 Bash
+66.12 Zsh
+66.13 laboratorio
+
+
+67. Concurrencia
+67.1 procesos concurrentes
+67.2 &
+67.3 wait
+67.4 wait -n
+67.5 worker pools
+67.6 límites de concurrencia
+67.7 FIFOs
+67.8 coproc
+67.9 process substitution
+67.10 race conditions
+67.11 locking
+67.12 flock
+67.13 temporary resources
+67.14 señales
+67.15 cleanup
+67.16 laboratorio: worker pool
+
+
+68. IPC desde shell
+68.1 pipes
+68.2 named pipes
+68.3 Unix sockets conceptualmente
+68.4 signals
+68.5 files
+68.6 locks
+68.7 coprocesses
+68.8 /dev/fd
+68.9 procfs
+68.10 comunicación con servicios
+68.11 laboratorio
+
+
+69. Shell y sistema operativo
+69.1 syscalls conceptualmente
+69.2 fork
+69.3 execve
+69.4 wait
+69.5 pipe
+69.6 dup2
+69.7 open
+69.8 close
+69.9 chdir
+69.10 signals
+69.11 process groups
+69.12 sessions
+69.13 controlling terminal
+69.14 strace
+69.15 laboratorio: observar un pipeline con strace
+
+
+70. Terminal avanzada
+70.1 terminal driver
+70.2 canonical mode
+70.3 raw mode
+70.4 termios
+70.5 stty
+70.6 control characters
+70.7 Ctrl-C
+70.8 Ctrl-D
+70.9 Ctrl-Z
+70.10 terminal capabilities
+70.11 terminfo
+70.12 tput
+70.13 ANSI escape sequences
+70.14 laboratorio
+
+
+71. Seguridad avanzada
+71.1 threat modeling para scripts
+71.2 input no confiable
+71.3 environment poisoning
+71.4 PATH hijacking
+71.5 function/alias interference
+71.6 locale
+71.7 filenames hostiles
+71.8 race conditions
+71.9 privilege boundaries
+71.10 sudo
+71.11 capabilities conceptualmente
+71.12 secret handling
+71.13 command injection
+71.14 eval
+71.15 source de contenido no confiable
+71.16 plugins no confiables
+71.17 laboratorio: pentest defensivo de scripts
+
+
+72. Rendimiento de scripts
+72.1 medir
+72.2 time
+72.3 hyperfine
+72.4 strace
+72.5 forks
+72.6 procesos externos
+72.7 builtins
+72.8 parameter expansion
+72.9 arrays
+72.10 pipelines
+72.11 subshells
+72.12 command substitutions
+72.13 lectura de archivos
+72.14 batching
+72.15 cuándo dejar de usar shell
+72.16 laboratorio
+
+
+73. Observabilidad y diagnóstico
+73.1 ps
+73.2 pstree
+73.3 /proc/$PID
+73.4 lsof
+73.5 strace
+73.6 journalctl
+73.7 systemd-cgls
+73.8 systemd-cgtop
+73.9 signals
+73.10 descriptors
+73.11 environment
+73.12 cwd
+73.13 namespaces conceptualmente
+73.14 laboratorio
+
+
+74. Bash y systemd
+74.1 scripts como servicios
+74.2 ExecStart
+74.3 exit status
+74.4 environment
+74.5 stdout/stderr
+74.6 journald
+74.7 signals
+74.8 timeouts
+74.9 restart
+74.10 Type=
+74.11 shell wrapper innecesario
+74.12 cuándo usar /bin/sh -c
+74.13 seguridad
+74.14 laboratorio
+
+
+75. Shell en automatización
+75.1 cron
+75.2 systemd timers
+75.3 CI/CD
+75.4 containers
+75.5 SSH
+75.6 provisioning
+75.7 packaging
+75.8 RPM scriptlets conceptualmente
+75.9 build scripts
+75.10 reproducibilidad
+75.11 entornos mínimos
+75.12 laboratorio
+
+
+76. Shell en contenedores
+76.1 PID 1
+76.2 exec form
+76.3 shell form
+76.4 señales
+76.5 ENTRYPOINT
+76.6 CMD
+76.7 wrapper scripts
+76.8 exec "$@"
+76.9 traps
+76.10 zombie processes
+76.11 environment
+76.12 secrets
+76.13 Bash ausente
+76.14 /bin/sh
+76.15 laboratorio
+
+
+77. Shell remoto
+77.1 ssh command execution
+77.2 quoting local
+77.3 quoting remoto
+77.4 múltiples capas de parsing
+77.5 stdin
+77.6 pseudo-TTY
+77.7 ssh -T
+77.8 ssh -t
+77.9 environment
+77.10 heredocs remotos
+77.11 seguridad
+77.12 laboratorio
+
+
+78. Metaprogramación shell
+78.1 código como datos
+78.2 eval
+78.3 riesgos de eval
+78.4 indirect expansion
+78.5 nameref
+78.6 arrays asociativos
+78.7 generación dinámica
+78.8 dispatch tables
+78.9 callbacks mediante nombres de funciones
+78.10 reflection limitada
+78.11 ${(...)...} Zsh
+78.12 cuándo evitar metaprogramación
+78.13 laboratorio
+
+
+79. Parsing y datos
+79.1 shell no es parser universal
+79.2 delimitadores
+79.3 NUL
+79.4 filenames arbitrarios
+79.5 find -print0
+79.6 xargs -0
+79.7 read -d ''
+79.8 mapfile -d ''
+79.9 CSV y sus problemas
+79.10 JSON
+79.11 jq
+79.12 XML
+79.13 YAML
+79.14 herramientas especializadas
+79.15 laboratorio
+
+
+80. Diseño de CLI profesional
+80.1 interfaz
+80.2 comandos
+80.3 subcomandos
+80.4 flags
+80.5 argumentos
+80.6 help
+80.7 usage
+80.8 version
+80.9 stdout frente a stderr
+80.10 exit codes
+80.11 configuración
+80.12 environment
+80.13 XDG Base Directory
+80.14 completion Bash
+80.15 completion Zsh
+80.16 man page
+80.17 testing
+80.18 laboratorio: CLI completa
+
+
+81. XDG y configuración del shell
+81.1 XDG_CONFIG_HOME
+81.2 XDG_DATA_HOME
+81.3 XDG_CACHE_HOME
+81.4 XDG_STATE_HOME
+81.5 configuración Bash
+81.6 configuración Zsh
+81.7 ZDOTDIR
+81.8 funciones
+81.9 completions
+81.10 cache
+81.11 state
+81.12 arquitectura ~/.config/zsh
+81.13 laboratorio
+
+
+82. Diseño de dotfiles
+82.1 repositorio
+82.2 estructura
+82.3 módulos
+82.4 funciones
+82.5 aliases
+82.6 environment
+82.7 completion
+82.8 prompt
+82.9 host-specific config
+82.10 OS-specific config
+82.11 secrets
+82.12 symlinks
+82.13 GNU Stow conceptualmente
+82.14 testing
+82.15 bootstrap
+82.16 laboratorio
+
+
+83. Zsh para usuarios avanzados
+83.1 named directories
+83.2 suffix aliases
+83.3 global aliases
+83.4 command aliases
+83.5 precommand modifiers
+83.6 nocorrect
+83.7 noglob
+83.8 =
+83.9 command hashing
+83.10 spelling correction
+83.11 recursive globbing
+83.12 qualifiers
+83.13 modifiers
+83.14 hooks
+83.15 laboratorio
+
+
+84. Completion Zsh avanzada
+84.1 arquitectura compsys
+84.2 dispatcher
+84.3 context
+84.4 completer
+84.5 function
+84.6 tags
+84.7 styles
+84.8 matcher-list
+84.9 menu
+84.10 grouping
+84.11 descriptions
+84.12 caching
+84.13 dynamic values
+84.14 external command output
+84.15 state transitions
+84.16 approximate completion
+84.17 custom completer
+84.18 debugging completion
+84.19 laboratorio
+
+
+85. ZLE avanzado
+85.1 widget architecture
+85.2 special widgets
+85.3 user widgets
+85.4 recursive-edit
+85.5 region
+85.6 marks
+85.7 undo
+85.8 history widgets
+85.9 completion widgets
+85.10 keymaps personalizados
+85.11 vi operators
+85.12 bracketed paste
+85.13 hooks
+85.14 async integration conceptual
+85.15 laboratorio
+
+
+86. Zsh internals
+86.1 código fuente
+86.2 arquitectura
+86.3 Src/
+86.4 Modules/
+86.5 Functions/
+86.6 Completion/
+86.7 parser
+86.8 lexer
+86.9 parameter expansion
+86.10 globbing engine
+86.11 execution
+86.12 jobs
+86.13 signals
+86.14 ZLE
+86.15 completion
+86.16 module system
+86.17 parameter module
+86.18 zprof
+86.19 laboratorio: compilar Zsh
+
+
+87. Bash frente a Zsh en profundidad
+87.1 objetivos de diseño
+87.2 POSIX
+87.3 arrays
+87.4 indexing
+87.5 word splitting
+87.6 globbing
+87.7 parameter expansion
+87.8 functions
+87.9 options
+87.10 completion
+87.11 line editing
+87.12 startup
+87.13 scripting
+87.14 interactive use
+87.15 portability
+87.16 rendimiento
+87.17 cuándo Bash
+87.18 cuándo Zsh
+87.19 laboratorio
+
+
+88. Compatibilidad y migración
+88.1 script Bash → Zsh
+88.2 Zsh → Bash
+88.3 Bash → POSIX sh
+88.4 detectar Bashisms
+88.5 detectar Zshisms
+88.6 ShellCheck
+88.7 tests
+88.8 quoting
+88.9 arrays
+88.10 globbing
+88.11 options
+88.12 emulation
+88.13 laboratorio
+
+
+89. Anti-patterns
+89.1 for f in $(ls)
+89.2 parsing de ls
+89.3 echo para datos arbitrarios
+89.4 eval innecesario
+89.5 variables sin quoting
+89.6 cat innecesario
+89.7 subshells innecesarios
+89.8 temporales inseguros
+89.9 ignorar exit status
+89.10 set -e como sustituto de manejo de errores
+89.11 arrays simulados con strings
+89.12 parsing frágil
+89.13 dependencias implícitas
+89.14 scripts gigantes
+89.15 aliases dentro de scripts
+89.16 laboratorio: refactorizar scripts defectuosos
+
+
+90. Diseño experto
+90.1 decidir si shell es la herramienta correcta
+90.2 shell como lenguaje de orquestación
+90.3 límites del lenguaje
+90.4 coste de procesos
+90.5 concurrencia
+90.6 estado
+90.7 datos estructurados
+90.8 errores
+90.9 seguridad
+90.10 portabilidad
+90.11 mantenibilidad
+90.12 observabilidad
+90.13 testing
+90.14 interfaces estables
+90.15 laboratorio
+
+
+91. Lectura del código fuente de Bash
+91.1 obtener source
+91.2 build system
+91.3 configure
+91.4 compilación
+91.5 parser
+91.6 AST
+91.7 expansión
+91.8 ejecución
+91.9 redirecciones
+91.10 variables
+91.11 builtins
+91.12 jobs
+91.13 signals
+91.14 readline
+91.15 instrumentación
+91.16 debugger
+91.17 modificar builtin
+91.18 laboratorio
+
+
+92. Lectura del código fuente de Zsh
+92.1 obtener source
+92.2 build system
+92.3 compilación
+92.4 lexer
+92.5 parser
+92.6 execution engine
+92.7 parameters
+92.8 globbing
+92.9 jobs
+92.10 signals
+92.11 modules
+92.12 ZLE
+92.13 completion
+92.14 instrumentación
+92.15 modificar módulo
+92.16 laboratorio
+
+
+93. Herramientas del experto
+93.1 shellcheck
+93.2 shfmt
+93.3 bats
+93.4 ShellSpec
+93.5 strace
+93.6 ltrace
+93.7 gdb
+93.8 perf
+93.9 hyperfine
+93.10 time
+93.11 zprof
+93.12 bash -x
+93.13 zsh -x
+93.14 ps
+93.15 pstree
+93.16 lsof
+93.17 /proc
+93.18 git
+93.19 laboratorio
+
+
+94. Proyecto: librería Bash profesional
+94.1 arquitectura
+94.2 logging
+94.3 errores
+94.4 argument parsing
+94.5 temporary resources
+94.6 signals
+94.7 arrays
+94.8 configuration
+94.9 testing
+94.10 ShellCheck
+94.11 documentación
+94.12 packaging
+94.13 laboratorio completo
+
+
+95. Proyecto: entorno Zsh modular
+95.1 XDG
+95.2 ZDOTDIR
+95.3 .zshenv mínimo
+95.4 .zprofile
+95.5 .zshrc
+95.6 módulos
+95.7 functions
+95.8 fpath
+95.9 autoload
+95.10 completion
+95.11 ZLE
+95.12 prompt
+95.13 history
+95.14 hooks
+95.15 plugins
+95.16 lazy loading
+95.17 profiling
+95.18 seguridad
+95.19 testing
+95.20 documentación
+
+
+96. Proyecto: framework personal Zsh
+96.1 arquitectura
+96.2 loader
+96.3 módulos
+96.4 dependency graph
+96.5 hooks
+96.6 plugin API
+96.7 lazy loading
+96.8 completion API
+96.9 ZLE API
+96.10 prompt API
+96.11 cache
+96.12 logging
+96.13 diagnostics
+96.14 profiling
+96.15 tests
+96.16 versionado
+96.17 laboratorio
+
+
+97. Proyecto: CLI Bash/Zsh
+97.1 requisitos
+97.2 comandos
+97.3 subcomandos
+97.4 argumentos
+97.5 configuración
+97.6 logging
+97.7 errores
+97.8 señales
+97.9 concurrencia
+97.10 completion Bash
+97.11 completion Zsh
+97.12 tests
+97.13 documentación
+97.14 packaging
+97.15 integración systemd
+97.16 laboratorio
+
+
+98. Proyecto: shell-debugger
+98.1 inspeccionar entorno
+98.2 shell actual
+98.3 startup files
+98.4 PATH
+98.5 command resolution
+98.6 aliases
+98.7 functions
+98.8 variables
+98.9 options
+98.10 file descriptors
+98.11 jobs
+98.12 procesos
+98.13 signals
+98.14 tracing
+98.15 performance
+98.16 Bash mode
+98.17 Zsh mode
+98.18 informe diagnóstico
+
+
+99. PROYECTO FINAL EXPERTO
+99.1 diseñar toolkit Bash + Zsh
+99.2 arquitectura modular
+99.3 biblioteca común
+99.4 módulos Bash
+99.5 módulos Zsh
+99.6 configuración XDG
+99.7 loader de módulos
+99.8 dependency management
+99.9 logging
+99.10 error handling
+99.11 signal handling
+99.12 temporary resources
+99.13 concurrencia
+99.14 IPC
+99.15 CLI framework
+99.16 completion Bash
+99.17 completion Zsh
+99.18 ZLE widgets
+99.19 prompt
+99.20 hooks
+99.21 plugin system
+99.22 diagnostics
+99.23 tracing
+99.24 profiling
+99.25 seguridad
+99.26 ShellCheck
+99.27 testing unitario
+99.28 testing de integración
+99.29 portability tests
+99.30 documentación
+99.31 man pages
+99.32 packaging
+99.33 integración systemd
+99.34 integración SSH
+99.35 integración containers
+99.36 CI
+99.37 benchmark
+99.38 auditoría de seguridad
+99.39 proyecto final: bash-zsh-toolkit
+99.40 análisis del toolkit con strace
+99.41 análisis de rendimiento
+99.42 análisis de procesos y file descriptors
+99.43 auditoría completa
+99.44 versión final production-ready

@@ -1,0 +1,15 @@
+31. Configuración de ripgrep
+
+31.1 archivo de configuración
+31.2 RIPGREP_CONFIG_PATH
+31.3 opciones persistentes
+31.4 colores
+31.5 globs
+31.6 tipos
+31.7 hidden
+31.8 comportamiento personalizado
+31.9 configuración mínima
+31.10 configuración agresiva
+31.11 riesgos de cambiar defaults
+31.12 scripts reproducibles frente a configuración personal
+31.13 laboratorio: crear configuración propia

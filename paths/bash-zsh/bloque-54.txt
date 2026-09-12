@@ -1,0 +1,14 @@
+54. Arquitectura modular Zsh
+54.1 ~/.config/zsh/
+54.2 ZDOTDIR
+54.3 modules/
+54.4 functions/
+54.5 completions/
+54.6 plugins/
+54.7 conf.d/
+54.8 carga ordenada
+54.9 autoload frente a source
+54.10 dependencias
+54.11 lazy loading
+54.12 aislamiento
+54.13 laboratorio: construir configuración modular

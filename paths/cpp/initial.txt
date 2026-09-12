@@ -1,0 +1,285 @@
+1.1   Introducción a C++ y filosofía del lenguaje
+1.2   Toolchain: g++, clang++, -std=c++23
+1.3   Primer programa: compilación → linking → ejecución
+1.4   Objetos, valores y tipos
+1.5   Variables, inicialización y scope
+1.6   Expresiones y operadores
+1.7   Control de flujo
+1.8   Funciones
+1.9   Errores y manejo de errores
+1.10  Debugging básico
+1.11  std::string
+1.12  std::vector
+1.13  arrays
+1.14  referencias
+1.15  punteros
+1.16  memoria y lifetime
+1.17  clases
+1.18  constructores
+1.19  destructores
+1.20  invariantes
+1.21  encapsulación
+1.22  operator overloading
+1.23  I/O streams
+1.24  archivos
+1.25  parsing
+1.26  STL: introducción
+1.27  iteradores
+1.28  algoritmos
+1.29  contenedores
+1.30  generic programming
+1.31  templates básicos
+1.32  function templates
+1.33  class templates
+1.34  herencia
+1.35  virtual functions
+1.36  polymorphism
+1.37  abstract classes
+1.38  exceptions
+1.39  RAII
+1.40  resource management
+1.41  proyecto final PPP3
+2.1   Modelo de objetos de C++
+2.2   storage duration
+2.3   lifetime
+2.4   scope y linkage
+2.5   const en profundidad
+2.6   referencias en profundidad
+2.7   punteros en profundidad
+2.8   copy constructor
+2.9   copy assignment
+2.10  move constructor
+2.11  move assignment
+2.12  destructor
+2.13  Rule of Three
+2.14  Rule of Five
+2.15  Rule of Zero
+2.16  lvalue
+2.17  rvalue
+2.18  prvalue
+2.19  xvalue
+2.20  value categories
+2.21  std::move
+2.22  move semantics
+2.23  perfect forwarding
+2.24  unique_ptr
+2.25  shared_ptr
+2.26  weak_ptr
+2.27  ownership
+2.28  inheritance avanzada
+2.29  multiple inheritance
+2.30  virtual inheritance
+2.31  object slicing
+2.32  virtual dispatch
+2.33  RTTI
+2.34  dynamic_cast
+2.35  typeid
+2.36  operator overloading avanzado
+2.37  conversion operators
+2.38  explicit
+2.39  namespaces
+2.40  translation units
+3.1   auto
+3.2   decltype
+3.3   type deduction
+3.4   universal/forwarding references
+3.5   std::forward
+3.6   perfect forwarding
+3.7   lambdas
+3.8   lambda captures
+3.9   generic lambdas
+3.10  constexpr
+3.11  noexcept
+3.12  nullptr
+3.13  enum class
+3.14  variadic templates
+3.15  parameter packs
+3.16  fold expressions
+3.17  structured bindings
+3.18  if constexpr
+3.19  std::optional
+3.20  std::variant
+3.21  std::any
+3.22  std::string_view
+3.23  filesystem
+3.24  CTAD
+3.25  deduction guides
+3.26  STL moderna
+3.27  algorithms
+3.28  iterators
+3.29  iterator invalidation
+3.30  proyecto C++17
+4.1   Qué cambió en C++20
+4.2   concepts
+4.3   requires
+4.4   requires-expression
+4.5   constraints
+4.6   constrained templates
+4.7   std::ranges
+4.8   views
+4.9   lazy evaluation
+4.10  pipelines
+4.11  projections
+4.12  coroutine model
+4.13  co_await
+4.14  co_yield
+4.15  co_return
+4.16  promise_type
+4.17  modules
+4.18  import
+4.19  export
+4.20  module partitions
+4.21  std::span
+4.22  std::format
+4.23  chrono moderno
+4.24  constexpr improvements
+4.25  Qué cambia C++23
+4.26  std::expected
+4.27  std::print
+4.28  std::println
+4.29  std::mdspan
+4.30  ranges::to
+4.31  zip_view
+4.32  adjacent_view
+4.33  chunk_view
+4.34  slide_view
+4.35  stride_view
+4.36  deducing this
+4.37  explicit object parameter
+4.38  if consteval
+4.39  constexpr C++23
+4.40  library improvements
+4.41  feature-test macros
+4.42  comprobar soporte GCC
+4.43  comprobar soporte Clang
+4.44  proyecto C++23
+5.1   template model
+5.2   function templates
+5.3   class templates
+5.4   variable templates
+5.5   alias templates
+5.6   template argument deduction
+5.7   specialization
+5.8   partial specialization
+5.9   dependent names
+5.10  typename
+5.11  template keyword
+5.12  two-phase lookup
+5.13  variadic templates
+5.14  parameter packs
+5.15  pack expansion
+5.16  fold expressions
+5.17  SFINAE
+5.18  enable_if
+5.19  type_traits
+5.20  detection idiom
+5.21  constexpr metaprogramming
+5.22  template metaprogramming
+5.23  Concepts vs SFINAE
+5.24  requires avanzado
+5.25  constrained overload resolution
+5.26  CRTP
+5.27  policy-based design
+5.28  expression templates
+5.29  proyecto generic library
+6.1   concurrencia vs paralelismo
+6.2   procesos vs threads
+6.3   std::thread
+6.4   std::jthread
+6.5   race conditions
+6.6   data races
+6.7   mutex
+6.8   lock_guard
+6.9   unique_lock
+6.10  scoped_lock
+6.11  condition_variable
+6.12  promise
+6.13  future
+6.14  async
+6.15  semaphore
+6.16  latch
+6.17  barrier
+6.18  stop_token
+6.19  cooperative cancellation
+6.20  C++ memory model
+6.21  happens-before
+6.22  synchronization
+6.23  atomic
+6.24  memory_order_relaxed
+6.25  acquire
+6.26  release
+6.27  acquire-release
+6.28  seq_cst
+6.29  compare_exchange
+6.30  atomic wait/notify
+6.31  lock-free
+6.32  wait-free
+6.33  ABA problem
+6.34  false sharing
+6.35  cache coherency
+6.36  proyecto concurrente
+7.1   proceso completo de compilación C++
+7.2   preprocessing
+7.3   compilation
+7.4   assembly
+7.5   linking
+7.6   translation units
+7.7   ODR
+7.8   symbols
+7.9   name mangling
+7.10  nm -C
+7.11  c++filt
+7.12  object layout
+7.13  padding/alignment
+7.14  vptr
+7.15  vtable
+7.16  RTTI internals
+7.17  exception internals
+7.18  Itanium C++ ABI
+7.19  libstdc++.so.6
+7.20  GLIBCXX_*
+7.21  CXXABI_*
+7.22  templates en ELF
+7.23  weak symbols
+7.24  COMDAT
+7.25  static libraries
+7.26  shared libraries
+7.27  SONAME
+7.28  ABI compatibility
+7.29  libabigail
+7.30  GDB + C++
+7.31  breakpoints
+7.32  templates en GDB
+7.33  exceptions en GDB
+7.34  threads en GDB
+7.35  core dumps
+7.36  ASan
+7.37  UBSan
+7.38  TSan
+7.39  Valgrind
+8.1   estructura de un proyecto C++
+8.2   headers
+8.3   source files
+8.4   include guards / #pragma once
+8.5   Make
+8.6   CMake
+8.7   Meson
+8.8   GCC
+8.9   Clang
+8.10  warnings
+8.11  sanitizers
+8.12  static analysis
+8.13  clang-tidy
+8.14  clang-format
+8.15  unit testing
+8.16  GoogleTest
+8.17  profiling
+8.18  perf
+8.19  optimization
+8.20  compiler optimization
+8.21  packaging
+8.22  pkg-config
+8.23  shared libraries
+8.24  versioning
+8.25  RPM C++
+8.26  proyecto C++23 completo

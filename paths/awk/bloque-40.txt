@@ -1,0 +1,26 @@
+40. Ingeniería de programas AWK
+
+40.1 requisitos
+40.2 diseño
+40.3 contratos de entrada
+40.4 contratos de salida
+40.5 validación
+40.6 modularidad
+40.7 funciones puras cuando sea posible
+40.8 estado global
+40.9 estructuras de datos
+40.10 manejo de errores
+40.11 exit codes
+40.12 logging
+40.13 configuración
+40.14 CLI
+40.15 documentación
+40.16 pruebas
+40.17 fixtures
+40.18 golden files
+40.19 regresiones
+40.20 profiling
+40.21 portabilidad
+40.22 empaquetado
+40.23 mantenimiento
+40.24 laboratorio: diseñar AWK como software y no como simple one-liner

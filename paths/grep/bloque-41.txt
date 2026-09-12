@@ -1,0 +1,20 @@
+41. Robustez y casos extremos
+
+41.1 nombres con espacios
+41.2 nombres con newline
+41.3 NUL
+41.4 archivos enormes
+41.5 líneas enormes
+41.6 archivos sin newline final
+41.7 UTF-8 inválido
+41.8 permisos denegados
+41.9 enlaces simbólicos cíclicos
+41.10 FIFOs
+41.11 dispositivos
+41.12 archivos que cambian durante la búsqueda
+41.13 patrones proporcionados por usuarios
+41.14 argumentos que empiezan por -
+41.15 -- para terminar opciones
+41.16 exit status
+41.17 scripts fiables
+41.18 laboratorio adversarial

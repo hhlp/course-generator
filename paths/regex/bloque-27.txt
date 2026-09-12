@@ -1,0 +1,20 @@
+27. Catastrophic backtracking y ReDoS
+27.1 qué es catastrophic backtracking
+27.2 crecimiento exponencial
+27.3 cuantificadores anidados peligrosos
+27.4 alternativas solapadas
+27.5 entradas adversarias
+27.6 regex denial of service
+27.7 ReDoS
+27.8 patrones vulnerables
+27.9 identificar patrones peligrosos
+27.10 construir casos de prueba seguros
+27.11 limitar repetición
+27.12 eliminar ambigüedad
+27.13 atomic groups
+27.14 possessive quantifiers
+27.15 motores sin backtracking tradicional
+27.16 límites de ejecución
+27.17 regex sobre entrada no confiable
+27.18 auditoría de regex
+27.19 laboratorio defensivo

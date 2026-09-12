@@ -1,0 +1,16 @@
+20. Recursión y subrutinas
+20.1 concepto de subroutine
+20.2 reutilizar grupos
+20.3 subrutinas numeradas
+20.4 subrutinas con nombre
+20.5 recursión
+20.6 recursión del patrón completo
+20.7 recursión de grupos
+20.8 estructuras anidadas
+20.9 paréntesis balanceados
+20.10 limitaciones
+20.11 profundidad
+20.12 rendimiento
+20.13 diferencias entre motores
+20.14 cuándo una regex deja de ser la herramienta adecuada
+20.15 laboratorio

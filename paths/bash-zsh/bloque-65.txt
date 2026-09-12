@@ -1,0 +1,16 @@
+65. Ingeniería de scripts
+65.1 arquitectura
+65.2 separación de responsabilidades
+65.3 funciones pequeñas
+65.4 módulos
+65.5 API interna
+65.6 configuración
+65.7 validación
+65.8 logging
+65.9 errores
+65.10 cleanup
+65.11 testing
+65.12 documentación
+65.13 versionado
+65.14 backward compatibility
+65.15 laboratorio

@@ -1,0 +1,23 @@
+37. Problemas clásicos
+37.1 números enteros
+37.2 números decimales
+37.3 signos
+37.4 hexadecimal
+37.5 identificadores
+37.6 palabras
+37.7 delimitadores
+37.8 listas simples
+37.9 espacios opcionales
+37.10 fechas con formato conocido
+37.11 horas
+37.12 versiones
+37.13 rutas simples
+37.14 extensiones
+37.15 pares clave=valor
+37.16 campos delimitados
+37.17 comentarios simples
+37.18 bloques
+37.19 extracción contextual
+37.20 exclusiones
+37.21 datos multilínea
+37.22 laboratorio

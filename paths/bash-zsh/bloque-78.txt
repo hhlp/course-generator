@@ -1,0 +1,14 @@
+78. Metaprogramación shell
+78.1 código como datos
+78.2 eval
+78.3 riesgos de eval
+78.4 indirect expansion
+78.5 nameref
+78.6 arrays asociativos
+78.7 generación dinámica
+78.8 dispatch tables
+78.9 callbacks mediante nombres de funciones
+78.10 reflection limitada
+78.11 ${(...)...} Zsh
+78.12 cuándo evitar metaprogramación
+78.13 laboratorio

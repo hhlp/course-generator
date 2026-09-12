@@ -1,0 +1,22 @@
+16. PCRE con GNU grep
+
+16.1 grep -P
+16.2 qué es PCRE2
+16.3 PCRE frente a ERE
+16.4 \d
+16.5 \w
+16.6 \s
+16.7 grupos
+16.8 grupos no capturantes
+16.9 alternancia
+16.10 lookahead
+16.11 negative lookahead
+16.12 lookbehind
+16.13 negative lookbehind
+16.14 lazy quantifiers
+16.15 backreferences
+16.16 \K
+16.17 Unicode y PCRE
+16.18 limitaciones de grep -P
+16.19 portabilidad
+16.20 laboratorio PCRE

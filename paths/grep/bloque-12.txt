@@ -1,0 +1,19 @@
+12. grep + shell
+
+12.1 grep dentro de Bash
+12.2 grep dentro de Zsh
+12.3 exit status 0
+12.4 exit status 1
+12.5 errores
+12.6 if grep -q ...
+12.7 evitar grep | wc -l cuando grep -c basta
+12.8 command substitution
+12.9 variables
+12.10 quoting correcto
+12.11 patrones procedentes de variables
+12.12 regex injection accidental
+12.13 set -e y grep
+12.14 pipefail
+12.15 funciones shell
+12.16 scripts robustos
+12.17 laboratorio: biblioteca Zsh para búsquedas

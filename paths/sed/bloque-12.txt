@@ -1,0 +1,18 @@
+12. Edición in-place
+
+12.1 filosofía original de streams
+12.2 opción GNU -i
+12.3 editar archivo directamente
+12.4 backups con -i
+12.5 sufijos de backup
+12.6 riesgos de -i
+12.7 enlaces simbólicos
+12.8 opción --follow-symlinks
+12.9 permisos
+12.10 propietario
+12.11 metadata
+12.12 atomicidad
+12.13 archivos temporales
+12.14 GNU frente a BSD sed -i
+12.15 estrategia segura temporal + validación + reemplazo
+12.16 laboratorio: edición segura de configuraciones

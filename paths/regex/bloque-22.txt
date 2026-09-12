@@ -1,0 +1,13 @@
+22. Saltos de línea y texto multilínea
+22.1 LF
+22.2 CR
+22.3 CRLF
+22.4 otras terminaciones
+22.5 ^ y $
+22.6 multiline
+22.7 dotall
+22.8 . y newline
+22.9 \R cuando esté disponible
+22.10 procesar bloques
+22.11 texto completo frente a líneas
+22.12 laboratorio

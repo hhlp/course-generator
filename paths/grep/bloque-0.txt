@@ -1,0 +1,28 @@
+0. Fundamentos de búsqueda de texto
+
+0.1 qué significa buscar texto
+0.2 texto, líneas y archivos
+0.3 stdin
+0.4 stdout
+0.5 stderr
+0.6 pipes
+0.7 redirecciones
+0.8 códigos de salida
+0.9 comandos como filtros Unix
+0.10 búsqueda literal frente a patrones
+0.11 qué es una expresión regular
+0.12 BRE, ERE y PCRE
+0.13 diferencias entre glob y regex
+0.14 sensibilidad a mayúsculas/minúsculas
+0.15 codificación de caracteres
+0.16 UTF-8
+0.17 locale
+0.18 variables LANG y LC_*
+0.19 archivos de texto frente a binarios
+0.20 NUL frente a newline como separador
+0.21 man grep
+0.22 grep --help
+0.23 info grep
+0.24 localizar GNU grep en Fedora
+0.25 grep --version
+0.26 laboratorio: construir el mapa conceptual de una búsqueda Unix

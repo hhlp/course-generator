@@ -1,0 +1,16 @@
+83. Zsh para usuarios avanzados
+83.1 named directories
+83.2 suffix aliases
+83.3 global aliases
+83.4 command aliases
+83.5 precommand modifiers
+83.6 nocorrect
+83.7 noglob
+83.8 =
+83.9 command hashing
+83.10 spelling correction
+83.11 recursive globbing
+83.12 qualifiers
+83.13 modifiers
+83.14 hooks
+83.15 laboratorio

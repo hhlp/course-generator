@@ -1,0 +1,23 @@
+14. Arrays asociativos
+
+14.1 arrays en AWK
+14.2 arrays asociativos
+14.3 índices string
+14.4 índices numéricos convertidos a string
+14.5 array[key]
+14.6 creación automática
+14.7 asignación
+14.8 lectura
+14.9 key in array
+14.10 diferencia entre array[key] e key in array
+14.11 delete array[key]
+14.12 delete array
+14.13 recorrer arrays
+14.14 for (key in array)
+14.15 orden no garantizado
+14.16 contador de frecuencias
+14.17 conjuntos mediante arrays
+14.18 mapas
+14.19 histogramas
+14.20 agrupaciones
+14.21 laboratorio: construir uniq -c utilizando únicamente AWK

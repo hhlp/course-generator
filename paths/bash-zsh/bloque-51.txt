@@ -1,0 +1,17 @@
+51. Globbing avanzado Zsh
+51.1 EXTENDED_GLOB
+51.2 ^ exclusión
+51.3 ~ exclusión
+51.4 ** recursive
+51.5 glob qualifiers
+51.6 tipos de archivo
+51.7 permisos
+51.8 propietario
+51.9 tamaño
+51.10 tiempo
+51.11 orden
+51.12 selección N
+51.13 modifiers
+51.14 numeric glob sort
+51.15 bare glob qualifiers
+51.16 laboratorio: consultas complejas sin find

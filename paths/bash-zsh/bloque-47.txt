@@ -1,0 +1,13 @@
+47. Introducción profunda a Zsh
+47.1 filosofía de Zsh
+47.2 diferencias con Bash
+47.3 compatibilidad
+47.4 emulation modes
+47.5 emulate
+47.6 native Zsh
+47.7 sh emulation
+47.8 ksh emulation
+47.9 opciones
+47.10 módulos
+47.11 funciones
+47.12 laboratorio

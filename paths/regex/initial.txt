@@ -518,7 +518,7 @@
 24.15 leftmost-first
 24.16 leftmost-longest
 24.17 POSIX semantics
-24.18 Perl-style semantics
+24.18 semántica leftmost-first en motores de backtracking
 24.19 consecuencias prácticas
 24.20 laboratorio: seguir manualmente la ejecución
 
@@ -602,7 +602,7 @@
 28.10 clases POSIX
 28.11 leftmost-longest
 28.12 limitaciones
-28.13 diferencias con regex Perl-like
+28.13 diferencias con dialectos modernos extendidos
 28.14 laboratorio
 
 
@@ -622,41 +622,47 @@
 29.13 laboratorio
 
 
-30. Perl-style Regex
-30.1 evolución desde regex clásicas
-30.2 extensiones modernas
-30.3 (?...)-style constructs
-30.4 grupos no capturadores
-30.5 lookaround
-30.6 lazy quantifiers
-30.7 grupos con nombre
-30.8 atomic groups
-30.9 possessive quantifiers
-30.10 backreferences avanzadas
-30.11 condicionales
-30.12 recursión
-30.13 diferencias entre implementaciones
-30.14 laboratorio
+30. Taxonomía de extensiones modernas de Regex
+30.1 expresiones regulares clásicas frente a dialectos extendidos
+30.2 por qué aparecen extensiones fuera del núcleo clásico
+30.3 familias de construcciones (?...) y dependencia del dialecto
+30.4 extensiones de agrupación y captura
+30.5 identificación y referencias con nombre
+30.6 aserciones lookahead como extensión
+30.7 aserciones lookbehind y sus restricciones
+30.8 estrategias de cuantificación: greedy y lazy
+30.9 cuantificadores posesivos como control del backtracking
+30.10 atomicidad como control del backtracking
+30.11 backreferences y expresividad más allá del núcleo regular clásico
+30.12 condicionales como extensión dependiente del motor
+30.13 subrutinas como extensión dependiente del motor
+30.14 recursión y aumento de expresividad
+30.15 mapa de características no universales
+30.16 distinguir dependencia del dialecto
+30.17 distinguir dependencia de la implementación del motor
+30.18 expresividad frente a portabilidad
+30.19 expresividad frente a garantías de rendimiento
+30.20 laboratorio: construir una matriz de extensiones por dialecto y motor
 
 
 31. PCRE y PCRE2
 31.1 qué es PCRE
 31.2 qué es PCRE2
-31.3 relación con Perl
+31.3 PCRE2 dentro de la familia de dialectos extendidos
 31.4 arquitectura conceptual
 31.5 sintaxis
 31.6 grupos
-31.7 named groups
+31.7 grupos con nombre
 31.8 lookahead
 31.9 lookbehind
 31.10 lookbehind variable
-31.11 atomic groups
-31.12 possessive quantifiers
-31.13 subroutines
-31.14 recursion
-31.15 conditionals
-31.16 control verbs
-31.17 backtracking verbs
+31.11 grupos atómicos
+31.12 cuantificadores posesivos
+31.13 subrutinas
+31.14 recursión
+31.15 condicionales
+31.16 verbos de control
+31.17 verbos de control del backtracking
 31.18 Unicode
 31.19 JIT
 31.20 límites del motor
@@ -666,20 +672,19 @@
 
 32. Otros modelos de motores
 32.1 por qué no existe una única Regex
-32.2 POSIX
-32.3 Perl
-32.4 PCRE2
-32.5 motores basados en backtracking
-32.6 motores basados en autómatas
-32.7 RE2 como modelo conceptual
-32.8 ausencia deliberada de ciertas características
-32.9 seguridad frente a expresividad
-32.10 compatibilidad
-32.11 portabilidad
-32.12 cómo leer documentación de un motor
-32.13 cómo descubrir características soportadas
-32.14 construir una matriz de capacidades
-32.15 laboratorio
+32.2 modelo POSIX y semántica leftmost-longest
+32.3 PCRE2 como motor rico en extensiones
+32.4 motores basados en backtracking
+32.5 motores basados en autómatas
+32.6 motores de tiempo lineal: RE2 como modelo conceptual
+32.7 ausencia deliberada de ciertas características
+32.8 seguridad frente a expresividad
+32.9 compatibilidad
+32.10 portabilidad
+32.11 cómo leer documentación de un motor
+32.12 cómo descubrir características soportadas
+32.13 construir una matriz de capacidades
+32.14 laboratorio
 
 
 33. Regex y teoría de lenguajes
@@ -796,11 +801,11 @@
 38.2 HTML
 38.3 XML
 38.4 JSON
-38.5 lenguajes de programación
+38.5 formatos con sintaxis anidada
 38.6 estructuras arbitrariamente anidadas
 38.7 parsing frente a pattern matching
-38.8 lexer
-38.9 parser
+38.8 análisis léxico como alternativa cuando regex no basta
+38.9 análisis sintáctico como alternativa cuando regex no basta
 38.10 gramáticas
 38.11 cuándo utilizar un parser
 38.12 cuándo una regex sigue siendo apropiada
@@ -813,7 +818,7 @@
 39.2 detectar el dialecto
 39.3 BRE
 39.4 ERE
-39.5 Perl-like
+39.5 dialectos extendidos no POSIX
 39.6 PCRE2
 39.7 diferencias de escape
 39.8 diferencias de grupos
@@ -823,17 +828,17 @@
 39.12 diferencias de Unicode
 39.13 diferencias de anchors
 39.14 diferencias de flags
-39.15 diferencias de replacement
+39.15 diferencias en sintaxis y semántica de sustitución
 39.16 diseñar regex portables
 39.17 cuándo aceptar dependencia del motor
 39.18 laboratorio
 
 
-40. Herramientas y ecosistema
+40. Regex en el ecosistema Unix/Linux
 40.1 separar lenguaje Regex de herramienta
 40.2 identificar qué dialecto utiliza una herramienta
-40.3 documentación del motor
-40.4 documentación de la herramienta
+40.3 identificar y consultar la documentación del motor
+40.4 identificar y consultar la documentación de la herramienta
 40.5 POSIX BRE en herramientas Unix
 40.6 POSIX ERE en herramientas Unix
 40.7 PCRE2 en herramientas que lo soporten
@@ -841,10 +846,10 @@
 40.9 sed como consumidor de regex
 40.10 awk como consumidor de regex
 40.11 ripgrep como consumidor de regex
-40.12 herramientas interactivas de experimentación
+40.12 herramientas locales de experimentación en Fedora/Linux
 40.13 visualizadores de ejecución
 40.14 analizadores de rendimiento
-40.15 límites de los testers online
+40.15 límites de testers externos y diferencias respecto al motor local
 40.16 laboratorio: identificar motor y dialecto antes de escribir el patrón
 
 

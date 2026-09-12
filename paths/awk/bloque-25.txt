@@ -1,0 +1,27 @@
+25. GNU awk en profundidad
+
+25.1 POSIX awk frente a gawk
+25.2 extensiones GNU
+25.3 BEGINFILE
+25.4 ENDFILE
+25.5 nextfile
+25.6 ARGIND
+25.7 FPAT
+25.8 FIELDWIDTHS
+25.9 RT
+25.10 IGNORECASE
+25.11 PROCINFO
+25.12 SYMTAB
+25.13 FUNCTAB
+25.14 arrays de arrays
+25.15 asort()
+25.16 asorti()
+25.17 patsplit()
+25.18 gensub()
+25.19 strtonum()
+25.20 funciones relacionadas con tiempo
+25.21 funciones bitwise
+25.22 namespaces
+25.23 bibliotecas
+25.24 extensiones dinámicas
+25.25 laboratorio: reescribir un programa POSIX aprovechando gawk

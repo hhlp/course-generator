@@ -1,0 +1,19 @@
+39. Portabilidad
+39.1 el mismo patrón no significa universalidad
+39.2 detectar el dialecto
+39.3 BRE
+39.4 ERE
+39.5 dialectos extendidos no POSIX
+39.6 PCRE2
+39.7 diferencias de escape
+39.8 diferencias de grupos
+39.9 diferencias de backreferences
+39.10 diferencias de lookahead
+39.11 diferencias de lookbehind
+39.12 diferencias de Unicode
+39.13 diferencias de anchors
+39.14 diferencias de flags
+39.15 diferencias en sintaxis y semántica de sustitución
+39.16 diseñar regex portables
+39.17 cuándo aceptar dependencia del motor
+39.18 laboratorio

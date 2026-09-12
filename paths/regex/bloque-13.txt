@@ -1,0 +1,24 @@
+13. Lookahead
+13.1 qué es lookahead
+13.2 lookahead positivo
+13.3 (?=...)
+13.4 lookahead negativo
+13.5 (?!...)
+13.6 posición antes del lookahead
+13.7 qué inspecciona
+13.8 por qué no consume
+13.9 match resultante
+13.10 lookahead al principio
+13.11 lookahead en mitad del patrón
+13.12 lookahead al final
+13.13 lookahead con cuantificadores
+13.14 lookahead con alternativas
+13.15 lookahead con capturas
+13.16 múltiples lookahead consecutivos
+13.17 condiciones AND mediante lookahead
+13.18 exclusión mediante lookahead negativo
+13.19 validaciones mediante lookahead
+13.20 restricciones simultáneas
+13.21 lookahead anidado
+13.22 lookahead y backtracking
+13.23 laboratorio

@@ -1,0 +1,13 @@
+18. Grupos atómicos
+18.1 qué significa atomicidad
+18.2 (?>...)
+18.3 impedir backtracking
+18.4 funcionamiento interno
+18.5 grupo normal frente a atómico
+18.6 atomicidad y alternativas
+18.7 atomicidad y cuantificadores
+18.8 grupos atómicos frente a possessive
+18.9 optimización
+18.10 cambios semánticos inesperados
+18.11 soporte según motor
+18.12 laboratorio

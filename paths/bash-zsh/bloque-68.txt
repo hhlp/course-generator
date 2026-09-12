@@ -1,0 +1,12 @@
+68. IPC desde shell
+68.1 pipes
+68.2 named pipes
+68.3 Unix sockets conceptualmente
+68.4 signals
+68.5 files
+68.6 locks
+68.7 coprocesses
+68.8 /dev/fd
+68.9 procfs
+68.10 comunicación con servicios
+68.11 laboratorio

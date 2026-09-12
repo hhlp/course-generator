@@ -1,0 +1,13 @@
+77. Shell remoto
+77.1 ssh command execution
+77.2 quoting local
+77.3 quoting remoto
+77.4 múltiples capas de parsing
+77.5 stdin
+77.6 pseudo-TTY
+77.7 ssh -T
+77.8 ssh -t
+77.9 environment
+77.10 heredocs remotos
+77.11 seguridad
+77.12 laboratorio

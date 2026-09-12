@@ -1,0 +1,21 @@
+21. Transformaciones avanzadas
+
+21.1 invertir líneas
+21.2 invertir caracteres
+21.3 unir líneas según condición
+21.4 separar líneas según condición
+21.5 eliminar líneas duplicadas consecutivas
+21.6 eliminar espacios iniciales
+21.7 eliminar espacios finales
+21.8 normalizar espacios
+21.9 eliminar líneas vacías
+21.10 comprimir múltiples líneas vacías
+21.11 numerar líneas
+21.12 extraer bloques
+21.13 reemplazar solamente dentro de bloques
+21.14 mover contenido
+21.15 intercambiar líneas
+21.16 acumular líneas
+21.17 procesamiento por párrafos
+21.18 implementar pequeñas máquinas de estados
+21.19 laboratorio: biblioteca de transformaciones reutilizables

@@ -1,0 +1,15 @@
+6. Múltiples patrones
+
+6.1 grep -e
+6.2 varios -e
+6.3 alternancia
+6.4 patrón por línea
+6.5 grep -f archivo
+6.6 archivos de patrones
+6.7 patrones vacíos
+6.8 patrones generados dinámicamente
+6.9 stdin como fuente de patrones
+6.10 combinar -e y -f
+6.11 listas blancas
+6.12 listas negras
+6.13 laboratorio: motor de clasificación por patrones

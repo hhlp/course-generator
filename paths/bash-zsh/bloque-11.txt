@@ -1,0 +1,15 @@
+11. Pipes
+11.1 pipe Unix
+11.2 |
+11.3 procesos conectados
+11.4 buffering
+11.5 exit status del pipeline
+11.6 PIPESTATUS
+11.7 pipefail
+11.8 stderr y pipelines
+11.9 |&
+11.10 subshells en pipelines
+11.11 lastpipe Bash
+11.12 multios Zsh
+11.13 errores frecuentes
+11.14 laboratorio

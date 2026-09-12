@@ -1,0 +1,20 @@
+36. Investigación del sistema Fedora
+
+36.1 /etc
+36.2 /usr
+36.3 /var
+36.4 /proc
+36.5 /sys
+36.6 buscar configuraciones
+36.7 buscar referencias a servicios
+36.8 unidades systemd
+36.9 configuración firewalld
+36.10 SELinux
+36.11 OpenSSH
+36.12 RPM
+36.13 SPEC files
+36.14 código fuente
+36.15 permisos y errores
+36.16 pseudo-filesystems
+36.17 cuándo no recorrer un árbol indiscriminadamente
+36.18 laboratorio de investigación Fedora

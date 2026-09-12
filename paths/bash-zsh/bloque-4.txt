@@ -1,0 +1,26 @@
+4. Variables
+4.1 variables shell
+4.2 variables de entorno
+4.3 asignación
+4.4 expansión
+4.5 unset
+4.6 export
+4.7 readonly
+4.8 declare
+4.9 typeset
+4.10 local
+4.11 scope
+4.12 scope dinámico
+4.13 variables especiales
+4.14 BASH_VERSION
+4.15 ZSH_VERSION
+4.16 HOME
+4.17 USER
+4.18 LOGNAME
+4.19 HOSTNAME
+4.20 PWD
+4.21 OLDPWD
+4.22 SHLVL
+4.23 RANDOM
+4.24 SECONDS
+4.25 laboratorio: inspeccionar variables y entorno

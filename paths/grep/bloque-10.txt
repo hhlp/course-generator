@@ -1,0 +1,15 @@
+10. Archivos binarios
+
+10.1 cómo grep detecta binarios
+10.2 mensaje binary file matches
+10.3 --binary-files
+10.4 --binary-files=binary
+10.5 --binary-files=text
+10.6 --binary-files=without-match
+10.7 grep -a
+10.8 grep -I
+10.9 bytes NUL
+10.10 limitaciones de grep con binarios
+10.11 strings | grep
+10.12 cuándo grep no es la herramienta correcta
+10.13 laboratorio

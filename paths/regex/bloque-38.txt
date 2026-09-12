@@ -1,0 +1,15 @@
+38. Qué NO resolver con Regex
+38.1 límites prácticos
+38.2 HTML
+38.3 XML
+38.4 JSON
+38.5 formatos con sintaxis anidada
+38.6 estructuras arbitrariamente anidadas
+38.7 parsing frente a pattern matching
+38.8 análisis léxico como alternativa cuando regex no basta
+38.9 análisis sintáctico como alternativa cuando regex no basta
+38.10 gramáticas
+38.11 cuándo utilizar un parser
+38.12 cuándo una regex sigue siendo apropiada
+38.13 regex como etapa de preprocesamiento
+38.14 laboratorio comparativo

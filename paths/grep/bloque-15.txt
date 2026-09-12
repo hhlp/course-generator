@@ -1,0 +1,15 @@
+15. grep + sed + AWK
+
+15.1 cuándo usar grep
+15.2 cuándo usar sed
+15.3 cuándo usar AWK
+15.4 filtrado frente a transformación
+15.5 grep → sed
+15.6 grep → awk
+15.7 awk sustituyendo grep
+15.8 evitar pipelines innecesarios
+15.9 selección por campos
+15.10 extracción estructurada
+15.11 rendimiento
+15.12 mantenibilidad
+15.13 laboratorio comparativo

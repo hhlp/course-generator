@@ -1,0 +1,21 @@
+30. Taxonomía de extensiones modernas de Regex
+30.1 expresiones regulares clásicas frente a dialectos extendidos
+30.2 por qué aparecen extensiones fuera del núcleo clásico
+30.3 familias de construcciones (?...) y dependencia del dialecto
+30.4 extensiones de agrupación y captura
+30.5 identificación y referencias con nombre
+30.6 aserciones lookahead como extensión
+30.7 aserciones lookbehind y sus restricciones
+30.8 estrategias de cuantificación: greedy y lazy
+30.9 cuantificadores posesivos como control del backtracking
+30.10 atomicidad como control del backtracking
+30.11 backreferences y expresividad más allá del núcleo regular clásico
+30.12 condicionales como extensión dependiente del motor
+30.13 subrutinas como extensión dependiente del motor
+30.14 recursión y aumento de expresividad
+30.15 mapa de características no universales
+30.16 distinguir dependencia del dialecto
+30.17 distinguir dependencia de la implementación del motor
+30.18 expresividad frente a portabilidad
+30.19 expresividad frente a garantías de rendimiento
+30.20 laboratorio: construir una matriz de extensiones por dialecto y motor

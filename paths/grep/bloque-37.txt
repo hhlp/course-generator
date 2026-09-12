@@ -1,0 +1,18 @@
+37. Búsqueda aplicada a RPM
+
+37.1 rpm -ql | grep
+37.2 rpm -qa | grep
+37.3 rpm -q --requires | grep
+37.4 rpm -q --provides | grep
+37.5 dnf repoquery + grep
+37.6 SPEC files
+37.7 macros RPM
+37.8 logs de build
+37.9 rpmlint
+37.10 mock
+37.11 Koji
+37.12 analizar árboles de código fuente con rg
+37.13 localizar Requires
+37.14 localizar macros
+37.15 localizar scriptlets
+37.16 laboratorio RPM

@@ -1,0 +1,28 @@
+7. Operadores y expresiones
+
+7.1 expresiones
+7.2 suma
+7.3 resta
+7.4 multiplicación
+7.5 división
+7.6 módulo
+7.7 exponenciación
+7.8 operadores unarios
+7.9 comparaciones
+7.10 ==
+7.11 !=
+7.12 <
+7.13 <=
+7.14 >
+7.15 >=
+7.16 &&
+7.17 ||
+7.18 !
+7.19 short-circuit evaluation
+7.20 operador ternario
+7.21 concatenación
+7.22 ausencia de operador explícito de concatenación
+7.23 precedencia
+7.24 asociatividad
+7.25 paréntesis
+7.26 laboratorio: construir expresiones complejas sin ambigüedad

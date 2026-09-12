@@ -1,0 +1,13 @@
+41. Configuración de Bash
+41.1 /etc/profile
+41.2 /etc/bashrc
+41.3 ~/.bash_profile
+41.4 ~/.bash_login
+41.5 ~/.profile
+41.6 ~/.bashrc
+41.7 login shell
+41.8 interactive shell
+41.9 non-interactive shell
+41.10 BASH_ENV
+41.11 orden de carga
+41.12 laboratorio: trazar startup

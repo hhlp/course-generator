@@ -1,0 +1,15 @@
+32. Otros modelos de motores
+32.1 por qué no existe una única Regex
+32.2 modelo POSIX y semántica leftmost-longest
+32.3 PCRE2 como motor rico en extensiones
+32.4 motores basados en backtracking
+32.5 motores basados en autómatas
+32.6 motores de tiempo lineal: RE2 como modelo conceptual
+32.7 ausencia deliberada de ciertas características
+32.8 seguridad frente a expresividad
+32.9 compatibilidad
+32.10 portabilidad
+32.11 cómo leer documentación de un motor
+32.12 cómo descubrir características soportadas
+32.13 construir una matriz de capacidades
+32.14 laboratorio

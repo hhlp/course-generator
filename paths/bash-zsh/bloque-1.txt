@@ -1,0 +1,20 @@
+1. Entorno Bash y Zsh
+1.1 descubrir shells instalados
+1.2 /etc/shells
+1.3 $SHELL
+1.4 ps
+1.5 pstree
+1.6 getent passwd
+1.7 chsh
+1.8 bash --version
+1.9 zsh --version
+1.10 command -v
+1.11 type
+1.12 whence en Zsh
+1.13 which y sus limitaciones
+1.14 builtin
+1.15 enable
+1.16 help
+1.17 man
+1.18 info
+1.19 laboratorio: inspeccionar el entorno shell

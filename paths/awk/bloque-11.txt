@@ -1,0 +1,25 @@
+11. Salida
+
+11.1 print
+11.2 múltiples expresiones
+11.3 OFS
+11.4 ORS
+11.5 printf
+11.6 formato de printf
+11.7 %s
+11.8 %d
+11.9 %f
+11.10 %e
+11.11 %g
+11.12 anchura
+11.13 precisión
+11.14 alineación
+11.15 sprintf()
+11.16 generación de strings formateados
+11.17 redirección >
+11.18 redirección >>
+11.19 pipes desde AWK
+11.20 print ... | command
+11.21 close()
+11.22 descriptores y recursos
+11.23 laboratorio: generar informes tabulares profesionales

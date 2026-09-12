@@ -1,0 +1,20 @@
+50. Expansión avanzada Zsh
+50.1 parameter expansion
+50.2 flags
+50.3 ${(q)}
+50.4 ${(Q)}
+50.5 ${(s)}
+50.6 ${(j)}
+50.7 ${(f)}
+50.8 ${(z)}
+50.9 ${(kv)}
+50.10 ${(ok)}
+50.11 ${(u)}
+50.12 nested expansion
+50.13 modifiers
+50.14 :h
+50.15 :t
+50.16 :r
+50.17 :e
+50.18 sustituciones
+50.19 laboratorio

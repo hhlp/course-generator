@@ -1,0 +1,16 @@
+13. Funciones matemáticas
+
+13.1 aritmética en AWK
+13.2 int()
+13.3 sqrt()
+13.4 exp()
+13.5 log()
+13.6 sin()
+13.7 cos()
+13.8 atan2()
+13.9 rand()
+13.10 srand()
+13.11 redondeo
+13.12 generación pseudoaleatoria
+13.13 precisión numérica
+13.14 laboratorio: estadísticas básicas sobre datasets

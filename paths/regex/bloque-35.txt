@@ -1,0 +1,19 @@
+35. Depuración de Regex
+35.1 por qué falla una regex
+35.2 minimizar el patrón
+35.3 minimizar la entrada
+35.4 aislar subexpresiones
+35.5 comprobar escapes
+35.6 comprobar grupos
+35.7 comprobar cuantificadores
+35.8 comprobar anchors
+35.9 comprobar flags
+35.10 comprobar dialecto
+35.11 inspeccionar capturas
+35.12 localizar backtracking
+35.13 analizar alternativas
+35.14 casos positivos
+35.15 casos negativos
+35.16 casos límite
+35.17 regresiones
+35.18 laboratorio de debugging

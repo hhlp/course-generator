@@ -1,0 +1,10 @@
+26. Process substitution
+26.1 <(...)
+26.2 >(...)
+26.3 diferencias con command substitution
+26.4 FIFOs
+26.5 /dev/fd
+26.6 múltiples streams
+26.7 Bash
+26.8 Zsh
+26.9 laboratorio

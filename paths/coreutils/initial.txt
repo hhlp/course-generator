@@ -1,0 +1,2296 @@
+0. Fundamentos del entorno GNU/Linux
+0.1 qué es GNU
+0.2 qué es GNU/Linux
+0.3 user space
+0.4 kernel space
+0.5 shell
+0.6 Bash
+0.7 Zsh
+0.8 comandos internos del shell
+0.9 comandos externos
+0.10 ejecutables
+0.11 PATH
+0.12 type
+0.13 command
+0.14 which y sus limitaciones
+0.15 whereis
+0.16 executable lookup
+0.17 /usr/bin
+0.18 /usr/sbin
+0.19 /bin y /sbin en sistemas usr-merged
+0.20 /usr/libexec
+0.21 exit status
+0.22 stdout
+0.23 stderr
+0.24 stdin
+0.25 file descriptors
+0.26 redirecciones
+0.27 pipes
+0.28 quoting
+0.29 expansión del shell
+0.30 globbing
+0.31 variables de entorno
+0.32 locale
+0.33 LANG
+0.34 LC_ALL
+0.35 LC_COLLATE
+0.36 LC_NUMERIC
+0.37 TZ
+0.38 man
+0.39 info
+0.40 --help
+0.41 apropos
+0.42 documentación GNU
+0.43 rpm -q
+0.44 rpm -qi
+0.45 rpm -ql
+0.46 rpm -qf
+0.47 dnf info
+0.48 laboratorio: descubrir de dónde procede un comando
+
+
+1. GNU Coreutils
+1.1 qué es GNU Coreutils
+1.2 historia
+1.3 paquete coreutils
+1.4 coreutils-common en Fedora
+1.5 rpm -qi coreutils
+1.6 rpm -ql coreutils
+1.7 rpm -ql coreutils-common
+1.8 rpm -qf /usr/bin/ls
+1.9 descubrir todos los ejecutables
+1.10 documentación info
+1.11 páginas man
+1.12 coreutils --version
+1.13 versión instalada
+1.14 upstream frente a paquete Fedora
+1.15 POSIX frente a extensiones GNU
+1.16 comportamiento dependiente del locale
+1.17 variables de entorno relevantes
+1.18 convenciones de operandos
+1.19 OPTION
+1.20 OPERAND
+1.21 opciones cortas
+1.22 opciones largas
+1.23 combinación de opciones cortas
+1.24 argumentos de opciones
+1.25 argumentos opcionales
+1.26 --
+1.27 nombres comenzados por -
+1.28 exit status
+1.29 diagnósticos
+1.30 laboratorio: construir el mapa completo de Coreutils
+
+
+2. Convenciones y opciones GNU en profundidad
+2.1 --help
+2.2 --version
+2.3 --
+2.4 -v / --verbose
+2.5 -q / --quiet
+2.6 -f / --force
+2.7 -i / --interactive
+2.8 -n / --no-clobber
+2.9 --preserve
+2.10 --no-preserve
+2.11 --reference
+2.12 --recursive
+2.13 --dereference
+2.14 --no-dereference
+2.15 --parents
+2.16 --backup
+2.17 VERSION_CONTROL
+2.18 SIMPLE_BACKUP_SUFFIX
+2.19 --suffix
+2.20 --target-directory
+2.21 --no-target-directory
+2.22 --preserve-root
+2.23 --no-preserve-root
+2.24 --one-file-system
+2.25 --files0-from
+2.26 delimitación NUL
+2.27 opciones incompatibles
+2.28 precedencia de opciones
+2.29 opciones repetidas
+2.30 POSIXLY_CORRECT
+2.31 _POSIX2_VERSION
+2.32 QUOTING_STYLE
+2.33 BLOCK_SIZE
+2.34 BLOCKSIZE
+2.35 GNU extensions
+2.36 laboratorio: analizar opciones comunes entre utilidades
+
+
+3. Navegación e inspección de directorios
+3.1 pwd
+3.2 pwd -L
+3.3 pwd -P
+3.4 dirname
+3.5 basename
+3.6 realpath
+3.7 realpath -e
+3.8 realpath -m
+3.9 realpath --relative-to
+3.10 realpath --relative-base
+3.11 readlink
+3.12 readlink -f
+3.13 readlink -e
+3.14 readlink -m
+3.15 diferencias readlink / realpath
+3.16 ls
+3.17 ls -l
+3.18 ls -a
+3.19 ls -A
+3.20 ls -h
+3.21 ls -R
+3.22 ls -d
+3.23 ls -i
+3.24 ls -n
+3.25 ls -S
+3.26 ls -t
+3.27 ls -r
+3.28 ls -U
+3.29 ls -f
+3.30 ls --sort
+3.31 ls --time
+3.32 ls --time-style
+3.33 ls --color
+3.34 LS_COLORS
+3.35 dircolors
+3.36 stat
+3.37 stat --format
+3.38 stat --printf
+3.39 stat sobre filesystems
+3.40 laboratorio: inspeccionar un árbol de archivos
+
+
+4. Crear directorios y archivos
+4.1 mkdir
+4.2 mkdir -p
+4.3 mkdir -m
+4.4 mkdir -v
+4.5 mkfifo
+4.6 mknod
+4.7 tipos de nodos
+4.8 major/minor numbers
+4.9 touch
+4.10 timestamps
+4.11 atime
+4.12 mtime
+4.13 ctime
+4.14 birth time
+4.15 touch -a
+4.16 touch -m
+4.17 touch -d
+4.18 touch -t
+4.19 touch -r
+4.20 install
+4.21 install -d
+4.22 install -m
+4.23 install -o
+4.24 install -g
+4.25 install -D
+4.26 laboratorio
+
+
+5. Copiar archivos — cp en profundidad
+5.1 cp
+5.2 source y destination
+5.3 múltiples fuentes
+5.4 cp -r
+5.5 cp -R
+5.6 cp -a
+5.7 archive mode
+5.8 cp -p
+5.9 --preserve
+5.10 mode
+5.11 ownership
+5.12 timestamps
+5.13 links
+5.14 context
+5.15 xattr
+5.16 cp -d
+5.17 cp -L
+5.18 cp -P
+5.19 symlinks
+5.20 hard links
+5.21 cp -H
+5.22 cp -u
+5.23 cp -i
+5.24 cp -f
+5.25 cp -n
+5.26 backup
+5.27 sparse files
+5.28 --sparse
+5.29 reflinks
+5.30 --reflink
+5.31 CoW
+5.32 --attributes-only
+5.33 --parents
+5.34 --one-file-system
+5.35 SELinux contexts
+5.36 errores y condiciones de carrera
+5.37 laboratorio avanzado
+
+
+6. mv y renombrado
+6.1 mv
+6.2 rename dentro del mismo filesystem
+6.3 movimiento entre filesystems
+6.4 diferencias conceptuales entre rename y copy+remove
+6.5 mv -i
+6.6 mv -f
+6.7 mv -n
+6.8 mv -u
+6.9 backups
+6.10 atomicidad
+6.11 límites de atomicidad
+6.12 symlinks
+6.13 directorios
+6.14 filesystems diferentes
+6.15 condiciones de carrera
+6.16 laboratorio
+
+
+7. rm y eliminación segura
+7.1 rm
+7.2 unlink
+7.3 rm -f
+7.4 rm -i
+7.5 rm -I
+7.6 rm -r
+7.7 rm -R
+7.8 rm -d
+7.9 rm --one-file-system
+7.10 --preserve-root
+7.11 protección frente a rm /
+7.12 nombres problemáticos
+7.13 --
+7.14 inode y unlink
+7.15 archivos abiertos eliminados
+7.16 enlaces
+7.17 recuperación
+7.18 por qué rm no garantiza borrado físico
+7.19 shred
+7.20 limitaciones de shred
+7.21 SSD
+7.22 CoW
+7.23 snapshots
+7.24 laboratorio seguro
+
+
+8. Enlaces
+8.1 inode
+8.2 hard link
+8.3 symbolic link
+8.4 ln
+8.5 ln -s
+8.6 ln -f
+8.7 ln -i
+8.8 ln -n
+8.9 ln -T
+8.10 ln -r
+8.11 enlaces relativos
+8.12 enlaces absolutos
+8.13 dangling symlink
+8.14 límites entre filesystems
+8.15 link count
+8.16 laboratorio
+
+
+9. Permisos y propiedad
+9.1 chmod
+9.2 representación octal
+9.3 representación simbólica
+9.4 u/g/o/a
+9.5 r/w/x
+9.6 X
+9.7 s
+9.8 t
+9.9 setuid
+9.10 setgid
+9.11 sticky bit
+9.12 chmod -R
+9.13 chmod --reference
+9.14 chown
+9.15 user
+9.16 group
+9.17 UID
+9.18 GID
+9.19 chown -R
+9.20 symlinks y ownership
+9.21 chgrp
+9.22 umask frente a chmod
+9.23 ACL como mecanismo relacionado
+9.24 SELinux frente a permisos DAC
+9.25 laboratorio
+
+
+10. Visualización de archivos
+10.1 cat
+10.2 cat -n
+10.3 cat -b
+10.4 cat -A
+10.5 cat -E
+10.6 cat -T
+10.7 tac
+10.8 nl
+10.9 head
+10.10 head -n
+10.11 head -c
+10.12 tail
+10.13 tail -n
+10.14 tail -c
+10.15 tail -f
+10.16 tail -F
+10.17 tail --pid
+10.18 rotación de logs
+10.19 od
+10.20 representación octal
+10.21 hexadecimal
+10.22 caracteres
+10.23 herramientas hexadecimales relacionadas
+10.24 laboratorio
+
+
+11. Procesamiento básico de texto
+11.1 wc
+11.2 bytes
+11.3 characters
+11.4 words
+11.5 lines
+11.6 max-line-length
+11.7 cut
+11.8 bytes
+11.9 characters
+11.10 fields
+11.11 delimiter
+11.12 --output-delimiter
+11.13 paste
+11.14 paste -s
+11.15 join
+11.16 campos
+11.17 claves
+11.18 delimitadores
+11.19 comm
+11.20 columnas
+11.21 prerequisito de ordenación
+11.22 expand
+11.23 unexpand
+11.24 tabs
+11.25 fmt
+11.26 fold
+11.27 laboratorio
+
+
+12. sort en profundidad
+12.1 sort
+12.2 orden lexicográfico
+12.3 locale
+12.4 LC_COLLATE
+12.5 sort -n
+12.6 sort -g
+12.7 sort -h
+12.8 sort -V
+12.9 sort -M
+12.10 sort -r
+12.11 sort -u
+12.12 sort -f
+12.13 sort -b
+12.14 sort -d
+12.15 sort -k
+12.16 sintaxis KEYDEF
+12.17 múltiples claves
+12.18 separador -t
+12.19 stable sort
+12.20 sort -s
+12.21 sort -c
+12.22 sort -C
+12.23 sort -z
+12.24 directorio temporal
+12.25 --parallel
+12.26 --buffer-size
+12.27 external sorting
+12.28 archivos mayores que RAM
+12.29 rendimiento
+12.30 laboratorio con datasets grandes
+
+
+13. uniq en profundidad
+13.1 uniq
+13.2 líneas adyacentes
+13.3 uniq -c
+13.4 uniq -d
+13.5 uniq -D
+13.6 uniq -u
+13.7 uniq -i
+13.8 skip-fields
+13.9 skip-chars
+13.10 check-chars
+13.11 NUL
+13.12 sort | uniq
+13.13 sort -u
+13.14 laboratorio
+
+
+14. tr en profundidad
+14.1 tr
+14.2 SET1
+14.3 SET2
+14.4 rangos
+14.5 clases POSIX
+14.6 [:alpha:]
+14.7 [:digit:]
+14.8 [:space:]
+14.9 complement
+14.10 delete
+14.11 squeeze
+14.12 translate
+14.13 locale
+14.14 bytes frente a caracteres
+14.15 laboratorio
+
+
+15. split y csplit
+15.1 split
+15.2 división por líneas
+15.3 bytes
+15.4 tamaños
+15.5 suffix length
+15.6 numeric suffix
+15.7 additional suffix
+15.8 filter
+15.9 csplit
+15.10 patrones
+15.11 offsets
+15.12 repeticiones
+15.13 archivos grandes
+15.14 recomposición
+15.15 laboratorio
+
+
+16. tee y pipelines
+16.1 tee
+16.2 stdout
+16.3 múltiples archivos
+16.4 append
+16.5 signals
+16.6 --output-error
+16.7 pipelines
+16.8 PIPESTATUS
+16.9 pipefail
+16.10 buffering
+16.11 SIGPIPE
+16.12 laboratorio
+
+
+17. Secuencias y generación de datos
+17.1 seq
+17.2 FIRST
+17.3 INCREMENT
+17.4 LAST
+17.5 números negativos
+17.6 floating point
+17.7 format
+17.8 equal-width
+17.9 separadores
+17.10 precisión
+17.11 problemas de floating point
+17.12 yes
+17.13 generación masiva
+17.14 laboratorio
+
+
+18. printf
+18.1 printf de Coreutils
+18.2 printf builtin del shell
+18.3 diferencias
+18.4 FORMAT
+18.5 %s
+18.6 %d
+18.7 %i
+18.8 %u
+18.9 %o
+18.10 %x
+18.11 %X
+18.12 %f
+18.13 %e
+18.14 %g
+18.15 anchura
+18.16 precisión
+18.17 padding
+18.18 escapes
+18.19 %b
+18.20 quoting
+18.21 locale
+18.22 laboratorio
+
+
+19. expr y evaluación
+19.1 expr
+19.2 aritmética
+19.3 comparaciones
+19.4 operaciones lógicas
+19.5 strings
+19.6 regex en expr
+19.7 precedencia
+19.8 quoting
+19.9 exit status
+19.10 expr frente a aritmética del shell
+19.11 usos históricos
+19.12 laboratorio
+
+
+20. date en profundidad
+20.1 date
+20.2 reloj del sistema
+20.3 RTC frente a system clock
+20.4 UTC
+20.5 timezone
+20.6 TZ
+20.7 locale
+20.8 formatos
+20.9 %Y
+20.10 %m
+20.11 %d
+20.12 %H
+20.13 %M
+20.14 %S
+20.15 %s
+20.16 nanoseconds
+20.17 ISO 8601
+20.18 RFC 3339
+20.19 --iso-8601
+20.20 --rfc-3339
+20.21 --date
+20.22 relative dates
+20.23 parsing
+20.24 SOURCE_DATE_EPOCH
+20.25 reproducible builds
+20.26 date -r
+20.27 epoch
+20.28 conversiones
+20.29 DST
+20.30 ambigüedades temporales
+20.31 laboratorio
+
+
+21. sleep y temporización
+21.1 sleep
+21.2 segundos
+21.3 sufijos
+21.4 valores fraccionarios
+21.5 señales
+21.6 time como herramienta relacionada
+21.7 timeout
+21.8 timeout signal
+21.9 kill-after
+21.10 preserve-status
+21.11 foreground
+21.12 laboratorio
+
+
+22. Identidad y usuarios
+22.1 id
+22.2 UID
+22.3 effective UID
+22.4 GID
+22.5 supplementary groups
+22.6 groups
+22.7 whoami
+22.8 logname
+22.9 who
+22.10 users
+22.11 pinky
+22.12 tty
+22.13 laboratorio
+
+
+23. Información del sistema
+23.1 uname
+23.2 kernel name
+23.3 nodename
+23.4 kernel release
+23.5 kernel version
+23.6 machine
+23.7 architecture
+23.8 hostname frente a uname
+23.9 nproc
+23.10 CPU affinity
+23.11 getconf como herramienta relacionada
+23.12 hostid
+23.13 uptime
+23.14 laboratorio
+
+
+24. Sistemas de archivos y almacenamiento
+24.1 df
+24.2 filesystem
+24.3 blocks
+24.4 inodes
+24.5 df -h
+24.6 df -i
+24.7 filesystem type
+24.8 --output
+24.9 local filesystems
+24.10 sync
+24.11 sync filesystem
+24.12 sync data
+24.13 du
+24.14 apparent size
+24.15 disk usage
+24.16 sparse files
+24.17 hard links
+24.18 du -h
+24.19 du -s
+24.20 du -a
+24.21 du --max-depth
+24.22 du --one-file-system
+24.23 exclude
+24.24 NUL input
+24.25 numfmt
+24.26 human-readable
+24.27 SI frente a IEC
+24.28 BLOCK_SIZE
+24.29 truncate
+24.30 sparse files
+24.31 laboratorio
+
+
+25. Checksums y hashes
+25.1 cksum
+25.2 CRC
+25.3 md5sum
+25.4 sha1sum
+25.5 sha224sum
+25.6 sha256sum
+25.7 sha384sum
+25.8 sha512sum
+25.9 b2sum
+25.10 sum
+25.11 generar hashes
+25.12 comprobar hashes
+25.13 archivos de checksums
+25.14 --check
+25.15 --status
+25.16 --quiet
+25.17 delimitación NUL
+25.18 integridad frente a autenticidad
+25.19 hashes criptográficos frente a checksums
+25.20 laboratorio
+
+
+26. Codificación y transformación
+26.1 base64
+26.2 encoding
+26.3 decoding
+26.4 wrapping
+26.5 base32
+26.6 basenc
+26.7 base16
+26.8 base32
+26.9 base32hex
+26.10 base64
+26.11 base64url
+26.12 base85
+26.13 base2
+26.14 laboratorio
+
+
+27. Nombres y rutas
+27.1 basename
+27.2 múltiples argumentos
+27.3 suffix
+27.4 dirname
+27.5 path components
+27.6 realpath
+27.7 readlink
+27.8 path canonicalization
+27.9 symlink resolution
+27.10 NUL
+27.11 laboratorio
+
+
+28. Operaciones con NUL
+28.1 problema de newline como delimitador
+28.2 espacios
+28.3 tabs
+28.4 newlines dentro de filenames
+28.5 NUL como delimitador seguro
+28.6 -z
+28.7 -0
+28.8 --zero
+28.9 --files0-from
+28.10 find -print0
+28.11 xargs -0
+28.12 sort -z
+28.13 uniq -z
+28.14 cut -z
+28.15 du --files0-from
+28.16 pipelines seguros
+28.17 laboratorio con nombres hostiles
+
+
+29. Variables de entorno relevantes
+29.1 LANG
+29.2 LC_ALL
+29.3 LC_COLLATE
+29.4 LC_CTYPE
+29.5 LC_NUMERIC
+29.6 LC_TIME
+29.7 TZ
+29.8 POSIXLY_CORRECT
+29.9 BLOCK_SIZE
+29.10 BLOCKSIZE
+29.11 QUOTING_STYLE
+29.12 TIME_STYLE
+29.13 VERSION_CONTROL
+29.14 SIMPLE_BACKUP_SUFFIX
+29.15 TMPDIR
+29.16 laboratorio
+
+
+30. BC — fundamentos
+30.1 qué es bc
+30.2 paquete bc en Fedora
+30.3 rpm -qi bc
+30.4 rpm -ql bc
+30.5 bc interactivo
+30.6 bc desde stdin
+30.7 bc desde archivo
+30.8 lenguaje bc
+30.9 números
+30.10 precisión arbitraria
+30.11 variables
+30.12 operadores
+30.13 precedencia
+30.14 expresiones
+30.15 asignación
+30.16 comentarios
+30.17 print
+30.18 strings
+30.19 quit
+30.20 laboratorio
+
+
+31. BC — aritmética en profundidad
+31.1 suma
+31.2 resta
+31.3 multiplicación
+31.4 división
+31.5 módulo
+31.6 potencia
+31.7 scale
+31.8 ibase
+31.9 obase
+31.10 last
+31.11 conversiones de base
+31.12 binario
+31.13 octal
+31.14 hexadecimal
+31.15 precisión
+31.16 truncamiento
+31.17 comportamiento decimal
+31.18 números grandes
+31.19 laboratorio
+
+
+32. BC — programación
+32.1 variables
+32.2 arrays
+32.3 if
+32.4 else
+32.5 while
+32.6 for
+32.7 break
+32.8 continue
+32.9 funciones
+32.10 define
+32.11 parámetros
+32.12 variables automáticas
+32.13 return
+32.14 scope
+32.15 biblioteca matemática
+32.16 bc -l
+32.17 sqrt
+32.18 funciones trigonométricas
+32.19 logaritmos
+32.20 exponenciales
+32.21 scripts bc
+32.22 laboratorio
+
+
+33. BC + shell
+33.1 echo | bc
+33.2 printf | bc
+33.3 here-document
+33.4 here-string
+33.5 command substitution
+33.6 variables shell → bc
+33.7 resultados bc → shell
+33.8 cálculos decimales
+33.9 porcentajes
+33.10 unidades
+33.11 estadísticas simples
+33.12 procesamiento de streams
+33.13 bc frente a $(( ))
+33.14 bc frente a awk
+33.15 bc frente a Python
+33.16 seguridad de entrada
+33.17 laboratorio
+
+
+34. GNU Findutils
+34.1 qué es GNU Findutils
+34.2 paquete findutils
+34.3 rpm -qi findutils
+34.4 rpm -ql findutils
+34.5 find
+34.6 xargs
+34.7 locate y herramientas relacionadas
+34.8 POSIX find
+34.9 GNU find
+34.10 extensiones GNU
+34.11 expresión find
+34.12 starting points
+34.13 tests
+34.14 actions
+34.15 operators
+34.16 precedencia
+34.17 evaluación short-circuit
+34.18 laboratorio: mapa completo de GNU Findutils
+
+
+35. FIND — fundamentos
+35.1 find PATH
+35.2 .
+35.3 múltiples starting points
+35.4 expresión
+35.5 -print
+35.6 -print0
+35.7 -name
+35.8 -iname
+35.9 glob patterns
+35.10 quoting obligatorio
+35.11 -path
+35.12 -ipath
+35.13 -wholename
+35.14 -regex
+35.15 -iregex
+35.16 regextype
+35.17 -type
+35.18 f
+35.19 d
+35.20 l
+35.21 b
+35.22 c
+35.23 p
+35.24 s
+35.25 laboratorio
+
+
+36. FIND — tamaño y metadatos
+36.1 -size
+36.2 unidades
+36.3 +N
+36.4 -N
+36.5 -empty
+36.6 -links
+36.7 -inum
+36.8 -samefile
+36.9 -uid
+36.10 -gid
+36.11 -user
+36.12 -group
+36.13 -nouser
+36.14 -nogroup
+36.15 -readable
+36.16 -writable
+36.17 -executable
+36.18 -perm
+36.19 modos exactos
+36.20 any-bit
+36.21 all-bits
+36.22 laboratorio
+
+
+37. FIND — tiempo
+37.1 -atime
+37.2 -mtime
+37.3 -ctime
+37.4 unidades de 24 horas
+37.5 redondeo
+37.6 +N
+37.7 -N
+37.8 -amin
+37.9 -mmin
+37.10 -cmin
+37.11 -newer
+37.12 -anewer
+37.13 -cnewer
+37.14 -newerXY
+37.15 archivos de referencia
+37.16 timestamps
+37.17 birth time y limitaciones
+37.18 -daystart
+37.19 laboratorio
+
+
+38. FIND — profundidad y recorrido
+38.1 traversal
+38.2 depth-first
+38.3 -depth
+38.4 -maxdepth
+38.5 -mindepth
+38.6 -prune
+38.7 excluir directorios
+38.8 -mount
+38.9 -xdev
+38.10 filesystem boundaries
+38.11 -fstype
+38.12 symlinks
+38.13 -P
+38.14 -L
+38.15 -H
+38.16 loops
+38.17 race conditions
+38.18 laboratorio
+
+
+39. FIND — expresiones booleanas
+39.1 expresión como lenguaje
+39.2 implicit -a
+39.3 -a
+39.4 -and
+39.5 -o
+39.6 -or
+39.7 !
+39.8 -not
+39.9 paréntesis
+39.10 quoting de paréntesis
+39.11 precedencia
+39.12 short circuit
+39.13 side effects
+39.14 coma
+39.15 evaluación paso a paso
+39.16 expresiones complejas
+39.17 laboratorio
+
+
+40. FIND — acciones
+40.1 -print
+40.2 -print0
+40.3 -printf
+40.4 directivas printf
+40.5 metadata
+40.6 -fprint
+40.7 -fprint0
+40.8 -fprintf
+40.9 -ls
+40.10 -delete
+40.11 implicaciones de -delete
+40.12 -exec
+40.13 {} \;
+40.14 {} +
+40.15 batching
+40.16 -execdir
+40.17 seguridad de -execdir
+40.18 -ok
+40.19 -okdir
+40.20 laboratorio
+
+
+41. FIND — printf en profundidad
+41.1 %p
+41.2 %f
+41.3 %h
+41.4 %H
+41.5 %P
+41.6 %s
+41.7 %k
+41.8 %b
+41.9 %m
+41.10 %M
+41.11 %u
+41.12 %g
+41.13 %U
+41.14 %G
+41.15 %i
+41.16 %n
+41.17 %y
+41.18 %Y
+41.19 timestamps
+41.20 %T
+41.21 %A
+41.22 %C
+41.23 formato
+41.24 delimitación NUL
+41.25 generación de informes
+41.26 laboratorio
+
+
+42. FIND — permisos avanzados
+42.1 -perm MODE
+42.2 -perm -MODE
+42.3 -perm /MODE
+42.4 symbolic modes
+42.5 setuid
+42.6 setgid
+42.7 sticky
+42.8 auditoría de permisos
+42.9 archivos world-writable
+42.10 ejecutables
+42.11 propietarios
+42.12 grupos
+42.13 combinación con -user
+42.14 combinación con -group
+42.15 seguridad
+42.16 laboratorio
+
+
+43. FIND — enlaces
+43.1 symlinks
+43.2 hard links
+43.3 -links
+43.4 -inum
+43.5 -samefile
+43.6 -xtype
+43.7 -lname
+43.8 -ilname
+43.9 dangling links
+43.10 -L
+43.11 loops
+43.12 detección de enlaces
+43.13 laboratorio
+
+
+44. FIND — regex
+44.1 -regex
+44.2 regex sobre ruta completa
+44.3 -iregex
+44.4 -regextype
+44.5 emacs
+44.6 posix-awk
+44.7 posix-basic
+44.8 posix-egrep
+44.9 posix-extended
+44.10 find regex frente a shell glob
+44.11 find regex frente a grep regex
+44.12 quoting
+44.13 laboratorio
+
+
+45. FIND — optimización
+45.1 coste de búsqueda
+45.2 filesystem traversal
+45.3 metadata
+45.4 d_type
+45.5 orden de tests
+45.6 optimizer
+45.7 -O0
+45.8 -O1
+45.9 -O2
+45.10 -O3
+45.11 -D
+45.12 debug options
+45.13 tree
+45.14 search
+45.15 stat
+45.16 rates
+45.17 opt
+45.18 exec
+45.19 rendimiento en árboles grandes
+45.20 filesystems remotos
+45.21 laboratorio benchmark
+
+
+46. FIND — seguridad y condiciones de carrera
+46.1 TOCTOU
+46.2 -exec
+46.3 directorios modificables
+46.4 PATH
+46.5 -execdir
+46.6 -delete
+46.7 symlink attacks
+46.8 permisos
+46.9 búsquedas ejecutadas como root
+46.10 nombres hostiles
+46.11 delimitación NUL
+46.12 find + shell
+46.13 command injection
+46.14 quoting
+46.15 principio de mínimo privilegio
+46.16 laboratorio
+
+
+47. XARGS — fundamentos
+47.1 qué es xargs
+47.2 stdin
+47.3 construcción de argumentos
+47.4 whitespace parsing
+47.5 quoting
+47.6 EOF
+47.7 -0
+47.8 find -print0 | xargs -0
+47.9 -d
+47.10 -n
+47.11 -L
+47.12 -s
+47.13 -x
+47.14 -r
+47.15 -I
+47.16 replacement strings
+47.17 -t
+47.18 -p
+47.19 laboratorio
+
+
+48. XARGS — ejecución avanzada
+48.1 batching
+48.2 ARG_MAX
+48.3 --show-limits
+48.4 tamaño máximo de argumentos
+48.5 environment size
+48.6 -P
+48.7 ejecución paralela
+48.8 --process-slot-var
+48.9 concurrencia
+48.10 orden de salida
+48.11 errores
+48.12 exit status
+48.13 señales
+48.14 find -exec {} + frente a xargs
+48.15 cuándo usar cada uno
+48.16 laboratorio
+
+
+49. FIND + XARGS + COREUTILS
+49.1 find + sort
+49.2 find + du
+49.3 find + stat
+49.4 find + sha256sum
+49.5 find + chmod
+49.6 find + chown
+49.7 find + cp
+49.8 find + mv
+49.9 find + rm
+49.10 find + touch
+49.11 find + basename
+49.12 find + dirname
+49.13 find + realpath
+49.14 find + wc
+49.15 find + cut
+49.16 find + tr
+49.17 find + xargs
+49.18 pipelines NUL-safe
+49.19 laboratorio
+
+
+50. Coreutils en scripting
+50.1 composición Unix
+50.2 filtros
+50.3 pipelines
+50.4 command substitution
+50.5 process substitution
+50.6 exit status
+50.7 pipefail
+50.8 stderr
+50.9 redirecciones
+50.10 archivos temporales
+50.11 mktemp
+50.12 cleanup
+50.13 trap
+50.14 idempotencia
+50.15 atomicidad
+50.16 validación
+50.17 quoting
+50.18 nombres hostiles
+50.19 locale estable
+50.20 LC_ALL=C
+50.21 scripts robustos
+50.22 laboratorio
+
+
+51. mktemp en profundidad
+51.1 archivos temporales
+51.2 directorios temporales
+51.3 templates
+51.4 suffix
+51.5 TMPDIR
+51.6 permisos
+51.7 umask
+51.8 race conditions
+51.9 creación segura
+51.10 cleanup
+51.11 trap
+51.12 laboratorio
+
+
+52. test y expresiones relacionadas
+52.1 test como Coreutils
+52.2 test builtin
+52.3 [
+52.4 diferencias con [[
+52.5 archivos
+52.6 directorios
+52.7 symlinks
+52.8 permisos
+52.9 strings
+52.10 integers
+52.11 operadores
+52.12 precedencia histórica
+52.13 quoting
+52.14 exit status
+52.15 laboratorio
+
+
+53. env y ejecución de procesos
+53.1 env
+53.2 mostrar entorno
+53.3 modificar entorno
+53.4 entorno vacío
+53.5 -i
+53.6 -u
+53.7 NAME=VALUE
+53.8 ejecutar comandos
+53.9 PATH
+53.10 shebang con env
+53.11 env -S
+53.12 chroot
+53.13 nice
+53.14 nohup
+53.15 stdbuf
+53.16 buffering
+53.17 laboratorio
+
+
+54. Control de ejecución
+54.1 timeout
+54.2 nice
+54.3 nohup
+54.4 stdbuf
+54.5 env
+54.6 chroot
+54.7 señales
+54.8 prioridades
+54.9 buffering
+54.10 procesos hijos
+54.11 exit status
+54.12 laboratorio
+
+
+55. dd en profundidad
+55.1 dd
+55.2 if
+55.3 of
+55.4 ibs
+55.5 obs
+55.6 bs
+55.7 count
+55.8 skip
+55.9 seek
+55.10 status
+55.11 status=progress
+55.12 conv
+55.13 notrunc
+55.14 noerror
+55.15 sync
+55.16 sparse
+55.17 fsync
+55.18 fdatasync
+55.19 iflag
+55.20 oflag
+55.21 direct I/O
+55.22 fullblock
+55.23 block devices
+55.24 imágenes
+55.25 copias parciales
+55.26 rendimiento
+55.27 riesgos
+55.28 laboratorio seguro
+
+
+56. Rendimiento práctico
+56.1 coste de procesos
+56.2 builtins frente a ejecutables
+56.3 pipelines
+56.4 buffering
+56.5 block size
+56.6 metadata y recorrido de directorios
+56.7 locale
+56.8 LC_ALL=C
+56.9 sort memory
+56.10 sort parallel
+56.11 xargs parallel
+56.12 find optimizer
+56.13 filesystem cache
+56.14 page cache
+56.15 archivos pequeños frente a grandes
+56.16 local frente a remoto
+56.17 benchmark correcto
+56.18 hyperfine como herramienta relacionada
+56.19 medir antes de optimizar
+56.20 laboratorio
+
+
+57. Portabilidad
+57.1 POSIX
+57.2 GNU
+57.3 BSD
+57.4 BusyBox
+57.5 GNU Coreutils
+57.6 opciones GNU-only
+57.7 long options
+57.8 comportamiento POSIX
+57.9 POSIXLY_CORRECT
+57.10 scripts portables
+57.11 find POSIX
+57.12 GNU find
+57.13 xargs POSIX
+57.14 GNU xargs
+57.15 printf
+57.16 date
+57.17 stat
+57.18 sed/awk como herramientas relacionadas
+57.19 detectar capacidades
+57.20 laboratorio
+
+
+58. Seguridad
+58.1 filenames hostiles
+58.2 option injection
+58.3 --
+58.4 command injection
+58.5 shell expansion
+58.6 globbing
+58.7 symlink attacks
+58.8 TOCTOU
+58.9 permisos
+58.10 ownership
+58.11 temporary files
+58.12 root
+58.13 find -exec
+58.14 find -execdir
+58.15 xargs
+58.16 NUL delimiters
+58.17 rm
+58.18 cp
+58.19 chown
+58.20 chmod
+58.21 chroot
+58.22 principio de mínimo privilegio
+58.23 laboratorio
+
+
+59. Diagnóstico
+59.1 exit status
+59.2 stderr
+59.3 --verbose
+59.4 type
+59.5 command
+59.6 rpm -qf
+59.7 rpm -V
+59.8 locale
+59.9 permisos
+59.10 SELinux
+59.11 filesystem
+59.12 espacio disponible
+59.13 inodes disponibles
+59.14 symlinks
+59.15 mounts
+59.16 find -D
+59.17 find optimizer
+59.18 xargs --show-limits
+59.19 reproducir problemas con dry-run
+59.20 laboratorio
+
+
+60. RSYNC — fundamentos
+60. Internals de GNU Coreutils
+60.1 código fuente
+60.2 estructura del proyecto
+60.3 gnulib
+60.4 portability layer
+60.5 lib/
+60.6 src/
+60.7 tests/
+60.8 build system
+60.9 Autoconf
+60.10 Automake
+60.11 configure
+60.12 make
+60.13 testsuite
+60.14 implementación de una utilidad
+60.15 option parsing
+60.16 getopt_long
+60.17 file descriptors
+60.18 syscalls
+60.19 errno
+60.20 diagnostics
+60.21 locale
+60.22 i18n
+60.23 laboratorio: compilar Coreutils
+
+61. Internals de GNU Findutils
+61.1 código fuente
+61.2 arquitectura
+61.3 find
+61.4 parser de expresiones
+61.5 AST conceptual
+61.6 predicates
+61.7 actions
+61.8 traversal
+61.9 FTS y mecanismos de recorrido
+61.10 optimizer
+61.11 cost
+61.12 probability
+61.13 side effects
+61.14 expression normalization
+61.15 optimization levels
+61.16 debug tree
+61.17 xargs
+61.18 construcción de argumentos
+61.19 ARG_MAX
+61.20 ejecución paralela
+61.21 testsuite
+61.22 build system
+61.23 gnulib
+61.24 laboratorio: compilar GNU Findutils
+61.25 laboratorio: seguir una expresión find desde el parser hasta su ejecución
+
+62.1 qué es rsync
+62.2 qué problema resuelve
+62.3 paquete rsync en Fedora
+62.4 rpm -qi rsync
+62.5 rpm -ql rsync
+62.6 rsync --version
+62.7 rsync --help
+62.8 man rsync
+62.9 source
+62.10 destination
+62.11 copia local
+62.12 copia remota
+62.13 sintaxis source/destination
+62.14 importancia del slash final /
+62.15 directorio frente a contenido del directorio
+62.16 transferencia incremental
+62.17 quick check
+62.18 tamaño
+62.19 timestamps
+62.20 archivos modificados
+62.21 exit status
+62.22 -v / --verbose
+62.23 -q / --quiet
+62.24 -n / --dry-run
+62.25 --itemize-changes
+62.26 --stats
+62.27 --progress
+62.28 --info
+62.29 --debug
+62.30 laboratorio: primeras sincronizaciones
+
+
+61. RSYNC — archive mode y preservación
+63.1 -a / --archive
+63.2 qué implica -a
+63.3 qué no implica -a
+63.4 -r / --recursive
+63.5 -l / --links
+63.6 -p / --perms
+63.7 -t / --times
+63.8 -g / --group
+63.9 -o / --owner
+63.10 -D
+63.11 --devices
+63.12 --specials
+63.13 -H / --hard-links
+63.14 -A / --acls
+63.15 -X / --xattrs
+63.16 extended attributes
+63.17 ACL
+63.18 SELinux contexts almacenados como xattrs
+63.19 capabilities y xattrs
+63.20 --numeric-ids
+63.21 UID/GID
+63.22 --usermap
+63.23 --groupmap
+63.24 symlinks
+63.25 --copy-links
+63.26 --copy-dirlinks
+63.27 --keep-dirlinks
+63.28 --safe-links
+63.29 --copy-unsafe-links
+63.30 --munge-links
+63.31 laboratorio: preservar metadata completa
+
+
+62. RSYNC — selección de archivos y filtros
+64.1 --exclude
+64.2 --include
+64.3 patrones rsync
+64.4 reglas de filtrado
+64.5 orden de reglas
+64.6 first matching rule
+64.7 --filter
+64.8 sintaxis FILTER_RULE
+64.9 include
+64.10 exclude
+64.11 protect
+64.12 risk
+64.13 hide
+64.14 show
+64.15 clear
+64.16 merge
+64.17 dir-merge
+64.18 .rsync-filter
+64.19 --exclude-from
+64.20 --include-from
+64.21 patrones anclados
+64.22 directorios
+64.23 *
+64.24 **
+64.25 ?
+64.26 clases de caracteres
+64.27 patrones relativos al punto de transferencia
+64.28 reglas per-directory
+64.29 filtros y recorrido
+64.30 depurar filtros
+64.31 laboratorio: construir filtros complejos
+
+
+63. RSYNC — comparación y actualización
+65.1 quick check
+65.2 tamaño + mtime
+65.3 --update
+65.4 --ignore-existing
+65.5 --existing
+65.6 --ignore-times
+65.7 --size-only
+65.8 --checksum
+65.9 quick check frente a checksum
+65.10 coste de --checksum
+65.11 --modify-window
+65.12 diferencias de resolución temporal
+65.13 FAT y filesystems con timestamps limitados
+65.14 --checksum-choice
+65.15 --ignore-non-existing
+65.16 --ignore-missing-args
+65.17 --delete-missing-args
+65.18 laboratorio
+
+
+64. RSYNC — sobrescritura y archivos parciales
+66.1 actualización de archivos existentes
+66.2 archivo temporal
+66.3 rename final
+66.4 --inplace
+66.5 ventajas de --inplace
+66.6 riesgos de --inplace
+66.7 --partial
+66.8 --partial-dir
+66.9 reanudar transferencias
+66.10 --append
+66.11 --append-verify
+66.12 --delay-updates
+66.13 --remove-source-files
+66.14 mover archivos mediante rsync
+66.15 por qué --remove-source-files no elimina directorios
+66.16 consistencia durante transferencias
+66.17 archivos que cambian mientras se copian
+66.18 laboratorio
+
+
+65. RSYNC — borrado y mirrors
+67.1 --delete
+67.2 significado real de --delete
+67.3 source como referencia
+67.4 destination como árbol sincronizado
+67.5 --delete-before
+67.6 --delete-during
+67.7 --delete-delay
+67.8 --delete-after
+67.9 --delete-excluded
+67.10 --max-delete
+67.11 --ignore-errors
+67.12 archivos protegidos
+67.13 filtros y delete
+67.14 directorios excluidos
+67.15 dry-run obligatorio antes de operaciones destructivas
+67.16 --itemize-changes
+67.17 mirror unidireccional
+67.18 mirror frente a backup
+67.19 sincronización bidireccional y por qué rsync no la resuelve por sí solo
+67.20 peligros de --delete
+67.21 laboratorio: construir un mirror seguro
+
+
+66. RSYNC — files-from y listas de archivos
+68.1 --files-from
+68.2 formato de la lista
+68.3 rutas relativas
+68.4 rutas absolutas
+68.5 -R / --relative
+68.6 implied directories
+68.7 --no-implied-dirs
+68.8 --from0
+68.9 nombres con espacios
+68.10 nombres con saltos de línea
+68.11 find -print0
+68.12 find + --files-from
+68.13 lista local
+68.14 lista remota
+68.15 selección previa
+68.16 transferencia selectiva
+68.17 laboratorio
+
+
+67. RSYNC — transferencia remota mediante SSH
+69.1 remote shell
+69.2 rsync sobre SSH
+69.3 -e ssh
+69.4 RSYNC_RSH
+69.5 usuario remoto
+69.6 host remoto
+69.7 rutas remotas
+69.8 puerto SSH
+69.9 claves SSH
+69.10 ssh-agent
+69.11 IdentityFile
+69.12 ProxyJump
+69.13 ~/.ssh/config
+69.14 alias Host
+69.15 rsync usando configuración SSH
+69.16 local → remote
+69.17 remote → local
+69.18 limitaciones remote → remote
+69.19 permisos remotos
+69.20 --rsync-path
+69.21 ejecutar rsync remoto mediante sudo
+69.22 sudo sin TTY y consideraciones
+69.23 SSH compression frente a rsync compression
+69.24 ControlMaster / conexión reutilizable
+69.25 timeouts
+69.26 laboratorio: sincronización segura entre máquinas
+
+
+68. RSYNC — daemon
+70.1 rsync daemon
+70.2 diferencia daemon / remote shell
+70.3 rsync://
+70.4 HOST::MODULE
+70.5 puerto TCP 873
+70.6 /etc/rsyncd.conf
+70.7 módulos
+70.8 path
+70.9 comment
+70.10 read only
+70.11 write only
+70.12 list
+70.13 uid
+70.14 gid
+70.15 use chroot
+70.16 hosts allow
+70.17 hosts deny
+70.18 auth users
+70.19 secrets file
+70.20 strict modes
+70.21 motd file
+70.22 log file
+70.23 syslog facility
+70.24 timeout
+70.25 max connections
+70.26 lock file
+70.27 systemd
+70.28 socket/service
+70.29 firewalld
+70.30 SELinux
+70.31 daemon frente a SSH
+70.32 cuándo utilizar cada transporte
+70.33 laboratorio: servidor rsync
+
+
+69. RSYNC — algoritmo delta
+71.1 concepto del algoritmo rsync
+71.2 problema que resuelve
+71.3 archivo basis
+71.4 archivo origen
+71.5 archivo destino
+71.6 bloques
+71.7 block size
+71.8 rolling checksum
+71.9 strong checksum
+71.10 matching blocks
+71.11 unmatched data
+71.12 datos literales
+71.13 delta
+71.14 reconstrucción en destino
+71.15 por qué no siempre se transmite el archivo completo
+71.16 transferencia local
+71.17 --whole-file
+71.18 transferencia remota
+71.19 CPU frente a ancho de banda
+71.20 archivos grandes
+71.21 imágenes y archivos con cambios internos
+71.22 archivos comprimidos
+71.23 archivos cifrados
+71.24 cuándo delta aporta ventaja
+71.25 cuándo no aporta ventaja
+71.26 laboratorio comparativo
+
+
+70. RSYNC — compresión
+72.1 -z / --compress
+72.2 cuándo comprimir
+72.3 archivos ya comprimidos
+72.4 --skip-compress
+72.5 --compress-choice
+72.6 algoritmos disponibles
+72.7 --compress-level
+72.8 CPU frente a ancho de banda
+72.9 LAN
+72.10 WAN
+72.11 enlaces lentos
+72.12 interacción con SSH compression
+72.13 evitar doble compresión
+72.14 laboratorio
+
+
+71. RSYNC — rendimiento y escala
+73.1 rendimiento del filesystem
+73.2 rendimiento de red
+73.3 CPU
+73.4 memoria
+73.5 metadata
+73.6 millones de archivos
+73.7 árboles muy profundos
+73.8 incremental recursion
+73.9 --no-inc-recursive
+73.10 quick check
+73.11 --checksum y coste
+73.12 --whole-file
+73.13 compresión
+73.14 --bwlimit
+73.15 bandwidth limiting
+73.16 latencia
+73.17 archivos pequeños
+73.18 archivos grandes
+73.19 SSD
+73.20 HDD
+73.21 NFS
+73.22 filesystems remotos
+73.23 paralelizar múltiples rsync
+73.24 riesgos de paralelización
+73.25 particionar el árbol
+73.26 I/O contention
+73.27 CPU contention
+73.28 benchmark
+73.29 medir throughput real
+73.30 laboratorio
+
+
+72. RSYNC — permisos y propietarios
+74.1 permisos
+74.2 propietarios
+74.3 grupos
+74.4 UID
+74.5 GID
+74.6 nombres frente a IDs numéricos
+74.7 --numeric-ids
+74.8 timestamps
+74.9 directorios
+74.10 symlinks
+74.11 hard links
+74.12 ACL
+74.13 xattrs
+74.14 SELinux
+74.15 Linux capabilities
+74.16 devices
+74.17 special files
+74.18 --chmod
+74.19 Dchmod
+74.20 Fchmod
+74.21 permisos del destino
+74.22 umask
+74.23 root frente a usuario normal
+74.24 sudo
+74.25 diferentes UID/GID entre máquinas
+74.26 laboratorio de preservación
+
+
+73. RSYNC — sparse files y archivos especiales
+75.1 sparse files
+75.2 --sparse
+75.3 --preallocate
+75.4 sparse frente a preallocate
+75.5 imágenes de disco
+75.6 archivos grandes
+75.7 devices
+75.8 FIFOs
+75.9 sockets
+75.10 symlinks
+75.11 hard links
+75.12 archivos especiales
+75.13 laboratorio
+
+
+74. RSYNC — backups
+76.1 rsync como herramienta de backup
+76.2 sincronización frente a backup
+76.3 mirror frente a historial
+76.4 limitaciones de un mirror
+76.5 --backup
+76.6 --backup-dir
+76.7 --suffix
+76.8 versiones
+76.9 árboles históricos
+76.10 snapshots mediante hard links
+76.11 --link-dest
+76.12 comportamiento de --link-dest
+76.13 hard links entre snapshots
+76.14 --copy-dest
+76.15 --compare-dest
+76.16 backups incrementales
+76.17 directorios fechados
+76.18 archivos sin cambios
+76.19 archivos modificados
+76.20 archivos nuevos
+76.21 archivos eliminados
+76.22 ahorro de espacio
+76.23 retención
+76.24 rotación
+76.25 recuperación
+76.26 verificación
+76.27 checksums
+76.28 backup no equivale a snapshot consistente de aplicaciones
+76.29 laboratorio: backups incrementales versionados
+
+
+75. RSYNC — consistencia y datos activos
+77.1 archivos abiertos
+77.2 archivos que cambian durante la copia
+77.3 consistencia de datos
+77.4 aplicaciones activas
+77.5 databases
+77.6 por qué copiar directamente una base de datos activa puede ser incorrecto
+77.7 application-aware backup
+77.8 dumps
+77.9 filesystem snapshots
+77.10 LVM snapshots como concepto relacionado
+77.11 Btrfs snapshots como concepto relacionado
+77.12 freeze/quiesce
+77.13 imágenes de máquinas virtuales
+77.14 archivos de logs
+77.15 mailboxes
+77.16 laboratorio conceptual
+
+
+76. RSYNC — filesystems y límites
+78.1 filesystem raíz
+78.2 mount points
+78.3 --one-file-system
+78.4 bind mounts
+78.5 /proc
+78.6 /sys
+78.7 /dev
+78.8 /run
+78.9 pseudo-filesystems
+78.10 NFS
+78.11 CIFS/SMB
+78.12 FAT
+78.13 exFAT
+78.14 filesystems Linux
+78.15 diferencias de permisos
+78.16 diferencias de timestamps
+78.17 case sensitivity
+78.18 xattrs
+78.19 ACL
+78.20 sparse support
+78.21 hard-link support
+78.22 symlink support
+78.23 laboratorio
+
+
+77. RSYNC — seguridad
+79.1 SSH como transporte
+79.2 autenticación
+79.3 autorización
+79.4 permisos
+79.5 mínimo privilegio
+79.6 destination traversal
+79.7 symlinks
+79.8 --safe-links
+79.9 --copy-unsafe-links
+79.10 archivos especiales
+79.11 daemon exposure
+79.12 rsyncd secrets
+79.13 permisos del secrets file
+79.14 módulos read-only
+79.15 hosts allow
+79.16 hosts deny
+79.17 firewall
+79.18 SELinux
+79.19 operaciones como root
+79.20 --delete
+79.21 --remove-source-files
+79.22 dry-run
+79.23 filtros
+79.24 option injection
+79.25 nombres hostiles
+79.26 shell remoto
+79.27 --rsync-path
+79.28 sudo remoto
+79.29 laboratorio
+
+
+78. RSYNC — diagnóstico
+80.1 exit codes
+80.2 interpretar códigos de salida
+80.3 --verbose
+80.4 --itemize-changes
+80.5 formato de itemized output
+80.6 --stats
+80.7 --info
+80.8 --debug
+80.9 --progress
+80.10 --human-readable
+80.11 permission denied
+80.12 vanished files
+80.13 partial transfer
+80.14 timeout
+80.15 SSH errors
+80.16 filesystem full
+80.17 inode exhaustion
+80.18 ACL/xattr errors
+80.19 ownership errors
+80.20 incompatibilidad entre versiones
+80.21 dry-run para reproducir operaciones
+80.22 laboratorio
+
+
+79. FIND + RSYNC
+81.1 por qué combinar find y rsync
+81.2 selección mediante find
+81.3 find -print
+81.4 find -print0
+81.5 rsync --files-from
+81.6 rsync --from0
+81.7 nombres hostiles
+81.8 rutas relativas
+81.9 -R / --relative
+81.10 archivos por nombre
+81.11 archivos por ruta
+81.12 archivos por tipo
+81.13 archivos por tamaño
+81.14 archivos por fecha
+81.15 archivos por usuario
+81.16 archivos por grupo
+81.17 archivos por permisos
+81.18 archivos modificados recientemente
+81.19 enlaces
+81.20 selección compleja con expresiones find
+81.21 transferencia selectiva
+81.22 find + rsync frente a filtros rsync
+81.23 cuándo usar find
+81.24 cuándo usar filtros rsync
+81.25 generación previa de lista
+81.26 revisar antes de copiar
+81.27 pipelines NUL-safe
+81.28 laboratorio
+
+
+80. COREUTILS + FIND + RSYNC
+82.1 find + rsync
+82.2 find + du + rsync
+82.3 find + stat + rsync
+82.4 find + sha256sum + rsync
+82.5 rsync + sha256sum
+82.6 rsync + date
+82.7 rsync + mktemp
+82.8 rsync + sort
+82.9 rsync + wc
+82.10 rsync + tee
+82.11 rsync + timeout
+82.12 rsync + nice
+82.13 rsync + ionice como herramienta relacionada
+82.14 rsync + SSH
+82.15 find -print0 + rsync --from0
+82.16 find + xargs + rsync: cuándo evitarlo
+82.17 inventarios previos
+82.18 verificaciones posteriores
+82.19 automatización robusta
+82.20 laboratorio
+
+
+81. COREUTILS + BC + FIND + RSYNC
+83.1 composición de herramientas
+83.2 Coreutils como transformación
+83.3 find como selección
+83.4 xargs como ejecución batch
+83.5 bc como cálculo
+83.6 rsync como transferencia
+83.7 date para timestamps
+83.8 stat para metadata
+83.9 du para uso de espacio
+83.10 sha256sum para integridad
+83.11 sort para ordenación
+83.12 wc para agregación
+83.13 tee para observabilidad
+83.14 mktemp para temporales
+83.15 timeout para límites temporales
+83.16 cálculo de porcentajes con bc
+83.17 cálculo de tasas de transferencia
+83.18 cálculo de ahorro de espacio
+83.19 informes
+83.20 laboratorio integrado
+
+
+82. Automatización de copias y sincronizaciones
+84.1 scripts Bash
+84.2 funciones Zsh
+84.3 configuración separada del código
+84.4 source
+84.5 destination
+84.6 excludes
+84.7 includes
+84.8 dry-run
+84.9 verbose
+84.10 logging
+84.11 exit status
+84.12 retry
+84.13 timeouts
+84.14 lock files
+84.15 evitar ejecuciones simultáneas
+84.16 flock como herramienta relacionada
+84.17 mktemp
+84.18 trap
+84.19 cleanup
+84.20 manejo de señales
+84.21 verificación previa
+84.22 espacio disponible
+84.23 disponibilidad de destino
+84.24 validación posterior
+84.25 checksums
+84.26 notificaciones como concepto externo
+84.27 laboratorio
+
+
+83. Rsync + systemd
+85.1 automatización mediante systemd
+85.2 service unit
+85.3 oneshot service
+85.4 ExecStart
+85.5 User
+85.6 Group
+85.7 WorkingDirectory
+85.8 EnvironmentFile
+85.9 logging mediante journal
+85.10 exit status
+85.11 restart y cuándo no usarlo
+85.12 timer units
+85.13 OnCalendar
+85.14 Persistent
+85.15 RandomizedDelaySec
+85.16 ConditionPathExists
+85.17 dependencia de red
+85.18 network-online.target
+85.19 credenciales SSH
+85.20 permisos
+85.21 hardening
+85.22 laboratorio: backup periódico
+
+
+84. Rsync + SSH avanzado
+86.1 claves dedicadas
+86.2 cuenta dedicada
+86.3 authorized_keys
+86.4 restricciones de claves
+86.5 from=
+86.6 command=
+86.7 no-port-forwarding
+86.8 no-agent-forwarding
+86.9 no-X11-forwarding
+86.10 restrict
+86.11 ssh config dedicado
+86.12 ProxyJump
+86.13 bastion
+86.14 multiplexing
+86.15 BatchMode
+86.16 StrictHostKeyChecking
+86.17 known_hosts
+86.18 host keys
+86.19 automatización no interactiva segura
+86.20 laboratorio
+
+
+85. Casos prácticos avanzados
+87.1 inventario de archivos
+87.2 detectar archivos grandes
+87.3 detectar archivos antiguos
+87.4 detectar permisos peligrosos
+87.5 detectar setuid/setgid
+87.6 detectar enlaces rotos
+87.7 localizar duplicados mediante hashes
+87.8 informes de uso de disco
+87.9 limpieza segura
+87.10 copias locales
+87.11 sincronización remota
+87.12 mirrors
+87.13 backups incrementales
+87.14 verificación de integridad
+87.15 transformación de datasets
+87.16 procesamiento NUL-safe
+87.17 procesamiento paralelo
+87.18 selección mediante find
+87.19 transferencia mediante rsync
+87.20 recuperación de backups
+87.21 auditoría de árboles
+87.22 sincronizar solo archivos recientes
+87.23 sincronizar solo archivos grandes
+87.24 preservar ACL/xattrs
+87.25 detectar drift entre árboles
+87.26 preparar migraciones
+87.27 copiar homes de usuarios
+87.28 migrar datos entre servidores
+87.29 archivar datasets
+87.30 laboratorio
+
+
+86. Diseño de workflows seguros
+88.1 inspeccionar
+88.2 seleccionar
+88.3 mostrar
+88.4 simular
+88.5 confirmar
+88.6 ejecutar
+88.7 verificar
+88.8 registrar
+88.9 recuperar
+88.10 dry-run first
+88.11 separar lectura y modificación
+88.12 operaciones idempotentes
+88.13 fallar de forma segura
+88.14 evitar rm innecesario
+88.15 evitar parsing de ls
+88.16 evitar word splitting
+88.17 evitar xargs sin -0 cuando hay filenames arbitrarios
+88.18 evitar eval
+88.19 proteger opciones con --
+88.20 proteger destino
+88.21 proteger --delete
+88.22 backups antes de cambios destructivos
+88.23 laboratorio
+
+
+87. Construcción de herramientas reutilizables
+89.1 funciones Zsh
+89.2 funciones Bash
+89.3 módulos
+89.4 argumentos
+89.5 getopt
+89.6 validación
+89.7 salida
+89.8 errores
+89.9 logging
+89.10 dry-run
+89.11 verbose
+89.12 quiet
+89.13 force
+89.14 confirmación
+89.15 NUL safety
+89.16 manejo de señales
+89.17 cleanup
+89.18 Coreutils como bloques de construcción
+89.19 find como motor de selección
+89.20 xargs como motor batch
+89.21 bc como motor numérico
+89.22 rsync como motor de sincronización
+89.23 configuración externa
+89.24 perfiles
+89.25 tests
+89.26 shellcheck
+89.27 shfmt
+89.28 documentación
+89.29 laboratorio
+
+
+88. PROYECTO FINAL EXPERTO — coreutils-toolkit
+90.1 diseñar coreutils-toolkit
+90.2 arquitectura modular
+90.3 módulo files
+90.4 módulo paths
+90.5 módulo permissions
+90.6 módulo ownership
+90.7 módulo storage
+90.8 módulo hashes
+90.9 módulo text
+90.10 módulo dates
+90.11 módulo numeric
+90.12 integración con bc
+90.13 módulo find
+90.14 constructor de expresiones find
+90.15 módulo xargs
+90.16 módulo rsync
+90.17 perfiles de sincronización
+90.18 filtros rsync
+90.19 sincronización local
+90.20 sincronización SSH
+90.21 sincronización mediante daemon
+90.22 backups incrementales
+90.23 mirrors
+90.24 --link-dest snapshots
+90.25 --files-from
+90.26 integración find -print0 + rsync --from0
+90.27 procesamiento NUL-safe
+90.28 ejecución paralela
+90.29 inventario de filesystem
+90.30 búsqueda por metadata
+90.31 búsqueda temporal
+90.32 búsqueda por permisos
+90.33 búsqueda por usuario/grupo
+90.34 detección de enlaces rotos
+90.35 detección de archivos duplicados
+90.36 análisis de espacio
+90.37 auditoría de permisos
+90.38 generación de checksums
+90.39 verificación de integridad
+90.40 operaciones batch
+90.41 dry-run global
+90.42 verbose
+90.43 quiet
+90.44 explain mode
+90.45 mostrar comandos generados
+90.46 modo seguro
+90.47 protección frente a nombres hostiles
+90.48 protección frente a option injection
+90.49 protección frente a --delete accidental
+90.50 confirmación para operaciones destructivas
+90.51 control de errores
+90.52 logging
+90.53 estadísticas
+90.54 cálculo de métricas mediante bc
+90.55 benchmarking
+90.56 tests unitarios
+90.57 tests de integración
+90.58 árboles de prueba reproducibles
+90.59 simulación de errores
+90.60 documentación
+90.61 páginas man
+90.62 empaquetado RPM
+90.63 SPEC
+90.64 instalación en Fedora
+90.65 integración opcional con systemd
+90.66 proyecto: auditar un filesystem real
+90.67 proyecto: generar inventario completo
+90.68 proyecto: detectar permisos inseguros
+90.69 proyecto: localizar duplicados
+90.70 proyecto: sincronizar dos árboles de forma segura
+90.71 proyecto: construir un mirror
+90.72 proyecto: backup incremental versionado
+90.73 proyecto: recuperación de una versión anterior
+90.74 proyecto: sincronización remota mediante SSH
+90.75 proyecto: migración selectiva mediante find + rsync
+90.76 proyecto: preservar permisos, ACL, xattrs y enlaces
+90.77 proyecto: verificar integridad después de copiar
+90.78 proyecto: generar informe final
+90.79 proyecto: empaquetar coreutils-toolkit como RPM
+90.80 proyecto final: coreutils-toolkit completo

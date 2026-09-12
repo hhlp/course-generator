@@ -1,0 +1,19 @@
+4. Cuantificadores
+4.1 concepto de repetición
+4.2 *
+4.3 +
+4.4 ?
+4.5 {n}
+4.6 {n,}
+4.7 {n,m}
+4.8 límites inferiores
+4.9 límites superiores
+4.10 cuantificar caracteres
+4.11 cuantificar clases
+4.12 cuantificar grupos
+4.13 cero coincidencias
+4.14 repetición y coincidencias vacías
+4.15 alcance del cuantificador
+4.16 errores frecuentes de alcance
+4.17 cuantificadores anidados
+4.18 laboratorio

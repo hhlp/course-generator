@@ -1,0 +1,24 @@
+13. grep en pipelines Unix
+
+13.1 filosofía Unix
+13.2 cat y grep
+13.3 uso innecesario de cat
+13.4 ps | grep
+13.5 problema de encontrarse a sí mismo
+13.6 alternativas modernas
+13.7 journalctl | grep
+13.8 rpm | grep
+13.9 dnf | grep
+13.10 ip | grep
+13.11 ss | grep
+13.12 systemctl | grep
+13.13 find | grep
+13.14 sort
+13.15 uniq
+13.16 cut
+13.17 tr
+13.18 xargs
+13.19 sed
+13.20 awk
+13.21 construir pipelines complejos
+13.22 laboratorio Fedora

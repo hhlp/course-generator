@@ -1,0 +1,17 @@
+92. Lectura del código fuente de Zsh
+92.1 obtener source
+92.2 build system
+92.3 compilación
+92.4 lexer
+92.5 parser
+92.6 execution engine
+92.7 parameters
+92.8 globbing
+92.9 jobs
+92.10 signals
+92.11 modules
+92.12 ZLE
+92.13 completion
+92.14 instrumentación
+92.15 modificar módulo
+92.16 laboratorio

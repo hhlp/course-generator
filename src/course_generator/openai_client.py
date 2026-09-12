@@ -6,7 +6,14 @@ from dataclasses import dataclass
 from typing import Any, cast
 
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import (
+    APIConnectionError,
+    APIStatusError,
+    APITimeoutError,
+    AuthenticationError,
+    OpenAI,
+    RateLimitError,
+)
 from openai.types import ReasoningEffort
 
 
@@ -52,6 +59,64 @@ def _env_int(name: str, default: int) -> int:
         raise ValueError(f"{name} debe ser > 0; recibido: {value}")
 
     return value
+
+
+class OpenAIRequestError(RuntimeError):
+    """Error de API presentado sin exponer detalles internos del SDK."""
+
+
+def _api_error_code(exc: APIStatusError) -> str | None:
+    body = getattr(exc, "body", None)
+    if not isinstance(body, dict):
+        return None
+    error = body.get("error")
+    if isinstance(error, dict):
+        code = error.get("code")
+        return code if isinstance(code, str) else None
+    code = body.get("code")
+    return code if isinstance(code, str) else None
+
+
+def _friendly_api_error(exc: Exception) -> OpenAIRequestError:
+    if isinstance(exc, AuthenticationError):
+        return OpenAIRequestError(
+            "OPENAI: autenticación rechazada. Comprueba OPENAI_API_KEY."
+        )
+    if isinstance(exc, RateLimitError):
+        code = _api_error_code(exc)
+        if code == "credit_balance_exhausted":
+            return OpenAIRequestError(
+                "OPENAI: saldo de API agotado. Añade créditos antes de realizar "
+                "una generación real. Puedes usar --dry-run sin consumir API."
+            )
+        if code == "insufficient_quota":
+            return OpenAIRequestError(
+                "OPENAI: cuota o créditos insuficientes. Revisa la facturación "
+                "de la API. Puedes usar --dry-run sin consumir API."
+            )
+        return OpenAIRequestError(
+            "OPENAI: límite temporal de solicitudes alcanzado. "
+            "Espera y vuelve a intentarlo."
+        )
+    if isinstance(exc, APITimeoutError):
+        return OpenAIRequestError(
+            "OPENAI: la solicitud agotó el tiempo de espera. Vuelve a intentarlo."
+        )
+    if isinstance(exc, APIConnectionError):
+        return OpenAIRequestError(
+            "OPENAI: no se pudo conectar con la API. Comprueba la red."
+        )
+    if isinstance(exc, APIStatusError):
+        status = getattr(exc, "status_code", None)
+        if isinstance(status, int) and status >= 500:
+            return OpenAIRequestError(
+                f"OPENAI: error temporal del servicio (HTTP {status}). "
+                "Vuelve a intentarlo más tarde."
+            )
+        return OpenAIRequestError(
+            f"OPENAI: la API rechazó la solicitud (HTTP {status})."
+        )
+    return OpenAIRequestError(f"OPENAI: error inesperado: {exc}")
 
 
 class CourseOpenAI:
@@ -144,16 +209,25 @@ class CourseOpenAI:
         instructions: str,
         input_text: str,
     ) -> StructuredResult:
-        response = self.client.responses.create(
-            model=self.model,
-            instructions=instructions,
-            input=input_text,
-            reasoning={
-                "effort": self.reasoning_effort,
-            },
-            max_output_tokens=self.max_output_tokens,
-            store=self.store,
-        )
+        try:
+            response = self.client.responses.create(
+                model=self.model,
+                instructions=instructions,
+                input=input_text,
+                reasoning={
+                    "effort": self.reasoning_effort,
+                },
+                max_output_tokens=self.max_output_tokens,
+                store=self.store,
+            )
+        except (
+            AuthenticationError,
+            RateLimitError,
+            APITimeoutError,
+            APIConnectionError,
+            APIStatusError,
+        ) as exc:
+            raise _friendly_api_error(exc) from None
 
         text = self._extract_text(response)
 

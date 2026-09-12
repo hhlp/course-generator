@@ -1,0 +1,21 @@
+4. Direccionamiento
+
+4.1 concepto de dirección
+4.2 dirección numérica
+4.3 dirección $
+4.4 dirección regex
+4.5 dirección negada !
+4.6 rangos inicio,fin
+4.7 rangos numéricos
+4.8 rangos mediante regex
+4.9 dirección inicial numérica y final regex
+4.10 dirección inicial regex y final numérica
+4.11 comportamiento interno de los rangos
+4.12 rangos repetidos
+4.13 0,/regexp/ de GNU sed
+4.14 addr,+N
+4.15 addr,~N
+4.16 dirección first~step
+4.17 bloques direccionados
+4.18 comandos diferentes para rangos diferentes
+4.19 laboratorio: procesamiento selectivo

@@ -1,0 +1,14 @@
+88. Compatibilidad y migración
+88.1 script Bash → Zsh
+88.2 Zsh → Bash
+88.3 Bash → POSIX sh
+88.4 detectar Bashisms
+88.5 detectar Zshisms
+88.6 ShellCheck
+88.7 tests
+88.8 quoting
+88.9 arrays
+88.10 globbing
+88.11 options
+88.12 emulation
+88.13 laboratorio

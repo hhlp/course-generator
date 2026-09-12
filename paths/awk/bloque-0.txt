@@ -1,0 +1,30 @@
+0. Fundamentos del procesamiento de texto
+
+0.1 qué es procesamiento de texto
+0.2 texto como flujo de datos
+0.3 archivos de texto
+0.4 líneas
+0.5 registros
+0.6 campos
+0.7 delimitadores
+0.8 whitespace
+0.9 stdin
+0.10 stdout
+0.11 stderr
+0.12 pipes
+0.13 redirecciones del shell
+0.14 exit status
+0.15 herramientas Unix de procesamiento de texto
+0.16 cat
+0.17 grep
+0.18 sed
+0.19 cut
+0.20 sort
+0.21 uniq
+0.22 tr
+0.23 wc
+0.24 relación entre grep, sed y awk
+0.25 cuándo utilizar AWK
+0.26 cuándo no utilizar AWK
+0.27 AWK dentro de la filosofía Unix
+0.28 laboratorio: construir pipelines sencillos de procesamiento de texto

@@ -1,0 +1,17 @@
+16. Flags y modos
+16.1 qué es un flag
+16.2 case insensitive
+16.3 multiline
+16.4 dotall
+16.5 extended/free-spacing
+16.6 Unicode
+16.7 ASCII
+16.8 locale
+16.9 flags globales
+16.10 flags locales
+16.11 grupos modificadores
+16.12 activar modos dentro del patrón
+16.13 desactivar modos
+16.14 alcance
+16.15 diferencias entre motores
+16.16 laboratorio

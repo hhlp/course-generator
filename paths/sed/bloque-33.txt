@@ -1,0 +1,27 @@
+33. Instrumentación y depuración profunda
+
+33.1 modelo de debugging de sed
+33.2 entrada mínima reproducible
+33.3 salida esperada
+33.4 reducir el programa
+33.5 -n como herramienta de diagnóstico
+33.6 p como probe
+33.7 l como visualizador
+33.8 visualizar whitespace
+33.9 visualizar newlines
+33.10 visualizar pattern space
+33.11 visualizar indirectamente hold space
+33.12 introducir probes temporales
+33.13 GNU sed --debug
+33.14 representación del programa compilado
+33.15 direcciones activas
+33.16 comandos ejecutados
+33.17 pattern space antes y después de comandos
+33.18 substitution-success flag
+33.19 branching
+33.20 rangos activos
+33.21 debugging de procesamiento multilínea
+33.22 debugging de loops
+33.23 debugging de quoting
+33.24 debugging de locales
+33.25 laboratorio: depurar un programa sed complejo

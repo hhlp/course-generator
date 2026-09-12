@@ -1,0 +1,18 @@
+42. Automatización avanzada
+
+42.1 funciones Zsh para grep
+42.2 funciones Zsh para rg
+42.3 wrappers
+42.4 aliases frente a funciones
+42.5 parámetros
+42.6 patrones dinámicos
+42.7 selección de directorios
+42.8 selección de tipos
+42.9 output machine-readable
+42.10 exit codes
+42.11 integración con scripts
+42.12 integración con fzf
+42.13 búsqueda interactiva
+42.14 editor integration
+42.15 pipelines reutilizables
+42.16 laboratorio: módulo Zsh de búsqueda

@@ -921,50 +921,227 @@
 40.23 mantenimiento
 40.24 laboratorio: diseñar AWK como software y no como simple one-liner
 
-41. Proyecto final — awk-toolkit
+41. CLI, modos de ejecución y herramientas de gawk
+41.1 arquitectura de invocación de awk/gawk
+41.2 programa en línea frente a -f
+41.3 múltiples opciones -f
+41.4 -v y momento de asignación
+41.5 asignaciones variable=valor entre archivos
+41.6 --assign
+41.7 --field-separator
+41.8 --file
+41.9 --source
+41.10 combinar --file y --source
+41.11 --posix
+41.12 --traditional
+41.13 --lint
+41.14 --lint-old
+41.15 --lint=fatal
+41.16 --profile
+41.17 --pretty-print
+41.18 --debug
+41.19 --dump-variables
+41.20 --characters-as-bytes
+41.21 --use-lc-numeric
+41.22 --non-decimal-data y compatibilidad
+41.23 --bignum
+41.24 --sandbox
+41.25 --load
+41.26 AWKPATH
+41.27 AWKLIBPATH
+41.28 GAWK_READ_TIMEOUT
+41.29 variables de entorno relevantes
+41.30 opciones largas frente a cortas
+41.31 final de opciones con --
+41.32 nombres de archivo que parecen opciones
+41.33 orden de procesamiento de argumentos
+41.34 ARGC/ARGV vistos desde la CLI
+41.35 exit status de awk/gawk
+41.36 diagnósticos de sintaxis
+41.37 diagnósticos en tiempo de ejecución
+41.38 laboratorio: construir una matriz de modos de ejecución de gawk
 
-41.1 definir arquitectura del proyecto
-41.2 CLI principal
-41.3 lectura desde stdin
-41.4 lectura de uno o múltiples archivos
-41.5 selección configurable de registros
-41.6 selección configurable de campos
-41.7 filtros mediante regex
-41.8 filtros numéricos
-41.9 transformación de campos
-41.10 agregaciones
-41.11 contadores
-41.12 sumas
-41.13 medias
-41.14 mínimo/máximo
-41.15 agrupación por claves
-41.16 histogramas
-41.17 joins entre datasets
-41.18 ordenación
-41.19 top-N
-41.20 estadísticas
-41.21 salida tabular
-41.22 salida TSV
-41.23 salida CSV
-41.24 salida Markdown
-41.25 procesamiento streaming
-41.26 múltiples archivos con BEGINFILE/ENDFILE
-41.27 biblioteca de funciones reutilizable
-41.28 manejo de errores
-41.29 códigos de salida
-41.30 modo debug
-41.31 --lint
-41.32 profiling
-41.33 pruebas automáticas
-41.34 datasets de prueba
-41.35 pruebas con datos grandes
-41.36 integración con pipelines Unix
-41.37 integración con funciones Zsh
-41.38 análisis de datos de rpm
-41.39 análisis de journalctl
-41.40 análisis de /proc
-41.41 documentación completa
-41.42 comparación POSIX awk ↔ gawk
-41.43 auditoría de seguridad
-41.44 optimización final
-41.45 proyecto final: construir awk-toolkit, una herramienta real de análisis, transformación y generación de informes basada en GNU awk
+42. CSV, datos tabulares y formatos difíciles
+42.1 por qué CSV no es simplemente FS=","
+42.2 campos entrecomillados
+42.3 delimitadores dentro de campos
+42.4 comillas escapadas
+42.5 registros CSV multilínea
+42.6 CRLF
+42.7 cabeceras
+42.8 campos vacíos
+42.9 diferencias CSV ↔ TSV
+42.10 límites de los parsers AWK tradicionales
+42.11 FPAT aplicado a datos delimitados
+42.12 patsplit() aplicado a campos complejos
+42.13 extensiones y modos CSV disponibles en GNU awk según versión
+42.14 detección de capacidades de la versión instalada
+42.15 normalización de datos tabulares
+42.16 validación de número de columnas
+42.17 selección de columnas por nombre
+42.18 transformación de columnas
+42.19 agregación por columnas
+42.20 joins de tablas
+42.21 salida CSV correcta
+42.22 salida TSV
+42.23 salida Markdown
+42.24 cuándo utilizar una herramienta CSV dedicada
+42.25 cuándo utilizar jq para JSON
+42.26 cuándo utilizar yq para YAML
+42.27 cuándo abandonar AWK para un parser formal
+42.28 laboratorio: procesador robusto de datos tabulares
+
+43. Networking, coprocesses y comunicación avanzada en gawk
+43.1 AWK y descriptores de entrada/salida
+43.2 pipes unidireccionales
+43.3 coprocesses
+43.4 operador |&
+43.5 protocolo de conversación con un coproceso
+43.6 close() con coprocesses
+43.7 fflush()
+43.8 buffering
+43.9 bloqueos y deadlocks
+43.10 timeouts
+43.11 PROCINFO y control de E/S
+43.12 nombres especiales /inet de gawk
+43.13 TCP
+43.14 UDP
+43.15 cliente de red conceptual
+43.16 servidor de red conceptual
+43.17 límites y portabilidad de /inet
+43.18 riesgos de seguridad
+43.19 datos de red no confiables
+43.20 separación entre parsing y transporte
+43.21 cuándo utilizar sockets desde gawk
+43.22 cuándo utilizar nc/socat/curl y dejar AWK como procesador
+43.23 laboratorio: protocolo textual mediante coproceso
+43.24 laboratorio avanzado: procesar un flujo de red controlado
+
+44. Pruebas de programas AWK
+44.1 por qué probar programas AWK
+44.2 pruebas de one-liners
+44.3 pruebas de scripts .awk
+44.4 fixtures
+44.5 entrada esperada
+44.6 salida esperada
+44.7 stderr esperado
+44.8 exit status esperado
+44.9 golden files
+44.10 diff
+44.11 cmp
+44.12 pruebas positivas
+44.13 pruebas negativas
+44.14 casos límite
+44.15 registros vacíos
+44.16 campos ausentes
+44.17 entradas enormes
+44.18 Unicode y locales
+44.19 diferentes RS/FS
+44.20 múltiples archivos
+44.21 errores de apertura
+44.22 pruebas POSIX
+44.23 pruebas específicas de gawk
+44.24 ejecutar con --lint
+44.25 ejecutar con --posix
+44.26 ejecutar con --traditional
+44.27 matrices de implementaciones awk/gawk/mawk/BWK awk
+44.28 regresiones
+44.29 pruebas de rendimiento
+44.30 generación de datasets
+44.31 integración con shell
+44.32 automatización desde Makefile
+44.33 integración en CI
+44.34 laboratorio: crear una suite de regresión para una aplicación AWK
+
+45. Distribución, empaquetado y ecosistema AWK
+45.1 distribuir un script AWK
+45.2 script ejecutable
+45.3 shebang portable
+45.4 dependencias POSIX
+45.5 dependencias específicas de gawk
+45.6 comprobar versión y capacidades
+45.7 bibliotecas AWK
+45.8 @include
+45.9 AWKPATH
+45.10 namespaces
+45.11 extensiones dinámicas
+45.12 AWKLIBPATH
+45.13 estructura de un proyecto distribuible
+45.14 README
+45.15 documentación de CLI
+45.16 páginas man
+45.17 licencia
+45.18 tests
+45.19 datos de ejemplo
+45.20 instalación local
+45.21 /usr/local
+45.22 empaquetado conceptual para Fedora
+45.23 relación con el paquete gawk
+45.24 Requires y dependencias
+45.25 arquitectura noarch para scripts
+45.26 cuándo una extensión C cambia las necesidades de empaquetado
+45.27 actualización y compatibilidad
+45.28 versionado del proyecto
+45.29 changelog
+45.30 publicación y mantenimiento
+45.31 laboratorio: preparar una aplicación AWK para distribución
+
+46. Proyecto final — awk-toolkit
+
+46.1 definir arquitectura del proyecto
+46.2 CLI principal
+46.3 lectura desde stdin
+46.4 lectura de uno o múltiples archivos
+46.5 selección configurable de registros
+46.6 selección configurable de campos
+46.7 filtros mediante regex
+46.8 filtros numéricos
+46.9 transformación de campos
+46.10 agregaciones
+46.11 contadores
+46.12 sumas
+46.13 medias
+46.14 mínimo/máximo
+46.15 agrupación por claves
+46.16 histogramas
+46.17 joins entre datasets
+46.18 ordenación
+46.19 top-N
+46.20 estadísticas
+46.21 salida tabular
+46.22 salida TSV
+46.23 salida CSV
+46.24 salida Markdown
+46.25 procesamiento streaming
+46.26 múltiples archivos con BEGINFILE/ENDFILE
+46.27 biblioteca de funciones reutilizable
+46.28 manejo de errores
+46.29 códigos de salida
+46.30 modo debug
+46.31 --lint
+46.32 profiling
+46.33 pruebas automáticas
+46.34 datasets de prueba
+46.35 pruebas con datos grandes
+46.36 integración con pipelines Unix
+46.37 integración con funciones Zsh
+46.38 análisis de datos de rpm
+46.39 análisis de journalctl
+46.40 análisis de /proc
+46.41 documentación completa
+46.42 comparación POSIX awk ↔ gawk
+46.43 auditoría de seguridad
+46.44 optimización final
+46.45 integración completa de awk-toolkit
+46.46 detección de capacidades de gawk
+46.47 modo POSIX cuando sea posible
+46.48 modo GNU explícito para extensiones necesarias
+46.49 procesamiento de CSV/TSV con estrategia documentada
+46.50 suite de regresión
+46.51 golden files
+46.52 matriz de pruebas POSIX awk ↔ gawk ↔ mawk ↔ BWK awk cuando estén disponibles
+46.53 ejecución bajo diferentes locales
+46.54 pruebas de entradas maliciosas y límites de recursos
+46.55 documentación de dependencias y extensiones GNU
+46.56 empaquetado/distribución del toolkit
+46.57 proyecto final: construir awk-toolkit como aplicación mantenible, portable cuando sea posible y especializada en GNU awk cuando aporte ventajas reales

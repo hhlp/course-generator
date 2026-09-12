@@ -1,0 +1,18 @@
+38. Búsquedas orientadas a seguridad
+
+38.1 búsqueda de indicadores
+38.2 direcciones IPv4
+38.3 IPv6
+38.4 dominios
+38.5 URLs
+38.6 hashes
+38.7 correos electrónicos
+38.8 claves y tokens potenciales
+38.9 contraseñas escritas accidentalmente
+38.10 private keys
+38.11 falsos positivos
+38.12 regex demasiado permisivas
+38.13 búsqueda sobre repositorios
+38.14 exclusión de dependencias
+38.15 privacidad de los datos encontrados
+38.16 laboratorio defensivo

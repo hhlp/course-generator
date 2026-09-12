@@ -1,0 +1,16 @@
+7. Pattern space
+
+7.1 modelo interno de ejecución de sed
+7.2 qué es pattern space
+7.3 ciclo de ejecución
+7.4 lectura de una línea
+7.5 aplicación del programa
+7.6 impresión automática
+7.7 comienzo del siguiente ciclo
+7.8 cómo d modifica el ciclo
+7.9 cómo q modifica el ciclo
+7.10 cómo n modifica el ciclo
+7.11 pattern space vacío
+7.12 pattern space multilínea
+7.13 observar mentalmente el estado
+7.14 laboratorio: seguir manualmente ciclos de ejecución

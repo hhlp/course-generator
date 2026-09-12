@@ -1,0 +1,19 @@
+98. Proyecto: shell-debugger
+98.1 inspeccionar entorno
+98.2 shell actual
+98.3 startup files
+98.4 PATH
+98.5 command resolution
+98.6 aliases
+98.7 functions
+98.8 variables
+98.9 options
+98.10 file descriptors
+98.11 jobs
+98.12 procesos
+98.13 signals
+98.14 tracing
+98.15 performance
+98.16 Bash mode
+98.17 Zsh mode
+98.18 informe diagnóstico

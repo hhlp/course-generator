@@ -1,0 +1,16 @@
+36. Testing
+36.1 una regex también necesita pruebas
+36.2 conjunto positivo
+36.3 conjunto negativo
+36.4 boundary cases
+36.5 empty input
+36.6 entradas muy largas
+36.7 Unicode
+36.8 newlines
+36.9 casos adversarios
+36.10 expected match
+36.11 expected captures
+36.12 pruebas de regresión
+36.13 pruebas de rendimiento
+36.14 fuzzing conceptual
+36.15 laboratorio

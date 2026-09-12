@@ -1,0 +1,15 @@
+48. Startup de Zsh
+48.1 /etc/zshenv
+48.2 ~/.zshenv
+48.3 /etc/zprofile
+48.4 ~/.zprofile
+48.5 /etc/zshrc
+48.6 ~/.zshrc
+48.7 /etc/zlogin
+48.8 ~/.zlogin
+48.9 ~/.zlogout
+48.10 ZDOTDIR
+48.11 GLOBAL_RCS
+48.12 RCS
+48.13 orden completo
+48.14 laboratorio: trazar startup

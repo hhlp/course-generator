@@ -1,0 +1,21 @@
+24. Cómo funciona un motor Regex
+24.1 patrón frente a motor
+24.2 compilación del patrón
+24.3 ejecución
+24.4 estado
+24.5 posición de entrada
+24.6 transición
+24.7 aceptación
+24.8 motores dirigidos por texto
+24.9 motores dirigidos por regex
+24.10 NFA
+24.11 DFA
+24.12 backtracking NFA
+24.13 Thompson NFA
+24.14 comparación conceptual
+24.15 leftmost-first
+24.16 leftmost-longest
+24.17 POSIX semantics
+24.18 semántica leftmost-first en motores de backtracking
+24.19 consecuencias prácticas
+24.20 laboratorio: seguir manualmente la ejecución

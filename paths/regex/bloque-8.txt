@@ -1,0 +1,13 @@
+8. Alternancia
+8.1 operador |
+8.2 alternativas
+8.3 precedencia
+8.4 alcance de |
+8.5 alternancia y concatenación
+8.6 alternancia dentro de grupos
+8.7 orden de alternativas
+8.8 leftmost-first
+8.9 alternativas con prefijos comunes
+8.10 optimización de alternativas
+8.11 factorizar expresiones
+8.12 laboratorio

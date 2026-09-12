@@ -1,0 +1,33 @@
+47. Proyecto final — grep/rg search debugger
+
+47.1 definir grep-rg-debugger
+47.2 recibir patrón
+47.3 recibir uno o varios paths
+47.4 seleccionar GNU grep o ripgrep
+47.5 seleccionar literal/BRE/ERE/PCRE2
+47.6 detectar disponibilidad de motores
+47.7 mostrar archivos considerados
+47.8 mostrar archivos ignorados
+47.9 explicar .gitignore
+47.10 explicar .ignore
+47.11 explicar .rgignore
+47.12 detectar hidden files
+47.13 detectar binarios
+47.14 controlar symlinks
+47.15 seleccionar tipos de archivo
+47.16 aplicar globs
+47.17 activar multiline
+47.18 mostrar coincidencias
+47.19 mostrar contexto
+47.20 mostrar estadísticas
+47.21 medir duración
+47.22 comparar grep frente a rg
+47.23 comparar motor regex predeterminado frente a PCRE2
+47.24 detectar patrones potencialmente caros
+47.25 generar comando reproducible
+47.26 salida humana
+47.27 salida JSON
+47.28 integración como función Zsh
+47.29 ejecutar sobre árboles reales de Fedora
+47.30 ejecutar sobre repositorios Git reales
+47.31 proyecto final: mini motor de investigación de texto para Fedora y código fuente

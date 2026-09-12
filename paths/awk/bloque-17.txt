@@ -1,0 +1,33 @@
+17. Variables predefinidas
+
+17.1 mapa completo de variables built-in
+17.2 ARGC
+17.3 ARGV
+17.4 CONVFMT
+17.5 ENVIRON
+17.6 FILENAME
+17.7 FNR
+17.8 FS
+17.9 NF
+17.10 NR
+17.11 OFMT
+17.12 OFS
+17.13 ORS
+17.14 RLENGTH
+17.15 RS
+17.16 RSTART
+17.17 SUBSEP
+17.18 variables específicas de gawk
+17.19 ARGIND
+17.20 BINMODE
+17.21 ERRNO
+17.22 FIELDWIDTHS
+17.23 FPAT
+17.24 FUNCTAB
+17.25 IGNORECASE
+17.26 LINT
+17.27 PROCINFO
+17.28 RT
+17.29 SYMTAB
+17.30 TEXTDOMAIN
+17.31 laboratorio: construir un inspector del estado interno de gawk

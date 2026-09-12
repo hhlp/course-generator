@@ -1,0 +1,25 @@
+46. Bash internals
+46.1 arquitectura conceptual de Bash
+46.2 lexer
+46.3 parser
+46.4 AST conceptual
+46.5 expansions
+46.6 redirections
+46.7 execution
+46.8 builtins
+46.9 functions
+46.10 variables
+46.11 environment
+46.12 jobs
+46.13 signals
+46.14 readline
+46.15 startup
+46.16 source code
+46.17 builtins/
+46.18 lib/
+46.19 parse.y
+46.20 execute_cmd.c
+46.21 subst.c
+46.22 variables.c
+46.23 jobs.c
+46.24 laboratorio: compilar e inspeccionar Bash

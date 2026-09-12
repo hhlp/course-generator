@@ -1,0 +1,16 @@
+79. Parsing y datos
+79.1 shell no es parser universal
+79.2 delimitadores
+79.3 NUL
+79.4 filenames arbitrarios
+79.5 find -print0
+79.6 xargs -0
+79.7 read -d ''
+79.8 mapfile -d ''
+79.9 CSV y sus problemas
+79.10 JSON
+79.11 jq
+79.12 XML
+79.13 YAML
+79.14 herramientas especializadas
+79.15 laboratorio

@@ -1,0 +1,33 @@
+3. BRE — Basic Regular Expressions
+
+3.1 qué es BRE
+3.2 caracteres literales
+3.3 .
+3.4 ^
+3.5 $
+3.6 *
+3.7 expresiones entre corchetes
+3.8 [abc]
+3.9 rangos
+3.10 [a-z]
+3.11 clases POSIX
+3.12 [[:alpha:]]
+3.13 [[:digit:]]
+3.14 [[:alnum:]]
+3.15 [[:space:]]
+3.16 [[:blank:]]
+3.17 [[:lower:]]
+3.18 [[:upper:]]
+3.19 [[:punct:]]
+3.20 negación [^...]
+3.21 repetición
+3.22 \{m\}
+3.23 \{m,\}
+3.24 \{m,n\}
+3.25 grupos BRE
+3.26 \(...\)
+3.27 alternancia BRE
+3.28 \|
+3.29 backreferences
+3.30 \1, \2, etc.
+3.31 laboratorio BRE

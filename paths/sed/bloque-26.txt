@@ -1,0 +1,19 @@
+26. Seguridad y robustez
+
+26.1 datos frente a código sed
+26.2 variables no confiables
+26.3 escaping dinámico
+26.4 delimitadores inesperados
+26.5 regex injection
+26.6 replacement injection
+26.7 archivos arbitrarios
+26.8 symlinks
+26.9 edición in-place
+26.10 permisos
+26.11 backups
+26.12 validación antes de reemplazar
+26.13 --sandbox
+26.14 comandos que interactúan con archivos
+26.15 ejecución desde scripts privilegiados
+26.16 principio de mínimo privilegio
+26.17 laboratorio: endurecer un script sed

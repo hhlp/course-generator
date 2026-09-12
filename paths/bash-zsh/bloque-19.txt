@@ -1,0 +1,15 @@
+19. Funciones
+19.1 definición
+19.2 invocación
+19.3 parámetros
+19.4 return
+19.5 exit status
+19.6 variables locales
+19.7 scope
+19.8 recursión
+19.9 funciones como comandos
+19.10 export -f Bash
+19.11 autoload Zsh
+19.12 funciones Zsh
+19.13 funciones anónimas Zsh
+19.14 laboratorio

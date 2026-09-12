@@ -1,0 +1,18 @@
+17. Texto estructurado
+
+17.1 límites de sed para datos estructurados
+17.2 archivos key=value
+17.3 INI simples
+17.4 configuraciones simples
+17.5 logs
+17.6 listas
+17.7 tablas delimitadas simples
+17.8 CSV y sus dificultades
+17.9 JSON y por qué sed no es un parser JSON
+17.10 XML y sus dificultades
+17.11 YAML y sus dificultades
+17.12 HTML y sus dificultades
+17.13 cuándo utilizar jq
+17.14 cuándo utilizar yq
+17.15 cuándo utilizar un parser real
+17.16 laboratorio: determinar cuándo sed es y no es la herramienta correcta

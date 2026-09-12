@@ -1,0 +1,13 @@
+17. Bucles
+17.1 for
+17.2 for sobre argumentos
+17.3 C-style for
+17.4 while
+17.5 until
+17.6 select
+17.7 break
+17.8 continue
+17.9 loops anidados
+17.10 lectura segura
+17.11 evitar parsing de ls
+17.12 laboratorio

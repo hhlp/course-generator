@@ -1,0 +1,23 @@
+6. Tipos y conversiones
+
+6.1 modelo de tipos de AWK
+6.2 números
+6.3 strings
+6.4 strnum
+6.5 conversión string → número
+6.6 conversión número → string
+6.7 contexto numérico
+6.8 contexto string
+6.9 concatenación implícita
+6.10 CONVFMT
+6.11 OFMT
+6.12 números enteros
+6.13 punto flotante
+6.14 notación científica
+6.15 valores booleanos
+6.16 verdadero y falso
+6.17 string vacío
+6.18 cero
+6.19 valores no inicializados
+6.20 comparación y coerción
+6.21 laboratorio: descubrir conversiones implícitas problemáticas

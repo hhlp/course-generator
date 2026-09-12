@@ -1,0 +1,16 @@
+69. Shell y sistema operativo
+69.1 syscalls conceptualmente
+69.2 fork
+69.3 execve
+69.4 wait
+69.5 pipe
+69.6 dup2
+69.7 open
+69.8 close
+69.9 chdir
+69.10 signals
+69.11 process groups
+69.12 sessions
+69.13 controlling terminal
+69.14 strace
+69.15 laboratorio: observar un pipeline con strace

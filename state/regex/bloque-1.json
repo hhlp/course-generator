@@ -1,0 +1,10 @@
+{
+  "lessons": {
+    "1.1": {
+      "status": "planning",
+      "title": "caracteres literales"
+    }
+  },
+  "profile": "regex",
+  "source": "/home/hhlp/course-generator/paths/regex/bloque-1.txt"
+}

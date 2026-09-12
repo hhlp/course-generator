@@ -1,0 +1,22 @@
+29. Ingeniería de scripts sed
+
+29.1 requisitos
+29.2 diseño
+29.3 implementación
+29.4 fixtures de prueba
+29.5 casos normales
+29.6 edge cases
+29.7 entrada vacía
+29.8 líneas enormes
+29.9 caracteres especiales
+29.10 Unicode y locales
+29.11 CRLF
+29.12 múltiples archivos
+29.13 errores de entrada/salida
+29.14 idempotencia
+29.15 regresiones
+29.16 documentación
+29.17 integración con shell
+29.18 integración en Git
+29.19 CI para transformaciones de texto
+29.20 laboratorio: proyecto sed mantenible

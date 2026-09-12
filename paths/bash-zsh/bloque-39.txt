@@ -1,0 +1,15 @@
+39. Testing de scripts
+39.1 por qué probar shell
+39.2 unit testing
+39.3 integration testing
+39.4 fixtures
+39.5 temporary directories
+39.6 mocks
+39.7 stubs
+39.8 exit status
+39.9 stdout
+39.10 stderr
+39.11 Bats
+39.12 ShellSpec
+39.13 testing Bash/Zsh
+39.14 laboratorio

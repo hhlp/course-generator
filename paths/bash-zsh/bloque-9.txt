@@ -1,0 +1,16 @@
+9. Aritmética
+9.1 enteros
+9.2 $((...))
+9.3 ((...))
+9.4 operadores
+9.5 asignación
+9.6 incremento/decremento
+9.7 comparación
+9.8 bitwise
+9.9 bases numéricas
+9.10 variables aritméticas
+9.11 declare -i
+9.12 let
+9.13 arithmetic evaluation Zsh
+9.14 errores frecuentes
+9.15 laboratorio

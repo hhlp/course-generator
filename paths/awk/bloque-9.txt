@@ -1,0 +1,27 @@
+9. Expresiones regulares en AWK
+
+9.1 regex en AWK
+9.2 ERE
+9.3 caracteres literales
+9.4 .
+9.5 ^
+9.6 $
+9.7 clases de caracteres
+9.8 rangos
+9.9 negación
+9.10 *
+9.11 +
+9.12 ?
+9.13 {m,n}
+9.14 alternancia |
+9.15 agrupación
+9.16 escaping
+9.17 ~
+9.18 !~
+9.19 regex constants
+9.20 dynamic regex
+9.21 regex almacenadas en variables
+9.22 diferencias entre regex constante y dinámica
+9.23 interval expressions
+9.24 locale y regex
+9.25 laboratorio: construir filtros AWK basados en ERE

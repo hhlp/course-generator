@@ -1,0 +1,24 @@
+2. Modelo fundamental pattern-action
+
+2.1 estructura de un programa AWK
+2.2 pattern { action }
+2.3 pattern
+2.4 action
+2.5 reglas
+2.6 múltiples reglas
+2.7 orden de las reglas
+2.8 regla sin pattern
+2.9 pattern sin action
+2.10 acción predeterminada
+2.11 { print }
+2.12 programa vacío
+2.13 procesamiento registro por registro
+2.14 evaluación de patterns
+2.15 ejecución de actions
+2.16 flujo completo de ejecución
+2.17 BEGIN
+2.18 reglas normales
+2.19 END
+2.20 múltiples BEGIN
+2.21 múltiples END
+2.22 laboratorio: visualizar mentalmente el ciclo de ejecución de AWK

@@ -1,0 +1,32 @@
+21. Unicode
+21.1 Unicode frente a ASCII
+21.2 code point
+21.3 code unit
+21.4 grapheme cluster
+21.5 caracteres compuestos
+21.6 combining marks
+21.7 normalización
+21.8 NFC
+21.9 NFD
+21.10 NFKC
+21.11 NFKD
+21.12 propiedades Unicode
+21.13 \p{...}
+21.14 \P{...}
+21.15 categorías generales
+21.16 scripts
+21.17 letters
+21.18 numbers
+21.19 marks
+21.20 whitespace Unicode
+21.21 \w bajo Unicode
+21.22 \d bajo Unicode
+21.23 \b bajo Unicode
+21.24 grapheme clusters
+21.25 \X cuando esté soportado
+21.26 emoji
+21.27 secuencias de emoji
+21.28 variación entre motores
+21.29 case folding
+21.30 Unicode y case insensitive
+21.31 laboratorio

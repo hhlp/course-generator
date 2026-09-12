@@ -1,0 +1,17 @@
+43. Arquitectura interna de GNU grep
+
+43.1 flujo conceptual interno
+43.2 lectura de entrada
+43.3 compilación del patrón
+43.4 matching
+43.5 fixed-string matching
+43.6 regex matching
+43.7 PCRE2
+43.8 optimizaciones
+43.9 búsqueda de candidatos
+43.10 locale
+43.11 buffering
+43.12 salida
+43.13 estudiar el código fuente de GNU grep
+43.14 localizar implementación de opciones
+43.15 laboratorio de source code archaeology

@@ -1,0 +1,25 @@
+14. Lookbehind
+14.1 qué es lookbehind
+14.2 lookbehind positivo
+14.3 (?<=...)
+14.4 lookbehind negativo
+14.5 (?<!...)
+14.6 inspeccionar hacia la izquierda
+14.7 contexto sin consumirlo
+14.8 match resultante
+14.9 lookbehind de longitud fija
+14.10 por qué históricamente se exige longitud fija
+14.11 alternativas dentro de lookbehind
+14.12 cuantificadores dentro de lookbehind
+14.13 lookbehind de longitudes diferentes
+14.14 lookbehind de longitud acotada
+14.15 lookbehind de longitud variable
+14.16 motores que lo permiten
+14.17 restricciones según motor
+14.18 capturas dentro de lookbehind
+14.19 backreferences y lookbehind
+14.20 lookbehind negativo
+14.21 múltiples lookbehind
+14.22 lookbehind anidado
+14.23 rendimiento
+14.24 laboratorio

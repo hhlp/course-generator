@@ -1,0 +1,20 @@
+87. Bash frente a Zsh en profundidad
+87.1 objetivos de diseño
+87.2 POSIX
+87.3 arrays
+87.4 indexing
+87.5 word splitting
+87.6 globbing
+87.7 parameter expansion
+87.8 functions
+87.9 options
+87.10 completion
+87.11 line editing
+87.12 startup
+87.13 scripting
+87.14 interactive use
+87.15 portability
+87.16 rendimiento
+87.17 cuándo Bash
+87.18 cuándo Zsh
+87.19 laboratorio

@@ -1,0 +1,59 @@
+37. Proyecto final — sed-toolkit
+
+37.1 definir arquitectura de sed-toolkit
+37.2 colección modular de scripts .sed
+37.3 normalize.sed
+37.4 extract.sed
+37.5 replace.sed
+37.6 blocks.sed
+37.7 multiline.sed
+37.8 integración mediante funciones Zsh
+37.9 selección de operaciones
+37.10 lectura desde stdin
+37.11 lectura desde archivos
+37.12 procesamiento de múltiples archivos
+37.13 modo stdout por defecto
+37.14 modo dry-run
+37.15 mostrar diff antes de modificar
+37.16 backups
+37.17 edición segura
+37.18 soporte para pipelines
+37.19 soporte NUL cuando corresponda
+37.20 validación de argumentos
+37.21 protección frente a expresiones dinámicas inseguras
+37.22 logging
+37.23 manejo de errores
+37.24 tests automáticos
+37.25 fixtures
+37.26 pruebas de idempotencia
+37.27 pruebas con archivos grandes
+37.28 pruebas con caracteres especiales
+37.29 comprobar compatibilidad GNU sed
+37.30 identificar dependencias GNU
+37.31 variante POSIX de operaciones seleccionadas
+37.32 documentación
+37.33 manual de ejemplos
+37.34 empaquetado como proyecto
+37.35 integración con Git
+37.36 proyecto final: procesar un árbol de configuraciones Fedora simulado de forma segura
+
+37.37 arquitectura por módulos
+37.38 motor de selección de transformaciones
+37.39 biblioteca POSIX
+37.40 biblioteca GNU
+37.41 detección de capacidades disponibles
+37.42 modo --check
+37.43 modo --dry-run
+37.44 modo --diff
+37.45 modo --backup
+37.46 modo --apply
+37.47 rollback
+37.48 validación post-transformación
+37.49 fixtures de configuraciones Fedora simuladas
+37.50 benchmark
+37.51 suite de compatibilidad
+37.52 suite de seguridad
+37.53 documentación técnica
+37.54 manual de usuario
+37.55 integración opcional con empaquetado RPM
+37.56 proyecto final: sed-toolkit completo

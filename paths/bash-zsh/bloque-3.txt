@@ -1,0 +1,19 @@
+3. Quoting
+3.1 por qué existe quoting
+3.2 espacios
+3.3 caracteres especiales
+3.4 escape con \
+3.5 single quotes
+3.6 double quotes
+3.7 ANSI-C quoting $'...'
+3.8 locale translation $"..."
+3.9 quoting dentro de quoting
+3.10 quoting de variables
+3.11 argumentos vacíos
+3.12 "$var"
+3.13 "$@"
+3.14 "$*"
+3.15 printf %q
+3.16 quoting seguro
+3.17 diferencias Bash/Zsh
+3.18 laboratorio: romper y reparar comandos mediante quoting

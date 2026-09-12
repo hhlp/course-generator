@@ -1,0 +1,36 @@
+3. Clases de caracteres
+3.1 introducción a [...]
+3.2 conjuntos de caracteres
+3.3 rangos
+3.4 [a-z]
+3.5 [A-Z]
+3.6 [0-9]
+3.7 combinar rangos
+3.8 caracteres literales dentro de []
+3.9 negación con [^...]
+3.10 ^ dentro y fuera de una clase
+3.11 - dentro de clases
+3.12 ] dentro de clases
+3.13 \ dentro de clases
+3.14 clases predefinidas
+3.15 \d
+3.16 \D
+3.17 \w
+3.18 \W
+3.19 \s
+3.20 \S
+3.21 significado dependiente del motor
+3.22 ASCII frente a Unicode
+3.23 clases POSIX
+3.24 [:alpha:]
+3.25 [:digit:]
+3.26 [:alnum:]
+3.27 [:space:]
+3.28 [:lower:]
+3.29 [:upper:]
+3.30 [:punct:]
+3.31 [:xdigit:]
+3.32 intersección de clases cuando esté soportada
+3.33 sustracción de clases cuando esté soportada
+3.34 operaciones avanzadas sobre conjuntos
+3.35 laboratorio

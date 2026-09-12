@@ -1,0 +1,16 @@
+26. Ordenación de arrays
+
+26.1 por qué los arrays AWK no tienen orden natural
+26.2 asort()
+26.3 asorti()
+26.4 ordenar valores
+26.5 ordenar índices
+26.6 destino separado
+26.7 PROCINFO["sorted_in"]
+26.8 orden numérico
+26.9 orden string
+26.10 ascendente
+26.11 descendente
+26.12 funciones de comparación personalizadas
+26.13 estabilidad y consideraciones
+26.14 laboratorio: rankings y tablas ordenadas

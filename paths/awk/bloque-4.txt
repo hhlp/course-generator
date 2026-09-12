@@ -1,0 +1,31 @@
+4. Campos
+
+4.1 concepto de campo
+4.2 $1
+4.3 $2
+4.4 $N
+4.5 NF
+4.6 último campo con $NF
+4.7 penúltimo campo
+4.8 campos calculados
+4.9 $(expresión)
+4.10 FS
+4.11 field separator
+4.12 separador whitespace predeterminado
+4.13 comportamiento especial de FS=" "
+4.14 awk -F
+4.15 separadores de un carácter
+4.16 separadores mediante regex
+4.17 cambiar FS durante la ejecución
+4.18 asignar valores a campos
+4.19 modificar $1
+4.20 modificar $NF
+4.21 reconstrucción de $0
+4.22 OFS
+4.23 output field separator
+4.24 FIELDWIDTHS en gawk
+4.25 campos de anchura fija
+4.26 FPAT
+4.27 definir qué constituye un campo
+4.28 diferencias FS ↔ FPAT ↔ FIELDWIDTHS
+4.29 laboratorio: analizar /etc/passwd, logs y datos delimitados

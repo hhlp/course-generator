@@ -1,0 +1,13 @@
+18. Sed + grep + awk
+
+18.1 filosofía Unix
+18.2 seleccionar con grep
+18.3 transformar con sed
+18.4 estructurar con awk
+18.5 grep | sed
+18.6 cuándo sed puede reemplazar a grep
+18.7 cuándo awk simplifica un script sed complejo
+18.8 pipelines
+18.9 evitar procesos innecesarios
+18.10 legibilidad frente a one-liners extremos
+18.11 laboratorio: resolver el mismo problema con distintas herramientas

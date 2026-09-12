@@ -1,0 +1,45 @@
+99. PROYECTO FINAL EXPERTO
+99.1 diseñar toolkit Bash + Zsh
+99.2 arquitectura modular
+99.3 biblioteca común
+99.4 módulos Bash
+99.5 módulos Zsh
+99.6 configuración XDG
+99.7 loader de módulos
+99.8 dependency management
+99.9 logging
+99.10 error handling
+99.11 signal handling
+99.12 temporary resources
+99.13 concurrencia
+99.14 IPC
+99.15 CLI framework
+99.16 completion Bash
+99.17 completion Zsh
+99.18 ZLE widgets
+99.19 prompt
+99.20 hooks
+99.21 plugin system
+99.22 diagnostics
+99.23 tracing
+99.24 profiling
+99.25 seguridad
+99.26 ShellCheck
+99.27 testing unitario
+99.28 testing de integración
+99.29 portability tests
+99.30 documentación
+99.31 man pages
+99.32 packaging
+99.33 integración systemd
+99.34 integración SSH
+99.35 integración containers
+99.36 CI
+99.37 benchmark
+99.38 auditoría de seguridad
+99.39 proyecto final: bash-zsh-toolkit
+99.40 análisis del toolkit con strace
+99.41 análisis de rendimiento
+99.42 análisis de procesos y file descriptors
+99.43 auditoría completa
+99.44 versión final production-ready

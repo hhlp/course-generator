@@ -1,0 +1,15 @@
+28. POSIX BRE
+28.1 qué es POSIX
+28.2 Basic Regular Expressions
+28.3 sintaxis BRE
+28.4 metacaracteres
+28.5 escapes
+28.6 agrupación
+28.7 repetición
+28.8 intervalos
+28.9 backreferences
+28.10 clases POSIX
+28.11 leftmost-longest
+28.12 limitaciones
+28.13 diferencias con dialectos modernos extendidos
+28.14 laboratorio

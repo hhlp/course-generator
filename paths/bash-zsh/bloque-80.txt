@@ -1,0 +1,19 @@
+80. Diseño de CLI profesional
+80.1 interfaz
+80.2 comandos
+80.3 subcomandos
+80.4 flags
+80.5 argumentos
+80.6 help
+80.7 usage
+80.8 version
+80.9 stdout frente a stderr
+80.10 exit codes
+80.11 configuración
+80.12 environment
+80.13 XDG Base Directory
+80.14 completion Bash
+80.15 completion Zsh
+80.16 man page
+80.17 testing
+80.18 laboratorio: CLI completa

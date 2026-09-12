@@ -1,0 +1,23 @@
+20. Casos reales en Linux y Fedora
+
+20.1 /etc como fuente de ejemplos
+20.2 no modificar configuraciones reales durante aprendizaje
+20.3 /etc/fstab
+20.4 /etc/hosts
+20.5 archivos .conf
+20.6 archivos .repo
+20.7 archivos systemd
+20.8 SPEC files RPM
+20.9 logs de systemd
+20.10 salida de journalctl
+20.11 salida de rpm
+20.12 salida de dnf
+20.13 salida de ip
+20.14 salida de ss
+20.15 salida de systemctl
+20.16 transformar rutas
+20.17 modificar claves de configuración
+20.18 comentar y descomentar líneas
+20.19 normalizar whitespace
+20.20 extraer secciones
+20.21 laboratorio: toolkit sed para Fedora

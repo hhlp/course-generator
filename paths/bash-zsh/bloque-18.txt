@@ -1,0 +1,15 @@
+18. read y procesamiento de entrada
+18.1 read
+18.2 IFS=
+18.3 read -r
+18.4 múltiples variables
+18.5 delimitadores
+18.6 timeout
+18.7 lectura desde fd
+18.8 while read
+18.9 último registro sin newline
+18.10 readarray
+18.11 mapfile
+18.12 read Zsh
+18.13 zmodload zsh/mapfile
+18.14 laboratorio

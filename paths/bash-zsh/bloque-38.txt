@@ -1,0 +1,13 @@
+38. ShellCheck
+38.1 análisis estático
+38.2 instalación
+38.3 warnings
+38.4 errores
+38.5 quoting
+38.6 arrays
+38.7 portability
+38.8 directives
+38.9 disable selectivo
+38.10 CI
+38.11 limitaciones
+38.12 laboratorio

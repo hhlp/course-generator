@@ -1,0 +1,20 @@
+26. Rendimiento
+26.1 coste de una expresión regular
+26.2 longitud del patrón
+26.3 longitud de la entrada
+26.4 búsqueda lineal
+26.5 backtracking
+26.6 alternativas ambiguas
+26.7 cuantificadores anidados
+26.8 prefijos comunes
+26.9 .* innecesario
+26.10 clases frente a alternancias
+26.11 anclar búsquedas
+26.12 limitar cuantificadores
+26.13 reducir ambigüedad
+26.14 grupos atómicos
+26.15 cuantificadores posesivos
+26.16 medir antes de optimizar
+26.17 benchmark conceptual
+26.18 comportamiento según motor
+26.19 laboratorio de optimización

@@ -1,0 +1,19 @@
+4. ERE — Extended Regular Expressions
+
+4.1 grep -E
+4.2 BRE frente a ERE
+4.3 egrep histórico
+4.4 +
+4.5 ?
+4.6 {m}
+4.7 {m,}
+4.8 {m,n}
+4.9 grupos (...)
+4.10 alternancia |
+4.11 expresiones anidadas
+4.12 precedencia
+4.13 cuantificadores
+4.14 combinar anclas y grupos
+4.15 construir expresiones complejas
+4.16 cuándo elegir ERE
+4.17 laboratorio ERE
