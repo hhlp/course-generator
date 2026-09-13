@@ -108,14 +108,16 @@ bloque. Esto evita mezclar estados, salidas, manifests y ZIP de bloques diferent
 ## Separar `initial.txt` por bloques
 
 La separación de un PATH maestro está integrada directamente en la CLI de `course-generator`.
-No requiere `--profile`, porque esta operación sólo analiza la estructura del PATH y no carga
-perfil, prompts ni API.
+
+La CLI actual mantiene `--profile` como argumento obligatorio, también cuando se usan operaciones
+estructurales como `--split-blocks`. La separación en sí no necesita llamar a la API.
 
 Antes de escribir archivos, validar el PATH completo:
 
 ```bash
 uv run course-generator \
     paths/regex/initial.txt \
+    --profile regex \
     --split-blocks \
     --check-lessons \
     --dry-run
@@ -158,21 +160,10 @@ deliberadamente:
 ```bash
 uv run course-generator \
     paths/regex/initial.txt \
-    --profile regex
+    --profile regex \
     --split-blocks \
     --check-lessons \
     --force
-```
-
-También puede utilizarse otro directorio:
-
-```bash
-uv run course-generator \
-    paths/regex/initial.txt \
-    --profile regex
-    --split-blocks \
-    --check-lessons \
-    --output-dir /tmp/regex-blocks
 ```
 
 La separación valida:
@@ -217,6 +208,7 @@ opciones de inspección:
 --dump-json
 --validate-context
 --neighbor-radius N
+--check-lessons
 ```
 
 Funciones principales:
@@ -229,6 +221,7 @@ Funciones principales:
 - `--dump-json`: muestra la representación estructurada del payload.
 - `--validate-context`: comprueba que el contexto requerido pueda resolverse correctamente.
 - `--neighbor-radius N`: modifica el radio de lecciones vecinas utilizado durante la inspección.
+- `--check-lessons`: comprueba la continuidad de la numeración de las lecciones.
 
 En un `dry-run`, las etapas que dependen de resultados todavía inexistentes no se inventan. Por
 ejemplo, `teacher` requiere la salida del planner, `auditor` requiere la salida del teacher y la
@@ -261,6 +254,136 @@ uv run course-generator \
     --lesson 1.7 \
     --dry-run
 ```
+
+## CLI actual
+
+La interfaz disponible actualmente es:
+
+```text
+course-generator [-h] --profile PROFILE
+                 [--lesson LESSON] [--resume] [--force] [--dry-run]
+                 [--show-prompt] [--inspect]
+                 [--save-prompt FILE] [--save-inspect FILE]
+                 [--dump-json] [--validate-context]
+                 [--neighbor-radius N] [--split-blocks]
+                 [--check-lessons] [--no-zip] [--root ROOT]
+                 path
+```
+
+Importante: la opción correcta es `--dry-run`, con guion intermedio. `--dryrun` no existe.
+
+Validación recomendada de un bloque antes de consumir créditos:
+
+```bash
+uv run course-generator \
+    paths/regex/bloque-1.txt \
+    --profile regex \
+    --dry-run \
+    --validate-context \
+    --check-lessons
+```
+
+Inspección del contexto y del prompt:
+
+```bash
+uv run course-generator \
+    paths/regex/bloque-1.txt \
+    --profile regex \
+    --lesson 1.1 \
+    --dry-run \
+    --validate-context \
+    --inspect \
+    --show-prompt
+```
+
+## Estructura por dominio
+
+El motor es genérico y cada materia se desacopla mediante su perfil y su PATH:
+
+```text
+paths/<dominio>/
+├── initial.txt
+├── bloque-0.txt
+├── bloque-1.txt
+└── ...
+
+profiles/<dominio>/
+└── configuración y contexto específicos del dominio
+```
+
+El flujo se está aplicando a PATH técnicos independientes como Regex, sed, AWK, Coreutils,
+Bash/Zsh, C++, RPM, Firewalld, systemd, SELinux y OpenSSH/Watchdog.
+
+La numeración (`0.1`, `1.7`, `23.10`, etc.) identifica la posición pedagógica de una lección.
+El significado técnico procede del PATH, el perfil y su contexto, de modo que distintas materias
+pueden compartir esquemas de numeración sin mezclar contenido.
+
+Cuando un dominio requiere documentación contextual o bibliografía propia, ésta se mantiene
+asociada a ese PATH/perfil.
+
+## Flujo recomendado antes de gastar créditos
+
+```text
+initial.txt
+    ↓
+revisión completa del learning path
+    ↓
+--split-blocks --check-lessons --dry-run
+    ↓
+--split-blocks --check-lessons
+    ↓
+bloque-0.txt ... bloque-N.txt
+    ↓
+--dry-run --validate-context
+    ↓
+--inspect --show-prompt sobre lecciones representativas
+    ↓
+generar una primera lección real y revisarla
+    ↓
+generación progresiva del bloque
+    ↓
+tests
+    ↓
+commit
+```
+
+Ejemplo completo con Regex:
+
+```bash
+# Validar la separación
+uv run course-generator \
+    paths/regex/initial.txt \
+    --profile regex \
+    --split-blocks \
+    --check-lessons \
+    --dry-run
+
+# Crear los bloques
+uv run course-generator \
+    paths/regex/initial.txt \
+    --profile regex \
+    --split-blocks \
+    --check-lessons
+
+# Validar un bloque separado
+uv run course-generator \
+    paths/regex/bloque-1.txt \
+    --profile regex \
+    --dry-run \
+    --validate-context \
+    --check-lessons
+
+# Inspeccionar una lección representativa
+uv run course-generator \
+    paths/regex/bloque-1.txt \
+    --profile regex \
+    --lesson 1.1 \
+    --dry-run \
+    --inspect \
+    --show-prompt
+```
+
+El mismo procedimiento se aplica a `sed`, `awk`, `coreutils`, `bash-zsh` y los demás perfiles.
 
 ## Comandos de generación
 
@@ -317,9 +440,38 @@ El generador distingue dos intenciones pedagógicas:
 
 No se exige un proyecto por bloque. Los proyectos aparecen sólo cuando el PATH, el perfil o el planner justifican su valor pedagógico.
 
+## Estado actual del generador
+
+El flujo implementado/documentado cubre:
+
+- PATH maestro `initial.txt` y PATH separados `bloque-X.txt`;
+- separación automática con `--split-blocks`;
+- validación de numeración con `--check-lessons`;
+- perfiles independientes por dominio;
+- selección de lección con `--lesson`;
+- contexto vecino configurable mediante `--neighbor-radius`;
+- `--validate-context`;
+- `--inspect`, `--show-prompt`, `--save-prompt` y `--save-inspect`;
+- `--dump-json` para diagnóstico;
+- `--dry-run` sin generación real;
+- generación por lección y por bloque;
+- `--resume` y regeneración explícita con `--force`;
+- pipeline Planner → Teacher → Auditor → Repair;
+- staging antes de publicar artefactos;
+- estrategias de proyecto independientes, extensibles e integradoras;
+- separación entre dependencias de conocimiento y de artefactos;
+- registro global de proyectos por perfil;
+- validación local de proyectos cuando corresponde;
+- `INDEX.md` y `MANIFEST.md`;
+- empaquetado ZIP y `--no-zip`;
+- comprobaciones con Ruff, mypy y pytest.
+
+La idea central sigue siendo mantener **un motor genérico** y trasladar el conocimiento específico
+a los PATH, perfiles, contexto de dominio y bibliografía.
+
 ## Test
 
-```
+```bash
 uv run ruff format .
 uv run ruff check .
 uv run mypy src
