@@ -1,0 +1,1214 @@
+PATH — PROMETHEUS DE 0 A EXPERTO
+
+0. Fundamentos de monitorización
+0.1 qué es monitorización
+0.2 observabilidad
+0.3 monitorización frente a observabilidad
+0.4 métricas
+0.5 logs
+0.6 traces
+0.7 profiles
+0.8 eventos
+0.9 telemetría
+0.10 sistemas de monitorización tradicionales
+0.11 monitorización basada en agentes
+0.12 monitorización basada en polling
+0.13 push frente a pull
+0.14 monitorización de infraestructura
+0.15 monitorización de aplicaciones
+0.16 monitorización de servicios
+0.17 white-box monitoring
+0.18 black-box monitoring
+0.19 RED method
+0.20 USE method
+0.21 Golden Signals
+0.22 SLI
+0.23 SLO
+0.24 SLA
+0.25 alertas
+0.26 dashboards
+0.27 series temporales
+0.28 timestamp
+0.29 sample
+0.30 time-series database
+0.31 cardinalidad
+0.32 dimensionalidad
+0.33 labels
+0.34 laboratorio: identificar señales observables de un sistema Linux
+
+1. Introducción a Prometheus
+1.1 qué es Prometheus
+1.2 historia de Prometheus
+1.3 SoundCloud
+1.4 CNCF
+1.5 filosofía de Prometheus
+1.6 arquitectura general
+1.7 Prometheus Server
+1.8 exporters
+1.9 targets
+1.10 scraping
+1.11 pull model
+1.12 push model y sus excepciones
+1.13 service discovery
+1.14 PromQL
+1.15 TSDB
+1.16 recording rules
+1.17 alerting rules
+1.18 Alertmanager
+1.19 Pushgateway
+1.20 remote write
+1.21 remote read
+1.22 federation
+1.23 HTTP API
+1.24 Web UI
+1.25 flujo completo exporter → scrape → TSDB → PromQL → alerta
+1.26 cuándo utilizar Prometheus
+1.27 cuándo Prometheus no es suficiente
+1.28 laboratorio: construir el mapa conceptual completo de Prometheus
+
+2. Instalación y operación en Fedora
+2.1 comprobar paquetes disponibles
+2.2 paquetes RPM relacionados con Prometheus
+2.3 instalación mediante RPM cuando esté disponible
+2.4 instalación mediante binarios upstream
+2.5 comprobar versión
+2.6 prometheus --version
+2.7 estructura de archivos
+2.8 ejecutable prometheus
+2.9 ejecutable promtool
+2.10 /etc/prometheus
+2.11 prometheus.yml
+2.12 directorios de reglas
+2.13 almacenamiento de datos
+2.14 usuario de servicio
+2.15 permisos
+2.16 servicio systemd
+2.17 systemctl status
+2.18 systemctl start
+2.19 systemctl stop
+2.20 systemctl restart
+2.21 systemctl reload y comportamiento aplicable
+2.22 systemctl enable
+2.23 journalctl
+2.24 parámetros de ejecución
+2.25 --config.file
+2.26 --storage.tsdb.path
+2.27 --storage.tsdb.retention.time
+2.28 --storage.tsdb.retention.size
+2.29 --web.listen-address
+2.30 flags de Prometheus
+2.31 consultar flags disponibles
+2.32 SELinux
+2.33 firewalld
+2.34 actualización
+2.35 rollback
+2.36 laboratorio: desplegar Prometheus como servicio Fedora
+
+3. Configuración de Prometheus
+3.1 estructura de prometheus.yml
+3.2 YAML aplicado a Prometheus
+3.3 global
+3.4 scrape_interval
+3.5 scrape_timeout
+3.6 evaluation_interval
+3.7 external_labels
+3.8 rule_files
+3.9 scrape_configs
+3.10 job_name
+3.11 targets
+3.12 static_configs
+3.13 labels estáticos
+3.14 metrics_path
+3.15 scheme
+3.16 parámetros HTTP
+3.17 autenticación
+3.18 TLS
+3.19 proxies
+3.20 relabel_configs
+3.21 metric_relabel_configs
+3.22 límites de scrape
+3.23 alerting
+3.24 remote_write
+3.25 remote_read
+3.26 validación
+3.27 promtool check config
+3.28 recarga de configuración
+3.29 endpoint /-/reload
+3.30 configuración modular
+3.31 separación de reglas
+3.32 buenas prácticas
+3.33 laboratorio: construir una configuración modular
+
+4. Modelo de datos
+4.1 modelo dimensional de Prometheus
+4.2 time series
+4.3 metric name
+4.4 labels
+4.5 label name
+4.6 label value
+4.7 sample
+4.8 timestamp
+4.9 float samples
+4.10 histogram samples
+4.11 identificación de una serie
+4.12 fingerprint conceptual
+4.13 instant vector
+4.14 range vector
+4.15 scalar
+4.16 string
+4.17 tipos de métricas frente a tipos PromQL
+4.18 counter
+4.19 gauge
+4.20 histogram
+4.21 classic histogram
+4.22 native histogram
+4.23 summary
+4.24 _total
+4.25 _count
+4.26 _sum
+4.27 buckets
+4.28 le
+4.29 quantiles
+4.30 quantile
+4.31 naming conventions
+4.32 units
+4.33 suffixes
+4.34 cardinalidad
+4.35 cardinalidad baja
+4.36 cardinalidad alta
+4.37 cardinality explosion
+4.38 labels peligrosos
+4.39 IDs como labels
+4.40 URLs como labels
+4.41 usuarios como labels
+4.42 bounded frente a unbounded labels
+4.43 diseño correcto de métricas
+4.44 laboratorio: diseñar un modelo de métricas
+
+5. Exposition format y scraping
+5.1 endpoint /metrics
+5.2 Prometheus exposition format
+5.3 líneas de métricas
+5.4 HELP
+5.5 TYPE
+5.6 labels
+5.7 timestamps explícitos
+5.8 escaping
+5.9 OpenMetrics
+5.10 Prometheus format frente a OpenMetrics
+5.11 HTTP scraping
+5.12 scrape loop
+5.13 scrape interval
+5.14 scrape timeout
+5.15 scrape errors
+5.16 sample ingestion
+5.17 up
+5.18 scrape_duration_seconds
+5.19 scrape_samples_scraped
+5.20 scrape_samples_post_metric_relabeling
+5.21 scrape_series_added
+5.22 scrape health
+5.23 target metadata
+5.24 staleness
+5.25 stale markers
+5.26 laboratorio: analizar manualmente /metrics
+
+6. Exporters
+6.1 qué es un exporter
+6.2 por qué existen exporters
+6.3 exporter frente a instrumentación nativa
+6.4 arquitectura de un exporter
+6.5 exporter → HTTP → /metrics
+6.6 collectors
+6.7 exporters oficiales
+6.8 exporters mantenidos por la comunidad
+6.9 integraciones oficiales de Prometheus
+6.10 catálogo de exporters
+6.11 cómo localizar exporters
+6.12 cómo evaluar un exporter
+6.13 mantenimiento
+6.14 releases
+6.15 compatibilidad
+6.16 seguridad
+6.17 documentación
+6.18 métricas expuestas
+6.19 cardinalidad generada
+6.20 Node Exporter
+6.21 arquitectura de Node Exporter
+6.22 collectors de Node Exporter
+6.23 collectors habilitados
+6.24 collectors deshabilitados
+6.25 filesystem collector
+6.26 CPU collector
+6.27 memory collector
+6.28 network collector
+6.29 diskstats collector
+6.30 loadavg collector
+6.31 systemd collector
+6.32 textfile collector
+6.33 configuración de collectors
+6.34 filtrado de dispositivos
+6.35 filtrado de filesystems
+6.36 desplegar Node Exporter
+6.37 servicio systemd para Node Exporter
+6.38 añadir Node Exporter a Prometheus
+6.39 Blackbox Exporter
+6.40 probes
+6.41 HTTP probe
+6.42 HTTPS probe
+6.43 TCP probe
+6.44 ICMP probe
+6.45 DNS probe
+6.46 módulos de Blackbox Exporter
+6.47 relabeling para Blackbox Exporter
+6.48 SNMP Exporter
+6.49 conceptos SNMP necesarios
+6.50 generator de SNMP Exporter
+6.51 PostgreSQL exporters
+6.52 MySQL/MariaDB exporters
+6.53 Redis exporters
+6.54 exporters de hardware
+6.55 exporters de red
+6.56 exporters de systemd
+6.57 exporters para contenedores
+6.58 exporters para Kubernetes
+6.59 exporters de aplicaciones
+6.60 exporters específicos de fabricantes
+6.61 Pushgateway
+6.62 cuándo utilizar Pushgateway
+6.63 cuándo no utilizar Pushgateway
+6.64 lifecycle de métricas pushed
+6.65 introducción conceptual a client libraries
+6.66 cuándo instrumentar directamente una aplicación
+6.67 cuándo escribir un exporter propio
+6.68 estructura conceptual de un exporter
+6.69 collectors personalizados
+6.70 evitar convertir exporters en un curso de programación
+6.71 laboratorio: inventariar exporters disponibles
+6.72 laboratorio: desplegar varios exporters
+6.73 laboratorio: integrar Node + Blackbox + servicio de base de datos
+
+7. Targets
+7.1 concepto de target
+7.2 target address
+7.3 target labels
+7.4 discovered labels
+7.5 estado UP
+7.6 estado DOWN
+7.7 target health
+7.8 endpoint /targets
+7.9 dropped targets
+7.10 scrape pool
+7.11 jobs
+7.12 instances
+7.13 label job
+7.14 label instance
+7.15 target metadata
+7.16 diagnóstico de targets
+7.17 laboratorio: investigar targets UP/DOWN
+
+8. Service discovery
+8.1 qué es service discovery
+8.2 descubrimiento estático frente a dinámico
+8.3 static_configs
+8.4 file_sd_configs
+8.5 formato de file discovery
+8.6 actualización automática
+8.7 DNS service discovery
+8.8 Consul service discovery
+8.9 Kubernetes service discovery
+8.10 roles de Kubernetes SD
+8.11 node discovery
+8.12 pod discovery
+8.13 service discovery
+8.14 endpoints discovery
+8.15 EndpointSlice
+8.16 ingress discovery
+8.17 cloud service discovery
+8.18 descubrimiento basado en proveedores
+8.19 meta labels
+8.20 __meta_*
+8.21 __address__
+8.22 __scheme__
+8.23 __metrics_path__
+8.24 __param_*
+8.25 relabeling
+8.26 source_labels
+8.27 separator
+8.28 target_label
+8.29 regex
+8.30 replacement
+8.31 action
+8.32 replace
+8.33 keep
+8.34 drop
+8.35 labelmap
+8.36 labeldrop
+8.37 labelkeep
+8.38 hashmod
+8.39 relabeling avanzado
+8.40 target relabeling frente a metric relabeling
+8.41 debugging de discovery
+8.42 laboratorio: file-based service discovery
+8.43 laboratorio: transformar targets mediante relabeling
+
+9. PromQL — Fundamentos
+9.1 qué es PromQL
+9.2 query engine
+9.3 expression browser
+9.4 instant query
+9.5 range query
+9.6 metric selector
+9.7 label selector
+9.8 =
+9.9 !=
+9.10 =~
+9.11 !~
+9.12 regex en PromQL
+9.13 instant vectors
+9.14 range vectors
+9.15 scalars
+9.16 duration
+9.17 offset
+9.18 @ modifier
+9.19 arithmetic operators
+9.20 comparison operators
+9.21 logical/set operators
+9.22 operator precedence
+9.23 aggregation
+9.24 sum
+9.25 avg
+9.26 min
+9.27 max
+9.28 count
+9.29 stddev
+9.30 stdvar
+9.31 topk
+9.32 bottomk
+9.33 quantile
+9.34 count_values
+9.35 by
+9.36 without
+9.37 laboratorio: consultas fundamentales
+
+10. PromQL — Funciones y counters
+10.1 funciones PromQL
+10.2 counters
+10.3 counter reset
+10.4 rate()
+10.5 irate()
+10.6 increase()
+10.7 resets()
+10.8 cuándo utilizar rate
+10.9 cuándo utilizar irate
+10.10 ventanas de tiempo
+10.11 gauges
+10.12 delta()
+10.13 idelta()
+10.14 deriv()
+10.15 predict_linear()
+10.16 changes()
+10.17 funciones temporales
+10.18 funciones matemáticas
+10.19 funciones de labels
+10.20 label_replace()
+10.21 label_join()
+10.22 sort()
+10.23 sort_desc()
+10.24 clamp()
+10.25 clamp_min()
+10.26 clamp_max()
+10.27 laboratorio: CPU, memoria, red y disco con PromQL
+
+11. PromQL — Vector matching
+11.1 binary operations entre vectores
+11.2 matching de labels
+11.3 one-to-one
+11.4 on()
+11.5 ignoring()
+11.6 many-to-one
+11.7 one-to-many
+11.8 group_left
+11.9 group_right
+11.10 cardinalidad del matching
+11.11 errores many-to-many
+11.12 propagación de labels
+11.13 joins conceptuales en PromQL
+11.14 diferencias respecto a SQL
+11.15 patrones de consulta
+11.16 laboratorio: correlacionar métricas
+
+12. PromQL — Range queries y subqueries
+12.1 range vector selectors
+12.2 range functions
+12.3 *_over_time()
+12.4 avg_over_time()
+12.5 min_over_time()
+12.6 max_over_time()
+12.7 sum_over_time()
+12.8 count_over_time()
+12.9 quantile_over_time()
+12.10 subqueries
+12.11 sintaxis [range:resolution]
+12.12 nested queries
+12.13 offset y subqueries
+12.14 coste computacional
+12.15 consultas de larga duración
+12.16 laboratorio: análisis temporal avanzado
+
+13. PromQL — Histogramas
+13.1 histogramas
+13.2 classic histograms
+13.3 buckets
+13.4 cumulative buckets
+13.5 _bucket
+13.6 _sum
+13.7 _count
+13.8 histogram_quantile()
+13.9 percentiles
+13.10 p50
+13.11 p90
+13.12 p95
+13.13 p99
+13.14 agregación correcta de histogramas
+13.15 summaries frente a histograms
+13.16 native histograms
+13.17 native histogram samples
+13.18 funciones compatibles
+13.19 migración conceptual
+13.20 errores frecuentes
+13.21 laboratorio: calcular latencias p95/p99
+
+14. PromQL — Avanzado
+14.1 composición de consultas
+14.2 consultas multicapa
+14.3 cardinalidad y PromQL
+14.4 query cost
+14.5 consultas caras
+14.6 optimización
+14.7 precomputación
+14.8 recording rules
+14.9 ratios
+14.10 error rates
+14.11 availability
+14.12 saturation
+14.13 Apdex
+14.14 RED con PromQL
+14.15 USE con PromQL
+14.16 Golden Signals con PromQL
+14.17 SLI con PromQL
+14.18 SLO con PromQL
+14.19 burn rate
+14.20 multi-window burn-rate alerts
+14.21 ausencia de métricas
+14.22 absent()
+14.23 absent_over_time()
+14.24 PromQL anti-patterns
+14.25 laboratorio: biblioteca de consultas operativas
+
+15. Recording rules
+15.1 qué son recording rules
+15.2 por qué utilizarlas
+15.3 rule groups
+15.4 record
+15.5 expr
+15.6 labels
+15.7 evaluation interval
+15.8 naming conventions
+15.9 level:metric:operations
+15.10 precomputación
+15.11 rendimiento
+15.12 cardinalidad
+15.13 dependencia entre reglas
+15.14 orden de evaluación
+15.15 rule files
+15.16 validación con promtool
+15.17 testing
+15.18 reglas para dashboards
+15.19 reglas para alertas
+15.20 laboratorio: construir una jerarquía de recording rules
+
+16. Alerting rules
+16.1 arquitectura de alertas
+16.2 Prometheus frente a Alertmanager
+16.3 alerting rule
+16.4 alert
+16.5 expr
+16.6 for
+16.7 keep_firing_for
+16.8 labels
+16.9 annotations
+16.10 $labels
+16.11 $value
+16.12 pending
+16.13 firing
+16.14 inactive
+16.15 alert lifecycle
+16.16 diseño de alertas
+16.17 síntomas frente a causas
+16.18 actionable alerts
+16.19 alert fatigue
+16.20 severidades
+16.21 alertas de disponibilidad
+16.22 alertas de capacidad
+16.23 alertas de latencia
+16.24 alertas de errores
+16.25 alertas de saturación
+16.26 SLO-based alerts
+16.27 testing con promtool
+16.28 laboratorio: diseñar un conjunto operativo de alertas
+
+17. Alertmanager
+17.1 qué es Alertmanager
+17.2 arquitectura
+17.3 flujo Prometheus → Alertmanager
+17.4 instalación
+17.5 configuración
+17.6 alertmanager.yml
+17.7 route
+17.8 routing tree
+17.9 receiver
+17.10 grouping
+17.11 group_by
+17.12 group_wait
+17.13 group_interval
+17.14 repeat_interval
+17.15 matchers
+17.16 rutas hijas
+17.17 continue
+17.18 inhibition
+17.19 inhibition rules
+17.20 silences
+17.21 mute time intervals
+17.22 active time intervals
+17.23 receivers
+17.24 email
+17.25 webhooks
+17.26 integraciones de mensajería
+17.27 PagerDuty y sistemas equivalentes
+17.28 templates
+17.29 Go templates
+17.30 annotations en notificaciones
+17.31 agrupación correcta
+17.32 deduplicación
+17.33 fingerprint de alertas
+17.34 HA de Alertmanager
+17.35 clustering
+17.36 gossip
+17.37 estado
+17.38 API
+17.39 amtool
+17.40 validación
+17.41 troubleshooting
+17.42 laboratorio: construir routing tree completo
+17.43 laboratorio: inhibition + silences + receivers
+
+18. HTTP API
+18.1 Prometheus HTTP API
+18.2 /api/v1
+18.3 instant queries
+18.4 range queries
+18.5 series
+18.6 labels
+18.7 label values
+18.8 metadata
+18.9 targets
+18.10 rules
+18.11 alerts
+18.12 status
+18.13 TSDB status
+18.14 runtime information
+18.15 build information
+18.16 query parameters
+18.17 JSON responses
+18.18 errores
+18.19 administración mediante API
+18.20 seguridad de la API
+18.21 laboratorio: investigar Prometheus exclusivamente mediante HTTP/API
+
+19. TSDB
+19.1 almacenamiento local
+19.2 TSDB
+19.3 head block
+19.4 samples en memoria
+19.5 WAL
+19.6 write-ahead log
+19.7 WAL segments
+19.8 checkpoints
+19.9 chunks
+19.10 chunk encoding
+19.11 blocks
+19.12 estructura de un block
+19.13 meta.json
+19.14 chunks
+19.15 index
+19.16 tombstones
+19.17 block duration
+19.18 compaction
+19.19 retention por tiempo
+19.20 retention por tamaño
+19.21 disk sizing
+19.22 cardinalidad y almacenamiento
+19.23 snapshots
+19.24 backup
+19.25 restauración
+19.26 corrupción
+19.27 recuperación del WAL
+19.28 promtool tsdb
+19.29 analizar cardinalidad
+19.30 series churn
+19.31 rendimiento de almacenamiento
+19.32 SSD
+19.33 filesystem
+19.34 capacidad
+19.35 laboratorio: diseccionar físicamente una TSDB
+
+20. Federation
+20.1 qué es federation
+20.2 cuándo utilizar federation
+20.3 /federate
+20.4 match parameters
+20.5 federation jerárquica
+20.6 Prometheus local
+20.7 Prometheus global
+20.8 external labels
+20.9 agregación
+20.10 selección de métricas
+20.11 cardinalidad
+20.12 federation frente a remote write
+20.13 federation frente a HA
+20.14 limitaciones
+20.15 laboratorio: arquitectura Prometheus local → Prometheus global
+
+21. Remote write
+21.1 qué es remote write
+21.2 casos de uso
+21.3 arquitectura
+21.4 write path
+21.5 WAL y remote write
+21.6 queue manager
+21.7 shards
+21.8 batching
+21.9 retries
+21.10 backoff
+21.11 buffering
+21.12 throughput
+21.13 latency
+21.14 remote_write
+21.15 authentication
+21.16 TLS
+21.17 relabeling
+21.18 write_relabel_configs
+21.19 reducción de métricas enviadas
+21.20 external labels
+21.21 receiver compatible
+21.22 long-term storage
+21.23 failure modes
+21.24 backlog
+21.25 WAL growth
+21.26 tuning
+21.27 métricas internas de remote write
+21.28 troubleshooting
+21.29 laboratorio: analizar el pipeline de remote write
+
+22. Remote read
+22.1 qué es remote read
+22.2 arquitectura
+22.3 configuración
+22.4 query path
+22.5 almacenamiento remoto
+22.6 local frente a remoto
+22.7 rendimiento
+22.8 latencia
+22.9 limitaciones
+22.10 casos de uso
+22.11 alternativas arquitectónicas
+22.12 laboratorio: estudiar flujo query → remote storage
+
+23. Prometheus Agent Mode
+23.1 concepto de agent
+23.2 cuándo utilizarlo
+23.3 diferencias con Prometheus Server
+23.4 scraping
+23.5 WAL
+23.6 remote write
+23.7 ausencia de query local completa
+23.8 almacenamiento reducido
+23.9 edge monitoring
+23.10 arquitecturas distribuidas
+23.11 Kubernetes
+23.12 comparación con servidor completo
+23.13 laboratorio: diseñar arquitectura con agentes
+
+24. Alta disponibilidad
+24.1 qué significa HA en Prometheus
+24.2 Prometheus replicas
+24.3 scraping redundante
+24.4 external labels
+24.5 replica labels
+24.6 duplicación de series
+24.7 deduplicación
+24.8 HA + remote write
+24.9 HA + almacenamiento remoto
+24.10 HA + federation
+24.11 Alertmanager HA
+24.12 clustering de Alertmanager
+24.13 failure domains
+24.14 split brain conceptual
+24.15 load balancing
+24.16 DNS
+24.17 disponibilidad del query path
+24.18 disponibilidad del ingestion path
+24.19 disaster recovery
+24.20 laboratorio: diseñar Prometheus sin single point of failure
+
+25. Escalabilidad y rendimiento
+25.1 límites de una instancia
+25.2 número de targets
+25.3 samples por segundo
+25.4 active series
+25.5 cardinalidad
+25.6 series churn
+25.7 memoria
+25.8 CPU
+25.9 almacenamiento
+25.10 scrape interval
+25.11 evaluation interval
+25.12 query load
+25.13 consultas caras
+25.14 recording rules como optimización
+25.15 sharding funcional
+25.16 sharding por targets
+25.17 hashmod
+25.18 federation
+25.19 remote write
+25.20 horizontal scaling
+25.21 capacity planning
+25.22 benchmark
+25.23 métricas internas de Prometheus
+25.24 laboratorio: realizar capacity planning
+
+26. Seguridad
+26.1 threat model
+26.2 superficies de ataque
+26.3 endpoint web
+26.4 /metrics como información sensible
+26.5 APIs administrativas
+26.6 bind address
+26.7 exposición de red
+26.8 firewalld
+26.9 TLS
+26.10 web configuration
+26.11 autenticación
+26.12 basic authentication
+26.13 reverse proxy
+26.14 certificados
+26.15 exporters y seguridad
+26.16 credenciales de exporters
+26.17 secretos
+26.18 service discovery credentials
+26.19 remote write credentials
+26.20 permisos de archivos
+26.21 usuario sin privilegios
+26.22 systemd hardening
+26.23 SELinux
+26.24 principio de mínimo privilegio
+26.25 seguridad de Alertmanager
+26.26 seguridad de Pushgateway
+26.27 network segmentation
+26.28 laboratorio: hardening de una instalación Prometheus
+
+27. Troubleshooting
+27.1 metodología de diagnóstico
+27.2 comprobar proceso
+27.3 comprobar systemd
+27.4 journal
+27.5 configuración inválida
+27.6 promtool
+27.7 target DOWN
+27.8 timeout
+27.9 connection refused
+27.10 DNS
+27.11 TLS
+27.12 authentication
+27.13 exporter caído
+27.14 endpoint incorrecto
+27.15 métricas ausentes
+27.16 series ausentes
+27.17 staleness
+27.18 relabeling incorrecto
+27.19 cardinalidad excesiva
+27.20 memoria elevada
+27.21 CPU elevada
+27.22 disco lleno
+27.23 WAL
+27.24 compaction
+27.25 corrupción TSDB
+27.26 consultas lentas
+27.27 PromQL incorrecta
+27.28 recording rules
+27.29 alerting rules
+27.30 alerta pending eternamente
+27.31 Alertmanager
+27.32 routing
+27.33 inhibition
+27.34 silence
+27.35 receiver
+27.36 remote write backlog
+27.37 dropped samples
+27.38 out-of-order samples
+27.39 duplicate samples
+27.40 clock skew
+27.41 métricas internas
+27.42 /status
+27.43 /targets
+27.44 /rules
+27.45 /alerts
+27.46 logs
+27.47 profiling
+27.48 laboratorio: escenario completo de averías
+
+28. Herramientas de administración
+28.1 prometheus
+28.2 promtool
+28.3 promtool check config
+28.4 promtool check rules
+28.5 promtool test rules
+28.6 promtool query
+28.7 promtool tsdb
+28.8 amtool
+28.9 curl
+28.10 jq
+28.11 systemctl
+28.12 journalctl
+28.13 ss
+28.14 curl contra /metrics
+28.15 herramientas DNS
+28.16 herramientas TLS
+28.17 tcpdump cuando sea necesario
+28.18 análisis de filesystem
+28.19 scripts de administración
+28.20 automatización
+28.21 laboratorio: construir toolkit de diagnóstico Prometheus
+
+29. Testing de reglas
+29.1 por qué probar reglas
+29.2 unit testing
+29.3 promtool test rules
+29.4 archivos de test
+29.5 input series
+29.6 intervalos
+29.7 expected samples
+29.8 alert rule tests
+29.9 recording rule tests
+29.10 simulación de counters
+29.11 simulación de resets
+29.12 escenarios de ausencia
+29.13 tests de SLO
+29.14 regresiones
+29.15 CI
+29.16 laboratorio: suite completa de tests
+
+30. Diseño de monitorización
+30.1 empezar por objetivos
+30.2 qué monitorizar
+30.3 qué no monitorizar
+30.4 instrumentación frente a exporters
+30.5 elección de exporters
+30.6 naming
+30.7 labels
+30.8 cardinalidad budget
+30.9 scrape strategy
+30.10 retention strategy
+30.11 recording strategy
+30.12 alerting strategy
+30.13 SLI/SLO
+30.14 dashboard strategy
+30.15 HA strategy
+30.16 remote storage strategy
+30.17 seguridad
+30.18 capacity planning
+30.19 runbooks
+30.20 documentación
+30.21 evolución de la plataforma
+30.22 laboratorio: diseñar monitorización para infraestructura real
+
+31. Integración con Grafana
+31.1 papel de Grafana
+31.2 Prometheus como data source
+31.3 conexión conceptual
+31.4 consultas PromQL desde Grafana
+31.5 variables y labels
+31.6 recording rules para dashboards
+31.7 coste de consultas de dashboards
+31.8 dashboards frente a alertas
+31.9 responsabilidades de Prometheus
+31.10 responsabilidades de Grafana
+31.11 integración con el PATH específico Grafana
+31.12 laboratorio: verificar métricas mediante un dashboard básico
+
+32. Integración con el ecosistema de observabilidad
+32.1 Prometheus dentro de observabilidad
+32.2 métricas + logs + traces
+32.3 correlación
+32.4 Grafana
+32.5 Loki
+32.6 OpenTelemetry
+32.7 exporters frente a OpenTelemetry Collector
+32.8 coexistencia
+32.9 Kubernetes
+32.10 bases de datos
+32.11 infraestructura Linux
+32.12 networking
+32.13 aplicaciones
+32.14 almacenamiento de largo plazo
+32.15 sistemas compatibles con remote write
+32.16 diseño vendor-neutral
+32.17 laboratorio: diseñar stack de observabilidad
+
+33. Internals — Scraping e ingestion
+33.1 arquitectura interna del servidor
+33.2 componentes principales
+33.3 configuración interna
+33.4 discovery manager
+33.5 target manager
+33.6 scrape manager
+33.7 scrape pools
+33.8 scrape loops
+33.9 HTTP client
+33.10 parsing de exposition format
+33.11 relabeling pipeline
+33.12 sample validation
+33.13 ingestion
+33.14 appenders
+33.15 head
+33.16 WAL
+33.17 lifecycle de una sample
+33.18 staleness tracking
+33.19 métricas internas
+33.20 laboratorio: seguir una sample desde exporter hasta TSDB
+
+34. Internals — TSDB
+34.1 arquitectura interna de TSDB
+34.2 Head
+34.3 series
+34.4 chunks
+34.5 chunk encoding
+34.6 XOR encoding
+34.7 native histogram encoding
+34.8 WAL
+34.9 WAL records
+34.10 checkpoints
+34.11 memory mapping
+34.12 blocks
+34.13 index
+34.14 symbols
+34.15 postings
+34.16 label index
+34.17 tombstones
+34.18 compactor
+34.19 compaction levels
+34.20 retention
+34.21 block lifecycle
+34.22 queryable
+34.23 series lookup
+34.24 cardinality impact
+34.25 churn internals
+34.26 failure recovery
+34.27 laboratorio: recorrer estructuras internas de TSDB
+
+35. Internals — PromQL engine
+35.1 arquitectura del query engine
+35.2 parser
+35.3 AST
+35.4 expressions
+35.5 selectors
+35.6 evaluation
+35.7 vector operations
+35.8 matrix operations
+35.9 functions
+35.10 aggregation
+35.11 vector matching
+35.12 storage interface
+35.13 sample selection
+35.14 lookback delta
+35.15 staleness
+35.16 query scheduling
+35.17 concurrency
+35.18 memory usage
+35.19 query timeout
+35.20 max samples
+35.21 query logging
+35.22 profiling
+35.23 optimización
+35.24 laboratorio: explicar internamente una consulta compleja
+
+36. Internals — Rules, alerting y remote
+36.1 rule manager
+36.2 rule groups
+36.3 scheduling
+36.4 evaluation
+36.5 recording rule lifecycle
+36.6 alert state machine
+36.7 pending
+36.8 firing
+36.9 notification pipeline
+36.10 Alertmanager discovery
+36.11 notification queue
+36.12 remote write internals
+36.13 WAL watcher
+36.14 queue manager
+36.15 shards
+36.16 resharding
+36.17 retries
+36.18 backpressure
+36.19 remote read internals
+36.20 federation internals
+36.21 laboratorio: reconstruir el flujo completo de datos
+
+37. Código fuente y desarrollo de Prometheus
+37.1 repositorio de Prometheus
+37.2 organización del proyecto
+37.3 Go como lenguaje de implementación
+37.4 estructura de paquetes
+37.5 cmd/prometheus
+37.6 cmd/promtool
+37.7 configuración
+37.8 discovery
+37.9 scrape
+37.10 storage
+37.11 TSDB
+37.12 PromQL
+37.13 rules
+37.14 notifier
+37.15 remote
+37.16 web/API
+37.17 tests
+37.18 build
+37.19 releases
+37.20 cómo localizar una implementación concreta
+37.21 leer código sin convertirse en desarrollador de Prometheus
+37.22 seguir un bug desde comportamiento hasta código
+37.23 laboratorio: mapa del código fuente
+
+38. Arquitecturas avanzadas
+38.1 single-node
+38.2 Prometheus por entorno
+38.3 Prometheus por datacenter
+38.4 Prometheus por región
+38.5 Prometheus por cluster
+38.6 hierarchical federation
+38.7 HA pairs
+38.8 remote write centralizado
+38.9 agent architecture
+38.10 edge Prometheus
+38.11 multi-cluster
+38.12 multi-region
+38.13 failure domains
+38.14 aislamiento
+38.15 tenancy conceptual
+38.16 cardinality boundaries
+38.17 almacenamiento de largo plazo
+38.18 arquitectura híbrida
+38.19 trade-offs
+38.20 laboratorio: diseñar arquitectura empresarial
+
+39. Operación en producción
+39.1 checklist de producción
+39.2 configuración versionada
+39.3 reglas versionadas
+39.4 testing
+39.5 CI/CD
+39.6 cambios seguros
+39.7 reload
+39.8 rollback
+39.9 actualización de Prometheus
+39.10 actualización de exporters
+39.11 actualización de Alertmanager
+39.12 capacity management
+39.13 retention management
+39.14 backup
+39.15 disaster recovery
+39.16 certificados
+39.17 secretos
+39.18 observabilidad del propio Prometheus
+39.19 meta-monitoring
+39.20 monitorizar Prometheus con Prometheus
+39.21 monitorización externa
+39.22 runbooks
+39.23 incident response
+39.24 postmortems
+39.25 mantenimiento
+39.26 laboratorio: operación completa de producción
+
+40. Proyecto final — Plataforma Prometheus
+40.1 definir requisitos
+40.2 diseñar arquitectura
+40.3 definir hosts y servicios
+40.4 instalar Prometheus en Fedora
+40.5 crear servicio systemd
+40.6 configurar permisos
+40.7 integrar SELinux
+40.8 integrar firewalld
+40.9 desplegar Node Exporter
+40.10 seleccionar exporters adicionales
+40.11 integrar Blackbox Exporter
+40.12 monitorizar PostgreSQL/MariaDB como ejemplo
+40.13 configurar service discovery
+40.14 aplicar relabeling
+40.15 diseñar modelo de labels
+40.16 establecer cardinality budget
+40.17 configurar scraping
+40.18 analizar targets
+40.19 construir consultas PromQL
+40.20 construir consultas RED
+40.21 construir consultas USE
+40.22 construir Golden Signals
+40.23 definir SLI
+40.24 definir SLO
+40.25 crear recording rules
+40.26 crear alerting rules
+40.27 probar reglas con promtool
+40.28 desplegar Alertmanager
+40.29 diseñar routing tree
+40.30 configurar grouping
+40.31 configurar inhibition
+40.32 configurar silences
+40.33 configurar receivers
+40.34 configurar HA
+40.35 diseñar federation cuando corresponda
+40.36 diseñar remote write
+40.37 establecer retención
+40.38 dimensionar TSDB
+40.39 analizar WAL y blocks
+40.40 configurar seguridad
+40.41 TLS
+40.42 autenticación
+40.43 hardening systemd
+40.44 probar fallos de exporters
+40.45 probar fallos de targets
+40.46 provocar una alerta
+40.47 comprobar Alertmanager
+40.48 simular saturación
+40.49 simular pérdida de almacenamiento
+40.50 diagnosticar remote write
+40.51 analizar cardinalidad
+40.52 optimizar consultas
+40.53 preparar backup
+40.54 probar recuperación
+40.55 documentar arquitectura
+40.56 crear runbooks
+40.57 documentar procedimiento de actualización
+40.58 documentar disaster recovery
+40.59 integrar mínimamente Grafana
+40.60 observar el propio Prometheus
+40.61 realizar troubleshooting integral
+40.62 auditar seguridad
+40.63 auditar capacidad
+40.64 auditar alertas
+40.65 auditar cardinalidad
+40.66 validar configuración completa
+40.67 validar reglas completas
+40.68 prueba de fallo controlada
+40.69 reconstruir el flujo exporter → scrape → TSDB → PromQL → rules → Alertmanager
+40.70 proyecto final: plataforma Prometheus de producción completamente administrable y diagnosticable

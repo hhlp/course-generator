@@ -1,0 +1,957 @@
+ELASTIC STACK EN PROFUNDIDAD — FEDORA
+
+0. Fundamentos de Elastic Stack
+0.1 qué problema resuelve Elastic Stack
+0.2 logging centralizado
+0.3 búsqueda y análisis de datos
+0.4 observabilidad
+0.5 eventos, logs, métricas y traces
+0.6 documentos e índices
+0.7 Elasticsearch
+0.8 Apache Lucene
+0.9 Kibana
+0.10 Logstash
+0.11 Beats
+0.12 Elastic Agent
+0.13 Fleet
+0.14 Elastic Common Schema — ECS
+0.15 Elastic Stack frente a ELK Stack
+0.16 arquitectura conceptual
+0.17 componentes obligatorios y opcionales
+0.18 flujo productor → collector → processor → Elasticsearch → Kibana
+0.19 ingestión, procesamiento e indexación
+0.20 búsqueda, visualización y alerting
+0.21 ciclo de vida de los datos
+0.22 alta disponibilidad y escalabilidad
+0.23 laboratorio: construir el mapa conceptual completo de Elastic Stack
+
+1. Instalación y arquitectura en Fedora
+1.1 arquitectura distribuida
+1.2 Elasticsearch como servicio distribuido
+1.3 Kibana como interfaz
+1.4 Logstash como procesador de eventos
+1.5 Elastic Agent como agente unificado
+1.6 Beats como agentes especializados
+1.7 Fleet Server
+1.8 topologías single-node y multi-node
+1.9 desarrollo frente a producción
+1.10 requisitos de CPU y memoria
+1.11 almacenamiento y red
+1.12 JVM
+1.13 repositorios y paquetes RPM
+1.14 estructura de archivos instalada
+1.15 elasticsearch.yml
+1.16 kibana.yml
+1.17 logstash.yml
+1.18 pipelines.yml
+1.19 integración con systemd
+1.20 systemctl y journalctl
+1.21 puertos utilizados
+1.22 firewalld
+1.23 SELinux
+1.24 laboratorio: desplegar un Elastic Stack básico en Fedora
+
+2. Elasticsearch: fundamentos y REST API
+2.1 qué es Elasticsearch
+2.2 relación Elasticsearch/Lucene
+2.3 REST API y JSON
+2.4 documentos y campos
+2.5 metadata fields
+2.6 _index
+2.7 _id
+2.8 _source
+2.9 índices
+2.10 shards y replicas
+2.11 nodos y clusters
+2.12 Index API
+2.13 Get API
+2.14 Update API
+2.15 Delete API
+2.16 optimistic concurrency control
+2.17 sequence number y primary term
+2.18 Bulk API
+2.19 Multi Get API
+2.20 cat APIs introductorias
+2.21 laboratorio: manipular documentos mediante REST API
+
+3. Modelo de datos y mappings
+3.1 mapping
+3.2 mapping dinámico y explícito
+3.3 keyword
+3.4 text
+3.5 tipos numéricos
+3.6 boolean
+3.7 date
+3.8 binary
+3.9 object
+3.10 nested
+3.11 flattened
+3.12 geo_point y geo_shape
+3.13 ip
+3.14 range
+3.15 alias
+3.16 multi-fields
+3.17 parámetros de campos
+3.18 index
+3.19 doc_values
+3.20 store
+3.21 norms
+3.22 null_value
+3.23 ignore_above
+3.24 dynamic
+3.25 dynamic templates
+3.26 mapping explosion
+3.27 límites de mappings
+3.28 actualización y evolución del esquema
+3.29 laboratorio: diseñar mappings para logs heterogéneos
+
+4. Análisis de texto
+4.1 analyzer
+4.2 character filters
+4.3 tokenizer
+4.4 token filters
+4.5 standard analyzer
+4.6 simple y whitespace analyzer
+4.7 keyword analyzer
+4.8 language analyzers
+4.9 normalizers
+4.10 custom analyzers
+4.11 Analyze API
+4.12 stemming
+4.13 stop words
+4.14 lowercase
+4.15 n-grams y edge n-grams
+4.16 synonyms
+4.17 text frente a keyword
+4.18 index-time frente a search-time analysis
+4.19 laboratorio: construir y diagnosticar un analyzer personalizado
+
+5. Índices, aliases y templates
+5.1 creación y configuración de índices
+5.2 static y dynamic settings
+5.3 aliases de lectura y escritura
+5.4 filtros en aliases
+5.5 rollover alias
+5.6 index templates
+5.7 component templates
+5.8 composable index templates
+5.9 prioridades y simulación de templates
+5.10 patrones y naming conventions
+5.11 Reindex API
+5.12 Update by Query
+5.13 Delete by Query
+5.14 shrink
+5.15 split
+5.16 clone
+5.17 laboratorio: diseñar templates reutilizables para logging
+
+6. Data streams
+6.1 qué es un data stream
+6.2 backing indices
+6.3 write index
+6.4 data stream templates
+6.5 @timestamp
+6.6 creación, escritura y búsqueda
+6.7 rollover
+6.8 aliases de data streams
+6.9 modificación de mappings
+6.10 migración desde índices tradicionales
+6.11 data streams frente a índices
+6.12 naming scheme
+6.13 data stream lifecycle
+6.14 retención
+6.15 time series data streams
+6.16 estrategias para logs y métricas
+6.17 laboratorio: implementar un data stream completo
+
+7. Búsquedas y Query DSL
+7.1 Search API
+7.2 Query DSL
+7.3 query context y filter context
+7.4 relevancia y _score
+7.5 match
+7.6 match_phrase
+7.7 multi_match
+7.8 term
+7.9 terms
+7.10 range
+7.11 exists
+7.12 prefix
+7.13 wildcard
+7.14 regexp
+7.15 fuzzy
+7.16 bool
+7.17 must, filter, should y must_not
+7.18 minimum_should_match
+7.19 boosting
+7.20 constant_score
+7.21 dis_max
+7.22 nested query
+7.23 geo queries
+7.24 script query
+7.25 búsqueda en múltiples índices
+7.26 _source filtering
+7.27 fields
+7.28 stored_fields
+7.29 docvalue_fields
+7.30 runtime_mappings
+7.31 named queries
+7.32 laboratorio: construir consultas Query DSL progresivamente complejas
+
+8. Resultados, ordenación y paginación
+8.1 hits y total hits
+8.2 sort
+8.3 ordenación por campos y _score
+8.4 ordenación múltiple
+8.5 sort modes y missing values
+8.6 track_total_hits
+8.7 from y size
+8.8 límites de from/size
+8.9 search_after
+8.10 point in time — PIT
+8.11 scroll y sus casos de uso
+8.12 collapse
+8.13 highlighting
+8.14 explain
+8.15 Profile API
+8.16 laboratorio: implementar paginación estable sobre grandes resultados
+
+9. Aggregations
+9.1 arquitectura de aggregations
+9.2 metric aggregations
+9.3 bucket aggregations
+9.4 pipeline aggregations
+9.5 avg, min, max, sum y stats
+9.6 cardinality
+9.7 percentiles
+9.8 terms
+9.9 range
+9.10 date_range
+9.11 date_histogram
+9.12 histogram
+9.13 filters
+9.14 nested y reverse_nested
+9.15 composite aggregation
+9.16 sub-aggregations
+9.17 bucket_script
+9.18 derivative
+9.19 moving functions
+9.20 rendimiento y precisión
+9.21 laboratorio: construir análisis temporal de logs
+
+10. KQL, Lucene y ES|QL
+10.1 lenguajes de consulta del ecosistema Elastic
+10.2 Kibana Query Language — KQL
+10.3 filtros KQL
+10.4 rangos y wildcards
+10.5 campos nested en KQL
+10.6 Lucene query syntax
+10.7 diferencias KQL/Lucene
+10.8 ES|QL
+10.9 modelo tabular y pipelines ES|QL
+10.10 FROM
+10.11 WHERE
+10.12 KEEP y DROP
+10.13 EVAL
+10.14 STATS
+10.15 SORT y LIMIT
+10.16 ENRICH
+10.17 DISSECT y GROK
+10.18 casos de uso operacionales
+10.19 laboratorio: resolver el mismo análisis con Query DSL, KQL y ES|QL
+
+11. Shards, replicas y routing
+11.1 shard primario
+11.2 replica shard
+11.3 distribución de shards
+11.4 hashing y routing
+11.5 custom routing
+11.6 número de shards
+11.7 número de replicas
+11.8 oversharding
+11.9 undersharding
+11.10 tamaño de shards
+11.11 shard allocation
+11.12 allocation filtering
+11.13 allocation awareness
+11.14 forced awareness
+11.15 rebalance
+11.16 recovery
+11.17 unassigned shards
+11.18 disk watermarks
+11.19 Cluster Allocation Explain API
+11.20 laboratorio: provocar y diagnosticar shards no asignados
+
+12. Nodos y clustering
+12.1 node roles
+12.2 master-eligible nodes
+12.3 data nodes
+12.4 data tiers
+12.5 ingest nodes
+12.6 coordinating-only nodes
+12.7 remote cluster client
+12.8 cluster state
+12.9 discovery
+12.10 seed hosts
+12.11 cluster bootstrapping
+12.12 elección del master
+12.13 quorum y coordinación
+12.14 publicación del cluster state
+12.15 fallos de nodos
+12.16 split brain como problema histórico
+12.17 cluster health
+12.18 rolling restart
+12.19 diseño de clusters de producción
+12.20 laboratorio: desplegar y operar un cluster multi-node
+
+13. Ingest pipelines
+13.1 ingest node
+13.2 pipeline
+13.3 processors
+13.4 set
+13.5 rename
+13.6 remove
+13.7 append
+13.8 convert
+13.9 date
+13.10 grok
+13.11 dissect
+13.12 script
+13.13 geoip
+13.14 user_agent
+13.15 enrich
+13.16 foreach
+13.17 pipeline processor
+13.18 conditionals
+13.19 on_failure
+13.20 simulate pipeline API
+13.21 metadata durante ingestión
+13.22 diseño y rendimiento
+13.23 laboratorio: construir un pipeline para logs de sistema
+
+14. Enrichment, runtime fields y scripting
+14.1 enrich policies
+14.2 enrich indices
+14.3 match enrich
+14.4 geo enrich
+14.5 range enrich
+14.6 runtime fields
+14.7 campos calculados
+14.8 runtime frente a indexed fields
+14.9 Painless
+14.10 script fields
+14.11 scripted updates
+14.12 scripts almacenados
+14.13 seguridad y coste de scripts
+14.14 laboratorio: enriquecer eventos y crear campos runtime
+
+15. Logstash: arquitectura
+15.1 qué es Logstash
+15.2 eventos
+15.3 pipeline input → filter → output
+15.4 plugins
+15.5 codecs
+15.6 configuración
+15.7 ejecución como servicio
+15.8 pipelines.yml
+15.9 múltiples pipelines
+15.10 pipeline workers
+15.11 pipeline batch size
+15.12 pipeline batch delay
+15.13 back pressure
+15.14 monitoring APIs
+15.15 laboratorio: desplegar Logstash en Fedora
+
+16. Logstash: inputs, filters y outputs
+16.1 file input
+16.2 beats input
+16.3 syslog input
+16.4 tcp y udp input
+16.5 http input
+16.6 jdbc input
+16.7 elasticsearch input
+16.8 grok filter
+16.9 dissect filter
+16.10 mutate filter
+16.11 date filter
+16.12 json filter
+16.13 kv filter
+16.14 geoip filter
+16.15 translate filter
+16.16 ruby filter
+16.17 conditionals
+16.18 elasticsearch output
+16.19 file output
+16.20 stdout output
+16.21 codecs json y multiline
+16.22 laboratorio: construir un pipeline Logstash completo
+
+17. Fiabilidad y rendimiento de Logstash
+17.1 in-memory queue
+17.2 persistent queue
+17.3 checkpoints
+17.4 queue sizing
+17.5 dead letter queue
+17.6 eventos no procesables
+17.7 replay
+17.8 delivery semantics
+17.9 idempotencia
+17.10 retries
+17.11 back pressure
+17.12 tuning de workers
+17.13 tuning de batches
+17.14 CPU-bound frente a IO-bound
+17.15 Flow Metrics
+17.16 troubleshooting de pipelines
+17.17 laboratorio: simular caída de Elasticsearch sin perder eventos
+
+18. Beats
+18.1 arquitectura de Beats
+18.2 libbeat
+18.3 Filebeat
+18.4 inputs
+18.5 filestream
+18.6 parsers multiline
+18.7 processors
+18.8 modules
+18.9 ingest pipelines de módulos
+18.10 registry
+18.11 harvesting
+18.12 rotación de archivos
+18.13 Metricbeat
+18.14 modules y metricsets
+18.15 Auditbeat
+18.16 Heartbeat
+18.17 Packetbeat como componente especializado
+18.18 configuración de outputs
+18.19 Elasticsearch output
+18.20 Logstash output
+18.21 seguridad TLS
+18.22 monitoring
+18.23 laboratorio: enviar logs y métricas desde Fedora
+
+19. Elastic Agent, Fleet e Integrations
+19.1 Elastic Agent
+19.2 standalone frente a Fleet-managed
+19.3 Fleet
+19.4 Fleet Server
+19.5 agent policies
+19.6 integration policies
+19.7 integrations
+19.8 enrolment
+19.9 enrolment tokens
+19.10 API keys
+19.11 upgrades
+19.12 agent monitoring
+19.13 diagnostics
+19.14 Elastic Agent frente a Beats
+19.15 migración desde Beats
+19.16 integración System
+19.17 integración Custom Logs
+19.18 integración con servicios
+19.19 laboratorio: gestionar agentes Fedora mediante Fleet
+
+20. Elastic Common Schema — ECS
+20.1 objetivos de ECS
+20.2 field sets
+20.3 event.*
+20.4 host.*
+20.5 agent.*
+20.6 log.*
+20.7 process.*
+20.8 user.*
+20.9 source.* y destination.*
+20.10 network.*
+20.11 http.*
+20.12 url.*
+20.13 file.*
+20.14 error.*
+20.15 service.*
+20.16 labels y custom fields
+20.17 normalización
+20.18 compatibilidad ECS
+20.19 versionado de ECS
+20.20 diseño de mappings ECS
+20.21 laboratorio: normalizar journald, syslog y aplicación a ECS
+
+21. Kibana: fundamentos y administración
+21.1 arquitectura de Kibana
+21.2 conexión con Elasticsearch
+21.3 autenticación
+21.4 interfaz
+21.5 Data Views
+21.6 time field
+21.7 Discover
+21.8 búsqueda y filtros
+21.9 saved queries
+21.10 saved objects
+21.11 Spaces
+21.12 Advanced Settings
+21.13 Dev Tools
+21.14 Console
+21.15 APIs de Kibana
+21.16 importación y exportación
+21.17 laboratorio: preparar un espacio operacional
+
+22. Visualizaciones y dashboards
+22.1 principios de visualización
+22.2 Lens
+22.3 métricas
+22.4 tablas
+22.5 barras
+22.6 líneas y áreas
+22.7 particiones
+22.8 heatmaps
+22.9 tag clouds y visualizaciones disponibles
+22.10 Maps
+22.11 capas geográficas
+22.12 controls
+22.13 drilldowns
+22.14 dashboards
+22.15 filtros globales
+22.16 time picker
+22.17 dashboard-only workflows mediante privilegios
+22.18 rendimiento de dashboards
+22.19 laboratorio: construir un dashboard de operación Linux
+
+23. Alerting
+23.1 arquitectura de alerting
+23.2 rules
+23.3 rule types
+23.4 connectors
+23.5 actions
+23.6 schedules
+23.7 conditions
+23.8 Elasticsearch query rules
+23.9 index threshold
+23.10 ES|QL rules
+23.11 observability rules
+23.12 recovery actions
+23.13 action frequency
+23.14 alert lifecycle
+23.15 maintenance windows
+23.16 snooze
+23.17 gestión y troubleshooting
+23.18 laboratorio: crear alertas operacionales de extremo a extremo
+
+24. Seguridad
+24.1 modelo de seguridad
+24.2 TLS HTTP
+24.3 TLS transport
+24.4 certificados y CA
+24.5 elasticsearch-certutil
+24.6 autenticación
+24.7 native realm
+24.8 file realm
+24.9 roles
+24.10 privileges
+24.11 cluster privileges
+24.12 index privileges
+24.13 application privileges
+24.14 document-level security
+24.15 field-level security
+24.16 RBAC
+24.17 built-in users
+24.18 API keys
+24.19 service accounts
+24.20 Kibana security
+24.21 Spaces y privilegios
+24.22 secrets y keystores
+24.23 audit logging
+24.24 principio de mínimo privilegio
+24.25 exposición segura de Elasticsearch y Kibana
+24.26 laboratorio: asegurar un cluster multi-node
+
+25. ILM y data tiers
+25.1 Index Lifecycle Management
+25.2 lifecycle policies
+25.3 rollover
+25.4 hot phase
+25.5 warm phase
+25.6 cold phase
+25.7 frozen phase
+25.8 delete phase
+25.9 data tiers
+25.10 _tier y _tier_preference
+25.11 searchable snapshots
+25.12 acciones de ILM
+25.13 min_age
+25.14 ILM Explain API
+25.15 errores de ILM
+25.16 retry
+25.17 diseño de retención
+25.18 dimensionamiento por tier
+25.19 ILM con data streams
+25.20 data stream lifecycle frente a ILM
+25.21 laboratorio: implementar hot/warm/cold y retención
+
+26. Snapshots, SLM y disaster recovery
+26.1 snapshots
+26.2 snapshot repositories
+26.3 filesystem repository
+26.4 repositorios cloud como concepto
+26.5 registro y verificación
+26.6 creación de snapshots
+26.7 snapshots incrementales
+26.8 restore
+26.9 restauración selectiva
+26.10 cluster state en snapshots
+26.11 feature states
+26.12 Snapshot Lifecycle Management
+26.13 políticas SLM
+26.14 retención
+26.15 searchable snapshots
+26.16 estrategia de backup
+26.17 disaster recovery
+26.18 pruebas de restauración
+26.19 laboratorio: destruir y recuperar datos mediante snapshots
+
+27. Cross-cluster y arquitecturas avanzadas
+27.1 remote clusters
+27.2 Cross-Cluster Search — CCS
+27.3 configuración de conexiones remotas
+27.4 modelos de seguridad para remote clusters
+27.5 consultas cross-cluster
+27.6 Cross-Cluster Replication — CCR
+27.7 leader index
+27.8 follower index
+27.9 auto-follow patterns
+27.10 recuperación ante desastre con CCR
+27.11 arquitecturas multi-cluster
+27.12 separación geográfica
+27.13 centralización frente a federación
+27.14 laboratorio: diseñar una arquitectura multi-cluster
+
+28. Rendimiento y capacity planning
+28.1 metodología de rendimiento
+28.2 carga de ingestión
+28.3 carga de búsqueda
+28.4 CPU
+28.5 memoria
+28.6 heap
+28.7 filesystem cache
+28.8 almacenamiento
+28.9 IOPS
+28.10 red
+28.11 shard sizing
+28.12 número de shards
+28.13 replicas
+28.14 refresh interval
+28.15 bulk sizing
+28.16 indexing buffer
+28.17 merge pressure
+28.18 thread pools
+28.19 queues
+28.20 circuit breakers
+28.21 caches
+28.22 query cache
+28.23 request cache
+28.24 field data
+28.25 benchmarking
+28.26 Rally como herramienta de benchmark
+28.27 capacity planning
+28.28 crecimiento y retención
+28.29 laboratorio: medir y ajustar un workload de logs
+
+29. JVM, memoria y almacenamiento
+29.1 JVM de Elasticsearch
+29.2 heap sizing
+29.3 compressed ordinary object pointers
+29.4 garbage collection
+29.5 GC logs
+29.6 memory pressure
+29.7 off-heap memory
+29.8 filesystem cache
+29.9 mmap
+29.10 virtual memory
+29.11 vm.max_map_count
+29.12 file descriptors
+29.13 almacenamiento local
+29.14 características del filesystem
+29.15 latencia de disco
+29.16 disk watermarks
+29.17 errores de espacio
+29.18 laboratorio: diagnosticar presión de memoria y disco
+
+30. Monitorización del propio Elastic Stack
+30.1 observabilidad de la plataforma
+30.2 cluster health
+30.3 node stats
+30.4 cluster stats
+30.5 index stats
+30.6 shard stats
+30.7 cat APIs
+30.8 pending tasks
+30.9 Tasks API
+30.10 hot threads
+30.11 thread pools
+30.12 JVM metrics
+30.13 filesystem metrics
+30.14 ingest metrics
+30.15 Logstash metrics
+30.16 Elastic Agent monitoring
+30.17 Kibana monitoring
+30.18 Stack Monitoring
+30.19 logs internos
+30.20 alertas sobre la propia plataforma
+30.21 laboratorio: construir un panel de salud de Elastic Stack
+
+31. Troubleshooting
+31.1 metodología sistemática de diagnóstico
+31.2 estado red/yellow/red
+31.3 shards unassigned
+31.4 allocation explain
+31.5 master not discovered
+31.6 problemas de discovery
+31.7 problemas de TLS
+31.8 errores de autenticación y autorización
+31.9 mapping conflicts
+31.10 mapping explosion
+31.11 circuit_breaking_exception
+31.12 rejected executions
+31.13 high JVM memory pressure
+31.14 GC excesivo
+31.15 disco lleno
+31.16 watermarks
+31.17 búsquedas lentas
+31.18 indexing lento
+31.19 ingest pipeline failures
+31.20 Logstash pipeline failures
+31.21 persistent queue
+31.22 Filebeat y Elastic Agent
+31.23 Fleet
+31.24 Kibana
+31.25 ILM
+31.26 snapshots
+31.27 slow logs
+31.28 Profile API
+31.29 Explain API
+31.30 hot threads
+31.31 journalctl y logs de servicios
+31.32 laboratorio: resolver una plataforma deliberadamente averiada
+
+32. Logging Linux → Elastic Stack
+32.1 arquitectura de centralización
+32.2 journald
+32.3 lectura de journal
+32.4 Elastic Agent System integration
+32.5 Filebeat system module
+32.6 archivos de logs
+32.7 syslog
+32.8 rsyslog
+32.9 syslog-ng
+32.10 forwarding
+32.11 TCP frente a UDP
+32.12 TLS
+32.13 RELP como transporte previo a la capa Elastic
+32.14 Logstash syslog input
+32.15 parsing
+32.16 timestamps
+32.17 host metadata
+32.18 ECS
+32.19 multiline
+32.20 rotación de logs
+32.21 pérdida y duplicación de eventos
+32.22 buffering
+32.23 diseño end-to-end
+32.24 laboratorio: Fedora → journald/rsyslog → Elastic Stack
+
+33. Observabilidad: logs, métricas y traces
+33.1 observabilidad frente a monitoring
+33.2 logs
+33.3 métricas
+33.4 traces
+33.5 correlación de señales
+33.6 service.name
+33.7 trace.id
+33.8 transaction.id
+33.9 Elastic Observability
+33.10 infraestructura
+33.11 aplicaciones
+33.12 uptime y synthetic monitoring como conceptos del ecosistema
+33.13 Elastic APM
+33.14 instrumentación
+33.15 APM integration
+33.16 OpenTelemetry
+33.17 OTLP
+33.18 OpenTelemetry Collector
+33.19 integración OpenTelemetry/Elastic
+33.20 correlación logs-traces
+33.21 laboratorio: investigar un incidente utilizando varias señales
+
+34. Automatización y APIs
+34.1 REST APIs administrativas
+34.2 curl
+34.3 Kibana Dev Tools
+34.4 autenticación de scripts
+34.5 API keys
+34.6 gestión automatizada de índices
+34.7 templates como código
+34.8 ingest pipelines como código
+34.9 ILM como código
+34.10 saved objects
+34.11 APIs de Fleet
+34.12 APIs de Kibana
+34.13 idempotencia
+34.14 validación
+34.15 versionado de configuraciones
+34.16 Git
+34.17 automatización con herramientas externas
+34.18 laboratorio: reconstruir configuración desde artefactos versionados
+
+35. Upgrades y migraciones
+35.1 ciclo de versiones
+35.2 compatibilidad
+35.3 breaking changes
+35.4 Upgrade Assistant
+35.5 deprecations
+35.6 rolling upgrades
+35.7 orden de actualización de componentes
+35.8 snapshots antes del upgrade
+35.9 migraciones de índices
+35.10 reindexación
+35.11 migración de mappings
+35.12 migración Beats → Elastic Agent
+35.13 migración índices → data streams
+35.14 pruebas previas
+35.15 rollback y límites del rollback
+35.16 laboratorio: diseñar un procedimiento de actualización de producción
+
+36. Diseño de producción y hardening
+36.1 requisitos y SLO
+36.2 topología
+36.3 fault domains
+36.4 quorum
+36.5 roles de nodos
+36.6 data tiers
+36.7 capacidad
+36.8 retención
+36.9 backups
+36.10 disaster recovery
+36.11 TLS
+36.12 RBAC
+36.13 mínimo privilegio
+36.14 secretos
+36.15 firewalld
+36.16 SELinux
+36.17 acceso administrativo
+36.18 exposición de APIs
+36.19 observabilidad de la plataforma
+36.20 runbooks
+36.21 laboratorio: revisar una arquitectura de producción
+
+37. Internals de Apache Lucene
+37.1 función de Lucene dentro de Elasticsearch
+37.2 inverted index
+37.3 terms
+37.4 term dictionary
+37.5 postings lists
+37.6 segments
+37.7 immutable segments
+37.8 segment creation
+37.9 segment merge
+37.10 stored fields
+37.11 doc values
+37.12 norms
+37.13 points
+37.14 FST como concepto
+37.15 scoring
+37.16 BM25
+37.17 búsqueda sobre segmentos
+37.18 deleted documents
+37.19 merge policy
+37.20 relación entre refresh y nuevos segmentos
+37.21 laboratorio: relacionar estructuras Lucene con comportamiento observable
+
+38. Internals de Elasticsearch y del Stack
+38.1 arquitectura interna de Elasticsearch
+38.2 proceso de indexación
+38.3 coordinating node
+38.4 routing de escritura
+38.5 primary shard
+38.6 replica synchronization
+38.7 sequence numbers
+38.8 primary terms
+38.9 local checkpoints
+38.10 global checkpoints
+38.11 translog
+38.12 refresh
+38.13 flush
+38.14 merge
+38.15 recovery
+38.16 proceso de búsqueda distribuida
+38.17 scatter/gather
+38.18 query phase
+38.19 fetch phase
+38.20 cluster coordination
+38.21 cluster state
+38.22 publicación del cluster state
+38.23 internals de ingest
+38.24 internals de Logstash
+38.25 ejecución de pipelines y queues
+38.26 internals de Beats
+38.27 internals de Elastic Agent
+38.28 Fleet control plane
+38.29 internals de Kibana
+38.30 saved objects y comunicación con Elasticsearch
+38.31 laboratorio: seguir internamente una escritura y una búsqueda
+
+39. Proyecto final experto
+39.1 definir requisitos de una plataforma centralizada
+39.2 diseñar la arquitectura
+39.3 dimensionar nodos y almacenamiento
+39.4 desplegar Elasticsearch multi-node
+39.5 configurar roles de nodos
+39.6 configurar discovery y coordinación
+39.7 configurar TLS entre nodos
+39.8 asegurar la API HTTP
+39.9 configurar usuarios y RBAC
+39.10 desplegar Kibana
+39.11 desplegar Fleet Server
+39.12 desplegar Elastic Agent
+39.13 integrar journald
+39.14 integrar archivos de logs
+39.15 integrar rsyslog
+39.16 integrar syslog-ng
+39.17 diseñar pipelines de ingestión
+39.18 desplegar Logstash donde aporte valor
+39.19 implementar persistent queues
+39.20 normalizar eventos mediante ECS
+39.21 diseñar mappings
+39.22 crear component templates
+39.23 crear index templates
+39.24 utilizar data streams
+39.25 diseñar estrategia de shards y replicas
+39.26 configurar ILM
+39.27 diseñar hot/warm/cold/frozen
+39.28 establecer políticas de retención
+39.29 configurar SLM
+39.30 crear y verificar snapshots
+39.31 diseñar recuperación ante desastre
+39.32 crear Data Views
+39.33 construir dashboards de Kibana
+39.34 crear búsquedas operacionales con KQL
+39.35 crear consultas ES|QL
+39.36 crear reglas y alertas
+39.37 monitorizar Elasticsearch
+39.38 monitorizar Logstash
+39.39 monitorizar Elastic Agent
+39.40 monitorizar Kibana
+39.41 simular pérdida de un nodo
+39.42 diagnosticar shards no asignados
+39.43 simular presión de disco
+39.44 simular presión de JVM
+39.45 diagnosticar búsquedas lentas
+39.46 diagnosticar problemas de ingestión
+39.47 simular pérdida de datos
+39.48 restaurar desde snapshot
+39.49 validar alta disponibilidad
+39.50 validar mínimo privilegio
+39.51 realizar pruebas de rendimiento
+39.52 validar capacidad y escalabilidad
+39.53 documentar arquitectura
+39.54 crear runbooks de operación
+39.55 crear runbooks de recuperación
+39.56 documentar procedimientos de actualización
+39.57 auditoría final de seguridad
+39.58 laboratorio final: operar y diagnosticar una plataforma Elastic Stack completa

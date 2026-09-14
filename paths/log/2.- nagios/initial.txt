@@ -1,0 +1,1162 @@
+NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
+
+0. Fundamentos de monitorización
+
+0.1 qué es monitorización
+0.2 observabilidad frente a monitorización
+0.3 disponibilidad
+0.4 rendimiento
+0.5 capacidad
+0.6 fiabilidad
+0.7 monitorización activa
+0.8 monitorización pasiva
+0.9 monitorización basada en agentes
+0.10 monitorización sin agentes
+0.11 polling
+0.12 push frente a pull
+0.13 métricas
+0.14 estados
+0.15 eventos
+0.16 alertas
+0.17 notificaciones
+0.18 checks
+0.19 health checks
+0.20 monitorización de infraestructura
+0.21 monitorización de servicios
+0.22 monitorización de red
+0.23 monitorización de aplicaciones
+0.24 monitorización local
+0.25 monitorización remota
+0.26 disponibilidad y SLA
+0.27 SLI
+0.28 SLO
+0.29 falsos positivos
+0.30 falsos negativos
+0.31 alert fatigue
+0.32 arquitectura básica de un sistema de monitorización
+0.33 dónde encaja Nagios
+0.34 Nagios frente a sistemas modernos de métricas
+0.35 Nagios frente a Prometheus
+0.36 Nagios frente a Zabbix
+0.37 relación entre monitorización, métricas y logging
+0.38 laboratorio: diseñar conceptualmente un sistema de monitorización
+
+
+1. Introducción a Nagios
+
+1.1 qué es Nagios
+1.2 historia de Nagios
+1.3 Nagios Core
+1.4 Nagios XI
+1.5 ecosistema Nagios
+1.6 arquitectura de Nagios Core
+1.7 proceso nagios
+1.8 scheduler
+1.9 checks
+1.10 plugins
+1.11 object configuration
+1.12 status data
+1.13 retention data
+1.14 command file
+1.15 web interface
+1.16 CGI
+1.17 Apache HTTP Server
+1.18 monitorización activa
+1.19 monitorización pasiva
+1.20 arquitectura local
+1.21 arquitectura remota
+1.22 flujo completo de un check
+1.23 flujo completo de una alerta
+1.24 laboratorio: construir el mapa conceptual de Nagios Core
+
+
+2. Nagios en Fedora/RHEL
+
+2.1 paquetes disponibles
+2.2 repositorios
+2.3 paquetes Nagios Core
+2.4 paquetes de plugins
+2.5 dnf search nagios
+2.6 dnf info
+2.7 rpm -qi
+2.8 rpm -ql
+2.9 rpm -qc
+2.10 rpm -qd
+2.11 descubrir archivos instalados
+2.12 descubrir ejecutables
+2.13 descubrir documentación
+2.14 localizar plugins
+2.15 localizar configuración
+2.16 localizar archivos runtime
+2.17 usuario nagios
+2.18 grupo nagios
+2.19 permisos
+2.20 systemd
+2.21 Apache
+2.22 SELinux
+2.23 firewalld
+2.24 laboratorio: inventariar completamente una instalación Nagios
+
+
+3. Instalación de Nagios Core
+
+3.1 requisitos
+3.2 instalación mediante paquetes
+3.3 instalación desde código fuente
+3.4 diferencias entre paquetes y upstream
+3.5 dependencias
+3.6 usuario de servicio
+3.7 grupos
+3.8 directorios
+3.9 configuración inicial
+3.10 plugins
+3.11 Apache
+3.12 CGI
+3.13 autenticación web
+3.14 systemd unit
+3.15 iniciar Nagios
+3.16 detener Nagios
+3.17 reiniciar Nagios
+3.18 recargar configuración
+3.19 systemctl status
+3.20 journalctl
+3.21 verificar instalación
+3.22 verificar configuración
+3.23 nagios -v
+3.24 acceso a la interfaz web
+3.25 laboratorio: instalación completa de Nagios Core
+
+
+4. Arquitectura de Nagios Core
+
+4.1 proceso principal
+4.2 ciclo de ejecución
+4.3 configuración
+4.4 object definitions
+4.5 scheduler
+4.6 worker processes
+4.7 ejecución de plugins
+4.8 resultados de checks
+4.9 estados
+4.10 event queue
+4.11 notifications
+4.12 event handlers
+4.13 external commands
+4.14 status data
+4.15 retention
+4.16 logging
+4.17 performance data
+4.18 CGI
+4.19 flujo interno de host check
+4.20 flujo interno de service check
+4.21 flujo interno de notification
+4.22 laboratorio: seguir un check desde scheduling hasta notification
+
+
+5. Configuración de Nagios
+
+5.1 nagios.cfg
+5.2 estructura del archivo
+5.3 cfg_file
+5.4 cfg_dir
+5.5 object configuration files
+5.6 resource_file
+5.7 resource.cfg
+5.8 status_file
+5.9 log_file
+5.10 temp_file
+5.11 lock_file
+5.12 state_retention_file
+5.13 command_file
+5.14 check_result_path
+5.15 event_broker_options
+5.16 interval_length
+5.17 log_rotation_method
+5.18 configuración modular
+5.19 organización recomendada
+5.20 validación
+5.21 nagios -v
+5.22 errores de configuración
+5.23 laboratorio: construir una configuración modular
+
+
+6. Modelo de objetos
+
+6.1 qué es un objeto
+6.2 sintaxis define
+6.3 object types
+6.4 host
+6.5 service
+6.6 command
+6.7 contact
+6.8 contactgroup
+6.9 hostgroup
+6.10 servicegroup
+6.11 timeperiod
+6.12 servicedependency
+6.13 hostdependency
+6.14 serviceescalation
+6.15 hostescalation
+6.16 templates
+6.17 register
+6.18 use
+6.19 name
+6.20 herencia
+6.21 additive inheritance
+6.22 resolución de objetos
+6.23 laboratorio: construir un árbol de objetos y templates
+
+
+7. Hosts
+
+7.1 objeto host
+7.2 host_name
+7.3 alias
+7.4 address
+7.5 display_name
+7.6 parents
+7.7 hostgroups
+7.8 check_command
+7.9 check_interval
+7.10 retry_interval
+7.11 max_check_attempts
+7.12 check_period
+7.13 contacts
+7.14 contact_groups
+7.15 notification_interval
+7.16 notification_period
+7.17 notification_options
+7.18 notifications_enabled
+7.19 event_handler
+7.20 flap_detection_enabled
+7.21 process_perf_data
+7.22 retain_status_information
+7.23 retain_nonstatus_information
+7.24 host templates
+7.25 laboratorio: definir y monitorizar hosts
+
+
+8. Hostgroups
+
+8.1 objeto hostgroup
+8.2 hostgroup_name
+8.3 alias
+8.4 members
+8.5 hostgroup_members
+8.6 asignación desde hosts
+8.7 grupos funcionales
+8.8 grupos geográficos
+8.9 grupos tecnológicos
+8.10 laboratorio: organizar infraestructura mediante hostgroups
+
+
+9. Services
+
+9.1 objeto service
+9.2 host_name
+9.3 hostgroup_name
+9.4 service_description
+9.5 display_name
+9.6 check_command
+9.7 initial_state
+9.8 max_check_attempts
+9.9 check_interval
+9.10 retry_interval
+9.11 active_checks_enabled
+9.12 passive_checks_enabled
+9.13 check_period
+9.14 obsess_over_service
+9.15 check_freshness
+9.16 freshness_threshold
+9.17 event_handler
+9.18 flap_detection
+9.19 process_perf_data
+9.20 retain_status_information
+9.21 notification_interval
+9.22 first_notification_delay
+9.23 notification_period
+9.24 notification_options
+9.25 contacts
+9.26 contact_groups
+9.27 service templates
+9.28 laboratorio: monitorizar servicios Linux
+
+
+10. Servicegroups
+
+10.1 objeto servicegroup
+10.2 servicegroup_name
+10.3 alias
+10.4 members
+10.5 servicegroup_members
+10.6 agrupación lógica
+10.7 visualización
+10.8 laboratorio: construir servicegroups
+
+
+11. Commands
+
+11.1 objeto command
+11.2 command_name
+11.3 command_line
+11.4 command definitions
+11.5 check commands
+11.6 notification commands
+11.7 event handler commands
+11.8 macros en commands
+11.9 argumentos
+11.10 $ARG1$
+11.11 $ARGn$
+11.12 escaping
+11.13 shell
+11.14 seguridad
+11.15 command injection
+11.16 laboratorio: crear commands reutilizables
+
+
+12. Plugins de Nagios
+
+12.1 qué es un plugin
+12.2 arquitectura de plugins
+12.3 Nagios Plugins
+12.4 localizar plugins
+12.5 check_ping
+12.6 check_http
+12.7 check_tcp
+12.8 check_udp
+12.9 check_dns
+12.10 check_ssh
+12.11 check_load
+12.12 check_disk
+12.13 check_swap
+12.14 check_users
+12.15 check_procs
+12.16 check_file_age
+12.17 check_dummy
+12.18 check_by_ssh
+12.19 check_nrpe
+12.20 parámetros
+12.21 thresholds
+12.22 timeout
+12.23 verbose
+12.24 ejecución manual
+12.25 depuración
+12.26 plugins externos
+12.27 Nagios Exchange
+12.28 seguridad de plugins
+12.29 laboratorio: probar y diagnosticar plugins
+
+
+13. Plugin API
+
+13.1 contrato de un plugin
+13.2 stdout
+13.3 stderr
+13.4 exit status
+13.5 código 0
+13.6 código 1
+13.7 código 2
+13.8 código 3
+13.9 OK
+13.10 WARNING
+13.11 CRITICAL
+13.12 UNKNOWN
+13.13 formato de salida
+13.14 short output
+13.15 long output
+13.16 performance data
+13.17 pipe separator
+13.18 label
+13.19 value
+13.20 warn
+13.21 crit
+13.22 min
+13.23 max
+13.24 thresholds
+13.25 ranges
+13.26 laboratorio: interpretar manualmente resultados de plugins
+
+
+14. Desarrollo básico de plugins
+
+14.1 cuándo crear un plugin
+14.2 cuándo reutilizar uno existente
+14.3 diseño
+14.4 argumentos
+14.5 validación
+14.6 timeout
+14.7 códigos de retorno
+14.8 mensajes
+14.9 performance data
+14.10 plugin en shell
+14.11 plugin en Python
+14.12 permisos
+14.13 ejecución como usuario nagios
+14.14 integración mediante command
+14.15 pruebas
+14.16 errores frecuentes
+14.17 laboratorio: desarrollar un plugin sencillo
+
+
+15. Estados
+
+15.1 estados de hosts
+15.2 UP
+15.3 DOWN
+15.4 UNREACHABLE
+15.5 estados de services
+15.6 OK
+15.7 WARNING
+15.8 CRITICAL
+15.9 UNKNOWN
+15.10 state type
+15.11 SOFT state
+15.12 HARD state
+15.13 state changes
+15.14 max_check_attempts
+15.15 retry
+15.16 recuperación
+15.17 host state logic
+15.18 service state logic
+15.19 impacto en notifications
+15.20 laboratorio: provocar y analizar transiciones de estado
+
+
+16. Scheduling
+
+16.1 scheduler
+16.2 event queue
+16.3 active checks
+16.4 check_interval
+16.5 retry_interval
+16.6 interval_length
+16.7 inter-check delay
+16.8 service_inter_check_delay_method
+16.9 host_inter_check_delay_method
+16.10 service_interleave_factor
+16.11 max_concurrent_checks
+16.12 check timeout
+16.13 scheduling inicial
+16.14 rescheduling
+16.15 latency
+16.16 execution time
+16.17 scheduling overhead
+16.18 carga
+16.19 laboratorio: analizar el scheduler
+
+
+17. Timeperiods
+
+17.1 objeto timeperiod
+17.2 timeperiod_name
+17.3 alias
+17.4 rangos diarios
+17.5 excepciones
+17.6 fechas
+17.7 check_period
+17.8 notification_period
+17.9 timeperiod inheritance
+17.10 laboratorio: crear calendarios de monitorización
+
+
+18. Freshness
+
+18.1 freshness checking
+18.2 check_freshness
+18.3 freshness_threshold
+18.4 passive results
+18.5 stale data
+18.6 forced checks
+18.7 freshness en servicios
+18.8 laboratorio: detectar resultados obsoletos
+
+
+19. Flapping
+
+19.1 qué es flapping
+19.2 detección
+19.3 historial de estados
+19.4 low threshold
+19.5 high threshold
+19.6 flap_detection_enabled
+19.7 host flapping
+19.8 service flapping
+19.9 notificaciones
+19.10 tuning
+19.11 laboratorio: analizar un servicio inestable
+
+
+20. Contacts y contactgroups
+
+20.1 objeto contact
+20.2 contact_name
+20.3 alias
+20.4 email
+20.5 pager
+20.6 service_notification_period
+20.7 host_notification_period
+20.8 service_notification_options
+20.9 host_notification_options
+20.10 service_notification_commands
+20.11 host_notification_commands
+20.12 objeto contactgroup
+20.13 contactgroup_name
+20.14 members
+20.15 contactgroup_members
+20.16 templates
+20.17 laboratorio: diseñar contactos y equipos
+
+
+21. Notifications
+
+21.1 arquitectura
+21.2 condiciones
+21.3 HARD states
+21.4 recovery notifications
+21.5 notification_interval
+21.6 first_notification_delay
+21.7 notification_period
+21.8 notification_options
+21.9 notification commands
+21.10 macros
+21.11 email
+21.12 scripts externos
+21.13 suppression
+21.14 acknowledgements
+21.15 downtime
+21.16 flapping
+21.17 dependencies
+21.18 escalations
+21.19 troubleshooting
+21.20 laboratorio: seguir una notificación extremo a extremo
+
+
+22. Acknowledgements y downtime
+
+22.1 acknowledgements
+22.2 sticky acknowledgement
+22.3 notifications
+22.4 comments
+22.5 scheduled downtime
+22.6 fixed downtime
+22.7 flexible downtime
+22.8 triggered downtime
+22.9 downtime depth
+22.10 propagación
+22.11 mantenimiento planificado
+22.12 laboratorio: gestionar una ventana de mantenimiento
+
+
+23. Event handlers
+
+23.1 qué es un event handler
+23.2 host event handlers
+23.3 service event handlers
+23.4 global event handlers
+23.5 ejecución
+23.6 SOFT states
+23.7 HARD states
+23.8 macros
+23.9 scripts
+23.10 reinicio automático
+23.11 remediación
+23.12 permisos
+23.13 sudo
+23.14 riesgos de seguridad
+23.15 prevención de loops
+23.16 laboratorio: implementar autorrecuperación controlada
+
+
+24. Dependencies
+
+24.1 dependencias
+24.2 hostdependency
+24.3 servicedependency
+24.4 dependent_host_name
+24.5 dependent_service_description
+24.6 execution failure criteria
+24.7 notification failure criteria
+24.8 dependency periods
+24.9 inherits_parent
+24.10 topologías
+24.11 routers
+24.12 servicios encadenados
+24.13 laboratorio: modelar dependencias reales
+
+
+25. Escalations
+
+25.1 escalaciones
+25.2 hostescalation
+25.3 serviceescalation
+25.4 first_notification
+25.5 last_notification
+25.6 notification_interval
+25.7 escalation_period
+25.8 escalation_options
+25.9 contacts
+25.10 contact_groups
+25.11 escalado por niveles
+25.12 laboratorio: construir una política de escalado
+
+
+26. Macros
+
+26.1 macros Nagios
+26.2 host macros
+26.3 service macros
+26.4 contact macros
+26.5 notification macros
+26.6 summary macros
+26.7 date/time macros
+26.8 on-demand macros
+26.9 custom object variables
+26.10 $USERn$
+26.11 resource.cfg
+26.12 argumentos
+26.13 expansión
+26.14 seguridad
+26.15 secretos
+26.16 laboratorio: inspeccionar expansión de macros
+
+
+27. Monitorización remota
+
+27.1 arquitectura remota
+27.2 checks desde servidor
+27.3 checks mediante SSH
+27.4 agentes
+27.5 NRPE
+27.6 NCPA
+27.7 SNMP
+27.8 passive checks
+27.9 elección de mecanismo
+27.10 seguridad
+27.11 firewall
+27.12 SELinux
+27.13 laboratorio: diseñar monitorización remota
+
+
+28. NRPE
+
+28.1 qué es NRPE
+28.2 arquitectura
+28.3 check_nrpe
+28.4 nrpe daemon
+28.5 configuración
+28.6 allowed_hosts
+28.7 commands
+28.8 arguments
+28.9 SSL/TLS
+28.10 puertos
+28.11 systemd
+28.12 firewalld
+28.13 SELinux
+28.14 ejecución remota
+28.15 troubleshooting
+28.16 seguridad
+28.17 limitaciones
+28.18 laboratorio: monitorizar un Fedora remoto mediante NRPE
+
+
+29. NCPA
+
+29.1 qué es NCPA
+29.2 arquitectura
+29.3 agent
+29.4 API
+29.5 listener
+29.6 passive component
+29.7 instalación
+29.8 configuración
+29.9 autenticación
+29.10 tokens
+29.11 checks
+29.12 métricas del sistema
+29.13 procesos
+29.14 filesystem
+29.15 red
+29.16 API endpoints
+29.17 integración con Nagios Core
+29.18 seguridad
+29.19 TLS
+29.20 troubleshooting
+29.21 laboratorio: monitorizar Fedora mediante NCPA
+
+
+30. Monitorización mediante SSH
+
+30.1 check_by_ssh
+30.2 arquitectura
+30.3 claves SSH
+30.4 usuario dedicado
+30.5 authorized_keys
+30.6 restricciones
+30.7 commands remotos
+30.8 timeout
+30.9 seguridad
+30.10 ventajas
+30.11 inconvenientes
+30.12 laboratorio: checks remotos sin agente Nagios
+
+
+31. SNMP
+
+31.1 fundamentos SNMP
+31.2 manager
+31.3 agent
+31.4 MIB
+31.5 OID
+31.6 SNMPv2c
+31.7 SNMPv3
+31.8 autenticación
+31.9 privacidad
+31.10 snmpget
+31.11 snmpwalk
+31.12 check_snmp
+31.13 thresholds
+31.14 switches
+31.15 routers
+31.16 servidores
+31.17 seguridad
+31.18 laboratorio: monitorizar un dispositivo mediante SNMP
+
+
+32. Passive checks
+
+32.1 active frente a passive
+32.2 passive host checks
+32.3 passive service checks
+32.4 accept_passive_service_checks
+32.5 accept_passive_host_checks
+32.6 submitting results
+32.7 command file
+32.8 PROCESS_SERVICE_CHECK_RESULT
+32.9 PROCESS_HOST_CHECK_RESULT
+32.10 timestamps
+32.11 freshness
+32.12 distributed monitoring
+32.13 seguridad
+32.14 laboratorio: enviar resultados pasivos
+
+
+33. External commands
+
+33.1 external command interface
+33.2 command_file
+33.3 check_external_commands
+33.4 formato
+33.5 timestamps
+33.6 ACKNOWLEDGE
+33.7 SCHEDULE
+33.8 PROCESS
+33.9 ENABLE
+33.10 DISABLE
+33.11 permisos
+33.12 seguridad
+33.13 automatización
+33.14 laboratorio: controlar Nagios mediante external commands
+
+
+34. Performance data
+
+34.1 performance data
+34.2 formato
+34.3 process_performance_data
+34.4 host_perfdata_command
+34.5 service_perfdata_command
+34.6 host_perfdata_file
+34.7 service_perfdata_file
+34.8 templates
+34.9 procesamiento
+34.10 métricas
+34.11 almacenamiento externo
+34.12 gráficas
+34.13 integración con sistemas externos
+34.14 laboratorio: extraer y procesar performance data
+
+
+35. Logging
+
+35.1 log_file
+35.2 log_rotation_method
+35.3 log_archive_path
+35.4 log_notifications
+35.5 log_service_retries
+35.6 log_host_retries
+35.7 log_event_handlers
+35.8 log_initial_states
+35.9 log_external_commands
+35.10 log_passive_checks
+35.11 timestamps
+35.12 archivos históricos
+35.13 journalctl
+35.14 debugging
+35.15 relación con rsyslog
+35.16 relación con logrotate
+35.17 laboratorio: diagnosticar Nagios mediante logs
+
+
+36. State retention
+
+36.1 retención
+36.2 retain_state_information
+36.3 state_retention_file
+36.4 retention_update_interval
+36.5 use_retained_program_state
+36.6 use_retained_scheduling_info
+36.7 retained host state
+36.8 retained service state
+36.9 retained object attributes
+36.10 reinicios
+36.11 laboratorio: analizar persistencia de estado
+
+
+37. Web interface y CGI
+
+37.1 interfaz web
+37.2 CGI architecture
+37.3 cgi.cfg
+37.4 authentication
+37.5 authorization
+37.6 authorized_for_system_information
+37.7 authorized_for_configuration_information
+37.8 authorized_for_system_commands
+37.9 authorized_for_all_services
+37.10 authorized_for_all_hosts
+37.11 Apache
+37.12 TLS
+37.13 seguridad
+37.14 laboratorio: configurar acceso web seguro
+
+
+38. systemd
+
+38.1 unit de Nagios
+38.2 systemctl status
+38.3 start
+38.4 stop
+38.5 restart
+38.6 reload
+38.7 enable
+38.8 journalctl
+38.9 dependencias
+38.10 límites
+38.11 overrides
+38.12 hardening
+38.13 laboratorio: administrar Nagios mediante systemd
+
+
+39. SELinux
+
+39.1 Nagios bajo SELinux
+39.2 dominios
+39.3 tipos
+39.4 contexts
+39.5 procesos
+39.6 archivos
+39.7 puertos
+39.8 booleans
+39.9 AVC
+39.10 ausearch
+39.11 sealert
+39.12 audit2why
+39.13 troubleshooting
+39.14 políticas locales
+39.15 mínimo privilegio
+39.16 laboratorio: diagnosticar un bloqueo SELinux de Nagios
+
+
+40. Firewalld
+
+40.1 puertos utilizados
+40.2 interfaz web
+40.3 NRPE
+40.4 NCPA
+40.5 SNMP
+40.6 zonas
+40.7 services
+40.8 ports
+40.9 rich rules
+40.10 sources
+40.11 runtime
+40.12 permanent
+40.13 laboratorio: limitar comunicaciones de monitorización
+
+
+41. Seguridad
+
+41.1 superficie de ataque
+41.2 principio de mínimo privilegio
+41.3 usuario nagios
+41.4 permisos
+41.5 plugins
+41.6 commands
+41.7 event handlers
+41.8 external commands
+41.9 macros
+41.10 secretos
+41.11 resource.cfg
+41.12 SSH
+41.13 NRPE
+41.14 NCPA
+41.15 SNMPv3
+41.16 TLS
+41.17 Apache
+41.18 SELinux
+41.19 firewalld
+41.20 hardening
+41.21 laboratorio: auditoría de seguridad
+
+
+42. Automatización de configuración
+
+42.1 configuración como código
+42.2 estructura modular
+42.3 templates
+42.4 generación de objetos
+42.5 scripts
+42.6 Ansible
+42.7 validación automática
+42.8 nagios -v
+42.9 despliegue
+42.10 reload seguro
+42.11 control de versiones
+42.12 Git
+42.13 CI
+42.14 laboratorio: pipeline de validación de configuración
+
+
+43. Distributed monitoring
+
+43.1 necesidad de distribución
+43.2 arquitectura centralizada
+43.3 arquitectura distribuida
+43.4 pollers
+43.5 passive results
+43.6 remote execution
+43.7 topologías
+43.8 latencia
+43.9 enlaces WAN
+43.10 aislamiento
+43.11 escalabilidad
+43.12 redundancia
+43.13 seguridad
+43.14 laboratorio: diseñar monitorización distribuida
+
+
+44. Alta disponibilidad
+
+44.1 disponibilidad del propio sistema de monitorización
+44.2 puntos únicos de fallo
+44.3 active/passive
+44.4 active/active
+44.5 redundancia
+44.6 sincronización de configuración
+44.7 state data
+44.8 passive results
+44.9 VIP
+44.10 load balancers
+44.11 fencing conceptual
+44.12 split brain
+44.13 almacenamiento
+44.14 recuperación
+44.15 pruebas de fallo
+44.16 laboratorio: diseñar una arquitectura HA
+
+
+45. Escalabilidad y rendimiento
+
+45.1 número de hosts
+45.2 número de services
+45.3 check frequency
+45.4 check latency
+45.5 execution time
+45.6 concurrent checks
+45.7 scheduler
+45.8 plugins lentos
+45.9 network latency
+45.10 timeouts
+45.11 passive checks
+45.12 distribución
+45.13 performance data
+45.14 logging
+45.15 profiling operativo
+45.16 laboratorio: localizar cuellos de botella
+
+
+46. Integraciones
+
+46.1 ecosistema de integración
+46.2 scripts
+46.3 APIs externas
+46.4 webhooks mediante scripts
+46.5 ticketing
+46.6 chat
+46.7 correo
+46.8 SNMP traps
+46.9 syslog
+46.10 performance data
+46.11 Grafana
+46.12 Prometheus
+46.13 cuándo integrar Nagios con Prometheus
+46.14 cuándo mantener sistemas separados
+46.15 laboratorio: diseñar una arquitectura de integración
+
+
+47. Troubleshooting
+
+47.1 metodología
+47.2 comprobar proceso
+47.3 systemctl status
+47.4 journalctl
+47.5 nagios -v
+47.6 configuración inválida
+47.7 objetos inexistentes
+47.8 plugins
+47.9 permisos
+47.10 PATH
+47.11 usuario nagios
+47.12 timeout
+47.13 estados UNKNOWN
+47.14 checks lentos
+47.15 notifications ausentes
+47.16 notification period
+47.17 contacts
+47.18 dependencies
+47.19 escalations
+47.20 acknowledgements
+47.21 downtime
+47.22 NRPE
+47.23 NCPA
+47.24 SSH
+47.25 SNMP
+47.26 networking
+47.27 firewalld
+47.28 SELinux
+47.29 Apache
+47.30 CGI
+47.31 performance data
+47.32 scheduler
+47.33 logs
+47.34 debugging
+47.35 laboratorio: metodología completa de diagnóstico
+
+
+48. Internals de Nagios Core
+
+48.1 código fuente
+48.2 estructura del proyecto
+48.3 proceso principal
+48.4 inicialización
+48.5 carga de configuración
+48.6 parser de configuración
+48.7 object model interno
+48.8 estructuras de hosts
+48.9 estructuras de services
+48.10 scheduler interno
+48.11 event queue
+48.12 timed events
+48.13 workers
+48.14 ejecución de checks
+48.15 procesamiento de resultados
+48.16 state machine
+48.17 SOFT y HARD internamente
+48.18 notifications
+48.19 event handlers
+48.20 dependencies
+48.21 escalations
+48.22 macros
+48.23 external command processing
+48.24 retention
+48.25 logging
+48.26 performance data
+48.27 broker events
+48.28 event broker API
+48.29 NEB modules
+48.30 CGI internals
+48.31 compilación
+48.32 debugging
+48.33 laboratorio: compilar Nagios Core y seguir un check internamente
+
+
+49. Diseño de una plataforma Nagios
+
+49.1 requisitos
+49.2 inventario
+49.3 clasificación de hosts
+49.4 clasificación de services
+49.5 naming
+49.6 templates
+49.7 hostgroups
+49.8 servicegroups
+49.9 checks
+49.10 intervalos
+49.11 thresholds
+49.12 contacts
+49.13 notifications
+49.14 dependencies
+49.15 escalations
+49.16 maintenance
+49.17 remote monitoring
+49.18 seguridad
+49.19 distribución
+49.20 HA
+49.21 automatización
+49.22 documentación
+49.23 capacity planning
+49.24 estrategia de troubleshooting
+
+
+50. Proyecto final experto
+
+50.1 diseñar una plataforma Nagios completa
+50.2 preparar servidores Fedora/RHEL
+50.3 instalar Nagios Core
+50.4 configurar Apache y acceso web
+50.5 integrar systemd
+50.6 configurar SELinux
+50.7 configurar firewalld
+50.8 crear estructura modular de configuración
+50.9 crear templates
+50.10 registrar hosts
+50.11 crear hostgroups
+50.12 definir services
+50.13 crear servicegroups
+50.14 configurar plugins
+50.15 monitorizar recursos locales
+50.16 monitorizar servicios TCP/IP
+50.17 monitorizar hosts mediante SSH
+50.18 desplegar NRPE
+50.19 desplegar NCPA
+50.20 integrar SNMP
+50.21 configurar passive checks
+50.22 configurar freshness
+50.23 configurar flapping detection
+50.24 configurar contacts
+50.25 configurar contactgroups
+50.26 configurar notifications
+50.27 configurar acknowledgements
+50.28 configurar downtime
+50.29 crear event handlers
+50.30 configurar dependencies
+50.31 configurar escalations
+50.32 utilizar macros
+50.33 recoger performance data
+50.34 configurar logging
+50.35 comprobar state retention
+50.36 automatizar configuración
+50.37 versionar configuración mediante Git
+50.38 validar configuración antes del despliegue
+50.39 diseñar monitorización distribuida
+50.40 diseñar alta disponibilidad
+50.41 aplicar hardening
+50.42 realizar pruebas de fallo
+50.43 diagnosticar problemas deliberadamente introducidos
+50.44 medir latencia y rendimiento del scheduler
+50.45 documentar arquitectura
+50.46 crear runbook de operaciones
+50.47 crear runbook de troubleshooting
+50.48 realizar auditoría final de seguridad
+50.49 realizar auditoría final de monitorización
+50.50 proyecto final: operar y diagnosticar una plataforma Nagios de producción

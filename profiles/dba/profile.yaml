@@ -1,0 +1,111 @@
+name: postgresql-admin
+label: PostgreSQL Server Administration
+language: es
+
+course:
+  title: PostgreSQL Server Administration — de 0 a experto
+  audience: Administradores de sistemas, DBAs, ingenieros de plataforma y desarrolladores que necesiten operar PostgreSQL en producción
+  level: zero-to-expert
+  primary_platform: Fedora/RHEL/Linux
+  database: PostgreSQL
+  version_policy: PostgreSQL moderno; priorizar la versión estable actual y señalar diferencias relevantes entre versiones
+
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a administración real
+  lesson_structure:
+    required_opening: "🎯 OBJETIVO"
+    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    optional_sections:
+      - "🧪 Laboratorio/ejemplos"
+      - "⚠️ Errores frecuentes"
+      - "💡 Idea importante"
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
+  indentation: false
+  numbering: single-level
+
+content:
+  orientation:
+    - administración de servidores PostgreSQL
+    - operación en producción
+    - arquitectura interna
+    - configuración
+    - seguridad
+    - observabilidad
+    - rendimiento
+    - backup y recovery
+    - replicación
+    - alta disponibilidad
+    - disaster recovery
+    - upgrades y migraciones
+    - troubleshooting
+    - internals relevantes para DBA
+  avoid_as_primary_focus:
+    - curso general de SQL
+    - desarrollo de aplicaciones
+    - ORMs
+    - vendor lock-in cloud
+  sql_scope: incluir únicamente SQL necesario para administración, diagnóstico, catálogos, EXPLAIN, estadísticas y mantenimiento
+
+platform:
+  linux:
+    preferred:
+      - Fedora
+      - RHEL
+    include:
+      - systemd
+      - journalctl
+      - SELinux
+      - firewalld
+      - Linux memory management
+      - Linux I/O
+      - process inspection
+  packaging:
+    include_distribution_packages: true
+    include_pgdg_repository: true
+
+sources:
+  priority:
+    - PostgreSQL official documentation
+    - Mastering PostgreSQL 17
+    - PostgreSQL 16 Administration Cookbook
+    - Learn PostgreSQL, Second Edition
+  version_sensitive_topics_use_official_docs_first: true
+
+labs:
+  required_when_useful: true
+  prefer_real_server_observation: true
+  include_failure_scenarios: true
+  include_recovery_validation: true
+  include_production_like_scenarios: true
+
+expertise_targets:
+  - instalar e inicializar clusters PostgreSQL
+  - comprender procesos y almacenamiento interno
+  - administrar configuración y conectividad
+  - diseñar roles, autenticación y privilegios
+  - comprender MVCC, VACUUM, autovacuum y wraparound
+  - diagnosticar locks, deadlocks y contention
+  - comprender y ajustar WAL y checkpoints
+  - diseñar memoria, almacenamiento e I/O
+  - analizar planes y rendimiento
+  - gestionar pooling y conexiones
+  - implementar monitorización y observabilidad
+  - ejecutar backups lógicos y físicos
+  - realizar PITR y disaster recovery
+  - implementar replicación física y lógica
+  - diseñar y operar alta disponibilidad
+  - ejecutar upgrades y migraciones
+  - diagnosticar corrupción e incidentes
+  - relacionar PostgreSQL con Linux, systemd, SELinux y firewalld
+  - comprender internals suficientes para troubleshooting experto
+
+output:
+  tone: técnico, didáctico y preciso
+  examples: preferir comandos y consultas reproducibles
+  explain_why: true
+  explain_tradeoffs: true
+  warn_version_differences: true
+  avoid_shallow_summaries: true

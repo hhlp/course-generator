@@ -1,0 +1,330 @@
+name: logging
+
+title: "LOGGING EN LINUX — FEDORA"
+
+language: es
+
+platform:
+  primary: Fedora Linux
+  family:
+    - Fedora
+    - RHEL-compatible
+
+level:
+  start: beginner
+  end: expert
+
+course_goal: >-
+  Enseñar logging en Linux sobre Fedora desde los fundamentos hasta diseño,
+  seguridad, rendimiento, fiabilidad, troubleshooting e internals, cubriendo
+  systemd-journald, journalctl, Syslog, rsyslog, syslog-ng, logging remoto,
+  TLS, RELP, parsing, colas, buffers, logging estructurado y logrotate.
+
+scope:
+  include:
+    - fundamentos del logging
+    - stdout y stderr
+    - kernel logging
+    - systemd-journald
+    - journalctl
+    - journal persistente y runtime
+    - namespaces de journal
+    - rate limiting
+    - forwarding
+    - protocolo Syslog
+    - RFC 3164
+    - RFC 5424
+    - RFC 5425
+    - RFC 6587
+    - rsyslog
+    - RainerScript
+    - queues de rsyslog
+    - syslog-ng
+    - disk buffers y flow-control
+    - UDP
+    - TCP
+    - TLS
+    - RELP
+    - parsing
+    - normalización
+    - logging estructurado
+    - routing
+    - logrotate
+    - systemd integration
+    - SELinux integration
+    - firewalld integration
+    - troubleshooting
+    - performance
+    - capacity planning
+    - reliability
+    - high availability concepts
+    - internals
+  exclude_deep_coverage:
+    - Grafana
+    - Loki
+    - LogQL
+    - Prometheus
+    - Alertmanager
+    - Elasticsearch
+    - Logstash
+    - Kibana
+    - OpenSearch
+    - Data Prepper
+    - OpenTelemetry Collector
+    - Zabbix
+    - Nagios
+
+pedagogy:
+  objective_first: true
+  objective_heading: "🎯 OBJETIVO"
+  mandatory_closing: true
+  closing_heading: "🧠 QUÉ DEBES RECORDAR"
+  closing_min_points: 3
+  closing_max_points: 7
+  optional_sections:
+    - "🧪 Laboratorio / ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  style:
+    - completo
+    - profundo
+    - didáctico
+    - progresivo
+    - práctico
+    - orientado a Fedora
+  avoid:
+    - resúmenes superficiales
+    - listas de comandos sin explicación
+    - configuración descontextualizada
+    - sudo indiscriminado
+    - desactivar SELinux como solución
+    - afirmaciones absolutas sobre entrega garantizada
+
+lesson_rules:
+  explain_concept_before_command: true
+  explain_pipeline_position: true
+  distinguish_read_vs_modify_commands: true
+  state_required_privileges: true
+  prefer_dropins_when_supported: true
+  validate_configuration_before_reload: true
+  verify_effect_after_change: true
+  include_recovery_or_rollback_when_useful: true
+  use_current_installed_docs_when_version_sensitive: true
+
+fedora_rules:
+  prefer_rpm_dnf: true
+  prefer_systemd_native_tools: true
+  use_firewalld: true
+  keep_selinux_enforcing: true
+  use_real_fedora_paths: true
+  use_real_fedora_units: true
+
+journald:
+  treat_as_structured_event_store: true
+  emphasize:
+    - trusted fields
+    - user fields
+    - _TRANSPORT
+    - _SYSTEMD_UNIT
+    - _BOOT_ID
+    - _MACHINE_ID
+    - realtime timestamps
+    - monotonic timestamps
+    - persistent storage
+    - runtime storage
+    - vacuum
+    - limits
+    - namespaces
+    - rate limiting
+    - forwarding
+    - sealing
+
+syslog:
+  separate_architecture_protocol_implementation: true
+  standards:
+    - RFC3164
+    - RFC5424
+    - RFC5425
+    - RFC6587
+  distinguish_transports:
+    - UDP
+    - TCP
+    - TLS
+    - RELP
+
+rsyslog:
+  prefer_modern_configuration: true
+  teach_legacy_selectors_for_context: true
+  emphasize:
+    - input
+    - ruleset
+    - action
+    - template
+    - RainerScript
+    - imjournal
+    - imuxsock
+    - imudp
+    - imtcp
+    - imfile
+    - omfile
+    - omfwd
+    - queues
+    - disk-assisted queues
+    - parsing
+    - normalization
+    - TLS
+    - RELP
+
+syslog_ng:
+  pipeline_model: "source -> parser/filter/rewrite -> log path -> destination"
+  emphasize:
+    - sources
+    - destinations
+    - filters
+    - parsers
+    - rewrites
+    - templates
+    - log paths
+    - junctions
+    - channels
+    - flow-control
+    - disk-buffer
+    - TLS
+    - routing
+
+reliability:
+  explain:
+    - loss
+    - duplication
+    - ordering
+    - retries
+    - queues
+    - buffers
+    - persistence
+    - backpressure
+    - acknowledgements
+    - at-most-once
+    - at-least-once
+    - limits_of_exactly_once
+
+security:
+  include:
+    - least privilege
+    - Unix permissions
+    - ACL
+    - SELinux
+    - firewalld
+    - TLS
+    - mutual TLS
+    - certificate validation
+    - log injection
+    - secret leakage
+    - integrity
+    - retention
+  never_recommend:
+    - disabling SELinux as a fix
+    - opening broad firewall access without justification
+    - skipping certificate verification in production
+
+logrotate:
+  emphasize:
+    - open file descriptors
+    - rename vs unlink
+    - reopen behavior
+    - SIGHUP
+    - copytruncate risks
+    - application-managed rotation
+    - journal internal rotation
+
+troubleshooting:
+  methodology: pipeline-first
+  pipeline:
+    - producer
+    - stdout_stderr_or_syslog
+    - journald
+    - local_input_or_forwarding
+    - parser_filter_ruleset
+    - queue_or_buffer
+    - transport
+    - network_firewall
+    - TLS
+    - collector
+    - routing
+    - storage
+    - rotation
+  preferred_tools:
+    - journalctl
+    - logger
+    - systemd-cat
+    - systemctl
+    - systemd-analyze
+    - rsyslogd
+    - syslog-ng
+    - logrotate
+    - ss
+    - lsof
+    - fuser
+    - tcpdump
+    - openssl
+    - firewall-cmd
+    - ausearch
+    - sealert
+    - restorecon
+    - semanage
+    - jq
+    - df
+    - du
+
+labs:
+  required_when_relevant: true
+  workflow:
+    - observe_initial_state
+    - make_controlled_change
+    - generate_test_events
+    - observe_pipeline
+    - induce_safe_failure
+    - diagnose
+    - restore
+    - verify_recovery
+
+internals:
+  depth: operationally_relevant
+  include:
+    - file descriptors
+    - pipes
+    - Unix domain sockets
+    - /dev/log
+    - /dev/kmsg
+    - socket buffers
+    - kernel buffers
+    - journald sockets
+    - journal binary format concepts
+    - mmap
+    - page cache
+    - fsync
+    - worker threads
+    - queues
+    - backpressure
+  avoid:
+    - turning the course into full source-code development training
+
+references:
+  priority:
+    - installed man pages
+    - official upstream documentation
+    - Fedora documentation
+    - applicable RFCs
+    - upstream library documentation
+    - advanced books
+  files:
+    domain: domain.md
+    bibliography: bibliografy.md
+
+final_project:
+  required: true
+  goal: >-
+    Construir una plataforma centralizada, segura, persistente y tolerante a
+    fallos de logging sobre Fedora, con journald, rsyslog o syslog-ng,
+    transporte seguro, queues/buffers, parsing, routing, almacenamiento,
+    logrotate, SELinux, firewalld, troubleshooting, recuperación y
+    dimensionamiento básico.

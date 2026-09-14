@@ -1,0 +1,110 @@
+name: prometheus
+title: "PROMETHEUS DE 0 A EXPERTO"
+language: es
+
+domain:
+  subject: prometheus
+  platform: fedora
+  orientation:
+    - administracion
+    - operacion
+    - arquitectura
+    - troubleshooting
+    - seguridad
+    - internals
+  secondary_topics:
+    - observabilidad
+    - exporters
+    - promql
+    - alertmanager
+    - tsdb
+    - service-discovery
+    - remote-write
+    - high-availability
+
+audience:
+  level_start: beginner
+  level_end: expert
+  assumptions:
+    - fundamentos generales de Linux
+    - uso basico de shell
+    - conocimientos basicos de redes recomendados
+
+pedagogy:
+  required_opening: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  remember_min_items: 3
+  remember_max_items: 7
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  style:
+    - profundo
+    - didactico
+    - autocontenido
+    - progresivo
+    - orientado_a_comprension
+    - no_resumen_superficial
+
+content:
+  preserve_path_order: true
+  preserve_lesson_ids: true
+  explain_commands: true
+  explain_configuration: true
+  include_verification: true
+  include_troubleshooting: true
+  include_security_implications: true
+  include_relationships_between_topics: true
+
+prometheus:
+  exporters:
+    depth: operational
+    programming_depth: conceptual
+    goals:
+      - descubrir_exporters
+      - evaluar_exporters
+      - instalar
+      - configurar
+      - integrar_con_prometheus
+      - entender_collectors
+      - analizar_metricas
+      - controlar_cardinalidad
+      - diagnosticar
+    avoid:
+      - convertir_el_path_en_un_curso_de_programacion_de_exporters
+
+  promql:
+    depth: expert
+    require_step_by_step_explanations: true
+
+  grafana:
+    depth: integration_only
+    defer_advanced_topics_to_separate_path: true
+
+  internals:
+    depth: advanced
+    source_code_reading: guided
+    developer_training: false
+
+fedora:
+  integrate:
+    - rpm
+    - systemd
+    - journalctl
+    - firewalld
+    - selinux
+    - filesystem_permissions
+    - networking_tools
+  do_not_invent_packages: true
+  distinguish_distribution_from_upstream: true
+
+references:
+  domain_file: domain.md
+  bibliography_file: bibliografy.md
+
+generation:
+  lesson_output_language: es
+  keep_technical_terms_when_standard: true
+  prefer_current_official_documentation: true
+  mention_version_dependencies: true

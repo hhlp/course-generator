@@ -1,0 +1,95 @@
+name: grafana-loki
+title: GRAFANA + LOKI EN PROFUNDIDAD
+platform: Fedora Linux
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+scope:
+  primary_platform: Fedora Linux
+  grafana_oss_primary: true
+  loki_primary: true
+  alloy_primary_collector: true
+  prometheus_integration_only: true
+  opentelemetry_integration_only: true
+  kubernetes_required: false
+  cloud_required: false
+  windows: false
+
+technology_policy:
+  grafana:
+    prefer_oss_foundations: true
+    distinguish_enterprise: true
+    distinguish_cloud: true
+    verify_version_sensitive_features: true
+  loki:
+    prefer_tsdb_for_modern_deployments: true
+    prefer_compactor_for_modern_retention: true
+    distinguish_legacy_storage: true
+    distinguish_deployment_modes: true
+    treat_cardinality_as_cross_cutting_concern: true
+  collection:
+    prefer_grafana_alloy: true
+    promtail_for_legacy_and_migration: true
+  prometheus:
+    teach_as_integration: true
+    reteach_prometheus_path: false
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+
+  reading:
+    required: true
+    categories:
+      - principal
+      - normativa
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+
+  lab:
+    required: false
+
+  common_errors:
+    required: false
+
+  important_idea:
+    required: false
+
+  remember:
+    required: true
+    position: last
+    min_items: 3
+    max_items: 7
+
+quality:
+  forbid_generic_scaffold: true
+  require_topic_specific_headings: true
+  require_topic_specific_examples: true
+  require_self_contained_lesson: true
+  audit_before_save: true
+  repair_on_fail: true
+
+output:
+  format: markdown
+  zip_block: true
+  write_index: true
+  write_manifest: true
+
+artifacts:
+  enabled: true
+  default_strategy: auto
+  overrides: {}
+
+  project_policy:
+    integrator_projects: auto
+    diagnostic_projects: auto
+    require_project_for_every_block: false
+
+validation:
+  enabled: false
+  commands: []

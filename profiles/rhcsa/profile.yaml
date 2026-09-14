@@ -1,0 +1,79 @@
+name: rhcsa-rhel10-admin
+title: "RHCSA / Administración Red Hat Enterprise Linux 10 — 0 a experto práctico"
+language: es
+platform:
+  primary: "Red Hat Enterprise Linux 10"
+  extensions:
+    - "Fedora"
+goal: "Administrar un servidor RHEL 10 real; RHCSA/EX200 es un hito, no el límite."
+certification:
+  name: RHCSA
+  exam: EX200
+  policy: "Contrastar siempre el alcance del examen con los objetivos oficiales vigentes."
+pedagogy:
+  opening: "🎯 OBJETIVO"
+  closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_points: "3-7"
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  depth: "profunda, didáctica, operacional y progresiva"
+  require_model_mental: true
+  require_persistence: true
+  require_verification: true
+  require_troubleshooting: true
+  require_recovery_when_applicable: true
+scope:
+  tags:
+    CORE: "Fundamentos Linux imprescindibles"
+    EX200: "Preparación directamente relacionada con RHCSA"
+    RHEL: "Administración RHEL"
+    RHEL+: "Administración RHEL más allá del examen"
+    FEDORA: "Extensión Fedora"
+    LINUX+: "Ampliación Linux"
+storage:
+  core: [XFS, ext4, LVM, swap]
+  rhel_extended: [Stratis]
+  fedora_extended: [Btrfs]
+software:
+  core: [RPM, DNF]
+  fedora_extended: [Flatpak]
+containers:
+  runtime: Podman
+  include_rootless: true
+  include_selinux: true
+  include_quadlet: true
+operations:
+  emphasize:
+    - installation
+    - hardware
+    - kernel
+    - boot
+    - systemd
+    - identity
+    - PAM/NSS
+    - filesystems
+    - storage
+    - networking
+    - SSH
+    - firewalld
+    - SELinux
+    - logging
+    - software
+    - scheduling
+    - NFS/AutoFS
+    - containers
+    - performance
+    - hardening
+    - backup
+    - troubleshooting
+    - disaster_recovery
+bibliography:
+  primary:
+    - "Asghar Ghori — RHCSA Red Hat Enterprise Linux 10 Training and Exam Preparation Guide (EX200), Fourth Edition"
+    - "Sander van Vugt — Red Hat RHCSA 10 Cert Guide: EX200"
+  authority:
+    - "Objetivos oficiales vigentes EX200"
+    - "Documentación oficial vigente RHEL 10"
+    - "man/info y documentación instalada"

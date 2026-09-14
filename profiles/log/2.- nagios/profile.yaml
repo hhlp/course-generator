@@ -1,0 +1,376 @@
+name: nagios
+
+title: "NAGIOS EN PROFUNDIDAD — FEDORA/RHEL"
+
+description: >
+  Curso progresivo y profundo de Nagios Core sobre Fedora/RHEL,
+  desde fundamentos de monitorización hasta arquitectura,
+  administración, seguridad, monitorización remota,
+  automatización, distributed monitoring, alta disponibilidad,
+  troubleshooting e internals.
+
+language: es
+
+platform:
+  primary: Fedora
+  secondary:
+    - RHEL
+
+domain:
+  primary: Nagios Core
+  ecosystem:
+    - Nagios Plugins
+    - NRPE
+    - NCPA
+    - SNMP
+    - OpenSSH
+    - Apache HTTP Server
+    - systemd
+    - SELinux
+    - firewalld
+
+audience:
+  starting_level: beginner
+  target_level: expert
+
+goals:
+  - comprender la arquitectura de Nagios Core
+  - dominar el modelo de objetos
+  - administrar hosts y services
+  - comprender checks y plugins
+  - dominar estados SOFT y HARD
+  - comprender el scheduler y la event queue
+  - configurar notifications y escalations
+  - utilizar event handlers de forma segura
+  - modelar dependencies
+  - dominar macros
+  - implementar monitorización remota
+  - utilizar NRPE
+  - utilizar NCPA
+  - utilizar SSH para checks remotos
+  - integrar SNMP
+  - comprender passive checks
+  - utilizar external commands
+  - procesar performance data
+  - administrar logging y state retention
+  - asegurar Nagios con systemd, SELinux y firewalld
+  - automatizar configuración y validación
+  - diseñar distributed monitoring
+  - diseñar alta disponibilidad
+  - diagnosticar problemas complejos
+  - comprender internals de Nagios Core
+
+depth:
+  level: expert
+  style: comprehensive
+  avoid_summaries: true
+  explain_architecture: true
+  explain_internals: true
+  explain_execution_flow: true
+  explain_troubleshooting: true
+  include_security: true
+  include_labs: true
+
+pedagogy:
+  progressive: true
+  theory_and_practice: true
+  explain_why: true
+  explain_how: true
+  connect_concepts: true
+  build_on_previous_lessons: true
+  avoid_unnecessary_repetition: true
+
+lesson_structure:
+  objective:
+    required: true
+    heading: "🎯 OBJETIVO"
+    position: first
+
+  laboratory:
+    required: false
+    heading: "🧪 Laboratorio/ejemplos"
+    include_when_useful: true
+
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+    include_when_useful: true
+
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+    include_when_useful: true
+
+  remember:
+    required: true
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    position: last
+    minimum_points: 3
+    maximum_points: 7
+
+content_rules:
+  do_not_reduce_to_summary: true
+  do_not_generate_flashcards: true
+  do_not_skip_architecture: true
+  do_not_skip_operational_context: true
+  do_not_skip_troubleshooting: true
+
+  explain_commands: true
+  explain_configuration: true
+  explain_expected_behavior: true
+  explain_verification: true
+  explain_failure_modes: true
+
+  use_realistic_examples: true
+  avoid_invented_exact_output: true
+
+  distinguish:
+    - Fedora packaging vs upstream installation
+    - Nagios Core vs Nagios XI
+    - host checks vs service checks
+    - active checks vs passive checks
+    - SOFT states vs HARD states
+    - state detection vs notification
+    - monitoring data vs performance data
+    - monitoring vs logging
+    - monitoring vs observability
+    - Nagios state model vs time-series monitoring
+
+nagios:
+  core_is_primary: true
+
+  core_topics:
+    - configuration
+    - object model
+    - hosts
+    - hostgroups
+    - services
+    - servicegroups
+    - commands
+    - checks
+    - states
+    - scheduler
+    - event queue
+    - timeperiods
+    - freshness
+    - flapping
+    - contacts
+    - contactgroups
+    - notifications
+    - acknowledgements
+    - downtime
+    - event handlers
+    - dependencies
+    - escalations
+    - macros
+    - passive checks
+    - external commands
+    - performance data
+    - logging
+    - retention
+    - CGI
+    - Event Broker
+    - NEB
+
+  remote_monitoring:
+    - NRPE
+    - NCPA
+    - SSH
+    - SNMP
+    - passive checks
+
+  plugin_development:
+    depth: basic_to_intermediate
+    focus:
+      - API contract
+      - exit codes
+      - stdout
+      - thresholds
+      - performance data
+      - timeouts
+      - security
+      - troubleshooting
+
+    avoid:
+      - turning lessons into a general programming course
+
+fedora:
+  package_manager: dnf
+  package_format: rpm
+  init_system: systemd
+  firewall: firewalld
+  mandatory_access_control: SELinux
+
+  prefer_native_tools: true
+
+  commands:
+    - dnf
+    - rpm
+    - systemctl
+    - journalctl
+    - firewall-cmd
+    - semanage
+    - restorecon
+    - ausearch
+    - sealert
+    - ss
+    - ip
+
+security:
+  enabled: true
+  principle_of_least_privilege: true
+  selinux_enforcing: true
+  firewalld_enabled: true
+  prefer_encrypted_protocols: true
+  protect_secrets: true
+
+  never_recommend_as_normal_solution:
+    - disabling SELinux
+    - disabling firewalld
+    - world-writable permissions
+    - unrestricted sudo
+    - exposing monitoring agents unnecessarily
+    - storing secrets directly in public configuration
+
+troubleshooting:
+  enabled: true
+
+  methodology:
+    - identify symptom
+    - determine scope
+    - verify Nagios process
+    - validate configuration
+    - identify affected object
+    - inspect command definition
+    - execute plugin manually
+    - reproduce as Nagios service user
+    - inspect permissions
+    - inspect network
+    - inspect remote agent
+    - inspect SELinux
+    - inspect firewalld
+    - inspect scheduler and state
+    - inspect notification pipeline
+    - inspect logs
+    - identify root cause
+    - apply correction
+    - verify correction
+
+internals:
+  enabled: true
+  source_code_allowed: true
+
+  topics:
+    - startup
+    - configuration parser
+    - object structures
+    - scheduler
+    - event queue
+    - timed events
+    - workers
+    - check execution
+    - check result processing
+    - state processing
+    - notifications
+    - event handlers
+    - dependencies
+    - escalations
+    - macro processing
+    - external commands
+    - retention
+    - logging
+    - performance data
+    - Event Broker
+    - NEB modules
+    - CGI
+
+  rules:
+    - explain concept before implementation
+    - relate source code to observable behavior
+    - distinguish stable behavior from implementation detail
+    - do not dump large source fragments
+
+labs:
+  enabled: true
+  progressive: true
+
+  types:
+    - discovery
+    - configuration
+    - verification
+    - controlled_failure
+    - troubleshooting
+    - security
+    - architecture
+    - internals
+
+  workflow:
+    - observe
+    - configure
+    - validate
+    - execute
+    - inspect
+    - break_controlled
+    - diagnose
+    - repair
+    - verify
+
+sources:
+  priority:
+    - Nagios Core official documentation
+    - Nagios Core official source code
+    - Nagios Plugins official documentation
+    - Nagios Plugins official source code
+    - NRPE official documentation and source
+    - NCPA official documentation and source
+    - Fedora documentation
+    - Red Hat documentation
+    - systemd official documentation
+    - SELinux documentation
+    - firewalld official documentation
+    - OpenSSH documentation
+    - Net-SNMP documentation
+    - Linux man-pages
+    - recognized technical books
+
+  prefer_primary_sources: true
+  verify_version_specific_behavior: true
+  distinguish_historical_information: true
+
+final_project:
+  required: true
+  level: expert
+
+  integrates:
+    - Fedora/RHEL
+    - Nagios Core
+    - hosts
+    - services
+    - templates
+    - plugins
+    - NRPE
+    - NCPA
+    - SSH
+    - SNMP
+    - passive checks
+    - notifications
+    - event handlers
+    - dependencies
+    - escalations
+    - performance data
+    - logging
+    - systemd
+    - SELinux
+    - firewalld
+    - security
+    - automation
+    - distributed monitoring
+    - high availability
+    - troubleshooting
+
+output:
+  format: markdown
+  language: Spanish
+  technical_terms: preserve_when_useful
+  commands_in_code_blocks: true
+  configuration_in_code_blocks: true

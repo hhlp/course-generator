@@ -1,0 +1,1558 @@
+RHCSA / ADMINISTRACIÓN RED HAT ENTERPRISE LINUX 10 — 0 A EXPERTO PRÁCTICO
+EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
+
+0. Fundamentos de Linux, RHEL y RHCSA
+0.1 qué es GNU/Linux [CORE]
+0.2 kernel y user space [CORE]
+0.3 distribuciones Linux [CORE]
+0.4 Fedora, CentOS Stream y RHEL [RHEL]
+0.5 ciclo de vida empresarial de RHEL [RHEL]
+0.6 qué es RHCSA [EX200]
+0.7 qué es EX200 [EX200]
+0.8 EX200 como hito y no como límite del PATH
+0.9 roles de un administrador de sistemas
+0.10 principio de observabilidad antes de modificar
+0.11 documentación local
+0.12 man
+0.13 secciones de man
+0.14 apropos y whatis
+0.15 info
+0.16 help y --help
+0.17 documentación en /usr/share/doc
+0.18 Red Hat documentation como fuente normativa
+0.19 laboratorio: construir un mapa de documentación local
+
+1. Laboratorio, instalación y Anaconda
+1.1 requisitos de laboratorio
+1.2 virtualización y snapshots
+1.3 consola local y consola virtual
+1.4 ISO y medios de instalación
+1.5 boot del instalador
+1.6 Anaconda
+1.7 modo gráfico y consola
+1.8 selección de idioma y teclado
+1.9 installation source
+1.10 software selection
+1.11 discos durante instalación
+1.12 particionado automático
+1.13 particionado personalizado
+1.14 LVM durante instalación
+1.15 filesystem durante instalación
+1.16 configuración de red
+1.17 hostname
+1.18 usuarios durante instalación
+1.19 root account
+1.20 security policy conceptual
+1.21 first boot
+1.22 registro del sistema
+1.23 subscription-manager visión administrativa
+1.24 repositorios tras instalar
+1.25 /var/log/anaconda
+1.26 anaconda.log
+1.27 storage.log
+1.28 program.log
+1.29 packaging.log
+1.30 journal del instalador
+1.31 installation troubleshooting
+1.32 Kickstart introducción [RHEL]
+1.33 estructura de Kickstart [RHEL]
+1.34 %packages [RHEL]
+1.35 %pre y %post [RHEL]
+1.36 inst.ks= [RHEL]
+1.37 inst.repo= [RHEL]
+1.38 validación de Kickstart [RHEL]
+1.39 rescue media
+1.40 laboratorio: instalación manual completa
+1.41 laboratorio: localizar y analizar logs de instalación
+
+2. Shell, terminal y entorno
+2.1 shell
+2.2 Bash
+2.3 terminal
+2.4 TTY
+2.5 PTY
+2.6 consolas virtuales
+2.7 login shell
+2.8 non-login shell
+2.9 interactive shell
+2.10 non-interactive shell
+2.11 prompt
+2.12 comando, argumento y opción
+2.13 opciones cortas y largas
+2.14 exit status
+2.15 echo $?
+2.16 command lookup
+2.17 PATH
+2.18 type
+2.19 command
+2.20 which y sus límites
+2.21 hash de comandos
+2.22 variables shell
+2.23 variables de entorno
+2.24 export
+2.25 env
+2.26 printenv
+2.27 unset
+2.28 quoting
+2.29 single quotes
+2.30 double quotes
+2.31 escape
+2.32 command substitution
+2.33 arithmetic expansion
+2.34 brace expansion
+2.35 tilde expansion
+2.36 globbing
+2.37 history
+2.38 history expansion
+2.39 aliases
+2.40 functions introducción
+2.41 /etc/profile
+2.42 /etc/profile.d
+2.43 ~/.bash_profile
+2.44 ~/.bashrc
+2.45 /etc/bashrc
+2.46 orden de carga del entorno
+2.47 laboratorio: diagnosticar PATH y entorno de login
+
+3. Rutas, FHS y gestión de archivos
+3.1 filesystem namespace
+3.2 FHS
+3.3 directorio raíz /
+3.4 /boot
+3.5 /dev
+3.6 /etc
+3.7 /home
+3.8 /root
+3.9 /run
+3.10 /tmp
+3.11 /usr
+3.12 /var
+3.13 /opt
+3.14 /srv
+3.15 /mnt
+3.16 /media
+3.17 /proc
+3.18 /sys
+3.19 ruta absoluta
+3.20 ruta relativa
+3.21 .
+3.22 ..
+3.23 ~
+3.24 cd -
+3.25 pwd
+3.26 pwd -P
+3.27 realpath
+3.28 basename
+3.29 dirname
+3.30 ls
+3.31 ls -l
+3.32 ls -a
+3.33 stat
+3.34 file
+3.35 touch
+3.36 mkdir
+3.37 mkdir -p
+3.38 rmdir
+3.39 cp
+3.40 cp -a
+3.41 mv
+3.42 rm
+3.43 rm -r
+3.44 rm -f y riesgos
+3.45 install command visión general
+3.46 metadatos de archivo
+3.47 inode
+3.48 hard link
+3.49 restricciones de hard links
+3.50 symbolic/soft link
+3.51 ln
+3.52 ln -s
+3.53 readlink
+3.54 dangling symlink
+3.55 find -inum
+3.56 find -links
+3.57 timestamps atime mtime ctime
+3.58 touch y timestamps
+3.59 sparse files
+3.60 truncate
+3.61 fallocate
+3.62 laboratorio: rutas, inodos y enlaces
+
+4. Streams, pipes, búsqueda y procesamiento de texto
+4.1 stdin
+4.2 stdout
+4.3 stderr
+4.4 file descriptors 0 1 2
+4.5 >
+4.6 >>
+4.7 2>
+4.8 2>>
+4.9 redirección combinada
+4.10 /dev/null
+4.11 pipes
+4.12 tee
+4.13 here documents
+4.14 here strings
+4.15 cat
+4.16 tac
+4.17 less
+4.18 head
+4.19 tail
+4.20 tail -f
+4.21 wc
+4.22 sort
+4.23 uniq
+4.24 cut
+4.25 paste
+4.26 tr
+4.27 column
+4.28 grep
+4.29 grep -E
+4.30 regex esencial para administración
+4.31 find
+4.32 find por nombre
+4.33 find por tipo
+4.34 find por usuario
+4.35 find por permisos
+4.36 find por tiempo
+4.37 find -exec
+4.38 xargs
+4.39 locate
+4.40 updatedb
+4.41 diff
+4.42 cmp
+4.43 comm
+4.44 laboratorio: pipeline de investigación administrativa
+
+5. Editores y configuración segura
+5.1 vi y Vim
+5.2 normal mode
+5.3 insert mode
+5.4 command-line mode
+5.5 movimiento
+5.6 búsqueda
+5.7 sustitución
+5.8 copiar y pegar
+5.9 undo/redo
+5.10 guardar y salir
+5.11 editar múltiples archivos
+5.12 vimdiff
+5.13 nano como alternativa
+5.14 archivos de configuración
+5.15 comentarios
+5.16 copias antes de modificar
+5.17 validadores de configuración
+5.18 cambio, validación y rollback
+5.19 laboratorio: modificar configuración con validación
+
+6. Bash scripting para administración
+6.1 scripts Bash
+6.2 shebang
+6.3 ejecución y permisos
+6.4 parámetros posicionales
+6.5 $#
+6.6 $@
+6.7 $*
+6.8 shift
+6.9 read
+6.10 test
+6.11 [ ]
+6.12 [[ ]]
+6.13 comparaciones de strings
+6.14 comparaciones numéricas
+6.15 tests de archivos
+6.16 && y ||
+6.17 if/elif/else
+6.18 case
+6.19 for
+6.20 while
+6.21 until
+6.22 break
+6.23 continue
+6.24 functions
+6.25 local
+6.26 return vs exit
+6.27 command substitution en scripts
+6.28 aritmética
+6.29 arrays introducción
+6.30 getopts
+6.31 trap
+6.32 signals en scripts
+6.33 mktemp
+6.34 set -u
+6.35 set -e y sus trampas
+6.36 pipefail
+6.37 IFS
+6.38 logging de scripts
+6.39 idempotencia conceptual
+6.40 shellcheck como herramienta complementaria
+6.41 laboratorio: script de inventario
+6.42 laboratorio: script seguro de mantenimiento
+
+7. Hardware, CPU, memoria y dispositivos
+7.1 hardware discovery
+7.2 arquitectura del sistema
+7.3 uname
+7.4 uname -r
+7.5 uname -m
+7.6 lscpu
+7.7 /proc/cpuinfo
+7.8 NUMA introducción
+7.9 memoria física
+7.10 free
+7.11 /proc/meminfo
+7.12 lsmem
+7.13 vmstat introducción
+7.14 lspci
+7.15 lsusb
+7.16 dmidecode
+7.17 firmware y UEFI
+7.18 dispositivos de bloques
+7.19 lsblk
+7.20 major/minor numbers
+7.21 device nodes
+7.22 /dev
+7.23 udev
+7.24 udevadm info
+7.25 udevadm monitor
+7.26 nombres persistentes de dispositivos
+7.27 /dev/disk/by-uuid
+7.28 /dev/disk/by-label
+7.29 /dev/disk/by-id
+7.30 laboratorio: inventario de hardware
+
+8. Kernel, módulos, /proc, /sys y sysctl
+8.1 kernel de RHEL
+8.2 kernel packages
+8.3 /boot/vmlinuz
+8.4 /proc
+8.5 procfs
+8.6 /sys
+8.7 sysfs
+8.8 /proc/cmdline
+8.9 /proc/version
+8.10 kernel modules
+8.11 lsmod
+8.12 modinfo
+8.13 modprobe
+8.14 modprobe -r
+8.15 dependencias de módulos
+8.16 /etc/modprobe.d
+8.17 blacklisting conceptual
+8.18 parámetros del kernel
+8.19 sysctl
+8.20 sysctl -a
+8.21 /proc/sys
+8.22 runtime parameters
+8.23 persistencia con /etc/sysctl.conf
+8.24 /etc/sysctl.d
+8.25 sysctl --system
+8.26 kernel command line
+8.27 grubby
+8.28 laboratorio: inspeccionar y modificar un sysctl de forma persistente
+
+9. Usuarios, grupos y bases de identidad
+9.1 usuarios Unix
+9.2 UID
+9.3 UID 0
+9.4 system accounts
+9.5 /etc/passwd
+9.6 campos de passwd
+9.7 /etc/shadow
+9.8 campos de shadow
+9.9 password hashes conceptual
+9.10 /etc/group
+9.11 campos de group
+9.12 /etc/gshadow
+9.13 GID
+9.14 grupo primario
+9.15 grupos suplementarios
+9.16 id
+9.17 groups
+9.18 getent passwd
+9.19 getent group
+9.20 NSS
+9.21 /etc/nsswitch.conf
+9.22 files como fuente NSS
+9.23 useradd
+9.24 /etc/default/useradd
+9.25 useradd -D
+9.26 /etc/login.defs
+9.27 UID_MIN y UID_MAX
+9.28 PASS_MAX_DAYS
+9.29 PASS_MIN_DAYS
+9.30 PASS_WARN_AGE
+9.31 CREATE_HOME
+9.32 UMASK y relación con otras capas
+9.33 /etc/skel
+9.34 home directory
+9.35 useradd opciones esenciales
+9.36 usermod
+9.37 usermod -aG
+9.38 bloqueo de cuenta
+9.39 userdel
+9.40 userdel -r
+9.41 groupadd
+9.42 groupmod
+9.43 groupdel
+9.44 gpasswd
+9.45 passwd
+9.46 passwd -S
+9.47 chage
+9.48 password aging
+9.49 account expiration
+9.50 /etc/shells
+9.51 nologin
+9.52 laboratorio: ciclo de vida completo de identidades
+
+10. Login, sesiones, PAM, faillock y auditoría de acceso
+10.1 proceso conceptual de login
+10.2 autenticación vs autorización
+10.3 PAM
+10.4 /etc/pam.d
+10.5 PAM service files
+10.6 PAM modules
+10.7 control flags conceptual
+10.8 auth stack
+10.9 account stack
+10.10 password stack
+10.11 session stack
+10.12 pam_unix
+10.13 pam_faillock
+10.14 faillock
+10.15 bloqueos y desbloqueos
+10.16 su
+10.17 su -
+10.18 sudo
+10.19 TTY y login
+10.20 systemd-logind
+10.21 loginctl
+10.22 loginctl list-sessions
+10.23 who
+10.24 w
+10.25 users
+10.26 last
+10.27 wtmp
+10.28 lastb
+10.29 btmp
+10.30 lastlog
+10.31 lastlog2 según disponibilidad/versiones
+10.32 utmp/wtmp/btmp conceptual
+10.33 journal y sesiones
+10.34 troubleshooting de login
+10.35 laboratorio: investigar accesos y fallos de autenticación
+
+11. Permisos, ownership, umask, ACL y privilegios
+11.1 DAC
+11.2 ownership usuario/grupo
+11.3 rwx
+11.4 permisos en archivos
+11.5 permisos en directorios
+11.6 chown
+11.7 chgrp
+11.8 chmod simbólico
+11.9 chmod octal
+11.10 umask
+11.11 umask en shell
+11.12 umask y login.defs
+11.13 setuid
+11.14 setgid en ejecutables
+11.15 setgid en directorios
+11.16 sticky bit
+11.17 /tmp como ejemplo
+11.18 ACL
+11.19 getfacl
+11.20 setfacl
+11.21 mask de ACL
+11.22 default ACL
+11.23 copiar y preservar ACL
+11.24 find por permisos
+11.25 sudo
+11.26 /etc/sudoers
+11.27 visudo
+11.28 /etc/sudoers.d
+11.29 User_Alias conceptual
+11.30 Cmnd_Alias conceptual
+11.31 NOPASSWD y riesgos
+11.32 sudo -l
+11.33 principio de mínimo privilegio
+11.34 laboratorio: directorio colaborativo con setgid y ACL
+11.35 laboratorio: delegación sudo mínima
+
+12. Procesos, señales, jobs y recursos
+12.1 proceso
+12.2 PID
+12.3 PPID
+12.4 process tree
+12.5 ps
+12.6 ps aux
+12.7 ps -ef
+12.8 ps forest
+12.9 pstree
+12.10 pgrep
+12.11 pidof
+12.12 top
+12.13 uptime
+12.14 load average
+12.15 estados de proceso
+12.16 running
+12.17 sleeping
+12.18 uninterruptible sleep
+12.19 stopped
+12.20 zombie
+12.21 signals
+12.22 kill
+12.23 killall
+12.24 pkill
+12.25 SIGTERM
+12.26 SIGKILL
+12.27 SIGHUP
+12.28 SIGSTOP
+12.29 SIGCONT
+12.30 jobs
+12.31 bg
+12.32 fg
+12.33 Ctrl-Z
+12.34 nohup
+12.35 disown conceptual
+12.36 nice
+12.37 renice
+12.38 prioridades
+12.39 ulimit introducción
+12.40 /proc/PID
+12.41 open files conceptual
+12.42 lsof como herramienta complementaria
+12.43 laboratorio: diagnosticar proceso problemático
+
+13. systemd y gestión de servicios
+13.1 systemd como PID 1
+13.2 manager
+13.3 units
+13.4 unit types
+13.5 service units
+13.6 systemctl
+13.7 systemctl status
+13.8 start
+13.9 stop
+13.10 restart
+13.11 reload
+13.12 try-restart
+13.13 enable
+13.14 disable
+13.15 enable --now
+13.16 is-enabled
+13.17 is-active
+13.18 mask
+13.19 unmask
+13.20 static units
+13.21 generated units
+13.22 unit dependencies
+13.23 Requires
+13.24 Wants
+13.25 After
+13.26 Before
+13.27 targets
+13.28 multi-user.target
+13.29 graphical.target
+13.30 rescue.target
+13.31 emergency.target
+13.32 get-default
+13.33 set-default
+13.34 isolate
+13.35 unit load paths
+13.36 /usr/lib/systemd/system
+13.37 /etc/systemd/system
+13.38 drop-ins
+13.39 systemctl edit
+13.40 daemon-reload
+13.41 systemctl cat
+13.42 systemctl show
+13.43 list-units
+13.44 list-unit-files
+13.45 failed units
+13.46 reset-failed
+13.47 service Type= visión administrativa
+13.48 ExecStart
+13.49 Environment
+13.50 EnvironmentFile
+13.51 Restart
+13.52 systemd-run introducción
+13.53 laboratorio: crear override seguro
+13.54 laboratorio: diagnosticar servicio fallido
+
+14. Boot, GRUB2, initramfs, dracut y recuperación
+14.1 secuencia de boot
+14.2 firmware
+14.3 UEFI
+14.4 bootloader
+14.5 GRUB2
+14.6 kernel
+14.7 initramfs
+14.8 switch_root conceptual
+14.9 systemd durante boot
+14.10 /boot
+14.11 EFI System Partition
+14.12 GRUB configuration
+14.13 grubby
+14.14 listar kernels
+14.15 kernel por defecto
+14.16 kernel command line
+14.17 /proc/cmdline
+14.18 initramfs contenido
+14.19 lsinitrd
+14.20 dracut
+14.21 regenerar initramfs
+14.22 dracut y drivers
+14.23 systemd targets durante boot
+14.24 rescue.target
+14.25 emergency.target
+14.26 rd.break
+14.27 recuperación de contraseña root
+14.28 mount -o remount,rw
+14.29 chroot/sysroot según procedimiento
+14.30 SELinux relabel tras recuperación
+14.31 systemd.unit= en kernel command line
+14.32 fallos de fstab durante boot
+14.33 boot desde kernel anterior
+14.34 rescue media
+14.35 laboratorio: recuperar root
+14.36 laboratorio: reparar un boot roto
+
+15. Journald, rsyslog, logs y rotación
+15.1 logging en Linux
+15.2 systemd-journald
+15.3 journalctl
+15.4 journalctl -b
+15.5 boots anteriores
+15.6 journalctl -u
+15.7 journalctl -p
+15.8 journalctl -f
+15.9 filtros temporales
+15.10 campos del journal
+15.11 journalctl -o
+15.12 journal disk usage
+15.13 persistencia del journal
+15.14 /var/log/journal
+15.15 journald.conf
+15.16 rate limiting conceptual
+15.17 rsyslog
+15.18 syslog facilities
+15.19 priorities
+15.20 /etc/rsyslog.conf
+15.21 /etc/rsyslog.d
+15.22 /var/log/messages
+15.23 /var/log/secure
+15.24 logging remoto visión general
+15.25 logger
+15.26 logrotate
+15.27 /etc/logrotate.conf
+15.28 /etc/logrotate.d
+15.29 rotate
+15.30 daily/weekly/monthly
+15.31 size
+15.32 compress
+15.33 delaycompress
+15.34 copytruncate y riesgos
+15.35 create
+15.36 postrotate
+15.37 rotación manual de prueba
+15.38 installation logs y /var/log/anaconda
+15.39 laboratorio: rastrear incidente entre journal y logs
+15.40 laboratorio: política logrotate
+
+16. RPM, DNF, repositorios y ciclo de software
+16.1 RPM
+16.2 package metadata
+16.3 NEVRA
+16.4 rpm -q
+16.5 rpm -qa
+16.6 rpm -qi
+16.7 rpm -ql
+16.8 rpm -qf
+16.9 rpm -qc
+16.10 rpm -qd
+16.11 rpm -qp
+16.12 rpm --requires
+16.13 rpm --provides
+16.14 rpm --scripts
+16.15 rpm -V
+16.16 signatures conceptual
+16.17 rpmkeys visión general
+16.18 DNF en RHEL 10
+16.19 dnf search
+16.20 dnf info
+16.21 dnf list
+16.22 dnf install
+16.23 dnf remove
+16.24 dnf upgrade
+16.25 dnf reinstall
+16.26 dnf downgrade
+16.27 dnf history
+16.28 dnf history info
+16.29 dnf provides
+16.30 dnf repoquery
+16.31 dependencies
+16.32 weak dependencies conceptual
+16.33 module streams y cambios entre generaciones de RHEL: verificar versión
+16.34 repositorios
+16.35 /etc/yum.repos.d
+16.36 baseurl
+16.37 mirrorlist/metalink conceptual
+16.38 enabled
+16.39 gpgcheck
+16.40 repo_gpgcheck conceptual
+16.41 dnf repolist
+16.42 dnf config-manager según disponibilidad
+16.43 crear repo file
+16.44 repositorio local
+16.45 createrepo_c extensión administrativa
+16.46 subscription-manager
+16.47 repositorios Red Hat
+16.48 cache y clean
+16.49 troubleshooting DNF
+16.50 laboratorio: repositorio local y paquetes
+
+17. Flatpak [FEDORA][LINUX+]
+17.1 qué es Flatpak
+17.2 Flatpak frente a RPM
+17.3 sandbox
+17.4 runtimes
+17.5 applications
+17.6 remotes
+17.7 per-user vs system
+17.8 flatpak remotes
+17.9 flatpak search
+17.10 flatpak install
+17.11 flatpak list
+17.12 flatpak info
+17.13 flatpak run
+17.14 flatpak update
+17.15 flatpak uninstall
+17.16 Flathub conceptual
+17.17 permissions
+17.18 portals
+17.19 filesystem access conceptual
+17.20 flatpak override
+17.21 flatpak repair
+17.22 troubleshooting
+17.23 laboratorio: gestionar aplicación Flatpak
+
+18. Discos, particiones y device discovery
+18.1 block devices
+18.2 sector
+18.3 logical vs physical sector
+18.4 partition table
+18.5 GPT
+18.6 MBR legado
+18.7 lsblk
+18.8 lsblk -f
+18.9 blkid
+18.10 parted
+18.11 print
+18.12 mklabel
+18.13 mkpart
+18.14 partprobe
+18.15 fdisk
+18.16 crear partición
+18.17 cambiar tipo de partición
+18.18 eliminar partición
+18.19 alineación conceptual
+18.20 udev tras particionar
+18.21 wipefs
+18.22 signatures de filesystem
+18.23 nombres persistentes
+18.24 UUID
+18.25 LABEL
+18.26 riesgos de /dev/sdX
+18.27 laboratorio: preparar discos desde cero
+
+19. VFS, XFS, ext4, mount y fstab
+19.1 VFS
+19.2 filesystem
+19.3 superblock
+19.4 inode
+19.5 directory entry conceptual
+19.6 XFS
+19.7 mkfs.xfs
+19.8 xfs_info
+19.9 xfs_growfs
+19.10 xfs_repair
+19.11 xfs_db visión general
+19.12 ext4
+19.13 mkfs.ext4
+19.14 tune2fs
+19.15 e2fsck/fsck
+19.16 resize2fs
+19.17 XFS vs ext4
+19.18 mount
+19.19 umount
+19.20 mountpoint
+19.21 findmnt
+19.22 /proc/mounts
+19.23 /etc/fstab
+19.24 campos de fstab
+19.25 UUID= en fstab
+19.26 LABEL= en fstab
+19.27 mount options
+19.28 defaults
+19.29 ro/rw
+19.30 noexec
+19.31 nosuid
+19.32 nodev
+19.33 _netdev
+19.34 nofail
+19.35 systemd fstab generator conceptual
+19.36 mount -a como validación
+19.37 df
+19.38 df -h
+19.39 df -i
+19.40 du
+19.41 du -x
+19.42 inodes agotados
+19.43 deleted-open files conceptual
+19.44 laboratorio: filesystem persistente
+19.45 laboratorio: reparar configuración fstab
+
+20. Swap
+20.1 memoria virtual y swap
+20.2 swap partition
+20.3 swapfile
+20.4 mkswap
+20.5 swapon
+20.6 swapon --show
+20.7 swapoff
+20.8 fstab para swap
+20.9 prioridades
+20.10 swap y rendimiento conceptual
+20.11 swapfile sobre XFS/ext4
+20.12 swapfile sobre Btrfs [FEDORA][LINUX+]
+20.13 laboratorio: añadir swap persistente
+
+21. LVM en profundidad administrativa
+21.1 problema que resuelve LVM
+21.2 device mapper conceptual
+21.3 PV
+21.4 VG
+21.5 LV
+21.6 PE y LE
+21.7 pvcreate
+21.8 pvs
+21.9 pvdisplay
+21.10 vgcreate
+21.11 vgs
+21.12 vgdisplay
+21.13 lvcreate
+21.14 lvs
+21.15 lvdisplay
+21.16 LV por tamaño
+21.17 LV por extents
+21.18 porcentajes FREE/VG
+21.19 filesystem sobre LV
+21.20 fstab
+21.21 pvscan/vgscan/lvscan conceptual
+21.22 vgextend
+21.23 lvextend
+21.24 lvextend -r
+21.25 xfs_growfs
+21.26 resize2fs
+21.27 pvmove
+21.28 vgreduce
+21.29 lvremove
+21.30 vgremove
+21.31 pvremove
+21.32 renombrar VG/LV
+21.33 LVM UUID conceptual
+21.34 activación
+21.35 lvchange
+21.36 thin provisioning introducción [RHEL+]
+21.37 snapshots LVM introducción [RHEL+]
+21.38 metadata backup
+21.39 /etc/lvm/backup
+21.40 vgcfgbackup
+21.41 vgcfgrestore precauciones
+21.42 troubleshooting LVM
+21.43 laboratorio: crear LVM
+21.44 laboratorio: ampliar online
+21.45 laboratorio: mover extents y retirar PV
+
+22. Stratis [RHEL+]
+22.1 objetivo de Stratis
+22.2 arquitectura
+22.3 stratisd
+22.4 stratis CLI
+22.5 block devices
+22.6 pools
+22.7 filesystems
+22.8 thin provisioning conceptual
+22.9 crear pool
+22.10 crear filesystem
+22.11 listar
+22.12 snapshots
+22.13 añadir dispositivo
+22.14 mount persistente
+22.15 XFS bajo Stratis conceptual
+22.16 comparación Stratis/LVM
+22.17 troubleshooting
+22.18 laboratorio: pool, filesystem y snapshot
+
+23. Btrfs en profundidad [FEDORA][LINUX+]
+23.1 qué es Btrfs
+23.2 copy-on-write
+23.3 checksums
+23.4 trees conceptuales
+23.5 metadata y data
+23.6 chunks y block groups
+23.7 mkfs.btrfs
+23.8 btrfs filesystem show
+23.9 btrfs filesystem usage
+23.10 btrfs filesystem df
+23.11 subvolumes
+23.12 subvolume create
+23.13 subvolume list
+23.14 subvolume show
+23.15 subvolume delete
+23.16 default subvolume
+23.17 nested subvolumes
+23.18 mount subvol=
+23.19 subvolid
+23.20 fstab con subvolumes
+23.21 snapshots
+23.22 snapshot read-write
+23.23 snapshot read-only
+23.24 snapshots y CoW
+23.25 snapshots no son backups
+23.26 rollback conceptual
+23.27 send
+23.28 receive
+23.29 incremental send
+23.30 compresión
+23.31 zstd
+23.32 compress
+23.33 compress-force
+23.34 reflinks
+23.35 cp --reflink
+23.36 deduplicación vs reflink
+23.37 multi-device filesystem
+23.38 device add
+23.39 device remove
+23.40 resize
+23.41 data profiles
+23.42 metadata profiles
+23.43 single
+23.44 DUP
+23.45 RAID0
+23.46 RAID1
+23.47 RAID10
+23.48 RAID1C3
+23.49 RAID1C4
+23.50 RAID5/6 y cautelas
+23.51 balance
+23.52 balance filters
+23.53 profile conversion
+23.54 scrub
+23.55 checksums y self-healing con redundancia
+23.56 device stats
+23.57 qgroups
+23.58 quotas
+23.59 properties
+23.60 defragment
+23.61 CoW y workloads de VM/DB
+23.62 nodatacow
+23.63 chattr +C
+23.64 swapfile y restricciones
+23.65 Fedora Btrfs layout
+23.66 subvolúmenes Fedora
+23.67 btrfs replace
+23.68 degraded mount conceptual
+23.69 btrfs check
+23.70 btrfs rescue
+23.71 --repair como último recurso
+23.72 Btrfs vs XFS
+23.73 Btrfs vs ext4
+23.74 Btrfs vs LVM
+23.75 Btrfs sobre LVM y tradeoffs
+23.76 laboratorio: subvolumes y fstab
+23.77 laboratorio: snapshots y rollback
+23.78 laboratorio: send/receive
+23.79 laboratorio: RAID1, scrub y reemplazo de device
+
+24. NetworkManager, IP, routing y DNS
+24.1 modelo de red Linux
+24.2 NIC
+24.3 MAC
+24.4 IPv4
+24.5 CIDR
+24.6 subnet
+24.7 gateway
+24.8 IPv6
+24.9 loopback
+24.10 NetworkManager
+24.11 NetworkManager daemon
+24.12 nmcli
+24.13 nmcli general status
+24.14 nmcli device
+24.15 nmcli connection
+24.16 device vs connection profile
+24.17 crear perfil
+24.18 activar/desactivar perfil
+24.19 autoconnect
+24.20 IPv4 DHCP
+24.21 IPv4 estática
+24.22 address
+24.23 gateway
+24.24 DNS
+24.25 multiple DNS
+24.26 IPv6 autoconf
+24.27 IPv6 estática
+24.28 hostnamectl
+24.29 ip addr
+24.30 ip link
+24.31 ip route
+24.32 routing table
+24.33 default route
+24.34 rutas estáticas con nmcli
+24.35 route metrics conceptual
+24.36 ss
+24.37 ss -lntup
+24.38 ping
+24.39 ping6
+24.40 tracepath/traceroute
+24.41 DNS resolver
+24.42 /etc/hosts
+24.43 /etc/resolv.conf
+24.44 NetworkManager y resolv.conf
+24.45 getent hosts
+24.46 dig
+24.47 host
+24.48 resolvectl si aplica: verificar entorno
+24.49 DNS search domains
+24.50 network troubleshooting por capas
+24.51 laboratorio: servidor con IP estática
+24.52 laboratorio: ruta estática y diagnóstico DNS
+
+25. OpenSSH y transferencia segura
+25.1 arquitectura SSH
+25.2 ssh client
+25.3 sshd
+25.4 TCP/22
+25.5 host keys
+25.6 known_hosts
+25.7 fingerprints
+25.8 first connection
+25.9 ssh-keygen
+25.10 Ed25519
+25.11 private/public key
+25.12 authorized_keys
+25.13 ssh-copy-id
+25.14 permisos ~/.ssh
+25.15 ssh-agent visión general
+25.16 cliente ~/.ssh/config
+25.17 /etc/ssh/ssh_config
+25.18 sshd_config
+25.19 sshd_config.d
+25.20 sshd -t
+25.21 sshd -T
+25.22 PermitRootLogin
+25.23 PasswordAuthentication
+25.24 PubkeyAuthentication
+25.25 AllowUsers/AllowGroups visión administrativa
+25.26 scp
+25.27 sftp
+25.28 rsync sobre SSH
+25.29 verbose debugging ssh -v
+25.30 journal de sshd
+25.31 SELinux y SSH
+25.32 firewalld y SSH
+25.33 laboratorio: autenticación por clave y hardening básico
+
+26. firewalld y filtrado de red
+26.1 firewall stateful
+26.2 netfilter/nftables conceptual
+26.3 firewalld
+26.4 daemon
+26.5 zones
+26.6 default zone
+26.7 active zones
+26.8 services
+26.9 ports
+26.10 interfaces
+26.11 sources
+26.12 firewall-cmd
+26.13 --get-active-zones
+26.14 --list-all
+26.15 --list-all-zones
+26.16 --add-service
+26.17 --add-port
+26.18 runtime
+26.19 permanent
+26.20 --runtime-to-permanent
+26.21 reload
+26.22 rich rules esenciales
+26.23 ICMP visión general
+26.24 masquerade visión general [RHEL+]
+26.25 forwarding visión general [RHEL+]
+26.26 policies visión general [RHEL+]
+26.27 nft list ruleset para diagnóstico conceptual
+26.28 troubleshooting
+26.29 laboratorio: publicar servicio mínimo
+
+27. SELinux para administración real
+27.1 MAC vs DAC
+27.2 SELinux architecture conceptual
+27.3 policy
+27.4 enforcing
+27.5 permissive
+27.6 disabled y por qué evitarlo
+27.7 getenforce
+27.8 sestatus
+27.9 setenforce
+27.10 contexts
+27.11 user:role:type:level
+27.12 types
+27.13 domains
+27.14 ls -Z
+27.15 ps -Z
+27.16 id -Z
+27.17 default labels
+27.18 restorecon
+27.19 matchpathcon
+27.20 semanage
+27.21 policycoreutils tools
+27.22 semanage fcontext
+27.23 equivalence conceptual
+27.24 file_contexts conceptual
+27.25 ports
+27.26 semanage port
+27.27 booleans
+27.28 getsebool
+27.29 setsebool -P
+27.30 AVC
+27.31 audit log
+27.32 ausearch
+27.33 sealert cuando disponible
+27.34 audit2why conceptual
+27.35 audit2allow y por qué no usarlo ciegamente
+27.36 permissive domain conceptual [RHEL+]
+27.37 SELinux y custom paths
+27.38 SELinux y web/service examples
+27.39 SELinux y containers
+27.40 troubleshooting workflow
+27.41 laboratorio: custom path
+27.42 laboratorio: puerto no estándar
+27.43 laboratorio: resolver AVC sin desactivar SELinux
+
+28. Tareas programadas y temporización
+28.1 cron
+28.2 crond
+28.3 user crontab
+28.4 crontab -e
+28.5 crontab -l
+28.6 cron fields
+28.7 environment de cron
+28.8 /etc/crontab
+28.9 /etc/cron.d
+28.10 cron.allow/deny conceptual
+28.11 anacron
+28.12 at
+28.13 atd
+28.14 atq
+28.15 atrm
+28.16 systemd timers [RHEL+]
+28.17 timer units
+28.18 OnCalendar
+28.19 Persistent=true
+28.20 systemctl list-timers
+28.21 cron vs systemd timer
+28.22 laboratorio: tarea periódica y tarea one-shot
+
+29. Hora, locale e internacionalización
+29.1 system clock
+29.2 hardware clock conceptual
+29.3 timedatectl
+29.4 timezone
+29.5 UTC
+29.6 NTP
+29.7 chrony
+29.8 chronyd
+29.9 chronyc sources
+29.10 chronyc tracking
+29.11 /etc/chrony.conf
+29.12 time troubleshooting
+29.13 locale
+29.14 locale command
+29.15 localectl
+29.16 LANG
+29.17 LC_*
+29.18 UTF-8
+29.19 keyboard layout
+29.20 /etc/locale.conf
+29.21 laboratorio: tiempo y locale persistentes
+
+30. Archivado, compresión, tar, cpio y rsync
+30.1 archivo vs backup
+30.2 tar
+30.3 tar -c
+30.4 tar -x
+30.5 tar -t
+30.6 -f
+30.7 -v
+30.8 -C
+30.9 preservar permisos
+30.10 ownership al extraer
+30.11 tar y enlaces
+30.12 gzip
+30.13 gunzip
+30.14 bzip2
+30.15 xz
+30.16 zstd
+30.17 tar con compresión
+30.18 cpio
+30.19 rpm2cpio relación conceptual
+30.20 pax visión general
+30.21 rsync
+30.22 archive mode
+30.23 delete y riesgos
+30.24 dry-run
+30.25 rsync local
+30.26 rsync sobre SSH
+30.27 checksums conceptual
+30.28 laboratorio: backup y restore verificable
+
+31. NFS y AutoFS
+31.1 almacenamiento remoto
+31.2 NFS arquitectura
+31.3 NFS client
+31.4 server conceptual [RHEL+]
+31.5 exports conceptual [RHEL+]
+31.6 showmount y límites con NFSv4
+31.7 mount NFS
+31.8 NFSv4
+31.9 fstab NFS
+31.10 _netdev
+31.11 mount options
+31.12 network dependency
+31.13 AutoFS
+31.14 autofs service
+31.15 /etc/auto.master
+31.16 /etc/auto.master.d
+31.17 indirect maps
+31.18 direct maps
+31.19 wildcards
+31.20 timeout
+31.21 troubleshooting NFS/AutoFS
+31.22 SELinux y NFS visión administrativa
+31.23 firewalld y NFS visión administrativa
+31.24 laboratorio: mount persistente
+31.25 laboratorio: automount
+
+32. Podman, OCI, rootless y Quadlet
+32.1 containers vs VMs
+32.2 OCI
+32.3 container image
+32.4 layers
+32.5 registry
+32.6 Podman daemonless
+32.7 rootful
+32.8 rootless
+32.9 user namespaces conceptual
+32.10 subuid/subgid conceptual
+32.11 registries.conf
+32.12 short-name resolution conceptual
+32.13 podman search
+32.14 podman pull
+32.15 podman images
+32.16 podman inspect
+32.17 podman run
+32.18 detached
+32.19 interactive
+32.20 podman ps
+32.21 podman exec
+32.22 podman logs
+32.23 podman stop
+32.24 podman rm
+32.25 podman rmi
+32.26 environment variables
+32.27 port publishing
+32.28 container networking
+32.29 volumes
+32.30 named volumes
+32.31 bind mounts
+32.32 SELinux :z y :Z
+32.33 container labels
+32.34 Containerfile
+32.35 podman build
+32.36 image tagging
+32.37 login/push visión general
+32.38 healthchecks conceptual
+32.39 pods visión general
+32.40 systemd y containers
+32.41 Quadlet
+32.42 *.container units
+32.43 Quadlet search paths
+32.44 systemctl --user
+32.45 linger
+32.46 loginctl enable-linger
+32.47 persistent rootless service
+32.48 troubleshooting rootless
+32.49 troubleshooting networking
+32.50 troubleshooting SELinux
+32.51 laboratorio: construir imagen
+32.52 laboratorio: servicio rootless persistente con Quadlet
+
+33. Servicios de red y administración de puertos [RHEL+]
+33.1 socket listening
+33.2 ss -lntup
+33.3 service binding
+33.4 0.0.0.0 vs loopback
+33.5 IPv6 wildcard
+33.6 puerto privilegiado conceptual
+33.7 systemd socket activation conceptual
+33.8 firewall vs service binding
+33.9 SELinux port types
+33.10 DNS dependency
+33.11 troubleshooting de servicio inaccesible
+33.12 laboratorio: diagnosticar servicio que funciona localmente pero no remotamente
+
+34. Storage troubleshooting y capacidad
+34.1 capacidad vs utilización
+34.2 df vs du
+34.3 deleted open files
+34.4 lsof +L1 cuando disponible
+34.5 inodes agotados
+34.6 read-only remount
+34.7 filesystem errors
+34.8 mount failures
+34.9 fstab failures
+34.10 UUID incorrecto
+34.11 XFS repair workflow
+34.12 ext4 fsck workflow
+34.13 LVM missing PV
+34.14 VG/LV inactive
+34.15 swap troubleshooting
+34.16 Stratis troubleshooting
+34.17 Btrfs health [FEDORA]
+34.18 I/O errors y journal
+34.19 SMART visión general con smartctl [RHEL+]
+34.20 laboratorio: recuperar varios fallos de almacenamiento
+
+35. Performance y resource diagnosis [RHEL+]
+35.1 metodología USE conceptual
+35.2 CPU saturation
+35.3 load average correctamente interpretado
+35.4 memory pressure
+35.5 swap activity
+35.6 I/O wait
+35.7 free
+35.8 vmstat
+35.9 iostat cuando sysstat está disponible
+35.10 pidstat cuando disponible
+35.11 top
+35.12 ps
+35.13 ss
+35.14 df/du
+35.15 journal
+35.16 systemd-cgtop
+35.17 cgroups v2 conceptual
+35.18 systemd resource controls conceptual
+35.19 CPUQuota visión general
+35.20 MemoryMax visión general
+35.21 OOM killer conceptual
+35.22 journal del OOM
+35.23 nice/renice
+35.24 laboratorio: identificar cuello de botella
+
+36. Seguridad y hardening de servidor
+36.1 attack surface
+36.2 least privilege
+36.3 patch management
+36.4 cuentas innecesarias
+36.5 password policy
+36.6 PAM/faillock
+36.7 sudo
+36.8 SSH hardening
+36.9 firewalld
+36.10 SELinux
+36.11 permisos
+36.12 ACL
+36.13 special bits
+36.14 servicios innecesarios
+36.15 listening ports
+36.16 software inventory
+36.17 file integrity conceptual
+36.18 crypto policies de RHEL visión general
+36.19 update-crypto-policies [RHEL+]
+36.20 FIPS conceptual sin activar en laboratorio salvo necesidad
+36.21 logs y audit trail
+36.22 backups
+36.23 security updates
+36.24 reboot requirement conceptual
+36.25 laboratorio: baseline de hardening
+
+37. Backup, restore y disaster recovery
+37.1 backup strategy
+37.2 RPO y RTO
+37.3 full/incremental conceptual
+37.4 tar backup
+37.5 rsync backup
+37.6 filesystem snapshots no son backup
+37.7 LVM snapshots como herramienta auxiliar
+37.8 Btrfs send/receive [FEDORA]
+37.9 backup de /etc
+37.10 backup de datos
+37.11 backup de metadata LVM
+37.12 restaurar permisos
+37.13 restaurar ACL
+37.14 restaurar contextos SELinux
+37.15 restorecon tras restore
+37.16 verificación de backup
+37.17 test restore
+37.18 rescue environment
+37.19 recovery runbook
+37.20 laboratorio: backup, destrucción controlada y restauración
+
+38. Troubleshooting sistemático
+38.1 definir síntoma
+38.2 reproducibilidad
+38.3 cambio reciente
+38.4 recopilar evidencia
+38.5 no modificar antes de observar
+38.6 journalctl
+38.7 systemctl status
+38.8 systemctl failed
+38.9 ps/top
+38.10 ss
+38.11 ip
+38.12 nmcli
+38.13 dig
+38.14 df
+38.15 du
+38.16 findmnt
+38.17 lsblk
+38.18 pvs/vgs/lvs
+38.19 rpm/dnf
+38.20 SELinux AVC
+38.21 firewalld
+38.22 SSH verbose
+38.23 boot logs
+38.24 kernel logs
+38.25 dmesg y permisos/restricciones
+38.26 config validation
+38.27 binary search de cambios conceptual
+38.28 rollback
+38.29 documentar causa raíz
+38.30 problema de permisos
+38.31 problema de ownership
+38.32 problema de DNS
+38.33 problema de routing
+38.34 problema de firewall
+38.35 problema SELinux
+38.36 problema de unit
+38.37 problema de fstab
+38.38 problema LVM
+38.39 problema de espacio
+38.40 problema de inodes
+38.41 problema DNF
+38.42 problema Podman
+38.43 laboratorio: servidor deliberadamente roto
+
+39. Automatización y operaciones repetibles [RHEL+]
+39.1 idempotencia
+39.2 scripts vs configuración manual
+39.3 shell scripts administrativos
+39.4 systemd timers
+39.5 drop-ins
+39.6 repo files
+39.7 nmcli scripting
+39.8 firewall-cmd scripting
+39.9 semanage scripting
+39.10 podman/Quadlet declarativo
+39.11 Kickstart como automatización de instalación
+39.12 Ansible como siguiente nivel y relación con RHCE
+39.13 checklists
+39.14 pre-checks
+39.15 post-checks
+39.16 rollback plan
+39.17 laboratorio: procedimiento repetible
+
+40. Preparación específica RHCSA EX200
+40.1 mapear competencias actuales del EX200 antes de estudiar
+40.2 diferenciar conocimiento de examen y ampliación
+40.3 trabajar desde CLI
+40.4 usar man pages bajo presión
+40.5 persistencia como criterio de corrección
+40.6 validar después de cada tarea
+40.7 reboot como prueba final
+40.8 gestión del tiempo
+40.9 evitar soluciones destructivas
+40.10 usuarios/grupos práctica cronometrada
+40.11 permisos/ACL práctica cronometrada
+40.12 storage/LVM práctica cronometrada
+40.13 networking práctica cronometrada
+40.14 systemd práctica cronometrada
+40.15 SELinux práctica cronometrada
+40.16 firewalld práctica cronometrada
+40.17 software/repos práctica cronometrada
+40.18 containers práctica cronometrada cuando corresponda a objetivos vigentes
+40.19 troubleshooting práctica cronometrada
+
+41. Laboratorios integradores y simulacros
+41.1 laboratorio integrador 1: servidor base
+41.2 laboratorio integrador 2: identidad y permisos
+41.3 laboratorio integrador 3: almacenamiento
+41.4 laboratorio integrador 4: networking
+41.5 laboratorio integrador 5: servicios y systemd
+41.6 laboratorio integrador 6: SSH/firewalld/SELinux
+41.7 laboratorio integrador 7: software y repos
+41.8 laboratorio integrador 8: NFS/AutoFS
+41.9 laboratorio integrador 9: Podman/Quadlet
+41.10 laboratorio integrador 10: recovery
+41.11 simulacro EX200 I
+41.12 simulacro EX200 II
+41.13 simulacro EX200 III
+41.14 simulacro de administración real I
+41.15 simulacro de administración real II
+41.16 revisión de errores recurrentes
+41.17 repetición espaciada de tareas débiles
+
+42. PROYECTO FINAL — Administrar un servidor RHEL 10 de extremo a extremo
+42.1 diseñar requisitos
+42.2 instalar RHEL 10
+42.3 documentar installation logs
+42.4 registrar/configurar repositorios
+42.5 inventariar hardware
+42.6 configurar kernel/sysctl necesario
+42.7 crear usuarios y grupos
+42.8 definir política de login
+42.9 configurar sudo
+42.10 crear almacenamiento particionado
+42.11 crear LVM
+42.12 crear XFS/ext4
+42.13 configurar swap
+42.14 extensión: desplegar Btrfs en Fedora/lab
+42.15 configurar fstab
+42.16 configurar networking
+42.17 DNS y rutas
+42.18 configurar SSH por claves
+42.19 crear y administrar servicios systemd
+42.20 configurar logging y rotación
+42.21 programar tareas
+42.22 sincronizar tiempo
+42.23 configurar NFS/AutoFS
+42.24 configurar firewalld
+42.25 mantener SELinux enforcing
+42.26 desplegar container rootless
+42.27 crear Quadlet persistente
+42.28 aplicar hardening
+42.29 crear backup verificable
+42.30 inducir fallos controlados
+42.31 recuperar boot
+42.32 recuperar storage
+42.33 resolver fallo de red
+42.34 resolver fallo SELinux
+42.35 resolver fallo de servicio
+42.36 medir recursos
+42.37 documentar runbook
+42.38 reboot completo
+42.39 validar persistencia de toda la configuración
+42.40 auditoría final
+42.41 retrospectiva y mapa hacia RHCE/Ansible

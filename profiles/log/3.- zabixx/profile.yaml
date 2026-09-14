@@ -1,0 +1,431 @@
+name: zabbix
+title: ZABBIX EN PROFUNDIDAD
+platform: Fedora Linux
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliografy.md
+
+scope:
+  operating_system: Fedora Linux
+  linux_primary: true
+  windows: false
+  production_oriented: true
+  monitoring_from_zero_to_expert: true
+  frontend_only: false
+  internals: true
+  troubleshooting: true
+  distributed_monitoring: true
+  high_availability: true
+  security: true
+  automation: true
+
+version_policy:
+  primary: "Zabbix 7.4"
+  lts_reference: "Zabbix 7.0 LTS"
+  prefer_current_documentation: true
+  distinguish_version_specific_behavior: true
+  flag_deprecated_features: true
+  flag_removed_features: true
+  do_not_mix_versions_silently: true
+
+environment:
+  distribution: Fedora Linux
+  init_system: systemd
+  firewall: firewalld
+  mandatory_access_control: SELinux
+  preferred_database: PostgreSQL
+  shell: zsh
+  containers:
+    relevant: true
+    preferred_runtime: Podman
+
+zabbix_components:
+  server: true
+  frontend: true
+  database: true
+  agent: true
+  agent2: true
+  proxy: true
+  java_gateway: true
+  sender: true
+  get: true
+  snmp: true
+  jmx: true
+  ipmi: true
+
+architecture_policy:
+  explain_data_flow: true
+  explain_connection_direction: true
+  explain_component_responsibility: true
+  explain_storage_path: true
+  explain_failure_behavior: true
+  explain_security_boundaries: true
+  distinguish_server_proxy_agent: true
+  distinguish_agent_and_agent2: true
+  distinguish_active_and_passive_checks: true
+
+monitoring_policy:
+  distinguish_monitoring_and_observability: true
+  distinguish_poll_and_push: true
+  distinguish_metric_event_problem_alert: true
+  teach_monitoring_design: true
+  teach_alert_quality: true
+  avoid_threshold_only_mental_model: true
+
+items_policy:
+  deep_item_model: true
+  distinguish_item_type_key_and_information_type: true
+  explain_update_intervals: true
+  explain_history: true
+  explain_trends: true
+  explain_unsupported_state: true
+  use_real_item_keys: true
+  verify_item_keys_against_version: true
+
+preprocessing_policy:
+  treat_as_pipeline: true
+  explain_execution_location: true
+  include_jsonpath: true
+  include_xpath: true
+  include_regex: true
+  include_javascript: true
+  include_prometheus: true
+  include_error_handling: true
+  include_dependent_items: true
+  explain_storage_optimization: true
+
+trigger_policy:
+  distinguish_trigger_event_problem: true
+  explain_expression_semantics: true
+  explain_recovery_expressions: true
+  explain_dependencies: true
+  explain_hysteresis: true
+  explain_flapping: true
+  prefer_robust_alert_design: true
+
+discovery_policy:
+  distinguish_network_discovery: true
+  distinguish_autoregistration: true
+  distinguish_low_level_discovery: true
+  deep_lld: true
+  include_prototypes: true
+  include_filters: true
+  include_overrides: true
+  include_lost_resources: true
+
+template_policy:
+  prefer_reusable_templates: true
+  explain_inheritance: true
+  explain_linking: true
+  explain_macros: true
+  explain_versioning: true
+  use_official_templates_as_study_material: true
+  avoid_monolithic_templates_without_reason: true
+
+macro_policy:
+  distinguish_builtin_user_and_lld_macros: true
+  explain_scope: true
+  explain_precedence_when_relevant: true
+  explain_context_macros: true
+  protect_secrets: true
+
+snmp_policy:
+  teach_protocol_basics: true
+  prefer_snmpv3_for_secure_labs: true
+  distinguish_polling_and_traps: true
+  teach_oid_mib_instance_index: true
+  use_net_snmp_tools: true
+
+jmx_policy:
+  explain_java_gateway: true
+  explain_mbeans: true
+  explain_object_names: true
+  explain_jmx_interface: true
+  distinguish_java_gateway_from_agent2: true
+
+http_policy:
+  deep_http_agent: true
+  distinguish_http_agent_web_scenario_script_browser: true
+  teach_request_response_model: true
+  teach_tls: true
+  teach_authentication: true
+  combine_with_preprocessing: true
+  combine_with_dependent_items: true
+
+api_policy:
+  deep_api: true
+  protocol: JSON-RPC
+  prefer_api_over_direct_database_modification: true
+  start_with_curl_and_jq: true
+  include_python_when_useful: true
+  teach_api_tokens: true
+  teach_permissions: true
+  teach_pagination: true
+  teach_filtering: true
+  teach_error_handling: true
+  teach_idempotent_automation: true
+
+database_policy:
+  preferred_backend: PostgreSQL
+  allow_schema_reading: true
+  discourage_direct_schema_mutation: true
+  prefer_supported_api_for_configuration: true
+  explain_history_tables: true
+  explain_trends_tables: true
+  explain_events_and_problems: true
+  explain_indexes: true
+  explain_vacuum: true
+  explain_autovacuum: true
+  explain_wal: true
+  explain_checkpoints: true
+  explain_partitioning: true
+  include_timescaledb: true
+  no_universal_tuning_values: true
+
+performance_policy:
+  measure_before_tuning: true
+  teach_nvps: true
+  teach_queue: true
+  teach_busy_processes: true
+  teach_caches: true
+  teach_database_bottlenecks: true
+  teach_cpu_memory_io_network: true
+  require_evidence_based_diagnosis: true
+  forbid_blind_parameter_tuning: true
+
+ha_policy:
+  server_ha: true
+  proxy_groups: true
+  database_ha_context: true
+  frontend_ha_context: true
+  distinguish_native_and_external_ha: true
+  require_failure_scenarios: true
+  avoid_claiming_full_ha_from_server_ha_alone: true
+
+security_policy:
+  minimum_privilege: true
+  firewalld: true
+  selinux: true
+  tls: true
+  psk: true
+  x509: true
+  secret_macros: true
+  api_tokens: true
+  rbac: true
+  protect_credentials: true
+  never_use_real_secrets: true
+  do_not_disable_selinux_as_solution: true
+  do_not_disable_firewalld_as_solution: true
+
+troubleshooting_policy:
+  methodology_first: true
+  symptom_to_root_cause: true
+  correlate_logs: true
+  inspect_processes: true
+  inspect_sockets: true
+  inspect_queue: true
+  inspect_caches: true
+  inspect_database_when_relevant: true
+  inspect_network_when_relevant: true
+  inspect_tls_when_relevant: true
+  inspect_firewalld_when_relevant: true
+  inspect_selinux_when_relevant: true
+  verify_after_fix: true
+
+internals_policy:
+  enabled: true
+  source_code_allowed: true
+  source_code_should_support_explanation: true
+  avoid_source_code_dumping: true
+  explain_process_model: true
+  explain_ipc: true
+  explain_shared_memory: true
+  explain_caches: true
+  explain_pollers: true
+  explain_trappers: true
+  explain_preprocessing_workers: true
+  explain_history_pipeline: true
+  explain_trigger_evaluation: true
+  explain_event_generation: true
+  explain_proxy_synchronization: true
+  explain_protocols: true
+  connect_source_to_runtime_behavior: true
+  never_invent_internals: true
+
+protocol_policy:
+  teach_agent_passive_protocol: true
+  teach_agent_active_protocol: true
+  teach_server_proxy_protocol: true
+  teach_sender_trapper_protocol: true
+  teach_framing_when_relevant: true
+  teach_json_payloads_when_relevant: true
+  packet_analysis_allowed: true
+  protect_secrets_in_captures: true
+
+command_policy:
+  executable_examples: true
+  fedora_native: true
+  explain_command_purpose: true
+  explain_expected_output: true
+  explain_interpretation: true
+  do_not_invent_options: true
+  distinguish_privileged_commands: true
+
+tools:
+  zabbix:
+    - zabbix_server
+    - zabbix_proxy
+    - zabbix_agentd
+    - zabbix_agent2
+    - zabbix_get
+    - zabbix_sender
+    - zabbix_js
+
+  linux:
+    - systemctl
+    - journalctl
+    - ps
+    - ss
+    - ip
+    - getent
+    - top
+    - free
+    - vmstat
+    - iostat
+    - pidstat
+
+  networking:
+    - ping
+    - dig
+    - curl
+    - openssl
+    - tcpdump
+    - tshark
+
+  snmp:
+    - snmpget
+    - snmpwalk
+    - snmpbulkwalk
+    - snmptranslate
+    - snmptrap
+    - snmptrapd
+
+  database:
+    - psql
+    - pg_isready
+
+  data:
+    - jq
+
+  fedora:
+    - dnf
+    - rpm
+    - firewall-cmd
+    - ausearch
+    - sealert
+    - semanage
+    - restorecon
+
+config_files:
+  explain_component_ownership: true
+  never_mix_component_parameters: true
+  primary:
+    - zabbix_server.conf
+    - zabbix_proxy.conf
+    - zabbix_agentd.conf
+    - zabbix_agent2.conf
+
+lab_policy:
+  progressive: true
+  production_like: true
+  verification_required: true
+  failure_injection_when_safe: true
+  troubleshooting_required_when_relevant: true
+  prefer_virtual_or_local_infrastructure: true
+  physical_hardware_not_required: true
+  reusable_artifacts: true
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+
+  reading:
+    required: true
+    categories:
+      - principal
+      - lts
+      - internals
+      - plataforma
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+
+  lab:
+    required: false
+
+  common_errors:
+    required: false
+
+  important_idea:
+    required: false
+
+  remember:
+    required: true
+    position: last
+    min_items: 3
+    max_items: 7
+
+pedagogical_policy:
+  zero_to_expert: true
+  progressive: true
+  explain_why_not_only_how: true
+  explain_failure_modes: true
+  explain_limits: true
+  distinguish_similar_concepts: true
+  avoid_unnecessary_repetition: true
+  respect_neighbor_lessons: true
+  do_not_advance_future_lessons_unnecessarily: true
+  use_ascii_diagrams_when_helpful: true
+  keep_short_path_titles_in_domain_context: true
+
+quality:
+  forbid_generic_scaffold: true
+  require_topic_specific_headings: true
+  require_topic_specific_examples: true
+  require_self_contained_lesson: true
+  require_domain_specific_context: true
+  require_version_awareness: true
+  require_correct_component_attribution: true
+  require_verifiable_commands: true
+  require_realistic_labs: true
+  forbid_unverified_defaults: true
+  forbid_invented_parameters: true
+  forbid_invented_item_keys: true
+  forbid_invented_api_methods: true
+  forbid_invented_internals: true
+  audit_before_save: true
+  repair_on_fail: true
+
+output:
+  format: markdown
+  zip_block: true
+  write_index: true
+  write_manifest: true
+
+artifacts:
+  enabled: true
+  default_strategy: auto
+
+  overrides: {}
+
+  project_policy:
+    integrator_projects: auto
+    diagnostic_projects: auto
+    require_project_for_every_block: false
+
+validation:
+  enabled: false
+  commands: []

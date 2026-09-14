@@ -1,0 +1,1605 @@
+OPENSEARCH STACK EN PROFUNDIDAD
+
+0. Fundamentos de búsqueda y observabilidad
+0.1 qué es un motor de búsqueda
+0.2 búsqueda de texto frente a búsqueda estructurada
+0.3 búsqueda distribuida
+0.4 indexación
+0.5 documento
+0.6 campo
+0.7 índice
+0.8 mapping
+0.9 análisis de texto
+0.10 índice invertido
+0.11 relevancia
+0.12 scoring
+0.13 búsqueda full-text
+0.14 búsqueda exacta
+0.15 agregaciones
+0.16 búsqueda analítica
+0.17 logs como documentos
+0.18 métricas como datos de observabilidad
+0.19 trazas como datos de observabilidad
+0.20 eventos
+0.21 observabilidad
+0.22 ingestión de datos
+0.23 pipelines de datos
+0.24 almacenamiento distribuido
+0.25 escalabilidad horizontal
+0.26 alta disponibilidad
+0.27 tolerancia a fallos
+0.28 consistencia distribuida
+0.29 shards
+0.30 replicas
+0.31 nodos
+0.32 clusters
+0.33 REST APIs
+0.34 JSON y HTTP
+0.35 TLS
+0.36 autenticación
+0.37 autorización
+0.38 RBAC
+0.39 ciclo de vida de datos
+0.40 hot, warm y cold data
+0.41 snapshots
+0.42 recuperación ante desastres
+0.43 laboratorio: construir el mapa conceptual de una plataforma distribuida de búsqueda y observabilidad
+
+1. OpenSearch y su ecosistema
+1.1 qué es OpenSearch
+1.2 historia y origen del proyecto
+1.3 OpenSearch Project y gobernanza
+1.4 arquitectura general
+1.5 OpenSearch como motor distribuido
+1.6 OpenSearch Dashboards
+1.7 Data Prepper
+1.8 plugins
+1.9 clientes
+1.10 REST API
+1.11 casos de uso
+1.12 búsqueda empresarial
+1.13 búsqueda de aplicaciones
+1.14 log analytics
+1.15 observabilidad
+1.16 Security Analytics
+1.17 vector search
+1.18 machine learning
+1.19 flujo source → Data Prepper → OpenSearch → Dashboards
+1.20 compatibilidad y diferencias conceptuales respecto a Elasticsearch
+1.21 versionado y compatibilidad del stack
+1.22 laboratorio: construir el mapa completo del OpenSearch Stack
+
+2. Instalación y entorno en Fedora
+2.1 requisitos del sistema
+2.2 Java y JVM incluida
+2.3 instalación mediante RPM
+2.4 repositorios y paquetes
+2.5 estructura de archivos
+2.6 directorio de configuración
+2.7 directorio de datos
+2.8 directorio de logs
+2.9 opensearch.yml
+2.10 jvm.options
+2.11 log4j2.properties
+2.12 variables de entorno
+2.13 servicio systemd
+2.14 systemctl status opensearch
+2.15 journalctl y logs de servicio
+2.16 inicio, parada y reinicio
+2.17 bootstrap checks
+2.18 vm.max_map_count
+2.19 límites de recursos y file descriptors
+2.20 memoria y heap JVM
+2.21 instalación mediante contenedores
+2.22 Podman y Docker
+2.23 Compose
+2.24 entorno multinodo local
+2.25 permisos y ownership
+2.26 actualización y compatibilidad
+2.27 laboratorio: desplegar OpenSearch en Fedora y verificar el nodo
+
+3. REST API y administración básica
+3.1 arquitectura de la REST API
+3.2 endpoints
+3.3 métodos GET, POST, PUT, DELETE y HEAD
+3.4 curl
+3.5 autenticación con curl
+3.6 TLS y certificados con curl
+3.7 JSON requests y responses
+3.8 parámetros de consulta
+3.9 pretty y human
+3.10 filter_path
+3.11 cat APIs
+3.12 _cat/nodes
+3.13 _cat/indices
+3.14 _cat/shards
+3.15 _cat/allocation
+3.16 _cat/plugins
+3.17 cluster APIs
+3.18 node APIs
+3.19 index APIs
+3.20 document APIs
+3.21 search APIs
+3.22 tasks API
+3.23 cluster health
+3.24 cluster state
+3.25 cluster settings
+3.26 laboratorio: explorar un cluster completamente mediante REST
+
+4. Documentos y operaciones CRUD
+4.1 modelo documental
+4.2 documento JSON
+4.3 _index
+4.4 _id
+4.5 _source
+4.6 metadata fields
+4.7 Index API
+4.8 crear documentos
+4.9 IDs automáticos y explícitos
+4.10 Get API
+4.11 Exists
+4.12 Update API
+4.13 partial update
+4.14 scripted update
+4.15 Delete API
+4.16 optimistic concurrency control
+4.17 _seq_no
+4.18 _primary_term
+4.19 version conflicts
+4.20 Bulk API
+4.21 acciones index, create, update y delete
+4.22 NDJSON
+4.23 errores parciales en bulk
+4.24 Multi Get API
+4.25 Update by Query
+4.26 Delete by Query
+4.27 refresh
+4.28 refresh parameter
+4.29 laboratorio: implementar CRUD y cargas bulk
+
+5. Índices
+5.1 qué es un índice en OpenSearch
+5.2 crear índices
+5.3 eliminar índices
+5.4 listar índices
+5.5 Index Settings
+5.6 settings dinámicos y estáticos
+5.7 number_of_shards
+5.8 number_of_replicas
+5.9 refresh_interval
+5.10 aliases
+5.11 crear aliases
+5.12 aliases con filtros
+5.13 write index
+5.14 múltiples índices
+5.15 wildcards
+5.16 hidden indices
+5.17 open y close index
+5.18 clone index
+5.19 shrink index
+5.20 split index
+5.21 rollover
+5.22 reindex
+5.23 forcemerge
+5.24 flush
+5.25 refresh
+5.26 segments
+5.27 index blocks
+5.28 read-only indices
+5.29 templates y relación con índices
+5.30 laboratorio: administrar el ciclo completo de varios índices
+
+6. Mappings y tipos de datos
+6.1 mapping
+6.2 dynamic mapping
+6.3 explicit mapping
+6.4 properties
+6.5 tipos de datos
+6.6 text
+6.7 keyword
+6.8 numeric types
+6.9 boolean
+6.10 date
+6.11 date formats
+6.12 binary
+6.13 object
+6.14 nested
+6.15 arrays
+6.16 geo_point
+6.17 geo_shape
+6.18 IP
+6.19 range
+6.20 alias field
+6.21 flattened y tipos equivalentes disponibles
+6.22 multi-fields
+6.23 fields
+6.24 dynamic
+6.25 dynamic_templates
+6.26 coerce
+6.27 ignore_malformed
+6.28 null_value
+6.29 copy_to
+6.30 enabled
+6.31 index
+6.32 doc_values
+6.33 store
+6.34 norms
+6.35 fielddata
+6.36 meta
+6.37 mapping explosion
+6.38 total_fields limit
+6.39 actualizar mappings
+6.40 incompatibilidad de cambios de tipo
+6.41 reindexación ante cambios de mapping
+6.42 laboratorio: diseñar mappings para logs reales
+
+7. Análisis de texto
+7.1 analysis chain
+7.2 character filters
+7.3 tokenizers
+7.4 token filters
+7.5 analyzers
+7.6 normalizers
+7.7 standard analyzer
+7.8 simple analyzer
+7.9 whitespace analyzer
+7.10 keyword analyzer
+7.11 language analyzers
+7.12 custom analyzer
+7.13 lowercase
+7.14 stop words
+7.15 stemming
+7.16 synonyms
+7.17 edge n-gram
+7.18 n-gram
+7.19 pattern tokenizer
+7.20 path hierarchy tokenizer
+7.21 HTML strip
+7.22 Analyze API
+7.23 term vectors
+7.24 posición y offsets
+7.25 index-time analysis
+7.26 search-time analysis
+7.27 search_analyzer
+7.28 normalizer para keyword
+7.29 sinónimos y mantenimiento
+7.30 laboratorio: construir y validar analizadores personalizados
+
+8. Query DSL
+8.1 Search API
+8.2 estructura de Query DSL
+8.3 query context
+8.4 filter context
+8.5 match_all
+8.6 match_none
+8.7 match
+8.8 match_phrase
+8.9 multi_match
+8.10 query_string
+8.11 simple_query_string
+8.12 term
+8.13 terms
+8.14 terms_set
+8.15 range
+8.16 exists
+8.17 prefix
+8.18 wildcard
+8.19 regexp
+8.20 fuzzy
+8.21 IDs query
+8.22 bool query
+8.23 must
+8.24 filter
+8.25 must_not
+8.26 should
+8.27 minimum_should_match
+8.28 boosting
+8.29 constant_score
+8.30 dis_max
+8.31 function_score
+8.32 script_score
+8.33 nested query
+8.34 geo queries
+8.35 date math
+8.36 pagination from y size
+8.37 sort
+8.38 _score
+8.39 search_after
+8.40 point in time
+8.41 source filtering
+8.42 stored_fields
+8.43 docvalue_fields
+8.44 runtime_mappings cuando estén soportados
+8.45 named queries
+8.46 highlighting
+8.47 explain
+8.48 profile API
+8.49 laboratorio: construir consultas Query DSL progresivas
+
+9. Relevancia y scoring
+9.1 concepto de relevancia
+9.2 _score
+9.3 BM25
+9.4 term frequency
+9.5 document frequency
+9.6 field length
+9.7 boost
+9.8 field boosting
+9.9 query boosting
+9.10 minimum_should_match y relevancia
+9.11 function_score
+9.12 weight
+9.13 field_value_factor
+9.14 decay functions
+9.15 random score
+9.16 script_score
+9.17 Explain API
+9.18 Profile API
+9.19 rescore
+9.20 rank evaluation
+9.21 ajuste de relevancia
+9.22 búsqueda exacta frente a relevancia
+9.23 laboratorio: comparar y ajustar scoring
+
+10. Agregaciones y análisis
+10.1 qué son las aggregations
+10.2 bucket aggregations
+10.3 metric aggregations
+10.4 pipeline aggregations
+10.5 terms
+10.6 rare_terms
+10.7 range
+10.8 date_range
+10.9 histogram
+10.10 date_histogram
+10.11 filters
+10.12 filter
+10.13 missing
+10.14 nested
+10.15 reverse_nested
+10.16 global
+10.17 sampler
+10.18 significant_terms
+10.19 avg
+10.20 sum
+10.21 min
+10.22 max
+10.23 stats
+10.24 extended_stats
+10.25 cardinality
+10.26 percentiles
+10.27 top_hits
+10.28 value_count
+10.29 derivative
+10.30 cumulative_sum
+10.31 moving functions
+10.32 bucket_script
+10.33 bucket_selector
+10.34 subagregaciones
+10.35 ordenación de buckets
+10.36 agregaciones sobre keyword
+10.37 limitaciones sobre text
+10.38 laboratorio: construir análisis multidimensional de logs
+
+11. Index templates y gestión de esquemas
+11.1 index templates
+11.2 component templates
+11.3 composición de templates
+11.4 index patterns
+11.5 priority
+11.6 settings en templates
+11.7 mappings en templates
+11.8 aliases en templates
+11.9 simulación de templates
+11.10 conflictos de templates
+11.11 versionado de templates
+11.12 convenciones de nombres
+11.13 esquemas para logs
+11.14 esquemas para métricas
+11.15 esquemas para trazas
+11.16 evolución de esquemas
+11.17 reindexación
+11.18 laboratorio: diseñar una familia de templates de observabilidad
+
+12. Shards, replicas y distribución
+12.1 Lucene shards
+12.2 primary shards
+12.3 replica shards
+12.4 routing
+12.5 hashing de routing
+12.6 shard allocation
+12.7 allocation awareness
+12.8 allocation filtering
+12.9 forced awareness
+12.10 rebalance
+12.11 recovery
+12.12 primary promotion
+12.13 replication
+12.14 write path
+12.15 read path
+12.16 coordinating node
+12.17 fan-out y reduce
+12.18 oversharding
+12.19 undersharding
+12.20 tamaño de shards
+12.21 número de shards
+12.22 hot spots
+12.23 _cat/shards
+12.24 _cat/allocation
+12.25 cluster allocation explain API
+12.26 unassigned shards
+12.27 laboratorio: provocar y diagnosticar redistribución de shards
+
+13. Clustering y roles de nodo
+13.1 arquitectura de cluster
+13.2 cluster manager
+13.3 cluster-manager eligible nodes
+13.4 data nodes
+13.5 ingest-capable workflows y roles aplicables
+13.6 coordinating behavior
+13.7 dedicated nodes
+13.8 discovery
+13.9 seed hosts
+13.10 cluster.initial_cluster_manager_nodes
+13.11 cluster state
+13.12 cluster UUID
+13.13 quorum
+13.14 elecciones
+13.15 split brain y su prevención
+13.16 fault detection
+13.17 node join
+13.18 node leave
+13.19 rolling restart
+13.20 cluster health green yellow red
+13.21 zone awareness
+13.22 topologías de tres nodos
+13.23 topologías de producción
+13.24 escalado horizontal
+13.25 laboratorio: desplegar y operar un cluster multinodo
+
+14. Ingest pipelines de OpenSearch
+14.1 concepto de ingest pipeline
+14.2 pipeline API
+14.3 processors
+14.4 set
+14.5 rename
+14.6 remove
+14.7 append
+14.8 convert
+14.9 date
+14.10 grok
+14.11 dissect
+14.12 script
+14.13 foreach
+14.14 conditional processors
+14.15 on_failure
+14.16 failure handling
+14.17 pipeline processor
+14.18 simulate pipeline API
+14.19 default pipeline
+14.20 final pipeline
+14.21 enriquecimiento durante ingestión
+14.22 coste de procesamiento
+14.23 cuándo usar ingest pipelines
+14.24 cuándo usar Data Prepper
+14.25 laboratorio: construir un pipeline de normalización de logs
+
+15. Data Prepper — arquitectura
+15.1 qué es Data Prepper
+15.2 papel dentro del OpenSearch Stack
+15.3 arquitectura
+15.4 pipelines
+15.5 pipeline.yaml
+15.6 sources
+15.7 processors
+15.8 sinks
+15.9 buffers
+15.10 routes
+15.11 workers
+15.12 batching
+15.13 backpressure
+15.14 acknowledgements
+15.15 end-to-end acknowledgements
+15.16 DLQ y tratamiento de errores
+15.17 métricas internas
+15.18 health checks
+15.19 configuración
+15.20 variables de entorno y secretos
+15.21 plugins de Data Prepper
+15.22 descubrimiento de plugins
+15.23 despliegue standalone
+15.24 despliegue con contenedores
+15.25 escalado horizontal
+15.26 laboratorio: desplegar Data Prepper y observar su pipeline
+
+16. Data Prepper — sources e ingestión
+16.1 sources
+16.2 HTTP source
+16.3 OTLP y sources de observabilidad disponibles
+16.4 OpenTelemetry traces
+16.5 OpenTelemetry logs
+16.6 OpenTelemetry metrics cuando corresponda
+16.7 Kafka source
+16.8 S3 source
+16.9 event streams y fuentes soportadas
+16.10 TLS en sources
+16.11 autenticación
+16.12 codec y formatos
+16.13 JSON
+16.14 NDJSON
+16.15 event model
+16.16 metadata
+16.17 event keys
+16.18 backpressure desde source
+16.19 acknowledgements
+16.20 alta disponibilidad de sources
+16.21 laboratorio: recibir eventos desde varias fuentes
+
+17. Data Prepper — processors
+17.1 processors
+17.2 parse_json
+17.3 grok
+17.4 dissect
+17.5 date
+17.6 mutate event
+17.7 add entries
+17.8 delete entries
+17.9 rename keys
+17.10 convert entries
+17.11 split event
+17.12 aggregate
+17.13 service map
+17.14 trace processing
+17.15 span processing
+17.16 otel trace group
+17.17 anomaly-related processing cuando corresponda
+17.18 routes
+17.19 conditional expressions
+17.20 procesamiento encadenado
+17.21 orden de processors
+17.22 manejo de errores
+17.23 rendimiento
+17.24 laboratorio: normalizar logs heterogéneos con processors
+
+18. Data Prepper — sinks, buffers y entrega
+18.1 sinks
+18.2 OpenSearch sink
+18.3 indexación
+18.4 index templates desde Data Prepper
+18.5 document_id
+18.6 routing
+18.7 bulk delivery
+18.8 retries
+18.9 backoff
+18.10 DLQ
+18.11 S3 sink y sinks disponibles
+18.12 buffers
+18.13 bounded blocking buffer
+18.14 persistent buffering cuando esté disponible
+18.15 buffer sizing
+18.16 batch size
+18.17 flush
+18.18 backpressure
+18.19 acknowledgements
+18.20 entrega at-least-once y semántica efectiva
+18.21 alta disponibilidad
+18.22 laboratorio: construir una ruta resiliente source → buffer → OpenSearch
+
+19. OpenTelemetry con Data Prepper
+19.1 OpenTelemetry
+19.2 signals
+19.3 OTLP
+19.4 Collector
+19.5 instrumentation
+19.6 resource attributes
+19.7 logs
+19.8 metrics
+19.9 traces
+19.10 spans
+19.11 trace ID
+19.12 span ID
+19.13 context propagation
+19.14 OTLP/gRPC
+19.15 OTLP/HTTP
+19.16 OpenTelemetry Collector → Data Prepper
+19.17 Data Prepper → OpenSearch
+19.18 trace analytics
+19.19 service maps
+19.20 correlación logs-traces
+19.21 convenciones semánticas
+19.22 sampling y efecto sobre la ingestión
+19.23 laboratorio: ingerir trazas OpenTelemetry end-to-end
+
+20. OpenSearch Dashboards — fundamentos
+20.1 qué es OpenSearch Dashboards
+20.2 arquitectura
+20.3 instalación
+20.4 opensearch_dashboards.yml
+20.5 conexión con OpenSearch
+20.6 TLS
+20.7 autenticación
+20.8 spaces o tenants según configuración
+20.9 interfaz
+20.10 Discover
+20.11 Dashboards
+20.12 Visualize y herramientas equivalentes actuales
+20.13 Dev Tools
+20.14 Index Patterns y Data Views según versión
+20.15 saved objects
+20.16 time filter
+20.17 query bar
+20.18 filtros
+20.19 laboratorio: desplegar Dashboards y conectar el cluster
+
+21. Discover y exploración de datos
+21.1 Discover
+21.2 selección de índices y data views
+21.3 campos
+21.4 document table
+21.5 time field
+21.6 time range
+21.7 filtros
+21.8 consultas
+21.9 DQL cuando corresponda
+21.10 PPL desde interfaces compatibles
+21.11 ordenación
+21.12 columnas
+21.13 document details
+21.14 JSON view
+21.15 saved searches
+21.16 histogramas
+21.17 inspección de consultas
+21.18 exportación
+21.19 laboratorio: investigar un incidente desde Discover
+
+22. Visualizaciones
+22.1 principios de visualización
+22.2 visualizaciones de métricas
+22.3 tablas
+22.4 bar charts
+22.5 line charts
+22.6 area charts
+22.7 pie y donut cuando estén disponibles
+22.8 heatmaps
+22.9 maps
+22.10 histogramas
+22.11 date histograms
+22.12 buckets
+22.13 metrics
+22.14 filters
+22.15 formatters
+22.16 series
+22.17 legends
+22.18 tooltips
+22.19 visualizaciones basadas en Vega cuando corresponda
+22.20 visualizaciones de observabilidad
+22.21 saved visualizations
+22.22 laboratorio: crear un conjunto de visualizaciones operativas
+
+23. Dashboards
+23.1 dashboard
+23.2 crear dashboards
+23.3 añadir paneles
+23.4 layout
+23.5 filtros globales
+23.6 time range
+23.7 drilldowns cuando estén disponibles
+23.8 interactividad
+23.9 saved searches
+23.10 visualizaciones
+23.11 panel options
+23.12 auto refresh
+23.13 variables y controles disponibles
+23.14 dashboards para logs
+23.15 dashboards para infraestructura
+23.16 dashboards para aplicaciones
+23.17 dashboards para seguridad
+23.18 diseño para NOC/SRE
+23.19 exportación e importación
+23.20 laboratorio: construir un dashboard completo de operaciones
+
+24. PPL
+24.1 qué es Piped Processing Language
+24.2 estructura de PPL
+24.3 source
+24.4 where
+24.5 fields
+24.6 rename
+24.7 stats
+24.8 sort
+24.9 head
+24.10 dedup
+24.11 eval
+24.12 parse
+24.13 grok
+24.14 patterns
+24.15 join según soporte
+24.16 subqueries según soporte
+24.17 span
+24.18 eventstats
+24.19 rare
+24.20 top
+24.21 trendline y funciones disponibles
+24.22 PPL API
+24.23 PPL en Dashboards
+24.24 casos de uso en logs
+24.25 comparación conceptual con Query DSL
+24.26 laboratorio: investigar logs mediante PPL
+
+25. SQL en OpenSearch
+25.1 SQL plugin
+25.2 SQL Workbench
+25.3 SELECT
+25.4 FROM
+25.5 WHERE
+25.6 ORDER BY
+25.7 GROUP BY
+25.8 HAVING
+25.9 LIMIT
+25.10 funciones
+25.11 agregaciones
+25.12 joins y sus limitaciones
+25.13 subqueries y soporte
+25.14 SQL API
+25.15 formatos de respuesta
+25.16 explain
+25.17 SQL frente a Query DSL
+25.18 SQL frente a PPL
+25.19 casos de uso
+25.20 laboratorio: consultar un dataset mediante SQL
+
+26. Observabilidad en OpenSearch
+26.1 arquitectura de observabilidad
+26.2 logs
+26.3 metrics
+26.4 traces
+26.5 applications
+26.6 event analytics
+26.7 trace analytics
+26.8 service maps
+26.9 correlación de señales
+26.10 OpenTelemetry
+26.11 Data Prepper
+26.12 Dashboards Observability
+26.13 PPL en observabilidad
+26.14 índices de observabilidad
+26.15 esquemas
+26.16 retención
+26.17 dashboards
+26.18 SLO y capacidades relacionadas cuando estén disponibles
+26.19 investigación de incidentes
+26.20 laboratorio: construir una vista unificada de observabilidad
+
+27. Alerting
+27.1 arquitectura de Alerting
+27.2 monitors
+27.3 triggers
+27.4 actions
+27.5 destinations y notification channels
+27.6 per-query monitors
+27.7 per-bucket monitors
+27.8 document-level monitors
+27.9 scheduled jobs
+27.10 cron expressions
+27.11 trigger conditions
+27.12 Painless scripts
+27.13 severity
+27.14 message templates
+27.15 Mustache
+27.16 notifications
+27.17 email
+27.18 webhooks
+27.19 Slack u otros canales mediante Notifications cuando estén soportados
+27.20 throttling
+27.21 acknowledgements
+27.22 alert states
+27.23 alert history
+27.24 permissions
+27.25 laboratorio: construir alertas operativas completas
+
+28. Notifications
+28.1 Notifications plugin
+28.2 channels
+28.3 configurations
+28.4 SMTP
+28.5 webhooks
+28.6 integraciones soportadas
+28.7 TLS
+28.8 secrets
+28.9 permissions
+28.10 message templates
+28.11 testing channels
+28.12 uso desde Alerting
+28.13 uso desde otros plugins
+28.14 seguridad de credenciales
+28.15 troubleshooting
+28.16 laboratorio: configurar canales reutilizables de notificación
+
+29. Anomaly Detection
+29.1 conceptos de detección de anomalías
+29.2 Random Cut Forest
+29.3 detectors
+29.4 features
+29.5 detector interval
+29.6 window delay
+29.7 single-entity detectors
+29.8 high-cardinality detectors
+29.9 category fields
+29.10 historical analysis
+29.11 real-time detection
+29.12 anomaly grade
+29.13 confidence
+29.14 results indices
+29.15 Dashboards
+29.16 alertas sobre anomalías
+29.17 dimensionamiento
+29.18 limitaciones
+29.19 tuning
+29.20 laboratorio: detectar anomalías en métricas y logs
+
+30. Index State Management
+30.1 Index State Management
+30.2 policies
+30.3 states
+30.4 actions
+30.5 transitions
+30.6 conditions
+30.7 rollover
+30.8 read_only
+30.9 read_write
+30.10 replica_count
+30.11 force_merge
+30.12 shrink
+30.13 close
+30.14 open
+30.15 delete
+30.16 snapshot
+30.17 allocation
+30.18 notification
+30.19 policy templates
+30.20 managed indices
+30.21 explain API
+30.22 retry
+30.23 errores de políticas
+30.24 retención
+30.25 hot-warm-cold
+30.26 laboratorio: automatizar el ciclo de vida de logs
+
+31. Snapshots y recuperación
+31.1 snapshot architecture
+31.2 repositories
+31.3 filesystem repository
+31.4 S3 repository
+31.5 plugins de repositorio
+31.6 registrar repository
+31.7 crear snapshots
+31.8 snapshots incrementales
+31.9 listar snapshots
+31.10 restore
+31.11 partial restore
+31.12 global state
+31.13 index selection
+31.14 snapshot scheduling
+31.15 Snapshot Management cuando esté disponible
+31.16 retención de snapshots
+31.17 seguridad
+31.18 compatibilidad de versiones
+31.19 cluster recovery
+31.20 disaster recovery
+31.21 laboratorio: destruir y recuperar datos desde snapshot
+
+32. Seguridad — fundamentos
+32.1 Security plugin
+32.2 arquitectura de seguridad
+32.3 TLS transport
+32.4 TLS HTTP
+32.5 certificados
+32.6 CA
+32.7 node certificates
+32.8 admin certificates
+32.9 DN
+32.10 security index
+32.11 securityadmin y mecanismos actuales de administración
+32.12 usuarios internos
+32.13 hashed passwords
+32.14 roles
+32.15 permissions
+32.16 action groups
+32.17 role mappings
+32.18 backend roles
+32.19 tenants
+32.20 audit logging
+32.21 laboratorio: inspeccionar la arquitectura completa de seguridad
+
+33. Seguridad — autenticación y autorización
+33.1 authentication domains
+33.2 basic authentication
+33.3 HTTP authenticators
+33.4 LDAP
+33.5 Active Directory
+33.6 OpenID Connect
+33.7 SAML
+33.8 JWT
+33.9 proxy authentication
+33.10 client certificates
+33.11 multiple authentication domains
+33.12 authorization backends
+33.13 RBAC
+33.14 cluster permissions
+33.15 index permissions
+33.16 document-level security
+33.17 field-level security
+33.18 masked fields
+33.19 tenant permissions
+33.20 impersonation cuando corresponda
+33.21 REST API de seguridad
+33.22 laboratorio: implementar RBAC de mínimo privilegio
+
+34. Seguridad — TLS y certificados
+34.1 PKI básica
+34.2 CA raíz e intermedia
+34.3 certificados de nodo
+34.4 SAN
+34.5 certificados administrativos
+34.6 TLS del transport layer
+34.7 TLS de REST
+34.8 TLS de Dashboards
+34.9 TLS de Data Prepper
+34.10 hostname verification
+34.11 cipher suites
+34.12 protocol versions
+34.13 certificate rotation
+34.14 truststores y keystores cuando correspondan
+34.15 PEM
+34.16 diagnóstico con openssl
+34.17 diagnóstico con curl
+34.18 errores de handshake
+34.19 laboratorio: desplegar TLS end-to-end
+
+35. Audit logging y seguridad operacional
+35.1 audit logs
+35.2 eventos auditables
+35.3 REST audit events
+35.4 transport audit events
+35.5 authentication failures
+35.6 authorization failures
+35.7 compliance-related logging disponible
+35.8 configuración de auditoría
+35.9 índices de auditoría
+35.10 retención
+35.11 protección de logs
+35.12 alertas de seguridad
+35.13 principio de mínimo privilegio
+35.14 hardening del host
+35.15 firewalld
+35.16 SELinux y consideraciones de despliegue
+35.17 secret management
+35.18 rotación de credenciales
+35.19 laboratorio: auditar acciones administrativas
+
+36. Security Analytics
+36.1 Security Analytics
+36.2 detectors
+36.3 findings
+36.4 alerts
+36.5 log types
+36.6 detection rules
+36.7 Sigma rules
+36.8 rule mappings
+36.9 threat detection
+36.10 correlation
+36.11 security event ingestion
+36.12 pre-packaged rules
+36.13 custom rules
+36.14 threat intelligence e integraciones disponibles
+36.15 Dashboards
+36.16 alerting
+36.17 false positives
+36.18 tuning
+36.19 retención
+36.20 laboratorio: construir un detector de seguridad
+
+37. Search templates, scripts y Painless
+37.1 scripts
+37.2 Painless
+37.3 script contexts
+37.4 inline scripts
+37.5 stored scripts
+37.6 parameters
+37.7 script fields
+37.8 scripted updates
+37.9 script queries
+37.10 script score
+37.11 runtime computation
+37.12 seguridad de scripts
+37.13 rendimiento
+37.14 search templates
+37.15 Mustache templates
+37.16 stored search templates
+37.17 parameters
+37.18 render template API
+37.19 laboratorio: construir consultas parametrizadas reutilizables
+
+38. Vector search y búsqueda semántica
+38.1 vector embeddings
+38.2 dense vectors
+38.3 k-NN
+38.4 k-NN plugin y capacidades integradas
+38.5 vector fields
+38.6 dimensiones
+38.7 distance metrics
+38.8 L2
+38.9 cosine similarity
+38.10 inner product
+38.11 approximate nearest neighbor
+38.12 HNSW
+38.13 ef_construction
+38.14 m
+38.15 ef_search
+38.16 engines disponibles
+38.17 indexación de vectores
+38.18 k-NN queries
+38.19 filters
+38.20 hybrid search
+38.21 semantic search
+38.22 embeddings externos
+38.23 ingestión de embeddings
+38.24 dimensionamiento
+38.25 memoria
+38.26 recall frente a latency
+38.27 laboratorio: implementar búsqueda vectorial
+
+39. Machine Learning y AI en OpenSearch
+39.1 arquitectura ML
+39.2 ML Commons
+39.3 models
+39.4 model groups
+39.5 model registration
+39.6 deployment
+39.7 inference
+39.8 connectors
+39.9 remote models
+39.10 local models según soporte
+39.11 predict API
+39.12 text embeddings
+39.13 sparse encodings cuando estén disponibles
+39.14 neural search
+39.15 semantic search
+39.16 hybrid search
+39.17 AI search pipelines
+39.18 model access control
+39.19 recursos
+39.20 seguridad
+39.21 monitorización
+39.22 laboratorio: conectar un modelo y ejecutar inferencia
+
+40. Search pipelines
+40.1 search pipelines
+40.2 request processors
+40.3 response processors
+40.4 phase results processors cuando estén disponibles
+40.5 crear pipeline
+40.6 default search pipeline
+40.7 normalización de scores
+40.8 hybrid search
+40.9 query transformation
+40.10 response transformation
+40.11 script processors
+40.12 metrics
+40.13 errores
+40.14 rendimiento
+40.15 laboratorio: construir un search pipeline para búsqueda híbrida
+
+41. Cross-cluster y replicación
+41.1 arquitecturas multicluster
+41.2 cross-cluster search
+41.3 remote clusters
+41.4 conectividad
+41.5 TLS
+41.6 permisos
+41.7 Cross-Cluster Replication
+41.8 leader index
+41.9 follower index
+41.10 auto-follow
+41.11 replication lag
+41.12 failover
+41.13 active-passive
+41.14 DR multicluster
+41.15 latencia entre regiones
+41.16 operación y troubleshooting
+41.17 laboratorio: replicar índices entre dos clusters
+
+42. Rendimiento de indexación
+42.1 modelo de coste de indexación
+42.2 bulk sizing
+42.3 batch sizing
+42.4 refresh interval
+42.5 replica count durante cargas
+42.6 shard count
+42.7 heap
+42.8 filesystem cache
+42.9 merge
+42.10 segments
+42.11 translog
+42.12 flush
+42.13 thread pools
+42.14 queues
+42.15 backpressure
+42.16 indexing pressure
+42.17 hot threads
+42.18 CPU
+42.19 I/O
+42.20 storage
+42.21 SSD
+42.22 document size
+42.23 mapping design
+42.24 benchmarking
+42.25 OpenSearch Benchmark
+42.26 laboratorio: medir y optimizar throughput de indexación
+
+43. Rendimiento de búsqueda
+43.1 search latency
+43.2 query fan-out
+43.3 shard count
+43.4 query cache
+43.5 request cache
+43.6 filesystem cache
+43.7 fielddata
+43.8 doc values
+43.9 aggregations cost
+43.10 high cardinality
+43.11 wildcards
+43.12 regex cost
+43.13 scripts
+43.14 deep pagination
+43.15 search_after
+43.16 PIT
+43.17 sorting
+43.18 track_total_hits y opciones equivalentes
+43.19 profile API
+43.20 hot threads
+43.21 slow logs
+43.22 concurrent search y capacidades disponibles
+43.23 laboratorio: diagnosticar una consulta lenta
+
+44. JVM y gestión de memoria
+44.1 JVM en OpenSearch
+44.2 heap
+44.3 Xms
+44.4 Xmx
+44.5 compressed oops
+44.6 garbage collection
+44.7 GC logs
+44.8 heap pressure
+44.9 circuit breakers
+44.10 parent breaker
+44.11 fielddata breaker
+44.12 request breaker
+44.13 in-flight requests breaker
+44.14 memory outside heap
+44.15 filesystem cache
+44.16 direct memory
+44.17 OOM
+44.18 heap dump
+44.19 jcmd y herramientas aplicables
+44.20 monitorización de JVM
+44.21 laboratorio: diagnosticar presión de memoria
+
+45. Storage e internals de Lucene
+45.1 Lucene
+45.2 shard como índice Lucene
+45.3 segments
+45.4 immutable segments
+45.5 segment creation
+45.6 refresh
+45.7 flush
+45.8 translog
+45.9 commit
+45.10 merge
+45.11 merge policy
+45.12 deleted documents
+45.13 force merge
+45.14 inverted index
+45.15 term dictionary
+45.16 postings
+45.17 stored fields
+45.18 doc values
+45.19 norms
+45.20 BKD trees
+45.21 FST
+45.22 filesystem cache
+45.23 memory mapping
+45.24 durabilidad
+45.25 recovery
+45.26 laboratorio: relacionar operaciones OpenSearch con estructuras Lucene
+
+46. Cluster internals
+46.1 cluster state
+46.2 metadata
+46.3 routing table
+46.4 cluster manager responsibilities
+46.5 state publication
+46.6 elections
+46.7 coordination
+46.8 node discovery
+46.9 transport layer
+46.10 requests internas
+46.11 thread pools
+46.12 task management
+46.13 shard allocation deciders
+46.14 recovery internals
+46.15 peer recovery
+46.16 snapshot recovery
+46.17 replica promotion
+46.18 failure detection
+46.19 network partitions
+46.20 backpressure
+46.21 laboratorio: seguir el ciclo interno de una caída de nodo
+
+47. Monitoring del cluster
+47.1 Cluster Health API
+47.2 Nodes Stats API
+47.3 Cluster Stats API
+47.4 Indices Stats API
+47.5 cat APIs
+47.6 Pending Cluster Tasks
+47.7 Tasks API
+47.8 hot threads
+47.9 shard allocation explain
+47.10 segment stats
+47.11 translog stats
+47.12 JVM stats
+47.13 thread pool stats
+47.14 filesystem stats
+47.15 network stats
+47.16 caches
+47.17 Performance Analyzer
+47.18 monitorización externa
+47.19 Prometheus y exporters/integraciones
+47.20 OpenTelemetry
+47.21 dashboards operativos
+47.22 laboratorio: construir un panel de salud del cluster
+
+48. Logging y slow logs
+48.1 logging de OpenSearch
+48.2 Log4j2
+48.3 niveles de log
+48.4 logger API
+48.5 logs de servidor
+48.6 deprecation logs cuando correspondan
+48.7 audit logs
+48.8 indexing slow log
+48.9 search slow log
+48.10 thresholds
+48.11 niveles TRACE DEBUG INFO WARN
+48.12 rotación
+48.13 journald
+48.14 correlación temporal
+48.15 Data Prepper para logs del propio cluster
+48.16 laboratorio: habilitar slow logs y localizar consultas problemáticas
+
+49. Troubleshooting de índices y shards
+49.1 índices yellow
+49.2 índices red
+49.3 unassigned shards
+49.4 INITIALIZING
+49.5 RELOCATING
+49.6 cluster allocation explain
+49.7 allocation deciders
+49.8 disk watermark
+49.9 low watermark
+49.10 high watermark
+49.11 flood stage
+49.12 read-only block
+49.13 replica allocation
+49.14 node loss
+49.15 corrupt shard
+49.16 recovery failures
+49.17 mapping conflicts
+49.18 too many shards
+49.19 oversharding
+49.20 laboratorio: resolver un cluster yellow y red
+
+50. Troubleshooting de búsqueda e ingestión
+50.1 errores 400
+50.2 errores 401 y 403
+50.3 errores 404
+50.4 errores 409
+50.5 errores 429
+50.6 errores 5xx
+50.7 parsing exceptions
+50.8 mapping exceptions
+50.9 rejected executions
+50.10 bulk failures
+50.11 partial bulk failures
+50.12 Data Prepper pipeline errors
+50.13 DLQ
+50.14 backpressure
+50.15 timeouts
+50.16 circuit breaker exceptions
+50.17 query failures
+50.18 script failures
+50.19 slow queries
+50.20 laboratorio: diagnosticar una cadena de ingestión rota
+
+51. Troubleshooting de cluster y red
+51.1 node not joining
+51.2 discovery failures
+51.3 cluster-manager not discovered
+51.4 TLS transport errors
+51.5 certificate errors
+51.6 DNS
+51.7 firewall
+51.8 ports
+51.9 network.host
+51.10 publish_host
+51.11 bind_host
+51.12 split connectivity
+51.13 latency
+51.14 packet loss
+51.15 GC pauses
+51.16 node disconnects
+51.17 cluster state delays
+51.18 pending tasks
+51.19 master/cluster-manager instability
+51.20 rolling restart failures
+51.21 laboratorio: recuperar un cluster con fallos de red
+
+52. Backup, HA y disaster recovery
+52.1 objetivos RPO y RTO
+52.2 replicas no son backups
+52.3 snapshots
+52.4 snapshot repositories
+52.5 snapshot scheduling
+52.6 restore testing
+52.7 multi-AZ design
+52.8 allocation awareness
+52.9 quorum
+52.10 cluster-manager redundancy
+52.11 data node redundancy
+52.12 load balancing
+52.13 Dashboards HA
+52.14 Data Prepper HA
+52.15 cross-cluster replication
+52.16 cross-cluster search
+52.17 active-passive DR
+52.18 runbooks
+52.19 pruebas de desastre
+52.20 laboratorio: ejecutar un ejercicio completo de DR
+
+53. Upgrades y mantenimiento
+53.1 versionado
+53.2 release notes
+53.3 breaking changes
+53.4 compatibility
+53.5 upgrade planning
+53.6 snapshots previos
+53.7 plugin compatibility
+53.8 rolling upgrades cuando estén soportados
+53.9 full cluster restart cuando sea necesario
+53.10 node order
+53.11 cluster health durante upgrade
+53.12 mapping compatibility
+53.13 Dashboards compatibility
+53.14 Data Prepper compatibility
+53.15 Security plugin considerations
+53.16 rollback planning
+53.17 pruebas en staging
+53.18 laboratorio: diseñar y simular una actualización segura
+
+54. Automatización y APIs
+54.1 administración API-first
+54.2 curl scripts
+54.3 shell scripting
+54.4 Python clients
+54.5 Java clients
+54.6 JavaScript clients
+54.7 Go clients y clientes disponibles
+54.8 bulk loaders
+54.9 idempotencia
+54.10 index templates as code
+54.11 ISM policies as code
+54.12 alerting as code
+54.13 security configuration as code
+54.14 Dashboards saved objects
+54.15 CI/CD
+54.16 secret handling
+54.17 configuration management
+54.18 Ansible
+54.19 containers
+54.20 GitOps conceptual
+54.21 laboratorio: automatizar el aprovisionamiento de un entorno
+
+55. OpenSearch Dashboards — administración avanzada
+55.1 saved objects
+55.2 import y export
+55.3 multi-tenancy
+55.4 tenants
+55.5 permissions
+55.6 Dashboards security
+55.7 session management
+55.8 TLS
+55.9 reverse proxy
+55.10 base path
+55.11 logging
+55.12 performance
+55.13 plugins
+55.14 plugin management
+55.15 branding y personalización soportada
+55.16 Dev Tools
+55.17 workspaces o capacidades organizativas disponibles según versión
+55.18 backup de configuración
+55.19 alta disponibilidad
+55.20 troubleshooting
+55.21 laboratorio: administrar Dashboards para múltiples equipos
+
+56. Data Prepper — operación avanzada
+56.1 dimensionamiento
+56.2 workers
+56.3 buffer sizing
+56.4 batch tuning
+56.5 horizontal scaling
+56.6 load balancing
+56.7 backpressure
+56.8 acknowledgements
+56.9 retries
+56.10 DLQ
+56.11 persistent buffering cuando esté disponible
+56.12 pipeline isolation
+56.13 múltiples pipelines
+56.14 routes
+56.15 metrics
+56.16 logs
+56.17 health
+56.18 TLS
+56.19 secrets
+56.20 HA
+56.21 rolling changes
+56.22 benchmarking
+56.23 troubleshooting
+56.24 laboratorio: operar Data Prepper bajo carga
+
+57. Diseño de plataforma
+57.1 requisitos funcionales
+57.2 requisitos no funcionales
+57.3 volumen de ingestión
+57.4 retención
+57.5 cardinalidad
+57.6 tasa de búsqueda
+57.7 latencia objetivo
+57.8 RPO
+57.9 RTO
+57.10 capacity planning
+57.11 número de nodos
+57.12 roles de nodo
+57.13 número de shards
+57.14 tamaño de shards
+57.15 storage sizing
+57.16 heap sizing
+57.17 CPU sizing
+57.18 network sizing
+57.19 Data Prepper sizing
+57.20 Dashboards sizing
+57.21 seguridad
+57.22 multi-tenancy
+57.23 backup
+57.24 HA
+57.25 DR
+57.26 coste
+57.27 laboratorio: diseñar una plataforma para producción
+
+58. Buenas prácticas y anti-patrones
+58.1 evitar oversharding
+58.2 evitar mappings ilimitados
+58.3 evitar fielddata innecesario
+58.4 usar keyword correctamente
+58.5 controlar high cardinality
+58.6 evitar wildcards costosos
+58.7 evitar scripts innecesarios
+58.8 bulk correctamente dimensionado
+58.9 refresh interval apropiado
+58.10 replicas según disponibilidad
+58.11 snapshots verificados
+58.12 TLS siempre en producción
+58.13 RBAC mínimo
+58.14 secret management
+58.15 monitorización continua
+58.16 slow logs
+58.17 capacity planning
+58.18 testing de upgrades
+58.19 runbooks
+58.20 laboratorio: auditar una instalación deliberadamente defectuosa
+
+59. Internals y código fuente
+59.1 repositorios del proyecto
+59.2 arquitectura del código de OpenSearch
+59.3 módulos
+59.4 plugins
+59.5 server
+59.6 transport
+59.7 REST layer
+59.8 cluster layer
+59.9 index layer
+59.10 search layer
+59.11 Lucene integration
+59.12 thread pools
+59.13 settings framework
+59.14 plugin architecture
+59.15 OpenSearch Dashboards internals
+59.16 Data Prepper internals
+59.17 build system
+59.18 Gradle en OpenSearch
+59.19 Node.js ecosystem en Dashboards
+59.20 Java en Data Prepper
+59.21 tests
+59.22 contribución al proyecto
+59.23 laboratorio: navegar el código y localizar una funcionalidad
+
+60. Desarrollo de plugins y extensibilidad
+60.1 modelo de extensibilidad
+60.2 plugins de OpenSearch
+60.3 plugin lifecycle
+60.4 REST handlers
+60.5 settings
+60.6 actions
+60.7 search extensions
+60.8 analysis plugins
+60.9 custom analyzers
+60.10 security implications
+60.11 build y packaging
+60.12 compatibilidad de versiones
+60.13 testing
+60.14 plugins de Dashboards
+60.15 Data Prepper plugins
+60.16 sources personalizados
+60.17 processors personalizados
+60.18 sinks personalizados
+60.19 observabilidad del plugin
+60.20 laboratorio: construir un plugin mínimo o extensión educativa
+
+61. Proyecto final experto
+61.1 definir requisitos de una plataforma completa
+61.2 diseñar arquitectura de tres capas
+61.3 desplegar cluster OpenSearch multinodo
+61.4 configurar roles y allocation awareness
+61.5 habilitar TLS en transport y REST
+61.6 crear usuarios, roles y RBAC
+61.7 desplegar OpenSearch Dashboards
+61.8 desplegar Data Prepper en alta disponibilidad
+61.9 ingerir logs
+61.10 ingerir métricas
+61.11 ingerir trazas OpenTelemetry
+61.12 normalizar eventos
+61.13 diseñar mappings
+61.14 crear index templates
+61.15 crear aliases
+61.16 configurar ISM
+61.17 configurar snapshots
+61.18 construir Query DSL operativa
+61.19 construir consultas PPL
+61.20 crear agregaciones
+61.21 crear visualizaciones
+61.22 crear dashboards
+61.23 crear alertas
+61.24 configurar Notifications
+61.25 crear detector de anomalías
+61.26 integrar Security Analytics
+61.27 implementar búsqueda vectorial básica
+61.28 monitorizar cluster, JVM y shards
+61.29 habilitar slow logs
+61.30 probar pérdida de un nodo
+61.31 probar shard recovery
+61.32 probar restauración desde snapshot
+61.33 probar fallo de Data Prepper
+61.34 probar expiración o error de certificado en laboratorio
+61.35 realizar tuning de indexación
+61.36 realizar tuning de búsqueda
+61.37 ejecutar prueba de carga
+61.38 documentar RPO y RTO
+61.39 crear runbooks
+61.40 automatizar configuración repetible
+61.41 ejecutar simulacro de desastre
+61.42 auditar seguridad
+61.43 auditar rendimiento
+61.44 documentar arquitectura final
+61.45 laboratorio final: operar OpenSearch Stack como plataforma de producción

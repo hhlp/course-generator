@@ -1,47 +1,60 @@
 name: ansible
-title: ANSIBLE EN PROFUNDIDAD — FEDORA
-platform: Fedora Linux
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+title: "Ansible — de cero a experto absoluto"
+language: es
+platform:
+  primary: [Fedora, RHEL]
+  exclude: [Windows]
+level: zero-to-expert
+
 lesson_structure:
-  objective:
-    required: true
-    position: first
-  reading:
-    required: true
-  lab:
-    required: false
-  common_errors:
-    required: false
-  important_idea:
-    required: false
-  remember:
-    required: true
-    position: last
-    min_items: 3
-    max_items: 7
-quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-validation:
-  enabled: false
-  commands: []
+  objective_first: true
+  objective_heading: "🎯 OBJETIVO"
+  remember_last: true
+  remember_heading: "🧠 QUÉ DEBES RECORDAR"
+  remember_points: "3-7"
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+
+depth:
+  mode: deep
+  avoid_summary_only: true
+  include_internals_when_relevant: true
+  include_troubleshooting: true
+  include_security: true
+  include_validation: true
+  include_idempotency: true
+
+milestones:
+  rhce_ansible:
+    block: 16
+    label: "HITO — nivel RHCE / Ansible"
+    meaning: "Checkpoint RHCE/Ansible; el PATH continúa hacia Ansible/AAP profesional y experto."
+
+scope:
+  ansible_core: true
+  rhel_systems: true
+  networking: true
+  containers: true
+  kubernetes_openshift: true
+  cloud: true
+  iac: true
+  cicd: true
+  testing: true
+  awx: true
+  aap: true
+  execution_environments: true
+  event_driven_ansible: true
+  module_development: true
+  plugin_development: true
+  internals: true
+  security: true
+  scale_ha: true
+  observability_troubleshooting: true
+  governance: true
+  enterprise_architecture: true
+
+final_project:
+  block: 38
+  lessons: 103

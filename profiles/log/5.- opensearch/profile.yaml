@@ -1,0 +1,101 @@
+name: opensearch-stack
+title: "OPENSEARCH STACK EN PROFUNDIDAD"
+
+language: es
+platform: fedora
+level: zero-to-expert
+
+domain: domain.md
+bibliography: bibliografy.md
+
+course:
+  path: initial.txt
+  style: technical
+  depth: deep
+  lesson_scope: one_numbered_entry
+  preserve_path_order: true
+  merge_lessons: false
+
+pedagogy:
+  objective:
+    required: true
+    heading: "🎯 OBJETIVO"
+    first_section: true
+  laboratory:
+    heading: "🧪 Laboratorio / ejemplos"
+    when_useful: true
+  common_errors:
+    heading: "⚠️ Errores frecuentes"
+    when_useful: true
+  key_idea:
+    heading: "💡 Idea importante"
+    when_useful: true
+  remember:
+    required: true
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    last_section: true
+    min_points: 3
+    max_points: 7
+
+content:
+  explain_concepts: true
+  explain_architecture: true
+  explain_internals_when_relevant: true
+  include_commands: true
+  include_configuration: true
+  include_apis: true
+  include_validation_steps: true
+  include_troubleshooting: true
+  distinguish_lab_from_production: true
+  avoid_superficial_summaries: true
+
+stack:
+  - OpenSearch
+  - Data Prepper
+  - OpenSearch Dashboards
+  - OpenTelemetry
+
+focus:
+  - indexing
+  - mappings
+  - analysis
+  - query_dsl
+  - relevance
+  - aggregations
+  - shards
+  - replicas
+  - ingest_pipelines
+  - data_prepper
+  - dashboards
+  - observability
+  - alerting
+  - anomaly_detection
+  - security_analytics
+  - security
+  - index_state_management
+  - snapshots
+  - clustering
+  - high_availability
+  - performance
+  - troubleshooting
+  - internals
+
+examples:
+  shell: bash
+  api_client: curl
+  structured_data: json
+  configuration: yaml
+  use_realistic_observability_data: true
+
+sources:
+  primary:
+    - OpenSearch official documentation
+    - Data Prepper official documentation
+  secondary:
+    - OpenTelemetry official documentation
+    - OpenSearch Project source repositories
+    - Apache Lucene documentation
+    - Fedora documentation
+  prefer_official: true
+  verify_version_dependent_features: true
+  do_not_treat_elasticsearch_docs_as_opensearch_authority: true

@@ -1,0 +1,1923 @@
+0. Fundamentos de PostgreSQL y bases de datos
+0.1 qué es un DBMS
+0.2 bases de datos relacionales
+0.3 SQL frente a PostgreSQL
+0.4 PostgreSQL como servidor
+0.5 arquitectura cliente-servidor
+0.6 proceso servidor
+0.7 clientes PostgreSQL
+0.8 cluster PostgreSQL
+0.9 database
+0.10 schema
+0.11 relation
+0.12 table
+0.13 index
+0.14 view
+0.15 sequence
+0.16 role
+0.17 tablespace
+0.18 transaction
+0.19 ACID
+0.20 MVCC
+0.21 WAL
+0.22 checkpoint
+0.23 VACUUM
+0.24 autovacuum
+0.25 catálogo del sistema
+0.26 extensiones
+0.27 versiones PostgreSQL
+0.28 ciclo de versiones
+0.29 major releases
+0.30 minor releases
+0.31 compatibilidad
+0.32 documentación oficial
+0.33 laboratorio: construir el mapa conceptual de PostgreSQL
+
+
+1. Instalación de PostgreSQL
+1.1 métodos de instalación
+1.2 paquetes de la distribución
+1.3 repositorio PostgreSQL PGDG
+1.4 PostgreSQL en Fedora
+1.5 PostgreSQL en RHEL
+1.6 paquetes cliente
+1.7 paquetes servidor
+1.8 paquetes contrib
+1.9 localizar archivos instalados
+1.10 ejecutables PostgreSQL
+1.11 postgres
+1.12 postmaster
+1.13 psql
+1.14 initdb
+1.15 pg_ctl
+1.16 createdb
+1.17 dropdb
+1.18 createuser
+1.19 dropuser
+1.20 pg_config
+1.21 pg_isready
+1.22 pg_controldata
+1.23 pg_resetwal
+1.24 pg_upgrade
+1.25 herramientas pg_*
+1.26 systemd
+1.27 unidades PostgreSQL
+1.28 iniciar el servidor
+1.29 detener el servidor
+1.30 restart
+1.31 reload
+1.32 status
+1.33 journalctl
+1.34 laboratorio: instalar PostgreSQL desde cero
+
+
+2. Inicialización del cluster
+2.1 concepto de database cluster
+2.2 initdb
+2.3 PGDATA
+2.4 propietario del cluster
+2.5 permisos
+2.6 locale
+2.7 encoding
+2.8 collation
+2.9 ctype
+2.10 ICU
+2.11 libc
+2.12 checksums
+2.13 authentication inicial
+2.14 password encryption
+2.15 estructura creada por initdb
+2.16 postgresql.conf
+2.17 pg_hba.conf
+2.18 pg_ident.conf
+2.19 PG_VERSION
+2.20 base/
+2.21 global/
+2.22 pg_wal/
+2.23 pg_tblspc/
+2.24 pg_stat/
+2.25 pg_stat_tmp/
+2.26 pg_replslot/
+2.27 pg_logical/
+2.28 laboratorio: inicializar y diseccionar un cluster
+
+
+3. Arquitectura del servidor PostgreSQL
+3.1 arquitectura multiproceso
+3.2 proceso postgres principal
+3.3 backend processes
+3.4 conexión cliente
+3.5 proceso por conexión
+3.6 background processes
+3.7 checkpointer
+3.8 background writer
+3.9 WAL writer
+3.10 autovacuum launcher
+3.11 autovacuum workers
+3.12 archiver
+3.13 stats subsystem
+3.14 WAL sender
+3.15 WAL receiver
+3.16 logical replication launcher
+3.17 parallel workers
+3.18 shared memory
+3.19 local memory
+3.20 shared buffers
+3.21 buffer manager
+3.22 process memory
+3.23 locks
+3.24 LWLocks
+3.25 spinlocks
+3.26 latches
+3.27 signals
+3.28 IPC
+3.29 laboratorio: observar la arquitectura de un servidor real
+
+
+4. Anatomía física de un cluster
+4.1 PGDATA
+4.2 estructura física
+4.3 database OID
+4.4 relation OID
+4.5 relfilenode
+4.6 forks
+4.7 main fork
+4.8 FSM
+4.9 VM
+4.10 init fork
+4.11 relation files
+4.12 segmentos de 1 GB
+4.13 pages
+4.14 bloques
+4.15 tamaño de página
+4.16 page header
+4.17 tuples
+4.18 tuple header
+4.19 line pointers
+4.20 TOAST
+4.21 TOAST tables
+4.22 almacenamiento de valores grandes
+4.23 catálogo ↔ archivos físicos
+4.24 pg_relation_filepath()
+4.25 pg_filenode_relation()
+4.26 laboratorio: localizar físicamente tablas e índices
+
+
+5. Administración básica del servidor
+5.1 pg_ctl
+5.2 systemctl
+5.3 startup
+5.4 shutdown
+5.5 smart shutdown
+5.6 fast shutdown
+5.7 immediate shutdown
+5.8 restart
+5.9 reload
+5.10 SIGHUP
+5.11 configuración reloadable
+5.12 configuración que requiere restart
+5.13 pg_isready
+5.14 estado del servidor
+5.15 PID
+5.16 postmaster.pid
+5.17 sockets Unix
+5.18 TCP
+5.19 puertos
+5.20 múltiples clusters
+5.21 laboratorio: ciclo operativo completo del servidor
+
+
+6. Configuración del servidor
+6.1 postgresql.conf
+6.2 parámetros
+6.3 unidades
+6.4 tipos de parámetros
+6.5 context
+6.6 internal
+6.7 postmaster
+6.8 sighup
+6.9 backend
+6.10 superuser
+6.11 user
+6.12 SHOW
+6.13 SET
+6.14 RESET
+6.15 ALTER SYSTEM
+6.16 postgresql.auto.conf
+6.17 ALTER DATABASE SET
+6.18 ALTER ROLE SET
+6.19 precedence
+6.20 pg_settings
+6.21 source
+6.22 sourcefile
+6.23 pending_restart
+6.24 include
+6.25 include_if_exists
+6.26 include_dir
+6.27 configuración modular
+6.28 laboratorio: construir una configuración modular
+
+
+7. Conectividad
+7.1 listen_addresses
+7.2 port
+7.3 Unix-domain sockets
+7.4 TCP/IP
+7.5 IPv4
+7.6 IPv6
+7.7 DNS
+7.8 client connection
+7.9 libpq
+7.10 connection strings
+7.11 URI
+7.12 environment variables
+7.13 service files
+7.14 ~/.pg_service.conf
+7.15 pg_service.conf
+7.16 .pgpass
+7.17 PGPASSFILE
+7.18 keepalives
+7.19 connection timeout
+7.20 application_name
+7.21 firewalld
+7.22 SELinux
+7.23 laboratorio: acceso local y remoto seguro
+
+
+8. psql para administración
+8.1 psql
+8.2 conexión
+8.3 metacomandos
+8.4 \l
+8.5 \c
+8.6 \d
+8.7 \dt
+8.8 \di
+8.9 \dv
+8.10 \du
+8.11 \dn
+8.12 \dx
+8.13 \db
+8.14 \conninfo
+8.15 \x
+8.16 \timing
+8.17 \watch
+8.18 \copy
+8.19 variables
+8.20 scripting
+8.21 ejecución no interactiva
+8.22 ON_ERROR_STOP
+8.23 exit status
+8.24 laboratorio: consola administrativa PostgreSQL
+
+
+9. Bases de datos y schemas
+9.1 CREATE DATABASE
+9.2 DROP DATABASE
+9.3 ALTER DATABASE
+9.4 templates
+9.5 template0
+9.6 template1
+9.7 encoding
+9.8 locale
+9.9 connection limits
+9.10 schemas
+9.11 public
+9.12 search_path
+9.13 ownership
+9.14 privileges
+9.15 diseño multi-schema
+9.16 laboratorio: administrar múltiples bases de datos
+
+
+10. Roles y usuarios
+10.1 roles
+10.2 users
+10.3 CREATE ROLE
+10.4 CREATE USER
+10.5 LOGIN
+10.6 SUPERUSER
+10.7 CREATEDB
+10.8 CREATEROLE
+10.9 REPLICATION
+10.10 BYPASSRLS
+10.11 INHERIT
+10.12 SET
+10.13 role membership
+10.14 GRANT role
+10.15 ADMIN OPTION
+10.16 SET OPTION
+10.17 INHERIT OPTION
+10.18 ownership
+10.19 role hierarchy
+10.20 predefined roles
+10.21 pg_monitor
+10.22 pg_read_all_settings
+10.23 pg_read_all_stats
+10.24 pg_stat_scan_tables
+10.25 pg_signal_backend
+10.26 principio de mínimo privilegio
+10.27 laboratorio: diseñar una jerarquía de roles
+
+
+11. Autenticación
+11.1 pg_hba.conf
+11.2 estructura de reglas
+11.3 orden de evaluación
+11.4 local
+11.5 host
+11.6 hostssl
+11.7 hostnossl
+11.8 database
+11.9 user
+11.10 address
+11.11 auth-method
+11.12 trust
+11.13 reject
+11.14 password
+11.15 MD5
+11.16 SCRAM-SHA-256
+11.17 peer
+11.18 ident
+11.19 cert
+11.20 PAM
+11.21 LDAP
+11.22 RADIUS
+11.23 SSPI/GSSAPI cuando corresponda
+11.24 pg_hba_file_rules
+11.25 diagnóstico de autenticación
+11.26 laboratorio: construir una política pg_hba.conf segura
+
+
+12. TLS
+12.1 SSL/TLS
+12.2 certificados
+12.3 server.crt
+12.4 server.key
+12.5 CA
+12.6 ssl
+12.7 ssl_cert_file
+12.8 ssl_key_file
+12.9 ssl_ca_file
+12.10 ssl_crl_file
+12.11 TLS versions
+12.12 cipher configuration
+12.13 client certificates
+12.14 certificate authentication
+12.15 sslmode
+12.16 verify-ca
+12.17 verify-full
+12.18 pg_stat_ssl
+12.19 renovación de certificados
+12.20 laboratorio: desplegar PostgreSQL con TLS
+
+
+13. Privilegios y seguridad
+13.1 ownership
+13.2 GRANT
+13.3 REVOKE
+13.4 database privileges
+13.5 schema privileges
+13.6 table privileges
+13.7 column privileges
+13.8 sequence privileges
+13.9 function privileges
+13.10 procedure privileges
+13.11 default privileges
+13.12 ALTER DEFAULT PRIVILEGES
+13.13 PUBLIC
+13.14 SECURITY DEFINER
+13.15 SECURITY INVOKER
+13.16 search_path y seguridad
+13.17 Row Level Security
+13.18 policies
+13.19 mínimo privilegio
+13.20 separación DBA/aplicación
+13.21 auditoría conceptual
+13.22 laboratorio: hardening de privilegios
+
+
+14. Administración mediante SQL y catálogos PostgreSQL
+14.1 PostgreSQL como interfaz administrativa
+14.2 SQL administrativo frente a SQL de aplicación
+14.3 base postgres como base administrativa convencional
+14.4 template0
+14.5 template1
+14.6 objetos globales frente a objetos por database
+14.7 pg_catalog
+14.8 information_schema
+14.9 system catalogs
+14.10 system views
+14.11 dynamic statistics views
+14.12 administrative functions
+14.13 information functions
+14.14 pg_database
+14.15 pg_roles
+14.16 pg_authid
+14.17 pg_namespace
+14.18 pg_class
+14.19 pg_attribute
+14.20 pg_type
+14.21 pg_proc
+14.22 pg_index
+14.23 pg_constraint
+14.24 pg_tablespace
+14.25 pg_settings
+14.26 pg_file_settings
+14.27 pg_hba_file_rules
+14.28 pg_ident_file_mappings
+14.29 pg_stat_activity
+14.30 pg_locks
+14.31 pg_stat_database
+14.32 pg_stat_user_tables
+14.33 pg_stat_user_indexes
+14.34 pg_statio_*
+14.35 pg_stat_wal
+14.36 pg_stat_io
+14.37 pg_stat_checkpointer
+14.38 pg_stat_archiver
+14.39 pg_stat_replication
+14.40 pg_stat_wal_receiver
+14.41 pg_replication_slots
+14.42 pg_stat_progress_*
+14.43 funciones de tamaño
+14.44 funciones WAL
+14.45 funciones de backup
+14.46 funciones de recovery
+14.47 funciones de control del servidor
+14.48 funciones de señalización de backends
+14.49 OID
+14.50 tipos reg*
+14.51 relaciones entre catálogos
+14.52 descubrir objetos sin memorizar catálogos
+14.53 construir consultas administrativas reutilizables
+14.54 seguridad al consultar catálogos
+14.55 laboratorio: construir una DBA toolbox exclusivamente con SQL
+
+
+15. Estadísticas y vistas administrativas
+15.1 cumulative statistics system
+15.2 pg_stat_activity
+15.3 pg_stat_database
+15.4 pg_stat_all_tables
+15.5 pg_stat_user_tables
+15.6 pg_stat_all_indexes
+15.7 pg_stat_user_indexes
+15.8 pg_statio_*
+15.9 pg_stat_bgwriter
+15.10 pg_stat_checkpointer
+15.11 pg_stat_wal
+15.12 pg_stat_archiver
+15.13 pg_stat_replication
+15.14 pg_stat_replication_slots
+15.15 pg_stat_ssl
+15.16 pg_stat_progress_*
+15.17 reset de estadísticas
+15.18 stats_fetch_consistency
+15.19 laboratorio: construir un dashboard SQL de diagnóstico
+
+
+16. Transacciones
+16.1 BEGIN
+16.2 COMMIT
+16.3 ROLLBACK
+16.4 SAVEPOINT
+16.5 transaction ID
+16.6 XID
+16.7 snapshots
+16.8 xmin
+16.9 xmax
+16.10 visibility
+16.11 transaction isolation
+16.12 Read Committed
+16.13 Repeatable Read
+16.14 Serializable
+16.15 anomalies
+16.16 SSI
+16.17 transaction status
+16.18 subtransactions
+16.19 prepared transactions
+16.20 two-phase commit
+16.21 laboratorio: observar MVCC desde varias sesiones
+
+
+17. MVCC en profundidad
+17.1 diseño MVCC PostgreSQL
+17.2 tuple versions
+17.3 snapshots
+17.4 visibility rules
+17.5 dead tuples
+17.6 HOT
+17.7 HOT updates
+17.8 pruning
+17.9 page pruning
+17.10 hint bits
+17.11 freezing
+17.12 transaction ID wraparound
+17.13 MultiXact
+17.14 MultiXact wraparound
+17.15 laboratorio: diseccionar el ciclo de vida de una tuple
+
+
+18. VACUUM
+18.1 por qué existe VACUUM
+18.2 VACUUM
+18.3 VACUUM FULL
+18.4 ANALYZE
+18.5 VACUUM ANALYZE
+18.6 dead tuples
+18.7 reclaiming space
+18.8 visibility map
+18.9 freezing
+18.10 aggressive vacuum
+18.11 vacuum_freeze_min_age
+18.12 vacuum_freeze_table_age
+18.13 vacuum_failsafe_age
+18.14 pg_stat_progress_vacuum
+18.15 VERBOSE
+18.16 vacuum cost delay
+18.17 vacuum cost limit
+18.18 bloat
+18.19 laboratorio: provocar y diagnosticar bloat
+
+
+19. Autovacuum
+19.1 autovacuum launcher
+19.2 workers
+19.3 autovacuum
+19.4 thresholds
+19.5 scale factors
+19.6 autovacuum_vacuum_threshold
+19.7 autovacuum_vacuum_scale_factor
+19.8 autovacuum_analyze_threshold
+19.9 autovacuum_analyze_scale_factor
+19.10 insert thresholds
+19.11 worker limits
+19.12 cost limits
+19.13 configuración por tabla
+19.14 freeze
+19.15 anti-wraparound vacuum
+19.16 detectar autovacuum
+19.17 bloquear autovacuum
+19.18 tuning para tablas grandes
+19.19 laboratorio: ajustar autovacuum según workload
+
+
+20. ANALYZE y estadísticas del planner
+20.1 ANALYZE
+20.2 statistics target
+20.3 pg_stats
+20.4 histogram
+20.5 most common values
+20.6 null fraction
+20.7 n_distinct
+20.8 correlation
+20.9 extended statistics
+20.10 dependencies
+20.11 ndistinct
+20.12 MCV
+20.13 CREATE STATISTICS
+20.14 estadísticas incorrectas
+20.15 misestimation
+20.16 laboratorio: corregir estimaciones del planner
+
+
+21. Locks y concurrencia
+21.1 locking
+21.2 table-level locks
+21.3 row-level locks
+21.4 page-level locks
+21.5 advisory locks
+21.6 heavyweight locks
+21.7 lightweight locks
+21.8 lock modes
+21.9 compatibility matrix
+21.10 pg_locks
+21.11 blocking
+21.12 blockers
+21.13 wait events
+21.14 deadlocks
+21.15 deadlock_timeout
+21.16 lock_timeout
+21.17 statement_timeout
+21.18 idle_in_transaction_session_timeout
+21.19 SELECT FOR UPDATE
+21.20 FOR NO KEY UPDATE
+21.21 FOR SHARE
+21.22 FOR KEY SHARE
+21.23 SKIP LOCKED
+21.24 NOWAIT
+21.25 laboratorio: construir un detector de bloqueos
+
+
+22. WAL
+22.1 Write-Ahead Logging
+22.2 propósito
+22.3 WAL records
+22.4 LSN
+22.5 pg_wal
+22.6 WAL segments
+22.7 WAL buffers
+22.8 WAL writer
+22.9 wal_level
+22.10 full_page_writes
+22.11 WAL compression
+22.12 wal_sync_method
+22.13 wal_writer_delay
+22.14 wal_buffers
+22.15 min_wal_size
+22.16 max_wal_size
+22.17 WAL recycling
+22.18 WAL removal
+22.19 pg_current_wal_lsn()
+22.20 pg_wal_lsn_diff()
+22.21 pg_waldump
+22.22 laboratorio: observar la generación de WAL
+
+
+23. Checkpoints
+23.1 checkpoint
+23.2 consistencia
+23.3 checkpointer
+23.4 checkpoint_timeout
+23.5 max_wal_size
+23.6 checkpoint_completion_target
+23.7 checkpoint_warning
+23.8 forced checkpoints
+23.9 checkpoint I/O
+23.10 pg_stat_checkpointer
+23.11 relación WAL/checkpoint
+23.12 tuning
+23.13 laboratorio: analizar comportamiento de checkpoints
+
+
+24. Memoria
+24.1 arquitectura de memoria
+24.2 shared memory
+24.3 private memory
+24.4 shared_buffers
+24.5 work_mem
+24.6 maintenance_work_mem
+24.7 autovacuum_work_mem
+24.8 temp_buffers
+24.9 wal_buffers
+24.10 huge_pages
+24.11 dynamic shared memory
+24.12 effective_cache_size
+24.13 multiplicación de work_mem
+24.14 memoria por conexión
+24.15 memoria por operación
+24.16 riesgo de OOM
+24.17 Linux memory management
+24.18 laboratorio: modelar consumo máximo de memoria
+
+
+25. Almacenamiento e I/O
+25.1 almacenamiento PostgreSQL
+25.2 filesystem
+25.3 page cache
+25.4 fsync
+25.5 synchronous_commit
+25.6 wal_sync_method
+25.7 random_page_cost
+25.8 seq_page_cost
+25.9 effective_io_concurrency
+25.10 maintenance_io_concurrency
+25.11 SSD
+25.12 NVMe
+25.13 HDD
+25.14 RAID
+25.15 SAN
+25.16 network storage
+25.17 filesystem considerations
+25.18 Linux I/O
+25.19 IOPS
+25.20 latency
+25.21 throughput
+25.22 pg_stat_io
+25.23 laboratorio: correlacionar PostgreSQL con I/O del sistema
+
+
+26. Tablespaces
+26.1 tablespaces
+26.2 pg_default
+26.3 pg_global
+26.4 CREATE TABLESPACE
+26.5 ubicación física
+26.6 pg_tblspc
+26.7 symbolic links
+26.8 ownership
+26.9 mover objetos
+26.10 ALTER TABLE SET TABLESPACE
+26.11 ALTER DATABASE SET TABLESPACE
+26.12 índices
+26.13 backup
+26.14 riesgos operativos
+26.15 laboratorio: separar almacenamiento físicamente
+
+
+27. Índices para administradores
+27.1 B-tree
+27.2 Hash
+27.3 GiST
+27.4 SP-GiST
+27.5 GIN
+27.6 BRIN
+27.7 index size
+27.8 index scans
+27.9 unused indexes
+27.10 duplicate indexes
+27.11 invalid indexes
+27.12 index bloat
+27.13 REINDEX
+27.14 REINDEX CONCURRENTLY
+27.15 CREATE INDEX CONCURRENTLY
+27.16 fillfactor
+27.17 pg_stat_user_indexes
+27.18 pgstattuple
+27.19 pageinspect
+27.20 laboratorio: auditoría completa de índices
+
+
+28. Planner y executor
+28.1 parser
+28.2 analyzer
+28.3 rewriter
+28.4 planner
+28.5 optimizer
+28.6 executor
+28.7 plan nodes
+28.8 sequential scan
+28.9 index scan
+28.10 index-only scan
+28.11 bitmap scans
+28.12 nested loop
+28.13 hash join
+28.14 merge join
+28.15 sort
+28.16 aggregate
+28.17 parallel query
+28.18 cost model
+28.19 cardinality estimates
+28.20 laboratorio: relacionar configuración con planes
+
+
+29. EXPLAIN
+29.1 EXPLAIN
+29.2 EXPLAIN ANALYZE
+29.3 BUFFERS
+29.4 WAL
+29.5 SETTINGS
+29.6 VERBOSE
+29.7 FORMAT JSON
+29.8 estimated cost
+29.9 actual time
+29.10 rows
+29.11 loops
+29.12 shared hit
+29.13 shared read
+29.14 temp read/write
+29.15 planning time
+29.16 execution time
+29.17 detectar problemas
+29.18 laboratorio: análisis sistemático de planes
+
+
+30. Query performance
+30.1 metodología de tuning
+30.2 baseline
+30.3 workload
+30.4 slow queries
+30.5 log_min_duration_statement
+30.6 auto_explain
+30.7 pg_stat_statements
+30.8 queryid
+30.9 mean_exec_time
+30.10 total_exec_time
+30.11 calls
+30.12 shared blocks
+30.13 temp blocks
+30.14 WAL generado
+30.15 top queries
+30.16 regression
+30.17 laboratorio: encontrar las consultas responsables de carga
+
+
+31. Connection management
+31.1 coste de una conexión
+31.2 max_connections
+31.3 reserved_connections
+31.4 superuser_reserved_connections
+31.5 idle connections
+31.6 connection storms
+31.7 pooling
+31.8 session pooling
+31.9 transaction pooling
+31.10 statement pooling
+31.11 PgBouncer
+31.12 arquitectura PgBouncer
+31.13 configuración
+31.14 pool_size
+31.15 límites
+31.16 prepared statements
+31.17 monitoring
+31.18 HA y PgBouncer
+31.19 laboratorio: desplegar PgBouncer
+
+
+32. Logging
+32.1 logging_collector
+32.2 stderr
+32.3 csvlog
+32.4 jsonlog
+32.5 syslog
+32.6 log_destination
+32.7 log_directory
+32.8 log_filename
+32.9 log_rotation_age
+32.10 log_rotation_size
+32.11 log_line_prefix
+32.12 log_connections
+32.13 log_disconnections
+32.14 log_duration
+32.15 log_min_duration_statement
+32.16 log_lock_waits
+32.17 log_checkpoints
+32.18 log_autovacuum_min_duration
+32.19 log_temp_files
+32.20 log_statement
+32.21 log_min_error_statement
+32.22 application_name
+32.23 journalctl
+32.24 rotación
+32.25 laboratorio: diseñar logging de producción
+
+
+33. Monitorización
+33.1 metodología
+33.2 disponibilidad
+33.3 conexiones
+33.4 transactions
+33.5 TPS
+33.6 cache hit
+33.7 locks
+33.8 deadlocks
+33.9 checkpoints
+33.10 WAL
+33.11 autovacuum
+33.12 replication lag
+33.13 table bloat
+33.14 index usage
+33.15 temporary files
+33.16 database size
+33.17 table size
+33.18 index size
+33.19 pg_stat_activity
+33.20 pg_stat_database
+33.21 pg_stat_io
+33.22 pg_stat_statements
+33.23 métricas del SO
+33.24 alerting
+33.25 laboratorio: construir un sistema de monitorización
+
+
+34. Backup lógico
+34.1 estrategias de backup
+34.2 backup lógico frente a físico
+34.3 pg_dump
+34.4 plain
+34.5 custom
+34.6 directory
+34.7 tar
+34.8 pg_dumpall
+34.9 globals
+34.10 roles
+34.11 schemas
+34.12 tablas
+34.13 data-only
+34.14 schema-only
+34.15 parallel dump
+34.16 pg_restore
+34.17 parallel restore
+34.18 ownership
+34.19 privileges
+34.20 consistencia
+34.21 verificación
+34.22 laboratorio: backup y restore completo
+
+
+35. Backup físico
+35.1 physical backup
+35.2 base backup
+35.3 pg_basebackup
+35.4 streaming
+35.5 backup manifests
+35.6 pg_verifybackup
+35.7 WAL necesario
+35.8 checkpoints
+35.9 tablespaces
+35.10 replication slots
+35.11 backup desde standby
+35.12 backup consistency
+35.13 estrategia de retención
+35.14 laboratorio: recuperar un servidor desde backup físico
+
+
+36. Archivado WAL
+36.1 continuous archiving
+36.2 archive_mode
+36.3 archive_command
+36.4 archive_library
+36.5 archive_timeout
+36.6 pg_stat_archiver
+36.7 fallo de archivado
+36.8 acumulación de pg_wal
+36.9 retención
+36.10 integridad
+36.11 almacenamiento remoto
+36.12 compresión
+36.13 seguridad
+36.14 laboratorio: implementar un archivo WAL
+
+
+37. PITR
+37.1 Point-in-Time Recovery
+37.2 base backup
+37.3 WAL archive
+37.4 recovery.signal
+37.5 restore_command
+37.6 recovery_target
+37.7 recovery_target_time
+37.8 recovery_target_xid
+37.9 recovery_target_name
+37.10 recovery_target_lsn
+37.11 recovery_target_inclusive
+37.12 recovery_target_action
+37.13 timeline
+37.14 history files
+37.15 promoción
+37.16 validación
+37.17 laboratorio: recuperar una base al segundo anterior a un DROP TABLE
+
+
+38. Disaster Recovery
+38.1 disaster recovery
+38.2 RPO
+38.3 RTO
+38.4 failure domains
+38.5 backup strategy
+38.6 3-2-1
+38.7 offsite backups
+38.8 immutable backups
+38.9 cifrado
+38.10 restore testing
+38.11 runbooks
+38.12 pérdida del servidor
+38.13 corrupción
+38.14 pérdida del datacenter
+38.15 pérdida accidental de datos
+38.16 ransomware
+38.17 laboratorio: simulacro completo de desastre
+
+
+39. Replicación física
+39.1 streaming replication
+39.2 primary
+39.3 standby
+39.4 WAL sender
+39.5 WAL receiver
+39.6 replication protocol
+39.7 replication role
+39.8 pg_hba.conf
+39.9 primary_conninfo
+39.10 standby.signal
+39.11 pg_basebackup
+39.12 hot standby
+39.13 hot_standby
+39.14 pg_stat_replication
+39.15 pg_stat_wal_receiver
+39.16 replication lag
+39.17 send LSN
+39.18 write LSN
+39.19 flush LSN
+39.20 replay LSN
+39.21 laboratorio: construir primary + standby
+
+
+40. Replicación síncrona
+40.1 asynchronous replication
+40.2 synchronous replication
+40.3 synchronous_commit
+40.4 synchronous_standby_names
+40.5 FIRST
+40.6 ANY
+40.7 quorum
+40.8 remote_write
+40.9 on
+40.10 remote_apply
+40.11 latency
+40.12 availability
+40.13 durability
+40.14 quorum design
+40.15 laboratorio: comparar replicación async y sync
+
+
+41. Replication slots
+41.1 replication slots
+41.2 physical slots
+41.3 logical slots
+41.4 pg_replication_slots
+41.5 restart_lsn
+41.6 confirmed_flush_lsn
+41.7 WAL retention
+41.8 max_slot_wal_keep_size
+41.9 inactive slots
+41.10 slots perdidos
+41.11 failover slots
+41.12 riesgos de disco
+41.13 monitoring
+41.14 laboratorio: provocar retención de WAL mediante un slot
+
+
+42. Cascading replication
+42.1 cascading standby
+42.2 topologías
+42.3 upstream
+42.4 downstream
+42.5 primary_conninfo
+42.6 slots
+42.7 lag acumulado
+42.8 failure scenarios
+42.9 reconfiguration
+42.10 laboratorio: primary → standby → standby
+
+
+43. Failover y switchover
+43.1 failover
+43.2 switchover
+43.3 promotion
+43.4 pg_ctl promote
+43.5 pg_promote()
+43.6 timeline
+43.7 split brain
+43.8 fencing
+43.9 STONITH conceptual
+43.10 old primary
+43.11 reintegración
+43.12 pg_rewind
+43.13 prerequisites pg_rewind
+43.14 recovery
+43.15 client redirection
+43.16 laboratorio: failover manual completo
+
+
+44. Alta disponibilidad
+44.1 HA
+44.2 disponibilidad
+44.3 SPOF
+44.4 quorum
+44.5 consensus
+44.6 leader election
+44.7 fencing
+44.8 watchdog
+44.9 Patroni
+44.10 distributed configuration store
+44.11 etcd
+44.12 Consul
+44.13 HAProxy
+44.14 PgBouncer
+44.15 VIP
+44.16 DNS
+44.17 automatic failover
+44.18 split brain prevention
+44.19 synchronous replication
+44.20 HA architecture
+44.21 laboratorio: cluster PostgreSQL HA
+
+
+45. Replicación lógica
+45.1 logical decoding
+45.2 logical replication
+45.3 publication
+45.4 subscription
+45.5 publisher
+45.6 subscriber
+45.7 replication identity
+45.8 REPLICA IDENTITY
+45.9 initial synchronization
+45.10 table synchronization
+45.11 logical replication workers
+45.12 slots
+45.13 pg_stat_subscription
+45.14 conflicts
+45.15 DDL limitations
+45.16 sequences
+45.17 row filters
+45.18 column lists
+45.19 binary transfer
+45.20 bidirectional considerations
+45.21 laboratorio: replicación selectiva entre clusters
+
+
+46. Logical decoding
+46.1 WAL decoding
+46.2 output plugins
+46.3 logical replication slots
+46.4 pg_logical_slot_get_changes()
+46.5 pg_logical_slot_peek_changes()
+46.6 decoding lifecycle
+46.7 restart_lsn
+46.8 confirmed_flush_lsn
+46.9 CDC
+46.10 Debezium conceptual
+46.11 Kafka conceptual
+46.12 laboratorio: construir un flujo CDC básico
+
+
+47. Particionamiento administrativo
+47.1 declarative partitioning
+47.2 range
+47.3 list
+47.4 hash
+47.5 partition pruning
+47.6 partition-wise operations
+47.7 default partition
+47.8 attach partition
+47.9 detach partition
+47.10 maintenance
+47.11 indexes
+47.12 constraints
+47.13 autovacuum
+47.14 estadísticas
+47.15 backup
+47.16 lifecycle management
+47.17 laboratorio: administrar una tabla temporal masiva
+
+
+48. Mantenimiento de tablas
+48.1 VACUUM
+48.2 ANALYZE
+48.3 REINDEX
+48.4 CLUSTER
+48.5 VACUUM FULL
+48.6 pg_repack
+48.7 bloat
+48.8 fillfactor
+48.9 HOT
+48.10 maintenance windows
+48.11 concurrent operations
+48.12 table rewrite
+48.13 lock impact
+48.14 laboratorio: mantenimiento con mínima indisponibilidad
+
+
+49. Extensiones
+49.1 extension framework
+49.2 CREATE EXTENSION
+49.3 ALTER EXTENSION
+49.4 DROP EXTENSION
+49.5 pg_available_extensions
+49.6 pg_extension
+49.7 contrib
+49.8 pg_stat_statements
+49.9 pgstattuple
+49.10 pageinspect
+49.11 amcheck
+49.12 postgres_fdw
+49.13 dblink
+49.14 pg_trgm
+49.15 actualización de extensiones
+49.16 compatibilidad con upgrades
+49.17 seguridad
+49.18 laboratorio: administrar extensiones de producción
+
+
+50. Foreign Data Wrappers
+50.1 SQL/MED
+50.2 FDW
+50.3 foreign server
+50.4 user mapping
+50.5 foreign table
+50.6 postgres_fdw
+50.7 pushdown
+50.8 join pushdown
+50.9 aggregate pushdown
+50.10 remote transactions
+50.11 connection management
+50.12 seguridad
+50.13 performance
+50.14 laboratorio: federar dos servidores PostgreSQL
+
+
+51. Background workers y procesos avanzados
+51.1 background workers
+51.2 dynamic background workers
+51.3 parallel workers
+51.4 worker lifecycle
+51.5 shared_preload_libraries
+51.6 session_preload_libraries
+51.7 local_preload_libraries
+51.8 preload y restart
+51.9 extensiones con workers
+51.10 observabilidad
+51.11 laboratorio: identificar todos los workers del servidor
+
+
+52. Parallelism
+52.1 parallel query
+52.2 parallel scan
+52.3 parallel join
+52.4 parallel aggregate
+52.5 Gather
+52.6 Gather Merge
+52.7 max_worker_processes
+52.8 max_parallel_workers
+52.9 max_parallel_workers_per_gather
+52.10 parallel_setup_cost
+52.11 parallel_tuple_cost
+52.12 parallel safety
+52.13 laboratorio: tuning de paralelismo
+
+
+53. JIT
+53.1 LLVM JIT
+53.2 jit
+53.3 expression compilation
+53.4 tuple deforming
+53.5 jit_above_cost
+53.6 jit_inline_above_cost
+53.7 jit_optimize_above_cost
+53.8 overhead
+53.9 workloads apropiados
+53.10 EXPLAIN
+53.11 laboratorio: medir cuándo JIT ayuda y cuándo perjudica
+
+
+54. Administración del sistema operativo
+54.1 PostgreSQL y Linux
+54.2 CPU
+54.3 scheduler
+54.4 memory
+54.5 virtual memory
+54.6 page cache
+54.7 swap
+54.8 OOM killer
+54.9 dirty pages
+54.10 filesystem
+54.11 storage
+54.12 I/O scheduler
+54.13 file descriptors
+54.14 process limits
+54.15 systemd limits
+54.16 kernel parameters
+54.17 huge pages
+54.18 NUMA
+54.19 clock
+54.20 NTP
+54.21 hostname
+54.22 DNS
+54.23 laboratorio: auditar Linux para PostgreSQL
+
+
+55. Seguridad del sistema
+55.1 defensa en profundidad
+55.2 usuario del sistema postgres
+55.3 filesystem permissions
+55.4 PGDATA permissions
+55.5 systemd hardening
+55.6 SELinux
+55.7 firewalld
+55.8 TLS
+55.9 authentication
+55.10 authorization
+55.11 secrets
+55.12 .pgpass
+55.13 certificates
+55.14 logging
+55.15 auditing
+55.16 pgaudit
+55.17 patching
+55.18 CVEs
+55.19 minimum privilege
+55.20 laboratorio: hardening completo del servidor
+
+
+56. Capacity planning
+56.1 workload characterization
+56.2 CPU
+56.3 RAM
+56.4 storage
+56.5 IOPS
+56.6 throughput
+56.7 latency
+56.8 connections
+56.9 TPS
+56.10 database growth
+56.11 WAL generation rate
+56.12 backup size
+56.13 backup window
+56.14 replication bandwidth
+56.15 autovacuum capacity
+56.16 headroom
+56.17 growth forecasting
+56.18 laboratorio: dimensionar un servidor PostgreSQL
+
+
+57. Benchmarking
+57.1 benchmarking methodology
+57.2 pgbench
+57.3 initialization
+57.4 scale factor
+57.5 clients
+57.6 threads
+57.7 duration
+57.8 transactions
+57.9 latency
+57.10 TPS
+57.11 custom scripts
+57.12 prepared queries
+57.13 read-only workloads
+57.14 write workloads
+57.15 reproducibility
+57.16 warm cache
+57.17 cold cache
+57.18 saturation
+57.19 laboratorio: construir una metodología de benchmark
+
+
+58. Troubleshooting
+58.1 metodología sistemática
+58.2 servidor no inicia
+58.3 conexión rechazada
+58.4 authentication failed
+58.5 demasiadas conexiones
+58.6 consultas lentas
+58.7 CPU alta
+58.8 memoria alta
+58.9 I/O alto
+58.10 disk full
+58.11 pg_wal creciendo
+58.12 replication lag
+58.13 autovacuum insuficiente
+58.14 transaction wraparound
+58.15 bloqueos
+58.16 deadlocks
+58.17 temporary files
+58.18 checkpoints frecuentes
+58.19 corrupción
+58.20 crashes
+58.21 OOM
+58.22 logs
+58.23 estadísticas
+58.24 catálogo
+58.25 sistema operativo
+58.26 laboratorio: árbol de diagnóstico PostgreSQL
+
+
+59. Corrupción e integridad
+59.1 tipos de corrupción
+59.2 hardware
+59.3 filesystem
+59.4 storage
+59.5 memory
+59.6 checksums
+59.7 data_checksums
+59.8 pg_checksums
+59.9 amcheck
+59.10 pg_amcheck
+59.11 verify_heapam
+59.12 pageinspect
+59.13 invalid indexes
+59.14 corrupted indexes
+59.15 REINDEX
+59.16 backup validation
+59.17 recovery strategy
+59.18 cuándo no utilizar pg_resetwal
+59.19 pg_resetwal como último recurso
+59.20 laboratorio: simulación segura de diagnóstico de corrupción
+
+
+60. Upgrades
+60.1 minor upgrade
+60.2 major upgrade
+60.3 patching
+60.4 downtime
+60.5 compatibility
+60.6 extensions
+60.7 pg_upgrade
+60.8 --check
+60.9 copy mode
+60.10 link mode
+60.11 clone mode cuando esté disponible
+60.12 analyze
+60.13 statistics
+60.14 logical replication upgrade strategy
+60.15 dump/restore
+60.16 rollback plan
+60.17 backups
+60.18 testing
+60.19 laboratorio: major upgrade completo
+
+
+61. pg_upgrade en profundidad
+61.1 arquitectura
+61.2 old cluster
+61.3 new cluster
+61.4 binaries
+61.5 compatibility checks
+61.6 control data
+61.7 extensions
+61.8 tablespaces
+61.9 link mode
+61.10 filesystem implications
+61.11 post-upgrade scripts
+61.12 statistics
+61.13 optimizer statistics
+61.14 rollback
+61.15 laboratorio: upgrade con mínimo downtime
+
+
+62. Migraciones
+62.1 migration strategies
+62.2 dump/restore
+62.3 physical migration
+62.4 logical replication
+62.5 near-zero downtime
+62.6 version migration
+62.7 hardware migration
+62.8 datacenter migration
+62.9 cloud migration
+62.10 encoding
+62.11 locale
+62.12 extensions
+62.13 roles
+62.14 ownership
+62.15 validation
+62.16 cutover
+62.17 rollback
+62.18 laboratorio: diseñar una migración de producción
+
+
+63. Automatización administrativa
+63.1 scripting
+63.2 psql scripts
+63.3 shell
+63.4 exit codes
+63.5 idempotencia
+63.6 backups
+63.7 maintenance
+63.8 monitoring
+63.9 health checks
+63.10 configuration management
+63.11 Ansible
+63.12 secrets
+63.13 systemd timers
+63.14 cron
+63.15 logging
+63.16 alerting
+63.17 laboratorio: toolkit administrativo automatizado
+
+
+64. Observabilidad avanzada
+64.1 metrics
+64.2 logs
+64.3 traces
+64.4 database telemetry
+64.5 pg_stat_statements
+64.6 pg_stat_activity
+64.7 pg_stat_io
+64.8 wait events
+64.9 Prometheus
+64.10 postgres_exporter
+64.11 Grafana
+64.12 dashboards
+64.13 SLI
+64.14 SLO
+64.15 saturation
+64.16 anomaly detection
+64.17 baselines
+64.18 laboratorio: stack de observabilidad PostgreSQL
+
+
+65. Performance tuning del servidor
+65.1 tuning methodology
+65.2 no existe configuración universal
+65.3 workload
+65.4 CPU-bound
+65.5 memory-bound
+65.6 I/O-bound
+65.7 lock-bound
+65.8 shared_buffers
+65.9 effective_cache_size
+65.10 work_mem
+65.11 maintenance_work_mem
+65.12 WAL
+65.13 checkpoints
+65.14 autovacuum
+65.15 planner costs
+65.16 parallelism
+65.17 JIT
+65.18 connections
+65.19 storage
+65.20 OS
+65.21 measurement before/after
+65.22 laboratorio: tuning integral basado en evidencias
+
+
+66. Performance troubleshooting avanzado
+66.1 metodología top-down
+66.2 metodología bottom-up
+66.3 wait events
+66.4 pg_stat_activity
+66.5 pg_stat_statements
+66.6 pg_stat_io
+66.7 pg_locks
+66.8 EXPLAIN
+66.9 Linux observability
+66.10 CPU profiling conceptual
+66.11 I/O latency
+66.12 cache
+66.13 WAL bottlenecks
+66.14 lock contention
+66.15 connection contention
+66.16 checkpoint storms
+66.17 vacuum storms
+66.18 temporary file explosion
+66.19 laboratorio: diagnóstico de una degradación compleja
+
+
+67. Internals — almacenamiento
+67.1 storage manager
+67.2 relation files
+67.3 forks
+67.4 pages
+67.5 PageHeaderData
+67.6 ItemIdData
+67.7 HeapTupleHeaderData
+67.8 tuple layout
+67.9 null bitmap
+67.10 alignment
+67.11 TOAST
+67.12 FSM
+67.13 VM
+67.14 buffer manager
+67.15 shared buffers
+67.16 buffer replacement
+67.17 clock sweep
+67.18 dirty buffers
+67.19 laboratorio: inspeccionar páginas con pageinspect
+
+
+68. Internals — transacciones
+68.1 transaction manager
+68.2 XID
+68.3 snapshots
+68.4 ProcArray
+68.5 CLOG/pg_xact
+68.6 commit status
+68.7 subtransactions
+68.8 pg_subtrans
+68.9 MultiXact
+68.10 visibility
+68.11 hint bits
+68.12 freezing
+68.13 wraparound
+68.14 laboratorio: seguir una transacción internamente
+
+
+69. Internals — WAL y recovery
+69.1 WAL internals
+69.2 WAL records
+69.3 resource managers
+69.4 LSN
+69.5 insertion
+69.6 flushing
+69.7 full-page images
+69.8 checkpoint record
+69.9 REDO
+69.10 crash recovery
+69.11 timeline
+69.12 archive recovery
+69.13 consistency point
+69.14 pg_waldump
+69.15 laboratorio: reconstruir conceptualmente un crash recovery
+
+
+70. Internals — locking
+70.1 lock manager
+70.2 heavyweight locks
+70.3 LWLocks
+70.4 spinlocks
+70.5 buffer locks
+70.6 predicate locks
+70.7 ProcArray
+70.8 wait queues
+70.9 deadlock detector
+70.10 fast-path locks
+70.11 laboratorio: correlacionar pg_locks con internals
+
+
+71. Internals — query processing
+71.1 frontend/backend protocol
+71.2 parser
+71.3 parse tree
+71.4 analyzer
+71.5 rewrite system
+71.6 planner
+71.7 path generation
+71.8 cost estimation
+71.9 plan tree
+71.10 executor
+71.11 executor nodes
+71.12 memory contexts
+71.13 resource owners
+71.14 laboratorio: seguir una consulta de SQL a ejecución
+
+
+72. PostgreSQL source code para DBA
+72.1 obtener el código fuente
+72.2 estructura del árbol
+72.3 src/backend
+72.4 src/include
+72.5 src/bin
+72.6 contrib
+72.7 backend/storage
+72.8 backend/access
+72.9 backend/executor
+72.10 backend/optimizer
+72.11 backend/postmaster
+72.12 backend/utils
+72.13 compilar PostgreSQL
+72.14 debug build
+72.15 assertions
+72.16 símbolos
+72.17 gdb
+72.18 stack traces
+72.19 laboratorio: compilar un PostgreSQL de diagnóstico
+
+
+73. Diagnóstico experto
+73.1 core dumps
+73.2 stack traces
+73.3 gdb
+73.4 strace
+73.5 perf
+73.6 process inspection
+73.7 /proc
+73.8 system calls
+73.9 file descriptors
+73.10 sockets
+73.11 memory maps
+73.12 I/O
+73.13 wait events
+73.14 backend PID
+73.15 correlación PID ↔ sesión
+73.16 logs ↔ PID
+73.17 SQL ↔ OS
+73.18 laboratorio: diagnosticar PostgreSQL desde SQL hasta kernel
+
+
+74. Arquitecturas de producción
+74.1 single node
+74.2 primary/standby
+74.3 synchronous standby
+74.4 multiple standbys
+74.5 cascading replication
+74.6 geographically distributed replicas
+74.7 read scaling
+74.8 connection pooling
+74.9 load balancing
+74.10 HA
+74.11 DR
+74.12 backup architecture
+74.13 monitoring architecture
+74.14 security architecture
+74.15 maintenance architecture
+74.16 failure domains
+74.17 laboratorio: diseñar arquitectura para distintos SLA
+
+
+75. Operaciones de producción
+75.1 operational readiness
+75.2 runbooks
+75.3 deployment
+75.4 maintenance windows
+75.5 patching
+75.6 upgrades
+75.7 schema changes
+75.8 backups
+75.9 restore tests
+75.10 failover tests
+75.11 capacity reviews
+75.12 performance reviews
+75.13 security reviews
+75.14 incident response
+75.15 postmortems
+75.16 change management
+75.17 laboratorio: operar un cluster durante un ciclo completo
+
+
+76. Seguridad avanzada
+76.1 threat model
+76.2 attack surface
+76.3 network segmentation
+76.4 TLS
+76.5 certificate lifecycle
+76.6 SCRAM
+76.7 credential rotation
+76.8 privilege escalation
+76.9 SECURITY DEFINER risks
+76.10 search_path attacks
+76.11 extension security
+76.12 RLS
+76.13 auditing
+76.14 pgaudit
+76.15 log integrity
+76.16 encryption at rest
+76.17 filesystem encryption
+76.18 backup encryption
+76.19 secrets management
+76.20 incident response
+76.21 laboratorio: auditoría ofensiva/defensiva controlada
+
+
+77. Administración multi-cluster
+77.1 múltiples instancias
+77.2 múltiples versiones
+77.3 ports
+77.4 PGDATA
+77.5 systemd templates
+77.6 resource isolation
+77.7 cgroups
+77.8 storage separation
+77.9 logging separation
+77.10 backup separation
+77.11 monitoring
+77.12 upgrades independientes
+77.13 laboratorio: operar varias versiones simultáneamente
+
+
+78. Gestión de configuración a escala
+78.1 configuration baseline
+78.2 configuration drift
+78.3 version control
+78.4 configuration templates
+78.5 include_dir
+78.6 environment differences
+78.7 secrets
+78.8 validation
+78.9 rollout
+78.10 rollback
+78.11 automation
+78.12 Ansible
+78.13 fleet management
+78.14 laboratorio: administrar una flota PostgreSQL reproducible
+
+
+79. Incidentes de producción
+79.1 incident lifecycle
+79.2 detection
+79.3 triage
+79.4 mitigation
+79.5 recovery
+79.6 root cause analysis
+79.7 postmortem
+79.8 runaway query
+79.9 lock storm
+79.10 connection storm
+79.11 disk full
+79.12 WAL explosion
+79.13 replication failure
+79.14 corrupted index
+79.15 failed primary
+79.16 failed backup
+79.17 failed upgrade
+79.18 accidental DELETE/DROP
+79.19 latency spike
+79.20 laboratorio: game day de incidentes
+
+
+80. Diseño de estrategia DBA
+80.1 requisitos
+80.2 SLA
+80.3 SLI
+80.4 SLO
+80.5 RPO
+80.6 RTO
+80.7 capacity
+80.8 availability
+80.9 durability
+80.10 consistency
+80.11 performance
+80.12 security
+80.13 backup
+80.14 DR
+80.15 HA
+80.16 monitoring
+80.17 maintenance
+80.18 upgrades
+80.19 automation
+80.20 cost
+80.21 trade-offs
+80.22 documentación
+80.23 laboratorio: elaborar el plan operativo de una plataforma PostgreSQL
+
+
+81. PROYECTO FINAL — PostgreSQL Production Platform
+81.1 definir requisitos
+81.2 definir SLA
+81.3 definir RPO/RTO
+81.4 dimensionar infraestructura
+81.5 instalar PostgreSQL
+81.6 inicializar clusters
+81.7 configurar almacenamiento
+81.8 configurar memoria
+81.9 configurar WAL
+81.10 configurar checkpoints
+81.11 configurar autovacuum
+81.12 configurar conexiones
+81.13 configurar PgBouncer
+81.14 configurar roles
+81.15 aplicar mínimo privilegio
+81.16 configurar pg_hba.conf
+81.17 configurar TLS
+81.18 aplicar hardening Linux
+81.19 integrar SELinux
+81.20 integrar firewalld
+81.21 configurar logging
+81.22 configurar pg_stat_statements
+81.23 configurar monitorización
+81.24 configurar alertas
+81.25 configurar backup lógico
+81.26 configurar backup físico
+81.27 configurar WAL archive
+81.28 verificar backups
+81.29 probar PITR
+81.30 desplegar primary
+81.31 desplegar standby
+81.32 configurar replication slots
+81.33 medir replication lag
+81.34 configurar replicación síncrona cuando proceda
+81.35 diseñar failover
+81.36 implementar fencing
+81.37 probar switchover
+81.38 probar failover
+81.39 reintegrar antiguo primary
+81.40 utilizar pg_rewind
+81.41 configurar HA
+81.42 integrar Patroni
+81.43 integrar etcd
+81.44 integrar HAProxy
+81.45 simular pérdida del primary
+81.46 simular pérdida de un standby
+81.47 simular pérdida de red
+81.48 simular disk full
+81.49 simular WAL saturation
+81.50 simular connection storm
+81.51 simular bloqueos
+81.52 simular deadlock
+81.53 simular query problemática
+81.54 diagnosticar con pg_stat_activity
+81.55 diagnosticar con pg_locks
+81.56 diagnosticar con pg_stat_statements
+81.57 diagnosticar con pg_stat_io
+81.58 diagnosticar con EXPLAIN
+81.59 diagnosticar desde Linux
+81.60 ajustar rendimiento
+81.61 benchmark antes/después
+81.62 realizar mantenimiento
+81.63 analizar bloat
+81.64 ejecutar VACUUM/ANALYZE
+81.65 ajustar autovacuum
+81.66 mantener índices
+81.67 comprobar checksums
+81.68 ejecutar pg_amcheck
+81.69 probar recuperación ante corrupción
+81.70 realizar minor upgrade
+81.71 preparar major upgrade
+81.72 ejecutar pg_upgrade --check
+81.73 ejecutar major upgrade
+81.74 validar extensiones
+81.75 validar datos
+81.76 validar rendimiento
+81.77 probar rollback
+81.78 automatizar tareas
+81.79 crear runbooks
+81.80 documentar arquitectura
+81.81 documentar configuración
+81.82 documentar procedimientos de backup
+81.83 documentar procedimiento PITR
+81.84 documentar failover
+81.85 documentar upgrades
+81.86 documentar troubleshooting
+81.87 ejecutar disaster-recovery drill
+81.88 ejecutar game day
+81.89 medir RPO real
+81.90 medir RTO real
+81.91 auditoría de seguridad
+81.92 auditoría de rendimiento
+81.93 auditoría de disponibilidad
+81.94 auditoría de backups
+81.95 auditoría de capacidad
+81.96 producir informe final
+81.97 proyecto final: PostgreSQL Production Platform completamente operativa

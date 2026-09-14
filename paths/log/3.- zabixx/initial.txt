@@ -1,0 +1,1762 @@
+ZABBIX EN PROFUNDIDAD
+
+0. Fundamentos de monitorización
+0.1 qué es la monitorización
+0.2 objetivos de la monitorización
+0.3 disponibilidad
+0.4 rendimiento
+0.5 capacidad
+0.6 fiabilidad
+0.7 observabilidad
+0.8 monitorización frente a observabilidad
+0.9 métricas
+0.10 logs
+0.11 eventos
+0.12 estados
+0.13 problemas
+0.14 alertas
+0.15 series temporales
+0.16 polling
+0.17 push
+0.18 agentes
+0.19 monitorización agentless
+0.20 monitorización activa
+0.21 monitorización pasiva
+0.22 checks
+0.23 intervalos de comprobación
+0.24 thresholds
+0.25 dependencias
+0.26 escalado
+0.27 monitorización centralizada
+0.28 monitorización distribuida
+0.29 arquitectura básica de una plataforma de monitorización
+0.30 introducción a Zabbix
+0.31 qué problemas resuelve Zabbix
+0.32 componentes principales de Zabbix
+0.33 laboratorio: construir el mapa conceptual de Zabbix
+
+1. Arquitectura de Zabbix
+1.1 arquitectura general
+1.2 Zabbix Server
+1.3 Zabbix frontend
+1.4 base de datos
+1.5 Zabbix Agent
+1.6 Zabbix Agent 2
+1.7 Zabbix Proxy
+1.8 hosts
+1.9 host groups
+1.10 items
+1.11 triggers
+1.12 events
+1.13 actions
+1.14 templates
+1.15 discovery
+1.16 low-level discovery
+1.17 preprocessing
+1.18 history
+1.19 trends
+1.20 queue
+1.21 caches
+1.22 pollers
+1.23 trappers
+1.24 preprocessors
+1.25 flujo completo de una métrica
+1.26 flujo completo de un evento
+1.27 flujo completo de una alerta
+1.28 flujo Agent → Server
+1.29 flujo Agent activo → Server
+1.30 flujo Proxy → Server
+1.31 flujo SNMP → Server/Proxy
+1.32 flujo JMX → Server/Proxy
+1.33 flujo HTTP → Server/Proxy
+1.34 flujo Server → database
+1.35 frontend, API y base de datos
+1.36 protocolos y puertos
+1.37 arquitectura centralizada
+1.38 arquitectura distribuida
+1.39 arquitectura de alta disponibilidad
+1.40 laboratorio: construir el mapa completo de componentes y flujos
+
+2. Instalación y laboratorio
+2.1 requisitos de Zabbix
+2.2 elección de versión
+2.3 paquetes oficiales
+2.4 repositorios Zabbix
+2.5 paquetes disponibles
+2.6 Zabbix Server package
+2.7 frontend package
+2.8 Agent package
+2.9 Agent 2 package
+2.10 Proxy package
+2.11 zabbix-sender
+2.12 zabbix-get
+2.13 PostgreSQL como backend
+2.14 creación de la base de datos
+2.15 creación del usuario de base de datos
+2.16 importación del schema
+2.17 configuración inicial del Server
+2.18 configuración del frontend
+2.19 configuración del Agent 2
+2.20 servicios systemd
+2.21 systemctl status
+2.22 journalctl
+2.23 puertos necesarios
+2.24 firewalld
+2.25 SELinux
+2.26 permisos
+2.27 verificación de procesos
+2.28 verificación de sockets
+2.29 acceso al frontend
+2.30 configuración inicial
+2.31 laboratorio: desplegar una plataforma Zabbix funcional
+
+3. Zabbix Server
+3.1 función del Server
+3.2 zabbix_server
+3.3 ciclo de vida del daemon
+3.4 zabbix_server.conf
+3.5 localización de la configuración
+3.6 parámetros básicos
+3.7 DBHost
+3.8 DBName
+3.9 DBUser
+3.10 DBPassword
+3.11 DBPort
+3.12 ListenIP
+3.13 ListenPort
+3.14 LogType
+3.15 LogFile
+3.16 LogFileSize
+3.17 DebugLevel
+3.18 Timeout
+3.19 parámetros Start*
+3.20 parámetros CacheSize
+3.21 parámetros de history
+3.22 parámetros de trends
+3.23 parámetros de preprocessing
+3.24 parámetros del housekeeper
+3.25 parámetros TLS
+3.26 Include
+3.27 variables de entorno y secretos
+3.28 validación del servicio
+3.29 logs del Server
+3.30 runtime control
+3.31 estadísticas internas
+3.32 laboratorio: analizar completamente zabbix_server.conf
+
+4. Frontend
+4.1 arquitectura del frontend
+4.2 frontend web
+4.3 PHP
+4.4 servidor web
+4.5 conexión frontend-database
+4.6 configuración
+4.7 autenticación
+4.8 sesiones
+4.9 navegación
+4.10 Monitoring
+4.11 Services
+4.12 Inventory
+4.13 Reports
+4.14 Data collection
+4.15 Alerts
+4.16 Users
+4.17 Administration
+4.18 configuración global
+4.19 housekeeping desde frontend
+4.20 macros
+4.21 módulos
+4.22 personalización
+4.23 seguridad del frontend
+4.24 diagnóstico
+4.25 laboratorio: mapear GUI, API y objetos internos
+
+5. Base de datos
+5.1 función de la base de datos
+5.2 PostgreSQL
+5.3 schema de Zabbix
+5.4 tablas principales
+5.5 configuración
+5.6 hosts
+5.7 items
+5.8 triggers
+5.9 functions
+5.10 events
+5.11 problem
+5.12 history
+5.13 history_uint
+5.14 history_str
+5.15 history_text
+5.16 history_log
+5.17 trends
+5.18 trends_uint
+5.19 acknowledges
+5.20 alerts
+5.21 auditlog
+5.22 relaciones entre objetos
+5.23 crecimiento de la base de datos
+5.24 índices
+5.25 consultas costosas
+5.26 VACUUM
+5.27 ANALYZE
+5.28 estadísticas PostgreSQL
+5.29 conexiones
+5.30 pooling
+5.31 backup
+5.32 restore
+5.33 laboratorio: explorar el modelo de datos sin modificarlo
+
+6. Hosts y grupos
+6.1 concepto de host
+6.2 host name
+6.3 visible name
+6.4 host groups
+6.5 interfaces
+6.6 Agent interface
+6.7 SNMP interface
+6.8 JMX interface
+6.9 IPMI interface
+6.10 IP frente a DNS
+6.11 monitored by
+6.12 Server
+6.13 Proxy
+6.14 Proxy group
+6.15 templates asociados
+6.16 macros de host
+6.17 inventory
+6.18 tags
+6.19 status
+6.20 cloning
+6.21 mass update
+6.22 eliminación segura
+6.23 laboratorio: modelar infraestructura mediante hosts y grupos
+
+7. Zabbix Agent
+7.1 arquitectura del Agent clásico
+7.2 zabbix_agentd
+7.3 checks pasivos
+7.4 checks activos
+7.5 zabbix_agentd.conf
+7.6 Server
+7.7 ServerActive
+7.8 Hostname
+7.9 HostnameItem
+7.10 ListenPort
+7.11 ListenIP
+7.12 StartAgents
+7.13 Timeout
+7.14 Include
+7.15 UserParameter
+7.16 UnsafeUserParameters
+7.17 TLS
+7.18 logs
+7.19 systemd
+7.20 zabbix_get
+7.21 pruebas locales
+7.22 diagnóstico de conectividad
+7.23 laboratorio: configurar checks activos y pasivos
+
+8. Zabbix Agent 2
+8.1 qué es Agent 2
+8.2 diferencias con Agent clásico
+8.3 arquitectura
+8.4 Go
+8.5 plugins
+8.6 zabbix_agent2
+8.7 zabbix_agent2.conf
+8.8 active checks
+8.9 passive checks
+8.10 plugins integrados
+8.11 plugins externos
+8.12 métricas de sistema
+8.13 filesystem
+8.14 network
+8.15 processes
+8.16 systemd
+8.17 Docker
+8.18 Podman y containers
+8.19 databases
+8.20 certificates
+8.21 MQTT
+8.22 modbus
+8.23 smart
+8.24 extensibilidad
+8.25 UserParameter
+8.26 TLS
+8.27 logs
+8.28 debugging
+8.29 laboratorio: explorar las capacidades de Agent 2
+
+9. Zabbix Proxy
+9.1 función del Proxy
+9.2 cuándo utilizar Proxy
+9.3 arquitectura distribuida
+9.4 active proxy
+9.5 passive proxy
+9.6 zabbix_proxy
+9.7 zabbix_proxy.conf
+9.8 ProxyMode
+9.9 Server
+9.10 Hostname
+9.11 DBName
+9.12 base de datos del Proxy
+9.13 SQLite
+9.14 PostgreSQL
+9.15 configuración recibida del Server
+9.16 recopilación local
+9.17 buffering
+9.18 offline buffer
+9.19 proxy history
+9.20 sincronización
+9.21 comunicaciones Server-Proxy
+9.22 TLS
+9.23 proxy groups
+9.24 load balancing
+9.25 failover
+9.26 dimensionamiento
+9.27 diagnóstico
+9.28 laboratorio: desplegar monitorización mediante Proxy
+
+10. Items
+10.1 qué es un item
+10.2 item como unidad de adquisición
+10.3 name
+10.4 type
+10.5 key
+10.6 type of information
+10.7 numeric unsigned
+10.8 numeric float
+10.9 character
+10.10 log
+10.11 text
+10.12 units
+10.13 update interval
+10.14 custom intervals
+10.15 flexible intervals
+10.16 scheduling intervals
+10.17 history storage period
+10.18 trends storage period
+10.19 value mapping
+10.20 inventory field
+10.21 tags
+10.22 enabled y disabled
+10.23 unsupported items
+10.24 testing
+10.25 cloning
+10.26 mass update
+10.27 laboratorio: diseñar items correctamente
+
+11. Item keys
+11.1 estructura de una key
+11.2 nombre de key
+11.3 parámetros
+11.4 parámetros entre corchetes
+11.5 parámetros opcionales
+11.6 strings
+11.7 escaping
+11.8 system.cpu.*
+11.9 vm.memory.*
+11.10 vfs.fs.*
+11.11 vfs.file.*
+11.12 net.if.*
+11.13 net.tcp.*
+11.14 net.udp.*
+11.15 proc.*
+11.16 system.run
+11.17 agent.*
+11.18 búsqueda de keys soportadas
+11.19 zabbix_get y keys
+11.20 keys personalizadas
+11.21 laboratorio: construir y probar un catálogo de item keys
+
+12. Tipos de items
+12.1 Zabbix agent
+12.2 Zabbix agent active
+12.3 simple check
+12.4 SNMP agent
+12.5 SNMP trap
+12.6 Zabbix internal
+12.7 Zabbix trapper
+12.8 external check
+12.9 database monitor
+12.10 IPMI agent
+12.11 SSH agent
+12.12 TELNET agent
+12.13 JMX agent
+12.14 calculated
+12.15 dependent item
+12.16 HTTP agent
+12.17 script
+12.18 browser
+12.19 elección del tipo adecuado
+12.20 laboratorio: comparar mecanismos de adquisición
+
+13. Preprocessing
+13.1 pipeline de preprocessing
+13.2 preprocessing manager
+13.3 preprocessing workers
+13.4 transformación de valores
+13.5 multiplier
+13.6 trim
+13.7 replace
+13.8 regular expressions
+13.9 JSONPath
+13.10 XML XPath
+13.11 CSV to JSON
+13.12 XML to JSON
+13.13 SNMP walk transformations
+13.14 JavaScript
+13.15 Prometheus pattern
+13.16 Prometheus to JSON
+13.17 delta
+13.18 change
+13.19 throttling
+13.20 discard unchanged
+13.21 validation
+13.22 range validation
+13.23 regex validation
+13.24 JSON validation
+13.25 XML validation
+13.26 error handling
+13.27 custom value on failure
+13.28 discard value
+13.29 testing preprocessing
+13.30 preprocessing de dependent items
+13.31 laboratorio: construir pipelines complejos de preprocessing
+
+14. History y trends
+14.1 datos históricos
+14.2 history
+14.3 trends
+14.4 diferencias
+14.5 retención
+14.6 resolución temporal
+14.7 agregación
+14.8 almacenamiento
+14.9 tipos de tablas history
+14.10 trends numéricos
+14.11 housekeeping
+14.12 impacto en almacenamiento
+14.13 dimensionamiento
+14.14 consultas
+14.15 rendimiento
+14.16 laboratorio: analizar el ciclo de vida de una métrica
+
+15. Triggers
+15.1 qué es un trigger
+15.2 expresión
+15.3 OK
+15.4 PROBLEM
+15.5 UNKNOWN
+15.6 severidad
+15.7 Not classified
+15.8 Information
+15.9 Warning
+15.10 Average
+15.11 High
+15.12 Disaster
+15.13 recovery expression
+15.14 problem event generation mode
+15.15 multiple PROBLEM events
+15.16 tags
+15.17 dependencies
+15.18 manual close
+15.19 operational data
+15.20 event name
+15.21 laboratorio: diseñar triggers robustos
+
+16. Expresiones y funciones
+16.1 sintaxis de expresiones
+16.2 funciones históricas
+16.3 last()
+16.4 min()
+16.5 max()
+16.6 avg()
+16.7 sum()
+16.8 count()
+16.9 nodata()
+16.10 change()
+16.11 diff conceptual
+16.12 trend functions
+16.13 time functions
+16.14 operadores
+16.15 AND
+16.16 OR
+16.17 NOT
+16.18 comparaciones
+16.19 expresiones matemáticas
+16.20 strings
+16.21 expresiones regulares
+16.22 hysteresis mediante recovery expressions
+16.23 prevención de flapping
+16.24 laboratorio: construir expresiones complejas
+
+17. Events
+17.1 modelo de eventos
+17.2 event source
+17.3 trigger events
+17.4 discovery events
+17.5 autoregistration events
+17.6 internal events
+17.7 service events
+17.8 generación
+17.9 recuperación
+17.10 correlación
+17.11 tags
+17.12 event ID
+17.13 event lifecycle
+17.14 laboratorio: seguir un evento de principio a fin
+
+18. Problems
+18.1 diferencia entre event y problem
+18.2 problem lifecycle
+18.3 reconocimiento
+18.4 acknowledge
+18.5 comments
+18.6 severity change
+18.7 suppress
+18.8 manual close
+18.9 tags
+18.10 filtering
+18.11 problem view
+18.12 cause y symptom
+18.13 event correlation
+18.14 mantenimiento
+18.15 laboratorio: gestionar incidentes desde Problems
+
+19. Actions
+19.1 qué es una action
+19.2 event source
+19.3 conditions
+19.4 operations
+19.5 recovery operations
+19.6 update operations
+19.7 filtros
+19.8 tags como condición
+19.9 host groups
+19.10 severity
+19.11 time periods
+19.12 recipients
+19.13 remote commands
+19.14 escalations
+19.15 laboratorio: construir una política de acciones
+
+20. Notifications
+20.1 pipeline de notificación
+20.2 users
+20.3 user groups
+20.4 media
+20.5 media types
+20.6 periods
+20.7 severity filters
+20.8 mensajes
+20.9 macros en mensajes
+20.10 recuperación
+20.11 retries
+20.12 estado de alertas
+20.13 diagnóstico
+20.14 laboratorio: seguir una notificación completa
+
+21. Media types
+21.1 Email
+21.2 SMTP
+21.3 SMTP authentication
+21.4 TLS
+21.5 webhook
+21.6 script
+21.7 SMS conceptual
+21.8 parámetros
+21.9 message templates
+21.10 macros
+21.11 JavaScript en webhooks
+21.12 testing
+21.13 integraciones externas
+21.14 seguridad de secretos
+21.15 laboratorio: crear un media type
+
+22. Escalations
+22.1 concepto de escalado
+22.2 escalation steps
+22.3 step duration
+22.4 usuarios por nivel
+22.5 grupos por nivel
+22.6 operaciones
+22.7 recuperación
+22.8 actualización
+22.9 cancelación
+22.10 escenarios de guardias
+22.11 diseño anti-spam
+22.12 laboratorio: construir una escalada multinivel
+
+23. Templates
+23.1 concepto de template
+23.2 template groups
+23.3 items
+23.4 triggers
+23.5 graphs
+23.6 dashboards
+23.7 discovery rules
+23.8 web scenarios
+23.9 macros
+23.10 tags
+23.11 value maps
+23.12 linking
+23.13 unlink
+23.14 unlink and clear
+23.15 export
+23.16 import
+23.17 YAML
+23.18 versionado
+23.19 templates oficiales
+23.20 laboratorio: crear un template reutilizable
+
+24. Herencia de templates
+24.1 template inheritance
+24.2 múltiples templates
+24.3 conflictos
+24.4 objetos heredados
+24.5 macros heredadas
+24.6 overrides
+24.7 template nesting
+24.8 diseño modular
+24.9 template base
+24.10 templates especializados
+24.11 laboratorio: diseñar una jerarquía de templates
+
+25. Macros
+25.1 qué es una macro
+25.2 built-in macros
+25.3 user macros
+25.4 {$MACRO}
+25.5 global macros
+25.6 template macros
+25.7 host macros
+25.8 precedence
+25.9 macros con contexto
+25.10 context regex
+25.11 secret macros
+25.12 vault macros
+25.13 macros en items
+25.14 macros en triggers
+25.15 macros en discovery
+25.16 macros en notifications
+25.17 resolución de macros
+25.18 laboratorio: diseñar una estrategia de macros
+
+26. Network discovery
+26.1 discovery rules
+26.2 IP ranges
+26.3 discovery checks
+26.4 ICMP
+26.5 TCP
+26.6 Zabbix agent
+26.7 SNMP
+26.8 discovery events
+26.9 discovered hosts
+26.10 discovered services
+26.11 discovery actions
+26.12 creación automática de hosts
+26.13 asignación de grupos
+26.14 asociación de templates
+26.15 laboratorio: descubrir automáticamente una red
+
+27. Low-Level Discovery
+27.1 concepto de LLD
+27.2 discovery rule
+27.3 LLD JSON
+27.4 LLD macros
+27.5 {#MACRO}
+27.6 item prototypes
+27.7 trigger prototypes
+27.8 graph prototypes
+27.9 host prototypes
+27.10 discovery filters
+27.11 overrides
+27.12 override filters
+27.13 override operations
+27.14 lost resources
+27.15 lifetime
+27.16 preprocessing
+27.17 dependent discovery
+27.18 filesystem discovery
+27.19 network interface discovery
+27.20 SNMP discovery
+27.21 custom discovery
+27.22 laboratorio: construir una regla LLD completa
+
+28. Autoregistration
+28.1 active agent autoregistration
+28.2 metadata
+28.3 HostMetadata
+28.4 HostMetadataItem
+28.5 autoregistration events
+28.6 actions
+28.7 host groups
+28.8 templates
+28.9 proxies
+28.10 seguridad
+28.11 automatización
+28.12 laboratorio: registrar automáticamente nuevos hosts
+
+29. SNMP
+29.1 fundamentos SNMP
+29.2 manager
+29.3 agent
+29.4 MIB
+29.5 OID
+29.6 SMI
+29.7 SNMPv1
+29.8 SNMPv2c
+29.9 community
+29.10 SNMPv3
+29.11 USM
+29.12 authentication
+29.13 privacy
+29.14 authPriv
+29.15 snmpget
+29.16 snmpwalk
+29.17 snmptranslate
+29.18 MIB files
+29.19 SNMP interface en Zabbix
+29.20 SNMP item
+29.21 dynamic indexes
+29.22 bulk requests
+29.23 SNMP discovery
+29.24 SNMP walk
+29.25 preprocessing
+29.26 rendimiento
+29.27 seguridad
+29.28 laboratorio: monitorizar un dispositivo mediante SNMPv3
+
+30. SNMP traps
+30.1 polling frente a traps
+30.2 arquitectura de traps
+30.3 snmptrapd
+30.4 recepción
+30.5 procesamiento
+30.6 integración con Zabbix
+30.7 SNMP trapper
+30.8 log de traps
+30.9 item snmptrap
+30.10 expresiones regulares
+30.11 fallback
+30.12 troubleshooting
+30.13 laboratorio: recibir y procesar SNMP traps
+
+31. IPMI
+31.1 qué es IPMI
+31.2 BMC
+31.3 sensores
+31.4 IPMI interface
+31.5 autenticación
+31.6 item IPMI
+31.7 sensor names
+31.8 seguridad
+31.9 troubleshooting
+31.10 laboratorio: diseñar monitorización out-of-band
+
+32. JMX
+32.1 Java Management Extensions
+32.2 MBeans
+32.3 attributes
+32.4 JMX remote
+32.5 Java Gateway
+32.6 arquitectura Zabbix Java Gateway
+32.7 configuración
+32.8 StartJavaPollers
+32.9 JMX interface
+32.10 JMX item
+32.11 jmx[]
+32.12 discovery de MBeans
+32.13 seguridad
+32.14 TLS conceptual
+32.15 rendimiento
+32.16 troubleshooting
+32.17 laboratorio: monitorizar una JVM
+
+33. HTTP Agent
+33.1 HTTP agent item
+33.2 URL
+33.3 query fields
+33.4 request methods
+33.5 GET
+33.6 POST
+33.7 PUT
+33.8 HEAD
+33.9 headers
+33.10 body
+33.11 authentication
+33.12 HTTP authentication
+33.13 bearer tokens
+33.14 TLS
+33.15 certificates
+33.16 proxies HTTP
+33.17 redirects
+33.18 status codes
+33.19 retrieve mode
+33.20 preprocessing JSON
+33.21 dependent items
+33.22 laboratorio: monitorizar una REST API
+
+34. Web monitoring
+34.1 web scenarios
+34.2 scenarios
+34.3 steps
+34.4 URL
+34.5 variables
+34.6 headers
+34.7 authentication
+34.8 required string
+34.9 status codes
+34.10 response time
+34.11 download speed
+34.12 scenario items
+34.13 triggers
+34.14 laboratorio: monitorizar una aplicación web
+
+35. Trapper items
+35.1 modelo push
+35.2 Zabbix trapper
+35.3 allowed hosts
+35.4 key
+35.5 timestamp
+35.6 zabbix_sender
+35.7 seguridad
+35.8 procesamiento
+35.9 casos de uso
+35.10 laboratorio: enviar métricas externas
+
+36. Zabbix sender
+36.1 zabbix_sender
+36.2 -z
+36.3 -p
+36.4 -s
+36.5 -k
+36.6 -o
+36.7 input file
+36.8 timestamps
+36.9 real-time mode
+36.10 batch
+36.11 active agent configuration
+36.12 TLS
+36.13 rendimiento
+36.14 laboratorio: importar métricas mediante sender
+
+37. External checks
+37.1 external scripts
+37.2 ExternalScripts
+37.3 parámetros
+37.4 stdout
+37.5 exit status
+37.6 timeout
+37.7 permisos
+37.8 seguridad
+37.9 rendimiento
+37.10 cuándo evitar external checks
+37.11 laboratorio: implementar un external check seguro
+
+38. Scripts
+38.1 script item
+38.2 JavaScript engine
+38.3 parámetros
+38.4 macros
+38.5 HTTP requests
+38.6 JSON
+38.7 errores
+38.8 timeout
+38.9 seguridad
+38.10 testing
+38.11 laboratorio: construir un script item
+
+39. Calculated items
+39.1 concepto
+39.2 expresiones
+39.3 funciones históricas
+39.4 referencias a items
+39.5 agregaciones
+39.6 unidades
+39.7 intervalos
+39.8 rendimiento
+39.9 casos de uso
+39.10 laboratorio: crear métricas derivadas
+
+40. Dependent items
+40.1 master item
+40.2 dependent item
+40.3 adquisición única
+40.4 preprocessing
+40.5 JSONPath
+40.6 XPath
+40.7 JavaScript
+40.8 múltiples dependent items
+40.9 dependencias encadenadas
+40.10 reducción de carga
+40.11 diseño
+40.12 laboratorio: convertir una respuesta JSON en múltiples métricas
+
+41. Dashboards
+41.1 dashboards
+41.2 dashboard global
+41.3 host dashboard
+41.4 template dashboard
+41.5 pages
+41.6 widgets
+41.7 time period
+41.8 filters
+41.9 sharing
+41.10 permisos
+41.11 diseño operativo
+41.12 NOC dashboards
+41.13 dashboards ejecutivos
+41.14 laboratorio: construir un dashboard operativo
+
+42. Widgets
+42.1 arquitectura de widgets
+42.2 Problems
+42.3 Host availability
+42.4 Item value
+42.5 Gauge
+42.6 Graph
+42.7 Graph prototype
+42.8 Top hosts
+42.9 Data overview
+42.10 Discovery status
+42.11 Map
+42.12 SLA
+42.13 System information
+42.14 Clock
+42.15 URL
+42.16 configuración dinámica
+42.17 custom widgets
+42.18 laboratorio: diseñar un panel multidimensional
+
+43. Maps
+43.1 network maps
+43.2 elementos
+43.3 hosts
+43.4 host groups
+43.5 triggers
+43.6 images
+43.7 links
+43.8 link indicators
+43.9 labels
+43.10 macros
+43.11 nested maps
+43.12 permisos
+43.13 laboratorio: construir un mapa de infraestructura
+
+44. Graphs y visualización
+44.1 simple graphs
+44.2 custom graphs
+44.3 graph prototypes
+44.4 items múltiples
+44.5 axes
+44.6 aggregation
+44.7 history frente a trends
+44.8 visualización temporal
+44.9 correlación visual
+44.10 laboratorio: construir gráficos útiles para diagnóstico
+
+45. Services y SLA
+45.1 service monitoring
+45.2 servicios de negocio
+45.3 jerarquía
+45.4 problem tags
+45.5 propagación
+45.6 status calculation
+45.7 SLA
+45.8 SLO
+45.9 service level
+45.10 uptime
+45.11 downtime
+45.12 excluded downtimes
+45.13 reports
+45.14 laboratorio: modelar un servicio empresarial
+
+46. Inventario
+46.1 host inventory
+46.2 disabled
+46.3 manual
+46.4 automatic
+46.5 inventory fields
+46.6 item population
+46.7 búsqueda
+46.8 reports
+46.9 API
+46.10 laboratorio: construir inventario automático
+
+47. API de Zabbix
+47.1 arquitectura de la API
+47.2 JSON-RPC
+47.3 endpoint
+47.4 requests
+47.5 responses
+47.6 authentication
+47.7 API tokens
+47.8 permissions
+47.9 methods
+47.10 host.get
+47.11 host.create
+47.12 item.get
+47.13 trigger.get
+47.14 problem.get
+47.15 event.get
+47.16 template.get
+47.17 usermacro.get
+47.18 history.get
+47.19 trend.get
+47.20 discoveryrule.get
+47.21 pagination
+47.22 filtering
+47.23 output
+47.24 select*
+47.25 error handling
+47.26 seguridad
+47.27 laboratorio: explorar Zabbix exclusivamente mediante API
+
+48. Automatización mediante API
+48.1 curl
+48.2 JSON
+48.3 jq
+48.4 Python
+48.5 autenticación mediante token
+48.6 crear hosts
+48.7 modificar hosts
+48.8 asociar templates
+48.9 gestionar macros
+48.10 consultar problems
+48.11 extraer métricas
+48.12 automatización idempotente
+48.13 import/export
+48.14 infraestructura como código
+48.15 gestión de secretos
+48.16 laboratorio: construir una herramienta de administración por API
+
+49. Integraciones
+49.1 arquitectura de integraciones
+49.2 webhooks
+49.3 APIs externas
+49.4 ticketing
+49.5 chat
+49.6 incident management
+49.7 Prometheus
+49.8 métricas Prometheus
+49.9 preprocessing Prometheus
+49.10 Grafana
+49.11 dashboards externos
+49.12 syslog
+49.13 automatización
+49.14 seguridad
+49.15 laboratorio: integrar Zabbix con una plataforma externa
+
+50. Seguridad
+50.1 modelo de amenazas
+50.2 superficie de ataque
+50.3 Server
+50.4 Agent
+50.5 Agent 2
+50.6 Proxy
+50.7 frontend
+50.8 database
+50.9 red
+50.10 mínimo privilegio
+50.11 firewalld
+50.12 SELinux
+50.13 secretos
+50.14 API tokens
+50.15 credenciales
+50.16 macros secretas
+50.17 Vault
+50.18 auditoría
+50.19 hardening
+50.20 laboratorio: realizar un análisis de seguridad
+
+51. TLS, PSK y certificados
+51.1 comunicaciones cifradas
+51.2 TLSConnect
+51.3 TLSAccept
+51.4 unencrypted
+51.5 PSK
+51.6 TLSPSKIdentity
+51.7 TLSPSKFile
+51.8 certificados X.509
+51.9 CA
+51.10 issuer
+51.11 subject
+51.12 Server-Agent
+51.13 Server-Proxy
+51.14 sender
+51.15 get
+51.16 rotación de secretos
+51.17 troubleshooting TLS
+51.18 laboratorio: cifrar las comunicaciones Zabbix
+
+52. Usuarios, roles y permisos
+52.1 users
+52.2 user groups
+52.3 roles
+52.4 permissions
+52.5 host group permissions
+52.6 read
+52.7 read-write
+52.8 deny
+52.9 frontend access
+52.10 API access
+52.11 authentication
+52.12 LDAP
+52.13 SAML
+52.14 MFA
+52.15 provisioning
+52.16 least privilege
+52.17 laboratorio: diseñar RBAC
+
+53. Alta disponibilidad del Server
+53.1 conceptos HA
+53.2 HA nativa
+53.3 HA nodes
+53.4 active node
+53.5 standby nodes
+53.6 heartbeat
+53.7 failover
+53.8 database compartida
+53.9 configuración
+53.10 HANodeName
+53.11 NodeAddress
+53.12 estado del cluster
+53.13 frontend
+53.14 failure scenarios
+53.15 split-brain conceptual
+53.16 mantenimiento
+53.17 laboratorio: desplegar Zabbix Server HA
+
+54. Alta disponibilidad de Proxy
+54.1 problema de disponibilidad del Proxy
+54.2 proxy groups
+54.3 proxies dentro de grupos
+54.4 hosts monitorizados por proxy group
+54.5 redistribución
+54.6 failover
+54.7 disponibilidad
+54.8 buffering
+54.9 capacidad
+54.10 diseño
+54.11 laboratorio: construir una capa Proxy tolerante a fallos
+
+55. Monitorización distribuida
+55.1 arquitectura distribuida
+55.2 sedes remotas
+55.3 DMZ
+55.4 redes aisladas
+55.5 proxies
+55.6 proxy groups
+55.7 latencia
+55.8 pérdida de conectividad
+55.9 buffering
+55.10 seguridad
+55.11 segmentación
+55.12 NAT
+55.13 firewalls
+55.14 sizing
+55.15 laboratorio: diseñar monitorización multisede
+
+56. Escalabilidad
+56.1 métricas por segundo
+56.2 NVPS
+56.3 número de hosts
+56.4 número de items
+56.5 intervalos
+56.6 preprocessing
+56.7 triggers
+56.8 proxies
+56.9 pollers
+56.10 caches
+56.11 database
+56.12 frontend
+56.13 vertical scaling
+56.14 horizontal scaling
+56.15 partición mediante proxies
+56.16 identificación de bottlenecks
+56.17 laboratorio: dimensionar una instalación
+
+57. Performance tuning
+57.1 metodología de tuning
+57.2 medir antes de modificar
+57.3 busy processes
+57.4 internal items
+57.5 queue
+57.6 pollers
+57.7 unreachable pollers
+57.8 HTTP pollers
+57.9 SNMP pollers
+57.10 Java pollers
+57.11 trappers
+57.12 preprocessors
+57.13 discoverers
+57.14 escalators
+57.15 history syncers
+57.16 caches
+57.17 database
+57.18 disk I/O
+57.19 CPU
+57.20 memory
+57.21 network
+57.22 laboratorio: localizar un cuello de botella
+
+58. Queue
+58.1 qué representa la queue
+58.2 delayed items
+58.3 intervalos de retraso
+58.4 queue overview
+58.5 queue by proxy
+58.6 queue by item type
+58.7 diagnóstico de items retrasados
+58.8 poller saturation
+58.9 unreachable hosts
+58.10 network latency
+58.11 Proxy
+58.12 database bottleneck
+58.13 internal items
+58.14 laboratorio: diagnosticar una queue creciente
+
+59. Caches internas
+59.1 configuration cache
+59.2 history cache
+59.3 history index cache
+59.4 trend cache
+59.5 value cache
+59.6 VMware cache
+59.7 caches de preprocessing
+59.8 cache utilization
+59.9 cache misses
+59.10 sizing
+59.11 shared memory
+59.12 diagnóstico
+59.13 laboratorio: analizar el uso de memoria interna
+
+60. Housekeeper
+60.1 función del housekeeper
+60.2 datos históricos
+60.3 trends
+60.4 events
+60.5 alerts
+60.6 sessions
+60.7 discovery
+60.8 housekeeping frequency
+60.9 MaxHousekeeperDelete
+60.10 carga sobre database
+60.11 housekeeping interno frente a particionado
+60.12 diagnóstico
+60.13 laboratorio: analizar el impacto del housekeeper
+
+61. Base de datos y rendimiento
+61.1 database como componente crítico
+61.2 carga de escritura
+61.3 history workload
+61.4 trends workload
+61.5 índices
+61.6 PostgreSQL shared_buffers
+61.7 work_mem
+61.8 WAL
+61.9 checkpoints
+61.10 autovacuum
+61.11 ANALYZE
+61.12 I/O
+61.13 conexiones
+61.14 slow queries
+61.15 pg_stat_activity
+61.16 pg_stat_statements
+61.17 almacenamiento
+61.18 SSD
+61.19 dimensionamiento
+61.20 laboratorio: correlacionar Zabbix y PostgreSQL
+
+62. Particionado e históricos
+62.1 crecimiento temporal
+62.2 particionado
+62.3 particionado PostgreSQL
+62.4 particiones por tiempo
+62.5 history tables
+62.6 trends tables
+62.7 retención
+62.8 housekeeping
+62.9 TimescaleDB
+62.10 arquitectura TimescaleDB
+62.11 hypertables
+62.12 compresión
+62.13 políticas de retención
+62.14 ventajas y trade-offs
+62.15 migración
+62.16 laboratorio: diseñar almacenamiento histórico escalable
+
+63. Monitorización del propio Zabbix
+63.1 template de Zabbix Server
+63.2 internal items
+63.3 zabbix[process]
+63.4 zabbix[queue]
+63.5 zabbix[cache]
+63.6 zabbix[requiredperformance]
+63.7 process busy
+63.8 cache utilization
+63.9 NVPS
+63.10 queue
+63.11 database
+63.12 Proxy health
+63.13 Agent availability
+63.14 triggers internos
+63.15 dashboard de salud
+63.16 laboratorio: construir self-monitoring completo
+
+64. Troubleshooting
+64.1 metodología
+64.2 síntoma frente a causa
+64.3 frontend
+64.4 Server
+64.5 Proxy
+64.6 Agent
+64.7 Agent 2
+64.8 database
+64.9 network
+64.10 DNS
+64.11 firewall
+64.12 SELinux
+64.13 TLS
+64.14 item unsupported
+64.15 trigger incorrecto
+64.16 queue
+64.17 performance
+64.18 logs
+64.19 DebugLevel
+64.20 tcpdump
+64.21 ss
+64.22 journalctl
+64.23 strace cuando proceda
+64.24 laboratorio: metodología completa de diagnóstico
+
+65. Logs de Zabbix
+65.1 logs del Server
+65.2 logs del Proxy
+65.3 logs del Agent
+65.4 logs del Agent 2
+65.5 frontend logs
+65.6 database logs
+65.7 LogType
+65.8 file
+65.9 system
+65.10 console
+65.11 DebugLevel
+65.12 runtime log level
+65.13 correlación temporal
+65.14 identificación de procesos
+65.15 laboratorio: reconstruir un incidente mediante logs
+
+66. Diagnóstico de Agent y Agent 2
+66.1 disponibilidad
+66.2 proceso
+66.3 socket
+66.4 Server
+66.5 ServerActive
+66.6 Hostname
+66.7 active checks
+66.8 passive checks
+66.9 zabbix_get
+66.10 item testing
+66.11 unsupported keys
+66.12 permissions
+66.13 UserParameter
+66.14 plugins Agent 2
+66.15 firewall
+66.16 SELinux
+66.17 TLS
+66.18 logs
+66.19 laboratorio: resolver fallos de Agent
+
+67. Diagnóstico de Proxy
+67.1 estado del proceso
+67.2 configuración
+67.3 conexión al Server
+67.4 base de datos
+67.5 configuración recibida
+67.6 recopilación
+67.7 buffering
+67.8 sincronización
+67.9 last seen
+67.10 queue
+67.11 TLS
+67.12 logs
+67.13 performance
+67.14 proxy group
+67.15 laboratorio: recuperar un Proxy degradado
+
+68. Diagnóstico de Server
+68.1 proceso principal
+68.2 child processes
+68.3 database connectivity
+68.4 configuration cache
+68.5 history cache
+68.6 value cache
+68.7 queue
+68.8 pollers
+68.9 trappers
+68.10 preprocessors
+68.11 history syncers
+68.12 housekeeper
+68.13 escalator
+68.14 discoverers
+68.15 internal items
+68.16 runtime control
+68.17 logs
+68.18 database
+68.19 laboratorio: diagnosticar saturación del Server
+
+69. Internals de Zabbix Server
+69.1 código fuente
+69.2 estructura general del proyecto
+69.3 proceso zabbix_server
+69.4 inicialización
+69.5 configuración
+69.6 proceso padre
+69.7 procesos hijos
+69.8 IPC
+69.9 shared memory
+69.10 caches
+69.11 configuration synchronization
+69.12 poller architecture
+69.13 trapper architecture
+69.14 preprocessing architecture
+69.15 history pipeline
+69.16 trigger evaluation
+69.17 event generation
+69.18 action processing
+69.19 database synchronization
+69.20 runtime control
+69.21 shutdown
+69.22 laboratorio: seguir una métrica por los internals del Server
+
+70. Procesos internos
+70.1 poller
+70.2 unreachable poller
+70.3 async poller
+70.4 HTTP poller
+70.5 SNMP poller
+70.6 Java poller
+70.7 IPMI poller
+70.8 trapper
+70.9 preprocessing manager
+70.10 preprocessing worker
+70.11 history poller
+70.12 history syncer
+70.13 configuration syncer
+70.14 housekeeper
+70.15 timer
+70.16 escalator
+70.17 alerter
+70.18 alert manager
+70.19 discoverer
+70.20 task manager
+70.21 proxy poller
+70.22 availability manager
+70.23 service manager
+70.24 HA manager
+70.25 procesos según versión
+70.26 laboratorio: construir un mapa de procesos internos
+
+71. Pollers, trappers y preprocessing
+71.1 modelo síncrono
+71.2 modelo asíncrono
+71.3 polling
+71.4 sockets
+71.5 timeouts
+71.6 concurrency
+71.7 poller utilization
+71.8 trapper connections
+71.9 incoming values
+71.10 preprocessing queue
+71.11 worker pool
+71.12 JavaScript preprocessing
+71.13 dependent items
+71.14 history pipeline
+71.15 backpressure conceptual
+71.16 bottlenecks
+71.17 laboratorio: seguir adquisición → preprocessing → history
+
+72. Protocolos internos
+72.1 Zabbix protocol
+72.2 framing
+72.3 header
+72.4 payload
+72.5 JSON
+72.6 Agent passive protocol
+72.7 Agent active protocol
+72.8 Proxy protocol
+72.9 sender protocol
+72.10 trapper
+72.11 TLS layer
+72.12 PSK
+72.13 certificates
+72.14 compression
+72.15 captura mediante tcpdump
+72.16 Wireshark
+72.17 seguridad
+72.18 laboratorio: analizar una comunicación Zabbix
+
+73. Internals de Agent y Agent 2
+73.1 arquitectura de Agent clásico
+73.2 listener processes
+73.3 active checks
+73.4 passive checks
+73.5 item execution
+73.6 UserParameters
+73.7 arquitectura Agent 2
+73.8 Go runtime
+73.9 plugin architecture
+73.10 plugin lifecycle
+73.11 scheduler
+73.12 metrics
+73.13 exporters conceptuales
+73.14 IPC
+73.15 active check buffer
+73.16 persistent buffer
+73.17 TLS
+73.18 laboratorio: comparar internamente Agent y Agent 2
+
+74. Internals de Proxy
+74.1 arquitectura
+74.2 active Proxy internals
+74.3 passive Proxy internals
+74.4 configuración local
+74.5 configuration sync
+74.6 data collection
+74.7 local database
+74.8 history buffering
+74.9 data sender
+74.10 Server communication
+74.11 offline operation
+74.12 reconnection
+74.13 throttling conceptual
+74.14 proxy groups
+74.15 failover
+74.16 laboratorio: seguir una métrica Proxy → Server
+
+75. Modelo de datos
+75.1 modelo relacional
+75.2 configuración
+75.3 hosts
+75.4 interfaces
+75.5 items
+75.6 triggers
+75.7 functions
+75.8 templates
+75.9 discovery
+75.10 events
+75.11 problems
+75.12 alerts
+75.13 history
+75.14 trends
+75.15 users
+75.16 permissions
+75.17 services
+75.18 relaciones
+75.19 IDs
+75.20 integridad
+75.21 evolución del schema
+75.22 por qué no modificar directamente la database
+75.23 API como interfaz de automatización
+75.24 laboratorio: reconstruir relaciones entre objetos
+
+76. Arquitecturas empresariales
+76.1 requisitos
+76.2 capacidad
+76.3 disponibilidad
+76.4 seguridad
+76.5 centralización
+76.6 distribución
+76.7 Server HA
+76.8 Proxy groups
+76.9 PostgreSQL HA
+76.10 frontend HA
+76.11 load balancer
+76.12 múltiples datacenters
+76.13 edge sites
+76.14 DMZ
+76.15 redes restringidas
+76.16 TLS
+76.17 segmentación
+76.18 backup
+76.19 disaster recovery
+76.20 observabilidad de Zabbix
+76.21 laboratorio: diseñar arquitectura empresarial
+
+77. Diseño de una plataforma de monitorización
+77.1 requirements gathering
+77.2 qué monitorizar
+77.3 qué no monitorizar
+77.4 inventario de activos
+77.5 clasificación
+77.6 naming conventions
+77.7 host groups
+77.8 templates
+77.9 macros
+77.10 tags
+77.11 intervalos
+77.12 retención
+77.13 triggers
+77.14 severidades
+77.15 dependencias
+77.16 mantenimiento
+77.17 alertas
+77.18 escalaciones
+77.19 SLA
+77.20 dashboards
+77.21 proxies
+77.22 capacidad
+77.23 seguridad
+77.24 documentación
+77.25 laboratorio: diseñar la plataforma antes de desplegarla
+
+78. Backup, restore y disaster recovery
+78.1 qué debe respaldarse
+78.2 database
+78.3 configuración
+78.4 certificados
+78.5 PSK
+78.6 scripts
+78.7 módulos
+78.8 templates exportados
+78.9 frontend
+78.10 proxies
+78.11 PostgreSQL backup
+78.12 logical backup
+78.13 physical backup
+78.14 restore
+78.15 consistency
+78.16 RPO
+78.17 RTO
+78.18 disaster recovery
+78.19 pruebas de recuperación
+78.20 laboratorio: destruir y reconstruir el entorno
+
+79. Upgrade y migraciones
+79.1 política de versiones
+79.2 versiones LTS
+79.3 release notes
+79.4 upgrade notes
+79.5 compatibility
+79.6 Server
+79.7 Proxy
+79.8 Agent
+79.9 Agent 2
+79.10 frontend
+79.11 database schema upgrade
+79.12 backups previos
+79.13 rolling strategy
+79.14 proxies durante upgrade
+79.15 templates
+79.16 API compatibility
+79.17 rollback
+79.18 testing
+79.19 laboratorio: planificar una actualización segura
+
+80. Operación y mantenimiento
+80.1 operación diaria
+80.2 revisión de Problems
+80.3 queue
+80.4 health
+80.5 proxies
+80.6 database
+80.7 capacidad
+80.8 housekeeping
+80.9 backups
+80.10 certificates
+80.11 accounts
+80.12 API tokens
+80.13 templates
+80.14 cambios
+80.15 auditoría
+80.16 documentación
+80.17 mantenimiento preventivo
+80.18 capacity planning
+80.19 runbooks
+80.20 postmortems
+80.21 laboratorio: construir un runbook de operación
+
+81. Proyecto final experto
+81.1 definir requisitos de la plataforma
+81.2 diseñar arquitectura
+81.3 diseñar segmentación de red
+81.4 desplegar PostgreSQL
+81.5 desplegar Zabbix Server
+81.6 desplegar frontend
+81.7 desplegar Agent 2
+81.8 desplegar Zabbix Proxy
+81.9 configurar firewalld
+81.10 validar SELinux
+81.11 configurar TLS
+81.12 configurar PSK y certificados
+81.13 crear jerarquía de host groups
+81.14 diseñar templates propios
+81.15 diseñar estrategia de macros
+81.16 configurar items
+81.17 configurar dependent items
+81.18 construir preprocessing
+81.19 crear triggers
+81.20 crear dependencias de triggers
+81.21 implementar network discovery
+81.22 implementar autoregistration
+81.23 implementar LLD
+81.24 monitorizar Linux mediante Agent 2
+81.25 monitorizar servicios systemd
+81.26 monitorizar red mediante SNMPv3
+81.27 procesar SNMP traps
+81.28 monitorizar una JVM mediante JMX
+81.29 monitorizar una API mediante HTTP Agent
+81.30 utilizar zabbix_sender
+81.31 crear alertas
+81.32 crear escalaciones
+81.33 crear media types
+81.34 crear dashboards operativos
+81.35 construir un mapa de infraestructura
+81.36 definir servicios y SLA
+81.37 automatizar hosts mediante API
+81.38 implementar Server HA
+81.39 implementar Proxy HA
+81.40 configurar self-monitoring
+81.41 analizar NVPS
+81.42 analizar queue
+81.43 analizar caches
+81.44 analizar procesos internos
+81.45 ajustar Server
+81.46 ajustar PostgreSQL
+81.47 diseñar retención de history y trends
+81.48 implementar backup
+81.49 ejecutar restore completo
+81.50 simular caída de Agent
+81.51 simular caída de Proxy
+81.52 simular caída del Server activo
+81.53 simular saturación de pollers
+81.54 provocar una queue creciente
+81.55 diagnosticar un item unsupported
+81.56 diagnosticar un problema TLS
+81.57 diagnosticar un problema de firewall
+81.58 diagnosticar un bloqueo SELinux
+81.59 correlacionar logs de todos los componentes
+81.60 capturar y analizar tráfico Zabbix
+81.61 seguir una métrica desde Agent hasta database
+81.62 seguir una métrica desde Proxy hasta Server
+81.63 seguir item → preprocessing → history → trigger
+81.64 seguir trigger → event → problem → action → alert
+81.65 analizar internals del Server
+81.66 documentar arquitectura
+81.67 documentar procedimientos operativos
+81.68 crear runbook de troubleshooting
+81.69 realizar prueba de disaster recovery
+81.70 realizar capacity planning
+81.71 realizar hardening final
+81.72 auditar permisos y secretos
+81.73 validar alta disponibilidad
+81.74 validar monitorización distribuida
+81.75 validar alerting extremo a extremo
+81.76 validar SLA
+81.77 validar backups y restauración
+81.78 generar informe técnico final
+81.79 construir mapa completo de flujos internos
+81.80 proyecto final: operar y diagnosticar una plataforma Zabbix de producción

@@ -1,0 +1,87 @@
+name: opentelemetry
+title: "OpenTelemetry en profundidad"
+language: es
+level: "0-to-expert"
+platform: "Fedora/RHEL"
+
+files:
+  path: initial.txt
+  domain: domain.md
+  bibliography: bibliografy.md
+
+pedagogy:
+  required_opening: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  remember_points: "3-7"
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  depth: deep
+  progressive: true
+  didactic: true
+  summary_only: false
+
+focus:
+  vendor_neutral: true
+  upstream_first: true
+  production: true
+  troubleshooting: true
+  internals: true
+  reproducible_labs: true
+  validate_results: true
+
+integrations:
+  - prometheus
+  - grafana
+  - loki
+  - tempo
+  - elastic
+  - opensearch
+  - jaeger
+  - zipkin
+
+
+bibliography_policy:
+  principal_book:
+    title: "Learning OpenTelemetry"
+    authors:
+      - "Ted Young"
+      - "Austin Parker"
+    publisher: "O'Reilly Media"
+    role: "primary_pedagogical_guide"
+  do_not_limit_path_to_book: true
+  upstream_overrides_outdated_book_details: true
+  authority_order:
+    - "OpenTelemetry Specification"
+    - "OTLP Specification"
+    - "OpenTelemetry Semantic Conventions"
+    - "OpenTelemetry official documentation"
+    - "OpenTelemetry Collector and Collector Contrib documentation/source"
+    - "Learning OpenTelemetry"
+
+kubernetes_observability:
+  enabled: true
+  depth: expert
+  avoid_duplicate_general_kubernetes_course: true
+  include:
+    - collector-daemonset
+    - collector-gateway
+    - agent-gateway
+    - sidecar
+    - opentelemetry-operator
+    - opentelemetrycollector-crd
+    - instrumentation-crd
+    - target-allocator
+    - k8sattributes
+    - kubeletstats
+    - k8s-cluster
+    - filelog
+    - service-discovery
+    - rbac
+    - network-policies
+    - scaling
+    - high-availability
+    - multi-cluster
+    - multi-tenancy
+    - troubleshooting

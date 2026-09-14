@@ -1,0 +1,301 @@
+name: elastic-stack
+title: "ELASTIC STACK EN PROFUNDIDAD — FEDORA"
+language: es
+platform: fedora
+level:
+  start: beginner
+  end: expert
+
+path:
+  file: initial.txt
+  domain: domain.md
+  bibliography: bibliografy.md
+
+course:
+  objective: >
+    Enseñar Elastic Stack desde fundamentos hasta nivel experto, incluyendo
+    Elasticsearch, Lucene, ingest pipelines, Logstash, Beats, Elastic Agent,
+    Fleet, ECS, Kibana, alerting, seguridad, clustering, ILM, snapshots,
+    rendimiento, troubleshooting, observabilidad e internals, con Fedora
+    como plataforma principal.
+  approach:
+    - conceptual
+    - practical
+    - progressive
+    - production_oriented
+    - troubleshooting_oriented
+    - internals_aware
+  avoid:
+    - superficial_summaries
+    - command_dumps_without_explanation
+    - obsolete_practices_presented_as_current
+    - invented_commands_or_outputs
+    - disabling_security_as_default_fix
+    - universal_performance_magic_numbers
+    - unnecessary_topic_duplication
+
+lesson:
+  required_opening: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points:
+    min: 3
+    max: 7
+  optional_sections:
+    - "🧪 Laboratorio / ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  depth: deep
+  style: didactic
+  explain:
+    - purpose
+    - architecture_context
+    - internal_operation_when_relevant
+    - configuration
+    - validation
+    - failure_modes
+    - troubleshooting
+    - production_implications
+  continuity:
+    use_previous_lessons: true
+    prepare_next_lessons: true
+    avoid_full_repetition: true
+    terminology_consistent: true
+
+version_policy:
+  prefer_current_stable_documentation: true
+  verify_version_sensitive_features: true
+  distinguish:
+    - current
+    - legacy
+    - deprecated
+    - removed
+  official_docs_override_old_books_for_current_behavior: true
+  do_not_assume_cross_version_compatibility: true
+
+sources:
+  priority:
+    - elastic_official_documentation
+    - apache_lucene_official_documentation
+    - fedora_official_documentation
+    - opentelemetry_official_documentation
+    - selected_books
+  bibliography_file: bibliografy.md
+  require_version_check_for:
+    - APIs
+    - configuration_options
+    - defaults
+    - node_roles
+    - security
+    - ILM
+    - data_streams
+    - Fleet
+    - Elastic_Agent
+    - integrations
+    - Kibana
+    - alerting
+    - licensing_sensitive_features
+
+fedora:
+  use_when_relevant:
+    - rpm
+    - systemd
+    - systemctl
+    - journalctl
+    - firewalld
+    - SELinux
+    - curl
+    - openssl
+  do_not_turn_lesson_into_general_fedora_course: true
+
+elastic:
+  components:
+    - Elasticsearch
+    - Kibana
+    - Logstash
+    - Beats
+    - Elastic_Agent
+    - Fleet
+    - ECS
+    - Elastic_APM
+  elasticsearch_focus:
+    - REST_APIs
+    - documents
+    - indices
+    - mappings
+    - analyzers
+    - Query_DSL
+    - aggregations
+    - shards
+    - replicas
+    - routing
+    - clustering
+    - data_streams
+    - ingest_pipelines
+    - ILM
+    - SLM
+    - snapshots
+    - CCS
+    - CCR
+    - performance
+    - troubleshooting
+    - internals
+  kibana_focus:
+    - Data_Views
+    - Discover
+    - KQL
+    - ES_QL
+    - Lens
+    - Maps
+    - dashboards
+    - saved_objects
+    - Spaces
+    - Dev_Tools
+    - alerting
+    - APIs
+  ingestion_focus:
+    - ingest_pipelines
+    - Logstash
+    - Beats
+    - Elastic_Agent
+    - Fleet
+    - journald
+    - rsyslog
+    - syslog_ng
+    - applications
+    - OpenTelemetry
+
+ecs:
+  transversal: true
+  teach_semantics_not_only_field_names: true
+  normalize_labs_when_appropriate: true
+
+security:
+  transversal: true
+  principles:
+    - TLS
+    - authentication
+    - authorization
+    - RBAC
+    - API_keys
+    - service_accounts
+    - secrets
+    - least_privilege
+    - audit
+    - host_firewall
+    - SELinux
+  never_recommend_as_permanent_fix:
+    - disable_TLS
+    - disable_authentication
+    - disable_firewalld
+    - disable_SELinux
+
+operations:
+  high_availability:
+    cover:
+      - fault_domains
+      - master_coordination
+      - replicas
+      - allocation_awareness
+      - recovery
+      - snapshots
+      - CCR_when_relevant
+  lifecycle:
+    cover:
+      - data_streams
+      - rollover
+      - ILM
+      - data_tiers
+      - retention
+      - SLM
+      - snapshots
+      - restore
+  performance:
+    require_measurement: true
+    explain_tradeoffs: true
+    avoid_magic_numbers: true
+  troubleshooting:
+    evidence_based: true
+    workflow:
+      - define_symptom
+      - determine_scope
+      - inspect_cluster_health
+      - inspect_nodes_indices_shards
+      - inspect_metrics
+      - inspect_logs
+      - use_diagnostic_APIs
+      - formulate_hypothesis
+      - test_hypothesis
+      - correct
+      - validate
+      - document_root_cause
+
+labs:
+  reproducible: true
+  cumulative_when_possible: true
+  use_real_commands: true
+  require_validation: true
+  include_safe_failure_injection_when_useful: true
+  warn_before_destructive_operations: true
+  avoid_paid_cloud_requirement_for_core_objectives: true
+  prefer_local_fedora_environment: true
+
+examples:
+  commands_must_be_valid: true
+  explain_important_options: true
+  avoid_ambiguous_placeholders: true
+  outputs:
+    never_invent_exact_dynamic_values: true
+    allow_representative_output_when_labeled: true
+  REST:
+    prefer:
+      - curl
+      - Kibana_Dev_Tools
+
+internals:
+  required: true
+  connect_to_operations: true
+  topics:
+    - Lucene_inverted_index
+    - terms
+    - postings
+    - segments
+    - doc_values
+    - BM25
+    - refresh
+    - flush
+    - merge
+    - translog
+    - routing
+    - sequence_numbers
+    - primary_terms
+    - checkpoints
+    - distributed_write
+    - distributed_search
+    - query_phase
+    - fetch_phase
+    - cluster_state
+    - cluster_coordination
+    - Logstash_queues
+    - Elastic_Agent_and_Fleet
+    - Kibana
+
+completion:
+  learner_can:
+    - deploy
+    - ingest
+    - normalize_with_ECS
+    - design_mappings_templates_and_data_streams
+    - search_and_aggregate
+    - administer_clusters
+    - operate_Logstash
+    - operate_Elastic_Agent_and_Fleet
+    - build_Kibana_dashboards
+    - configure_alerting
+    - secure_the_stack
+    - implement_lifecycle_and_backups
+    - size_and_tune
+    - troubleshoot
+    - upgrade_and_migrate
+    - automate
+    - explain_core_internals
+    - design_and_operate_production_architecture

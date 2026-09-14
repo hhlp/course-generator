@@ -1,0 +1,4210 @@
+SQL DE 0 A EXPERTO
+SQL estándar + PostgreSQL como implementación principal
+
+
+0. Introducción, entorno y datasets
+
+0.1 qué es una base de datos
+0.2 qué es un DBMS
+0.3 qué es un RDBMS
+0.4 qué es SQL
+0.5 historia de SQL
+0.6 SQL como estándar
+0.7 estándares ANSI e ISO SQL
+0.8 dialectos SQL
+0.9 SQL estándar frente a extensiones del DBMS
+0.10 PostgreSQL
+0.11 por qué utilizar PostgreSQL como implementación principal
+0.12 diferencias entre SQL y PostgreSQL
+0.13 comparación conceptual con MySQL
+0.14 comparación conceptual con MariaDB
+0.15 comparación conceptual con SQLite
+0.16 arquitectura cliente-servidor
+0.17 servidor PostgreSQL
+0.18 cliente PostgreSQL
+0.19 psql
+0.20 instalar PostgreSQL
+0.21 inicializar un cluster
+0.22 iniciar PostgreSQL
+0.23 detener PostgreSQL
+0.24 conectarse al servidor
+0.25 connection string
+0.26 database
+0.27 schema
+0.28 table
+0.29 column
+0.30 row
+0.31 dataset
+0.32 metadata
+0.33 crear una base de datos de laboratorio
+0.34 cargar datasets
+0.35 importar SQL
+0.36 importar CSV
+0.37 COPY
+0.38 \copy
+0.39 explorar tablas desde psql
+0.40 \l
+0.41 \c
+0.42 \dn
+0.43 \dt
+0.44 \d
+0.45 \d+
+0.46 \conninfo
+0.47 \x
+0.48 \timing
+0.49 ayuda de psql
+0.50 documentación SQL
+0.51 documentación PostgreSQL
+0.52 laboratorio: preparar el entorno completo del curso
+
+
+1. SELECT y fundamentos de consulta
+
+1.1 qué es una consulta
+1.2 SELECT
+1.3 SELECT *
+1.4 FROM
+1.5 seleccionar una columna
+1.6 seleccionar múltiples columnas
+1.7 orden de las columnas
+1.8 aliases
+1.9 AS
+1.10 aliases de columnas
+1.11 aliases de tablas
+1.12 constantes
+1.13 expresiones
+1.14 expresiones aritméticas
+1.15 operadores
+1.16 precedencia de operadores
+1.17 paréntesis
+1.18 strings
+1.19 números
+1.20 booleanos
+1.21 NULL
+1.22 NULL no significa cero
+1.23 NULL no significa cadena vacía
+1.24 resultados de una consulta
+1.25 filas y columnas del resultado
+1.26 proyección
+1.27 selección conceptual
+1.28 query result como relación
+1.29 orden lógico inicial de SELECT
+1.30 errores de sintaxis
+1.31 ejecutar consultas desde psql
+1.32 formato de resultados
+1.33 laboratorio: explorar un dataset únicamente con SELECT
+
+
+2. ORDER BY, LIMIT y ordenación
+
+2.1 ORDER BY
+2.2 ASC
+2.3 DESC
+2.4 orden ascendente
+2.5 orden descendente
+2.6 múltiples columnas
+2.7 prioridad entre columnas
+2.8 ordenar por expresión
+2.9 ordenar por alias
+2.10 ordenar por posición
+2.11 por qué evitar ORDER BY mediante posiciones
+2.12 NULLS FIRST
+2.13 NULLS LAST
+2.14 collation
+2.15 orden lexicográfico
+2.16 orden numérico
+2.17 orden temporal
+2.18 LIMIT
+2.19 OFFSET
+2.20 FETCH FIRST
+2.21 FETCH NEXT
+2.22 WITH TIES
+2.23 Top-N
+2.24 paginación
+2.25 problemas de OFFSET grande
+2.26 keyset pagination introducción
+2.27 orden determinista
+2.28 resultados sin ORDER BY
+2.29 laboratorio: ordenación, Top-N y paginación
+
+
+3. Claves, relaciones, DISTINCT y primera introducción a JOIN
+
+3.1 qué es una clave
+3.2 superkey
+3.3 candidate key
+3.4 primary key
+3.5 alternate key
+3.6 natural key
+3.7 surrogate key
+3.8 composite key
+3.9 foreign key
+3.10 referenced key
+3.11 integridad referencial
+3.12 relaciones entre tablas
+3.13 one-to-one
+3.14 one-to-many
+3.15 many-to-many
+3.16 tabla asociativa
+3.17 DISTINCT
+3.18 duplicados
+3.19 DISTINCT sobre una columna
+3.20 DISTINCT sobre varias columnas
+3.21 JOIN
+3.22 INNER JOIN
+3.23 ON
+3.24 relacionar PK y FK
+3.25 aliases en joins
+3.26 ambigüedad de columnas
+3.27 nombres cualificados
+3.28 cardinalidad del resultado
+3.29 multiplicación de filas
+3.30 join explosion introducción
+3.31 laboratorio: reconstruir relaciones entre tablas
+
+
+4. Fundamentos de filtrado
+
+4.1 WHERE
+4.2 predicados
+4.3 igualdad
+4.4 desigualdad
+4.5 menor que
+4.6 mayor que
+4.7 menor o igual
+4.8 mayor o igual
+4.9 AND
+4.10 OR
+4.11 NOT
+4.12 precedencia lógica
+4.13 paréntesis
+4.14 BETWEEN
+4.15 NOT BETWEEN
+4.16 IN
+4.17 NOT IN
+4.18 IS NULL
+4.19 IS NOT NULL
+4.20 IS TRUE
+4.21 IS FALSE
+4.22 IS UNKNOWN
+4.23 DISTINCT FROM
+4.24 IS NOT DISTINCT FROM
+4.25 lógica ternaria
+4.26 TRUE
+4.27 FALSE
+4.28 UNKNOWN
+4.29 efectos de NULL sobre comparaciones
+4.30 efectos de NULL sobre filtros
+4.31 laboratorio: construir filtros complejos
+
+
+5. Wildcards, patrones y expresiones regulares
+
+5.1 LIKE
+5.2 %
+5.3 _
+5.4 NOT LIKE
+5.5 case sensitivity
+5.6 ILIKE en PostgreSQL
+5.7 escape de patrones
+5.8 ESCAPE
+5.9 SIMILAR TO
+5.10 expresiones regulares en PostgreSQL
+5.11 operador ~
+5.12 operador ~*
+5.13 operador !~
+5.14 operador !~*
+5.15 regexp_like
+5.16 regexp_match
+5.17 regexp_matches
+5.18 regexp_replace
+5.19 regexp_split_to_array
+5.20 regexp_split_to_table
+5.21 LIKE vs regex
+5.22 índices y búsquedas de patrones introducción
+5.23 laboratorio: filtros mediante patrones
+
+
+6. Expresiones y operadores
+
+6.1 expresiones escalares
+6.2 operadores aritméticos
+6.3 suma
+6.4 resta
+6.5 multiplicación
+6.6 división
+6.7 módulo
+6.8 exponenciación
+6.9 concatenación
+6.10 operadores booleanos
+6.11 operadores de comparación
+6.12 operadores PostgreSQL
+6.13 casts
+6.14 CAST
+6.15 ::
+6.16 conversión implícita
+6.17 conversión explícita
+6.18 resolución de tipos
+6.19 precedencia de operadores
+6.20 expresiones complejas
+6.21 laboratorio: construir expresiones SQL
+
+
+7. Funciones escalares
+
+7.1 qué es una función SQL
+7.2 argumentos
+7.3 valor de retorno
+7.4 funciones de texto
+7.5 length
+7.6 char_length
+7.7 lower
+7.8 upper
+7.9 trim
+7.10 ltrim
+7.11 rtrim
+7.12 btrim
+7.13 substring
+7.14 left
+7.15 right
+7.16 position
+7.17 replace
+7.18 translate
+7.19 concat
+7.20 concat_ws
+7.21 split_part
+7.22 repeat
+7.23 reverse
+7.24 lpad
+7.25 rpad
+7.26 format
+7.27 funciones numéricas
+7.28 abs
+7.29 ceil
+7.30 floor
+7.31 round
+7.32 trunc
+7.33 mod
+7.34 power
+7.35 sqrt
+7.36 random
+7.37 sign
+7.38 funciones condicionales
+7.39 COALESCE
+7.40 NULLIF
+7.41 GREATEST
+7.42 LEAST
+7.43 laboratorio: transformación de datos mediante funciones
+
+
+8. Fechas, horas e intervalos
+
+8.1 DATE
+8.2 TIME
+8.3 TIMESTAMP
+8.4 TIMESTAMP WITHOUT TIME ZONE
+8.5 TIMESTAMP WITH TIME ZONE
+8.6 timestamptz
+8.7 INTERVAL
+8.8 CURRENT_DATE
+8.9 CURRENT_TIME
+8.10 CURRENT_TIMESTAMP
+8.11 LOCALTIME
+8.12 LOCALTIMESTAMP
+8.13 now()
+8.14 transaction_timestamp
+8.15 statement_timestamp
+8.16 clock_timestamp
+8.17 date_part
+8.18 extract
+8.19 date_trunc
+8.20 date_bin
+8.21 make_date
+8.22 make_timestamp
+8.23 make_interval
+8.24 arithmetic con fechas
+8.25 arithmetic con intervalos
+8.26 zonas horarias
+8.27 AT TIME ZONE
+8.28 timezone
+8.29 daylight saving time
+8.30 límites y ambigüedades temporales
+8.31 ISO-8601
+8.32 laboratorio: consultas temporales
+
+
+9. Agregación y GROUP BY
+
+9.1 funciones aggregate
+9.2 COUNT
+9.3 COUNT(*)
+9.4 COUNT(column)
+9.5 SUM
+9.6 AVG
+9.7 MIN
+9.8 MAX
+9.9 GROUP BY
+9.10 grupos
+9.11 columnas agrupadas
+9.12 restricciones de GROUP BY
+9.13 HAVING
+9.14 WHERE vs HAVING
+9.15 DISTINCT dentro de aggregates
+9.16 COUNT DISTINCT
+9.17 FILTER
+9.18 ORDER BY dentro de aggregates
+9.19 string_agg
+9.20 array_agg
+9.21 bool_and
+9.22 bool_or
+9.23 every
+9.24 aggregates estadísticas
+9.25 stddev
+9.26 variance
+9.27 correlation
+9.28 grouping
+9.29 grouping sets introducción
+9.30 laboratorio: informes agregados
+
+
+10. CASE y lógica condicional
+
+10.1 CASE
+10.2 simple CASE
+10.3 searched CASE
+10.4 WHEN
+10.5 THEN
+10.6 ELSE
+10.7 CASE y NULL
+10.8 CASE dentro de SELECT
+10.9 CASE dentro de ORDER BY
+10.10 CASE dentro de aggregates
+10.11 conditional aggregation
+10.12 CASE frente a FILTER
+10.13 COALESCE frente a CASE
+10.14 NULLIF frente a CASE
+10.15 evaluación de expresiones
+10.16 laboratorio: clasificación de datos mediante CASE
+
+
+11. Joins — fundamentos
+
+11.1 modelo conceptual de JOIN
+11.2 producto cartesiano
+11.3 CROSS JOIN
+11.4 INNER JOIN
+11.5 LEFT JOIN
+11.6 RIGHT JOIN
+11.7 FULL JOIN
+11.8 OUTER JOIN
+11.9 ON
+11.10 USING
+11.11 NATURAL JOIN
+11.12 por qué evitar NATURAL JOIN en producción
+11.13 aliases
+11.14 múltiples joins
+11.15 join chains
+11.16 join predicates
+11.17 igualdad
+11.18 non-equi joins
+11.19 joins por rangos
+11.20 joins con múltiples condiciones
+11.21 NULL en joins
+11.22 filtros después de un outer join
+11.23 ON vs WHERE
+11.24 duplicados causados por joins
+11.25 cardinalidad
+11.26 cardinalidad one-to-one
+11.27 cardinalidad one-to-many
+11.28 cardinalidad many-to-many
+11.29 laboratorio: joins complejos
+
+
+12. Joins — patrones avanzados
+
+12.1 semi join conceptual
+12.2 anti join conceptual
+12.3 EXISTS como semi join
+12.4 NOT EXISTS como anti join
+12.5 IN como semi join lógico
+12.6 problemas de NOT IN con NULL
+12.7 anti join seguro
+12.8 theta joins
+12.9 range joins
+12.10 temporal joins
+12.11 non-key joins
+12.12 fan-out
+12.13 join explosion
+12.14 accidental Cartesian product
+12.15 deduplicación tras joins
+12.16 cuándo DISTINCT oculta errores
+12.17 LATERAL
+12.18 CROSS JOIN LATERAL
+12.19 LEFT JOIN LATERAL
+12.20 correlated lateral subqueries
+12.21 funciones set-returning y LATERAL
+12.22 laboratorio: patrones avanzados de JOIN
+
+
+13. Subqueries
+
+13.1 qué es una subquery
+13.2 scalar subquery
+13.3 row subquery
+13.4 table subquery
+13.5 derived table
+13.6 subquery en SELECT
+13.7 subquery en FROM
+13.8 subquery en WHERE
+13.9 subquery en HAVING
+13.10 correlated subquery
+13.11 uncorrelated subquery
+13.12 EXISTS
+13.13 NOT EXISTS
+13.14 IN
+13.15 NOT IN
+13.16 ANY
+13.17 SOME
+13.18 ALL
+13.19 scalar comparison
+13.20 row comparison
+13.21 subquery cardinality
+13.22 subquery que devuelve más de una fila
+13.23 correlated subquery y coste
+13.24 decorrelation conceptual
+13.25 subquery vs join
+13.26 laboratorio: resolver problemas mediante subqueries
+
+
+14. Common Table Expressions
+
+14.1 WITH
+14.2 CTE
+14.3 nombre de una CTE
+14.4 múltiples CTE
+14.5 dependencias entre CTE
+14.6 CTE como pipeline
+14.7 CTE en SELECT
+14.8 CTE con INSERT
+14.9 CTE con UPDATE
+14.10 CTE con DELETE
+14.11 data-modifying CTE
+14.12 RETURNING
+14.13 materialization
+14.14 MATERIALIZED
+14.15 NOT MATERIALIZED
+14.16 CTE inlining
+14.17 CTE vs subquery
+14.18 CTE vs view
+14.19 CTE vs temporary table
+14.20 optimización de CTE
+14.21 laboratorio: consultas estructuradas mediante CTE
+
+
+15. Recursive CTE
+
+15.1 recursividad en SQL
+15.2 WITH RECURSIVE
+15.3 término no recursivo
+15.4 término recursivo
+15.5 UNION
+15.6 UNION ALL
+15.7 working table conceptual
+15.8 termination condition
+15.9 árboles
+15.10 jerarquías
+15.11 organizational tree
+15.12 bill of materials
+15.13 grafos
+15.14 traversal
+15.15 depth
+15.16 path
+15.17 cycle detection
+15.18 SEARCH
+15.19 DEPTH FIRST
+15.20 BREADTH FIRST
+15.21 CYCLE
+15.22 recursive query performance
+15.23 recursión infinita
+15.24 laboratorio: recorrer árboles y grafos
+
+
+16. Set operations
+
+16.1 teoría de conjuntos aplicada a SQL
+16.2 UNION
+16.3 UNION ALL
+16.4 INTERSECT
+16.5 INTERSECT ALL
+16.6 EXCEPT
+16.7 EXCEPT ALL
+16.8 compatibilidad de columnas
+16.9 compatibilidad de tipos
+16.10 resolución del tipo común
+16.11 duplicados
+16.12 set semantics
+16.13 bag semantics
+16.14 precedencia
+16.15 paréntesis
+16.16 ORDER BY con set operations
+16.17 LIMIT con set operations
+16.18 UNION vs JOIN
+16.19 INTERSECT vs INNER JOIN
+16.20 EXCEPT vs anti join
+16.21 laboratorio: combinar datasets
+
+
+17. Window functions — fundamentos
+
+17.1 qué es una window function
+17.2 diferencia frente a aggregate
+17.3 OVER
+17.4 PARTITION BY
+17.5 ORDER BY
+17.6 window partition
+17.7 window ordering
+17.8 window frame
+17.9 ROWS
+17.10 RANGE
+17.11 GROUPS
+17.12 UNBOUNDED PRECEDING
+17.13 CURRENT ROW
+17.14 UNBOUNDED FOLLOWING
+17.15 BETWEEN
+17.16 ROW_NUMBER
+17.17 RANK
+17.18 DENSE_RANK
+17.19 PERCENT_RANK
+17.20 CUME_DIST
+17.21 NTILE
+17.22 laboratorio: ranking mediante ventanas
+
+
+18. Window functions — navegación y análisis
+
+18.1 LAG
+18.2 LEAD
+18.3 FIRST_VALUE
+18.4 LAST_VALUE
+18.5 NTH_VALUE
+18.6 aggregate functions como windows
+18.7 running sum
+18.8 cumulative sum
+18.9 running count
+18.10 running average
+18.11 moving average
+18.12 rolling window
+18.13 differences between rows
+18.14 period-over-period comparison
+18.15 percent of total
+18.16 cumulative percentage
+18.17 top-N per group
+18.18 deduplication mediante row_number
+18.19 gaps and islands
+18.20 sessionization
+18.21 named windows
+18.22 WINDOW clause
+18.23 multiple windows
+18.24 frame exclusion
+18.25 EXCLUDE CURRENT ROW
+18.26 EXCLUDE GROUP
+18.27 EXCLUDE TIES
+18.28 window performance
+18.29 laboratorio: análisis avanzado mediante window functions
+
+
+19. GROUPING SETS, ROLLUP y CUBE
+
+19.1 múltiples niveles de agregación
+19.2 GROUPING SETS
+19.3 ROLLUP
+19.4 CUBE
+19.5 GROUPING
+19.6 subtotales
+19.7 grand total
+19.8 combinaciones jerárquicas
+19.9 reporting multidimensional
+19.10 GROUPING SETS vs UNION ALL
+19.11 laboratorio: informes multidimensionales
+
+
+20. Views
+
+20.1 qué es una view
+20.2 CREATE VIEW
+20.3 OR REPLACE VIEW
+20.4 DROP VIEW
+20.5 view definition
+20.6 view dependencies
+20.7 simple view
+20.8 complex view
+20.9 updatable view
+20.10 automatically updatable view
+20.11 INSERT mediante view
+20.12 UPDATE mediante view
+20.13 DELETE mediante view
+20.14 CHECK OPTION
+20.15 LOCAL CHECK OPTION
+20.16 CASCADED CHECK OPTION
+20.17 security_barrier
+20.18 security_invoker
+20.19 view ownership
+20.20 view privileges
+20.21 view vs CTE
+20.22 view vs stored query
+20.23 laboratorio: construir una API SQL mediante views
+
+
+21. Materialized views
+
+21.1 qué es una materialized view
+21.2 CREATE MATERIALIZED VIEW
+21.3 WITH DATA
+21.4 WITH NO DATA
+21.5 REFRESH MATERIALIZED VIEW
+21.6 CONCURRENTLY
+21.7 unique index requerido para refresh concurrente
+21.8 materialized view vs view
+21.9 materialized view vs table
+21.10 materialized view vs cache
+21.11 índices sobre materialized views
+21.12 refresh strategy
+21.13 freshness
+21.14 precomputation
+21.15 analytical workloads
+21.16 laboratorio: acelerar informes mediante materialized views
+
+
+22. Temporary y unlogged tables
+
+22.1 temporary table
+22.2 CREATE TEMP TABLE
+22.3 session scope
+22.4 temporary schema
+22.5 pg_temp
+22.6 ON COMMIT PRESERVE ROWS
+22.7 ON COMMIT DELETE ROWS
+22.8 ON COMMIT DROP
+22.9 temporary indexes
+22.10 temporary tables y pooling
+22.11 unlogged table
+22.12 CREATE UNLOGGED TABLE
+22.13 WAL y unlogged tables
+22.14 crash behavior
+22.15 TEMP vs UNLOGGED
+22.16 TEMP vs CTE
+22.17 TEMP vs permanent table
+22.18 laboratorio: elegir almacenamiento temporal adecuado
+
+
+23. Modelo relacional
+
+23.1 qué es el modelo relacional
+23.2 Edgar F. Codd
+23.3 relation
+23.4 tuple
+23.5 attribute
+23.6 domain
+23.7 relation schema
+23.8 relation instance
+23.9 degree
+23.10 cardinality
+23.11 candidate keys
+23.12 relational integrity
+23.13 entity integrity
+23.14 referential integrity
+23.15 closed world assumption
+23.16 NULL y modelo relacional
+23.17 relational model vs SQL
+23.18 SQL como aproximación al modelo relacional
+23.19 bag semantics de SQL
+23.20 relational algebra
+23.21 relational calculus
+23.22 laboratorio: representar un problema mediante relaciones
+
+
+24. Álgebra relacional
+
+24.1 selección
+24.2 proyección
+24.3 renombrado
+24.4 producto cartesiano
+24.5 unión
+24.6 intersección
+24.7 diferencia
+24.8 join
+24.9 theta join
+24.10 equijoin
+24.11 natural join
+24.12 semijoin
+24.13 antijoin
+24.14 división relacional
+24.15 composición de operadores
+24.16 equivalencias
+24.17 transformación de consultas
+24.18 relación entre álgebra relacional y SQL
+24.19 laboratorio: expresar consultas SQL como álgebra relacional
+
+
+25. Dependencias funcionales
+
+25.1 dependencia funcional
+25.2 determinante
+25.3 dependent attribute
+25.4 dependencia trivial
+25.5 dependencia no trivial
+25.6 dependencia completa
+25.7 dependencia parcial
+25.8 dependencia transitiva
+25.9 closure de atributos
+25.10 reglas de Armstrong
+25.11 reflexividad
+25.12 augmentation
+25.13 transitividad
+25.14 equivalencia de conjuntos de dependencias
+25.15 minimal cover
+25.16 candidate keys mediante functional dependencies
+25.17 laboratorio: descubrir dependencias funcionales
+
+
+26. Normalización
+
+26.1 anomalías de inserción
+26.2 anomalías de actualización
+26.3 anomalías de eliminación
+26.4 1NF
+26.5 atomicidad
+26.6 repeating groups
+26.7 2NF
+26.8 dependencia parcial
+26.9 3NF
+26.10 dependencia transitiva
+26.11 BCNF
+26.12 3NF vs BCNF
+26.13 4NF
+26.14 multivalued dependencies
+26.15 5NF
+26.16 join dependencies
+26.17 lossless decomposition
+26.18 dependency preservation
+26.19 normalización práctica
+26.20 cuándo detener la normalización
+26.21 laboratorio: normalizar un modelo real
+
+
+27. Desnormalización
+
+27.1 por qué desnormalizar
+27.2 redundancia deliberada
+27.3 read-heavy workloads
+27.4 write amplification
+27.5 materialización
+27.6 precomputed values
+27.7 duplicated attributes
+27.8 summary tables
+27.9 cached aggregates
+27.10 consistencia
+27.11 sincronización
+27.12 triggers como mecanismo de sincronización
+27.13 application-level synchronization
+27.14 riesgos de desnormalización
+27.15 cuándo no desnormalizar
+27.16 laboratorio: justificar una desnormalización
+
+
+28. Diseño conceptual de bases de datos
+
+28.1 requisitos
+28.2 entidades
+28.3 atributos
+28.4 relaciones
+28.5 cardinalidad
+28.6 optionality
+28.7 one-to-one
+28.8 one-to-many
+28.9 many-to-many
+28.10 entidades débiles
+28.11 entidades asociativas
+28.12 atributos simples
+28.13 atributos compuestos
+28.14 atributos multivaluados
+28.15 identificadores
+28.16 ER model
+28.17 ER diagram
+28.18 conceptual model
+28.19 logical model
+28.20 physical model
+28.21 laboratorio: modelar un dominio completo
+
+
+29. Diseño de claves
+
+29.1 candidate key
+29.2 natural key
+29.3 surrogate key
+29.4 composite key
+29.5 generated identity
+29.6 sequence-backed keys
+29.7 UUID
+29.8 UUID como primary key
+29.9 sequential IDs
+29.10 externally visible IDs
+29.11 mutable natural keys
+29.12 business keys
+29.13 primary key size
+29.14 foreign key propagation
+29.15 clustered locality conceptual
+29.16 key design trade-offs
+29.17 laboratorio: elegir claves para un modelo real
+
+
+30. DDL — bases de datos y schemas
+
+30.1 Data Definition Language
+30.2 CREATE DATABASE
+30.3 DROP DATABASE
+30.4 ALTER DATABASE
+30.5 OWNER
+30.6 TEMPLATE
+30.7 ENCODING
+30.8 LC_COLLATE
+30.9 LC_CTYPE
+30.10 schemas
+30.11 CREATE SCHEMA
+30.12 ALTER SCHEMA
+30.13 DROP SCHEMA
+30.14 schema ownership
+30.15 search_path
+30.16 public schema
+30.17 schema qualification
+30.18 namespaces
+30.19 database vs schema
+30.20 laboratorio: diseñar namespaces de una aplicación
+
+
+31. DDL — tablas
+
+31.1 CREATE TABLE
+31.2 columnas
+31.3 tipos
+31.4 DEFAULT
+31.5 constraints
+31.6 table constraints
+31.7 column constraints
+31.8 ALTER TABLE
+31.9 ADD COLUMN
+31.10 DROP COLUMN
+31.11 ALTER COLUMN
+31.12 RENAME COLUMN
+31.13 RENAME TABLE
+31.14 SET DATA TYPE
+31.15 SET DEFAULT
+31.16 DROP DEFAULT
+31.17 SET NOT NULL
+31.18 DROP NOT NULL
+31.19 ADD CONSTRAINT
+31.20 DROP CONSTRAINT
+31.21 VALIDATE CONSTRAINT
+31.22 CREATE TABLE AS
+31.23 LIKE
+31.24 INCLUDING DEFAULTS
+31.25 INCLUDING CONSTRAINTS
+31.26 INCLUDING INDEXES
+31.27 DROP TABLE
+31.28 CASCADE
+31.29 RESTRICT
+31.30 dependencia de objetos
+31.31 laboratorio: evolución de un esquema
+
+
+32. Tipos de datos
+
+32.1 sistema de tipos de PostgreSQL
+32.2 smallint
+32.3 integer
+32.4 bigint
+32.5 numeric
+32.6 decimal
+32.7 real
+32.8 double precision
+32.9 serial
+32.10 bigserial
+32.11 identity columns
+32.12 GENERATED ALWAYS AS IDENTITY
+32.13 GENERATED BY DEFAULT AS IDENTITY
+32.14 character
+32.15 varchar
+32.16 text
+32.17 boolean
+32.18 date
+32.19 time
+32.20 timestamp
+32.21 interval
+32.22 bytea
+32.23 UUID
+32.24 bit strings
+32.25 money
+32.26 network address types
+32.27 inet
+32.28 cidr
+32.29 macaddr
+32.30 geometric types
+32.31 range types
+32.32 multirange types
+32.33 arrays
+32.34 composite types
+32.35 enum types
+32.36 domain types
+32.37 pseudo-types
+32.38 choosing the right type
+32.39 laboratorio: diseñar tipos para un modelo real
+
+
+33. Arrays
+
+33.1 arrays en PostgreSQL
+33.2 declarar arrays
+33.3 array literals
+33.4 ARRAY constructor
+33.5 acceso por índice
+33.6 slices
+33.7 array_length
+33.8 cardinality
+33.9 array_append
+33.10 array_prepend
+33.11 array_cat
+33.12 unnest
+33.13 ANY con arrays
+33.14 ALL con arrays
+33.15 containment
+33.16 overlap
+33.17 GIN indexes sobre arrays
+33.18 arrays vs tabla relacionada
+33.19 cuándo utilizar arrays
+33.20 cuándo no utilizar arrays
+33.21 laboratorio: modelado mediante arrays
+
+
+34. ENUM, DOMAIN y tipos compuestos
+
+34.1 CREATE TYPE
+34.2 ENUM
+34.3 añadir valores a ENUM
+34.4 orden de ENUM
+34.5 limitaciones de ENUM
+34.6 DOMAIN
+34.7 CREATE DOMAIN
+34.8 constraints en DOMAIN
+34.9 reutilización de reglas
+34.10 composite types
+34.11 row constructors
+34.12 acceso a campos
+34.13 tipos compuestos como argumentos
+34.14 tipos compuestos como retorno
+34.15 enum vs lookup table
+34.16 domain vs CHECK
+34.17 laboratorio: diseñar tipos de dominio
+
+
+35. Constraints
+
+35.1 integridad declarativa
+35.2 NOT NULL
+35.3 CHECK
+35.4 UNIQUE
+35.5 PRIMARY KEY
+35.6 FOREIGN KEY
+35.7 EXCLUDE
+35.8 composite constraints
+35.9 named constraints
+35.10 deferrable constraints
+35.11 DEFERRABLE
+35.12 INITIALLY IMMEDIATE
+35.13 INITIALLY DEFERRED
+35.14 SET CONSTRAINTS
+35.15 foreign key actions
+35.16 ON DELETE
+35.17 ON UPDATE
+35.18 NO ACTION
+35.19 RESTRICT
+35.20 CASCADE
+35.21 SET NULL
+35.22 SET DEFAULT
+35.23 MATCH FULL
+35.24 constraint validation
+35.25 NOT VALID
+35.26 VALIDATE CONSTRAINT
+35.27 exclusion constraints
+35.28 range overlap prevention
+35.29 laboratorio: asegurar integridad únicamente mediante constraints
+
+
+36. Sequences e identity
+
+36.1 sequence
+36.2 CREATE SEQUENCE
+36.3 nextval
+36.4 currval
+36.5 setval
+36.6 sequence caching
+36.7 gaps
+36.8 sequence concurrency
+36.9 SERIAL
+36.10 BIGSERIAL
+36.11 identity
+36.12 SERIAL vs identity
+36.13 sequence ownership
+36.14 ALTER SEQUENCE
+36.15 DROP SEQUENCE
+36.16 generated values
+36.17 laboratorio: generación segura de identificadores
+
+
+37. Generated columns
+
+37.1 generated column
+37.2 GENERATED ALWAYS AS
+37.3 stored generated columns
+37.4 virtual generated columns cuando corresponda
+37.5 restrictions
+37.6 immutable expressions
+37.7 generated columns vs triggers
+37.8 generated columns vs views
+37.9 indexes sobre generated columns
+37.10 laboratorio: columnas derivadas
+
+
+38. DML — INSERT
+
+38.1 Data Manipulation Language
+38.2 INSERT
+38.3 VALUES
+38.4 insertar una fila
+38.5 insertar múltiples filas
+38.6 column list
+38.7 DEFAULT
+38.8 DEFAULT VALUES
+38.9 INSERT SELECT
+38.10 INSERT desde CTE
+38.11 RETURNING
+38.12 generated keys
+38.13 constraint violations
+38.14 INSERT y transactions
+38.15 laboratorio: carga de datos
+
+
+39. DML — UPDATE
+
+39.1 UPDATE
+39.2 SET
+39.3 actualizar una columna
+39.4 actualizar múltiples columnas
+39.5 WHERE
+39.6 UPDATE sin WHERE
+39.7 UPDATE FROM
+39.8 UPDATE usando JOIN
+39.9 UPDATE mediante CTE
+39.10 RETURNING
+39.11 self-referencing updates
+39.12 lost update introducción
+39.13 concurrency considerations
+39.14 laboratorio: actualizaciones complejas
+
+
+40. DML — DELETE
+
+40.1 DELETE
+40.2 WHERE
+40.3 DELETE sin WHERE
+40.4 DELETE USING
+40.5 DELETE mediante joins
+40.6 DELETE mediante CTE
+40.7 RETURNING
+40.8 foreign key effects
+40.9 cascading deletes
+40.10 soft delete
+40.11 hard delete
+40.12 TRUNCATE
+40.13 DELETE vs TRUNCATE
+40.14 identity y TRUNCATE
+40.15 RESTART IDENTITY
+40.16 CASCADE
+40.17 laboratorio: estrategias de eliminación
+
+
+41. UPSERT y MERGE
+
+41.1 upsert
+41.2 INSERT ON CONFLICT
+41.3 conflict target
+41.4 ON CONFLICT DO NOTHING
+41.5 ON CONFLICT DO UPDATE
+41.6 EXCLUDED
+41.7 conditional upsert
+41.8 unique index como arbiter
+41.9 race conditions
+41.10 atomic upsert
+41.11 MERGE
+41.12 MERGE source
+41.13 WHEN MATCHED
+41.14 WHEN NOT MATCHED
+41.15 multiple WHEN clauses
+41.16 MERGE vs ON CONFLICT
+41.17 MERGE vs manual UPDATE+INSERT
+41.18 laboratorio: sincronización de datasets
+
+
+42. COPY y carga masiva
+
+42.1 COPY
+42.2 COPY FROM
+42.3 COPY TO
+42.4 STDIN
+42.5 STDOUT
+42.6 CSV
+42.7 HEADER
+42.8 DELIMITER
+42.9 NULL representation
+42.10 QUOTE
+42.11 ESCAPE
+42.12 FORCE_NULL
+42.13 \copy
+42.14 COPY vs \copy
+42.15 permisos
+42.16 carga masiva
+42.17 errores durante importación
+42.18 staging tables
+42.19 validación posterior
+42.20 laboratorio: importar millones de filas
+
+
+43. Transacciones — fundamentos
+
+43.1 transacción
+43.2 ACID
+43.3 atomicity
+43.4 consistency
+43.5 isolation
+43.6 durability
+43.7 BEGIN
+43.8 START TRANSACTION
+43.9 COMMIT
+43.10 ROLLBACK
+43.11 transaction boundary
+43.12 autocommit
+43.13 transaction block
+43.14 statements dentro de una transacción
+43.15 errores dentro de una transacción
+43.16 aborted transaction
+43.17 transaction state
+43.18 laboratorio: garantizar atomicidad
+
+
+44. Savepoints
+
+44.1 SAVEPOINT
+44.2 ROLLBACK TO SAVEPOINT
+44.3 RELEASE SAVEPOINT
+44.4 nested units of work
+44.5 subtransactions
+44.6 savepoints y errores
+44.7 retry parcial
+44.8 savepoint overhead
+44.9 laboratorio: recuperar parcialmente una transacción
+
+
+45. Concurrencia e isolation levels
+
+45.1 concurrencia
+45.2 concurrent transactions
+45.3 anomalies
+45.4 dirty read
+45.5 non-repeatable read
+45.6 phantom read
+45.7 lost update
+45.8 write skew
+45.9 serialization anomaly
+45.10 isolation levels
+45.11 READ UNCOMMITTED
+45.12 READ COMMITTED
+45.13 REPEATABLE READ
+45.14 SERIALIZABLE
+45.15 comportamiento real de PostgreSQL
+45.16 snapshot isolation
+45.17 serializable snapshot isolation
+45.18 elegir isolation level
+45.19 laboratorio: reproducir anomalías de concurrencia
+
+
+46. MVCC
+
+46.1 Multi-Version Concurrency Control
+46.2 por qué existe MVCC
+46.3 readers vs writers
+46.4 row versions
+46.5 tuple versions
+46.6 transaction IDs
+46.7 xid
+46.8 xmin
+46.9 xmax
+46.10 snapshots
+46.11 tuple visibility
+46.12 visible tuple
+46.13 invisible tuple
+46.14 update como nueva versión
+46.15 delete bajo MVCC
+46.16 dead tuples
+46.17 vacuum necessity
+46.18 transaction snapshot
+46.19 statement snapshot
+46.20 long-running transactions
+46.21 MVCC y bloat
+46.22 laboratorio: observar versiones de filas
+
+
+47. Locks
+
+47.1 locking
+47.2 explicit locks
+47.3 implicit locks
+47.4 table-level locks
+47.5 ACCESS SHARE
+47.6 ROW SHARE
+47.7 ROW EXCLUSIVE
+47.8 SHARE UPDATE EXCLUSIVE
+47.9 SHARE
+47.10 SHARE ROW EXCLUSIVE
+47.11 EXCLUSIVE
+47.12 ACCESS EXCLUSIVE
+47.13 row-level locks
+47.14 FOR UPDATE
+47.15 FOR NO KEY UPDATE
+47.16 FOR SHARE
+47.17 FOR KEY SHARE
+47.18 NOWAIT
+47.19 SKIP LOCKED
+47.20 lock compatibility
+47.21 lock queue
+47.22 advisory locks
+47.23 session advisory locks
+47.24 transaction advisory locks
+47.25 pg_locks
+47.26 laboratorio: inspeccionar bloqueo entre sesiones
+
+
+48. Deadlocks
+
+48.1 deadlock
+48.2 wait-for graph
+48.3 circular wait
+48.4 deadlock detection
+48.5 deadlock_timeout
+48.6 error de deadlock
+48.7 rollback automático
+48.8 orden consistente de locks
+48.9 reducir deadlocks
+48.10 deadlock vs lock contention
+48.11 laboratorio: provocar y diagnosticar un deadlock
+
+
+49. Índices — fundamentos
+
+49.1 qué es un índice
+49.2 índice vs tabla
+49.3 lookup
+49.4 index entry
+49.5 index key
+49.6 row locator conceptual
+49.7 index scan
+49.8 sequential scan
+49.9 coste de lectura
+49.10 coste de escritura
+49.11 CREATE INDEX
+49.12 DROP INDEX
+49.13 UNIQUE INDEX
+49.14 multicolumn index
+49.15 composite index
+49.16 column order
+49.17 leftmost prefix concept
+49.18 selectivity
+49.19 cardinality
+49.20 index maintenance
+49.21 laboratorio: diseñar los primeros índices
+
+
+50. B-tree
+
+50.1 B-tree
+50.2 balanced tree
+50.3 root page
+50.4 internal pages
+50.5 leaf pages
+50.6 keys
+50.7 page split
+50.8 tree height
+50.9 equality lookup
+50.10 range lookup
+50.11 ordering
+50.12 ORDER BY mediante índice
+50.13 min/max mediante índice
+50.14 multicolumn B-tree
+50.15 NULL en B-tree
+50.16 deduplication
+50.17 B-tree operator classes
+50.18 laboratorio: analizar comportamiento de B-tree
+
+
+51. Hash indexes
+
+51.1 hash index
+51.2 hashing
+51.3 buckets
+51.4 equality operations
+51.5 limitaciones
+51.6 hash vs B-tree
+51.7 casos de uso
+51.8 laboratorio: comparar hash y B-tree
+
+
+52. GiST
+
+52.1 Generalized Search Tree
+52.2 extensible indexing
+52.3 geometric data
+52.4 ranges
+52.5 nearest-neighbor search
+52.6 operator classes
+52.7 exclusion constraints
+52.8 PostGIS relación conceptual
+52.9 laboratorio: índices GiST sobre rangos
+
+
+53. SP-GiST
+
+53.1 Space-Partitioned GiST
+53.2 partitioned search trees
+53.3 tries
+53.4 quadtrees
+53.5 kd-trees conceptuales
+53.6 suitable data distributions
+53.7 laboratorio: explorar SP-GiST
+
+
+54. GIN
+
+54.1 Generalized Inverted Index
+54.2 inverted indexes
+54.3 multiple values per row
+54.4 arrays
+54.5 JSONB
+54.6 full-text search
+54.7 pending list
+54.8 fastupdate
+54.9 GIN write overhead
+54.10 laboratorio: acelerar consultas JSONB mediante GIN
+
+
+55. BRIN
+
+55.1 Block Range Index
+55.2 block ranges
+55.3 summarization
+55.4 physical correlation
+55.5 very large tables
+55.6 minmax
+55.7 autosummarize
+55.8 BRIN vs B-tree
+55.9 append-only data
+55.10 laboratorio: indexar una tabla masiva con BRIN
+
+
+56. Índices avanzados
+
+56.1 expression index
+56.2 functional index
+56.3 partial index
+56.4 predicate
+56.5 covering index
+56.6 INCLUDE
+56.7 index-only scan
+56.8 visibility map
+56.9 indexes on generated columns
+56.10 descending indexes
+56.11 mixed-order indexes
+56.12 NULLS FIRST/LAST en índices
+56.13 concurrent index creation
+56.14 CREATE INDEX CONCURRENTLY
+56.15 REINDEX
+56.16 REINDEX CONCURRENTLY
+56.17 invalid indexes
+56.18 unused indexes
+56.19 redundant indexes
+56.20 duplicate indexes
+56.21 over-indexing
+56.22 index bloat
+56.23 laboratorio: diseñar una estrategia de índices completa
+
+
+57. Query planner
+
+57.1 qué es el planner
+57.2 parser
+57.3 analyzer
+57.4 rewrite system
+57.5 planner
+57.6 optimizer
+57.7 executor
+57.8 logical plan
+57.9 physical plan
+57.10 cost-based optimization
+57.11 search space
+57.12 join ordering
+57.13 path
+57.14 cheapest path
+57.15 startup cost
+57.16 total cost
+57.17 cost units
+57.18 row estimates
+57.19 width estimates
+57.20 planner configuration
+57.21 laboratorio: observar decisiones del planner
+
+
+58. EXPLAIN
+
+58.1 EXPLAIN
+58.2 plan tree
+58.3 plan nodes
+58.4 indentation
+58.5 cost
+58.6 rows
+58.7 width
+58.8 startup cost
+58.9 total cost
+58.10 EXPLAIN ANALYZE
+58.11 actual time
+58.12 actual rows
+58.13 loops
+58.14 Planning Time
+58.15 Execution Time
+58.16 BUFFERS
+58.17 WAL
+58.18 VERBOSE
+58.19 SETTINGS
+58.20 SUMMARY
+58.21 TIMING
+58.22 COSTS
+58.23 FORMAT TEXT
+58.24 FORMAT JSON
+58.25 FORMAT YAML
+58.26 FORMAT XML
+58.27 side effects de EXPLAIN ANALYZE
+58.28 laboratorio: leer planes de ejecución
+
+
+59. Scan nodes
+
+59.1 Seq Scan
+59.2 Index Scan
+59.3 Index Only Scan
+59.4 Bitmap Index Scan
+59.5 Bitmap Heap Scan
+59.6 Tid Scan
+59.7 Tid Range Scan
+59.8 Subquery Scan
+59.9 Function Scan
+59.10 Values Scan
+59.11 CTE Scan
+59.12 WorkTable Scan
+59.13 Foreign Scan
+59.14 scan filters
+59.15 index conditions
+59.16 rows removed by filter
+59.17 heap fetches
+59.18 laboratorio: comparar métodos de acceso
+
+
+60. Join algorithms
+
+60.1 Nested Loop
+60.2 outer relation
+60.3 inner relation
+60.4 parameterized nested loop
+60.5 index nested loop
+60.6 Hash Join
+60.7 hash table
+60.8 build side
+60.9 probe side
+60.10 hash condition
+60.11 hash batches
+60.12 hash memory
+60.13 Merge Join
+60.14 sorted inputs
+60.15 merge condition
+60.16 join selection
+60.17 join cardinality
+60.18 join misestimation
+60.19 laboratorio: comparar algoritmos de join
+
+
+61. Sort, aggregate y otros plan nodes
+
+61.1 Sort
+61.2 Sort Key
+61.3 quicksort
+61.4 top-N heapsort
+61.5 external merge
+61.6 disk spill
+61.7 Incremental Sort
+61.8 Aggregate
+61.9 HashAggregate
+61.10 GroupAggregate
+61.11 MixedAggregate
+61.12 Unique
+61.13 Limit
+61.14 Materialize
+61.15 Memoize
+61.16 Result
+61.17 Append
+61.18 Merge Append
+61.19 SetOp
+61.20 LockRows
+61.21 laboratorio: interpretar nodos auxiliares
+
+
+62. Estadísticas del planner
+
+62.1 ANALYZE
+62.2 statistics target
+62.3 pg_statistic
+62.4 pg_stats
+62.5 n_distinct
+62.6 null_frac
+62.7 most_common_vals
+62.8 most_common_freqs
+62.9 histogram_bounds
+62.10 correlation
+62.11 selectivity estimation
+62.12 equality selectivity
+62.13 range selectivity
+62.14 join selectivity
+62.15 cardinality estimation
+62.16 stale statistics
+62.17 inaccurate statistics
+62.18 default_statistics_target
+62.19 column statistics target
+62.20 laboratorio: diagnosticar estimaciones incorrectas
+
+
+63. Extended statistics
+
+63.1 CREATE STATISTICS
+63.2 column correlation
+63.3 functional dependencies
+63.4 ndistinct statistics
+63.5 MCV statistics
+63.6 multi-column statistics
+63.7 correlated predicates
+63.8 planner misestimation
+63.9 ANALYZE y extended statistics
+63.10 pg_statistic_ext
+63.11 pg_statistic_ext_data
+63.12 laboratorio: corregir cardinality misestimation
+
+
+64. Cost model
+
+64.1 seq_page_cost
+64.2 random_page_cost
+64.3 cpu_tuple_cost
+64.4 cpu_index_tuple_cost
+64.5 cpu_operator_cost
+64.6 parallel_setup_cost
+64.7 parallel_tuple_cost
+64.8 effective_cache_size
+64.9 effective_io_concurrency
+64.10 cost calibration
+64.11 SSD vs HDD
+64.12 por qué no ajustar costes arbitrariamente
+64.13 laboratorio: experimentar con el cost model
+
+
+65. Memoria de consultas
+
+65.1 work_mem
+65.2 maintenance_work_mem
+65.3 hash_mem_multiplier
+65.4 sort memory
+65.5 hash memory
+65.6 per-operation memory
+65.7 concurrent memory usage
+65.8 temp files
+65.9 spill to disk
+65.10 temp_file_limit
+65.11 log_temp_files
+65.12 laboratorio: provocar y analizar spills
+
+
+66. Parallel query
+
+66.1 parallel query
+66.2 parallel worker
+66.3 leader process
+66.4 Gather
+66.5 Gather Merge
+66.6 Parallel Seq Scan
+66.7 Parallel Index Scan
+66.8 Parallel Bitmap Heap Scan
+66.9 Partial Aggregate
+66.10 Finalize Aggregate
+66.11 parallel joins
+66.12 max_parallel_workers
+66.13 max_parallel_workers_per_gather
+66.14 parallel_setup_cost
+66.15 parallel_tuple_cost
+66.16 parallel safety
+66.17 parallel restricted functions
+66.18 laboratorio: analizar ejecución paralela
+
+
+67. JIT
+
+67.1 Just-In-Time compilation
+67.2 LLVM
+67.3 expression compilation
+67.4 tuple deforming
+67.5 JIT thresholds
+67.6 jit_above_cost
+67.7 jit_inline_above_cost
+67.8 jit_optimize_above_cost
+67.9 overhead de JIT
+67.10 OLTP vs analytical workloads
+67.11 laboratorio: comparar consultas con y sin JIT
+
+
+68. Optimización de consultas
+
+68.1 metodología de optimización
+68.2 medir antes de cambiar
+68.3 obtener baseline
+68.4 EXPLAIN ANALYZE
+68.5 detectar cardinality errors
+68.6 detectar inefficient scans
+68.7 detectar bad joins
+68.8 detectar sort spills
+68.9 detectar hash spills
+68.10 detectar unnecessary DISTINCT
+68.11 detectar unnecessary ORDER BY
+68.12 detectar correlated subqueries costosas
+68.13 predicate pushdown
+68.14 sargability
+68.15 expression indexes
+68.16 rewrite subqueries
+68.17 rewrite joins
+68.18 preaggregation
+68.19 reducing rows early
+68.20 reducing columns
+68.21 avoiding SELECT *
+68.22 avoiding repeated work
+68.23 CTE materialization considerations
+68.24 indexes como parte de la optimización
+68.25 statistics como parte de la optimización
+68.26 validar equivalencia semántica
+68.27 benchmark before/after
+68.28 laboratorio: optimizar una consulta real
+
+
+69. Functions SQL
+
+69.1 CREATE FUNCTION
+69.2 SQL-language functions
+69.3 parameters
+69.4 positional parameters
+69.5 named parameters
+69.6 default arguments
+69.7 IN
+69.8 OUT
+69.9 INOUT
+69.10 return scalar
+69.11 RETURNS TABLE
+69.12 RETURNS SETOF
+69.13 set-returning functions
+69.14 function overloading
+69.15 polymorphic functions
+69.16 variadic functions
+69.17 volatility
+69.18 IMMUTABLE
+69.19 STABLE
+69.20 VOLATILE
+69.21 STRICT
+69.22 RETURNS NULL ON NULL INPUT
+69.23 PARALLEL SAFE
+69.24 PARALLEL RESTRICTED
+69.25 PARALLEL UNSAFE
+69.26 COST
+69.27 ROWS
+69.28 SECURITY DEFINER
+69.29 SECURITY INVOKER
+69.30 function privileges
+69.31 laboratorio: construir una API mediante funciones SQL
+
+
+70. PL/pgSQL
+
+70.1 procedural languages
+70.2 PL/pgSQL
+70.3 function body
+70.4 dollar quoting
+70.5 DECLARE
+70.6 variables
+70.7 constants
+70.8 variable types
+70.9 %TYPE conceptual
+70.10 record
+70.11 row types
+70.12 assignments
+70.13 SELECT INTO
+70.14 PERFORM
+70.15 IF
+70.16 ELSIF
+70.17 ELSE
+70.18 CASE
+70.19 LOOP
+70.20 EXIT
+70.21 CONTINUE
+70.22 WHILE
+70.23 FOR
+70.24 FOREACH
+70.25 query loops
+70.26 RETURN
+70.27 RETURN NEXT
+70.28 RETURN QUERY
+70.29 laboratorio: programación procedural en PostgreSQL
+
+
+71. Excepciones y SQL dinámico en PL/pgSQL
+
+71.1 EXCEPTION
+71.2 exception blocks
+71.3 SQLSTATE
+71.4 SQLERRM
+71.5 RAISE
+71.6 RAISE NOTICE
+71.7 RAISE WARNING
+71.8 RAISE EXCEPTION
+71.9 ASSERT
+71.10 dynamic SQL
+71.11 EXECUTE
+71.12 format()
+71.13 USING
+71.14 identifier quoting
+71.15 literal quoting
+71.16 SQL injection en dynamic SQL
+71.17 GET DIAGNOSTICS
+71.18 GET STACKED DIAGNOSTICS
+71.19 laboratorio: construir funciones dinámicas seguras
+
+
+72. Procedures
+
+72.1 CREATE PROCEDURE
+72.2 CALL
+72.3 procedure parameters
+72.4 transaction control desde procedures
+72.5 COMMIT dentro de procedures
+72.6 ROLLBACK dentro de procedures
+72.7 functions vs procedures
+72.8 procedural API design
+72.9 laboratorio: implementar un workflow transaccional
+
+
+73. Triggers
+
+73.1 trigger
+73.2 trigger function
+73.3 CREATE TRIGGER
+73.4 BEFORE
+73.5 AFTER
+73.6 INSTEAD OF
+73.7 INSERT trigger
+73.8 UPDATE trigger
+73.9 DELETE trigger
+73.10 TRUNCATE trigger
+73.11 FOR EACH ROW
+73.12 FOR EACH STATEMENT
+73.13 OLD
+73.14 NEW
+73.15 TG_OP
+73.16 TG_TABLE_NAME
+73.17 TG_WHEN
+73.18 WHEN condition
+73.19 transition tables
+73.20 OLD TABLE
+73.21 NEW TABLE
+73.22 trigger ordering
+73.23 recursive triggers
+73.24 trigger side effects
+73.25 audit triggers
+73.26 validation triggers
+73.27 derived data triggers
+73.28 cuándo evitar triggers
+73.29 laboratorio: construir auditoría mediante triggers
+
+
+74. Constraint triggers y event triggers
+
+74.1 constraint trigger
+74.2 DEFERRABLE trigger
+74.3 deferred checks
+74.4 event trigger
+74.5 DDL events
+74.6 ddl_command_start
+74.7 ddl_command_end
+74.8 sql_drop
+74.9 table_rewrite
+74.10 event trigger security
+74.11 auditing DDL
+74.12 laboratorio: auditar cambios de esquema
+
+
+75. JSON y JSONB
+
+75.1 JSON
+75.2 JSONB
+75.3 diferencias entre JSON y JSONB
+75.4 storage
+75.5 parsing
+75.6 duplicate keys
+75.7 ordering
+75.8 json literals
+75.9 jsonb literals
+75.10 -> operator
+75.11 ->> operator
+75.12 #>
+75.13 #>>
+75.14 containment
+75.15 @>
+75.16 <@
+75.17 existence operators
+75.18 ?
+75.19 ?|
+75.20 ?&
+75.21 jsonb_set
+75.22 jsonb_insert
+75.23 concatenation
+75.24 deletion operators
+75.25 laboratorio: consultar documentos JSONB
+
+
+76. SQL/JSON y JSONPath
+
+76.1 SQL/JSON
+76.2 JSON path
+76.3 jsonpath
+76.4 $
+76.5 @
+76.6 member access
+76.7 array access
+76.8 wildcard
+76.9 filters
+76.10 jsonb_path_exists
+76.11 jsonb_path_match
+76.12 jsonb_path_query
+76.13 jsonb_path_query_array
+76.14 strict mode
+76.15 lax mode
+76.16 laboratorio: consultas complejas con JSONPath
+
+
+77. Construcción y agregación JSON
+
+77.1 to_json
+77.2 to_jsonb
+77.3 row_to_json
+77.4 json_build_object
+77.5 jsonb_build_object
+77.6 json_build_array
+77.7 jsonb_build_array
+77.8 json_agg
+77.9 jsonb_agg
+77.10 json_object_agg
+77.11 jsonb_object_agg
+77.12 SQL result → JSON
+77.13 nested JSON
+77.14 API responses desde SQL
+77.15 laboratorio: generar documentos JSON desde datos relacionales
+
+
+78. Indexación JSONB
+
+78.1 GIN sobre JSONB
+78.2 jsonb_ops
+78.3 jsonb_path_ops
+78.4 containment queries
+78.5 expression indexes
+78.6 partial indexes
+78.7 indexing nested fields
+78.8 indexing scalar values
+78.9 planner y JSONB
+78.10 relational vs JSONB
+78.11 hybrid modeling
+78.12 anti-pattern: todo en JSONB
+78.13 laboratorio: optimizar un workload JSONB
+
+
+79. Full-text search
+
+79.1 full-text search
+79.2 document
+79.3 lexeme
+79.4 dictionary
+79.5 configuration
+79.6 tsvector
+79.7 tsquery
+79.8 to_tsvector
+79.9 to_tsquery
+79.10 plainto_tsquery
+79.11 phraseto_tsquery
+79.12 websearch_to_tsquery
+79.13 @@
+79.14 ts_rank
+79.15 ts_rank_cd
+79.16 headline
+79.17 GIN index
+79.18 GiST index
+79.19 language configuration
+79.20 stop words
+79.21 stemming
+79.22 laboratorio: construir un buscador full-text
+
+
+80. Partitioning
+
+80.1 partitioning
+80.2 declarative partitioning
+80.3 partitioned table
+80.4 partition
+80.5 RANGE partitioning
+80.6 LIST partitioning
+80.7 HASH partitioning
+80.8 partition key
+80.9 partition bounds
+80.10 DEFAULT partition
+80.11 subpartitioning
+80.12 CREATE TABLE PARTITION OF
+80.13 ATTACH PARTITION
+80.14 DETACH PARTITION
+80.15 partition constraints
+80.16 indexes
+80.17 unique constraints
+80.18 foreign keys
+80.19 partition-wise joins
+80.20 partition-wise aggregate
+80.21 laboratorio: particionar una tabla grande
+
+
+81. Partition pruning
+
+81.1 partition pruning
+81.2 plan-time pruning
+81.3 execution-time pruning
+81.4 enable_partition_pruning
+81.5 pruning y prepared statements
+81.6 pruning y parámetros
+81.7 constraints exclusion histórico
+81.8 detectar partitions escaneadas
+81.9 EXPLAIN sobre tablas particionadas
+81.10 laboratorio: validar partition pruning
+
+
+82. Seguridad — roles
+
+82.1 authentication vs authorization
+82.2 role
+82.3 user
+82.4 PostgreSQL roles
+82.5 CREATE ROLE
+82.6 LOGIN
+82.7 NOLOGIN
+82.8 SUPERUSER
+82.9 CREATEDB
+82.10 CREATEROLE
+82.11 REPLICATION
+82.12 BYPASSRLS
+82.13 CONNECTION LIMIT
+82.14 VALID UNTIL
+82.15 ALTER ROLE
+82.16 DROP ROLE
+82.17 role ownership
+82.18 laboratorio: diseñar una jerarquía de roles
+
+
+83. Privileges
+
+83.1 GRANT
+83.2 REVOKE
+83.3 database privileges
+83.4 schema privileges
+83.5 table privileges
+83.6 column privileges
+83.7 sequence privileges
+83.8 function privileges
+83.9 procedure privileges
+83.10 EXECUTE
+83.11 USAGE
+83.12 CREATE
+83.13 CONNECT
+83.14 TEMPORARY
+83.15 ownership
+83.16 WITH GRANT OPTION
+83.17 role membership
+83.18 SET ROLE
+83.19 INHERIT
+83.20 NOINHERIT
+83.21 default privileges
+83.22 ALTER DEFAULT PRIVILEGES
+83.23 least privilege
+83.24 laboratorio: construir permisos mínimos
+
+
+84. Row-Level Security
+
+84.1 RLS
+84.2 ENABLE ROW LEVEL SECURITY
+84.3 FORCE ROW LEVEL SECURITY
+84.4 CREATE POLICY
+84.5 USING
+84.6 WITH CHECK
+84.7 SELECT policy
+84.8 INSERT policy
+84.9 UPDATE policy
+84.10 DELETE policy
+84.11 permissive policies
+84.12 restrictive policies
+84.13 role-specific policies
+84.14 current_user
+84.15 multi-tenant security
+84.16 BYPASSRLS
+84.17 owner bypass
+84.18 testing RLS
+84.19 laboratorio: aislamiento multi-tenant mediante RLS
+
+
+85. SECURITY DEFINER y seguridad de funciones
+
+85.1 SECURITY INVOKER
+85.2 SECURITY DEFINER
+85.3 privilege escalation
+85.4 search_path attacks
+85.5 secure search_path
+85.6 schema qualification
+85.7 function ownership
+85.8 revoke PUBLIC EXECUTE
+85.9 safe helper functions
+85.10 dynamic SQL security
+85.11 laboratorio: endurecer una función SECURITY DEFINER
+
+
+86. SQL injection
+
+86.1 qué es SQL injection
+86.2 concatenación insegura
+86.3 parameterized queries
+86.4 bind parameters
+86.5 prepared statements
+86.6 literals vs identifiers
+86.7 quote_literal
+86.8 quote_ident
+86.9 format %L
+86.10 format %I
+86.11 dynamic SQL
+86.12 stored procedure injection
+86.13 second-order injection
+86.14 least privilege como mitigación
+86.15 laboratorio: identificar y corregir SQL injection
+
+
+87. Prepared statements
+
+87.1 PREPARE
+87.2 EXECUTE
+87.3 DEALLOCATE
+87.4 parameters
+87.5 generic plan
+87.6 custom plan
+87.7 plan caching
+87.8 parameter-sensitive queries
+87.9 plan_cache_mode
+87.10 prepared statements y partition pruning
+87.11 application drivers
+87.12 laboratorio: comparar generic y custom plans
+
+
+88. System catalogs
+
+88.1 metadata
+88.2 pg_catalog
+88.3 information_schema
+88.4 pg_class
+88.5 pg_attribute
+88.6 pg_type
+88.7 pg_namespace
+88.8 pg_constraint
+88.9 pg_index
+88.10 pg_indexes
+88.11 pg_proc
+88.12 pg_roles
+88.13 pg_authid
+88.14 pg_database
+88.15 pg_tablespace
+88.16 OID
+88.17 regclass
+88.18 regtype
+88.19 regproc
+88.20 catalog joins
+88.21 laboratorio: reconstruir un esquema únicamente desde catalogs
+
+
+89. Information Schema
+
+89.1 information_schema
+89.2 portability
+89.3 tables
+89.4 columns
+89.5 views
+89.6 table_constraints
+89.7 key_column_usage
+89.8 referential_constraints
+89.9 routines
+89.10 parameters
+89.11 privileges
+89.12 information_schema vs pg_catalog
+89.13 laboratorio: crear un inspector SQL portable
+
+
+90. Statistics views
+
+90.1 statistics collector
+90.2 cumulative statistics
+90.3 pg_stat_database
+90.4 pg_stat_activity
+90.5 pg_stat_user_tables
+90.6 pg_stat_all_tables
+90.7 pg_stat_user_indexes
+90.8 pg_stat_all_indexes
+90.9 pg_statio_user_tables
+90.10 pg_statio_user_indexes
+90.11 pg_stat_io
+90.12 pg_stat_bgwriter
+90.13 pg_stat_wal
+90.14 pg_stat_archiver
+90.15 stats reset
+90.16 laboratorio: construir un dashboard SQL de actividad
+
+
+91. pg_stat_activity
+
+91.1 backend
+91.2 pid
+91.3 datname
+91.4 usename
+91.5 application_name
+91.6 client_addr
+91.7 backend_start
+91.8 xact_start
+91.9 query_start
+91.10 state_change
+91.11 wait_event_type
+91.12 wait_event
+91.13 state
+91.14 query
+91.15 active
+91.16 idle
+91.17 idle in transaction
+91.18 long-running queries
+91.19 long-running transactions
+91.20 cancellation
+91.21 pg_cancel_backend
+91.22 pg_terminate_backend
+91.23 laboratorio: diagnosticar sesiones problemáticas
+
+
+92. Lock monitoring
+
+92.1 pg_locks
+92.2 locktype
+92.3 relation locks
+92.4 tuple locks
+92.5 transactionid locks
+92.6 virtualxid
+92.7 granted
+92.8 waiting
+92.9 blockers
+92.10 pg_blocking_pids
+92.11 blocking tree
+92.12 wait chains
+92.13 lock contention
+92.14 deadlocks
+92.15 laboratorio: construir un lock debugger
+
+
+93. Progress monitoring
+
+93.1 pg_stat_progress_vacuum
+93.2 pg_stat_progress_create_index
+93.3 pg_stat_progress_cluster
+93.4 pg_stat_progress_analyze
+93.5 pg_stat_progress_basebackup
+93.6 pg_stat_progress_copy
+93.7 phases
+93.8 tuples processed
+93.9 blocks processed
+93.10 laboratorio: monitorizar operaciones largas
+
+
+94. VACUUM
+
+94.1 por qué existe VACUUM
+94.2 dead tuples
+94.3 reclaiming space
+94.4 VACUUM
+94.5 VACUUM VERBOSE
+94.6 VACUUM ANALYZE
+94.7 VACUUM FULL
+94.8 differences
+94.9 page reuse
+94.10 table size
+94.11 index cleanup
+94.12 truncation
+94.13 parallel vacuum
+94.14 vacuum cost delay
+94.15 vacuum cost limit
+94.16 laboratorio: observar limpieza de dead tuples
+
+
+95. Autovacuum
+
+95.1 autovacuum launcher
+95.2 autovacuum workers
+95.3 autovacuum_vacuum_threshold
+95.4 autovacuum_vacuum_scale_factor
+95.5 autovacuum_analyze_threshold
+95.6 autovacuum_analyze_scale_factor
+95.7 per-table settings
+95.8 autovacuum_naptime
+95.9 worker limits
+95.10 cost throttling
+95.11 autovacuum logging
+95.12 diagnosing ineffective autovacuum
+95.13 aggressive write workloads
+95.14 laboratorio: ajustar autovacuum para una tabla problemática
+
+
+96. Freeze y XID wraparound
+
+96.1 transaction ID wraparound
+96.2 32-bit XID space
+96.3 transaction age
+96.4 freezing
+96.5 frozen tuples
+96.6 FrozenTransactionId
+96.7 relfrozenxid
+96.8 datfrozenxid
+96.9 vacuum_freeze_min_age
+96.10 vacuum_freeze_table_age
+96.11 autovacuum_freeze_max_age
+96.12 anti-wraparound vacuum
+96.13 emergency conditions
+96.14 laboratorio: inspeccionar edad de XID
+
+
+97. Visibility Map y Free Space Map
+
+97.1 visibility map
+97.2 all-visible
+97.3 all-frozen
+97.4 index-only scans
+97.5 VACUUM y visibility map
+97.6 free space map
+97.7 reusable space
+97.8 page allocation
+97.9 inspecting relation forks
+97.10 laboratorio: relacionar VM, FSM e index-only scans
+
+
+98. Bloat
+
+98.1 table bloat
+98.2 index bloat
+98.3 causas de bloat
+98.4 MVCC
+98.5 updates
+98.6 deletes
+98.7 long transactions
+98.8 insufficient vacuum
+98.9 fillfactor
+98.10 measuring bloat
+98.11 pgstattuple
+98.12 VACUUM
+98.13 VACUUM FULL
+98.14 CLUSTER
+98.15 REINDEX
+98.16 pg_repack conceptual
+98.17 laboratorio: diagnosticar bloat
+
+
+99. HOT updates
+
+99.1 Heap-Only Tuple
+99.2 HOT update
+99.3 indexed columns
+99.4 same-page update
+99.5 HOT chain
+99.6 fillfactor
+99.7 index maintenance reduction
+99.8 pg_stat_user_tables HOT metrics
+99.9 laboratorio: provocar y observar HOT updates
+
+
+100. Storage architecture
+
+100.1 database cluster
+100.2 data directory
+100.3 database OID
+100.4 relation filenode
+100.5 relation forks
+100.6 main fork
+100.7 FSM fork
+100.8 VM fork
+100.9 init fork
+100.10 tablespaces
+100.11 base/
+100.12 global/
+100.13 pg_wal/
+100.14 relation segments
+100.15 1 GB segmentation conceptual
+100.16 pages
+100.17 blocks
+100.18 default page size
+100.19 laboratorio: localizar físicamente una relación
+
+
+101. Heap pages y tuples
+
+101.1 heap
+101.2 page layout
+101.3 page header
+101.4 line pointers
+101.5 tuple header
+101.6 tuple data
+101.7 t_ctid
+101.8 xmin
+101.9 xmax
+101.10 infomask
+101.11 null bitmap
+101.12 alignment
+101.13 padding
+101.14 tuple size
+101.15 pageinspect
+101.16 heap_page_items
+101.17 laboratorio: inspeccionar una página heap
+
+
+102. TOAST
+
+102.1 oversized values
+102.2 TOAST
+102.3 compression
+102.4 out-of-line storage
+102.5 toast table
+102.6 PLAIN
+102.7 EXTENDED
+102.8 EXTERNAL
+102.9 MAIN
+102.10 compression methods
+102.11 TOAST threshold
+102.12 storage strategy
+102.13 TOAST and updates
+102.14 laboratorio: inspeccionar datos TOAST
+
+
+103. B-tree internals
+
+103.1 metapage
+103.2 root page
+103.3 internal pages
+103.4 leaf pages
+103.5 sibling links
+103.6 item identifiers
+103.7 index tuples
+103.8 high keys
+103.9 page splits
+103.10 deduplication
+103.11 posting lists
+103.12 tree height
+103.13 deleted pages
+103.14 pageinspect bt_metap
+103.15 bt_page_stats
+103.16 bt_page_items
+103.17 laboratorio: inspeccionar físicamente un B-tree
+
+
+104. Buffer manager
+
+104.1 shared buffers
+104.2 buffer cache
+104.3 buffer descriptor
+104.4 buffer tag
+104.5 clock-sweep
+104.6 usage count
+104.7 pinning
+104.8 dirty buffers
+104.9 buffer eviction
+104.10 OS page cache
+104.11 double caching
+104.12 pg_buffercache
+104.13 cache hit ratio
+104.14 limits of cache hit ratio
+104.15 laboratorio: inspeccionar shared buffers
+
+
+105. WAL
+
+105.1 Write-Ahead Logging
+105.2 durability
+105.3 WAL record
+105.4 LSN
+105.5 pg_lsn
+105.6 WAL segment
+105.7 pg_wal
+105.8 WAL insertion
+105.9 WAL flush
+105.10 commit record
+105.11 full page image
+105.12 wal_level
+105.13 wal_buffers
+105.14 wal_compression
+105.15 synchronous_commit
+105.16 fsync
+105.17 full_page_writes
+105.18 pg_current_wal_lsn
+105.19 pg_wal_lsn_diff
+105.20 laboratorio: medir generación de WAL
+
+
+106. Checkpoints
+
+106.1 checkpoint
+106.2 dirty buffer flushing
+106.3 restart point
+106.4 checkpoint_timeout
+106.5 max_wal_size
+106.6 min_wal_size
+106.7 checkpoint_completion_target
+106.8 checkpoint spikes
+106.9 background writer
+106.10 checkpointer
+106.11 pg_stat_checkpointer cuando corresponda
+106.12 laboratorio: observar checkpoints
+
+
+107. Crash recovery
+
+107.1 crash
+107.2 unclean shutdown
+107.3 WAL replay
+107.4 redo
+107.5 consistency point
+107.6 checkpoint record
+107.7 recovery process
+107.8 transaction commit visibility
+107.9 uncommitted transactions
+107.10 crash recovery timeline
+107.11 laboratorio: comprender recuperación mediante WAL
+
+
+108. PostgreSQL processes
+
+108.1 postmaster
+108.2 main server process
+108.3 backend processes
+108.4 connection-per-process model
+108.5 checkpointer
+108.6 background writer
+108.7 WAL writer
+108.8 autovacuum launcher
+108.9 autovacuum worker
+108.10 logical replication launcher
+108.11 parallel workers
+108.12 background workers
+108.13 process titles
+108.14 ps
+108.15 pg_stat_activity
+108.16 laboratorio: mapear procesos PostgreSQL
+
+
+109. Query lifecycle
+
+109.1 client query
+109.2 protocol message
+109.3 parser
+109.4 raw parse tree
+109.5 parse analysis
+109.6 semantic analysis
+109.7 query tree
+109.8 rewrite system
+109.9 rules
+109.10 planner
+109.11 plan tree
+109.12 executor
+109.13 executor nodes
+109.14 tuple flow
+109.15 result serialization
+109.16 client response
+109.17 laboratorio: seguir el ciclo completo de una consulta
+
+
+110. Parser y analyzer
+
+110.1 lexical analysis
+110.2 tokens
+110.3 grammar
+110.4 parser
+110.5 parse tree
+110.6 identifiers
+110.7 constants
+110.8 operator resolution
+110.9 function resolution
+110.10 type resolution
+110.11 namespace resolution
+110.12 column binding
+110.13 ambiguities
+110.14 laboratorio: analizar resolución de nombres y tipos
+
+
+111. Rewrite system
+
+111.1 query rewrite
+111.2 rules
+111.3 views como rewrite rules
+111.4 _RETURN rule
+111.5 INSTEAD rules
+111.6 ALSO rules
+111.7 CREATE RULE
+111.8 limitations
+111.9 rewrite vs trigger
+111.10 laboratory: inspeccionar rules de una view
+
+
+112. Executor internals
+
+112.1 executor
+112.2 plan state tree
+112.3 tuple-at-a-time model
+112.4 ExecProcNode conceptual
+112.5 scan nodes
+112.6 join nodes
+112.7 aggregate nodes
+112.8 sort nodes
+112.9 projection
+112.10 expression evaluation
+112.11 instrumentation
+112.12 EXPLAIN ANALYZE hooks conceptuales
+112.13 laboratorio: seguir flujo de tuples por un plan
+
+
+113. Query optimization avanzada
+
+113.1 equivalencia relacional
+113.2 predicate pushdown
+113.3 projection pushdown
+113.4 join reordering
+113.5 join collapse
+113.6 from_collapse_limit
+113.7 join_collapse_limit
+113.8 explicit join ordering
+113.9 GEQO
+113.10 geqo_threshold
+113.11 common subexpression conceptual
+113.12 constraint exclusion
+113.13 partition pruning
+113.14 memoization
+113.15 materialization
+113.16 laboratorio: observar transformaciones del planner
+
+
+114. Anti-patterns SQL
+
+114.1 SELECT *
+114.2 DISTINCT para ocultar errores
+114.3 subqueries correlacionadas innecesarias
+114.4 funciones sobre columnas indexadas
+114.5 implicit casts
+114.6 non-sargable predicates
+114.7 wildcard inicial
+114.8 OR indiscriminado
+114.9 NOT IN con NULL
+114.10 accidental Cartesian joins
+114.11 excessive joins
+114.12 EAV
+114.13 comma-separated values
+114.14 storing dates as text
+114.15 storing numbers as text
+114.16 boolean flags explosion
+114.17 overusing JSON
+114.18 overusing triggers
+114.19 overusing stored procedures
+114.20 over-indexing
+114.21 huge transactions
+114.22 idle in transaction
+114.23 offset pagination extrema
+114.24 laboratory: detectar anti-patterns en un esquema
+
+
+115. Patrones SQL avanzados
+
+115.1 greatest-N-per-group
+115.2 top-N-per-group
+115.3 gaps and islands
+115.4 running totals
+115.5 moving averages
+115.6 median
+115.7 percentiles
+115.8 percent_rank
+115.9 cohort analysis
+115.10 retention analysis
+115.11 funnel analysis
+115.12 sessionization
+115.13 deduplication
+115.14 latest row per entity
+115.15 temporal overlap
+115.16 relational division
+115.17 pivot conceptual
+115.18 crosstab
+115.19 dynamic pivot conceptual
+115.20 reconciliation queries
+115.21 laboratory: resolver problemas clásicos de SQL
+
+
+116. Temporal data modeling
+
+116.1 valid time
+116.2 transaction time
+116.3 temporal tables conceptuales
+116.4 effective_from
+116.5 effective_to
+116.6 open-ended ranges
+116.7 timestamp ranges
+116.8 exclusion constraints
+116.9 overlapping periods
+116.10 slowly changing dimensions
+116.11 SCD Type 1
+116.12 SCD Type 2
+116.13 bitemporal design conceptual
+116.14 historical queries
+116.15 laboratory: diseñar un modelo temporal
+
+
+117. Hierarchical data modeling
+
+117.1 hierarchical data
+117.2 adjacency list
+117.3 parent_id
+117.4 recursive CTE
+117.5 materialized path
+117.6 path arrays
+117.7 ltree extension conceptual
+117.8 nested sets
+117.9 closure table
+117.10 trade-offs
+117.11 subtree queries
+117.12 ancestor queries
+117.13 cycle prevention
+117.14 laboratorio: comparar modelos jerárquicos
+
+
+118. Graph-like modeling en SQL
+
+118.1 vertices
+118.2 edges
+118.3 directed graph
+118.4 undirected graph
+118.5 weighted graph
+118.6 adjacency table
+118.7 recursive traversal
+118.8 path accumulation
+118.9 shortest path conceptual
+118.10 cycle detection
+118.11 limitations frente a graph databases
+118.12 laboratorio: recorrer un grafo relacional
+
+
+119. Multi-tenancy
+
+119.1 multi-tenant architecture
+119.2 database per tenant
+119.3 schema per tenant
+119.4 shared schema
+119.5 tenant_id
+119.6 composite keys
+119.7 RLS
+119.8 tenant-aware indexes
+119.9 tenant-aware unique constraints
+119.10 partitioning by tenant
+119.11 noisy neighbor
+119.12 schema evolution
+119.13 laboratory: diseñar un sistema multi-tenant
+
+
+120. Soft delete y auditoría
+
+120.1 soft delete
+120.2 deleted_at
+120.3 active rows
+120.4 partial indexes
+120.5 unique constraints con soft delete
+120.6 audit columns
+120.7 created_at
+120.8 updated_at
+120.9 created_by
+120.10 audit tables
+120.11 trigger-based audit
+120.12 immutable audit log conceptual
+120.13 laboratory: diseñar historial y soft delete
+
+
+121. Diseño para concurrencia
+
+121.1 contention hotspots
+121.2 counters
+121.3 atomic updates
+121.4 SELECT FOR UPDATE
+121.5 optimistic concurrency
+121.6 version columns
+121.7 compare-and-swap SQL
+121.8 pessimistic locking
+121.9 queues con SKIP LOCKED
+121.10 idempotency
+121.11 unique constraints como concurrency primitives
+121.12 retry
+121.13 deadlock-safe ordering
+121.14 laboratory: construir una cola concurrente
+
+
+122. Diseño para rendimiento
+
+122.1 workload
+122.2 OLTP
+122.3 OLAP
+122.4 mixed workload
+122.5 read/write ratio
+122.6 working set
+122.7 cardinality
+122.8 selectivity
+122.9 access patterns
+122.10 query-driven design
+122.11 indexes
+122.12 partitioning
+122.13 denormalization
+122.14 caching
+122.15 materialized views
+122.16 archiving
+122.17 laboratory: diseñar esquema según workload
+
+
+123. OLTP
+
+123.1 OLTP characteristics
+123.2 short transactions
+123.3 point lookups
+123.4 transactional integrity
+123.5 concurrency
+123.6 indexes for OLTP
+123.7 connection management
+123.8 avoiding long transactions
+123.9 minimizing contention
+123.10 latency
+123.11 laboratorio: optimizar workload OLTP
+
+
+124. Analytics SQL
+
+124.1 analytical queries
+124.2 dimensional analysis
+124.3 fact table
+124.4 dimension table
+124.5 star schema
+124.6 snowflake schema
+124.7 measures
+124.8 dimensions
+124.9 grain
+124.10 surrogate dimension keys
+124.11 slowly changing dimensions
+124.12 aggregate tables
+124.13 window functions
+124.14 grouping sets
+124.15 materialized views
+124.16 laboratorio: diseñar modelo analítico
+
+
+125. Dimensional modeling
+
+125.1 grain
+125.2 facts
+125.3 additive measures
+125.4 semi-additive measures
+125.5 non-additive measures
+125.6 dimensions
+125.7 conformed dimensions
+125.8 role-playing dimensions
+125.9 degenerate dimensions
+125.10 junk dimensions
+125.11 factless fact tables
+125.12 star schema
+125.13 snowflake
+125.14 SCD
+125.15 laboratory: construir un pequeño data mart
+
+
+126. SQL Standard
+
+126.1 SQL standard families
+126.2 SQL-92
+126.3 SQL:1999
+126.4 SQL:2003
+126.5 SQL:2008
+126.6 SQL:2011
+126.7 SQL:2016
+126.8 SQL:2023
+126.9 core SQL
+126.10 optional features
+126.11 implementation-defined behavior
+126.12 implementation-dependent behavior
+126.13 reserved words
+126.14 standard data types
+126.15 standard joins
+126.16 standard window functions
+126.17 standard recursive queries
+126.18 standard JSON
+126.19 standard MERGE
+126.20 portability
+126.21 laboratorio: identificar SQL estándar frente a extensión
+
+
+127. PostgreSQL extensions al estándar
+
+127.1 DISTINCT ON
+127.2 RETURNING
+127.3 ILIKE
+127.4 arrays
+127.5 JSONB
+127.6 range types
+127.7 multirange
+127.8 LATERAL
+127.9 FILTER
+127.10 exclusion constraints
+127.11 ON CONFLICT
+127.12 partial indexes
+127.13 expression indexes
+127.14 index INCLUDE
+127.15 custom operators
+127.16 custom types
+127.17 extensions
+127.18 laboratorio: reescribir extensiones en SQL portable cuando sea posible
+
+
+128. PostgreSQL vs MySQL/MariaDB
+
+128.1 filosofía general
+128.2 tipos
+128.3 autoincrement
+128.4 identity
+128.5 booleans
+128.6 timestamps
+128.7 NULL
+128.8 GROUP BY
+128.9 string concatenation
+128.10 case sensitivity
+128.11 LIMIT
+128.12 UPSERT
+128.13 MERGE
+128.14 JSON
+128.15 arrays
+128.16 CTEs
+128.17 recursive CTEs
+128.18 window functions
+128.19 transaction isolation
+128.20 MVCC
+128.21 indexing
+128.22 partial indexes
+128.23 expression indexes
+128.24 RETURNING
+128.25 procedural languages
+128.26 laboratory: portar consultas entre motores
+
+
+129. PostgreSQL vs SQLite
+
+129.1 server vs embedded
+129.2 typing
+129.3 dynamic typing
+129.4 concurrency
+129.5 transactions
+129.6 schemas
+129.7 ALTER TABLE
+129.8 JSON
+129.9 UPSERT
+129.10 RETURNING
+129.11 window functions
+129.12 limitations
+129.13 laboratory: portar un esquema pequeño
+
+
+130. SQL formatting y estilo
+
+130.1 readability
+130.2 capitalization
+130.3 indentation
+130.4 aliases
+130.5 qualified columns
+130.6 naming
+130.7 naming conventions
+130.8 singular vs plural table names
+130.9 snake_case
+130.10 reserved words
+130.11 comments
+130.12 CTE organization
+130.13 consistent join layout
+130.14 formatting automated
+130.15 laboratory: refactorizar SQL ilegible
+
+
+131. Testing SQL
+
+131.1 SQL correctness
+131.2 fixtures
+131.3 deterministic datasets
+131.4 edge cases
+131.5 NULL cases
+131.6 duplicate cases
+131.7 boundary cases
+131.8 transaction tests
+131.9 concurrency tests
+131.10 constraint tests
+131.11 query equivalence
+131.12 regression tests
+131.13 pgTAP introducción
+131.14 EXPLAIN regression conceptual
+131.15 laboratory: construir tests SQL
+
+
+132. Benchmarking
+
+132.1 benchmark
+132.2 microbenchmark
+132.3 workload benchmark
+132.4 warm cache
+132.5 cold cache
+132.6 measurement bias
+132.7 query timing
+132.8 psql \timing
+132.9 EXPLAIN ANALYZE
+132.10 pgbench
+132.11 pgbench initialization
+132.12 pgbench scripts
+132.13 clients
+132.14 threads
+132.15 transactions per second
+132.16 latency
+132.17 percentiles
+132.18 reproducibility
+132.19 laboratorio: comparar dos estrategias SQL
+
+
+133. pgbench
+
+133.1 pgbench architecture
+133.2 built-in benchmark
+133.3 scale factor
+133.4 initialization
+133.5 custom scripts
+133.6 meta-commands
+133.7 variables
+133.8 random functions
+133.9 transactions
+133.10 prepared modes
+133.11 simple protocol
+133.12 extended protocol
+133.13 prepared protocol
+133.14 throughput
+133.15 latency
+133.16 workload modeling
+133.17 laboratorio: construir workload reproducible
+
+
+134. Query observability
+
+134.1 pg_stat_statements
+134.2 extension
+134.3 shared_preload_libraries
+134.4 normalized queries
+134.5 queryid
+134.6 calls
+134.7 total_exec_time
+134.8 mean_exec_time
+134.9 rows
+134.10 shared block hits
+134.11 shared block reads
+134.12 temp blocks
+134.13 WAL metrics
+134.14 top queries
+134.15 reset
+134.16 limits
+134.17 laboratorio: identificar consultas costosas
+
+
+135. Logging de consultas
+
+135.1 PostgreSQL logs
+135.2 log_statement
+135.3 log_min_duration_statement
+135.4 log_duration
+135.5 log_lock_waits
+135.6 log_temp_files
+135.7 log_checkpoints
+135.8 auto_explain
+135.9 auto_explain.log_min_duration
+135.10 auto_explain.log_analyze
+135.11 auto_explain.log_buffers
+135.12 security considerations
+135.13 log volume
+135.14 laboratorio: capturar consultas problemáticas
+
+
+136. Extensions
+
+136.1 CREATE EXTENSION
+136.2 pg_available_extensions
+136.3 extension ownership
+136.4 extension schema
+136.5 version
+136.6 upgrade
+136.7 uninstall
+136.8 contrib modules
+136.9 pg_stat_statements
+136.10 pg_trgm
+136.11 citext
+136.12 hstore
+136.13 uuid-ossp
+136.14 pgcrypto
+136.15 tablefunc
+136.16 btree_gist
+136.17 btree_gin
+136.18 laboratorio: instalar y explorar extensiones
+
+
+137. Trigram indexes
+
+137.1 pg_trgm
+137.2 trigrams
+137.3 similarity
+137.4 word_similarity
+137.5 strict_word_similarity
+137.6 % operator
+137.7 LIKE acceleration
+137.8 ILIKE acceleration
+137.9 regex acceleration
+137.10 GIN trigram index
+137.11 GiST trigram index
+137.12 fuzzy search
+137.13 laboratorio: construir búsqueda aproximada
+
+
+138. Range y multirange types
+
+138.1 ranges
+138.2 int4range
+138.3 int8range
+138.4 numrange
+138.5 tsrange
+138.6 tstzrange
+138.7 daterange
+138.8 inclusive bound
+138.9 exclusive bound
+138.10 unbounded range
+138.11 empty range
+138.12 containment
+138.13 overlap
+138.14 adjacency
+138.15 union
+138.16 intersection
+138.17 multirange
+138.18 exclusion constraints
+138.19 GiST indexes
+138.20 laboratorio: modelar reservas temporales
+
+
+139. Networking types
+
+139.1 inet
+139.2 cidr
+139.3 macaddr
+139.4 IPv4
+139.5 IPv6
+139.6 subnet containment
+139.7 network operators
+139.8 masklen
+139.9 host
+139.10 network
+139.11 indexes
+139.12 laboratorio: consultar redes y subredes
+
+
+140. Advanced indexing decisions
+
+140.1 index workload analysis
+140.2 equality-heavy workload
+140.3 range-heavy workload
+140.4 append-only workload
+140.5 JSON workload
+140.6 text-search workload
+140.7 spatial-like workload
+140.8 highly correlated data
+140.9 low-cardinality columns
+140.10 high-cardinality columns
+140.11 multi-column predicates
+140.12 selectivity
+140.13 index ordering
+140.14 covering strategy
+140.15 write amplification
+140.16 storage overhead
+140.17 maintenance overhead
+140.18 laboratorio: diseñar índices desde un workload real
+
+
+141. Advanced concurrency patterns
+
+141.1 work queue
+141.2 SELECT FOR UPDATE SKIP LOCKED
+141.3 job claiming
+141.4 idempotent processing
+141.5 advisory locks
+141.6 distributed coordination limitations
+141.7 optimistic locking
+141.8 compare-and-swap
+141.9 atomic counters
+141.10 rate limiting conceptual
+141.11 inventory decrement
+141.12 overselling prevention
+141.13 ledger updates
+141.14 laboratory: implementar un worker queue
+
+
+142. Ledger modeling
+
+142.1 immutable ledger
+142.2 transactions
+142.3 entries
+142.4 double-entry bookkeeping conceptual
+142.5 debit
+142.6 credit
+142.7 balance derivation
+142.8 constraints
+142.9 idempotency
+142.10 auditability
+142.11 transaction isolation
+142.12 laboratory: construir un ledger simple
+
+
+143. Data reconciliation
+
+143.1 comparison datasets
+143.2 missing rows
+143.3 extra rows
+143.4 changed rows
+143.5 EXCEPT
+143.6 FULL JOIN
+143.7 hash comparison
+143.8 checksum conceptual
+143.9 column-level differences
+143.10 duplicate detection
+143.11 reconciliation reports
+143.12 laboratory: reconciliar dos datasets
+
+
+144. Deduplication
+
+144.1 duplicates
+144.2 exact duplicates
+144.3 business duplicates
+144.4 GROUP BY HAVING
+144.5 ROW_NUMBER
+144.6 canonical row
+144.7 DELETE duplicates
+144.8 unique constraints
+144.9 dedup during ingestion
+144.10 dedup with ON CONFLICT
+144.11 laboratorio: limpiar duplicados preservando una fila
+
+
+145. Data quality
+
+145.1 data quality
+145.2 completeness
+145.3 validity
+145.4 uniqueness
+145.5 consistency
+145.6 accuracy
+145.7 referential integrity
+145.8 CHECK constraints
+145.9 domains
+145.10 profiling queries
+145.11 anomaly detection SQL
+145.12 laboratory: construir controles de calidad
+
+
+146. Schema migrations
+
+146.1 schema evolution
+146.2 backward compatibility
+146.3 forward compatibility
+146.4 ADD COLUMN
+146.5 default values
+146.6 NOT NULL migrations
+146.7 adding constraints safely
+146.8 NOT VALID
+146.9 VALIDATE CONSTRAINT
+146.10 index creation concurrently
+146.11 column type changes
+146.12 table rewrites
+146.13 expand-contract pattern
+146.14 zero-downtime migration concept
+146.15 laboratory: migrar una tabla grande
+
+
+147. SQL debugging
+
+147.1 reproducible query
+147.2 reduce dataset
+147.3 isolate predicates
+147.4 inspect intermediate results
+147.5 verify joins
+147.6 count rows after each join
+147.7 inspect NULLs
+147.8 inspect duplicates
+147.9 validate assumptions
+147.10 CTE as debugging scaffold
+147.11 EXPLAIN
+147.12 EXPLAIN ANALYZE
+147.13 transaction sandbox
+147.14 ROLLBACK
+147.15 laboratory: depurar una consulta incorrecta
+
+
+148. Diagnóstico de consultas lentas
+
+148.1 definir lenta
+148.2 baseline
+148.3 pg_stat_statements
+148.4 EXPLAIN ANALYZE
+148.5 scan analysis
+148.6 join analysis
+148.7 sort analysis
+148.8 aggregate analysis
+148.9 buffer analysis
+148.10 disk I/O
+148.11 temp files
+148.12 cardinality errors
+148.13 statistics
+148.14 locks
+148.15 CPU-bound query
+148.16 I/O-bound query
+148.17 memory-bound query
+148.18 plan instability
+148.19 laboratorio: diagnosticar una query lenta de extremo a extremo
+
+
+149. Diagnóstico de bloqueos
+
+149.1 waiting session
+149.2 blocker
+149.3 lock graph
+149.4 pg_blocking_pids
+149.5 pg_locks
+149.6 pg_stat_activity
+149.7 xact_start
+149.8 idle in transaction
+149.9 long transactions
+149.10 DDL blocking
+149.11 lock timeout
+149.12 statement timeout
+149.13 terminating blocker
+149.14 prevention
+149.15 laboratorio: construir árbol de bloqueos
+
+
+150. Diagnóstico de planner
+
+150.1 bad plan
+150.2 cardinality misestimate
+150.3 stale stats
+150.4 correlated columns
+150.5 skewed distribution
+150.6 parameter sensitivity
+150.7 generic plan
+150.8 custom plan
+150.9 missing index
+150.10 wrong index
+150.11 planner cost assumptions
+150.12 work_mem
+150.13 join choice
+150.14 scan choice
+150.15 laboratorio: corregir una mala decisión del planner
+
+
+151. Diagnóstico de índices
+
+151.1 missing index
+151.2 unused index
+151.3 redundant index
+151.4 duplicate index
+151.5 bloated index
+151.6 low-selectivity index
+151.7 wrong column order
+151.8 expression mismatch
+151.9 partial index predicate mismatch
+151.10 index-only scan failure
+151.11 visibility map
+151.12 laboratorio: auditar todos los índices de una aplicación
+
+
+152. Diagnóstico de VACUUM
+
+152.1 dead tuples
+152.2 autovacuum activity
+152.3 last_autovacuum
+152.4 autovacuum count
+152.5 n_dead_tup
+152.6 long transactions
+152.7 replication slots conceptual
+152.8 freeze age
+152.9 wraparound risk
+152.10 bloat
+152.11 vacuum progress
+152.12 locks preventing vacuum
+152.13 laboratorio: diagnosticar una tabla que crece sin parar
+
+
+153. Diagnóstico de recursos
+
+153.1 CPU
+153.2 memory
+153.3 disk I/O
+153.4 cache
+153.5 temp files
+153.6 WAL volume
+153.7 connection count
+153.8 transaction rate
+153.9 checkpoint pressure
+153.10 buffer pressure
+153.11 query concurrency
+153.12 workload saturation
+153.13 laboratorio: correlacionar SQL con recursos del sistema
+
+
+154. Diseño de APIs SQL
+
+154.1 tables as implementation
+154.2 views as API
+154.3 functions as API
+154.4 stored procedures
+154.5 privileges
+154.6 encapsulation
+154.7 backward compatibility
+154.8 versioned views
+154.9 stable contracts
+154.10 security
+154.11 laboratorio: construir una API SQL estable
+
+
+155. Expert query reasoning
+
+155.1 comprender intención
+155.2 identificar relations
+155.3 identificar predicates
+155.4 identificar cardinalities
+155.5 identificar keys
+155.6 identificar functional dependencies
+155.7 identificar nullability
+155.8 detectar redundant joins
+155.9 detectar redundant DISTINCT
+155.10 detectar semantic traps
+155.11 transformaciones algebraicas
+155.12 validar equivalencia
+155.13 complexity reasoning
+155.14 laboratorio: revisar SQL de terceros
+
+
+156. SQL code review
+
+156.1 correctness
+156.2 readability
+156.3 portability
+156.4 security
+156.5 transaction safety
+156.6 concurrency safety
+156.7 performance
+156.8 indexing assumptions
+156.9 NULL semantics
+156.10 duplicate semantics
+156.11 edge cases
+156.12 naming
+156.13 maintainability
+156.14 laboratorio: realizar una revisión SQL completa
+
+
+157. Arquitectura de datos relacional
+
+157.1 schema boundaries
+157.2 bounded contexts conceptuales
+157.3 shared database
+157.4 database per service
+157.5 integration tables
+157.6 reference data
+157.7 master data
+157.8 transactional data
+157.9 historical data
+157.10 analytics data
+157.11 operational reporting
+157.12 data ownership
+157.13 laboratorio: diseñar arquitectura de esquemas
+
+
+158. SQL y aplicaciones
+
+158.1 application/database boundary
+158.2 ORM
+158.3 query builders
+158.4 raw SQL
+158.5 N+1 queries
+158.6 eager loading
+158.7 batch loading
+158.8 parameter binding
+158.9 transaction scope
+158.10 connection pooling
+158.11 prepared statements
+158.12 migrations
+158.13 database constraints vs application validation
+158.14 laboratory: detectar problemas SQL provocados por una aplicación
+
+
+159. Connection pooling
+
+159.1 connection overhead
+159.2 server connections
+159.3 pool
+159.4 session pooling
+159.5 transaction pooling
+159.6 statement pooling conceptual
+159.7 session state
+159.8 temp tables
+159.9 prepared statements
+159.10 SET
+159.11 advisory locks
+159.12 pooler compatibility
+159.13 PgBouncer conceptual
+159.14 laboratorio: identificar dependencias de sesión
+
+
+160. Advanced transactions
+
+160.1 transaction retries
+160.2 serialization failure
+160.3 deadlock retry
+160.4 idempotency
+160.5 retry loop
+160.6 external side effects
+160.7 transaction boundaries
+160.8 saga conceptual
+160.9 outbox pattern conceptual
+160.10 transactional outbox
+160.11 exactly-once illusion
+160.12 laboratory: diseñar un flujo recuperable
+
+
+161. Isolation case studies
+
+161.1 bank transfer
+161.2 inventory
+161.3 seat reservation
+161.4 job queue
+161.5 counters
+161.6 uniqueness
+161.7 write skew
+161.8 doctor-on-call anomaly
+161.9 serializable retry
+161.10 laboratory: elegir aislamiento según caso
+
+
+162. Query pagination avanzada
+
+162.1 OFFSET pagination
+162.2 scaling problem
+162.3 keyset pagination
+162.4 seek method
+162.5 composite cursor
+162.6 stable ordering
+162.7 ties
+162.8 forward pagination
+162.9 backward pagination
+162.10 nullable sort columns
+162.11 index support
+162.12 laboratory: reemplazar OFFSET por keyset pagination
+
+
+163. Random sampling
+
+163.1 ORDER BY random()
+163.2 coste
+163.3 TABLESAMPLE
+163.4 SYSTEM
+163.5 BERNOULLI
+163.6 repeatable sampling
+163.7 random row challenges
+163.8 statistical bias
+163.9 laboratory: seleccionar muestras eficientes
+
+
+164. Advanced aggregation
+
+164.1 percentile_cont
+164.2 percentile_disc
+164.3 ordered-set aggregates
+164.4 hypothetical-set aggregates
+164.5 mode
+164.6 correlation
+164.7 covariance
+164.8 regression aggregates
+164.9 FILTER
+164.10 array aggregation
+164.11 JSON aggregation
+164.12 laboratory: construir métricas estadísticas
+
+
+165. Querying metadata dynamically
+
+165.1 dynamic introspection
+165.2 catalog-driven SQL
+165.3 generating SQL from catalogs
+165.4 format()
+165.5 quote_ident
+165.6 regclass
+165.7 schema discovery
+165.8 table discovery
+165.9 column discovery
+165.10 constraint discovery
+165.11 index discovery
+165.12 laboratory: construir generador de consultas de introspección
+
+
+166. Dependency analysis
+
+166.1 object dependency
+166.2 pg_depend
+166.3 pg_shdepend
+166.4 dependency types
+166.5 views
+166.6 functions
+166.7 constraints
+166.8 sequences
+166.9 DROP CASCADE
+166.10 dependency graph
+166.11 laboratory: construir mapa de dependencias
+
+
+167. Advanced schema introspection
+
+167.1 primary keys
+167.2 foreign keys
+167.3 unique constraints
+167.4 check constraints
+167.5 indexes
+167.6 partial indexes
+167.7 expression indexes
+167.8 triggers
+167.9 functions
+167.10 policies
+167.11 partitions
+167.12 generated columns
+167.13 identity columns
+167.14 laboratorio: documentar automáticamente una base desconocida
+
+
+168. Data lineage conceptual
+
+168.1 source data
+168.2 derived data
+168.3 views
+168.4 materialized views
+168.5 ETL queries
+168.6 column lineage
+168.7 table lineage
+168.8 dependencies
+168.9 limitations of SQL-only lineage
+168.10 laboratory: reconstruir lineage desde metadata
+
+
+169. SQL portability
+
+169.1 portable SQL
+169.2 dialect detection
+169.3 standard syntax
+169.4 vendor functions
+169.5 identifier quoting
+169.6 string concatenation
+169.7 boolean handling
+169.8 date arithmetic
+169.9 LIMIT vs FETCH
+169.10 UPSERT differences
+169.11 RETURNING differences
+169.12 JSON differences
+169.13 regex differences
+169.14 procedural differences
+169.15 testing portability
+169.16 laboratorio: escribir versión portable y PostgreSQL-specific
+
+
+170. PostgreSQL source-code orientation
+
+170.1 PostgreSQL source tree
+170.2 src/backend
+170.3 src/include
+170.4 parser sources
+170.5 optimizer sources
+170.6 executor sources
+170.7 access methods
+170.8 storage manager
+170.9 WAL sources
+170.10 catalog definitions
+170.11 regression tests
+170.12 contrib
+170.13 documentation sources
+170.14 laboratorio: localizar componentes del motor
+
+
+171. Parser internals
+
+171.1 gram.y
+171.2 scanner
+171.3 keywords
+171.4 raw parser
+171.5 parse nodes
+171.6 parse analysis
+171.7 transformStmt
+171.8 namespace handling
+171.9 type coercion
+171.10 laboratory: seguir una sentencia SELECT en el código fuente
+
+
+172. Planner internals
+
+172.1 planner entry points
+172.2 PlannerInfo
+172.3 RelOptInfo
+172.4 Path
+172.5 PathKey
+172.6 RestrictInfo
+172.7 equivalence classes
+172.8 base relations
+172.9 join relations
+172.10 path generation
+172.11 cheapest path
+172.12 plan creation
+172.13 laboratorio: seguir una relación desde planner hasta plan
+
+
+173. Executor internals avanzados
+
+173.1 Plan
+173.2 PlanState
+173.3 executor startup
+173.4 ExecutorStart
+173.5 ExecutorRun
+173.6 ExecutorFinish
+173.7 ExecutorEnd
+173.8 tuple slots
+173.9 TupleTableSlot
+173.10 expression states
+173.11 scan state
+173.12 join state
+173.13 aggregate state
+173.14 laboratory: mapear nodos EXPLAIN con estructuras internas
+
+
+174. Access method internals
+
+174.1 table access method
+174.2 heap access method
+174.3 index access method
+174.4 IndexAmRoutine conceptual
+174.5 B-tree AM
+174.6 hash AM
+174.7 GiST AM
+174.8 GIN AM
+174.9 SP-GiST AM
+174.10 BRIN AM
+174.11 extensibility
+174.12 laboratory: localizar implementación de un access method
+
+
+175. MVCC internals avanzados
+
+175.1 transaction snapshots
+175.2 SnapshotData
+175.3 visibility checks
+175.4 HeapTupleSatisfiesMVCC conceptual
+175.5 hint bits
+175.6 clog / pg_xact
+175.7 subtransactions
+175.8 MultiXact
+175.9 tuple locking
+175.10 HOT chains
+175.11 pruning
+175.12 laboratory: relacionar campos de tuple con visibilidad
+
+
+176. Transaction internals
+
+176.1 transaction state
+176.2 XID allocation
+176.3 subtransactions
+176.4 commit
+176.5 abort
+176.6 pg_xact
+176.7 commit status
+176.8 WAL commit records
+176.9 synchronous commit
+176.10 group commit
+176.11 laboratory: seguir una transacción desde BEGIN hasta COMMIT
+
+
+177. Lock manager internals
+
+177.1 heavyweight locks
+177.2 lightweight locks
+177.3 spinlocks conceptuales
+177.4 lock table
+177.5 proc array
+177.6 wait queues
+177.7 deadlock detector
+177.8 predicate locks
+177.9 advisory locks
+177.10 laboratory: relacionar pg_locks con lock manager
+
+
+178. Buffer manager internals
+
+178.1 shared buffer hash
+178.2 buffer descriptors
+178.3 buffer mapping
+178.4 buffer pin
+178.5 buffer content lock
+178.6 buffer replacement
+178.7 clock sweep
+178.8 dirtying
+178.9 flushing
+178.10 background writer interactions
+178.11 laboratory: seguir lectura de una página
+
+
+179. WAL internals avanzados
+
+179.1 WAL record header
+179.2 resource managers
+179.3 rmgr
+179.4 redo routines
+179.5 full-page images
+179.6 WAL insertion locks
+179.7 WAL buffers
+179.8 flushing
+179.9 checkpoints
+179.10 crash replay
+179.11 laboratory: inspeccionar WAL conceptualmente
+
+
+180. Expert troubleshooting methodology
+
+180.1 reproducir
+180.2 observar
+180.3 medir
+180.4 formular hipótesis
+180.5 cambiar una variable
+180.6 volver a medir
+180.7 separar síntoma de causa
+180.8 SQL-level evidence
+180.9 planner evidence
+180.10 runtime evidence
+180.11 locking evidence
+180.12 storage evidence
+180.13 OS evidence
+180.14 document findings
+180.15 rollback changes
+180.16 laboratory: resolver una incidencia desconocida
+
+
+181. Proyecto experto — fase de modelado
+
+181.1 elegir dominio real
+181.2 capturar requisitos
+181.3 identificar entidades
+181.4 identificar relaciones
+181.5 cardinalidades
+181.6 claves candidatas
+181.7 modelo conceptual
+181.8 modelo lógico
+181.9 dependencias funcionales
+181.10 normalización
+181.11 justificar desnormalización
+181.12 modelo físico PostgreSQL
+181.13 definir schemas
+181.14 definir ownership
+181.15 laboratorio: revisión del diseño
+
+
+182. Proyecto experto — construcción del esquema
+
+182.1 CREATE DATABASE
+182.2 schemas
+182.3 tables
+182.4 data types
+182.5 PK
+182.6 FK
+182.7 UNIQUE
+182.8 CHECK
+182.9 domains
+182.10 generated columns
+182.11 sequences
+182.12 identity
+182.13 ranges
+182.14 JSONB cuando corresponda
+182.15 indexes iniciales
+182.16 seed data
+182.17 laboratorio: desplegar esquema reproducible
+
+
+183. Proyecto experto — dataset
+
+183.1 diseñar dataset
+183.2 data generation
+183.3 realistic distributions
+183.4 skew
+183.5 NULL distribution
+183.6 duplicate scenarios
+183.7 temporal data
+183.8 multi-million-row tables
+183.9 COPY
+183.10 staging
+183.11 validation
+183.12 ANALYZE
+183.13 laboratorio: cargar dataset a escala
+
+
+184. Proyecto experto — consultas operacionales
+
+184.1 point lookup
+184.2 list query
+184.3 filtering
+184.4 pagination
+184.5 joins
+184.6 transaction workflow
+184.7 insert
+184.8 update
+184.9 delete
+184.10 upsert
+184.11 concurrency-safe operations
+184.12 laboratorio: implementar workload OLTP
+
+
+185. Proyecto experto — consultas analíticas
+
+185.1 aggregation
+185.2 grouping sets
+185.3 window functions
+185.4 ranking
+185.5 running totals
+185.6 cohort analysis
+185.7 retention
+185.8 temporal analysis
+185.9 recursive queries
+185.10 JSON aggregation
+185.11 materialized views
+185.12 laboratorio: construir reporting completo
+
+
+186. Proyecto experto — transacciones y concurrencia
+
+186.1 isolation levels
+186.2 concurrent sessions
+186.3 lost update
+186.4 write skew
+186.5 row locking
+186.6 SKIP LOCKED
+186.7 advisory locking
+186.8 deadlock
+186.9 retry strategy
+186.10 idempotency
+186.11 laboratory: suite de concurrencia
+
+
+187. Proyecto experto — seguridad
+
+187.1 roles
+187.2 role hierarchy
+187.3 privileges
+187.4 default privileges
+187.5 application role
+187.6 read-only role
+187.7 admin role
+187.8 RLS
+187.9 SECURITY DEFINER
+187.10 safe search_path
+187.11 SQL injection protections
+187.12 laboratory: security review
+
+
+188. Proyecto experto — indexación
+
+188.1 collect workload
+188.2 identify predicates
+188.3 identify joins
+188.4 identify ordering
+188.5 B-tree indexes
+188.6 partial indexes
+188.7 expression indexes
+188.8 covering indexes
+188.9 GIN
+188.10 BRIN
+188.11 index usage
+188.12 remove redundant indexes
+188.13 laboratory: justificar cada índice
+
+
+189. Proyecto experto — EXPLAIN y tuning
+
+189.1 baseline
+189.2 EXPLAIN
+189.3 EXPLAIN ANALYZE
+189.4 BUFFERS
+189.5 WAL
+189.6 cardinality estimation
+189.7 scan methods
+189.8 join algorithms
+189.9 sort spills
+189.10 hash spills
+189.11 extended statistics
+189.12 work_mem
+189.13 query rewrite
+189.14 benchmark
+189.15 before/after comparison
+189.16 laboratorio: optimizar workload completo
+
+
+190. Proyecto experto — particionamiento
+
+190.1 identificar tabla candidata
+190.2 choose partition key
+190.3 RANGE
+190.4 LIST
+190.5 HASH
+190.6 partition creation
+190.7 partition pruning
+190.8 partition indexes
+190.9 attach
+190.10 detach
+190.11 maintenance
+190.12 laboratory: medir beneficio real
+
+
+191. Proyecto experto — mantenimiento
+
+191.1 VACUUM
+191.2 ANALYZE
+191.3 autovacuum
+191.4 dead tuples
+191.5 bloat
+191.6 freeze
+191.7 XID age
+191.8 REINDEX
+191.9 CLUSTER
+191.10 visibility map
+191.11 table statistics
+191.12 laboratory: maintenance runbook
+
+
+192. Proyecto experto — observabilidad
+
+192.1 pg_stat_activity
+192.2 pg_locks
+192.3 pg_stat_user_tables
+192.4 pg_stat_user_indexes
+192.5 pg_stat_io
+192.6 pg_stat_statements
+192.7 progress views
+192.8 logging
+192.9 auto_explain
+192.10 dashboard queries
+192.11 laboratory: observability pack
+
+
+193. Proyecto experto — fallos deliberados
+
+193.1 query lenta
+193.2 missing index
+193.3 wrong index
+193.4 stale statistics
+193.5 correlated predicates
+193.6 lock contention
+193.7 deadlock
+193.8 idle transaction
+193.9 bloat
+193.10 ineffective autovacuum
+193.11 sort spill
+193.12 hash spill
+193.13 bad partitioning
+193.14 RLS mistake
+193.15 privilege mistake
+193.16 laboratorio: diagnosticar sin conocer previamente el fallo
+
+
+194. Proyecto experto — internals
+
+194.1 localizar relation file
+194.2 inspeccionar page
+194.3 inspeccionar tuple
+194.4 xmin/xmax
+194.5 HOT chain
+194.6 visibility map
+194.7 free space map
+194.8 inspect B-tree page
+194.9 shared buffers
+194.10 WAL generation
+194.11 checkpoint behavior
+194.12 query lifecycle
+194.13 laboratorio: conectar SQL visible con internals
+
+
+195. sql-postgresql-debugger
+
+195.1 objetivo del debugger
+195.2 aceptar una consulta SQL
+195.3 aceptar conexión PostgreSQL
+195.4 obtener EXPLAIN
+195.5 obtener EXPLAIN ANALYZE opcional
+195.6 obtener BUFFERS
+195.7 obtener WAL
+195.8 obtener SETTINGS
+195.9 obtener plan JSON
+195.10 parsear nodos
+195.11 detectar Seq Scan
+195.12 detectar Index Scan
+195.13 detectar Bitmap Scan
+195.14 detectar cardinality misestimation
+195.15 detectar Nested Loop costoso
+195.16 detectar Hash Join
+195.17 detectar Merge Join
+195.18 detectar sort spill
+195.19 detectar hash batching
+195.20 detectar temp files
+195.21 detectar excessive loops
+195.22 detectar rows removed by filter
+195.23 detectar heap fetches
+195.24 inspeccionar índices disponibles
+195.25 inspeccionar estadísticas
+195.26 inspeccionar extended statistics
+195.27 inspeccionar table statistics
+195.28 inspeccionar index statistics
+195.29 inspeccionar pg_stat_statements
+195.30 inspeccionar locks
+195.31 inspeccionar blockers
+195.32 inspeccionar long transactions
+195.33 inspeccionar autovacuum
+195.34 inspeccionar bloat indicators
+195.35 inspeccionar partition pruning
+195.36 comparar estimated vs actual rows
+195.37 producir diagnóstico
+195.38 producir recomendaciones
+195.39 diferenciar evidencia de hipótesis
+195.40 guardar reporte
+195.41 modo --query
+195.42 modo --file
+195.43 modo --pid
+195.44 modo --database
+195.45 modo --schema
+195.46 modo --table
+195.47 modo --index
+195.48 modo --locks
+195.49 modo --vacuum
+195.50 modo --stats
+195.51 modo --explain
+195.52 modo --analyze
+195.53 modo --json
+195.54 modo --report
+195.55 comparar plan antes/después
+195.56 guardar baseline
+195.57 validar mejoras
+195.58 evitar recomendaciones destructivas automáticas
+195.59 proyecto final: ejecutar sql-postgresql-debugger contra una base real
+
+
+196. PROYECTO FINAL — dominio completo
+
+196.1 partir de requisitos sin modelo previo
+196.2 descubrir entidades
+196.3 diseñar modelo conceptual
+196.4 diseñar modelo lógico
+196.5 obtener dependencias funcionales
+196.6 normalizar
+196.7 justificar cada desnormalización
+196.8 diseñar modelo físico PostgreSQL
+196.9 implementar DDL
+196.10 implementar constraints
+196.11 implementar roles
+196.12 implementar RLS
+196.13 generar dataset grande
+196.14 implementar carga masiva
+196.15 desarrollar workload OLTP
+196.16 desarrollar workload analítico
+196.17 implementar views
+196.18 implementar materialized views
+196.19 implementar functions
+196.20 implementar procedures
+196.21 implementar triggers únicamente donde estén justificados
+196.22 implementar JSONB cuando aporte valor
+196.23 implementar full-text search cuando corresponda
+196.24 implementar particionamiento cuando corresponda
+196.25 diseñar índices a partir del workload
+196.26 reproducir concurrencia
+196.27 reproducir deadlock
+196.28 probar isolation levels
+196.29 ejecutar EXPLAIN ANALYZE
+196.30 corregir cardinality misestimations
+196.31 optimizar consultas
+196.32 configurar extended statistics
+196.33 analizar VACUUM
+196.34 analizar bloat
+196.35 analizar WAL generado
+196.36 monitorizar mediante pg_stat_*
+196.37 utilizar pg_stat_statements
+196.38 diagnosticar fallos deliberados
+196.39 ejecutar sql-postgresql-debugger
+196.40 comparar baseline vs sistema optimizado
+196.41 documentar decisiones
+196.42 documentar trade-offs
+196.43 documentar SQL estándar vs extensiones PostgreSQL
+196.44 revisión final de seguridad
+196.45 revisión final de integridad
+196.46 revisión final de concurrencia
+196.47 revisión final de rendimiento
+196.48 revisión final de mantenimiento
+196.49 revisión final de internals
+196.50 proyecto final experto: sistema PostgreSQL completo diseñado, implementado, optimizado y diagnosticado desde cero

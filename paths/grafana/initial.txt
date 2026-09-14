@@ -1,0 +1,1784 @@
+PATH — GRAFANA + LOKI — 0 → EXPERTO
+
+0. Fundamentos de observabilidad
+0.1 qué es observabilidad
+0.2 monitorización frente a observabilidad
+0.3 telemetría
+0.4 métricas
+0.5 logs
+0.6 trazas
+0.7 perfiles
+0.8 eventos
+0.9 señales de observabilidad
+0.10 relación entre métricas, logs y trazas
+0.11 infraestructura observable
+0.12 aplicaciones observables
+0.13 observabilidad distribuida
+0.14 pull frente a push
+0.15 agentes y collectors
+0.16 almacenamiento de telemetría
+0.17 consulta de telemetría
+0.18 visualización
+0.19 alerting
+0.20 cardinalidad
+0.21 labels y metadata
+0.22 retención
+0.23 coste de observabilidad
+0.24 Grafana Stack
+0.25 Grafana
+0.26 Loki
+0.27 Grafana Alloy
+0.28 Prometheus dentro del ecosistema
+0.29 arquitectura conceptual Grafana + Loki + Prometheus
+0.30 laboratorio: construir el mapa de una plataforma de observabilidad
+
+
+1. Fundamentos de Grafana
+1.1 qué es Grafana
+1.2 qué problemas resuelve
+1.3 Grafana OSS
+1.4 Grafana Enterprise
+1.5 Grafana Cloud
+1.6 frontend
+1.7 backend
+1.8 data sources
+1.9 dashboards
+1.10 panels
+1.11 queries
+1.12 variables
+1.13 transformations
+1.14 Explore
+1.15 alerting
+1.16 provisioning
+1.17 plugins
+1.18 HTTP API
+1.19 organizaciones
+1.20 usuarios y equipos
+1.21 laboratorio: mapa funcional de Grafana
+
+
+2. Arquitectura de Grafana
+2.1 arquitectura general
+2.2 proceso grafana-server
+2.3 frontend web
+2.4 backend
+2.5 configuración
+2.6 base de datos interna
+2.7 SQLite
+2.8 PostgreSQL
+2.9 MySQL
+2.10 sesiones
+2.11 caché
+2.12 data proxy
+2.13 plugin system
+2.14 alerting subsystem
+2.15 provisioning subsystem
+2.16 API
+2.17 almacenamiento de dashboards
+2.18 almacenamiento de configuración
+2.19 rutas internas
+2.20 ciclo de una consulta
+2.21 laboratorio: seguir una consulta desde panel hasta data source
+
+
+3. Instalación de Grafana en Fedora
+3.1 requisitos
+3.2 paquetes RPM
+3.3 repositorio oficial
+3.4 instalación con DNF
+3.5 rpm -qi
+3.6 rpm -ql
+3.7 archivos instalados
+3.8 usuario grafana
+3.9 grupo grafana
+3.10 directorios
+3.11 /etc/grafana
+3.12 /var/lib/grafana
+3.13 /var/log/grafana
+3.14 plugins
+3.15 grafana-server
+3.16 systemd
+3.17 systemctl enable
+3.18 systemctl start
+3.19 systemctl status
+3.20 journalctl
+3.21 firewalld
+3.22 SELinux
+3.23 acceso inicial
+3.24 laboratorio: instalación completa en Fedora
+
+
+4. Configuración de Grafana
+4.1 grafana.ini
+4.2 defaults.ini
+4.3 precedencia
+4.4 variables de entorno
+4.5 GF_<SECTION>_<KEY>
+4.6 server
+4.7 http_addr
+4.8 http_port
+4.9 domain
+4.10 root_url
+4.11 serve_from_sub_path
+4.12 database
+4.13 security
+4.14 users
+4.15 auth
+4.16 smtp
+4.17 log
+4.18 paths
+4.19 feature toggles
+4.20 configuración mediante systemd
+4.21 secretos
+4.22 validar cambios
+4.23 laboratorio: configuración reproducible
+
+
+5. Interfaz y organización de Grafana
+5.1 Home
+5.2 navegación
+5.3 search
+5.4 dashboards
+5.5 folders
+5.6 Explore
+5.7 Alerting
+5.8 Connections
+5.9 Administration
+5.10 Preferences
+5.11 organizaciones
+5.12 estructura lógica
+5.13 organización por equipos
+5.14 naming conventions
+5.15 laboratorio: diseñar una estructura operacional
+
+
+6. Data sources
+6.1 concepto
+6.2 arquitectura
+6.3 data source plugins
+6.4 configuración
+6.5 URL
+6.6 access
+6.7 autenticación
+6.8 headers
+6.9 TLS
+6.10 secretos
+6.11 query editor
+6.12 health check
+6.13 Prometheus
+6.14 Loki
+6.15 PostgreSQL
+6.16 MySQL
+6.17 data sources mixtos
+6.18 UID
+6.19 permisos
+6.20 provisioning
+6.21 troubleshooting
+6.22 laboratorio: configurar múltiples fuentes
+
+
+7. Dashboards
+7.1 concepto
+7.2 arquitectura
+7.3 dashboard
+7.4 row
+7.5 panel
+7.6 grid
+7.7 time range
+7.8 refresh
+7.9 time zone
+7.10 tags
+7.11 folders
+7.12 UID
+7.13 creación
+7.14 edición
+7.15 duplicación
+7.16 importación
+7.17 exportación
+7.18 dashboard JSON
+7.19 JSON model
+7.20 schemaVersion
+7.21 versionado
+7.22 historial
+7.23 compartir
+7.24 snapshots
+7.25 links
+7.26 annotations
+7.27 variables
+7.28 library panels
+7.29 diseño operacional
+7.30 densidad de información
+7.31 rendimiento
+7.32 dashboards reutilizables
+7.33 dashboards como código
+7.34 anti-patterns
+7.35 laboratorio: dashboard operacional completo
+
+
+8. Panels y visualizaciones
+8.1 panel
+8.2 query
+8.3 visualization
+8.4 field
+8.5 field options
+8.6 overrides
+8.7 thresholds
+8.8 mappings
+8.9 units
+8.10 decimals
+8.11 time series
+8.12 stat
+8.13 gauge
+8.14 bar gauge
+8.15 table
+8.16 heatmap
+8.17 histogram
+8.18 state timeline
+8.19 status history
+8.20 logs
+8.21 node graph
+8.22 geomap
+8.23 canvas
+8.24 text
+8.25 data links
+8.26 actions
+8.27 elección de visualización
+8.28 laboratorio: representar un mismo dataset de distintas formas
+
+
+9. Queries en Grafana
+9.1 query editor
+9.2 query
+9.3 refId
+9.4 múltiples queries
+9.5 expressions
+9.6 instant queries
+9.7 range queries
+9.8 time range
+9.9 interval
+9.10 max data points
+9.11 min interval
+9.12 query inspector
+9.13 resultados
+9.14 errores
+9.15 caché
+9.16 rendimiento
+9.17 laboratorio: diagnosticar consultas
+
+
+10. Variables y templating
+10.1 variables
+10.2 dashboard variables
+10.3 query variables
+10.4 custom variables
+10.5 constant variables
+10.6 textbox variables
+10.7 data source variables
+10.8 interval variables
+10.9 ad hoc filters
+10.10 interpolación
+10.11 escaping
+10.12 multi-value
+10.13 Include All
+10.14 regex
+10.15 chained variables
+10.16 repetición de panels
+10.17 repetición de rows
+10.18 variables en links
+10.19 variables en queries
+10.20 rendimiento
+10.21 laboratorio: dashboard completamente parametrizable
+
+
+11. Transformations
+11.1 pipeline de datos
+11.2 transformaciones
+11.3 orden de ejecución
+11.4 Filter data
+11.5 Organize fields
+11.6 Rename
+11.7 Join
+11.8 Merge
+11.9 Group
+11.10 Reduce
+11.11 Calculate field
+11.12 Labels to fields
+11.13 Rows to fields
+11.14 Series to rows
+11.15 Partition
+11.16 transformación frente a consulta
+11.17 rendimiento
+11.18 debugging
+11.19 laboratorio: combinar varias consultas
+
+
+12. Annotations
+12.1 concepto
+12.2 eventos
+12.3 annotations manuales
+12.4 annotation queries
+12.5 tags
+12.6 deployment annotations
+12.7 incident annotations
+12.8 API
+12.9 correlación temporal
+12.10 laboratorio
+
+
+13. Links y navegación
+13.1 dashboard links
+13.2 panel links
+13.3 data links
+13.4 variables en URLs
+13.5 navegación contextual
+13.6 enlaces externos
+13.7 enlaces a Explore
+13.8 logs desde métricas
+13.9 métricas desde logs
+13.10 laboratorio
+
+
+14. Library panels y reutilización
+14.1 library panels
+14.2 creación
+14.3 reutilización
+14.4 actualización
+14.5 propagación
+14.6 desacoplamiento
+14.7 diseño modular
+14.8 laboratorio
+
+
+15. Explore
+15.1 propósito
+15.2 exploración frente a dashboards
+15.3 selección de data source
+15.4 query editor
+15.5 múltiples queries
+15.6 split view
+15.7 time range
+15.8 logs
+15.9 métricas
+15.10 correlaciones
+15.11 query history
+15.12 inspector
+15.13 navegación dashboard → Explore
+15.14 Explore → dashboard
+15.15 investigación de incidentes
+15.16 laboratorio
+
+
+16. Usuarios, equipos y organizaciones
+16.1 usuarios
+16.2 teams
+16.3 organizations
+16.4 roles
+16.5 Viewer
+16.6 Editor
+16.7 Admin
+16.8 Server Admin
+16.9 folders
+16.10 permisos
+16.11 teams y permisos
+16.12 service accounts
+16.13 tokens
+16.14 mínimo privilegio
+16.15 laboratorio
+
+
+17. Autenticación y autorización
+17.1 autenticación
+17.2 autorización
+17.3 login local
+17.4 anonymous access
+17.5 basic auth
+17.6 reverse proxy auth
+17.7 OAuth
+17.8 LDAP
+17.9 session management
+17.10 cookies
+17.11 service accounts
+17.12 RBAC
+17.13 laboratorio
+
+
+18. Seguridad de Grafana
+18.1 superficie de ataque
+18.2 cuentas administrativas
+18.3 secretos
+18.4 TLS
+18.5 HTTPS
+18.6 reverse proxy
+18.7 headers
+18.8 cookies
+18.9 CSRF
+18.10 plugins
+18.11 data source proxy
+18.12 permisos
+18.13 filesystem
+18.14 systemd hardening
+18.15 firewalld
+18.16 SELinux
+18.17 auditoría
+18.18 actualizaciones
+18.19 laboratorio: hardening
+
+
+19. Grafana Alerting
+19.1 arquitectura
+19.2 alert rules
+19.3 evaluation
+19.4 expressions
+19.5 labels
+19.6 annotations
+19.7 alert instances
+19.8 state
+19.9 Normal
+19.10 Pending
+19.11 Alerting
+19.12 No Data
+19.13 Error
+19.14 evaluation groups
+19.15 pending period
+19.16 keep firing
+19.17 laboratorio
+
+
+20. Contact points
+20.1 concepto
+20.2 receivers
+20.3 email
+20.4 webhook
+20.5 integración con sistemas externos
+20.6 templates
+20.7 testing
+20.8 secretos
+20.9 laboratorio
+
+
+21. Notification policies
+21.1 árbol de políticas
+21.2 routing
+21.3 labels
+21.4 matchers
+21.5 grouping
+21.6 group wait
+21.7 group interval
+21.8 repeat interval
+21.9 políticas anidadas
+21.10 laboratorio
+
+
+22. Silences y mute timings
+22.1 silence
+22.2 matchers
+22.3 duración
+22.4 mantenimiento
+22.5 mute timings
+22.6 intervalos
+22.7 recurrencia
+22.8 laboratorio
+
+
+23. Alert rules avanzadas
+23.1 reglas multidimensionales
+23.2 expresiones
+23.3 reduce
+23.4 math
+23.5 threshold
+23.6 resampling
+23.7 recovery thresholds
+23.8 labels dinámicos
+23.9 annotations
+23.10 templates
+23.11 troubleshooting
+23.12 laboratorio
+
+
+24. Provisioning
+24.1 infraestructura declarativa
+24.2 provisioning directory
+24.3 YAML
+24.4 startup provisioning
+24.5 idempotencia
+24.6 versionado
+24.7 Git
+24.8 secretos
+24.9 laboratorio
+
+
+25. Provisioning de data sources
+25.1 datasources directory
+25.2 apiVersion
+25.3 datasources
+25.4 name
+25.5 uid
+25.6 type
+25.7 url
+25.8 access
+25.9 jsonData
+25.10 secureJsonData
+25.11 deleteDatasources
+25.12 laboratorio
+
+
+26. Provisioning de dashboards
+26.1 providers
+26.2 filesystem
+26.3 folders
+26.4 options
+26.5 updateIntervalSeconds
+26.6 allowUiUpdates
+26.7 dashboard JSON
+26.8 Git
+26.9 laboratorio
+
+
+27. Provisioning de alerting
+27.1 alerting directory
+27.2 rules
+27.3 contact points
+27.4 policies
+27.5 mute timings
+27.6 templates
+27.7 versionado
+27.8 laboratorio
+
+
+28. HTTP API de Grafana
+28.1 fundamentos REST
+28.2 autenticación
+28.3 service account tokens
+28.4 status API
+28.5 dashboard API
+28.6 folder API
+28.7 data source API
+28.8 annotation API
+28.9 alerting API
+28.10 organization API
+28.11 user API
+28.12 health
+28.13 curl
+28.14 jq
+28.15 automatización
+28.16 laboratorio
+
+
+29. Automatización de Grafana
+29.1 configuración declarativa
+29.2 provisioning
+29.3 API
+29.4 scripts
+29.5 Git
+29.6 CI/CD
+29.7 configuración reproducible
+29.8 secretos
+29.9 validación
+29.10 laboratorio
+
+
+30. Administración
+30.1 tareas administrativas
+30.2 usuarios
+30.3 organizaciones
+30.4 plugins
+30.5 configuración
+30.6 logs
+30.7 database
+30.8 sesiones
+30.9 almacenamiento
+30.10 mantenimiento
+30.11 laboratorio
+
+
+31. Backup, restore y upgrades
+31.1 qué respaldar
+31.2 configuración
+31.3 database
+31.4 plugins
+31.5 provisioning
+31.6 dashboards
+31.7 backup
+31.8 restore
+31.9 upgrades
+31.10 compatibilidad
+31.11 rollback
+31.12 laboratorio
+
+
+32. Rendimiento de Grafana
+32.1 fuentes de carga
+32.2 dashboards
+32.3 panels
+32.4 queries
+32.5 refresh
+32.6 variables
+32.7 transformations
+32.8 data sources
+32.9 backend
+32.10 database
+32.11 caché
+32.12 profiling conceptual
+32.13 laboratorio
+
+
+33. Troubleshooting de Grafana
+33.1 metodología
+33.2 grafana-server
+33.3 systemd
+33.4 journalctl
+33.5 logs
+33.6 configuration
+33.7 database
+33.8 plugins
+33.9 data sources
+33.10 queries
+33.11 dashboards
+33.12 alerting
+33.13 networking
+33.14 TLS
+33.15 permisos
+33.16 SELinux
+33.17 laboratorio
+
+
+34. Alta disponibilidad de Grafana
+34.1 arquitectura HA
+34.2 múltiples instancias
+34.3 load balancer
+34.4 shared database
+34.5 sesiones
+34.6 alerting HA
+34.7 provisioning
+34.8 plugins
+34.9 almacenamiento compartido
+34.10 failure modes
+34.11 laboratorio
+
+
+35. Fundamentos de Loki
+35.1 qué es Loki
+35.2 propósito
+35.3 logs centralizados
+35.4 diferencias frente a búsqueda full-text
+35.5 arquitectura basada en labels
+35.6 streams
+35.7 chunks
+35.8 index
+35.9 labels
+35.10 structured metadata
+35.11 LogQL
+35.12 Loki API
+35.13 integración Grafana
+35.14 laboratorio
+
+
+36. Arquitectura de Loki
+36.1 arquitectura general
+36.2 write path
+36.3 read path
+36.4 distributor
+36.5 ingester
+36.6 querier
+36.7 query frontend
+36.8 query scheduler
+36.9 compactor
+36.10 ruler
+36.11 gateway
+36.12 ring
+36.13 object storage
+36.14 TSDB
+36.15 cachés
+36.16 laboratorio: seguir un log extremo a extremo
+
+
+37. Componentes internos
+37.1 distributor
+37.2 validation
+37.3 consistent hashing
+37.4 ring
+37.5 ingester
+37.6 WAL
+37.7 chunks
+37.8 flushing
+37.9 querier
+37.10 frontend
+37.11 scheduler
+37.12 index gateway
+37.13 compactor
+37.14 ruler
+37.15 cachés
+37.16 laboratorio
+
+
+38. Modos de despliegue
+38.1 monolithic
+38.2 single binary
+38.3 simple scalable
+38.4 distributed
+38.5 microservices
+38.6 ventajas
+38.7 limitaciones
+38.8 elección
+38.9 migración
+38.10 laboratorio
+
+
+39. Configuración de Loki
+39.1 loki.yaml
+39.2 server
+39.3 common
+39.4 schema_config
+39.5 storage_config
+39.6 limits_config
+39.7 ingester
+39.8 distributor
+39.9 querier
+39.10 frontend
+39.11 compactor
+39.12 ruler
+39.13 runtime_config
+39.14 variables de entorno
+39.15 validación
+39.16 laboratorio
+
+
+40. Ingestión de logs
+40.1 fuentes
+40.2 archivos
+40.3 journald
+40.4 systemd
+40.5 aplicaciones
+40.6 containers
+40.7 Kubernetes como integración
+40.8 syslog
+40.9 pipelines
+40.10 labels
+40.11 metadata
+40.12 timestamps
+40.13 multiline
+40.14 backpressure
+40.15 laboratorio
+
+
+41. Grafana Alloy
+41.1 qué es Alloy
+41.2 papel dentro de Grafana Stack
+41.3 arquitectura
+41.4 componentes
+41.5 configuración
+41.6 River/Alloy configuration language
+41.7 discovery
+41.8 loki.source
+41.9 loki.process
+41.10 loki.write
+41.11 relabeling
+41.12 pipelines
+41.13 journald
+41.14 archivos
+41.15 containers
+41.16 Prometheus integrations
+41.17 debugging
+41.18 métricas internas
+41.19 migración desde Promtail
+41.20 laboratorio
+
+
+42. Descubrimiento de fuentes de logs
+42.1 targets
+42.2 archivos
+42.3 glob
+42.4 journald
+42.5 systemd units
+42.6 containers
+42.7 discovery
+42.8 relabeling
+42.9 labels dinámicos
+42.10 laboratorio
+
+
+43. Pipelines de procesamiento
+43.1 pipeline
+43.2 stages
+43.3 parsing
+43.4 regex
+43.5 JSON
+43.6 logfmt
+43.7 labels
+43.8 metadata
+43.9 timestamp
+43.10 output
+43.11 drop
+43.12 multiline
+43.13 sampling
+43.14 laboratorio
+
+
+44. Labels
+44.1 modelo de labels
+44.2 indexación
+44.3 labels estáticos
+44.4 labels dinámicos
+44.5 naming
+44.6 cardinalidad
+44.7 buenos labels
+44.8 malos labels
+44.9 bounded values
+44.10 IDs
+44.11 timestamps
+44.12 cardinality explosion
+44.13 laboratorio
+
+
+45. Streams
+45.1 definición
+45.2 conjunto de labels
+45.3 stream identity
+45.4 creación
+45.5 distribución
+45.6 chunks
+45.7 orden temporal
+45.8 cardinalidad
+45.9 laboratorio
+
+
+46. Structured metadata
+46.1 concepto
+46.2 labels frente a metadata
+46.3 campos de alta cardinalidad
+46.4 ingestión
+46.5 consulta
+46.6 diseño
+46.7 casos de uso
+46.8 laboratorio
+
+
+47. Parsing de logs
+47.1 texto
+47.2 JSON
+47.3 logfmt
+47.4 regex
+47.5 pattern
+47.6 timestamps
+47.7 multiline
+47.8 campos
+47.9 normalización
+47.10 errores de parsing
+47.11 laboratorio
+
+
+48. Fundamentos de LogQL
+48.1 lenguaje
+48.2 modelo
+48.3 log queries
+48.4 metric queries
+48.5 stream selectors
+48.6 pipelines
+48.7 range vectors
+48.8 instant queries
+48.9 sintaxis
+48.10 laboratorio
+
+
+49. Selectores de streams
+49.1 selector
+49.2 =
+49.3 !=
+49.4 =~
+49.5 !~
+49.6 múltiples matchers
+49.7 regex
+49.8 rendimiento
+49.9 laboratorio
+
+
+50. Filtros
+50.1 |=
+50.2 !=
+50.3 |~
+50.4 !~
+50.5 filtros encadenados
+50.6 precedencia
+50.7 rendimiento
+50.8 laboratorio
+
+
+51. Parsers LogQL
+51.1 json
+51.2 logfmt
+51.3 regexp
+51.4 pattern
+51.5 unpack
+51.6 campos extraídos
+51.7 errores
+51.8 laboratorio
+
+
+52. Pipeline expressions
+52.1 pipeline
+52.2 parser expressions
+52.3 label filters
+52.4 line filters
+52.5 line_format
+52.6 label_format
+52.7 drop
+52.8 keep
+52.9 laboratorio
+
+
+53. Unwrap
+53.1 concepto
+53.2 valores numéricos
+53.3 conversiones
+53.4 duration
+53.5 bytes
+53.6 range aggregations
+53.7 errores
+53.8 laboratorio
+
+
+54. Agregaciones
+54.1 count_over_time
+54.2 rate
+54.3 bytes_rate
+54.4 bytes_over_time
+54.5 sum_over_time
+54.6 avg_over_time
+54.7 min_over_time
+54.8 max_over_time
+54.9 quantile_over_time
+54.10 sum
+54.11 avg
+54.12 min
+54.13 max
+54.14 count
+54.15 topk
+54.16 bottomk
+54.17 by
+54.18 without
+54.19 laboratorio
+
+
+55. Metric queries desde logs
+55.1 logs como métricas
+55.2 eventos por segundo
+55.3 error rate
+55.4 latencias
+55.5 tamaños
+55.6 agrupación
+55.7 series
+55.8 dashboards
+55.9 alerting
+55.10 laboratorio
+
+
+56. Operadores y funciones LogQL
+56.1 operadores aritméticos
+56.2 comparación
+56.3 operadores lógicos
+56.4 operadores de conjuntos
+56.5 precedence
+56.6 vector matching conceptual
+56.7 funciones
+56.8 laboratorio
+
+
+57. LogQL avanzado
+57.1 consultas complejas
+57.2 múltiples pipelines
+57.3 pattern filters
+57.4 templates
+57.5 funciones de template
+57.6 IP matching
+57.7 conversiones
+57.8 correlación
+57.9 troubleshooting
+57.10 laboratorio
+
+
+58. Optimización de LogQL
+58.1 selectividad
+58.2 labels
+58.3 filtros tempranos
+58.4 parsers
+58.5 regex
+58.6 rango temporal
+58.7 cardinalidad
+58.8 query frontend
+58.9 caching
+58.10 query splitting
+58.11 límites
+58.12 laboratorio
+
+
+59. Almacenamiento de Loki
+59.1 arquitectura
+59.2 index
+59.3 chunks
+59.4 TSDB
+59.5 object storage
+59.6 filesystem
+59.7 schema
+59.8 lifecycle
+59.9 durability
+59.10 laboratorio
+
+
+60. TSDB
+60.1 propósito
+60.2 estructura
+60.3 index
+60.4 blocks
+60.5 shippers
+60.6 object storage
+60.7 query path
+60.8 escalabilidad
+60.9 laboratorio
+
+
+61. Chunks
+61.1 concepto
+61.2 creación
+61.3 compresión
+61.4 tamaño
+61.5 flush
+61.6 almacenamiento
+61.7 lectura
+61.8 lifecycle
+61.9 laboratorio
+
+
+62. Index
+62.1 propósito
+62.2 labels
+62.3 referencias a chunks
+62.4 TSDB index
+62.5 index gateway
+62.6 rendimiento
+62.7 cardinalidad
+62.8 laboratorio
+
+
+63. Object storage
+63.1 concepto
+63.2 requisitos
+63.3 S3 compatible
+63.4 almacenamiento distribuido
+63.5 credenciales
+63.6 TLS
+63.7 buckets
+63.8 lifecycle
+63.9 disponibilidad
+63.10 laboratorio
+
+
+64. Schema configuration
+64.1 schema_config
+64.2 configs
+64.3 from
+64.4 store
+64.5 object_store
+64.6 schema
+64.7 index
+64.8 períodos
+64.9 cambios de schema
+64.10 migraciones
+64.11 laboratorio
+
+
+65. Compactor
+65.1 función
+65.2 arquitectura
+65.3 compactación
+65.4 index
+65.5 working directory
+65.6 retention
+65.7 delete requests
+65.8 operación
+65.9 HA considerations
+65.10 laboratorio
+
+
+66. Retention
+66.1 políticas
+66.2 período
+66.3 Compactor
+66.4 retention_enabled
+66.5 delete_request_store
+66.6 límites por tenant
+66.7 lifecycle del object store
+66.8 capacidad
+66.9 laboratorio
+
+
+67. Eliminación de logs
+67.1 motivos
+67.2 delete API
+67.3 solicitudes
+67.4 cancelación
+67.5 Compactor
+67.6 seguridad
+67.7 auditoría
+67.8 laboratorio
+
+
+68. Loki Ruler
+68.1 arquitectura
+68.2 reglas
+68.3 rule groups
+68.4 evaluation
+68.5 storage
+68.6 Alertmanager
+68.7 remote evaluation
+68.8 sharding
+68.9 laboratorio
+
+
+69. Recording rules
+69.1 concepto
+69.2 LogQL
+69.3 precomputación
+69.4 series métricas
+69.5 remote write
+69.6 rendimiento
+69.7 casos de uso
+69.8 laboratorio
+
+
+70. Alerting basado en logs
+70.1 eventos
+70.2 tasas
+70.3 patrones
+70.4 LogQL
+70.5 ruler
+70.6 Grafana Alerting
+70.7 Alertmanager
+70.8 labels
+70.9 routing
+70.10 laboratorio
+
+
+71. Multi-tenancy
+71.1 tenant
+71.2 X-Scope-OrgID
+71.3 aislamiento
+71.4 autenticación
+71.5 gateway
+71.6 límites
+71.7 almacenamiento
+71.8 seguridad
+71.9 laboratorio
+
+
+72. Limits
+72.1 limits_config
+72.2 ingestion limits
+72.3 query limits
+72.4 stream limits
+72.5 cardinality limits
+72.6 retention
+72.7 overrides
+72.8 runtime configuration
+72.9 laboratorio
+
+
+73. Rate limiting
+73.1 ingestión
+73.2 estrategia
+73.3 burst
+73.4 tenant
+73.5 distributor
+73.6 errores
+73.7 capacity planning
+73.8 laboratorio
+
+
+74. Cardinalidad
+74.1 cardinalidad de labels
+74.2 streams
+74.3 explosión de streams
+74.4 impacto en index
+74.5 impacto en memoria
+74.6 detección
+74.7 análisis
+74.8 prevención
+74.9 structured metadata
+74.10 laboratorio
+
+
+75. Seguridad de Loki
+75.1 modelo de seguridad
+75.2 autenticación
+75.3 autorización externa
+75.4 gateway
+75.5 TLS
+75.6 object storage
+75.7 secretos
+75.8 tenants
+75.9 network isolation
+75.10 firewalld
+75.11 SELinux
+75.12 mínimo privilegio
+75.13 laboratorio
+
+
+76. Escalado de Loki
+76.1 dimensiones de escalado
+76.2 ingestion rate
+76.3 query load
+76.4 almacenamiento
+76.5 streams
+76.6 tenants
+76.7 componentes
+76.8 horizontal scaling
+76.9 vertical scaling
+76.10 laboratorio
+
+
+77. Loki monolítico
+77.1 single binary
+77.2 componentes
+77.3 configuración
+77.4 almacenamiento
+77.5 ventajas
+77.6 limitaciones
+77.7 HA
+77.8 casos de uso
+77.9 laboratorio
+
+
+78. Simple scalable deployment
+78.1 arquitectura
+78.2 read
+78.3 write
+78.4 backend
+78.5 gateway
+78.6 object storage
+78.7 escalado
+78.8 disponibilidad
+78.9 laboratorio
+
+
+79. Loki distribuido
+79.1 microservices
+79.2 distributor
+79.3 ingester
+79.4 querier
+79.5 frontend
+79.6 scheduler
+79.7 compactor
+79.8 ruler
+79.9 gateway
+79.10 ring
+79.11 cachés
+79.12 object storage
+79.13 escalado independiente
+79.14 laboratorio
+
+
+80. Alta disponibilidad de Loki
+80.1 failure domains
+80.2 replication factor
+80.3 ring
+80.4 ingesters
+80.5 distributors
+80.6 queriers
+80.7 ruler
+80.8 compactor
+80.9 object storage
+80.10 load balancing
+80.11 recuperación
+80.12 laboratorio
+
+
+81. Monitorización de Loki
+81.1 observabilidad del observability stack
+81.2 métricas
+81.3 logs internos
+81.4 dashboards
+81.5 health
+81.6 readiness
+81.7 ingestion
+81.8 queries
+81.9 storage
+81.10 errores
+81.11 laboratorio
+
+
+82. Métricas internas de Loki
+82.1 métricas Prometheus
+82.2 distributor
+82.3 ingester
+82.4 querier
+82.5 frontend
+82.6 compactor
+82.7 ruler
+82.8 cachés
+82.9 alertas
+82.10 laboratorio
+
+
+83. Troubleshooting de Loki
+83.1 metodología
+83.2 configuración
+83.3 startup
+83.4 ingestion
+83.5 missing logs
+83.6 timestamps
+83.7 labels
+83.8 streams
+83.9 queries
+83.10 timeouts
+83.11 object storage
+83.12 ring
+83.13 WAL
+83.14 compactor
+83.15 ruler
+83.16 límites
+83.17 cardinalidad
+83.18 laboratorio
+
+
+84. Optimización y rendimiento de Loki
+84.1 perfil de carga
+84.2 ingestión
+84.3 labels
+84.4 chunks
+84.5 TSDB
+84.6 object storage
+84.7 cachés
+84.8 queries
+84.9 query frontend
+84.10 parallelism
+84.11 splitting
+84.12 limits
+84.13 capacidad
+84.14 laboratorio
+
+
+85. Integración Grafana + Loki
+85.1 data source Loki
+85.2 configuración
+85.3 autenticación
+85.4 derived fields
+85.5 Explore
+85.6 dashboards
+85.7 alerting
+85.8 provisioning
+85.9 laboratorio
+
+
+86. Explore con Loki
+86.1 selección de labels
+86.2 log browser
+86.3 LogQL
+86.4 context
+86.5 live tail cuando corresponda
+86.6 fields
+86.7 detected fields
+86.8 structured metadata
+86.9 split view
+86.10 incident investigation
+86.11 laboratorio
+
+
+87. Dashboards basados en logs
+87.1 logs panel
+87.2 estadísticas
+87.3 error rates
+87.4 top errors
+87.5 tablas
+87.6 variables
+87.7 links
+87.8 navegación a Explore
+87.9 rendimiento
+87.10 laboratorio
+
+
+88. Logs → métricas
+88.1 metric queries
+88.2 rate
+88.3 count_over_time
+88.4 unwrap
+88.5 agregaciones
+88.6 visualización
+88.7 alertas
+88.8 recording rules
+88.9 laboratorio
+
+
+89. Métricas → logs
+89.1 contexto
+89.2 labels compartidos
+89.3 data links
+89.4 Explore
+89.5 navegación
+89.6 filtros temporales
+89.7 diseño
+89.8 laboratorio
+
+
+90. Correlación logs/métricas
+90.1 correlación temporal
+90.2 labels comunes
+90.3 service
+90.4 instance
+90.5 host
+90.6 environment
+90.7 dashboards
+90.8 Explore
+90.9 incident workflow
+90.10 laboratorio
+
+
+91. Derived fields
+91.1 concepto
+91.2 regex
+91.3 extracción
+91.4 URL
+91.5 internal links
+91.6 trace IDs como integración futura
+91.7 IDs de petición
+91.8 laboratorio
+
+
+92. Data links
+92.1 campos
+92.2 URLs
+92.3 variables
+92.4 time range
+92.5 links internos
+92.6 navegación entre data sources
+92.7 diseño
+92.8 laboratorio
+
+
+93. Prometheus + Grafana + Loki
+93.1 arquitectura conjunta
+93.2 Prometheus como data source
+93.3 Loki como data source
+93.4 labels compartidos
+93.5 dashboards
+93.6 Explore
+93.7 alerting
+93.8 separación de responsabilidades
+93.9 laboratorio
+
+
+94. PromQL + LogQL
+94.1 modelos diferentes
+94.2 selectores
+94.3 labels
+94.4 rangos
+94.5 rates
+94.6 agregaciones
+94.7 correlación conceptual
+94.8 cuándo usar cada lenguaje
+94.9 laboratorio
+
+
+95. Correlación Prometheus/Loki
+95.1 métricas detectan
+95.2 logs explican
+95.3 workflow de incidente
+95.4 host
+95.5 service
+95.6 instance
+95.7 namespace como integración
+95.8 enlaces
+95.9 Explore
+95.10 laboratorio
+
+
+96. Dashboards unificados
+96.1 métricas
+96.2 logs
+96.3 estado
+96.4 errores
+96.5 latencia
+96.6 throughput
+96.7 paneles
+96.8 variables compartidas
+96.9 navegación
+96.10 laboratorio
+
+
+97. Alerting combinado
+97.1 métricas frente a logs
+97.2 señales
+97.3 reducción de ruido
+97.4 labels comunes
+97.5 Grafana Alerting
+97.6 Loki Ruler
+97.7 Alertmanager como integración
+97.8 routing
+97.9 deduplicación conceptual
+97.10 laboratorio
+
+
+98. Observabilidad como código
+98.1 configuración declarativa
+98.2 dashboards
+98.3 data sources
+98.4 alerting
+98.5 Loki
+98.6 Alloy
+98.7 Git
+98.8 revisión
+98.9 reproducibilidad
+98.10 laboratorio
+
+
+99. Provisioning completo
+99.1 estructura del repositorio
+99.2 Grafana
+99.3 data sources
+99.4 dashboards
+99.5 alerting
+99.6 Loki
+99.7 Alloy
+99.8 secretos
+99.9 environments
+99.10 laboratorio
+
+
+100. Git y control de versiones
+100.1 dashboards JSON
+100.2 YAML
+100.3 Loki config
+100.4 Alloy config
+100.5 branches
+100.6 reviews
+100.7 diffs
+100.8 rollback
+100.9 tags
+100.10 laboratorio
+
+
+101. Automatización
+101.1 shell
+101.2 curl
+101.3 jq
+101.4 APIs
+101.5 provisioning
+101.6 systemd
+101.7 CI/CD
+101.8 validación
+101.9 despliegue
+101.10 laboratorio
+
+
+102. Seguridad integral
+102.1 threat model
+102.2 Grafana
+102.3 Loki
+102.4 Alloy
+102.5 Prometheus como integración
+102.6 TLS
+102.7 secretos
+102.8 autenticación
+102.9 autorización
+102.10 network segmentation
+102.11 firewalld
+102.12 SELinux
+102.13 systemd hardening
+102.14 mínimo privilegio
+102.15 auditoría
+102.16 laboratorio
+
+
+103. Diseño de producción
+103.1 requisitos
+103.2 volumen de logs
+103.3 ingestion rate
+103.4 usuarios
+103.5 query load
+103.6 retención
+103.7 almacenamiento
+103.8 disponibilidad
+103.9 seguridad
+103.10 costes
+103.11 crecimiento
+103.12 arquitectura
+103.13 laboratorio
+
+
+104. Capacity planning
+104.1 logs por segundo
+104.2 bytes por segundo
+104.3 streams
+104.4 cardinalidad
+104.5 retención
+104.6 almacenamiento
+104.7 memoria
+104.8 CPU
+104.9 red
+104.10 queries
+104.11 concurrencia
+104.12 object storage
+104.13 crecimiento
+104.14 laboratorio
+
+
+105. Alta disponibilidad integral
+105.1 Grafana HA
+105.2 Loki HA
+105.3 Alloy
+105.4 Prometheus como integración
+105.5 load balancing
+105.6 bases de datos
+105.7 object storage
+105.8 replication
+105.9 failure domains
+105.10 recuperación
+105.11 pruebas de fallo
+105.12 laboratorio
+
+
+106. Troubleshooting integral
+106.1 metodología
+106.2 aplicación
+106.3 Alloy
+106.4 Loki ingestion
+106.5 Loki storage
+106.6 Loki query
+106.7 Grafana data source
+106.8 dashboard
+106.9 alerting
+106.10 red
+106.11 DNS
+106.12 TLS
+106.13 permisos
+106.14 SELinux
+106.15 capacidad
+106.16 correlación métrica/log
+106.17 root cause analysis
+106.18 laboratorio
+
+
+107. Internals de Grafana
+107.1 repositorio de código
+107.2 arquitectura del proyecto
+107.3 backend Go
+107.4 frontend
+107.5 servicios
+107.6 data proxy
+107.7 plugins
+107.8 provisioning
+107.9 alerting
+107.10 database
+107.11 API
+107.12 request lifecycle
+107.13 logging
+107.14 métricas internas
+107.15 compilación conceptual
+107.16 laboratorio: explorar el código fuente
+
+
+108. Internals de Loki
+108.1 repositorio de código
+108.2 arquitectura Go
+108.3 módulos
+108.4 services
+108.5 ring
+108.6 distributor internals
+108.7 ingester internals
+108.8 WAL
+108.9 chunk lifecycle
+108.10 TSDB internals
+108.11 query engine
+108.12 LogQL parser
+108.13 query frontend
+108.14 scheduler
+108.15 compactor
+108.16 ruler
+108.17 almacenamiento
+108.18 métricas
+108.19 tracing interno
+108.20 laboratorio: seguir código y flujo de una consulta
+
+
+109. Laboratorios de integración
+109.1 Fedora como plataforma
+109.2 desplegar Grafana
+109.3 desplegar Loki
+109.4 desplegar Alloy
+109.5 recoger journald
+109.6 recoger logs de servicios
+109.7 diseñar labels
+109.8 añadir Loki a Grafana
+109.9 crear consultas LogQL
+109.10 crear dashboard de logs
+109.11 derivar métricas desde logs
+109.12 conectar Prometheus existente
+109.13 correlacionar métricas y logs
+109.14 configurar alertas
+109.15 provisionar la plataforma
+109.16 aplicar seguridad
+109.17 simular errores
+109.18 investigar incidentes
+109.19 medir rendimiento
+109.20 documentar arquitectura
+
+
+110. Proyecto final experto
+110.1 definir requisitos
+110.2 diseñar arquitectura
+110.3 definir modelo de logs
+110.4 definir estrategia de labels
+110.5 definir structured metadata
+110.6 definir retención
+110.7 dimensionar almacenamiento
+110.8 instalar Grafana en Fedora
+110.9 instalar Loki
+110.10 instalar Grafana Alloy
+110.11 integrar journald
+110.12 integrar servicios Fedora
+110.13 configurar Loki
+110.14 configurar TSDB
+110.15 configurar object storage
+110.16 configurar Compactor
+110.17 configurar retention
+110.18 configurar límites
+110.19 configurar Grafana
+110.20 provisionar data sources
+110.21 provisionar dashboards
+110.22 crear dashboards operacionales
+110.23 crear dashboard de infraestructura
+110.24 crear dashboard de aplicación
+110.25 crear dashboard de logs
+110.26 implementar variables
+110.27 implementar transformations
+110.28 implementar annotations
+110.29 implementar navegación
+110.30 integrar Prometheus
+110.31 correlacionar PromQL y LogQL
+110.32 configurar Grafana Alerting
+110.33 configurar alertas basadas en logs
+110.34 configurar notification policies
+110.35 configurar contact points
+110.36 asegurar Grafana
+110.37 asegurar Loki
+110.38 asegurar Alloy
+110.39 integrar firewalld
+110.40 integrar SELinux
+110.41 aplicar hardening de systemd
+110.42 automatizar configuración
+110.43 almacenar configuración en Git
+110.44 realizar backup
+110.45 probar restore
+110.46 generar carga de logs
+110.47 provocar fallo controlado
+110.48 detectar el fallo mediante métricas
+110.49 navegar desde métricas hasta logs
+110.50 identificar causa raíz mediante LogQL
+110.51 verificar alerting
+110.52 analizar cardinalidad
+110.53 analizar rendimiento
+110.54 aplicar optimizaciones
+110.55 probar fallo de componentes
+110.56 documentar recuperación
+110.57 documentar arquitectura
+110.58 documentar runbooks
+110.59 auditoría final de seguridad
+110.60 proyecto: plataforma completa Grafana + Loki + Alloy + integración Prometheus

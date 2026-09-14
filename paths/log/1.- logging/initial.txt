@@ -1,0 +1,1274 @@
+0. Fundamentos del logging en Linux
+0.1 qué es logging
+0.2 qué es un log
+0.3 eventos y mensajes
+0.4 productores de logs
+0.5 consumidores de logs
+0.6 aplicaciones y logging
+0.7 servicios y logging
+0.8 kernel y logging
+0.9 stdout
+0.10 stderr
+0.11 archivos de log
+0.12 logging estructurado
+0.13 logging no estructurado
+0.14 timestamps
+0.15 hostname
+0.16 nombre de aplicación
+0.17 PID
+0.18 UID y GID
+0.19 severidad
+0.20 prioridad
+0.21 facility
+0.22 metadatos
+0.23 contexto de un evento
+0.24 correlación de eventos
+0.25 logs frente a métricas
+0.26 logs frente a traces
+0.27 logging local
+0.28 logging remoto
+0.29 logging centralizado
+0.30 pipeline de logging
+0.31 generación
+0.32 captura
+0.33 procesamiento
+0.34 transporte
+0.35 almacenamiento
+0.36 consulta
+0.37 retención
+0.38 rotación
+0.39 arquitectura general del logging en Fedora
+0.40 systemd-journald
+0.41 journalctl
+0.42 protocolo Syslog
+0.43 rsyslog
+0.44 syslog-ng
+0.45 logrotate
+0.46 relación entre journald, Syslog, rsyslog, syslog-ng y logrotate
+0.47 laboratorio: construir el mapa del sistema de logging de Fedora
+
+
+1. Descubrir el sistema de logging instalado
+1.1 rpm -q systemd
+1.2 rpm -ql systemd
+1.3 rpm -q rsyslog
+1.4 rpm -ql rsyslog
+1.5 rpm -q syslog-ng
+1.6 dnf info rsyslog
+1.7 dnf info syslog-ng
+1.8 rpm -q logrotate
+1.9 rpm -ql logrotate
+1.10 systemctl status systemd-journald
+1.11 systemctl status rsyslog
+1.12 systemctl status syslog-ng
+1.13 systemctl list-units relacionados con logging
+1.14 systemctl cat systemd-journald.service
+1.15 systemctl cat rsyslog.service
+1.16 systemctl cat syslog-ng.service
+1.17 systemctl cat logrotate.timer
+1.18 systemctl cat logrotate.service
+1.19 localizar /etc/systemd/journald.conf
+1.20 localizar /etc/systemd/journald.conf.d
+1.21 localizar /etc/rsyslog.conf
+1.22 localizar /etc/rsyslog.d
+1.23 localizar /etc/syslog-ng
+1.24 localizar /etc/logrotate.conf
+1.25 localizar /etc/logrotate.d
+1.26 localizar /run/log
+1.27 localizar /var/log
+1.28 localizar /var/log/journal
+1.29 laboratorio: inventariar toda la infraestructura de logging instalada
+
+
+2. Arquitectura de systemd-journald
+2.1 qué es systemd-journald
+2.2 papel de journald dentro de systemd
+2.3 systemd-journald.service
+2.4 systemd-journald.socket
+2.5 systemd-journald-dev-log.socket
+2.6 sockets utilizados por journald
+2.7 /run/systemd/journal
+2.8 /run/systemd/journal/socket
+2.9 /run/systemd/journal/stdout
+2.10 /dev/log
+2.11 mensajes procedentes del kernel
+2.12 mensajes procedentes de servicios systemd
+2.13 stdout de servicios
+2.14 stderr de servicios
+2.15 syslog() y journald
+2.16 mensajes nativos del journal
+2.17 systemd-cat
+2.18 logger
+2.19 systemd.journal-fields
+2.20 flujo aplicación → journald
+2.21 flujo servicio systemd → journald
+2.22 flujo kernel → journald
+2.23 journald como concentrador local
+2.24 journald frente a syslog tradicional
+2.25 laboratorio: seguir un mensaje desde el productor hasta journald
+
+
+3. El formato Journal
+3.1 qué es el journal
+3.2 archivos .journal
+3.3 journal activo
+3.4 journal archivado
+3.5 estructura conceptual de un registro
+3.6 campos del journal
+3.7 campos trusted
+3.8 campos user
+3.9 MESSAGE
+3.10 MESSAGE_ID
+3.11 PRIORITY
+3.12 SYSLOG_FACILITY
+3.13 SYSLOG_IDENTIFIER
+3.14 SYSLOG_PID
+3.15 _PID
+3.16 _UID
+3.17 _GID
+3.18 _COMM
+3.19 _EXE
+3.20 _CMDLINE
+3.21 _SYSTEMD_UNIT
+3.22 _SYSTEMD_USER_UNIT
+3.23 _SYSTEMD_CGROUP
+3.24 _SYSTEMD_SLICE
+3.25 _BOOT_ID
+3.26 _MACHINE_ID
+3.27 _HOSTNAME
+3.28 _TRANSPORT
+3.29 _KERNEL_DEVICE
+3.30 _SELINUX_CONTEXT
+3.31 __REALTIME_TIMESTAMP
+3.32 __MONOTONIC_TIMESTAMP
+3.33 campos personalizados
+3.34 indexación del journal
+3.35 búsqueda mediante campos
+3.36 journal como base de datos estructurada de eventos
+3.37 laboratorio: inspeccionar todos los campos de diferentes eventos
+
+
+4. journalctl — fundamentos
+4.1 journalctl
+4.2 journalctl sin argumentos
+4.3 journalctl --no-pager
+4.4 journalctl -e
+4.5 journalctl -f
+4.6 journalctl -n
+4.7 journalctl -r
+4.8 journalctl --list-boots
+4.9 journalctl -b
+4.10 journalctl -b -1
+4.11 journalctl --since
+4.12 journalctl --until
+4.13 timestamps absolutos
+4.14 timestamps relativos
+4.15 journalctl -p
+4.16 journalctl -u
+4.17 journalctl _PID=
+4.18 journalctl _UID=
+4.19 journalctl _COMM=
+4.20 journalctl _EXE=
+4.21 journalctl SYSLOG_IDENTIFIER=
+4.22 journalctl _SYSTEMD_UNIT=
+4.23 combinar filtros
+4.24 operador AND implícito
+4.25 coincidencias alternativas
+4.26 journalctl -k
+4.27 journalctl --dmesg
+4.28 laboratorio: investigar un servicio únicamente mediante journalctl
+
+
+5. journalctl — consultas avanzadas
+5.1 journalctl -o
+5.2 short
+5.3 short-full
+5.4 short-iso
+5.5 short-iso-precise
+5.6 short-monotonic
+5.7 verbose
+5.8 export
+5.9 json
+5.10 json-pretty
+5.11 json-sse
+5.12 json-seq
+5.13 cat
+5.14 with-unit
+5.15 journalctl -F
+5.16 journalctl -N
+5.17 journalctl --disk-usage
+5.18 journalctl --header
+5.19 journalctl --verify
+5.20 journalctl --verify-key
+5.21 journalctl --file
+5.22 journalctl --directory
+5.23 journalctl --root
+5.24 journalctl --image
+5.25 journalctl --grep
+5.26 expresiones regulares en journalctl
+5.27 cursor
+5.28 --show-cursor
+5.29 --after-cursor
+5.30 exportar datos del journal
+5.31 procesar JSON del journal
+5.32 laboratorio: construir consultas forenses sobre el journal
+
+
+6. Persistencia y almacenamiento del Journal
+6.1 Storage=
+6.2 auto
+6.3 volatile
+6.4 persistent
+6.5 none
+6.6 /run/log/journal
+6.7 /var/log/journal
+6.8 machine-id y directorios del journal
+6.9 journal runtime
+6.10 journal persistente
+6.11 transición runtime → persistent
+6.12 journalctl --flush
+6.13 journalctl --sync
+6.14 SystemMaxUse
+6.15 SystemKeepFree
+6.16 SystemMaxFileSize
+6.17 SystemMaxFiles
+6.18 RuntimeMaxUse
+6.19 RuntimeKeepFree
+6.20 RuntimeMaxFileSize
+6.21 RuntimeMaxFiles
+6.22 MaxFileSec
+6.23 MaxRetentionSec
+6.24 journalctl --vacuum-size
+6.25 journalctl --vacuum-time
+6.26 journalctl --vacuum-files
+6.27 rotación interna del journal
+6.28 journalctl --rotate
+6.29 journalctl --rotate --vacuum-*
+6.30 almacenamiento disponible
+6.31 comportamiento ante filesystem lleno
+6.32 laboratorio: diseñar una política de almacenamiento y retención
+
+
+7. Configuración de journald
+7.1 journald.conf
+7.2 journald.conf.d
+7.3 configuración vendor
+7.4 configuración administrativa
+7.5 precedencia de configuración
+7.6 systemd-analyze cat-config systemd/journald.conf
+7.7 Storage
+7.8 Compress
+7.9 Seal
+7.10 SplitMode
+7.11 RateLimitIntervalSec
+7.12 RateLimitBurst
+7.13 SystemMaxUse
+7.14 RuntimeMaxUse
+7.15 MaxRetentionSec
+7.16 MaxFileSec
+7.17 ForwardToSyslog
+7.18 ForwardToKMsg
+7.19 ForwardToConsole
+7.20 ForwardToWall
+7.21 MaxLevelStore
+7.22 MaxLevelSyslog
+7.23 MaxLevelKMsg
+7.24 MaxLevelConsole
+7.25 MaxLevelWall
+7.26 ReadKMsg
+7.27 Audit
+7.28 reiniciar journald correctamente
+7.29 validar cambios
+7.30 laboratorio: construir una configuración modular de journald
+
+
+8. Rate limiting y control de volumen
+8.1 por qué limitar logs
+8.2 log storms
+8.3 RateLimitIntervalSec
+8.4 RateLimitBurst
+8.5 rate limiting por servicio
+8.6 relación con espacio disponible
+8.7 mensajes descartados
+8.8 detectar rate limiting
+8.9 riesgos de perder información
+8.10 dimensionamiento
+8.11 limitar desde la aplicación
+8.12 limitar desde journald
+8.13 limitar desde rsyslog
+8.14 estrategia multicapa
+8.15 laboratorio: provocar y diagnosticar un log storm
+
+
+9. Journal namespaces
+9.1 qué es un journal namespace
+9.2 systemd-journald@.service
+9.3 namespaces de logging
+9.4 LogNamespace=
+9.5 separar logs por servicio
+9.6 almacenamiento por namespace
+9.7 configuración por namespace
+9.8 journald@namespace.conf
+9.9 sockets por namespace
+9.10 journalctl --namespace
+9.11 journalctl --namespace=*
+9.12 aislamiento
+9.13 casos de uso
+9.14 impacto sobre almacenamiento
+9.15 troubleshooting de namespaces
+9.16 laboratorio: crear un namespace independiente para un servicio
+
+
+10. Seguridad e integridad del Journal
+10.1 permisos del journal
+10.2 grupos con acceso al journal
+10.3 systemd-journal
+10.4 journalctl como usuario
+10.5 journalctl como root
+10.6 ACL
+10.7 privacidad de logs
+10.8 información sensible
+10.9 Seal=
+10.10 Forward Secure Sealing
+10.11 journalctl --setup-keys
+10.12 sealing keys
+10.13 journalctl --verify
+10.14 detección de corrupción
+10.15 manipulación de logs
+10.16 conservación forense
+10.17 SELinux y journal
+10.18 laboratorio: auditar acceso e integridad del journal
+
+
+11. Forwarding desde journald
+11.1 concepto de forwarding
+11.2 ForwardToSyslog
+11.3 ForwardToKMsg
+11.4 ForwardToConsole
+11.5 ForwardToWall
+11.6 syslog socket
+11.7 /run/systemd/journal/syslog
+11.8 interacción journald → rsyslog
+11.9 imjournal
+11.10 imuxsock
+11.11 diferencias entre lectura del journal y socket syslog
+11.12 duplicación de mensajes
+11.13 pérdida de metadatos
+11.14 structured journal frente a Syslog
+11.15 troubleshooting del forwarding
+11.16 laboratorio: seguir journald → rsyslog → archivo
+
+
+12. Fundamentos del protocolo Syslog
+12.1 qué es Syslog
+12.2 Syslog como arquitectura
+12.3 Syslog como protocolo
+12.4 sender
+12.5 relay
+12.6 collector
+12.7 servidor central
+12.8 facility
+12.9 severity
+12.10 priority
+12.11 PRI
+12.12 cálculo de PRI
+12.13 emerg
+12.14 alert
+12.15 crit
+12.16 err
+12.17 warning
+12.18 notice
+12.19 info
+12.20 debug
+12.21 facilities estándar
+12.22 local0-local7
+12.23 hostname
+12.24 app-name
+12.25 procid
+12.26 msgid
+12.27 structured data
+12.28 message
+12.29 laboratorio: decodificar manualmente mensajes Syslog
+
+
+13. RFC 3164 y RFC 5424
+13.1 BSD Syslog
+13.2 RFC 3164
+13.3 formato tradicional
+13.4 limitaciones de RFC 3164
+13.5 RFC 5424
+13.6 VERSION
+13.7 TIMESTAMP
+13.8 HOSTNAME
+13.9 APP-NAME
+13.10 PROCID
+13.11 MSGID
+13.12 STRUCTURED-DATA
+13.13 MSG
+13.14 NILVALUE
+13.15 timestamps RFC3339
+13.16 UTF-8
+13.17 structured data elements
+13.18 enterprise IDs
+13.19 RFC 5424 frente a RFC 3164
+13.20 compatibilidad
+13.21 laboratorio: comparar mensajes RFC 3164 y RFC 5424
+
+
+14. Transporte Syslog
+14.1 Syslog sobre UDP
+14.2 puerto 514/UDP
+14.3 datagramas
+14.4 pérdida de mensajes
+14.5 orden de mensajes
+14.6 Syslog sobre TCP
+14.7 puerto 514/TCP
+14.8 conexiones persistentes
+14.9 framing
+14.10 octet counting
+14.11 non-transparent framing
+14.12 RFC 6587
+14.13 TLS
+14.14 puerto 6514/TCP
+14.15 RFC 5425
+14.16 autenticación
+14.17 confidencialidad
+14.18 integridad
+14.19 UDP frente a TCP
+14.20 TCP frente a TLS
+14.21 laboratorio: capturar y analizar tráfico Syslog
+
+
+15. Arquitectura de rsyslog
+15.1 qué es rsyslog
+15.2 arquitectura modular
+15.3 inputs
+15.4 parsers
+15.5 message modification
+15.6 rulesets
+15.7 filters
+15.8 actions
+15.9 outputs
+15.10 queues
+15.11 módulos
+15.12 /etc/rsyslog.conf
+15.13 /etc/rsyslog.d
+15.14 orden de configuración
+15.15 rsyslogd
+15.16 rsyslogd -N1
+15.17 rsyslogd -N2
+15.18 rsyslogd -N3
+15.19 rsyslogd -v
+15.20 documentación instalada
+15.21 laboratorio: construir el mapa interno de rsyslog
+
+
+16. Inputs de rsyslog
+16.1 input()
+16.2 imuxsock
+16.3 imjournal
+16.4 imklog
+16.5 imudp
+16.6 imtcp
+16.7 imfile
+16.8 systemd journal como input
+16.9 archivos como input
+16.10 UDP como input
+16.11 TCP como input
+16.12 configuración de puertos
+16.13 múltiples listeners
+16.14 rate limiting en inputs
+16.15 metadata de inputs
+16.16 laboratorio: recibir mensajes desde múltiples fuentes
+
+
+17. Filtrado y propiedades en rsyslog
+17.1 selectors tradicionales
+17.2 facility.priority
+17.3 property-based filters
+17.4 expression-based filters
+17.5 contains
+17.6 startswith
+17.7 regex
+17.8 propiedades del mensaje
+17.9 msg
+17.10 hostname
+17.11 fromhost
+17.12 fromhost-ip
+17.13 syslogtag
+17.14 programname
+17.15 procid
+17.16 msgid
+17.17 structured-data
+17.18 timegenerated
+17.19 timereported
+17.20 variables
+17.21 variables locales
+17.22 variables globales
+17.23 laboratorio: construir reglas complejas de filtrado
+
+
+18. Templates y RainerScript
+18.1 qué es RainerScript
+18.2 sintaxis
+18.3 if
+18.4 then
+18.5 else
+18.6 set
+18.7 unset
+18.8 call
+18.9 stop
+18.10 ruleset()
+18.11 action()
+18.12 template()
+18.13 property()
+18.14 constant()
+18.15 templates string
+18.16 templates list
+18.17 formato tradicional
+18.18 formato RFC5424
+18.19 JSON
+18.20 generación de rutas dinámicas
+18.21 dynamic file
+18.22 normalización de salida
+18.23 laboratorio: construir un pipeline con RainerScript
+
+
+19. Actions y outputs de rsyslog
+19.1 action()
+19.2 omfile
+19.3 omfwd
+19.4 stdout y destinos especiales
+19.5 archivos locales
+19.6 archivos dinámicos
+19.7 forwarding UDP
+19.8 forwarding TCP
+19.9 forwarding TLS
+19.10 múltiples actions
+19.11 action suspension
+19.12 retries
+19.13 resume
+19.14 errores de destino
+19.15 estadísticas de acciones
+19.16 laboratorio: distribuir logs hacia múltiples destinos
+
+
+20. Queues de rsyslog
+20.1 por qué existen queues
+20.2 main message queue
+20.3 action queues
+20.4 direct queue
+20.5 fixed array
+20.6 linked list
+20.7 disk queue
+20.8 disk-assisted queue
+20.9 queue.size
+20.10 queue.filename
+20.11 queue.maxdiskspace
+20.12 queue.saveonshutdown
+20.13 queue.highwatermark
+20.14 queue.lowwatermark
+20.15 queue.discardmark
+20.16 queue.discardseverity
+20.17 worker threads
+20.18 batching
+20.19 backpressure
+20.20 destination unavailable
+20.21 recuperación
+20.22 shutdown
+20.23 persistencia
+20.24 pérdida de mensajes
+20.25 dimensionamiento de queues
+20.26 laboratorio: simular la caída del servidor remoto sin perder mensajes
+
+
+21. Parsing en rsyslog
+21.1 parser pipeline
+21.2 parser RFC3164
+21.3 parser RFC5424
+21.4 mmnormalize
+21.5 liblognorm
+21.6 rulebase
+21.7 extracción de campos
+21.8 parsing key=value
+21.9 parsing JSON
+21.10 mmjsonparse
+21.11 variables $!
+21.12 árbol JSON
+21.13 enriquecimiento
+21.14 transformación
+21.15 normalización
+21.16 mensajes malformados
+21.17 fallback
+21.18 laboratorio: normalizar logs heterogéneos
+
+
+22. rsyslog remoto
+22.1 cliente y servidor
+22.2 collector central
+22.3 imudp
+22.4 imtcp
+22.5 omfwd
+22.6 target
+22.7 port
+22.8 protocol
+22.9 forwarding mediante UDP
+22.10 forwarding mediante TCP
+22.11 múltiples collectors
+22.12 failover
+22.13 queues
+22.14 DNS
+22.15 hostname
+22.16 preservar hostname original
+22.17 separar logs por host
+22.18 separar logs por aplicación
+22.19 laboratorio: construir un servidor central rsyslog
+
+
+23. TLS con rsyslog
+23.1 por qué proteger Syslog
+23.2 TLS
+23.3 certificados
+23.4 CA
+23.5 certificado servidor
+23.6 certificado cliente
+23.7 autenticación mutua
+23.8 gtls
+23.9 stream driver
+23.10 StreamDriverMode
+23.11 StreamDriverAuthMode
+23.12 x509/name
+23.13 permitted peers
+23.14 puerto 6514
+23.15 validación de certificados
+23.16 openssl s_client
+23.17 expiración
+23.18 renovación
+23.19 troubleshooting TLS
+23.20 laboratorio: construir forwarding Syslog protegido mediante TLS
+
+
+24. RELP
+24.1 qué es RELP
+24.2 problema que intenta resolver
+24.3 protocolo Reliable Event Logging Protocol
+24.4 sesiones
+24.5 transacciones
+24.6 acknowledgements
+24.7 fiabilidad
+24.8 imrelp
+24.9 omrelp
+24.10 RELP frente a UDP
+24.11 RELP frente a TCP
+24.12 RELP + TLS
+24.13 queues + RELP
+24.14 límites de entrega
+24.15 duplicación posible
+24.16 semánticas de entrega
+24.17 laboratorio: construir un canal rsyslog RELP + TLS
+
+
+25. Arquitectura de syslog-ng
+25.1 qué es syslog-ng
+25.2 syslog-ng frente a rsyslog
+25.3 arquitectura
+25.4 sources
+25.5 destinations
+25.6 filters
+25.7 parsers
+25.8 rewrites
+25.9 templates
+25.10 log paths
+25.11 options
+25.12 /etc/syslog-ng
+25.13 syslog-ng.conf
+25.14 includes
+25.15 syslog-ng --syntax-only
+25.16 syslog-ng -V
+25.17 módulos
+25.18 laboratorio: construir el mapa interno de syslog-ng
+
+
+26. Sources y destinations de syslog-ng
+26.1 source()
+26.2 system()
+26.3 internal()
+26.4 file()
+26.5 network()
+26.6 syslog()
+26.7 systemd-journal()
+26.8 múltiples sources
+26.9 destination()
+26.10 file()
+26.11 network()
+26.12 syslog()
+26.13 rutas dinámicas
+26.14 macros
+26.15 templates
+26.16 laboratorio: construir múltiples fuentes y destinos
+
+
+27. Filters, parsers y rewrites de syslog-ng
+27.1 filter()
+27.2 facility()
+27.3 level()
+27.4 program()
+27.5 host()
+27.6 message()
+27.7 match()
+27.8 expresiones
+27.9 parser()
+27.10 CSV parser
+27.11 JSON parser
+27.12 regexp parser
+27.13 key-value parser
+27.14 rewrite()
+27.15 set()
+27.16 subst()
+27.17 normalización
+27.18 enriquecimiento
+27.19 laboratorio: construir un pipeline de parsing y normalización
+
+
+28. Log paths y routing en syslog-ng
+28.1 log {}
+28.2 source → filter → destination
+28.3 múltiples sources
+28.4 múltiples filters
+28.5 múltiples destinations
+28.6 flags
+28.7 final
+28.8 fallback
+28.9 catch-all
+28.10 flow-control
+28.11 junctions
+28.12 channels
+28.13 embedded log statements
+28.14 routing complejo
+28.15 laboratorio: construir un router de eventos
+
+
+29. Buffers y fiabilidad en syslog-ng
+29.1 memoria
+29.2 queues
+29.3 disk-buffer
+29.4 reliable disk-buffer
+29.5 non-reliable disk-buffer
+29.6 mem-buf-size
+29.7 disk-buf-size
+29.8 flow-control
+29.9 backpressure
+29.10 servidor remoto caído
+29.11 recuperación
+29.12 persistencia
+29.13 rendimiento
+29.14 dimensionamiento
+29.15 laboratorio: simular una interrupción prolongada del collector
+
+
+30. Logging remoto con syslog-ng
+30.1 cliente
+30.2 relay
+30.3 servidor
+30.4 collector
+30.5 UDP
+30.6 TCP
+30.7 TLS
+30.8 certificados
+30.9 autenticación
+30.10 puerto 6514
+30.11 múltiples destinos
+30.12 failover
+30.13 routing por host
+30.14 routing por programa
+30.15 almacenamiento central
+30.16 laboratorio: construir infraestructura centralizada con syslog-ng
+
+
+31. Diseño de logging centralizado
+31.1 por qué centralizar logs
+31.2 arquitectura cliente-servidor
+31.3 arquitectura con relays
+31.4 collectors
+31.5 múltiples collectors
+31.6 separación por entorno
+31.7 separación por host
+31.8 separación por servicio
+31.9 separación por facility
+31.10 routing
+31.11 almacenamiento
+31.12 retención
+31.13 ancho de banda
+31.14 latencia
+31.15 disponibilidad
+31.16 pérdida de conectividad
+31.17 buffering local
+31.18 backpressure
+31.19 recuperación
+31.20 duplicación
+31.21 orden
+31.22 entrega at-most-once
+31.23 entrega at-least-once
+31.24 límites prácticos de exactly-once
+31.25 laboratorio: diseñar una arquitectura de logging para múltiples servidores Fedora
+
+
+32. Logging estructurado
+32.1 por qué estructurar logs
+32.2 texto libre
+32.3 key=value
+32.4 JSON
+32.5 campos del journal
+32.6 RFC5424 structured data
+32.7 schemas
+32.8 nombres de campos
+32.9 tipos de datos
+32.10 timestamps
+32.11 IDs de correlación
+32.12 request ID
+32.13 transaction ID
+32.14 session ID
+32.15 normalización
+32.16 enriquecimiento
+32.17 parsing
+32.18 compatibilidad
+32.19 evolución del schema
+32.20 laboratorio: diseñar un formato estructurado de logging
+
+
+33. Parsing y normalización
+33.1 qué es parsing
+33.2 delimitadores
+33.3 regex
+33.4 parsing key=value
+33.5 parsing JSON
+33.6 parsing CSV
+33.7 parsing RFC3164
+33.8 parsing RFC5424
+33.9 extracción de timestamps
+33.10 normalización de hostname
+33.11 normalización de aplicación
+33.12 normalización de severidad
+33.13 enriquecimiento
+33.14 campos derivados
+33.15 mensajes inválidos
+33.16 dead-letter conceptual
+33.17 fallback
+33.18 coste del parsing
+33.19 laboratorio: construir un pipeline de normalización
+
+
+34. Fundamentos de logrotate
+34.1 por qué rotar logs
+34.2 crecimiento ilimitado
+34.3 retención
+34.4 rotación
+34.5 compresión
+34.6 eliminación
+34.7 logrotate
+34.8 /etc/logrotate.conf
+34.9 /etc/logrotate.d
+34.10 archivos de estado
+34.11 /var/lib/logrotate
+34.12 logrotate.timer
+34.13 logrotate.service
+34.14 ejecución manual
+34.15 logrotate -d
+34.16 logrotate -v
+34.17 logrotate -f
+34.18 laboratorio: inspeccionar la política de rotación de Fedora
+
+
+35. Configuración avanzada de logrotate
+35.1 daily
+35.2 weekly
+35.3 monthly
+35.4 yearly
+35.5 rotate
+35.6 size
+35.7 minsize
+35.8 maxsize
+35.9 missingok
+35.10 notifempty
+35.11 compress
+35.12 nocompress
+35.13 delaycompress
+35.14 create
+35.15 createolddir
+35.16 su
+35.17 dateext
+35.18 dateformat
+35.19 extension
+35.20 olddir
+35.21 copy
+35.22 copytruncate
+35.23 renamecopy
+35.24 nocopytruncate
+35.25 sharedscripts
+35.26 prerotate
+35.27 postrotate
+35.28 firstaction
+35.29 lastaction
+35.30 scripts y exit status
+35.31 permisos
+35.32 ownership
+35.33 SELinux
+35.34 laboratorio: crear una política completa de rotación
+
+
+36. Rotación correcta de servicios
+36.1 problema de descriptores abiertos
+36.2 rename de archivos
+36.3 unlink
+36.4 descriptor frente a pathname
+36.5 daemon escribiendo en archivo rotado
+36.6 reopen de logs
+36.7 señales
+36.8 SIGHUP
+36.9 postrotate
+36.10 systemctl reload
+36.11 copytruncate
+36.12 riesgos de copytruncate
+36.13 pérdida de mensajes durante copytruncate
+36.14 aplicaciones que soportan reopen
+36.15 aplicaciones que no soportan reopen
+36.16 rotación gestionada por la aplicación
+36.17 journald y rotación interna
+36.18 rsyslog y logrotate
+36.19 syslog-ng y logrotate
+36.20 laboratorio: demostrar el problema de un descriptor abierto después de rotar
+
+
+37. Logging, systemd y servicios
+37.1 StandardOutput
+37.2 StandardError
+37.3 journal
+37.4 journal-or-kmsg
+37.5 kmsg
+37.6 null
+37.7 file:
+37.8 append:
+37.9 truncate:
+37.10 syslog histórico
+37.11 SyslogIdentifier
+37.12 SyslogFacility
+37.13 SyslogLevel
+37.14 LogLevelMax
+37.15 LogRateLimitIntervalSec
+37.16 LogRateLimitBurst
+37.17 LogExtraFields
+37.18 LogNamespace
+37.19 systemd-cat
+37.20 sd_journal_send
+37.21 stdout de procesos
+37.22 stderr de procesos
+37.23 laboratorio: diseñar el logging de un servicio systemd
+
+
+38. Kernel logging
+38.1 kernel ring buffer
+38.2 printk
+38.3 niveles de printk
+38.4 /dev/kmsg
+38.5 dmesg
+38.6 journalctl -k
+38.7 _TRANSPORT=kernel
+38.8 kernel.printk
+38.9 rate limiting del kernel
+38.10 journald y mensajes kernel
+38.11 rsyslog y kernel
+38.12 persistencia
+38.13 mensajes del boot
+38.14 laboratorio: correlacionar dmesg y journalctl
+
+
+39. Seguridad del sistema de logging
+39.1 logs como información sensible
+39.2 permisos
+39.3 ownership
+39.4 ACL
+39.5 separación de privilegios
+39.6 mínimo privilegio
+39.7 SELinux
+39.8 contextos de archivos de log
+39.9 restorecon
+39.10 semanage fcontext
+39.11 AVC relacionados con logging
+39.12 firewalld
+39.13 puertos Syslog
+39.14 TLS
+39.15 autenticación mutua
+39.16 certificados
+39.17 integridad
+39.18 confidencialidad
+39.19 disponibilidad
+39.20 manipulación de logs
+39.21 log injection
+39.22 caracteres de control
+39.23 secretos en logs
+39.24 passwords
+39.25 tokens
+39.26 datos personales
+39.27 sanitización
+39.28 retención segura
+39.29 laboratorio: auditar la seguridad completa del pipeline
+
+
+40. Rendimiento y dimensionamiento
+40.1 eventos por segundo
+40.2 bytes por evento
+40.3 volumen diario
+40.4 volumen mensual
+40.5 compresión
+40.6 retención
+40.7 capacidad necesaria
+40.8 burst traffic
+40.9 log storms
+40.10 CPU
+40.11 memoria
+40.12 disco
+40.13 IOPS
+40.14 filesystem
+40.15 red
+40.16 queues
+40.17 buffers
+40.18 batching
+40.19 parsing
+40.20 regex costosas
+40.21 synchronous writes
+40.22 backpressure
+40.23 límites
+40.24 monitorización del pipeline
+40.25 laboratorio: dimensionar un servidor central de logging
+
+
+41. Alta disponibilidad y fiabilidad
+41.1 fallos posibles
+41.2 productor caído
+41.3 collector caído
+41.4 red caída
+41.5 DNS caído
+41.6 certificado inválido
+41.7 filesystem lleno
+41.8 queue llena
+41.9 corrupción
+41.10 buffering local
+41.11 múltiples collectors
+41.12 failover
+41.13 load balancing
+41.14 relays
+41.15 store-and-forward
+41.16 TCP
+41.17 TLS
+41.18 RELP
+41.19 persistencia de queues
+41.20 recuperación
+41.21 duplicados
+41.22 pérdida
+41.23 orden
+41.24 RPO conceptual aplicado a logs
+41.25 RTO conceptual aplicado a logging
+41.26 laboratorio: diseñar un pipeline tolerante a fallos
+
+
+42. Herramientas de diagnóstico
+42.1 journalctl
+42.2 logger
+42.3 systemd-cat
+42.4 systemctl
+42.5 systemd-analyze cat-config
+42.6 rsyslogd -N1
+42.7 syslog-ng --syntax-only
+42.8 logrotate -d
+42.9 logrotate -v
+42.10 ss
+42.11 lsof
+42.12 fuser
+42.13 ps
+42.14 stat
+42.15 ls -l
+42.16 getfacl
+42.17 ausearch
+42.18 sealert
+42.19 restorecon
+42.20 semanage
+42.21 firewall-cmd
+42.22 openssl s_client
+42.23 tcpdump
+42.24 nc
+42.25 dig
+42.26 getent
+42.27 df
+42.28 du
+42.29 find
+42.30 grep
+42.31 jq
+42.32 laboratorio: construir una caja de herramientas de diagnóstico
+
+
+43. Troubleshooting extremo a extremo
+43.1 metodología de diagnóstico
+43.2 identificar el productor
+43.3 comprobar que genera el evento
+43.4 comprobar stdout y stderr
+43.5 comprobar journald
+43.6 comprobar filtros
+43.7 comprobar rate limiting
+43.8 comprobar forwarding
+43.9 comprobar rsyslog
+43.10 comprobar syslog-ng
+43.11 comprobar input
+43.12 comprobar parser
+43.13 comprobar ruleset
+43.14 comprobar filter
+43.15 comprobar action
+43.16 comprobar queue
+43.17 comprobar DNS
+43.18 comprobar conectividad
+43.19 comprobar firewalld
+43.20 comprobar SELinux
+43.21 comprobar TCP
+43.22 comprobar TLS
+43.23 comprobar certificados
+43.24 comprobar collector
+43.25 comprobar filesystem
+43.26 comprobar permisos
+43.27 comprobar logrotate
+43.28 detectar mensajes perdidos
+43.29 detectar duplicados
+43.30 detectar mensajes retrasados
+43.31 detectar mensajes fuera de orden
+43.32 laboratorio: seguir un evento extremo a extremo hasta encontrar el fallo
+
+
+44. Internals del logging en Linux
+44.1 syslog() de libc
+44.2 /dev/log
+44.3 Unix domain sockets
+44.4 SOCK_DGRAM
+44.5 SOCK_STREAM
+44.6 journald sockets
+44.7 stdout y stderr
+44.8 pipes
+44.9 file descriptors
+44.10 kernel ring buffer
+44.11 /dev/kmsg
+44.12 journald event pipeline
+44.13 journal binary format
+44.14 objetos del journal
+44.15 indexación
+44.16 hashing
+44.17 compresión
+44.18 sealing
+44.19 mmap
+44.20 rotación interna
+44.21 rsyslog message pipeline
+44.22 rsyslog main queue
+44.23 rsyslog action queues
+44.24 syslog-ng message pipeline
+44.25 syslog-ng flow-control
+44.26 sockets de red
+44.27 TCP buffering
+44.28 kernel socket buffers
+44.29 filesystem page cache
+44.30 fsync
+44.31 persistencia frente a rendimiento
+44.32 laboratorio: seguir técnicamente un mensaje desde write() hasta almacenamiento
+
+
+45. Laboratorio de integración
+45.1 preparar varios hosts Fedora
+45.2 identificar productores
+45.3 configurar journald persistente
+45.4 definir límites de almacenamiento
+45.5 configurar rate limiting
+45.6 generar eventos con logger
+45.7 generar eventos con systemd-cat
+45.8 crear un servicio systemd productor
+45.9 consultar campos estructurados
+45.10 configurar rsyslog
+45.11 configurar un collector
+45.12 configurar TCP
+45.13 configurar TLS
+45.14 configurar certificados
+45.15 configurar RELP
+45.16 configurar queues persistentes
+45.17 provocar caída del collector
+45.18 comprobar buffering
+45.19 recuperar el collector
+45.20 verificar entrega
+45.21 crear reglas de filtrado
+45.22 crear templates
+45.23 parsear JSON
+45.24 normalizar eventos
+45.25 separar logs por host
+45.26 separar logs por servicio
+45.27 configurar logrotate
+45.28 probar rotación
+45.29 provocar un error SELinux
+45.30 diagnosticar el AVC
+45.31 provocar un bloqueo de firewalld
+45.32 diagnosticar la red
+45.33 provocar expiración o error TLS
+45.34 diagnosticar TLS
+45.35 simular filesystem lleno
+45.36 analizar comportamiento
+45.37 medir eventos por segundo
+45.38 medir almacenamiento
+45.39 documentar arquitectura
+45.40 reconstruir el recorrido completo de un evento
+
+
+46. Proyecto final — plataforma de logging Fedora
+46.1 definir requisitos
+46.2 definir productores de logs
+46.3 definir volumen esperado
+46.4 definir retención
+46.5 definir requisitos de seguridad
+46.6 diseñar arquitectura
+46.7 configurar journald
+46.8 configurar persistencia
+46.9 configurar límites
+46.10 configurar namespaces cuando proceda
+46.11 integrar servicios systemd
+46.12 seleccionar rsyslog o syslog-ng
+46.13 justificar la elección
+46.14 configurar collector central
+46.15 configurar clientes
+46.16 configurar routing
+46.17 configurar parsing
+46.18 configurar normalización
+46.19 configurar logs estructurados
+46.20 configurar queues
+46.21 configurar almacenamiento persistente de queues
+46.22 configurar TLS
+46.23 configurar certificados
+46.24 configurar autenticación
+46.25 configurar RELP cuando proceda
+46.26 configurar firewalld
+46.27 configurar SELinux
+46.28 configurar almacenamiento
+46.29 configurar logrotate
+46.30 definir política de retención
+46.31 probar caída de red
+46.32 probar caída del collector
+46.33 probar filesystem lleno
+46.34 probar log storm
+46.35 probar certificados incorrectos
+46.36 comprobar recuperación
+46.37 comprobar mensajes perdidos
+46.38 comprobar duplicados
+46.39 medir rendimiento
+46.40 dimensionar queues
+46.41 dimensionar almacenamiento
+46.42 construir procedimiento de troubleshooting
+46.43 documentar flujo aplicación → journald
+46.44 documentar flujo journald → rsyslog/syslog-ng
+46.45 documentar transporte remoto
+46.46 documentar collector → almacenamiento
+46.47 documentar rotación y retención
+46.48 crear checklist operacional
+46.49 crear checklist de seguridad
+46.50 crear checklist de recuperación
+46.51 auditoría completa del sistema
+46.52 proyecto final: plataforma centralizada, segura, persistente y tolerante a fallos de logging sobre Fedora
