@@ -1,0 +1,159 @@
+name: openssh-watchdog
+title: "OPENSSH + WATCHDOG EN PROFUNDIDAD — FEDORA"
+language: es
+
+platform:
+  primary: Fedora
+  family:
+    - Linux
+
+level:
+  start: beginner
+  target: expert
+
+scope:
+  - openssh
+  - ssh
+  - sshd
+  - ssh_config
+  - sshd_config
+  - ssh_keys
+  - ssh_agent
+  - host_keys
+  - known_hosts
+  - authorized_keys
+  - proxyjump
+  - forwarding
+  - sftp
+  - scp
+  - cryptography
+  - fedora_crypto_policies
+  - systemd
+  - firewalld
+  - selinux
+  - hardening
+  - troubleshooting
+  - linux_kernel
+  - watchdog
+  - softlockup
+  - hardlockup
+  - nmi_watchdog
+  - hardware_watchdog
+  - userspace_watchdog
+  - systemd_watchdog
+
+pedagogy:
+  objective_first: true
+  objective_heading: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points:
+    min: 3
+    max: 7
+  complete_development: true
+  depth: high
+  progressive: true
+  didactic: true
+  practical: true
+  avoid_summary_only: true
+
+optional_sections:
+  - "🧪 Laboratorio / ejemplos"
+  - "⚠️ Errores frecuentes"
+  - "💡 Idea importante"
+
+lesson_requirements:
+  explain_concept: true
+  explain_purpose: true
+  explain_location: true
+  explain_controller: true
+  explain_configuration: true
+  explain_inspection: true
+  explain_verification: true
+  explain_interactions: true
+  explain_failures: true
+  explain_troubleshooting: true
+  explain_security_implications: true
+
+fedora:
+  prefer_installed_documentation: true
+  distinguish_upstream_from_distribution: true
+  use_rpm_discovery: true
+  integrate_systemd: true
+  integrate_selinux: true
+  integrate_firewalld: true
+  integrate_crypto_policies: true
+
+openssh:
+  teach_modular_configuration: true
+  teach_include: true
+  teach_effective_configuration: true
+  client_validation:
+    - "ssh -G"
+  server_validation:
+    - "sshd -t"
+    - "sshd -T"
+  teach_precedence: true
+  teach_host_blocks: true
+  teach_match_blocks: true
+  teach_security_reasoning: true
+  avoid_legacy_recommendations: true
+
+watchdog:
+  kernel: true
+  hardware: true
+  software: true
+  userspace: true
+  systemd: true
+  softlockup: true
+  hardlockup: true
+  nmi: true
+  kernel_config: true
+  sysctl: true
+  procfs: true
+  sysfs: true
+  kernel_command_line: true
+
+labs:
+  platform: Fedora
+  reproducible: true
+  hypothesis_driven: true
+  require_verification: true
+  explain_expected_observation: true
+
+safety:
+  warn_before_remote_access_changes: true
+  do_not_disable_selinux_as_default_fix: true
+  do_not_disable_firewall_as_default_fix: true
+  validate_sshd_before_reload: true
+  preserve_existing_ssh_session_when_testing: true
+
+bibliography:
+  primary:
+    title: "SSH, The Secure Shell: The Definitive Guide"
+    edition: 2
+    authors:
+      - "Daniel J. Barrett"
+      - "Richard E. Silverman"
+      - "Robert G. Byrnes"
+    publisher: "O'Reilly Media"
+  policy:
+    book_role: conceptual_primary
+    prefer_current_man_pages_for_behavior: true
+    prefer_current_upstream_for_version_specific_details: true
+    prefer_fedora_docs_for_distribution_integration: true
+    never_recommend_obsolete_crypto_without_context: true
+
+source_priority:
+  - installed_behavior
+  - installed_man_pages
+  - current_upstream_documentation
+  - current_fedora_documentation
+  - current_systemd_and_kernel_documentation
+  - primary_book
+  - historical_secondary_sources
+
+format:
+  single_level_path_numbering: true
+  avoid_tree_indentation: true
+  code_fences_for_commands: true
+  spanish_technical_prose: true
