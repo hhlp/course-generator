@@ -1,47 +1,76 @@
 name: firewalld
-title: FIREWALLD EN PROFUNDIDAD — FEDORA
-platform: Fedora Linux
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
-lesson_structure:
-  objective:
-    required: true
-    position: first
-  reading:
-    required: true
-  lab:
-    required: false
-  common_errors:
-    required: false
-  important_idea:
-    required: false
-  remember:
-    required: true
-    position: last
-    min_items: 3
-    max_items: 7
-quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-validation:
-  enabled: false
-  commands: []
+title: "FIREWALLD EN PROFUNDIDAD — FEDORA"
+language: es
+platform: Fedora
+level: "0 a experto"
+
+course:
+  subject: firewalld
+  scope:
+    - firewalling en Linux
+    - firewalld
+    - nftables como backend y capa de diagnóstico
+    - NetworkManager
+    - systemd
+    - SELinux
+    - IPv4 e IPv6
+  goal: >
+    Dominar firewalld en Fedora desde los fundamentos del filtrado de paquetes
+    hasta diseño, automatización, diagnóstico, seguridad e integración con el
+    stack de red del sistema.
+
+pedagogy:
+  opening_section: "🎯 OBJETIVO"
+  closing_section: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points:
+    min: 3
+    max: 7
+  depth: profunda
+  style:
+    - didáctico
+    - técnico
+    - progresivo
+    - orientado a administración real
+    - explicar el porqué además del cómo
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  rules:
+    - "No convertir la lección en un simple resumen."
+    - "Relacionar cada tema con Fedora y firewalld."
+    - "Distinguir claramente runtime y permanent cuando corresponda."
+    - "Explicar la relación entre firewalld y nftables sin confundir sus niveles de abstracción."
+    - "Incluir comandos reproducibles y explicar sus efectos."
+    - "Advertir de operaciones que puedan cortar conectividad remota."
+    - "Cubrir IPv4 e IPv6 cuando el concepto aplique."
+    - "Usar ejemplos seguros y verificables."
+    - "Mantener continuidad con las lecciones vecinas del PATH."
+
+commands:
+  primary:
+    - firewall-cmd
+    - firewall-offline-cmd
+    - firewallctl
+    - systemctl
+    - journalctl
+    - nft
+    - ip
+    - ss
+    - nmcli
+    - getenforce
+    - semanage
+  verification:
+    - "firewall-cmd --state"
+    - "firewall-cmd --get-active-zones"
+    - "firewall-cmd --list-all"
+    - "firewall-cmd --list-all-zones"
+    - "nft list ruleset"
+    - "journalctl -u firewalld"
+
+context:
+  path_blocks: "0–26"
+  final_project: true
+  companion_files:
+    domain: domain.md
+    bibliography: bibliography.md

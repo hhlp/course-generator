@@ -1,47 +1,141 @@
 name: kubernetes
-title: KUBERNETES EN PROFUNDIDAD — FEDORA
-platform: Fedora Linux
-files:
-  pedagogy: ../../config/pedagogy.md
+title: "Kubernetes — 0 a Experto"
+language: es
+
+course:
+  level: "0_to_expert"
+  platform: "Linux"
+  orientation:
+    - cloud_native
+    - kubernetes
+    - administration
+    - development
+    - security
+    - platform_engineering
+    - internals
+  certifications:
+    - KCNA
+    - KCSA
+    - CKAD
+    - CKA
+    - CKS
+    - Kubestronaut
+
+sources:
   domain: domain.md
   bibliography: bibliography.md
-lesson_structure:
-  objective:
-    required: true
-    position: first
-  reading:
-    required: true
-  lab:
-    required: false
-  common_errors:
-    required: false
-  important_idea:
-    required: false
-  remember:
-    required: true
-    position: last
-    min_items: 3
-    max_items: 7
-quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-validation:
-  enabled: false
-  commands: []
+
+pedagogy:
+  required_opening_section: "🎯 OBJETIVO"
+  required_closing_section: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points:
+    min: 3
+    max: 7
+  optional_sections:
+    - "🧪 Laboratorio / ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  style:
+    depth: "deep"
+    progressive: true
+    didactic: true
+    practical: true
+    avoid_superficial_summaries: true
+
+technical_policy:
+  upstream_first: true
+  explain_version_dependent_behavior: true
+  explain_feature_gates: true
+  explain_alpha_beta_stable_status: true
+  avoid_single_cloud_vendor_lock_in: true
+  prefer_portable_kubernetes_concepts: true
+
+lab_policy:
+  include_commands: true
+  include_yaml: true
+  include_troubleshooting: true
+  include_failure_scenarios: true
+  preferred_tools:
+    - kubectl
+    - kubeadm
+    - crictl
+    - ctr
+    - nerdctl
+    - etcdctl
+    - journalctl
+    - ip
+    - ss
+    - nft
+    - tcpdump
+    - conntrack
+    - nsenter
+
+environments:
+  primary:
+    - kubeadm
+  labs:
+    - kind
+    - minikube
+    - k3d
+
+milestones:
+  - id: kcna
+    title: "HITO KCNA"
+    purpose: "Validar fundamentos Kubernetes y cloud-native."
+  - id: kcsa
+    title: "HITO KCSA"
+    purpose: "Validar fundamentos de seguridad cloud-native y Kubernetes."
+  - id: ckad
+    title: "HITO CKAD"
+    purpose: "Validar desarrollo de aplicaciones Kubernetes."
+  - id: cka
+    title: "HITO CKA"
+    purpose: "Validar administración de clusters Kubernetes."
+  - id: cks
+    title: "HITO CKS"
+    purpose: "Validar seguridad avanzada de Kubernetes."
+    prerequisite: "Active CKA certification"
+  - id: kubestronaut
+    title: "HITO KUBESTRONAUT"
+    purpose: "Consolidar las cinco credenciales principales antes del tramo experto."
+
+expert_track:
+  starts_after: "HITO KUBESTRONAUT"
+  areas:
+    - api_internals
+    - crds
+    - controllers
+    - operators
+    - admission
+    - scheduler
+    - kubelet
+    - cri
+    - containerd
+    - cni
+    - csi
+    - gateway_api
+    - high_availability
+    - disaster_recovery
+    - observability
+    - performance
+    - multi_tenancy
+    - multi_cluster
+    - cluster_api
+    - gitops
+    - helm
+    - kustomize
+    - service_mesh
+    - policy_as_code
+    - workload_identity
+    - supply_chain
+    - platform_engineering
+    - crossplane
+    - finops
+    - ebpf
+    - source_code
+    - keps
+    - conformance
+
+final_project:
+  required: true
+  goal: "Diseñar, desplegar, asegurar, observar, actualizar, romper, diagnosticar y recuperar una plataforma Kubernetes de nivel producción."

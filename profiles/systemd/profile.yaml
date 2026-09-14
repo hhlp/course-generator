@@ -1,47 +1,276 @@
-name: systemd
-title: SYSTEMD EN PROFUNDIDAD — FEDORA
-platform: Fedora Linux
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+profile:
+  id: systemd
+  name: "SYSTEMD EN PROFUNDIDAD — FEDORA"
+  language: es
+  platform: "Fedora Linux"
+  level:
+    start: beginner
+    end: expert
+  scope:
+    - systemd
+    - systemctl
+    - unit-files
+    - services
+    - dependencies
+    - targets
+    - journald
+    - timers
+    - sockets
+    - paths
+    - mounts
+    - automounts
+    - cgroups-v2
+    - systemd-run
+    - user-services
+    - tmpfiles
+    - sysusers
+    - hardening
+    - credentials
+    - boot
+    - systemd-analyze
+    - troubleshooting
+    - rpm-packaging
+    - dbus
+    - internals
+
+generation:
+  depth: expert
+  style: didactic
+  distribution_first: true
+  platform_focus: fedora
+  avoid_shallow_summaries: true
+  explain_concepts_before_commands: true
+  explain_commands_in_context: true
+  connect_related_components: true
+  include_real_world_administration: true
+  include_troubleshooting: true
+  include_internal_model_when_relevant: true
+  prefer_current_behavior: true
+  verify_version_dependent_features: true
+
 lesson_structure:
-  objective:
-    required: true
-    position: first
-  reading:
-    required: true
-  lab:
-    required: false
-  common_errors:
-    required: false
-  important_idea:
-    required: false
-  remember:
-    required: true
-    position: last
-    min_items: 3
-    max_items: 7
+  mandatory_opening:
+    heading: "🎯 OBJETIVO"
+    first_section: true
+
+  optional_sections:
+    - "🧪 LABORATORIO / EJEMPLOS"
+    - "⚠️ ERRORES FRECUENTES"
+    - "💡 IDEA IMPORTANTE"
+
+  mandatory_closing:
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    key_points_min: 3
+    key_points_max: 7
+    repeat_objective_verbatim: false
+
+fedora:
+  required_context:
+    - "/usr/lib/systemd/system"
+    - "/etc/systemd/system"
+    - "/run/systemd/system"
+    - "/usr/lib/systemd/user"
+    - "/etc/systemd/user"
+    - "~/.config/systemd/user"
+    - rpm
+    - selinux
+    - cgroups-v2
+    - journald
+    - dbus
+
+  principles:
+    - "Distinguir comportamiento upstream de decisiones específicas de Fedora."
+    - "No editar directamente unidades vendor en /usr/lib/systemd/system."
+    - "Preferir drop-ins y systemctl edit."
+    - "Explicar integración con RPM cuando corresponda."
+    - "Usar herramientas disponibles en Fedora moderno."
+
+sources:
+  authority_order:
+    - "Comportamiento comprobado en Fedora actual"
+    - "Documentación oficial de systemd correspondiente a la versión instalada"
+    - "Documentación oficial de Fedora"
+    - "Código fuente upstream de systemd"
+    - "Linux Service Management Made Easy with systemd"
+    - "David Both — systemd for Linux SysAdmins"
+    - "Material externo"
+
+  principal:
+    - title: "Linux Service Management Made Easy with systemd"
+      role: "principal"
+      use_for:
+        - fundamentals
+        - services
+        - unit-files
+        - systemctl
+        - dependencies
+        - targets
+        - journal
+        - timers
+        - administration
+        - troubleshooting
+
+  complementary:
+    - title: "systemd for Linux SysAdmins: All You Need to Know About the systemd Suite for Linux Users"
+      author: "David Both"
+      role: "complementary_and_deepening"
+      use_for:
+        - architecture
+        - boot
+        - services
+        - targets
+        - mounts
+        - timers
+        - journald
+        - administration
+        - ecosystem
+        - operational-model
+
+  official:
+    - "systemd man pages"
+    - "systemd.io"
+    - "Fedora Documentation"
+    - "Fedora Packaging Guidelines"
+    - "systemd upstream source code"
+
+commands:
+  documentation:
+    - "systemd --version"
+    - "man systemd"
+    - "man systemctl"
+    - "man systemd.unit"
+    - "man systemd.service"
+    - "man systemd.exec"
+    - "man systemd.directives"
+    - "man bootup"
+
+  diagnostics:
+    - "systemctl status"
+    - "systemctl cat"
+    - "systemctl show"
+    - "systemctl list-units"
+    - "systemctl list-unit-files"
+    - "systemctl list-dependencies"
+    - "systemctl list-jobs"
+    - "journalctl"
+    - "systemd-analyze verify"
+    - "systemd-analyze security"
+    - "systemd-analyze critical-chain"
+    - "systemd-analyze dump"
+    - "systemd-cgls"
+    - "systemd-cgtop"
+    - "busctl"
+
+topics:
+  services:
+    require:
+      - "Type=simple"
+      - "Type=exec"
+      - "Type=forking"
+      - "Type=oneshot"
+      - "Type=dbus"
+      - "Type=notify"
+      - "ExecStart"
+      - "ExecStartPre"
+      - "ExecStartPost"
+      - "ExecReload"
+      - "ExecStop"
+      - "ExecStopPost"
+      - "Restart"
+      - "timeouts"
+      - "watchdog"
+      - "KillMode"
+      - "environment"
+      - "credentials"
+
+  dependencies:
+    require:
+      - "Requires"
+      - "Wants"
+      - "Requisite"
+      - "BindsTo"
+      - "PartOf"
+      - "Conflicts"
+      - "Before"
+      - "After"
+      - "OnFailure"
+      - "implicit dependencies"
+      - "default dependencies"
+      - "ordering vs requirement"
+
+  advanced:
+    require:
+      - "transactions"
+      - "jobs"
+      - "manager"
+      - "dependency graph"
+      - "generators"
+      - "D-Bus API"
+      - "cgroups v2"
+      - "serialization"
+      - "daemon-reexec"
+      - "sd-bus"
+      - "sd-event"
+
+security:
+  teach_hardening: true
+  directives:
+    - "User"
+    - "Group"
+    - "DynamicUser"
+    - "NoNewPrivileges"
+    - "PrivateTmp"
+    - "PrivateDevices"
+    - "ProtectSystem"
+    - "ProtectHome"
+    - "ProtectKernelTunables"
+    - "ProtectKernelModules"
+    - "ProtectControlGroups"
+    - "CapabilityBoundingSet"
+    - "AmbientCapabilities"
+    - "RestrictAddressFamilies"
+    - "SystemCallFilter"
+    - "RestrictNamespaces"
+    - "LockPersonality"
+    - "MemoryDenyWriteExecute"
+
+labs:
+  required_when_useful: true
+  platform: "Fedora Linux"
+  reproducible: true
+  prefer_safe_test_units: true
+  clean_up_after_lab: true
+  avoid_destructive_host_changes: true
+  prefer_drop_ins: true
+
+project:
+  final:
+    name: "mini-systemd-debugger"
+    goal: "Integrar administración, observabilidad y diagnóstico de systemd."
+    expected_capabilities:
+      - "inspect units"
+      - "inspect unit files"
+      - "inspect properties"
+      - "inspect dependencies"
+      - "inspect jobs"
+      - "inspect journal"
+      - "inspect cgroups"
+      - "run security analysis"
+      - "analyze boot"
+      - "build dependency views"
+      - "produce diagnostic summaries"
+
 quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-validation:
-  enabled: false
-  commands: []
+  forbid:
+    - "resúmenes superficiales"
+    - "listas de comandos sin explicación conceptual"
+    - "editar directamente unidades vendor como práctica normal"
+    - "afirmar compatibilidad de directivas sin considerar la versión de systemd"
+    - "tratar systemd únicamente como systemctl"
+  require:
+    - "precisión técnica"
+    - "contexto Fedora"
+    - "relación entre componentes"
+    - "diagnóstico"
+    - "explicación de estados y efectos"
+    - "documentación oficial como autoridad"

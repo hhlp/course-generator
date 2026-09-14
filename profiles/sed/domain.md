@@ -1,348 +1,171 @@
-# SED EN PROFUNDIDAD — Dominio
+# RPM PACKAGING EN PROFUNDIDAD — FEDORA
 
-## Identidad del PATH
+## Dominio
 
-Este PATH enseña `sed` desde fundamentos hasta dominio experto, con GNU sed sobre Fedora Linux como entorno práctico principal y POSIX sed como base normativa de portabilidad.
+Este PATH estudia RPM desde sus fundamentos hasta el nivel necesario para comprender, construir, analizar, depurar y mantener paquetes dentro del ecosistema Fedora.
 
-El objetivo no es memorizar one-liners. El alumno debe comprender el modelo de ejecución de sed y ser capaz de diseñar, explicar, depurar, probar y auditar transformaciones de texto robustas.
+RPM no debe estudiarse únicamente como el comando `rpm`. El dominio completo relaciona:
 
-## Alcance
+RPM package format → RPM metadata → rpmdb → SPEC → rpmbuild → SRPM → dependencias → transacciones → repositorios → DNF/libdnf5 → libsolv → Mock → Fedora Packaging → COPR → dist-git → Koji → Bodhi.
 
-El PATH cubre:
+El objetivo final es comprender el flujo completo:
 
-- filosofía de stream processing y relación de sed con stdin, stdout, pipes y archivos;
-- programas, comandos, direcciones, rangos y scripts sed;
-- sustitución y semántica completa del comando `s`;
-- BRE y ERE únicamente en cuanto son necesarias para comprender sed;
-- pattern space y hold space;
-- ciclo de ejecución y automatic printing;
-- procesamiento multilínea;
-- branching, labels, loops y substitution-success flag;
-- lectura y escritura de archivos;
-- shell quoting e interacción shell/sed;
-- edición in-place y sus riesgos;
-- GNU sed y sus extensiones;
-- procesamiento delimitado por NUL;
-- múltiples archivos;
-- transformaciones sobre texto y configuraciones;
-- interoperabilidad con grep, awk, find, xargs y herramientas Unix;
-- depuración, portabilidad, rendimiento, seguridad e idempotencia;
-- algoritmos clásicos de sed;
-- ingeniería y testing de scripts sed;
-- internals conceptuales y código fuente de GNU sed;
-- proyecto integrador `sed-toolkit`;
-- dominio experto y auditoría de scripts desconocidos.
+upstream → source archive → SPEC → SRPM → build reproducible → RPM → validación → review → build infrastructure → actualización → repositorio → instalación.
 
-## Entorno principal
+## 1. Plataforma
 
-Plataforma práctica: Fedora Linux.
+La plataforma principal es Fedora Linux. Cuando resulte útil podrán establecerse relaciones con RHEL, CentOS Stream y otras distribuciones basadas en RPM. Las prácticas específicas de Fedora deben distinguirse de las capacidades proporcionadas por RPM upstream.
 
-Implementación principal: GNU sed.
+## 2. Formato RPM, NEVRA y EVR
 
-La enseñanza debe distinguir siempre que sea relevante:
+Debe estudiarse metadata, headers, payload, scripts, dependencias, Provides, metadata de archivos, firmas, checksums, ownership, permisos y configuración.
 
-1. comportamiento exigido por POSIX;
-2. comportamiento de GNU sed;
-3. extensiones específicas de GNU sed;
-4. comportamiento histórico o de otras implementaciones cuando sea pedagógicamente útil.
+Se estudiarán Name, Epoch, Version, Release y Architecture, las representaciones NEVRA/NEVR y el modelo EVR. Debe comprenderse la comparación de versiones, incluido el significado de mecanismos como `~` y `^` cuando sean aplicables.
 
-No se debe presentar una extensión GNU como si perteneciera al lenguaje portable de sed.
+## 3. Herramientas RPM
 
-## Relación con el PATH Regex
+El PATH cubre `rpm`, `rpmquery`, `rpmverify`, `rpmkeys`, `rpmdb`, `rpm2cpio`, `rpmbuild` y `rpmspec`, además de herramientas relacionadas del ecosistema Fedora.
 
-Regex es un PATH independiente.
+El alumno debe investigar tanto paquetes instalados como RPM no instalados.
 
-Este curso no debe reconstruir desde cero toda la teoría de expresiones regulares. Debe enseñar las expresiones regulares en el contexto específico de sed:
+## 4. Consultas y queryformat
 
-- BRE usadas por sed;
-- ERE mediante `-E`;
-- delimitadores;
-- grupos y backreferences;
-- regex en direcciones;
-- regex en sustituciones;
-- interacción con locale;
-- diferencias POSIX/GNU;
-- consecuencias sobre portabilidad.
+Deben estudiarse `rpm -q`, `-qi`, `-ql`, `-qc`, `-qd`, `-qf`, `-qp`, `--requires`, `--provides`, `--whatrequires`, `--whatprovides`, `--scripts`, `--triggers` y `--changelog`, además de queryformat.
 
-Cuando un concepto pertenezca fundamentalmente al dominio general de regex, debe explicarse solamente con la profundidad necesaria para entender su utilización dentro de sed.
+No debe limitarse la enseñanza a memorizar opciones: debe explicarse de qué metadata proviene la información y cómo consultarla de forma programática.
 
-## Modelo mental obligatorio
+## 5. Verificación
 
-Las lecciones avanzadas deben razonar explícitamente sobre el estado de sed.
+Debe estudiarse `rpm -V` y los indicadores S, M, 5, D, L, U, G, T y P, explicando qué metadata se compara y cómo interpretar cada discrepancia.
 
-El alumno debe aprender a seguir:
+## 6. rpmdb
 
-- registro de entrada actual;
-- número de línea;
-- pattern space;
-- hold space;
-- programa sed;
-- comando actual;
-- direcciones y rangos activos;
-- substitution-success flag;
-- salida explícita;
-- automatic printing;
-- consumo adicional de entrada;
-- comienzo de un nuevo ciclo;
-- EOF.
+Debe estudiarse propósito, contenido, consultas, consistencia, mantenimiento, reconstrucción, corrupción y troubleshooting de rpmdb, distinguiéndola de la metadata de repositorios gestionada por DNF.
 
-Para scripts complejos se debe favorecer el seguimiento paso a paso del estado frente a explicaciones basadas únicamente en observar la salida final.
+## 7. SPEC
 
-## Pattern space y hold space
+Los SPEC son uno de los ejes principales. Deben estudiarse tags como Name, Version, Release, Summary, License, URL, Source, Patch, BuildRequires y Requires, y las secciones `%description`, `%prep`, `%build`, `%install`, `%check`, `%files` y `%changelog`.
 
-Pattern space y hold space son conceptos centrales del PATH.
+También se estudiarán `%package`, `%description` y `%files` para subpackages.
 
-No deben tratarse como trucos avanzados aislados.
+## 8. Sources, Patches y preparación
 
-El alumno debe comprender:
+Debe comprenderse el flujo upstream → source archive → Source → preparación → patches → build. Se estudiarán Source0, Patch, `%setup`, `%autosetup` y los mecanismos modernos recomendados.
 
-- duración de ambos espacios;
-- cuándo cambian;
-- qué comandos los sustituyen;
-- qué comandos añaden contenido;
-- dónde aparecen newlines;
-- qué estado sobrevive entre ciclos;
-- cómo implementar memoria, ventanas, acumuladores y máquinas de estados.
+Las técnicas históricas deben poder reconocerse, pero se marcarán explícitamente como históricas cuando no sean la práctica moderna recomendada.
 
-## Procesamiento multilínea
+## 9. Buildroot
 
-Los comandos `n`, `N`, `p`, `P`, `d` y `D` deben explicarse mediante el ciclo de ejecución.
+Debe explicarse la relación entre `%install`, `%{buildroot}` y `%files`, diferenciando el buildroot moderno del tag histórico `BuildRoot:`.
 
-Debe prestarse especial atención a:
+## 10. Macros RPM
 
-- consumo de entrada;
-- EOF;
-- newlines dentro del pattern space;
-- reinicio completo frente a reinicio parcial del ciclo;
-- ventanas deslizantes;
-- pérdida accidental de registros;
-- interacción con automatic printing.
+Las macros se tratarán como un subsistema propio. Se estudiarán macros predefinidas, `%global`, `%define`, macros parametrizadas, expansión, precedencia, evaluación y debugging mediante herramientas como `rpm --eval` y `rpm --showrc`.
 
-## Flujo de control
+## 11. %files y ownership
 
-Los comandos `b`, `t` y, cuando corresponda, GNU `T` deben estudiarse como mecanismos de control de flujo.
+Debe estudiarse `%dir`, `%doc`, `%license`, `%config`, `%config(noreplace)`, `%attr`, `%defattr`, `%exclude`, globs, directorios, ownership y permisos.
 
-Debe explicarse explícitamente el substitution-success flag y cuándo se establece o reinicia.
+Debe distinguirse claramente instalar algo en `%{buildroot}` de declararlo como perteneciente a un paquete.
 
-Los loops deben analizarse también desde el punto de vista de terminación y progreso del estado.
+## 12. Subpackages
 
-## GNU sed
+Se estudiará cómo un mismo SRPM genera múltiples RPM binarios, incluyendo patrones como paquete principal, `-devel`, `-libs`, `-doc` y herramientas auxiliares, junto con sus dependencias internas.
 
-Fedora utiliza GNU sed, por lo que sus extensiones forman parte del dominio práctico del curso.
+## 13. Dependencias
 
-Sin embargo, cada extensión debe etiquetarse claramente como GNU cuando no sea POSIX.
+Debe estudiarse BuildRequires, Requires, Provides, Conflicts, Obsoletes, dependencias versionadas, virtual Provides, weak dependencies, rich dependencies y dependencias automáticas.
 
-Entre los temas GNU relevantes están, cuando correspondan a la versión disponible:
+Las rich dependencies incluirán `and`, `or`, `if`, `unless`, `with` y `without`.
 
-- `-E`;
-- `-i`;
-- `-z`;
-- `-s` / `--separate`;
-- `-u` / `--unbuffered`;
-- `--debug`;
-- `--sandbox`;
-- `--follow-symlinks`;
-- `--posix`;
-- comandos `Q`, `R`, `T`, `W`, `F`, `z`;
-- formas de direccionamiento GNU;
-- extensiones del replacement.
+## 14. Generación automática de dependencias
 
-Las lecciones deben verificar la versión instalada cuando el comportamiento pueda depender de ella.
+Debe explicarse conceptualmente la relación archivos → generadores → Provides/Requires y analizar ejemplos reales cuando corresponda.
 
-## POSIX y portabilidad
+## 15. Scriptlets
 
-POSIX sed constituye la referencia normativa.
+Se estudiarán `%pretrans`, `%pre`, `%post`, `%preun`, `%postun` y `%posttrans`, incluyendo `$1`, orden, entorno, exit status, errores y relación con la transacción.
 
-Las lecciones de portabilidad deben separar:
+## 16. Triggers
 
-- sintaxis portable;
-- extensiones GNU;
-- diferencias conocidas con otras implementaciones;
-- dependencias del shell;
-- dependencias del locale.
+Debe estudiarse triggers, file triggers y transaction file triggers, explicando qué problemas resuelven y cuándo evitan scriptlets repetidos.
 
-`--posix` puede utilizarse como ayuda práctica en GNU sed, pero no sustituye el razonamiento basado en la especificación POSIX.
+## 17. Transacciones
 
-## Shell y quoting
+El alumno debe comprender instalación, actualización, downgrade y eliminación como operaciones transaccionales y relacionarlas con dependencias, scriptlets, triggers y rpmdb.
 
-Debe mantenerse una separación conceptual estricta entre:
+## 18. RPM frente a DNF
 
-- sintaxis del shell;
-- quoting del shell;
-- programa sed;
-- regex;
-- replacement.
+Debe mantenerse una separación clara. RPM administra paquetes y su base local; DNF/libdnf5 añade repositorios, selección, descarga y resolución de dependencias a un nivel superior.
 
-Cuando una expresión pase por varias capas de interpretación, la lección debe explicar cada capa.
+## 19. libsolv y solver
 
-No deben recomendarse construcciones dinámicas inseguras sin explicar sus riesgos.
+El PATH profundiza hasta Pool, Repo, Solvable, Reldep, jobs, reglas, SAT, UNSAT y backtracking. El objetivo es comprender cómo un solver determina una solución válida y poder investigar casos reales mediante herramientas y APIs de libsolv.
 
-## Seguridad
+## 20. SRPM
 
-Los ejemplos deben diferenciar código sed de datos.
+Debe comprenderse la diferencia entre RPM binario y Source RPM, qué contiene un SRPM, cómo inspeccionarlo y cómo reconstruir paquetes a partir de él.
 
-Deben estudiarse explícitamente:
+## 21. rpmbuild
 
-- regex injection;
-- replacement injection;
-- delimitadores inesperados;
-- expansión del shell;
-- nombres de archivo arbitrarios;
-- symlinks;
-- edición in-place;
-- permisos;
-- scripts privilegiados;
-- operaciones de lectura/escritura;
-- `--sandbox` cuando sea aplicable.
+Se estudiarán `rpmbuild -ba`, `-bb`, `-bs`, las fases de construcción, árbol de trabajo y relación con las secciones SPEC.
 
-## Edición in-place
+## 22. rpmlint
 
-`sed -i` nunca debe presentarse como equivalente conceptual a la transformación streaming normal.
+Debe utilizarse como herramienta de análisis, interpretando cada diagnóstico en contexto y contrastándolo con las Packaging Guidelines en lugar de tratar su salida mecánicamente.
 
-Debe explicarse:
+## 23. Mock
 
-- creación/reemplazo de archivos;
-- backups;
-- symlinks;
-- metadata;
-- permisos;
-- fallos parciales;
-- diferencias GNU/BSD;
-- estrategias de temporal + validación + reemplazo;
-- dry-run y diff antes de aplicar cambios cuando sea apropiado.
+Mock se estudiará como herramienta de builds aislados y reproducibles. Debe comprenderse por qué compilar correctamente en la máquina del desarrollador no demuestra que las BuildRequires estén completas.
 
-## Datos estructurados
+## 24. Fedora Packaging Guidelines
 
-sed es un editor de streams de texto, no un parser universal.
+Constituyen una referencia normativa fundamental. Debe distinguirse siempre entre lo que RPM técnicamente permite y lo que Fedora recomienda o exige para sus paquetes.
 
-Las lecciones deben enseñar cuándo abandonar sed.
+## 25. Fedora Package Review
 
-JSON, YAML, XML, CSV complejo y otros formatos con gramáticas estructuradas deben utilizarse para enseñar límites, no para fomentar parsers frágiles basados en regex.
+Debe comprenderse el flujo SPEC → SRPM → rpmlint → Mock → guidelines → review y las responsabilidades asociadas al proceso.
 
-Cuando proceda, se debe señalar una herramienta especializada como alternativa conceptual.
+## 26. COPR
 
-## Fedora
+COPR se estudiará para builds y repositorios fuera de la infraestructura oficial principal de Fedora, comprendiendo su posición y diferencias frente a Koji.
 
-Los laboratorios pueden utilizar copias o fixtures inspirados en:
+## 27. dist-git y fedpkg
 
-- archivos `.conf`;
-- archivos `.repo`;
-- `/etc/hosts`;
-- `/etc/fstab`;
-- unidades systemd;
-- SPEC files RPM;
-- salida de `rpm`;
-- salida de `dnf`;
-- salida de `systemctl`;
-- salida de `journalctl`;
-- salida de `ip`;
-- salida de `ss`.
+Debe estudiarse el modelo Fedora dist-git y su relación con Git, SPEC, sources, patches, branches, releases y `fedpkg`.
 
-No se deben modificar configuraciones reales del sistema durante ejercicios introductorios o cuando la modificación no sea necesaria.
+## 28. Koji
 
-## Herramientas relacionadas
+Debe comprenderse build, task, target, tag, buildroot, package y NVR, relacionando Koji con dist-git, Mock y la infraestructura de Fedora.
 
-grep, awk, find, xargs, shell y otras herramientas Unix deben aparecer para enseñar composición y límites.
+## 29. Bodhi
 
-El curso debe evitar dos extremos:
+Debe estudiarse su papel en el ciclo de actualizaciones de Fedora y el flujo desde un build hasta su distribución como actualización.
 
-- utilizar sed para todo;
-- reemplazar automáticamente sed por otra herramienta sin enseñar por qué.
+## 30. Repositorios RPM
 
-El alumno debe aprender a decidir qué herramienta corresponde al problema.
+Debe estudiarse repository metadata, repodata, `createrepo_c`, configuración de repositorios, publicación y consumo. El alumno construirá repositorios de laboratorio.
 
-## One-liners
+## 31. Firmas y confianza
 
-Los one-liners son un medio, no el objetivo final.
+Se estudiarán `rpmkeys`, `rpm -K`, `rpm --checksig`, OpenPGP/GPG, firmas de paquetes, claves y trust, distinguiendo integridad de autenticidad.
 
-Un one-liner experto debe poder:
+## 32. Troubleshooting
 
-- explicarse;
-- probarse;
-- depurarse;
-- convertirse en script mantenible cuando crece;
-- auditarse para portabilidad y seguridad.
+Cada bloque debe desarrollar capacidad de diagnóstico: SPEC, macros, dependencias, scriptlets, transacciones, rpmdb, builds, Mock, metadata de repositorios, firmas, Koji y Bodhi.
 
-La concisión nunca debe priorizarse sobre corrección o mantenibilidad.
+## 33. Internals
 
-## Ingeniería de scripts
+En niveles avanzados se estudiarán RPM headers, payload, rpmdb, macro engine, dependency generators, transactions, scriptlets y signatures con suficiente profundidad para razonar sobre el comportamiento interno.
 
-Los scripts no triviales deben introducir prácticas de ingeniería:
+## 34. Automatización
 
-- requisitos;
-- fixtures;
-- salida esperada;
-- casos normales;
-- edge cases;
-- pruebas de regresión;
-- idempotencia;
-- errores de entrada/salida;
-- documentación;
-- Git;
-- CI cuando aporte valor.
+Las herramientas auxiliares favorecerán scripts modulares y reutilizables. En el entorno del curso se priorizarán funciones Zsh integrables en una configuración modular.
 
-## Internals
+## 35. Proyecto final
 
-El bloque de internals debe conectar el modelo conceptual con la implementación real de GNU sed.
+Todo el conocimiento debe converger en el workflow:
 
-Debe enseñar a localizar y estudiar:
+upstream → SPEC → Sources/Patches → SRPM → Mock → rpmlint → review → COPR → dist-git → Koji → Bodhi → repository.
 
-- parser;
-- representación de comandos;
-- direcciones;
-- buffers;
-- ciclo de ejecución;
-- motor regex;
-- sustitución;
-- branching;
-- entrada/salida;
-- extensiones GNU;
-- tests.
-
-No se exige convertir el PATH en un curso de desarrollo de GNU sed; el código fuente se utiliza para verificar y profundizar el modelo mental.
-
-## Proyecto final
-
-`sed-toolkit` es el proyecto integrador principal.
-
-Debe evolucionar hacia una colección modular y comprobable de transformaciones con:
-
-- scripts `.sed`;
-- integración mediante funciones Zsh;
-- stdin y archivos;
-- múltiples archivos;
-- stdout por defecto;
-- dry-run;
-- diff;
-- backups;
-- apply;
-- rollback cuando sea viable;
-- validación;
-- procesamiento NUL cuando corresponda;
-- protección frente a expresiones dinámicas inseguras;
-- logging;
-- manejo de errores;
-- fixtures;
-- tests;
-- pruebas de idempotencia;
-- compatibilidad GNU;
-- variantes POSIX seleccionadas;
-- documentación;
-- integración con Git.
-
-## Criterio de dominio experto
-
-Al finalizar, el alumno debe ser capaz de recibir un script sed desconocido y:
-
-1. identificar el dialecto y sus dependencias;
-2. reconstruir su modelo de ejecución;
-3. seguir pattern space y hold space;
-4. explicar direcciones, rangos y branching;
-5. predecir su salida;
-6. localizar errores;
-7. detectar problemas de quoting, portabilidad y seguridad;
-8. simplificarlo cuando sea posible;
-9. probarlo con casos normales y extremos;
-10. decidir justificadamente si sed sigue siendo la herramienta apropiada.
-
-También debe poder partir únicamente de requisitos, entrada y salida esperada y diseñar una solución sed correcta, mantenible y verificable.
+El objetivo no es simplemente ejecutar `rpmbuild`, sino comprender el ecosistema RPM/Fedora como un sistema completo y poder diagnosticar cada frontera del proceso.

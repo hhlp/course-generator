@@ -1,47 +1,222 @@
 name: selinux
-title: SELINUX EN PROFUNDIDAD — FEDORA
-platform: Fedora Linux
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+
+title: "SELinux en profundidad — Fedora"
+
+language: es
+
+platform:
+  primary: Fedora Linux
+
+level:
+  start: beginner
+  target: expert
+
+domain:
+  name: selinux
+  focus:
+    - administration
+    - security
+    - mandatory-access-control
+    - policy-analysis
+    - troubleshooting
+    - policy-development
+    - internals
+
+bibliography:
+  principal:
+    - "SELinux System Administration, Third Edition — Sven Vermeulen"
+
+  complementary:
+    - "Fedora SELinux Documentation"
+    - "SELinux Project Documentation"
+
+  deep_dive:
+    - "The SELinux Notebook"
+    - "SELinux Reference Policy"
+    - "Fedora SELinux Policy"
+
+  reference:
+    - "Fedora man pages"
+    - "SELinux userspace source"
+    - "Linux kernel SELinux source"
+
+teaching:
+  depth: expert
+  style: didactic
+  summary_only: false
+
+  explain:
+    - what
+    - why
+    - how
+    - internals
+    - observation
+    - administration
+    - investigation
+    - troubleshooting
+    - relationships
+
 lesson_structure:
   objective:
+    enabled: true
     required: true
+    heading: "🎯 OBJETIVO"
     position: first
-  reading:
-    required: true
-  lab:
-    required: false
+
+  laboratory:
+    enabled: true
+    heading: "🧪 Laboratorio"
+
   common_errors:
-    required: false
+    enabled: true
+    heading: "⚠️ Errores frecuentes"
+
   important_idea:
-    required: false
+    enabled: true
+    heading: "💡 Idea importante"
+
   remember:
+    enabled: true
     required: true
+    heading: "🧠 QUÉ DEBES RECORDAR"
     position: last
     min_items: 3
     max_items: 7
+
+principles:
+  fedora_first: true
+
+  discovery_over_memorization: true
+
+  teach_where_to_find:
+    - contexts
+    - types
+    - domains
+    - attributes
+    - roles
+    - selinux_users
+    - levels
+    - categories
+    - booleans
+    - object_classes
+    - permissions
+    - ports
+    - file_contexts
+    - transitions
+    - interfaces
+    - modules
+    - policy_rules
+
+  troubleshooting:
+    systematic: true
+    disable_selinux_as_solution: false
+    audit2allow_as_automatic_solution: false
+
+commands:
+  core:
+    - getenforce
+    - sestatus
+    - setenforce
+    - ls
+    - ps
+    - id
+    - semanage
+    - semodule
+    - restorecon
+    - matchpathcon
+    - chcon
+    - seinfo
+    - sesearch
+    - sepolicy
+    - ausearch
+    - aureport
+    - audit2why
+    - audit2allow
+
+  advanced:
+    - checkpolicy
+    - checkmodule
+    - semodule_package
+    - secilc
+
+topics:
+  - DAC
+  - MAC
+  - LSM
+  - SELinux architecture
+  - security contexts
+  - SELinux users
+  - roles
+  - types
+  - domains
+  - attributes
+  - levels
+  - sensitivities
+  - categories
+  - Type Enforcement
+  - RBAC
+  - MLS
+  - MCS
+  - object classes
+  - permissions
+  - allow rules
+  - transitions
+  - booleans
+  - filesystem labeling
+  - file contexts
+  - process contexts
+  - network labeling
+  - port contexts
+  - policy
+  - policy modules
+  - policy stores
+  - auditing
+  - AVC
+  - troubleshooting
+  - policy analysis
+  - policy development
+  - Reference Policy
+  - Fedora policy
+  - CIL
+  - libselinux
+  - libsepol
+  - libsemanage
+  - policycoreutils
+  - Access Vector Cache
+  - security server
+  - SELinux internals
+
+labs:
+  required: true
+  environment: Fedora
+
+  prefer:
+    - system inspection
+    - policy inspection
+    - real commands
+    - controlled experiments
+    - AVC analysis
+    - policy queries
+
+  require_explanation_of_commands: true
+
+sources:
+  prefer_current_fedora_behavior: true
+  distinguish_historical_behavior: true
+  use_upstream_for_internals: true
+  book_is_not_version_specification: true
+
 quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-validation:
-  enabled: false
-  commands: []
+  avoid_shallow_summaries: true
+  explain_command_output: true
+  explain_security_implications: true
+  connect_lessons: true
+  preserve_path_depth: true
+
+final_goal: >
+  El estudiante debe ser capaz de administrar, investigar,
+  diagnosticar y comprender SELinux en Fedora, localizar la
+  información necesaria dentro de una política desconocida,
+  determinar por qué un acceso es permitido o denegado,
+  aplicar soluciones correctas y persistentes y comprender
+  progresivamente la arquitectura interna de SELinux.

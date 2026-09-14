@@ -1,78 +1,132 @@
-name: sed
-title: SED EN PROFUNDIDAD
-platform: Fedora Linux
+name: rpm
+title: "RPM PACKAGING EN PROFUNDIDAD — FEDORA"
+
+language: es
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
-scope:
-  programming_languages: false
-  windows: false
-  base_language_agnostic: true
-  preferred_environment: Fedora Linux
+platform:
+  primary: Fedora Linux
+  ecosystem:
+    - Fedora
+    - RHEL
+    - CentOS Stream
 
-regex_policy:
-  distinguish_dialect_specific_features: true
-  distinguish_engine_specific_behavior: true
-  prefer_language_agnostic_examples: true
-  programming_language_examples: false
+domain: rpm-packaging
+
+level:
+  start: beginner
+  end: expert
+
+description: >
+  Ruta de aprendizaje completa y progresiva sobre RPM y el ecosistema
+  de empaquetado de Fedora. Parte de los fundamentos del formato RPM
+  y progresa hacia SPEC files, SRPM, dependencias, scriptlets, rpmdb,
+  macros, generación automática de dependencias, Mock, rpmlint,
+  Fedora Packaging Guidelines, COPR, dist-git, Koji, Bodhi,
+  repositorios RPM e internals de RPM.
+
+objectives:
+  - Comprender completamente el formato y modelo de paquetes RPM.
+  - Dominar NEVRA, EVR, arquitectura y metadata RPM.
+  - Consultar, instalar, actualizar, verificar y eliminar paquetes.
+  - Dominar la estructura y semántica de los archivos SPEC.
+  - Construir paquetes binarios RPM y paquetes fuente SRPM.
+  - Gestionar Sources y Patches correctamente.
+  - Comprender BuildRequires, Requires y dependencias automáticas.
+  - Dominar Provides, Conflicts, Obsoletes, weak y rich dependencies.
+  - Dominar scriptlets, triggers, file triggers y transfiletriggers.
+  - Comprender rpmdb y las operaciones internas de RPM.
+  - Comprender la resolución de dependencias mediante libsolv.
+  - Construir paquetes en entornos reproducibles con Mock.
+  - Validar paquetes mediante rpmlint.
+  - Aplicar las Fedora Packaging Guidelines.
+  - Comprender Fedora Package Review, COPR, dist-git, Koji y Bodhi.
+  - Crear y administrar repositorios RPM y comprender firmas.
+  - Comprender internals de RPM y automatizar workflows de packaging.
+
+pedagogy:
+  progression: "0-to-expert"
+  depth: deep
+  style: technical-didactic
+  theory_and_practice: true
+  avoid_shallow_summaries: true
+  explain_why: true
+  explain_internals: true
+  progressive_labs: true
+  troubleshooting: true
+  real_world_examples: true
 
 lesson_structure:
-  objective:
+  first_section:
+    title: "🎯 OBJETIVO"
     required: true
-    position: first
-
-  reading:
+  development:
     required: true
-    categories:
-      - principal
-      - normativa
-      - motor
-      - profundizacion
-      - consulta
-    exact_references_only_when_verified: true
-
-  lab:
-    required: false
-
+    depth: deep
+  laboratory:
+    title: "🧪 Laboratorio/ejemplos"
+    required_when_useful: true
   common_errors:
-    required: false
-
+    title: "⚠️ Errores frecuentes"
+    required_when_useful: true
   important_idea:
-    required: false
-
-  remember:
+    title: "💡 Idea importante"
+    required_when_useful: true
+  final_section:
+    title: "🧠 QUÉ DEBES RECORDAR"
     required: true
-    position: last
-    min_items: 3
-    max_items: 7
+    key_points:
+      minimum: 3
+      maximum: 7
+
+technical_environment:
+  distribution: Fedora Linux
+  shell: zsh
+  commands:
+    - rpm
+    - rpmquery
+    - rpmverify
+    - rpmkeys
+    - rpmdb
+    - rpm2cpio
+    - rpmbuild
+    - rpmspec
+    - rpmdevtools
+    - mock
+    - rpmlint
+    - createrepo_c
+    - dnf
+    - dnf5
+    - fedpkg
+    - koji
+    - bodhi
+    - copr
+
+final_workflow:
+  - upstream
+  - source archive
+  - SPEC
+  - SRPM
+  - Mock
+  - rpmlint
+  - Fedora Package Review
+  - COPR
+  - dist-git
+  - Koji
+  - Bodhi
+  - repository
 
 quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-
-validation:
-  enabled: false
-  commands: []
+  factual_accuracy: high
+  technical_depth: high
+  practical_depth: high
+  command_accuracy: high
+  fedora_focus: high
+  avoid_deprecated_practices: true
+  mark_historical_features: true
+  distinguish_rpm_from_dnf: true
+  distinguish_upstream_from_fedora_policy: true

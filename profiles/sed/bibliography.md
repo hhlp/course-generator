@@ -1,230 +1,278 @@
-# SED EN PROFUNDIDAD — Bibliografía
+# BIBLIOGRAPHY — RPM PACKAGING EN PROFUNDIDAD — FEDORA
 
-## Política bibliográfica
+## 1. RPM upstream
 
-Las referencias se organizan por función dentro del PATH.
+### RPM Documentation
 
-Las lecciones deben citar secciones o capítulos exactos solamente cuando hayan sido verificados. No se deben inventar números de página, capítulos o apartados.
+Fuente técnica principal para comportamiento y capacidades de RPM.
 
-Cuando una característica dependa de una versión concreta de GNU sed, debe verificarse contra la documentación correspondiente a esa versión.
+Usar especialmente para:
 
-## Principal
+- formato RPM y headers
+- rpm y rpmquery
+- rpmbuild y rpmspec
+- SPEC
+- macros
+- dependencies y dependency generators
+- rich dependencies
+- scriptlets y triggers
+- transacciones
+- firmas
+- internals
 
-### Daniel A. Goldman — *Definitive Guide to sed: Tutorial and Reference*
+Prioridad: MUY ALTA.
 
-EHDP Press, 2013.
+### RPM source code
 
-Referencia pedagógica principal del PATH.
+Referencia definitiva cuando sea necesario investigar detalles internos no suficientemente descritos en documentación de usuario.
 
-Uso principal:
+Áreas especialmente útiles:
 
-- introducción progresiva a sed;
-- comando `s`;
-- flags de sustitución;
-- regex utilizadas por GNU sed;
-- direcciones;
-- comandos `d` y `D`;
-- `a`, `i`, `c`;
-- `p`, `P`, `l`;
-- `r`, `R`, `w`, `W`;
-- `n`, `N`;
-- `h`, `H`, `g`, `G`, `x`;
-- labels, branching y quit;
-- comandos adicionales;
-- consejos de utilización;
-- ejemplos desde tareas breves hasta transformaciones complejas;
-- referencia de comandos, flags, direcciones y regex.
+- macro engine
+- package/header handling
+- rpmdb
+- transactions
+- dependency handling
+- signatures
+- build subsystem
 
-El libro cubre GNU sed 4.2.1. Por ello es una excelente fuente pedagógica, pero las características modernas o cuyo comportamiento pueda haber cambiado deben contrastarse con la documentación GNU actual.
+Debe emplearse selectivamente en los niveles avanzados.
 
-## Normativa
+## 2. Fedora Packaging Guidelines
 
-### The Open Group / IEEE — POSIX, `sed`
+Referencia normativa principal para paquetes destinados a Fedora.
 
-Referencia normativa para sed portable.
+Usar para:
 
-Uso principal:
+- naming y versioning
+- Release/Epoch
+- dependencies
+- file ownership
+- macros
+- scriptlets
+- libraries y devel packages
+- documentation y licenses
+- filesystem layout
+- packaging practices
 
-- sintaxis POSIX;
-- opciones requeridas;
-- editing commands;
-- direcciones;
-- BRE/ERE cuando correspondan a sed;
-- pattern space y hold space;
-- comportamiento de entrada/salida;
-- requisitos de portabilidad;
-- environment variables y locale;
-- exit status;
-- límites mínimos exigidos por el estándar;
-- rationale y diferencias históricas cuando aporten valor.
+Prioridad: MUY ALTA.
 
-Debe utilizarse la edición vigente de POSIX cuando se comprueben requisitos normativos.
+La documentación upstream de RPM explica principalmente qué puede hacer RPM; las Fedora Packaging Guidelines determinan las prácticas aceptadas o recomendadas en Fedora.
 
-### The Open Group / IEEE — POSIX Base Definitions, Regular Expressions
+## 3. Fedora Package Maintainer Docs
 
-Referencia normativa complementaria para BRE/ERE utilizadas por sed.
+Referencia principal para el workflow real del mantenedor Fedora.
 
-El PATH independiente de Regex conserva la responsabilidad de enseñar regex en profundidad. Esta referencia se usa aquí para resolver comportamiento normativo que afecte directamente a sed.
+Áreas:
 
-## Motor / implementación principal
+- package lifecycle
+- package review
+- dist-git
+- branches
+- fedpkg
+- builds
+- updates
+- mantenimiento
 
-### GNU Project — *GNU sed, a stream editor*
+Prioridad: MUY ALTA.
 
-Manual oficial de GNU sed.
+## 4. Fedora Package Review
 
-Referencia principal para el comportamiento real de GNU sed utilizado en Fedora.
+Usar la documentación oficial del proceso para estudiar requisitos de nuevos paquetes, review requests, SPEC/SRPM, rpmlint, builds de prueba y cumplimiento de las Packaging Guidelines.
 
-Uso principal:
+## 5. dist-git y fedpkg
 
-- invocación;
-- opciones de línea de comandos;
-- exit status;
-- scripts;
-- comandos;
-- sustitución;
-- direcciones;
-- regex;
-- ciclos y buffers;
-- pattern space;
-- hold space;
-- procesamiento multilínea;
-- extensiones GNU;
-- `-i`;
-- `-z`;
-- `-s`;
-- `-u`;
-- `--debug`;
-- `--sandbox`;
-- `--follow-symlinks`;
-- `--posix`;
-- comandos específicos de GNU;
-- ejemplos;
-- limitaciones;
-- diferencias GNU/POSIX.
+Usar documentación oficial de Fedora para repositories, branches, SPEC, sources, patches, fedpkg y workflow de builds. Relacionar siempre esta capa con Koji y Bodhi.
 
-Para comportamiento dependiente de versión, esta fuente tiene prioridad sobre descripciones antiguas del libro principal.
+## 6. Mock
 
-### GNU sed — `sed(1)` / documentación instalada en Fedora
+La documentación oficial de Mock es la referencia principal para:
 
-Fuentes locales:
+- buildroots
+- configuraciones
+- builds de SRPM
+- entornos limpios
+- instalación de BuildRequires
+- reproducibilidad
+- debugging
 
-```text
-man sed
-info sed
-sed --help
-sed --version
-```
+Debe utilizarse para demostrar por qué un paquete necesita construirse correctamente fuera del entorno del desarrollador.
 
-Uso principal:
+## 7. rpmlint
 
-- verificar la versión instalada;
-- comprobar opciones disponibles;
-- contrastar ejemplos con el entorno Fedora real;
-- detectar cambios respecto a documentación o libros anteriores.
+Usar documentación oficial de rpmlint para análisis de SPEC y RPM, checks, warnings y errors. Interpretar los diagnósticos junto con las Fedora Packaging Guidelines.
 
-## Profundización
+## 8. COPR
 
-### GNU sed — código fuente
+La documentación de Fedora COPR se utilizará para projects, builds, chroots, repositories, SRPM, resultados de build y pruebas de paquetes.
 
-Código fuente oficial de GNU sed.
+Debe explicarse la diferencia entre COPR y Koji.
 
-Uso principal en los bloques de internals:
+## 9. Koji
 
-- parser;
-- representación de comandos;
-- direcciones;
-- ciclo de ejecución;
-- buffers;
-- pattern space;
-- hold space;
-- sustitución;
-- integración con regex;
-- branching;
-- entrada/salida;
-- edición in-place;
-- procesamiento NUL;
-- debugging;
-- manejo de errores;
-- tests de regresión.
+La documentación oficial de Koji será la referencia principal para:
 
-El código fuente debe utilizarse como profundización y verificación, no como sustituto de la explicación pedagógica.
+- builds
+- tasks
+- tags
+- targets
+- buildroots
+- packages
+- NVR
+- inheritance
+- builders
 
-### Dale Dougherty & Arnold Robbins — *sed & awk*, 2nd Edition
+En los bloques avanzados podrá complementarse con el código fuente.
 
-O'Reilly Media.
+## 10. Bodhi
 
-Referencia complementaria para:
+Usar documentación oficial de Bodhi para:
 
-- filosofía Unix de procesamiento de texto;
-- sed dentro del ecosistema de herramientas;
-- interacción conceptual entre sed y awk;
-- problemas clásicos de transformación;
-- criterios para decidir cuándo awk resulta más apropiado.
+- updates
+- builds
+- testing
+- stable updates
+- update lifecycle
+- integración con Koji
 
-No debe utilizarse para reemplazar documentación moderna de GNU sed en características específicas de implementación.
+## 11. DNF y libdnf5
 
-## Consulta
+Usar documentación oficial de DNF/libdnf5 para comprender la capa superior a RPM:
 
-### `man sed`
+- repositorios
+- metadata
+- selección de paquetes
+- dependency resolution
+- transactions
 
-Consulta rápida de sintaxis y opciones de GNU sed instalado.
+Debe evitarse atribuir a RPM operaciones realizadas por DNF, libdnf5 o libsolv.
 
-### `info sed`
+## 12. libsolv
 
-Consulta navegable de la documentación GNU disponible localmente.
+Usar documentación y código fuente de libsolv para los bloques avanzados sobre:
 
-### POSIX `sed`
+- Pool
+- Repo
+- Solvable
+- Reldep
+- jobs
+- dependency rules
+- SAT
+- UNSAT
+- solution selection
 
-Consulta de comportamiento portable y resolución de dudas normativas.
+Prioridad: ALTA en los bloques dedicados al solver.
 
-### GNU sed manual
+## 13. createrepo_c
 
-Consulta de comportamiento GNU, extensiones, ejemplos y detalles de implementación visibles para el usuario.
+Referencia para repository metadata, repodata, creación y regeneración de repositorios.
 
-## Fuentes auxiliares
+Debe utilizarse directamente en laboratorios de repositorios RPM.
 
-### sed FAQ / sed community resources
+## 14. Documentación general de Fedora
 
-Pueden utilizarse para algoritmos históricos, ejemplos clásicos y contexto, siempre que las afirmaciones técnicas importantes se contrasten con POSIX o GNU sed cuando corresponda.
+Utilizar como referencia para integración del packaging con Fedora, especialmente DNF, repositorios, package management, claves, seguridad e infraestructura.
 
-### Documentación de Fedora
+## 15. Manual pages
 
-Debe utilizarse cuando una lección dependa específicamente de:
+Las páginas man instaladas en Fedora son fuentes primarias de consulta.
 
-- empaquetado de sed en Fedora;
-- versión disponible;
-- integración con RPM;
-- convenciones o comportamiento específico del sistema Fedora.
+Especialmente:
 
-## Jerarquía de fuentes
+- `man rpm`
+- `man rpmbuild`
+- `man rpmspec`
 
-Cuando las fuentes parezcan discrepar, utilizar esta jerarquía según el tipo de afirmación:
+Además deben utilizarse `--help`, `rpm --eval` y `rpm --showrc` para investigar el comportamiento real de las herramientas instaladas.
 
-1. POSIX vigente para afirmar qué es portable o normativamente requerido.
-2. Manual/documentación de la versión actual de GNU sed para comportamiento GNU.
-3. Código fuente y tests de GNU sed para internals o verificación de implementación.
-4. *Definitive Guide to sed* para explicación pedagógica y organización conceptual.
-5. *sed & awk* y otras referencias para profundización, comparación y contexto histórico.
+## 16. Inspección práctica del sistema
 
-No debe interpretarse esta jerarquía como que POSIX describe todo el comportamiento GNU: responden a preguntas diferentes.
+El propio Fedora constituye una fuente experimental.
 
-## Correspondencia con 📚 LECTURA
+Usar, entre otros:
 
-Cada lección utilizará, cuando corresponda:
+- `rpm -q`
+- `rpm -qi`
+- `rpm -ql`
+- `rpm -qf`
+- `rpm --requires`
+- `rpm --provides`
+- `rpm --scripts`
+- `rpm --triggers`
+- `rpm -V`
+- `rpm --eval`
+- `rpm --showrc`
 
-**Principal:**
-Daniel A. Goldman — *Definitive Guide to sed: Tutorial and Reference*.
+Los resultados deben correlacionarse con la documentación.
 
-**Normativa:**
-POSIX `sed` y las secciones normativas relacionadas.
+## 17. SPEC reales de Fedora
 
-**Motor:**
-GNU sed manual y documentación de la versión instalada.
+Los SPEC mantenidos por Fedora son ejemplos esenciales para estudiar macros, subpackages, BuildRequires, Sources, Patches, fases de build, `%files` y patrones reales.
 
-**Profundización:**
-Código fuente GNU sed, *sed & awk* u otra referencia técnica apropiada.
+No sustituyen las Packaging Guidelines: un paquete existente puede contener decisiones históricas, excepciones o deuda técnica.
 
-**Consulta:**
-`man sed`, `info sed`, manual GNU y documentación Fedora.
+## 18. Código fuente de componentes relacionados
 
-No es obligatorio forzar una referencia de todas las categorías cuando una categoría no aporte nada a la lección. Las referencias exactas deben estar verificadas antes de incluir capítulos, secciones o páginas concretas.
+Para internals pueden consultarse selectivamente:
+
+- RPM
+- libsolv
+- libdnf5
+- DNF
+- Mock
+- Koji
+- Bodhi
+- createrepo_c
+
+El objetivo es comprender arquitectura y comportamiento, no transformar todo el PATH en un curso de desarrollo de estas herramientas.
+
+## 19. Jerarquía de fuentes
+
+Para comportamiento de RPM:
+
+1. RPM upstream documentation.
+2. Manual pages de la versión instalada.
+3. Código fuente RPM.
+4. Experimentación controlada.
+
+Para política de Fedora Packaging:
+
+1. Fedora Packaging Guidelines.
+2. Fedora Package Maintainer documentation.
+3. Documentación de Fedora Infrastructure.
+4. Paquetes y SPEC reales de Fedora.
+
+Para resolución de dependencias:
+
+1. libsolv documentation.
+2. libsolv source code.
+3. libdnf5/DNF documentation.
+4. Experimentación con repositorios reales.
+
+Para infraestructura:
+
+1. Documentación oficial del proyecto correspondiente.
+2. Documentación Fedora.
+3. Código fuente cuando sea necesario profundizar.
+
+## 20. Fuentes históricas y prácticas obsoletas
+
+RPM posee una historia extensa y numerosos SPEC públicos contienen técnicas antiguas.
+
+Deben reconocerse y marcarse explícitamente cuando aparezcan, incluyendo ejemplos como el tag histórico `BuildRoot:`, construcciones SPEC antiguas, macros reemplazadas por alternativas modernas y scriptlets evitables mediante mecanismos actuales.
+
+Comprender una práctica histórica no implica recomendarla.
+
+## 21. Política bibliográfica
+
+No generar una lección importante basándose ciegamente en una única fuente.
+
+Cuando exista conflicto entre documentación genérica antigua y las prácticas actuales de Fedora, dar prioridad a la documentación actual de Fedora para política de packaging.
+
+Para comportamiento interno de RPM, priorizar RPM upstream.
+
+Combinar documentación con experimentación real en Fedora.
+
+Objetivo:
+
+precisión técnica + prácticas actuales + profundidad + comprensión interna + experiencia práctica.

@@ -1,47 +1,217 @@
-name: container
-title: CONTAINER (docker podman scopeo buildha) EN PROFUNDIDAD — FEDORA
-platform: Fedora Linux
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
-lesson_structure:
-  objective:
-    required: true
-    position: first
-  reading:
-    required: true
-  lab:
-    required: false
-  common_errors:
-    required: false
-  important_idea:
-    required: false
-  remember:
-    required: true
-    position: last
-    min_items: 3
-    max_items: 7
-quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  audit_before_save: true
-  repair_on_fail: true
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides: {}
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-validation:
-  enabled: false
-  commands: []
+name: podman-docker-buildah-skopeo
+title: "CONTENEDORES EN PROFUNDIDAD — PODMAN + DOCKER + BUILDAH + SKOPEO"
+language: es
+platform:
+  primary: Fedora
+  family:
+    - Fedora
+    - RHEL
+    - Linux
+level:
+  start: cero
+  end: experto
+
+purpose: >
+  Crear un recorrido completo y progresivo desde los fundamentos de los
+  contenedores Linux hasta la administración, construcción, transporte,
+  seguridad, automatización, troubleshooting e internals de Podman, Docker,
+  Buildah y Skopeo. El curso debe enseñar primero el modelo común que comparten
+  las herramientas —Linux, OCI, imágenes, layers, registries, storage,
+  networking y runtimes— y después las responsabilidades y diferencias de
+  cada componente.
+
+scope:
+  primary:
+    - Linux containers
+    - OCI
+    - Podman
+    - Docker
+    - Buildah
+    - Skopeo
+    - Containerfile
+    - Dockerfile
+    - container images
+    - registries
+    - rootless containers
+    - storage
+    - networking
+    - security
+    - systemd
+    - Quadlet
+    - troubleshooting
+    - automation
+    - CI/CD
+  supporting:
+    - namespaces
+    - cgroups v2
+    - Linux capabilities
+    - seccomp
+    - SELinux
+    - OverlayFS
+    - crun
+    - runc
+    - conmon
+    - containerd
+    - containers/image
+    - containers/storage
+    - containers/common
+    - Netavark
+    - Aardvark DNS
+    - firewalld
+    - nftables
+    - Kubernetes concepts
+    - CRI
+    - CRI-O
+  out_of_scope_as_primary_subject:
+    - Kubernetes administration in depth
+    - OpenShift administration in depth
+    - Docker Swarm in depth
+    - application programming frameworks
+    - cloud-provider-specific orchestration
+    - deep application development
+
+pedagogy:
+  mandatory_opening: "🎯 OBJETIVO"
+  mandatory_closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points:
+    min: 3
+    max: 7
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  style:
+    - profundo
+    - progresivo
+    - didáctico
+    - técnico
+    - orientado a administración real
+    - basado principalmente en Fedora
+    - explicar el porqué antes del comando
+    - relacionar constantemente las cuatro herramientas
+    - evitar resúmenes superficiales
+    - no asumir conocimientos previos al inicio del PATH
+
+teaching_rules:
+  - "Explicar primero el concepto común y después cómo lo implementan Podman, Docker, Buildah y Skopeo."
+  - "No presentar Podman y Docker como tecnologías completamente separadas: comparten el modelo OCI y gran parte de la experiencia de usuario."
+  - "Distinguir con precisión imagen, contenedor, runtime, engine, registry, repository, tag y digest."
+  - "Explicar Buildah como herramienta especializada en construcción y manipulación de imágenes."
+  - "Explicar Skopeo como herramienta especializada en inspección, copia, sincronización y transporte de imágenes sin ejecutar contenedores."
+  - "Relacionar Podman, Buildah y Skopeo con containers/image y containers/storage cuando corresponda."
+  - "Explicar la arquitectura Docker: Docker CLI, dockerd, containerd y runc cuando sea relevante."
+  - "Priorizar rootless Podman en Fedora, sin omitir rootful."
+  - "Tratar SELinux como parte normal del funcionamiento de contenedores en Fedora, no como un apéndice."
+  - "Usar cgroups v2 como modelo principal."
+  - "Incluir comandos reales, inspección y diagnóstico."
+  - "Comparar comandos equivalentes Podman/Docker cuando ayude al aprendizaje."
+  - "Mostrar también los casos donde la compatibilidad Podman/Docker no es idéntica."
+  - "Diferenciar Containerfile y Dockerfile a nivel de compatibilidad y ecosistema."
+  - "Usar digests para explicar identidad inmutable de imágenes."
+  - "Cubrir imágenes multi-arquitectura, manifests e índices OCI."
+  - "Cubrir systemd y Quadlet como integración de producción en Fedora."
+  - "Relacionar el PATH con Kubernetes únicamente como puente conceptual; Kubernetes profundo pertenece a su propio PATH."
+  - "Cada laboratorio debe reforzar directamente los conceptos de la lección."
+  - "En troubleshooting, seguir una metodología reproducible: síntoma → capa → evidencia → hipótesis → prueba → corrección."
+
+command_families:
+  podman:
+    - podman
+  docker:
+    - docker
+    - dockerd
+  buildah:
+    - buildah
+  skopeo:
+    - skopeo
+  linux:
+    - ps
+    - lsns
+    - nsenter
+    - unshare
+    - mount
+    - findmnt
+    - ip
+    - ss
+    - nft
+    - systemctl
+    - journalctl
+    - ausearch
+    - getenforce
+    - ls
+    - stat
+    - jq
+
+configuration_focus:
+  containers_stack:
+    - /etc/containers/containers.conf
+    - /etc/containers/registries.conf
+    - /etc/containers/registries.conf.d/
+    - /etc/containers/storage.conf
+    - /etc/containers/policy.json
+    - /etc/containers/registries.d/
+    - ~/.config/containers/
+  docker:
+    - /etc/docker/daemon.json
+    - ~/.docker/config.json
+  identity_mapping:
+    - /etc/subuid
+    - /etc/subgid
+
+reference_priority:
+  - official_documentation
+  - standards_and_specs
+  - primary_books
+  - complementary_books
+  - upstream_source_code
+  - distribution_documentation
+
+books:
+  primary:
+    - "Podman for DevOps — Alessandro Arrichiello, Gianni Salinetti"
+    - "Podman in Action — Daniel Walsh"
+    - "The Ultimate Docker Container Book — Gabriel N. Schenker"
+  use:
+    podman_buildah_skopeo:
+      - "Podman for DevOps"
+      - "Podman in Action"
+    docker:
+      - "The Ultimate Docker Container Book"
+    rootless_security_systemd:
+      - "Podman in Action"
+      - "Podman for DevOps"
+    general_container_concepts:
+      - "The Ultimate Docker Container Book"
+      - "Podman for DevOps"
+
+lesson_requirements:
+  include_when_relevant:
+    - conceptual model
+    - architecture
+    - command syntax
+    - real examples
+    - Fedora-specific behavior
+    - configuration paths
+    - inspection techniques
+    - security implications
+    - Podman/Docker comparison
+    - Buildah/Skopeo relationship
+    - troubleshooting
+    - laboratory
+  avoid:
+    - unexplained command dumps
+    - treating Docker aliases as proof of complete compatibility
+    - obsolete Docker-only assumptions
+    - assuming root execution when rootless is sufficient
+    - hiding SELinux problems by recommending disabling SELinux
+    - recommending privileged containers as a normal fix
+    - confusing image tags with immutable image identity
+
+final_project:
+  name: container-debugger
+  goal: >
+    Implementar una herramienta de diagnóstico capaz de detectar y analizar
+    Podman o Docker, inventariar imágenes, contenedores, pods, redes, volúmenes,
+    storage, namespaces, cgroups, mounts, capacidades, SELinux, puertos,
+    registries y logs, y utilizar Buildah y Skopeo para ampliar el diagnóstico
+    de imágenes y manifests.
