@@ -1,0 +1,662 @@
+SCRUM — LEARNING PATH 0 → EXPERTO
+
+HITOS: PSM I → PSM II → PSM III
+
+0. Fundamentos de Agile, complejidad y Scrum
+0.1 qué es Agile
+0.2 Agile Manifesto: valores
+0.3 Agile Manifesto: principios
+0.4 desarrollo iterativo
+0.5 desarrollo incremental
+0.6 iterativo frente a incremental
+0.7 entrega incremental de valor
+0.8 feedback loops
+0.9 incertidumbre y complejidad
+0.10 riesgo
+0.11 planificación predictiva frente a adaptativa
+0.12 Lean Thinking
+0.13 flujo, WIP y desperdicio
+0.14 Kanban: conceptos necesarios
+0.15 Agile frente a Scrum
+0.16 Scrum frente a Kanban
+0.17 Scrum frente a gestión tradicional
+0.18 cuándo Scrum es apropiado
+0.19 laboratorio: reconocer trabajo complejo
+
+1. Scrum: teoría, propósito y valores
+1.1 origen y evolución de Scrum
+1.2 Scrum Guide y su carácter normativo
+1.3 Scrum como framework
+1.4 Scrum no es una metodología prescriptiva
+1.5 empirismo
+1.6 transparencia
+1.7 inspección
+1.8 adaptación
+1.9 Lean Thinking en Scrum
+1.10 Commitment
+1.11 Focus
+1.12 Openness
+1.13 Respect
+1.14 Courage
+1.15 relación entre valores y empirismo
+1.16 anti-patrones contra los Scrum Values
+1.17 laboratorio: analizar decisiones desde empirismo y valores
+
+2. Scrum Team y accountabilities
+2.1 Scrum Team
+2.2 unidad fundamental de Scrum
+2.3 tamaño del Scrum Team
+2.4 cross-functional
+2.5 self-managing
+2.6 responsabilidad colectiva
+2.7 Product Owner: accountability
+2.8 maximización del valor
+2.9 Product Backlog Management
+2.10 Product Goal
+2.11 Developers: accountability
+2.12 crear el Sprint Backlog
+2.13 adaptar diariamente el plan
+2.14 calidad y profesionalismo
+2.15 Scrum Master: accountability
+2.16 establecer Scrum
+2.17 efectividad del Scrum Team
+2.18 servicio al Scrum Team
+2.19 servicio al Product Owner
+2.20 servicio a la organización
+2.21 Scrum Master frente a project manager y team lead
+2.22 laboratorio: analizar accountabilities
+
+3. Eventos Scrum
+3.1 Sprint como contenedor
+3.2 duración del Sprint
+3.3 cambios durante el Sprint
+3.4 calidad durante el Sprint
+3.5 cancelación del Sprint
+3.6 Sprint Planning
+3.7 Sprint Planning: Why
+3.8 Sprint Planning: What
+3.9 Sprint Planning: How
+3.10 Sprint Goal
+3.11 Daily Scrum
+3.12 Daily Scrum y adaptación del plan
+3.13 Sprint Review
+3.14 stakeholders y feedback
+3.15 Sprint Retrospective
+3.16 mejora de calidad y efectividad
+3.17 timeboxes
+3.18 inspección y adaptación en los eventos
+3.19 anti-patrones de eventos
+3.20 laboratorio: simular un Sprint
+
+4. Artifacts y commitments
+4.1 Product Backlog
+4.2 Product Backlog emergente
+4.3 Product Backlog Items
+4.4 ordering
+4.5 refinement
+4.6 Sprint Backlog
+4.7 Sprint Backlog como plan accionable
+4.8 Increment
+4.9 Increment usable
+4.10 múltiples Increments
+4.11 release antes del Sprint Review
+4.12 commitments
+4.13 Product Goal como commitment
+4.14 Sprint Goal como commitment
+4.15 Definition of Done como commitment
+4.16 Artifact frente a Commitment
+4.17 laboratorio
+
+5. Definition of Done — DoD en profundidad
+5.1 qué es Definition of Done
+5.2 DoD como commitment del Increment
+5.3 Done y transparencia
+5.4 Done y calidad
+5.5 Increment usable
+5.6 estándares organizacionales
+5.7 creación de la DoD
+5.8 Developers y DoD
+5.9 múltiples Scrum Teams y DoD compartida
+5.10 compilación y build
+5.11 code review
+5.12 unit tests
+5.13 integration tests
+5.14 functional y regression tests
+5.15 security testing
+5.16 performance testing
+5.17 documentación
+5.18 integración
+5.19 deployment
+5.20 compliance
+5.21 observabilidad
+5.22 trabajo Not Done
+5.23 Undone Work
+5.24 DoD frente a Acceptance Criteria
+5.25 DoD frente a Definition of Ready
+5.26 DoD frente a checklist
+5.27 DoD y deuda técnica
+5.28 DoD y CI/CD
+5.29 DoD y DevOps
+5.30 evolución de la DoD
+5.31 Retrospective y mejora de la DoD
+5.32 anti-patrón: bajar calidad para terminar
+5.33 anti-patrón: hardening Sprint
+5.34 anti-patrón: testing Sprint
+5.35 laboratorio: construir y evolucionar una DoD
+
+6. Product Backlog, User Stories, refinement y slicing
+6.1 Product Goal y estrategia
+6.2 Product Backlog Management
+6.3 Product Backlog Items
+6.4 refinement continuo
+6.5 refinement no es evento Scrum
+6.6 requisitos emergentes
+6.7 User Stories como práctica opcional
+6.8 Epic y Feature como prácticas opcionales
+6.9 formato As a / I want / So that
+6.10 3 Cs: Card, Conversation, Confirmation
+6.11 INVEST
+6.12 Acceptance Criteria
+6.13 Given/When/Then
+6.14 Acceptance Criteria frente a DoD
+6.15 Definition of Ready como práctica opcional
+6.16 riesgos de usar DoR como gate
+6.17 slicing
+6.18 vertical slicing
+6.19 horizontal slicing y sus riesgos
+6.20 spikes
+6.21 dependencias
+6.22 ordenación por valor, riesgo y aprendizaje
+6.23 laboratorio: refinar y dividir PBIs
+
+7. Estimación, sizing, Planning Poker y Story Points
+7.1 estimación frente a sizing
+7.2 estimación frente a commitment
+7.3 estimación frente a forecasting
+7.4 incertidumbre, complejidad y riesgo
+7.5 estimación absoluta
+7.6 estimación relativa
+7.7 Story Points
+7.8 qué NO es un Story Point
+7.9 Story Points frente a horas
+7.10 escalas Fibonacci y Fibonacci modificada
+7.11 Planning Poker
+7.12 revelación simultánea y anchoring
+7.13 discusión de extremos y convergencia
+7.14 Planning Poker remoto
+7.15 Affinity Estimation
+7.16 T-Shirt Sizing
+7.17 Bucket System
+7.18 Three-Point Estimation
+7.19 PERT
+7.20 Wideband Delphi
+7.21 Dot Voting y Magic Estimation
+7.22 Reference Stories
+7.23 Triangulation
+7.24 No Estimates
+7.25 slicing como alternativa a estimar
+7.26 Velocity
+7.27 velocity histórica y variabilidad
+7.28 velocity no es productividad
+7.29 no comparar velocity entre equipos
+7.30 Story Point inflation
+7.31 Goodhart's Law
+7.32 Capacity frente a Velocity
+7.33 forecast frente a commitment
+7.34 laboratorio: Planning Poker
+7.35 laboratorio: comparar técnicas de sizing
+7.36 laboratorio: forecasting sin Story Points
+
+8. Charts, métricas, flujo y visualización
+8.1 Scrum no prescribe charts concretos
+8.2 métricas al servicio del empirismo
+8.3 information radiators
+8.4 Scrum Board como práctica opcional
+8.5 Sprint Burndown
+8.6 Product/Release Burndown
+8.7 Burnup Chart
+8.8 Burndown frente a Burnup
+8.9 Velocity Chart
+8.10 Cumulative Flow Diagram
+8.11 WIP
+8.12 Throughput
+8.13 Lead Time
+8.14 Cycle Time
+8.15 Control Chart
+8.16 Cycle Time Scatterplot
+8.17 histograma de Cycle Time
+8.18 Aging Work in Progress Chart
+8.19 Work Item Age
+8.20 Throughput Run Chart
+8.21 WIP Chart
+8.22 Flow Efficiency
+8.23 Sprint Goal progress
+8.24 Product Goal progress
+8.25 dashboards para stakeholders
+8.26 output frente a outcome
+8.27 vanity metrics
+8.28 métricas como targets
+8.29 charts engañosos
+8.30 selección del chart según la pregunta
+8.31 laboratorio: Burndown y Burnup
+8.32 laboratorio: CFD
+8.33 laboratorio: Cycle Time y Aging WIP
+8.34 laboratorio: dashboard Scrum
+
+9. Forecasting probabilístico y Evidence-Based Management
+9.1 forecasting empírico
+9.2 historical data
+9.3 forecasting basado en throughput
+9.4 forecasting basado en cycle time
+9.5 Monte Carlo: concepto
+9.6 Monte Carlo: cuándo terminaremos
+9.7 Monte Carlo: cuánto terminaremos
+9.8 probabilidades y percentiles
+9.9 Service Level Expectation
+9.10 Evidence-Based Management
+9.11 Current Value
+9.12 Unrealized Value
+9.13 Time-to-Market
+9.14 Ability-to-Innovate
+9.15 outcomes frente a outputs
+9.16 experimentos y validación
+9.17 laboratorio: Monte Carlo
+9.18 laboratorio: métricas EBM
+
+10. Calidad, deuda técnica, DevOps y profesionalismo
+10.1 calidad incorporada
+10.2 deuda técnica
+10.3 technical excellence
+10.4 automatización
+10.5 CI
+10.6 CD
+10.7 testing pyramid
+10.8 pairing y mobbing
+10.9 code review
+10.10 refactoring
+10.11 trunk-based development: introducción
+10.12 feature flags
+10.13 observabilidad
+10.14 seguridad integrada
+10.15 release frente a deployment
+10.16 frecuencia de feedback
+10.17 laboratorio: diseñar quality gates compatibles con Scrum
+
+11. HITO PSM I — dominio fundamental
+11.1 mapa completo del Scrum Guide
+11.2 framework desde memoria
+11.3 accountabilities
+11.4 events
+11.5 artifacts
+11.6 commitments
+11.7 empiricism
+11.8 Scrum Values
+11.9 Done
+11.10 self-management
+11.11 preguntas conceptuales
+11.12 preguntas situacionales
+11.13 mitos y trampas frecuentes
+11.14 Scrum Open Assessment
+11.15 simulacro PSM I
+11.16 análisis de errores
+11.17 repaso final PSM I
+
+12. Scrum Master avanzado — posturas y liderazgo
+12.1 Scrum Master stance
+12.2 true leadership
+12.3 servant leadership
+12.4 liderazgo emergente
+12.5 influencia sin autoridad
+12.6 intervención frente a no intervención
+12.7 teaching
+12.8 mentoring
+12.9 facilitation
+12.10 coaching
+12.11 consulting
+12.12 elegir postura según contexto
+12.13 evitar dependencia del Scrum Master
+12.14 ética y límites
+12.15 laboratorio
+
+13. Self-management, equipos y dinámicas humanas
+13.1 autonomía y accountability
+13.2 empowerment
+13.3 ownership
+13.4 toma de decisiones
+13.5 confianza
+13.6 seguridad psicológica
+13.7 conflicto productivo
+13.8 escalada de conflicto
+13.9 feedback efectivo
+13.10 conversaciones difíciles
+13.11 resistencia
+13.12 madurez del equipo
+13.13 equipos distribuidos y remotos
+13.14 disfunciones de equipo
+13.15 laboratorio
+
+14. Facilitación profesional
+14.1 qué es facilitación
+14.2 neutralidad
+14.3 propósito y diseño
+14.4 divergencia y convergencia
+14.5 participación inclusiva
+14.6 decision-making
+14.7 consenso frente a consentimiento
+14.8 facilitación de conflictos
+14.9 Liberating Structures
+14.10 retrospectivas avanzadas
+14.11 facilitación remota
+14.12 workshops
+14.13 laboratorio
+
+15. Retrospectives en profundidad y antipatterns
+15.1 propósito de la Sprint Retrospective
+15.2 seguridad y apertura
+15.3 generar insights
+15.4 decidir mejoras accionables
+15.5 seguimiento de acciones
+15.6 retrospective fatigue
+15.7 ausencia de preparación
+15.8 dominación de voces
+15.9 silencio y apatía
+15.10 blame game
+15.11 action items sin owner
+15.12 acciones imposibles
+15.13 repetir siempre el mismo formato
+15.14 retrospectiva como terapia
+15.15 retrospectiva sin datos
+15.16 retrospectiva cancelada
+15.17 Retrospectives Antipatterns: patrones de diagnóstico
+15.18 técnicas de retrospectiva
+15.19 laboratorio: rescatar una retrospectiva disfuncional
+
+16. Coaching y mentoring
+16.1 coaching frente a mentoring
+16.2 coaching stance
+16.3 escucha activa
+16.4 preguntas poderosas
+16.5 observación
+16.6 feedback
+16.7 awareness y ownership
+16.8 coaching individual
+16.9 team coaching
+16.10 coaching del Product Owner
+16.11 coaching de Developers
+16.12 coaching de managers
+16.13 mentoring de Scrum Masters
+16.14 comunidades de práctica
+16.15 límites éticos
+16.16 laboratorio
+
+17. Product Ownership y valor para Scrum Masters
+17.1 visión y Product Goal
+17.2 valor como hipótesis
+17.3 stakeholders
+17.4 customers y users
+17.5 Product Backlog ordering
+17.6 product discovery
+17.7 hipótesis y experimentos
+17.8 outcomes
+17.9 métricas de producto
+17.10 feedback de clientes
+17.11 forecasting y release decisions
+17.12 Scrum Master ayudando al Product Owner
+17.13 límites de la intervención
+17.14 laboratorio
+
+18. Organización, impedimentos y cambio
+18.1 Scrum Team como parte de un sistema
+18.2 organizational impediments
+18.3 silos
+18.4 departamentos funcionales
+18.5 resource utilization
+18.6 multitasking
+18.7 dependencias
+18.8 governance
+18.9 management en Scrum
+18.10 incentivos
+18.11 cultura
+18.12 resistencia al cambio
+18.13 transformación organizacional
+18.14 cambio emergente
+18.15 pensamiento sistémico
+18.16 laboratorio
+
+19. Scrum con Kanban y flow metrics
+19.1 Kanban complementando Scrum
+19.2 visualizar workflow
+19.3 limitar WIP
+19.4 gestionar activamente trabajo en progreso
+19.5 inspeccionar y adaptar workflow
+19.6 Cycle Time
+19.7 Work Item Age
+19.8 Throughput
+19.9 WIP
+19.10 SLE
+19.11 CFD avanzado
+19.12 políticas explícitas
+19.13 flow-based forecasting
+19.14 cuellos de botella
+19.15 laboratorio
+
+20. Anti-patterns y Zombie Scrum
+20.1 qué es Zombie Scrum
+20.2 Scrum mecánico sin propósito
+20.3 ScrumBut
+20.4 Scrum Master secretario
+20.5 Scrum Master policía
+20.6 Scrum Master project manager
+20.7 Daily como status meeting
+20.8 Sprint Review como demo
+20.9 Retrospective sin adaptación
+20.10 Product Owner proxy
+20.11 Product Owner committee
+20.12 Sprint Zero
+20.13 hardening Sprint
+20.14 velocity como objetivo
+20.15 estimaciones como compromisos
+20.16 equipos sin autonomía
+20.17 Increment no usable
+20.18 baja transparencia
+20.19 recuperación de Zombie Scrum
+20.20 laboratorio: diagnóstico y plan de recuperación
+
+21. HITO PSM II — aplicación avanzada
+21.1 repaso PSM I
+21.2 escenarios avanzados
+21.3 coaching
+21.4 facilitation
+21.5 mentoring
+21.6 self-management
+21.7 conflictos
+21.8 Product Ownership
+21.9 stakeholders
+21.10 organizational impediments
+21.11 Scrum Values en escenarios
+21.12 empirismo aplicado
+21.13 métricas y evidencia
+21.14 análisis de alternativas
+21.15 simulacro PSM II
+21.16 análisis de errores
+21.17 repaso final PSM II
+
+22. Scrum Master experto y pensamiento sistémico
+22.1 Scrum mastery
+22.2 principios frente a reglas
+22.3 systems thinking
+22.4 complex adaptive systems
+22.5 causalidad y emergencia
+22.6 liderazgo adaptativo
+22.7 ética profesional
+22.8 accountability
+22.9 influencia organizacional
+22.10 intervención mínima efectiva
+22.11 laboratorio
+
+23. Teaching avanzado
+23.1 teaching frente a coaching
+23.2 enseñar Scrum
+23.3 enseñar empirismo
+23.4 enseñar Scrum Values
+23.5 enseñar self-management
+23.6 enseñar Product Ownership
+23.7 misconceptions
+23.8 desmontar mitos
+23.9 aprendizaje experiencial
+23.10 laboratorio
+
+24. Coaching organizacional avanzado
+24.1 systemic coaching
+24.2 organizational coaching
+24.3 coaching executives
+24.4 resistance
+24.5 organizational awareness
+24.6 cambio sostenible
+24.7 experimentos organizacionales
+24.8 límites éticos
+24.9 laboratorio
+
+25. Product Value y EBM avanzado
+25.1 valor como hipótesis
+25.2 customer y stakeholder value
+25.3 Current Value
+25.4 Unrealized Value
+25.5 Time-to-Market
+25.6 Ability-to-Innovate
+25.7 Key Value Measures
+25.8 experimentos
+25.9 validación
+25.10 forecasting bajo incertidumbre
+25.11 release decisions
+25.12 evidencia frente a opinión
+25.13 laboratorio
+
+26. Escalado: fundamentos antes de Nexus
+26.1 por qué escalar
+26.2 por qué no escalar prematuramente
+26.3 un producto y múltiples equipos
+26.4 single Product Owner
+26.5 single Product Backlog
+26.6 Product Goal compartido
+26.7 Definition of Done compartida
+26.8 integración continua
+26.9 dependencias entre equipos
+26.10 team topology y arquitectura
+26.11 descaling
+26.12 anti-patrones de escalado
+26.13 laboratorio
+
+27. Nexus Framework for Scaling Scrum
+27.1 Nexus: propósito y teoría
+27.2 Nexus y Scrum
+27.3 tres a nueve Scrum Teams
+27.4 single Product Owner y Product Backlog
+27.5 Nexus Integration Team
+27.6 Cross-Team Refinement
+27.7 Nexus Sprint Planning
+27.8 Nexus Sprint Goal
+27.9 Nexus Daily Scrum
+27.10 Nexus Sprint Review
+27.11 Nexus Sprint Retrospective
+27.12 Nexus Sprint Backlog
+27.13 Integrated Increment
+27.14 Definition of Done en Nexus
+27.15 transparencia de dependencias
+27.16 minimizar dependencias
+27.17 integración
+27.18 distributed teams
+27.19 Nexus anti-patterns
+27.20 laboratorio: diseñar y operar un Nexus
+
+28. Casos complejos de Scrum Master
+28.1 Product Owner ausente
+28.2 Product Owner dominante
+28.3 Developers dependientes
+28.4 manager controlador
+28.5 stakeholders interfiriendo
+28.6 múltiples equipos
+28.7 dependencias externas
+28.8 baja calidad
+28.9 deuda técnica
+28.10 ausencia de transparencia
+28.11 Scrum mecánico
+28.12 organización orientada a proyectos
+28.13 equipos componentizados
+28.14 deadlines
+28.15 presión por velocity
+28.16 conflicto ejecutivo
+28.17 transformación fallida
+28.18 laboratorio integral
+
+29. Argumentación profesional y PSM III English
+29.1 responder desde principios
+29.2 separar hechos de supuestos
+29.3 identificar información insuficiente
+29.4 contextualizar decisiones
+29.5 justificar intervenciones
+29.6 relacionar acciones con empirismo
+29.7 relacionar acciones con Scrum Values
+29.8 trade-offs
+29.9 respuestas concisas
+29.10 argumentación escrita
+29.11 escenarios ambiguos
+29.12 terminología Scrum oficial en inglés
+29.13 accountability y commitment en inglés
+29.14 self-management y empiricism en inglés
+29.15 coaching, mentoring, teaching y facilitation en inglés
+29.16 organizational impediments en inglés
+29.17 ejercicios escritos
+29.18 revisión crítica de respuestas
+
+30. HITO PSM III — dominio distinguido
+30.1 repaso integral PSM I
+30.2 repaso integral PSM II
+30.3 Scrum desde primeros principios
+30.4 Scrum Values en escenarios complejos
+30.5 empirismo
+30.6 self-management
+30.7 coaching
+30.8 mentoring
+30.9 teaching
+30.10 facilitation
+30.11 Product Value
+30.12 stakeholders
+30.13 organizational change
+30.14 casos ambiguos
+30.15 respuestas escritas en inglés
+30.16 justificación de decisiones
+30.17 escenarios organizacionales
+30.18 simulacro PSM III
+30.19 revisión crítica
+30.20 repaso final PSM III
+
+31. Proyecto final — Scrum Master Expert
+31.1 definir un producto complejo
+31.2 formar Scrum Team
+31.3 establecer Product Goal
+31.4 construir Product Backlog
+31.5 crear Definition of Done
+31.6 refinement y slicing
+31.7 sizing mediante Planning Poker
+31.8 Sprint Planning
+31.9 ejecutar Sprint
+31.10 Daily Scrum
+31.11 gestionar impedimentos
+31.12 conflicto interno
+31.13 coaching del equipo
+31.14 coaching del Product Owner
+31.15 Sprint Review
+31.16 Sprint Retrospective
+31.17 charts y flow metrics
+31.18 forecasting probabilístico
+31.19 segundo Scrum Team
+31.20 dependencias
+31.21 escalar con Nexus
+31.22 impedimento organizacional
+31.23 intervención con management
+31.24 organizational coaching
+31.25 evaluación mediante Scrum Values
+31.26 evaluación mediante empirismo
+31.27 defensa escrita de decisiones en inglés
+31.28 retrospectiva integral del sistema

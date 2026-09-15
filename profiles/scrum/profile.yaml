@@ -1,0 +1,48 @@
+name: scrum
+title: "SCRUM — 0 A EXPERTO"
+description: >
+  Ruta profunda de Scrum desde fundamentos hasta dominio profesional,
+  separada por los hitos Professional Scrum Master I, II y III, e incluyendo
+  prácticas complementarias de producto, estimación, métricas, flujo,
+  retrospectivas, coaching, facilitación y escalado con Nexus.
+language: es
+platform: general
+level: zero-to-expert
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+course:
+  path: initial.txt
+  milestones:
+    - id: psm-i
+      after_block: 11
+      name: "Professional Scrum Master I"
+    - id: psm-ii
+      after_block: 21
+      name: "Professional Scrum Master II"
+    - id: psm-iii
+      after_block: 30
+      name: "Professional Scrum Master III"
+    - id: expert-project
+      after_block: 31
+      name: "Scrum Master Expert — Proyecto final"
+
+pedagogy:
+  required_opening: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points_min: 3
+  closing_key_points_max: 7
+  prefer_labs: true
+  prefer_common_errors: true
+  prefer_key_idea: true
+
+scope:
+  normative_scrum_source: "The Scrum Guide"
+  distinguish_scrum_from_complementary_practices: true
+  include_real_world_practices: true
+  include_exam_preparation: true
+  include_english_written_reasoning_for_psm_iii: true
+  include_nexus: true
