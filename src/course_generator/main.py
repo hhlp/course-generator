@@ -9,7 +9,7 @@ from .config_loader import load_profile, load_profile_context, load_prompt
 from .inspection import inspection_data, render_inspection, render_prompt
 from .openai_client import OpenAIRequestError
 from .output import write_index, write_manifest, zip_block
-from .parser import neighbors, parse_lessons, split_initial
+from .parser import PathParseError, neighbors, parse_lessons, split_initial
 from .stages import PipelineStages
 from .state import ProjectRegistry, StateStore
 
@@ -103,7 +103,7 @@ def _write_text(path: Path, text: str) -> None:
     print(f"Guardado: {path}")
 
 
-def main() -> None:
+def _main() -> None:
     args = build_parser().parse_args()
     if args.neighbor_radius < 0:
         raise SystemExit("--neighbor-radius debe ser >= 0.")
@@ -230,21 +230,18 @@ def main() -> None:
     client = CourseOpenAI()
     stages = PipelineStages(client, templates, prompt_context)
 
-    try:
-        for lesson in selected:
-            idx = lessons.index(lesson)
-            process_lesson(
-                profile=profile,
-                lesson=lesson,
-                neighbors_text=neighbors(lessons, idx, radius=args.neighbor_radius),
-                stages=stages,
-                state=state,
-                registry=registry,
-                output_dir=output_dir,
-                force=args.force,
-            )
-    except OpenAIRequestError as exc:
-        raise SystemExit(f"ERROR: {exc}") from None
+    for lesson in selected:
+        idx = lessons.index(lesson)
+        process_lesson(
+            profile=profile,
+            lesson=lesson,
+            neighbors_text=neighbors(lessons, idx, radius=args.neighbor_radius),
+            stages=stages,
+            state=state,
+            registry=registry,
+            output_dir=output_dir,
+            force=args.force,
+        )
 
     write_index(output_dir, profile, lessons)
     write_manifest(output_dir, profile, lessons)
@@ -259,6 +256,13 @@ def main() -> None:
         )
         print(f"\nZIP: {target}")
     print("Finalizado.")
+
+
+def main() -> None:
+    try:
+        _main()
+    except (PathParseError, OpenAIRequestError) as exc:
+        raise SystemExit(f"ERROR: {exc}") from None
 
 
 if __name__ == "__main__":
