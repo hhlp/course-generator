@@ -1,6 +1,6 @@
-SCRUM — LEARNING PATH 0 → EXPERTO
 
-HITOS: PSM I → PSM II → PSM III
+
+
 
 0. Fundamentos de Agile, complejidad y Scrum
 0.1 qué es Agile
