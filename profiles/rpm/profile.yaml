@@ -3,6 +3,11 @@ title: "RPM PACKAGING EN PROFUNDIDAD — FEDORA"
 
 language: es
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 platform:
   primary: Fedora Linux
   ecosystem:
@@ -19,10 +24,10 @@ level:
 description: >
   Ruta de aprendizaje completa y progresiva sobre RPM y el ecosistema
   de empaquetado de Fedora. Parte de los fundamentos del formato RPM
-  y progresa hacia SPEC files, SRPM, dependencias, scriptlets,
-  rpmdb, macros, generación automática de dependencias, Mock,
-  rpmlint, Fedora Packaging Guidelines, COPR, dist-git, Koji,
-  Bodhi, repositorios RPM e internals de RPM.
+  y progresa hacia SPEC files, SRPM, dependencias, scriptlets, rpmdb,
+  macros, generación automática de dependencias, Mock, rpmlint,
+  Fedora Packaging Guidelines, COPR, dist-git, Koji, Bodhi,
+  repositorios RPM e internals de RPM.
 
 objectives:
   - Comprender completamente el formato y modelo de paquetes RPM.
@@ -32,24 +37,16 @@ objectives:
   - Construir paquetes binarios RPM y paquetes fuente SRPM.
   - Gestionar Sources y Patches correctamente.
   - Comprender BuildRequires, Requires y dependencias automáticas.
-  - Dominar Provides, Conflicts, Obsoletes y weak dependencies.
-  - Comprender rich dependencies.
-  - Dominar scriptlets, triggers y transfiletriggers.
+  - Dominar Provides, Conflicts, Obsoletes, weak y rich dependencies.
+  - Dominar scriptlets, triggers, file triggers y transfiletriggers.
   - Comprender rpmdb y las operaciones internas de RPM.
-  - Analizar paquetes mediante las herramientas del ecosistema RPM.
   - Comprender la resolución de dependencias mediante libsolv.
   - Construir paquetes en entornos reproducibles con Mock.
   - Validar paquetes mediante rpmlint.
   - Aplicar las Fedora Packaging Guidelines.
-  - Comprender el proceso Fedora Package Review.
-  - Construir paquetes mediante COPR.
-  - Trabajar con Fedora dist-git.
-  - Comprender Koji y la infraestructura de build de Fedora.
-  - Comprender Bodhi y el ciclo de actualización de Fedora.
-  - Crear y administrar repositorios RPM.
-  - Comprender firmas y verificación criptográfica.
-  - Automatizar workflows de packaging.
-  - Investigar los internals de RPM y su ecosistema.
+  - Comprender Fedora Package Review, COPR, dist-git, Koji y Bodhi.
+  - Crear y administrar repositorios RPM y comprender firmas.
+  - Comprender internals de RPM y automatizar workflows de packaging.
 
 pedagogy:
   progression: "0-to-expert"
@@ -67,42 +64,24 @@ lesson_structure:
   first_section:
     title: "🎯 OBJETIVO"
     required: true
-
   development:
     required: true
     depth: deep
-    requirements:
-      - Explicar conceptos antes de utilizarlos.
-      - Explicar qué problema resuelve cada mecanismo.
-      - Relacionar el contenido con RPM y Fedora.
-      - Explicar comandos y opciones relevantes.
-      - Explicar metadata y estructuras internas cuando corresponda.
-      - Mostrar ejemplos realistas.
-      - Relacionar cada concepto con conocimientos anteriores.
-      - Evitar limitarse a enumerar comandos.
-
   laboratory:
     title: "🧪 Laboratorio/ejemplos"
     required_when_useful: true
-
   common_errors:
     title: "⚠️ Errores frecuentes"
     required_when_useful: true
-
   important_idea:
     title: "💡 Idea importante"
     required_when_useful: true
-
   final_section:
     title: "🧠 QUÉ DEBES RECORDAR"
     required: true
     key_points:
       minimum: 3
       maximum: 7
-    requirements:
-      - Sintetizar las ideas esenciales de la lección.
-      - No repetir simplemente el objetivo.
-      - Priorizar conceptos reutilizables en lecciones posteriores.
 
 technical_environment:
   distribution: Fedora Linux
@@ -126,48 +105,6 @@ technical_environment:
     - koji
     - bodhi
     - copr
-
-rpm_topics:
-  - RPM package format
-  - NEVRA
-  - EVR
-  - RPM metadata
-  - RPM headers
-  - RPM payload
-  - RPM database
-  - SPEC files
-  - macros
-  - Sources
-  - Patches
-  - BuildRequires
-  - Requires
-  - Provides
-  - Conflicts
-  - Obsoletes
-  - weak dependencies
-  - rich dependencies
-  - scriptlets
-  - triggers
-  - file triggers
-  - transaction file triggers
-  - automatic dependency generation
-  - SRPM
-  - rpmbuild
-  - rpmlint
-  - Mock
-  - Fedora Packaging Guidelines
-  - Fedora Package Review
-  - COPR
-  - dist-git
-  - fedpkg
-  - Koji
-  - Bodhi
-  - RPM repositories
-  - createrepo_c
-  - package signing
-  - RPM internals
-  - libsolv
-  - dependency solving
 
 final_workflow:
   - upstream
