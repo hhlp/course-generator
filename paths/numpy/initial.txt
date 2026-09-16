@@ -1,0 +1,256 @@
+0.  Fundamentos previos de Python y cálculo numérico 0.1 Qué es el
+    cálculo numérico 0.2 Python, NumPy y el ecosistema científico 0.3
+    Variables y tipos: int, float, bool y complex 0.4 Listas, tuplas,
+    diccionarios y conjuntos 0.5 Indexación y slicing de secuencias 0.6
+    Condicionales, bucles y comprensiones 0.7 Funciones, argumentos y
+    valores de retorno 0.8 Iterables, iteradores, generadores e
+    introducción a itertools 0.9 Importaciones, módulos y excepciones
+    0.10 Mutabilidad, referencias y copias en Python 0.11 Escalares,
+    vectores, matrices y dimensiones 0.12 Laboratorio: resolver un
+    problema con listas y bucles
+
+1.  Entorno de trabajo y documentación 1.1 Instalación en un entorno
+    virtual con uv o venv 1.2 Selección de versiones compatibles de
+    Python y NumPy 1.3 Organización de un proyecto numérico 1.4 Scripts,
+    IPython y Jupyter 1.5 Importación convencional: import numpy as np
+    1.6 Consultar versiones y configuración 1.7 Leer documentación,
+    firmas y ejemplos 1.8 Laboratorio: preparar un entorno reproducible
+
+2.  El objeto ndarray 2.1 Qué representa un ndarray 2.2 Diferencias
+    entre listas y arrays 2.3 Arrays de cero, una, dos y más dimensiones
+    2.4 shape, ndim y size 2.5 dtype, itemsize y nbytes 2.6 Ejes:
+    significado y representación 2.7 Escalares NumPy y escalares Python
+    2.8 Laboratorio: interpretar arrays de sensores e imágenes
+
+3.  Creación de arrays 3.1 array y asarray 3.2 zeros, ones, full y empty
+    3.3 zeros_like, ones_like y full_like 3.4 arange y sus limitaciones
+    con decimales 3.5 linspace, logspace y geomspace 3.6 eye, identity y
+    diag 3.7 fromiter y frombuffer 3.8 Laboratorio: construir datasets
+    sintéticos
+
+4.  Tipos de datos y conversiones 4.1 dtype: representación y elección
+    4.2 Enteros con signo y sin signo 4.3 Tipos de coma flotante 4.4
+    Booleanos y números complejos 4.5 Límites numéricos: iinfo y finfo
+    4.6 Conversión mediante astype 4.7 Promoción de tipos y result_type
+    4.8 Casting y pérdida de información 4.9 dtype object:
+    comportamiento y costes 4.10 Laboratorio: detectar desbordamientos y
+    conversiones incorrectas
+
+5.  Indexación básica y transformación de dimensiones 5.1 Acceso por
+    índices positivos y negativos 5.2 Slicing: inicio, final y paso 5.3
+    Indexación multidimensional 5.4 Ellipsis y np.newaxis 5.5 reshape e
+    inferencia con -1 5.6 ravel y flatten 5.7 transpose, T, swapaxes y
+    moveaxis 5.8 squeeze y expand_dims 5.9 Diferencias entre formas
+    (n,), (n, 1) y (1, n) 5.10 Proyecto: representar y reorganizar
+    mediciones multidimensionales
+
+6.  Vistas, copias y memoria compartida 6.1 Asignación, alias y
+    propiedad de los datos 6.2 Qué es una vista 6.3 Qué es una copia 6.4
+    Slicing básico y memoria compartida 6.5 copy y control explícito de
+    copias 6.6 Cuándo reshape puede necesitar una copia 6.7 base,
+    shares_memory y may_share_memory 6.8 Arrays de solo lectura 6.9
+    Copias de arrays con dtype object 6.10 Laboratorio: diagnosticar
+    modificaciones inesperadas
+
+7.  Indexación avanzada y máscaras 7.1 Indexación mediante arrays de
+    enteros 7.2 Máscaras booleanas 7.3 Combinación de condiciones con &,
+    | y ~ 7.4 Precedencia de operadores y uso de paréntesis 7.5
+    Indexación avanzada sobre varios ejes 7.6 Selección cartesiana con
+    ix_ 7.7 take y take_along_axis 7.8 put y put_along_axis 7.9
+    Asignación con índices repetidos 7.10 Laboratorio: filtrar y
+    actualizar observaciones
+
+8.  Broadcasting 8.1 Qué problema resuelve el broadcasting 8.2 Reglas de
+    compatibilidad de dimensiones 8.3 Operaciones entre arrays y
+    escalares 8.4 Operaciones entre vectores y matrices 8.5 Alineación
+    explícita mediante ejes de longitud uno 8.6 Broadcasting en tres o
+    más dimensiones 8.7 broadcast_to y broadcast_arrays 8.8
+    Interpretación de errores de dimensiones 8.9 Tamaño del resultado y
+    costes de memoria 8.10 Laboratorio: normalizar datos por variable y
+    por muestra
+
+9.  Operaciones vectorizadas y ufuncs 9.1 Programación por elementos y
+    vectorización 9.2 Aritmética y operaciones in-place 9.3 Funciones
+    exponenciales y logarítmicas 9.4 Funciones trigonométricas 9.5
+    Redondeo, división y resto 9.6 Comparaciones y operaciones lógicas
+    9.7 Parámetros out y where 9.8 reduce, accumulate y outer 9.9
+    reduceat y at 9.10 np.vectorize y frompyfunc: utilidad y límites
+    9.11 Laboratorio: transformar un algoritmo con bucles
+
+10. Reducciones y operaciones acumulativas 10.1 sum, prod, min y max
+    10.2 Interpretar axis correctamente 10.3 Reducciones sobre varios
+    ejes 10.4 Conservación de dimensiones con keepdims 10.5 argmin y
+    argmax 10.6 any, all y count_nonzero 10.7 cumsum y cumprod 10.8
+    dtype de acumulación 10.9 Arrays vacíos, initial y máscaras 10.10
+    Laboratorio: generar indicadores de un dataset
+
+11. Composición y organización de arrays 11.1 concatenate frente a stack
+    11.2 vstack, hstack y dstack 11.3 Construcción por bloques con block
+    11.4 split y array_split 11.5 repeat y tile 11.6 pad y condiciones
+    de borde 11.7 flip, rot90 y roll 11.8 insert, delete y append:
+    costes y alternativas 11.9 Laboratorio: preparar lotes de datos
+
+12. Ordenación, búsqueda y conjuntos 12.1 sort y argsort 12.2 Ordenación
+    estable 12.3 Ordenación por varias claves con lexsort 12.4 partition
+    y argpartition 12.5 Búsqueda con searchsorted 12.6 nonzero, argwhere
+    y flatnonzero 12.7 where y select 12.8 unique: valores, índices,
+    inversos y frecuencias 12.9 isin y operaciones de conjuntos 12.10
+    bincount y digitize 12.11 Proyecto: clasificación, ranking y
+    agrupación de observaciones
+
+13. Precisión y estabilidad numérica 13.1 Representación binaria de
+    números decimales 13.2 Error absoluto y relativo 13.3 Overflow,
+    underflow y cancelación 13.4 NaN, infinito y ceros con signo 13.5
+    isnan, isinf e isfinite 13.6 isclose y allclose: elección de
+    tolerancias 13.7 seterr y errstate 13.8 log1p y expm1 13.9 Orden de
+    operaciones y errores de acumulación 13.10 Laboratorio: comparar
+    formulaciones numéricamente equivalentes
+
+14. Estadística descriptiva y datos ausentes 14.1 Media, mediana y media
+    ponderada 14.2 Varianza y desviación estándar 14.3 Población,
+    muestra y parámetro ddof 14.4 Percentiles y cuantiles 14.5
+    Covarianza y correlación 14.6 Histogramas de una y varias
+    dimensiones 14.7 Funciones nanmean, nanstd y equivalentes 14.8
+    Arrays enmascarados con numpy.ma 14.9 Detección de valores atípicos
+    y límites de la imputación 14.10 Laboratorio: informe estadístico
+    con datos incompletos
+
+15. Generación aleatoria y reproducibilidad 15.1 Generadores
+    pseudoaleatorios 15.2 Generator y default_rng 15.3 Semillas y estado
+    del generador 15.4 Distribuciones uniforme y normal 15.5
+    Distribuciones binomial, Poisson y exponencial 15.6 Muestreo con
+    choice 15.7 shuffle y permutation 15.8 Muestreo con y sin reemplazo
+    15.9 SeedSequence y creación de flujos independientes 15.10 Límites
+    de reproducibilidad entre entornos y versiones 15.11 Laboratorio:
+    construir un experimento reproducible
+
+16. Simulación y Monte Carlo 16.1 Diseño de experimentos aleatorios 16.2
+    Estimación de probabilidades 16.3 Aproximación de integrales
+    mediante Monte Carlo 16.4 Caminatas aleatorias 16.5 Bootstrap 16.6
+    Pruebas por permutación 16.7 Error de muestreo y convergencia 16.8
+    Simulación vectorizada por lotes 16.9 Proyecto: simulador con
+    estimaciones de incertidumbre
+
+17. Álgebra lineal 17.1 Vectores, matrices y sistemas lineales 17.2
+    Producto elemento a elemento frente a producto matricial 17.3
+    matmul, @, dot y vdot 17.4 Transposición y conjugación compleja 17.5
+    Normas de vectores y matrices 17.6 Resolver sistemas con solve 17.7
+    Inversa, determinante y slogdet 17.8 Rango y número de condición
+    17.9 Mínimos cuadrados con lstsq 17.10 Pseudoinversa con pinv 17.11
+    Descomposiciones QR y SVD 17.12 Autovalores y autovectores: eig y
+    eigh 17.13 Operaciones matriciales por lotes 17.14 Laboratorio:
+    regresión lineal y diagnóstico de estabilidad
+
+18. Tensores y contracciones 18.1 Tensores como arrays
+    multidimensionales 18.2 Ejes de muestras, características y lotes
+    18.3 Productos externos 18.4 Contracciones con tensordot 18.5
+    Notación de Einstein 18.6 einsum: diagonales, trazas y reducciones
+    18.7 einsum: productos y contracciones 18.8 einsum_path y orden de
+    cálculo 18.9 Distancias por pares y costes cuadráticos 18.10
+    Laboratorio: implementar operaciones tensoriales verificables
+
+19. Señales y métodos numéricos 19.1 Muestreo, frecuencia y aliasing
+    19.2 FFT e inversa 19.3 rfft e irfft para señales reales 19.4
+    fftfreq, rfftfreq y fftshift 19.5 Normalización y lectura del
+    espectro 19.6 Ventanas y fuga espectral 19.7 Convolución y
+    correlación 19.8 Diferencias discretas con diff 19.9 Derivación
+    aproximada con gradient 19.10 Integración con trapezoid 19.11
+    Interpolación lineal con interp 19.12 numpy.polynomial: evaluación y
+    ajuste 19.13 Proyecto: analizar una señal con ruido
+
+20. Fechas, texto y datos estructurados 20.1 datetime64 y unidades
+    temporales 20.2 timedelta64 y aritmética temporal 20.3 NaT,
+    conversiones y límites de representación 20.4 Calendarios laborales
+    con busday 20.5 Limitaciones respecto a zonas horarias 20.6 Cadenas
+    de ancho fijo y bytes 20.7 StringDType y operaciones con
+    numpy.strings 20.8 Arrays estructurados y campos 20.9 Tipos
+    compuestos, offsets y alineación 20.10 Operaciones bit a bit,
+    packbits y unpackbits 20.11 Laboratorio: procesar registros de
+    sensores
+
+21. Lectura, escritura y persistencia 21.1 Formato .npy 21.2 Formato
+    .npz y compresión 21.3 save, load y savez 21.4 savetxt y loadtxt
+    21.5 genfromtxt y datos incompletos 21.6 fromfile y tofile 21.7
+    Metadatos, dtype y orden de bytes 21.8 allow_pickle y tratamiento de
+    archivos no confiables 21.9 memmap y open_memmap 21.10 Laboratorio:
+    diseñar un formato de intercambio reproducible
+
+22. Diseño de funciones y pruebas 22.1 Contratos de entrada: forma, tipo
+    y valores 22.2 Validación mediante asarray 22.3 Diseñar funciones
+    compatibles con broadcasting 22.4 Controlar mutaciones y copias 22.5
+    numpy.typing: ArrayLike, DTypeLike y NDArray 22.6 Límites del tipado
+    estático de formas 22.7 Pruebas con numpy.testing 22.8 Tolerancias
+    numéricas justificadas 22.9 Casos límite: vacíos, NaN, infinitos y
+    vistas 22.10 Propiedades e invariantes matemáticos 22.11
+    Laboratorio: convertir un notebook en un módulo probado
+
+23. Rendimiento y uso de memoria 23.1 Medir antes de optimizar 23.2
+    Benchmarks reproducibles 23.3 Costes de los bucles Python 23.4
+    Vectorización y arrays temporales 23.5 Preasignación y reutilización
+    con out 23.6 Operaciones in-place y restricciones de casting 23.7
+    Contigüidad y localidad de memoria 23.8 Orden C frente a orden
+    Fortran 23.9 Costes de indexación, copias y conversiones 23.10
+    Vectorización frente a procesamiento por bloques 23.11 Laboratorio:
+    reducir tiempo y memoria con mediciones
+
+24. Grandes volúmenes y concurrencia 24.1 Estimar memoria antes de
+    ejecutar 24.2 Procesamiento por bloques 24.3 Lectura parcial con
+    memory mapping 24.4 Reducciones incrementales 24.5 BLAS, LAPACK y
+    bibliotecas subyacentes 24.6 Hilos internos y sobresuscripción 24.7
+    GIL y operaciones numéricas 24.8 Seguridad al compartir arrays entre
+    hilos 24.9 Multiprocesamiento y costes de transferencia 24.10
+    Proyecto: procesar datos que superan la memoria disponible
+
+25. Interoperabilidad con el ecosistema 25.1 NumPy y pandas:
+    conversiones y tipos 25.2 NumPy y Matplotlib: inspección visual 25.3
+    NumPy y SciPy: algoritmos especializados 25.4 Arrays densos frente a
+    matrices dispersas 25.5 NumPy y scikit-learn: formas y preparación
+    de datos 25.6 xarray: dimensiones con nombres 25.7 Dask: cálculo por
+    bloques 25.8 CuPy: arrays en GPU 25.9 JAX y PyTorch: diferencias de
+    ejecución y semántica 25.10 Transferencias de memoria y conversiones
+    entre bibliotecas 25.11 Laboratorio: preparar una canalización
+    numérica interoperable
+
+26. Internals del ndarray 26.1 Buffer de datos y metadatos 26.2 shape,
+    strides y cálculo de direcciones 26.3 Strides negativos y strides de
+    valor cero 26.4 Flags: contigüidad, alineación y escritura 26.5
+    Propiedad de memoria y tiempo de vida 26.6 reinterpretación con view
+    frente a conversión con astype 26.7 Endianness y byteswap 26.8
+    sliding_window_view 26.9 as_strided: condiciones de seguridad y
+    riesgos 26.10 Iteración con nditer 26.11 Laboratorio: explicar el
+    layout real de varias vistas
+
+27. Protocolos y extensibilidad 27.1 Protocolo de buffer 27.2 array y
+    conversión a ndarray 27.3 array_interface 27.4 array_ufunc 27.5
+    array_function 27.6 Concepto de duck array 27.7 Array API y
+    portabilidad 27.8 DLPack y transferencia de arrays 27.9 Subclases de
+    ndarray y alternativas por composición 27.10 Laboratorio:
+    implementar un adaptador con comportamiento explícito
+
+28. Extensiones compiladas 28.1 Cuándo NumPy necesita apoyo de código
+    compilado 28.2 Numba para bucles numéricos especializados 28.3
+    Cython y memoryviews 28.4 Integración con C y C++ 28.5 Introducción
+    a la C-API de NumPy 28.6 Dtype, dimensiones, contigüidad y ownership
+    28.7 Ufuncs y generalized ufuncs 28.8 F2PY e integración con Fortran
+    28.9 Compilación, empaquetado y compatibilidad binaria 28.10
+    Laboratorio: comparar una extensión con NumPy puro
+
+29. NumPy 2.x y mantenimiento 29.1 Interpretar versiones y notas de
+    publicación 29.2 Cambios de promoción de tipos en NumPy 2 29.3
+    Semántica del argumento copy 29.4 APIs retiradas y alternativas 29.5
+    Adaptar ejemplos de libros antiguos 29.6 Compatibilidad de
+    extensiones compiladas 29.7 Automatización de migraciones con Ruff
+    NPY201 29.8 Matrices de pruebas y versiones soportadas 29.9
+    Laboratorio: migrar y verificar un proyecto antiguo
+
+30. Proyecto final de nivel experto 30.1 Definir un problema de análisis
+    de sensores 30.2 Diseñar formas, ejes y tipos del dataset 30.3
+    Generar datos sintéticos reproducibles 30.4 Implementar carga y
+    persistencia 30.5 Detectar datos ausentes y valores inválidos 30.6
+    Calcular estadísticas por sensor y periodo 30.7 Aplicar
+    normalización y ventanas temporales 30.8 Analizar señales mediante
+    FFT 30.9 Ajustar un modelo mediante mínimos cuadrados 30.10 Estimar
+    incertidumbre mediante remuestreo 30.11 Incorporar procesamiento por
+    bloques 30.12 Escribir pruebas e invariantes 30.13 Medir y optimizar
+    tiempo y memoria 30.14 Documentar decisiones y límites numéricos
+    30.15 Entregar una biblioteca y una aplicación de línea de comandos

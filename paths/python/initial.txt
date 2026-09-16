@@ -1,0 +1,747 @@
+0. Entorno y fundamentos — Python 3.15 en Fedora
+0.1 Python, CPython y otras implementaciones
+0.2 Algoritmos, programas y ejecución
+0.3 Versiones estables, RC y características experimentales
+0.4 Instalar un intérprete aislado sin sustituir el Python del sistema
+0.5 Terminal, rutas y directorio de trabajo
+0.6 REPL, help, dir y ejecución de scripts
+0.7 Editor, indentación y estilo
+0.8 uv: gestión de intérpretes
+0.9 uv: proyectos, entornos y dependencias
+0.10 venv y pip: fundamentos
+0.11 Ejecutar módulos con python -m
+0.12 Documentación: tutorial, referencia y biblioteca
+0.13 Cómo leer firmas y gramática formal
+0.14 Git básico para los laboratorios
+0.15 Laboratorio: proyecto reproducible
+
+1. Primeros programas y control de flujo
+1.1 print, comentarios y primer programa
+1.2 Nombres, palabras clave y asignación
+1.3 Literales y tipos básicos
+1.4 input y conversiones
+1.5 Expresiones y precedencia
+1.6 Operadores aritméticos y comparaciones
+1.7 Truthiness y bool
+1.8 and, or y not: cortocircuito y valores devueltos
+1.9 if básico: sintaxis, indentación y ejemplos
+1.10 if y else
+1.11 if, elif y else
+1.12 Condicionales anidados
+1.13 Expresión condicional
+1.14 while y terminación
+1.15 for y recorrido de elementos
+1.16 range y límites
+1.17 break, continue y pass
+1.18 else en bucles
+1.19 Bucles anidados
+1.20 Tracebacks y categorías de errores
+1.21 Laboratorio: menú interactivo
+
+2. Modelo de objetos
+2.1 Objeto, identidad, tipo y valor
+2.2 Nombres como referencias
+2.3 Asignación, aliasing y reasignación
+2.4 Mutabilidad e inmutabilidad
+2.5 == frente a is
+2.6 None y ausencia de valor
+2.7 Hashabilidad e igualdad
+2.8 Copias superficiales y profundas
+2.9 Referencias compartidas en estructuras anidadas
+2.10 Desempaquetado y asignación múltiple
+2.11 Asignación aumentada y mutación
+2.12 del y vida de los objetos
+2.13 Centinelas y valores especiales
+2.14 Laboratorio: predecir cambios de objetos
+
+3. Números y operadores
+3.1 int y precisión arbitraria
+3.2 Literales binarios, octales y hexadecimales
+3.3 División, división entera y módulo con signos
+3.4 pow, abs, round y divmod
+3.5 float y representación aproximada
+3.6 math.isclose y comparación numérica
+3.7 NaN, infinitos y límites
+3.8 Métodos públicos de int: bit_length, bit_count, to_bytes, from_bytes y restantes documentados
+3.9 Métodos públicos de float: hex, fromhex, as_integer_ratio, is_integer y conversiones documentadas
+3.10 complex: atributos, conjugate y métodos documentados
+3.11 bool y su relación con int
+3.12 AND, OR, XOR y NOT bitwise
+3.13 Desplazamientos y máscaras
+3.14 Variantes de asignación aumentada
+3.15 decimal: precisión y redondeo
+3.16 fractions y racionales
+3.17 math y cmath
+3.18 random, semillas y diferencia con secrets
+3.19 statistics
+3.20 Laboratorio: cálculo monetario y flags
+
+4. Texto, formatos y datos binarios
+4.1 Unicode, str e inmutabilidad
+4.2 Literales, escapes, raw strings y multilínea
+4.3 Índices, slicing, concatenación y pertenencia
+4.4 Normalización Unicode
+4.5 str, repr y ascii
+4.6 F-strings: sintaxis, expresiones y conversiones
+4.7 Mini lenguaje de formato: alineación, ancho y precisión
+4.8 Signos, agrupación, bases y notación científica
+4.9 Formato dinámico y expresiones de depuración
+4.10 format y formato con porcentaje
+4.11 T-strings e interpolaciones: versión de introducción
+4.12 Procesamiento de Template y límites de seguridad
+4.13 bytes y sus métodos públicos
+4.14 bytearray y sus métodos públicos
+4.15 encode, decode y errores
+4.16 memoryview y protocolo de buffer
+4.17 struct y formatos binarios
+4.18 str.capitalize: firma, retorno, ejemplos, casos límite y errores
+4.19 str.casefold: firma, retorno, ejemplos, casos límite y errores
+4.20 str.center: firma, retorno, ejemplos, casos límite y errores
+4.21 str.count: firma, retorno, ejemplos, casos límite y errores
+4.22 str.encode: firma, retorno, ejemplos, casos límite y errores
+4.23 str.endswith: firma, retorno, ejemplos, casos límite y errores
+4.24 str.expandtabs: firma, retorno, ejemplos, casos límite y errores
+4.25 str.find: firma, retorno, ejemplos, casos límite y errores
+4.26 str.format: firma, retorno, ejemplos, casos límite y errores
+4.27 str.format_map: firma, retorno, ejemplos, casos límite y errores
+4.28 str.index: firma, retorno, ejemplos, casos límite y errores
+4.29 str.isalnum: firma, retorno, ejemplos, casos límite y errores
+4.30 str.isalpha: firma, retorno, ejemplos, casos límite y errores
+4.31 str.isascii: firma, retorno, ejemplos, casos límite y errores
+4.32 str.isdecimal: firma, retorno, ejemplos, casos límite y errores
+4.33 str.isdigit: firma, retorno, ejemplos, casos límite y errores
+4.34 str.isidentifier: firma, retorno, ejemplos, casos límite y errores
+4.35 str.islower: firma, retorno, ejemplos, casos límite y errores
+4.36 str.isnumeric: firma, retorno, ejemplos, casos límite y errores
+4.37 str.isprintable: firma, retorno, ejemplos, casos límite y errores
+4.38 str.isspace: firma, retorno, ejemplos, casos límite y errores
+4.39 str.istitle: firma, retorno, ejemplos, casos límite y errores
+4.40 str.isupper: firma, retorno, ejemplos, casos límite y errores
+4.41 str.join: firma, retorno, ejemplos, casos límite y errores
+4.42 str.ljust: firma, retorno, ejemplos, casos límite y errores
+4.43 str.lower: firma, retorno, ejemplos, casos límite y errores
+4.44 str.lstrip: firma, retorno, ejemplos, casos límite y errores
+4.45 str.maketrans: firma, retorno, ejemplos, casos límite y errores
+4.46 str.partition: firma, retorno, ejemplos, casos límite y errores
+4.47 str.removeprefix: firma, retorno, ejemplos, casos límite y errores
+4.48 str.removesuffix: firma, retorno, ejemplos, casos límite y errores
+4.49 str.replace: firma, retorno, ejemplos, casos límite y errores
+4.50 str.rfind: firma, retorno, ejemplos, casos límite y errores
+4.51 str.rindex: firma, retorno, ejemplos, casos límite y errores
+4.52 str.rjust: firma, retorno, ejemplos, casos límite y errores
+4.53 str.rpartition: firma, retorno, ejemplos, casos límite y errores
+4.54 str.rsplit: firma, retorno, ejemplos, casos límite y errores
+4.55 str.rstrip: firma, retorno, ejemplos, casos límite y errores
+4.56 str.split: firma, retorno, ejemplos, casos límite y errores
+4.57 str.splitlines: firma, retorno, ejemplos, casos límite y errores
+4.58 str.startswith: firma, retorno, ejemplos, casos límite y errores
+4.59 str.strip: firma, retorno, ejemplos, casos límite y errores
+4.60 str.swapcase: firma, retorno, ejemplos, casos límite y errores
+4.61 str.title: firma, retorno, ejemplos, casos límite y errores
+4.62 str.translate: firma, retorno, ejemplos, casos límite y errores
+4.63 str.upper: firma, retorno, ejemplos, casos límite y errores
+4.64 str.zfill: firma, retorno, ejemplos, casos límite y errores
+4.65 Tabla de referencia completa de métodos de str
+4.66 Laboratorio: normalizador de texto e informe formateado
+
+5. Colecciones y estructuras anidadas
+5.1 Elegir list, tuple, dict, set o frozenset
+5.2 Listas: índices y slicing
+5.3 Asignación y eliminación de segmentos
+5.4 Tuplas: singleton, empaquetado y desempaquetado
+5.5 range como secuencia
+5.6 Diccionarios: claves, hashabilidad y orden de inserción
+5.7 Vistas de diccionarios y cambios durante iteración
+5.8 Operadores de unión de diccionarios
+5.9 Sets: unicidad y ausencia de índices
+5.10 Operadores de conjuntos y variantes in-place
+5.11 Hashabilidad y conjuntos de conjuntos
+5.12 frozendict y mappings inmutables en la versión objetivo
+5.13 Listas de tuplas, diccionarios y sets
+5.14 Diccionarios de listas y estructuras heterogéneas
+5.15 Recorrer y actualizar estructuras anidadas
+5.16 Trampas de copias y repetición de listas
+5.17 Ordenación estable y varias claves
+5.18 Complejidad de operaciones
+5.19 Counter y defaultdict
+5.20 deque
+5.21 namedtuple y ChainMap
+5.22 OrderedDict frente a dict
+5.23 list.append: firma, retorno, ejemplos, casos límite y errores
+5.24 list.clear: firma, retorno, ejemplos, casos límite y errores
+5.25 list.copy: firma, retorno, ejemplos, casos límite y errores
+5.26 list.count: firma, retorno, ejemplos, casos límite y errores
+5.27 list.extend: firma, retorno, ejemplos, casos límite y errores
+5.28 list.index: firma, retorno, ejemplos, casos límite y errores
+5.29 list.insert: firma, retorno, ejemplos, casos límite y errores
+5.30 list.pop: firma, retorno, ejemplos, casos límite y errores
+5.31 list.remove: firma, retorno, ejemplos, casos límite y errores
+5.32 list.reverse: firma, retorno, ejemplos, casos límite y errores
+5.33 list.sort: firma, retorno, ejemplos, casos límite y errores
+5.34 dict.clear: firma, retorno, ejemplos, casos límite y errores
+5.35 dict.copy: firma, retorno, ejemplos, casos límite y errores
+5.36 dict.fromkeys: firma, retorno, ejemplos, casos límite y errores
+5.37 dict.get: firma, retorno, ejemplos, casos límite y errores
+5.38 dict.items: firma, retorno, ejemplos, casos límite y errores
+5.39 dict.keys: firma, retorno, ejemplos, casos límite y errores
+5.40 dict.pop: firma, retorno, ejemplos, casos límite y errores
+5.41 dict.popitem: firma, retorno, ejemplos, casos límite y errores
+5.42 dict.setdefault: firma, retorno, ejemplos, casos límite y errores
+5.43 dict.update: firma, retorno, ejemplos, casos límite y errores
+5.44 dict.values: firma, retorno, ejemplos, casos límite y errores
+5.45 set.add: firma, retorno, ejemplos, casos límite y errores
+5.46 set.clear: firma, retorno, ejemplos, casos límite y errores
+5.47 set.copy: firma, retorno, ejemplos, casos límite y errores
+5.48 set.difference: firma, retorno, ejemplos, casos límite y errores
+5.49 set.difference_update: firma, retorno, ejemplos, casos límite y errores
+5.50 set.discard: firma, retorno, ejemplos, casos límite y errores
+5.51 set.intersection: firma, retorno, ejemplos, casos límite y errores
+5.52 set.intersection_update: firma, retorno, ejemplos, casos límite y errores
+5.53 set.isdisjoint: firma, retorno, ejemplos, casos límite y errores
+5.54 set.issubset: firma, retorno, ejemplos, casos límite y errores
+5.55 set.issuperset: firma, retorno, ejemplos, casos límite y errores
+5.56 set.pop: firma, retorno, ejemplos, casos límite y errores
+5.57 set.remove: firma, retorno, ejemplos, casos límite y errores
+5.58 set.symmetric_difference: firma, retorno, ejemplos, casos límite y errores
+5.59 set.symmetric_difference_update: firma, retorno, ejemplos, casos límite y errores
+5.60 set.union: firma, retorno, ejemplos, casos límite y errores
+5.61 set.update: firma, retorno, ejemplos, casos límite y errores
+5.62 frozenset.copy: firma, retorno, ejemplos, casos límite y errores
+5.63 frozenset.difference: firma, retorno, ejemplos, casos límite y errores
+5.64 frozenset.intersection: firma, retorno, ejemplos, casos límite y errores
+5.65 frozenset.isdisjoint: firma, retorno, ejemplos, casos límite y errores
+5.66 frozenset.issubset: firma, retorno, ejemplos, casos límite y errores
+5.67 frozenset.issuperset: firma, retorno, ejemplos, casos límite y errores
+5.68 frozenset.symmetric_difference: firma, retorno, ejemplos, casos límite y errores
+5.69 frozenset.union: firma, retorno, ejemplos, casos límite y errores
+5.70 tuple.count: firma, retorno, ejemplos, casos límite y errores
+5.71 tuple.index: firma, retorno, ejemplos, casos límite y errores
+5.72 Tabla de referencia: métodos, operaciones y funciones incorporadas
+5.73 Laboratorio: inventario con estructuras mixtas y conjuntos
+
+6. Control de flujo avanzado
+6.1 Comparaciones encadenadas y pertenencia
+6.2 Desempaquetado extendido
+6.3 enumerate
+6.4 zip y strict
+6.5 sorted, reversed, min y max
+6.6 all y any
+6.7 Comprensiones de listas
+6.8 Comprensiones de sets
+6.9 Comprensiones de diccionarios
+6.10 Comprensiones anidadas y orden de evaluación
+6.11 Expresiones generadoras
+6.12 Operador :=
+6.13 match y case
+6.14 Patrones de secuencia
+6.15 Patrones de mappings
+6.16 Patrones de clases
+6.17 Guardas, OR, as y captura de nombres
+6.18 Laboratorio: clasificador de eventos
+
+7. Funciones en profundidad
+7.1 def: definición y llamada
+7.2 Parámetros frente a argumentos
+7.3 Argumentos posicionales
+7.4 Argumentos por nombre
+7.5 Valores predeterminados y momento de evaluación
+7.6 Peligro de defaults mutables
+7.7 Parámetros solo posicionales con /
+7.8 Parámetros solo por nombre con *
+7.9 *args: tupla de posicionales
+7.10 **kwargs: diccionario de argumentos por nombre
+7.11 Orden y combinación de parámetros
+7.12 Desempaquetado con * en llamadas
+7.13 Desempaquetado con ** en llamadas
+7.14 Argumentos duplicados, ausentes e inesperados
+7.15 return y None implícito frente a print
+7.16 Retorno múltiple y desempaquetado
+7.17 Paso de objetos: mutación frente a reasignación
+7.18 LEGB y ámbitos
+7.19 global y nonlocal
+7.20 Funciones como objetos
+7.21 Callbacks y funciones de orden superior
+7.22 Funciones anidadas y closures
+7.23 Captura tardía de variables
+7.24 lambda: usos y límites
+7.25 Recursión y alternativas iterativas
+7.26 Docstrings y anotaciones
+7.27 Diseño de firmas y centinelas
+7.28 inspect.signature y enlace de argumentos
+7.29 Laboratorio: biblioteca de funciones
+
+8. Iteradores, generadores e itertools
+8.1 Iterable frente a iterador
+8.2 iter, next y StopIteration
+8.3 Agotamiento y recorridos de una pasada
+8.4 __iter__ y __next__
+8.5 yield y estado del generador
+8.6 yield from
+8.7 send, throw y close
+8.8 Limpieza de recursos en generadores
+8.9 Pipelines y evaluación diferida
+8.10 itertools.count, cycle y repeat
+8.11 itertools.chain y chain.from_iterable
+8.12 itertools.islice
+8.13 itertools.compress y filterfalse
+8.14 itertools.takewhile y dropwhile
+8.15 itertools.accumulate
+8.16 itertools.starmap
+8.17 itertools.groupby: grupos consecutivos
+8.18 itertools.tee y memoria intermedia
+8.19 itertools.zip_longest
+8.20 itertools.pairwise y batched
+8.21 itertools.product
+8.22 itertools.permutations
+8.23 itertools.combinations y combinations_with_replacement
+8.24 Recetas y límites de consumo
+8.25 Laboratorio: pipeline de registros
+
+9. Excepciones y recursos
+9.1 Jerarquía de excepciones
+9.2 try y except
+9.3 Capturas específicas y múltiples
+9.4 else y finally
+9.5 raise y relanzamiento
+9.6 Encadenamiento con raise from
+9.7 Excepciones propias
+9.8 Notas de excepción y diagnóstico
+9.9 ExceptionGroup y except*
+9.10 assert y sus límites
+9.11 with y protocolo de contexto
+9.12 __enter__ y __exit__
+9.13 contextlib.contextmanager
+9.14 ExitStack
+9.15 suppress, closing y redirect_stdout
+9.16 Limpieza explícita frente a __del__
+9.17 Laboratorio: lector robusto de archivos
+
+10. Módulos y paquetes
+10.1 Namespaces y módulos
+10.2 import y from import
+10.3 Alias, import * y __all__
+10.4 Ejecución del código de módulo
+10.5 __name__ y __main__
+10.6 Paquetes y __init__.py
+10.7 Imports relativos y absolutos
+10.8 sys.path
+10.9 sys.modules y caché
+10.10 Imports circulares
+10.11 Paquetes namespace
+10.12 importlib y carga dinámica
+10.13 importlib.resources
+10.14 importlib.metadata
+10.15 Importación diferida y compatibilidad
+10.16 Laboratorio: convertir scripts en paquete
+
+11. Orientación a objetos y herencia
+11.1 Clases, instancias y self
+11.2 __init__
+11.3 Atributos de instancia y clase
+11.4 Métodos de instancia y enlace
+11.5 Encapsulación y name mangling
+11.6 Getter con @property
+11.7 Setter con @nombre.setter
+11.8 Deleter y propiedades de solo lectura
+11.9 Propiedades calculadas e invariantes
+11.10 @classmethod y constructores alternativos
+11.11 @staticmethod
+11.12 Composición y delegación
+11.13 Herencia simple
+11.14 Sobrescritura y polimorfismo
+11.15 super y cooperación
+11.16 Herencia múltiple y mixins
+11.17 MRO y linealización C3
+11.18 Clases abstractas con abc
+11.19 Duck typing y sustitución
+11.20 __slots__ y límites
+11.21 Laboratorio: modelo con propiedades y herencia
+
+12. Modelo de datos y protocolos
+12.1 Métodos especiales y su invocación
+12.2 __repr__, __str__ y __format__
+12.3 __bool__ y __len__
+12.4 Comparación rica y NotImplemented
+12.5 Contrato entre __eq__ y __hash__
+12.6 Operadores y métodos reflejados
+12.7 Asignación aumentada
+12.8 __getitem__, __setitem__ y __delitem__
+12.9 Objetos slice
+12.10 __contains__, __iter__ y __reversed__
+12.11 __call__
+12.12 Protocolos de secuencia y mapping
+12.13 collections.abc
+12.14 Context managers propios
+12.15 __index__ y conversiones
+12.16 Personalización de copia
+12.17 Laboratorio: contenedor idiomático
+
+13. Decoradores y herramientas funcionales
+13.1 Sintaxis @ y equivalencia explícita
+13.2 Wrappers y closures
+13.3 Propagar *args, **kwargs y retorno
+13.4 functools.wraps
+13.5 Decoradores con parámetros
+13.6 Apilamiento y orden
+13.7 Decoradores con estado
+13.8 Decoradores de métodos
+13.9 Decoradores de clases
+13.10 Decoradores asíncronos
+13.11 partial y partialmethod
+13.12 cache y lru_cache
+13.13 cached_property
+13.14 singledispatch y singledispatchmethod
+13.15 reduce y alternativas
+13.16 total_ordering y cmp_to_key
+13.17 operator: itemgetter, attrgetter y methodcaller
+13.18 Laboratorio: registro, medición y caché
+
+14. Tipado moderno
+14.1 Tipado dinámico y análisis estático
+14.2 Anotaciones de variables y funciones
+14.3 Colecciones parametrizadas
+14.4 Uniones y None
+14.5 Any frente a object
+14.6 Alias y sentencia type
+14.7 TypeVar y parámetros de tipo
+14.8 Genéricos y restricciones
+14.9 Varianza
+14.10 Callable
+14.11 Protocol
+14.12 TypedDict y claves opcionales
+14.13 Literal, Final y ClassVar
+14.14 NewType
+14.15 Narrowing
+14.16 TypeGuard y TypeIs
+14.17 overload
+14.18 ParamSpec
+14.19 TypeVarTuple
+14.20 Self y Annotated
+14.21 Never y exhaustividad
+14.22 Evaluación de anotaciones según versión
+14.23 Stubs y py.typed
+14.24 Configurar un comprobador y migrar gradualmente
+14.25 Laboratorio: biblioteca tipada
+
+15. Modelado de datos
+15.1 Elegir tuplas, diccionarios o clases
+15.2 dataclass y campos
+15.3 field y default_factory
+15.4 __post_init__
+15.5 frozen, slots y keyword-only
+15.6 Igualdad, orden y hash
+15.7 Herencia de dataclasses
+15.8 asdict, astuple y replace
+15.9 Enum, IntEnum y StrEnum
+15.10 Flag e IntFlag
+15.11 Validación de fronteras
+15.12 Entidades, valores e invariantes
+15.13 Laboratorio: pedidos y estados
+
+16. Archivos y persistencia
+16.1 pathlib: rutas y operaciones
+16.2 glob y recorridos de árboles
+16.3 open, modos y encoding
+16.4 Lectura incremental
+16.5 Archivos binarios y seek
+16.6 StringIO y BytesIO
+16.7 Escritura atómica y durabilidad
+16.8 tempfile y shutil
+16.9 CSV y dialectos
+16.10 JSON y conversiones
+16.11 TOML con tomllib
+16.12 configparser
+16.13 XML y entradas no fiables
+16.14 pickle y riesgos
+16.15 SQLite: conexiones y cursores
+16.16 SQL parametrizado
+16.17 Transacciones y rollback
+16.18 Migraciones simples
+16.19 Laboratorio: inventario persistente
+
+17. Biblioteca estándar aplicada
+17.1 datetime y timedelta
+17.2 Fechas naive y aware
+17.3 zoneinfo y cambios de horario
+17.4 Relojes monotónicos y de pared
+17.5 re: patrones, flags y compilación
+17.6 search, match, fullmatch y finditer
+17.7 Grupos y sustituciones
+17.8 Regex y backtracking
+17.9 bisect
+17.10 heapq
+17.11 array
+17.12 pprint
+17.13 gzip, bz2 y lzma
+17.14 zipfile y tarfile
+17.15 hashlib
+17.16 uuid
+17.17 graphlib
+17.18 Consultar el índice completo de biblioteca
+17.19 Laboratorio: archivo y análisis de registros
+
+18. Automatización y CLI
+18.1 sys.argv y streams estándar
+18.2 argparse: opciones y posicionales
+18.3 Subcomandos y ayuda
+18.4 Validación de argumentos
+18.5 Variables de entorno y configuración
+18.6 subprocess.run
+18.7 Popen y comunicación
+18.8 Timeouts y códigos de retorno
+18.9 Evitar inyección de comandos
+18.10 Señales y cierre limpio
+18.11 logging: loggers y niveles
+18.12 Handlers y formatters
+18.13 Rotación y configuración
+18.14 Dry-run, idempotencia y reanudación
+18.15 Servicios Python y systemd
+18.16 Laboratorio: herramienta de auditoría
+
+19. Testing y depuración
+19.1 Estrategia de pruebas
+19.2 unittest
+19.3 pytest y aserciones
+19.4 Fixtures
+19.5 Parametrización
+19.6 Pruebas de excepciones
+19.7 Archivos temporales y captura de salida
+19.8 Mocks, fakes y stubs
+19.9 patch en el namespace correcto
+19.10 Pruebas de integración
+19.11 Pruebas basadas en propiedades
+19.12 Pruebas asíncronas
+19.13 Cobertura y sus límites
+19.14 Regresión y CLI
+19.15 breakpoint y pdb
+19.16 Stack y tracebacks
+19.17 warnings
+19.18 faulthandler
+19.19 Linting y formateo
+19.20 Laboratorio: suite del paquete
+
+20. Proyectos y distribución
+20.1 Estructura src frente a plana
+20.2 pyproject.toml
+20.3 Build frontend y backend
+20.4 Dependencias de desarrollo y ejecución
+20.5 Extras y marcadores de entorno
+20.6 Rangos de versiones
+20.7 Lockfiles y uv sync
+20.8 Wheel y sdist
+20.9 Entry points
+20.10 Datos empaquetados
+20.11 Instalación editable
+20.12 Verificar artefactos en entorno limpio
+20.13 Versionado y changelog
+20.14 Documentación ejecutable
+20.15 Publicación de práctica y credenciales
+20.16 CI y matriz de compatibilidad
+20.17 Laboratorio: paquete instalable
+
+21. Diseño y arquitectura
+21.1 Cohesión y acoplamiento
+21.2 Funciones puras y efectos
+21.3 Separación dominio e I/O
+21.4 Inyección de dependencias
+21.5 Interfaces y contratos
+21.6 Composición y patrones idiomáticos
+21.7 Estrategias, adaptadores y factorías
+21.8 Capas y puertos
+21.9 Configuración y errores públicos
+21.10 Refactoring con pruebas
+21.11 Compatibilidad de APIs
+21.12 Revisión y decisiones de arquitectura
+21.13 Laboratorio: reorganización de aplicación
+
+22. Concurrencia, hilos y procesos
+22.1 Concurrencia frente a paralelismo
+22.2 I/O-bound frente a CPU-bound
+22.3 GIL y builds sin GIL
+22.4 threading.Thread
+22.5 Carreras y estado compartido
+22.6 Lock y RLock
+22.7 Condition, Event y Semaphore
+22.8 queue y productor-consumidor
+22.9 Deadlocks y cierre
+22.10 ThreadPoolExecutor
+22.11 Futures y as_completed
+22.12 ProcessPoolExecutor
+22.13 multiprocessing y métodos de arranque
+22.14 Protección del punto de entrada
+22.15 Pipes, colas y memoria compartida
+22.16 Cancelación y timeouts
+22.17 Estado local por hilo
+22.18 Intérpretes aislados según versión
+22.19 Free-threading y compatibilidad de extensiones
+22.20 Laboratorio: comparar hilos, procesos y secuencial
+
+23. Programación asíncrona
+23.1 Modelo cooperativo y event loop
+23.2 async def y objetos corutina
+23.3 await y objetos esperables
+23.4 asyncio.run y runners
+23.5 Secuencial frente a concurrente
+23.6 create_task
+23.7 TaskGroup
+23.8 gather y excepciones
+23.9 as_completed y wait
+23.10 sleep y operaciones bloqueantes
+23.11 Cancelación y CancelledError
+23.12 timeout y wait_for
+23.13 ExceptionGroup y fallos concurrentes
+23.14 Limpieza de recursos
+23.15 async with
+23.16 async for
+23.17 Generadores asíncronos
+23.18 Locks, eventos y semáforos
+23.19 Colas y backpressure
+23.20 to_thread
+23.21 Executors y cálculos CPU-bound
+23.22 contextvars
+23.23 Streams y conexiones
+23.24 Límites de concurrencia y rate limiting
+23.25 Reintentos y backoff
+23.26 Diagnóstico de tareas bloqueadas
+23.27 Laboratorio: cliente concurrente robusto
+
+24. Redes y servicios
+24.1 TCP, UDP y HTTP
+24.2 Sockets y framing
+24.3 Servidor y cliente sencillos
+24.4 DNS e ipaddress
+24.5 TLS con ssl
+24.6 urllib.parse
+24.7 Clientes HTTP y conexiones
+24.8 Cabeceras, estados y respuestas
+24.9 Autenticación y secretos
+24.10 Paginación
+24.11 Timeouts y reintentos
+24.12 Pruebas con servidor local
+24.13 Diseño de servicios y frontera con frameworks
+24.14 Laboratorio: cliente API con caché
+
+25. Rendimiento y memoria
+25.1 Objetivos y cargas representativas
+25.2 Complejidad temporal y espacial
+25.3 perf_counter
+25.4 timeit y errores de medición
+25.5 Profiling determinista y muestreo
+25.6 Herramientas de profiling de la versión objetivo
+25.7 Interpretar perfiles
+25.8 tracemalloc
+25.9 sys.getsizeof y límites
+25.10 Streaming y generadores
+25.11 Algoritmos antes de microoptimizar
+25.12 Cachés e invalidación
+25.13 Optimizar texto e I/O
+25.14 Medir concurrencia
+25.15 JIT y diferencias entre builds
+25.16 Laboratorio: optimización con evidencia
+
+26. Descriptores y metaprogramación
+26.1 dir, vars e inspect
+26.2 getattr, setattr, hasattr y delattr
+26.3 __getattr__ frente a __getattribute__
+26.4 __setattr__
+26.5 Descriptores: __get__, __set__ y __delete__
+26.6 Descriptores de datos y no datos
+26.7 Precedencia de atributos
+26.8 __set_name__
+26.9 Implementar una propiedad
+26.10 __new__ frente a __init__
+26.11 Creación dinámica con type
+26.12 Metaclases y __prepare__
+26.13 __init_subclass__
+26.14 Decoradores de clase frente a metaclases
+26.15 AST y transformaciones
+26.16 compile, eval y exec: límites y riesgos
+26.17 Laboratorio: validadores declarativos
+
+27. Internals de CPython
+27.1 Tokenización, AST y compilación
+27.2 Objetos código y bytecode
+27.3 dis y diferencias entre versiones
+27.4 Frames y pila
+27.5 Representación interna de objetos
+27.6 Conteo de referencias
+27.7 gc y ciclos
+27.8 weakref
+27.9 Internals de listas, dicts y sets
+27.10 GIL y ejecución
+27.11 Free-threading y costes
+27.12 Subintérpretes y aislamiento
+27.13 Especialización y JIT
+27.14 Arranque e importación
+27.15 Finalización y recursos
+27.16 Lectura del código fuente y tests
+27.17 Laboratorio: investigar ejecución
+
+28. Interoperabilidad C y C++
+28.1 Cuándo usar código nativo
+28.2 Fronteras Python y C
+28.3 ctypes y firmas
+28.4 Memoria y ownership
+28.5 CFFI
+28.6 Extensión mínima con C API
+28.7 Referencias nuevas y prestadas
+28.8 Errores en la frontera nativa
+28.9 Buffer y conversión de tipos
+28.10 GIL y llamadas nativas
+28.11 Compatibilidad free-threaded
+28.12 Limited API y Stable ABI
+28.13 Bindings de C++
+28.14 Cython y alternativas
+28.15 Wheels nativos y pruebas
+28.16 Laboratorio: integrar y medir una función nativa
+
+29. Seguridad y robustez
+29.1 Fronteras de confianza
+29.2 Inyección SQL y de comandos
+29.3 Deserialización no fiable
+29.4 Secretos y configuración
+29.5 secrets y comparación segura
+29.6 Traversal y enlaces simbólicos
+29.7 Extracción de archivos hostiles
+29.8 Límites de recursos
+29.9 Dependencias y procedencia
+29.10 Logs sin datos sensibles
+29.11 Errores de usuario frente a internos
+29.12 Recuperación e idempotencia
+29.13 Laboratorio: endurecer la CLI
+
+30. Evolución hasta Python 3.15
+30.1 Leer What’s New y PEPs
+30.2 Registrar versión exacta y estado RC o final
+30.3 Migración desde 3.13 y 3.14
+30.4 T-strings y anotaciones: versión de introducción
+30.5 Cambios en importación
+30.6 Nuevos tipos incorporados
+30.7 Comprensiones y desempaquetado
+30.8 UTF-8 y compatibilidad de archivos
+30.9 Cambios de tipado
+30.10 Profiling y herramientas
+30.11 Free-threading y JIT
+30.12 Deprecaciones y eliminaciones
+30.13 Matriz de versiones
+30.14 Laboratorio: plan de migración
+
+31. Proyectos finales e hitos
+31.1 Hito básico: gestor de inventario
+31.2 Hito de lenguaje: biblioteca con protocolos y generadores
+31.3 Hito profesional: paquete tipado, probado y documentado
+31.4 Hito avanzado: cliente asíncrono con límites
+31.5 Proyecto experto: requisitos del generador de cursos
+31.6 Parser del PATH y validación de configuración
+31.7 Dominio y contratos
+31.8 CLI y mensajes de error
+31.9 Cliente API desacoplado y simulación
+31.10 Reintentos y presupuestos
+31.11 Control de concurrencia
+31.12 Persistencia y reanudación
+31.13 Escritura atómica y artefactos
+31.14 Pruebas y fallos simulados
+31.15 Rendimiento y memoria
+31.16 Distribución y CI
+31.17 Defensa técnica y rúbrica
+31.18 Puentes a NumPy, pandas, Polars y visualización como PATH separados

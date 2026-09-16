@@ -1,0 +1,530 @@
+0. Fundamentos y preparación
+0.1 Qué es pandas y qué problemas resuelve
+0.2 pandas 3.x y su lugar en el ecosistema Python
+0.3 Instalación y entorno reproducible
+0.4 Importar pandas y convenciones
+0.5 NumPy, PyArrow y dependencias relevantes
+0.6 Jupyter/IPython para análisis interactivo
+0.7 Primer Series
+0.8 Primer DataFrame
+0.9 Índice, columnas y ejes
+0.10 dtypes y valores escalares
+0.11 Missing data: introducción
+0.12 Inspección básica: shape, info, head, tail
+0.13 Laboratorio: explorar un dataset real
+
+1. Series en profundidad
+1.1 Creación de Series
+1.2 Índice explícito e implícito
+1.3 Selección y slicing
+1.4 loc e iloc
+1.5 Operaciones vectorizadas
+1.6 Alineación automática por índice
+1.7 Métodos de Series
+1.8 Agregaciones
+1.9 unique, nunique y value_counts
+1.10 map y transform
+1.11 where y mask
+1.12 sort_values y sort_index
+1.13 duplicated y drop_duplicates
+1.14 Conversión de tipos
+1.15 Series con strings
+1.16 Series categóricas
+1.17 Series temporales
+1.18 Laboratorio: limpieza de una Series compleja
+
+2. DataFrame en profundidad
+2.1 Construcción de DataFrames
+2.2 Columnas y filas
+2.3 Selección de columnas
+2.4 Selección de filas
+2.5 loc
+2.6 iloc
+2.7 at e iat
+2.8 Boolean indexing
+2.9 query
+2.10 eval
+2.11 Asignación y modificación
+2.12 assign
+2.13 insert
+2.14 rename
+2.15 drop
+2.16 reindex
+2.17 set_index y reset_index
+2.18 sort_values
+2.19 sort_index
+2.20 transpose
+2.21 iteración y por qué evitarla
+2.22 itertuples
+2.23 apply
+2.24 map en DataFrame
+2.25 pipe
+2.26 Laboratorio: transformación completa de un DataFrame
+
+3. Tipos de datos y sistema de dtypes
+3.1 NumPy dtypes en pandas
+3.2 ExtensionDtype
+3.3 Nullable integer
+3.4 Nullable boolean
+3.5 String dtype
+3.6 Categorical dtype
+3.7 Datetime dtype
+3.8 Timedelta dtype
+3.9 Period dtype
+3.10 Interval dtype
+3.11 Arrow-backed data
+3.12 Inferencia de tipos
+3.13 astype
+3.14 convert_dtypes
+3.15 select_dtypes
+3.16 Límites y conversiones seguras
+3.17 Laboratorio: normalizar un esquema heterogéneo
+
+4. Missing data
+4.1 NA, NaN, NaT y None
+4.2 pd.NA
+4.3 isna y notna
+4.4 dropna
+4.5 fillna
+4.6 ffill y bfill
+4.7 interpolate
+4.8 Missing data y dtypes nullable
+4.9 Missing data en cálculos
+4.10 Missing data en agrupaciones
+4.11 Estrategias de imputación
+4.12 Laboratorio: dataset con datos incompletos
+
+5. Strings y datos textuales
+5.1 Accesor .str
+5.2 lower, upper, title y casefold
+5.3 strip, lstrip y rstrip
+5.4 contains
+5.5 startswith y endswith
+5.6 match y fullmatch
+5.7 extract y extractall
+5.8 replace
+5.9 split y rsplit
+5.10 cat
+5.11 get y slice
+5.12 len
+5.13 pad, center y zfill
+5.14 find y index
+5.15 Regular expressions
+5.16 Unicode y normalización
+5.17 Laboratorio: limpieza textual avanzada
+
+6. Índices y MultiIndex
+6.1 Index
+6.2 RangeIndex
+6.3 Índices inmutables
+6.4 Indexación y alineación
+6.5 Duplicados en índices
+6.6 MultiIndex
+6.7 Creación de MultiIndex
+6.8 Selección jerárquica
+6.9 xs
+6.10 swaplevel y reorder_levels
+6.11 stack
+6.12 unstack
+6.13 droplevel
+6.14 IndexSlice
+6.15 Rendimiento y diseño del índice
+6.16 Laboratorio: datos multidimensionales con MultiIndex
+
+7. Ordenación, ranking y comparación
+7.1 sort_values avanzado
+7.2 sort_index avanzado
+7.3 nlargest y nsmallest
+7.4 rank
+7.5 idxmin e idxmax
+7.6 equals
+7.7 compare
+7.8 duplicated
+7.9 drop_duplicates
+7.10 Laboratorio: ranking y reconciliación de datasets
+
+8. Combinación de datos
+8.1 concat
+8.2 Concatenación vertical
+8.3 Concatenación horizontal
+8.4 merge
+8.5 Tipos de join
+8.6 Claves múltiples
+8.7 Validación de merges
+8.8 Indicador de merge
+8.9 join
+8.10 merge_ordered
+8.11 merge_asof
+8.12 combine_first
+8.13 update
+8.14 Solapamiento de columnas y sufijos
+8.15 Joins y missing values
+8.16 Rendimiento de joins
+8.17 Laboratorio: integrar múltiples fuentes
+
+9. Reshaping y organización
+9.1 pivot
+9.2 pivot_table
+9.3 melt
+9.4 stack
+9.5 unstack
+9.6 wide_to_long
+9.7 crosstab
+9.8 explode
+9.9 get_dummies
+9.10 from_dummies
+9.11 Reshaping con MultiIndex
+9.12 Laboratorio: pasar entre formatos wide y long
+
+10. GroupBy: split-apply-combine
+10.1 Fundamentos de GroupBy
+10.2 Agrupar por una columna
+10.3 Agrupar por múltiples columnas
+10.4 Agrupar por índice
+10.5 Iterar grupos
+10.6 agg
+10.7 Named aggregation
+10.8 transform
+10.9 filter
+10.10 apply
+10.11 size y count
+10.12 first, last, nth
+10.13 nunique
+10.14 value_counts por grupo
+10.15 cumulative operations
+10.16 GroupBy con categorías
+10.17 GroupBy con fechas
+10.18 Rendimiento de GroupBy
+10.19 Laboratorio: análisis agregado completo
+
+11. Ventanas y cálculos acumulativos
+11.1 cumsum, cumprod, cummin y cummax
+11.2 expanding
+11.3 rolling
+11.4 Tamaño de ventana
+11.5 Ventanas temporales
+11.6 min_periods
+11.7 center
+11.8 win_type
+11.9 rolling aggregate
+11.10 rolling apply
+11.11 exponentially weighted windows
+11.12 ewm
+11.13 Laboratorio: métricas móviles
+
+12. Fechas y series temporales
+12.1 Timestamp
+12.2 DatetimeIndex
+12.3 to_datetime
+12.4 date_range
+12.5 Frecuencias
+12.6 Time zones
+12.7 tz_localize
+12.8 tz_convert
+12.9 DST
+12.10 Timedelta
+12.11 Period y PeriodIndex
+12.12 Resampling
+12.13 downsampling
+12.14 upsampling
+12.15 asfreq
+12.16 shift
+12.17 pct_change
+12.18 rolling temporal
+12.19 merge_asof temporal
+12.20 Laboratorio: pipeline de series temporales
+
+13. Entrada y salida de datos
+13.1 read_csv
+13.2 CSV complejo
+13.3 read_table
+13.4 read_fwf
+13.5 read_json
+13.6 JSON normalizado
+13.7 read_html
+13.8 read_xml
+13.9 Excel
+13.10 Parquet
+13.11 Feather
+13.12 ORC
+13.13 Pickle y sus riesgos
+13.14 HDF5
+13.15 SQL
+13.16 read_sql
+13.17 to_sql
+13.18 Clipboard
+13.19 Compresión
+13.20 Chunking
+13.21 Encoding
+13.22 PyArrow engine
+13.23 Laboratorio: ingestión multiformato
+
+14. Limpieza y preparación de datos
+14.1 Perfilado inicial
+14.2 Normalización de nombres
+14.3 Conversión de tipos
+14.4 Tratamiento de missing values
+14.5 Detección de duplicados
+14.6 Outliers
+14.7 Reglas de validación
+14.8 replace
+14.9 map
+14.10 binning con cut
+14.11 qcut
+14.12 sample
+14.13 Estandarización de categorías
+14.14 Limpieza de texto
+14.15 Limpieza de fechas
+14.16 Pipeline reproducible
+14.17 Laboratorio: datos sucios de principio a fin
+
+15. Estadística descriptiva con pandas
+15.1 describe
+15.2 count
+15.3 sum
+15.4 mean
+15.5 median
+15.6 mode
+15.7 min y max
+15.8 quantile
+15.9 var y std
+15.10 sem
+15.11 skew
+15.12 kurt
+15.13 corr
+15.14 cov
+15.15 corrwith
+15.16 value_counts
+15.17 crosstab
+15.18 Laboratorio: informe estadístico reproducible
+
+16. Visualización desde pandas
+16.1 DataFrame.plot
+16.2 Series.plot
+16.3 line
+16.4 bar y barh
+16.5 hist
+16.6 box
+16.7 area
+16.8 scatter
+16.9 hexbin
+16.10 pie
+16.11 Integración con Matplotlib
+16.12 Laboratorio: EDA visual con pandas
+
+17. Pipelines y estilo funcional
+17.1 Method chaining
+17.2 assign
+17.3 pipe
+17.4 query
+17.5 eval
+17.6 transform
+17.7 Diseño de funciones puras
+17.8 Evitar mutaciones accidentales
+17.9 Pipelines testables
+17.10 Logging y observabilidad del pipeline
+17.11 Laboratorio: pipeline de análisis completo
+
+18. Rendimiento y memoria
+18.1 Cómo almacena pandas los datos
+18.2 Medir memoria
+18.3 memory_usage
+18.4 Elegir dtypes eficientes
+18.5 Categoricals para memoria
+18.6 Arrow-backed data
+18.7 Vectorización
+18.8 Evitar iterrows
+18.9 apply frente a operaciones nativas
+18.10 NumPy interoperability
+18.11 numexpr y eval
+18.12 Chunking
+18.13 Copy-on-Write
+18.14 Copias, vistas y semántica moderna
+18.15 Profiling
+18.16 Benchmarking
+18.17 Laboratorio: optimizar un pipeline lento
+
+19. pandas 3.x: modelo moderno
+19.1 Cambios conceptuales de pandas 3
+19.2 Copy-on-Write como modelo de trabajo
+19.3 String dtype moderno
+19.4 Integración con PyArrow
+19.5 Nullable dtypes
+19.6 Inferencia y conversiones
+19.7 APIs deprecadas y migración
+19.8 Compatibilidad de código 2.x a 3.x
+19.9 Detectar FutureWarning y DeprecationWarning
+19.10 Estrategia de actualización
+19.11 Laboratorio: migrar un proyecto a pandas 3
+
+20. PyArrow y formatos columnares
+20.1 Qué es Apache Arrow
+20.2 Arrow memory model
+20.3 pandas y Arrow
+20.4 ArrowDtype
+20.5 String con Arrow
+20.6 Parquet
+20.7 Particionado de datasets
+20.8 Predicate pushdown: concepto
+20.9 Interoperabilidad
+20.10 Conversión pandas ↔ Arrow
+20.11 Limitaciones y trade-offs
+20.12 Laboratorio: dataset columnar eficiente
+
+21. SQL y bases de datos
+21.1 pandas frente a SQL
+21.2 Conexiones mediante SQLAlchemy
+21.3 read_sql_query
+21.4 read_sql_table
+21.5 Parámetros de consulta
+21.6 Chunking desde SQL
+21.7 Escritura con to_sql
+21.8 Índices y tipos SQL
+21.9 Transacciones: conceptos
+21.10 Pushdown: qué calcular en SQL
+21.11 Laboratorio: pipeline PostgreSQL → pandas → PostgreSQL
+
+22. Testing y calidad
+22.1 Por qué probar transformaciones
+22.2 assert_frame_equal
+22.3 assert_series_equal
+22.4 assert_index_equal
+22.5 Tests de esquemas
+22.6 Tests de invariantes
+22.7 Missing data en tests
+22.8 Floating point tolerance
+22.9 Fixtures
+22.10 Property-based testing: concepto
+22.11 Regresión de datos
+22.12 Laboratorio: suite de tests para un pipeline
+
+23. Errores, depuración y troubleshooting
+23.1 KeyError
+23.2 IndexError
+23.3 TypeError
+23.4 ValueError
+23.5 MergeError
+23.6 ParserError
+23.7 Problemas de dtype
+23.8 Problemas de fechas
+23.9 Problemas de encoding
+23.10 Duplicados inesperados
+23.11 Cardinalidad incorrecta en joins
+23.12 Missing values inesperados
+23.13 Problemas de memoria
+23.14 Warnings
+23.15 Debugging incremental
+23.16 Construcción de casos mínimos
+23.17 Laboratorio: reparar un pipeline roto
+
+24. Internals de pandas
+24.1 Arquitectura general
+24.2 NDFrame
+24.3 Series y DataFrame internamente
+24.4 Index internamente
+24.5 ExtensionArray
+24.6 ExtensionDtype
+24.7 Managers y almacenamiento interno: visión conceptual
+24.8 Algoritmos de indexación
+24.9 Alineación
+24.10 Missing-data internals
+24.11 GroupBy internals
+24.12 Join internals
+24.13 Window internals
+24.14 Copy-on-Write internals
+24.15 Arrow integration internals
+24.16 Cython y código compilado en pandas
+24.17 Laboratorio: inspeccionar comportamiento interno
+
+25. Extensibilidad
+25.1 Custom accessors
+25.2 ExtensionArray: concepto
+25.3 ExtensionDtype personalizado
+25.4 Registrar accessors
+25.5 Integración con ecosistemas externos
+25.6 Typing y type hints
+25.7 Diseño de librerías sobre pandas
+25.8 Laboratorio: crear una pequeña extensión
+
+26. Arquitectura de proyectos de datos
+26.1 Notebook frente a módulo
+26.2 Separación ingestión-transformación-salida
+26.3 Configuración
+26.4 Esquemas
+26.5 Validación
+26.6 Logging
+26.7 Testing
+26.8 Reproducibilidad
+26.9 Gestión de dependencias
+26.10 Versionado de datasets
+26.11 Documentación
+26.12 Performance budgets
+26.13 Laboratorio: estructurar un proyecto profesional
+
+27. Interoperabilidad
+27.1 pandas y NumPy
+27.2 pandas y PyArrow
+27.3 pandas y Matplotlib
+27.4 pandas y Seaborn
+27.5 pandas y scikit-learn
+27.6 pandas y SQL
+27.7 pandas y Polars: diferencias conceptuales
+27.8 DataFrame interchange
+27.9 Conversión y pérdida de semántica
+27.10 Laboratorio: pipeline interoperable
+
+28. Patrones avanzados
+28.1 Índices frente a columnas
+28.2 Normalización frente a tablas anchas
+28.3 Tidy data
+28.4 Vectorización avanzada
+28.5 Transformaciones por grupos
+28.6 Joins temporales
+28.7 Feature engineering
+28.8 Cohortes
+28.9 Funnels
+28.10 Retención
+28.11 Tablas de hechos y dimensiones
+28.12 Procesamiento incremental
+28.13 Laboratorio: caso analítico complejo
+
+29. Antipatrones
+29.1 Loops innecesarios
+29.2 iterrows
+29.3 apply innecesario
+29.4 chained assignment
+29.5 Copias innecesarias
+29.6 object dtype indiscriminado
+29.7 Índices mal diseñados
+29.8 merges sin validar
+29.9 cargar datasets enormes sin estrategia
+29.10 mezclar limpieza y presentación
+29.11 notebooks irreproducibles
+29.12 Laboratorio: refactorizar antipatrones
+
+30. Proyecto final experto
+30.1 Definir un problema de datos real
+30.2 Diseñar el esquema de entrada
+30.3 Ingestar CSV, Parquet y SQL
+30.4 Validar datos
+30.5 Limpiar y normalizar
+30.6 Modelar dtypes
+30.7 Resolver missing data
+30.8 Integrar fuentes con merges validados
+30.9 Construir agregaciones
+30.10 Incorporar series temporales
+30.11 Crear métricas rolling
+30.12 Construir pipeline con method chaining
+30.13 Optimizar memoria
+30.14 Optimizar rendimiento
+30.15 Añadir tests
+30.16 Añadir logging
+30.17 Persistir en Parquet
+30.18 Persistir resultados en SQL
+30.19 Generar informe exploratorio
+30.20 Documentar decisiones
+30.21 Medir rendimiento
+30.22 Migración y compatibilidad pandas 3.x
+30.23 Auditoría de warnings y APIs deprecadas
+30.24 Empaquetar el proyecto
+30.25 Proyecto final: pandas-data-pipeline

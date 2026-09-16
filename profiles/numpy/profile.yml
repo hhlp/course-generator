@@ -1,0 +1,58 @@
+name: numpy
+title: "NumPy — Learning Path 0 → Experto"
+description: "Curso profundo de NumPy 2.x: ndarray, dtype, broadcasting, vectorización, precisión, álgebra lineal, rendimiento, internals, protocolos y extensibilidad."
+language: es
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliografy.md
+
+course:
+  platform: "Python + NumPy"
+  level: "0 → experto"
+  primary_library: "NumPy"
+  version_policy: "NumPy 2.x estable; verificar APIs y cambios contra la documentación oficial vigente"
+
+generation:
+  preserve_path_order: true
+  one_lesson_per_item: true
+  depth: deep
+  avoid_summary_only: true
+  code_examples: true
+  labs: true
+  explain_version_differences: true
+
+lesson:
+  required_opening: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points_min: 3
+  closing_key_points_max: 7
+  optional_sections:
+    - "🧪 Laboratorio / ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+
+technical_focus:
+  - ndarray
+  - shape
+  - axis
+  - dtype
+  - broadcasting
+  - vectorization
+  - ufuncs
+  - views_and_copies
+  - numerical_stability
+  - random
+  - linear_algebra
+  - fft
+  - io
+  - testing
+  - performance
+  - memory
+  - concurrency
+  - interoperability
+  - ndarray_internals
+  - array_protocols
+  - compiled_extensions
+  - numpy_2_migration

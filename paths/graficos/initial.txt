@@ -1,0 +1,293 @@
+0. FUNDAMENTOS COMUNES — Preparación y conocimientos previos
+0.1 Qué es el análisis de datos y qué es la visualización
+0.2 Funciones de Polars, NumPy, pandas, Matplotlib y Seaborn
+0.3 Preparación del entorno en Fedora con Python y uv
+0.4 Entornos virtuales y dependencias reproducibles
+0.5 JupyterLab, notebooks y scripts
+0.6 Python necesario: colecciones, funciones, argumentos e importaciones
+0.7 NumPy necesario: arrays, dimensiones, tipos y operaciones vectorizadas
+0.8 Laboratorio: cargar datos y producir una primera figura
+
+1. FUNDAMENTOS COMUNES — Aprender a interpretar y diseñar gráficos
+1.1 Variables numéricas, categóricas, ordinales y temporales
+1.2 Observaciones, dimensiones, medidas y unidades
+1.3 Comparación, distribución, relación y evolución temporal
+1.4 Seleccionar el gráfico según la pregunta
+1.5 Escalas, proporciones y percepción visual
+1.6 Color, contraste y accesibilidad
+1.7 Gráficos engañosos y sesgos de representación
+1.8 Laboratorio: detectar y corregir problemas visuales
+
+2. FUNDAMENTOS COMUNES — Estadística necesaria para visualizar
+2.1 Población, muestra y unidad de observación
+2.2 Media, mediana, cuantiles y percentiles
+2.3 Varianza, desviación estándar y rango intercuartílico
+2.4 Distribuciones, asimetría y valores atípicos
+2.5 Frecuencias, proporciones y densidades
+2.6 Correlación frente a causalidad
+2.7 Variabilidad, incertidumbre e intervalos de confianza
+2.8 Laboratorio: distintas conclusiones según la agregación utilizada
+
+3. POLARS — Modelo de datos de Polars
+3.1 Series y DataFrame
+3.2 Creación desde listas, diccionarios y arrays
+3.3 Esquema y tipos de datos
+3.4 Inspección: filas, columnas, dimensiones y resumen
+3.5 Selección de filas y columnas
+3.6 Conversión de tipos y conversiones estrictas
+3.7 Diferencias conceptuales respecto a pandas: índices y expresiones
+3.8 Laboratorio: construir y validar un conjunto de datos
+
+4. POLARS — Expresiones y transformaciones
+4.1 Expresiones y contextos de evaluación
+4.2 select y with_columns
+4.3 pl.col, pl.lit y alias
+4.4 Operaciones aritméticas y comparaciones
+4.5 Filtrado con condiciones compuestas
+4.6 Condicionales con when, then y otherwise
+4.7 Selectores y transformación de múltiples columnas
+4.8 Laboratorio: calcular indicadores sin bucles por fila
+
+5. POLARS — Calidad y limpieza
+5.1 Diferencias entre valores nulos y NaN
+5.2 Detección, eliminación e imputación de ausencias
+5.3 Duplicados y claves de negocio
+5.4 Limpieza de cadenas y expresiones regulares
+5.5 Categorías, Enum y normalización de etiquetas
+5.6 Detección y tratamiento justificado de valores atípicos
+5.7 Validaciones de rangos, tipos y coherencia
+5.8 Laboratorio: limpiar un CSV con errores documentados
+
+6. POLARS — Lectura, escritura e interoperabilidad
+6.1 Lectura y escritura de CSV
+6.2 Parquet y almacenamiento columnar
+6.3 JSON y NDJSON
+6.4 Arrow e IPC
+6.5 Integración con bases de datos y dependencias necesarias
+6.6 Conversión a NumPy y pandas: tipos, copias y memoria
+6.7 Lectura de múltiples archivos y evolución del esquema
+6.8 Laboratorio: convertir datos originales en un conjunto analítico
+
+7. POLARS — Agregaciones, combinaciones y remodelado
+7.1 group_by y agregaciones múltiples
+7.2 Agregaciones condicionales y ponderadas
+7.3 Ordenación, rankings y selección de extremos
+7.4 Joins: inner, left, full, semi y anti
+7.5 Cardinalidad, duplicación accidental y validación de joins
+7.6 Concatenación vertical y horizontal
+7.7 pivot, unpivot, explode y formatos largo/ancho
+7.8 Laboratorio: preparar tablas adecuadas para Seaborn
+
+8. POLARS — Fechas, series temporales y ventanas
+8.1 Date, Datetime, Duration y análisis de fechas
+8.2 Zonas horarias y cambios de horario
+8.3 Componentes de fecha y aritmética temporal
+8.4 Orden temporal, huecos y observaciones irregulares
+8.5 Agrupaciones con group_by_dynamic
+8.6 Ventanas móviles y expresiones con over
+8.7 Joins temporales con join_asof
+8.8 Laboratorio: indicadores diarios y tendencias móviles
+
+9. POLARS — Polars avanzado y rendimiento
+9.1 Ejecución eager y lazy
+9.2 LazyFrame y lectura con scan_*
+9.3 Materialización con collect
+9.4 Inspección del plan de consulta con explain
+9.5 Predicate pushdown y projection pushdown
+9.6 Streaming: posibilidades, límites y verificación
+9.7 Tipos anidados: List, Array y Struct
+9.8 Expresiones nativas frente a funciones Python
+9.9 Medición de tiempo, memoria y coste de conversión
+9.10 Laboratorio: optimizar una consulta sobre múltiples Parquet
+
+10. MATPLOTLIB — Arquitectura y primeros gráficos
+10.1 Figure, Axes, Axis y Artist
+10.2 pyplot e interfaz orientada a objetos
+10.3 plt.subplots y ciclo de vida de una figura
+10.4 Datos procedentes de NumPy y Polars
+10.5 Títulos, etiquetas, leyendas y cuadrículas
+10.6 Tamaño de figura y resolución
+10.7 Mostrar, guardar y cerrar figuras
+10.8 Laboratorio: función reutilizable que devuelve Figure y Axes
+
+11. MATPLOTLIB — Gráficos fundamentales
+11.1 Líneas y series ordenadas
+11.2 Dispersión, marcadores y transparencias
+11.3 Barras verticales y horizontales
+11.4 Barras agrupadas y apiladas
+11.5 Histogramas y elección de intervalos
+11.6 Boxplots y violin plots
+11.7 Áreas, escalones y gráficos de eventos
+11.8 Laboratorio: representar un conjunto de datos desde varias preguntas
+
+12. MATPLOTLIB — Ejes, escalas y anotaciones
+12.1 Límites, márgenes y proporción de los ejes
+12.2 Escalas lineales, logarítmicas y simétricas logarítmicas
+12.3 Localizadores y formateadores de ticks
+12.4 Formateo de fechas, porcentajes y unidades
+12.5 Ejes secundarios y ejes gemelos: usos y riesgos
+12.6 Anotaciones, flechas y regiones destacadas
+12.7 Coordenadas de datos, ejes y figura
+12.8 Laboratorio: explicar un resultado mediante anotaciones
+
+13. MATPLOTLIB — Figuras compuestas y diseño
+13.1 Cuadrículas de subplots
+13.2 Ejes compartidos y comparación consistente
+13.3 GridSpec
+13.4 subplot_mosaic
+13.5 Subfigures y paneles anidados
+13.6 Layout y prevención de solapamientos
+13.7 Leyendas comunes, colorbars e inset axes
+13.8 Laboratorio: informe gráfico de múltiples paneles
+
+14. MATPLOTLIB — Color y visualización científica
+14.1 Paletas cualitativas, secuenciales y divergentes
+14.2 Normalización lineal, logarítmica y centrada
+14.3 Imágenes y matrices con imshow
+14.4 Mallas con pcolormesh
+14.5 Contornos con contour y contourf
+14.6 Campos vectoriales con quiver y streamplot
+14.7 Datos irregulares y triangulación
+14.8 Laboratorio: representar una magnitud con unidades y escala coherentes
+
+15. MATPLOTLIB — Incertidumbre y gráficos especializados
+15.1 Barras de error
+15.2 Bandas con fill_between
+15.3 Histogramas bidimensionales y hexbin
+15.4 Gráficos polares
+15.5 Introducción a gráficos 3D y sus limitaciones
+15.6 Visualización de distribuciones acumuladas
+15.7 Comparación de estimaciones y observaciones
+15.8 Laboratorio: mostrar incertidumbre sin ocultar los datos
+
+16. MATPLOTLIB — Estilos y publicación
+16.1 Configuración con rcParams
+16.2 Hojas de estilo .mplstyle
+16.3 Contextos de estilo y configuración local
+16.4 Tipografía, texto matemático y símbolos
+16.5 Exportación a PNG, SVG y PDF
+16.6 Gráficos vectoriales, rasterización y tamaño de archivo
+16.7 Diseño para pantalla, impresión y accesibilidad
+16.8 Laboratorio: producir una figura lista para un informe técnico
+
+17. MATPLOTLIB — Interactividad, animación e internals
+17.1 Backends gráficos y renderizado sin pantalla
+17.2 Eventos de teclado y ratón
+17.3 Selección de elementos mediante picking
+17.4 Widgets: Slider, Button y CheckButtons
+17.5 Animaciones con FuncAnimation
+17.6 Exportación de animaciones y dependencias externas
+17.7 Artists, transforms y personalización avanzada
+17.8 Collections, actualización de artistas y blitting
+17.9 Diagnóstico de consumo de memoria y figuras abiertas
+17.10 Laboratorio: explorador interactivo de una serie temporal
+
+18. SEABORN — Fundamentos e integración de Seaborn
+18.1 Relación entre Seaborn y Matplotlib
+18.2 Datos en formato largo y ancho
+18.3 Variables semánticas: hue, size y style
+18.4 Funciones de nivel Axes y de nivel Figure
+18.5 Temas, contextos y paletas
+18.6 Uso de DataFrames de Polars y comprobación de compatibilidad
+18.7 Personalización posterior mediante Matplotlib
+18.8 Laboratorio: explorar datos preparados con Polars
+
+19. SEABORN — Relaciones y evolución temporal
+19.1 scatterplot
+19.2 lineplot
+19.3 relplot
+19.4 Agregación automática y estimadores
+19.5 Observaciones repetidas y agrupación por unidad
+19.6 Representación de intervalos y variabilidad
+19.7 Facetas por filas y columnas
+19.8 Laboratorio: distinguir datos individuales y tendencias agregadas
+
+20. SEABORN — Distribuciones
+20.1 histplot y sensibilidad al binning
+20.2 kdeplot y elección del ancho de banda
+20.3 Límites de la KDE en datos discretos o acotados
+20.4 ecdfplot
+20.5 rugplot
+20.6 displot y comparación entre grupos
+20.7 Normalización común e independiente
+20.8 Laboratorio: comparar distribuciones de tamaños desiguales
+
+21. SEABORN — Variables categóricas
+21.1 stripplot y swarmplot
+21.2 boxplot
+21.3 violinplot
+21.4 boxenplot
+21.5 barplot y countplot: estimaciones frente a recuentos
+21.6 pointplot y comparación de efectos
+21.7 catplot, orden de categorías y escalas
+21.8 Laboratorio: mostrar datos originales junto a sus resúmenes
+
+22. SEABORN — Regresión, matrices y análisis multivariante
+22.1 regplot y lmplot
+22.2 residplot y análisis visual de residuos
+22.3 Supuestos y límites de las tendencias ajustadas
+22.4 jointplot y JointGrid
+22.5 pairplot y PairGrid
+22.6 heatmap: anotaciones, máscaras y escalas
+22.7 clustermap: distancias, escalado y dependencias necesarias
+22.8 Laboratorio: explorar relaciones evitando conclusiones causales injustificadas
+
+23. SEABORN — Composición avanzada con Seaborn
+23.1 FacetGrid y funciones personalizadas
+23.2 Consistencia de colores, órdenes y escalas entre paneles
+23.3 Introducción a seaborn.objects
+23.4 Plot, marcas y capas
+23.5 Transformaciones estadísticas y posicionamiento
+23.6 Facetas, emparejamiento y composición
+23.7 Integración con figuras y ejes de Matplotlib
+23.8 Laboratorio: construir una visualización declarativa por capas
+
+24. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Pipeline completo: Polars → visualización
+24.1 Separar carga, limpieza, análisis y presentación
+24.2 Definir el contrato de datos de cada gráfico
+24.3 Resolver ordenación, categorías y valores ausentes
+24.4 Evitar agregaciones duplicadas entre Polars y Seaborn
+24.5 Materializar únicamente los datos necesarios
+24.6 Controlar conversiones, tipos y memoria
+24.7 Diseñar funciones de gráficos parametrizables
+24.8 Laboratorio: pipeline reproducible desde Parquet hasta PDF
+
+25. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Grandes volúmenes y rendimiento visual
+25.1 Diferenciar el coste de la consulta y el del renderizado
+25.2 Agregación previa para visualización
+25.3 Muestreo reproducible y sesgos introducidos
+25.4 Downsampling temporal y conservación de extremos
+25.5 Solapamiento: transparencia, densidad y binning
+25.6 Rasterización y simplificación de elementos
+25.7 Medición reproducible y comparación de alternativas
+25.8 Laboratorio: visualizar un conjunto grande con límites explícitos
+
+26. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Calidad, pruebas y automatización
+26.1 Organización de un proyecto de análisis visual
+26.2 Configuración, parámetros y rutas
+26.3 Pruebas de transformaciones con polars.testing
+26.4 Validación de los datos utilizados por cada gráfico
+26.5 Pruebas de figuras y regresión visual: usos y limitaciones
+26.6 Generación por lotes y backend sin pantalla
+26.7 Dependencias, semillas y trazabilidad de los datos
+26.8 Laboratorio: regenerar un informe mediante un único comando
+
+27. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Troubleshooting
+27.1 Errores de esquema y conversiones en Polars
+27.2 Joins que multiplican filas
+27.3 Fechas desordenadas y zonas horarias inconsistentes
+27.4 Gráficos vacíos, datos no finitos y escalas inválidas
+27.5 Categorías ausentes o reordenadas
+27.6 Diferencias entre estadísticas calculadas y dibujadas
+27.7 Problemas de fuentes, layouts, backends y exportación
+27.8 Laboratorio: diagnosticar un pipeline defectuoso
+
+28. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Proyectos finales
+28.1 Análisis exploratorio de un conjunto de datos desconocido
+28.2 Informe de ventas: segmentos, distribuciones y evolución
+28.3 Informe de sistemas: CPU, memoria, latencia y percentiles
+28.4 Estudio de calidad de datos con evidencias visuales
+28.5 Figura científica con múltiples paneles e incertidumbre
+28.6 Explorador interactivo con controles de Matplotlib
+28.7 Proyecto integral: lectura lazy, validaciones, análisis y exportación
+28.8 Defensa del proyecto: justificar gráficos, estadísticas y rendimiento

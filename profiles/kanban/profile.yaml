@@ -1,0 +1,35 @@
+name: kanban
+title: KANBAN — 0 → EXPERTO
+description: >
+  Learning path profundo de Kanban que integra Discovering Kanban,
+  Upstream Kanban y Fit for Purpose desde fundamentos hasta Enterprise Kanban.
+language: es
+platform: general
+level: zero-to-expert
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+generation:
+  lesson_style: deep
+  preserve_path_order: true
+  include_labs: true
+  include_common_errors: true
+  include_key_idea: true
+  include_summary: true
+
+lesson_contract:
+  opening: "🎯 OBJETIVO"
+  closing: "🧠 QUÉ DEBES RECORDAR"
+  summary_key_points_min: 3
+  summary_key_points_max: 7
+
+principles:
+  - enseñar Kanban como método de gestión evolutiva, no como simple tablero
+  - conectar demanda, discovery, commitment, delivery y customer outcomes
+  - usar métricas de flujo y evidencia para la toma de decisiones
+  - preservar optionality y deferred commitment en upstream
+  - conectar Fit for Purpose con diseño y evolución de servicios
+  - evolucionar prácticas según contexto y madurez
