@@ -1,0 +1,80 @@
+name: go
+title: "GO — DE 0 A EXPERTO"
+description: "Learning Path profundo de Go: lenguaje, concurrencia, servicios, runtime, profiling, performance e internals."
+
+language: es
+platform: "Fedora/Linux"
+level: "0-to-expert"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliografy.md
+
+course:
+  path: initial.txt
+  lesson_style: deep
+  preserve_depth: true
+  version_aware: true
+  official_docs_priority: true
+
+pedagogy:
+  opening_section: "🎯 OBJETIVO"
+  closing_section: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points_min: 3
+  closing_key_points_max: 7
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  reading_section: "📚 LECTURA"
+
+code:
+  language: go
+  format_with_gofmt: true
+  runnable_examples: true
+  prefer_standard_library: true
+  explain_output_when_useful: true
+
+focus:
+  - lenguaje Go y programación idiomática
+  - biblioteca estándar
+  - packages, modules y workspaces
+  - errores como valores
+  - generics
+  - goroutines y channels
+  - sincronización y Go Memory Model
+  - context y cancelación
+  - networking y HTTP
+  - database/sql
+  - testing, fuzzing y race detector
+  - seguridad y govulncheck
+  - runtime y scheduler
+  - compiler e internals
+  - profiling y tracing
+  - performance engineering y PGO
+  - producción, contenedores y Kubernetes
+
+references:
+  principal:
+    - "Learning Go — Jon Bodner"
+  performance:
+    - "Efficient Go — Bartłomiej Płotka"
+  concurrency:
+    - "Learn Concurrent Programming with Go — James Cutajar"
+  professional:
+    - "Go in Action, Second Edition — Joel Holmes, Andrew Walker, William Kennedy"
+  cookbook:
+    - "Go Cookbook: Expert Solutions for Commonly Needed Go Tasks — Sau Sheong Chang"
+  authoritative:
+    - "Official Go Documentation"
+    - "The Go Programming Language Specification"
+    - "Go Memory Model"
+    - "Go standard library documentation"
+
+quality:
+  avoid_superficial_summaries: true
+  explain_tradeoffs: true
+  include_common_errors: true
+  cumulative_labs: true
+  final_project: true

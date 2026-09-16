@@ -1,0 +1,869 @@
+0. Fundamentos de Go
+0.1 Qué es Go
+0.2 Historia y objetivos de diseño
+0.3 Filosofía de Go
+0.4 Simplicidad como principio de diseño
+0.5 Go frente a C, C++, Rust, Java y Python
+0.6 Lenguaje compilado y estáticamente tipado
+0.7 Garbage collection
+0.8 Concurrencia como parte del lenguaje
+0.9 Go toolchain
+0.10 Instalación en Fedora/Linux
+0.11 go version
+0.12 go env
+0.13 GOPATH
+0.14 GOROOT
+0.15 GOOS y GOARCH
+0.16 Estructura general de un programa
+0.17 package main
+0.18 Función main()
+0.19 Primer programa
+0.20 go run
+0.21 go build
+0.22 go install
+0.23 go fmt
+0.24 go doc
+0.25 Laboratorio: entorno Go completo
+
+1. Léxico, sintaxis y sistema básico de tipos
+1.1 Tokens
+1.2 Identificadores
+1.3 Keywords
+1.4 Operadores
+1.5 Literales
+1.6 Comentarios
+1.7 Declaraciones
+1.8 Variables
+1.9 var
+1.10 Declaración corta :=
+1.11 Inicialización
+1.12 Inferencia de tipos
+1.13 Zero values
+1.14 Constantes
+1.15 const
+1.16 iota
+1.17 Constantes tipadas y no tipadas
+1.18 bool
+1.19 Integers
+1.20 Signed integers
+1.21 Unsigned integers
+1.22 byte
+1.23 rune
+1.24 Floating point
+1.25 Complex
+1.26 string
+1.27 Conversiones de tipos
+1.28 Overflow
+1.29 Scope
+1.30 Shadowing
+1.31 Lifetime
+1.32 Laboratorio
+
+2. Expresiones y operadores
+2.1 Expresiones
+2.2 Operadores aritméticos
+2.3 Comparación
+2.4 Operadores lógicos
+2.5 Bitwise
+2.6 Shifts
+2.7 Precedencia
+2.8 Asignación
+2.9 Asignación múltiple
+2.10 Increment/decrement
+2.11 Conversiones explícitas
+2.12 Expresiones constantes
+2.13 Evaluación
+2.14 Laboratorio
+
+3. Control de flujo
+3.1 if
+3.2 Inicialización en if
+3.3 else
+3.4 for
+3.5 for clásico
+3.6 for como while
+3.7 Loops infinitos
+3.8 range
+3.9 break
+3.10 continue
+3.11 Labels
+3.12 goto
+3.13 switch
+3.14 Expression switch
+3.15 Switch sin expresión
+3.16 Múltiples casos
+3.17 fallthrough
+3.18 Type switch
+3.19 Laboratorio
+
+4. Funciones
+4.1 Declaración de funciones
+4.2 Parámetros
+4.3 Múltiples parámetros
+4.4 Parámetros del mismo tipo
+4.5 Valores retornados
+4.6 Múltiples retornos
+4.7 Named returns
+4.8 Blank identifier
+4.9 Funciones variádicas
+4.10 Expansión ...
+4.11 Funciones como valores
+4.12 Function types
+4.13 Funciones anónimas
+4.14 Closures
+4.15 Funciones de orden superior
+4.16 Callbacks
+4.17 Recursión
+4.18 defer
+4.19 Evaluación de argumentos de defer
+4.20 Stack de defer
+4.21 Patrones idiomáticos
+4.22 Laboratorio
+
+5. Arrays, slices y strings
+5.1 Arrays
+5.2 Longitud como parte del tipo
+5.3 Inicialización
+5.4 Array literals
+5.5 Comparación de arrays
+5.6 Copia por valor
+5.7 Slices
+5.8 Slice literals
+5.9 make
+5.10 len
+5.11 cap
+5.12 Slicing
+5.13 Backing arrays
+5.14 append
+5.15 Crecimiento
+5.16 copy
+5.17 Slices nil
+5.18 Slices vacíos
+5.19 Slices multidimensionales
+5.20 Aliasing
+5.21 Memory retention
+5.22 Strings
+5.23 Strings UTF-8
+5.24 Bytes frente a runes
+5.25 Iteración Unicode
+5.26 strings
+5.27 strconv
+5.28 unicode
+5.29 unicode/utf8
+5.30 Laboratorio
+
+6. Maps
+6.1 Concepto
+6.2 Declaración
+6.3 make(map...)
+6.4 Map literals
+6.5 Insertar
+6.6 Modificar
+6.7 Consultar
+6.8 Comma-ok idiom
+6.9 delete
+6.10 clear
+6.11 Iteración
+6.12 Orden de iteración
+6.13 Tipos permitidos como key
+6.14 Maps nil
+6.15 Maps y referencias
+6.16 Maps anidados
+6.17 Maps de slices
+6.18 Sets mediante maps
+6.19 Concurrencia y maps
+6.20 Laboratorio
+
+7. Structs
+7.1 Definición
+7.2 Campos
+7.3 Literals
+7.4 Anonymous structs
+7.5 Acceso
+7.6 Punteros a structs
+7.7 Embedding
+7.8 Promoted fields
+7.9 Composición
+7.10 Comparación
+7.11 Struct tags
+7.12 Reflection y tags
+7.13 Diseño de estructuras
+7.14 Laboratorio
+
+8. Punteros y modelo de memoria
+8.1 Direcciones
+8.2 Operador &
+8.3 Operador *
+8.4 Zero value nil
+8.5 new
+8.6 Punteros como parámetros
+8.7 Value semantics
+8.8 Pointer semantics
+8.9 Aliasing
+8.10 Escape analysis
+8.11 Stack
+8.12 Heap
+8.13 Allocation
+8.14 Garbage collector
+8.15 Cuándo utilizar punteros
+8.16 Errores comunes
+8.17 Laboratorio
+
+9. Methods
+9.1 Methods
+9.2 Receivers
+9.3 Value receivers
+9.4 Pointer receivers
+9.5 Method sets
+9.6 Automatic address/dereference
+9.7 Métodos sobre tipos definidos
+9.8 Composición mediante métodos
+9.9 Diseño de APIs
+9.10 Laboratorio
+
+10. Interfaces
+10.1 Concepto de interfaz
+10.2 Implementación implícita
+10.3 Interface satisfaction
+10.4 Method sets e interfaces
+10.5 Interface values
+10.6 Dynamic type
+10.7 Dynamic value
+10.8 Interfaz nil
+10.9 Typed nil
+10.10 Empty interface / any
+10.11 Type assertions
+10.12 Comma-ok
+10.13 Type switches
+10.14 Interfaces pequeñas
+10.15 Composición
+10.16 io.Reader
+10.17 io.Writer
+10.18 Diseño basado en interfaces
+10.19 Aceptar interfaces y devolver tipos concretos
+10.20 Dependency inversion idiomática
+10.21 Laboratorio
+
+11. Generics
+11.1 Por qué generics
+11.2 Type parameters
+11.3 Constraints
+11.4 any
+11.5 comparable
+11.6 Union constraints
+11.7 Aproximación ~
+11.8 Type sets
+11.9 Generic functions
+11.10 Generic types
+11.11 Inferencia
+11.12 Generic data structures
+11.13 Interfaces como constraints
+11.14 Cuándo no utilizar generics
+11.15 Generic methods y evolución de la especificación
+11.16 Patrones modernos
+11.17 Laboratorio
+
+12. Error handling
+12.1 Errores como valores
+12.2 error
+12.3 errors.New
+12.4 fmt.Errorf
+12.5 Wrapping
+12.6 %w
+12.7 errors.Is
+12.8 errors.As
+12.9 Sentinel errors
+12.10 Custom errors
+12.11 Error chains
+12.12 Estrategias de propagación
+12.13 Logging frente a handling
+12.14 panic
+12.15 recover
+12.16 Relación defer/panic/recover
+12.17 Cuándo utilizar panic
+12.18 Diseño idiomático
+12.19 Laboratorio
+
+13. Packages
+13.1 Packages
+13.2 Imports
+13.3 Exported identifiers
+13.4 Unexported identifiers
+13.5 Package initialization
+13.6 init()
+13.7 Múltiples archivos
+13.8 Dependencias entre packages
+13.9 Ciclos de importación
+13.10 Internal packages
+13.11 Package main
+13.12 Diseño de packages
+13.13 Documentación
+13.14 Ejemplos ejecutables
+13.15 Laboratorio
+
+14. Modules y dependency management
+14.1 Modules
+14.2 go.mod
+14.3 go.sum
+14.4 go mod init
+14.5 go get
+14.6 go mod tidy
+14.7 Versiones
+14.8 Semantic versioning
+14.9 Minimal Version Selection
+14.10 Direct dependencies
+14.11 Indirect dependencies
+14.12 replace
+14.13 exclude
+14.14 retract
+14.15 Major versions
+14.16 Module proxy
+14.17 GOPROXY
+14.18 Checksum database
+14.19 GOSUMDB
+14.20 Private modules
+14.21 Vendoring
+14.22 go mod vendor
+14.23 Workspaces
+14.24 go.work
+14.25 Multi-module development
+14.26 Publicación de módulos
+14.27 Laboratorio
+
+15. Standard Library esencial
+15.1 Filosofía de la stdlib
+15.2 fmt
+15.3 os
+15.4 io
+15.5 bufio
+15.6 bytes
+15.7 strings
+15.8 strconv
+15.9 unicode
+15.10 path
+15.11 path/filepath
+15.12 time
+15.13 math
+15.14 math/rand
+15.15 sort
+15.16 slices
+15.17 maps
+15.18 cmp
+15.19 container/*
+15.20 encoding/*
+15.21 encoding/json
+15.22 Evolución de encoding/json
+15.23 encoding/xml
+15.24 encoding/csv
+15.25 regexp
+15.26 flag
+15.27 log
+15.28 log/slog
+15.29 context
+15.30 Laboratorio
+
+16. Filesystem e I/O
+16.1 Modelo io.Reader/io.Writer
+16.2 Archivos
+16.3 Directorios
+16.4 Buffered I/O
+16.5 Streaming
+16.6 io.Copy
+16.7 Pipes
+16.8 io.Pipe
+16.9 Filesystem abstraction
+16.10 io/fs
+16.11 embed
+16.12 Temporary files
+16.13 Filesystem traversal
+16.14 Permisos
+16.15 Laboratorio
+
+17. Concurrencia I — Goroutines
+17.1 Concurrencia frente a paralelismo
+17.2 Procesos
+17.3 Threads
+17.4 Goroutines
+17.5 Keyword go
+17.6 Scheduler
+17.7 Stacks de goroutines
+17.8 Lifecycle
+17.9 Anonymous goroutines
+17.10 Closures y concurrencia
+17.11 Coordinación
+17.12 Goroutine leaks
+17.13 Laboratorio
+
+18. Concurrencia II — Channels
+18.1 Channels
+18.2 make(chan T)
+18.3 Send
+18.4 Receive
+18.5 Unbuffered channels
+18.6 Buffered channels
+18.7 Capacity
+18.8 close
+18.9 Detección de cierre
+18.10 range sobre channels
+18.11 Directional channels
+18.12 Ownership
+18.13 Nil channels
+18.14 select
+18.15 default
+18.16 Timeouts
+18.17 Cancellation
+18.18 Pipelines
+18.19 Fan-out
+18.20 Fan-in
+18.21 Worker pools
+18.22 Semaphore patterns
+18.23 Backpressure
+18.24 Laboratorio
+
+19. Concurrencia III — Memoria compartida
+19.1 sync
+19.2 Mutex
+19.3 RWMutex
+19.4 WaitGroup
+19.5 Once
+19.6 Cond
+19.7 Pool
+19.8 Map
+19.9 Atomics
+19.10 sync/atomic
+19.11 Race conditions
+19.12 Data races
+19.13 Race detector
+19.14 Deadlocks
+19.15 Livelocks
+19.16 Starvation
+19.17 Lock contention
+19.18 Diseño lock-free
+19.19 Laboratorio
+
+20. Go Memory Model
+20.1 Modelo formal de memoria
+20.2 Happens-before
+20.3 Synchronization
+20.4 Goroutine creation
+20.5 Channels
+20.6 Channel close
+20.7 Locks
+20.8 Atomics
+20.9 Data races
+20.10 Visibility
+20.11 Ordering
+20.12 Compiler reorderings
+20.13 Patrones correctos
+20.14 Patrones incorrectos
+20.15 Laboratorio
+
+21. Context y concurrencia estructurada
+21.1 context.Context
+21.2 Background
+21.3 TODO
+21.4 Cancellation
+21.5 Deadlines
+21.6 Timeouts
+21.7 Values
+21.8 Propagación
+21.9 Context trees
+21.10 APIs context-aware
+21.11 HTTP y context
+21.12 Database y context
+21.13 Anti-patterns
+21.14 Graceful cancellation
+21.15 Laboratorio
+
+22. Networking
+22.1 Networking en Go
+22.2 TCP
+22.3 UDP
+22.4 Sockets
+22.5 net.Conn
+22.6 Listeners
+22.7 DNS
+22.8 IP addresses
+22.9 Concurrent servers
+22.10 Deadlines
+22.11 TLS
+22.12 crypto/tls
+22.13 Laboratorio
+
+23. HTTP
+23.1 net/http
+23.2 HTTP client
+23.3 Request
+23.4 Response
+23.5 Transports
+23.6 Connection pooling
+23.7 Timeouts
+23.8 HTTP server
+23.9 Handler
+23.10 HandlerFunc
+23.11 ServeMux
+23.12 Middleware
+23.13 Headers
+23.14 Cookies
+23.15 Forms
+23.16 JSON APIs
+23.17 Streaming
+23.18 Multipart
+23.19 File server
+23.20 TLS
+23.21 Graceful shutdown
+23.22 HTTP/2
+23.23 HTTP/3 y ecosistema
+23.24 Laboratorio: REST API
+
+24. Databases
+24.1 database/sql
+24.2 Drivers
+24.3 DB handles
+24.4 Connections
+24.5 Connection pools
+24.6 Queries
+24.7 Prepared statements
+24.8 Transactions
+24.9 Scanning
+24.10 NULL
+24.11 Context
+24.12 Timeouts
+24.13 Isolation
+24.14 Errores
+24.15 SQL injection
+24.16 Repository patterns
+24.17 Laboratorio
+
+25. Testing
+25.1 testing
+25.2 _test.go
+25.3 Unit tests
+25.4 Table-driven tests
+25.5 Subtests
+25.6 Test helpers
+25.7 Setup/teardown
+25.8 Golden tests
+25.9 Mocks
+25.10 Fakes
+25.11 Dependency injection
+25.12 HTTP testing
+25.13 httptest
+25.14 Integration tests
+25.15 Test coverage
+25.16 Benchmarks
+25.17 Example tests
+25.18 Fuzzing
+25.19 Race testing
+25.20 Testing concurrent code
+25.21 Laboratorio
+
+26. Toolchain profesional
+26.1 go command
+26.2 go build
+26.3 go test
+26.4 go run
+26.5 go install
+26.6 go list
+26.7 go env
+26.8 go doc
+26.9 go fmt
+26.10 gofmt
+26.11 go vet
+26.12 go generate
+26.13 go tool
+26.14 go version
+26.15 go fix
+26.16 Build constraints
+26.17 Build tags
+26.18 Cross compilation
+26.19 Linker flags
+26.20 Reproducible builds
+26.21 Laboratorio
+
+27. Seguridad
+27.1 Secure coding
+27.2 Input validation
+27.3 Cryptography APIs
+27.4 TLS
+27.5 Password handling
+27.6 Secrets
+27.7 Randomness
+27.8 Injection
+27.9 Path traversal
+27.10 HTTP security
+27.11 Dependency vulnerabilities
+27.12 govulncheck
+27.13 Supply-chain security
+27.14 Module verification
+27.15 Fuzzing para seguridad
+27.16 Laboratorio
+
+28. Reflection
+28.1 Reflection
+28.2 reflect.Type
+28.3 reflect.Value
+28.4 Kind
+28.5 Addressability
+28.6 Settable values
+28.7 Interfaces y reflection
+28.8 Structs
+28.9 Tags
+28.10 Dynamic invocation
+28.11 Performance
+28.12 Cuándo no utilizar reflection
+28.13 Laboratorio
+
+29. Unsafe y bajo nivel
+29.1 unsafe
+29.2 unsafe.Pointer
+29.3 Pointer conversions
+29.4 Alignment
+29.5 Size
+29.6 Offsets
+29.7 Memory layout
+29.8 Interacción con runtime
+29.9 Riesgos
+29.10 Laboratorio
+
+30. cgo e interoperabilidad
+30.1 Qué es cgo
+30.2 Go ↔ C
+30.3 Tipos C
+30.4 Memoria
+30.5 Pointers
+30.6 Callbacks
+30.7 Linking
+30.8 Overhead
+30.9 Reglas del GC
+30.10 Cuándo evitar cgo
+30.11 Laboratorio
+
+31. Runtime de Go
+31.1 Arquitectura runtime
+31.2 Goroutines
+31.3 Scheduler
+31.4 Modelo G-M-P
+31.5 Work stealing
+31.6 Syscalls
+31.7 Network poller
+31.8 Stack management
+31.9 Stack growth
+31.10 Allocation
+31.11 Heap
+31.12 GC
+31.13 Write barriers
+31.14 Pacer
+31.15 Scavenger
+31.16 GOMAXPROCS
+31.17 GOGC
+31.18 GOMEMLIMIT
+31.19 Runtime metrics
+31.20 Laboratorio
+
+32. Compiler e internals
+32.1 Pipeline de compilación
+32.2 Parsing
+32.3 AST
+32.4 Type checking
+32.5 SSA
+32.6 Optimizaciones
+32.7 Escape analysis
+32.8 Inlining
+32.9 Bounds-check elimination
+32.10 Dead-code elimination
+32.11 Assembly
+32.12 Linker
+32.13 go tool compile
+32.14 go tool objdump
+32.15 Análisis de assembly
+32.16 Laboratorio
+
+33. Profiling y diagnostics
+33.1 Medir antes de optimizar
+33.2 Benchmarks
+33.3 pprof
+33.4 CPU profiles
+33.5 Heap profiles
+33.6 Allocations
+33.7 Goroutine profiles
+33.8 Block profiles
+33.9 Mutex profiles
+33.10 Execution tracer
+33.11 go tool trace
+33.12 Scheduler analysis
+33.13 Runtime metrics
+33.14 Flight recording y diagnóstico continuo
+33.15 Goroutine leak profiling
+33.16 Diagnóstico en producción
+33.17 Laboratorio
+
+34. Performance Engineering — Efficient Go
+34.1 Metodología de optimización
+34.2 Observabilidad
+34.3 Benchmarking fiable
+34.4 CPU bottlenecks
+34.5 Memory bottlenecks
+34.6 Allocations
+34.7 GC pressure
+34.8 Escape analysis
+34.9 Stack vs heap
+34.10 Cache locality
+34.11 Data-oriented design
+34.12 Slices eficientes
+34.13 Strings eficientes
+34.14 Maps eficientes
+34.15 Pooling
+34.16 Batching
+34.17 Concurrency overhead
+34.18 Lock contention
+34.19 False sharing
+34.20 I/O optimization
+34.21 Network optimization
+34.22 Serialization
+34.23 Zero-copy concepts
+34.24 PGO
+34.25 Performance regression testing
+34.26 Laboratorio
+
+35. Arquitectura y diseño idiomático
+35.1 Idiomatic Go
+35.2 Simplicity
+35.3 Composition over inheritance
+35.4 Interfaces pequeñas
+35.5 Package boundaries
+35.6 Dependency management
+35.7 Dependency injection
+35.8 API design
+35.9 Error design
+35.10 Concurrency ownership
+35.11 Configuration
+35.12 Logging estructurado
+35.13 Graceful shutdown
+35.14 Service lifecycle
+35.15 Maintainability
+35.16 Observability
+35.17 Laboratorio
+
+36. Go para servicios y sistemas distribuidos
+36.1 Service design
+36.2 REST APIs
+36.3 RPC
+36.4 gRPC
+36.5 Protocol Buffers
+36.6 Middleware
+36.7 Authentication
+36.8 Authorization
+36.9 Retries
+36.10 Exponential backoff
+36.11 Jitter
+36.12 Circuit breakers
+36.13 Rate limiting
+36.14 Idempotency
+36.15 Distributed tracing
+36.16 Metrics
+36.17 Structured logging
+36.18 Health checks
+36.19 Readiness/liveness
+36.20 Graceful degradation
+36.21 Laboratorio
+
+37. Patrones avanzados de concurrencia
+37.1 Bounded concurrency
+37.2 Worker pools
+37.3 Pipelines
+37.4 Fan-in/fan-out
+37.5 Futures/promises conceptuales
+37.6 Actor-like designs
+37.7 Event loops
+37.8 Cancellation trees
+37.9 Backpressure
+37.10 Rate limiting
+37.11 errgroup patterns
+37.12 Ownership
+37.13 Avoiding goroutine leaks
+37.14 Deterministic shutdown
+37.15 Laboratorio
+
+38. Code generation y tooling
+38.1 go generate
+38.2 AST
+38.3 go/parser
+38.4 go/ast
+38.5 go/token
+38.6 go/types
+38.7 Analyzers
+38.8 go/analysis
+38.9 Custom linters
+38.10 Code generators
+38.11 Tooling propio
+38.12 Laboratorio
+
+39. Go en producción
+39.1 Configuración
+39.2 Signals
+39.3 Graceful shutdown
+39.4 Logging
+39.5 Metrics
+39.6 Tracing
+39.7 Health endpoints
+39.8 Profiling endpoints
+39.9 Debugging producción
+39.10 Resource limits
+39.11 Containers
+39.12 Docker/Podman
+39.13 Kubernetes
+39.14 CI/CD
+39.15 Security scanning
+39.16 Deployment
+39.17 Observabilidad
+39.18 Laboratorio
+
+40. Internals avanzados
+40.1 Source tree de Go
+40.2 Runtime source
+40.3 Compiler source
+40.4 Scheduler source
+40.5 GC source
+40.6 Map implementation
+40.7 Slice implementation
+40.8 Channel implementation
+40.9 Interface representation
+40.10 Allocator
+40.11 Synchronization primitives
+40.12 Network poller
+40.13 Assembly
+40.14 Contribución al proyecto Go
+40.15 Laboratorio: lectura guiada del runtime
+
+41. Proyecto final — Go Expert
+41.1 Diseño del sistema
+41.2 CLI
+41.3 Configuración
+41.4 Packages
+41.5 API HTTP
+41.6 Persistencia
+41.7 Concurrency model
+41.8 Worker pool
+41.9 Context/cancellation
+41.10 Error architecture
+41.11 Structured logging
+41.12 Metrics
+41.13 Tracing
+41.14 Health checks
+41.15 Unit testing
+41.16 Integration testing
+41.17 Fuzzing
+41.18 Race detector
+41.19 Benchmarking
+41.20 Profiling
+41.21 Optimization
+41.22 PGO
+41.23 Security analysis
+41.24 govulncheck
+41.25 Containerización
+41.26 Graceful shutdown
+41.27 CI/CD
+41.28 Documentación
+41.29 Análisis de runtime
+41.30 Auditoría final de arquitectura y rendimiento
