@@ -1,5 +1,7 @@
 KANBAN — LEARNING PATH 0 → EXPERTO
 
+F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = flujo y delivery; KMM = cómo evoluciona todo el sistema organizacional hacia mayores capacidades.
+
 0. Fundamentos de sistemas, trabajo y servicios
 0.1 qué es un sistema
 0.2 pensamiento sistémico
@@ -9,45 +11,41 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 0.6 capacidad y demanda
 0.7 trabajo de conocimiento
 0.8 servicios y service delivery
-0.9 valor, resultado y output
+0.9 valor, outcome y output
 0.10 cliente, usuario y stakeholder
-0.11 demanda de valor y demanda de fallo
-0.12 colas y teoría de colas: introducción
-0.13 flujo: concepto
-0.14 eficiencia de recursos frente a eficiencia de flujo
-0.15 optimización local frente a global
-0.16 restricciones y cuellos de botella
-0.17 riesgo en trabajo de conocimiento
-0.18 incertidumbre
-0.19 feedback loops
-0.20 cambio evolutivo
-0.21 laboratorio: modelar un sistema de trabajo
+0.11 colas y teoría de colas
+0.12 flujo
+0.13 eficiencia de recursos frente a flujo
+0.14 optimización local frente a global
+0.15 restricciones y cuellos de botella
+0.16 riesgo
+0.17 incertidumbre
+0.18 feedback loops
+0.19 cambio evolutivo
+0.20 laboratorio: modelar un sistema
 
 1. Fundamentos de Kanban
 1.1 origen y evolución de Kanban
-1.2 Kanban en manufactura frente a trabajo de conocimiento
+1.2 Kanban en conocimiento
 1.3 Kanban como método de gestión
 1.4 Kanban no es un framework de proceso
-1.5 principios de gestión del cambio
-1.6 empezar con lo que haces ahora
-1.7 acordar perseguir mejora evolutiva
-1.8 fomentar liderazgo a todos los niveles
+1.5 principios de cambio
+1.6 start with what you do now
+1.7 mejora evolutiva
+1.8 leadership at every level
 1.9 principios de service delivery
-1.10 comprender necesidades y expectativas del cliente
-1.11 gestionar el trabajo y dejar que las personas se autoorganicen alrededor de él
-1.12 revisar regularmente la red de servicios
-1.13 agendas de Kanban
-1.14 sustainability agenda
-1.15 service orientation agenda
-1.16 survivability agenda
-1.17 Kanban Lens
-1.18 valores de Kanban
-1.19 sistemas pull
-1.20 señales Kanban
-1.21 commitment point
-1.22 delivery point
-1.23 lead time de extremo a extremo
-1.24 laboratorio: identificar un servicio
+1.10 necesidades del cliente
+1.11 gestionar el trabajo
+1.12 red de servicios
+1.13 agendas Kanban
+1.14 Kanban Lens
+1.15 valores Kanban
+1.16 pull
+1.17 señales Kanban
+1.18 commitment point
+1.19 delivery point
+1.20 lead time end-to-end
+1.21 laboratorio: identificar un servicio
 
 2. Visualización y modelado del workflow
 2.1 por qué visualizar
@@ -56,126 +54,120 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 2.4 workflow
 2.5 estados
 2.6 columnas y carriles
-2.7 puntos de entrada y salida
+2.7 entrada y salida
 2.8 colas y buffers
 2.9 blocked work
 2.10 expedites
 2.11 políticas visuales
-2.12 avatares y ownership
-2.13 clases de servicio: introducción
+2.12 ownership
+2.13 clases de servicio
 2.14 tableros físicos y digitales
-2.15 granularidad del tablero
-2.16 tableros de equipo frente a servicio
-2.17 visualización de dependencias
-2.18 visualización de riesgo
-2.19 visualización de aging
-2.20 errores de diseño de tableros
-2.21 laboratorio: diseñar un Kanban board
+2.15 granularidad
+2.16 tableros de servicio
+2.17 dependencias
+2.18 riesgo
+2.19 aging
+2.20 anti-patrones visuales
+2.21 laboratorio: diseñar tablero
 
 3. WIP, pull y gestión de capacidad
-3.1 Work in Progress
-3.2 por qué limitar WIP
-3.3 coste del exceso de WIP
-3.4 multitarea y context switching
-3.5 WIP limits
-3.6 límites por estado
-3.7 límites globales
-3.8 pull frente a push
-3.9 replenishment
-3.10 capacidad disponible
-3.11 slack
-3.12 swarming
-3.13 pairing y colaboración
-3.14 bottlenecks
-3.15 buffers
-3.16 drum-buffer-rope: relación conceptual
-3.17 WIP dinámico
-3.18 violaciones de WIP
-3.19 excepciones y políticas
-3.20 balance demanda-capacidad
-3.21 laboratorio: experimentar con límites WIP
+3.1 WIP
+3.2 coste del exceso de WIP
+3.3 multitarea
+3.4 WIP limits
+3.5 límites locales
+3.6 límites globales
+3.7 pull frente a push
+3.8 replenishment
+3.9 capacidad
+3.10 slack
+3.11 swarming
+3.12 pairing
+3.13 bottlenecks
+3.14 buffers
+3.15 WIP dinámico
+3.16 violaciones de WIP
+3.17 excepciones
+3.18 balance demanda-capacidad
+3.19 laboratorio WIP
 
 4. Políticas explícitas y clases de servicio
-4.1 qué es una política
-4.2 políticas explícitas
-4.3 Definition of Ready y políticas de entrada
-4.4 Definition of Done y políticas de salida
-4.5 criterios de pull
-4.6 criterios de commitment
-4.7 criterios de replenishment
-4.8 políticas de bloqueo
-4.9 políticas de abandono
-4.10 políticas de prioridad
-4.11 clases de servicio
-4.12 standard
-4.13 fixed date
-4.14 expedite
-4.15 intangible
-4.16 cost of delay
-4.17 urgencia frente a importancia
-4.18 políticas basadas en riesgo
-4.19 caducidad de políticas
-4.20 revisión colaborativa
-4.21 laboratorio: catálogo de políticas
+4.1 políticas explícitas
+4.2 políticas de entrada
+4.3 políticas de salida
+4.4 criterios de pull
+4.5 commitment
+4.6 replenishment
+4.7 bloqueos
+4.8 abandono
+4.9 prioridad
+4.10 clases de servicio
+4.11 standard
+4.12 fixed date
+4.13 expedite
+4.14 intangible
+4.15 cost of delay
+4.16 urgencia e importancia
+4.17 riesgo
+4.18 revisión de políticas
+4.19 laboratorio
 
 5. Métricas de flujo
-5.1 por qué medir flujo
-5.2 arrival rate
-5.3 departure rate
-5.4 throughput
-5.5 WIP
-5.6 lead time
-5.7 cycle time
-5.8 touch time
-5.9 wait time
-5.10 flow efficiency
-5.11 work item age
-5.12 distribuciones
-5.13 media, mediana y percentiles
-5.14 histogramas
-5.15 scatterplots
-5.16 run charts
-5.17 aging WIP chart
-5.18 Cumulative Flow Diagram
-5.19 bandas del CFD
-5.20 lectura de estabilidad en CFD
-5.21 Little's Law
-5.22 WIP = Throughput × Cycle Time
-5.23 supuestos y límites de Little's Law
-5.24 variabilidad y colas
-5.25 SLE: Service Level Expectation
-5.26 SLA frente a SLE
-5.27 métricas accionables frente a vanity metrics
-5.28 laboratorio: analizar datos de flujo
+5.1 arrival rate
+5.2 departure rate
+5.3 throughput
+5.4 WIP
+5.5 lead time
+5.6 cycle time
+5.7 touch time
+5.8 wait time
+5.9 flow efficiency
+5.10 work item age
+5.11 distribuciones
+5.12 media, mediana y percentiles
+5.13 histogramas
+5.14 scatterplots
+5.15 run charts
+5.16 aging WIP chart
+5.17 CFD
+5.18 bandas CFD
+5.19 estabilidad
+5.20 Little's Law
+5.21 supuestos de Little's Law
+5.22 variabilidad
+5.23 SLE
+5.24 SLA frente a SLE
+5.25 métricas accionables
+5.26 laboratorio
 
 6. Predictibilidad y forecasting
-6.1 qué significa predecir en sistemas complejos
-6.2 determinismo frente a probabilidad
-6.3 forecasting basado en evidencia
+6.1 predicción en sistemas complejos
+6.2 probabilidad
+6.3 evidence-based forecasting
 6.4 historical throughput
 6.5 historical cycle time
-6.6 percentiles y confianza
+6.6 percentiles
 6.7 SLE probabilístico
-6.8 pregunta cuándo estará terminado
-6.9 pregunta cuántos estarán terminados
-6.10 Monte Carlo: fundamentos
-6.11 simulación de throughput
-6.12 simulación de cycle time
-6.13 muestreo y distribuciones empíricas
-6.14 rangos de confianza
-6.15 forecasting con fechas
-6.16 forecasting con alcance
-6.17 actualización del forecast
-6.18 riesgo y buffers
-6.19 dependencias y correlación
-6.20 limitaciones del modelo
-6.21 errores de estimación tradicional
-6.22 story points y forecasting: diferencias
-6.23 laboratorio: forecast Monte Carlo
+6.8 cuándo estará terminado
+6.9 cuántos estarán terminados
+6.10 Monte Carlo
+6.11 simulación throughput
+6.12 simulación cycle time
+6.13 distribuciones empíricas
+6.14 confianza
+6.15 forecast por fecha
+6.16 forecast por alcance
+6.17 actualización
+6.18 riesgo
+6.19 dependencias
+6.20 limitaciones
+6.21 errores de estimación
+6.22 story points frente a forecasting
+6.23 laboratorio Monte Carlo
 
 7. Cadencias y feedback loops
-7.1 feedback en Kanban
-7.2 cadencias como mecanismos de aprendizaje
+7.1 feedback
+7.2 cadencias
 7.3 Team Kanban Meeting
 7.4 Daily Kanban
 7.5 Replenishment Meeting
@@ -185,47 +177,44 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 7.9 Risk Review
 7.10 Strategy Review
 7.11 cadencias conectadas
-7.12 frecuencia basada en necesidad
-7.13 inputs y outputs de cada cadencia
-7.14 métricas en las cadencias
-7.15 acciones y seguimiento
-7.16 escalado de impedimentos
+7.12 frecuencia
+7.13 inputs y outputs
+7.14 métricas
+7.15 acciones
+7.16 escalado
 7.17 feedback cliente
-7.18 feedback operacional
-7.19 laboratorio: diseñar cadencias
+7.18 laboratorio
 
 8. STATIK y diseño de sistemas Kanban
-8.1 qué es STATIK
+8.1 STATIK
 8.2 Systems Thinking Approach to Introducing Kanban
-8.3 fuentes de insatisfacción
-8.4 insatisfacción de clientes
-8.5 insatisfacción interna
-8.6 analizar demanda
-8.7 tipos de demanda
-8.8 frecuencia de demanda
-8.9 capability del sistema
-8.10 expectativas del cliente
-8.11 modelar workflow
-8.12 identificar clases de servicio
-8.13 diseñar políticas
-8.14 diseñar tablero
-8.15 definir WIP limits
-8.16 seleccionar métricas
-8.17 seleccionar cadencias
-8.18 rollout evolutivo
-8.19 STATIK como proceso iterativo
-8.20 anti-patrones de implementación
-8.21 laboratorio STATIK completo
+8.3 insatisfacción cliente
+8.4 insatisfacción interna
+8.5 demanda
+8.6 tipos de demanda
+8.7 capability
+8.8 expectativas
+8.9 workflow
+8.10 clases de servicio
+8.11 políticas
+8.12 tablero
+8.13 WIP
+8.14 métricas
+8.15 cadencias
+8.16 rollout evolutivo
+8.17 iteración
+8.18 anti-patrones
+8.19 laboratorio STATIK
 
 9. Gestión de servicios y orientación al cliente
 9.1 service orientation
-9.2 qué es un servicio
+9.2 servicio
 9.3 service request
 9.4 service delivery
 9.5 service boundary
 9.6 customer-facing service
 9.7 internal service
-9.8 service dependencies
+9.8 dependencias
 9.9 service catalog
 9.10 service level
 9.11 expectativas
@@ -233,17 +222,17 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 9.13 fitness
 9.14 service delivery manager
 9.15 service request manager
-9.16 service delivery review
+9.16 SDR
 9.17 demand analysis
 9.18 capacity allocation
-9.19 riesgo del servicio
-9.20 diseño evolutivo del servicio
-9.21 laboratorio: mapa de servicios
+9.19 riesgo
+9.20 diseño evolutivo
+9.21 laboratorio
 
 10. Fit for Purpose — fundamentos
-10.1 problema que resuelve Fit for Purpose
+10.1 problema F4P
 10.2 fitness for purpose
-10.3 valor desde la perspectiva del cliente
+10.3 valor del cliente
 10.4 purpose
 10.5 customer outcomes
 10.6 customer experience
@@ -251,14 +240,13 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 10.8 segmentación tradicional frente a F4P
 10.9 fitness criteria
 10.10 criterios funcionales
-10.11 criterios no funcionales
+10.11 no funcionales
 10.12 expectativas y umbrales
-10.13 trade-offs del cliente
+10.13 trade-offs
 10.14 métricas de fitness
 10.15 leading y lagging indicators
-10.16 señales cuantitativas y cualitativas
-10.17 feedback loops F4P
-10.18 laboratorio: descubrir fitness criteria
+10.16 feedback F4P
+10.17 laboratorio
 
 11. Fit for Purpose — diseño y medición avanzada
 11.1 fitness landscape
@@ -266,22 +254,22 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 11.3 segmentos por expectativas
 11.4 cambio de expectativas
 11.5 fitness box score
-11.6 medición de satisfacción contextual
+11.6 satisfacción contextual
 11.7 capability frente a expectativa
-11.8 distribuciones de resultados
+11.8 distribuciones
 11.9 service level y fitness
 11.10 customer lead time
-11.11 calidad y fitness
-11.12 precio/coste y fitness
-11.13 conveniencia y fitness
-11.14 selección de métricas
-11.15 sesgos en encuestas
+11.11 calidad
+11.12 coste
+11.13 conveniencia
+11.14 métricas
+11.15 sesgos
 11.16 feedback continuo
-11.17 experimentos de servicio
-11.18 evolución de producto/servicio
-11.19 conectar F4P con estrategia
-11.20 conectar F4P con Kanban
-11.21 laboratorio: sistema F4P
+11.17 experimentos
+11.18 evolución del servicio
+11.19 F4P y estrategia
+11.20 F4P y Kanban
+11.21 laboratorio
 
 12. Upstream Kanban — fundamentos
 12.1 qué es upstream
@@ -289,50 +277,50 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 12.3 discovery frente a delivery
 12.4 demand management
 12.5 fuentes de demanda
-12.6 ideas, problemas, necesidades y oportunidades
+12.6 ideas y oportunidades
 12.7 requests
 12.8 options
 12.9 optionality
 12.10 commitment
 12.11 commitment point
-12.12 coste de comprometer demasiado pronto
+12.12 compromiso prematuro
 12.13 deferred commitment
 12.14 last responsible moment
-12.15 incertidumbre upstream
-12.16 riesgo upstream
+12.15 incertidumbre
+12.16 riesgo
 12.17 visualización upstream
 12.18 WIP upstream
 12.19 flow upstream
-12.20 laboratorio: upstream board
+12.20 laboratorio
 
 13. Demand Management
-13.1 qué es demanda
-13.2 demanda interna y externa
-13.3 demanda planificada y no planificada
+13.1 demanda
+13.2 interna y externa
+13.3 planificada y no planificada
 13.4 value demand
 13.5 failure demand
 13.6 arrival rate
-13.7 patrones de llegada
-13.8 variabilidad de demanda
+13.7 patrones
+13.8 variabilidad
 13.9 estacionalidad
-13.10 segmentación de demanda
-13.11 tipos de demanda
+13.10 segmentación
+13.11 tipos
 13.12 urgencia
 13.13 cost of delay
 13.14 riesgo
-13.15 tamaño y complejidad
+13.15 tamaño
 13.16 intake
 13.17 triage
 13.18 filtros
-13.19 políticas de aceptación
-13.20 rechazo y descarte
-13.21 feedback al solicitante
+13.19 aceptación
+13.20 descarte
+13.21 feedback
 13.22 capacidad frente a demanda
 13.23 demand shaping
-13.24 laboratorio: analizar demanda
+13.24 laboratorio
 
 14. Discovery y gestión de opciones
-14.1 qué es una opción
+14.1 opciones
 14.2 idea frente a opción
 14.3 hipótesis
 14.4 problema y oportunidad
@@ -341,29 +329,29 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 14.7 validation
 14.8 experimentos
 14.9 evidence
-14.10 MVP como experimento
+14.10 MVP
 14.11 prototipos
 14.12 spikes
-14.13 opciones reales: introducción
-14.14 coste de mantener opciones
-14.15 fecha de expiración
+14.13 real options
+14.14 coste de opciones
+14.15 expiración
 14.16 option aging
-14.17 WIP de discovery
-14.18 límites de exploración
-14.19 descartar opciones
-14.20 pivotar
-14.21 dividir opciones
+14.17 WIP discovery
+14.18 límites
+14.19 descarte
+14.20 pivot
+14.21 división
 14.22 dependencias
 14.23 riesgo y aprendizaje
-14.24 laboratorio: portfolio de opciones
+14.24 laboratorio
 
 15. Selección, replenishment y commitment
-15.1 selección de trabajo
+15.1 selección
 15.2 replenishment
 15.3 commitment criteria
 15.4 selection criteria
-15.5 fitness criteria en selección
-15.6 capability del sistema
+15.5 fitness criteria
+15.6 capability
 15.7 available capacity
 15.8 risk
 15.9 cost of delay
@@ -374,89 +362,159 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 15.14 ordenación dinámica
 15.15 classes of service
 15.16 capacity allocation
-15.17 reservas de capacidad
-15.18 fixed date demand
+15.17 reservas
+15.18 fixed date
 15.19 expedites
 15.20 commitment meetings
-15.21 políticas de descarte
+15.21 descarte
 15.22 reversibilidad
 15.23 feedback upstream-downstream
-15.24 laboratorio: replenishment
+15.24 laboratorio
 
 16. Portfolio Kanban y coordinación de servicios
-16.1 portfolio como sistema de servicios
+16.1 portfolio como sistema
 16.2 portfolio Kanban
 16.3 niveles de abstracción
 16.4 initiatives
-16.5 epics y work items: relación
-16.6 flight levels: relación conceptual
+16.5 epics y work items
+16.6 flight levels: relación
 16.7 portfolio WIP
 16.8 portfolio flow
 16.9 portfolio aging
 16.10 portfolio lead time
 16.11 capacidad por servicio
 16.12 capacity allocation
-16.13 dependencias entre servicios
+16.13 dependencias
 16.14 shared services
-16.15 bottlenecks organizacionales
+16.15 bottlenecks
 16.16 upstream portfolio
 16.17 commitment portfolio
 16.18 riesgo agregado
-16.19 clases de servicio a nivel portfolio
-16.20 cadencias portfolio
-16.21 portfolio review
-16.22 strategy review
-16.23 laboratorio: portfolio Kanban
+16.19 clases de servicio
+16.20 portfolio review
+16.21 strategy review
+16.22 laboratorio
 
-17. Discovering Kanban — evolución y madurez
-17.1 Kanban como estrategia evolutiva
-17.2 fitness landscape organizacional
-17.3 evolutionary change
-17.4 safe-to-fail change
-17.5 resistencia al cambio
-17.6 identidad y roles existentes
-17.7 leadership at every level
-17.8 actos de liderazgo
-17.9 culture hacking
-17.10 feedback organizacional
-17.11 capability maturity
-17.12 Kanban Maturity Model: relación
-17.13 prácticas según contexto
-17.14 evitar copiar prácticas avanzadas prematuramente
-17.15 service orientation maturity
-17.16 flow maturity
-17.17 risk maturity
-17.18 customer focus maturity
-17.19 cambio guiado por evidencia
-17.20 laboratorio: mapa de evolución
+17. Kanban Maturity Model (KMM) — evolución y madurez organizacional
+17.1 qué es KMM
+17.2 por qué un modelo de madurez
+17.3 madurez organizacional frente a tablero
+17.4 capability frente a maturity
+17.5 KMM como mapa evolutivo
+17.6 prácticas apropiadas al contexto
+17.7 Kanban Maturity Levels: visión general
+17.8 ML0 — Oblivious
+17.9 características de ML0
+17.10 riesgos de ML0
+17.11 evolución desde ML0
+17.12 ML1 — Team Focused
+17.13 características de ML1
+17.14 visualización y prácticas ML1
+17.15 feedback y liderazgo ML1
+17.16 límites de ML1
+17.17 ML2 — Customer Driven
+17.18 características de ML2
+17.19 orientación al servicio ML2
+17.20 customer focus
+17.21 flujo, políticas y métricas ML2
+17.22 de equipos a servicios
+17.23 ML3 — Fit for Purpose
+17.24 características de ML3
+17.25 fitness criteria y ML3
+17.26 segmentación por propósito
+17.27 capability frente a expectativas
+17.28 predictibilidad ML3
+17.29 F4P y KMM
+17.30 ML4 — Risk Hedged
+17.31 características de ML4
+17.32 gestión explícita del riesgo
+17.33 clases de servicio y riesgo
+17.34 portfolio y capacidad
+17.35 resiliencia ML4
+17.36 ML5 — Market Leader
+17.37 características de ML5
+17.38 adaptación al mercado
+17.39 innovación y capability
+17.40 feedback estratégico
+17.41 capability y ventaja competitiva
+17.42 ML6 — Built for Survival
+17.43 características de ML6
+17.44 resiliencia
+17.45 reinvention
+17.46 cambio de mercado y modelo de negocio
+17.47 evolución sostenida
+17.48 prácticas KMM
+17.49 prácticas de transición
+17.50 prácticas de implementación
+17.51 prácticas de gestión
+17.52 prácticas de liderazgo
+17.53 prácticas culturales
+17.54 leadership at every level
+17.55 culture hacking
+17.56 resistencia al cambio
+17.57 identidad y roles
+17.58 feedback organizacional
+17.59 service orientation maturity
+17.60 flow maturity
+17.61 risk maturity
+17.62 customer focus maturity
+17.63 métricas de capability
+17.64 readiness para evolucionar
+17.65 transiciones entre niveles
+17.66 riesgos de saltar niveles
+17.67 plateaus
+17.68 retrocesos
+17.69 KMM no es ranking
+17.70 KMM y STATIK
+17.71 KMM y SDR
+17.72 KMM y Operations Review
+17.73 KMM y Risk Review
+17.74 KMM y Strategy Review
+17.75 KMM y Upstream
+17.76 KMM y Demand Management
+17.77 KMM y Portfolio
+17.78 KMM y F4P
+17.79 KMM y Enterprise Kanban
+17.80 Discovering Kanban y KMM
+17.81 diagnóstico KMM
+17.82 estrategia evolutiva
+17.83 selección de prácticas
+17.84 experimentos safe-to-fail
+17.85 medir transición
+17.86 laboratorio: identificar nivel
+17.87 laboratorio: mapa de prácticas
+17.88 laboratorio: ML1 a ML2
+17.89 laboratorio: ML2 a ML3
+17.90 laboratorio: F4P + Upstream + Delivery + KMM
+17.91 laboratorio final: roadmap KMM
 
 18. Enterprise Kanban y sistemas de sistemas
 18.1 empresa como red de servicios
 18.2 service network
 18.3 interdependencias
-18.4 upstream y downstream organizacional
+18.4 upstream/downstream
 18.5 end-to-end flow
-18.6 local optimization
-18.7 global optimization
+18.6 optimización local
+18.7 optimización global
 18.8 enterprise WIP
 18.9 enterprise demand
 18.10 enterprise risk
 18.11 shared capacity
-18.12 dependency management
+18.12 dependencias
 18.13 coordination costs
 18.14 cadencias multinivel
-18.15 operations review
-18.16 strategy review
-18.17 enterprise service delivery review
+18.15 Operations Review
+18.16 Strategy Review
+18.17 enterprise SDR
 18.18 métricas agregadas
 18.19 métricas por servicio
 18.20 governance evolutiva
-18.21 políticas organizacionales
-18.22 escalado sin imponer uniformidad
-18.23 laboratorio: red empresarial
+18.21 políticas
+18.22 escalado sin uniformidad
+18.23 laboratorio
 
 19. Riesgo, economía y toma de decisiones
-19.1 riesgo en Kanban
+19.1 riesgo Kanban
 19.2 risk dimensions
 19.3 cost of delay
 19.4 delay cost profiles
@@ -466,59 +524,59 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 19.8 discovery risk
 19.9 technical risk
 19.10 dependency risk
-19.11 liquidity risk de opciones
+19.11 liquidity risk
 19.12 economic prioritization
 19.13 opportunity cost
 19.14 transaction cost
 19.15 holding cost
 19.16 capacity cost
-19.17 variabilidad y buffers
-19.18 risk review
-19.19 risk visualization
-19.20 risk-based classes of service
-19.21 decisiones bajo incertidumbre
-19.22 laboratorio: risk review
+19.17 buffers
+19.18 Risk Review
+19.19 visualización
+19.20 risk-based classes
+19.21 incertidumbre
+19.22 laboratorio
 
 20. Analítica avanzada y mejora del sistema
-20.1 estabilidad del sistema
-20.2 control estadístico: fundamentos
-20.3 common cause variation
-20.4 special cause variation
-20.5 control charts: introducción
+20.1 estabilidad
+20.2 control estadístico
+20.3 common cause
+20.4 special cause
+20.5 control charts
 20.6 distribuciones no normales
-20.7 percentiles operacionales
+20.7 percentiles
 20.8 cohort analysis
-20.9 segmentación de cycle time
-20.10 análisis por tipo de trabajo
-20.11 análisis por clase de servicio
-20.12 blocked time analysis
-20.13 aging analysis
-20.14 bottleneck analysis
-20.15 queue analysis
-20.16 flow efficiency crítica
+20.9 cycle time por segmento
+20.10 tipo de trabajo
+20.11 clase de servicio
+20.12 blocked time
+20.13 aging
+20.14 bottlenecks
+20.15 colas
+20.16 flow efficiency
 20.17 throughput trends
-20.18 arrival/departure balance
+20.18 arrival/departure
 20.19 WIP trend
-20.20 experimentos de mejora
-20.21 comparación antes/después
-20.22 evitar Goodhart's Law
-20.23 laboratorio: diagnóstico de flujo
+20.20 experimentos
+20.21 antes/después
+20.22 Goodhart's Law
+20.23 laboratorio
 
 21. Anti-patrones y troubleshooting Kanban
-21.1 Kanban como tablero de tareas
-21.2 sin límites WIP
-21.3 límites WIP ignorados
-21.4 push disfrazado de pull
-21.5 demasiados expedites
+21.1 Kanban como tablero
+21.2 sin WIP limits
+21.3 WIP ignorado
+21.4 push disfrazado
+21.5 expedites
 21.6 prioridades cambiantes
 21.7 bloqueos invisibles
 21.8 políticas implícitas
-21.9 métricas usadas para evaluar personas
-21.10 obsesión con utilización
-21.11 promedios engañosos
-21.12 story points como métrica de productividad
+21.9 métricas contra personas
+21.10 utilización
+21.11 promedios
+21.12 story points como productividad
 21.13 CFD mal interpretado
-21.14 SLE tratado como SLA
+21.14 SLE como SLA
 21.15 forecast determinista
 21.16 upstream sin límites
 21.17 discovery factory
@@ -526,40 +584,46 @@ KANBAN — LEARNING PATH 0 → EXPERTO
 21.19 dependencias crónicas
 21.20 cadencias sin decisiones
 21.21 mejora sin hipótesis
-21.22 laboratorio: diagnosticar anti-patrones
+21.22 KMM como ranking
+21.23 laboratorio
 
 22. Proyecto final — Enterprise Kanban System
-22.1 definir organización de caso
-22.2 identificar clientes y stakeholders
-22.3 mapear red de servicios
-22.4 identificar fuentes de insatisfacción
-22.5 aplicar STATIK
-22.6 analizar demanda
-22.7 diseñar upstream
-22.8 diseñar discovery
-22.9 definir options
-22.10 definir commitment policies
-22.11 diseñar delivery Kanban
-22.12 definir WIP limits
-22.13 definir classes of service
-22.14 definir fitness criteria
-22.15 diseñar métricas F4P
-22.16 definir flow metrics
-22.17 construir SLE
-22.18 crear forecast Monte Carlo
-22.19 diseñar cadencias
-22.20 diseñar Service Delivery Review
-22.21 diseñar Operations Review
-22.22 diseñar Risk Review
-22.23 diseñar Strategy Review
-22.24 crear portfolio Kanban
-22.25 mapear dependencias
-22.26 establecer políticas de capacidad
-22.27 definir experimentos evolutivos
-22.28 crear dashboard operacional
-22.29 evaluar anti-patrones
-22.30 simular escenarios de demanda
-22.31 documentar decisiones
-22.32 retrospectiva del sistema
-22.33 plan de evolución a 90 días
-22.34 presentación final del Enterprise Kanban System
+22.1 definir caso
+22.2 identificar clientes
+22.3 mapear servicios
+22.4 insatisfacción
+22.5 STATIK
+22.6 demanda
+22.7 upstream
+22.8 discovery
+22.9 options
+22.10 commitment policies
+22.11 delivery Kanban
+22.12 WIP
+22.13 classes of service
+22.14 fitness criteria
+22.15 métricas F4P
+22.16 flow metrics
+22.17 SLE
+22.18 Monte Carlo
+22.19 cadencias
+22.20 SDR
+22.21 Operations Review
+22.22 Risk Review
+22.23 Strategy Review
+22.24 portfolio Kanban
+22.25 dependencias
+22.26 capacidad
+22.27 diagnóstico KMM
+22.28 Kanban Maturity Level actual
+22.29 capability gaps
+22.30 prácticas KMM apropiadas
+22.31 roadmap de madurez
+22.32 experimentos evolutivos
+22.33 dashboard
+22.34 anti-patrones
+22.35 escenarios de demanda
+22.36 documentar decisiones
+22.37 retrospectiva
+22.38 plan 90 días
+22.39 presentación final

@@ -1,10 +1,9 @@
 name: kanban
 title: KANBAN — 0 → EXPERTO
 description: >
-  Learning path profundo de Kanban que integra Discovering Kanban,
-  Upstream Kanban y Fit for Purpose desde fundamentos hasta Enterprise Kanban.
+  Learning path integral que une Kanban, Fit for Purpose, Upstream Kanban,
+  Discovering Kanban y Kanban Maturity Model desde fundamentos hasta Enterprise Kanban.
 language: es
-platform: general
 level: zero-to-expert
 
 files:
@@ -27,9 +26,12 @@ lesson_contract:
   summary_key_points_max: 7
 
 principles:
-  - enseñar Kanban como método de gestión evolutiva, no como simple tablero
+  - "F4P = propósito/cliente"
+  - "Upstream = demanda antes del compromiso"
+  - "Kanban = flujo y delivery"
+  - "KMM = cómo evoluciona todo el sistema organizacional hacia mayores capacidades"
+  - enseñar Kanban como método de gestión evolutiva y no como simple tablero
   - conectar demanda, discovery, commitment, delivery y customer outcomes
-  - usar métricas de flujo y evidencia para la toma de decisiones
-  - preservar optionality y deferred commitment en upstream
-  - conectar Fit for Purpose con diseño y evolución de servicios
-  - evolucionar prácticas según contexto y madurez
+  - usar métricas de flujo y evidencia para decisiones
+  - preservar optionality y deferred commitment
+  - usar KMM como mapa de capability y evolución, no como ranking
