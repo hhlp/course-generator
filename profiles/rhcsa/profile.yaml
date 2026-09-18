@@ -10,6 +10,10 @@ certification:
   name: RHCSA
   exam: EX200
   policy: "Contrastar siempre el alcance del examen con los objetivos oficiales vigentes."
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 pedagogy:
   opening: "🎯 OBJETIVO"
   closing: "🧠 QUÉ DEBES RECORDAR"

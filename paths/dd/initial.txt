@@ -1,0 +1,358 @@
+0. Fundamentos del diseño de bases de datos
+0.1 Datos, hechos y reglas de negocio
+0.2 Base de datos y sistema gestor
+0.3 Esquema y estado
+0.4 Diseño conceptual, lógico y físico
+0.5 Independencia de los datos
+0.6 OLTP y OLAP: objetivos diferentes
+0.7 Laboratorio: identificar hechos de una tienda
+
+1. Matemáticas para el modelo relacional
+1.1 Conjuntos, inclusión y producto cartesiano
+1.2 Relaciones matemáticas
+1.3 Proposiciones y predicados
+1.4 Cuantificadores e implicación
+1.5 Equivalencia y contraejemplos
+1.6 Conjuntos frente a multiconjuntos
+1.7 Laboratorio: formalizar reglas de negocio
+
+2. Modelo relacional
+2.1 Dominios y tipos
+2.2 Atributos y tuplas
+2.3 Cabecera y cuerpo
+2.4 Grado y cardinalidad
+2.5 Relaciones y variables de relación o relvars
+2.6 Ausencia de orden y duplicados
+2.7 Predicados y estados válidos
+2.8 Laboratorio: distinguir relaciones de tablas SQL
+
+3. Requisitos y semántica
+3.1 Glosario del dominio
+3.2 Entidades, hechos y eventos
+3.3 Identidad y ciclo de vida
+3.4 Reglas obligatorias, opcionales y condicionales
+3.5 Requisitos históricos
+3.6 Ejemplos y contraejemplos
+3.7 Laboratorio: especificación del sistema de pedidos
+
+4. Modelado conceptual entidad-relación
+4.1 Entidades fuertes y débiles
+4.2 Atributos simples, compuestos y multivaluados
+4.3 Cardinalidades y participación
+4.4 Relaciones recursivas
+4.5 Relaciones binarias, ternarias y de mayor grado
+4.6 Entidades asociativas
+4.7 Especialización y generalización
+4.8 Laboratorio: diagrama conceptual y restricciones
+
+5. Claves e identidad
+5.1 Superclaves
+5.2 Todas las claves candidatas
+5.3 Claves primarias y alternativas
+5.4 Claves simples y compuestas
+5.5 Claves naturales y sustitutas
+5.6 Atributos primos y no primos
+5.7 Identificadores artificiales y unicidad de negocio
+5.8 Laboratorio: demostrar minimalidad de las claves
+
+6. Del modelo conceptual al relacional
+6.1 Transformación de entidades
+6.2 Relaciones uno a uno y uno a muchos
+6.3 Relaciones muchos a muchos
+6.4 Relaciones con atributos propios
+6.5 Entidades débiles
+6.6 Alternativas para subtipos y supertipos
+6.7 Restricciones que no captura la transformación
+6.8 Laboratorio: derivar y defender el esquema
+
+7. Álgebra relacional para razonar sobre diseños
+7.1 Restricción, proyección y renombrado
+7.2 Producto cartesiano y compatibilidad de tipos
+7.3 Unión, intersección y diferencia
+7.4 Reunión natural y reconstrucción
+7.5 Semirreunión, antirreunión y división: interpretación lógica
+7.6 Cierre de las operaciones
+7.7 Laboratorio: comprobar reconstrucción de hechos sin desarrollar un curso de consultas
+
+8. Integridad y restricciones
+8.1 Restricciones de dominio
+8.2 Integridad de entidad y referencial
+8.3 Restricciones locales y entre relaciones
+8.4 Estados y transiciones válidos
+8.5 Reglas declarativas y validación de aplicación
+8.6 Diseño de contraejemplos
+8.7 Laboratorio: catálogo de invariantes y datos rechazados
+
+9. Redundancia y anomalías
+9.1 Redundancia de hechos frente a repetición de valores
+9.2 Anomalías de inserción
+9.3 Anomalías de actualización
+9.4 Anomalías de eliminación
+9.5 Datos derivados
+9.6 Introducción a la descomposición
+9.7 Laboratorio: provocar y explicar anomalías
+
+10. Dependencias funcionales
+10.1 Semántica de X determina Y
+10.2 Determinantes
+10.3 Dependencias triviales y no triviales
+10.4 Dependencias completas y parciales
+10.5 Dependencias transitivas
+10.6 Dependencias derivadas del negocio
+10.7 Límites de inferir reglas a partir de muestras
+10.8 Laboratorio: extraer dependencias de requisitos
+
+11. Herramientas formales
+11.1 Axiomas de Armstrong
+11.2 Reglas de inferencia derivadas
+11.3 Cierre de atributos
+11.4 Cierre de dependencias
+11.5 Equivalencia de conjuntos de dependencias
+11.6 Atributos extraños y cubierta mínima
+11.7 Enumeración de claves candidatas
+11.8 Laboratorio: cálculo manual y comprobador en Python
+
+12. Primera forma normal: 1FN
+12.1 Definición relacional y dominios
+12.2 Un valor del dominio por atributo y tupla
+12.3 Grupos repetitivos
+12.4 Columnas numeradas
+12.5 Listas codificadas en cadenas
+12.6 Atomicidad relativa al dominio
+12.7 Tipos estructurados frente a hechos independientes
+12.8 Laboratorio: modelar múltiples teléfonos
+
+13. Segunda forma normal: 2FN
+13.1 Definición y requisito de 1FN
+13.2 Dependencias parciales de atributos no primos
+13.3 Consideración de todas las claves candidatas
+13.4 Claves compuestas
+13.5 Separación de hechos de entidades y asociaciones
+13.6 Laboratorio: descomponer líneas de pedido
+
+14. Tercera forma normal: 3FN
+14.1 Definición formal por dependencias funcionales
+14.2 Superclaves y atributos primos
+14.3 Dependencias transitivas problemáticas
+14.4 Límites de las reglas mnemotécnicas
+14.5 Síntesis a 3FN
+14.6 Preservación de dependencias y relación que contiene una clave
+14.7 Laboratorio: empleados, departamentos y sedes
+
+15. Forma normal de Boyce-Codd: BCNF
+15.1 Determinantes y superclaves
+15.2 Comparación formal con 3FN
+15.3 Claves candidatas solapadas
+15.4 Algoritmo de descomposición
+15.5 Pérdida potencial de preservación de dependencias
+15.6 Laboratorio: diseño en 3FN que incumple BCNF
+
+16. Calidad de una descomposición
+16.1 Reconstrucción sin pérdida
+16.2 Tuplas espurias
+16.3 Criterio binario para dependencias funcionales
+16.4 Proyección de dependencias
+16.5 Preservación de dependencias
+16.6 Procedimiento chase y sus supuestos
+16.7 Laboratorio: demostrar propiedades de dos alternativas
+
+17. Dependencias multivaluadas y 4FN
+17.1 Hechos multivaluados independientes
+17.2 Definición de dependencia multivaluada
+17.3 Dependencias triviales
+17.4 Relación con dependencias funcionales
+17.5 Definición de 4FN
+17.6 Descomposición sin pérdida
+17.7 Laboratorio: idiomas y aficiones con y sin independencia
+
+18. Dependencias de reunión y 5FN
+18.1 Join dependencies
+18.2 Descomposición en tres o más proyecciones
+18.3 Definición de 5FN o PJNF
+18.4 Dependencias implicadas por claves candidatas
+18.5 Semántica de relaciones ternarias
+18.6 Laboratorio: proveedores, piezas y proyectos con contraejemplos
+
+19. Normalización avanzada
+19.1 6FN y relaciones irreducibles
+19.2 DKNF y restricciones de dominio y clave
+19.3 ETNF: definición y ejemplos guiados
+19.4 RFNF: definición y alcance
+19.5 SKNF: definición y alcance
+19.6 Comparación de supuestos y límites
+19.7 Laboratorio: lectura crítica de ejemplos de Date
+
+20. Diferencias entre SQL y el modelo relacional
+20.1 Multiconjuntos y duplicados como problema de representación
+20.2 NULL e información ausente
+20.3 Lógica de tres valores e invariantes
+20.4 Unicidad y ausencia de valores
+20.5 Alternativas de diseño para atributos opcionales
+20.6 Laboratorio: comparar esquemas con y sin NULL sin repetir técnicas de consulta
+
+21. Implementación del diseño en PostgreSQL
+21.1 Tipos y dominios
+21.2 PRIMARY KEY y UNIQUE
+21.3 FOREIGN KEY y acciones referenciales
+21.4 NOT NULL y CHECK
+21.5 Restricciones diferibles
+21.6 Restricciones de exclusión
+21.7 Índices frente a restricciones
+21.8 Triggers para invariantes no expresables declarativamente
+21.9 Laboratorio: DDL y pruebas positivas y negativas
+
+22. Patrones de modelado
+22.1 Direcciones, contactos y catálogos
+22.2 Pedidos, líneas, pagos y devoluciones
+22.3 Precio vigente y precio pactado
+22.4 Relaciones simétricas y direccionales
+22.5 Jerarquías
+22.6 Subtipos y supertipos
+22.7 Aislamiento lógico multicliente y claves
+22.8 Unidades, monedas y precisión
+22.9 Laboratorio: comparar alternativas y sus invariantes
+
+23. Diseño temporal e histórico
+23.1 Estado actual e historial
+23.2 Tiempo de validez y tiempo de registro
+23.3 Modelado bitemporal
+23.4 Intervalos abiertos y cerrados
+23.5 Solapamiento y continuidad
+23.6 Claves y restricciones temporales
+23.7 6FN y modelado temporal
+23.8 Laboratorio: historial de precios y asignaciones
+
+24. Antipatrones y revisión
+24.1 EAV y compromisos de integridad
+24.2 Referencias polimórficas
+24.3 Listas separadas por comas
+24.4 Tablas genéricas y abuso de JSON
+24.5 Columnas repetidas y tablas por periodo
+24.6 Claves sustitutas sin unicidad de negocio
+24.7 Derivados sin sincronización
+24.8 Laboratorio: auditoría y propuesta de corrección
+
+25. Diseño físico y rendimiento
+25.1 Separación entre diseño lógico y físico
+25.2 Índices según restricciones y carga
+25.3 Índices compuestos, parciales y de cobertura
+25.4 Impacto de las escrituras
+25.5 Particionamiento y sus límites
+25.6 Vistas y vistas materializadas
+25.7 Desnormalización sustentada por mediciones
+25.8 Laboratorio: alternativas físicas para el mismo modelo lógico
+
+26. Diseño transaccional y analítico
+26.1 Objetivos de OLTP y OLAP
+26.2 Granularidad de hechos
+26.3 Hechos y dimensiones
+26.4 Estrella y copo de nieve
+26.5 Dimensiones históricas
+26.6 Medidas aditivas, semiaditivas y no aditivas
+26.7 Transformación desde el modelo operacional
+26.8 Laboratorio: diseñar un modelo analítico sin duplicar el curso SQL
+
+27. Evolución y validación
+27.1 Migraciones y compatibilidad
+27.2 Restricciones sobre datos existentes
+27.3 Duplicados y huérfanos
+27.4 Despliegues expandir y contraer
+27.5 Concurrencia e invariantes entre filas
+27.6 Pruebas de integridad
+27.7 Diccionario de datos y decisiones
+27.8 Laboratorio: migrar sin pérdida y con comprobaciones
+
+28. Estimación de almacenamiento
+28.1 Filas, páginas y bloques
+28.2 Tamaño lógico y físico
+28.3 Cabeceras, alineación y espacio libre
+28.4 Valores variables y TOAST
+28.5 Estimación de tablas e índices
+28.6 MVCC, versiones y crecimiento
+28.7 Proyecciones de capacidad
+28.8 Laboratorio: contrastar estimaciones con tamaños medidos
+
+29. Estadísticas, selectividad y cardinalidad
+29.1 Frecuencias y valores distintos
+29.2 Selectividad de igualdad y rango
+29.3 Histogramas y valores frecuentes
+29.4 Sesgo y correlación
+29.5 Estadísticas multicolumna
+29.6 Cardinalidad de reuniones
+29.7 Error de estimación y propagación
+29.8 Laboratorio: conjuntos uniformes y sesgados
+
+30. Modelos de coste
+30.1 E/S secuencial y aleatoria
+30.2 CPU, memoria y caché
+30.3 Coste de arranque y coste total
+30.4 Unidades del planificador frente a milisegundos
+30.5 Trabajo acumulado frente a latencia
+30.6 Coste de lectura, escritura y mantenimiento
+30.7 Supuestos y sensibilidad del modelo
+30.8 Laboratorio: comparar alternativas con unidades explícitas
+
+31. Coste de accesos y operadores
+31.1 Recorrido secuencial
+31.2 B-tree y acceso al heap
+31.3 Bitmap e index-only scans
+31.4 Nested loop simple e indexado
+31.5 Hash join y derrames a disco
+31.6 Merge join y ordenación previa
+31.7 Ordenación externa y agregación
+31.8 Laboratorio: modelos simplificados de páginas, memoria y CPU
+
+32. Optimizador y decisiones de diseño
+32.1 Planes lógicos y físicos
+32.2 Orden de joins y resultados intermedios
+32.3 Espacio de búsqueda
+32.4 Estimaciones e índices disponibles
+32.5 Efecto del esquema en el plan
+32.6 Costes de materialización
+32.7 Límites de los modelos
+32.8 Laboratorio: comparar planes manteniendo fija la consulta
+
+33. Laboratorio de medición en PostgreSQL
+33.1 EXPLAIN y EXPLAIN ANALYZE
+33.2 BUFFERS y lecturas frente a aciertos en caché
+33.3 Filas estimadas y reales y loops
+33.4 Ordenación, hash y uso de disco
+33.5 Estadísticas actualizadas
+33.6 Repeticiones, caché y concurrencia
+33.7 Latencias p50, p95 y p99 y throughput
+33.8 Laboratorio: informe reproducible de alternativas físicas
+
+34. Datos derivados y agregados
+34.1 Hechos base, derivados e importes históricos
+34.2 SUM al consultar y total almacenado
+34.3 Tablas resumen, vistas materializadas y caché
+34.4 Modelo de frecuencia de lecturas y escrituras
+34.5 Punto de equilibrio y análisis de sensibilidad
+34.6 Mantenimiento incremental por diferencias
+34.7 SUM y COUNT para mantener AVG
+34.8 MIN, MAX y DISTINCT: límites del mantenimiento simple
+34.9 Laboratorio: comparar cinco estrategias de total de pedido
+
+35. Consistencia de agregados bajo concurrencia
+35.1 Invariante entre detalle y resumen
+35.2 Inserciones, borrados y cambios de importe
+35.3 Traslado de líneas entre pedidos
+35.4 Transacciones y actualizaciones atómicas
+35.5 Bloqueos, orden de bloqueo y filas calientes
+35.6 Aislamiento y reintentos
+35.7 Mantenimiento asíncrono, idempotencia y retraso
+35.8 Reconciliación, reconstrucción y recuperación
+35.9 Laboratorio: cargas concurrentes y verificación contra el detalle
+
+36. Proyecto final integrador
+36.1 Requisitos de compras, ventas, inventario y proveedores
+36.2 Modelo conceptual y esquema relacional
+36.3 Dependencias y todas las claves candidatas
+36.4 Justificación de formas normales
+36.5 Demostraciones de descomposición
+36.6 DDL PostgreSQL e invariantes temporales
+36.7 Estimación de almacenamiento y crecimiento
+36.8 Comparativa de total calculado y persistido
+36.9 Benchmark de lecturas y escrituras y pruebas concurrentes
+36.10 Migración, reconciliación y documentación de decisiones
+36.11 Defensa final con evidencias y limitaciones

@@ -1,0 +1,8 @@
+name: database-design
+description: 'Diseño de bases de datos relacionales de cero a experto: teoría, normalización,
+  costes y consistencia de agregados.'
+language: es
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliografy.md

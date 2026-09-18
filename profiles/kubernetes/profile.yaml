@@ -21,7 +21,8 @@ course:
     - CKS
     - Kubestronaut
 
-sources:
+files:
+  pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 

@@ -22,6 +22,11 @@ domain:
     - policy-development
     - internals
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 bibliography:
   principal:
     - "SELinux System Administration, Third Edition — Sven Vermeulen"

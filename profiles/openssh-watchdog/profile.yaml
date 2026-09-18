@@ -42,6 +42,11 @@ scope:
   - userspace_watchdog
   - systemd_watchdog
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 pedagogy:
   objective_first: true
   objective_heading: "🎯 OBJETIVO"

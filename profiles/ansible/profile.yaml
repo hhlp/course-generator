@@ -17,6 +17,11 @@ lesson_structure:
     - "⚠️ Errores frecuentes"
     - "💡 Idea importante"
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 depth:
   mode: deep
   avoid_summary_only: true

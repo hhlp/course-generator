@@ -1,0 +1,257 @@
+                         RHEL / LINUX ADMIN
+                                │
+                                ▼
+                              RHCSA
+                                │
+        ┌───────────────────────┼────────────────────────┐
+        │                       │                        │
+        ▼                       ▼                        ▼
+  INFRAESTRUCTURA          ESPECIALIZACIÓN          AUTOMATIZACIÓN
+        │                       │                        │
+        │                       │                   Ansible [YA]
+        │                       │                        │
+        │                       │                  RHCE / Ansible
+        │                       │                     [HITO]
+        │                       │                        │
+        │                       │                        ▼
+        │                       │                Ansible avanzado
+        │                       │                        │
+        │                       │                        ▼
+        │                       │                 Ansible experto
+        │                       │
+        ▼                       ▼
+
+
+WEB SERVERS
+│
+├── APACHE HTTP SERVER
+│   ├── httpd
+│   ├── arquitectura
+│   ├── MPM
+│   ├── módulos
+│   ├── VirtualHost
+│   ├── TLS
+│   ├── PHP-FPM
+│   ├── reverse proxy
+│   ├── autenticación
+│   ├── .htaccess
+│   ├── SELinux
+│   ├── firewalld
+│   ├── logging
+│   ├── rendimiento
+│   └── troubleshooting
+│
+└── NGINX
+    ├── arquitectura event-driven
+    ├── master / workers
+    ├── server blocks
+    ├── locations
+    ├── TLS
+    ├── PHP-FPM
+    ├── reverse proxy
+    ├── load balancing
+    ├── caching
+    ├── rate limiting
+    ├── SELinux
+    ├── firewalld
+    ├── logging
+    ├── rendimiento
+    └── troubleshooting
+
+
+PROXY / LOAD BALANCING
+├── fundamentos de proxy
+├── forward proxy
+├── reverse proxy
+├── explicit / transparent proxy
+├── HTTP / HTTPS proxying
+├── CONNECT
+├── ACL
+├── authentication
+├── caching
+├── filtering
+├── TLS
+│
+├── SQUID
+│   ├── forward proxy
+│   ├── ACL
+│   ├── authentication
+│   ├── caching
+│   ├── filtering
+│   ├── TLS
+│   ├── logging
+│   └── troubleshooting
+│
+├── HAPROXY
+│   ├── L4 / L7
+│   ├── reverse proxy
+│   ├── load balancing
+│   ├── balancing algorithms
+│   ├── ACL
+│   ├── health checks
+│   ├── TLS termination
+│   ├── stickiness
+│   ├── statistics
+│   ├── HA
+│   ├── logging
+│   └── troubleshooting
+│
+└── integración Nginx / HAProxy / Squid
+
+
+DNS
+├── fundamentos DNS
+├── BIND
+├── authoritative DNS
+├── recursive / caching DNS
+├── zones
+├── DNSSEC
+└── Dynamic DNS — DDNS
+
+
+DHCP
+├── DHCPv4
+├── DHCPv6
+├── Kea
+├── leases
+├── reservations
+├── options
+├── Relay
+└── HA
+
+
+DHCP + DNS INTEGRATION — ADVANCED
+├── DDNS
+├── Kea DHCP-DDNS / D2
+├── BIND Dynamic Update
+├── forward updates
+├── reverse updates
+├── A / AAAA / PTR
+├── FQDN
+├── TSIG
+├── update-policy
+├── lease ↔ DNS lifecycle
+├── HA integration
+└── troubleshooting
+
+
+TIME
+└── Chrony / NTP
+
+
+FILES / STORAGE SERVICES
+├── NFS
+├── Samba
+├── autofs
+└── iSCSI
+
+
+MAIL
+├── arquitectura de correo
+├── SMTP
+├── Postfix
+├── IMAP
+├── Dovecot
+├── SASL
+├── TLS
+├── SPF
+├── DKIM
+└── DMARC
+
+
+DATABASE
+├── PostgreSQL                              [YA]
+└── MariaDB                                 [YA]
+
+
+SECURITY
+├── firewalld                               [YA]
+├── SELinux                                 [YA]
+└── PKI / TLS                               [YA]
+
+
+OBSERVABILITY
+├── Logging                                 [YA]
+├── Prometheus                              [YA]
+├── Grafana / Loki                          [YA]
+├── Nagios                                  [YA]
+├── Zabbix                                  [YA]
+├── Elastic Stack                           [YA]
+├── OpenSearch Stack                        [YA]
+└── OpenTelemetry                           [YA]
+
+
+IDENTITY & ACCESS MANAGEMENT — IAM
+│
+├── LINUX IDENTITY
+│   ├── users / groups
+│   ├── passwd / shadow / group
+│   ├── NSS
+│   ├── PAM — Pluggable Authentication Modules
+│   └── sudo
+│
+├── DIRECTORY SERVICES
+│   └── LDAP
+│       ├── protocolo LDAP
+│       ├── DIT
+│       ├── entries / attributes
+│       ├── schema
+│       ├── DN / RDN
+│       ├── bind / search
+│       ├── ACL
+│       ├── TLS
+│       └── OpenLDAP
+│
+├── AUTHENTICATION
+│   └── Kerberos
+│       ├── principals
+│       ├── realms
+│       ├── KDC
+│       ├── AS / TGS
+│       ├── tickets / TGT
+│       ├── keytabs
+│       ├── SPN
+│       └── SSO
+│
+├── LINUX IDENTITY INTEGRATION
+│   ├── SSSD
+│   └── realmd
+│
+├── IDENTITY MANAGEMENT
+│   └── FreeIPA
+│       ├── LDAP
+│       ├── Kerberos
+│       ├── DNS
+│       ├── CA / PKI
+│       ├── SSSD
+│       ├── users / groups
+│       ├── hosts
+│       ├── sudo rules
+│       ├── HBAC
+│       └── policies
+│
+├── AUTHENTICATION / AUTHORIZATION
+│   ├── passwords
+│   ├── SSH keys
+│   ├── certificates
+│   ├── MFA
+│   ├── ACL
+│   ├── RBAC
+│   └── policies
+│
+└── PRIVILEGED ACCESS MANAGEMENT / SESSION MANAGEMENT
+    ├── PAM / PASM
+    │   ├── Privileged Access Management
+    │   └── Privileged Account & Session Management
+    ├── privileged accounts
+    ├── credential vaulting
+    ├── password / key rotation
+    ├── JIT — Just-in-Time access
+    ├── JEA — Just-Enough-Access
+    ├── approvals
+    ├── session management
+    ├── session recording
+    ├── command auditing
+    ├── service accounts
+    ├── break-glass
+    └── secrets management

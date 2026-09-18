@@ -48,6 +48,11 @@ generation:
   prefer_current_behavior: true
   verify_version_dependent_features: true
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 lesson_structure:
   mandatory_opening:
     heading: "🎯 OBJETIVO"

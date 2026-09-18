@@ -1,7 +1,12 @@
-name: rpm
-title: "RPM PACKAGING EN PROFUNDIDAD — FEDORA"
+name: sed
+title: "sed — Learning Path 0 → Experto"
+description: >
+  Curso progresivo y profundo de GNU sed, desde los fundamentos del procesamiento
+  de streams hasta pattern space, hold space, procesamiento multilínea, branching,
+  portabilidad POSIX, seguridad, rendimiento e internals.
 
 language: es
+level: "0-to-expert"
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -9,124 +14,51 @@ files:
   bibliography: bibliography.md
 
 platform:
-  primary: Fedora Linux
-  ecosystem:
-    - Fedora
-    - RHEL
-    - CentOS Stream
-
-domain: rpm-packaging
-
-level:
-  start: beginner
-  end: expert
-
-description: >
-  Ruta de aprendizaje completa y progresiva sobre RPM y el ecosistema
-  de empaquetado de Fedora. Parte de los fundamentos del formato RPM
-  y progresa hacia SPEC files, SRPM, dependencias, scriptlets, rpmdb,
-  macros, generación automática de dependencias, Mock, rpmlint,
-  Fedora Packaging Guidelines, COPR, dist-git, Koji, Bodhi,
-  repositorios RPM e internals de RPM.
+  primary: Fedora
+  implementation: GNU sed
+  shell: Bash/Zsh
 
 objectives:
-  - Comprender completamente el formato y modelo de paquetes RPM.
-  - Dominar NEVRA, EVR, arquitectura y metadata RPM.
-  - Consultar, instalar, actualizar, verificar y eliminar paquetes.
-  - Dominar la estructura y semántica de los archivos SPEC.
-  - Construir paquetes binarios RPM y paquetes fuente SRPM.
-  - Gestionar Sources y Patches correctamente.
-  - Comprender BuildRequires, Requires y dependencias automáticas.
-  - Dominar Provides, Conflicts, Obsoletes, weak y rich dependencies.
-  - Dominar scriptlets, triggers, file triggers y transfiletriggers.
-  - Comprender rpmdb y las operaciones internas de RPM.
-  - Comprender la resolución de dependencias mediante libsolv.
-  - Construir paquetes en entornos reproducibles con Mock.
-  - Validar paquetes mediante rpmlint.
-  - Aplicar las Fedora Packaging Guidelines.
-  - Comprender Fedora Package Review, COPR, dist-git, Koji y Bodhi.
-  - Crear y administrar repositorios RPM y comprender firmas.
-  - Comprender internals de RPM y automatizar workflows de packaging.
-
-pedagogy:
-  progression: "0-to-expert"
-  depth: deep
-  style: technical-didactic
-  theory_and_practice: true
-  avoid_shallow_summaries: true
-  explain_why: true
-  explain_internals: true
-  progressive_labs: true
-  troubleshooting: true
-  real_world_examples: true
+  - Dominar sed como editor de streams y no solo como colección de one-liners.
+  - Comprender el ciclo interno de ejecución, pattern space y hold space.
+  - Aplicar BRE y ERE correctamente en selección y transformación de texto.
+  - Construir scripts sed mantenibles, robustos, seguros e idempotentes.
+  - Dominar procesamiento multilínea, labels, branching y loops.
+  - Diferenciar GNU sed, POSIX sed y aspectos relevantes de portabilidad.
+  - Integrar sed con grep, awk, find, xargs, shell y herramientas Fedora.
+  - Saber cuándo sed no es la herramienta apropiada.
 
 lesson_structure:
-  first_section:
-    title: "🎯 OBJETIVO"
-    required: true
-  development:
-    required: true
-    depth: deep
-  laboratory:
-    title: "🧪 Laboratorio/ejemplos"
-    required_when_useful: true
-  common_errors:
-    title: "⚠️ Errores frecuentes"
-    required_when_useful: true
-  important_idea:
-    title: "💡 Idea importante"
-    required_when_useful: true
-  final_section:
-    title: "🧠 QUÉ DEBES RECORDAR"
-    required: true
-    key_points:
-      minimum: 3
-      maximum: 7
+  start: "🎯 OBJETIVO"
+  sections:
+    - "Explicación conceptual"
+    - "Sintaxis"
+    - "Ejemplos progresivos"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  end: "🧠 QUÉ DEBES RECORDAR"
 
-technical_environment:
-  distribution: Fedora Linux
-  shell: zsh
-  commands:
-    - rpm
-    - rpmquery
-    - rpmverify
-    - rpmkeys
-    - rpmdb
-    - rpm2cpio
-    - rpmbuild
-    - rpmspec
-    - rpmdevtools
-    - mock
-    - rpmlint
-    - createrepo_c
-    - dnf
-    - dnf5
-    - fedpkg
-    - koji
-    - bodhi
-    - copr
+content_requirements:
+  examples: true
+  exercises: true
+  labs: true
+  troubleshooting: true
+  internals: true
+  fedora_examples: true
+  posix_portability: true
+  security: true
+  performance: true
+  references_per_lesson: true
 
-final_workflow:
-  - upstream
-  - source archive
-  - SPEC
-  - SRPM
-  - Mock
-  - rpmlint
-  - Fedora Package Review
-  - COPR
-  - dist-git
-  - Koji
-  - Bodhi
-  - repository
-
-quality:
-  factual_accuracy: high
-  technical_depth: high
-  practical_depth: high
-  command_accuracy: high
-  fedora_focus: high
-  avoid_deprecated_practices: true
-  mark_historical_features: true
-  distinguish_rpm_from_dnf: true
-  distinguish_upstream_from_fedora_policy: true
+reference_policy:
+  primary_book:
+    title: "Definitive Guide to sed: Tutorial and Reference"
+    author: "Daniel A. Goldman"
+  primary_documentation:
+    - "GNU sed manual"
+    - "POSIX sed specification"
+  rule: >
+    El libro sirve como referencia pedagógica principal. La documentación oficial
+    de GNU sed y POSIX se utiliza para validar sintaxis, comportamiento,
+    extensiones y portabilidad.

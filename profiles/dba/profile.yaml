@@ -26,6 +26,11 @@ pedagogy:
   indentation: false
   numbering: single-level
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 content:
   orientation:
     - administración de servidores PostgreSQL

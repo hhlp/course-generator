@@ -22,6 +22,11 @@ domain:
     - remote-write
     - high-availability
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 audience:
   level_start: beginner
   level_end: expert

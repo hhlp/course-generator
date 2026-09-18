@@ -1,149 +1,127 @@
 name: sql
-title: SQL DE 0 A EXPERTO — SQL ESTÁNDAR + POSTGRESQL
-platform: Fedora Linux + PostgreSQL 18
+title: "SQL — 0 a Experto"
+description: >
+  Curso profundo de SQL como lenguaje de consulta, transformación, análisis y
+  manipulación de datos, usando PostgreSQL como plataforma práctica. Excluye
+  normalización y diseño relacional, cubiertos por el PATH Database Design.
+
+language: es
+
+level:
+  start: beginner
+  end: expert
+
+platform:
+  primary: PostgreSQL
+  cli: psql
+
+scope:
+  include:
+    - SQL querying
+    - filtering
+    - expressions
+    - NULL semantics
+    - aggregation
+    - joins
+    - conditional logic
+    - CTEs
+    - recursive CTEs
+    - set operations
+    - subqueries
+    - self joins
+    - window functions
+    - advanced aggregation
+    - views
+    - materialized views
+    - temporary tables
+    - DML
+    - transactions from SQL
+    - locking from SQL
+    - PostgreSQL arrays
+    - PostgreSQL JSON and JSONB querying
+    - analytical SQL
+    - advanced query patterns
+    - EXPLAIN
+    - EXPLAIN ANALYZE
+    - query-plan interpretation
+    - query optimization
+    - SQL correctness
+    - SQL maintainability
+
+  exclude:
+    - database normalization
+    - 1NF
+    - 2NF
+    - 3NF
+    - BCNF
+    - higher normal forms
+    - functional dependencies
+    - multivalued dependencies
+    - join dependencies
+    - ER modeling
+    - conceptual database design
+    - logical database design
+    - physical database design as a discipline
+    - relational schema decomposition
+    - denormalization theory
+    - derived-attribute storage design decisions
+
+boundary:
+  database_design_path: "Relational Database Design"
+  rule: >
+    Primary keys, foreign keys, constraints and indexes may be discussed only
+    when needed to understand SQL semantics, joins, DML integrity errors,
+    cardinality, query plans or query performance. Their schema-design theory
+    belongs to the Database Design path.
+
+pedagogy:
+  progression:
+    - syntax
+    - semantics
+    - examples
+    - edge_cases
+    - common_errors
+    - laboratory
+  lesson_start: "🎯 OBJETIVO"
+  lesson_end: "🧠 QUÉ DEBES RECORDAR"
+  optional_sections:
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "📚 LECTURA"
+  emphasize:
+    - executable SQL examples
+    - query correctness
+    - NULL behavior
+    - row cardinality
+    - duplicate handling
+    - query composition
+    - PostgreSQL behavior
+    - query-plan evidence
+    - progressive laboratories
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
-scope:
-  primary_language: SQL
-  sql_standard_first: true
-  primary_dbms: PostgreSQL
-  primary_postgresql_version: "18"
-  compare_other_dbms_only_when_useful: true
-  comparison_dbms:
-    - MySQL
-    - MariaDB
-    - SQLite
-  preferred_environment: Fedora Linux
-  programming_languages: false
-  windows: false
+references:
+  primary:
+    - "Learning SQL, 3rd Edition — Alan Beaulieu"
+    - "SQL Cookbook — Anthony Molinaro, Robert de Graaf"
+    - "SQL in a Nutshell, 4th Edition — Kevin Kline, Regina O. Obe, Leo S. Hsu"
+    - "Beginning SQL Queries — Clare Churcher"
+    - "SQL for Data Analysis — Cathy Tanimura"
+    - "SQL for Data Analytics, Fourth Edition — Jun Shan, Haibin Li et al."
+    - "PostgreSQL Official Documentation"
 
-sql_policy:
-  distinguish_sql_standard_from_postgresql: true
-  mark_postgresql_extensions_explicitly: true
-  explain_portability_when_relevant: true
-  prefer_standard_sql_when_equally_expressive: true
-  use_postgresql_when_engine_specific_behavior_is_required: true
-  do_not_teach_mysql_syntax_as_generic_sql: true
-  do_not_teach_postgresql_extensions_as_sql_standard: true
-  distinguish_relational_model_from_sql_language: true
-  distinguish_logical_query_semantics_from_physical_execution: true
-
-postgresql_policy:
-  primary_reference_version: "18"
-  use_psql_for_interactive_labs: true
-  use_explain_for_performance_topics: true
-  use_explain_analyze_only_when_execution_is_safe: true
-  use_system_catalogs_for_introspection_topics: true
-  use_pg_stat_views_for_observability_topics: true
-  include_mvcc_and_storage_internals_at_advanced_levels: true
-  include_source_code_orientation_at_expert_levels: true
-  distinguish_documented_behavior_from_implementation_detail: true
-  avoid_superuser_when_not_required: true
-  prefer_reproducible_local_labs: true
-
-lesson_structure:
-  objective:
-    required: true
-    position: first
-
-  reading:
-    required: true
-    categories:
-      - principal
-      - normativa
-      - postgresql
-      - profundizacion
-      - rendimiento
-      - internals
-      - consulta
-    exact_references_only_when_verified: true
-
-  lab:
-    required: false
-
-  common_errors:
-    required: false
-
-  important_idea:
-    required: false
-
-  remember:
-    required: true
-    position: last
-    min_items: 3
-    max_items: 7
-
-quality:
-  forbid_generic_scaffold: true
-  require_topic_specific_headings: true
-  require_topic_specific_examples: true
-  require_self_contained_lesson: true
-  require_progressive_depth: true
-  require_correct_null_semantics: true
-  require_correct_duplicate_semantics: true
-  require_correct_transaction_semantics: true
-  require_standard_vs_vendor_distinction: true
-  require_evidence_for_performance_claims: true
-  forbid_unmeasured_optimization_claims: true
-  audit_before_save: true
-  repair_on_fail: true
-
-examples:
-  default_schema: lab
-  favor_small_reproducible_datasets: true
-  expand_to_large_datasets_for_performance_lessons: true
-  show_expected_result_when_pedagogically_useful: true
-  avoid_magic_data: true
-  preserve_null_and_duplicate_edge_cases: true
-
-performance_policy:
-  measure_before_optimizing: true
-  require_explain_for_plan_claims: true
-  prefer_explain_analyze_buffers_for_runtime_analysis: true
-  compare_estimated_vs_actual_rows: true
-  inspect_statistics_before_recommending_indexes_when_relevant: true
-  consider_write_cost_of_indexes: true
-  distinguish_cpu_io_memory_lock_contention: true
-  validate_semantic_equivalence_after_rewrite: true
-
-security_policy:
-  teach_parameterized_queries: true
-  teach_least_privilege: true
-  teach_safe_security_definer: true
-  teach_search_path_risks: true
-  teach_row_level_security: true
-  never_present_string_concatenation_as_safe_parameterization: true
-
-artifacts:
-  enabled: true
-  default_strategy: auto
-  overrides:
-    "195.59":
-      strategy: diagnostic_project
-      project_type: diagnostic
-      project_id: sql-postgresql-debugger
-      validation_required: true
-    "196.50":
-      strategy: final_integrator_project
-      project_type: integrator
-      project_id: sql-postgresql-final
-      validation_required: true
-
-  project_policy:
-    integrator_projects: auto
-    diagnostic_projects: auto
-    require_project_for_every_block: false
-
-output:
-  format: markdown
-  zip_block: true
-  write_index: true
-  write_manifest: true
-
-validation:
-  enabled: false
-  commands: []
+final_project:
+  name: "SQL Query Engineering"
+  deliverables:
+    - reproducible SQL query collection
+    - analytical queries
+    - window-function queries
+    - complex joins and CTEs
+    - DML examples
+    - EXPLAIN ANALYZE evidence
+    - query correctness validation

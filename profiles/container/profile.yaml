@@ -20,6 +20,11 @@ purpose: >
   networking y runtimes— y después las responsabilidades y diferencias de
   cada componente.
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 scope:
   primary:
     - Linux containers
