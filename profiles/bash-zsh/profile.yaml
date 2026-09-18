@@ -24,14 +24,27 @@ shell_policy:
   compare_dialects_when_relevant: true
   prefer_native_shell_examples: true
   verify_version_specific_behavior: true
+  label_non_posix_examples: true
+  explain_portability_implications: true
+
+example_policy:
+  prefer_safe_quoting: true
+  explain_word_splitting: true
+  explain_globbing_when_relevant: true
+  avoid_unsafe_eval: true
+  avoid_unquoted_expansions: true
+  show_exit_status_when_relevant: true
+  show_stderr_stdout_when_relevant: true
 
 lesson_structure:
   objective:
     required: true
     position: first
+    heading: "🎯 OBJETIVO"
 
   reading:
     required: true
+    heading: "📚 LECTURA"
     categories:
       - principal
       - normativa
@@ -42,16 +55,20 @@ lesson_structure:
 
   lab:
     required: false
+    heading: "🧪 Laboratorio/ejemplos"
 
   common_errors:
     required: false
+    heading: "⚠️ Errores frecuentes"
 
   important_idea:
     required: false
+    heading: "💡 Idea importante"
 
   remember:
     required: true
     position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
     min_items: 3
     max_items: 7
 

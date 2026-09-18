@@ -1,10 +1,17 @@
-# Ubicación prevista: paths/python-graficos/profile.yaml
-# El archivo pedagógico compartido pertenece al proyecto course-generator.
-# No se ha ejecutado este perfil contra el cargador local del usuario.
 name: python-graficos
-title: "MATPLOTLIB + SEABORN + POLARS — LEARNING PATH 0 → EXPERTO"
+title: MATPLOTLIB + SEABORN + POLARS — LEARNING PATH 0 → EXPERTO
 language: es
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+pedagogy:
+  opening_section: 🎯 OBJETIVO
+  closing_section: 🧠 QUÉ DEBES RECORDAR
+  closing_key_points_min: 3
+  closing_key_points_max: 7
+  optional_sections:
+  - 🧪 Laboratorio/ejemplos
+  - ⚠️ Errores frecuentes
+  - 💡 Idea importante
+  reading_section: 📚 LECTURA

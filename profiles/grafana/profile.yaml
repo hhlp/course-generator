@@ -7,6 +7,20 @@ files:
   domain: domain.md
   bibliography: bibliography.md
 
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a administración real
+  opening_section: "🎯 OBJETIVO"
+  closing_section: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points_min: 3
+  closing_key_points_max: 7
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  reading_section: "📚 LECTURA"
+  indentation: false
+  numbering: single-level
+
 scope:
   primary_platform: Fedora Linux
   grafana_oss_primary: true
@@ -41,9 +55,11 @@ lesson_structure:
   objective:
     required: true
     position: first
+    heading: "🎯 OBJETIVO"
 
   reading:
     required: true
+    heading: "📚 LECTURA"
     categories:
       - principal
       - normativa
@@ -53,18 +69,23 @@ lesson_structure:
 
   lab:
     required: false
+    heading: "🧪 Laboratorio/ejemplos"
 
   common_errors:
     required: false
+    heading: "⚠️ Errores frecuentes"
 
   important_idea:
     required: false
+    heading: "💡 Idea importante"
 
   remember:
     required: true
     position: last
     min_items: 3
     max_items: 7
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    avoid_repeating_objective: true
 
 quality:
   forbid_generic_scaffold: true

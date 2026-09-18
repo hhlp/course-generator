@@ -11,20 +11,32 @@ lesson_structure:
   objective:
     required: true
     position: first
+    heading: 🎯 OBJETIVO
   reading:
     required: true
+    heading: 📚 LECTURA
+    categories:
+      - principal
+      - normativa
+      - motor
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
   lab:
     required: false
+    heading: 🧪 Laboratorio/ejemplos
   common_errors:
     required: false
+    heading: ⚠️ Errores frecuentes
   important_idea:
     required: false
+    heading: 💡 Idea importante
   remember:
     required: true
     position: last
+    heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
-
 quality:
   forbid_generic_scaffold: true
   require_topic_specific_headings: true

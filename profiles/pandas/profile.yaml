@@ -17,14 +17,17 @@ course:
 
 pedagogy:
   objective_first: true
-  remember_last: true
-  examples: true
-  labs: true
-  common_errors: true
-  important_ideas: true
-  remember_items_min: 3
-  remember_items_max: 7
-
+  objective_heading: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  closing_key_points:
+    min: 3
+    max: 7
+  complete_development: true
+  depth: high
+  progressive: true
+  didactic: true
+  practical: true
+  avoid_summary_only: true
 technical_focus:
   - Series
   - DataFrame

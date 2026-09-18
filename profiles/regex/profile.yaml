@@ -7,6 +7,23 @@ files:
   domain: domain.md
   bibliography: bibliography.md
 
+pedagogy:
+  required_opening: "🎯 OBJETIVO"
+  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  remember_min_items: 3
+  remember_max_items: 7
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  style:
+    - profundo
+    - didactico
+    - autocontenido
+    - progresivo
+    - orientado_a_comprension
+    - no_resumen_superficial
+
 scope:
   programming_languages: false
   windows: false
