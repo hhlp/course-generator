@@ -5,7 +5,7 @@ platform: Fedora Linux
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
-  bibliography: bibliografy.md
+  bibliography: bibliography.md
 
 lesson_structure:
   objective:

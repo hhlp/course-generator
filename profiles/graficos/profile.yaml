@@ -7,4 +7,4 @@ language: es
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
-  bibliography: bibliografy.md
+  bibliography: bibliography.md

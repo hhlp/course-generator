@@ -9,7 +9,7 @@ level: "0-to-expert"
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
-  bibliography: bibliografy.md
+  bibliography: bibliography.md
 
 course:
   path: initial.txt
