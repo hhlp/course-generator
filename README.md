@@ -179,7 +179,7 @@ El flujo recomendado queda así:
 ```text
 initial.txt
     ↓
-revisión global
+revisión completa del learning path
     ↓
 --split-blocks --check-lessons --dry-run
     ↓
@@ -187,9 +187,19 @@ revisión global
     ↓
 bloque-0.txt ... bloque-N.txt
     ↓
---dry-run / --inspect sobre lecciones representativas
+--dry-run --validate-context
     ↓
-generación real
+--inspect --show-prompt
+    ↓
+primera lección real
+    ↓
+revisión
+    ↓
+generación progresiva del bloque
+    ↓
+tests
+    ↓
+commit
 ```
 
 la interfaz recomendada es ahora `course-generator --split-blocks`.
