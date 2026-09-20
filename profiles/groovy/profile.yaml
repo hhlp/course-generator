@@ -1,0 +1,89 @@
+name: groovy
+title: "Groovy — 0 a experto"
+language: es
+
+description: >
+  Curso profundo, práctico y progresivo de Groovy sobre la JVM,
+  desde sintaxis, colecciones, closures y POO hasta metaprogramación,
+  DSL, AST, internals, Spock, Gradle y especialización en Jenkins.
+
+audience:
+  level: "0 a experto"
+  prerequisites:
+    - "Fundamentos generales de programación recomendados, pero no obligatorios"
+    - "Conocimientos básicos de Linux útiles para laboratorios"
+    - "Java ayuda en interoperabilidad e internals, pero se introduce lo necesario"
+
+goals:
+  - "Dominar Groovy como lenguaje de propósito general sobre la JVM"
+  - "Comprender closures, delegation y resolución de métodos en profundidad"
+  - "Dominar colecciones y programación idiomática con el GDK"
+  - "Comprender interoperabilidad Groovy/Java y fundamentos de la JVM"
+  - "Aprender metaprogramación dinámica y compile-time"
+  - "Diseñar DSL internos mantenibles"
+  - "Crear y probar aplicaciones Groovy con Gradle y Spock"
+  - "Comprender Groovy aplicado a Jenkins Pipeline y Shared Libraries"
+
+pedagogy:
+  style: "profundo, práctico, progresivo y orientado a comprensión interna"
+  lesson_structure:
+    required_opening: "🎯 OBJETIVO"
+    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    optional_sections:
+      - "📚 LECTURA"
+      - "🧪 Laboratorio/ejemplos"
+      - "⚠️ Errores frecuentes"
+      - "💡 Idea importante"
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
+  indentation: false
+  numbering: single-level
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+  reading:
+    required: true
+    heading: "📚 LECTURA"
+    categories:
+      - principal
+      - oficial
+      - jvm
+      - testing
+      - build
+      - jenkins
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+  lab:
+    required: false
+    heading: "🧪 Laboratorio/ejemplos"
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+  remember:
+    required: true
+    position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    min_items: 3
+    max_items: 7
+
+technical_policy:
+  distinguish_groovy_from_jenkins_dsl: true
+  distinguish_dynamic_from_static_typing: true
+  explain_java_interop: true
+  explain_jvm_when_relevant: true
+  security_context_for_dynamic_code: true
+  avoid_unverified_version_claims: true
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md

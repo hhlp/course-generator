@@ -1,0 +1,489 @@
+BLOQUE 0 — FUNDAMENTOS DE IAC Y TERRAFORM
+
+0.1 Qué es Infrastructure as Code (IaC)
+0.2 Infraestructura manual vs infraestructura automatizada
+0.3 Automatización imperativa vs declarativa
+0.4 Desired state, convergencia e idempotencia
+0.5 Provisioning, configuration management y orquestación
+0.6 Terraform dentro del ecosistema IaC
+0.7 Terraform vs Ansible: responsabilidades y complementariedad
+0.8 Terraform vs herramientas cloud-native y scripts
+0.9 Arquitectura de Terraform: Core, providers y APIs
+0.10 Qué es HCL
+0.11 Instalación y actualización de Terraform
+0.12 Terraform CLI y documentación integrada
+0.13 Estructura de un proyecto Terraform
+0.14 Primer proyecto sin AWS, Azure ni GCP
+0.15 Flujo fundamental: init → validate → plan → apply → destroy
+0.16 Laboratorio: gestionar infraestructura local con Terraform
+
+BLOQUE 1 — HCL Y MODELO DE CONFIGURACIÓN
+
+1.1 Sintaxis fundamental de HCL
+1.2 Bloques, argumentos, expresiones e identificadores
+1.3 Archivos .tf y organización de configuraciones
+1.4 Bloque terraform
+1.5 required_version
+1.6 required_providers
+1.7 Provider source addresses
+1.8 Configuración de providers
+1.9 Resources
+1.10 Data sources
+1.11 Resource addresses
+1.12 Argumentos y atributos
+1.13 Referencias entre recursos
+1.14 Dependencias implícitas
+1.15 depends_on y dependencias explícitas
+1.16 Comentarios y estilo
+1.17 terraform fmt
+1.18 terraform validate
+1.19 Laboratorio: modelar una configuración completa
+
+BLOQUE 2 — VALORES, TIPOS, VARIABLES Y EXPRESIONES
+
+2.1 Sistema de tipos de Terraform
+2.2 string, number y bool
+2.3 list y set
+2.4 map
+2.5 tuple
+2.6 object
+2.7 null
+2.8 unknown values
+2.9 sensitive values
+2.10 Variables de entrada
+2.11 type constraints
+2.12 default y nullable
+2.13 Validación de variables
+2.14 Archivos terraform.tfvars y *.auto.tfvars
+2.15 Variables de entorno TF_VAR_*
+2.16 Precedencia de valores de variables
+2.17 Local values
+2.18 Outputs
+2.19 Operadores
+2.20 Expresiones condicionales
+2.21 for expressions
+2.22 splat expressions
+2.23 Dynamic blocks
+2.24 Funciones integradas
+2.25 Conversiones y normalización de datos
+2.26 Laboratorio: configuración parametrizable y tipada
+
+BLOQUE 3 — RECURSOS Y CICLO DE VIDA
+
+3.1 Modelo declarativo de recursos
+3.2 Create, Read, Update y Delete
+3.3 Resource configuration vs remote object
+3.4 Meta-argumentos
+3.5 count
+3.6 for_each
+3.7 count vs for_each
+3.8 depends_on
+3.9 lifecycle
+3.10 create_before_destroy
+3.11 prevent_destroy
+3.12 ignore_changes
+3.13 replace_triggered_by
+3.14 precondition y postcondition
+3.15 Timeouts
+3.16 Recursos efímeros y valores efímeros
+3.17 Recursos dependientes y grafos
+3.18 terraform graph
+3.19 Reemplazo controlado de recursos
+3.20 Laboratorio: infraestructura con dependencias y lifecycle
+
+BLOQUE 4 — PROVIDERS Y DATA SOURCES
+
+4.1 Qué es un provider
+4.2 Terraform Registry y descubrimiento de providers
+4.3 Source address y versiones
+4.4 Version constraints
+4.5 Dependency lock file .terraform.lock.hcl
+4.6 terraform providers
+4.7 Inicialización e instalación de providers
+4.8 Configuración y autenticación
+4.9 Provider aliases
+4.10 Múltiples configuraciones del mismo provider
+4.11 Providers dentro de módulos
+4.12 Data sources
+4.13 Data sources vs resources
+4.14 Provider-defined functions y capacidades dependientes del provider
+4.15 Providers locales para aprender sin cloud
+4.16 Laboratorio: combinar varios providers y data sources
+
+BLOQUE 5 — PLAN, APPLY Y GRAFO DE DEPENDENCIAS
+
+5.1 Cómo Terraform construye el grafo
+5.2 Refresh y lectura de infraestructura real
+5.3 terraform plan en profundidad
+5.4 Plan files
+5.5 terraform show
+5.6 terraform apply
+5.7 Auto-approval y sus riesgos
+5.8 Destroy plans
+5.9 Targeting: -target y por qué evitar su abuso
+5.10 Replace: -replace
+5.11 Parallelism
+5.12 Exit codes para automatización
+5.13 Drift
+5.14 Detección y reconciliación de cambios
+5.15 Laboratorio: interpretar y auditar un plan
+
+BLOQUE 6 — TERRAFORM STATE EN PROFUNDIDAD
+
+6.1 Qué es el state y por qué existe
+6.2 terraform.tfstate
+6.3 Relación address ↔ remote object
+6.4 State snapshots y serialización
+6.5 Sensibilidad y seguridad del state
+6.6 terraform state list
+6.7 terraform state show
+6.8 terraform state mv
+6.9 terraform state rm
+6.10 terraform state pull
+6.11 terraform state push y riesgos
+6.12 State locking
+6.13 Drift y refresh
+6.14 Refresh-only plans
+6.15 State corruption y recuperación
+6.16 Backups del state
+6.17 Separación de states
+6.18 Laboratorio: inspeccionar, mover y recuperar state
+
+BLOQUE 7 — IMPORTACIÓN Y ADOPCIÓN DE INFRAESTRUCTURA EXISTENTE
+
+7.1 Infraestructura existente y Terraform
+7.2 terraform import
+7.3 Import blocks
+7.4 Generación asistida de configuración
+7.5 Identidad de recursos
+7.6 Importación con count y for_each
+7.7 Importación dentro de módulos
+7.8 moved blocks
+7.9 removed blocks
+7.10 Refactoring sin destruir infraestructura
+7.11 Migración gradual hacia Terraform
+7.12 Validación posterior al import
+7.13 Laboratorio: adoptar infraestructura preexistente
+
+BLOQUE 8 — MÓDULOS
+
+8.1 Qué problema resuelve un módulo
+8.2 Root module y child modules
+8.3 Diseño de interfaces de módulos
+8.4 Inputs y outputs
+8.5 Module blocks
+8.6 Sources locales
+8.7 Registry modules
+8.8 Git y otras fuentes
+8.9 Versionado de módulos
+8.10 Providers y módulos
+8.11 for_each y count sobre módulos
+8.12 depends_on sobre módulos
+8.13 Composición de módulos
+8.14 Módulos pequeños vs mega-módulos
+8.15 Encapsulación y abstracción
+8.16 Reutilización sin sobre-generalización
+8.17 Estructura estándar de un módulo
+8.18 README, examples y documentación
+8.19 terraform-docs como herramienta complementaria
+8.20 Publicación y consumo de módulos
+8.21 Laboratorio: crear una biblioteca de módulos reutilizables
+
+BLOQUE 9 — BACKENDS Y REMOTE STATE
+
+9.1 Local backend
+9.2 Qué es un backend
+9.3 Backend configuration
+9.4 terraform init -reconfigure
+9.5 terraform init -migrate-state
+9.6 Remote state
+9.7 State locking remoto
+9.8 Seguridad, cifrado y control de acceso
+9.9 Backend credentials
+9.10 terraform_remote_state
+9.11 Compartir datos entre configuraciones
+9.12 Acoplamiento mediante remote state
+9.13 Alternativas para compartir outputs
+9.14 Migración entre backends
+9.15 Disaster recovery
+9.16 Laboratorio: migrar state local a backend remoto
+
+BLOQUE 10 — WORKSPACES, ENTORNOS Y ARQUITECTURA DE REPOSITORIOS
+
+10.1 Terraform CLI workspaces
+10.2 terraform workspace new/select/list/delete
+10.3 workspace interpolation
+10.4 Cuándo usar workspaces
+10.5 Cuándo no usar workspaces
+10.6 Directorios por entorno
+10.7 Repositorio único vs múltiples repositorios
+10.8 Dev, staging y production
+10.9 Separación de state por entorno
+10.10 Variables y configuración por entorno
+10.11 Blast radius
+10.12 Componentización de infraestructura
+10.13 Diseño de repositorios a escala
+10.14 Laboratorio: arquitectura multi-entorno
+
+BLOQUE 11 — TERRAFORM + ANSIBLE
+
+11.1 Provisioning vs configuration management
+11.2 Responsabilidades de Terraform
+11.3 Responsabilidades de Ansible
+11.4 Terraform crea; Ansible configura
+11.5 Outputs como puente entre herramientas
+11.6 Generación de inventario
+11.7 Inventario dinámico
+11.8 Ejecución desacoplada
+11.9 Por qué provisioners no sustituyen Ansible
+11.10 local-exec y remote-exec
+11.11 Riesgos y limitaciones de provisioners
+11.12 null_resource y terraform_data
+11.13 Triggers y reemplazos
+11.14 Pipelines Terraform → Ansible
+11.15 Idempotencia extremo a extremo
+11.16 Laboratorio: provisionar hosts y configurarlos con Ansible
+
+BLOQUE 12 — TESTING Y CALIDAD
+
+12.1 terraform fmt como control de calidad
+12.2 terraform validate
+12.3 Validación semántica mediante plan
+12.4 Preconditions y postconditions
+12.5 Check blocks
+12.6 Terraform test
+12.7 Archivos .tftest.hcl
+12.8 Run blocks
+12.9 Assertions
+12.10 Variables de test
+12.11 Mocking y overrides
+12.12 Tests unitarios vs integración
+12.13 Tests de módulos
+12.14 TFLint
+12.15 Análisis estático y políticas
+12.16 Documentación automatizada
+12.17 Laboratorio: suite de pruebas para un módulo
+
+BLOQUE 13 — SEGURIDAD Y SECRETOS
+
+13.1 Modelo de amenazas de Terraform
+13.2 Secretos en configuraciones
+13.3 Secretos en variables
+13.4 sensitive = true
+13.5 Qué protege y qué no protege sensitive
+13.6 Secretos dentro del state
+13.7 Variables de entorno
+13.8 Credenciales de providers
+13.9 External secret managers
+13.10 Cifrado del backend
+13.11 Control de acceso al state
+13.12 Gestión de credenciales en CI/CD
+13.13 Supply-chain security de providers y módulos
+13.14 Dependency lock file y checksums
+13.15 Version pinning
+13.16 Escaneo de IaC
+13.17 Least privilege
+13.18 Laboratorio: pipeline sin secretos en el repositorio
+
+BLOQUE 14 — CI/CD PARA TERRAFORM
+
+14.1 Terraform en Git
+14.2 Qué debe entrar en el repositorio
+14.3 .gitignore
+14.4 Branching y pull requests
+14.5 fmt y validate en CI
+14.6 TFLint y análisis estático
+14.7 terraform plan en pull requests
+14.8 Plan artifacts
+14.9 Revisión humana del plan
+14.10 Apply controlado
+14.11 Separación plan/apply
+14.12 Credenciales temporales
+14.13 Entornos protegidos
+14.14 Concurrencia y state locking
+14.15 Drift detection programada
+14.16 Rollback: límites y estrategias reales
+14.17 GitHub Actions como caso práctico
+14.18 GitLab CI como caso práctico
+14.19 Laboratorio: pipeline completo de Terraform
+
+BLOQUE 15 — TERRAFORM CLOUD / HCP TERRAFORM Y EJECUCIÓN REMOTA
+
+15.1 Ejecución local vs remota
+15.2 Conceptos de HCP Terraform
+15.3 Projects y workspaces remotos
+15.4 Remote runs
+15.5 Variables y variable sets
+15.6 State remoto
+15.7 VCS-driven workflows
+15.8 Run triggers
+15.9 Policy enforcement
+15.10 Private registry
+15.11 Teams y permisos
+15.12 Agents y conectividad privada
+15.13 Cost estimation y capacidades disponibles según edición
+15.14 Auditoría y gobernanza
+15.15 Laboratorio: workflow remoto colaborativo
+
+BLOQUE 16 — TERRAFORM A ESCALA Y GOBERNANZA
+
+16.1 Principios de diseño para grandes infraestructuras
+16.2 Separación por componentes
+16.3 Blast radius y límites operativos
+16.4 State boundaries
+16.5 Dependency management entre stacks
+16.6 Module factories y módulos internos
+16.7 Versionado semántico
+16.8 Upgrade strategy
+16.9 Provider upgrades
+16.10 Module upgrades
+16.11 Policy as Code
+16.12 Sentinel: conceptos
+16.13 OPA y herramientas complementarias
+16.14 Convenciones organizacionales
+16.15 Ownership
+16.16 Code review para infraestructura
+16.17 Gestión del drift
+16.18 Observabilidad del proceso IaC
+16.19 Laboratorio: diseñar una plataforma Terraform para varios equipos
+
+BLOQUE 17 — TROUBLESHOOTING Y OPERACIÓN
+
+17.1 Método sistemático de troubleshooting
+17.2 Errores de init
+17.3 Errores de providers
+17.4 Errores de autenticación
+17.5 Errores de dependencias
+17.6 Errores de tipos y expresiones
+17.7 Errores de plan
+17.8 Partial apply
+17.9 Recursos huérfanos
+17.10 Drift inesperado
+17.11 State lock atascado
+17.12 State inconsistente
+17.13 TF_LOG y logging
+17.14 terraform console para diagnóstico
+17.15 terraform graph para diagnóstico
+17.16 Provider schemas
+17.17 Reproducción mínima de errores
+17.18 Recuperación ante fallos
+17.19 Laboratorio: escenarios de averías y recuperación
+
+BLOQUE 18 — INTERNALS DE TERRAFORM
+
+18.1 Arquitectura interna de Terraform
+18.2 Configuration loading
+18.3 Evaluation model
+18.4 Dependency graph
+18.5 DAG y orden de ejecución
+18.6 Unknown values durante plan
+18.7 Provider protocol
+18.8 Provider schemas
+18.9 RPC entre Terraform Core y providers
+18.10 Resource instances
+18.11 State internals
+18.12 Plan internals
+18.13 Diff y reconciliación
+18.14 Dependency lock internals
+18.15 Plugin discovery
+18.16 Parallel execution
+18.17 Debugging avanzado
+18.18 Laboratorio: analizar Terraform desde Core hasta provider
+
+BLOQUE 19 — PROVIDER DEVELOPMENT
+
+19.1 Cuándo desarrollar un provider
+19.2 Ecosistema de desarrollo de providers
+19.3 Terraform Plugin Framework
+19.4 Provider schema
+19.5 Resource schema
+19.6 Data source schema
+19.7 CRUD y lifecycle
+19.8 Diagnostics
+19.9 State y plan en un provider
+19.10 Import
+19.11 Validators y plan modifiers
+19.12 Functions y capacidades extendidas
+19.13 Testing de providers
+19.14 Acceptance tests
+19.15 Versionado y distribución
+19.16 Publicación en Registry
+19.17 Laboratorio: provider mínimo funcional
+
+BLOQUE 20 — TERRAFORM Y OPENTOFU
+
+20.1 Origen y objetivos de OpenTofu
+20.2 Terraform y OpenTofu: conceptos compartidos
+20.3 HCL y compatibilidad de configuraciones
+20.4 Providers y Registry
+20.5 State y backends
+20.6 Módulos
+20.7 Diferencias de funcionalidades
+20.8 Diferencias de licenciamiento y ecosistema
+20.9 Compatibilidad y límites de migración
+20.10 Estrategia para evitar dependencia innecesaria
+20.11 Evaluar Terraform vs OpenTofu según requisitos
+20.12 Laboratorio: ejecutar y comparar una configuración compatible
+
+BLOQUE 21 — ESPECIALIZACIÓN: CLOUD Y PLATAFORMAS
+
+21.1 Por qué AWS, Azure y GCP no son prerrequisitos de Terraform
+21.2 Separar conocimiento de Terraform del conocimiento del provider
+21.3 Conceptos cloud comunes: compute, network, storage e IAM
+21.4 AWS provider: estructura y autenticación
+21.5 AWS: VPC, subnets, security groups y compute
+21.6 AzureRM provider: estructura y autenticación
+21.7 Azure: resource groups, networking y compute
+21.8 Google provider: estructura y autenticación
+21.9 GCP: projects, VPC y compute
+21.10 Kubernetes provider
+21.11 Helm provider
+21.12 Providers para GitHub, DNS y SaaS
+21.13 Virtualización y entornos on-premises
+21.14 Diseñar configuraciones multi-provider
+21.15 Multi-cloud: beneficios, costes y complejidad
+21.16 Laboratorio: aplicar los mismos fundamentos a providers diferentes
+
+BLOQUE 22 — PATRONES Y ANTIPATRONES AVANZADOS
+
+22.1 DRY vs claridad en IaC
+22.2 Abstracción prematura
+22.3 Mega-módulos
+22.4 Módulos excesivamente pequeños
+22.5 Variables booleanas que multiplican complejidad
+22.6 count frágil basado en índices
+22.7 for_each con identidades estables
+22.8 Dependencias implícitas vs depends_on
+22.9 Abuso de provisioners
+22.10 Abuso de -target
+22.11 Secretos en state
+22.12 Acoplamiento excesivo mediante remote state
+22.13 Un único state para toda la organización
+22.14 Recursos creados fuera de Terraform
+22.15 Refactoring seguro
+22.16 Diseñar para mantenimiento a largo plazo
+22.17 Laboratorio: refactorizar una base Terraform problemática
+
+BLOQUE 23 — PROYECTO FINAL: PLATAFORMA IAC DE PRODUCCIÓN
+
+23.1 Definir requisitos y arquitectura
+23.2 Diseñar repositorio y separación de componentes
+23.3 Diseñar módulos reutilizables
+23.4 Seleccionar providers
+23.5 Definir variables, tipos y contratos
+23.6 Diseñar state boundaries
+23.7 Configurar backend remoto y locking
+23.8 Implementar infraestructura
+23.9 Integrar Terraform + Ansible
+23.10 Gestionar secretos correctamente
+23.11 Añadir validación y tests
+23.12 Añadir linting y análisis de seguridad
+23.13 Construir pipeline plan/apply
+23.14 Implementar revisión y aprobación
+23.15 Simular drift
+23.16 Importar un recurso preexistente
+23.17 Realizar un refactoring sin destrucción
+23.18 Simular fallo y recuperación del state
+23.19 Documentar operación y troubleshooting
+23.20 Auditoría final del proyecto
+23.21 Proyecto final: plataforma IaC reproducible, modular, segura y mantenible

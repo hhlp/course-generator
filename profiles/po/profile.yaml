@@ -1,0 +1,84 @@
+name: product-owner
+title: "Professional Product Owner — 0 a experto"
+language: es
+level: zero-to-expert
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a producto real
+  lesson_structure:
+    required_opening: "🎯 OBJETIVO"
+    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    optional_sections:
+      - "📚 LECTURA"
+      - "🧪 Laboratorio/ejemplos"
+      - "⚠️ Errores frecuentes"
+      - "💡 Idea importante"
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
+  indentation: false
+  numbering: single-level
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+  reading:
+    required: true
+    heading: "📚 LECTURA"
+    categories:
+      - principal
+      - normativa
+      - product_backlog
+      - discovery
+      - estrategia
+      - metricas
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+  lab:
+    required: false
+    heading: "🧪 Laboratorio/ejemplos"
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+  remember:
+    required: true
+    position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    min_items: 3
+    max_items: 7
+
+course_focus:
+  - product ownership
+  - product value
+  - product vision
+  - product strategy
+  - product goals
+  - product backlog
+  - product backlog refinement
+  - ordering
+  - product discovery
+  - stakeholders
+  - metrics
+  - evidence-based management
+  - product economics
+  - flow
+  - forecasting
+
+constraints:
+  avoid_scrum_path_duplication: true
+  scrum_topics_are_contextualized_for_product_owner: true
+  emphasize_outcomes_over_outputs: true
+  product_backlog_is_not_a_requirements_document: true
+  refinement_is_continuous_activity_not_scrum_event: true

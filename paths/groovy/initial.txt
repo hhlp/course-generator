@@ -1,0 +1,417 @@
+0. Preparación y fundamentos
+0.1 Qué es Groovy
+0.2 Groovy y la JVM
+0.3 Relación Groovy ↔ Java
+0.4 Groovy dinámico vs estático
+0.5 Instalación de Groovy
+0.6 groovy, groovyc y groovysh
+0.7 Scripts .groovy
+0.8 Compilar vs ejecutar scripts
+0.9 CLASSPATH
+0.10 Dependencias
+0.11 Primer programa
+
+1. Sintaxis y sistema de tipos
+1.1 Variables
+1.2 def
+1.3 Tipado explícito
+1.4 Inferencia de tipos
+1.5 Tipado dinámico
+1.6 Tipado estático
+1.7 @TypeChecked
+1.8 @CompileStatic
+1.9 Operadores
+1.10 Groovy Truth
+1.11 Elvis operator ?:
+1.12 Safe navigation ?.
+1.13 Spread operator *.
+1.14 Range operator ..
+1.15 Spaceship operator <=>
+1.16 Operadores de expresiones regulares
+1.17 Precedencia de operadores
+
+2. Strings y GStrings
+2.1 String
+2.2 GString
+2.3 Interpolación
+2.4 Comillas simples y dobles
+2.5 Strings con triple comilla
+2.6 Slashy strings
+2.7 Dollar-slashy strings
+2.8 Strings multilínea
+2.9 Métodos principales
+2.10 Manipulación de texto
+2.11 String vs GString
+
+3. Control de flujo
+3.1 if / else
+3.2 switch
+3.3 for
+3.4 while
+3.5 break
+3.6 continue
+3.7 return
+3.8 Ranges
+3.9 Iteración idiomática
+3.10 Groovy Truth aplicado al control de flujo
+
+4. Colecciones
+4.1 List
+4.2 Set
+4.3 Map
+4.4 Range
+4.5 Arrays
+4.6 Acceso con []
+4.7 Operadores sobre colecciones
+4.8 each
+4.9 eachWithIndex
+4.10 collect
+4.11 find
+4.12 findAll
+4.13 any
+4.14 every
+4.15 inject
+4.16 groupBy
+4.17 collectEntries
+4.18 flatten
+4.19 unique
+4.20 sort
+4.21 Transformaciones encadenadas
+
+5. Métodos y funciones
+5.1 Definición de métodos
+5.2 Parámetros
+5.3 Parámetros por defecto
+5.4 Argumentos nombrados
+5.5 Varargs
+5.6 Return implícito
+5.7 Sobrecarga
+5.8 Métodos estáticos
+5.9 Method references
+
+6. Closures
+6.1 Qué es una Closure
+6.2 Sintaxis de closures
+6.3 Parámetro implícito it
+6.4 Parámetros explícitos
+6.5 Closures como valores
+6.6 Closures como parámetros
+6.7 Closures como retorno
+6.8 Captura de variables
+6.9 this
+6.10 owner
+6.11 delegate
+6.12 thisObject
+6.13 ResolveStrategy
+6.14 OWNER_FIRST
+6.15 DELEGATE_FIRST
+6.16 OWNER_ONLY
+6.17 DELEGATE_ONLY
+6.18 Currying
+6.19 rcurry
+6.20 ncurry
+6.21 Memoization
+6.22 Composition
+6.23 Closure vs Java lambda
+
+7. Programación orientada a objetos
+7.1 Classes
+7.2 Objects
+7.3 Properties
+7.4 Fields
+7.5 Getters y setters
+7.6 Constructores
+7.7 this
+7.8 static
+7.9 Herencia
+7.10 Interfaces
+7.11 Abstract classes
+7.12 Traits
+7.13 Enums
+7.14 Records
+7.15 Generics
+7.16 Polimorfismo
+
+8. Transformaciones AST
+8.1 Qué es una AST
+8.2 Compile-time metaprogramming
+8.3 @ToString
+8.4 @EqualsAndHashCode
+8.5 @TupleConstructor
+8.6 @Canonical
+8.7 @Immutable
+8.8 @Builder
+8.9 @Lazy
+8.10 @Singleton
+8.11 @Delegate
+8.12 @TypeChecked
+8.13 @CompileStatic
+
+9. Excepciones
+9.1 Throwable
+9.2 Exception
+9.3 RuntimeException
+9.4 try / catch / finally
+9.5 throw
+9.6 Excepciones personalizadas
+9.7 Checked exceptions y Groovy
+
+10. Archivos, streams e I/O
+10.1 File
+10.2 Leer archivos
+10.3 Escribir archivos
+10.4 eachLine
+10.5 withReader
+10.6 withWriter
+10.7 Streams
+10.8 Directorios
+10.9 Procesamiento de archivos
+
+11. Regex y procesamiento de texto
+11.1 Expresiones regulares
+11.2 Pattern
+11.3 Matcher
+11.4 Operador =~
+11.5 Operador ==~
+11.6 Slashy strings y regex
+11.7 Procesamiento de logs
+
+12. JSON, XML y datos
+12.1 JsonSlurper
+12.2 JsonOutput
+12.3 XmlSlurper
+12.4 XmlParser
+12.5 MarkupBuilder
+12.6 StreamingMarkupBuilder
+12.7 Transformación de datos
+
+13. Scripts y automatización
+13.1 Anatomía de un script Groovy
+13.2 Script class
+13.3 Binding
+13.4 Variables del script
+13.5 Argumentos CLI
+13.6 Ejecutar comandos externos
+13.7 Procesos
+13.8 Variables de entorno
+13.9 Automatización Linux
+13.10 Scripts administrativos
+
+14. Interoperabilidad Java
+14.1 Usar Java desde Groovy
+14.2 Usar Groovy desde Java
+14.3 JDK API
+14.4 Bibliotecas Java
+14.5 Clases Groovy desde Java
+14.6 Closures ↔ SAM
+14.7 Generics
+14.8 Bytecode
+14.9 Diferencias semánticas Java/Groovy
+
+15. Groovy Development Kit
+15.1 Qué es el GDK
+15.2 Extensiones al JDK
+15.3 DefaultGroovyMethods
+15.4 Métodos añadidos a Object
+15.5 Extensiones para String
+15.6 Extensiones para Collection
+15.7 Extensiones para Map
+15.8 Extensiones para File
+15.9 Iteración idiomática
+
+16. Programación funcional
+16.1 Funciones de orden superior
+16.2 Closures
+16.3 map y collect
+16.4 filter y findAll
+16.5 reduce e inject
+16.6 Composición
+16.7 Currying
+16.8 Inmutabilidad
+16.9 Pipelines de transformación
+
+17. Metaprogramación
+17.1 Qué es metaprogramación
+17.2 MOP — Meta-Object Protocol
+17.3 MetaClass
+17.4 ExpandoMetaClass
+17.5 Expando
+17.6 methodMissing
+17.7 propertyMissing
+17.8 invokeMethod
+17.9 getProperty
+17.10 setProperty
+17.11 Categories
+17.12 Extension methods
+17.13 Runtime metaprogramming
+17.14 Riesgos de la metaprogramación
+
+18. DSL
+18.1 Qué es un DSL
+18.2 Internal DSL
+18.3 Closures como base de DSL
+18.4 Delegation
+18.5 delegate
+18.6 resolveStrategy
+18.7 Builders
+18.8 BuilderSupport
+18.9 Method interception
+18.10 DSL dinámico
+18.11 DSL con tipado estático
+18.12 Diseñar nuestro propio DSL
+
+19. AST avanzada
+19.1 Fases del compilador
+19.2 AST nodes
+19.3 Local AST transformations
+19.4 Global AST transformations
+19.5 Annotation-driven transformations
+19.6 CompilationCustomizer
+19.7 Crear una transformación propia
+
+20. Concurrencia
+20.1 Threads JVM
+20.2 synchronized
+20.3 java.util.concurrent
+20.4 Executors
+20.5 Futures
+20.6 CompletableFuture
+20.7 Concurrent collections
+20.8 Race conditions
+20.9 Thread safety
+20.10 Diseño concurrente
+
+21. Testing
+21.1 Testing en Groovy
+21.2 Assertions
+21.3 JUnit
+21.4 Spock
+21.5 Specifications
+21.6 given / when / then
+21.7 where
+21.8 Data-driven testing
+21.9 Mocks
+21.10 Stubs
+21.11 Spies
+21.12 Testing de scripts
+
+22. Build y dependencias
+22.1 Gradle y Groovy
+22.2 build.gradle
+22.3 Groovy plugin
+22.4 Source sets
+22.5 Dependencies
+22.6 Maven repositories
+22.7 Tasks
+22.8 Custom tasks
+22.9 Groovy en Gradle DSL
+22.10 Publicación
+
+23. Rendimiento e internals
+23.1 Compilador Groovy
+23.2 AST
+23.3 Bytecode JVM
+23.4 Dynamic dispatch
+23.5 Call sites
+23.6 invokedynamic
+23.7 Reflection
+23.8 @CompileStatic
+23.9 Coste de closures
+23.10 Profiling
+23.11 Optimización
+
+24. Seguridad
+24.1 Ejecutar código dinámico
+24.2 GroovyShell
+24.3 GroovyClassLoader
+24.4 Eval
+24.5 Riesgos de scripts no confiables
+24.6 Script compilation
+24.7 Jenkins Script Security
+24.8 Diseño seguro de DSL
+
+25. Groovy embebido
+25.1 GroovyShell
+25.2 Binding
+25.3 GroovyClassLoader
+25.4 GroovyScriptEngine
+25.5 CompilerConfiguration
+25.6 CompilationCustomizer
+25.7 Crear una aplicación extensible mediante Groovy
+
+26. Groovy para Jenkins
+26.1 Por qué Jenkins utiliza Groovy
+26.2 Pipeline DSL
+26.3 Jenkinsfile
+26.4 Declarative Pipeline
+26.5 Scripted Pipeline
+26.6 Groovy vs Jenkins DSL
+26.7 Closure delegation en Pipeline
+26.8 pipeline {}
+26.9 stages
+26.10 stage
+26.11 steps
+26.12 script {}
+26.13 environment
+26.14 parameters
+26.15 when
+26.16 post
+26.17 parallel
+26.18 matrix
+26.19 Manejo de errores
+
+27. Jenkins Shared Libraries
+27.1 Qué es una Shared Library
+27.2 Estructura src/
+27.3 vars/
+27.4 resources/
+27.5 Global variables
+27.6 Global functions
+27.7 Clases Groovy
+27.8 @Library
+27.9 library()
+27.10 Closures
+27.11 Diseño de API
+27.12 Testing
+27.13 Versionado
+27.14 Crear una biblioteca CI/CD reutilizable
+
+28. Jenkins internals y Groovy
+28.1 Jenkins object model
+28.2 Jenkins API desde Groovy
+28.3 Script Console
+28.4 init.groovy.d
+28.5 Jobs
+28.6 Nodes
+28.7 Builds
+28.8 Credentials
+28.9 Plugins
+28.10 Script Approval
+28.11 Groovy Sandbox
+28.12 Administración automatizada
+
+29. Diseño profesional
+29.1 Groovy idiomático
+29.2 Legibilidad
+29.3 Mantenibilidad
+29.4 Dynamic vs static typing
+29.5 Cuándo evitar metaprogramación
+29.6 Diseño de APIs
+29.7 Diseño de DSL
+29.8 Testing
+29.9 Seguridad
+29.10 Performance
+
+30. Proyecto final
+30.1 Diseñar una aplicación Groovy
+30.2 Modelo orientado a objetos
+30.3 Collections
+30.4 Closures
+30.5 JSON/XML
+30.6 DSL propio
+30.7 Metaprogramación
+30.8 Testing con Spock
+30.9 Gradle
+30.10 Jenkins Shared Library
+30.11 Jenkinsfile consumidor
+30.12 Pipeline CI/CD completo

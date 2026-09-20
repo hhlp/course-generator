@@ -1,0 +1,93 @@
+name: terraform
+title: TERRAFORM EN PROFUNDIDAD — LEARNING PATH 0 → EXPERTO
+platform: Linux
+language: es
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+  reading:
+    required: true
+  lab:
+    required: false
+  common_errors:
+    required: false
+  important_idea:
+    required: false
+  remember:
+    required: true
+    position: last
+    min_items: 3
+    max_items: 7
+
+quality:
+  forbid_generic_scaffold: true
+  require_topic_specific_headings: true
+  require_topic_specific_examples: true
+  require_self_contained_lesson: true
+  distinguish_core_from_provider_behavior: true
+  verify_version_sensitive_features: true
+  audit_before_save: true
+  repair_on_fail: true
+
+output:
+  format: markdown
+  zip_block: true
+  write_index: true
+  write_manifest: true
+
+artifacts:
+  enabled: true
+  default_strategy: auto
+  overrides:
+    "23.21":
+      strategy: standalone_project
+      project_id: terraform-production-platform
+      knowledge_dependencies:
+        - bloque-0
+        - bloque-1
+        - bloque-2
+        - bloque-3
+        - bloque-4
+        - bloque-5
+        - bloque-6
+        - bloque-7
+        - bloque-8
+        - bloque-9
+        - bloque-10
+        - bloque-11
+        - bloque-12
+        - bloque-13
+        - bloque-14
+        - bloque-16
+        - bloque-17
+        - bloque-22
+      artifact_dependencies: []
+      required_files:
+        - README.md
+        - versions.tf
+        - providers.tf
+        - variables.tf
+        - main.tf
+        - outputs.tf
+        - modules/README.md
+        - ansible/README.md
+        - .gitignore
+      validation_required: true
+      project_type: integrator
+  project_policy:
+    integrator_projects: auto
+    diagnostic_projects: auto
+    require_project_for_every_block: false
+
+validation:
+  enabled: true
+  commands:
+    - terraform fmt -check -recursive
+    - terraform validate

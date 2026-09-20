@@ -1,0 +1,466 @@
+0. Fundamentos previos
+0.1 Qué es integración continua (CI)
+0.2 Qué es entrega continua (Continuous Delivery)
+0.3 Qué es despliegue continuo (Continuous Deployment)
+0.4 CI vs Continuous Delivery vs Continuous Deployment
+0.5 Pipeline y Pipeline as Code
+0.6 SDLC y posición de Jenkins
+0.7 DevOps y automatización
+0.8 Git: conceptos necesarios
+0.9 Linux: procesos, usuarios, permisos y filesystem
+0.10 Shell/Bash necesario para Jenkins
+0.11 HTTP, DNS y redes: conceptos necesarios
+0.12 YAML, JSON y formatos de configuración
+0.13 Artefactos, repositorios y versionado
+0.14 Laboratorio: preparar Git, Java y entorno Linux
+
+1. Introducción a Jenkins
+1.1 Qué es Jenkins
+1.2 Casos de uso
+1.3 Arquitectura de Jenkins
+1.4 Controller
+1.5 Agents
+1.6 Executors
+1.7 Workspaces
+1.8 Jobs y builds
+1.9 Queue
+1.10 Plugins
+1.11 Jenkins Home
+1.12 Instalación en Linux
+1.13 Jenkins como servicio systemd
+1.14 Configuración inicial
+1.15 Administración desde la interfaz web
+1.16 CLI de Jenkins
+1.17 Laboratorio: primer Jenkins operativo
+
+2. Jobs y automatización básica
+2.1 Freestyle projects
+2.2 Configuración de Source Code Management
+2.3 Integración con Git
+2.4 Build steps
+2.5 Shell build steps
+2.6 Variables de entorno
+2.7 Parámetros
+2.8 Build triggers
+2.9 Poll SCM
+2.10 Webhooks
+2.11 Build dependencies
+2.12 Artifacts
+2.13 Fingerprints
+2.14 Build history
+2.15 Console output
+2.16 Laboratorio: pipeline CI básico con Freestyle
+
+3. Pipeline as Code
+3.1 Jenkins Pipeline
+3.2 Jenkinsfile
+3.3 Pipeline plugin
+3.4 Declarative Pipeline
+3.5 Scripted Pipeline
+3.6 Declarative vs Scripted
+3.7 agent
+3.8 stages
+3.9 stage
+3.10 steps
+3.11 post
+3.12 environment
+3.13 options
+3.14 parameters
+3.15 triggers
+3.16 tools
+3.17 when
+3.18 input
+3.19 parallel
+3.20 matrix
+3.21 retry
+3.22 timeout
+3.23 catchError
+3.24 stash y unstash
+3.25 archiveArtifacts
+3.26 junit y publicación de resultados
+3.27 Laboratorio: Jenkinsfile declarativo completo
+
+4. Groovy esencial para Jenkins Pipeline
+4.1 Relación entre Jenkins Pipeline y Groovy
+4.2 Sintaxis básica
+4.3 Variables y def
+4.4 Tipos
+4.5 Strings
+4.6 GStrings e interpolación
+4.7 Números y booleanos
+4.8 List
+4.9 Map
+4.10 Set
+4.11 Ranges
+4.12 Operadores
+4.13 Truth de Groovy
+4.14 if / else
+4.15 switch
+4.16 for
+4.17 while
+4.18 Métodos
+4.19 Parámetros
+4.20 Closures: introducción
+4.21 it
+4.22 each
+4.23 collect
+4.24 find y findAll
+4.25 Manejo básico de excepciones
+4.26 Laboratorio: transformar un Jenkinsfile usando Groovy
+
+5. Source Control e integración con repositorios
+5.1 Git avanzado aplicado a CI
+5.2 Branches
+5.3 Tags
+5.4 Pull/Merge Requests
+5.5 Multibranch Pipeline
+5.6 Branch indexing
+5.7 Organization folders
+5.8 Webhooks
+5.9 Credenciales para SCM
+5.10 Checkout y checkout scm
+5.11 Estrategias para monorepos
+5.12 Estrategias para múltiples repositorios
+5.13 Laboratorio: Multibranch Pipeline
+
+6. Agents y ejecución distribuida
+6.1 Modelo controller-agent
+6.2 Executors y capacidad
+6.3 Labels
+6.4 Node selection
+6.5 Static agents
+6.6 SSH agents
+6.7 Inbound agents
+6.8 Ephemeral agents
+6.9 Workspaces distribuidos
+6.10 Custom workspaces
+6.11 Gestión de herramientas por agente
+6.12 Isolation
+6.13 Escalabilidad
+6.14 Troubleshooting de agents
+6.15 Laboratorio: pipeline distribuido
+
+7. Credenciales y seguridad
+7.1 Modelo de seguridad de Jenkins
+7.2 Authentication
+7.3 Authorization
+7.4 Matrix-based authorization
+7.5 Role-based strategies
+7.6 Credentials
+7.7 Credential scopes
+7.8 Username/password
+7.9 SSH keys
+7.10 Secret text
+7.11 Secret files
+7.12 credentials binding
+7.13 Protección de secretos en logs
+7.14 CSRF
+7.15 Script Security
+7.16 Groovy Sandbox
+7.17 Script Approval
+7.18 Gestión segura de plugins
+7.19 Hardening
+7.20 Auditoría
+7.21 Laboratorio: Jenkins seguro con mínimo privilegio
+
+8. Artefactos, testing y calidad
+8.1 Build artifacts
+8.2 Fingerprinting
+8.3 Test reports
+8.4 JUnit
+8.5 Cobertura
+8.6 Static analysis
+8.7 Quality gates
+8.8 Integración con gestores de artefactos
+8.9 Retención de builds
+8.10 Trazabilidad
+8.11 Laboratorio: build + test + quality gate + artifact
+
+9. Contenedores con Jenkins
+9.1 Jenkins y contenedores
+9.2 Docker y Podman: conceptos necesarios
+9.3 Ejecutar Jenkins en contenedor
+9.4 Ejecutar builds en contenedores
+9.5 Agentes basados en contenedores
+9.6 Construcción de imágenes
+9.7 Registries
+9.8 Credenciales de registry
+9.9 Pipeline reproducible
+9.10 Seguridad de contenedores
+9.11 Rootless containers
+9.12 Laboratorio: pipeline de imagen OCI
+
+10. Jenkins con Ansible y Terraform
+10.1 Jenkins como orquestador
+10.2 Ejecutar Ansible desde Pipeline
+10.3 Inventarios y credenciales
+10.4 Ansible Vault
+10.5 Ejecutar Terraform desde Pipeline
+10.6 init / validate / plan / apply
+10.7 Estado de Terraform
+10.8 Aprobaciones antes de apply
+10.9 Separación CI y CD
+10.10 Manejo seguro de secretos
+10.11 Laboratorio: infraestructura automatizada desde Jenkins
+
+11. Jenkins y Kubernetes
+11.1 Kubernetes como plataforma para Jenkins
+11.2 Jenkins Kubernetes plugin
+11.3 Agentes efímeros
+11.4 Pod templates
+11.5 Containers dentro del agente
+11.6 Workspaces y volúmenes
+11.7 Credentials y ServiceAccounts
+11.8 Escalabilidad
+11.9 Resiliencia
+11.10 Pipeline de aplicaciones Kubernetes
+11.11 Laboratorio: agentes dinámicos sobre Kubernetes
+
+12. Observabilidad y troubleshooting
+12.1 Jenkins logs
+12.2 systemd journal
+12.3 Logs de Pipeline
+12.4 Logs de agents
+12.5 Métricas
+12.6 Prometheus
+12.7 Grafana
+12.8 Health checks
+12.9 Queue monitoring
+12.10 Executor utilization
+12.11 Build duration
+12.12 Fallos intermitentes
+12.13 Debugging de Jenkinsfile
+12.14 Replay
+12.15 Pipeline Syntax
+12.16 Snippet Generator
+12.17 Thread dumps
+12.18 Diagnóstico de rendimiento
+12.19 Laboratorio: troubleshooting de una instalación Jenkins
+
+13. Administración avanzada
+13.1 Jenkins Configuration as Code (JCasC)
+13.2 Jenkins CLI avanzada
+13.3 REST API
+13.4 Automatización administrativa
+13.5 Backups
+13.6 Restore
+13.7 Disaster recovery
+13.8 Upgrade strategy
+13.9 Plugin lifecycle
+13.10 Plugin compatibility
+13.11 LTS releases
+13.12 Gestión de nodos a escala
+13.13 Gestión de configuración
+13.14 Alta disponibilidad: límites y patrones
+13.15 Laboratorio: reconstruir Jenkins desde configuración y backup
+
+14. Groovy en profundidad
+14.1 Groovy como lenguaje sobre la JVM
+14.2 Compilación y ejecución
+14.3 Modelo de objetos
+14.4 Tipado dinámico
+14.5 Tipado estático
+14.6 def
+14.7 Clases y objetos
+14.8 Propiedades
+14.9 Fields
+14.10 Métodos
+14.11 Constructores
+14.12 Herencia
+14.13 Interfaces
+14.14 Traits
+14.15 Enums
+14.16 Generics
+14.17 Closures en profundidad
+14.18 Parámetros de closures
+14.19 Retorno implícito
+14.20 this
+14.21 owner
+14.22 delegate
+14.23 thisObject
+14.24 resolveStrategy
+14.25 Closure.DELEGATE_FIRST
+14.26 Closure.DELEGATE_ONLY
+14.27 Currying
+14.28 Memoization
+14.29 Method pointers/references
+14.30 List en profundidad
+14.31 Map en profundidad
+14.32 Set en profundidad
+14.33 each / eachWithIndex
+14.34 collect
+14.35 find / findAll
+14.36 any / every
+14.37 inject
+14.38 groupBy
+14.39 collectEntries
+14.40 flatten
+14.41 spread operator
+14.42 Safe Navigation operator
+14.43 Elvis operator
+14.44 Regex y pattern operators
+14.45 Exceptions
+14.46 I/O esencial
+14.47 JSON
+14.48 XML
+14.49 Metaprogramación
+14.50 MetaClass
+14.51 ExpandoMetaClass
+14.52 methodMissing
+14.53 propertyMissing
+14.54 AST transformations
+14.55 DSLs en Groovy
+14.56 Diseño de una DSL
+14.57 Testing de código Groovy
+14.58 Laboratorio: construir una DSL Groovy pequeña
+
+15. Groovy dentro de Jenkins: CPS e internals de Pipeline
+15.1 Por qué Jenkins Pipeline no ejecuta Groovy como un script convencional
+15.2 Pipeline execution engine
+15.3 Continuation Passing Style (CPS)
+15.4 CPS transformation
+15.5 Persistencia del estado del Pipeline
+15.6 Serialización
+15.7 Reanudación después de restart
+15.8 CPS vs non-CPS code
+15.9 @NonCPS
+15.10 Restricciones de @NonCPS
+15.11 Objetos no serializables
+15.12 Closures y serialización
+15.13 Pipeline steps y CPS
+15.14 Errores CPS method mismatch
+15.15 script {}
+15.16 Binding
+15.17 Global variables
+15.18 Pipeline DSL
+15.19 Steps como DSL
+15.20 Groovy Sandbox
+15.21 Script Security
+15.22 Script Approval
+15.23 Debugging de errores CPS
+15.24 Diseño de código compatible con Pipeline
+15.25 Laboratorio: diagnosticar y corregir fallos CPS
+
+16. Shared Libraries
+16.1 Por qué usar Shared Libraries
+16.2 Estructura de una librería
+16.3 vars/
+16.4 src/
+16.5 resources/
+16.6 @Library
+16.7 Global variables
+16.8 Global functions
+16.9 Clases Groovy reutilizables
+16.10 Acceso a steps desde clases
+16.11 Closures y configuración de DSL
+16.12 Diseño de APIs de Pipeline
+16.13 Versionado
+16.14 Branches y tags de librerías
+16.15 Testing
+16.16 Mocking de Pipeline steps
+16.17 Compatibilidad
+16.18 Seguridad
+16.19 Arquitectura de librerías corporativas
+16.20 Anti-patterns
+16.21 Laboratorio: crear una Shared Library completa
+
+17. Jenkins internals y automatización administrativa con Groovy
+17.1 Jenkins object model
+17.2 Jenkins.instance y alternativas actuales según API disponible
+17.3 Items
+17.4 Jobs
+17.5 Builds
+17.6 Nodes
+17.7 Computers
+17.8 Executors
+17.9 Queue
+17.10 Plugins
+17.11 Credentials API
+17.12 Script Console
+17.13 Groovy scripts administrativos
+17.14 Init scripts
+17.15 REST API vs Groovy API
+17.16 Seguridad de scripts administrativos
+17.17 Automatización de mantenimiento
+17.18 Laboratorio: herramienta de inspección administrativa
+
+18. Diseño de pipelines a escala
+18.1 Arquitectura de pipelines
+18.2 Separación entre lógica de negocio y Pipeline
+18.3 Reutilización
+18.4 Composición
+18.5 Pipelines por producto
+18.6 Pipelines por plataforma
+18.7 Monorepos
+18.8 Fan-out / fan-in
+18.9 Parallelism
+18.10 Matrix builds
+18.11 Dependency pipelines
+18.12 Promotion
+18.13 Approval gates
+18.14 Deployment strategies
+18.15 Rollback
+18.16 Idempotencia
+18.17 Resiliencia
+18.18 Reintentos seguros
+18.19 Gestión de timeouts
+18.20 Diseño para observabilidad
+18.21 Laboratorio: pipeline empresarial reutilizable
+
+19. Seguridad avanzada y supply chain
+19.1 Threat model de CI/CD
+19.2 Controller hardening
+19.3 Agent isolation
+19.4 Least privilege
+19.5 Secret management
+19.6 Rotación de credenciales
+19.7 Dependencias y plugins
+19.8 Artifact integrity
+19.9 SBOM
+19.10 Firma de artefactos
+19.11 Provenance
+19.12 Supply-chain security
+19.13 Auditoría
+19.14 Seguridad de Shared Libraries
+19.15 Seguridad de pull requests no confiables
+19.16 Laboratorio: hardening de una cadena CI/CD
+
+20. Rendimiento, escalabilidad y operación
+20.1 Capacity planning
+20.2 Controller sizing
+20.3 Executors
+20.4 Queue
+20.5 Agents elásticos
+20.6 Workload isolation
+20.7 Storage
+20.8 Build history
+20.9 Artifact retention
+20.10 Performance tuning
+20.11 Garbage collection: conceptos relevantes
+20.12 Monitoring
+20.13 SLOs para plataforma CI/CD
+20.14 Upgrade y mantenimiento
+20.15 Disaster recovery
+20.16 Laboratorio: analizar y optimizar Jenkins bajo carga
+
+21. Proyecto final — Jenkins Platform Engineering
+21.1 Diseñar la arquitectura
+21.2 Jenkins reproducible con JCasC
+21.3 Controller endurecido
+21.4 Agents dinámicos
+21.5 Repositorio Git y Multibranch Pipeline
+21.6 Jenkinsfile
+21.7 Shared Library
+21.8 Build y testing
+21.9 Quality gates
+21.10 Creación y publicación de artefactos
+21.11 Pipeline de contenedores
+21.12 Integración con Ansible/Terraform
+21.13 Despliegue
+21.14 Credentials y secretos
+21.15 Observabilidad
+21.16 Auditoría
+21.17 Backup y recuperación
+21.18 Troubleshooting
+21.19 Documentación de arquitectura
+21.20 Defensa técnica del diseño

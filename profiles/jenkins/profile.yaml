@@ -1,0 +1,101 @@
+name: jenkins
+title: Jenkins — 0 a experto
+language: es
+platform:
+  primary:
+    - Fedora
+    - RHEL
+  shell: bash
+
+level:
+  start: beginner
+  target: expert
+
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a administración real y CI/CD
+  lesson_structure:
+    required_opening: "🎯 OBJETIVO"
+    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    optional_sections:
+      - "📚 LECTURA"
+      - "🧪 Laboratorio/ejemplos"
+      - "⚠️ Errores frecuentes"
+      - "💡 Idea importante"
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
+  indentation: false
+  numbering: single-level
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+  reading:
+    required: true
+    heading: "📚 LECTURA"
+    categories:
+      - principal
+      - oficial
+      - groovy
+      - seguridad
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+  lab:
+    required: false
+    heading: "🧪 Laboratorio/ejemplos"
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+  remember:
+    required: true
+    position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    min_items: 3
+    max_items: 7
+
+course:
+  progression:
+    - fundamentos
+    - jenkins_basico
+    - pipelines
+    - groovy_esencial
+    - integraciones
+    - administracion
+    - groovy_profundo
+    - cps_y_shared_libraries
+    - arquitectura_y_operacion_avanzada
+    - proyecto_final
+  labs: true
+  project_based: true
+  production_orientation: true
+
+groovy:
+  essential_in_pipeline_stage: true
+  advanced_block_required: true
+  advanced_topics:
+    - object_model
+    - closures
+    - collections
+    - metaprogramming
+    - dsl
+    - testing
+  jenkins_specific_topics:
+    - cps
+    - serialization
+    - noncps
+    - sandbox
+    - script_security
+    - shared_libraries
+    - pipeline_dsl
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
