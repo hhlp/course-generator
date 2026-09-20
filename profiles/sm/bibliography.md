@@ -57,7 +57,7 @@
 
 ## Scrum Team
 
-13. **Professional Scrum Team** — material/libro de referencia aportado por el alumno.
+13. **Professional Scrum Team** — material/libro de referencia.
     Utilizar para cross-functionality, self-management, colaboración, calidad y profesionalismo,
     contrastándolo siempre con The Scrum Guide cuando se describan reglas formales.
 
