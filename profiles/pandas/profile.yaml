@@ -1,62 +1,68 @@
-name: pandas
-title: "Pandas 3 en profundidad"
-description: "Learning path 0 → experto para pandas 3.x: Series, DataFrame, Index, dtypes, missing data, GroupBy, reshaping, time series, I/O, rendimiento, Copy-on-Write, PyArrow, testing, internals y arquitectura profesional."
-language: es
-
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
-
 course:
-  path: initial.txt
-  level_start: "cero"
-  level_end: "experto"
-  platform: "Python + pandas 3.x"
-  style: "profundo, progresivo, práctico y técnico"
+  id: pandas3
+  title: "Pandas 3 — Learning Path 0 → Experto"
+  language: es
+  target_version: "Pandas 3.x"
+  blocks: 18
+  lessons: 216
 
 pedagogy:
-  objective_first: true
-  objective_heading: "🎯 OBJETIVO"
-  required_closing: "🧠 QUÉ DEBES RECORDAR"
-  closing_key_points:
-    min: 3
-    max: 7
-  complete_development: true
-  depth: high
-  progressive: true
-  didactic: true
-  practical: true
-  avoid_summary_only: true
-technical_focus:
-  - Series
-  - DataFrame
-  - Index
-  - MultiIndex
-  - dtypes
-  - nullable dtypes
-  - missing data
-  - strings
-  - merge and joins
-  - reshaping
-  - GroupBy
-  - rolling and windows
-  - time series
-  - I/O
-  - SQL
-  - Parquet
-  - PyArrow
-  - method chaining
-  - Copy-on-Write
-  - performance
-  - memory optimization
-  - testing
-  - troubleshooting
-  - internals
-  - extensibility
+  style: "profundo, práctico, progresivo y orientado a datos reales"
+  indentation: false
+  numbering: single-level
+  lesson_structure:
+    objective:
+      required: true
+      position: first
+      heading: "🎯 OBJETIVO"
+    reading:
+      required: true
+      heading: "📚 LECTURA"
+      categories:
+        - principal
+        - normativa
+        - patrones
+        - profundizacion
+        - consulta
+      exact_references_only_when_verified: true
+    lab:
+      required: false
+      heading: "🧪 Laboratorio/ejemplos"
+    common_errors:
+      required: false
+      heading: "⚠️ Errores frecuentes"
+    important_idea:
+      required: false
+      heading: "💡 Idea importante"
+    remember:
+      required: true
+      position: last
+      heading: "🧠 QUÉ DEBES RECORDAR"
+      min_items: 3
+      max_items: 7
+      avoid_repeating_objective: true
 
-version_policy:
-  target: "pandas 3.x"
-  official_docs_authoritative: true
-  explain_migrations_from_2x: true
-  avoid_deprecated_apis: true
+sources:
+  precedence:
+    - "Documentación oficial de pandas 3.x para API y comportamiento vigente"
+    - "Pandas for Everyone, Second Edition — Daniel Y. Chen"
+    - "Effective Pandas: Patterns for Data Manipulation — Matt Harrison"
+    - "Pandas in Action — Boris Paskhaver"
+  official_docs_override_older_book_behavior: true
+
+pandas3:
+  copy_on_write: required
+  modern_dtypes: required
+  chained_assignment:
+    teach: true
+    recommend: false
+  vectorization: preferred_when_appropriate
+  method_chaining: teach
+  migration_from_older_pandas: required
+
+content_rules:
+  preserve_path_structure: true
+  one_lesson_per_line_in_initial: true
+  use_realistic_datasets: true
+  compare_idiomatic_and_non_idiomatic_patterns: true
+  avoid_unverified_page_or_chapter_references: true
