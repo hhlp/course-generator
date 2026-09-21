@@ -1,0 +1,409 @@
+[0] Fundamentos de Vagrant y virtualización
+0.1 Qué problema resuelve Vagrant
+0.2 Infraestructura reproducible para desarrollo y laboratorios
+0.3 Vagrant frente a máquinas virtuales creadas manualmente
+0.4 Vagrant vs KVM/QEMU vs libvirt
+0.5 Vagrant vs Terraform/OpenTofu
+0.6 Vagrant vs contenedores
+0.7 Arquitectura: Vagrant CLI → provider → libvirt → QEMU/KVM
+0.8 Host, guest, provider, box y machine
+0.9 Ciclo de vida de una máquina
+0.10 Laboratorio: preparar Fedora como host
+
+[1] KVM/QEMU y libvirt en Fedora
+1.1 Arquitectura KVM
+1.2 QEMU y aceleración KVM
+1.3 libvirt
+1.4 Daemons y arquitectura modular de libvirt
+1.5 virsh
+1.6 virt-install
+1.7 virt-manager como herramienta auxiliar
+1.8 Redes virtuales
+1.9 Storage pools y volumes
+1.10 qcow2 y raw
+1.11 Intel VT-x y AMD-V
+1.12 Permisos y grupos
+1.13 SELinux
+1.14 firewalld
+1.15 Diagnóstico del stack
+1.16 Laboratorio: crear una VM Fedora directamente con libvirt
+
+[2] Instalación y configuración de Vagrant
+2.1 Instalación en Fedora
+2.2 Estructura de Vagrant
+2.3 Providers
+2.4 Plugins
+2.5 vagrant-libvirt
+2.6 Dependencias
+2.7 Verificación del provider
+2.8 Variables de entorno
+2.9 Selección explícita del provider
+2.10 Primer proyecto
+2.11 vagrant init
+2.12 vagrant up --provider=libvirt
+2.13 vagrant ssh
+2.14 vagrant halt
+2.15 vagrant destroy
+
+[3] Boxes
+3.1 Qué es una box
+3.2 Formato y metadata
+3.3 Versionado
+3.4 Registries y Vagrant Cloud
+3.5 Fedora boxes
+3.6 Providers soportados por una box
+3.7 vagrant box add
+3.8 vagrant box list
+3.9 vagrant box update
+3.10 vagrant box outdated
+3.11 vagrant box remove
+3.12 Caché local
+3.13 Seguridad, procedencia y confianza
+3.14 Laboratorio: administrar varias versiones
+
+[4] Vagrantfile desde cero
+4.1 Ruby DSL
+4.2 Vagrant.configure
+4.3 config.vm
+4.4 config.vm.box
+4.5 hostname
+4.6 CPU y memoria
+4.7 Configuración del provider libvirt
+4.8 Variables Ruby
+4.9 Arrays y hashes útiles
+4.10 Condicionales
+4.11 Iteraciones
+4.12 Variables de entorno
+4.13 Configuración reutilizable
+4.14 Buenas prácticas
+4.15 Laboratorio: Vagrantfile Fedora parametrizable
+
+[5] Ciclo de vida y CLI
+5.1 init
+5.2 up
+5.3 status
+5.4 global-status
+5.5 ssh
+5.6 ssh-config
+5.7 suspend
+5.8 resume
+5.9 reload
+5.10 halt
+5.11 destroy
+5.12 provision
+5.13 package
+5.14 Estados internos
+5.15 Directorio .vagrant
+5.16 Laboratorio: operar y recuperar una máquina
+
+[6] Networking con libvirt
+6.1 Modelo de red Vagrant/libvirt
+6.2 NAT
+6.3 Redes privadas
+6.4 Redes públicas/bridged
+6.5 Múltiples interfaces
+6.6 DHCP
+6.7 Direccionamiento estático
+6.8 DNS
+6.9 Port forwarding
+6.10 Redes de libvirt
+6.11 Linux bridges
+6.12 NetworkManager
+6.13 firewalld
+6.14 nftables
+6.15 SELinux
+6.16 Troubleshooting
+6.17 Laboratorio: red privada multi-VM
+
+[7] Storage
+7.1 Discos virtuales
+7.2 qcow2
+7.3 Copy-on-write
+7.4 Backing files
+7.5 Storage pools
+7.6 Volumes
+7.7 Discos adicionales
+7.8 Filesystems y mounts
+7.9 Snapshots y almacenamiento
+7.10 Rendimiento
+7.11 Thin provisioning
+7.12 Expansión de discos
+7.13 Troubleshooting
+7.14 Laboratorio
+
+[8] Synced folders
+8.1 Concepto de synced folder
+8.2 /vagrant
+8.3 rsync
+8.4 NFS
+8.5 Rendimiento
+8.6 Permisos
+8.7 UID/GID
+8.8 SELinux y labels
+8.9 Seguridad
+8.10 Cuándo evitar carpetas compartidas
+8.11 Laboratorio comparativo
+
+[9] Provisioning
+9.1 Qué es provisioning
+9.2 Shell provisioner
+9.3 Inline scripts
+9.4 Scripts externos
+9.5 Argumentos y variables
+9.6 Privileged y unprivileged
+9.7 Idempotencia
+9.8 vagrant provision
+9.9 --provision y --no-provision
+9.10 Múltiples provisioners
+9.11 Orden de ejecución
+9.12 Triggers
+9.13 Gestión de errores
+9.14 Laboratorio
+
+[10] Vagrant + Ansible
+10.1 Separación de responsabilidades
+10.2 Provisioner ansible
+10.3 ansible_local
+10.4 Inventory generado
+10.5 Inventory propio
+10.6 Grupos
+10.7 Variables
+10.8 Roles
+10.9 SSH
+10.10 Privilege escalation
+10.11 Idempotencia
+10.12 Provisioning multi-node
+10.13 Reutilización de roles
+10.14 Laboratorio: Vagrant + Ansible sobre Fedora
+
+[11] Entornos multi-machine
+11.1 config.vm.define
+11.2 Múltiples VMs
+11.3 Nombres y hostnames
+11.4 Recursos por nodo
+11.5 Redes privadas
+11.6 Comunicación entre nodos
+11.7 Provisioning específico
+11.8 Provisioning común
+11.9 Dependencias de servicios
+11.10 Clusters reproducibles
+11.11 Diseño de topologías
+11.12 Laboratorio de tres nodos
+
+[12] vagrant-libvirt avanzado
+12.1 Configuración específica del provider
+12.2 Domains
+12.3 CPU topology
+12.4 Memoria
+12.5 Machine types
+12.6 Firmware y UEFI
+12.7 Secure Boot: conceptos y limitaciones
+12.8 Discos
+12.9 Controllers
+12.10 Interfaces de red
+12.11 Graphics y video
+12.12 Serial console
+12.13 Nested virtualization
+12.14 Redes libvirt personalizadas
+12.15 XML del domain
+12.16 virsh dumpxml
+12.17 Laboratorio avanzado
+
+[13] Snapshots
+13.1 Conceptos
+13.2 vagrant snapshot
+13.3 save
+13.4 restore
+13.5 list
+13.6 delete
+13.7 Snapshots de libvirt
+13.8 Snapshots qcow2
+13.9 Limitaciones
+13.10 Snapshot vs backup
+13.11 Laboratorios destructivos reproducibles
+
+[14] Creación de boxes
+14.1 Anatomía de una box
+14.2 Base images
+14.3 Requisitos
+14.4 Usuario Vagrant
+14.5 SSH
+14.6 Claves
+14.7 sudo
+14.8 Limpieza de imagen
+14.9 vagrant package
+14.10 Metadata
+14.11 Versionado
+14.12 Distribución
+14.13 Fedora base box
+14.14 Testing
+14.15 Laboratorio
+
+[15] Packer + Vagrant
+15.1 Image as Code
+15.2 Introducción a Packer
+15.3 Templates
+15.4 Sources y builders
+15.5 Provisioners
+15.6 Artifacts
+15.7 QEMU builder
+15.8 Instalación Fedora
+15.9 Kickstart
+15.10 Generación qcow2
+15.11 Creación de Vagrant box
+15.12 Testing
+15.13 Pipeline Packer → QEMU/KVM → box → Vagrant
+15.14 Laboratorio
+
+[16] Plugins
+16.1 Arquitectura
+16.2 vagrant plugin
+16.3 install/list/update/uninstall
+16.4 Dependencias Ruby
+16.5 vagrant-libvirt como caso real
+16.6 Compatibilidad
+16.7 Debugging
+16.8 Introducción al desarrollo de plugins
+
+[17] Ruby práctico para Vagrant
+17.1 Sintaxis mínima
+17.2 Variables
+17.3 Arrays
+17.4 Hashes
+17.5 Bloques
+17.6 Iteradores
+17.7 Métodos
+17.8 Condicionales
+17.9 Interpolación
+17.10 Variables de entorno
+17.11 Ruby DSL
+17.12 Generación dinámica de máquinas
+17.13 Laboratorio
+
+[18] Seguridad
+18.1 Modelo de amenazas
+18.2 SSH keys
+18.3 Claves inseguras de desarrollo
+18.4 Secretos
+18.5 Variables de entorno
+18.6 Permisos
+18.7 Synced folders
+18.8 Puertos expuestos
+18.9 Bridges
+18.10 Permisos libvirt
+18.11 SELinux
+18.12 firewalld
+18.13 Confianza y supply chain de boxes
+18.14 Ansible Vault
+18.15 Hardening de laboratorios
+
+[19] Troubleshooting
+19.1 Metodología sistemática
+19.2 VAGRANT_LOG
+19.3 Debug logging
+19.4 SSH
+19.5 Networking
+19.6 DHCP
+19.7 libvirt networks
+19.8 Storage pools
+19.9 Permisos
+19.10 SELinux AVC
+19.11 firewalld
+19.12 Provider errors
+19.13 Plugin errors
+19.14 Box incompatibilities
+19.15 virsh
+19.16 journalctl
+19.17 Logs de libvirt/QEMU
+19.18 XML
+19.19 Laboratorio de fallos
+
+[20] Rendimiento
+20.1 CPU
+20.2 Memoria
+20.3 Overcommit
+20.4 Disk I/O
+20.5 qcow2
+20.6 Caching
+20.7 virtio
+20.8 Networking
+20.9 Synced folders
+20.10 Boot time
+20.11 Provisioning time
+20.12 Optimización de boxes
+20.13 Medición antes de optimizar
+
+[21] Trabajo en equipo
+21.1 Vagrantfile en Git
+21.2 .gitignore
+21.3 Versionado de boxes
+21.4 Reproducibilidad
+21.5 Convenciones
+21.6 Configuración local por desarrollador
+21.7 Variables locales
+21.8 Documentación
+21.9 Onboarding
+21.10 Actualización de entornos
+21.11 Compatibilidad de versiones
+
+[22] CI/CD y testing
+22.1 Vagrant en pipelines
+22.2 Entornos efímeros
+22.3 Testing de infraestructura
+22.4 Vagrant + Ansible
+22.5 Molecule vs Vagrant
+22.6 Integración CI
+22.7 Construcción automatizada de boxes
+22.8 Testing de boxes
+22.9 Cleanup
+22.10 Nested virtualization en CI
+22.11 Limitaciones y alternativas
+
+[23] Vagrant, Packer, Ansible y Terraform/OpenTofu
+23.1 Development Environment as Code
+23.2 Image as Code
+23.3 Configuration Management
+23.4 Infrastructure as Code
+23.5 Responsabilidades
+23.6 Límites entre herramientas
+23.7 Patrones de integración
+23.8 Antipatrones y solapamientos
+23.9 Flujo Packer → Vagrant → Ansible
+23.10 Relación con Terraform/OpenTofu
+23.11 Laboratorio integrador
+
+[24] Internals de Vagrant
+24.1 Arquitectura interna
+24.2 Ecosistema Ruby
+24.3 Plugins
+24.4 Providers
+24.5 Provisioners
+24.6 Guests
+24.7 Hosts
+24.8 Communicators
+24.9 Synced folders
+24.10 Actions
+24.11 Middleware
+24.12 State
+24.13 Machine index
+24.14 Environment
+24.15 Debugging interno
+24.16 Lectura guiada de arquitectura
+
+[25] Proyecto final experto
+25.1 Diseñar el laboratorio
+25.2 Fedora host + KVM/QEMU + libvirt
+25.3 Vagrantfile multi-machine
+25.4 Red privada
+25.5 Almacenamiento
+25.6 Provisioning con Ansible
+25.7 SELinux
+25.8 firewalld
+25.9 Snapshots
+25.10 Logging y troubleshooting
+25.11 Tests
+25.12 Documentación
+25.13 Construcción opcional de box con Packer
+25.14 Reproducibilidad desde cero
+25.15 Destrucción y reconstrucción completa
+25.16 Revisión arquitectónica final

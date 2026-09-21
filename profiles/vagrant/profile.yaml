@@ -1,0 +1,137 @@
+name: vagrant
+title: "Vagrant 0 → Experto — Fedora, KVM/QEMU y libvirt"
+language: es
+
+audience:
+  level: "0 a experto"
+  profile:
+    - administradores Linux
+    - ingenieros DevOps
+    - desarrolladores
+    - ingenieros de infraestructura
+    - estudiantes de automatización e IaC
+
+platform:
+  host_os: Fedora
+  guest_os:
+    - Fedora
+    - Linux
+  virtualization:
+    - KVM
+    - QEMU
+    - libvirt
+  vagrant_provider: libvirt
+
+scope:
+  primary:
+    - Vagrant
+    - Vagrantfile
+    - vagrant-libvirt
+    - boxes
+    - networking
+    - storage
+    - synced folders
+    - provisioning
+    - multi-machine
+    - snapshots
+    - troubleshooting
+    - security
+    - performance
+    - internals
+  integrations:
+    - Ansible
+    - Packer
+    - Terraform
+    - OpenTofu
+  secondary_only:
+    - VirtualBox
+    - VMware
+    - Hyper-V
+
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a administración real
+  lesson_structure:
+    objective:
+      required: true
+      position: first
+      heading: "🎯 OBJETIVO"
+    reading:
+      required: true
+      heading: "📚 LECTURA"
+      categories:
+        - principal
+        - normativa
+        - motor
+        - profundizacion
+        - consulta
+      exact_references_only_when_verified: true
+    lab:
+      required: false
+      heading: "🧪 Laboratorio/ejemplos"
+    common_errors:
+      required: false
+      heading: "⚠️ Errores frecuentes"
+    important_idea:
+      required: false
+      heading: "💡 Idea importante"
+    remember:
+      required: true
+      position: last
+      heading: "🧠 QUÉ DEBES RECORDAR"
+      min_items: 3
+      max_items: 7
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
+  indentation: false
+  numbering: single-level
+
+content_requirements:
+  explain_why_not_only_how: true
+  prefer_current_fedora_practices: true
+  distinguish_layers:
+    - Vagrant
+    - vagrant-libvirt
+    - libvirt
+    - QEMU
+    - KVM
+  commands_must_be_explained: true
+  destructive_commands_require_warning: true
+  troubleshooting_required_when_relevant: true
+  security_context_required_when_relevant: true
+  reproducible_labs: true
+  avoid_tool_overlap: true
+
+labs:
+  progression:
+    - single_vm
+    - vagrantfile
+    - networking
+    - storage
+    - provisioning
+    - ansible
+    - multi_machine
+    - custom_box
+    - packer
+    - final_project
+
+final_project:
+  required: true
+  description: >
+    Laboratorio Fedora multi-machine sobre KVM/libvirt administrado con
+    Vagrant y configurado mediante Ansible, incluyendo networking, storage,
+    SELinux, firewalld, snapshots, logging, troubleshooting, tests y
+    documentación. Packer se utiliza como extensión para construir la box.
+  must_be_destroyable_and_reproducible: true
+
+bibliography_policy:
+  books_are_conceptual_sources: true
+  official_docs_for_current_behavior: true
+  exact_references_only_when_verified: true
+  do_not_invent_pages_or_sections: true
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md

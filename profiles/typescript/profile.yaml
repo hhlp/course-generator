@@ -1,0 +1,152 @@
+name: typescript
+title: "TypeScript — Learning Path 0 → Experto"
+language: es
+
+description: >
+  Curso progresivo y profundo de TypeScript, desde los fundamentos hasta
+  type-level programming, diseño de APIs type-safe, compilador, Compiler API
+  e internals.
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+audience:
+  level:
+    - principiante
+    - intermedio
+    - avanzado
+    - experto
+  prerequisites:
+    - fundamentos básicos de programación
+  recommended:
+    - conocimientos básicos de JavaScript
+
+goals:
+  - dominar TypeScript desde los fundamentos
+  - comprender profundamente su sistema de tipos
+  - distinguir compile time y runtime
+  - dominar narrowing, generics y tipos avanzados
+  - diseñar APIs type-safe
+  - trabajar con strict mode
+  - dominar módulos y declaration files
+  - comprender tsconfig y el compilador
+  - aplicar testing y type testing
+  - mantener proyectos TypeScript grandes
+  - comprender internals y Compiler API
+
+scope:
+  include:
+    - JavaScript necesario para comprender TypeScript
+    - sistema de tipos
+    - funciones
+    - objetos
+    - clases
+    - narrowing
+    - generics
+    - mapped types
+    - conditional types
+    - template literal types
+    - utility types
+    - módulos
+    - declaration files
+    - tsconfig
+    - asincronía
+    - iterators
+    - generators
+    - manejo de errores
+    - type-level programming
+    - diseño de APIs type-safe
+    - interoperabilidad JavaScript
+    - runtime validation
+    - Node.js
+    - testing
+    - tooling
+    - monorepos
+    - librerías
+    - performance
+    - compiler internals
+    - Compiler API
+    - AST
+  exclude:
+    - curso específico de React
+    - curso específico de Angular
+    - curso específico de Vue
+    - curso específico de NestJS
+    - CSS
+    - diseño frontend
+
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a programación real
+  lesson_structure:
+    required_opening: "🎯 OBJETIVO"
+    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    optional_sections:
+      - "📚 LECTURA"
+      - "🧪 Laboratorio/ejemplos"
+      - "⚠️ Errores frecuentes"
+      - "💡 Idea importante"
+  reading:
+    heading: "📚 LECTURA"
+    exact_references_only_when_verified: true
+    sources:
+      - principal
+      - complementaria
+      - oficial
+      - profundizacion
+      - consulta
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
+  examples:
+    required_when_applicable: true
+    explain_runtime_vs_compile_time: true
+    prefer_strict_mode: true
+  labs:
+    progressive: true
+    runnable_examples: true
+    prefer_linux_fedora: true
+  indentation: false
+  numbering: single-level
+
+bibliography:
+  primary:
+    - "Learning TypeScript — Josh Goldberg"
+    - "Effective TypeScript — Dan Vanderkam"
+    - "Programming TypeScript — Boris Cherny"
+    - "TypeScript Quickly — Yakov Fain, Anton Moiseev"
+  normative:
+    - "TypeScript official documentation"
+  rule: >
+    No inventar páginas, capítulos o referencias exactas. Usar referencias
+    exactas únicamente cuando hayan sido verificadas.
+
+technical_principles:
+  strict_by_default: true
+  distinguish_runtime_compile_time: true
+  avoid_unnecessary_any: true
+  prefer_unknown_at_untrusted_boundaries: true
+  prefer_narrowing_over_assertions: true
+  teach_exhaustiveness: true
+  advanced_types_with_practical_purpose: true
+
+final_project:
+  required: true
+  requirements:
+    - strict mode
+    - domain modeling
+    - generics
+    - discriminated unions
+    - branded types
+    - runtime validation
+    - typed errors
+    - asynchronous code
+    - testing
+    - type testing
+    - linting
+    - build
+    - declaration files
+    - CI
+    - documentation

@@ -1,0 +1,446 @@
+# Bloque 0 — Fundamentos y entorno
+0.1 Qué es TypeScript y qué problemas resuelve
+0.2 TypeScript vs JavaScript
+0.3 TypeScript como superset de JavaScript
+0.4 Compilador tsc y proceso de transpilación
+0.5 Instalación y entorno de desarrollo
+0.6 Primer programa TypeScript
+0.7 tsconfig.json
+0.8 target, module y moduleResolution
+0.9 strict y opciones principales del compilador
+0.10 Estructura básica de un proyecto TypeScript
+
+# Bloque 1 — Sistema de tipos fundamental
+1.1 Inferencia y anotaciones de tipos
+1.2 string, number, boolean, bigint y symbol
+1.3 null y undefined
+1.4 object
+1.5 arrays
+1.6 tuples
+1.7 enums
+1.8 literal types
+1.9 union types
+1.10 intersection types
+1.11 type aliases
+1.12 interfaces
+1.13 type vs interface
+1.14 any
+1.15 unknown
+1.16 never
+1.17 void
+
+# Bloque 2 — Variables, expresiones y control de flujo
+2.1 let, const y var
+2.2 Operadores, igualdad, comparación y coerción
+2.3 if / else
+2.4 switch
+2.5 for, for...of y for...in
+2.6 while y do...while
+2.7 optional chaining
+2.8 nullish coalescing
+2.9 destructuring
+2.10 spread y rest
+
+# Bloque 3 — Funciones
+3.1 Tipado de parámetros y retorno
+3.2 Inferencia del retorno
+3.3 Parámetros opcionales y por defecto
+3.4 Rest parameters
+3.5 Function types y call signatures
+3.6 Overloads
+3.7 this en funciones
+3.8 Arrow functions
+3.9 Callbacks
+3.10 Funciones como valores
+3.11 never en funciones
+3.12 Funciones de orden superior
+
+# Bloque 4 — Objetos
+4.1 Object types
+4.2 Propiedades requeridas y opcionales
+4.3 readonly
+4.4 Index signatures
+4.5 Excess property checking
+4.6 Structural typing y duck typing
+4.7 Nested object types
+4.8 Object destructuring
+4.9 Objetos dinámicos
+4.10 Record y estructuras indexadas
+
+# Bloque 5 — Clases y orientación a objetos
+5.1 Classes, constructors, fields y methods
+5.2 public, private y protected
+5.3 readonly
+5.4 Parameter properties
+5.5 Getters y setters
+5.6 Static members
+5.7 Herencia
+5.8 abstract
+5.9 implements
+5.10 Clases e interfaces
+5.11 this
+5.12 Polimorfismo
+5.13 Composición vs herencia
+5.14 ECMAScript #private fields
+
+# Bloque 6 — Narrowing y análisis de control de flujo
+6.1 Qué es narrowing
+6.2 typeof guards
+6.3 instanceof
+6.4 operador in
+6.5 Equality narrowing
+6.6 Truthiness narrowing
+6.7 Control-flow analysis
+6.8 Discriminated unions
+6.9 Exhaustiveness checking
+6.10 never como comprobación exhaustiva
+6.11 User-defined type guards
+6.12 Type predicates
+6.13 Assertion functions
+
+# Bloque 7 — Generics
+7.1 Introducción a generics
+7.2 Generic functions
+7.3 Generic interfaces y types
+7.4 Generic classes
+7.5 Generic constraints
+7.6 extends en generics
+7.7 keyof constraints
+7.8 Generic defaults
+7.9 Múltiples parámetros genéricos
+7.10 Inferencia de parámetros genéricos
+7.11 Diseño de APIs genéricas
+7.12 Errores comunes con generics
+
+# Bloque 8 — Operadores de tipos
+8.1 keyof
+8.2 typeof en posiciones de tipo
+8.3 Indexed access types
+8.4 T[K]
+8.5 keyof typeof
+8.6 Arrays y T[number]
+8.7 Extracción de tipos desde objetos y constantes
+8.8 Composición de operadores de tipos
+
+# Bloque 9 — Assertions, const y satisfies
+9.1 Type assertions y as
+9.2 Non-null assertion
+9.3 Riesgos de las assertions
+9.4 const assertions
+9.5 as const
+9.6 Literal inference y widening
+9.7 satisfies
+9.8 satisfies vs as
+9.9 Preservación de tipos literales
+
+# Bloque 10 — Mapped Types
+10.1 Introducción
+10.2 [K in keyof T]
+10.3 Transformación de propiedades
+10.4 readonly y optional modifiers
+10.5 + y - modifiers
+10.6 Key remapping con as
+10.7 Mapped types genéricos
+10.8 Construcción de utility types
+
+# Bloque 11 — Conditional Types
+11.1 T extends U ? X : Y
+11.2 Conditional types genéricos
+11.3 Distributive conditional types
+11.4 Control de distributividad
+11.5 infer
+11.6 Inferencia del retorno y parámetros
+11.7 Conditional types recursivos
+11.8 Patrones avanzados con infer
+
+# Bloque 12 — Template Literal Types
+12.1 Template literal types
+12.2 Uniones y expansión
+12.3 Intrinsic string manipulation types
+12.4 Uppercase, Lowercase, Capitalize y Uncapitalize
+12.5 Generación de nombres de propiedades
+12.6 Event names type-safe
+12.7 DSLs basados en tipos
+
+# Bloque 13 — Utility Types
+13.1 Partial, Required y Readonly
+13.2 Record, Pick y Omit
+13.3 Exclude y Extract
+13.4 NonNullable
+13.5 Parameters y ConstructorParameters
+13.6 ReturnType e InstanceType
+13.7 Awaited
+13.8 ThisParameterType y OmitThisParameter
+13.9 Construcción manual de utility types
+
+# Bloque 14 — Módulos
+14.1 ES Modules
+14.2 import y export
+14.3 Default vs named exports
+14.4 Type-only imports y exports
+14.5 Module resolution
+14.6 ESM vs CommonJS
+14.7 package.json: type, exports e imports
+14.8 Path aliases
+14.9 baseUrl y paths
+14.10 Resolución y debugging de módulos
+
+# Bloque 15 — Declaration Files
+15.1 Qué son los .d.ts
+15.2 Declaraciones globales y de módulos
+15.3 declare y ambient declarations
+15.4 @types y DefinitelyTyped
+15.5 Tipar librerías JavaScript
+15.6 Module augmentation
+15.7 Global augmentation
+15.8 Publicar tipos para una librería
+15.9 Generación automática de declarations
+
+# Bloque 16 — Compilador y tsconfig en profundidad
+16.1 Arquitectura conceptual del compilador
+16.2 Parsing, binding, type checking y emit
+16.3 Familia strict
+16.4 noImplicitAny y strictNullChecks
+16.5 strictFunctionTypes
+16.6 noUncheckedIndexedAccess
+16.7 exactOptionalPropertyTypes
+16.8 useUnknownInCatchVariables
+16.9 noImplicitOverride
+16.10 isolatedModules
+16.11 verbatimModuleSyntax
+16.12 declaration y sourceMap
+16.13 incremental y composite
+16.14 Project references
+
+# Bloque 17 — Asincronía
+17.1 Callbacks y Promise<T>
+17.2 async y await
+17.3 Tipado de Promises
+17.4 Promise.all y Promise.allSettled
+17.5 Promise.race y Promise.any
+17.6 Async iterators
+17.7 Async generators
+17.8 for await...of
+17.9 Awaited<T>
+17.10 Manejo de errores asíncronos
+
+# Bloque 18 — Iterators y Generators
+18.1 Iterable, Iterator e IterableIterator
+18.2 Symbol.iterator
+18.3 Generators
+18.4 yield y yield*
+18.5 Generic generators
+18.6 AsyncIterable
+18.7 Implementación de iterables propios
+
+# Bloque 19 — Manejo de errores
+19.1 Error y try/catch/finally
+19.2 unknown en catch
+19.3 Custom errors
+19.4 Error narrowing
+19.5 Result patterns
+19.6 Discriminated unions para errores
+19.7 Excepciones vs resultados tipados
+19.8 APIs type-safe de manejo de errores
+
+# Bloque 20 — Tipado avanzado de funciones
+20.1 Function overloads
+20.2 Generic callbacks
+20.3 Variadic tuple types
+20.4 Rest tuples
+20.5 Parameter y return type inference
+20.6 Higher-order functions
+20.7 Tipado de compose y pipe
+20.8 Currying
+20.9 this parameters
+
+# Bloque 21 — Type-Level Programming
+21.1 Tipos como transformaciones
+21.2 Generic constraints avanzados
+21.3 Recursive conditional y mapped types
+21.4 infer avanzado
+21.5 Tuple manipulation
+21.6 Variadic tuples
+21.7 String manipulation mediante tipos
+21.8 Object path types
+21.9 DeepPartial, DeepReadonly y DeepRequired
+21.10 Flatten
+21.11 Type-level filtering y transformations
+21.12 Límites prácticos del sistema de tipos
+
+# Bloque 22 — Diseño de APIs Type-Safe
+22.1 Make illegal states unrepresentable
+22.2 Discriminated unions como modelo de dominio
+22.3 Branded y opaque types
+22.4 Nominal typing simulado
+22.5 Builders type-safe
+22.6 Fluent APIs
+22.7 Generic APIs
+22.8 Type-safe event emitters
+22.9 Type-safe configuration
+22.10 State machines
+22.11 Evolución de APIs sin romper consumidores
+
+# Bloque 23 — JavaScript y TypeScript
+23.1 Runtime vs compile time
+23.2 Type erasure
+23.3 Structural typing
+23.4 JavaScript interoperability
+23.5 allowJs y checkJs
+23.6 JSDoc
+23.7 Migración progresiva JS → TS
+23.8 Migración de proyectos legacy
+23.9 Fronteras entre datos dinámicos y tipos estáticos
+
+# Bloque 24 — Validación en Runtime
+24.1 Compile-time types vs runtime data
+24.2 Datos externos y límites de confianza
+24.3 JSON.parse y unknown
+24.4 Validación manual
+24.5 Type guards y assertion functions
+24.6 Schema validation
+24.7 Inferencia schema → type
+24.8 Validación de APIs
+24.9 Configuración y variables de entorno
+
+# Bloque 25 — Node.js + TypeScript
+25.1 Configuración Node.js + TypeScript
+25.2 ESM y CommonJS
+25.3 package.json y tsconfig
+25.4 Tipos de Node
+25.5 Variables de entorno
+25.6 File system
+25.7 Streams
+25.8 Events
+25.9 HTTP
+25.10 CLI applications
+25.11 Manejo de errores
+25.12 Build y distribución
+
+# Bloque 26 — Testing
+26.1 Unit e integration tests
+26.2 Mocking y tipado de mocks
+26.3 Tests asíncronos
+26.4 Testing de errores
+26.5 Type testing
+26.6 @ts-expect-error
+26.7 Tests de definiciones de tipos
+26.8 Testing de APIs públicas
+
+# Bloque 27 — Tooling y calidad
+27.1 ESLint y typescript-eslint
+27.2 Formatting
+27.3 Type-aware linting
+27.4 npm scripts
+27.5 Build scripts
+27.6 Source maps y debugging
+27.7 Bundlers y transpilers
+27.8 CI
+27.9 Type checking separado del build
+
+# Bloque 28 — Monorepos y proyectos grandes
+28.1 Project references
+28.2 composite e incremental builds
+28.3 Shared tsconfig
+28.4 Packages internos
+28.5 Workspace architectures
+28.6 Dependency boundaries
+28.7 Public APIs
+28.8 Tipos compartidos
+28.9 Build ordering
+28.10 Escalabilidad del type checker
+
+# Bloque 29 — Librerías TypeScript
+29.1 Diseño de una librería
+29.2 Public API
+29.3 package.json y exports
+29.4 ESM
+29.5 Declaration files y declarationMap
+29.6 Versionado y compatibilidad de tipos
+29.7 Dual-package considerations
+29.8 Publicación en npm
+29.9 Semantic Versioning y cambios de tipos
+
+# Bloque 30 — Performance y compilación
+30.1 Rendimiento del compilador
+30.2 --extendedDiagnostics
+30.3 --generateTrace
+30.4 Incremental compilation
+30.5 Project references
+30.6 Complejidad de tipos
+30.7 Conditional types costosos
+30.8 Uniones grandes y tipos recursivos
+30.9 Optimización de proyectos grandes
+
+# Bloque 31 — Internals de TypeScript
+31.1 Arquitectura del compilador
+31.2 Scanner
+31.3 Parser y AST
+31.4 Binder y Symbols
+31.5 Type checker
+31.6 Type relationships
+31.7 Assignability
+31.8 Type inference
+31.9 Control-flow analysis
+31.10 Emit
+31.11 Language Service
+31.12 tsserver
+31.13 Compiler API
+
+# Bloque 32 — Compiler API y AST
+32.1 TypeScript Compiler API
+32.2 SourceFile, Nodes y SyntaxKind
+32.3 Traversal del AST
+32.4 Symbols
+32.5 TypeChecker API
+32.6 Obtener tipos programáticamente
+32.7 Transformations
+32.8 Code generation
+32.9 Static analysis tools
+32.10 Construcción de herramientas propias
+
+# Bloque 33 — Patrones y antipatrones
+33.1 Evitar any innecesario
+33.2 Preferir unknown en fronteras inseguras
+33.3 Assertions peligrosas
+33.4 Boolean blindness
+33.5 Stringly typed APIs
+33.6 Primitive obsession
+33.7 Uniones discriminadas
+33.8 Branded types
+33.9 Exhaustiveness
+33.10 Overengineering del sistema de tipos
+33.11 Tipos demasiado complejos
+33.12 Mantener tipos legibles
+
+# Bloque 34 — Effective TypeScript
+34.1 Pensar en TypeScript como sistema estructural
+34.2 Conocer los límites del type checker
+34.3 Controlar inferencia y widening
+34.4 Diseñar tipos alrededor de estados válidos
+34.5 Evitar información duplicada entre valores y tipos
+34.6 Extraer tipos en vez de repetirlos
+34.7 Diseñar generics útiles
+34.8 Entender assignability
+34.9 Trabajar correctamente con null
+34.10 Modelar dominios mediante unions
+34.11 Gestionar dependencias de tipos
+34.12 Diseñar APIs mantenibles
+
+# Bloque 35 — Proyecto final
+35.1 Diseñar una aplicación TypeScript completa
+35.2 strict mode completo
+35.3 Modelo de dominio
+35.4 Branded types y discriminated unions
+35.5 Generics
+35.6 Runtime validation
+35.7 Capa de persistencia y API
+35.8 Manejo de errores tipado
+35.9 Async
+35.10 Testing y type testing
+35.11 ESLint y build
+35.12 Declaration files
+35.13 CI
+35.14 Documentación
+35.15 Performance del compilador
+35.16 Revisión final de arquitectura
