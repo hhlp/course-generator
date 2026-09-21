@@ -1,1055 +1,577 @@
 JAVASCRIPT — LEARNING PATH 0 → EXPERTO
 
-# Bloque 0 — Fundamentos, entorno y ECMAScript
+Objetivo general
+Dominar JavaScript como lenguaje de programación y ECMAScript desde los fundamentos hasta sus mecanismos internos, semántica de ejecución, asincronía, metaprogramación, rendimiento y motores. El navegador, HTML, CSS, DOM, BOM y frameworks frontend quedan fuera de este path. Node.js se utiliza como runtime práctico fuera del navegador, sin confundir sus APIs con ECMAScript.
+
+Bloque 0 — Fundamentos, entorno y ECMAScript
 0.1 Qué es JavaScript y qué problemas resuelve
 0.2 JavaScript vs ECMAScript
 0.3 Historia y evolución de JavaScript
 0.4 TC39 y proceso de estandarización
-0.5 JavaScript en el navegador
-0.6 JavaScript fuera del navegador: Node.js
-0.7 Motores JavaScript: V8, SpiderMonkey y JavaScriptCore
-0.8 Instalación y entorno de desarrollo
-0.9 DevTools y consola del navegador
-0.10 Node.js REPL
-0.11 Primer programa JavaScript
-0.12 npm y npx: introducción
-0.13 package.json: introducción
-0.14 Scripts npm básicos
-0.15 ECMAScript Modules: introducción
-0.16 strict mode
-0.17 Estructura básica de un proyecto JavaScript
+0.5 JavaScript fuera del navegador
+0.6 Motores JavaScript: V8, SpiderMonkey y JavaScriptCore
+0.7 Instalación de Node.js y entorno de desarrollo
+0.8 Node.js REPL
+0.9 Primer programa JavaScript
+0.10 npm y npx: introducción
+0.11 package.json: introducción
+0.12 Scripts npm básicos
+0.13 ECMAScript Modules: introducción
+0.14 strict mode
+0.15 Estructura básica de un proyecto JavaScript
+0.16 Documentación oficial y especificación ECMAScript
+0.17 Cómo ejecutar, inspeccionar y depurar JavaScript fuera del navegador
 
-# Bloque 1 — Sintaxis, variables y fundamentos del lenguaje
-1.1 Statements y expressions
-1.2 Identificadores y palabras reservadas
-1.3 Comentarios
-1.4 Bloques de código
-1.5 Punto y coma y Automatic Semicolon Insertion (ASI)
-1.6 Declaración con var
-1.7 Declaración con let
-1.8 Declaración con const
-1.9 var vs let vs const
-1.10 Scope global, de función y de bloque: introducción
-1.11 Hoisting: introducción
-1.12 Temporal Dead Zone: introducción
-1.13 Declaración, inicialización y asignación
-1.14 Convenciones de nombres
-1.15 Lectura y escritura de código JavaScript idiomático
+Bloque 1 — Léxico, sintaxis, variables y valores
+1.1 Lexical grammar: tokens, whitespace y line terminators
+1.2 Comentarios
+1.3 Identificadores y palabras reservadas
+1.4 Statements y expressions
+1.5 Declaraciones let, const y var
+1.6 Scope introductorio
+1.7 Hoisting: modelo correcto
+1.8 Temporal Dead Zone
+1.9 Primitive values
+1.10 undefined y null
+1.11 Boolean
+1.12 Number
+1.13 BigInt
+1.14 String
+1.15 Symbol: introducción
+1.16 Object como tipo no primitivo
+1.17 typeof
+1.18 Mutabilidad, inmutabilidad y reasignación
+1.19 Igualdad de valores e identidad
 
-# Bloque 2 — Tipos, valores, conversión y coerción
-2.1 Modelo de tipos dinámico de JavaScript
-2.2 Tipos primitivos
-2.3 string
-2.4 number
-2.5 bigint
-2.6 boolean
-2.7 undefined
-2.8 null
-2.9 symbol
-2.10 object
-2.11 Operador typeof
-2.12 Primitivos vs objetos
-2.13 Valor vs referencia
-2.14 Conversión explícita de tipos
-2.15 Conversión a string
-2.16 Conversión a number
-2.17 Conversión a boolean
-2.18 Coerción implícita
-2.19 Truthy y falsy
-2.20 NaN
-2.21 Infinity y -Infinity
-2.22 Igualdad abstracta con ==
-2.23 Igualdad estricta con ===
-2.24 Object.is()
-2.25 Algoritmos de igualdad: SameValue y SameValueZero
-2.26 Buenas prácticas para comparaciones
+Bloque 2 — Conversión, coerción y operadores
+2.1 Conversión explícita de tipos
+2.2 Coerción implícita
+2.3 ToPrimitive, ToString, ToNumber y ToBoolean conceptualmente
+2.4 Truthy y falsy
+2.5 == frente a ===
+2.6 Object.is()
+2.7 Operadores aritméticos
+2.8 Operadores de asignación
+2.9 Operadores relacionales
+2.10 Operadores lógicos
+2.11 Short-circuit evaluation
+2.12 Nullish coalescing ??
+2.13 Optional chaining ?.
+2.14 Operador condicional
+2.15 Operadores bitwise
+2.16 Operadores de incremento y decremento
+2.17 in
+2.18 instanceof
+2.19 delete
+2.20 void
+2.21 Precedencia y asociatividad
 
-# Bloque 3 — Operadores y expresiones
-3.1 Operadores aritméticos
-3.2 Operadores de asignación
-3.3 Operadores de comparación
-3.4 Operadores lógicos
-3.5 Short-circuit evaluation
-3.6 Operador nullish coalescing ??
-3.7 Optional chaining ?.
-3.8 Operador condicional ?:
-3.9 Operadores de incremento y decremento
-3.10 Operadores bitwise
-3.11 Operadores de desplazamiento de bits
-3.12 Operador typeof
-3.13 Operador delete
-3.14 Operador in
-3.15 Operador instanceof
-3.16 Operador coma
-3.17 Spread syntax …
-3.18 Rest syntax …
-3.19 Precedencia y asociatividad
-3.20 Evaluación de expresiones
+Bloque 3 — Control de flujo
+3.1 if
+3.2 if / else
+3.3 else if
+3.4 switch
+3.5 while
+3.6 do...while
+3.7 for
+3.8 for...of
+3.9 for...in y por qué no equivale a for...of
+3.10 break
+3.11 continue
+3.12 labels
+3.13 Bloques y block scope
+3.14 Patrones de control de flujo
 
-# Bloque 4 — Control de flujo e iteración
-4.1 Sentencia if
-4.2 if/else
-4.3 Cadenas if/else if/else
-4.4 switch
-4.5 while
-4.6 do…while
-4.7 for
-4.8 for…of
-4.9 for…in
-4.10 for…of vs for…in
-4.11 break
-4.12 continue
-4.13 Labels
-4.14 Bloques y alcance
-4.15 throw: introducción
-4.16 try/catch/finally: introducción
-4.17 Patrones de control de flujo
+Bloque 4 — Funciones en profundidad
+4.1 Function declarations
+4.2 Function expressions
+4.3 Arrow functions
+4.4 Parámetros y argumentos
+4.5 Default parameters
+4.6 Rest parameters
+4.7 Spread syntax
+4.8 arguments
+4.9 Return values
+4.10 Funciones como valores de primera clase
+4.11 Higher-order functions
+4.12 Callbacks
+4.13 Pure functions e impure functions
+4.14 Recursividad
+4.15 IIFE
+4.16 Function.name y Function.length
+4.17 call()
+4.18 apply()
+4.19 bind()
+4.20 Closures: introducción
+4.21 Closures en profundidad
 
-# Bloque 5 — Strings, Unicode y texto
-5.1 Creación de strings
-5.2 Strings como valores inmutables
-5.3 Propiedad length
-5.4 Acceso a caracteres
-5.5 UTF-16 y code units
-5.6 Unicode y code points
-5.7 Pares sustitutos
-5.8 Iteración Unicode-safe
-5.9 Template literals
-5.10 Interpolación de expresiones
-5.11 Tagged templates
-5.12 Métodos de búsqueda
-5.13 Métodos de extracción
-5.14 Métodos de transformación
-5.15 Métodos de comparación
-5.16 Métodos de padding y trimming
-5.17 split() y join()
-5.18 String.raw()
-5.19 String.fromCodePoint() y codePointAt()
-5.20 Strings y expresiones regulares
+Bloque 5 — Scope, closures y modelo de ejecución léxico
+5.1 Global scope
+5.2 Module scope
+5.3 Function scope
+5.4 Block scope
+5.5 Lexical scope
+5.6 Scope chain
+5.7 Shadowing
+5.8 Closures y estado privado
+5.9 Closures y factories
+5.10 Closures en callbacks
+5.11 Errores frecuentes con closures
+5.12 Lexical Environment: modelo conceptual
+5.13 Environment Records: introducción
+5.14 VariableEnvironment y LexicalEnvironment
+5.15 Resolución de identificadores
 
-# Bloque 6 — Numbers, BigInt y Math
-6.1 Tipo number e IEEE-754
-6.2 Enteros y números de punto flotante
-6.3 Precisión numérica
-6.4 Number.MAX_SAFE_INTEGER y MIN_SAFE_INTEGER
-6.5 Number.isNaN()
-6.6 Number.isFinite()
-6.7 Number.isInteger()
-6.8 Number.isSafeInteger()
-6.9 parseInt() y parseFloat()
-6.10 Conversión con Number()
-6.11 toFixed(), toPrecision() y toExponential()
-6.12 Objeto Math
-6.13 Redondeo
-6.14 Aleatoriedad con Math.random()
-6.15 BigInt
-6.16 Operaciones con BigInt
-6.17 Number vs BigInt
-6.18 Errores habituales de punto flotante
-6.19 Estrategias para cálculos numéricos seguros
+Bloque 6 — Strings, números y utilidades fundamentales
+6.1 String en profundidad
+6.2 Métodos de String
+6.3 Unicode, code points y UTF-16
+6.4 Template literals
+6.5 Tagged templates
+6.6 Number en profundidad
+6.7 IEEE 754 y precisión
+6.8 Number.isNaN() y NaN
+6.9 Number.isFinite()
+6.10 parseInt() y parseFloat()
+6.11 Math
+6.12 BigInt en profundidad
+6.13 Date
+6.14 Intl: internacionalización
+6.15 RegExp: fundamentos
+6.16 RegExp avanzado
 
-# Bloque 7 — Arrays
-7.1 Creación de arrays
-7.2 Índices y length
-7.3 Arrays dinámicos y mutabilidad
-7.4 push() y pop()
-7.5 shift() y unshift()
-7.6 splice()
-7.7 slice()
-7.8 concat()
-7.9 at()
-7.10 includes()
-7.11 indexOf() y lastIndexOf()
-7.12 find() y findLast()
-7.13 findIndex() y findLastIndex()
-7.14 some() y every()
-7.15 map()
-7.16 filter()
-7.17 reduce() y reduceRight()
-7.18 forEach()
-7.19 sort() y toSorted()
-7.20 reverse() y toReversed()
-7.21 splice() y toSpliced()
-7.22 with()
-7.23 flat() y flatMap()
-7.24 copyWithin() y fill()
-7.25 Array.from()
-7.26 Array.fromAsync()
-7.27 Array.of()
-7.28 Array.isArray()
-7.29 Iteradores keys(), values() y entries()
-7.30 Spread y rest con arrays
-7.31 Destructuring de arrays
-7.32 Arrays multidimensionales y anidados
-7.33 Shallow copies y referencias internas
+Bloque 7 — Arrays y colecciones
+7.1 Creación y naturaleza de Array
+7.2 Índices, length y sparse arrays
+7.3 Métodos mutables de Array
+7.4 Métodos no mutables de Array
+7.5 Nuevos métodos copy-by-change
+7.6 map()
+7.7 filter()
+7.8 reduce() y reduceRight()
+7.9 find(), findIndex(), findLast() y findLastIndex()
+7.10 some() y every()
+7.11 sort() y toSorted()
+7.12 flat() y flatMap()
+7.13 Destructuring de arrays
+7.14 Spread y rest con arrays
+7.15 Array-like objects
+7.16 TypedArray: introducción
+7.17 Map
+7.18 Set
+7.19 WeakMap
+7.20 WeakSet
+7.21 Elección entre Object, Map, Set y arrays
 
-# Bloque 8 — Objects y propiedades
+Bloque 8 — Objetos y propiedades
 8.1 Object literals
 8.2 Propiedades y métodos
-8.3 Dot notation y bracket notation
-8.4 Computed property names
-8.5 Creación dinámica de propiedades
-8.6 Enumerabilidad y ownership
-8.7 Object.keys()
-8.8 Object.values()
-8.9 Object.entries()
-8.10 Object.fromEntries()
-8.11 Object.hasOwn()
-8.12 Object.assign()
-8.13 Spread con objetos
-8.14 Destructuring de objetos
-8.15 Nested destructuring
-8.16 Shallow copy
-8.17 structuredClone()
-8.18 Estrategias de deep copy
-8.19 Property descriptors
-8.20 Object.getOwnPropertyDescriptor()
-8.21 Object.defineProperty()
-8.22 Getters
-8.23 Setters
-8.24 Object.freeze()
-8.25 Object.seal()
-8.26 Object.preventExtensions()
-8.27 Enumeración y orden de propiedades
+8.3 Computed property names
+8.4 Property accessors
+8.5 Destructuring de objetos
+8.6 Spread y rest de objetos
+8.7 Object.keys(), values() y entries()
+8.8 Object.fromEntries()
+8.9 Object.assign()
+8.10 Object.hasOwn()
+8.11 Enumerabilidad y ownership
+8.12 Copia superficial
+8.13 Copia profunda y structuredClone() en runtimes que lo proporcionan
+8.14 Comparación e identidad de objetos
+8.15 Object.freeze()
+8.16 Object.seal()
+8.17 Object.preventExtensions()
+8.18 Property descriptors
+8.19 Object.defineProperty()
+8.20 Object.defineProperties()
+8.21 Getters y setters
 
-# Bloque 9 — Map, Set, WeakMap y WeakSet
-9.1 Map: fundamentos
-9.2 Creación y modificación de Map
-9.3 get(), set(), has() y delete()
-9.4 Iteración de Map
-9.5 Conversión Object ↔ Map
-9.6 Set: fundamentos
-9.7 add(), has(), delete() y clear()
-9.8 Operaciones de conjuntos
-9.9 Iteración de Set
-9.10 Conversión Array ↔ Set
-9.11 WeakMap
-9.12 WeakSet
-9.13 Weak references y garbage collection
-9.14 Map vs Object
-9.15 Set vs Array
-9.16 Casos de uso de WeakMap y WeakSet
+Bloque 9 — this, prototypes y herencia
+9.1 Qué significa this
+9.2 this en funciones normales
+9.3 this en métodos
+9.4 this en arrow functions
+9.5 Explicit binding
+9.6 new binding
+9.7 Prototype
+9.8 Prototype chain
+9.9 Object.getPrototypeOf()
+9.10 Object.setPrototypeOf() y sus implicaciones
+9.11 Object.create()
+9.12 Constructor functions
+9.13 Herencia prototípica
+9.14 instanceof en profundidad
+9.15 Clases como abstracción sobre prototipos
 
-# Bloque 10 — Funciones
-10.1 Function declarations
-10.2 Function expressions
-10.3 Arrow functions
-10.4 Parámetros y argumentos
-10.5 Default parameters
-10.6 Rest parameters
-10.7 Objeto arguments
-10.8 Return
-10.9 Funciones como valores de primera clase
-10.10 Higher-order functions
-10.11 Callbacks
-10.12 Funciones puras e impuras
-10.13 Closures: introducción
-10.14 Recursión
-10.15 IIFE
-10.16 Métodos como funciones
-10.17 Propiedades del objeto Function
-10.18 Funciones variádicas
-10.19 Destructuring en parámetros
-10.20 Patrones funcionales básicos
+Bloque 10 — Clases modernas
+10.1 class declarations y expressions
+10.2 constructor
+10.3 Instance methods
+10.4 Static methods
+10.5 Instance fields
+10.6 Static fields
+10.7 Private fields #
+10.8 Private methods
+10.9 extends
+10.10 super
+10.11 Getters y setters en clases
+10.12 Static initialization blocks
+10.13 Herencia frente a composición
+10.14 Clases y prototype chain
+10.15 Limitaciones y patrones de diseño con class
 
-# Bloque 11 — Scope, closures, this y execution model
-11.1 Lexical scope
-11.2 Global scope
-11.3 Function scope
-11.4 Block scope
-11.5 Scope chain
-11.6 Hoisting en profundidad
-11.7 Temporal Dead Zone en profundidad
-11.8 Lexical environments
-11.9 Closures en profundidad
-11.10 Casos de uso de closures
-11.11 Execution contexts
-11.12 Call stack
-11.13 this en el contexto global
-11.14 this en funciones
-11.15 this en métodos
-11.16 this con constructores
-11.17 Lexical this en arrow functions
-11.18 call()
-11.19 apply()
-11.20 bind()
-11.21 Pérdida de contexto
-11.22 Closures, callbacks y memoria
+Bloque 11 — Symbol, iterables, iterators y generators
+11.1 Symbol en profundidad
+11.2 Global Symbol registry
+11.3 Well-known symbols
+11.4 Protocolo iterable
+11.5 Protocolo iterator
+11.6 Symbol.iterator
+11.7 Iteradores personalizados
+11.8 Generators
+11.9 yield
+11.10 yield*
+11.11 Generator objects
+11.12 Iterables lazy
+11.13 Async iterators: introducción
+11.14 Async generators
+11.15 for await...of
 
-# Bloque 12 — Prototypes y modelo de objetos
-12.1 Modelo prototípico de JavaScript
-12.2 [[Prototype]]
-12.3 Prototype chain
-12.4 Propiedad prototype de las funciones
-12.5 Object.getPrototypeOf()
-12.6 Object.setPrototypeOf()
-12.7 Object.create()
-12.8 Property lookup
-12.9 Shadowing de propiedades
-12.10 Constructor functions
-12.11 Operador new
-12.12 instanceof en profundidad
-12.13 Herencia por prototipos
-12.14 Delegación
-12.15 Métodos compartidos
-12.16 Prototipos nativos
-12.17 Extender prototipos: riesgos
-12.18 Prototypes vs clases
+Bloque 12 — Módulos ECMAScript
+12.1 Por qué existen los módulos
+12.2 ESM frente al modelo script clásico
+12.3 export
+12.4 export default
+12.5 import
+12.6 Named imports
+12.7 Namespace imports
+12.8 Re-export
+12.9 Module scope
+12.10 Live bindings
+12.11 Cyclic dependencies
+12.12 Dynamic import()
+12.13 import.meta
+12.14 Top-level await
+12.15 Resolución de módulos: ECMAScript frente al host
+12.16 ESM en Node.js
+12.17 CommonJS como sistema de módulos de Node.js
+12.18 Interoperabilidad ESM/CommonJS
 
-# Bloque 13 — Classes y programación orientada a objetos
-13.1 Sintaxis class
-13.2 constructor
-13.3 Métodos de instancia
-13.4 Campos públicos
-13.5 Campos privados #
-13.6 Métodos privados
-13.7 Miembros static
-13.8 Bloques static
-13.9 Getters y setters
-13.10 extends
-13.11 super
-13.12 Herencia
-13.13 Polimorfismo
-13.14 Encapsulación
-13.15 Composición vs herencia
-13.16 Clases como funciones especiales
-13.17 Class expressions
-13.18 Mixins
-13.19 Patrones OOP en JavaScript
+Bloque 13 — Errores y excepciones
+13.1 Error
+13.2 Tipos de errores nativos
+13.3 throw
+13.4 try / catch
+13.5 finally
+13.6 Custom errors
+13.7 cause
+13.8 Stack traces
+13.9 Errores síncronos frente a asíncronos
+13.10 Diseño de errores y propagación
 
-# Bloque 14 — Iterables, iteradores y generadores
-14.1 Iteration protocols
-14.2 Iterable protocol
-14.3 Iterator protocol
-14.4 Symbol.iterator
-14.5 Iteradores integrados
-14.6 Creación de iteradores personalizados
-14.7 for…of internamente
-14.8 Generators
-14.9 function
-14.10 yield
-14.11 yield
-14.12 Estado de un generator
-14.13 Comunicación con next()
-14.14 Generator composition
-14.15 Generators como iteradores
-14.16 Async iterators: introducción
-14.17 Async generators: introducción
-14.18 for await…of: introducción
+Bloque 14 — Asincronía y Promises
+14.1 Síncrono frente a asíncrono
+14.2 Callbacks asíncronos
+14.3 Callback composition y callback hell
+14.4 Promise
+14.5 Estados y destino de una Promise
+14.6 then()
+14.7 catch()
+14.8 finally()
+14.9 Promise chaining
+14.10 Promise.resolve() y Promise.reject()
+14.11 Promise.all()
+14.12 Promise.allSettled()
+14.13 Promise.race()
+14.14 Promise.any()
+14.15 async functions
+14.16 await
+14.17 Manejo de errores con async/await
+14.18 Concurrencia de operaciones asíncronas
+14.19 Serialización accidental con await
+14.20 Patrones robustos de composición asíncrona
 
-# Bloque 15 — Symbols, descriptors, Proxy y Reflect
-15.1 Symbol
-15.2 Símbolos únicos
-15.3 Symbol.for() y Symbol.keyFor()
-15.4 Well-known symbols
-15.5 Symbol.iterator
-15.6 Symbol.toPrimitive
-15.7 Symbol.toStringTag
-15.8 Property descriptors en profundidad
-15.9 Reflect
-15.10 Reflect.get() y Reflect.set()
-15.11 Reflect.construct()
-15.12 Proxy
-15.13 Proxy traps
-15.14 get y set traps
-15.15 has, deleteProperty y ownKeys
-15.16 apply y construct traps
-15.17 Proxy invariants
-15.18 Revocable proxies
-15.19 Metaprogramación práctica
+Bloque 15 — Event Loop y modelo de concurrencia
+15.1 JavaScript y run-to-completion
+15.2 Execution stack
+15.3 Jobs
+15.4 Promise jobs
+15.5 Microtasks
+15.6 Tasks/macrotasks como concepto del host
+15.7 Event loop: lenguaje frente a runtime
+15.8 Event loop de Node.js
+15.9 process.nextTick()
+15.10 setImmediate()
+15.11 Timers de Node.js
+15.12 Starvation
+15.13 Backpressure: introducción
+15.14 Worker threads: introducción
+15.15 Concurrencia frente a paralelismo
 
-# Bloque 16 — Expresiones regulares
-16.1 Objeto RegExp
-16.2 Literales RegExp
-16.3 Flags
-16.4 Clases de caracteres
-16.5 Cuantificadores
-16.6 Anchors
-16.7 Grupos y capturas
-16.8 Named capturing groups
-16.9 Backreferences
-16.10 Alternation
-16.11 Lookahead
-16.12 Lookbehind
-16.13 Unicode y flag u
-16.14 Flag v y Unicode sets
-16.15 exec()
-16.16 test()
-16.17 String.match()
-16.18 String.matchAll()
-16.19 String.replace() y replaceAll()
-16.20 String.search() y split()
-16.21 RegExp y rendimiento
-16.22 Errores frecuentes y ReDoS
+Bloque 16 — Metaprogramación
+16.1 Qué es metaprogramación
+16.2 Reflection
+16.3 Reflect
+16.4 Proxy
+16.5 Proxy traps
+16.6 Proxy invariants
+16.7 Revocable proxies
+16.8 Symbol y protocolos del lenguaje
+16.9 Property descriptors como metaprogramación
+16.10 Interceptar acceso a propiedades
+16.11 Validación mediante Proxy
+16.12 Membranes: introducción
+16.13 Riesgos de rendimiento y mantenibilidad
 
-# Bloque 17 — Manejo de errores
-17.1 Errores y excepciones
-17.2 Objeto Error
-17.3 TypeError
-17.4 ReferenceError
-17.5 RangeError
-17.6 SyntaxError
-17.7 AggregateError
-17.8 throw
-17.9 try/catch
-17.10 finally
-17.11 Conditional catching
-17.12 Errores personalizados
-17.13 Herencia de Error
-17.14 Error cause
-17.15 Propagación de errores
-17.16 Errores en callbacks
-17.17 Errores con Promises
-17.18 Errores con async/await
-17.19 Diseño de errores en APIs
-17.20 Logging vs manejo de errores
+Bloque 17 — Binary data y memoria accesible desde JavaScript
+17.1 ArrayBuffer
+17.2 SharedArrayBuffer
+17.3 TypedArray
+17.4 DataView
+17.5 Endianness
+17.6 Atomics
+17.7 Shared memory
+17.8 Race conditions
+17.9 Coordinación entre workers
+17.10 Casos de uso de datos binarios
 
-# Bloque 18 — Módulos y organización del código
-18.1 Motivación de los módulos
-18.2 ES Modules
-18.3 export
-18.4 Named exports
-18.5 export default
-18.6 import
-18.7 Renombrado de imports/exports
-18.8 Re-exports
-18.9 Module scope
-18.10 Live bindings
-18.11 Dynamic import()
-18.12 Top-level await
-18.13 Resolución de módulos
-18.14 Ciclos entre módulos
-18.15 CommonJS
-18.16 require() y module.exports
-18.17 ESM vs CommonJS
-18.18 package.json: type
-18.19 package.json: exports
-18.20 package.json: imports
-18.21 Diseño modular y límites de responsabilidad
+Bloque 18 — Node.js como runtime JavaScript
+18.1 Qué es Node.js y qué no forma parte de ECMAScript
+18.2 Arquitectura general de Node.js
+18.3 V8 y libuv
+18.4 process
+18.5 Environment variables
+18.6 Filesystem
+18.7 Path
+18.8 URL
+18.9 Events y EventEmitter
+18.10 Buffer
+18.11 Streams
+18.12 Readable streams
+18.13 Writable streams
+18.14 Transform streams
+18.15 Pipelines y backpressure
+18.16 Timers
+18.17 Child processes
+18.18 Worker threads
+18.19 Networking básico
+18.20 HTTP básico desde Node.js
+18.21 CLI y scripting con JavaScript
+18.22 Señales y ciclo de vida de procesos
+18.23 Manejo de errores y shutdown ordenado
 
-# Bloque 19 — DOM y JavaScript en el navegador
-19.1 Window y globalThis
-19.2 Document
-19.3 Árbol DOM
-19.4 Node y Element
-19.5 Selección de elementos
-19.6 querySelector() y querySelectorAll()
-19.7 Navegación del DOM
-19.8 Creación de nodos
-19.9 Inserción, reemplazo y eliminación
-19.10 Text content vs HTML
-19.11 Atributos
-19.12 classList
-19.13 Estilos
-19.14 Formularios
-19.15 Eventos
-19.16 EventTarget
-19.17 addEventListener()
-19.18 Capturing
-19.19 Target phase
-19.20 Bubbling
-19.21 Event delegation
-19.22 preventDefault()
-19.23 stopPropagation()
-19.24 CustomEvent
-19.25 Accesibilidad y manipulación responsable del DOM
+Bloque 19 — npm, paquetes y proyectos
+19.1 Ecosistema npm
+19.2 package.json en profundidad
+19.3 dependencies y devDependencies
+19.4 peerDependencies y optionalDependencies
+19.5 Semantic Versioning
+19.6 package-lock.json
+19.7 npm install y npm ci
+19.8 npm scripts
+19.9 npx
+19.10 Publicación de paquetes: conceptos
+19.11 exports e imports en package.json
+19.12 Paquetes ESM y CommonJS
+19.13 Workspaces: introducción
+19.14 Riesgos de supply chain
+19.15 Auditoría de dependencias
 
-# Bloque 20 — Web APIs y almacenamiento
-20.1 JavaScript language vs Web APIs
-20.2 Timers
-20.3 setTimeout()
-20.4 setInterval()
-20.5 requestAnimationFrame()
-20.6 URL
-20.7 URLSearchParams
-20.8 Location
-20.9 History API
-20.10 Navigator
-20.11 Clipboard API
-20.12 Web Storage
-20.13 localStorage
-20.14 sessionStorage
-20.15 IndexedDB
-20.16 MutationObserver
-20.17 IntersectionObserver
-20.18 ResizeObserver
-20.19 Notifications: conceptos
-20.20 Web APIs y permisos
-20.21 Feature detection
+Bloque 20 — Testing, calidad y debugging
+20.1 Estrategia de testing
+20.2 Unit testing
+20.3 Integration testing
+20.4 Node.js test runner
+20.5 Assertions
+20.6 Test doubles, stubs y mocks
+20.7 Testing de código asíncrono
+20.8 Code coverage
+20.9 Debugger
+20.10 Inspector protocol: introducción
+20.11 Source maps
+20.12 Logging estructurado
+20.13 ESLint y análisis estático
+20.14 Formateo automático
+20.15 Reproducibilidad y CI
 
-# Bloque 21 — Networking y APIs web
-21.1 Fundamentos HTTP para JavaScript
-21.2 Fetch API
-21.3 Request
-21.4 Response
-21.5 Headers
-21.6 JSON
-21.7 FormData
-21.8 Upload y download
-21.9 AbortController
-21.10 Timeouts con AbortSignal
-21.11 CORS
-21.12 Same-origin policy
-21.13 Cookies
-21.14 Credenciales
-21.15 REST
-21.16 Diseño de clientes HTTP
-21.17 Paginación
-21.18 Retries
-21.19 Rate limiting desde el cliente
-21.20 WebSocket
-21.21 Server-Sent Events
-21.22 HTTP streaming: introducción
-21.23 Manejo robusto de errores de red
+Bloque 21 — Diseño avanzado de JavaScript
+21.1 Separación de responsabilidades
+21.2 Composition over inheritance
+21.3 Factories
+21.4 Module pattern
+21.5 Revealing module pattern como contexto histórico
+21.6 Dependency injection sin framework
+21.7 Immutability patterns
+21.8 Functional composition
+21.9 Object-oriented JavaScript
+21.10 Functional JavaScript
+21.11 API design
+21.12 Error boundaries a nivel de aplicación/runtime
+21.13 Diseño de librerías
+21.14 Diseño de CLIs
+21.15 Diseño para testabilidad
+21.16 Refactoring de JavaScript
 
-# Bloque 22 — JavaScript asíncrono y Promises
-22.1 Sincronía vs asincronía
-22.2 Callbacks asíncronos
-22.3 Callback hell
-22.4 Promise
-22.5 Estados de una Promise
-22.6 Resolución y rechazo
-22.7 then()
-22.8 catch()
-22.9 finally()
-22.10 Promise.resolve() y Promise.reject()
-22.11 Promise.all()
-22.12 Promise.allSettled()
-22.13 Promise.race()
-22.14 Promise.any()
-22.15 Encadenamiento de Promises
-22.16 async functions
-22.17 await
-22.18 Errores con async/await
-22.19 Ejecución secuencial vs concurrente
-22.20 Cancellation patterns
-22.21 AbortController con async APIs
-22.22 Composición asíncrona
+Bloque 22 — ECMAScript Specification en profundidad
+22.1 Cómo leer ECMA-262
+22.2 Notación de la especificación
+22.3 Abstract operations
+22.4 Completion Records
+22.5 ECMAScript language types
+22.6 Specification types
+22.7 Execution Contexts
+22.8 Realm Records
+22.9 Environment Records
+22.10 Declarative Environment Records
+22.11 Object Environment Records
+22.12 Global Environment Records
+22.13 Module Environment Records
+22.14 Private Environment Records
+22.15 Reference Records
+22.16 Jobs y Job Queues
+22.17 Agents y Agent Clusters
+22.18 Ordinary y exotic objects
+22.19 Internal slots
+22.20 Internal methods
+22.21 ToPrimitive y conversiones abstractas
+22.22 Property keys y descriptors según la especificación
+22.23 Evaluación de expresiones y statements
+22.24 De sintaxis JavaScript a algoritmos de especificación
 
-# Bloque 23 — Event loop en profundidad
-23.1 Modelo de ejecución de JavaScript
-23.2 Call stack
-23.3 Heap
-23.4 Host environment
-23.5 Event loop
-23.6 Tasks
-23.7 Microtasks
-23.8 Promise jobs
-23.9 Timers y scheduling
-23.10 Orden de ejecución
-23.11 Microtask checkpoints
-23.12 Rendering y event loop del navegador
-23.13 Event loop de Node.js
-23.14 Fases del event loop de Node.js
-23.15 process.nextTick()
-23.16 setImmediate()
-23.17 Starvation
-23.18 Código bloqueante
-23.19 Medición y diagnóstico del event loop
+Bloque 23 — Parsing, AST y herramientas de lenguaje
+23.1 Del código fuente a tokens
+23.2 Lexer/tokenizer
+23.3 Parser
+23.4 Concrete Syntax Tree frente a AST
+23.5 AST de JavaScript
+23.6 ESTree como formato de ecosistema
+23.7 Traversal de AST
+23.8 Visitors
+23.9 Transformaciones de código
+23.10 Generación de código
+23.11 Source maps en profundidad
+23.12 Linters basados en AST
+23.13 Formatters
+23.14 Codemods
+23.15 Construcción de una pequeña herramienta AST
 
-# Bloque 24 — Concurrencia y paralelismo
-24.1 Concurrency vs parallelism
-24.2 I/O-bound vs CPU-bound
-24.3 Web Workers
-24.4 Dedicated Workers
-24.5 Shared Workers
-24.6 Service Workers: arquitectura
-24.7 Node.js worker_threads
-24.8 Message passing
-24.9 postMessage()
-24.10 Structured clone algorithm
-24.11 Transferable objects
-24.12 SharedArrayBuffer
-24.13 Atomics
-24.14 Memoria compartida
-24.15 Race conditions
-24.16 Sincronización
-24.17 Deadlocks y livelocks: conceptos
-24.18 Worker pools
-24.19 Diseño de tareas paralelas
+Bloque 24 — Memoria y Garbage Collection
+24.1 Stack y heap como modelo mental
+24.2 Reachability
+24.3 Garbage collection
+24.4 Mark-and-sweep
+24.5 Generational GC
+24.6 Incremental y concurrent GC
+24.7 Weak references
+24.8 WeakRef
+24.9 FinalizationRegistry
+24.10 Memory leaks
+24.11 Closures y retención de memoria
+24.12 Caches y estructuras weak
+24.13 Heap snapshots
+24.14 Profiling de memoria
+24.15 GC en V8: visión de alto nivel
 
-# Bloque 25 — Gestión de memoria y garbage collection
-25.1 Stack y heap
-25.2 Asignación de memoria
-25.3 Reachability
-25.4 Garbage collection
-25.5 Mark-and-sweep: modelo conceptual
-25.6 Generational GC: concepto
-25.7 Closures y retención de memoria
-25.8 WeakMap y WeakSet
-25.9 WeakRef
-25.10 FinalizationRegistry
-25.11 Memory leaks
-25.12 Detached DOM nodes
-25.13 Listeners y timers como fugas
-25.14 Heap snapshots
-25.15 Allocation profiling
-25.16 Diagnóstico de memoria
+Bloque 25 — Motores JavaScript y V8
+25.1 Arquitectura de un motor JavaScript
+25.2 V8: visión general
+25.3 Parsing en V8
+25.4 AST interno
+25.5 Ignition
+25.6 Bytecode
+25.7 Feedback vectors
+25.8 Hidden classes / Maps
+25.9 Shapes y object layouts
+25.10 Inline caches
+25.11 Monomorphic, polymorphic y megamorphic access
+25.12 TurboFan
+25.13 JIT compilation
+25.14 Optimization
+25.15 Deoptimization
+25.16 On-stack replacement
+25.17 Escape analysis: conceptos
+25.18 Garbage collector de V8
+25.19 Qué optimizaciones no deben convertirse en micro-optimización prematura
 
-# Bloque 26 — Node.js en profundidad
-26.1 Arquitectura de Node.js
-26.2 V8 y libuv
-26.3 Objeto process
-26.4 Variables de entorno
-26.5 Buffer
-26.6 Path
-26.7 File system
-26.8 URLs en Node.js
-26.9 Events
-26.10 EventEmitter
-26.11 Timers
-26.12 HTTP server
-26.13 HTTP client
-26.14 DNS: introducción
-26.15 Child processes
-26.16 Signals
-26.17 Worker threads
-26.18 ES Modules en Node.js
-26.19 CommonJS en Node.js
-26.20 CLI applications
-26.21 Manejo de errores en procesos
-26.22 Graceful shutdown
+Bloque 26 — Rendimiento y profiling
+26.1 Medir antes de optimizar
+26.2 Complejidad algorítmica aplicada a JavaScript
+26.3 CPU profiling
+26.4 Memory profiling
+26.5 Benchmarking correcto
+26.6 Warm-up y JIT
+26.7 Dead-code elimination del benchmark
+26.8 Allocation pressure
+26.9 Object shapes y estabilidad estructural
+26.10 Coste de closures y abstracciones: medir, no asumir
+26.11 Coste de Promises y asincronía
+26.12 Streams y backpressure
+26.13 Worker threads para CPU-bound work
+26.14 Diagnóstico de event-loop blocking
+26.15 Optimization y deoptimization con herramientas de runtime
 
-# Bloque 27 — Streams y backpressure
-27.1 Qué es un stream
-27.2 Readable streams
-27.3 Writable streams
-27.4 Duplex streams
-27.5 Transform streams
-27.6 pipe()
-27.7 pipeline()
-27.8 Backpressure
-27.9 Buffering
-27.10 HighWaterMark: concepto
-27.11 Errores en pipelines
-27.12 Async iteration sobre streams
-27.13 Web Streams API
-27.14 ReadableStream
-27.15 WritableStream
-27.16 TransformStream
-27.17 Node streams vs Web Streams
-27.18 Streaming HTTP
-27.19 Diseño de pipelines eficientes
+Bloque 27 — Seguridad JavaScript fuera del navegador
+27.1 Principios de secure coding
+27.2 Validación de entradas
+27.3 Prototype pollution
+27.4 Object injection
+27.5 eval() y Function constructor
+27.6 Command injection en Node.js
+27.7 Path traversal
+27.8 Manejo seguro de archivos
+27.9 Secrets y environment variables
+27.10 Dependencias y supply-chain security
+27.11 Denial of service algorítmico
+27.12 Regular expression denial of service
+27.13 Deserialización y datos no confiables
+27.14 Permisos y aislamiento del runtime cuando estén disponibles
 
-# Bloque 28 — npm, paquetes y ecosistema
-28.1 npm CLI
-28.2 package.json en profundidad
-28.3 package-lock.json
-28.4 dependencies
-28.5 devDependencies
-28.6 peerDependencies
-28.7 optionalDependencies
-28.8 Semantic Versioning
-28.9 Rangos SemVer
-28.10 npm install
-28.11 npm ci
-28.12 npm update
-28.13 npm scripts
-28.14 npx
-28.15 Workspaces
-28.16 Monorepos: introducción
-28.17 Publicación de paquetes
-28.18 Scopes y registries
-28.19 npm audit
-28.20 Supply-chain security
-28.21 Diseño de un paquete reutilizable
+Bloque 28 — JavaScript aplicado a datos, scripting y MongoDB
+28.1 JavaScript como lenguaje de scripting
+28.2 Objetos y documentos
+28.3 Arrays y documentos anidados
+28.4 JSON frente a objetos JavaScript
+28.5 JSON frente a BSON: diferencias conceptuales
+28.6 Funciones de transformación de datos
+28.7 Procesamiento de colecciones
+28.8 JavaScript en herramientas y shells de MongoDB: contexto
+28.9 Sintaxis JavaScript usada al construir consultas MongoDB
+28.10 Objetos de consulta, proyección y actualización
+28.11 Callbacks y funciones en automatización
+28.12 Scripts Node.js para interactuar con servicios y bases de datos
+28.13 Separar semántica JavaScript de APIs específicas de MongoDB
 
-# Bloque 29 — Tooling moderno
-29.1 Linting
-29.2 ESLint
-29.3 Formatting
-29.4 Prettier
-29.5 Transpilación
-29.6 Babel
-29.7 Bundling
-29.8 Vite
-29.9 Rollup
-29.10 esbuild
-29.11 Source maps
-29.12 Tree shaking
-29.13 Code splitting
-29.14 Dynamic imports
-29.15 Minificación
-29.16 Browser compatibility
-29.17 Browserslist: concepto
-29.18 Development vs production builds
-29.19 Configuración de un flujo de desarrollo moderno
+Bloque 29 — Proyecto final y dominio experto
+29.1 Diseñar una aplicación CLI modular
+29.2 ESM y arquitectura de módulos
+29.3 Configuración y validación
+29.4 Procesamiento asíncrono
+29.5 Streams y backpressure
+29.6 Worker threads cuando aporten valor
+29.7 Persistencia mediante una API externa o base de datos
+29.8 Testing completo
+29.9 Logging y observabilidad básica
+29.10 Profiling CPU y memoria
+29.11 Análisis de AST sobre parte del proyecto
+29.12 Diagnóstico de una optimización/deoptimización
+29.13 Auditoría de seguridad
+29.14 Empaquetado y scripts npm
+29.15 Documentación técnica
+29.16 Explicar el proyecto desde sintaxis hasta runtime y motor
 
-# Bloque 30 — Testing
-30.1 Pirámide y estrategia de testing
-30.2 Unit tests
-30.3 Integration tests
-30.4 End-to-end tests
-30.5 Assertions
-30.6 Test fixtures
-30.7 Mocks
-30.8 Stubs
-30.9 Spies
-30.10 Test doubles
-30.11 Testing síncrono
-30.12 Testing asíncrono
-30.13 Testing de Promises
-30.14 Testing del DOM
-30.15 Node.js test runner
-30.16 Vitest y Jest: conceptos
-30.17 Coverage
-30.18 Property-based testing: introducción
-30.19 Testing de errores
-30.20 Testing de APIs
-30.21 Diseño para testabilidad
+FUERA DE ALCANCE DE ESTE PATH
+HTML
+CSS
+DOM
+BOM
+window
+Document/document
+Eventos del navegador
+Formularios HTML
+Web Storage y APIs específicas del navegador
+React
+Vue
+Angular
+Otros frameworks frontend
 
-# Bloque 31 — Debugging y diagnóstico
-31.1 console y logging de desarrollo
-31.2 Browser DevTools
-31.3 Breakpoints
-31.4 Conditional breakpoints
-31.5 Watch expressions
-31.6 Call stack inspection
-31.7 Network panel
-31.8 Performance panel
-31.9 Memory panel
-31.10 Heap snapshots
-31.11 Node.js inspector
-31.12 Debugging de Node.js
-31.13 Source maps
-31.14 CPU profiling
-31.15 Tracing
-31.16 Diagnóstico de Promises
-31.17 Diagnóstico del event loop
-31.18 Metodología sistemática de troubleshooting
-
-# Bloque 32 — Performance
-32.1 Medir antes de optimizar
-32.2 Complejidad algorítmica aplicada
-32.3 Performance API
-32.4 User Timing API
-32.5 DOM performance
-32.6 Layout y reflow
-32.7 Rendering
-32.8 Debounce
-32.9 Throttle
-32.10 Memoization
-32.11 Caching
-32.12 Lazy loading
-32.13 Code splitting
-32.14 Network performance
-32.15 Workers para CPU-bound work
-32.16 Profiling de CPU
-32.17 Profiling de memoria
-32.18 Benchmarking
-32.19 Microbenchmarks y sus trampas
-32.20 Performance budgets
-
-# Bloque 33 — Seguridad en JavaScript
-33.1 Modelo de seguridad del navegador
-33.2 Same-origin policy
-33.3 XSS
-33.4 Stored, reflected y DOM-based XSS
-33.5 Output encoding
-33.6 Sanitización
-33.7 Content Security Policy
-33.8 CSRF
-33.9 CORS desde seguridad
-33.10 Cookies: Secure, HttpOnly y SameSite
-33.11 Prototype pollution
-33.12 Prototype poisoning: conceptos
-33.13 eval() y Function(): riesgos
-33.14 DOM sinks peligrosos
-33.15 Validación de entrada
-33.16 Gestión de secretos
-33.17 Dependencias vulnerables
-33.18 Supply-chain attacks
-33.19 Seguridad en Node.js
-33.20 Threat modeling básico
-
-# Bloque 34 — Internals de ECMAScript
-34.1 Cómo leer la especificación ECMAScript
-34.2 Tipos del lenguaje vs specification types
-34.3 Abstract operations
-34.4 Execution Contexts
-34.5 Lexical Environments
-34.6 Environment Records
-34.7 Realms
-34.8 Agents
-34.9 Jobs
-34.10 Job queues
-34.11 Internal slots
-34.12 Internal methods
-34.13 Property descriptors
-34.14 Reference Records
-34.15 Completion Records
-34.16 ToPrimitive
-34.17 ToBoolean
-34.18 ToNumber y conversiones relacionadas
-34.19 Equality algorithms
-34.20 Property access según el spec
-34.21 Implementación didáctica de abstract operations
-
-# Bloque 35 — Motores JavaScript y V8
-35.1 Pipeline de un motor JavaScript
-35.2 Parsing
-35.3 AST
-35.4 Bytecode
-35.5 Interpreter
-35.6 JIT compilation
-35.7 Optimizing compiler
-35.8 Hidden classes / shapes
-35.9 Inline caches
-35.10 Speculative optimization
-35.11 Deoptimization
-35.12 Allocation
-35.13 Garbage collector
-35.14 Young y old generations: conceptos
-35.15 Optimización prematura y mitos
-35.16 Código engine-friendly sin depender de trucos
-35.17 Herramientas de profiling de V8
-
-# Bloque 36 — Diseño, patrones y arquitectura
-36.1 Separación de responsabilidades
-36.2 Cohesión y acoplamiento
-36.3 Module pattern
-36.4 Factory pattern
-36.5 Builder pattern
-36.6 Observer pattern
-36.7 Strategy pattern
-36.8 Adapter pattern
-36.9 Facade pattern
-36.10 Proxy pattern
-36.11 Dependency injection
-36.12 Composition over inheritance
-36.13 Immutability
-36.14 SOLID aplicado con criterio
-36.15 Layered architecture
-36.16 Hexagonal architecture: conceptos
-36.17 Event-driven architecture
-36.18 Diseño de APIs JavaScript
-36.19 Trade-offs arquitectónicos
-
-# Bloque 37 — Programación funcional con JavaScript
-37.1 Funciones puras
-37.2 Side effects
-37.3 Referential transparency
-37.4 Inmutabilidad
-37.5 Higher-order functions
-37.6 Function composition
-37.7 Currying
-37.8 Partial application
-37.9 Closures funcionales
-37.10 map/filter/reduce como abstracciones
-37.11 Pipelines
-37.12 Declarative programming
-37.13 Recursión y trampolines: conceptos
-37.14 Lazy evaluation: conceptos
-37.15 Functional core, imperative shell
-
-# Bloque 38 — React fundamentals como aplicación de JavaScript
-38.1 Qué aporta React sobre JavaScript
-38.2 Component model
-38.3 JSX
-38.4 Props
-38.5 State
-38.6 Events
-38.7 Conditional rendering
-38.8 Lists y keys
-38.9 Composition
-38.10 Hooks
-38.11 useState
-38.12 useEffect
-38.13 useRef
-38.14 Custom hooks
-38.15 Forms
-38.16 Data fetching
-38.17 Estado derivado
-38.18 JavaScript patterns dentro de React
-
-# Bloque 39 — GraphQL con JavaScript
-39.1 Qué es GraphQL
-39.2 Schema
-39.3 Scalar types
-39.4 Object types
-39.5 Queries
-39.6 Mutations
-39.7 Variables
-39.8 Fragments
-39.9 Resolvers
-39.10 Context
-39.11 Error handling
-39.12 Pagination
-39.13 Authentication y authorization: conceptos
-39.14 GraphQL client
-39.15 GraphQL server
-39.16 N+1 problem
-39.17 Caching: conceptos
-39.18 Diseño de una API GraphQL
-
-# Bloque 40 — React Native y JavaScript multiplataforma
-40.1 Arquitectura general de React Native
-40.2 Componentes nativos
-40.3 Props y state
-40.4 Hooks
-40.5 Styling
-40.6 Navigation
-40.7 Networking
-40.8 Persistencia local
-40.9 Acceso a capacidades nativas
-40.10 Platform-specific code
-40.11 Performance
-40.12 Debugging
-40.13 Testing
-40.14 Diferencias web vs móvil
-
-# Bloque 41 — Electron y aplicaciones de escritorio
-41.1 Arquitectura de Electron
-41.2 Main process
-41.3 Renderer process
-41.4 Preload scripts
-41.5 IPC
-41.6 Context isolation
-41.7 Sandboxing
-41.8 Node integration
-41.9 Filesystem
-41.10 Ventanas y lifecycle
-41.11 Menús y diálogos
-41.12 Persistencia
-41.13 Actualizaciones: conceptos
-41.14 Packaging
-41.15 Seguridad en Electron
-41.16 Diseño de una aplicación desktop
-
-# Bloque 42 — JavaScript Everywhere: arquitectura cross-platform
-42.1 JavaScript end-to-end
-42.2 Frontend web
-42.3 Backend Node.js
-42.4 API GraphQL
-42.5 Cliente React
-42.6 Cliente React Native
-42.7 Desktop con Electron
-42.8 Compartición de código
-42.9 Paquetes compartidos
-42.10 Monorepo
-42.11 Modelos y validación compartida
-42.12 Autenticación entre plataformas
-42.13 Configuración por entorno
-42.14 Testing cross-platform
-42.15 Observabilidad
-42.16 Arquitectura y trade-offs
-
-# Bloque 43 — Concurrencia avanzada y memoria compartida
-43.1 Modelo de agentes ECMAScript
-43.2 Worker pools avanzados
-43.3 Task scheduling
-43.4 SharedArrayBuffer en profundidad
-43.5 Atomics en profundidad
-43.6 Atomics.wait()
-43.7 Atomics.notify()
-43.8 Atomics.waitAsync(): conceptos
-43.9 Memory ordering: fundamentos
-43.10 Sincronización con memoria compartida
-43.11 Diseño lock-free: introducción
-43.12 Race conditions avanzadas
-43.13 Data parallelism
-43.14 Particionado de trabajo
-43.15 CPU-bound workloads
-43.16 Medición de speedup y overhead
-
-# Bloque 44 — Arquitecturas asíncronas avanzadas
-44.1 Async control flow
-44.2 Queues
-44.3 Pipelines
-44.4 Streams como arquitectura
-44.5 Backpressure en sistemas reales
-44.6 Cancellation propagation
-44.7 Timeouts
-44.8 Retries y exponential backoff
-44.9 Jitter
-44.10 Rate limiting
-44.11 Concurrency limiting
-44.12 Batching
-44.13 Async iterators
-44.14 Async generators
-44.15 Event emitters
-44.16 Message-driven design
-44.17 Resiliencia y manejo de fallos
-
-# Bloque 45 — JavaScript profesional
-45.1 Diseño de APIs públicas
-45.2 Diseño de librerías
-45.3 Compatibilidad hacia atrás
-45.4 Semantic Versioning profesional
-45.5 Documentación técnica
-45.6 JSDoc
-45.7 Testing strategy
-45.8 Logging estructurado
-45.9 Observabilidad
-45.10 Métricas y tracing: conceptos
-45.11 Performance budgets
-45.12 Security review
-45.13 Dependency management
-45.14 Release management
-45.15 CI/CD para JavaScript
-45.16 Publicación de paquetes
-45.17 Mantenimiento de proyectos
-
-# Bloque 46 — ECMAScript y TC39 a nivel experto
-46.1 Estructura de la especificación ECMAScript
-46.2 Notación y algoritmos del estándar
-46.3 ECMAScript proposals
-46.4 TC39 stages
-46.5 Stage 0 a Stage 4
-46.6 Cómo seguir propuestas
-46.7 Polyfills
-46.8 Ponyfills
-46.9 Transpilation
-46.10 Feature detection
-46.11 Progressive enhancement
-46.12 Compatibilidad entre runtimes
-46.13 Implementación didáctica de operaciones del spec
-46.14 Análisis de una feature desde proposal hasta implementación
-
-# Bloque 47 — Runtime, profiling y optimización avanzada
-47.1 Event loop internals integrados
-47.2 V8 internals integrados
-47.3 libuv y Node.js runtime
-47.4 Optimización y deoptimización
-47.5 Allocation profiling
-47.6 Garbage collection profiling
-47.7 CPU profiling
-47.8 Flame graphs: conceptos
-47.9 Workers y paralelismo
-47.10 Shared memory y Atomics
-47.11 Streams y backpressure
-47.12 Network profiling
-47.13 Benchmarking reproducible
-47.14 Identificación de bottlenecks
-47.15 Optimización guiada por evidencia
-47.16 Análisis completo de rendimiento de una aplicación
-
-# Bloque 48 — Proyecto final: sistema JavaScript completo
-48.1 Definición de requisitos y alcance
-48.2 Diseño de arquitectura
-48.3 Cliente web
-48.4 Backend Node.js
-48.5 REST y/o GraphQL
-48.6 Persistencia de datos
-48.7 Autenticación y autorización
-48.8 I/O asíncrono
-48.9 Streams
-48.10 Worker threads o Web Workers
-48.11 Testing unitario
-48.12 Testing de integración
-48.13 Testing end-to-end
-48.14 Seguridad
-48.15 Performance profiling
-48.16 Memory profiling
-48.17 Logging y observabilidad
-48.18 Manejo y propagación de errores
-48.19 Packaging
-48.20 CI/CD
-48.21 Documentación arquitectónica
-48.22 Documentación de decisiones y trade-offs
-48.23 Análisis del event loop
-48.24 Análisis de tasks y microtasks
-48.25 Análisis de memoria y garbage collection
-48.26 Análisis de CPU y red
-48.27 Análisis de concurrencia
-48.28 Identificación y corrección de bottlenecks
+Estos temas pertenecen a paths independientes de HTML, CSS, DOM/Browser APIs y Frontend.

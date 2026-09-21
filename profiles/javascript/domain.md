@@ -1,125 +1,151 @@
-# JavaScript — Domain
+# JavaScript Core 0 → Experto — Dominio del curso
 
-## Alcance
+## Propósito
 
-Este dominio define un curso de JavaScript de 0 a experto centrado
-primero en el lenguaje ECMAScript y sus modelos de ejecución, y después
-en los runtimes, APIs, concurrencia, arquitectura y aplicaciones
-multiplataforma.
+Este curso enseña JavaScript como lenguaje de programación, su estándar ECMAScript, su modelo de ejecución y sus mecanismos internos. La progresión parte de sintaxis y tipos y llega a especificación, parsing, AST, memoria, garbage collection, motores, V8, JIT, optimización y deoptimización.
 
-El curso debe distinguir de forma explícita:
+El objetivo es que el estudiante pueda razonar sobre JavaScript independientemente de una interfaz web concreta y utilizarlo con solvencia en Node.js, scripting, automatización, herramientas y contextos como MongoDB.
 
-- ECMAScript como especificación del lenguaje.
-- JavaScript como implementación/ecosistema.
-- APIs del navegador como capacidades del host.
-- Node.js como runtime fuera del navegador.
-- Librerías y frameworks como capas construidas sobre JavaScript.
+## Principio rector
 
-## Objetivo general
+Distinguir siempre tres capas:
 
-Llevar al estudiante desde sus primeros programas hasta la capacidad de
-leer la especificación ECMAScript, razonar sobre el event loop, memoria
-y concurrencia, diagnosticar rendimiento y diseñar sistemas JavaScript
-profesionales.
+1. **ECMAScript / JavaScript Core**: sintaxis, tipos, objetos, funciones, módulos, Promises, semántica y algoritmos definidos por ECMA-262.
+2. **Runtime/host**: capacidades proporcionadas por Node.js u otro host, como filesystem, timers, streams, procesos o networking.
+3. **Motor**: implementación que analiza y ejecuta el lenguaje, como V8, SpiderMonkey o JavaScriptCore.
 
-## Ejes del dominio
+Nunca atribuir al lenguaje una API que pertenece al host.
 
-### 1. Lenguaje
+## Alcance principal
 
-Sintaxis, tipos, coerción, operadores, control de flujo, strings,
-números, arrays, objetos, colecciones, funciones, scope, closures,
-prototypes, classes, iterables, generators, symbols, Proxy, Reflect,
-RegExp y errores.
+- Léxico, sintaxis, statements y expressions.
+- Variables, bindings, scope, hoisting y TDZ.
+- Primitive values, objects, identidad, igualdad y coerción.
+- Operadores y control de flujo.
+- Funciones, callbacks, higher-order functions, recursion y closures.
+- Strings, Unicode, Number, BigInt, Math, Date, Intl y RegExp.
+- Arrays, TypedArrays y colecciones Map/Set/WeakMap/WeakSet.
+- Objetos, property keys, descriptors, getters/setters y extensibilidad.
+- `this`, constructor functions, prototypes, prototype chain y clases.
+- Symbol, protocolos, iterables, iterators y generators.
+- ECMAScript Modules.
+- Error handling.
+- Promises, async/await y composición asíncrona.
+- Jobs, microtasks y modelo de concurrencia.
+- Proxy, Reflect y metaprogramación.
+- ArrayBuffer, SharedArrayBuffer, DataView y Atomics.
+- Node.js como runtime de aplicación y experimentación.
+- npm, paquetes y gestión básica de proyectos.
+- Testing, debugging, linting y profiling.
+- Diseño de librerías, CLIs y aplicaciones JavaScript.
+- Lectura de ECMA-262 y abstract operations.
+- Execution Contexts, Environment Records, Realms, Agents y internal methods.
+- Parsing, AST, traversal, transforms, linters y codemods.
+- Memory management y garbage collection.
+- Motores JavaScript y arquitectura de V8.
+- Ignition, bytecode, feedback, hidden classes/Maps, inline caches y TurboFan.
+- JIT, optimization y deoptimization.
+- Rendimiento basado en medición.
+- Seguridad JavaScript/Node.js.
+- JavaScript aplicado a scripting, datos y uso contextual con MongoDB.
 
-### 2. Modelo de ejecución
+## Node.js dentro del curso
 
-Execution contexts, lexical environments, call stack, jobs, tasks,
-microtasks, event loop, Promises, async/await y scheduling.
+Node.js está incluido porque proporciona un runtime práctico fuera del navegador. Se estudia como **host de JavaScript**, no como parte de ECMAScript.
 
-### 3. Plataforma web
+Se permiten ejemplos con:
 
-DOM, eventos, Web APIs, almacenamiento, Fetch, HTTP, CORS, WebSocket,
-Server-Sent Events, Workers y seguridad del navegador.
+- `process`
+- filesystem
+- paths y URLs
+- EventEmitter
+- Buffer
+- streams
+- timers
+- child processes
+- worker threads
+- networking y HTTP básico
+- npm y package.json
 
-### 4. Node.js
+Cuando una lección sea de JavaScript Core, el ejemplo debe depender de ECMAScript siempre que sea posible. Las APIs Node.js solo deben introducirse cuando la lección trate explícitamente del runtime o necesite un host para observar un comportamiento.
 
-Runtime, V8/libuv, módulos, filesystem, buffers, events, HTTP, streams,
-child processes, worker_threads, señales y aplicaciones CLI/servidor.
+## MongoDB
 
-### 5. Concurrencia
+MongoDB no es el objeto principal del curso. Puede utilizarse como contexto de aplicación para consolidar objetos, arrays, documentos, funciones, JSON/BSON y scripting.
 
-Workers, message passing, structured clone, transferable objects,
-SharedArrayBuffer, Atomics, sincronización, worker pools, backpressure y
-arquitecturas asíncronas.
+El curso debe diferenciar con claridad:
 
-### 6. Internals
+- sintaxis y semántica JavaScript;
+- sintaxis/documentos BSON;
+- operadores y APIs propias de MongoDB;
+- APIs de drivers o shells.
 
-Especificación ECMAScript, abstract operations, realms, agents, internal
-slots, motores JavaScript, parsing, bytecode, JIT, optimización,
-deoptimización y garbage collection.
+No convertir las lecciones JavaScript en un curso de MongoDB.
 
-### 7. Ingeniería profesional
+## Fuera de alcance
 
-Testing, debugging, profiling, performance, seguridad, npm, tooling,
-paquetes, arquitectura, diseño de APIs, observabilidad y CI/CD.
+Este curso no enseña desarrollo frontend. Excluir:
 
-### 8. Aplicaciones
+- HTML como lenguaje de marcado;
+- CSS;
+- DOM;
+- BOM;
+- `window` y `document`;
+- manipulación de elementos HTML;
+- eventos específicos del navegador;
+- formularios HTML;
+- Web Storage;
+- Canvas, WebGL y otras Browser APIs;
+- React;
+- Vue;
+- Angular;
+- frameworks frontend.
 
-React, GraphQL, React Native y Electron se estudian como aplicación de
-conocimientos JavaScript, sin sustituir el aprendizaje profundo del
-lenguaje.
-
-## Orden pedagógico
-
-La progresión obligatoria es:
-
-lenguaje → estructuras → funciones → objetos/prototipos → asincronía →
-navegador/Node.js → event loop → concurrencia → internals → arquitectura
-→ aplicaciones → proyecto experto.
-
-No se debe adelantar React u otros frameworks antes de dominar
-funciones, closures, objetos, módulos, Promises y asincronía.
+Si una fuente utiliza el navegador para ilustrar un concepto, adaptar el ejemplo a JavaScript Core o Node.js cuando sea técnicamente posible.
 
 ## Profundidad esperada
 
-Cada concepto debe explicar:
+### Inicial
 
-- qué es;
-- qué problema resuelve;
-- sintaxis y semántica;
-- ejemplos ejecutables;
-- comportamiento interno cuando sea relevante;
-- errores frecuentes;
-- diferencias entre alternativas;
-- implicaciones de rendimiento o seguridad;
-- casos de uso reales.
+El estudiante puede escribir y ejecutar programas sencillos y comprende valores, variables, operadores, control de flujo, funciones, arrays y objetos.
 
-## Laboratorios
+### Intermedio
 
-Los laboratorios deben favorecer JavaScript moderno y ejecutable. Cuando
-una API dependa del host, indicar claramente si el ejemplo corresponde a
-navegador, Node.js o ambos.
+Comprende scope, closures, `this`, prototypes, classes, collections, modules, errors y programación asíncrona.
 
-Los bloques avanzados deben incluir experimentos observables sobre event
-loop, microtasks, workers, streams, memoria, garbage collection y
-profiling.
+### Avanzado
 
-## Límites con otros cursos
+Comprende descriptors, protocols, generators, Proxy/Reflect, concurrency, binary data, diseño, testing, profiling y seguridad.
 
-TypeScript se trata en un learning path separado. Aquí solo se
-mencionará cuando ayude a delimitar JavaScript frente a un sistema de
-tipos estático.
+### Experto
 
-HTML y CSS solo se cubrirán en la medida necesaria para trabajar con DOM
-y aplicaciones web. El objetivo no es convertir este curso en un curso
-completo de frontend.
+Puede leer secciones relevantes de ECMA-262, explicar execution contexts y environment records, trabajar con AST, razonar sobre memoria/GC y analizar el comportamiento de motores modernos sin confundir detalles de implementación con garantías del estándar.
 
-React, React Native, Electron y GraphQL son bloques de integración; no
-deben desplazar el núcleo ECMAScript.
+## Reglas de precisión
+
+- Distinguir siempre estándar de implementación.
+- No presentar detalles de V8 como reglas universales de JavaScript.
+- No enseñar `var` mediante el mito simplificado de que "sube la variable"; explicar bindings y fases de instanciación progresivamente.
+- Diferenciar job/microtask definido o relacionado con ECMAScript de las colas y fases propias del host.
+- No afirmar optimizaciones del motor sin fuente técnica o medición.
+- Evitar micro-optimizaciones basadas en folklore.
+- Explicar coerción mediante operaciones abstractas cuando el nivel de la lección lo permita.
+- Tratar `class` en relación con el modelo prototípico.
+- Diferenciar shallow copy de deep copy.
+- No equiparar JSON con JavaScript ni BSON con JSON.
+
+## Práctica y laboratorios
+
+Priorizar programas ejecutables con Node.js, pequeños módulos ESM, tests, scripts CLI, transformaciones de datos, experimentos de asincronía, profiling y herramientas AST.
+
+Los laboratorios avanzados deben incluir observación y explicación, no solo código: formular hipótesis, ejecutar, medir, interpretar y relacionar el resultado con ECMAScript, el runtime o el motor correspondiente.
 
 ## Proyecto final
 
-El proyecto debe integrar frontend, backend, asincronía, red, testing,
-seguridad, rendimiento y observabilidad. Debe exigir además una
-explicación técnica del event loop, memoria, concurrencia y principales
-trade-offs arquitectónicos del sistema construido.
+El proyecto final debe integrar lenguaje, módulos, asincronía, streams o procesamiento incremental, testing, debugging, seguridad y profiling. Debe incluir al menos un ejercicio de AST y uno de análisis de runtime/motor, manteniendo las dependencias de host claramente separadas del JavaScript Core.
+
+## Política de bibliografía mixta
+
+Algunas fuentes principales del curso también cubren desarrollo web o frameworks. Esto no amplía el dominio del path. `JavaScript Cookbook, 3rd Edition` y `JavaScript Everywhere`, por ejemplo, pueden utilizarse para JavaScript Core, Node.js, arquitectura, tooling o concurrencia cuando corresponda, mientras que DOM, HTML, CSS, React y React Native permanecen fuera del alcance. El material excluido se reserva para futuros paths especializados.
+
+`Multithreaded JavaScript` se utiliza como fuente avanzada para reforzar la progresión desde event loop y asincronía hacia worker threads, procesos, shared memory, `SharedArrayBuffer` y `Atomics`, distinguiendo las características ECMAScript de las APIs específicas del host.

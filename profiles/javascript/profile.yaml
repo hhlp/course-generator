@@ -1,87 +1,246 @@
-name: javascript
-title: "JavaScript — 0 a experto"
-language: es
-audience: "Estudiantes y profesionales que quieren dominar JavaScript desde los fundamentos hasta ECMAScript, runtimes, concurrencia y arquitectura avanzada."
-level: "0-a-experto"
+course:
+  title: "JavaScript Core 0 → Experto"
+  language: es
+  level: "0-to-expert"
+  primary_runtime: nodejs
+  focus: "JavaScript como lenguaje, ECMAScript, runtime semantics e internals"
 
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+scope:
+  primary:
+    - JavaScript Core
+    - ECMAScript
+    - sintaxis y semántica
+    - tipos y coerción
+    - funciones y closures
+    - objetos y prototipos
+    - clases
+    - colecciones
+    - iterables e iterators
+    - generators
+    - módulos ECMAScript
+    - errores
+    - Promises
+    - async/await
+    - event loop y concurrencia
+    - metaprogramación
+    - binary data y shared memory
+    - Node.js como runtime
+    - npm y paquetes
+    - testing y debugging
+    - diseño de software JavaScript
+    - ECMAScript specification
+    - execution contexts
+    - environment records
+    - parsing y AST
+    - memory management
+    - garbage collection
+    - JavaScript engines
+    - V8
+    - JIT
+    - optimization y deoptimization
+    - rendimiento
+    - seguridad
+    - scripting y contexto MongoDB
+  excluded:
+    - HTML
+    - CSS
+    - DOM
+    - BOM
+    - window
+    - document
+    - eventos específicos del navegador
+    - formularios HTML
+    - Web Storage
+    - Browser APIs
+    - React
+    - Vue
+    - Angular
+    - frameworks frontend
+
+runtime_policy:
+  javascript_language_first: true
+  distinguish_ecmascript_from_host: true
+  distinguish_engine_from_language: true
+  nodejs_allowed: true
+  nodejs_is_host_not_language: true
+  browser_runtime: false
+  dom_examples: false
+  browser_api_examples: false
+  prefer_esm: true
+  commonjs_for_interoperability_and_legacy_context: true
+
+mongodb_policy:
+  allowed_as_application_context: true
+  mongodb_is_not_course_core: true
+  distinguish_javascript_from_mongodb_api: true
+  distinguish_json_from_bson: true
 
 pedagogy:
-  style: "profundo, práctico, progresivo y orientado a comprensión real del lenguaje y sus runtimes"
-  lesson_structure:
-    objective:
-      required: true
-      position: first
-      heading: "🎯 OBJETIVO"
-    reading:
-      required: true
-      heading: "📚 LECTURA"
-      categories:
-        - principal
-        - normativa
-        - runtime
-        - profundizacion
-        - consulta
-      exact_references_only_when_verified: true
-    lab:
-      required: false
-      heading: "🧪 Laboratorio/ejemplos"
-    common_errors:
-      required: false
-      heading: "⚠️ Errores frecuentes"
-    important_idea:
-      required: false
-      heading: "💡 Idea importante"
-    remember:
-      required: true
-      position: last
-      heading: "🧠 QUÉ DEBES RECORDAR"
-      min_items: 3
-      max_items: 7
+  style: "profundo, práctico, progresivo y orientado al dominio real del lenguaje"
   indentation: false
   numbering: single-level
+  progression:
+    - fundamentos
+    - intermedio
+    - avanzado
+    - experto
+    - internals
+  explain_why_not_only_how: true
+  compare_language_runtime_engine: true
+  use_runnable_examples: true
+  prefer_node_for_execution: true
+  avoid_browser_dependencies: true
 
-content:
-  javascript_standard: "ECMAScript moderno"
-  runtimes:
-    - browser
-    - nodejs
-  distinguish_language_from_host_apis: true
-  explain_runtime_behavior: true
-  include_executable_examples: true
-  include_internal_models_when_relevant: true
-  include_common_errors: true
-  include_security_implications: true
-  include_performance_implications: true
-  frameworks_are_integration_topics: true
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+  reading:
+    required: true
+    heading: "📚 LECTURA"
+    categories:
+      - principal
+      - normativa
+      - runtime
+      - motor
+      - profundizacion
+      - consulta
+      - practica
+      - concurrencia
+      - arquitectura
+    exact_references_only_when_verified: true
+  lab:
+    required: false
+    heading: "🧪 Laboratorio/ejemplos"
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+  remember:
+    required: true
+    position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    min_items: 3
+    max_items: 7
+    avoid_repeating_objective: true
 
-progression:
-  - fundamentos
-  - lenguaje
-  - estructuras_de_datos
-  - funciones
-  - prototypes_y_classes
-  - iteracion_y_metaprogramacion
-  - browser
-  - networking
-  - asincronia
-  - event_loop
-  - concurrencia
-  - nodejs
-  - streams
-  - tooling_y_testing
-  - seguridad_y_performance
-  - ecmascript_internals
-  - motores
-  - arquitectura
-  - cross_platform
-  - experto
-  - proyecto_final
+content_rules:
+  preserve_depth: true
+  no_frontend_drift: true
+  no_dom_shortcuts: true
+  no_unverified_exact_citations: true
+  define_terms_before_deep_internals: true
+  introduce_specification_gradually: true
+  distinguish_normative_from_implementation_details: true
+  label_v8_specific_details: true
+  label_node_specific_details: true
+  avoid_engine_folklore: true
+  benchmark_before_performance_claims: true
+  avoid_premature_micro_optimization: true
+  show_common_errors_when_pedagogically_useful: true
+  include_edge_cases_when_they_teach_semantics: true
+  maintain_backward_context_when_new_topics_build_on_old_topics: true
 
-bibliography_policy:
-  prefer_official_sources_for_current_behavior: true
-  exact_references_only_when_verified: true
-  do_not_invent_pages_or_chapters: true
+examples:
+  language: javascript
+  module_system: esm
+  environment: nodejs
+  require_explanation: true
+  runnable_when_possible: true
+  include_expected_output_when_useful: true
+  avoid_html: true
+  avoid_dom: true
+  avoid_css: true
+
+advanced_topics:
+  ecma262: true
+  abstract_operations: true
+  execution_contexts: true
+  environment_records: true
+  realms: true
+  agents: true
+  internal_slots_and_methods: true
+  parsing: true
+  ast: true
+  memory_management: true
+  garbage_collection: true
+  v8: true
+  ignition: true
+  turbofan: true
+  hidden_classes_or_maps: true
+  inline_caches: true
+  jit: true
+  optimization: true
+  deoptimization: true
+  profiling: true
+
+assessment:
+  use_progressive_exercises: true
+  use_debugging_exercises: true
+  use_code_reading: true
+  use_prediction_exercises: true
+  use_refactoring: true
+  use_spec_reading_at_advanced_levels: true
+  use_profiling_at_expert_levels: true
+  final_project: true
+
+final_project:
+  runtime: nodejs
+  require_modules: true
+  require_async: true
+  require_testing: true
+  require_error_handling: true
+  require_security_review: true
+  require_profiling: true
+  require_ast_exercise: true
+  require_runtime_or_engine_analysis: true
+  frontend_required: false
+
+
+source_scope_policy:
+  allow_partial_book_usage: true
+  preserve_original_bibliography: true
+  use_only_in_scope_sections: true
+  excluded_topics_from_mixed_sources:
+    - HTML
+    - CSS
+    - DOM
+    - BOM
+    - Browser APIs
+    - React
+    - React Native
+    - Vue
+    - Angular
+    - frontend frameworks
+  rule: >
+    Un libro no se excluye porque contenga temas fuera del alcance.
+    Utilizar únicamente capítulos, secciones, recetas y conceptos compatibles
+    con JavaScript Core, ECMAScript, Node.js, concurrencia, tooling, runtime
+    e internals. Reservar el contenido web/frontend para paths posteriores.
+
+bibliography_map:
+  principal:
+    - javascript_definitive_guide_7e
+    - head_first_javascript_programming_2e
+    - eloquent_javascript
+    - you_dont_know_js_yet
+  practica:
+    - javascript_cookbook_3e
+  concurrencia:
+    - multithreaded_javascript
+  arquitectura:
+    - javascript_everywhere
+    - nodejs_design_patterns
+  normativa:
+    - ecma_262
+    - tc39
+  runtime:
+    - nodejs_documentation
+  motor:
+    - v8_documentation
+    - v8_blog
+  consulta:
+    - mdn_javascript_reference
