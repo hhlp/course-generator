@@ -1,0 +1,457 @@
+ENGLISH GRAMMAR — A2
+
+Primary grammar reference: Basic Grammar in Use — Raymond Murphy
+
+Scope:
+A2 grammar only. This path focuses on grammar, grammatical form, meaning, contrasts,
+examples, common errors and controlled practice. It does not define separate reading,
+listening, speaking or writing skills.
+
+Progression rule:
+A2 = introduce and establish.
+Topics introduced here may return at B1–C2 with greater depth, complexity, exceptions
+and grammatical analysis.
+
+Bloque 2 — A2: Present
+2.1 Present Simple
+2.2 Present Simple: affirmative and negative
+2.3 Present Simple: questions
+2.4 Third person singular: -s / -es
+2.5 Do / does
+2.6 Present Continuous
+2.7 Present Continuous: affirmative and negative
+2.8 Present Continuous: questions
+2.9 -ing spelling rules
+2.10 Present Simple vs Present Continuous
+2.11 Stative verbs
+2.12 Have / have got
+
+Bloque 3 — A2: Past
+3.1 Be: was / were
+3.2 Past Simple
+3.3 Regular verbs
+3.4 Irregular verbs
+3.5 Past Simple: negative
+3.6 Past Simple: questions
+3.7 Did / didn't
+3.8 Past Continuous
+3.9 Past Continuous: questions and negatives
+3.10 Past Simple vs Past Continuous
+3.11 Used to
+
+Bloque 4 — A2: Present Perfect
+4.1 Present Perfect: have/has + past participle
+4.2 Regular and irregular past participles
+4.3 Present Perfect: affirmative
+4.4 Present Perfect: negative
+4.5 Present Perfect: questions
+4.6 Have you ever...?
+4.7 Ever / never
+4.8 Just / already / yet
+4.9 For / since
+4.10 How long...?
+4.11 Been / gone
+4.12 Present Perfect vs Past Simple
+
+Bloque 5 — A2: Passive Voice
+5.1 Active Voice
+5.2 Passive Voice
+5.3 Active vs Passive
+5.4 Be + past participle
+5.5 Present Simple Passive
+5.6 Past Simple Passive
+5.7 Future Passive
+5.8 Passive with modal verbs
+5.9 Present Continuous Passive: introduction
+5.10 By + agent
+5.11 When the agent is omitted
+5.12 Active → Passive: identifying subject, verb and object
+5.13 Active → Passive: basic transformations
+
+Bloque 6 — A2: Verb Forms
+6.1 Base form
+6.2 Third-person -s form
+6.3 Past form
+6.4 Past participle
+6.5 -ing form
+6.6 Regular verbs
+6.7 Irregular verbs
+6.8 Be / have / do
+6.9 Verb forms: general comparison
+
+Bloque 7 — A2: Future
+7.1 Will
+7.2 Will: affirmative and negative
+7.3 Will: questions
+7.4 Will for predictions
+7.5 Will for decisions
+7.6 Be going to
+7.7 Will vs going to
+7.8 Present Continuous for future arrangements
+7.9 Present Simple for schedules and timetables
+7.10 Future forms: comparison
+7.11 There will be: introduction and cross-reference to Block 9
+
+Bloque 8 — A2: Modal Verbs and Imperative
+8.1 Can / can't
+8.2 Could / couldn't
+8.3 Could for possibility
+8.4 Could for requests
+8.5 May
+8.6 Might
+8.7 Must
+8.8 Mustn't
+8.9 Have to
+8.10 Don't have to
+8.11 Must vs have to
+8.12 Should / shouldn't
+8.13 Would
+8.14 Would like
+8.15 Modal + base form
+8.16 Imperative
+8.17 Negative imperative
+8.18 Let's
+
+Bloque 9 — A2: There and It
+9.1 There is / there are
+9.2 There isn't / there aren't
+9.3 Is there...? / Are there...?
+9.4 There was / there were
+9.5 There wasn't / there weren't
+9.6 Was there...? / Were there...?
+9.7 There has been / there have been
+9.8 Has there been...? / Have there been...?
+9.9 There will be
+9.10 There won't be
+9.11 Will there be...?
+9.12 There is going to be
+9.13 There are going to be
+9.14 There + modal + be
+9.15 There can be
+9.16 There could be
+9.17 There may be
+9.18 There might be
+9.19 There must be
+9.20 There should be
+9.21 It as subject
+9.22 It's + adjective
+9.23 It for time
+9.24 It for weather
+9.25 It for distance
+9.26 There vs it
+
+Bloque 10 — A2: Auxiliary Verbs
+10.1 What is an auxiliary verb?
+10.2 Auxiliary verb vs main verb
+10.3 Be as a main verb
+10.4 Be as an auxiliary verb
+10.5 Have as a main verb
+10.6 Have as an auxiliary verb
+10.7 Do as a main verb
+10.8 Do as an auxiliary verb
+10.9 Modal auxiliary verbs
+10.10 Do / does / did
+10.11 Have / has / had
+10.12 Am / is / are / was / were
+10.13 Auxiliary verbs in negatives
+10.14 Auxiliary verbs in questions
+10.15 Short answers
+10.16 So do I / Neither do I
+10.17 Auxiliary verbs: comparison and review
+
+Bloque 11 — A2: Questions
+11.1 Yes/No questions
+11.2 Wh- questions
+11.3 What
+11.4 Who
+11.5 Whom: introduction
+11.6 Whose
+11.7 Which
+11.8 When
+11.9 Where
+11.10 Why
+11.11 How
+11.12 How much / how many
+11.13 How long
+11.14 How often
+11.15 How far
+11.16 How old
+11.17 Subject questions
+11.18 Object questions
+11.19 Who...? as subject
+11.20 Who...? as object
+11.21 Who...? subject vs object questions
+11.22 Questions with prepositions
+11.23 What ... like?
+11.24 What vs which
+11.25 Question word order
+
+Bloque 12 — A2: Reported Speech
+12.1 Direct Speech
+12.2 Reported Speech
+12.3 Direct vs Reported Speech
+12.4 Say / tell
+12.5 Reported statements
+12.6 Basic tense changes
+12.7 Pronoun changes
+12.8 Time-expression changes
+12.9 Reported questions
+12.10 Reported commands
+12.11 Tell/ask + object + to-infinitive
+12.12 Basic backshift
+A2 boundary: basic Reported Speech only. Full backshift and advanced reporting verbs move to B1/B2.
+
+Bloque 13 — A2: -ing and to
+13.1 Verb + -ing
+13.2 Verb + to-infinitive
+13.3 Verb + object + to-infinitive
+13.4 Preposition + -ing
+13.5 Like / love / hate + -ing
+13.6 Want / need / would like + to
+13.7 Start / begin + -ing/to
+13.8 Go + -ing
+13.9 To + infinitive for purpose
+13.10 -ing vs to-infinitive: introduction
+
+Bloque 14 — A2: Go, Get, Do, Make and Have
+14.1 Go
+14.2 Go + preposition
+14.3 Go + -ing
+14.4 Get
+14.5 Get + adjective
+14.6 Get + noun
+14.7 Get to + place
+14.8 Get + past participle
+14.9 Do
+14.10 Do + noun
+14.11 Make
+14.12 Make + noun
+14.13 Do vs make
+14.14 Have
+14.15 Have + noun
+14.16 Have vs have got
+14.17 Common structures with go/get/do/make/have
+
+Bloque 15 — A2: Pronouns and Possessives
+15.1 Subject pronouns
+15.2 Object pronouns
+15.3 Possessive adjectives
+15.4 Possessive pronouns
+15.5 My vs mine
+15.6 Your vs yours
+15.7 His / her / hers
+15.8 Its
+15.9 Our / ours
+15.10 Their / theirs
+15.11 Reflexive pronouns
+15.12 Myself / yourself / himself...
+15.13 Possessive 's
+15.14 Whose...?
+
+Bloque 16 — A2: Countable and Uncountable Nouns
+16.1 Countable nouns
+16.2 Uncountable nouns
+16.3 Countable vs uncountable
+16.4 Singular countable nouns
+16.5 Plural countable nouns
+16.6 Irregular plurals
+16.7 Nouns that can be countable or uncountable
+16.8 A/an with countable nouns
+16.9 Some with plural/uncountable nouns
+16.10 Containers and quantities
+16.11 A piece of / a bottle of / a cup of...
+
+Bloque 17 — A2: Some*, Any*, No* and Every*
+17.1 Some
+17.2 Any
+17.3 Some vs any
+17.4 No
+17.5 None
+17.6 Somebody / someone
+17.7 Something
+17.8 Somewhere
+17.9 Anybody / anyone
+17.10 Anything
+17.11 Anywhere
+17.12 Nobody / no one
+17.13 Nothing
+17.14 Nowhere
+17.15 Everybody / everyone
+17.16 Everything
+17.17 Everywhere
+17.18 Somebody vs anybody vs nobody vs everybody
+17.19 Something vs anything vs nothing vs everything
+17.20 Somewhere vs anywhere vs nowhere vs everywhere
+
+Bloque 18 — A2: Quantity
+18.1 Much
+18.2 Many
+18.3 Much vs many
+18.4 A lot of
+18.5 Lots of
+18.6 Much/many vs a lot of
+18.7 A few
+18.8 Few
+18.9 A little
+18.10 Little
+18.11 How much?
+18.12 How many?
+18.13 Enough
+18.14 Too much
+18.15 Too many
+
+Bloque 19 — A2: Both, Either and Neither
+19.1 Both
+19.2 Both ... and
+19.3 Either
+19.4 Either ... or
+19.5 Neither
+19.6 Neither ... nor
+19.7 Both vs either vs neither
+19.8 Both of
+19.9 Either of
+19.10 Neither of
+19.11 Both/either/neither + pronoun
+19.12 So do I / Neither do I
+
+Bloque 20 — A2: One and Ones
+20.1 One as a substitute
+20.2 Ones as a substitute
+20.3 One vs ones
+20.4 The one
+20.5 The ones
+20.6 This one / that one
+20.7 These ones / those ones
+20.8 Which one?
+20.9 Which ones?
+20.10 One/ones after adjectives
+
+Bloque 21 — A2: A, An and The
+21.1 A / an
+21.2 A vs an
+21.3 The
+21.4 A/an vs the
+21.5 First vs subsequent reference
+21.6 The with unique things
+21.7 The with places
+21.8 The with geographical names
+21.9 Zero article
+21.10 General vs specific reference
+21.11 Articles with countable nouns
+21.12 Articles with uncountable nouns
+
+Bloque 22 — A2: Determiners and Pronouns
+22.1 Determiners: introduction
+22.2 Determiner vs pronoun
+22.3 This / that
+22.4 These / those
+22.5 Some / any
+22.6 No / none
+22.7 All
+22.8 All of
+22.9 Most
+22.10 Most of
+22.11 Both
+22.12 Either
+22.13 Neither
+22.14 Each
+22.15 Every
+22.16 Each vs every
+22.17 Another
+22.18 Other
+22.19 Others
+22.20 The other
+22.21 The others
+22.22 Determiners used before nouns
+22.23 Pronouns used without nouns
+Note: overlap with Blocks 17 and 19 is intentional; here these forms are analysed as determiners/pronouns.
+
+Bloque 23 — A2: Adjectives and Adverbs
+23.1 Adjectives
+23.2 Adverbs
+23.3 Adjective vs adverb
+23.4 Adverbs ending in -ly
+23.5 Good vs well
+23.6 Adjective position
+23.7 Adverb position
+23.8 Adverbs of frequency
+23.9 Comparative adjectives
+23.10 Superlative adjectives
+23.11 Irregular comparatives
+23.12 Than
+23.13 As ... as
+23.14 Not as ... as
+23.15 Too + adjective/adverb
+23.16 Adjective/adverb + enough
+23.17 -ed vs -ing adjectives
+
+Bloque 24 — A2: Word Order
+24.1 Basic sentence order
+24.2 Subject + verb
+24.3 Subject + verb + object
+24.4 Place and time
+24.5 Verb + object + place + time
+24.6 Adverb position
+24.7 Frequency adverbs
+24.8 Still
+24.9 Yet
+24.10 Already
+24.11 Just
+24.12 Word order in questions
+24.13 Word order with auxiliary verbs
+
+Bloque 25 — A2: Conjunctions and Clauses
+25.1 And
+25.2 But
+25.3 Or
+25.4 So
+25.5 Because
+25.6 Although
+25.7 When
+25.8 While
+25.9 Before
+25.10 After
+25.11 Until
+25.12 As soon as
+25.13 If
+25.14 Unless
+25.15 Main clauses
+25.16 Subordinate clauses
+25.17 Relative clauses: introduction
+25.18 Who / which / that
+25.19 Zero Conditional
+25.20 Zero Conditional: form and use
+25.21 First Conditional
+25.22 First Conditional: form and use
+25.23 Zero vs First Conditional
+A2 boundary: Second Conditional → B1; Third Conditional → B2; Mixed Conditionals → B2/C1.
+
+Bloque 26 — A2: Prepositions
+26.1 Prepositions: introduction
+26.2 At / on / in: time
+26.3 From ... to
+26.4 Until
+26.5 Since / for
+26.6 Before / after
+26.7 During / while
+26.8 By / until
+26.9 At / on / in: place
+26.10 In / at / on: places
+26.11 To / in / at: movement and location
+26.12 Into / out of
+26.13 On / off
+26.14 Up / down
+26.15 Over / under
+26.16 Above / below
+26.17 Between / among
+26.18 Through / across
+26.19 By / with
+26.20 About
+26.21 Adjective + preposition
+26.22 Verb + preposition
+26.23 Preposition + -ing
+26.24 Prepositions at the end of questions
+26.25 Who ... with?
+26.26 What ... for?
+26.27 Where ... from?
+26.28 Prepositions at the end of clauses: introduction

@@ -1,95 +1,27 @@
 course:
-  title: "JavaScript Core 0 → Experto"
-  language: es
-  level: "0-to-expert"
-  primary_runtime: nodejs
-  focus: "JavaScript como lenguaje, ECMAScript, runtime semantics e internals"
-
-scope:
-  primary:
-    - JavaScript Core
-    - ECMAScript
-    - sintaxis y semántica
-    - tipos y coerción
-    - funciones y closures
-    - objetos y prototipos
-    - clases
-    - colecciones
-    - iterables e iterators
-    - generators
-    - módulos ECMAScript
-    - errores
-    - Promises
-    - async/await
-    - event loop y concurrencia
-    - metaprogramación
-    - binary data y shared memory
-    - Node.js como runtime
-    - npm y paquetes
-    - testing y debugging
-    - diseño de software JavaScript
-    - ECMAScript specification
-    - execution contexts
-    - environment records
-    - parsing y AST
-    - memory management
-    - garbage collection
-    - JavaScript engines
-    - V8
-    - JIT
-    - optimization y deoptimization
-    - rendimiento
-    - seguridad
-    - scripting y contexto MongoDB
-  excluded:
-    - HTML
-    - CSS
-    - DOM
-    - BOM
-    - window
-    - document
-    - eventos específicos del navegador
-    - formularios HTML
-    - Web Storage
-    - Browser APIs
-    - React
-    - Vue
-    - Angular
-    - frameworks frontend
-
-runtime_policy:
-  javascript_language_first: true
-  distinguish_ecmascript_from_host: true
-  distinguish_engine_from_language: true
-  nodejs_allowed: true
-  nodejs_is_host_not_language: true
-  browser_runtime: false
-  dom_examples: false
-  browser_api_examples: false
-  prefer_esm: true
-  commonjs_for_interoperability_and_legacy_context: true
-
-mongodb_policy:
-  allowed_as_application_context: true
-  mongodb_is_not_course_core: true
-  distinguish_javascript_from_mongodb_api: true
-  distinguish_json_from_bson: true
+  title: "JavaScript — 0 a Experto"
+  language: "es"
+  level: "0 → experto"
+  runtime_focus: "Node.js"
+  browser_focus: "secundario"
+  specification: "ECMAScript / ECMA-262"
 
 pedagogy:
-  style: "profundo, práctico, progresivo y orientado al dominio real del lenguaje"
+  style: "profundo, práctico, progresivo y orientado a comprensión real del lenguaje y runtime"
+  lesson_structure:
+    required_opening: "🎯 OBJETIVO"
+    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    optional_sections:
+      - "📚 LECTURA"
+      - "🧪 Laboratorio/ejemplos"
+      - "⚠️ Errores frecuentes"
+      - "💡 Idea importante"
+  closing_requirements:
+    min_points: 3
+    max_points: 7
+    avoid_repeating_objective: true
   indentation: false
-  numbering: single-level
-  progression:
-    - fundamentos
-    - intermedio
-    - avanzado
-    - experto
-    - internals
-  explain_why_not_only_how: true
-  compare_language_runtime_engine: true
-  use_runnable_examples: true
-  prefer_node_for_execution: true
-  avoid_browser_dependencies: true
+  numbering: "single-level"
 
 lesson_structure:
   objective:
@@ -101,14 +33,13 @@ lesson_structure:
     heading: "📚 LECTURA"
     categories:
       - principal
+      - conceptual_depth
       - normativa
       - runtime
+      - concurrencia
       - motor
       - profundizacion
       - consulta
-      - practica
-      - concurrencia
-      - arquitectura
     exact_references_only_when_verified: true
   lab:
     required: false
@@ -125,122 +56,106 @@ lesson_structure:
     heading: "🧠 QUÉ DEBES RECORDAR"
     min_items: 3
     max_items: 7
-    avoid_repeating_objective: true
 
-content_rules:
-  preserve_depth: true
-  no_frontend_drift: true
-  no_dom_shortcuts: true
-  no_unverified_exact_citations: true
-  define_terms_before_deep_internals: true
-  introduce_specification_gradually: true
-  distinguish_normative_from_implementation_details: true
-  label_v8_specific_details: true
-  label_node_specific_details: true
-  avoid_engine_folklore: true
-  benchmark_before_performance_claims: true
-  avoid_premature_micro_optimization: true
-  show_common_errors_when_pedagogically_useful: true
-  include_edge_cases_when_they_teach_semantics: true
-  maintain_backward_context_when_new_topics_build_on_old_topics: true
+content:
+  code_examples: true
+  runnable_examples_preferred: true
+  explain_language_vs_host: true
+  explain_pedagogical_vs_normative_model: true
+  explain_specification_when_relevant: true
+  avoid_unverified_exact_book_pages: true
+  async_concurrency_depth: "expert"
+  conceptual_depth_topics:
+    - types
+    - coercion
+    - scope
+    - closures
+    - functions
+    - this
+    - objects
+    - prototypes
+    - classes
+    - async
+  async_topics:
+    - callbacks
+    - promises
+    - async_await
+    - async_iterators
+    - event_loop
+    - jobs_and_microtasks
+    - cancellation
+    - abort_controller
+    - timeouts
+    - concurrency_limits
+    - queues
+    - producer_consumer
+    - backpressure
+    - worker_threads
+    - worker_pools
+    - message_passing
+    - transferables
+    - shared_array_buffer
+    - atomics
+    - race_conditions
+    - deadlock_livelock_starvation
+    - agents_and_agent_clusters
+    - async_hooks
+    - async_local_storage
+    - profiling
 
-examples:
-  language: javascript
-  module_system: esm
-  environment: nodejs
-  require_explanation: true
-  runnable_when_possible: true
-  include_expected_output_when_useful: true
-  avoid_html: true
-  avoid_dom: true
-  avoid_css: true
+bibliography:
+  principal:
+    - "JavaScript: The Definitive Guide, 7th Edition — David Flanagan"
+    - "Head First JavaScript Programming, Second Edition — Eric Freeman, Elisabeth Robson"
+    - "JavaScript Cookbook: Programming the Web, 3rd Edition — Adam D. Scott, Matthew MacDonald et al."
+  conceptual_depth:
+    - title: "You Don't Know JS Yet"
+      author: "Kyle Simpson"
+      role: "deep_language_models"
+      priority_topics:
+        - types
+        - coercion
+        - scope
+        - closures
+        - functions
+        - this
+        - objects
+        - prototypes
+        - classes
+        - async
+      normative_authority: false
+  concurrency:
+    - "Multithreaded JavaScript: Concurrency Beyond the Event Loop — Thomas Hunter II, Bryan English"
+  ecosystem:
+    - "JavaScript Everywhere — Adam D. Scott"
+  normative:
+    - "ECMA-262"
+    - "TC39"
+    - "Node.js official documentation"
+    - "MDN Web Docs"
 
-advanced_topics:
-  ecma262: true
-  abstract_operations: true
-  execution_contexts: true
-  environment_records: true
-  realms: true
-  agents: true
-  internal_slots_and_methods: true
-  parsing: true
-  ast: true
-  memory_management: true
-  garbage_collection: true
-  v8: true
-  ignition: true
-  turbofan: true
-  hidden_classes_or_maps: true
-  inline_caches: true
-  jit: true
-  optimization: true
-  deoptimization: true
-  profiling: true
+source_policy:
+  normative_precedence:
+    - "ECMA-262"
+    - "official runtime documentation"
+    - "verified current documentation"
+  conceptual_sources_support_understanding: true
+  books_do_not_override_current_specification: true
+  exact_chapter_or_page_references_only_when_verified: true
+  do_not_attribute_unverified_content_to_book_volumes: true
 
 assessment:
-  use_progressive_exercises: true
-  use_debugging_exercises: true
-  use_code_reading: true
-  use_prediction_exercises: true
-  use_refactoring: true
-  use_spec_reading_at_advanced_levels: true
-  use_profiling_at_expert_levels: true
+  require_reasoning: true
+  require_debugging: true
+  require_labs: true
   final_project: true
-
-final_project:
-  runtime: nodejs
-  require_modules: true
-  require_async: true
-  require_testing: true
-  require_error_handling: true
-  require_security_review: true
-  require_profiling: true
-  require_ast_exercise: true
-  require_runtime_or_engine_analysis: true
-  frontend_required: false
-
-
-source_scope_policy:
-  allow_partial_book_usage: true
-  preserve_original_bibliography: true
-  use_only_in_scope_sections: true
-  excluded_topics_from_mixed_sources:
-    - HTML
-    - CSS
-    - DOM
-    - BOM
-    - Browser APIs
-    - React
-    - React Native
-    - Vue
-    - Angular
-    - frontend frameworks
-  rule: >
-    Un libro no se excluye porque contenga temas fuera del alcance.
-    Utilizar únicamente capítulos, secciones, recetas y conceptos compatibles
-    con JavaScript Core, ECMAScript, Node.js, concurrencia, tooling, runtime
-    e internals. Reservar el contenido web/frontend para paths posteriores.
-
-bibliography_map:
-  principal:
-    - javascript_definitive_guide_7e
-    - head_first_javascript_programming_2e
-    - eloquent_javascript
-    - you_dont_know_js_yet
-  practica:
-    - javascript_cookbook_3e
-  concurrencia:
-    - multithreaded_javascript
-  arquitectura:
-    - javascript_everywhere
-    - nodejs_design_patterns
-  normativa:
-    - ecma_262
-    - tc39
-  runtime:
-    - nodejs_documentation
-  motor:
-    - v8_documentation
-    - v8_blog
-  consulta:
-    - mdn_javascript_reference
+  final_project_topics:
+    - esm
+    - async_processing
+    - streams
+    - backpressure
+    - worker_threads
+    - testing
+    - profiling
+    - ast
+    - security

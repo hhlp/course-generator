@@ -1,7 +1,6 @@
 JAVASCRIPT — LEARNING PATH 0 → EXPERTO
 
-Objetivo general
-Dominar JavaScript como lenguaje de programación y ECMAScript desde los fundamentos hasta sus mecanismos internos, semántica de ejecución, asincronía, metaprogramación, rendimiento y motores. El navegador, HTML, CSS, DOM, BOM y frameworks frontend quedan fuera de este path. Node.js se utiliza como runtime práctico fuera del navegador, sin confundir sus APIs con ECMAScript.
+Objetivo: dominar JavaScript desde la semántica del lenguaje hasta ECMAScript, Node.js, asincronía, concurrencia, paralelismo, memoria, motores, AST, rendimiento y seguridad.
 
 Bloque 0 — Fundamentos, entorno y ECMAScript
 0.1 Qué es JavaScript y qué problemas resuelve
@@ -291,7 +290,7 @@ Bloque 14 — Asincronía y Promises
 14.19 Serialización accidental con await
 14.20 Patrones robustos de composición asíncrona
 
-Bloque 15 — Event Loop y modelo de concurrencia
+Bloque 15 — Event Loop, concurrencia y paralelismo
 15.1 JavaScript y run-to-completion
 15.2 Execution stack
 15.3 Jobs
@@ -307,6 +306,39 @@ Bloque 15 — Event Loop y modelo de concurrencia
 15.13 Backpressure: introducción
 15.14 Worker threads: introducción
 15.15 Concurrencia frente a paralelismo
+15.16 I/O-bound frente a CPU-bound
+15.17 Concurrencia estructurada: conceptos y patrones aplicables
+15.18 Cancelación de operaciones asíncronas
+15.19 AbortController y AbortSignal
+15.20 Timeouts y deadlines
+15.21 Promise.race() aplicado a timeout y coordinación
+15.22 Limitar concurrencia
+15.23 Pools y colas de trabajo
+15.24 Semáforos y límites de concurrencia: patrones
+15.25 Async queues
+15.26 Producer/consumer
+15.27 Backpressure en profundidad
+15.28 Worker Threads en profundidad
+15.29 Message passing entre workers
+15.30 MessageChannel y MessagePort
+15.31 Transferable objects
+15.32 Structured clone entre workers
+15.33 Worker pools
+15.34 Distribución de CPU-bound work
+15.35 Shared memory frente a message passing
+15.36 SharedArrayBuffer y memoria compartida
+15.37 Atomics en profundidad
+15.38 Atomics.wait() y Atomics.notify()
+15.39 Race conditions
+15.40 Data races y sincronización
+15.41 Deadlock, livelock y starvation
+15.42 Diseño thread-safe
+15.43 Agents y Agent Clusters
+15.44 Diagnóstico de event-loop blocking
+15.45 Medición de event-loop latency
+15.46 AsyncLocalStorage y contexto asíncrono en Node.js
+15.47 async_hooks: modelo y diagnóstico
+15.48 Diseño de sistemas concurrentes en JavaScript
 
 Bloque 16 — Metaprogramación
 16.1 Qué es metaprogramación
@@ -558,20 +590,3 @@ Bloque 29 — Proyecto final y dominio experto
 29.14 Empaquetado y scripts npm
 29.15 Documentación técnica
 29.16 Explicar el proyecto desde sintaxis hasta runtime y motor
-
-FUERA DE ALCANCE DE ESTE PATH
-HTML
-CSS
-DOM
-BOM
-window
-Document/document
-Eventos del navegador
-Formularios HTML
-Web Storage y APIs específicas del navegador
-React
-Vue
-Angular
-Otros frameworks frontend
-
-Estos temas pertenecen a paths independientes de HTML, CSS, DOM/Browser APIs y Frontend.

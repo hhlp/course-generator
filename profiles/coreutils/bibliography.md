@@ -290,7 +290,7 @@ Usar como profundización para:
 - user/group IDs;
 - portability.
 
-### The Linux Command Line — William Shotts
+### The Linux Command Line 3Ed - William Shotts
 
 Referencia didáctica complementaria para fundamentos de:
 

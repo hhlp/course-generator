@@ -1,0 +1,174 @@
+course:
+  title: "English Grammar — A2"
+  level: "A2"
+  framework: "CEFR"
+  track: "English Grammar A1 → C2"
+  focus: "grammar"
+  primary_reference: "Basic Grammar in Use — Raymond Murphy"
+
+scope:
+  include:
+    - grammar
+    - grammatical form
+    - grammatical meaning
+    - sentence structure
+    - contrasts
+    - transformations
+    - examples
+    - common errors
+    - controlled practice
+  exclude_as_independent_skills:
+    - reading
+    - listening
+    - speaking
+    - writing
+
+progression:
+  A2: "introduce and establish"
+  B1: "consolidate and extend"
+  B2: "contrast and use complex structures"
+  C1: "advanced structures and exceptions"
+  C2: "mastery, nuance and grammatical analysis"
+  avoid_repetition_without_new_depth: true
+
+pedagogy:
+  style: "profundo, práctico, progresivo y centrado exclusivamente en gramática"
+  explanation_language: "Spanish"
+  grammar_terminology: "English"
+  examples_language: "English"
+  indentation: false
+  numbering: "single-level"
+  require_natural_examples: true
+  require_original_exercises: true
+  contrast_confusable_structures: true
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+
+  reading:
+    required: false
+    heading: "📚 LECTURA"
+    purpose: "bibliographic grammar reference only; not a reading-comprehension activity"
+    exact_references_only_when_verified: true
+
+  grammar:
+    required: true
+    heading: "📘 GRAMMAR"
+    requirements:
+      - "define the grammatical structure"
+      - "show the form or pattern"
+      - "explain core use and meaning"
+      - "include affirmative, negative and interrogative forms when applicable"
+
+  examples:
+    required: true
+    heading: "💬 EXAMPLES"
+    requirements:
+      - "multiple natural examples"
+      - "examples must demonstrate the target structure"
+      - "avoid examples requiring unexplained advanced grammar"
+
+  contrast:
+    required: false
+    heading: "🔄 CONTRAST"
+    use_when:
+      - "two or more structures are commonly confused"
+      - "the lesson explicitly compares grammatical alternatives"
+
+  lab:
+    required: true
+    heading: "🧪 PRACTICE"
+    purpose: "controlled grammar exercises, transformations and form/meaning practice"
+
+  common_errors:
+    required: false
+    heading: "⚠️ COMMON ERRORS"
+
+  important_idea:
+    required: false
+    heading: "💡 IMPORTANT IDEA"
+
+  remember:
+    required: true
+    position: last
+    heading: "🧠 WHAT YOU SHOULD REMEMBER"
+    min_items: 3
+    max_items: 7
+    avoid_repeating_objective: true
+
+a2_boundaries:
+  reported_speech:
+    include:
+      - "basic reported statements"
+      - "say vs tell"
+      - "basic tense changes"
+      - "pronoun and time-expression changes"
+      - "reported questions"
+      - "reported commands"
+      - "basic backshift"
+    defer:
+      B1_B2:
+        - "full systematic backshift"
+        - "advanced reporting verbs"
+        - "advanced reporting patterns"
+
+  conditionals:
+    include:
+      - "Zero Conditional"
+      - "First Conditional"
+    defer:
+      B1:
+        - "Second Conditional"
+      B2:
+        - "Third Conditional"
+      B2_C1:
+        - "Mixed Conditionals"
+
+  passive:
+    include:
+      - "Active vs Passive"
+      - "be + past participle"
+      - "Present Simple Passive"
+      - "Past Simple Passive"
+      - "Future Passive"
+      - "Passive with basic modal verbs"
+      - "Present Continuous Passive as introduction"
+      - "by + agent"
+      - "agent omission"
+      - "basic Active → Passive transformations"
+
+special_topics:
+  existential_there:
+    required_sequence:
+      - "there is / there are"
+      - "there was / there were"
+      - "there has been / there have been"
+      - "there will be"
+      - "there + modal + be"
+    require_there_will_be_explicitly: true
+
+  auxiliary_verbs:
+    distinguish_main_vs_auxiliary:
+      - "be"
+      - "have"
+      - "do"
+
+  determiners_pronouns:
+    intentional_overlap: true
+    families:
+      - "some / any / no / every compounds"
+      - "both / either / neither"
+      - "all / most / each / every"
+      - "another / other / others / the other / the others"
+
+bibliography_policy:
+  principal:
+    - "Basic Grammar in Use — Raymond Murphy"
+  later_levels:
+    - "English Grammar in Use — Raymond Murphy"
+    - "Advanced Grammar in Use — Martin Hewings"
+  exact_page_or_unit_references_only_when_verified: true
+  do_not_copy_source_exercises: true
