@@ -1,0 +1,168 @@
+course:
+  title: "English Grammar — C1 → C2"
+  language_of_instruction: "Spanish"
+  target_language: "English"
+  level:
+    start: "C1"
+    end: "C2"
+    framework: "CEFR"
+  scope: "grammar-only"
+  independent_course: true
+  block_start: 0
+
+objective:
+  primary: >-
+    Desarrollar un dominio profundo, progresivo y analítico de la gramática
+    inglesa avanzada desde C1 hasta C2, prestando especial atención a la
+    relación entre forma, significado, estructura, restricciones y elección
+    entre construcciones gramaticales alternativas.
+
+curriculum:
+  grammar_required: true
+  independent_strands:
+    vocabulary: false
+    pronunciation: false
+    reading: false
+    listening: false
+    writing: false
+    speaking: false
+    integrated_skills: false
+  incidental_context_allowed: true
+  incidental_context_rule: >-
+    Vocabulary and contextual sentences may be used to demonstrate grammar,
+    but they must never become independent lesson objectives.
+
+level_model:
+  type: "continuum"
+  artificial_c1_c2_split: false
+  progression:
+    - recognition
+    - form
+    - meaning
+    - contrast
+    - constraints
+    - manipulation
+    - grammatical_choice
+    - structural_analysis
+    - error_diagnosis
+    - mastery
+
+pedagogy:
+  style: "profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical"
+  indentation: false
+  numbering: "single-level"
+  explain_terminology: true
+  contrastive_examples: true
+  positive_and_negative_examples: true
+  explain_form_meaning_relationship: true
+  explain_constraints: true
+  compare_alternative_constructions: true
+  error_analysis: true
+  structural_analysis: true
+  avoid_unnecessary_repetition: true
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+  reading:
+    required: true
+    heading: "📚 LECTURA"
+    categories:
+      - principal
+      - referencia
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+  explanation:
+    required: true
+    requirements:
+      - "Definir la estructura gramatical"
+      - "Mostrar su forma o patrón cuando sea útil"
+      - "Explicar significado y función"
+      - "Explicar restricciones importantes"
+      - "Contrastar construcciones próximas cuando corresponda"
+  examples:
+    required: true
+    heading: "🧪 Laboratorio/ejemplos"
+    requirements:
+      - "Incluir ejemplos correctos"
+      - "Incluir contrastes mínimos cuando sean útiles"
+      - "Explicar por qué cambia el significado o la estructura"
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+  analysis:
+    required: false
+    heading: "🔬 ANÁLISIS GRAMATICAL"
+    use_when:
+      - "la estructura tenga varios niveles de cláusula"
+      - "exista ambigüedad estructural"
+      - "sea necesario distinguir complemento y adjunto"
+      - "sea útil identificar constituyentes o funciones"
+  remember:
+    required: true
+    position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    min_items: 3
+    max_items: 7
+    avoid_repeating_objective: true
+
+examples:
+  target_language: "English"
+  explanation_language: "Spanish"
+  require_natural_examples: true
+  allow_advanced_examples: true
+  prefer_contrast_pairs: true
+  mark_ungrammatical_examples: true
+  ungrammatical_marker: "*"
+  explain_acceptability: true
+
+content_rules:
+  grammar_only: true
+  no_independent_vocabulary_lessons: true
+  no_independent_pronunciation_lessons: true
+  no_independent_reading_lessons: true
+  no_independent_listening_lessons: true
+  no_independent_writing_lessons: true
+  no_independent_speaking_lessons: true
+  no_generic_conversation_lessons: true
+  include_checkpoints: true
+  include_final_mastery_project: true
+  preserve_c1_c2_continuity: true
+
+references:
+  principal:
+    - author: "Martin Hewings"
+      title: "Advanced Grammar in Use"
+      edition: "4th Edition"
+      role: "principal pedagogical grammar and backbone"
+  advanced:
+    - title: "The Cambridge Grammar of the English Language"
+      role: "advanced syntactic reference"
+    - title: "A Comprehensive Grammar of the English Language"
+      role: "advanced descriptive reference"
+    - title: "Longman Grammar of Spoken and Written English"
+      role: "corpus and grammatical variation reference"
+  supporting:
+    - title: "Practical English Usage"
+      role: "advanced learner usage consultation"
+  citation_policy:
+    exact_references_only_when_verified: true
+    never_invent_page_numbers: true
+    never_invent_unit_numbers: true
+    paraphrase_sources: true
+
+quality_checks:
+  require_objective_first: true
+  require_remember_last: true
+  verify_lesson_is_grammar_focused: true
+  verify_examples_support_grammar_target: true
+  verify_terminology_is_explained: true
+  verify_contrasts_are_semantically_accurate: true
+  verify_no_skill_block_drift: true
+  verify_no_unverified_exact_bibliographic_reference: true

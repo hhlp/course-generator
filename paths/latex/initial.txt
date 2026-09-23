@@ -1,0 +1,629 @@
+LATEX — LEARNING PATH 0 → EXPERTO
+
+Bloque 0 — Fundamentos y entorno LaTeX
+0.1 Qué es TeX
+0.2 Qué es LaTeX
+0.3 TeX vs LaTeX
+0.4 Historia: TeX → LaTeX → LaTeX2e → LaTeX moderno
+0.5 Motores: pdfTeX, XeTeX y LuaTeX
+0.6 Distribuciones TeX
+0.7 TeX Live
+0.8 Instalación en Fedora
+0.9 Editores y entornos de trabajo
+0.10 Compilación de un documento
+0.11 latex, pdflatex, xelatex y lualatex
+0.12 latexmk
+0.13 Estructura mínima de un documento
+0.14 \documentclass
+0.15 Preámbulo
+0.16 \begin{document} y \end{document}
+0.17 Comentarios
+0.18 Errores, warnings y archivos auxiliares
+0.19 CTAN
+0.20 texdoc y documentación local
+
+Bloque 1 — Sintaxis y estructura básica
+1.1 Comandos
+1.2 Argumentos obligatorios {...}
+1.3 Argumentos opcionales [...]
+1.4 Entornos
+1.5 Grupos y alcance
+1.6 Caracteres especiales
+1.7 Espacios y saltos de línea
+1.8 Párrafos
+1.9 Secuencias de control
+1.10 Declaraciones vs comandos
+1.11 Clases y paquetes
+1.12 \usepackage
+1.13 Opciones de paquetes
+1.14 Longitudes y unidades
+1.15 Contadores
+1.16 Cajas: introducción
+1.17 Glue: introducción
+1.18 Categorías léxicas: introducción
+1.19 Qué es CTAN
+1.20 Estructura de CTAN: packages, macros, fonts, graphics y documentation
+1.21 Cómo buscar un paquete en CTAN
+1.22 Cómo interpretar la página de un paquete en CTAN
+1.23 Cómo localizar la documentación de un paquete
+1.24 Cómo leer el manual de un paquete
+1.25 texdoc: consultar documentación desde la terminal
+1.26 README, manual, ejemplos, CHANGELOG y archivos fuente
+1.27 Identificar requisitos y dependencias de un paquete
+1.28 Saber qué comando carga un paquete
+1.29 \usepackage{package}
+1.30 Opciones: \usepackage[options]{package}
+1.31 Orden de carga de paquetes
+1.32 Conflictos entre paquetes
+1.33 Comprobar si un paquete está instalado
+1.34 kpsewhich y búsqueda dentro de TEXMF
+1.35 TeX Live y gestión de paquetes
+1.36 Paquetes proporcionados por la distribución Linux
+1.37 Fedora y paquetes TeX Live
+1.38 Instalación manual: cuándo evitarla
+1.39 Árbol TEXMF personal
+1.40 TEXMFHOME
+1.41 Instalación local de un paquete
+1.42 .sty, .cls, .def y otros archivos habituales
+1.43 Inspeccionar los archivos instalados de un paquete
+1.44 Ejemplo completo: encontrar → documentar → instalar → importar → utilizar
+1.45 Diagnosticar «File `package.sty' not found»
+
+Bloque 2 — Estructura de documentos
+2.1 article
+2.2 report
+2.3 book
+2.4 Partes
+2.5 Capítulos
+2.6 Secciones
+2.7 Subsecciones
+2.8 Párrafos estructurales
+2.9 \title
+2.10 \author
+2.11 \date
+2.12 \maketitle
+2.13 Abstract
+2.14 Tabla de contenidos
+2.15 Listas de figuras
+2.16 Listas de tablas
+2.17 Apéndices
+2.18 Documentos grandes
+2.19 \input
+2.20 \include
+2.21 \includeonly
+2.22 Organización de proyectos
+
+Bloque 3 — Texto y composición tipográfica
+3.1 Familias tipográficas
+3.2 Serif, sans serif y monoespaciada
+3.3 Series
+3.4 Formas
+3.5 Tamaños
+3.6 Énfasis
+3.7 Espaciado
+3.8 Alineación
+3.9 Sangría
+3.10 Interlineado
+3.11 Saltos de página
+3.12 Guionado
+3.13 Ligaduras
+3.14 Comillas
+3.15 Guiones y rayas
+3.16 Símbolos
+3.17 Caracteres Unicode
+3.18 Microtipografía
+3.19 microtype
+3.20 Calidad tipográfica
+
+Bloque 4 — Listas, cajas y contenido estructurado
+4.1 itemize
+4.2 enumerate
+4.3 description
+4.4 Listas anidadas
+4.5 Personalización de listas
+4.6 enumitem
+4.7 quote y quotation
+4.8 verse
+4.9 minipage
+4.10 parbox
+4.11 makebox
+4.12 framebox
+4.13 raisebox
+4.14 Reglas
+4.15 Cajas y dimensiones
+
+Bloque 5 — Diseño de página
+5.1 Modelo de página de TeX
+5.2 Márgenes
+5.3 geometry
+5.4 Dimensiones de página
+5.5 Encabezados
+5.6 Pies de página
+5.7 fancyhdr
+5.8 Numeración de páginas
+5.9 Diseño one-sided/two-sided
+5.10 openright/openany
+5.11 Columnas
+5.12 multicol
+5.13 Saltos de página
+5.14 Float pages
+5.15 Diseño profesional de documentos
+
+Bloque 6 — Matemáticas I: fundamentos
+6.1 Modo matemático
+6.2 Matemáticas inline
+6.3 Matemáticas display
+6.4 Símbolos matemáticos
+6.5 Operadores
+6.6 Superíndices
+6.7 Subíndices
+6.8 Fracciones
+6.9 Raíces
+6.10 Delimitadores
+6.11 Funciones matemáticas
+6.12 Letras griegas
+6.13 Espaciado matemático
+6.14 Texto dentro de fórmulas
+6.15 amsmath
+6.16 equation
+6.17 Numeración de ecuaciones
+
+Bloque 7 — Matemáticas II: composición avanzada
+7.1 align
+7.2 aligned
+7.3 gather
+7.4 multline
+7.5 split
+7.6 cases
+7.7 matrices
+7.8 pmatrix/bmatrix/vmatrix
+7.9 Sistemas de ecuaciones
+7.10 Ecuaciones multilínea
+7.11 Alineación avanzada
+7.12 Operadores personalizados
+7.13 \DeclareMathOperator
+7.14 Símbolos personalizados
+7.15 Teoremas
+7.16 amsthm
+7.17 Definiciones
+7.18 Lemas
+7.19 Corolarios
+7.20 Demostraciones
+7.21 Numeración avanzada
+7.22 Referencias matemáticas
+7.23 Composición matemática profesional
+
+Bloque 8 — Tablas
+8.1 tabular
+8.2 Columnas l/c/r
+8.3 Columnas p/m/b
+8.4 Bordes
+8.5 multicolumn
+8.6 multirow
+8.7 booktabs
+8.8 tabularx
+8.9 longtable
+8.10 Tablas multipágina
+8.11 siunitx y datos numéricos
+8.12 Alineación decimal
+8.13 Colores
+8.14 Tablas profesionales
+8.15 Tablas complejas
+
+Bloque 9 — Imágenes y floats
+9.1 graphicx
+9.2 \includegraphics
+9.3 Escalado
+9.4 Rotación
+9.5 Recorte
+9.6 figure
+9.7 table
+9.8 Posicionamiento de floats
+9.9 Caption
+9.10 Subfiguras
+9.11 Referencias
+9.12 Wrap figures
+9.13 Float placement avanzado
+9.14 Gestión profesional de figuras
+
+Bloque 10 — Referencias cruzadas
+10.1 \label
+10.2 \ref
+10.3 \pageref
+10.4 Referencias a ecuaciones
+10.5 Referencias a figuras
+10.6 Referencias a tablas
+10.7 hyperref
+10.8 URLs
+10.9 Enlaces internos
+10.10 cleveref
+10.11 Referencias automáticas
+10.12 PDF metadata
+10.13 Bookmarks
+
+Bloque 11 — Bibliografía y citas
+11.1 Bibliografías en LaTeX
+11.2 BibTeX
+11.3 Archivos .bib
+11.4 Tipos de entrada
+11.5 Campos bibliográficos
+11.6 \cite
+11.7 Estilos bibliográficos
+11.8 Biber
+11.9 biblatex
+11.10 Citas textuales y parentéticas
+11.11 Múltiples bibliografías
+11.12 Filtros
+11.13 Bibliografías por capítulo
+11.14 Estilos personalizados
+11.15 Gestión de grandes bases bibliográficas
+
+Bloque 12 — Índices, glosarios y nomenclatura
+12.1 Índices
+12.2 makeindex
+12.3 \index
+12.4 Índices múltiples
+12.5 glossaries
+12.6 Acrónimos
+12.7 Glosarios
+12.8 Nomenclatura
+12.9 Automatización de índices
+12.10 Integración con latexmk
+
+Bloque 13 — Color y diseño visual
+13.1 xcolor
+13.2 Modelos de color
+13.3 Colores personalizados
+13.4 Texto coloreado
+13.5 Fondos
+13.6 Cajas
+13.7 tcolorbox
+13.8 Marcos
+13.9 Cajas de teoremas
+13.10 Callouts
+13.11 Diseño consistente
+13.12 Creación de identidad visual
+
+Bloque 14 — TikZ I: fundamentos
+14.1 PGF y TikZ
+14.2 tikzpicture
+14.3 Coordenadas
+14.4 Paths
+14.5 Líneas
+14.6 Rectángulos
+14.7 Círculos
+14.8 Arcos
+14.9 Nodos
+14.10 Texto
+14.11 Estilos
+14.12 Flechas
+14.13 Transformaciones
+14.14 Scope
+14.15 Grids
+
+Bloque 15 — TikZ II: diagramas
+15.1 Posicionamiento
+15.2 positioning
+15.3 Nodos relativos
+15.4 Conexiones
+15.5 Paths avanzados
+15.6 Curvas Bézier
+15.7 Diagramas de flujo
+15.8 Árboles
+15.9 Grafos
+15.10 Matrices TikZ
+15.11 Diagramas técnicos
+15.12 Diagramas de arquitectura
+15.13 Estilos reutilizables
+15.14 Libraries TikZ
+
+Bloque 16 — TikZ III: gráficos avanzados
+16.1 Intersections
+16.2 Decorations
+16.3 Patterns
+16.4 Shadings
+16.5 Layers
+16.6 Clipping
+16.7 Pics
+16.8 Path pictures
+16.9 Animaciones: conceptos
+16.10 Externalization
+16.11 Optimización
+16.12 Creación de componentes gráficos reutilizables
+
+Bloque 17 — PGFPlots y visualización de datos
+17.1 pgfplots
+17.2 axis
+17.3 Funciones
+17.4 Datos externos
+17.5 Scatter plots
+17.6 Bar charts
+17.7 Histograms
+17.8 Error bars
+17.9 Logarithmic axes
+17.10 Múltiples plots
+17.11 Legends
+17.12 Colormaps
+17.13 Gráficos 3D
+17.14 groupplots
+17.15 Visualización científica reproducible
+
+Bloque 18 — Fuentes y Unicode
+18.1 Codificación
+18.2 inputenc: contexto histórico
+18.3 fontenc
+18.4 NFSS
+18.5 XeLaTeX
+18.6 LuaLaTeX
+18.7 fontspec
+18.8 OpenType
+18.9 Selección de fuentes
+18.10 Math fonts
+18.11 unicode-math
+18.12 Características OpenType
+18.13 Tipografía multilingüe
+
+Bloque 19 — Internacionalización
+19.1 babel
+19.2 polyglossia
+19.3 Idiomas
+19.4 Guionado
+19.5 Traducciones automáticas
+19.6 Fechas
+19.7 Convenciones tipográficas
+19.8 Documentos multilingües
+19.9 Unicode
+19.10 Escrituras y sistemas complejos
+
+Bloque 20 — Clases de documentos avanzadas
+20.1 KOMA-Script
+20.2 scrartcl
+20.3 scrreprt
+20.4 scrbook
+20.5 memoir
+20.6 Clases especializadas
+20.7 IEEEtran
+20.8 Clases editoriales
+20.9 Tesis
+20.10 Libros
+20.11 Artículos científicos
+20.12 Presentaciones con Beamer
+
+Bloque 21 — Beamer
+21.1 Estructura
+21.2 Frames
+21.3 Sections
+21.4 Blocks
+21.5 Overlays
+21.6 pause
+21.7 only
+21.8 uncover
+21.9 Themes
+21.10 Color themes
+21.11 Templates
+21.12 Matemáticas
+21.13 TikZ
+21.14 Bibliografía
+21.15 Handouts
+21.16 Presentaciones profesionales
+
+Bloque 22 — Documentos científicos y técnicos
+22.1 Arquitectura de un paper
+22.2 Fórmulas
+22.3 Teoremas
+22.4 Tablas
+22.5 Figuras
+22.6 Algoritmos
+22.7 Código fuente
+22.8 listings
+22.9 minted
+22.10 Referencias
+22.11 Bibliografía
+22.12 Apéndices
+22.13 Reproducibilidad
+22.14 Plantillas editoriales
+
+Bloque 23 — Documentos grandes
+23.1 Arquitectura de proyecto
+23.2 main.tex
+23.3 Directorios
+23.4 Capítulos separados
+23.5 Recursos gráficos
+23.6 Bibliografía
+23.7 Configuración común
+23.8 Comandos propios
+23.9 Estilos
+23.10 Build directory
+23.11 Gestión de dependencias
+23.12 Proyectos de tesis
+23.13 Proyectos de libros
+
+Bloque 24 — Automatización y toolchain
+24.1 Ciclo de compilación
+24.2 Archivos auxiliares
+24.3 latexmk
+24.4 Configuración .latexmkrc
+24.5 make
+24.6 Makefile
+24.7 arara
+24.8 Builds reproducibles
+24.9 Git
+24.10 .gitignore para LaTeX
+24.11 CI/CD
+24.12 Compilación automática
+24.13 Detección de errores
+24.14 Docker/Podman para builds reproducibles
+
+Bloque 25 — Diagnóstico y debugging
+25.1 Cómo leer errores de TeX
+25.2 Logs
+25.3 Undefined control sequence
+25.4 Missing $
+25.5 Missing }
+25.6 Overfull \hbox
+25.7 Underfull \hbox
+25.8 Overfull \vbox
+25.9 Referencias indefinidas
+25.10 Citas indefinidas
+25.11 Conflictos entre paquetes
+25.12 Minimal Working Example
+25.13 Técnicas de aislamiento
+25.14 Debugging sistemático
+
+Bloque 26 — Personalización de LaTeX
+26.1 \newcommand
+26.2 \renewcommand
+26.3 \providecommand
+26.4 Argumentos
+26.5 Argumentos opcionales
+26.6 \newenvironment
+26.7 Longitudes
+26.8 Contadores
+26.9 Hooks
+26.10 Comandos robustos
+26.11 Interfaces documentales
+26.12 Diseño de macros mantenibles
+
+Bloque 27 — Programación moderna con xparse/expl3
+27.1 LaTeX2e programming
+27.2 LaTeX3 Project
+27.3 expl3
+27.4 Convenciones de nombres
+27.5 Variables
+27.6 Tipos de datos
+27.7 Token lists
+27.8 Strings
+27.9 Integers
+27.10 Floating points
+27.11 Dimensions
+27.12 Sequences
+27.13 Property lists
+27.14 Booleans
+27.15 Conditionals
+27.16 Mapping
+27.17 Functions
+27.18 Argument signatures
+27.19 Document commands
+27.20 Interfaces con xparse
+27.21 Messages y errores
+27.22 Diseño de APIs LaTeX
+
+Bloque 28 — TeX interno
+28.1 De LaTeX a TeX
+28.2 Tokens
+28.3 Category codes
+28.4 Expansion
+28.5 Execution
+28.6 Macros
+28.7 Parameters
+28.8 Registers
+28.9 Counts
+28.10 Dimensions
+28.11 Glue
+28.12 Boxes
+28.13 Horizontal mode
+28.14 Vertical mode
+28.15 Math mode
+28.16 Groups
+28.17 Scoping
+28.18 Expansion control
+28.19 \expandafter
+28.20 \edef
+28.21 \csname
+28.22 TeX mouth, stomach y procesamiento
+28.23 Comprender errores desde el modelo interno
+
+Bloque 29 — Creación de paquetes
+29.1 .sty
+29.2 \ProvidesPackage
+29.3 Dependencias
+29.4 Opciones
+29.5 Interfaces públicas
+29.6 Interfaces privadas
+29.7 Key-value interfaces
+29.8 l3keys
+29.9 Mensajes
+29.10 Documentación
+29.11 doc
+29.12 docstrip
+29.13 .dtx
+29.14 .ins
+29.15 Versionado
+29.16 Distribución
+
+Bloque 30 — Creación de clases
+30.1 .cls
+30.2 \ProvidesClass
+30.3 \LoadClass
+30.4 Opciones
+30.5 Diseño de página
+30.6 Secciones
+30.7 Tipografía
+30.8 Floats
+30.9 Front matter
+30.10 Back matter
+30.11 Configuración extensible
+30.12 Diseño de una clase profesional
+
+Bloque 31 — LuaLaTeX y extensibilidad
+31.1 Arquitectura LuaTeX
+31.2 Lua dentro de TeX
+31.3 \directlua
+31.4 Variables
+31.5 Funciones
+31.6 Tablas Lua
+31.7 Comunicación TeX ↔ Lua
+31.8 Manipulación de contenido
+31.9 Callbacks
+31.10 Nodes
+31.11 Procesamiento avanzado
+31.12 Casos donde LuaLaTeX supera a macros TeX
+
+Bloque 32 — Rendimiento y proyectos complejos
+32.1 Tiempo de compilación
+32.2 Identificación de cuellos de botella
+32.3 TikZ pesado
+32.4 Externalization
+32.5 Imágenes
+32.6 Bibliografías grandes
+32.7 Compilación parcial
+32.8 Caché
+32.9 Automatización
+32.10 Modularización
+32.11 Mantenibilidad
+32.12 Reproducibilidad
+
+Bloque 33 — Calidad, testing y mantenimiento
+33.1 Calidad tipográfica
+33.2 Calidad del código LaTeX
+33.3 Convenciones
+33.4 linting
+33.5 chktex
+33.6 lacheck
+33.7 Testing de paquetes
+33.8 l3build
+33.9 Regression tests
+33.10 CI
+33.11 Versionado
+33.12 Compatibilidad
+33.13 Deprecaciones
+
+Bloque 34 — Proyecto final experto
+34.1 Diseñar un proyecto LaTeX profesional
+34.2 Crear estructura modular
+34.3 Crear clase propia
+34.4 Crear paquete auxiliar
+34.5 Definir API de comandos
+34.6 Integrar expl3
+34.7 Tipografía OpenType
+34.8 Matemáticas avanzadas
+34.9 Bibliografía con biblatex/Biber
+34.10 Índice y glosario
+34.11 Diagramas TikZ
+34.12 Gráficos PGFPlots
+34.13 Automatización con latexmk
+34.14 Testing con l3build
+34.15 CI/CD
+34.16 Documentación del paquete/clase
+34.17 Build reproducible
+34.18 Publicación y distribución

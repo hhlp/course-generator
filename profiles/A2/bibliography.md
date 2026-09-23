@@ -47,3 +47,14 @@ nuance, exceptions and grammatical analysis.
 - Explain grammar independently and create original examples and exercises.
 - Bibliographic references guide coverage; they do not limit the path when a prerequisite
   or grammatical distinction is needed for coherent learning.
+
+
+## Additional A2 mapping
+
+The A2 path also explicitly covers areas visible in the principal reference such as:
+- indirect questions and their word order;
+- basic `would rather`;
+- two-object patterns such as `Give me the book / Give it to me`;
+- phrasal verbs, including particle position.
+
+These are integrated into the thematic path rather than reproducing the book's unit order.

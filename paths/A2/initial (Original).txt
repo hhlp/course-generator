@@ -1,4 +1,18 @@
-2. Present
+ENGLISH GRAMMAR — A2
+
+Primary grammar reference: Basic Grammar in Use — Raymond Murphy
+
+Scope:
+A2 grammar only. This path focuses on grammar, grammatical form, meaning, contrasts,
+examples, common errors and controlled practice. It does not define separate reading,
+listening, speaking or writing skills.
+
+Progression rule:
+A2 = introduce and establish.
+Topics introduced here may return at B1–C2 with greater depth, complexity, exceptions
+and grammatical analysis.
+
+Bloque 2 — A2: Present
 2.1 Present Simple
 2.2 Present Simple: affirmative and negative
 2.3 Present Simple: questions
@@ -12,7 +26,7 @@
 2.11 Stative verbs
 2.12 Have / have got
 
-3. Past
+Bloque 3 — A2: Past
 3.1 Be: was / were
 3.2 Past Simple
 3.3 Regular verbs
@@ -25,7 +39,7 @@
 3.10 Past Simple vs Past Continuous
 3.11 Used to
 
-4. Present Perfect
+Bloque 4 — A2: Present Perfect
 4.1 Present Perfect: have/has + past participle
 4.2 Regular and irregular past participles
 4.3 Present Perfect: affirmative
@@ -39,7 +53,7 @@
 4.11 Been / gone
 4.12 Present Perfect vs Past Simple
 
-5. Passive Voice
+Bloque 5 — A2: Passive Voice
 5.1 Active Voice
 5.2 Passive Voice
 5.3 Active vs Passive
@@ -54,7 +68,7 @@
 5.12 Active → Passive: identifying subject, verb and object
 5.13 Active → Passive: basic transformations
 
-6. Verb Forms
+Bloque 6 — A2: Verb Forms
 6.1 Base form
 6.2 Third-person -s form
 6.3 Past form
@@ -65,7 +79,7 @@
 6.8 Be / have / do
 6.9 Verb forms: general comparison
 
-7. Future
+Bloque 7 — A2: Future
 7.1 Will
 7.2 Will: affirmative and negative
 7.3 Will: questions
@@ -78,7 +92,7 @@
 7.10 Future forms: comparison
 7.11 There will be: introduction and cross-reference to Block 9
 
-8. Modal Verbs and Imperative
+Bloque 8 — A2: Modal Verbs and Imperative
 8.1 Can / can't
 8.2 Could / couldn't
 8.3 Could for possibility
@@ -93,14 +107,14 @@
 8.12 Should / shouldn't
 8.13 Would
 8.14 Would like
-8.14.1 I'd rather / would rather
-8.14.2 Would rather + base form
+8.14a I'd rather / would rather
+8.14b Would rather + base form
 8.15 Modal + base form
 8.16 Imperative
 8.17 Negative imperative
 8.18 Let's
 
-9. There and It
+Bloque 9 — A2: There and It
 9.1 There is / there are
 9.2 There isn't / there aren't
 9.3 Is there...? / Are there...?
@@ -128,7 +142,7 @@
 9.25 It for distance
 9.26 There vs it
 
-10. Auxiliary Verbs
+Bloque 10 — A2: Auxiliary Verbs
 10.1 What is an auxiliary verb?
 10.2 Auxiliary verb vs main verb
 10.3 Be as a main verb
@@ -147,7 +161,7 @@
 10.16 So do I / Neither do I
 10.17 Auxiliary verbs: comparison and review
 
-11. Questions
+Bloque 11 — A2: Questions
 11.1 Yes/No questions
 11.2 Wh- questions
 11.3 What
@@ -180,7 +194,7 @@
 11.30 Question word + subject + verb
 11.31 Direct vs indirect question word order
 
-12. Reported Speech
+Bloque 12 — A2: Reported Speech
 12.1 Direct Speech
 12.2 Reported Speech
 12.3 Direct vs Reported Speech
@@ -193,8 +207,9 @@
 12.10 Reported commands
 12.11 Tell/ask + object + to-infinitive
 12.12 Basic backshift
+A2 boundary: basic Reported Speech only. Full backshift and advanced reporting verbs move to B1/B2.
 
-13. -ing and to
+Bloque 13 — A2: -ing and to
 13.1 Verb + -ing
 13.2 Verb + to-infinitive
 13.3 Verb + object + to-infinitive
@@ -206,7 +221,7 @@
 13.9 To + infinitive for purpose
 13.10 -ing vs to-infinitive: introduction
 
-14. Go, Get, Do, Make and Have
+Bloque 14 — A2: Go, Get, Do, Make and Have
 14.1 Go
 14.2 Go + preposition
 14.3 Go + -ing
@@ -225,7 +240,7 @@
 14.16 Have vs have got
 14.17 Common structures with go/get/do/make/have
 
-15. Pronouns and Possessives
+Bloque 15 — A2: Pronouns and Possessives
 15.1 Subject pronouns
 15.2 Object pronouns
 15.3 Possessive adjectives
@@ -241,7 +256,7 @@
 15.13 Possessive 's
 15.14 Whose...?
 
-16. Countable and Uncountable Nouns
+Bloque 16 — A2: Countable and Uncountable Nouns
 16.1 Countable nouns
 16.2 Uncountable nouns
 16.3 Countable vs uncountable
@@ -254,7 +269,7 @@
 16.10 Containers and quantities
 16.11 A piece of / a bottle of / a cup of...
 
-17. Some*, Any*, No* and Every*
+Bloque 17 — A2: Some*, Any*, No* and Every*
 17.1 Some
 17.2 Any
 17.3 Some vs any
@@ -276,7 +291,7 @@
 17.19 Something vs anything vs nothing vs everything
 17.20 Somewhere vs anywhere vs nowhere vs everywhere
 
-18. Quantity
+Bloque 18 — A2: Quantity
 18.1 Much
 18.2 Many
 18.3 Much vs many
@@ -293,7 +308,7 @@
 18.14 Too much
 18.15 Too many
 
-19. Both, Either and Neither
+Bloque 19 — A2: Both, Either and Neither
 19.1 Both
 19.2 Both ... and
 19.3 Either
@@ -307,7 +322,7 @@
 19.11 Both/either/neither + pronoun
 19.12 So do I / Neither do I
 
-20. One and Ones
+Bloque 20 — A2: One and Ones
 20.1 One as a substitute
 20.2 Ones as a substitute
 20.3 One vs ones
@@ -319,7 +334,7 @@
 20.9 Which ones?
 20.10 One/ones after adjectives
 
-21. A, An and The
+Bloque 21 — A2: A, An and The
 21.1 A / an
 21.2 A vs an
 21.3 The
@@ -333,7 +348,7 @@
 21.11 Articles with countable nouns
 21.12 Articles with uncountable nouns
 
-22. Determiners and Pronouns
+Bloque 22 — A2: Determiners and Pronouns
 22.1 Determiners: introduction
 22.2 Determiner vs pronoun
 22.3 This / that
@@ -357,8 +372,9 @@
 22.21 The others
 22.22 Determiners used before nouns
 22.23 Pronouns used without nouns
+Note: overlap with Blocks 17 and 19 is intentional; here these forms are analysed as determiners/pronouns.
 
-23. Adjectives and Adverbs
+Bloque 23 — A2: Adjectives and Adverbs
 23.1 Adjectives
 23.2 Adverbs
 23.3 Adjective vs adverb
@@ -377,7 +393,7 @@
 23.16 Adjective/adverb + enough
 23.17 -ed vs -ing adjectives
 
-24. Word Order
+Bloque 24 — A2: Word Order
 24.1 Basic sentence order
 24.2 Subject + verb
 24.3 Subject + verb + object
@@ -399,7 +415,7 @@
 24.19 Give me the book vs Give the book to me
 24.20 Pronouns with two-object structures
 
-25. Conjunctions and Clauses
+Bloque 25 — A2: Conjunctions and Clauses
 25.1 And
 25.2 But
 25.3 Or
@@ -423,8 +439,9 @@
 25.21 First Conditional
 25.22 First Conditional: form and use
 25.23 Zero vs First Conditional
+A2 boundary: Second Conditional → B1; Third Conditional → B2; Mixed Conditionals → B2/C1.
 
-26. Prepositions
+Bloque 26 — A2: Prepositions
 26.1 Prepositions: introduction
 26.2 At / on / in: time
 26.3 From ... to
@@ -454,7 +471,7 @@
 26.27 Where ... from?
 26.28 Prepositions at the end of clauses: introduction
 
-27. Phrasal Verbs
+Bloque 27 — A2: Phrasal Verbs
 27.1 What is a phrasal verb?
 27.2 Verb + particle
 27.3 Phrasal verb vs verb + preposition

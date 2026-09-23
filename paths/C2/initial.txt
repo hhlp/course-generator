@@ -1,0 +1,358 @@
+0. TENSES AND ASPECT
+0.1 Present continuous and present simple: state verbs and performatives
+0.2 Present continuous and present simple: advanced uses
+0.3 Past simple and present perfect: advanced contrasts
+0.4 Past continuous and past simple
+0.5 Past perfect and past simple
+0.6 Present perfect continuous and present perfect simple
+0.7 Past perfect continuous, past perfect and past continuous
+0.8 Present and past time: integration and review
+0.9 Tense choice, aspect and speaker perspective
+0.10 C1→C2 tenses and aspect checkpoint
+
+1. THE FUTURE
+1.1 will and be going to
+1.2 Present simple and present continuous for future reference
+1.3 Future continuous
+1.4 Future perfect
+1.5 Future perfect continuous
+1.6 be to + infinitive
+1.7 be about to + infinitive
+1.8 Other ways of referring to the future
+1.9 Future viewed from the past
+1.10 Future forms: meaning, perspective and grammatical choice
+1.11 C1→C2 future checkpoint
+
+2. MODALS AND SEMI-MODALS
+2.1 can, could, be able to and be allowed to
+2.2 will, would and used to
+2.3 may and might
+2.4 must and have (got) to
+2.5 need, needn't, don't need to and don't have to
+2.6 should, ought to and had better
+2.7 Modal + simple infinitive
+2.8 Modal + continuous infinitive
+2.9 Modal + perfect infinitive
+2.10 Modal + perfect continuous infinitive
+2.11 Possibility, probability and certainty
+2.12 Deduction and speculation
+2.13 Obligation, necessity, permission and prohibition
+2.14 Advice, expectation and criticism
+2.15 Degrees of modality and grammatical meaning
+2.16 C1→C2 modals checkpoint
+
+3. LINKING VERBS, PASSIVES AND QUESTIONS
+3.1 be, appear and seem as linking verbs
+3.2 become, get, grow, turn, remain, stay and keep
+3.3 Subject complements and predicative complements
+3.4 Object complements and complex-transitive constructions
+3.5 Passive voice: advanced tense and aspect combinations
+3.6 Passive constructions with modals and non-finite forms
+3.7 Passive constructions with two objects and complements
+3.8 Passive constructions with multi-word and prepositional verbs
+3.9 Reporting passives: It is said that...
+3.10 Reporting passives: Subject + passive + infinitive
+3.11 get-passive
+3.12 have/get something done
+3.13 Active vs passive grammatical choice
+3.14 Advanced wh-questions
+3.15 Subject and object questions
+3.16 who, whom, whose and which
+3.17 Questions with prepositions and preposition stranding
+3.18 Negative questions
+3.19 Question tags: advanced patterns
+3.20 Declarative and echo questions
+3.21 Indirect and embedded questions
+3.22 C1→C2 linking verbs, passives and questions checkpoint
+
+4. VERB COMPLEMENTATION
+4.1 Verb complementation: overview
+4.2 Transitive, intransitive, ditransitive and complex-transitive patterns
+4.3 Verb + direct object
+4.4 Verb + indirect object + direct object
+4.5 Verb + prepositional object
+4.6 Verb + -ing clause
+4.7 Verb + to-infinitive clause
+4.8 Verb + object + to-infinitive
+4.9 Verb + bare infinitive
+4.10 Verb + object + bare infinitive
+4.11 Verb + -ing vs verb + to-infinitive
+4.12 remember, forget and regret + -ing/to-infinitive
+4.13 stop, try, mean and go on + -ing/to-infinitive
+4.14 Perception verbs + object + -ing/bare infinitive
+4.15 Complex complementation patterns
+4.16 Complementation and changes of meaning
+4.17 C1→C2 verb complementation checkpoint
+
+5. REPORTING
+5.1 Direct and reported speech: advanced review
+5.2 Reporting statements
+5.3 Reporting questions
+5.4 Reporting commands and requests
+5.5 Reporting offers, suggestions and intentions
+5.6 Tense backshift
+5.7 Optional and blocked backshift
+5.8 Time, place and reference changes
+5.9 Modal verbs in reported speech
+5.10 Reporting verb + that-clause
+5.11 Reporting verb + wh-clause
+5.12 Reporting verb + to-infinitive
+5.13 Reporting verb + object + to-infinitive
+5.14 Reporting verb + -ing clause
+5.15 Reporting with nouns and adjectives
+5.16 should in that-clauses
+5.17 Mandative should
+5.18 Present subjunctive
+5.19 Reporting structures: integration
+5.20 C1→C2 reporting checkpoint
+
+6. NOUNS AND NOUN PHRASES
+6.1 Countable and uncountable nouns: advanced cases
+6.2 Nouns with countable and uncountable meanings
+6.3 Singular and plural meaning contrasts
+6.4 Irregular and foreign plurals
+6.5 Collective nouns and agreement
+6.6 Subject–verb agreement: advanced cases
+6.7 Agreement with complex noun phrases and quantities
+6.8 Compound nouns
+6.9 Noun + noun constructions
+6.10 Premodification in noun phrases
+6.11 Postmodification in noun phrases
+6.12 Complex noun phrases
+6.13 Noun + preposition patterns
+6.14 Possessive constructions and the genitive
+6.15 Double genitive
+6.16 C1→C2 nouns and noun phrases checkpoint
+
+7. ARTICLES, DETERMINERS AND QUANTIFIERS
+7.1 a/an, one and zero article
+7.2 the: specific, shared and unique reference
+7.3 Generic reference
+7.4 Articles with proper nouns
+7.5 Articles with geographical names
+7.6 Articles with institutions and conventional expressions
+7.7 some and any
+7.8 no, none and not any
+7.9 much, many, a lot of and related quantifiers
+7.10 few/a few and little/a little
+7.11 less and fewer
+7.12 all and whole
+7.13 every and each
+7.14 either and neither
+7.15 both
+7.16 most and most of
+7.17 Determiner combinations
+7.18 Quantifier + of constructions
+7.19 C1→C2 articles, determiners and quantifiers checkpoint
+
+8. RELATIVE CLAUSES AND OTHER CLAUSE TYPES
+8.1 Defining relative clauses
+8.2 Non-defining relative clauses
+8.3 who, whom, which and that
+8.4 whose, where, when and whereby
+8.5 Relative pronoun omission
+8.6 Prepositions in relative clauses
+8.7 Preposition + whom/which
+8.8 Relative clauses referring to whole clauses
+8.9 Quantifier + of whom/which
+8.10 Reduced relative clauses
+8.11 Present participle clauses
+8.12 Past participle clauses
+8.13 Perfect participle clauses
+8.14 Participle clauses of time, reason, result and condition
+8.15 Dangling and misrelated participles
+8.16 Finite and non-finite clauses
+8.17 To-infinitive clauses
+8.18 Bare-infinitive clauses
+8.19 -ing clauses
+8.20 Past-participle clauses
+8.21 Perfect, continuous and passive non-finite forms
+8.22 Subjects of infinitive clauses and for + NP + infinitive
+8.23 Non-finite clauses as subjects, complements and adjuncts
+8.24 C1→C2 clause checkpoint
+
+9. PRONOUNS, SUBSTITUTION AND ELLIPSIS
+9.1 Personal pronouns and advanced reference
+9.2 Reflexive and reciprocal pronouns
+9.3 Demonstrative and indefinite pronouns
+9.4 one and ones
+9.5 one as substitute
+9.6 so and not as substitutes
+9.7 do so, do it and do that
+9.8 such as substitute
+9.9 Ellipsis: grammatical principles
+9.10 Ellipsis after auxiliaries and modals
+9.11 Ellipsis of infinitival to
+9.12 Comparative ellipsis
+9.13 Coordination ellipsis
+9.14 Substitution vs ellipsis
+9.15 C1→C2 pronouns, substitution and ellipsis checkpoint
+
+10. ADJECTIVES AND ADVERBS
+10.1 Attributive and predicative adjectives
+10.2 Adjectives restricted to attributive or predicative position
+10.3 Adjective order
+10.4 Gradable, non-gradable and extreme adjectives
+10.5 Adjective + preposition
+10.6 Adjective + to-infinitive
+10.7 Adjective + that-clause
+10.8 Participial adjectives
+10.9 Compound and postpositive adjectives
+10.10 Adverbs and adverbials
+10.11 Adverb formation
+10.12 Front, mid and end position
+10.13 Frequency and degree adverbs
+10.14 Focusing adverbs
+10.15 Viewpoint, sentence and comment adverbs
+10.16 only: position and scope
+10.17 even and focusing meaning
+10.18 quite, rather, fairly and pretty
+10.19 Intensifiers and maximisers
+10.20 already, still and yet
+10.21 C1→C2 adjectives and adverbs checkpoint
+
+11. COMPARISON
+11.1 Comparative adjectives and adverbs: advanced patterns
+11.2 Superlatives: advanced patterns
+11.3 as...as and not as/so...as
+11.4 the same as and expressions of difference
+11.5 Degree modification of comparatives
+11.6 increasingly and more and more
+11.7 the + comparative..., the + comparative...
+11.8 Comparative clauses
+11.9 Comparative ellipsis
+11.10 Superlative constructions
+11.11 C1→C2 comparison checkpoint
+
+12. PREPOSITIONS
+12.1 Prepositions: advanced grammatical overview
+12.2 Time, place and movement
+12.3 Abstract prepositional meanings
+12.4 Verb + preposition
+12.5 Noun + preposition
+12.6 Adjective + preposition
+12.7 Preposition + -ing clause
+12.8 Complex prepositions
+12.9 Prepositional phrases
+12.10 Preposition placement and stranding
+12.11 Preposition fronting
+12.12 C1→C2 prepositions checkpoint
+
+13. CONJUNCTIONS AND ADVERBIAL CLAUSES
+13.1 Coordination and subordination
+13.2 Coordinating conjunctions
+13.3 Subordinating conjunctions
+13.4 Clauses of time
+13.5 Clauses of reason
+13.6 Clauses of purpose
+13.7 Clauses of result
+13.8 Clauses of concession
+13.9 although, though and even though
+13.10 despite and in spite of
+13.11 whereas and while
+13.12 Clauses of manner and place
+13.13 Clauses of condition
+13.14 Reduced adverbial clauses
+13.15 C1→C2 conjunctions and adverbial clauses checkpoint
+
+14. CONDITIONALS AND HYPOTHETICAL MEANING
+14.1 Conditional system: advanced review
+14.2 Zero, first, second and third conditionals
+14.3 Mixed conditionals
+14.4 Conditionals with modal verbs
+14.5 unless
+14.6 provided/providing that and as long as
+14.7 on condition that
+14.8 suppose/supposing
+14.9 even if and whether...or not
+14.10 Conditionals without if
+14.11 Inversion with should
+14.12 Inversion with were
+14.13 Inversion with had
+14.14 wish + past
+14.15 wish + past perfect
+14.16 wish + would
+14.17 if only
+14.18 would rather and would sooner
+14.19 it's time + past
+14.20 as if and as though
+14.21 Unreal past and hypothetical distance
+14.22 Counterfactual meaning
+14.23 C1→C2 conditionals and hypothetical meaning checkpoint
+
+15. ORGANISING INFORMATION
+15.1 Canonical English word order
+15.2 Subject–verb–object patterns
+15.3 Adverbial placement
+15.4 Ordering multiple adverbials
+15.5 Front and end position
+15.6 Given and new information
+15.7 End-focus
+15.8 End-weight
+15.9 Fronting
+15.10 Fronted complements and adverbials
+15.11 Inversion after negative and restrictive expressions
+15.12 never, rarely and seldom inversion
+15.13 hardly, scarcely and barely inversion
+15.14 no sooner...than
+15.15 not only...but also with inversion
+15.16 only + adverbial inversion
+15.17 so + adjective/adverb inversion
+15.18 such + be constructions
+15.19 Emphatic do
+15.20 It-clefts
+15.21 Wh-clefts and pseudo-clefts
+15.22 Reversed pseudo-clefts
+15.23 Extraposition with it
+15.24 Existential there
+15.25 Dislocation and marked word order
+15.26 Information packaging and grammatical choice
+15.27 C1→C2 organising information checkpoint
+
+16. ADVANCED CLAUSE AND SENTENCE ARCHITECTURE
+16.1 Simple, compound and complex clause structures
+16.2 Independent and dependent clauses
+16.3 Finite subordinate clauses
+16.4 Non-finite subordinate clauses
+16.5 Declarative, interrogative, imperative and exclamative clauses
+16.6 Complement clauses
+16.7 that-clauses
+16.8 wh-clauses
+16.9 whether/if clauses
+16.10 Relative clauses as modifiers
+16.11 Adverbial clauses as adjuncts
+16.12 Coordination of phrases and clauses
+16.13 Subordination hierarchy
+16.14 Multiple embedding
+16.15 Clause boundaries and attachment
+16.16 Structural ambiguity
+16.17 Complement vs adjunct
+16.18 Grammatical analysis of complex sentences
+16.19 C1→C2 clause architecture checkpoint
+
+17. — C1→C2 GRAMMAR MASTERY
+17.1 Tense and aspect integration
+17.2 Future reference integration
+17.3 Modal system integration
+17.4 Voice and passive integration
+17.5 Verb complementation integration
+17.6 Reporting structures integration
+17.7 Noun phrase integration
+17.8 Determination and quantification integration
+17.9 Relative and non-finite clause integration
+17.10 Pronouns, substitution and ellipsis integration
+17.11 Adjectival and adverbial grammar integration
+17.12 Comparison integration
+17.13 Prepositional grammar integration
+17.14 Coordination and subordination integration
+17.15 Conditional and counterfactual integration
+17.16 Word order and information structure integration
+17.17 Fronting, inversion and cleft integration
+17.18 Complex sentence analysis
+17.19 Grammar and register
+17.20 Grammatical variation and alternative constructions
+17.21 Meaning differences between grammatical alternatives
+17.22 Error diagnosis and correction
+17.23 Structural ambiguity and disambiguation
+17.24 C1→C2 comprehensive grammar checkpoint
+17.25 Final C1→C2 grammar mastery project

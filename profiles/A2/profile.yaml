@@ -164,6 +164,35 @@ special_topics:
       - "all / most / each / every"
       - "another / other / others / the other / the others"
 
+
+  phrasal_verbs:
+    level: "introductory A2"
+    include:
+      - "verb + particle"
+      - "transitive vs intransitive"
+      - "separable vs inseparable"
+      - "noun-object placement"
+      - "pronoun-object placement"
+      - "common A2 phrasal verbs"
+    avoid_unbounded_vocabulary_lists: true
+
+  indirect_questions:
+    include:
+      - "direct vs indirect question word order"
+      - "Do you know where...?"
+      - "I don't know what..."
+      - "question word + subject + verb"
+
+  two_object_verbs:
+    include:
+      - "verb + indirect object + direct object"
+      - "verb + direct object + to + indirect object"
+      - "pronoun-sensitive patterns such as Give it to me"
+
+  would_rather:
+    include:
+      - "would rather + base form"
+    advanced_hypothetical_patterns_deferred: true
 bibliography_policy:
   principal:
     - "Basic Grammar in Use — Raymond Murphy"

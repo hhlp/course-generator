@@ -1,0 +1,117 @@
+course:
+  title: LaTeX — Learning Path 0 → Experto
+  language: es
+  level: cero_a_experto
+  platform: Fedora/Linux
+  primary_distribution: TeX Live
+pedagogy:
+  style: profundo, práctico, progresivo y orientado a composición y proyectos LaTeX reales
+  lesson_structure:
+    objective:
+      required: true
+      position: first
+      heading: 🎯 OBJETIVO
+    reading:
+      required: true
+      heading: 📚 LECTURA
+      categories:
+      - principal
+      - normativa
+      - motor
+      - profundizacion
+      - consulta
+      exact_references_only_when_verified: true
+    lab:
+      required: false
+      heading: 🧪 Laboratorio/ejemplos
+    common_errors:
+      required: false
+      heading: ⚠️ Errores frecuentes
+    important_idea:
+      required: false
+      heading: 💡 Idea importante
+    remember:
+      required: true
+      position: last
+      heading: 🧠 QUÉ DEBES RECORDAR
+      min_items: 3
+      max_items: 7
+      avoid_repeating_objective: true
+  indentation: false
+  numbering: single-level
+content:
+  prefer_compilable_examples: true
+  explain_code_and_output: true
+  use_minimal_working_examples_for_debugging: true
+  distinguish_latex_engine_package_and_tool_behavior: true
+  avoid_unverified_page_or_section_references: true
+  official_docs_override_stale_behavior: true
+  ctan_package_workflow:
+    required_when_introducing_package: true
+    teach_discovery_not_only_usage: true
+    steps:
+    - define_problem_or_need
+    - find_package_on_ctan
+    - identify_official_documentation
+    - consult_with_texdoc
+    - check_installation_with_kpsewhich
+    - identify_dependencies_and_relevant_options
+    - load_package_correctly
+    - provide_minimal_working_example
+    - compile_and_interpret_errors_or_warnings
+    explain_when_relevant:
+    - ctan_package_name_vs_texlive_package_vs_sty_or_cls_file
+    - package_options
+    - load_order
+    - dependencies
+    - incompatibilities
+    - fedora_texlive_packaging
+    - texmfhome_and_local_installation
+    avoid_repeating_full_ctan_theory: true
+    cross_reference_ctan_block: true
+environment:
+  os_family:
+  - Fedora
+  - Linux
+  tex_distribution: TeX Live
+  engines:
+  - pdfTeX
+  - XeTeX
+  - LuaTeX
+  build_tools:
+  - latexmk
+  - Make
+  - arara
+  version_control: Git
+bibliography:
+  principal:
+  - Text and Math Into LaTeX — George Grätzer
+  - LaTeX Beginner's Guide — Stefan Kottwitz
+  - LaTeX Cookbook — Stefan Kottwitz
+  - LaTeX Graphics with TikZ — Stefan Kottwitz
+  - The LaTeX Companion, Third Edition — Part I — Frank Mittelbach et al.
+  - The LaTeX Companion, Third Edition — Part II — Frank Mittelbach et al.
+  normative:
+  - LaTeX Project documentation
+  - CTAN package documentation
+  - TeX Live documentation
+  - PGF/TikZ manual
+  - PGFPlots manual
+  - biblatex/Biber documentation
+  - expl3 documentation
+  - l3build documentation
+progression:
+- fundamentos
+- composicion_tipografica
+- matematicas
+- tablas_figuras_referencias
+- bibliografia
+- tikz_pgfplots
+- documentos_cientificos_y_grandes
+- automatizacion
+- macros
+- expl3
+- tex_internals
+- paquetes_y_clases
+- lualatex
+- testing_y_mantenimiento

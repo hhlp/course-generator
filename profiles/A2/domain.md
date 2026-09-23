@@ -130,3 +130,24 @@ Explanations may be in Spanish for clarity. English grammatical terminology and 
 sentences should be retained in English. The learner should progressively become
 comfortable with terms such as subject, object, auxiliary, determiner, pronoun,
 past participle, clause and preposition.
+
+
+## Additional A2 coverage
+
+### Indirect / embedded questions
+Introduce direct vs indirect question word order, including patterns such as
+`Do you know where...?` and `I don't know what...`. Keep complex embedding for later levels.
+
+### Verbs with two objects
+Teach `verb + indirect object + direct object` and
+`verb + direct object + to + indirect object`, including pronoun-sensitive forms such as
+`Give it to me`.
+
+### Would rather
+Teach `would rather + base form` for basic preference. Defer advanced hypothetical uses.
+
+### Phrasal verbs
+Treat phrasal verbs as grammatical patterns as well as lexical items. Include verb + particle,
+transitive/intransitive, separable/inseparable, noun-object placement, pronoun-object placement
+and a controlled set of common A2 phrasal verbs. Do not turn the block into an unlimited
+vocabulary catalogue.

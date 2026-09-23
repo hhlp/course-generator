@@ -1,0 +1,112 @@
+course:
+  title: "English Grammar B1 → B2"
+  language: "es"
+  target_language: "en"
+  level:
+    from: "B1"
+    to: "B2"
+    framework: "CEFR"
+  scope: "grammar-only"
+  main_reference: "English Grammar in Use, Fifth Edition — Raymond Murphy"
+
+pedagogy:
+  style: "profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical"
+  indentation: false
+  numbering: "single-level"
+  progression:
+    - forma
+    - significado
+    - uso
+    - contraste
+    - excepciones
+    - errores_frecuentes
+    - practica
+    - integracion
+
+lesson_structure:
+  objective:
+    required: true
+    position: first
+    heading: "🎯 OBJETIVO"
+  reading:
+    required: true
+    heading: "📚 LECTURA"
+    categories:
+      - principal
+      - normativa
+      - profundizacion
+      - consulta
+    exact_references_only_when_verified: true
+  explanation:
+    required: true
+    requirements:
+      - "Explicar la estructura gramatical con precisión."
+      - "Distinguir forma, significado y uso."
+      - "Incluir afirmativa, negativa e interrogativa cuando corresponda."
+      - "Explicar auxiliares, orden y contracciones cuando sean relevantes."
+      - "Comparar estructuras que suelen confundirse."
+      - "Incluir excepciones y restricciones relevantes al nivel."
+  examples:
+    required: true
+    requirements:
+      - "Usar ejemplos naturales en inglés."
+      - "Aumentar progresivamente la dificultad."
+      - "Incluir análisis o transformación cuando ayude a entender la regla."
+  lab:
+    required: false
+    heading: "🧪 Laboratorio/ejemplos"
+  common_errors:
+    required: false
+    heading: "⚠️ Errores frecuentes"
+  important_idea:
+    required: false
+    heading: "💡 Idea importante"
+  remember:
+    required: true
+    position: last
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    min_items: 3
+    max_items: 7
+    avoid_repeating_objective: true
+
+grammar_policy:
+  grammar_only: true
+  explain_terminology_progressively: true
+  contrastive_teaching: true
+  include_common_errors: true
+  include_exceptions_when_level_relevant: true
+  include_sentence_analysis: true
+  include_transformations: true
+  include_consolidation_lessons: true
+  preserve_english_examples: true
+
+excluded_blocks:
+  - reading
+  - listening
+  - speaking
+  - pronunciation
+  - writing
+  - general_vocabulary
+  - independent_collocation_training
+  - exam_preparation
+
+references:
+  primary:
+    - "Raymond Murphy — English Grammar in Use, Fifth Edition"
+  policy:
+    exact_unit_references_only_when_verified: true
+    never_invent_page_numbers: true
+    never_invent_chapter_numbers: true
+    distinguish_primary_from_supplementary: true
+
+generation:
+  lesson_depth: "high"
+  standalone_lessons: true
+  cumulative_progression: true
+  avoid_unnecessary_repetition: true
+  preserve_cross_references: true
+  checkpoints:
+    - "A2 → B1 transition"
+    - "B1 grammar"
+    - "B2 grammar"
+    - "Final B1 → B2 integration"
