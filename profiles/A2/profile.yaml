@@ -1,10 +1,17 @@
 course:
-  title: "English Grammar — A2"
+  title: "English Grammar A2"
+  language: "es"
+  target_language: "en"
   level: "A2"
   framework: "CEFR"
-  track: "English Grammar A1 → C2"
-  focus: "grammar"
+  scope: "grammar-only"
   primary_reference: "Basic Grammar in Use — Raymond Murphy"
+
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 scope:
   include:

@@ -7,7 +7,12 @@ course:
     to: "B2"
     framework: "CEFR"
   scope: "grammar-only"
-  main_reference: "English Grammar in Use, Fifth Edition — Raymond Murphy"
+  primary_reference: "English Grammar in Use, Fifth Edition — Raymond Murphy"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
   style: "profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical"

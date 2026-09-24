@@ -1,3 +1,7 @@
+TYPESCRIPT — LEARNING PATH 0 → EXPERTO
+
+Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hasta su sistema de tipos, Node.js, asincronía, concurrencia, paralelismo, memoria y runtime, diseño type-safe, compilador, AST, TypeChecker, Compiler API, rendimiento y seguridad, comprendiendo tanto el comportamiento en compile time como el código JavaScript resultante en runtime.
+
 # Bloque 0 — Fundamentos y entorno
 0.1 Qué es TypeScript y qué problemas resuelve
 0.2 TypeScript vs JavaScript
@@ -281,16 +285,27 @@
 22.10 State machines
 22.11 Evolución de APIs sin romper consumidores
 
-# Bloque 23 — JavaScript y TypeScript
+# Bloque 23 — JavaScript, ECMAScript y TypeScript
 23.1 Runtime vs compile time
 23.2 Type erasure
-23.3 Structural typing
-23.4 JavaScript interoperability
-23.5 allowJs y checkJs
-23.6 JSDoc
-23.7 Migración progresiva JS → TS
-23.8 Migración de proyectos legacy
-23.9 Fronteras entre datos dinámicos y tipos estáticos
+23.3 TypeScript como capa estática sobre JavaScript
+23.4 TypeScript syntax vs ECMAScript syntax
+23.5 Especificación ECMAScript y relación con TypeScript
+23.6 TC39 y proceso de estandarización
+23.7 Proposals y stages de ECMAScript
+23.8 target y versión ECMAScript de salida
+23.9 Transformación y downleveling
+23.10 lib y definición del entorno disponible
+23.11 Polyfills vs transpilation
+23.12 JavaScript interoperability
+23.13 allowJs y checkJs
+23.14 JSDoc y tipado de JavaScript
+23.15 Migración progresiva JS → TS
+23.16 Migración de proyectos legacy
+23.17 Fronteras entre runtime y sistema de tipos
+23.18 Semántica JavaScript que TypeScript no cambia
+23.19 Coerción, igualdad, prototipos y closures desde TypeScript
+23.20 Comprender el JavaScript emitido
 
 # Bloque 24 — Validación en Runtime
 24.1 Compile-time types vs runtime data
@@ -302,6 +317,9 @@
 24.7 Inferencia schema → type
 24.8 Validación de APIs
 24.9 Configuración y variables de entorno
+24.10 Parse, don't validate como patrón de diseño
+24.11 Decodificación de datos no confiables
+24.12 Mantener sincronizados schemas y tipos
 
 # Bloque 25 — Node.js + TypeScript
 25.1 Configuración Node.js + TypeScript
@@ -311,136 +329,353 @@
 25.5 Variables de entorno
 25.6 File system
 25.7 Streams
-25.8 Events
+25.8 Events y EventEmitter
 25.9 HTTP
 25.10 CLI applications
 25.11 Manejo de errores
 25.12 Build y distribución
+25.13 Buffer
+25.14 process
+25.15 child_process
+25.16 AbortController y cancelación
+25.17 Streams, backpressure y pipelines tipados
+25.18 APIs modernas de Node.js desde TypeScript
 
-# Bloque 26 — Testing
-26.1 Unit e integration tests
-26.2 Mocking y tipado de mocks
-26.3 Tests asíncronos
-26.4 Testing de errores
-26.5 Type testing
-26.6 @ts-expect-error
-26.7 Tests de definiciones de tipos
-26.8 Testing de APIs públicas
+# Bloque 26 — Event Loop y modelo de ejecución
+26.1 Call stack
+26.2 Execution contexts
+26.3 Event loop
+26.4 Tasks y task queues
+26.5 Microtasks
+26.6 Promise jobs
+26.7 Orden de ejecución async
+26.8 Timers
+26.9 I/O callbacks
+26.10 Event loop del navegador
+26.11 Event loop de Node.js
+26.12 Fases del event loop de Node.js
+26.13 process.nextTick
+26.14 queueMicrotask
+26.15 setImmediate
+26.16 Starvation
+26.17 Blocking del event loop
+26.18 Medición de event-loop delay
+26.19 Tipado TypeScript vs comportamiento real del scheduler
 
-# Bloque 27 — Tooling y calidad
-27.1 ESLint y typescript-eslint
-27.2 Formatting
-27.3 Type-aware linting
-27.4 npm scripts
-27.5 Build scripts
-27.6 Source maps y debugging
-27.7 Bundlers y transpilers
-27.8 CI
-27.9 Type checking separado del build
+# Bloque 27 — Concurrencia y paralelismo
+27.1 Asincronía vs concurrencia vs paralelismo
+27.2 I/O-bound vs CPU-bound
+27.3 Concurrencia basada en event loop
+27.4 libuv
+27.5 Thread pool de libuv
+27.6 Operaciones que utilizan el thread pool
+27.7 Worker Threads
+27.8 Tipado de mensajes entre workers
+27.9 MessageChannel y MessagePort
+27.10 structuredClone
+27.11 Transferable objects
+27.12 Web Workers
+27.13 SharedArrayBuffer
+27.14 Atomics
+27.15 Memoria compartida
+27.16 Race conditions
+27.17 Coordinación y sincronización
+27.18 Worker pools
+27.19 Paralelización de tareas CPU-bound
+27.20 child_process vs Worker Threads
+27.21 Concurrency limiting
+27.22 Backpressure
+27.23 Cancelación con AbortSignal
+27.24 Diseño de APIs concurrentes type-safe
 
-# Bloque 28 — Monorepos y proyectos grandes
-28.1 Project references
-28.2 composite e incremental builds
-28.3 Shared tsconfig
-28.4 Packages internos
-28.5 Workspace architectures
-28.6 Dependency boundaries
-28.7 Public APIs
-28.8 Tipos compartidos
-28.9 Build ordering
-28.10 Escalabilidad del type checker
+# Bloque 28 — Memoria y Garbage Collection
+28.1 Stack y heap
+28.2 Valores primitivos y referencias
+28.3 Object allocation
+28.4 Reachability
+28.5 Garbage collection
+28.6 Generational garbage collection
+28.7 Roots y object graphs
+28.8 Closures y retención de memoria
+28.9 Event listeners y timers
+28.10 Memory leaks
+28.11 WeakMap
+28.12 WeakSet
+28.13 WeakRef
+28.14 FinalizationRegistry
+28.15 ArrayBuffer
+28.16 TypedArray
+28.17 DataView
+28.18 Buffer y memoria en Node.js
+28.19 External memory
+28.20 Heap snapshots
+28.21 Diagnóstico de memory leaks
+28.22 Type erasure: los tipos no existen en memoria en runtime
 
-# Bloque 29 — Librerías TypeScript
-29.1 Diseño de una librería
-29.2 Public API
-29.3 package.json y exports
-29.4 ESM
-29.5 Declaration files y declarationMap
-29.6 Versionado y compatibilidad de tipos
-29.7 Dual-package considerations
-29.8 Publicación en npm
-29.9 Semantic Versioning y cambios de tipos
+# Bloque 29 — Runtime, motores JavaScript y V8
+29.1 TypeScript después del emit
+29.2 JavaScript engines
+29.3 V8, SpiderMonkey y JavaScriptCore
+29.4 Parsing del JavaScript generado
+29.5 Interpreter y JIT
+29.6 V8 Ignition
+29.7 V8 TurboFan
+29.8 Hidden classes / shapes
+29.9 Inline caches
+29.10 Optimización especulativa
+29.11 Deoptimization
+29.12 Object layouts
+29.13 Allocation y GC
+29.14 Código monomórfico, polimórfico y megamórfico
+29.15 Cómo ciertas estructuras JavaScript afectan al rendimiento
+29.16 TypeScript no garantiza optimización del runtime
+29.17 Analizar el código JavaScript emitido
 
-# Bloque 30 — Performance y compilación
-30.1 Rendimiento del compilador
-30.2 --extendedDiagnostics
-30.3 --generateTrace
-30.4 Incremental compilation
-30.5 Project references
-30.6 Complejidad de tipos
-30.7 Conditional types costosos
-30.8 Uniones grandes y tipos recursivos
-30.9 Optimización de proyectos grandes
+# Bloque 30 — Testing
+30.1 Unit e integration tests
+30.2 Mocking y tipado de mocks
+30.3 Tests asíncronos
+30.4 Testing de errores
+30.5 Type testing
+30.6 @ts-expect-error
+30.7 Tests de definiciones de tipos
+30.8 Testing de APIs públicas
+30.9 Testing de código concurrente
+30.10 Testing de Worker Threads
+30.11 Tests de runtime validation
+30.12 Property-based testing: introducción
 
-# Bloque 31 — Internals de TypeScript
-31.1 Arquitectura del compilador
-31.2 Scanner
-31.3 Parser y AST
-31.4 Binder y Symbols
-31.5 Type checker
-31.6 Type relationships
-31.7 Assignability
-31.8 Type inference
-31.9 Control-flow analysis
-31.10 Emit
-31.11 Language Service
-31.12 tsserver
-31.13 Compiler API
+# Bloque 31 — Tooling y calidad
+31.1 ESLint y typescript-eslint
+31.2 Formatting
+31.3 Type-aware linting
+31.4 npm scripts
+31.5 Build scripts
+31.6 Source maps y debugging
+31.7 Bundlers y transpilers
+31.8 CI
+31.9 Type checking separado del build
+31.10 Debugging de Node.js + TypeScript
+31.11 Source maps en producción
+31.12 Inspección del JavaScript emitido
 
-# Bloque 32 — Compiler API y AST
-32.1 TypeScript Compiler API
-32.2 SourceFile, Nodes y SyntaxKind
-32.3 Traversal del AST
-32.4 Symbols
-32.5 TypeChecker API
-32.6 Obtener tipos programáticamente
-32.7 Transformations
-32.8 Code generation
-32.9 Static analysis tools
-32.10 Construcción de herramientas propias
+# Bloque 32 — Monorepos y proyectos grandes
+32.1 Project references
+32.2 composite e incremental builds
+32.3 Shared tsconfig
+32.4 Packages internos
+32.5 Workspace architectures
+32.6 Dependency boundaries
+32.7 Public APIs
+32.8 Tipos compartidos
+32.9 Build ordering
+32.10 Escalabilidad del type checker
+32.11 Caching
+32.12 Arquitectura de dependencias
+32.13 Evitar ciclos entre paquetes
 
-# Bloque 33 — Patrones y antipatrones
-33.1 Evitar any innecesario
-33.2 Preferir unknown en fronteras inseguras
-33.3 Assertions peligrosas
-33.4 Boolean blindness
-33.5 Stringly typed APIs
-33.6 Primitive obsession
-33.7 Uniones discriminadas
-33.8 Branded types
-33.9 Exhaustiveness
-33.10 Overengineering del sistema de tipos
-33.11 Tipos demasiado complejos
-33.12 Mantener tipos legibles
+# Bloque 33 — Librerías TypeScript
+33.1 Diseño de una librería
+33.2 Public API
+33.3 package.json y exports
+33.4 ESM
+33.5 Declaration files y declarationMap
+33.6 Versionado y compatibilidad de tipos
+33.7 Dual-package considerations
+33.8 Publicación en npm
+33.9 Semantic Versioning y cambios de tipos
+33.10 Compatibilidad runtime vs compatibilidad de tipos
+33.11 API Extractor y superficies públicas: concepto
+33.12 Pruebas de consumidores
 
-# Bloque 34 — Effective TypeScript
-34.1 Pensar en TypeScript como sistema estructural
-34.2 Conocer los límites del type checker
-34.3 Controlar inferencia y widening
-34.4 Diseñar tipos alrededor de estados válidos
-34.5 Evitar información duplicada entre valores y tipos
-34.6 Extraer tipos en vez de repetirlos
-34.7 Diseñar generics útiles
-34.8 Entender assignability
-34.9 Trabajar correctamente con null
-34.10 Modelar dominios mediante unions
-34.11 Gestionar dependencias de tipos
-34.12 Diseñar APIs mantenibles
+# Bloque 34 — Performance del compilador TypeScript
+34.1 Rendimiento del compilador
+34.2 --extendedDiagnostics
+34.3 --generateTrace
+34.4 Incremental compilation
+34.5 Project references
+34.6 Complejidad de tipos
+34.7 Conditional types costosos
+34.8 Uniones grandes y tipos recursivos
+34.9 Instantiation depth y explosión combinatoria
+34.10 Optimización de proyectos grandes
+34.11 Medición del tiempo de type checking
+34.12 Diseño de tipos pensando en rendimiento
 
-# Bloque 35 — Proyecto final
-35.1 Diseñar una aplicación TypeScript completa
-35.2 strict mode completo
-35.3 Modelo de dominio
-35.4 Branded types y discriminated unions
-35.5 Generics
-35.6 Runtime validation
-35.7 Capa de persistencia y API
-35.8 Manejo de errores tipado
-35.9 Async
-35.10 Testing y type testing
-35.11 ESLint y build
-35.12 Declaration files
-35.13 CI
-35.14 Documentación
-35.15 Performance del compilador
-35.16 Revisión final de arquitectura
+# Bloque 35 — Performance del runtime
+35.1 Rendimiento del compilador vs rendimiento del programa
+35.2 CPU profiling
+35.3 Heap profiling
+35.4 Node.js --inspect
+35.5 Chrome DevTools
+35.6 Performance hooks
+35.7 Benchmarking
+35.8 Warm-up y JIT
+35.9 Optimización y deoptimization
+35.10 Event-loop utilization
+35.11 Event-loop delay
+35.12 Streams y backpressure
+35.13 Optimización de allocations
+35.14 Buffers y copias de memoria
+35.15 Workers para CPU-bound
+35.16 Evitar microbenchmarks engañosos
+35.17 Medir antes de optimizar
+35.18 TypeScript y zero-cost abstractions: límites reales
+
+# Bloque 36 — Seguridad con TypeScript
+36.1 Type safety ≠ runtime safety
+36.2 Trust boundaries
+36.3 unknown vs any en datos no confiables
+36.4 Runtime validation como frontera de seguridad
+36.5 Assertions inseguras
+36.6 Prototype chain y riesgos asociados
+36.7 Prototype pollution
+36.8 Object injection
+36.9 Command injection
+36.10 Path traversal
+36.11 SSRF
+36.12 XSS
+36.13 CSRF
+36.14 SQL injection
+36.15 ReDoS
+36.16 Deserialización y parsing inseguro
+36.17 Secrets y variables de entorno
+36.18 Dependency security
+36.19 npm supply-chain
+36.20 Lockfiles e integridad de dependencias
+36.21 Auditoría de dependencias
+36.22 Diseño de APIs con límites de confianza explícitos
+36.23 Branded types para datos validados
+36.24 Security-oriented type design
+36.25 Principio de mínimo privilegio en aplicaciones Node.js
+36.26 TypeScript como defensa complementaria, no como sandbox
+
+# Bloque 37 — Internals de TypeScript
+37.1 Arquitectura del compilador
+37.2 Scanner
+37.3 Parser y AST
+37.4 Binder y Symbols
+37.5 Type checker
+37.6 Type relationships
+37.7 Assignability
+37.8 Type inference
+37.9 Control-flow analysis
+37.10 Emit
+37.11 Transformation pipeline
+37.12 Language Service
+37.13 tsserver
+37.14 Compiler API
+37.15 Diagnósticos
+37.16 Program y SourceFile
+37.17 Symbols y Types internamente
+
+# Bloque 38 — Compiler API y AST
+38.1 TypeScript Compiler API
+38.2 SourceFile, Nodes y SyntaxKind
+38.3 Traversal del AST
+38.4 Parent/child relationships
+38.5 Symbols
+38.6 TypeChecker API
+38.7 Obtener tipos programáticamente
+38.8 Signatures y declarations
+38.9 Diagnósticos programáticos
+38.10 Transformations
+38.11 TransformerFactory
+38.12 Printer y code generation
+38.13 Static analysis tools
+38.14 Construcción de linters propios
+38.15 Codemods
+38.16 Construcción de herramientas propias
+38.17 Análisis de dependencias mediante AST
+
+# Bloque 39 — Language Service y herramientas de desarrollo
+39.1 Arquitectura del Language Service
+39.2 tsserver
+39.3 LanguageServiceHost
+39.4 Programas incrementales
+39.5 Completions
+39.6 Quick info
+39.7 Go to definition
+39.8 Find references
+39.9 Rename
+39.10 Refactors
+39.11 Diagnostics
+39.12 Plugins de TypeScript
+39.13 Construcción de tooling sobre TypeScript
+
+# Bloque 40 — Patrones y antipatrones
+40.1 Evitar any innecesario
+40.2 Preferir unknown en fronteras inseguras
+40.3 Assertions peligrosas
+40.4 Boolean blindness
+40.5 Stringly typed APIs
+40.6 Primitive obsession
+40.7 Uniones discriminadas
+40.8 Branded types
+40.9 Exhaustiveness
+40.10 Overengineering del sistema de tipos
+40.11 Tipos demasiado complejos
+40.12 Mantener tipos legibles
+40.13 Evitar duplicar información entre runtime y tipos
+40.14 Diseñar alrededor de invariantes
+
+# Bloque 41 — Effective TypeScript
+41.1 Pensar en TypeScript como sistema estructural
+41.2 Conocer los límites del type checker
+41.3 Controlar inferencia y widening
+41.4 Diseñar tipos alrededor de estados válidos
+41.5 Evitar información duplicada entre valores y tipos
+41.6 Extraer tipos en vez de repetirlos
+41.7 Diseñar generics útiles
+41.8 Entender assignability
+41.9 Trabajar correctamente con null
+41.10 Modelar dominios mediante unions
+41.11 Gestionar dependencias de tipos
+41.12 Diseñar APIs mantenibles
+41.13 Preferir precisión útil a complejidad accidental
+41.14 Distinguir seguridad estática de garantías de runtime
+
+# Bloque 42 — Arquitectura TypeScript a gran escala
+42.1 Arquitectura por capas y módulos
+42.2 Dependency inversion
+42.3 Domain modeling
+42.4 Boundaries type-safe
+42.5 Puertos y adaptadores
+42.6 DTOs vs modelos de dominio
+42.7 Validación en los límites
+42.8 Errores como parte del diseño
+42.9 Event-driven architectures
+42.10 Tipado de eventos
+42.11 Configuración type-safe
+42.12 Observabilidad y tipos
+42.13 Evolución de schemas y APIs
+42.14 Compatibilidad y versionado
+42.15 Arquitectura para monorepos
+42.16 Coste del sistema de tipos a escala
+
+# Bloque 43 — Proyecto final
+43.1 Diseñar una aplicación TypeScript completa
+43.2 strict mode completo
+43.3 Modelo de dominio
+43.4 Branded types y discriminated unions
+43.5 Generics
+43.6 Runtime validation
+43.7 Capa de persistencia y API
+43.8 Manejo de errores tipado
+43.9 Async
+43.10 Event loop y cancelación
+43.11 Concurrencia controlada
+43.12 Worker Threads para trabajo CPU-bound
+43.13 Testing y type testing
+43.14 Testing de concurrencia
+43.15 ESLint y build
+43.16 Declaration files
+43.17 CI
+43.18 Documentación
+43.19 Seguridad y trust boundaries
+43.20 Profiling de CPU y memoria
+43.21 Performance del compilador
+43.22 Análisis del JavaScript emitido
+43.23 Herramienta propia basada en Compiler API/AST
+43.24 Revisión final de arquitectura
+43.25 Auditoría final compile time vs runtime

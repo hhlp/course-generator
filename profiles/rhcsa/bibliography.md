@@ -23,6 +23,8 @@
 - Quadlet/systemd documentation.
 - chrony documentation.
 - NFS/autofs manual pages y documentación RHEL.
+- Apache HTTP Server y documentación RHEL de servicios web.
+- Cockpit y tuned: documentación oficial y manuales instalados.
 
 ## Extensiones Fedora/Linux+
 - Fedora documentation para administración de Btrfs y Flatpak.

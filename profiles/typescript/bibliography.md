@@ -1,136 +1,58 @@
-# Bibliografía — TypeScript
+# TypeScript — Bibliografía
 
 ## Bibliografía principal
 
 ### Effective TypeScript — Dan Vanderkam
-
-Referencia principal para aprender a utilizar TypeScript de manera efectiva en código real.
-
-Se utilizará especialmente para:
-
-- inferencia;
-- structural typing;
-- any y unknown;
-- diseño de tipos;
-- generics;
-- modelado de estados;
-- diseño de APIs;
-- evolución de código TypeScript;
-- prácticas y antipatrones.
-
-Su función dentro del curso es principalmente intermedia y avanzada.
-
-## Fundamentos y progresión principal
+Referencia principal para desarrollar criterio práctico sobre el sistema de tipos, inferencia, diseño de APIs, generics, evolución de tipos y uso efectivo de TypeScript.
 
 ### Learning TypeScript — Josh Goldberg
-
-Texto principal para construir los fundamentos del lenguaje y del sistema de tipos.
-
-Especialmente útil para:
-
-- introducción desde JavaScript;
-- tipos fundamentales;
-- unions;
-- objects;
-- functions;
-- interfaces;
-- classes;
-- narrowing;
-- generics;
-- declaration files;
-- configuración del compilador.
-
-Se prioriza durante los primeros bloques del learning path.
-
-## Programación TypeScript avanzada
+Base pedagógica para fundamentos, sistema de tipos, funciones, objetos, clases, narrowing, generics, declaration files y configuración del compilador.
 
 ### Programming TypeScript — Boris Cherny
+Referencia para profundizar en diseño de tipos, funciones, generics, programación asíncrona y construcción de aplicaciones TypeScript.
 
-Referencia para profundizar en el sistema de tipos y en el diseño de programas TypeScript.
+### TypeScript Quickly — Yakov Fain y Anton Moiseev
+Apoyo práctico para desarrollo de aplicaciones, tooling y adopción de TypeScript.
 
-Especialmente relevante para:
+## Referencias normativas y oficiales
 
-- funciones;
-- objetos;
-- clases;
-- generics;
-- tipos avanzados;
-- asincronía;
-- diseño de APIs;
-- patrones de programación;
-- seguridad mediante tipos.
+### TypeScript Handbook
+Referencia normativa-práctica principal para sintaxis, tipos, narrowing, generics, type manipulation, clases, módulos y declaration files.
 
-Se introduce progresivamente desde el nivel intermedio.
+### TypeScript TSConfig Reference
+Referencia para opciones del compilador y configuración de proyectos.
 
-## Perspectiva práctica
+### TypeScript Compiler API / TypeScript Wiki / código fuente de TypeScript
+Referencia para internals, AST, Program, SourceFile, Symbols, TypeChecker, transformations, Language Service y herramientas propias.
 
-### TypeScript Quickly — Yakov Fain, Anton Moiseev
+### ECMAScript Language Specification — ECMA-262
+Referencia normativa para la semántica JavaScript subyacente.
 
-Referencia complementaria orientada a aplicar TypeScript en programas y proyectos reales.
+### TC39
+Referencia para propuestas y evolución de ECMAScript.
 
-Se utilizará para reforzar:
+### Node.js Documentation
+Referencia para runtime Node.js, event loop, streams, buffers, worker_threads, child_process, diagnostics, performance y APIs de plataforma.
 
-- fundamentos;
-- orientación a objetos;
-- generics;
-- asincronía;
-- tooling;
-- organización de aplicaciones;
-- transición práctica desde JavaScript.
+### MDN Web Docs
+Referencia complementaria para APIs ECMAScript y Web Platform, Promises, iterators, Web Workers, SharedArrayBuffer, Atomics y seguridad web.
 
-## Documentación normativa y de consulta
+## Bibliografía complementaria por dominio
 
-### TypeScript Documentation
+### JavaScript: The Definitive Guide — David Flanagan
+Apoyo para semántica JavaScript, objetos, funciones, módulos, asincronía y APIs del lenguaje.
 
-La documentación oficial del proyecto TypeScript es la referencia normativa para sintaxis, comportamiento del sistema de tipos, configuración y funcionalidades modernas.
+### You Don't Know JS Yet — Kyle Simpson
+Profundización conceptual en scope, closures, tipos, coerción, objetos y comportamiento del runtime JavaScript.
 
-Áreas especialmente importantes:
+### Multithreaded JavaScript: Concurrency Beyond the Event Loop — Thomas Hunter II y Bryan English
+Referencia complementaria para concurrencia, Worker Threads, Web Workers, SharedArrayBuffer, Atomics y paralelismo.
 
-- The TypeScript Handbook;
-- Everyday Types;
-- Narrowing;
-- More on Functions;
-- Object Types;
-- Generics;
-- keyof Type Operator;
-- typeof Type Operator;
-- Indexed Access Types;
-- Conditional Types;
-- Mapped Types;
-- Template Literal Types;
-- Utility Types;
-- Modules;
-- Declaration Files;
-- TSConfig Reference;
-- Compiler API.
+## Uso de las fuentes
 
-### ECMAScript / JavaScript
-
-Cuando una característica pertenezca realmente a JavaScript y no a TypeScript, se debe distinguir explícitamente la semántica ECMAScript del análisis estático añadido por TypeScript.
-
-## Estrategia bibliográfica
-
-La progresión general será:
-
-Learning TypeScript
-→ TypeScript Quickly
-→ Programming TypeScript
-→ Effective TypeScript
-→ documentación oficial
-→ internals y Compiler API
-
-Los libros no se tratarán como especificaciones normativas. Cuando exista una diferencia entre una edición impresa y la versión moderna del lenguaje, prevalecerá la documentación oficial vigente.
-
-## Uso en las lecciones
-
-La sección `📚 LECTURA` debe seleccionar referencias relevantes para el contenido concreto de cada lección.
-
-No deben inventarse:
-
-- capítulos;
-- páginas;
-- secciones;
-- números de ítems;
-- citas textuales.
-
-Las referencias exactas solo se incluirán cuando hayan sido verificadas.
+- Los cuatro libros TypeScript constituyen la bibliografía pedagógica base.
+- La documentación oficial de TypeScript prevalece para comportamiento actual del compilador y del sistema de tipos.
+- ECMA-262 se usa cuando la cuestión pertenece a la semántica JavaScript.
+- Node.js Documentation se usa para comportamiento específico del runtime Node.js.
+- Las referencias exactas de capítulos o secciones solo deben indicarse cuando hayan sido verificadas.
+- No atribuir a un libro contenido que no se haya comprobado directamente.

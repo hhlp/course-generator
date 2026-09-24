@@ -21,6 +21,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 0.17 documentación en /usr/share/doc
 0.18 Red Hat documentation como fuente normativa
 0.19 laboratorio: construir un mapa de documentación local
+0.20 interfaces de ayuda asistida en RHEL, disponibilidad y límites [RHEL+]
 
 1. Laboratorio, instalación y Anaconda
 1.1 requisitos de laboratorio
@@ -441,6 +442,8 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 10.33 journal y sesiones
 10.34 troubleshooting de login
 10.35 laboratorio: investigar accesos y fallos de autenticación
+10.36 PolicyKit/polkit: autorización para acciones administrativas [RHEL+]
+10.37 diferencia entre sudo y polkit [RHEL+]
 
 11. Permisos, ownership, umask, ACL y privilegios
 11.1 DAC
@@ -579,6 +582,10 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 13.52 systemd-run introducción
 13.53 laboratorio: crear override seguro
 13.54 laboratorio: diagnosticar servicio fallido
+13.55 Cockpit: arquitectura, servicio y socket [RHEL+]
+13.56 Cockpit: instalar, acceder y administrar servicios [RHEL+]
+13.57 Cockpit: acceso seguro, permisos y diagnóstico [RHEL+]
+13.58 laboratorio: administrar un servicio con Cockpit [RHEL+]
 
 14. Boot, GRUB2, initramfs, dracut y recuperación
 14.1 secuencia de boot
@@ -711,6 +718,9 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 16.48 cache y clean
 16.49 troubleshooting DNF
 16.50 laboratorio: repositorio local y paquetes
+16.51 importar e inspeccionar claves de firma de RPM [RHEL+]
+16.52 comprobar firma de paquete y distinguirla de rpm -V [RHEL+]
+16.53 extraer contenido de un RPM sin instalarlo con rpm2cpio [RHEL+]
 
 17. Flatpak [FEDORA][LINUX+]
 17.1 qué es Flatpak
@@ -736,6 +746,11 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 17.21 flatpak repair
 17.22 troubleshooting
 17.23 laboratorio: gestionar aplicación Flatpak
+17.24 OSTree: objetos, deduplicación y relación con Flatpak [FEDORA][LINUX+]
+17.25 remotos Flatpak del sistema y del usuario [FEDORA][LINUX+]
+17.26 permisos: inspección y cambio con flatpak permission-show/override según versión [FEDORA][LINUX+]
+17.27 portales y acceso controlado a recursos del escritorio [FEDORA][LINUX+]
+17.28 laboratorio: evaluar y ajustar permisos de una aplicación [FEDORA][LINUX+]
 
 18. Discos, particiones y device discovery
 18.1 block devices
@@ -1029,6 +1044,9 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 24.50 network troubleshooting por capas
 24.51 laboratorio: servidor con IP estática
 24.52 laboratorio: ruta estática y diagnóstico DNS
+24.53 nmtui: editar y activar perfiles de conexión [RHEL+]
+24.54 comparación práctica de nmtui, nmcli y archivos de perfil [RHEL+]
+24.55 laboratorio: reparar conectividad con nmtui [RHEL+]
 
 25. OpenSSH y transferencia segura
 25.1 arquitectura SSH
@@ -1187,6 +1205,8 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 29.19 keyboard layout
 29.20 /etc/locale.conf
 29.21 laboratorio: tiempo y locale persistentes
+29.22 configurar un cliente Chrony y seleccionar fuentes [RHEL+]
+29.23 validar sincronización y diagnosticar pérdida de fuentes [RHEL+]
 
 30. Archivado, compresión, tar, cpio y rsync
 30.1 archivo vs backup
@@ -1244,6 +1264,10 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 31.23 firewalld y NFS visión administrativa
 31.24 laboratorio: mount persistente
 31.25 laboratorio: automount
+31.26 exportar un recurso NFS con /etc/exports [RHEL+]
+31.27 exportfs y verificación del servidor [RHEL+]
+31.28 NFSv4: permisos, SELinux y firewalld en el servidor [RHEL+]
+31.29 laboratorio de dos nodos: exportar, montar y automatizar con AutoFS [RHEL+]
 
 32. Podman, OCI, rootless y Quadlet
 32.1 containers vs VMs
@@ -1312,6 +1336,20 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 33.10 DNS dependency
 33.11 troubleshooting de servicio inaccesible
 33.12 laboratorio: diagnosticar servicio que funciona localmente pero no remotamente
+33.13 Apache HTTP Server: papel de httpd y arquitectura [RHEL+]
+33.14 instalar httpd y gestionar el servicio con systemd [RHEL+]
+33.15 configuración principal y directorios conf.d [RHEL+]
+33.16 DocumentRoot, Directory y contenidos estáticos [RHEL+]
+33.17 VirtualHost por nombre: ServerName y resolución local [RHEL+]
+33.18 comprobar sintaxis y configuración efectiva [RHEL+]
+33.19 publicar HTTP con firewalld [RHEL+]
+33.20 etiquetar contenido y diagnosticar AVC de SELinux [RHEL+]
+33.21 puertos alternativos y semanage port [RHEL+]
+33.22 access_log, error_log y journalctl [RHEL+]
+33.23 probar peticiones con curl y distinguir fallos HTTP, TCP y DNS [RHEL+]
+33.24 laboratorio de dos nodos: VirtualHost persistente con SELinux enforcing [RHEL+]
+33.25 TLS en Apache: introducción y límites del PATH [RHEL+]
+33.26 módulos, MPM, proxy y PHP-FPM: mapa hacia el curso web especializado [RHEL+]
 
 34. Storage troubleshooting y capacidad
 34.1 capacidad vs utilización
@@ -1360,6 +1398,8 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 35.22 journal del OOM
 35.23 nice/renice
 35.24 laboratorio: identificar cuello de botella
+35.25 tuned y tuned-adm: perfiles, estado y recomendaciones [RHEL+]
+35.26 laboratorio: aplicar, verificar y revertir un perfil tuned [RHEL+]
 
 36. Seguridad y hardening de servidor
 36.1 attack surface
@@ -1556,3 +1596,4 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 42.39 validar persistencia de toda la configuración
 42.40 auditoría final
 42.41 retrospectiva y mapa hacia RHCE/Ansible
+42.42 desplegar un VirtualHost Apache, abrir acceso y conservar SELinux enforcing [RHEL+]

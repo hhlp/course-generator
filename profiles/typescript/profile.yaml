@@ -1,152 +1,158 @@
-name: typescript
-title: "TypeScript — Learning Path 0 → Experto"
-language: es
-
-description: >
-  Curso progresivo y profundo de TypeScript, desde los fundamentos hasta
-  type-level programming, diseño de APIs type-safe, compilador, Compiler API
-  e internals.
+course:
+  title: "TypeScript — 0 → Experto"
+  language: "es"
+  level:
+    from: "0"
+    to: "experto"
+  objective: >-
+    Dominar TypeScript desde la semántica de JavaScript y ECMAScript hasta
+    su sistema de tipos, Node.js, asincronía, concurrencia, paralelismo,
+    memoria y runtime, diseño type-safe, compilador, AST, TypeChecker,
+    Compiler API, rendimiento y seguridad, comprendiendo compile time y runtime.
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
-audience:
-  level:
-    - principiante
-    - intermedio
-    - avanzado
-    - experto
-  prerequisites:
-    - fundamentos básicos de programación
-  recommended:
-    - conocimientos básicos de JavaScript
-
-goals:
-  - dominar TypeScript desde los fundamentos
-  - comprender profundamente su sistema de tipos
-  - distinguir compile time y runtime
-  - dominar narrowing, generics y tipos avanzados
-  - diseñar APIs type-safe
-  - trabajar con strict mode
-  - dominar módulos y declaration files
-  - comprender tsconfig y el compilador
-  - aplicar testing y type testing
-  - mantener proyectos TypeScript grandes
-  - comprender internals y Compiler API
-
 scope:
   include:
-    - JavaScript necesario para comprender TypeScript
+    - fundamentos de TypeScript
     - sistema de tipos
-    - funciones
-    - objetos
-    - clases
-    - narrowing
+    - narrowing y control-flow analysis
     - generics
     - mapped types
     - conditional types
     - template literal types
-    - utility types
-    - módulos
-    - declaration files
-    - tsconfig
-    - asincronía
-    - iterators
-    - generators
-    - manejo de errores
     - type-level programming
     - diseño de APIs type-safe
-    - interoperabilidad JavaScript
+    - ECMAScript relevante para TypeScript
+    - JavaScript emitido
     - runtime validation
     - Node.js
-    - testing
+    - asincronía
+    - event loop
+    - concurrencia
+    - paralelismo
+    - worker threads
+    - Web Workers
+    - SharedArrayBuffer y Atomics
+    - memoria y garbage collection
+    - motores JavaScript y V8
+    - testing y type testing
     - tooling
     - monorepos
     - librerías
-    - performance
+    - performance del compilador
+    - performance del runtime
+    - seguridad
     - compiler internals
-    - Compiler API
     - AST
-  exclude:
-    - curso específico de React
-    - curso específico de Angular
-    - curso específico de Vue
-    - curso específico de NestJS
-    - CSS
-    - diseño frontend
+    - TypeChecker
+    - Compiler API
+    - Language Service
+    - tsserver
+    - arquitectura TypeScript a gran escala
+  principles:
+    - "TypeScript no sustituye la semántica de JavaScript."
+    - "Separar siempre compile time de runtime."
+    - "Inspeccionar el JavaScript emitido cuando sea pedagógicamente relevante."
+    - "Diferenciar asincronía, concurrencia y paralelismo."
+    - "Diferenciar performance del type checker de performance del runtime."
+    - "Type safety no equivale a runtime safety."
 
 pedagogy:
-  style: profundo, práctico, progresivo y orientado a programación real
+  style: "profundo, práctico, progresivo y orientado a ingeniería real"
+  indentation: false
+  numbering: "single-level"
   lesson_structure:
-    required_opening: "🎯 OBJETIVO"
-    required_closing: "🧠 QUÉ DEBES RECORDAR"
-    optional_sections:
-      - "📚 LECTURA"
-      - "🧪 Laboratorio/ejemplos"
-      - "⚠️ Errores frecuentes"
-      - "💡 Idea importante"
-  reading:
-    heading: "📚 LECTURA"
-    exact_references_only_when_verified: true
-    sources:
-      - principal
-      - complementaria
-      - oficial
-      - profundizacion
-      - consulta
+    objective:
+      required: true
+      position: first
+      heading: "🎯 OBJETIVO"
+    reading:
+      required: true
+      heading: "📚 LECTURA"
+      categories:
+        - principal
+        - normativa
+        - runtime
+        - profundizacion
+        - consulta
+      exact_references_only_when_verified: true
+    lab:
+      required: false
+      heading: "🧪 Laboratorio/ejemplos"
+    common_errors:
+      required: false
+      heading: "⚠️ Errores frecuentes"
+    important_idea:
+      required: false
+      heading: "💡 Idea importante"
+    remember:
+      required: true
+      position: last
+      heading: "🧠 QUÉ DEBES RECORDAR"
+      min_items: 3
+      max_items: 7
   closing_requirements:
     min_points: 3
     max_points: 7
     avoid_repeating_objective: true
-  examples:
-    required_when_applicable: true
-    explain_runtime_vs_compile_time: true
-    prefer_strict_mode: true
+
+content_requirements:
+  preserve_path_order: true
+  no_unrequested_topics: true
+  code_examples:
+    required_when_useful: true
+    language: "typescript"
+    include_javascript_emit_when_relevant: true
+  compile_time_runtime:
+    explicitly_distinguish: true
   labs:
-    progressive: true
-    runnable_examples: true
-    prefer_linux_fedora: true
-  indentation: false
-  numbering: single-level
+    prefer_real_nodejs_examples: true
+    include_diagnostics_and_profiling_when_relevant: true
+  security:
+    distinguish_static_types_from_runtime_validation: true
 
 bibliography:
   primary:
-    - "Learning TypeScript — Josh Goldberg"
     - "Effective TypeScript — Dan Vanderkam"
+    - "Learning TypeScript — Josh Goldberg"
     - "Programming TypeScript — Boris Cherny"
     - "TypeScript Quickly — Yakov Fain, Anton Moiseev"
   normative:
-    - "TypeScript official documentation"
-  rule: >
-    No inventar páginas, capítulos o referencias exactas. Usar referencias
-    exactas únicamente cuando hayan sido verificadas.
-
-technical_principles:
-  strict_by_default: true
-  distinguish_runtime_compile_time: true
-  avoid_unnecessary_any: true
-  prefer_unknown_at_untrusted_boundaries: true
-  prefer_narrowing_over_assertions: true
-  teach_exhaustiveness: true
-  advanced_types_with_practical_purpose: true
+    - "TypeScript Handbook"
+    - "TypeScript TSConfig Reference"
+    - "TypeScript Compiler API / TypeScript source"
+    - "ECMAScript Language Specification (ECMA-262)"
+    - "Node.js Documentation"
+  complementary:
+    - "JavaScript: The Definitive Guide — David Flanagan"
+    - "You Don't Know JS Yet — Kyle Simpson"
+    - "Multithreaded JavaScript — Thomas Hunter II, Bryan English"
 
 final_project:
   required: true
   requirements:
-    - strict mode
+    - strict TypeScript
     - domain modeling
-    - generics
-    - discriminated unions
     - branded types
+    - discriminated unions
+    - generics
     - runtime validation
-    - typed errors
-    - asynchronous code
-    - testing
-    - type testing
-    - linting
-    - build
-    - declaration files
+    - Node.js
+    - asynchronous I/O
+    - cancellation
+    - controlled concurrency
+    - worker threads
+    - typed error handling
+    - tests
+    - type tests
+    - security boundaries
+    - CPU and memory profiling
+    - compiler performance analysis
+    - JavaScript emit analysis
+    - Compiler API or AST tooling
     - CI
     - documentation

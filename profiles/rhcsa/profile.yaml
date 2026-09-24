@@ -5,15 +5,17 @@ platform:
   primary: "Red Hat Enterprise Linux 10"
   extensions:
     - "Fedora"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 goal: "Administrar un servidor RHEL 10 real; RHCSA/EX200 es un hito, no el límite."
 certification:
   name: RHCSA
   exam: EX200
   policy: "Contrastar siempre el alcance del examen con los objetivos oficiales vigentes."
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
 pedagogy:
   opening: "🎯 OBJETIVO"
   closing: "🧠 QUÉ DEBES RECORDAR"
@@ -67,6 +69,9 @@ operations:
     - software
     - scheduling
     - NFS/AutoFS
+    - Apache_httpd
+    - Cockpit
+    - tuned
     - containers
     - performance
     - hardening
