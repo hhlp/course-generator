@@ -6,7 +6,7 @@ from pathlib import Path
 
 from .models import Lesson
 
-LESSON_RE = re.compile(r"^\s*(?P<id>\d+\.\d+)\s*(?:[-—–:]\s*)?(?P<title>.+?)\s*$")
+LESSON_RE = re.compile(r"^\s*(?P<id>\d+(?:\.\d+)+)\s*(?:[-—–:]\s*)?(?P<title>.+?)\s*$")
 BLOCK_RE = re.compile(r"^\s*(?P<block>\d+)\.\s+(?P<title>.+?)\s*$")
 
 
@@ -53,7 +53,9 @@ def parse_lessons(path: Path, *, require_single_block: bool = True) -> list[Less
         seen.add(lesson_id)
 
     if not lessons:
-        raise PathParseError(f"No se encontraron lecciones con formato X.Y en {path}")
+        raise PathParseError(
+            f"No se encontraron lecciones con formato X.Y[.Z...] en {path}"
+        )
 
     blocks = {lesson.block for lesson in lessons}
     if require_single_block and len(blocks) != 1:
@@ -131,25 +133,39 @@ def parse_blocks(path: Path) -> list[PathBlock]:
 
 
 def validate_block_lessons(block: PathBlock) -> None:
-    """Comprueba X.1, X.2, ... sin huecos dentro de un bloque."""
-    lesson_numbers: list[int] = []
+    """Comprueba numeración jerárquica continua entre hermanos.
+
+    Admite X.Y, X.Y.Z, X.Y.Z.W, ... y valida cada nivel
+    independientemente. Por ejemplo, 7.13, 7.14, 7.14.1,
+    7.14.2, 7.15 es válido.
+    """
+    lesson_ids: list[tuple[int, ...]] = []
 
     for line in block.lines:
         match = LESSON_RE.match(line.strip())
-        if match:
-            block_number, lesson_number = match.group("id").split(".", 1)
-            if int(block_number) == block.number:
-                lesson_numbers.append(int(lesson_number))
+        if not match:
+            continue
 
-    if not lesson_numbers:
+        parts = tuple(int(part) for part in match.group("id").split("."))
+        if parts[0] == block.number:
+            lesson_ids.append(parts)
+
+    if not lesson_ids:
         raise PathParseError(f"El bloque {block.number} no contiene lecciones.")
 
-    expected = list(range(1, lesson_numbers[-1] + 1))
-    if lesson_numbers != expected:
-        raise PathParseError(
-            f"Bloque {block.number}: numeración de lecciones no continua. "
-            f"Encontrada: {lesson_numbers}; esperada: {expected}"
-        )
+    siblings: dict[tuple[int, ...], list[int]] = {}
+    for parts in lesson_ids:
+        parent = parts[:-1]
+        siblings.setdefault(parent, []).append(parts[-1])
+
+    for parent, numbers in siblings.items():
+        expected = list(range(1, numbers[-1] + 1))
+        if numbers != expected:
+            parent_id = ".".join(str(part) for part in parent)
+            raise PathParseError(
+                f"Bloque {block.number}: numeración no continua bajo {parent_id}. "
+                f"Encontrada: {numbers}; esperada: {expected}"
+            )
 
 
 def render_block(block: PathBlock) -> str:

@@ -7,7 +7,7 @@ course:
     to: "C2"
     framework: "CEFR"
   scope: "grammar-only"
-  primary_reference: "Advanced Grammar in Use 4th Edition -  Martin Hewings"
+  primary_reference: "Advanced Grammar in Use, 4th Edition — Martin Hewings"
   independent_course: true
   block_start: 0
 
@@ -35,8 +35,8 @@ curriculum:
     integrated_skills: false
   incidental_context_allowed: true
   incidental_context_rule: >-
-    Vocabulary and contextual sentences may be used to demonstrate grammar,
-    but they must never become independent lesson objectives.
+    El vocabulario y las oraciones contextuales pueden utilizarse para demostrar
+    gramática, pero nunca deben convertirse en objetivos independientes de la lección.
 
 level_model:
   type: "continuum"
@@ -45,16 +45,28 @@ level_model:
     - recognition
     - form
     - meaning
+    - use
     - contrast
     - constraints
+    - exceptions
     - manipulation
     - grammatical_choice
     - structural_analysis
     - error_diagnosis
     - mastery
+  global_progression:
+    A2: "introduce and establish"
+    B1: "consolidate and extend"
+    B2: "contrast and use complex structures"
+    C1: "advanced structures and exceptions"
+    C2: "mastery, nuance and grammatical analysis"
+  avoid_repetition_without_new_depth: true
 
 pedagogy:
   style: "profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical"
+  explanation_language: "Spanish"
+  grammar_terminology: "English"
+  examples_language: "English"
   indentation: false
   numbering: "single-level"
   explain_terminology: true
@@ -65,6 +77,8 @@ pedagogy:
   compare_alternative_constructions: true
   error_analysis: true
   structural_analysis: true
+  require_natural_examples: true
+  require_original_exercises: true
   avoid_unnecessary_repetition: true
 
 lesson_structure:
@@ -75,34 +89,42 @@ lesson_structure:
   reading:
     required: true
     heading: "📚 LECTURA"
+    purpose: "referencia bibliográfica gramatical; no actividad de comprensión lectora"
     categories:
       - principal
-      - referencia
+      - normativa
       - profundizacion
       - consulta
     exact_references_only_when_verified: true
   explanation:
     required: true
+    heading: "📘 GRAMMAR"
     requirements:
-      - "Definir la estructura gramatical"
-      - "Mostrar su forma o patrón cuando sea útil"
-      - "Explicar significado y función"
-      - "Explicar restricciones importantes"
-      - "Contrastar construcciones próximas cuando corresponda"
+      - "Definir la estructura gramatical con precisión."
+      - "Mostrar su forma o patrón cuando sea útil."
+      - "Explicar significado, función y elección gramatical."
+      - "Explicar restricciones y excepciones importantes."
+      - "Contrastar construcciones próximas cuando corresponda."
+      - "Relacionar forma, significado, estructura y contexto gramatical."
   examples:
     required: true
-    heading: "🧪 Laboratorio/ejemplos"
+    heading: "💬 EXAMPLES"
     requirements:
-      - "Incluir ejemplos correctos"
-      - "Incluir contrastes mínimos cuando sean útiles"
-      - "Explicar por qué cambia el significado o la estructura"
+      - "Incluir ejemplos naturales y gramaticalmente precisos."
+      - "Incluir contrastes mínimos cuando sean útiles."
+      - "Explicar por qué cambia el significado, la aceptabilidad o la estructura."
+      - "Permitir ejemplos avanzados adecuados a C1-C2."
+  practice:
+    required: true
+    heading: "🧪 Laboratorio/ejemplos"
+    purpose: "manipulación, transformación, contraste, diagnóstico y análisis gramatical avanzado"
   common_errors:
     required: false
     heading: "⚠️ Errores frecuentes"
   important_idea:
     required: false
     heading: "💡 Idea importante"
-  analysis:
+  grammatical_analysis:
     required: false
     heading: "🔬 ANÁLISIS GRAMATICAL"
     use_when:
@@ -110,6 +132,7 @@ lesson_structure:
       - "exista ambigüedad estructural"
       - "sea necesario distinguir complemento y adjunto"
       - "sea útil identificar constituyentes o funciones"
+      - "la elección entre construcciones dependa de restricciones sintácticas o semánticas"
   remember:
     required: true
     position: last
@@ -137,9 +160,16 @@ content_rules:
   no_independent_writing_lessons: true
   no_independent_speaking_lessons: true
   no_generic_conversation_lessons: true
+  no_exam_preparation_blocks: true
+  include_common_errors: true
+  include_exceptions_when_level_relevant: true
+  include_sentence_analysis: true
+  include_transformations: true
+  include_consolidation_lessons: true
   include_checkpoints: true
   include_final_mastery_project: true
-  preserve_c1_c2_continuity: true
+  preserve_english_examples: true
+  preserve_level_continuity: true
 
 references:
   principal:
@@ -161,7 +191,21 @@ references:
     exact_references_only_when_verified: true
     never_invent_page_numbers: true
     never_invent_unit_numbers: true
+    distinguish_primary_from_supplementary: true
     paraphrase_sources: true
+    do_not_copy_source_exercises: true
+
+generation:
+  lesson_depth: "high"
+  standalone_lessons: true
+  cumulative_progression: true
+  avoid_unnecessary_repetition: true
+  preserve_cross_references: true
+  checkpoints:
+    - "C1 advanced grammar"
+    - "C1 → C2 progression"
+    - "C2 mastery"
+    - "Final C1 → C2 integration"
 
 quality_checks:
   require_objective_first: true
@@ -172,3 +216,23 @@ quality_checks:
   verify_contrasts_are_semantically_accurate: true
   verify_no_skill_block_drift: true
   verify_no_unverified_exact_bibliographic_reference: true
+  verify_level_boundaries: true
+  verify_constraints_are_explained: true
+  verify_acceptability_judgments_are_explained: true
+
+level_specific:
+  boundaries:
+    from: "C1"
+    to: "C2"
+    rule: >-
+      Evitar repetir contenidos B1-B2 salvo cuando se estudien con nueva profundidad,
+      restricciones, excepciones, variación, análisis estructural o elección gramatical avanzada.
+  required_topics:
+    preserve_c1_c2_continuity: true
+    advanced_constraints: true
+    alternative_constructions: true
+    grammatical_choice: true
+    structural_analysis: true
+    error_diagnosis: true
+    acceptability_analysis: true
+    final_mastery_project: true

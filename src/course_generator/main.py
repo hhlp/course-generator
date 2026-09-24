@@ -30,7 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         help="Nombre del perfil definido en profiles/<nombre>/",
     )
-    p.add_argument("--lesson", help="Generar sólo una lección, p. ej. 1.7")
+    p.add_argument("--lesson", help="Generar sólo una lección, p. ej. 1.7 o 1.7.2")
     p.add_argument(
         "--resume", action="store_true", help="Continúa omitiendo lecciones completas"
     )
@@ -87,7 +87,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--check-lessons",
         action="store_true",
-        help="Comprueba numeración continua X.1, X.2, ... al separar bloques",
+        help="Comprueba numeración jerárquica continua X.Y[.Z...] al separar bloques",
     )
     p.add_argument("--no-zip", action="store_true", help="No comprimir al finalizar")
     p.add_argument(
@@ -165,7 +165,7 @@ def _main() -> None:
 
     if inspection_requested and len(selected) != 1:
         raise SystemExit(
-            "Las opciones de inspección requieren una única lección; usa --lesson X.Y."
+            "Las opciones de inspección requieren una única lección; usa --lesson X.Y[.Z...]."
         )
 
     if inspection_requested:

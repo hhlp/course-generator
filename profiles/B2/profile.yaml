@@ -8,25 +8,75 @@ course:
     framework: "CEFR"
   scope: "grammar-only"
   primary_reference: "English Grammar in Use, Fifth Edition — Raymond Murphy"
+  independent_course: true
+  block_start: 0
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
+objective:
+  primary: >-
+    Consolidar y ampliar la gramática inglesa desde B1 hasta B2 mediante un
+    estudio progresivo y contrastivo de forma, significado, uso, restricciones,
+    transformaciones y relaciones entre estructuras gramaticales.
+
+curriculum:
+  grammar_required: true
+  independent_strands:
+    vocabulary: false
+    pronunciation: false
+    reading: false
+    listening: false
+    writing: false
+    speaking: false
+    integrated_skills: false
+  incidental_context_allowed: true
+  incidental_context_rule: >-
+    El vocabulario y las oraciones contextuales pueden utilizarse para demostrar
+    gramática, pero nunca deben convertirse en objetivos independientes de la lección.
+
+level_model:
+  type: "continuum"
+  artificial_b1_b2_split: false
+  progression:
+    - recognition
+    - form
+    - meaning
+    - use
+    - contrast
+    - constraints
+    - exceptions
+    - transformation
+    - sentence_analysis
+    - integration
+  global_progression:
+    A2: "introduce and establish"
+    B1: "consolidate and extend"
+    B2: "contrast and use complex structures"
+    C1: "advanced structures and exceptions"
+    C2: "mastery, nuance and grammatical analysis"
+  avoid_repetition_without_new_depth: true
+
 pedagogy:
   style: "profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical"
+  explanation_language: "Spanish"
+  grammar_terminology: "English"
+  examples_language: "English"
   indentation: false
   numbering: "single-level"
-  progression:
-    - forma
-    - significado
-    - uso
-    - contraste
-    - excepciones
-    - errores_frecuentes
-    - practica
-    - integracion
+  explain_terminology: true
+  contrastive_examples: true
+  positive_and_negative_examples: true
+  explain_form_meaning_relationship: true
+  explain_constraints: true
+  compare_alternative_constructions: true
+  error_analysis: true
+  structural_analysis: true
+  require_natural_examples: true
+  require_original_exercises: true
+  avoid_unnecessary_repetition: true
 
 lesson_structure:
   objective:
@@ -36,6 +86,7 @@ lesson_structure:
   reading:
     required: true
     heading: "📚 LECTURA"
+    purpose: "referencia bibliográfica gramatical; no actividad de comprensión lectora"
     categories:
       - principal
       - normativa
@@ -44,6 +95,7 @@ lesson_structure:
     exact_references_only_when_verified: true
   explanation:
     required: true
+    heading: "📘 GRAMMAR"
     requirements:
       - "Explicar la estructura gramatical con precisión."
       - "Distinguir forma, significado y uso."
@@ -53,19 +105,29 @@ lesson_structure:
       - "Incluir excepciones y restricciones relevantes al nivel."
   examples:
     required: true
+    heading: "💬 EXAMPLES"
     requirements:
       - "Usar ejemplos naturales en inglés."
       - "Aumentar progresivamente la dificultad."
+      - "Incluir contrastes mínimos cuando sean útiles."
       - "Incluir análisis o transformación cuando ayude a entender la regla."
-  lab:
-    required: false
+  practice:
+    required: true
     heading: "🧪 Laboratorio/ejemplos"
+    purpose: "práctica gramatical, transformaciones, contrastes y análisis de forma, significado y uso"
   common_errors:
     required: false
     heading: "⚠️ Errores frecuentes"
   important_idea:
     required: false
     heading: "💡 Idea importante"
+  grammatical_analysis:
+    required: false
+    heading: "🔬 ANÁLISIS GRAMATICAL"
+    use_when:
+      - "sea útil identificar constituyentes y funciones"
+      - "una transformación requiera explicar relaciones entre cláusulas"
+      - "sea necesario justificar orden, complemento, adjunto o elección estructural"
   remember:
     required: true
     position: last
@@ -74,35 +136,48 @@ lesson_structure:
     max_items: 7
     avoid_repeating_objective: true
 
-grammar_policy:
+examples:
+  target_language: "English"
+  explanation_language: "Spanish"
+  require_natural_examples: true
+  allow_advanced_examples: false
+  prefer_contrast_pairs: true
+  mark_ungrammatical_examples: true
+  ungrammatical_marker: "*"
+  explain_acceptability: true
+
+content_rules:
   grammar_only: true
-  explain_terminology_progressively: true
-  contrastive_teaching: true
+  no_independent_vocabulary_lessons: true
+  no_independent_pronunciation_lessons: true
+  no_independent_reading_lessons: true
+  no_independent_listening_lessons: true
+  no_independent_writing_lessons: true
+  no_independent_speaking_lessons: true
+  no_generic_conversation_lessons: true
+  no_exam_preparation_blocks: true
+  no_independent_collocation_training: true
   include_common_errors: true
   include_exceptions_when_level_relevant: true
   include_sentence_analysis: true
   include_transformations: true
   include_consolidation_lessons: true
+  include_checkpoints: true
   preserve_english_examples: true
 
-excluded_blocks:
-  - reading
-  - listening
-  - speaking
-  - pronunciation
-  - writing
-  - general_vocabulary
-  - independent_collocation_training
-  - exam_preparation
-
 references:
-  primary:
-    - "Raymond Murphy — English Grammar in Use, Fifth Edition"
-  policy:
-    exact_unit_references_only_when_verified: true
+  principal:
+    - author: "Raymond Murphy"
+      title: "English Grammar in Use"
+      edition: "Fifth Edition"
+      role: "principal pedagogical grammar and backbone"
+  citation_policy:
+    exact_references_only_when_verified: true
     never_invent_page_numbers: true
-    never_invent_chapter_numbers: true
+    never_invent_unit_numbers: true
     distinguish_primary_from_supplementary: true
+    paraphrase_sources: true
+    do_not_copy_source_exercises: true
 
 generation:
   lesson_depth: "high"
@@ -115,3 +190,28 @@ generation:
     - "B1 grammar"
     - "B2 grammar"
     - "Final B1 → B2 integration"
+
+quality_checks:
+  require_objective_first: true
+  require_remember_last: true
+  verify_lesson_is_grammar_focused: true
+  verify_examples_support_grammar_target: true
+  verify_terminology_is_explained: true
+  verify_contrasts_are_semantically_accurate: true
+  verify_no_skill_block_drift: true
+  verify_no_unverified_exact_bibliographic_reference: true
+  verify_level_boundaries: true
+
+level_specific:
+  boundaries:
+    from: "B1"
+    to: "B2"
+    rule: >-
+      Consolidar estructuras introducidas en A2 solo cuando exista nueva profundidad,
+      contraste, restricción, excepción o integración propia de B1-B2.
+  required_topics:
+    contrastive_teaching: true
+    exceptions_when_level_relevant: true
+    sentence_analysis: true
+    transformations: true
+    consolidation: true

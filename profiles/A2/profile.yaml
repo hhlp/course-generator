@@ -2,209 +2,286 @@ course:
   title: "English Grammar A2"
   language: "es"
   target_language: "en"
-  level: "A2"
-  framework: "CEFR"
+  level:
+    from: "A2"
+    to: "A2"
+    framework: "CEFR"
   scope: "grammar-only"
   primary_reference: "Basic Grammar in Use — Raymond Murphy"
-
+  independent_course: true
+  block_start: 0
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
-scope:
-  include:
-    - grammar
-    - grammatical form
-    - grammatical meaning
-    - sentence structure
-    - contrasts
-    - transformations
-    - examples
-    - common errors
-    - controlled practice
-  exclude_as_independent_skills:
-    - reading
-    - listening
-    - speaking
-    - writing
+objective:
+  primary: >-
+    Desarrollar una base sólida de gramática inglesa A2 mediante el estudio
+    progresivo de la forma, el significado y el uso de las estructuras,
+    preparando la transición posterior hacia B1 sin introducir contenidos
+    avanzados antes de tiempo.
 
-progression:
-  A2: "introduce and establish"
-  B1: "consolidate and extend"
-  B2: "contrast and use complex structures"
-  C1: "advanced structures and exceptions"
-  C2: "mastery, nuance and grammatical analysis"
+curriculum:
+  grammar_required: true
+  independent_strands:
+    vocabulary: false
+    pronunciation: false
+    reading: false
+    listening: false
+    writing: false
+    speaking: false
+    integrated_skills: false
+  incidental_context_allowed: true
+  incidental_context_rule: >-
+    El vocabulario y las oraciones contextuales pueden utilizarse para demostrar
+    gramática, pero nunca deben convertirse en objetivos independientes de la lección.
+
+level_model:
+  type: "single-level"
+  progression:
+    - recognition
+    - form
+    - meaning
+    - use
+    - contrast
+    - transformation
+    - controlled_practice
+    - consolidation
+  global_progression:
+    A2: "introduce and establish"
+    B1: "consolidate and extend"
+    B2: "contrast and use complex structures"
+    C1: "advanced structures and exceptions"
+    C2: "mastery, nuance and grammatical analysis"
   avoid_repetition_without_new_depth: true
 
 pedagogy:
-  style: "profundo, práctico, progresivo y centrado exclusivamente en gramática"
+  style: "profundo, práctico, progresivo, contrastivo y centrado exclusivamente en gramática"
   explanation_language: "Spanish"
   grammar_terminology: "English"
   examples_language: "English"
   indentation: false
   numbering: "single-level"
+  explain_terminology: true
+  contrastive_examples: true
+  positive_and_negative_examples: true
+  explain_form_meaning_relationship: true
+  explain_constraints: true
+  compare_alternative_constructions: true
+  error_analysis: true
+  structural_analysis: false
   require_natural_examples: true
   require_original_exercises: true
-  contrast_confusable_structures: true
+  avoid_unnecessary_repetition: true
 
 lesson_structure:
   objective:
     required: true
     position: first
     heading: "🎯 OBJETIVO"
-
   reading:
-    required: false
+    required: true
     heading: "📚 LECTURA"
-    purpose: "bibliographic grammar reference only; not a reading-comprehension activity"
+    purpose: "referencia bibliográfica gramatical; no actividad de comprensión lectora"
+    categories:
+      - principal
+      - normativa
+      - profundizacion
+      - consulta
     exact_references_only_when_verified: true
-
-  grammar:
+  explanation:
     required: true
     heading: "📘 GRAMMAR"
     requirements:
-      - "define the grammatical structure"
-      - "show the form or pattern"
-      - "explain core use and meaning"
-      - "include affirmative, negative and interrogative forms when applicable"
-
+      - "Definir la estructura gramatical."
+      - "Mostrar la forma o patrón."
+      - "Explicar significado y uso principal."
+      - "Incluir formas afirmativa, negativa e interrogativa cuando corresponda."
+      - "Explicar auxiliares, orden y contracciones cuando sean relevantes."
+      - "Contrastar estructuras que suelen confundirse."
   examples:
     required: true
     heading: "💬 EXAMPLES"
     requirements:
-      - "multiple natural examples"
-      - "examples must demonstrate the target structure"
-      - "avoid examples requiring unexplained advanced grammar"
-
-  contrast:
-    required: false
-    heading: "🔄 CONTRAST"
-    use_when:
-      - "two or more structures are commonly confused"
-      - "the lesson explicitly compares grammatical alternatives"
-
-  lab:
+      - "Usar múltiples ejemplos naturales en inglés."
+      - "Demostrar claramente la estructura objetivo."
+      - "Evitar ejemplos que dependan de gramática avanzada todavía no explicada."
+  practice:
     required: true
-    heading: "🧪 PRACTICE"
-    purpose: "controlled grammar exercises, transformations and form/meaning practice"
-
+    heading: "🧪 Laboratorio/ejemplos"
+    purpose: "ejercicios controlados, transformaciones y práctica de forma, significado y uso"
   common_errors:
     required: false
-    heading: "⚠️ COMMON ERRORS"
-
+    heading: "⚠️ Errores frecuentes"
   important_idea:
     required: false
-    heading: "💡 IMPORTANT IDEA"
-
+    heading: "💡 Idea importante"
+  grammatical_analysis:
+    required: false
+    heading: "🔬 ANÁLISIS GRAMATICAL"
+    use_when:
+      - "un análisis simple ayude a identificar sujeto, verbo, objeto, auxiliar o complemento"
+      - "sea útil explicar el orden de palabras o una transformación"
   remember:
     required: true
     position: last
-    heading: "🧠 WHAT YOU SHOULD REMEMBER"
+    heading: "🧠 QUÉ DEBES RECORDAR"
     min_items: 3
     max_items: 7
     avoid_repeating_objective: true
 
-a2_boundaries:
-  reported_speech:
-    include:
-      - "basic reported statements"
-      - "say vs tell"
-      - "basic tense changes"
-      - "pronoun and time-expression changes"
-      - "reported questions"
-      - "reported commands"
-      - "basic backshift"
-    defer:
-      B1_B2:
-        - "full systematic backshift"
-        - "advanced reporting verbs"
-        - "advanced reporting patterns"
+examples:
+  target_language: "English"
+  explanation_language: "Spanish"
+  require_natural_examples: true
+  allow_advanced_examples: false
+  prefer_contrast_pairs: true
+  mark_ungrammatical_examples: true
+  ungrammatical_marker: "*"
+  explain_acceptability: true
 
-  conditionals:
-    include:
-      - "Zero Conditional"
-      - "First Conditional"
-    defer:
-      B1:
-        - "Second Conditional"
-      B2:
-        - "Third Conditional"
-      B2_C1:
-        - "Mixed Conditionals"
+content_rules:
+  grammar_only: true
+  no_independent_vocabulary_lessons: true
+  no_independent_pronunciation_lessons: true
+  no_independent_reading_lessons: true
+  no_independent_listening_lessons: true
+  no_independent_writing_lessons: true
+  no_independent_speaking_lessons: true
+  no_generic_conversation_lessons: true
+  no_exam_preparation_blocks: true
+  include_common_errors: true
+  include_sentence_analysis: true
+  include_transformations: true
+  include_consolidation_lessons: true
+  include_checkpoints: true
+  preserve_english_examples: true
 
-  passive:
-    include:
-      - "Active vs Passive"
-      - "be + past participle"
-      - "Present Simple Passive"
-      - "Past Simple Passive"
-      - "Future Passive"
-      - "Passive with basic modal verbs"
-      - "Present Continuous Passive as introduction"
-      - "by + agent"
-      - "agent omission"
-      - "basic Active → Passive transformations"
-
-special_topics:
-  existential_there:
-    required_sequence:
-      - "there is / there are"
-      - "there was / there were"
-      - "there has been / there have been"
-      - "there will be"
-      - "there + modal + be"
-    require_there_will_be_explicitly: true
-
-  auxiliary_verbs:
-    distinguish_main_vs_auxiliary:
-      - "be"
-      - "have"
-      - "do"
-
-  determiners_pronouns:
-    intentional_overlap: true
-    families:
-      - "some / any / no / every compounds"
-      - "both / either / neither"
-      - "all / most / each / every"
-      - "another / other / others / the other / the others"
-
-
-  phrasal_verbs:
-    level: "introductory A2"
-    include:
-      - "verb + particle"
-      - "transitive vs intransitive"
-      - "separable vs inseparable"
-      - "noun-object placement"
-      - "pronoun-object placement"
-      - "common A2 phrasal verbs"
-    avoid_unbounded_vocabulary_lists: true
-
-  indirect_questions:
-    include:
-      - "direct vs indirect question word order"
-      - "Do you know where...?"
-      - "I don't know what..."
-      - "question word + subject + verb"
-
-  two_object_verbs:
-    include:
-      - "verb + indirect object + direct object"
-      - "verb + direct object + to + indirect object"
-      - "pronoun-sensitive patterns such as Give it to me"
-
-  would_rather:
-    include:
-      - "would rather + base form"
-    advanced_hypothetical_patterns_deferred: true
-bibliography_policy:
+references:
   principal:
-    - "Basic Grammar in Use — Raymond Murphy"
+    - author: "Raymond Murphy"
+      title: "Basic Grammar in Use - fourth edition"
+      role: "principal pedagogical grammar and backbone"
   later_levels:
-    - "English Grammar in Use — Raymond Murphy"
-    - "Advanced Grammar in Use — Martin Hewings"
-  exact_page_or_unit_references_only_when_verified: true
-  do_not_copy_source_exercises: true
+    - author: "Raymond Murphy"
+      title: "English Grammar in Use"
+      role: "B1-B2 continuation"
+    - author: "Martin Hewings"
+      title: "Advanced Grammar in Use"
+      role: "C1-C2 continuation"
+  citation_policy:
+    exact_references_only_when_verified: true
+    never_invent_page_numbers: true
+    never_invent_unit_numbers: true
+    paraphrase_sources: true
+    do_not_copy_source_exercises: true
+
+generation:
+  lesson_depth: "high"
+  standalone_lessons: true
+  cumulative_progression: true
+  avoid_unnecessary_repetition: true
+  preserve_cross_references: true
+  checkpoints:
+    - "A2 foundations"
+    - "A2 consolidation"
+    - "A2 → B1 transition"
+
+quality_checks:
+  require_objective_first: true
+  require_remember_last: true
+  verify_lesson_is_grammar_focused: true
+  verify_examples_support_grammar_target: true
+  verify_terminology_is_explained: true
+  verify_contrasts_are_semantically_accurate: true
+  verify_no_skill_block_drift: true
+  verify_no_unverified_exact_bibliographic_reference: true
+  verify_level_boundaries: true
+
+level_specific:
+  boundaries:
+    reported_speech:
+      include:
+        - "basic reported statements"
+        - "say vs tell"
+        - "basic tense changes"
+        - "pronoun and time-expression changes"
+        - "reported questions"
+        - "reported commands"
+        - "basic backshift"
+      defer:
+        B1_B2:
+          - "full systematic backshift"
+          - "advanced reporting verbs"
+          - "advanced reporting patterns"
+    conditionals:
+      include:
+        - "Zero Conditional"
+        - "First Conditional"
+      defer:
+        B1:
+          - "Second Conditional"
+        B2:
+          - "Third Conditional"
+        B2_C1:
+          - "Mixed Conditionals"
+    passive:
+      include:
+        - "Active vs Passive"
+        - "be + past participle"
+        - "Present Simple Passive"
+        - "Past Simple Passive"
+        - "Future Passive"
+        - "Passive with basic modal verbs"
+        - "Present Continuous Passive as introduction"
+        - "by + agent"
+        - "agent omission"
+        - "basic Active → Passive transformations"
+  required_topics:
+    existential_there:
+      required_sequence:
+        - "there is / there are"
+        - "there was / there were"
+        - "there has been / there have been"
+        - "there will be"
+        - "there + modal + be"
+      require_there_will_be_explicitly: true
+    auxiliary_verbs:
+      distinguish_main_vs_auxiliary:
+        - "be"
+        - "have"
+        - "do"
+    determiners_pronouns:
+      intentional_overlap: true
+      families:
+        - "some / any / no / every compounds"
+        - "both / either / neither"
+        - "all / most / each / every"
+        - "another / other / others / the other / the others"
+    phrasal_verbs:
+      level: "introductory A2"
+      include:
+        - "verb + particle"
+        - "transitive vs intransitive"
+        - "separable vs inseparable"
+        - "noun-object placement"
+        - "pronoun-object placement"
+        - "common A2 phrasal verbs"
+      avoid_unbounded_vocabulary_lists: true
+    indirect_questions:
+      include:
+        - "direct vs indirect question word order"
+        - "Do you know where...?"
+        - "I don't know what..."
+        - "question word + subject + verb"
+    two_object_verbs:
+      include:
+        - "verb + indirect object + direct object"
+        - "verb + direct object + to + indirect object"
+        - "pronoun-sensitive patterns such as Give it to me"
+    would_rather:
+      include:
+        - "would rather + base form"
+      advanced_hypothetical_patterns_deferred: true
