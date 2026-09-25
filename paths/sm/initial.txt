@@ -1,7 +1,3 @@
-
-
-
-
 0. Fundamentos de Agile, complejidad y Scrum
 0.1 qué es Agile
 0.2 Agile Manifesto: valores
