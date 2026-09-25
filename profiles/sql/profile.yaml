@@ -1,8 +1,8 @@
 name: sql
 title: "SQL — 0 a Experto"
 description: >
-  Curso profundo de SQL como lenguaje de consulta, transformación, análisis y
-  manipulación de datos, usando PostgreSQL como plataforma práctica. Excluye
+  Curso profundo de SQL como lenguaje de consulta, transformación, análisis,
+  manipulación y programación de datos, usando PostgreSQL como plataforma práctica. Excluye
   normalización y diseño relacional, cubiertos por el PATH Database Design.
 
 language: es
@@ -14,6 +14,18 @@ level:
 platform:
   primary: PostgreSQL
   cli: psql
+
+dialect_policy:
+  primary: PostgreSQL
+  sql_concept_first: true
+  postgresql_implementation_second: true
+  prefer_standard_sql_when_reasonable: true
+  explain_differences_when_relevant: true
+  label_postgresql_specific_features: true
+  avoid:
+    - silently using MySQL syntax
+    - silently using MariaDB syntax
+    - presenting PostgreSQL extensions as standard SQL
 
 scope:
   include:
@@ -34,6 +46,27 @@ scope:
     - views
     - materialized views
     - temporary tables
+    - automatically updatable views
+    - WITH CHECK OPTION
+    - security_invoker and security_barrier views
+    - INSTEAD OF triggers on views
+    - PostgreSQL built-in functions and operators
+    - PostgreSQL range and multirange types
+    - PostgreSQL full-text search
+    - PostgreSQL SQL/JSON
+    - CREATE FUNCTION
+    - SQL-language functions
+    - set-returning functions
+    - PL/pgSQL
+    - stored functions
+    - stored procedures
+    - CREATE PROCEDURE and CALL
+    - trigger functions
+    - row and statement triggers
+    - transition relations
+    - event triggers from the SQL-programming perspective
+    - dynamic SQL
+    - PL/pgSQL exception handling
     - DML
     - transactions from SQL
     - locking from SQL
@@ -47,6 +80,7 @@ scope:
     - query optimization
     - SQL correctness
     - SQL maintainability
+    - PostgreSQL routine safety and maintainability
 
   exclude:
     - database normalization
@@ -100,12 +134,61 @@ pedagogy:
     - query-plan evidence
     - progressive laboratories
 
+laboratories:
+  primary_dataset:
+    name: "PostgreSQL Sample Database"
+    provider: Neon
+    url: "https://neon.com/postgresql/getting-started/sample-database"
+    role: canonical
+  prefer_primary_dataset: true
+  allow_minimal_ad_hoc_datasets: true
+  ad_hoc_dataset_purpose:
+    - edge cases
+    - semantic demonstrations
+    - controlled experiments
+  execution:
+    - psql
+    - SQL files
+  use_for:
+    - examples
+    - exercises
+    - joins
+    - aggregation
+    - subqueries
+    - CTEs
+    - set operations
+    - window functions
+    - views
+    - materialized views
+    - SQL functions
+    - PL/pgSQL functions
+    - procedures
+    - triggers when reproducible
+    - reproducible DML
+    - EXPLAIN
+    - EXPLAIN ANALYZE
+    - query optimization
+
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
 references:
+  authoritative:
+    - name: "PostgreSQL Official Documentation"
+      role: authoritative
+      purpose:
+        - syntax
+        - semantics
+        - PostgreSQL behavior
+        - query planning
+        - query optimization
+        - PostgreSQL functions and operators
+        - PL/pgSQL semantics
+        - procedures and triggers
+        - views and materialized views
+
   primary:
     - "Learning SQL, 3rd Edition — Alan Beaulieu"
     - "SQL Cookbook — Anthony Molinaro, Robert de Graaf"
@@ -113,10 +196,40 @@ references:
     - "Beginning SQL Queries — Clare Churcher"
     - "SQL for Data Analysis — Cathy Tanimura"
     - "SQL for Data Analytics, Fourth Edition — Jun Shan, Haibin Li et al."
-    - "PostgreSQL Official Documentation"
+
+  tutorials:
+    - name: "Neon PostgreSQL Tutorial"
+      url: "https://neon.com/postgresql/tutorial"
+      role: complementary
+      purpose:
+        - explanations
+        - examples
+        - exercises
+        - laboratories
+
+source_policy:
+  engine_behavior:
+    prefer:
+      - PostgreSQL Official Documentation
+  conceptual_explanation:
+    prefer:
+      - primary bibliography
+      - PostgreSQL Official Documentation
+      - Neon PostgreSQL Tutorial
+  practical_examples:
+    prefer:
+      - PostgreSQL Sample Database
+      - Neon PostgreSQL Tutorial
+  mysql_examples:
+    adaptation:
+      enabled: true
+      target_engine: PostgreSQL
+      target_dataset: PostgreSQL Sample Database
+      preserve_sql_concept: true
+      explain_dialect_differences: true
 
 final_project:
-  name: "SQL Query Engineering"
+  name: "PostgreSQL SQL Query & Database Programming"
   deliverables:
     - reproducible SQL query collection
     - analytical queries
@@ -125,3 +238,9 @@ final_project:
     - DML examples
     - EXPLAIN ANALYZE evidence
     - query correctness validation
+    - reusable views and materialized views
+    - SQL-language functions
+    - PL/pgSQL functions
+    - stored procedure examples
+    - justified trigger implementation
+    - routine safety and performance validation

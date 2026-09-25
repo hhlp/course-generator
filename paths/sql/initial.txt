@@ -292,21 +292,68 @@ INTERMEDIATE
 15.21 Riesgos de EXPLAIN ANALYZE sobre sentencias con efectos
 15.22 Laboratorio: diagnosticar y reescribir consultas
 
-16. VIEWS & TEMP TABLES
+16. VIEWS, MATERIALIZED VIEWS & TEMPORARY TABLES
 
-16.1 CREATE VIEW
-16.2 Consultar vistas
-16.3 CREATE OR REPLACE VIEW
-16.4 Vistas actualizables: introducción
-16.5 CREATE MATERIALIZED VIEW
-16.6 REFRESH MATERIALIZED VIEW
-16.7 Vistas frente a CTEs
-16.8 Tablas temporales
-16.9 CREATE TEMP TABLE
-16.10 ON COMMIT
-16.11 Tablas temporales frente a CTEs
-16.12 Tablas temporales frente a vistas
-16.13 Laboratorio: estructurar consultas complejas
+16.1 Qué problema resuelve una view
+16.2 CREATE VIEW
+16.3 Consultar views
+16.4 Alias y nombres de columnas en views
+16.5 Views sobre JOINs
+16.6 Views sobre agregaciones
+16.7 Views sobre CTEs y subconsultas
+16.8 CREATE OR REPLACE VIEW
+16.9 ALTER VIEW
+16.10 DROP VIEW
+16.11 Dependencias entre views y otros objetos
+16.12 Nested views y composición de views
+16.13 Automatically updatable views
+16.14 INSERT mediante views actualizables
+16.15 UPDATE mediante views actualizables
+16.16 DELETE mediante views actualizables
+16.17 WITH CHECK OPTION
+16.18 LOCAL CHECK OPTION
+16.19 CASCADED CHECK OPTION
+16.20 Limitaciones de las views automáticamente actualizables
+16.21 INSTEAD OF triggers como puente hacia views no actualizables
+16.22 security_invoker
+16.23 security_barrier
+16.24 Views como interfaces SQL
+16.25 Views como frontera de abstracción
+16.26 Views y permisos: perspectiva del consumidor SQL
+16.27 View frente a subquery
+16.28 View frente a CTE
+16.29 View frente a función SQL
+16.30 Planes de ejecución de consultas sobre views
+16.31 Predicate pushdown y optimización: interpretación práctica
+16.32 Costes y riesgos de nested views
+
+16.33 Qué es una materialized view
+16.34 CREATE MATERIALIZED VIEW
+16.35 WITH DATA
+16.36 WITH NO DATA
+16.37 Consultar materialized views
+16.38 REFRESH MATERIALIZED VIEW
+16.39 REFRESH MATERIALIZED VIEW CONCURRENTLY
+16.40 Requisito de índice UNIQUE para refresh concurrente
+16.41 Índices sobre materialized views desde la perspectiva SQL
+16.42 Staleness y consistencia de resultados
+16.43 View frente a materialized view
+16.44 Materialized view frente a tabla
+16.45 Materialized views para consultas analíticas costosas
+16.46 EXPLAIN sobre consultas de materialized views
+
+16.47 Qué es una temporary table
+16.48 CREATE TEMP / TEMPORARY TABLE
+16.49 Duración de una temporary table
+16.50 ON COMMIT PRESERVE ROWS
+16.51 ON COMMIT DELETE ROWS
+16.52 ON COMMIT DROP
+16.53 Temporary tables y sesiones
+16.54 Temporary table frente a CTE
+16.55 Temporary table frente a view
+16.56 Temporary table frente a materialized view
+16.57 Cuándo materializar resultados intermedios
+16.58 Laboratorio: views, materialized views y temporary tables
 
 ADVANCED
 
@@ -467,25 +514,348 @@ costosas
 25.11 Revisar una consulta antes de producción
 25.12 Laboratorio: refactorizar SQL
 
-26. FINAL PROJECT — SQL QUERY ENGINEERING
+26. POSTGRESQL BUILT-IN FUNCTIONS & OPERATORS
 
-26.1 Importar un dataset real en PostgreSQL
-26.2 Explorar el dataset únicamente mediante SQL
-26.3 Formular preguntas de negocio/datos
-26.4 Resolverlas con filtros y agregaciones
-26.5 Construir consultas multitabla
-26.6 Aplicar CTEs y subconsultas
-26.7 Aplicar funciones de ventana
-26.8 Crear análisis temporal
-26.9 Resolver problemas de Top-N, cohortes o gaps-and-islands
-26.10 Crear una vista de consulta reutilizable
-26.11 Crear una consulta sobre JSON/array cuando el dataset lo permita
-26.12 Analizar consultas importantes con EXPLAIN ANALYZE
-26.13 Reescribir una consulta basándose en el plan
-26.14 Validar resultados, NULLs, duplicados y cardinalidad
-26.15 Documentar las decisiones SQL
-26.16 Proyecto final: entregar un conjunto reproducible de consultas
-.sql
+26.1 Cómo está organizado el sistema de funciones de PostgreSQL
+26.2 Funciones escalares frente a agregadas, ventana y set-returning
+26.3 Sobrecarga de funciones y resolución de tipos
+26.4 Argumentos posicionales y named notation
+26.5 Funciones de comparación y predicados
+26.6 Funciones matemáticas
+26.7 Funciones y operadores de texto
+26.8 Funciones de formato
+26.9 Funciones de fecha/hora en profundidad
+26.10 Funciones de intervalos
+26.11 Funciones condicionales
+26.12 Funciones de arrays
+26.13 Funciones y operadores JSON/JSONB
+26.14 Funciones SQL/JSON
+26.15 Funciones de rangos y multirangos
+26.16 Funciones de búsqueda de texto
+26.17 Funciones de información del sistema útiles desde SQL
+26.18 Funciones de secuencias
+26.19 Funciones de enumeraciones
+26.20 Funciones de UUID y generación de valores cuando estén disponibles
+26.21 Funciones de manipulación de XML: panorama y uso SQL
+26.22 Funciones de agregación PostgreSQL en profundidad
+26.23 Ordered-set aggregates
+26.24 Hypothetical-set aggregates
+26.25 Set-returning functions
+26.26 Composición de funciones en consultas
+26.27 NULL, STRICTness observable y propagación de NULL
+26.28 Volatilidad de funciones: IMMUTABLE, STABLE y VOLATILE como concepto SQL
+26.29 Consultar documentación y firmas de funciones
+26.30 Laboratorio: resolver problemas usando funciones nativas
+
+27. POSTGRESQL ADVANCED SQL TYPES & EXPRESSIONS
+
+27.1 PostgreSQL como extensión práctica del SQL estándar
+27.2 Arrays multidimensionales
+27.3 Subscripting y slicing de arrays
+27.4 ANY / ALL con arrays
+27.5 Operadores de arrays
+27.6 Arrays de tipos compuestos
+27.7 Row constructors
+27.8 Comparaciones de filas
+27.9 Composite types desde SQL
+27.10 RECORD como concepto
+27.11 Range types
+27.12 Multirange types
+27.13 Operadores de rangos
+27.14 Consultas de solapamiento y contención
+27.15 JSON frente a JSONB
+27.16 jsonpath
+27.17 SQL/JSON path language
+27.18 JSON constructors
+27.19 JSON query functions
+27.20 Expansión relacional de JSON
+27.21 Full-text search: tsvector
+27.22 Full-text search: tsquery
+27.23 to_tsvector() y to_tsquery()
+27.24 plainto_tsquery(), phraseto_tsquery() y websearch_to_tsquery()
+27.25 Ranking y highlighting
+27.26 Expresiones de expresiones regulares en profundidad
+27.27 COLLATION desde la perspectiva de una consulta
+27.28 Domains y enums como tipos consumidos por SQL
+27.29 Dollar-quoted strings
+27.30 Laboratorio: SQL PostgreSQL avanzado con tipos complejos
+
+28. CREATE FUNCTION & SQL-LANGUAGE FUNCTIONS
+
+28.1 Programación dentro de PostgreSQL: mapa conceptual
+28.2 Función incorporada frente a función definida por el usuario
+28.3 CREATE FUNCTION
+28.4 CREATE OR REPLACE FUNCTION
+28.5 Parámetros de entrada
+28.6 Parámetros IN, OUT e INOUT
+28.7 Valores por defecto
+28.8 Named arguments
+28.9 RETURNS tipo escalar
+28.10 RETURNS TABLE
+28.11 RETURNS SETOF
+28.12 Funciones que retornan composite types
+28.13 Funciones que retornan RECORD
+28.14 LANGUAGE SQL
+28.15 Cuerpo de una SQL function
+28.16 SQL functions con una expresión
+28.17 SQL functions con múltiples sentencias cuando proceda
+28.18 RETURNING y funciones SQL
+28.19 Funciones set-returning definidas por el usuario
+28.20 Polymorphic types: introducción
+28.21 Function overloading
+28.22 Resolución de funciones sobrecargadas
+28.23 IMMUTABLE, STABLE y VOLATILE
+28.24 STRICT / RETURNS NULL ON NULL INPUT
+28.25 CALLED ON NULL INPUT
+28.26 PARALLEL UNSAFE / RESTRICTED / SAFE
+28.27 COST y ROWS como información para el planner
+28.28 SECURITY INVOKER frente a SECURITY DEFINER
+28.29 search_path y SECURITY DEFINER: implicaciones de seguridad
+28.30 ALTER FUNCTION
+28.31 DROP FUNCTION y firma de argumentos
+28.32 Consultar funciones con psql
+28.33 pg_proc como catálogo de aprendizaje, no administración
+28.34 Laboratorio: construir una biblioteca de SQL functions
+
+29. PL/PGSQL — FUNDAMENTALS
+
+29.1 Qué es PL/pgSQL y cuándo utilizarlo
+29.2 SQL declarativo frente a código procedural
+29.3 CREATE FUNCTION ... LANGUAGE plpgsql
+29.4 Estructura de un bloque PL/pgSQL
+29.5 DECLARE
+29.6 BEGIN ... END
+29.7 Dollar quoting
+29.8 Variables
+29.9 Constantes
+29.10 Tipos de variables
+29.11 %TYPE
+29.12 %ROWTYPE
+29.13 RECORD
+29.14 Asignación con :=
+29.15 SELECT ... INTO
+29.16 PERFORM
+29.17 FOUND
+29.18 IF / THEN / ELSIF / ELSE
+29.19 CASE procedural
+29.20 LOOP
+29.21 EXIT
+29.22 CONTINUE
+29.23 WHILE
+29.24 FOR sobre rangos enteros
+29.25 FOR sobre resultados de consultas
+29.26 FOREACH sobre arrays
+29.27 RETURN
+29.28 RETURN NEXT
+29.29 RETURN QUERY
+29.30 RAISE
+29.31 RAISE NOTICE / WARNING / EXCEPTION
+29.32 ASSERT
+29.33 Bloques anidados y labels
+29.34 Scope de variables
+29.35 Laboratorio: primeras funciones PL/pgSQL
+
+30. PL/PGSQL — ADVANCED
+
+30.1 Ejecución de sentencias SQL dentro de PL/pgSQL
+30.2 Planificación y reutilización de sentencias
+30.3 Dynamic SQL
+30.4 EXECUTE
+30.5 format()
+30.6 %I y %L para identificadores y literales
+30.7 EXECUTE ... USING
+30.8 SELECT INTO con SQL dinámico
+30.9 Evitar SQL injection en SQL dinámico
+30.10 EXCEPTION blocks
+30.11 SQLSTATE
+30.12 SQLERRM
+30.13 GET STACKED DIAGNOSTICS
+30.14 GET DIAGNOSTICS
+30.15 ROW_COUNT
+30.16 Cursors: concepto
+30.17 Declarar cursores
+30.18 OPEN
+30.19 FETCH
+30.20 MOVE
+30.21 CLOSE
+30.22 Cursor FOR loops
+30.23 Alias de parámetros y conflictos de nombres
+30.24 Funciones polimórficas: aplicación
+30.25 Funciones que trabajan con RECORD
+30.26 Funciones que retornan conjuntos
+30.27 PL/pgSQL y transacciones: límites dentro de funciones
+30.28 Subtransactions mediante bloques EXCEPTION
+30.29 Coste de mover lógica desde SQL declarativo a PL/pgSQL
+30.30 Cuándo NO utilizar PL/pgSQL
+30.31 Laboratorio: lógica procedural y SQL dinámico
+
+31. STORED FUNCTIONS & PROCEDURES
+
+31.1 Stored function como abstracción de lógica reutilizable
+31.2 Diseñar la interfaz de una función
+31.3 Funciones escalares
+31.4 Funciones tabulares
+31.5 Set-returning functions
+31.6 Funciones que encapsulan consultas complejas
+31.7 Funciones para transformación de datos
+31.8 Funciones y efectos laterales
+31.9 Idempotencia como propiedad de diseño
+31.10 CREATE PROCEDURE
+31.11 CALL
+31.12 Parámetros de procedimientos
+31.13 Función frente a procedimiento
+31.14 Retorno de valores: diferencias prácticas
+31.15 Control de transacciones en procedimientos cuando el contexto lo permite
+31.16 COMMIT y ROLLBACK dentro de procedimientos: restricciones
+31.17 Procedimientos PL/pgSQL
+31.18 Reutilización de funciones desde procedimientos
+31.19 Manejo de errores
+31.20 SECURITY DEFINER: uso responsable
+31.21 Privilegios de ejecución como concepto de interfaz
+31.22 Dependencias entre rutinas
+31.23 ALTER PROCEDURE
+31.24 DROP PROCEDURE
+31.25 Sobrecarga de procedimientos
+31.26 Versionado y evolución de firmas
+31.27 Testear funciones y procedimientos desde SQL
+31.28 EXPLAIN de consultas encapsuladas: límites y estrategias
+31.29 Rendimiento de funciones
+31.30 Inlining de SQL functions: concepto
+31.31 Laboratorio: API interna mediante funciones y procedimientos
+
+32. TRIGGERS
+
+32.1 Qué problema resuelve un trigger
+32.2 Cuándo utilizar triggers y cuándo evitarlos
+32.3 Trigger function
+32.4 RETURNS trigger
+32.5 CREATE TRIGGER
+32.6 INSERT triggers
+32.7 UPDATE triggers
+32.8 DELETE triggers
+32.9 TRUNCATE triggers
+32.10 BEFORE triggers
+32.11 AFTER triggers
+32.12 INSTEAD OF triggers
+32.13 FOR EACH ROW
+32.14 FOR EACH STATEMENT
+32.15 OLD
+32.16 NEW
+32.17 TG_NAME, TG_WHEN, TG_LEVEL y TG_OP
+32.18 TG_TABLE_NAME y TG_TABLE_SCHEMA
+32.19 TG_NARGS y TG_ARGV
+32.20 WHEN condition
+32.21 UPDATE OF columnas
+32.22 Retorno de una row-level trigger function
+32.23 Cancelar/modificar una operación desde BEFORE
+32.24 Transition relations
+32.25 REFERENCING OLD TABLE / NEW TABLE
+32.26 Triggers sobre views
+32.27 Constraint triggers: introducción
+32.28 Trigger ordering
+32.29 Recursión y cascadas de triggers
+32.30 Evitar efectos secundarios inesperados
+32.31 Auditoría mediante triggers como caso práctico
+32.32 Mantener valores derivados mediante triggers: trade-offs
+32.33 Integridad compleja mediante triggers: trade-offs
+32.34 ALTER TRIGGER
+32.35 ENABLE / DISABLE TRIGGER: frontera con DBA
+32.36 DROP TRIGGER
+32.37 Event triggers: concepto
+32.38 CREATE EVENT TRIGGER
+32.39 ddl_command_start / ddl_command_end / sql_drop
+32.40 Event trigger functions y RETURNS event_trigger
+32.41 Frontera: event triggers como programación frente a administración
+32.42 Views no automáticamente actualizables e INSTEAD OF triggers
+32.43 INSERT/UPDATE/DELETE sobre views mediante INSTEAD OF
+32.44 OLD y NEW en triggers sobre views
+32.45 Views + triggers como interfaz SQL modificable
+32.46 Cuándo preferir una automatically updatable view
+32.47 Cuándo justificar un INSTEAD OF trigger
+32.48 Laboratorio: diseñar, probar y depurar triggers
+
+33. POSTGRESQL SQL EXPERT
+
+33.1 Elegir entre SQL declarativo, SQL function y PL/pgSQL
+33.2 Elegir entre function, procedure y trigger
+33.3 Mover lógica hacia el servidor: ventajas y costes
+33.4 Composición de consultas avanzadas con funciones
+33.5 LATERAL + set-returning functions
+33.6 Window functions + funciones personalizadas
+33.7 Recursive CTEs + funciones
+33.8 Arrays + LATERAL + unnest()
+33.9 JSONB + jsonpath + expansión relacional
+33.10 Range/multirange query patterns
+33.11 Advanced DML + RETURNING
+33.12 MERGE y lógica de sincronización
+33.13 Data-modifying CTEs: patrones y cautelas
+33.14 Concurrencia y locking desde rutinas SQL
+33.15 SKIP LOCKED para patrones de colas
+33.16 Advisory locks desde SQL: introducción y frontera DBA
+33.17 Correctitud bajo concurrencia
+33.18 Funciones y volatilidad
+33.19 Funciones y parallel safety
+33.20 Funciones y planner cost
+33.21 Query plans de SQL generado/encapsulado
+33.22 Detectar cuándo PL/pgSQL oculta un problema de consultas
+33.23 SQL dinámico seguro
+33.24 Seguridad de SECURITY DEFINER
+33.25 search_path seguro en rutinas
+33.26 Evitar lógica oculta y triggers excesivos
+33.27 Observabilidad de errores mediante RAISE y diagnósticos
+33.28 Refactoring de rutinas PostgreSQL
+33.29 Test reproducible de SQL y rutinas
+33.30 Diseñar interfaces SQL mantenibles
+33.31 View composition y nested views
+33.32 Dependencias y evolución de views
+33.33 Views como API/contrato SQL
+33.34 security_invoker y security_barrier en diseños avanzados
+33.35 Views + functions
+33.36 Views + INSTEAD OF triggers
+33.37 Materialized views + índices
+33.38 Refresh concurrente y trade-offs
+33.39 Planes de ejecución y optimización a través de views
+33.40 Evitar capas de views que oculten problemas de rendimiento
+33.41 Elegir entre view, materialized view, CTE, temporary table y función
+33.42 Laboratorio: refactorizar una solución de beginner a expert
+
+34. POSTGRESQL SQL CAPSTONE — QUERY & DATABASE PROGRAMMING
+
+34.1 Importar un dataset real en PostgreSQL
+34.2 Explorar el dataset únicamente mediante SQL
+34.3 Formular preguntas de negocio/datos
+34.4 Resolverlas con filtros y agregaciones
+34.5 Construir consultas multitabla
+34.6 Aplicar CTEs y subconsultas
+34.7 Aplicar funciones de ventana
+34.8 Crear análisis temporal
+34.9 Resolver Top-N, cohortes y gaps-and-islands
+34.10 Trabajar con arrays, rangos o JSONB cuando el dataset lo permita
+34.11 Crear una view como interfaz SQL reutilizable
+34.12 Diseñar y probar una automatically updatable view cuando proceda
+34.13 Aplicar WITH CHECK OPTION cuando el requisito lo justifique
+34.14 Crear una materialized view para una consulta analítica costosa
+34.15 Comparar su coste con la consulta original mediante EXPLAIN ANALYZE
+34.16 Evaluar REFRESH y staleness
+34.17 Crear funciones SQL reutilizables
+34.18 Crear funciones PL/pgSQL
+34.19 Crear una función que retorne un conjunto o tabla
+34.20 Crear un procedimiento y ejecutarlo con CALL
+34.21 Diseñar un trigger justificado por un requisito real
+34.22 Probar OLD/NEW y comportamiento BEFORE/AFTER
+34.23 Incorporar manejo de errores
+34.24 Incorporar SQL dinámico únicamente cuando esté justificado
+34.25 Analizar consultas importantes con EXPLAIN ANALYZE
+34.26 Analizar BUFFERS y cardinalidades
+34.27 Reescribir consultas basándose en evidencia
+34.28 Evaluar el coste de SQL declarativo frente a PL/pgSQL
+34.29 Validar resultados, NULLs, duplicados y cardinalidad
+34.30 Validar comportamiento bajo transacciones concurrentes
+34.31 Revisar seguridad de rutinas y search_path
+34.32 Documentar contratos de funciones y procedimientos
+34.33 Documentar decisiones sobre triggers
+34.34 Crear tests SQL reproducibles
+34.35 Proyecto final: entregar consultas, funciones, procedimientos, triggers y documentación reproducibles
 
 FRONTERA CON DATABASE DESIGN
 
