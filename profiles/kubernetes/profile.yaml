@@ -8,6 +8,7 @@ course:
   orientation:
     - cloud_native
     - kubernetes
+    - kubectl_cli
     - administration
     - development
     - security
@@ -59,6 +60,7 @@ lab_policy:
   preferred_tools:
     - kubectl
     - kubeadm
+    - helm
     - crictl
     - ctr
     - nerdctl
@@ -103,6 +105,7 @@ milestones:
 expert_track:
   starts_after: "HITO KUBESTRONAUT"
   areas:
+    - kubectl_cli
     - api_internals
     - crds
     - controllers

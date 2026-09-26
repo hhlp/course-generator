@@ -33,6 +33,9 @@ quality:
   require_self_contained_lesson: true
   distinguish_core_from_provider_behavior: true
   verify_version_sensitive_features: true
+  require_cli_command_context: true
+  distinguish_interactive_from_automation_cli: true
+  mark_legacy_or_deprecated_cli_commands: true
   audit_before_save: true
   repair_on_fail: true
 
@@ -46,12 +49,11 @@ artifacts:
   enabled: true
   default_strategy: auto
   overrides:
-    "23.21":
+    "24.21":
       strategy: standalone_project
       project_id: terraform-production-platform
       knowledge_dependencies:
         - bloque-0
-        - bloque-1
         - bloque-2
         - bloque-3
         - bloque-4
@@ -60,14 +62,15 @@ artifacts:
         - bloque-7
         - bloque-8
         - bloque-9
-        - bloque-10
-        - bloque-11
-        - bloque-12
-        - bloque-13
-        - bloque-14
-        - bloque-16
-        - bloque-17
+        - bloque-20
+        - bloque-21
         - bloque-22
+        - bloque-23
+        - bloque-24
+        - bloque-25
+        - bloque-27
+        - bloque-28
+        - bloque-33
       artifact_dependencies: []
       required_files:
         - README.md

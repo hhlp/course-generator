@@ -8,7 +8,7 @@ Este curso enseña Terraform desde cero hasta un nivel experto, tratando Terrafo
 
 - Linux como entorno principal.
 - Git para control de versiones.
-- Terraform CLI.
+- Terraform CLI como interfaz operativa principal, desde workflow básico hasta automatización, diagnóstico y CI/CD.
 - HCL como lenguaje de configuración.
 - Providers locales al principio para no convertir un cloud concreto en prerrequisito.
 - Ansible como herramienta complementaria de configuration management.
@@ -22,6 +22,8 @@ El curso debe cubrir en profundidad:
 - Infrastructure as Code.
 - Modelo declarativo, desired state, convergencia e idempotencia.
 - Terraform Core y arquitectura Core/provider.
+- Terraform CLI en profundidad: comandos, subcomandos, opciones globales, flags, variables de entorno y configuración de CLI.
+- Automatización de Terraform CLI: exit codes, planes guardados, JSON, ejecución no interactiva y CI/CD.
 - HCL: sintaxis, tipos, expresiones, funciones y evaluación.
 - Providers, resources y data sources.
 - Dependency graph.
@@ -58,6 +60,8 @@ El curso debe cubrir en profundidad:
 8. Se debe enseñar a leer un plan antes de aplicar cambios.
 9. Los laboratorios deben incluir errores, drift, importación, refactoring y recuperación.
 10. Los contenidos sensibles a versión deben verificarse contra documentación oficial antes de afirmar sintaxis o comportamiento exactos.
+11. La CLI debe enseñarse primero como workflow operativo y después como interfaz automatizable para scripts y CI/CD.
+12. Los comandos legacy o de uso desaconsejado deben identificarse como tales y acompañarse de la alternativa moderna.
 
 ## Límites
 
@@ -73,4 +77,4 @@ El curso debe cubrir en profundidad:
 
 ## Resultado esperado
 
-Al finalizar, el estudiante debe poder diseñar, implementar, probar, versionar, asegurar, automatizar, mantener, diagnosticar y evolucionar infraestructura gestionada con Terraform; comprender el state y el grafo de dependencias; construir módulos; integrar Terraform con Ansible y CI/CD; adoptar infraestructura existente; y trasladar estos conocimientos a distintos providers sin depender conceptualmente de un cloud concreto.
+Al finalizar, el estudiante debe dominar Terraform CLI de forma interactiva y automatizada; diseñar, implementar, probar, versionar, asegurar, automatizar, mantener, diagnosticar y evolucionar infraestructura gestionada con Terraform; comprender el state y el grafo de dependencias; construir módulos; integrar Terraform con Ansible y CI/CD; adoptar infraestructura existente; y trasladar estos conocimientos a distintos providers sin depender conceptualmente de un cloud concreto.

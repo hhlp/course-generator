@@ -28,6 +28,23 @@ Uso:
 - objetos principales
 - arquitectura y operación
 
+
+### kubectl Documentation and Command Reference
+Kubernetes upstream documentation.
+
+Uso:
+- sintaxis y estructura de kubectl
+- get, describe, explain y events
+- create, apply, replace, patch, edit y delete
+- rollout, scale y autoscale
+- logs, exec, attach, cp, debug y port-forward
+- JSONPath, custom-columns, selectors y sort-by
+- kubeconfig y contexts
+- auth can-i e impersonation
+- cordon, uncordon, drain, taint y label
+- proxy, raw API access y dry-run
+- shell completion, scripting y troubleshooting
+
 ## Administración y operación
 
 ### Kubernetes: The Hard Way

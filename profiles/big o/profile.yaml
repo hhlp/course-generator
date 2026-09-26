@@ -1,0 +1,139 @@
+name: algorithmic-complexity-general
+title: "Complejidad Algorítmica y Big O — 0 → Experto"
+language: es
+level:
+  start: beginner
+  end: expert
+
+scope:
+  language_agnostic: true
+  primary_focus:
+    - algorithm_analysis
+    - asymptotic_analysis
+    - time_complexity
+    - space_complexity
+    - amortized_analysis
+    - recurrences
+    - data_structures
+    - graph_algorithms
+    - computational_complexity
+  excluded_language_specific_paths:
+    - python
+    - cpp
+    - rust
+    - go
+    - javascript
+    - typescript
+
+pedagogy:
+  style: "profundo, práctico, progresivo, riguroso y orientado al razonamiento"
+  indentation: false
+  numbering: single-level
+  explain_before_memorize: true
+  derive_complexity_step_by_step: true
+  distinguish_theory_from_benchmarking: true
+  lesson_structure:
+    objective:
+      required: true
+      position: first
+      heading: "🎯 OBJETIVO"
+    reading:
+      required: true
+      heading: "📚 LECTURA"
+      categories:
+        - principal
+        - profundizacion
+        - matematicas
+        - consulta
+      exact_references_only_when_verified: true
+    lab:
+      required: false
+      heading: "🧪 Laboratorio/ejemplos"
+    common_errors:
+      required: false
+      heading: "⚠️ Errores frecuentes"
+    important_idea:
+      required: false
+      heading: "💡 Idea importante"
+    remember:
+      required: true
+      position: last
+      heading: "🧠 QUÉ DEBES RECORDAR"
+      min_items: 3
+      max_items: 7
+      avoid_repeating_objective: true
+
+analysis_rules:
+  require_input_size_definition: true
+  require_cost_model_when_relevant: true
+  preserve_independent_variables: true
+  distinguish:
+    - best_case
+    - average_case
+    - worst_case
+    - expected_case
+    - amortized_cost
+  asymptotic_notations:
+    - O
+    - Omega
+    - Theta
+    - little_o
+    - little_omega
+  never_equate_big_o_with_worst_case: true
+  never_equate_big_o_with_runtime_seconds: true
+  state_guarantee_type: true
+  derive_before_final_notation: true
+
+examples:
+  preferred_representation:
+    - pseudocode
+    - mathematical_functions
+    - small_executable_experiments
+  language_specific_details: avoid
+  use_multiple_input_variables_when_needed: true
+
+labs:
+  goals:
+    - count_operations
+    - derive_Tn
+    - simplify_asymptotically
+    - prove_bounds
+    - solve_recurrences
+    - compare_algorithms
+    - analyze_time_and_space
+    - benchmark_without_confusing_measurement_with_proof
+    - document_assumptions
+  require_reasoning: true
+  benchmark_is_not_proof: true
+
+quality:
+  avoid_unverified_complexity_claims: true
+  avoid_language_implementation_assumptions: true
+  distinguish_guaranteed_expected_and_amortized: true
+  include_counterexamples_for_common_misconceptions: true
+  mathematical_rigor_increases_progressively: true
+
+bibliography:
+  principal:
+    - "Introduction to Algorithms, 4th Edition — Cormen, Leiserson, Rivest, Stein"
+    - "Algorithm Design — Kleinberg, Tardos"
+  practical:
+    - "The Algorithm Design Manual, 3rd Edition — Skiena"
+    - "Algorithms, 4th Edition — Sedgewick, Wayne"
+    - "Algorithms — Dasgupta, Papadimitriou, Vazirani"
+  deepening:
+    - "Algorithms Illuminated — Roughgarden"
+    - "Algorithms — Jeffrey Erickson"
+    - "Concrete Mathematics, 2nd Edition — Graham, Knuth, Patashnik"
+    - "Introduction to the Theory of Computation — Sipser"
+
+completion:
+  final_project: "Algorithm Complexity Analyzer"
+  expected_outcomes:
+    - "Definir correctamente el tamaño de entrada y el modelo de coste."
+    - "Derivar funciones de coste temporal y espacial."
+    - "Usar O, Ω y Θ correctamente."
+    - "Distinguir casos, esperanza y coste amortizado."
+    - "Resolver recurrencias comunes."
+    - "Comparar estructuras y algoritmos mediante garantías justificadas."
+    - "Separar análisis algorítmico de detalles específicos del lenguaje."

@@ -133,1562 +133,1703 @@
 2.37 namespaces
 2.38 laboratorio: explorar un cluster
 
-3. Workloads fundamentales
-3.1 Pod
-3.2 ciclo de vida del Pod
-3.3 Pod phase
-3.4 container states
-3.5 restartPolicy
-3.6 init containers
-3.7 sidecars
-3.8 multi-container Pods
-3.9 command y args
-3.10 environment variables
-3.11 workingDir
-3.12 ports
-3.13 resource requests
-3.14 resource limits
-3.15 CPU units
-3.16 memory units
-3.17 QoS classes
-3.18 Guaranteed
-3.19 Burstable
-3.20 BestEffort
-3.21 probes
-3.22 livenessProbe
-3.23 readinessProbe
-3.24 startupProbe
-3.25 HTTP probes
-3.26 TCP probes
-3.27 exec probes
-3.28 gRPC probes
-3.29 lifecycle hooks
-3.30 postStart
-3.31 preStop
-3.32 termination grace period
-3.33 ephemeral containers
-3.34 static Pods
-3.35 mirror Pods
-3.36 laboratorio: diseñar Pods robustos
-
-4. Controllers y workloads gestionados
-4.1 ReplicaSet
-4.2 Deployment
-4.3 rolling updates
-4.4 rollout
-4.5 rollback
-4.6 revision history
-4.7 deployment strategies
-4.8 recreate
-4.9 rollingUpdate
-4.10 maxUnavailable
-4.11 maxSurge
-4.12 StatefulSet
-4.13 identidad estable
-4.14 storage estable
-4.15 ordered deployment
-4.16 parallel pod management
-4.17 headless services con StatefulSet
-4.18 DaemonSet
-4.19 Job
-4.20 completions
-4.21 parallelism
-4.22 backoffLimit
-4.23 ttlSecondsAfterFinished
-4.24 CronJob
-4.25 concurrencyPolicy
-4.26 startingDeadlineSeconds
-4.27 suspend
-4.28 laboratorio: comparar controllers
-
-5. Configuración de aplicaciones
-5.1 ConfigMap
-5.2 creación declarativa
-5.3 creación desde archivos
-5.4 creación desde literales
-5.5 inyección como variables de entorno
-5.6 envFrom
-5.7 montaje como volumen
-5.8 actualización de ConfigMaps
-5.9 Secrets
-5.10 tipos de Secret
-5.11 Opaque
-5.12 TLS Secret
-5.13 dockerconfigjson
-5.14 ServiceAccount token Secrets: evolución
-5.15 projected service account tokens
-5.16 imagePullSecrets
-5.17 consumo de Secrets
-5.18 riesgos de Secrets
-5.19 cifrado en reposo
-5.20 immutable ConfigMaps y Secrets
-5.21 downward API
-5.22 projected volumes
-5.23 laboratorio: configuración externa segura
-
-6. Networking de aplicaciones
-6.1 modelo de red de Kubernetes
-6.2 IP por Pod
-6.3 comunicación Pod a Pod
-6.4 comunicación Pod a Service
-6.5 Services
-6.6 ClusterIP
-6.7 NodePort
-6.8 LoadBalancer
-6.9 ExternalName
-6.10 selectors de Service
-6.11 Endpoints
-6.12 EndpointSlice
-6.13 headless Service
-6.14 DNS para Services
-6.15 DNS para Pods
-6.16 CoreDNS
-6.17 internalTrafficPolicy
-6.18 externalTrafficPolicy
-6.19 sessionAffinity
-6.20 Ingress
-6.21 IngressClass
-6.22 Ingress controllers
-6.23 TLS termination
-6.24 path matching
-6.25 host-based routing
-6.26 Gateway API
-6.27 GatewayClass
-6.28 Gateway
-6.29 HTTPRoute
-6.30 GRPCRoute
-6.31 TCPRoute
-6.32 TLSRoute
-6.33 UDPRoute
-6.34 laboratorio: exponer una aplicación
-
-7. Storage para aplicaciones
-7.1 almacenamiento efímero
-7.2 volumes
-7.3 emptyDir
-7.4 hostPath
-7.5 projected
-7.6 configMap volume
-7.7 secret volume
-7.8 persistent storage
-7.9 PersistentVolume
-7.10 PersistentVolumeClaim
-7.11 access modes
-7.12 volumeMode
-7.13 storageClass
-7.14 dynamic provisioning
-7.15 reclaimPolicy
-7.16 volume binding mode
-7.17 CSI
-7.18 CSI drivers
-7.19 volume expansion
-7.20 snapshots
-7.21 VolumeSnapshot
-7.22 VolumeSnapshotClass
-7.23 VolumeSnapshotContent
-7.24 generic ephemeral volumes
-7.25 local persistent volumes
-7.26 StatefulSet y PVC templates
-7.27 laboratorio: persistencia de una aplicación
-
-8. Scheduling y placement
-8.1 scheduler
-8.2 scheduling cycle
-8.3 binding cycle
-8.4 nodeName
-8.5 nodeSelector
-8.6 node affinity
-8.7 preferred affinity
-8.8 required affinity
-8.9 pod affinity
-8.10 pod anti-affinity
-8.11 topologyKey
-8.12 topology spread constraints
-8.13 taints
-8.14 tolerations
-8.15 NoSchedule
-8.16 PreferNoSchedule
-8.17 NoExecute
-8.18 eviction por taints
-8.19 priorityClass
-8.20 priority
-8.21 preemption
-8.22 PodDisruptionBudget
-8.23 runtimeClass
-8.24 device plugins
-8.25 extended resources
-8.26 laboratorio: políticas de placement
-
-9. Escalado y recursos
-9.1 requests y limits
-9.2 QoS
-9.3 CPU throttling
-9.4 OOM
-9.5 eviction
-9.6 node pressure
-9.7 memory pressure
-9.8 disk pressure
-9.9 PID pressure
-9.10 HorizontalPodAutoscaler
-9.11 metrics API
-9.12 custom metrics
-9.13 external metrics
-9.14 HPA behavior
-9.15 stabilization windows
-9.16 VPA: conceptos
-9.17 Cluster Autoscaler: conceptos
-9.18 node autoscaling
-9.19 overprovisioning
-9.20 rightsizing
-9.21 laboratorio: escalar una aplicación
-
-10. Observabilidad y troubleshooting de aplicaciones
-10.1 logs de contenedores
-10.2 kubectl logs
-10.3 previous logs
-10.4 kubectl exec
-10.5 kubectl attach
-10.6 kubectl port-forward
-10.7 kubectl cp
-10.8 events
-10.9 kubectl describe
-10.10 kubectl get con wide
-10.11 jsonpath
-10.12 custom-columns
-10.13 field selectors
-10.14 label selectors
-10.15 resource metrics
-10.16 metrics-server
-10.17 debugging con ephemeral containers
-10.18 troubleshooting de Pods
-10.19 troubleshooting de Deployments
-10.20 troubleshooting de Services
-10.21 troubleshooting de DNS
-10.22 troubleshooting de storage
-10.23 laboratorio: diagnosticar una aplicación rota
-
-11. Seguridad fundamental cloud native
-11.1 threat modeling
-11.2 shared responsibility
-11.3 seguridad de imágenes
-11.4 registries seguros
-11.5 firmas de imágenes
-11.6 SBOM
-11.7 vulnerabilidades
-11.8 image scanning
-11.9 least privilege
-11.10 Linux capabilities
-11.11 seccomp
-11.12 AppArmor
-11.13 SELinux
-11.14 rootless containers
-11.15 user namespaces
-11.16 runtime security
-11.17 supply chain
-11.18 secrets management
-11.19 TLS
-11.20 PKI
-11.21 identidad de workloads
-11.22 network segmentation
-11.23 logging de seguridad
-11.24 auditabilidad
-11.25 laboratorio: evaluar seguridad de un workload
-
-12. Seguridad fundamental de Kubernetes
-12.1 autenticación
-12.2 autorización
-12.3 admission control
-12.4 RBAC
-12.5 Role
-12.6 ClusterRole
-12.7 RoleBinding
-12.8 ClusterRoleBinding
-12.9 ServiceAccount
-12.10 token projection
-12.11 impersonation
-12.12 least privilege en RBAC
-12.13 Pod Security Standards
-12.14 privileged
-12.15 baseline
-12.16 restricted
-12.17 Pod Security Admission
-12.18 securityContext
-12.19 runAsUser
-12.20 runAsGroup
-12.21 fsGroup
-12.22 runAsNonRoot
-12.23 allowPrivilegeEscalation
-12.24 readOnlyRootFilesystem
-12.25 capabilities drop
-12.26 seccompProfile
-12.27 NetworkPolicy
-12.28 ingress policies
-12.29 egress policies
-12.30 default deny
-12.31 encryption at rest
-12.32 audit logs
-12.33 laboratorio: baseline de seguridad
-
-13. HITO KCNA
-13.1 repaso de fundamentos cloud native
-13.2 repaso de Kubernetes
-13.3 repaso de contenedores
-13.4 repaso de observabilidad
-13.5 repaso de networking y storage
-13.6 repaso del ecosistema CNCF
-13.7 simulación de examen KCNA
-13.8 laboratorio final KCNA
-13.9 checklist de preparación KCNA
-
-14. HITO KCSA
-14.1 repaso de seguridad cloud native
-14.2 repaso de seguridad de contenedores
-14.3 repaso de seguridad de Kubernetes
-14.4 IAM y RBAC
-14.5 Pod Security
-14.6 supply chain security
-14.7 runtime security
-14.8 network security
-14.9 observabilidad de seguridad
-14.10 simulación de examen KCSA
-14.11 laboratorio final KCSA
-14.12 checklist de preparación KCSA
-
-15. Desarrollo de aplicaciones Kubernetes: CKAD
-15.1 diseño de workloads
-15.2 patrones multi-container
-15.3 init containers
-15.4 sidecar pattern
-15.5 ambassador pattern
-15.6 adapter pattern
-15.7 configuración avanzada
-15.8 secretos en aplicaciones
-15.9 Services
-15.10 Ingress y Gateway API
-15.11 NetworkPolicy para aplicaciones
-15.12 Jobs y CronJobs
-15.13 probes y health checks
-15.14 resource management
-15.15 rollout y rollback
-15.16 troubleshooting de aplicaciones
-15.17 kubectl imperative helpers
-15.18 generación rápida de YAML
-15.19 edición eficiente de manifests
-15.20 laboratorio CKAD: aplicación completa
-
-16. HITO CKAD
-16.1 repaso del dominio de examen CKAD
-16.2 ejercicios cronometrados
-16.3 diseño y construcción
-16.4 configuración
-16.5 multi-container Pods
-16.6 observabilidad de aplicaciones
-16.7 Services y networking
-16.8 state persistence
-16.9 troubleshooting
-16.10 simulación completa CKAD
-16.11 checklist de preparación CKAD
-
-17. Instalación y administración de clusters
-17.1 métodos de instalación
-17.2 kubeadm
-17.3 prerequisitos de nodos
-17.4 container runtime
-17.5 configuración de containerd
-17.6 cgroup drivers
-17.7 kubeadm init
-17.8 kubeadm join
-17.9 bootstrap tokens
-17.10 certificados
-17.11 kubeconfig de administración
-17.12 CNI installation
-17.13 CoreDNS
-17.14 kube-proxy
-17.15 control plane node
-17.16 worker node
-17.17 multi-control-plane
-17.18 load balancer del API server
-17.19 stacked etcd
-17.20 external etcd
-17.21 upgrade con kubeadm
-17.22 node upgrade
-17.23 version skew policy
-17.24 drain
-17.25 cordon
-17.26 uncordon
-17.27 laboratorio: construir cluster con kubeadm
-
-18. Administración del control plane
-18.1 static Pods del control plane
-18.2 manifests del control plane
-18.3 kube-apiserver flags
-18.4 kube-controller-manager flags
-18.5 kube-scheduler flags
-18.6 etcd flags
-18.7 kubelet configuration
-18.8 kube-proxy configuration
-18.9 component health
-18.10 API server endpoints
-18.11 API discovery
-18.12 raw API access
-18.13 kubectl proxy
-18.14 certificates
-18.15 certificate signing requests
-18.16 CertificateSigningRequest API
-18.17 rotate certificates
-18.18 kubelet certificate rotation
-18.19 laboratorio: inspeccionar el control plane
-
-19. etcd en profundidad
-19.1 rol de etcd
-19.2 modelo key-value
-19.3 Raft
-19.4 quorum
-19.5 leader election
-19.6 members
-19.7 endpoints
-19.8 etcdctl
-19.9 snapshots
-19.10 restore
-19.11 compaction
-19.12 defragmentation
-19.13 alarms
-19.14 performance
-19.15 TLS
-19.16 stacked etcd
-19.17 external etcd
-19.18 disaster recovery
-19.19 laboratorio: backup y restore de etcd
-
-20. Networking de cluster
-20.1 Linux networking aplicado a Kubernetes
-20.2 network namespaces
-20.3 veth
-20.4 bridges
-20.5 routes
-20.6 ARP y NDP
-20.7 conntrack
-20.8 NAT
-20.9 CNI specification
-20.10 CNI plugins
-20.11 overlay networking
-20.12 underlay networking
-20.13 VXLAN
-20.14 BGP
-20.15 kube-proxy
-20.16 iptables mode
-20.17 IPVS mode
-20.18 nftables y evolución de kube-proxy
-20.19 eBPF dataplanes
-20.20 Service routing
-20.21 ClusterIP internals
-20.22 NodePort internals
-20.23 LoadBalancer internals
-20.24 externalTrafficPolicy
-20.25 internalTrafficPolicy
-20.26 EndpointSlice internals
-20.27 CoreDNS internals
-20.28 NetworkPolicy internals
-20.29 laboratorio: seguir un paquete extremo a extremo
-
-21. Storage de cluster
-21.1 storage architecture
-21.2 in-tree frente a CSI
-21.3 CSI components
-21.4 external-provisioner
-21.5 external-attacher
-21.6 external-resizer
-21.7 external-snapshotter
-21.8 node plugin
-21.9 controller plugin
-21.10 StorageClass
-21.11 topology-aware provisioning
-21.12 WaitForFirstConsumer
-21.13 volume expansion
-21.14 snapshots
-21.15 cloning
-21.16 local volumes
-21.17 raw block volumes
-21.18 mount propagation
-21.19 volume health
-21.20 troubleshooting CSI
-21.21 laboratorio: diagnosticar storage
-
-22. Administración de workloads y nodos
-22.1 node lifecycle
-22.2 Node object
-22.3 node conditions
-22.4 heartbeats
-22.5 leases
-22.6 node controller
-22.7 taints automáticos
-22.8 eviction
-22.9 drain
-22.10 PodDisruptionBudget
-22.11 graceful node shutdown
-22.12 non-graceful node shutdown
-22.13 kubelet
-22.14 kubelet config file
-22.15 kubelet logs
-22.16 static Pods
-22.17 node allocatable
-22.18 reserved resources
-22.19 system-reserved
-22.20 kube-reserved
-22.21 eviction thresholds
-22.22 image garbage collection
-22.23 container garbage collection
-22.24 laboratorio: recuperar un nodo degradado
-
-23. CKA: troubleshooting de cluster
-23.1 metodología de troubleshooting
-23.2 control plane unavailable
-23.3 API server failures
-23.4 etcd failures
-23.5 scheduler failures
-23.6 controller-manager failures
-23.7 kubelet failures
-23.8 container runtime failures
-23.9 CNI failures
-23.10 kube-proxy failures
-23.11 CoreDNS failures
-23.12 Service failures
-23.13 NetworkPolicy failures
-23.14 persistent storage failures
-23.15 certificate failures
-23.16 RBAC failures
-23.17 node NotReady
-23.18 Pod Pending
-23.19 Pod CrashLoopBackOff
-23.20 Pod ImagePullBackOff
-23.21 laboratório: cluster deliberadamente roto
-
-24. HITO CKA
-24.1 repaso del dominio de examen CKA
-24.2 arquitectura
-24.3 instalación
-24.4 configuración
-24.5 workloads y scheduling
-24.6 Services y networking
-24.7 storage
-24.8 troubleshooting
-24.9 ejercicios cronometrados
-24.10 simulación completa CKA
-24.11 checklist de preparación CKA
-
-25. Hardening de cluster
-25.1 threat model del cluster
-25.2 CIS Kubernetes Benchmark
-25.3 kube-bench
-25.4 API server hardening
-25.5 etcd hardening
-25.6 scheduler hardening
-25.7 controller-manager hardening
-25.8 kubelet hardening
-25.9 kube-proxy hardening
-25.10 TLS hardening
-25.11 certificate management
-25.12 anonymous auth
-25.13 authorization modes
-25.14 Node authorization
-25.15 NodeRestriction
-25.16 admission plugins
-25.17 audit policy
-25.18 audit backends
-25.19 secret encryption
-25.20 KMS providers
-25.21 image policy
-25.22 laboratory: hardened cluster baseline
-
-26. Supply chain security
-26.1 software supply chain
-26.2 trusted registries
-26.3 image scanning
-26.4 SBOM
-26.5 signatures
-26.6 provenance
-26.7 Sigstore
-26.8 cosign
-26.9 policy enforcement
-26.10 admission control
-26.11 ValidatingAdmissionPolicy
-26.12 validating webhooks
-26.13 mutating webhooks
-26.14 OPA Gatekeeper
-26.15 Kyverno
-26.16 image immutability
-26.17 pinning by digest
-26.18 minimal images
-26.19 distroless
-26.20 laboratorio: cadena de suministro segura
-
-27. Runtime security
-27.1 runtime threats
-27.2 container escape
-27.3 privilege escalation
-27.4 host namespace exposure
-27.5 privileged containers
-27.6 capabilities
-27.7 seccomp
-27.8 SELinux
-27.9 AppArmor
-27.10 read-only rootfs
-27.11 procMount
-27.12 hostPath risks
-27.13 hostPID
-27.14 hostIPC
-27.15 hostNetwork
-27.16 Falco
-27.17 eBPF security observability
-27.18 runtime anomaly detection
-27.19 laboratorio: detectar actividad sospechosa
-
-28. Network security
-28.1 zero trust
-28.2 default deny
-28.3 ingress NetworkPolicy
-28.4 egress NetworkPolicy
-28.5 DNS egress
-28.6 namespace selectors
-28.7 pod selectors
-28.8 ipBlock
-28.9 metadata API protection
-28.10 control plane exposure
-28.11 API server access
-28.12 firewalling nodes
-28.13 service mesh security
-28.14 mTLS
-28.15 workload identity
-28.16 SPIFFE/SPIRE
-28.17 laboratorio: segmentar una aplicación
-
-29. CKS: investigación y respuesta
-29.1 audit logs
-29.2 container logs
-29.3 node logs
-29.4 events
-29.5 forensics básicos
-29.6 compromise indicators
-29.7 vulnerable workload triage
-29.8 credentials compromise
-29.9 certificate compromise
-29.10 service account abuse
-29.11 RBAC abuse
-29.12 persistence mechanisms
-29.13 malicious admission webhooks
-29.14 suspicious DaemonSets
-29.15 incident containment
-29.16 recovery
-29.17 laboratorio: responder a un incidente
-
-30. HITO CKS
-30.1 prerrequisito: CKA activo
-30.2 repaso del dominio de examen CKS
-30.3 cluster setup
-30.4 cluster hardening
-30.5 system hardening
-30.6 minimize microservice vulnerabilities
-30.7 supply chain security
-30.8 monitoring, logging y runtime security
-30.9 ejercicios cronometrados
-30.10 simulación completa CKS
-30.11 checklist de preparación CKS
-
-31. HITO KUBESTRONAUT
-31.1 verificar KCNA
-31.2 verificar KCSA
-31.3 verificar CKAD
-31.4 verificar CKA
-31.5 verificar CKS
-31.6 mantener certificaciones activas
-31.7 mapa de competencias adquiridas
-31.8 identificar brechas fuera del examen
-31.9 transición de certificación a ingeniería real
-31.10 laboratorio integrador Kubestronaut
-
-32. Kubernetes API en profundidad
-32.1 REST API
-32.2 API discovery
-32.3 API groups
-32.4 core group
-32.5 named groups
-32.6 versions
-32.7 preferred versions
-32.8 storage versions
-32.9 conversion
-32.10 serialization
-32.11 JSON
-32.12 protobuf
-32.13 watch API
-32.14 resourceVersion
-32.15 optimistic concurrency
-32.16 generation
-32.17 observedGeneration
-32.18 patch
-32.19 JSON Patch
-32.20 Merge Patch
-32.21 Strategic Merge Patch
-32.22 Server-Side Apply
-32.23 managedFields
-32.24 field managers
-32.25 dry-run
-32.26 admission chain
-32.27 laboratorio: manipular la API directamente
-
-33. Extensibilidad: CRDs
-33.1 CustomResourceDefinition
-33.2 custom resources
-33.3 schema OpenAPI
-33.4 structural schemas
-33.5 pruning
-33.6 defaulting
-33.7 validation
-33.8 CEL validation
-33.9 subresources
-33.10 status subresource
-33.11 scale subresource
-33.12 categories
-33.13 shortNames
-33.14 printer columns
-33.15 versions
-33.16 conversion webhooks
-33.17 finalizers
-33.18 laboratorio: crear una API propia
-
-34. Controllers y Operators
-34.1 controller pattern
-34.2 reconciliation loop
-34.3 desired state frente a observed state
-34.4 watches
-34.5 informers
-34.6 caches
-34.7 work queues
-34.8 rate limiting
-34.9 idempotencia
-34.10 level-triggered reconciliation
-34.11 ownerReferences
-34.12 garbage collection
-34.13 finalizers
-34.14 leader election
-34.15 controller-runtime
-34.16 Kubebuilder
-34.17 Operator SDK
-34.18 operator maturity model
-34.19 laboratorio: construir un controller
-
-35. Admission control avanzado
-35.1 admission phases
-35.2 mutating admission
-35.3 validating admission
-35.4 built-in admission plugins
-35.5 admission webhooks
-35.6 timeout
-35.7 failurePolicy
-35.8 matchPolicy
-35.9 reinvocationPolicy
-35.10 namespaceSelector
-35.11 objectSelector
-35.12 sideEffects
-35.13 webhook certificates
-35.14 ValidatingAdmissionPolicy
-35.15 CEL
-35.16 policy engines
-35.17 laboratorio: implementar políticas
-
-36. Scheduler en profundidad
-36.1 scheduler architecture
-36.2 scheduling framework
-36.3 extension points
-36.4 queueSort
-36.5 preFilter
-36.6 filter
-36.7 postFilter
-36.8 preScore
-36.9 score
-36.10 reserve
-36.11 permit
-36.12 preBind
-36.13 bind
-36.14 postBind
-36.15 scheduler profiles
-36.16 multiple schedulers
-36.17 scheduler plugins
-36.18 preemption
-36.19 nominatedNodeName
-36.20 scheduling performance
-36.21 laboratorio: analizar decisiones de scheduling
-
-37. Kubelet en profundidad
-37.1 kubelet architecture
-37.2 pod lifecycle management
-37.3 PLEG
-37.4 pod workers
-37.5 sync loop
-37.6 CRI client
-37.7 container lifecycle
-37.8 image manager
-37.9 volume manager
-37.10 probe manager
-37.11 status manager
-37.12 eviction manager
-37.13 cgroup manager
-37.14 CPU manager
-37.15 memory manager
-37.16 topology manager
-37.17 device manager
-37.18 node status
-37.19 leases
-37.20 laboratorio: seguir el ciclo interno de un Pod
-
-38. CRI y container runtimes en profundidad
-38.1 CRI architecture
-38.2 RuntimeService
-38.3 ImageService
-38.4 pod sandbox
-38.5 containerd architecture
-38.6 plugins
-38.7 snapshots
-38.8 content store
-38.9 metadata store
-38.10 shim
-38.11 runc
-38.12 OCI bundles
-38.13 namespaces de containerd
-38.14 ctr
-38.15 crictl
-38.16 nerdctl
-38.17 runtimeClass
-38.18 sandboxed runtimes
-38.19 gVisor
-38.20 Kata Containers
-38.21 laboratorio: trazar kubelet → CRI → containerd → runc
-
-39. CNI y dataplane en profundidad
-39.1 CNI specification
-39.2 ADD
-39.3 DEL
-39.4 CHECK
-39.5 plugin chaining
-39.6 IPAM
-39.7 host-local
-39.8 bridge plugin
-39.9 loopback plugin
-39.10 portmap plugin
-39.11 overlay dataplanes
-39.12 routing dataplanes
-39.13 BGP
-39.14 VXLAN
-39.15 Geneve
-39.16 eBPF
-39.17 kube-proxy replacement
-39.18 policy enforcement
-39.19 observabilidad de red
-39.20 laboratorio: inspeccionar un CNI real
-
-40. CSI en profundidad
-40.1 CSI specification
-40.2 identity service
-40.3 controller service
-40.4 node service
-40.5 CreateVolume
-40.6 DeleteVolume
-40.7 ControllerPublishVolume
-40.8 NodeStageVolume
-40.9 NodePublishVolume
-40.10 capabilities
-40.11 topology
-40.12 snapshots
-40.13 expansion
-40.14 ephemeral volumes
-40.15 sidecars
-40.16 CSI migration
-40.17 troubleshooting
-40.18 laboratorio: seguir el lifecycle de un volumen
-
-41. DNS y service discovery en profundidad
-41.1 DNS en Kubernetes
-41.2 CoreDNS architecture
-41.3 Corefile
-41.4 kubernetes plugin
-41.5 forward plugin
-41.6 cache plugin
-41.7 loop plugin
-41.8 health plugin
-41.9 ready plugin
-41.10 autopath
-41.11 ndots
-41.12 search domains
-41.13 headless service discovery
-41.14 StatefulSet DNS
-41.15 NodeLocal DNSCache
-41.16 troubleshooting DNS
-41.17 laboratorio: seguir una consulta DNS
-
-42. Gateway API y tráfico L7
-42.1 limitaciones de Ingress
-42.2 Gateway API architecture
-42.3 roles
-42.4 GatewayClass
-42.5 Gateway
-42.6 listeners
-42.7 Routes
-42.8 HTTPRoute
-42.9 GRPCRoute
-42.10 TLSRoute
-42.11 TCPRoute
-42.12 UDPRoute
-42.13 ReferenceGrant
-42.14 backendRefs
-42.15 traffic splitting
-42.16 header matching
-42.17 redirects
-42.18 rewrites
-42.19 retries
-42.20 timeouts
-42.21 laboratorio: arquitectura L7 con Gateway API
-
-43. Alta disponibilidad y resiliencia
-43.1 HA del control plane
-43.2 etcd quorum
-43.3 odd member counts
-43.4 failure domains
-43.5 load balancing del API server
-43.6 multi-zone
-43.7 topology spread
-43.8 anti-affinity
-43.9 PDB
-43.10 graceful disruption
-43.11 maintenance windows
-43.12 rolling upgrades
-43.13 backup
-43.14 restore
-43.15 disaster recovery
-43.16 RPO
-43.17 RTO
-43.18 chaos engineering
-43.19 laboratorio: simular fallos
-
-44. Upgrades y lifecycle management
-44.1 Kubernetes release cycle
-44.2 version skew
-44.3 API deprecations
-44.4 removed APIs
-44.5 upgrade planning
-44.6 control plane upgrade
-44.7 node upgrade
-44.8 CNI upgrade
-44.9 CSI upgrade
-44.10 ingress/gateway controllers
-44.11 addon compatibility
-44.12 CRD migrations
-44.13 admission compatibility
-44.14 rollback strategy
-44.15 backup pre-upgrade
-44.16 laboratorio: upgrade completo
-
-45. Observabilidad de Kubernetes
-45.1 golden signals
-45.2 logs
-45.3 metrics
-45.4 traces
-45.5 events
-45.6 Kubernetes metrics
-45.7 cAdvisor
-45.8 kube-state-metrics
-45.9 metrics-server
-45.10 Prometheus
-45.11 ServiceMonitor
-45.12 PodMonitor
-45.13 alerting
-45.14 Grafana
-45.15 Loki
-45.16 OpenTelemetry
-45.17 tracing
-45.18 exemplars
-45.19 SLI
-45.20 SLO
-45.21 laboratorio: observabilidad completa
-
-46. Troubleshooting experto
-46.1 troubleshooting por capas
-46.2 aplicación
-46.3 Pod
-46.4 controller
-46.5 scheduler
-46.6 kubelet
-46.7 runtime
-46.8 CNI
-46.9 kube-proxy
-46.10 DNS
-46.11 API server
-46.12 admission
-46.13 RBAC
-46.14 etcd
-46.15 CSI
-46.16 certificates
-46.17 host networking
-46.18 host storage
-46.19 kernel
-46.20 cgroups
-46.21 SELinux
-46.22 packet captures
-46.23 tcpdump
-46.24 ss
-46.25 ip
-46.26 nft
-46.27 conntrack
-46.28 nsenter
-46.29 crictl
-46.30 journalctl
-46.31 laboratorio: incidente multidominio
-
-47. Performance y scalability
-47.1 scalability dimensions
-47.2 control plane load
-47.3 API request rate
-47.4 watch load
-47.5 etcd latency
-47.6 etcd size
-47.7 API Priority and Fairness
-47.8 client QPS y burst
-47.9 controller concurrency
-47.10 scheduler throughput
-47.11 kubelet performance
-47.12 image pull performance
-47.13 registry caching
-47.14 DNS performance
-47.15 network performance
-47.16 storage performance
-47.17 huge clusters
-47.18 cluster limits
-47.19 load testing
-47.20 benchmark methodology
-47.21 laboratorio: perfilar un cluster
-
-48. Multi-tenancy
-48.1 modelos de tenancy
-48.2 soft multi-tenancy
-48.3 hard multi-tenancy
-48.4 namespaces
-48.5 RBAC boundaries
-48.6 NetworkPolicy boundaries
-48.7 ResourceQuota
-48.8 LimitRange
-48.9 Pod Security
-48.10 admission policies
-48.11 dedicated nodes
-48.12 runtime isolation
-48.13 virtual clusters
-48.14 secrets isolation
-48.15 observability isolation
-48.16 cost allocation
-48.17 laboratorio: plataforma multi-tenant
-
-49. Multi-cluster
-49.1 razones para múltiples clusters
-49.2 blast radius
-49.3 regional clusters
-49.4 environment separation
-49.5 fleet management
-49.6 kubeconfig management
-49.7 cluster inventory
-49.8 policy distribution
-49.9 configuration distribution
-49.10 multi-cluster service discovery
-49.11 multi-cluster networking
-49.12 global load balancing
-49.13 disaster recovery entre clusters
-49.14 GitOps multi-cluster
-49.15 Cluster API
-49.16 federation: contexto histórico
-49.17 laboratorio: operar una flota
-
-50. Cluster API
-50.1 declarative cluster lifecycle
-50.2 management cluster
-50.3 workload cluster
-50.4 providers
-50.5 infrastructure providers
-50.6 bootstrap providers
-50.7 control plane providers
-50.8 Machine
-50.9 MachineSet
-50.10 MachineDeployment
-50.11 ClusterClass
-50.12 topology
-50.13 upgrades
-50.14 remediation
-50.15 autoscaling
-50.16 laboratorio: gestionar clusters declarativamente
-
-51. GitOps para Kubernetes
-51.1 principios GitOps
-51.2 Git como source of truth
-51.3 pull model
-51.4 reconciliation
-51.5 drift detection
-51.6 Argo CD
-51.7 Flux
-51.8 sync
-51.9 health
-51.10 pruning
-51.11 waves
-51.12 hooks
-51.13 progressive delivery
-51.14 secrets en GitOps
-51.15 SOPS
-51.16 policy as code
-51.17 multi-cluster GitOps
-51.18 laboratorio: plataforma GitOps
-
-52. Helm
-52.1 charts
-52.2 chart structure
-52.3 templates
-52.4 values
-52.5 built-in objects
-52.6 functions
-52.7 pipelines
-52.8 conditionals
-52.9 loops
-52.10 named templates
-52.11 dependencies
-52.12 library charts
-52.13 hooks
-52.14 release lifecycle
-52.15 upgrade
-52.16 rollback
-52.17 OCI registries
-52.18 chart testing
-52.19 security
-52.20 laboratorio: crear un chart de producción
-
-53. Kustomize
-53.1 bases
-53.2 overlays
-53.3 resources
-53.4 patches
-53.5 strategic merge patches
-53.6 JSON 6902 patches
-53.7 generators
-53.8 transformers
-53.9 namePrefix
-53.10 nameSuffix
-53.11 labels
-53.12 annotations
-53.13 images
-53.14 replacements
-53.15 components
-53.16 GitOps integration
-53.17 laboratorio: gestionar múltiples entornos
-
-54. Service mesh
-54.1 por qué service mesh
-54.2 data plane
-54.3 control plane
-54.4 sidecar model
-54.5 sidecarless models
-54.6 Envoy
-54.7 service identity
-54.8 mTLS
-54.9 traffic management
-54.10 retries
-54.11 timeouts
-54.12 circuit breaking
-54.13 traffic splitting
-54.14 observability
-54.15 authorization policies
-54.16 Istio: arquitectura
-54.17 Linkerd: arquitectura
-54.18 Gateway API integration
-54.19 ambient mesh
-54.20 laboratorio: mTLS y tráfico progresivo
-
-55. Policy as Code y gobernanza
-55.1 policy as code
-55.2 admission policies
-55.3 OPA
-55.4 Gatekeeper
-55.5 Rego: introducción
-55.6 Kyverno
-55.7 CEL
-55.8 policy testing
-55.9 policy exceptions
-55.10 audit mode
-55.11 enforce mode
-55.12 namespace governance
-55.13 image governance
-55.14 security governance
-55.15 compliance
-55.16 laboratorio: baseline organizacional
-
-56. Seguridad avanzada de identidad
-56.1 Kubernetes identities
-56.2 human identities
-56.3 workload identities
-56.4 OIDC
-56.5 external identity providers
-56.6 short-lived credentials
-56.7 ServiceAccount tokens
-56.8 token projection
-56.9 audience
-56.10 SPIFFE
-56.11 SPIRE
-56.12 certificate-based identity
-56.13 secretless patterns
-56.14 cloud workload identity
-56.15 laboratorio: identidad sin credenciales estáticas
-
-57. Secrets management avanzado
-57.1 amenazas sobre Secrets
-57.2 encryption at rest
-57.3 KMS
-57.4 external secret stores
-57.5 External Secrets Operator
-57.6 Secrets Store CSI Driver
-57.7 Vault: integración conceptual
-57.8 secret rotation
-57.9 dynamic secrets
-57.10 sealed secrets
-57.11 SOPS
-57.12 GitOps y Secrets
-57.13 laboratorio: rotación automática
-
-58. Supply chain avanzada
-58.1 SLSA
-58.2 provenance
-58.3 attestation
-58.4 SBOM
-58.5 vulnerability scanning
-58.6 signature verification
-58.7 cosign
-58.8 Rekor
-58.9 Fulcio
-58.10 policy verification
-58.11 trusted builders
-58.12 reproducible builds
-58.13 admission enforcement
-58.14 runtime verification
-58.15 laboratorio: pipeline firmado
-
-59. Platform Engineering sobre Kubernetes
-59.1 platform engineering
-59.2 internal developer platform
-59.3 golden paths
-59.4 self-service
-59.5 platform APIs
-59.6 templates
-59.7 service catalog
-59.8 Backstage: conceptos
-59.9 Crossplane: conceptos
-59.10 operators
-59.11 GitOps
-59.12 policy
-59.13 observability
-59.14 secrets
-59.15 tenancy
-59.16 quotas
-59.17 cost controls
-59.18 developer experience
-59.19 laboratorio: diseñar una plataforma interna
-
-60. Crossplane e infraestructura desde Kubernetes
-60.1 control plane de infraestructura
-60.2 providers
-60.3 managed resources
-60.4 compositions
-60.5 composite resources
-60.6 XRDs
-60.7 claims
-60.8 functions
-60.9 connection details
-60.10 secrets
-60.11 policy
-60.12 GitOps
-60.13 multi-cloud
-60.14 laboratorio: provisionar infraestructura declarativa
-
-61. Cost, capacity y FinOps
-61.1 capacity planning
-61.2 requests frente a uso real
-61.3 bin packing
-61.4 overcommit
-61.5 rightsizing
-61.6 autoscaling
-61.7 idle resources
-61.8 namespace cost allocation
-61.9 labels para cost allocation
-61.10 storage cost
-61.11 network egress cost
-61.12 Spot/Preemptible nodes
-61.13 scheduling orientado a coste
-61.14 OpenCost: conceptos
-61.15 laboratorio: optimizar coste
-
-62. Backup y disaster recovery
-62.1 qué debe respaldarse
-62.2 etcd snapshots
-62.3 manifests y GitOps
-62.4 persistent data
-62.5 CSI snapshots
-62.6 application-consistent backups
-62.7 Velero: conceptos
-62.8 backup locations
-62.9 restore
-62.10 cluster migration
-62.11 cross-region DR
-62.12 RPO
-62.13 RTO
-62.14 DR testing
-62.15 laboratorio: recuperación completa
-
-63. Seguridad del host para Kubernetes
-63.1 host attack surface
-63.2 minimal OS
-63.3 immutable OS
-63.4 kernel hardening
-63.5 sysctl
-63.6 namespaces
-63.7 cgroups
-63.8 seccomp
-63.9 SELinux
-63.10 filesystem permissions
-63.11 container runtime socket
-63.12 kubelet endpoint security
-63.13 firewalling
-63.14 SSH exposure
-63.15 package updates
-63.16 auditd
-63.17 laboratorio: endurecer un nodo
-
-64. Kubernetes y eBPF
-64.1 fundamentos eBPF
-64.2 hooks
-64.3 maps
-64.4 programs
-64.5 verifier
-64.6 observabilidad eBPF
-64.7 networking eBPF
-64.8 policy eBPF
-64.9 kube-proxy replacement
-64.10 service load balancing
-64.11 tracing
-64.12 runtime security
-64.13 Cilium: arquitectura
-64.14 Hubble: arquitectura
-64.15 laboratorio: observar tráfico con eBPF
-
-65. Kubernetes internals: apiserver
-65.1 apiserver architecture
-65.2 HTTP stack
-65.3 request lifecycle
-65.4 authentication
-65.5 authorization
-65.6 admission
-65.7 REST storage
-65.8 etcd storage
-65.9 serialization
-65.10 conversion
-65.11 defaulting
-65.12 validation
-65.13 watch cache
-65.14 API Priority and Fairness
-65.15 discovery
-65.16 OpenAPI
-65.17 laboratory: seguir una request del cliente a etcd
-
-66. Kubernetes internals: controllers
-66.1 shared informers
-66.2 reflector
-66.3 DeltaFIFO
-66.4 cache
-66.5 indexers
-66.6 workqueues
-66.7 rate-limiting queues
-66.8 resync
-66.9 leader election
-66.10 controller patterns
-66.11 Deployment controller
-66.12 ReplicaSet controller
-66.13 StatefulSet controller
-66.14 node controller
-66.15 endpointslice controller
-66.16 garbage collector
-66.17 namespace controller
-66.18 laboratory: rastrear una reconciliación
-
-67. Kubernetes internals: scheduler
-67.1 scheduler queues
-67.2 activeQ
-67.3 backoffQ
-67.4 unschedulablePods
-67.5 scheduling cycle
-67.6 binding cycle
-67.7 framework plugins
-67.8 filtering
-67.9 scoring
-67.10 normalization
-67.11 preemption
-67.12 extenders: contexto histórico
-67.13 profiles
-67.14 performance
-67.15 laboratory: explicar por qué un Pod fue asignado a un nodo
-
-68. Kubernetes internals: kubelet y runtime
-68.1 kubelet sync loop
-68.2 PodWorkers
-68.3 PLEG
-68.4 pod status
-68.5 runtime manager
-68.6 image manager
-68.7 probe manager
-68.8 volume manager
-68.9 eviction manager
-68.10 status manager
-68.11 container garbage collection
-68.12 image garbage collection
-68.13 CRI calls
-68.14 pod sandbox
-68.15 container lifecycle
-68.16 laboratory: seguir la creación de un Pod
-
-69. Kubernetes internals: etcd y consistencia
-69.1 linearizability
-69.2 consensus
-69.3 Raft
-69.4 revisions
-69.5 MVCC
-69.6 watches
-69.7 leases
-69.8 transactions
-69.9 compaction
-69.10 defragmentation
-69.11 quorum reads
-69.12 failure modes
-69.13 latency impact
-69.14 laboratory: relacionar resourceVersion con etcd
-
-70. Kubernetes source code
-70.1 repositorio kubernetes/kubernetes
-70.2 estructura del repositorio
-70.3 cmd/
-70.4 pkg/
-70.5 staging/
-70.6 vendor/
-70.7 hack/
-70.8 test/
-70.9 build system
-70.10 generated code
-70.11 API machinery
-70.12 client-go
-70.13 controller-runtime frente a client-go
-70.14 compilar Kubernetes
-70.15 ejecutar tests
-70.16 localizar una feature
-70.17 leer un KEP
-70.18 laboratorio: seguir una feature en el código
-
-71. Kubernetes Enhancement Proposals
-71.1 qué es un KEP
-71.2 SIGs
-71.3 lifecycle de una feature
-71.4 alpha
-71.5 beta
-71.6 stable
-71.7 feature gates
-71.8 graduation criteria
-71.9 deprecation
-71.10 API compatibility
-71.11 release notes
-71.12 laboratorio: analizar un KEP real
-
-72. Testing de Kubernetes y plataformas
-72.1 unit tests
-72.2 integration tests
-72.3 end-to-end tests
-72.4 conformance
-72.5 Sonobuoy
-72.6 Kubernetes e2e framework
-72.7 test clusters
-72.8 chaos testing
-72.9 upgrade testing
-72.10 policy testing
-72.11 security testing
-72.12 load testing
-72.13 laboratory: diseñar una suite de validación
-
-73. Kubernetes conformance y distribución
-73.1 qué significa conformant
-73.2 CNCF Certified Kubernetes
-73.3 conformance tests
-73.4 portability
-73.5 distributions
-73.6 managed Kubernetes
-73.7 vanilla Kubernetes
-73.8 opinionated platforms
-73.9 vendor extensions
-73.10 lifecycle concerns
-73.11 laboratorio: evaluar una distribución
-
-74. Arquitectura de plataforma empresarial
-74.1 requisitos no funcionales
-74.2 tenancy
-74.3 identity
-74.4 network architecture
-74.5 ingress architecture
-74.6 gateway architecture
-74.7 storage architecture
-74.8 observability architecture
-74.9 secrets architecture
-74.10 policy architecture
-74.11 GitOps architecture
-74.12 supply chain
-74.13 DR
-74.14 cost
-74.15 compliance
-74.16 upgrade strategy
-74.17 platform SLOs
-74.18 laboratorio: diseñar una plataforma Kubernetes
-
-75. Proyecto final experto
-75.1 definir requisitos
-75.2 diseñar arquitectura
-75.3 diseñar control plane HA
-75.4 diseñar nodos y pools
-75.5 seleccionar runtime
-75.6 seleccionar CNI
-75.7 seleccionar CSI
-75.8 diseñar DNS
-75.9 diseñar ingress y Gateway API
-75.10 diseñar PKI
-75.11 diseñar identidad
-75.12 diseñar RBAC
-75.13 diseñar Pod Security
-75.14 diseñar NetworkPolicy
-75.15 diseñar secrets management
-75.16 diseñar supply chain security
-75.17 diseñar runtime security
-75.18 diseñar observabilidad
-75.19 diseñar GitOps
-75.20 diseñar policy as code
-75.21 diseñar backup
-75.22 diseñar disaster recovery
-75.23 diseñar upgrades
-75.24 diseñar multi-tenancy
-75.25 diseñar autoscaling
-75.26 diseñar capacity planning
-75.27 diseñar cost controls
-75.28 desplegar cluster
-75.29 desplegar plataforma
-75.30 desplegar aplicación de referencia
-75.31 ejecutar pruebas de resiliencia
-75.32 ejecutar pruebas de seguridad
-75.33 ejecutar pruebas de rendimiento
-75.34 provocar fallos controlados
-75.35 diagnosticar incidentes
-75.36 recuperar desde backup
-75.37 ejecutar upgrade
-75.38 documentar runbooks
-75.39 documentar arquitectura
-75.40 presentar decisiones y trade-offs
-75.41 proyecto final: mini Kubernetes platform lab de nivel experto
+3. kubectl CLI de básico a avanzado
+3.1 kubectl: propósito, sintaxis y estructura de comandos
+3.2 kubectl version
+3.3 kubectl cluster-info
+3.4 kubectl api-resources
+3.5 kubectl api-versions
+3.6 kubectl explain
+3.7 kubectl explain deployment.spec.template.spec
+3.8 kubectl get
+3.9 kubectl get pods
+3.10 kubectl get pods -A
+3.11 kubectl get pods -n namespace
+3.12 kubectl get pods -o wide
+3.13 kubectl get pod nginx -o yaml
+3.14 kubectl get pod nginx -o json
+3.15 kubectl describe
+3.16 kubectl create
+3.17 kubectl create deployment nginx --image=nginx
+3.18 kubectl create namespace
+3.19 kubectl create configmap
+3.20 kubectl create secret
+3.21 kubectl run
+3.22 kubectl expose
+3.23 kubectl apply -f
+3.24 kubectl delete -f
+3.25 kubectl replace -f
+3.26 kubectl diff -f
+3.27 kubectl patch
+3.28 kubectl edit
+3.29 kubectl scale
+3.30 kubectl scale deployment nginx --replicas=5
+3.31 kubectl autoscale
+3.32 kubectl rollout status
+3.33 kubectl rollout history
+3.34 kubectl rollout undo
+3.35 kubectl rollout restart
+3.36 kubectl rollout pause y resume
+3.37 kubectl logs
+3.38 kubectl logs -f
+3.39 kubectl logs --previous
+3.40 kubectl logs -c
+3.41 kubectl logs con label selectors
+3.42 kubectl exec
+3.43 kubectl exec -it pod -- /bin/sh
+3.44 kubectl attach
+3.45 kubectl cp
+3.46 kubectl debug
+3.47 kubectl port-forward
+3.48 kubectl port-forward pod/nginx 8080:80
+3.49 kubectl wait
+3.50 formatos de salida: wide, yaml, json y name
+3.51 JSONPath con kubectl
+3.52 kubectl get pods -o jsonpath
+3.53 custom-columns
+3.54 label selectors: -l y --selector
+3.55 kubectl get pods -l app=nginx
+3.56 field selectors
+3.57 kubectl get pods --field-selector=status.phase=Running
+3.58 kubectl get --sort-by
+3.59 kubectl auth
+3.60 kubectl auth can-i
+3.61 kubectl auth can-i create pods
+3.62 kubectl auth can-i '*' '*'
+3.63 kubectl auth can-i '*' '*' --as=user1
+3.64 kubectl auth can-i --list
+3.65 kubectl config
+3.66 kubectl config view
+3.67 kubectl config get-contexts
+3.68 kubectl config current-context
+3.69 kubectl config use-context
+3.70 kubectl config set-context
+3.71 kubectl config set-credentials
+3.72 namespaces y cambio de namespace por contexto
+3.73 kubectl cordon
+3.74 kubectl uncordon
+3.75 kubectl drain
+3.76 kubectl taint
+3.77 kubectl label
+3.78 kubectl proxy
+3.79 kubectl get --raw
+3.80 --dry-run=client
+3.81 generación imperativa de YAML con -o yaml
+3.82 kubectl apply -f - y uso de stdin
+3.83 stdout, pipes y composición de comandos
+3.84 kubectl con jq
+3.85 kubectl con xargs
+3.86 scripting Bash con kubectl
+3.87 aliases
+3.88 shell completion
+3.89 kubectl top
+3.90 kubectl events
+3.91 troubleshooting sistemático con get, describe, events y logs
+3.92 troubleshooting con logs --previous, exec y debug
+3.93 troubleshooting de autorización con auth can-i
+3.94 laboratorio: operar y diagnosticar recursos exclusivamente con kubectl
+
+4. Workloads fundamentales
+4.1 Pod
+4.2 ciclo de vida del Pod
+4.3 Pod phase
+4.4 container states
+4.5 restartPolicy
+4.6 init containers
+4.7 sidecars
+4.8 multi-container Pods
+4.9 command y args
+4.10 environment variables
+4.11 workingDir
+4.12 ports
+4.13 resource requests
+4.14 resource limits
+4.15 CPU units
+4.16 memory units
+4.17 QoS classes
+4.18 Guaranteed
+4.19 Burstable
+4.20 BestEffort
+4.21 probes
+4.22 livenessProbe
+4.23 readinessProbe
+4.24 startupProbe
+4.25 HTTP probes
+4.26 TCP probes
+4.27 exec probes
+4.28 gRPC probes
+4.29 lifecycle hooks
+4.30 postStart
+4.31 preStop
+4.32 termination grace period
+4.33 ephemeral containers
+4.34 static Pods
+4.35 mirror Pods
+4.36 laboratorio: diseñar Pods robustos
+
+5. Controllers y workloads gestionados
+5.1 ReplicaSet
+5.2 Deployment
+5.3 rolling updates
+5.4 rollout
+5.5 rollback
+5.6 revision history
+5.7 deployment strategies
+5.8 recreate
+5.9 rollingUpdate
+5.10 maxUnavailable
+5.11 maxSurge
+5.12 StatefulSet
+5.13 identidad estable
+5.14 storage estable
+5.15 ordered deployment
+5.16 parallel pod management
+5.17 headless services con StatefulSet
+5.18 DaemonSet
+5.19 Job
+5.20 completions
+5.21 parallelism
+5.22 backoffLimit
+5.23 ttlSecondsAfterFinished
+5.24 CronJob
+5.25 concurrencyPolicy
+5.26 startingDeadlineSeconds
+5.27 suspend
+5.28 laboratorio: comparar controllers
+
+6. Configuración de aplicaciones
+6.1 ConfigMap
+6.2 creación declarativa
+6.3 creación desde archivos
+6.4 creación desde literales
+6.5 inyección como variables de entorno
+6.6 envFrom
+6.7 montaje como volumen
+6.8 actualización de ConfigMaps
+6.9 Secrets
+6.10 tipos de Secret
+6.11 Opaque
+6.12 TLS Secret
+6.13 dockerconfigjson
+6.14 ServiceAccount token Secrets: evolución
+6.15 projected service account tokens
+6.16 imagePullSecrets
+6.17 consumo de Secrets
+6.18 riesgos de Secrets
+6.19 cifrado en reposo
+6.20 immutable ConfigMaps y Secrets
+6.21 downward API
+6.22 projected volumes
+6.23 laboratorio: configuración externa segura
+
+7. Networking de aplicaciones
+7.1 modelo de red de Kubernetes
+7.2 IP por Pod
+7.3 comunicación Pod a Pod
+7.4 comunicación Pod a Service
+7.5 Services
+7.6 ClusterIP
+7.7 NodePort
+7.8 LoadBalancer
+7.9 ExternalName
+7.10 selectors de Service
+7.11 Endpoints
+7.12 EndpointSlice
+7.13 headless Service
+7.14 DNS para Services
+7.15 DNS para Pods
+7.16 CoreDNS
+7.17 internalTrafficPolicy
+7.18 externalTrafficPolicy
+7.19 sessionAffinity
+7.20 Ingress
+7.21 IngressClass
+7.22 Ingress controllers
+7.23 TLS termination
+7.24 path matching
+7.25 host-based routing
+7.26 Gateway API
+7.27 GatewayClass
+7.28 Gateway
+7.29 HTTPRoute
+7.30 GRPCRoute
+7.31 TCPRoute
+7.32 TLSRoute
+7.33 UDPRoute
+7.34 laboratorio: exponer una aplicación
+
+8. Storage para aplicaciones
+8.1 almacenamiento efímero
+8.2 volumes
+8.3 emptyDir
+8.4 hostPath
+8.5 projected
+8.6 configMap volume
+8.7 secret volume
+8.8 persistent storage
+8.9 PersistentVolume
+8.10 PersistentVolumeClaim
+8.11 access modes
+8.12 volumeMode
+8.13 storageClass
+8.14 dynamic provisioning
+8.15 reclaimPolicy
+8.16 volume binding mode
+8.17 CSI
+8.18 CSI drivers
+8.19 volume expansion
+8.20 snapshots
+8.21 VolumeSnapshot
+8.22 VolumeSnapshotClass
+8.23 VolumeSnapshotContent
+8.24 generic ephemeral volumes
+8.25 local persistent volumes
+8.26 StatefulSet y PVC templates
+8.27 laboratorio: persistencia de una aplicación
+
+9. Scheduling y placement
+9.1 scheduler
+9.2 scheduling cycle
+9.3 binding cycle
+9.4 nodeName
+9.5 nodeSelector
+9.6 node affinity
+9.7 preferred affinity
+9.8 required affinity
+9.9 pod affinity
+9.10 pod anti-affinity
+9.11 topologyKey
+9.12 topology spread constraints
+9.13 taints
+9.14 tolerations
+9.15 NoSchedule
+9.16 PreferNoSchedule
+9.17 NoExecute
+9.18 eviction por taints
+9.19 priorityClass
+9.20 priority
+9.21 preemption
+9.22 PodDisruptionBudget
+9.23 runtimeClass
+9.24 device plugins
+9.25 extended resources
+9.26 laboratorio: políticas de placement
+
+10. Escalado y recursos
+10.1 requests y limits
+10.2 QoS
+10.3 CPU throttling
+10.4 OOM
+10.5 eviction
+10.6 node pressure
+10.7 memory pressure
+10.8 disk pressure
+10.9 PID pressure
+10.10 HorizontalPodAutoscaler
+10.11 metrics API
+10.12 custom metrics
+10.13 external metrics
+10.14 HPA behavior
+10.15 stabilization windows
+10.16 VPA: conceptos
+10.17 Cluster Autoscaler: conceptos
+10.18 node autoscaling
+10.19 overprovisioning
+10.20 rightsizing
+10.21 laboratorio: escalar una aplicación
+
+11. Observabilidad y troubleshooting de aplicaciones
+11.1 logs de contenedores
+11.2 kubectl logs
+11.3 previous logs
+11.4 kubectl exec
+11.5 kubectl attach
+11.6 kubectl port-forward
+11.7 kubectl cp
+11.8 events
+11.9 kubectl describe
+11.10 kubectl get con wide
+11.11 jsonpath
+11.12 custom-columns
+11.13 field selectors
+11.14 label selectors
+11.15 resource metrics
+11.16 metrics-server
+11.17 debugging con ephemeral containers
+11.18 troubleshooting de Pods
+11.19 troubleshooting de Deployments
+11.20 troubleshooting de Services
+11.21 troubleshooting de DNS
+11.22 troubleshooting de storage
+11.23 laboratorio: diagnosticar una aplicación rota
+
+12. Seguridad fundamental cloud native
+12.1 threat modeling
+12.2 shared responsibility
+12.3 seguridad de imágenes
+12.4 registries seguros
+12.5 firmas de imágenes
+12.6 SBOM
+12.7 vulnerabilidades
+12.8 image scanning
+12.9 least privilege
+12.10 Linux capabilities
+12.11 seccomp
+12.12 AppArmor
+12.13 SELinux
+12.14 rootless containers
+12.15 user namespaces
+12.16 runtime security
+12.17 supply chain
+12.18 secrets management
+12.19 TLS
+12.20 PKI
+12.21 identidad de workloads
+12.22 network segmentation
+12.23 logging de seguridad
+12.24 auditabilidad
+12.25 laboratorio: evaluar seguridad de un workload
+
+13. Seguridad fundamental de Kubernetes
+13.1 autenticación
+13.2 autorización
+13.3 admission control
+13.4 RBAC
+13.5 Role
+13.6 ClusterRole
+13.7 RoleBinding
+13.8 ClusterRoleBinding
+13.9 ServiceAccount
+13.10 token projection
+13.11 impersonation
+13.12 least privilege en RBAC
+13.13 Pod Security Standards
+13.14 privileged
+13.15 baseline
+13.16 restricted
+13.17 Pod Security Admission
+13.18 securityContext
+13.19 runAsUser
+13.20 runAsGroup
+13.21 fsGroup
+13.22 runAsNonRoot
+13.23 allowPrivilegeEscalation
+13.24 readOnlyRootFilesystem
+13.25 capabilities drop
+13.26 seccompProfile
+13.27 NetworkPolicy
+13.28 ingress policies
+13.29 egress policies
+13.30 default deny
+13.31 encryption at rest
+13.32 audit logs
+13.33 laboratorio: baseline de seguridad
+
+14. HITO KCNA
+14.1 repaso de fundamentos cloud native
+14.2 repaso de Kubernetes
+14.3 repaso de contenedores
+14.4 repaso de observabilidad
+14.5 repaso de networking y storage
+14.6 repaso del ecosistema CNCF
+14.7 simulación de examen KCNA
+14.8 laboratorio final KCNA
+14.9 checklist de preparación KCNA
+
+15. HITO KCSA
+15.1 repaso de seguridad cloud native
+15.2 repaso de seguridad de contenedores
+15.3 repaso de seguridad de Kubernetes
+15.4 IAM y RBAC
+15.5 Pod Security
+15.6 supply chain security
+15.7 runtime security
+15.8 network security
+15.9 observabilidad de seguridad
+15.10 simulación de examen KCSA
+15.11 laboratorio final KCSA
+15.12 checklist de preparación KCSA
+
+16. Desarrollo de aplicaciones Kubernetes: CKAD
+16.1 diseño de workloads
+16.2 patrones multi-container
+16.3 init containers
+16.4 sidecar pattern
+16.5 ambassador pattern
+16.6 adapter pattern
+16.7 configuración avanzada
+16.8 secretos en aplicaciones
+16.9 Services
+16.10 Ingress y Gateway API
+16.11 NetworkPolicy para aplicaciones
+16.12 Jobs y CronJobs
+16.13 probes y health checks
+16.14 resource management
+16.15 rollout y rollback
+16.16 troubleshooting de aplicaciones
+16.17 kubectl imperative helpers
+16.18 generación rápida de YAML
+16.19 edición eficiente de manifests
+16.20 laboratorio CKAD: aplicación completa
+
+17. HITO CKAD
+17.1 repaso del dominio de examen CKAD
+17.2 ejercicios cronometrados
+17.3 diseño y construcción
+17.4 configuración
+17.5 multi-container Pods
+17.6 observabilidad de aplicaciones
+17.7 Services y networking
+17.8 state persistence
+17.9 troubleshooting
+17.10 simulación completa CKAD
+17.11 checklist de preparación CKAD
+
+18. Instalación y administración de clusters
+18.1 métodos de instalación
+18.2 kubeadm
+18.3 prerequisitos de nodos
+18.4 container runtime
+18.5 configuración de containerd
+18.6 cgroup drivers
+18.7 kubeadm init
+18.8 kubeadm join
+18.9 bootstrap tokens
+18.10 certificados
+18.11 kubeconfig de administración
+18.12 CNI installation
+18.13 CoreDNS
+18.14 kube-proxy
+18.15 control plane node
+18.16 worker node
+18.17 multi-control-plane
+18.18 load balancer del API server
+18.19 stacked etcd
+18.20 external etcd
+18.21 upgrade con kubeadm
+18.22 node upgrade
+18.23 version skew policy
+18.24 drain
+18.25 cordon
+18.26 uncordon
+18.27 laboratorio: construir cluster con kubeadm
+
+19. Administración del control plane
+19.1 static Pods del control plane
+19.2 manifests del control plane
+19.3 kube-apiserver flags
+19.4 kube-controller-manager flags
+19.5 kube-scheduler flags
+19.6 etcd flags
+19.7 kubelet configuration
+19.8 kube-proxy configuration
+19.9 component health
+19.10 API server endpoints
+19.11 API discovery
+19.12 raw API access
+19.13 kubectl proxy
+19.14 certificates
+19.15 certificate signing requests
+19.16 CertificateSigningRequest API
+19.17 rotate certificates
+19.18 kubelet certificate rotation
+19.19 laboratorio: inspeccionar el control plane
+
+20. etcd en profundidad
+20.1 rol de etcd
+20.2 modelo key-value
+20.3 Raft
+20.4 quorum
+20.5 leader election
+20.6 members
+20.7 endpoints
+20.8 etcdctl
+20.9 snapshots
+20.10 restore
+20.11 compaction
+20.12 defragmentation
+20.13 alarms
+20.14 performance
+20.15 TLS
+20.16 stacked etcd
+20.17 external etcd
+20.18 disaster recovery
+20.19 laboratorio: backup y restore de etcd
+
+21. Networking de cluster
+21.1 Linux networking aplicado a Kubernetes
+21.2 network namespaces
+21.3 veth
+21.4 bridges
+21.5 routes
+21.6 ARP y NDP
+21.7 conntrack
+21.8 NAT
+21.9 CNI specification
+21.10 CNI plugins
+21.11 overlay networking
+21.12 underlay networking
+21.13 VXLAN
+21.14 BGP
+21.15 kube-proxy
+21.16 iptables mode
+21.17 IPVS mode
+21.18 nftables y evolución de kube-proxy
+21.19 eBPF dataplanes
+21.20 Service routing
+21.21 ClusterIP internals
+21.22 NodePort internals
+21.23 LoadBalancer internals
+21.24 externalTrafficPolicy
+21.25 internalTrafficPolicy
+21.26 EndpointSlice internals
+21.27 CoreDNS internals
+21.28 NetworkPolicy internals
+21.29 laboratorio: seguir un paquete extremo a extremo
+
+22. Storage de cluster
+22.1 storage architecture
+22.2 in-tree frente a CSI
+22.3 CSI components
+22.4 external-provisioner
+22.5 external-attacher
+22.6 external-resizer
+22.7 external-snapshotter
+22.8 node plugin
+22.9 controller plugin
+22.10 StorageClass
+22.11 topology-aware provisioning
+22.12 WaitForFirstConsumer
+22.13 volume expansion
+22.14 snapshots
+22.15 cloning
+22.16 local volumes
+22.17 raw block volumes
+22.18 mount propagation
+22.19 volume health
+22.20 troubleshooting CSI
+22.21 laboratorio: diagnosticar storage
+
+23. Administración de workloads y nodos
+23.1 node lifecycle
+23.2 Node object
+23.3 node conditions
+23.4 heartbeats
+23.5 leases
+23.6 node controller
+23.7 taints automáticos
+23.8 eviction
+23.9 drain
+23.10 PodDisruptionBudget
+23.11 graceful node shutdown
+23.12 non-graceful node shutdown
+23.13 kubelet
+23.14 kubelet config file
+23.15 kubelet logs
+23.16 static Pods
+23.17 node allocatable
+23.18 reserved resources
+23.19 system-reserved
+23.20 kube-reserved
+23.21 eviction thresholds
+23.22 image garbage collection
+23.23 container garbage collection
+23.24 laboratorio: recuperar un nodo degradado
+
+24. CKA: troubleshooting de cluster
+24.1 metodología de troubleshooting
+24.2 control plane unavailable
+24.3 API server failures
+24.4 etcd failures
+24.5 scheduler failures
+24.6 controller-manager failures
+24.7 kubelet failures
+24.8 container runtime failures
+24.9 CNI failures
+24.10 kube-proxy failures
+24.11 CoreDNS failures
+24.12 Service failures
+24.13 NetworkPolicy failures
+24.14 persistent storage failures
+24.15 certificate failures
+24.16 RBAC failures
+24.17 node NotReady
+24.18 Pod Pending
+24.19 Pod CrashLoopBackOff
+24.20 Pod ImagePullBackOff
+24.21 laboratório: cluster deliberadamente roto
+
+25. HITO CKA
+25.1 repaso del dominio de examen CKA
+25.2 arquitectura
+25.3 instalación
+25.4 configuración
+25.5 workloads y scheduling
+25.6 Services y networking
+25.7 storage
+25.8 troubleshooting
+25.9 ejercicios cronometrados
+25.10 simulación completa CKA
+25.11 checklist de preparación CKA
+
+26. Hardening de cluster
+26.1 threat model del cluster
+26.2 CIS Kubernetes Benchmark
+26.3 kube-bench
+26.4 API server hardening
+26.5 etcd hardening
+26.6 scheduler hardening
+26.7 controller-manager hardening
+26.8 kubelet hardening
+26.9 kube-proxy hardening
+26.10 TLS hardening
+26.11 certificate management
+26.12 anonymous auth
+26.13 authorization modes
+26.14 Node authorization
+26.15 NodeRestriction
+26.16 admission plugins
+26.17 audit policy
+26.18 audit backends
+26.19 secret encryption
+26.20 KMS providers
+26.21 image policy
+26.22 laboratory: hardened cluster baseline
+
+27. Supply chain security
+27.1 software supply chain
+27.2 trusted registries
+27.3 image scanning
+27.4 SBOM
+27.5 signatures
+27.6 provenance
+27.7 Sigstore
+27.8 cosign
+27.9 policy enforcement
+27.10 admission control
+27.11 ValidatingAdmissionPolicy
+27.12 validating webhooks
+27.13 mutating webhooks
+27.14 OPA Gatekeeper
+27.15 Kyverno
+27.16 image immutability
+27.17 pinning by digest
+27.18 minimal images
+27.19 distroless
+27.20 laboratorio: cadena de suministro segura
+
+28. Runtime security
+28.1 runtime threats
+28.2 container escape
+28.3 privilege escalation
+28.4 host namespace exposure
+28.5 privileged containers
+28.6 capabilities
+28.7 seccomp
+28.8 SELinux
+28.9 AppArmor
+28.10 read-only rootfs
+28.11 procMount
+28.12 hostPath risks
+28.13 hostPID
+28.14 hostIPC
+28.15 hostNetwork
+28.16 Falco
+28.17 eBPF security observability
+28.18 runtime anomaly detection
+28.19 laboratorio: detectar actividad sospechosa
+
+29. Network security
+29.1 zero trust
+29.2 default deny
+29.3 ingress NetworkPolicy
+29.4 egress NetworkPolicy
+29.5 DNS egress
+29.6 namespace selectors
+29.7 pod selectors
+29.8 ipBlock
+29.9 metadata API protection
+29.10 control plane exposure
+29.11 API server access
+29.12 firewalling nodes
+29.13 service mesh security
+29.14 mTLS
+29.15 workload identity
+29.16 SPIFFE/SPIRE
+29.17 laboratorio: segmentar una aplicación
+
+30. CKS: investigación y respuesta
+30.1 audit logs
+30.2 container logs
+30.3 node logs
+30.4 events
+30.5 forensics básicos
+30.6 compromise indicators
+30.7 vulnerable workload triage
+30.8 credentials compromise
+30.9 certificate compromise
+30.10 service account abuse
+30.11 RBAC abuse
+30.12 persistence mechanisms
+30.13 malicious admission webhooks
+30.14 suspicious DaemonSets
+30.15 incident containment
+30.16 recovery
+30.17 laboratorio: responder a un incidente
+
+31. HITO CKS
+31.1 prerrequisito: CKA activo
+31.2 repaso del dominio de examen CKS
+31.3 cluster setup
+31.4 cluster hardening
+31.5 system hardening
+31.6 minimize microservice vulnerabilities
+31.7 supply chain security
+31.8 monitoring, logging y runtime security
+31.9 ejercicios cronometrados
+31.10 simulación completa CKS
+31.11 checklist de preparación CKS
+
+32. HITO KUBESTRONAUT
+32.1 verificar KCNA
+32.2 verificar KCSA
+32.3 verificar CKAD
+32.4 verificar CKA
+32.5 verificar CKS
+32.6 mantener certificaciones activas
+32.7 mapa de competencias adquiridas
+32.8 identificar brechas fuera del examen
+32.9 transición de certificación a ingeniería real
+32.10 laboratorio integrador Kubestronaut
+
+33. Kubernetes API en profundidad
+33.1 REST API
+33.2 API discovery
+33.3 API groups
+33.4 core group
+33.5 named groups
+33.6 versions
+33.7 preferred versions
+33.8 storage versions
+33.9 conversion
+33.10 serialization
+33.11 JSON
+33.12 protobuf
+33.13 watch API
+33.14 resourceVersion
+33.15 optimistic concurrency
+33.16 generation
+33.17 observedGeneration
+33.18 patch
+33.19 JSON Patch
+33.20 Merge Patch
+33.21 Strategic Merge Patch
+33.22 Server-Side Apply
+33.23 managedFields
+33.24 field managers
+33.25 dry-run
+33.26 admission chain
+33.27 laboratorio: manipular la API directamente
+
+34. Extensibilidad: CRDs
+34.1 CustomResourceDefinition
+34.2 custom resources
+34.3 schema OpenAPI
+34.4 structural schemas
+34.5 pruning
+34.6 defaulting
+34.7 validation
+34.8 CEL validation
+34.9 subresources
+34.10 status subresource
+34.11 scale subresource
+34.12 categories
+34.13 shortNames
+34.14 printer columns
+34.15 versions
+34.16 conversion webhooks
+34.17 finalizers
+34.18 laboratorio: crear una API propia
+
+35. Controllers y Operators
+35.1 controller pattern
+35.2 reconciliation loop
+35.3 desired state frente a observed state
+35.4 watches
+35.5 informers
+35.6 caches
+35.7 work queues
+35.8 rate limiting
+35.9 idempotencia
+35.10 level-triggered reconciliation
+35.11 ownerReferences
+35.12 garbage collection
+35.13 finalizers
+35.14 leader election
+35.15 controller-runtime
+35.16 Kubebuilder
+35.17 Operator SDK
+35.18 operator maturity model
+35.19 laboratorio: construir un controller
+
+36. Admission control avanzado
+36.1 admission phases
+36.2 mutating admission
+36.3 validating admission
+36.4 built-in admission plugins
+36.5 admission webhooks
+36.6 timeout
+36.7 failurePolicy
+36.8 matchPolicy
+36.9 reinvocationPolicy
+36.10 namespaceSelector
+36.11 objectSelector
+36.12 sideEffects
+36.13 webhook certificates
+36.14 ValidatingAdmissionPolicy
+36.15 CEL
+36.16 policy engines
+36.17 laboratorio: implementar políticas
+
+37. Scheduler en profundidad
+37.1 scheduler architecture
+37.2 scheduling framework
+37.3 extension points
+37.4 queueSort
+37.5 preFilter
+37.6 filter
+37.7 postFilter
+37.8 preScore
+37.9 score
+37.10 reserve
+37.11 permit
+37.12 preBind
+37.13 bind
+37.14 postBind
+37.15 scheduler profiles
+37.16 multiple schedulers
+37.17 scheduler plugins
+37.18 preemption
+37.19 nominatedNodeName
+37.20 scheduling performance
+37.21 laboratorio: analizar decisiones de scheduling
+
+38. Kubelet en profundidad
+38.1 kubelet architecture
+38.2 pod lifecycle management
+38.3 PLEG
+38.4 pod workers
+38.5 sync loop
+38.6 CRI client
+38.7 container lifecycle
+38.8 image manager
+38.9 volume manager
+38.10 probe manager
+38.11 status manager
+38.12 eviction manager
+38.13 cgroup manager
+38.14 CPU manager
+38.15 memory manager
+38.16 topology manager
+38.17 device manager
+38.18 node status
+38.19 leases
+38.20 laboratorio: seguir el ciclo interno de un Pod
+
+39. CRI y container runtimes en profundidad
+39.1 CRI architecture
+39.2 RuntimeService
+39.3 ImageService
+39.4 pod sandbox
+39.5 containerd architecture
+39.6 plugins
+39.7 snapshots
+39.8 content store
+39.9 metadata store
+39.10 shim
+39.11 runc
+39.12 OCI bundles
+39.13 namespaces de containerd
+39.14 ctr
+39.15 crictl
+39.16 nerdctl
+39.17 runtimeClass
+39.18 sandboxed runtimes
+39.19 gVisor
+39.20 Kata Containers
+39.21 laboratorio: trazar kubelet → CRI → containerd → runc
+
+40. CNI y dataplane en profundidad
+40.1 CNI specification
+40.2 ADD
+40.3 DEL
+40.4 CHECK
+40.5 plugin chaining
+40.6 IPAM
+40.7 host-local
+40.8 bridge plugin
+40.9 loopback plugin
+40.10 portmap plugin
+40.11 overlay dataplanes
+40.12 routing dataplanes
+40.13 BGP
+40.14 VXLAN
+40.15 Geneve
+40.16 eBPF
+40.17 kube-proxy replacement
+40.18 policy enforcement
+40.19 observabilidad de red
+40.20 laboratorio: inspeccionar un CNI real
+
+41. CSI en profundidad
+41.1 CSI specification
+41.2 identity service
+41.3 controller service
+41.4 node service
+41.5 CreateVolume
+41.6 DeleteVolume
+41.7 ControllerPublishVolume
+41.8 NodeStageVolume
+41.9 NodePublishVolume
+41.10 capabilities
+41.11 topology
+41.12 snapshots
+41.13 expansion
+41.14 ephemeral volumes
+41.15 sidecars
+41.16 CSI migration
+41.17 troubleshooting
+41.18 laboratorio: seguir el lifecycle de un volumen
+
+42. DNS y service discovery en profundidad
+42.1 DNS en Kubernetes
+42.2 CoreDNS architecture
+42.3 Corefile
+42.4 kubernetes plugin
+42.5 forward plugin
+42.6 cache plugin
+42.7 loop plugin
+42.8 health plugin
+42.9 ready plugin
+42.10 autopath
+42.11 ndots
+42.12 search domains
+42.13 headless service discovery
+42.14 StatefulSet DNS
+42.15 NodeLocal DNSCache
+42.16 troubleshooting DNS
+42.17 laboratorio: seguir una consulta DNS
+
+43. Gateway API y tráfico L7
+43.1 limitaciones de Ingress
+43.2 Gateway API architecture
+43.3 roles
+43.4 GatewayClass
+43.5 Gateway
+43.6 listeners
+43.7 Routes
+43.8 HTTPRoute
+43.9 GRPCRoute
+43.10 TLSRoute
+43.11 TCPRoute
+43.12 UDPRoute
+43.13 ReferenceGrant
+43.14 backendRefs
+43.15 traffic splitting
+43.16 header matching
+43.17 redirects
+43.18 rewrites
+43.19 retries
+43.20 timeouts
+43.21 laboratorio: arquitectura L7 con Gateway API
+
+44. Alta disponibilidad y resiliencia
+44.1 HA del control plane
+44.2 etcd quorum
+44.3 odd member counts
+44.4 failure domains
+44.5 load balancing del API server
+44.6 multi-zone
+44.7 topology spread
+44.8 anti-affinity
+44.9 PDB
+44.10 graceful disruption
+44.11 maintenance windows
+44.12 rolling upgrades
+44.13 backup
+44.14 restore
+44.15 disaster recovery
+44.16 RPO
+44.17 RTO
+44.18 chaos engineering
+44.19 laboratorio: simular fallos
+
+45. Upgrades y lifecycle management
+45.1 Kubernetes release cycle
+45.2 version skew
+45.3 API deprecations
+45.4 removed APIs
+45.5 upgrade planning
+45.6 control plane upgrade
+45.7 node upgrade
+45.8 CNI upgrade
+45.9 CSI upgrade
+45.10 ingress/gateway controllers
+45.11 addon compatibility
+45.12 CRD migrations
+45.13 admission compatibility
+45.14 rollback strategy
+45.15 backup pre-upgrade
+45.16 laboratorio: upgrade completo
+
+46. Observabilidad de Kubernetes
+46.1 golden signals
+46.2 logs
+46.3 metrics
+46.4 traces
+46.5 events
+46.6 Kubernetes metrics
+46.7 cAdvisor
+46.8 kube-state-metrics
+46.9 metrics-server
+46.10 Prometheus
+46.11 ServiceMonitor
+46.12 PodMonitor
+46.13 alerting
+46.14 Grafana
+46.15 Loki
+46.16 OpenTelemetry
+46.17 tracing
+46.18 exemplars
+46.19 SLI
+46.20 SLO
+46.21 laboratorio: observabilidad completa
+
+47. Troubleshooting experto
+47.1 troubleshooting por capas
+47.2 aplicación
+47.3 Pod
+47.4 controller
+47.5 scheduler
+47.6 kubelet
+47.7 runtime
+47.8 CNI
+47.9 kube-proxy
+47.10 DNS
+47.11 API server
+47.12 admission
+47.13 RBAC
+47.14 etcd
+47.15 CSI
+47.16 certificates
+47.17 host networking
+47.18 host storage
+47.19 kernel
+47.20 cgroups
+47.21 SELinux
+47.22 packet captures
+47.23 tcpdump
+47.24 ss
+47.25 ip
+47.26 nft
+47.27 conntrack
+47.28 nsenter
+47.29 crictl
+47.30 journalctl
+47.31 laboratorio: incidente multidominio
+
+48. Performance y scalability
+48.1 scalability dimensions
+48.2 control plane load
+48.3 API request rate
+48.4 watch load
+48.5 etcd latency
+48.6 etcd size
+48.7 API Priority and Fairness
+48.8 client QPS y burst
+48.9 controller concurrency
+48.10 scheduler throughput
+48.11 kubelet performance
+48.12 image pull performance
+48.13 registry caching
+48.14 DNS performance
+48.15 network performance
+48.16 storage performance
+48.17 huge clusters
+48.18 cluster limits
+48.19 load testing
+48.20 benchmark methodology
+48.21 laboratorio: perfilar un cluster
+
+49. Multi-tenancy
+49.1 modelos de tenancy
+49.2 soft multi-tenancy
+49.3 hard multi-tenancy
+49.4 namespaces
+49.5 RBAC boundaries
+49.6 NetworkPolicy boundaries
+49.7 ResourceQuota
+49.8 LimitRange
+49.9 Pod Security
+49.10 admission policies
+49.11 dedicated nodes
+49.12 runtime isolation
+49.13 virtual clusters
+49.14 secrets isolation
+49.15 observability isolation
+49.16 cost allocation
+49.17 laboratorio: plataforma multi-tenant
+
+50. Multi-cluster
+50.1 razones para múltiples clusters
+50.2 blast radius
+50.3 regional clusters
+50.4 environment separation
+50.5 fleet management
+50.6 kubeconfig management
+50.7 cluster inventory
+50.8 policy distribution
+50.9 configuration distribution
+50.10 multi-cluster service discovery
+50.11 multi-cluster networking
+50.12 global load balancing
+50.13 disaster recovery entre clusters
+50.14 GitOps multi-cluster
+50.15 Cluster API
+50.16 federation: contexto histórico
+50.17 laboratorio: operar una flota
+
+51. Cluster API
+51.1 declarative cluster lifecycle
+51.2 management cluster
+51.3 workload cluster
+51.4 providers
+51.5 infrastructure providers
+51.6 bootstrap providers
+51.7 control plane providers
+51.8 Machine
+51.9 MachineSet
+51.10 MachineDeployment
+51.11 ClusterClass
+51.12 topology
+51.13 upgrades
+51.14 remediation
+51.15 autoscaling
+51.16 laboratorio: gestionar clusters declarativamente
+
+52. GitOps para Kubernetes
+52.1 principios GitOps
+52.2 Git como source of truth
+52.3 pull model
+52.4 reconciliation
+52.5 drift detection
+52.6 Argo CD
+52.7 Flux
+52.8 sync
+52.9 health
+52.10 pruning
+52.11 waves
+52.12 hooks
+52.13 progressive delivery
+52.14 secrets en GitOps
+52.15 SOPS
+52.16 policy as code
+52.17 multi-cluster GitOps
+52.18 laboratorio: plataforma GitOps
+
+53. Helm
+53.1 qué es Helm y qué problemas resuelve
+53.2 arquitectura de Helm 3
+53.3 Helm CLI: sintaxis, ayuda y comandos
+53.4 helm version, helm env y helm help
+53.5 charts
+53.6 chart structure
+53.7 Chart.yaml
+53.8 templates
+53.9 values y values.yaml
+53.10 precedencia de values
+53.11 -f / --values
+53.12 --set, --set-string y --set-file
+53.13 built-in objects
+53.14 funciones de templates
+53.15 pipelines
+53.16 conditionals
+53.17 loops
+53.18 variables y scope
+53.19 named templates
+53.20 _helpers.tpl
+53.21 helm create
+53.22 helm lint
+53.23 helm template
+53.24 --dry-run y --debug
+53.25 repositorios Helm
+53.26 helm repo add, list, remove y update
+53.27 helm search hub y helm search repo
+53.28 helm show
+53.29 helm pull
+53.30 helm package
+53.31 instalación de charts con helm install
+53.32 releases y release lifecycle
+53.33 helm list
+53.34 helm status
+53.35 helm get
+53.36 helm history
+53.37 helm upgrade
+53.38 helm rollback
+53.39 helm uninstall
+53.40 --namespace y --create-namespace
+53.41 --wait y --timeout
+53.42 --atomic
+53.43 dependencies
+53.44 helm dependency list
+53.45 helm dependency build
+53.46 helm dependency update
+53.47 library charts
+53.48 hooks
+53.49 tests y helm test
+53.50 OCI registries
+53.51 helm registry
+53.52 helm push
+53.53 autenticación con registries OCI
+53.54 plugins y helm plugin
+53.55 gestión de CRDs con Helm
+53.56 seguridad de charts y releases
+53.57 gestión segura de Secrets y values sensibles
+53.58 debugging y troubleshooting con Helm CLI
+53.59 inspección de manifests renderizados
+53.60 Helm con kubectl
+53.61 Helm con GitOps
+53.62 Helm con Argo CD y Flux: integración conceptual
+53.63 buenas prácticas para charts de producción
+53.64 versionado y compatibilidad de charts
+53.65 laboratorio: crear, empaquetar, instalar, actualizar, probar, hacer rollback y publicar un chart de producción
+
+54. Kustomize
+54.1 bases
+54.2 overlays
+54.3 resources
+54.4 patches
+54.5 strategic merge patches
+54.6 JSON 6902 patches
+54.7 generators
+54.8 transformers
+54.9 namePrefix
+54.10 nameSuffix
+54.11 labels
+54.12 annotations
+54.13 images
+54.14 replacements
+54.15 components
+54.16 GitOps integration
+54.17 laboratorio: gestionar múltiples entornos
+
+55. Service mesh
+55.1 por qué service mesh
+55.2 data plane
+55.3 control plane
+55.4 sidecar model
+55.5 sidecarless models
+55.6 Envoy
+55.7 service identity
+55.8 mTLS
+55.9 traffic management
+55.10 retries
+55.11 timeouts
+55.12 circuit breaking
+55.13 traffic splitting
+55.14 observability
+55.15 authorization policies
+55.16 Istio: arquitectura
+55.17 Linkerd: arquitectura
+55.18 Gateway API integration
+55.19 ambient mesh
+55.20 laboratorio: mTLS y tráfico progresivo
+
+56. Policy as Code y gobernanza
+56.1 policy as code
+56.2 admission policies
+56.3 OPA
+56.4 Gatekeeper
+56.5 Rego: introducción
+56.6 Kyverno
+56.7 CEL
+56.8 policy testing
+56.9 policy exceptions
+56.10 audit mode
+56.11 enforce mode
+56.12 namespace governance
+56.13 image governance
+56.14 security governance
+56.15 compliance
+56.16 laboratorio: baseline organizacional
+
+57. Seguridad avanzada de identidad
+57.1 Kubernetes identities
+57.2 human identities
+57.3 workload identities
+57.4 OIDC
+57.5 external identity providers
+57.6 short-lived credentials
+57.7 ServiceAccount tokens
+57.8 token projection
+57.9 audience
+57.10 SPIFFE
+57.11 SPIRE
+57.12 certificate-based identity
+57.13 secretless patterns
+57.14 cloud workload identity
+57.15 laboratorio: identidad sin credenciales estáticas
+
+58. Secrets management avanzado
+58.1 amenazas sobre Secrets
+58.2 encryption at rest
+58.3 KMS
+58.4 external secret stores
+58.5 External Secrets Operator
+58.6 Secrets Store CSI Driver
+58.7 Vault: integración conceptual
+58.8 secret rotation
+58.9 dynamic secrets
+58.10 sealed secrets
+58.11 SOPS
+58.12 GitOps y Secrets
+58.13 laboratorio: rotación automática
+
+59. Supply chain avanzada
+59.1 SLSA
+59.2 provenance
+59.3 attestation
+59.4 SBOM
+59.5 vulnerability scanning
+59.6 signature verification
+59.7 cosign
+59.8 Rekor
+59.9 Fulcio
+59.10 policy verification
+59.11 trusted builders
+59.12 reproducible builds
+59.13 admission enforcement
+59.14 runtime verification
+59.15 laboratorio: pipeline firmado
+
+60. Platform Engineering sobre Kubernetes
+60.1 platform engineering
+60.2 internal developer platform
+60.3 golden paths
+60.4 self-service
+60.5 platform APIs
+60.6 templates
+60.7 service catalog
+60.8 Backstage: conceptos
+60.9 Crossplane: conceptos
+60.10 operators
+60.11 GitOps
+60.12 policy
+60.13 observability
+60.14 secrets
+60.15 tenancy
+60.16 quotas
+60.17 cost controls
+60.18 developer experience
+60.19 laboratorio: diseñar una plataforma interna
+
+61. Crossplane e infraestructura desde Kubernetes
+61.1 control plane de infraestructura
+61.2 providers
+61.3 managed resources
+61.4 compositions
+61.5 composite resources
+61.6 XRDs
+61.7 claims
+61.8 functions
+61.9 connection details
+61.10 secrets
+61.11 policy
+61.12 GitOps
+61.13 multi-cloud
+61.14 laboratorio: provisionar infraestructura declarativa
+
+62. Cost, capacity y FinOps
+62.1 capacity planning
+62.2 requests frente a uso real
+62.3 bin packing
+62.4 overcommit
+62.5 rightsizing
+62.6 autoscaling
+62.7 idle resources
+62.8 namespace cost allocation
+62.9 labels para cost allocation
+62.10 storage cost
+62.11 network egress cost
+62.12 Spot/Preemptible nodes
+62.13 scheduling orientado a coste
+62.14 OpenCost: conceptos
+62.15 laboratorio: optimizar coste
+
+63. Backup y disaster recovery
+63.1 qué debe respaldarse
+63.2 etcd snapshots
+63.3 manifests y GitOps
+63.4 persistent data
+63.5 CSI snapshots
+63.6 application-consistent backups
+63.7 Velero: conceptos
+63.8 backup locations
+63.9 restore
+63.10 cluster migration
+63.11 cross-region DR
+63.12 RPO
+63.13 RTO
+63.14 DR testing
+63.15 laboratorio: recuperación completa
+
+64. Seguridad del host para Kubernetes
+64.1 host attack surface
+64.2 minimal OS
+64.3 immutable OS
+64.4 kernel hardening
+64.5 sysctl
+64.6 namespaces
+64.7 cgroups
+64.8 seccomp
+64.9 SELinux
+64.10 filesystem permissions
+64.11 container runtime socket
+64.12 kubelet endpoint security
+64.13 firewalling
+64.14 SSH exposure
+64.15 package updates
+64.16 auditd
+64.17 laboratorio: endurecer un nodo
+
+65. Kubernetes y eBPF
+65.1 fundamentos eBPF
+65.2 hooks
+65.3 maps
+65.4 programs
+65.5 verifier
+65.6 observabilidad eBPF
+65.7 networking eBPF
+65.8 policy eBPF
+65.9 kube-proxy replacement
+65.10 service load balancing
+65.11 tracing
+65.12 runtime security
+65.13 Cilium: arquitectura
+65.14 Hubble: arquitectura
+65.15 laboratorio: observar tráfico con eBPF
+
+66. Kubernetes internals: apiserver
+66.1 apiserver architecture
+66.2 HTTP stack
+66.3 request lifecycle
+66.4 authentication
+66.5 authorization
+66.6 admission
+66.7 REST storage
+66.8 etcd storage
+66.9 serialization
+66.10 conversion
+66.11 defaulting
+66.12 validation
+66.13 watch cache
+66.14 API Priority and Fairness
+66.15 discovery
+66.16 OpenAPI
+66.17 laboratory: seguir una request del cliente a etcd
+
+67. Kubernetes internals: controllers
+67.1 shared informers
+67.2 reflector
+67.3 DeltaFIFO
+67.4 cache
+67.5 indexers
+67.6 workqueues
+67.7 rate-limiting queues
+67.8 resync
+67.9 leader election
+67.10 controller patterns
+67.11 Deployment controller
+67.12 ReplicaSet controller
+67.13 StatefulSet controller
+67.14 node controller
+67.15 endpointslice controller
+67.16 garbage collector
+67.17 namespace controller
+67.18 laboratory: rastrear una reconciliación
+
+68. Kubernetes internals: scheduler
+68.1 scheduler queues
+68.2 activeQ
+68.3 backoffQ
+68.4 unschedulablePods
+68.5 scheduling cycle
+68.6 binding cycle
+68.7 framework plugins
+68.8 filtering
+68.9 scoring
+68.10 normalization
+68.11 preemption
+68.12 extenders: contexto histórico
+68.13 profiles
+68.14 performance
+68.15 laboratory: explicar por qué un Pod fue asignado a un nodo
+
+69. Kubernetes internals: kubelet y runtime
+69.1 kubelet sync loop
+69.2 PodWorkers
+69.3 PLEG
+69.4 pod status
+69.5 runtime manager
+69.6 image manager
+69.7 probe manager
+69.8 volume manager
+69.9 eviction manager
+69.10 status manager
+69.11 container garbage collection
+69.12 image garbage collection
+69.13 CRI calls
+69.14 pod sandbox
+69.15 container lifecycle
+69.16 laboratory: seguir la creación de un Pod
+
+70. Kubernetes internals: etcd y consistencia
+70.1 linearizability
+70.2 consensus
+70.3 Raft
+70.4 revisions
+70.5 MVCC
+70.6 watches
+70.7 leases
+70.8 transactions
+70.9 compaction
+70.10 defragmentation
+70.11 quorum reads
+70.12 failure modes
+70.13 latency impact
+70.14 laboratory: relacionar resourceVersion con etcd
+
+71. Kubernetes source code
+71.1 repositorio kubernetes/kubernetes
+71.2 estructura del repositorio
+71.3 cmd/
+71.4 pkg/
+71.5 staging/
+71.6 vendor/
+71.7 hack/
+71.8 test/
+71.9 build system
+71.10 generated code
+71.11 API machinery
+71.12 client-go
+71.13 controller-runtime frente a client-go
+71.14 compilar Kubernetes
+71.15 ejecutar tests
+71.16 localizar una feature
+71.17 leer un KEP
+71.18 laboratorio: seguir una feature en el código
+
+72. Kubernetes Enhancement Proposals
+72.1 qué es un KEP
+72.2 SIGs
+72.3 lifecycle de una feature
+72.4 alpha
+72.5 beta
+72.6 stable
+72.7 feature gates
+72.8 graduation criteria
+72.9 deprecation
+72.10 API compatibility
+72.11 release notes
+72.12 laboratorio: analizar un KEP real
+
+73. Testing de Kubernetes y plataformas
+73.1 unit tests
+73.2 integration tests
+73.3 end-to-end tests
+73.4 conformance
+73.5 Sonobuoy
+73.6 Kubernetes e2e framework
+73.7 test clusters
+73.8 chaos testing
+73.9 upgrade testing
+73.10 policy testing
+73.11 security testing
+73.12 load testing
+73.13 laboratory: diseñar una suite de validación
+
+74. Kubernetes conformance y distribución
+74.1 qué significa conformant
+74.2 CNCF Certified Kubernetes
+74.3 conformance tests
+74.4 portability
+74.5 distributions
+74.6 managed Kubernetes
+74.7 vanilla Kubernetes
+74.8 opinionated platforms
+74.9 vendor extensions
+74.10 lifecycle concerns
+74.11 laboratorio: evaluar una distribución
+
+75. Arquitectura de plataforma empresarial
+75.1 requisitos no funcionales
+75.2 tenancy
+75.3 identity
+75.4 network architecture
+75.5 ingress architecture
+75.6 gateway architecture
+75.7 storage architecture
+75.8 observability architecture
+75.9 secrets architecture
+75.10 policy architecture
+75.11 GitOps architecture
+75.12 supply chain
+75.13 DR
+75.14 cost
+75.15 compliance
+75.16 upgrade strategy
+75.17 platform SLOs
+75.18 laboratorio: diseñar una plataforma Kubernetes
+
+76. Proyecto final experto
+76.1 definir requisitos
+76.2 diseñar arquitectura
+76.3 diseñar control plane HA
+76.4 diseñar nodos y pools
+76.5 seleccionar runtime
+76.6 seleccionar CNI
+76.7 seleccionar CSI
+76.8 diseñar DNS
+76.9 diseñar ingress y Gateway API
+76.10 diseñar PKI
+76.11 diseñar identidad
+76.12 diseñar RBAC
+76.13 diseñar Pod Security
+76.14 diseñar NetworkPolicy
+76.15 diseñar secrets management
+76.16 diseñar supply chain security
+76.17 diseñar runtime security
+76.18 diseñar observabilidad
+76.19 diseñar GitOps
+76.20 diseñar policy as code
+76.21 diseñar backup
+76.22 diseñar disaster recovery
+76.23 diseñar upgrades
+76.24 diseñar multi-tenancy
+76.25 diseñar autoscaling
+76.26 diseñar capacity planning
+76.27 diseñar cost controls
+76.28 desplegar cluster
+76.29 desplegar plataforma
+76.30 desplegar aplicación de referencia
+76.31 ejecutar pruebas de resiliencia
+76.32 ejecutar pruebas de seguridad
+76.33 ejecutar pruebas de rendimiento
+76.34 provocar fallos controlados
+76.35 diagnosticar incidentes
+76.36 recuperar desde backup
+76.37 ejecutar upgrade
+76.38 documentar runbooks
+76.39 documentar arquitectura
+76.40 presentar decisiones y trade-offs
+76.41 proyecto final: mini Kubernetes platform lab de nivel experto

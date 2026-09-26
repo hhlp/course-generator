@@ -23,6 +23,7 @@ El dominio cubre:
 - Contenedores, OCI, containerd, runc y CRI.
 - Fundamentos cloud-native y ecosistema CNCF.
 - Arquitectura Kubernetes.
+- kubectl CLI de básico a avanzado, incluyendo consulta, creación, gestión declarativa, rollout, debugging, RBAC, kubeconfig, administración de nodos, API, JSONPath, selectors, scripting y troubleshooting.
 - Workloads.
 - Scheduling.
 - Configuración y Secrets.
@@ -179,7 +180,7 @@ Los laboratorios deben favorecer el aprendizaje práctico.
 Siempre que sea razonable deben incluir:
 
 - manifests YAML
-- kubectl
+- kubectl y su CLI de básico a avanzado
 - inspección directa de recursos
 - logs
 - events
