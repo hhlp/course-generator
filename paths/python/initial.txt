@@ -440,24 +440,45 @@
 
 16. Archivos y persistencia
 16.1 pathlib: rutas y operaciones
-16.2 glob y recorridos de árboles
-16.3 open, modos y encoding
-16.4 Lectura incremental
-16.5 Archivos binarios y seek
-16.6 StringIO y BytesIO
-16.7 Escritura atómica y durabilidad
-16.8 tempfile y shutil
-16.9 CSV y dialectos
-16.10 JSON y conversiones
-16.11 TOML con tomllib
-16.12 configparser
-16.13 XML y entradas no fiables
-16.14 pickle y riesgos
-16.15 SQLite: conexiones y cursores
-16.16 SQL parametrizado
-16.17 Transacciones y rollback
-16.18 Migraciones simples
-16.19 Laboratorio: inventario persistente
+16.2 Rutas absolutas, relativas y directorio de trabajo
+16.3 glob y recorridos de árboles
+16.4 open y objetos archivo
+16.5 Context manager: with open(...) as f
+16.6 Modos r, w, a y x
+16.7 Modificadores t, b y +
+16.8 Encoding, UTF-8 y errores de codificación
+16.9 read(): lectura completa
+16.10 read(size): lectura por bloques
+16.11 readline(): lectura de una línea
+16.12 readlines(): lectura de todas las líneas
+16.13 Iteración sobre archivos: lectura línea a línea
+16.14 Lectura incremental y archivos grandes
+16.15 write(): escritura
+16.16 Escritura línea a línea
+16.17 writelines(): escritura de iterables
+16.18 Append y actualización de archivos
+16.19 tell, seek y posición
+16.20 flush, buffering y cierre
+16.21 Archivos binarios y bytes
+16.22 StringIO y BytesIO
+16.23 Escritura atómica y durabilidad
+16.24 tempfile
+16.25 shutil
+16.26 CSV: reader y writer
+16.27 CSV: DictReader y DictWriter
+16.28 CSV: dialectos, quoting y delimitadores
+16.29 JSON: load y loads
+16.30 JSON: dump y dumps
+16.31 JSON: conversiones entre tipos Python y JSON
+16.32 TOML y tomllib
+16.33 Configuración INI con configparser
+16.34 XML y entradas no fiables
+16.35 pickle, serialización y riesgos
+16.36 SQLite: conexiones y cursores
+16.37 SQL parametrizado
+16.38 Transacciones y rollback
+16.39 Migraciones simples
+16.40 Laboratorio: inventario persistente
 
 17. Biblioteca estándar aplicada
 17.1 datetime y timedelta

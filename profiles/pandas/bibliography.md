@@ -5,7 +5,7 @@
 Base pedagógica del learning path. Se utiliza para introducir progresivamente Series, DataFrame, limpieza, transformación, combinación, agrupación y análisis con datasets.
 
 ## Patrones y Pandas idiomático
-### Matt Harrison — *Effective Pandas: Patterns for Data Manipulation*
+### Matt Harrison — *Effective Pandas: Patterns for Data Manipulation 3rd. Edition*
 Referencia transversal para patrones idiomáticos, vectorización, tipos, method chaining, legibilidad, rendimiento y antipatterns. Sus ideas se introducen durante todo el curso y tienen especial peso en selección, tipos, transformación, GroupBy, joins, categorías, optimización y pipelines.
 
 ## Práctica y profundización
