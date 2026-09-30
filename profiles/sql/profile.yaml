@@ -190,12 +190,31 @@ references:
         - views and materialized views
 
   primary:
+    - "Head First SQL, 2nd Edition — Kimberley Fessel"
+    - "Beginning SQL Queries: From Novice to Professional, 2nd Edition — Clare Churcher"
     - "Learning SQL, 3rd Edition — Alan Beaulieu"
-    - "SQL Cookbook — Anthony Molinaro, Robert de Graaf"
+    - "SQL Cookbook, 2nd Edition — Anthony Molinaro, Robert de Graaf"
+    - "SQL for Data Analysis: Advanced Techniques for Transforming Data into Insights — Cathy Tanimura"
+    - "SQL for Data Analytics, Fourth Edition — Packt"
     - "SQL in a Nutshell, 4th Edition — Kevin Kline, Regina O. Obe, Leo S. Hsu"
-    - "Beginning SQL Queries — Clare Churcher"
-    - "SQL for Data Analysis — Cathy Tanimura"
-    - "SQL for Data Analytics, Fourth Edition — Jun Shan, Haibin Li et al."
+    - "SQL for Data Analytics, Third Edition — Packt"
+    - "SQL Essentials for Data Analysis: A 50-Day Hands-on Challenge Book — Benjamin Bennett Alexander"
+
+  bibliography_roles:
+    fundamentals:
+      - "Head First SQL, 2nd Edition"
+      - "Beginning SQL Queries, 2nd Edition"
+      - "Learning SQL, 3rd Edition"
+    patterns_and_recipes:
+      - "SQL Cookbook, 2nd Edition"
+    reference:
+      - "SQL in a Nutshell, 4th Edition"
+    analytics:
+      - "SQL for Data Analysis"
+      - "SQL for Data Analytics, Fourth Edition"
+      - "SQL for Data Analytics, Third Edition"
+    deliberate_practice:
+      - "SQL Essentials for Data Analysis: A 50-Day Hands-on Challenge Book"
 
   tutorials:
     - name: "Neon PostgreSQL Tutorial"

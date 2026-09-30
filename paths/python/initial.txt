@@ -6,14 +6,19 @@
 0.5 Terminal, rutas y directorio de trabajo
 0.6 REPL, help, dir y ejecución de scripts
 0.7 Editor, indentación y estilo
-0.8 uv: gestión de intérpretes
-0.9 uv: proyectos, entornos y dependencias
-0.10 venv y pip: fundamentos
-0.11 Ejecutar módulos con python -m
-0.12 Documentación: tutorial, referencia y biblioteca
-0.13 Cómo leer firmas y gramática formal
-0.14 Git básico para los laboratorios
-0.15 Laboratorio: proyecto reproducible
+0.8 uv: introducción mínima y propósito durante el curso
+0.9 Instalar, actualizar y comprobar uv en Fedora
+0.10 uv python: usar Python gestionado sin sustituir el Python del sistema
+0.11 uv python install y selección básica de Python 3.15
+0.12 uv init: crear el proyecto de trabajo del curso
+0.13 uv add: añadir una dependencia
+0.14 uv sync: preparar el entorno del proyecto
+0.15 uv run: ejecutar Python, módulos, scripts y comandos
+0.16 pyproject.toml y uv.lock: primera aproximación
+0.17 Documentación: tutorial, referencia y biblioteca
+0.18 Cómo leer firmas y gramática formal
+0.19 Git básico para los laboratorios
+0.20 Laboratorio: entorno de trabajo reproducible para el curso
 
 1. Primeros programas y control de flujo
 1.1 print, comentarios y primer programa
@@ -60,21 +65,57 @@
 3.3 División, división entera y módulo con signos
 3.4 pow, abs, round y divmod
 3.5 float y representación aproximada
-3.6 math.isclose y comparación numérica
-3.7 NaN, infinitos y límites
-3.8 Métodos públicos de int: bit_length, bit_count, to_bytes, from_bytes y restantes documentados
-3.9 Métodos públicos de float: hex, fromhex, as_integer_ratio, is_integer y conversiones documentadas
-3.10 complex: atributos, conjugate y métodos documentados
-3.11 bool y su relación con int
-3.12 AND, OR, XOR y NOT bitwise
-3.13 Desplazamientos y máscaras
-3.14 Variantes de asignación aumentada
-3.15 decimal: precisión y redondeo
-3.16 fractions y racionales
-3.17 math y cmath
-3.18 random, semillas y diferencia con secrets
-3.19 statistics
-3.20 Laboratorio: cálculo monetario y flags
+3.6 IEEE 754 y errores de representación decimal
+3.7 math.isclose y comparación numérica
+3.8 NaN, infinitos y límites
+3.9 Redondeo: nearest, truncation, floor y ceiling
+3.10 round(): ndigits y ROUND_HALF_EVEN
+3.11 math.floor(), math.ceil() y math.trunc()
+3.12 Diferencias entre truncar, floor, ceiling y redondear
+3.13 Métodos públicos de int: bit_length, bit_count, to_bytes, from_bytes y restantes documentados
+3.14 Métodos públicos de float: hex, fromhex, as_integer_ratio, is_integer y conversiones documentadas
+3.15 complex: atributos, conjugate y métodos documentados
+3.16 bool y su relación con int
+3.17 AND, OR, XOR y NOT bitwise
+3.18 Desplazamientos y máscaras
+3.19 Variantes de asignación aumentada
+3.20 decimal: introducción y Decimal
+3.21 Construcción de Decimal desde str, int y float
+3.22 Context: precisión, rounding, flags y traps
+3.23 getcontext(), setcontext() y localcontext()
+3.24 Decimal.quantize() y control de posiciones decimales
+3.25 Decimal.to_integral_value() y redondeo a valores integrales
+3.26 round() con Decimal frente a Decimal.quantize()
+3.27 round(), to_integral_value() y quantize(): diferencias y cuándo utilizar cada uno
+3.28 decimal.ROUND_DOWN: hacia cero
+3.29 decimal.ROUND_UP: alejándose de cero
+3.30 decimal.ROUND_CEILING: hacia +∞
+3.31 decimal.ROUND_FLOOR: hacia -∞
+3.32 decimal.ROUND_HALF_UP
+3.33 decimal.ROUND_HALF_DOWN
+3.34 decimal.ROUND_HALF_EVEN
+3.35 decimal.ROUND_05UP
+3.36 Comparación de las ocho estrategias de redondeo
+3.37 Operaciones, métodos y propiedades de Decimal
+3.38 Decimal frente a float: precisión y conversiones
+3.39 fractions: introducción y Fraction
+3.40 Fraction(numerator, denominator)
+3.41 Fraction desde int, str, float y Decimal
+3.42 numerator y denominator
+3.43 Aritmética exacta con Fraction
+3.44 Normalización y simplificación automática
+3.45 Fraction.limit_denominator()
+3.46 Conversiones Fraction, Decimal y float
+3.47 Cuándo utilizar int, float, Decimal o Fraction
+3.48 math y cmath
+3.49 random, semillas y diferencia con secrets
+3.50 statistics
+3.51 Puente: redondeo vectorizado con NumPy
+3.52 np.ceil(), np.floor(), np.trunc() y np.rint()
+3.53 np.round() y redondeo de arrays
+3.54 Puente: Series.round() y DataFrame.round() de pandas
+3.55 Diferencia entre DataFrame.round() y DataFrame.truncate()
+3.56 Laboratorio: precisión, fracciones, cálculo monetario y redondeo
 
 4. Texto, formatos y datos binarios
 4.1 Unicode, str e inmutabilidad
@@ -226,18 +267,43 @@
 6.4 zip y strict
 6.5 sorted, reversed, min y max
 6.6 all y any
-6.7 Comprensiones de listas
-6.8 Comprensiones de sets
-6.9 Comprensiones de diccionarios
-6.10 Comprensiones anidadas y orden de evaluación
-6.11 Expresiones generadoras
-6.12 Operador :=
-6.13 match y case
-6.14 Patrones de secuencia
-6.15 Patrones de mappings
-6.16 Patrones de clases
-6.17 Guardas, OR, as y captura de nombres
-6.18 Laboratorio: clasificador de eventos
+6.7 Comprensiones: anatomía, expresión, for, iterable e if
+6.8 Comprensiones de listas
+6.9 Comprensiones de sets
+6.10 Comprensiones de diccionarios
+6.11 Comprensiones y expresión condicional if/else
+6.12 Múltiples condiciones en comprensiones
+6.13 Múltiples bucles en comprensiones
+6.14 Comprensiones anidadas y orden de evaluación
+6.15 Arbitrary nesting, preservación de estructura y flattening
+6.16 Comprensiones con enumerate y zip
+6.17 map: transformación funcional de iterables
+6.18 map con funciones, lambda y múltiples iterables
+6.19 map frente a comprensiones
+6.20 filter: filtrado funcional de iterables
+6.21 filter con funciones y lambda
+6.22 filter(None, iterable): truthiness y eliminación de valores falsy
+6.23 filter frente a comprensiones
+6.24 map + filter frente a comprensiones
+6.25 Expresiones generadoras: sintaxis y anatomía
+6.26 Generator expression frente a list comprehension
+6.27 Evaluación eager frente a lazy
+6.28 Consumo único, agotamiento y recreación de generadores
+6.29 Memoria: list comprehension frente a generator expression
+6.30 sum, min y max con generator expressions
+6.31 any y all con generator expressions y cortocircuito
+6.32 enumerate y zip con generator expressions
+6.33 Scope de variables en comprehensions y generator expressions
+6.34 tuple y frozenset construidos desde generator expressions
+6.35 Cuándo usar comprehension, map, filter o generator expression
+6.36 Legibilidad: cuándo sustituir una comprehension por un for tradicional
+6.37 Operador :=
+6.38 match y case
+6.39 Patrones de secuencia
+6.40 Patrones de mappings
+6.41 Patrones de clases
+6.42 Guardas, OR, as y captura de nombres
+6.43 Laboratorio: transformación, filtrado y clasificación de eventos
 
 7. Funciones en profundidad
 7.1 def: definición y llamada
@@ -541,24 +607,124 @@
 19.19 Linting y formateo
 19.20 Laboratorio: suite del paquete
 
-20. Proyectos y distribución
-20.1 Estructura src frente a plana
-20.2 pyproject.toml
-20.3 Build frontend y backend
-20.4 Dependencias de desarrollo y ejecución
-20.5 Extras y marcadores de entorno
-20.6 Rangos de versiones
-20.7 Lockfiles y uv sync
-20.8 Wheel y sdist
-20.9 Entry points
-20.10 Datos empaquetados
-20.11 Instalación editable
-20.12 Verificar artefactos en entorno limpio
-20.13 Versionado y changelog
-20.14 Documentación ejecutable
-20.15 Publicación de práctica y credenciales
-20.16 CI y matriz de compatibilidad
-20.17 Laboratorio: paquete instalable
+20. Proyectos, entornos, dependencias y distribución
+20.1 Qué problemas resuelven pip, virtualenv y los gestores de proyectos
+20.2 PyPI, índices de paquetes, distribuciones y dependencias
+20.3 pip: arquitectura y relación con Python
+20.4 python -m pip y selección correcta del intérprete
+20.5 pip install, uninstall, list, show y check
+20.6 pip freeze y requirements.txt
+20.7 Versiones, especificadores y constraints.txt
+20.8 Instalación desde índices, archivos, URLs y proyectos locales
+20.9 pip cache y diagnóstico básico
+20.10 Limitaciones de pip como gestor de proyectos
+20.11 virtualenv: propósito y aislamiento
+20.12 Crear entornos con virtualenv
+20.13 Activar, desactivar y localizar un entorno
+20.14 Estructura interna de un virtualenv
+20.15 Seleccionar intérprete y versión de Python
+20.16 pip dentro de virtualenv
+20.17 Recrear un entorno desde requirements.txt
+20.18 pip + virtualenv como flujo clásico
+20.19 Laboratorio: proyecto reproducible con pip + virtualenv
+20.20 pyproject.toml: estándar y papel en el packaging moderno
+20.21 [project], requires-python y metadatos
+20.22 Build frontend, build backend y [build-system]
+20.23 Dependencias de ejecución, desarrollo y opcionales
+20.24 Extras, dependency groups y marcadores de entorno
+20.25 Poetry: propósito, arquitectura e instalación
+20.26 poetry new e init
+20.27 pyproject.toml con Poetry
+20.28 poetry add, remove e install
+20.29 Grupos y dependencias opcionales en Poetry
+20.30 Entornos virtuales administrados por Poetry
+20.31 poetry.lock y resolución reproducible
+20.32 poetry run y ejecución dentro del entorno
+20.33 poetry build y artefactos sdist/wheel
+20.34 poetry publish y repositorios
+20.35 Configuración, caché y troubleshooting de Poetry
+20.36 Laboratorio: proyecto completo con Poetry
+20.37 uv: arquitectura y diferencias frente a pip, virtualenv y Poetry
+20.38 uv python: install, list, find, pin y uninstall
+20.39 .python-version y selección de intérprete con --python
+20.40 uv init y estructura de proyectos
+20.41 uv add y uv remove en proyectos reales
+20.42 uv sync y sincronización exacta
+20.43 uv lock y modelo de resolución
+20.44 uv.lock en profundidad
+20.45 --locked, --frozen y --no-sync
+20.46 Instalaciones editables y sincronización parcial
+20.47 uv tree y análisis del árbol de dependencias
+20.48 uv export: requirements.txt, pylock.toml y otros formatos
+20.49 uv run y selección de grupos/extras
+20.50 uv venv y gestión explícita de entornos
+20.51 uv pip: install, uninstall, sync, compile y compatibilidad con pip
+20.52 Migración desde pip, virtualenv, pip-tools y requirements.txt
+20.53 uv tool y uvx en profundidad
+20.54 uv tool install, list, uninstall y update-shell
+20.55 Herramientas globales frente a dependencias del proyecto
+20.56 Caché global de uv, deduplicación y mantenimiento
+20.57 Configuración de uv: archivos, variables y opciones
+20.58 Índices de paquetes, PyPI e índices alternativos
+20.59 Autenticación, credenciales y publicación segura
+20.60 tool.uv.sources y fuentes de dependencias
+20.61 Overrides, constraints y resolución avanzada
+20.62 Plataformas, requires-python y entornos de resolución
+20.63 Workspaces: concepto, miembros y lockfile compartido
+20.64 Dependencias entre miembros de un workspace
+20.65 Cuándo usar workspaces y cuándo proyectos separados
+20.66 uv build: sdist y wheel
+20.67 Build backend y uv_build
+20.68 Verificar artefactos en un entorno limpio
+20.69 uv version y versionado del proyecto
+20.70 uv publish y publicación en índices
+20.71 Trusted Publishing y gestión de secretos
+20.72 Datos empaquetados y entry points
+20.73 Instalación editable
+20.74 Reproducibilidad y portabilidad de uv.lock
+20.75 CI: uv sync --locked/--frozen y caché
+20.76 uv en contenedores y optimización de capas
+20.77 Matrices de versiones de Python
+20.78 Seguridad, procedencia y auditoría de dependencias
+20.79 Diagnóstico y troubleshooting de resolución/sincronización
+20.80 Documentación ejecutable
+20.81 Compatibilidad con herramientas estándar del ecosistema
+20.82 Laboratorio: paquete instalable, bloqueado, probado y construido con uv
+20.83 Laboratorio: workspace multipaquete con lockfile compartido
+20.84 Laboratorio: pipeline CI reproducible y publicación de práctica
+20.85 Pipenv: propósito y modelo Pipfile/Pipfile.lock
+20.86 pipenv install y creación del entorno
+20.87 Dependencias normales y de desarrollo
+20.88 Pipfile: fuentes, paquetes y requires
+20.89 Pipfile.lock y bloqueo de dependencias
+20.90 pipenv run y pipenv shell
+20.91 Selección y localización del entorno
+20.92 Actualización, sincronización y limpieza
+20.93 Seguridad y comprobación de dependencias
+20.94 Migración entre requirements.txt y Pipenv
+20.95 Laboratorio: proyecto reproducible con Pipenv
+20.96 Comparación conceptual: pip + virtualenv vs Poetry vs uv vs Pipenv
+20.97 Comparación de pyproject.toml, requirements.txt, poetry.lock, uv.lock y Pipfile.lock
+20.98 Resolución, sincronización y reproducibilidad entre gestores
+20.99 Qué herramienta administra Python, entornos, dependencias, build, publicación y CLI
+20.100 Migración entre gestores sin perder reproducibilidad
+20.101 Laboratorio comparativo: el mismo proyecto con los cuatro flujos
+20.102 Ecosistema Conda: filosofía y diferencias con el packaging Python tradicional
+20.103 Conda, Anaconda y Miniconda
+20.104 Entornos Conda y selección de versiones de Python
+20.105 conda create, activate, deactivate, env list y remove
+20.106 conda install, update, remove, list y search
+20.107 Channels, defaults y conda-forge
+20.108 environment.yml y reproducción de entornos
+20.109 Paquetes Python frente a paquetes no-Python
+20.110 Dependencias binarias y bibliotecas del sistema
+20.111 Interacción y riesgos de mezclar con pip
+20.112 Mamba: relación y compatibilidad con Conda
+20.113 Micromamba: instalación ligera y entornos
+20.114 Resolución de dependencias en Conda/Mamba
+20.115 Conda/Mamba frente a pip/virtualenv/Poetry/uv/Pipenv
+20.116 Cuándo tiene sentido el ecosistema Conda en ciencia de datos
+20.117 Laboratorio: entorno científico reproducible con Conda/Mamba
 
 21. Diseño y arquitectura
 21.1 Cohesión y acoplamiento

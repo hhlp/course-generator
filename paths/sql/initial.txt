@@ -12,6 +12,13 @@ SQL — LEARNING PATH 0 → EXPERTO (PostgreSQL)
   Las claves primarias y foráneas aparecen únicamente cuando son
   necesarias para comprender consultas, integridad referencial y JOINs.
 
+
+  Enfoque bibliográfico: los libros introductorios y de consulta refuerzan
+  fundamentos y razonamiento SQL; los cookbooks aportan patrones y práctica;
+  las obras de data analytics refuerzan análisis aplicado. PostgreSQL
+  Documentation sigue siendo la autoridad para sintaxis y comportamiento
+  específico del motor.
+
 0. INTRO, SETUP & DATASETS
 
 0.1 Qué es SQL y qué problemas resuelve

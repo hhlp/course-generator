@@ -150,6 +150,16 @@ diseñar el esquema.
 Cada concepto debe avanzar desde sintaxis → semántica → ejemplo → caso
 límite → error frecuente → laboratorio.
 
+La bibliografía se integra por función pedagógica, no siguiendo de forma
+lineal el índice de un único libro:
+
+- fuentes introductorias para intuición y fundamentos;
+- referencias generales para sintaxis y conceptos;
+- cookbooks para patrones y soluciones alternativas;
+- libros de data analytics para problemas analíticos reales;
+- challenge books para práctica deliberada y checkpoints;
+- documentación oficial de PostgreSQL para comportamiento normativo del motor.
+
 Se debe enseñar a razonar sobre:
 
 - qué filas entran;

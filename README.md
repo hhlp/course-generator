@@ -1,14 +1,58 @@
 # Course Generator
 
-Generador genérico de cursos técnicos profundos, lección por lección y por bloques.
+Generador genérico de cursos técnicos profundos, lección por lección y
+por bloques.
 
-- Idea inspirada por : hhlp
-- Asistida por       : ChatGPT (Bloques/Python/API)
-- Testeado por       : hhlp
+-   Idea inspirada por : hhlp
+-   Asistida por       : ChatGPT (Bloques/Python/API)
+-   Testeado por       : hhlp
+
+## NOTE
+
+- No se poveen las Bibliográfias.
+- La Documentación oficial por defecto es la fuente básica.
+
+## Tabla de contenidos
+
+-   [Arquitectura](#arquitectura)
+-   [Artefactos](#artefactos)
+-   [C++](#c)
+-   [Instalación con uv](#instalación-con-uv)
+-   [Flujo de trabajo del PATH](#flujo-de-trabajo-del-path)
+-   [Separar `initial.txt` por bloques](#separar-initialtxt-por-bloques)
+-   [Inspección y dry-run](#inspección-y-dry-run)
+-   [CLI actual](#cli-actual)
+-   [Estructura por dominio](#estructura-por-dominio)
+-   [Learning Paths](#learning-paths)
+    -   [Vista general](#vista-general)
+    -   [Agile & Product Management](#agile--product-management)
+    -   [Linux & System Administration](#linux--system-administration)
+    -   [Programming](#programming)
+    -   [Computer Science](#computer-science)
+    -   [CI/CD](#cicd)
+    -   [Infrastructure as Code](#infrastructure-as-code)
+    -   [Automation](#automation)
+    -   [Containers](#containers)
+    -   [Kubernetes & Cloud Native](#kubernetes--cloud-native)
+    -   [Databases](#databases)
+    -   [Observability & Logging](#observability--logging)
+    -   [Data & Scientific Python](#data--scientific-python)
+    -   [Virtualization & DevelopmentEnvironments](#virtualization--development-environments)
+    -   [Documentation & Technical Writing](#documentation--technical-writing)
+    -   [English](#english)
+    -   [Mapa integrado](#mapa-integrado)
+    -   [Relación DevOps / Platform Engineering](#relación-devops--platform-engineering)
+    -   [Inventario de directorios cubiertos](#inventario-de-directorios-cubiertos)
+-   [Flujo recomendado antes de gastar créditos](#flujo-recomendado-antes-de-gastar-créditos)
+-   [Comandos de generación](#comandos-de-generación)
+-   [Salida](#salida)
+-   [Tipos de proyecto](#tipos-de-proyecto)
+-   [Estado actual del generador](#estado-actual-del-generador)
+-   [Test](#test)
 
 ## Arquitectura
 
-```text
+``` text
 PATH/bloque-X.txt
     ↓
 PLANNER
@@ -26,36 +70,39 @@ AUDITOR
     └── FAIL → REPAIR → validar → auditar
 ```
 
-La pedagogía y el motor son comunes. Cada dominio vive en `profiles/<perfil>/`.
+La pedagogía y el motor son comunes. Cada dominio vive en
+`profiles/<perfil>/`.
 
 ## Artefactos
 
 Estrategias:
 
-- `none`
-- `standalone_artifacts`
-- `standalone_project`
-- `extends_previous_project`
-- `final_integrator_project`
+-   `none`
+-   `standalone_artifacts`
+-   `standalone_project`
+-   `extends_previous_project`
+-   `final_integrator_project`
 
 Se distinguen explícitamente:
 
-- `knowledge_dependencies`: conocimientos anteriores necesarios;
-- `artifact_dependencies`: archivos/proyectos anteriores que deben reutilizarse.
+-   `knowledge_dependencies`: conocimientos anteriores necesarios;
+-   `artifact_dependencies`: archivos/proyectos anteriores que deben
+    reutilizarse.
 
 Los proyectos aprobados se registran globalmente por perfil en:
 
-```text
+``` text
 state/<perfil>/projects.json
 ```
 
-Esto permite continuidad incluso entre bloques cuando se declare `extends_previous_project`.
+Esto permite continuidad incluso entre bloques cuando se declare
+`extends_previous_project`.
 
 ## C++
 
 El perfil C++ declara como proyectos independientes:
 
-```text
+``` text
 1.41  proyecto final PPP3         → standalone_project
 3.30  proyecto C++17              → standalone_project
 4.44  proyecto C++23              → standalone_project
@@ -64,13 +111,15 @@ El perfil C++ declara como proyectos independientes:
 8.26  proyecto C++23 completo     → final_integrator_project
 ```
 
-No reutilizan código entre sí. Sí pueden depender de conocimientos de bloques anteriores.
+No reutilizan código entre sí. Sí pueden depender de conocimientos de
+bloques anteriores.
 
-Los proyectos C++ se validan, cuando CMake/CTest estén disponibles, con configure → build → tests. El build temporal no entra en el ZIP.
+Los proyectos C++ se validan, cuando CMake/CTest estén disponibles, con
+configure → build → tests. El build temporal no entra en el ZIP.
 
 ## Instalación con uv
 
-```bash
+``` bash
 uv sync
 cp .env.example .env
 ```
@@ -81,7 +130,7 @@ Configura `OPENAI_API_KEY` en `.env`.
 
 El generador distingue entre dos tipos de archivo de aprendizaje:
 
-```text
+``` text
 initial.txt
     ↓
 revisión del learning path completo
@@ -98,23 +147,27 @@ bloque-2.txt
 generación real
 ```
 
-`initial.txt` puede contener múltiples bloques y está pensado para diseñar, revisar e inspeccionar
-el learning path completo antes de dividirlo. En modo `--dry-run` el parser permite este formato
+`initial.txt` puede contener múltiples bloques y está pensado para
+diseñar, revisar e inspeccionar el learning path completo antes de
+dividirlo. En modo `--dry-run` el parser permite este formato
 multi-bloque.
 
-La generación real conserva una regla más estricta: cada `bloque-X.txt` debe contener un único
-bloque. Esto evita mezclar estados, salidas, manifests y ZIP de bloques diferentes.
+La generación real conserva una regla más estricta: cada `bloque-X.txt`
+debe contener un único bloque. Esto evita mezclar estados, salidas,
+manifests y ZIP de bloques diferentes.
 
 ## Separar `initial.txt` por bloques
 
-La separación de un PATH maestro está integrada directamente en la CLI de `course-generator`.
+La separación de un PATH maestro está integrada directamente en la CLI
+de `course-generator`.
 
-La CLI actual mantiene `--profile` como argumento obligatorio, también cuando se usan operaciones
-estructurales como `--split-blocks`. La separación en sí no necesita llamar a la API.
+La CLI actual mantiene `--profile` como argumento obligatorio, también
+cuando se usan operaciones estructurales como `--split-blocks`. La
+separación en sí no necesita llamar a la API.
 
 Antes de escribir archivos, validar el PATH completo:
 
-```bash
+``` bash
 uv run course-generator \
     paths/regex/initial.txt \
     --profile regex \
@@ -123,10 +176,11 @@ uv run course-generator \
     --dry-run
 ```
 
-`--split-blocks` detecta las cabeceras `0.`, `1.`, `2.`... y prepara un archivo independiente por
-bloque. `--check-lessons` exige además numeración continua dentro de cada bloque:
+`--split-blocks` detecta las cabeceras `0.`, `1.`, `2.`... y prepara un
+archivo independiente por bloque. `--check-lessons` exige además
+numeración continua dentro de cada bloque:
 
-```text
+``` text
 X.1
 X.2
 X.3
@@ -135,7 +189,7 @@ X.3
 
 Si el `dry-run` es correcto, generar los bloques:
 
-```bash
+``` bash
 uv run course-generator \
     paths/regex/initial.txt \
     --profile regex \
@@ -145,7 +199,7 @@ uv run course-generator \
 
 El resultado será:
 
-```text
+``` text
 paths/regex/
 ├── initial.txt
 ├── bloque-0.txt
@@ -154,10 +208,10 @@ paths/regex/
 └── ...
 ```
 
-Por seguridad, la CLI no sobrescribe `bloque-X.txt` existentes. Para regenerarlos
-deliberadamente:
+Por seguridad, la CLI no sobrescribe `bloque-X.txt` existentes. Para
+regenerarlos deliberadamente:
 
-```bash
+``` bash
 uv run course-generator \
     paths/regex/initial.txt \
     --profile regex \
@@ -168,15 +222,15 @@ uv run course-generator \
 
 La separación valida:
 
-- cabeceras de bloque duplicadas;
-- lecciones situadas bajo un bloque incorrecto;
-- bloques intermedios ausentes;
-- numeración continua de lecciones con `--check-lessons`;
-- sobrescrituras accidentales.
+-   cabeceras de bloque duplicadas;
+-   lecciones situadas bajo un bloque incorrecto;
+-   bloques intermedios ausentes;
+-   numeración continua de lecciones con `--check-lessons`;
+-   sobrescrituras accidentales.
 
 El flujo recomendado queda así:
 
-```text
+``` text
 initial.txt
     ↓
 revisión completa del learning path
@@ -206,10 +260,10 @@ la interfaz recomendada es ahora `course-generator --split-blocks`.
 
 ## Inspección y dry-run
 
-`--dry-run` resuelve y valida el contexto sin llamar a la API de OpenAI. Puede combinarse con las
-opciones de inspección:
+`--dry-run` resuelve y valida el contexto sin llamar a la API de OpenAI.
+Puede combinarse con las opciones de inspección:
 
-```text
+``` text
 --dry-run
 --show-prompt
 --inspect
@@ -223,23 +277,30 @@ opciones de inspección:
 
 Funciones principales:
 
-- `--dry-run`: valida y materializa la inspección sin realizar llamadas a la API.
-- `--show-prompt`: muestra las instrucciones y el input/payload que recibiría la etapa materializable.
-- `--inspect`: muestra cómo se ha construido el contexto y la procedencia de sus componentes.
-- `--save-prompt FILE`: guarda el prompt inspeccionado en un archivo.
-- `--save-inspect FILE`: guarda el informe de inspección.
-- `--dump-json`: muestra la representación estructurada del payload.
-- `--validate-context`: comprueba que el contexto requerido pueda resolverse correctamente.
-- `--neighbor-radius N`: modifica el radio de lecciones vecinas utilizado durante la inspección.
-- `--check-lessons`: comprueba la continuidad de la numeración de las lecciones.
+-   `--dry-run`: valida y materializa la inspección sin realizar
+    llamadas a la API.
+-   `--show-prompt`: muestra las instrucciones y el input/payload que
+    recibiría la etapa materializable.
+-   `--inspect`: muestra cómo se ha construido el contexto y la
+    procedencia de sus componentes.
+-   `--save-prompt FILE`: guarda el prompt inspeccionado en un archivo.
+-   `--save-inspect FILE`: guarda el informe de inspección.
+-   `--dump-json`: muestra la representación estructurada del payload.
+-   `--validate-context`: comprueba que el contexto requerido pueda
+    resolverse correctamente.
+-   `--neighbor-radius N`: modifica el radio de lecciones vecinas
+    utilizado durante la inspección.
+-   `--check-lessons`: comprueba la continuidad de la numeración de las
+    lecciones.
 
-En un `dry-run`, las etapas que dependen de resultados todavía inexistentes no se inventan. Por
-ejemplo, `teacher` requiere la salida del planner, `auditor` requiere la salida del teacher y la
-validación, y `repair` requiere además un fallo de auditoría.
+En un `dry-run`, las etapas que dependen de resultados todavía
+inexistentes no se inventan. Por ejemplo, `teacher` requiere la salida
+del planner, `auditor` requiere la salida del teacher y la validación, y
+`repair` requiere además un fallo de auditoría.
 
 Ejemplo de inspección de un PATH maestro todavía no separado:
 
-```bash
+``` bash
 uv run course-generator \
     paths/regex/initial.txt \
     --profile regex \
@@ -253,11 +314,12 @@ uv run course-generator \
     --save-inspect /tmp/regex-0.1.inspect.txt
 ```
 
-La presencia de `--dry-run` garantiza que esta operación no llama a la API.
+La presencia de `--dry-run` garantiza que esta operación no llama a la
+API.
 
 También puede hacerse una validación mínima de un bloque ya separado:
 
-```bash
+``` bash
 uv run course-generator \
     paths/cpp/bloque-1.txt \
     --profile cpp \
@@ -269,7 +331,7 @@ uv run course-generator \
 
 La interfaz disponible actualmente es:
 
-```text
+``` text
 course-generator [-h] --profile PROFILE
                  [--lesson LESSON] [--resume] [--force] [--dry-run]
                  [--show-prompt] [--inspect]
@@ -280,11 +342,12 @@ course-generator [-h] --profile PROFILE
                  path
 ```
 
-Importante: la opción correcta es `--dry-run`, con guion intermedio. `--dryrun` no existe.
+Importante: la opción correcta es `--dry-run`, con guion intermedio.
+`--dryrun` no existe.
 
 Validación recomendada de un bloque antes de consumir créditos:
 
-```bash
+``` bash
 uv run course-generator \
     paths/regex/bloque-1.txt \
     --profile regex \
@@ -295,7 +358,7 @@ uv run course-generator \
 
 Inspección del contexto y del prompt:
 
-```bash
+``` bash
 uv run course-generator \
     paths/regex/bloque-1.txt \
     --profile regex \
@@ -308,9 +371,10 @@ uv run course-generator \
 
 ## Estructura por dominio
 
-El motor es genérico y cada materia se desacopla mediante su perfil y su PATH:
+El motor es genérico y cada materia se desacopla mediante su perfil y su
+PATH:
 
-```text
+``` text
 paths/<dominio>/
 ├── initial.txt
 ├── bloque-0.txt
@@ -321,19 +385,466 @@ profiles/<dominio>/
 └── configuración y contexto específicos del dominio
 ```
 
-El flujo se está aplicando a PATH técnicos independientes como Regex, sed, AWK, Coreutils,
-Bash/Zsh, C++, RPM, Firewalld, systemd, SELinux y OpenSSH/Watchdog.
+El flujo se está aplicando a PATH técnicos independientes como Regex,
+sed, AWK, Coreutils, Bash/Zsh, C++, RPM, Firewalld, systemd, SELinux y
+OpenSSH/Watchdog.
 
-La numeración (`0.1`, `1.7`, `23.10`, etc.) identifica la posición pedagógica de una lección.
-El significado técnico procede del PATH, el perfil y su contexto, de modo que distintas materias
-pueden compartir esquemas de numeración sin mezclar contenido.
+La numeración (`0.1`, `1.7`, `23.10`, etc.) identifica la posición
+pedagógica de una lección. El significado técnico procede del PATH, el
+perfil y su contexto, de modo que distintas materias pueden compartir
+esquemas de numeración sin mezclar contenido.
 
-Cuando un dominio requiere documentación contextual o bibliografía propia, ésta se mantiene
-asociada a ese PATH/perfil.
+Cuando un dominio requiere documentación contextual o bibliografía
+propia, ésta se mantiene asociada a ese PATH/perfil.
+
+## Learning Paths
+
+> Índice temático de los Learning Paths disponibles en `paths/` del
+> repositorio `hhlp/course-generator`. La clasificación agrupa los
+> cursos por área de conocimiento, manteniendo entre paréntesis el
+> nombre real del directorio cuando resulta útil.
+
+### Vista general
+
+``` text
+COURSE-GENERATOR
+├── Agile & Product Management
+├── Linux & System Administration
+├── Programming
+├── Computer Science
+├── CI/CD
+├── Infrastructure as Code
+├── Automation
+├── Containers
+├── Kubernetes & Cloud Native
+├── Databases
+├── Observability
+├── Data & Scientific Python
+├── Virtualization
+├── Documentation
+└── English
+```
+
+------------------------------------------------------------------------
+
+### Agile & Product Management
+
+``` text
+Agile & Product Management
+├── Scrum Master (sm)
+├── Product Owner (po)
+└── Kanban (kanban)
+```
+
+**PATHs:** `sm`, `po`, `kanban`
+
+> Nota: en el directorio `paths/` consultado no aparece actualmente un
+> PATH independiente llamado `fp4`.
+
+------------------------------------------------------------------------
+
+### Linux & System Administration
+
+``` text
+Linux & System Administration
+├── RHCSA (rhcsa)
+│
+├── Shell
+│   └── Bash & Zsh (bash-zsh)
+│
+├── GNU / Unix Tools
+│   ├── Coreutils (coreutils)
+│   ├── grep / ripgrep (grep)
+│   ├── sed (sed)
+│   ├── awk (awk)
+│   ├── Regular Expressions (regex)
+│   └── dd (dd)
+│
+├── System & Service Management
+│   ├── systemd (systemd)
+│   └── OpenSSH & Watchdog (openssh-watchdog)
+│
+├── Security
+│   ├── SELinux (selinux)
+│   └── firewalld (firewalld)
+│
+└── Packaging
+    └── RPM Packaging (rpm)
+```
+
+**PATHs:** `rhcsa`, `bash-zsh`, `coreutils`, `grep`, `sed`, `awk`,
+`regex`, `dd`, `systemd`, `openssh-watchdog`, `selinux`, `firewalld`,
+`rpm`
+
+------------------------------------------------------------------------
+
+### Programming
+
+``` text
+Programming
+├── Python (python)
+├── C++ (cpp)
+├── Go (Go)
+├── JavaScript (javascript)
+├── TypeScript (typescript)
+└── Groovy (groovy)
+```
+
+**PATHs:** `python`, `cpp`, `Go`, `javascript`, `typescript`, `groovy`
+
+> Rust no aparece como directorio independiente en el `paths/`
+> consultado.
+
+------------------------------------------------------------------------
+
+### Computer Science
+
+``` text
+Computer Science
+└── Algorithmic Complexity
+    └── Big O (big o)
+```
+
+**PATH:** `big o`
+
+------------------------------------------------------------------------
+
+### CI/CD
+
+``` text
+CI/CD
+├── Jenkins (jenkins)
+└── Groovy (groovy)
+```
+
+**PATHs relacionados:** `jenkins`, `groovy`
+
+Groovy también pertenece al área de programación, pero se referencia
+aquí por su relación directa con Jenkins Pipeline.
+
+------------------------------------------------------------------------
+
+### Infrastructure as Code
+
+``` text
+Infrastructure as Code
+└── Terraform (terraform)
+```
+
+**PATH:** `terraform`
+
+------------------------------------------------------------------------
+
+### Automation
+
+``` text
+Automation
+└── Ansible (ansible)
+```
+
+**PATH:** `ansible`
+
+------------------------------------------------------------------------
+
+### Containers
+
+``` text
+Containers
+└── Container Technologies (container)
+```
+
+**PATH:** `container`
+
+Este PATH constituye el bloque específico de tecnologías de contenedores
+del repositorio.
+
+------------------------------------------------------------------------
+
+### Kubernetes & Cloud Native
+
+``` text
+Kubernetes & Cloud Native
+└── Kubernetes (kubernetes)
+```
+
+**PATH:** `kubernetes`
+
+El contenido del PATH de Kubernetes puede integrar herramientas y
+objetivos relacionados con el ecosistema cloud-native; el directorio
+raíz correspondiente es `kubernetes`.
+
+------------------------------------------------------------------------
+
+### Databases
+
+``` text
+Databases
+├── Database Design (dd)
+├── SQL (sql)
+└── Database Administration (dba)
+```
+
+**PATHs:** `dd`, `sql`, `dba`
+
+La separación conceptual es:
+
+``` text
+Database Design
+      │
+      ├── modelado
+      ├── normalización
+      └── diseño relacional
+             ↓
+SQL
+      │
+      ├── consultas
+      ├── manipulación
+      ├── SQL avanzado
+      └── SQL específico del motor
+             ↓
+DBA
+      │
+      ├── instalación
+      ├── configuración
+      ├── operación
+      ├── seguridad
+      ├── backup/recovery
+      └── rendimiento
+```
+
+------------------------------------------------------------------------
+
+### Observability & Logging
+
+``` text
+Observability
+├── Metrics
+│   └── Prometheus (prometheus)
+│
+├── Visualization
+│   └── Grafana (grafana)
+│
+└── Logging
+    └── Linux Logging (log)
+```
+
+**PATHs:** `prometheus`, `grafana`, `log`
+
+------------------------------------------------------------------------
+
+### Data & Scientific Python
+
+``` text
+Data & Scientific Python
+├── NumPy (numpy)
+├── Pandas (pandas)
+└── Data Visualization / Data Tools (graficos)
+```
+
+**PATHs:** `numpy`, `pandas`, `graficos`
+
+------------------------------------------------------------------------
+
+### Virtualization & Development Environments
+
+``` text
+Virtualization & Development Environments
+└── Vagrant (vagrant)
+```
+
+**PATH:** `vagrant`
+
+------------------------------------------------------------------------
+
+### Documentation & Technical Writing
+
+``` text
+Documentation
+└── LaTeX (latex)
+```
+
+**PATH:** `latex`
+
+------------------------------------------------------------------------
+
+### English
+
+``` text
+English
+├── A2 (A2)
+├── B2 (B2)
+└── C2 (C2)
+```
+
+**PATHs:** `A2`, `B2`, `C2`
+
+Estos directorios representan los niveles acumulativos actualmente
+disponibles como PATH independientes en el repositorio.
+
+------------------------------------------------------------------------
+
+## Mapa integrado
+
+``` text
+COURSE-GENERATOR
+│
+├── AGILE & PRODUCT MANAGEMENT
+│   ├── Scrum Master
+│   ├── Product Owner
+│   └── Kanban
+│
+├── LINUX & SYSTEM ADMINISTRATION
+│   ├── RHCSA
+│   ├── Bash / Zsh
+│   ├── Coreutils
+│   ├── grep / ripgrep
+│   ├── sed
+│   ├── awk
+│   ├── Regex
+│   ├── dd
+│   ├── systemd
+│   ├── OpenSSH / Watchdog
+│   ├── SELinux
+│   ├── firewalld
+│   └── RPM Packaging
+│
+├── PROGRAMMING
+│   ├── Python
+│   ├── C++
+│   ├── Go
+│   ├── JavaScript
+│   ├── TypeScript
+│   └── Groovy
+│
+├── COMPUTER SCIENCE
+│   └── Big O / Algorithmic Complexity
+│
+├── CI/CD
+│   ├── Jenkins
+│   └── Groovy
+│
+├── INFRASTRUCTURE AS CODE
+│   └── Terraform
+│
+├── AUTOMATION
+│   └── Ansible
+│
+├── CONTAINERS
+│   └── Container Technologies
+│
+├── KUBERNETES & CLOUD NATIVE
+│   └── Kubernetes
+│
+├── DATABASES
+│   ├── Database Design
+│   ├── SQL
+│   └── DBA
+│
+├── OBSERVABILITY
+│   ├── Prometheus
+│   ├── Grafana
+│   └── Linux Logging
+│
+├── DATA & SCIENTIFIC PYTHON
+│   ├── NumPy
+│   ├── Pandas
+│   └── Graphics / Data Visualization
+│
+├── VIRTUALIZATION
+│   └── Vagrant
+│
+├── DOCUMENTATION
+│   └── LaTeX
+│
+└── ENGLISH
+    ├── A2
+    ├── B2
+    └── C2
+```
+
+------------------------------------------------------------------------
+
+## Relación DevOps / Platform Engineering
+
+Una lectura transversal de los PATHs técnicos puede organizarse así:
+
+``` text
+Linux Fundamentals
+        │
+        ├── RHCSA
+        ├── Coreutils / grep / sed / awk / regex
+        ├── Bash / Zsh
+        ├── systemd
+        ├── SELinux / firewalld
+        └── RPM
+        │
+        ↓
+Programming & Scripting
+        │
+        ├── Python
+        ├── Go
+        └── Groovy
+        │
+        ↓
+Infrastructure as Code
+        │
+        └── Terraform
+        │
+        ↓
+Automation
+        │
+        └── Ansible
+        │
+        ↓
+Virtualization
+        │
+        └── Vagrant
+        │
+        ↓
+Containers
+        │
+        └── Container Technologies
+        │
+        ↓
+Orchestration / Cloud Native
+        │
+        └── Kubernetes
+        │
+        ↓
+CI/CD
+        │
+        ├── Jenkins
+        └── Groovy
+        │
+        ↓
+Observability
+        │
+        ├── Prometheus
+        ├── Grafana
+        └── Logging
+```
+
+------------------------------------------------------------------------
+
+## Inventario de directorios cubiertos
+
+El mapa anterior clasifica los directorios encontrados bajo `paths/`:
+
+`A2`, `B2`, `C2`, `Go`, `ansible`, `awk`, `bash-zsh`, `big o`,
+`container`, `coreutils`, `cpp`, `dba`, `dd`, `firewalld`, `grafana`,
+`graficos`, `grep`, `groovy`, `javascript`, `jenkins`, `kanban`,
+`kubernetes`, `latex`, `log`, `numpy`, `openssh-watchdog`, `pandas`,
+`po`, `prometheus`, `python`, `regex`, `rhcsa`, `rpm`, `sed`, `selinux`,
+`sm`, `sql`, `systemd`, `terraform`, `typescript` y `vagrant`.
+
+------------------------------------------------------------------------
+
+*Fuente de clasificación: directorio `paths/` de la rama `main` de
+`hhlp/course-generator`.*
 
 ## Flujo recomendado antes de gastar créditos
 
-```text
+``` text
 initial.txt
     ↓
 revisión completa del learning path
@@ -359,7 +870,7 @@ commit
 
 Ejemplo completo con Regex:
 
-```bash
+``` bash
 # Validar la separación
 uv run course-generator \
     paths/regex/initial.txt \
@@ -393,37 +904,38 @@ uv run course-generator \
     --show-prompt
 ```
 
-El mismo procedimiento se aplica a `sed`, `awk`, `coreutils`, `bash-zsh` y los demás perfiles.
+El mismo procedimiento se aplica a `sed`, `awk`, `coreutils`, `bash-zsh`
+y los demás perfiles.
 
 ## Comandos de generación
 
 Generar una lección:
 
-```bash
+``` bash
 uv run course-generator paths/cpp/bloque-1.txt --profile cpp --lesson 1.7
 ```
 
 Generar un proyecto final concreto:
 
-```bash
+``` bash
 uv run course-generator paths/cpp/bloque-1.txt --profile cpp --lesson 1.41
 ```
 
 Generar el bloque:
 
-```bash
+``` bash
 uv run course-generator paths/cpp/bloque-1.txt --profile cpp
 ```
 
 Regenerar:
 
-```bash
+``` bash
 uv run course-generator paths/cpp/bloque-1.txt --profile cpp --lesson 1.41 --force
 ```
 
 ## Salida
 
-```text
+``` text
 output/cpp/bloque-1/
 ├── 1.1-....md
 ├── ...
@@ -438,50 +950,56 @@ output/cpp/bloque-1/
 └── MANIFEST.md
 ```
 
-Los artefactos se generan primero bajo `.staging/`; sólo se publican en `projects/` cuando la auditoría termina en PASS.
-
+Los artefactos se generan primero bajo `.staging/`; sólo se publican en
+`projects/` cuando la auditoría termina en PASS.
 
 ## Tipos de proyecto
 
 El generador distingue dos intenciones pedagógicas:
 
-- **Proyecto integrador** (`project_type: integrator`): construir algo coherente aplicando conjuntamente conocimientos previos.
-- **Mini-debugger / proyecto diagnóstico** (`project_type: diagnostic`, normalmente `strategy: diagnostic_project`): observar el funcionamiento interno, correlacionar evidencia y practicar troubleshooting.
+-   **Proyecto integrador** (`project_type: integrator`): construir algo
+    coherente aplicando conjuntamente conocimientos previos.
+-   **Mini-debugger / proyecto diagnóstico**
+    (`project_type: diagnostic`, normalmente
+    `strategy: diagnostic_project`): observar el funcionamiento interno,
+    correlacionar evidencia y practicar troubleshooting.
 
-No se exige un proyecto por bloque. Los proyectos aparecen sólo cuando el PATH, el perfil o el planner justifican su valor pedagógico.
+No se exige un proyecto por bloque. Los proyectos aparecen sólo cuando
+el PATH, el perfil o el planner justifican su valor pedagógico.
 
 ## Estado actual del generador
 
 El flujo implementado/documentado cubre:
 
-- PATH maestro `initial.txt` y PATH separados `bloque-X.txt`;
-- separación automática con `--split-blocks`;
-- validación de numeración con `--check-lessons`;
-- perfiles independientes por dominio;
-- selección de lección con `--lesson`;
-- contexto vecino configurable mediante `--neighbor-radius`;
-- `--validate-context`;
-- `--inspect`, `--show-prompt`, `--save-prompt` y `--save-inspect`;
-- `--dump-json` para diagnóstico;
-- `--dry-run` sin generación real;
-- generación por lección y por bloque;
-- `--resume` y regeneración explícita con `--force`;
-- pipeline Planner → Teacher → Auditor → Repair;
-- staging antes de publicar artefactos;
-- estrategias de proyecto independientes, extensibles e integradoras;
-- separación entre dependencias de conocimiento y de artefactos;
-- registro global de proyectos por perfil;
-- validación local de proyectos cuando corresponde;
-- `INDEX.md` y `MANIFEST.md`;
-- empaquetado ZIP y `--no-zip`;
-- comprobaciones con Ruff, mypy y pytest.
+-   PATH maestro `initial.txt` y PATH separados `bloque-X.txt`;
+-   separación automática con `--split-blocks`;
+-   validación de numeración con `--check-lessons`;
+-   perfiles independientes por dominio;
+-   selección de lección con `--lesson`;
+-   contexto vecino configurable mediante `--neighbor-radius`;
+-   `--validate-context`;
+-   `--inspect`, `--show-prompt`, `--save-prompt` y `--save-inspect`;
+-   `--dump-json` para diagnóstico;
+-   `--dry-run` sin generación real;
+-   generación por lección y por bloque;
+-   `--resume` y regeneración explícita con `--force`;
+-   pipeline Planner → Teacher → Auditor → Repair;
+-   staging antes de publicar artefactos;
+-   estrategias de proyecto independientes, extensibles e integradoras;
+-   separación entre dependencias de conocimiento y de artefactos;
+-   registro global de proyectos por perfil;
+-   validación local de proyectos cuando corresponde;
+-   `INDEX.md` y `MANIFEST.md`;
+-   empaquetado ZIP y `--no-zip`;
+-   comprobaciones con Ruff, mypy y pytest.
 
-La idea central sigue siendo mantener **un motor genérico** y trasladar el conocimiento específico
-a los PATH, perfiles, contexto de dominio y bibliografía.
+La idea central sigue siendo mantener **un motor genérico** y trasladar
+el conocimiento específico a los PATH, perfiles, contexto de dominio y
+bibliografía.
 
 ## Test
 
-```bash
+``` bash
 uv run ruff format .
 uv run ruff check .
 uv run mypy src
