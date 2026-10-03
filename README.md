@@ -9,8 +9,8 @@ por bloques.
 
 ## NOTE
 
-- No se poveen las Bibliográfias.
-- La Documentación oficial por defecto es la fuente básica.
+- No se proveen las Bibliografías, están solo de referencia si se quiere ahondar en el tema.
+- La Documentación oficial, por defecto es la fuente básica de consulta.
 
 ## Tabla de contenidos
 

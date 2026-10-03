@@ -1,0 +1,90 @@
+name: file-storage-services
+title: "FILE / STORAGE SERVICES — 0 → Experto en profundidad"
+language: es
+level: beginner-to-expert
+
+platform:
+  primary:
+    - Fedora
+    - Red Hat Enterprise Linux
+  init_system: systemd
+  security:
+    selinux: enforcing
+    firewall: firewalld
+
+scope:
+  - NFS
+  - autofs
+  - Samba
+  - SMB
+  - iSCSI
+  - LIO
+  - multipath
+
+teaching:
+  approach: theory-to-production
+  depth: deep
+  include_installation: true
+  include_commands: true
+  include_configuration: true
+  include_labs: true
+  include_security: true
+  include_selinux: true
+  include_firewalld: true
+  include_systemd: true
+  include_logging: true
+  include_var_log_analysis: true
+  include_performance: true
+  include_observability: true
+  include_troubleshooting: true
+  include_final_project: true
+
+lesson_structure:
+  start: "🎯 OBJETIVO"
+  sections:
+    - "Conceptos"
+    - "Arquitectura"
+    - "Instalación"
+    - "Configuración"
+    - "Comandos"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "Logs y diagnóstico"
+    - "Troubleshooting"
+  end: "🧠 QUÉ DEBES RECORDAR"
+
+prerequisites:
+  - Linux fundamentals
+  - TCP/IP
+  - IPv4/IPv6
+  - systemd
+  - SELinux
+  - firewalld
+  - DNS
+
+identity_model:
+  provider: external-iam-path
+  progression:
+    - standalone-local-identity
+    - centralized-identity-consumer
+  consumers:
+    nfs:
+      standalone: "UID/GID + sec=sys"
+      centralized: "Kerberos/FreeIPA + sec=krb5/krb5i/krb5p"
+    samba:
+      standalone: "local users/groups + smbpasswd/pdbedit"
+      centralized: "directory identity + Kerberos; SSSD/winbind as appropriate"
+    iscsi:
+      standalone: "IQN + ACL + CHAP"
+      centralized: "normally not a human-IAM consumer"
+
+integrations:
+  - Kerberos
+  - IAM
+  - Prometheus
+  - Grafana
+
+final_outcome: >
+  Diseñar, instalar, configurar, asegurar, monitorizar, optimizar y
+  diagnosticar servicios NFS, autofs, Samba/SMB e iSCSI en Fedora/RHEL.

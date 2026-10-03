@@ -1,0 +1,174 @@
+name: IAM
+title: "Identity & Access Management — 0 a experto en profundidad"
+language: es
+level:
+  start: beginner
+  target: expert
+
+platform:
+  primary:
+    - Fedora Linux
+    - Red Hat Enterprise Linux
+  technologies:
+    - Linux Identity
+    - NSS
+    - Linux-PAM
+    - sudo
+    - LDAP
+    - OpenLDAP
+    - MIT Kerberos
+    - SSSD
+    - realmd
+    - FreeIPA
+    - Red Hat Identity Management
+    - 389 Directory Server
+    - Dogtag PKI
+    - auditd
+
+audience:
+  - Linux system administrators
+  - RHEL administrators
+  - infrastructure engineers
+  - security engineers
+  - IAM engineers
+  - DevOps engineers
+
+goals:
+  - "Comprender identidad, autenticación, autorización y accounting."
+  - "Dominar usuarios, grupos, NSS, PAM y sudo en Linux."
+  - "Comprender LDAP desde el protocolo hasta la administración de OpenLDAP."
+  - "Comprender Kerberos desde los intercambios AS/TGS hasta SSO y keytabs."
+  - "Configurar y diagnosticar SSSD y realmd."
+  - "Desplegar y administrar FreeIPA/Red Hat IdM."
+  - "Diseñar autenticación y autorización centralizadas."
+  - "Diseñar IAM como proveedor central y servicios como consumidores de identidad."
+  - "Integrar patrones OpenSSH, NFS/Samba, proxy, mail, web y OpenVPN sin duplicar identidades locales."
+  - "Distinguir identidades humanas, service principals, machine identities, keytabs y claves de peers."
+  - "Comprender PAM/PASM, JIT, JEA y privileged sessions."
+  - "Administrar service accounts, machine identities y secrets."
+  - "Implementar logging, auditing, hardening y troubleshooting IAM."
+  - "Diagnosticar fallos por capas incluyendo Time, DNS, TLS, LDAP, Kerberos, SSSD, NSS y PAM."
+
+prerequisites:
+  recommended:
+    - Linux administration
+    - RHCSA-level administration
+    - systemd
+    - journald
+    - OpenSSH
+    - SELinux
+    - firewalld
+    - TCP/IP
+    - DNS
+    - Chrony/NTP
+    - PKI/TLS
+
+teaching:
+  depth: very_high
+  theory_and_practice: true
+  explain_internal_flows: true
+  commands_with_explanation: true
+  labs: true
+  troubleshooting: true
+  logging: true
+  security: true
+  intentional_failure_labs: true
+  production_context: true
+  installation_details:
+    explicit_per_component: true
+    package_installation: true
+    dependencies: true
+    repositories_when_required: true
+    systemd_services: true
+    firewall_ports: true
+    initial_verification: true
+
+lesson_structure:
+  start_with: "🎯 OBJETIVO"
+  recommended_sections:
+    - "Conceptos"
+    - "Arquitectura / flujo"
+    - "Instalación y configuración"
+    - "Comandos y ejemplos"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "Logs y observabilidad"
+    - "Troubleshooting"
+    - "Seguridad / hardening"
+    - "💡 Idea importante"
+  end_with: "🧠 QUÉ DEBES RECORDAR"
+
+methodology:
+  progression:
+    - fundamentals
+    - architecture
+    - protocol
+    - installation
+    - configuration
+    - administration
+    - integration
+    - security
+    - logging
+    - troubleshooting
+    - labs
+    - expert_design
+  troubleshooting_order:
+    - time
+    - dns
+    - network
+    - tls
+    - identity
+    - ldap
+    - kerberos
+    - sssd
+    - nss
+    - pam
+    - authorization
+    - application
+
+final_project:
+  name: "Enterprise IAM"
+  requirements:
+    - "Chrony/NTP funcional"
+    - "DNS funcional"
+    - "FreeIPA/IdM server"
+    - "LDAP/Kerberos"
+    - "CA/PKI"
+    - "Linux clients"
+    - "Service consumers: OpenSSH, NFSv4, proxy/web and representative application integration"
+    - "Provider → Consumer validation with one centralized identity"
+    - "SSSD/NSS/PAM"
+    - "Centralized users and groups"
+    - "Kerberos SSO"
+    - "HBAC"
+    - "Centralized sudo"
+    - "MFA"
+    - "Service principals and keytabs"
+    - "Replication"
+    - "Backup and restore"
+    - "Logging and audit"
+    - "Hardening"
+    - "Failure simulation"
+    - "Troubleshooting runbook"
+
+scope:
+  include:
+    - installation
+    - configuration
+    - command_line
+    - protocols
+    - architecture
+    - logs
+    - monitoring
+    - auditing
+    - troubleshooting
+    - security
+    - hardening
+    - backup_restore
+    - replication
+    - high_availability_concepts
+    - labs
+  exclude_or_defer:
+    - vendor_specific_commercial_pam_products
+    - cloud_iam_platforms
+    - windows_only_administration

@@ -33,6 +33,14 @@ scope:
   - selinux
   - hardening
   - troubleshooting
+  - iam_consumer
+  - nss
+  - pam
+  - sssd
+  - kerberos
+  - gssapi
+  - freeipa
+  - hbac
   - linux_kernel
   - watchdog
   - softlockup
@@ -102,8 +110,21 @@ openssh:
   teach_match_blocks: true
   teach_security_reasoning: true
   avoid_legacy_recommendations: true
+  iam_integration:
+    role: consumer
+    provider_path: IAM
+    teach_nss: true
+    teach_pam: true
+    teach_sssd: true
+    teach_kerberos_gssapi: true
+    teach_freeipa_client_integration: true
+    teach_hbac: true
+    avoid_local_user_duplication: true
+    avoid_reteaching_identity_provisioning: true
+
 
 watchdog:
+  iam_role: none
   kernel: true
   hardware: true
   software: true

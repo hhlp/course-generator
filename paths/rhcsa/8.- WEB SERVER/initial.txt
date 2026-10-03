@@ -1,0 +1,605 @@
+8. WEB SERVERS — 0 → EXPERTO EN PROFUNDIDAD
+
+Objetivo: dominar Apache HTTP Server, Nginx y HAProxy en Fedora/RHEL, desde HTTP y publicación básica hasta TLS, PHP-FPM, reverse proxy, balanceo, seguridad, rendimiento, observabilidad y troubleshooting por capas.
+
+BLOQUE 0 — FUNDAMENTOS WEB
+0.1 Web, cliente, servidor y aplicación
+0.2 URI, URL, esquema, host, puerto, path y query
+0.3 HTTP request/response
+0.4 Métodos HTTP y semántica
+0.5 Status codes 1xx–5xx
+0.6 Headers, Host, Content-Type y Accept
+0.7 Cookies y sesiones
+0.8 MIME types
+0.9 HTTP/1.1: conexiones persistentes y chunking
+0.10 HTTP/2: streams y multiplexación
+0.11 HTTP/3 y QUIC: fundamentos
+0.12 DNS → TCP/QUIC → TLS → HTTP
+0.13 Contenido estático vs dinámico
+0.14 Web server vs application server vs reverse proxy vs load balancer
+0.15 Laboratorio: inspeccionar HTTP con curl
+
+BLOQUE 1 — APACHE: INSTALACIÓN Y BASE
+1.1 Arquitectura de Apache HTTP Server
+1.2 Instalación en Fedora/RHEL con DNF
+1.3 RPM, archivos y directorios del paquete httpd
+1.4 httpd.service con systemd
+1.5 /etc/httpd/conf/httpd.conf
+1.6 conf.d y conf.modules.d
+1.7 DocumentRoot y DirectoryIndex
+1.8 <Directory>, <Files> y <Location>
+1.9 Alias y contenido estático
+1.10 Módulos DSO
+1.11 apachectl y httpd CLI
+1.12 httpd -t / configtest
+1.13 reload vs restart
+1.14 permisos de archivos
+1.15 firewalld: http/https
+1.16 SELinux para contenido web
+1.17 Laboratorio: primer sitio Apache
+
+BLOQUE 2 — APACHE VIRTUALHOST
+2.1 Virtual hosting
+2.2 Name-based VirtualHost
+2.3 IP-based VirtualHost
+2.4 <VirtualHost>
+2.5 ServerName y ServerAlias
+2.6 DocumentRoot por sitio
+2.7 Configuración por directorio
+2.8 VirtualHost por defecto
+2.9 Logs por sitio
+2.10 Múltiples dominios
+2.11 Resolución DNS/hosts para laboratorio
+2.12 Diagnóstico de selección de VirtualHost
+2.13 Laboratorio multi-site
+
+BLOQUE 3 — APACHE INTERNO Y RENDIMIENTO
+3.1 Ciclo de una petición
+3.2 MPM
+3.3 prefork
+3.4 worker
+3.5 event
+3.6 procesos vs threads
+3.7 KeepAlive
+3.8 KeepAliveTimeout
+3.9 MaxRequestWorkers y límites
+3.10 file descriptors
+3.11 compresión
+3.12 caching
+3.13 server-status
+3.14 benchmarking
+3.15 tuning basado en mediciones
+
+BLOQUE 4 — APACHE ROUTING Y REWRITE
+4.1 mod_alias
+4.2 Redirect
+4.3 mod_rewrite
+4.4 RewriteRule
+4.5 RewriteCond
+4.6 regex aplicadas a URLs
+4.7 redirects permanentes y temporales
+4.8 front controller
+4.9 .htaccess
+4.10 AllowOverride
+4.11 coste y riesgos de .htaccess
+4.12 troubleshooting de rewrite
+
+BLOQUE 5 — PHP-FPM CON APACHE
+5.1 PHP dinámico y FastCGI
+5.2 Instalación PHP/PHP-FPM
+5.3 php-fpm.service
+5.4 pools
+5.5 Unix socket vs TCP socket
+5.6 mod_proxy_fcgi
+5.7 Apache → PHP-FPM
+5.8 usuarios y permisos
+5.9 SELinux
+5.10 logs de PHP-FPM
+5.11 status/ping de FPM
+5.12 tuning de pools
+5.13 errores 502/503 y diagnóstico
+5.14 Laboratorio Apache + PHP-FPM
+
+BLOQUE 6 — APACHE REVERSE PROXY
+6.1 Forward proxy vs reverse proxy
+6.2 mod_proxy
+6.3 ProxyPass
+6.4 ProxyPassReverse
+6.5 HTTP backend
+6.6 HTTPS backend
+6.7 Host y headers reenviados
+6.8 X-Forwarded-For
+6.9 X-Forwarded-Proto
+6.10 WebSocket
+6.11 timeouts
+6.12 connection reuse
+6.13 backend failures
+6.14 Laboratorio Apache → aplicación backend
+
+BLOQUE 7 — APACHE TLS / HTTPS
+7.1 Repaso PKI aplicado a HTTPS
+7.2 Certificado, clave privada y cadena
+7.3 Instalación/configuración mod_ssl
+7.4 VirtualHost :443
+7.5 SSLEngine
+7.6 SSLCertificateFile y SSLCertificateKeyFile
+7.7 TLS 1.2/1.3
+7.8 cipher suites: conceptos
+7.9 SNI
+7.10 HTTP → HTTPS
+7.11 HSTS
+7.12 OCSP stapling: concepto y operación
+7.13 certificados internos
+7.14 ACME / Let's Encrypt
+7.15 renovación automática
+7.16 openssl s_client
+7.17 curl y TLS
+7.18 troubleshooting de cadena, hostname y expiración
+
+BLOQUE 8 — APACHE SEGURIDAD, LOGS Y TROUBLESHOOTING
+8.1 Principio de mínimo privilegio
+8.2 permisos y ownership
+8.3 SELinux: tipos y booleanos relevantes
+8.4 firewalld
+8.5 autenticación y autorización
+8.6 Require
+8.7 security headers
+8.8 limitar exposición de información
+8.9 límites de petición
+8.10 /var/log/httpd/access_log
+8.11 /var/log/httpd/error_log
+8.12 LogFormat y CustomLog
+8.13 journald
+8.14 logrotate
+8.15 systemctl status
+8.16 journalctl -u httpd
+8.17 ss/lsof/curl
+8.18 ausearch/sealert para AVC
+8.19 tcpdump
+8.20 diagnóstico sistemático
+
+BLOQUE 9 — NGINX: INSTALACIÓN Y BASE
+9.1 Arquitectura event-driven
+9.2 Instalación Fedora/RHEL
+9.3 RPM y estructura /etc/nginx
+9.4 nginx.service
+9.5 nginx.conf
+9.6 contexts: main/events/http/server/location
+9.7 master y workers
+9.8 worker_processes
+9.9 worker_connections
+9.10 listen
+9.11 root, index y alias
+9.12 nginx -t
+9.13 reload seguro
+9.14 firewalld
+9.15 SELinux
+9.16 Laboratorio: primer sitio Nginx
+
+BLOQUE 10 — NGINX SERVER BLOCKS Y LOCATION
+10.1 server blocks
+10.2 server_name
+10.3 múltiples dominios
+10.4 default_server
+10.5 selección de server block
+10.6 location exact
+10.7 prefix location
+10.8 regex location
+10.9 precedencia de location
+10.10 root vs alias
+10.11 try_files
+10.12 return
+10.13 rewrite
+10.14 páginas de error
+10.15 Laboratorio multi-site
+
+BLOQUE 11 — NGINX PHP-FPM
+11.1 FastCGI
+11.2 fastcgi_pass
+11.3 Unix socket vs TCP
+11.4 fastcgi_params
+11.5 SCRIPT_FILENAME
+11.6 pools PHP-FPM
+11.7 permisos
+11.8 SELinux
+11.9 logs
+11.10 tuning
+11.11 troubleshooting 404/502/504
+11.12 Laboratorio Nginx + PHP-FPM
+
+BLOQUE 12 — NGINX REVERSE PROXY
+12.1 proxy_pass
+12.2 URI processing en proxy_pass
+12.3 proxy_set_header
+12.4 Host
+12.5 X-Real-IP
+12.6 X-Forwarded-For
+12.7 X-Forwarded-Proto
+12.8 proxy buffering
+12.9 timeouts
+12.10 upstream keepalive
+12.11 WebSocket
+12.12 HTTP/HTTPS backends
+12.13 backend failures
+12.14 Laboratorio reverse proxy
+
+BLOQUE 13 — NGINX LOAD BALANCING
+13.1 upstream
+13.2 round robin
+13.3 least_conn
+13.4 ip_hash
+13.5 weights
+13.6 backup/down
+13.7 passive health behavior
+13.8 keepalive upstream
+13.9 persistencia: conceptos y límites
+13.10 laboratorio con varios backends
+
+BLOQUE 14 — NGINX TLS / HTTPS
+14.1 certificados y claves
+14.2 ssl_certificate
+14.3 ssl_certificate_key
+14.4 protocolos TLS
+14.5 cipher configuration
+14.6 SNI
+14.7 session reuse/cache
+14.8 HSTS
+14.9 OCSP stapling
+14.10 HTTP/2
+14.11 HTTP/3: soporte y conceptos operativos
+14.12 ACME
+14.13 renovación
+14.14 troubleshooting TLS
+
+BLOQUE 15 — NGINX CACHE, RENDIMIENTO Y SEGURIDAD
+15.1 browser caching
+15.2 Cache-Control y expires
+15.3 proxy_cache
+15.4 cache keys
+15.5 cache validity
+15.6 bypass/no-cache
+15.7 gzip
+15.8 buffering
+15.9 sendfile
+15.10 conexiones y file descriptors
+15.11 timeouts
+15.12 rate limiting
+15.13 connection limiting
+15.14 access control
+15.15 basic auth
+15.16 security headers
+15.17 hardening
+15.18 benchmarking y tuning
+
+BLOQUE 16 — NGINX LOGS Y TROUBLESHOOTING
+16.1 /var/log/nginx/access.log
+16.2 /var/log/nginx/error.log
+16.3 log_format
+16.4 niveles de error
+16.5 journald
+16.6 logrotate
+16.7 nginx -t
+16.8 curl
+16.9 openssl s_client
+16.10 ss/lsof
+16.11 SELinux AVC
+16.12 tcpdump
+16.13 errores 400/403/404/413/429/500/502/503/504
+16.14 troubleshooting sistemático
+
+BLOQUE 17 — REVERSE PROXY EN PROFUNDIDAD
+17.1 Arquitectura client → proxy → backend
+17.2 TLS termination
+17.3 TLS passthrough
+17.4 TLS re-encryption
+17.5 preservación de IP cliente
+17.6 Forwarded y X-Forwarded-*
+17.7 confianza en proxies
+17.8 WebSocket
+17.9 long-lived connections
+17.10 buffering
+17.11 timeouts
+17.12 health checking
+17.13 failover
+17.14 sticky sessions
+17.15 aplicaciones stateless
+
+BLOQUE 18 — HAPROXY: INSTALACIÓN Y FUNDAMENTOS
+18.1 Qué problema resuelve HAProxy
+18.2 Instalación Fedora/RHEL
+18.3 haproxy.service
+18.4 /etc/haproxy/haproxy.cfg
+18.5 global
+18.6 defaults
+18.7 frontend
+18.8 backend
+18.9 listen
+18.10 bind
+18.11 server
+18.12 mode http
+18.13 mode tcp
+18.14 validación de configuración
+18.15 reload/restart
+18.16 logs y journald
+18.17 firewalld y SELinux
+18.18 Laboratorio HAProxy básico
+
+BLOQUE 19 — HAPROXY LOAD BALANCING
+19.1 roundrobin
+19.2 leastconn
+19.3 source
+19.4 weights
+19.5 health checks
+19.6 rise/fall
+19.7 inter
+19.8 retries
+19.9 timeouts
+19.10 backup servers
+19.11 persistence
+19.12 cookies
+19.13 failure handling
+19.14 Laboratorio balanceado
+
+BLOQUE 20 — HAPROXY HTTP AVANZADO
+20.1 ACL
+20.2 host-based routing
+20.3 path-based routing
+20.4 redirects
+20.5 request/response headers
+20.6 X-Forwarded-For
+20.7 Forwarded
+20.8 WebSocket
+20.9 rate limiting: fundamentos
+20.10 stick tables
+20.11 connection/request tracking
+20.12 troubleshooting ACL/routing
+
+BLOQUE 21 — HAPROXY TLS
+21.1 TLS termination
+21.2 certificados PEM
+21.3 SNI
+21.4 múltiples certificados
+21.5 TLS passthrough
+21.6 TCP mode
+21.7 backend TLS
+21.8 certificate verification backend
+21.9 end-to-end TLS
+21.10 protocolos y cifrados
+21.11 rotación/renovación de certificados
+21.12 troubleshooting TLS
+
+BLOQUE 22 — HAPROXY OBSERVABILIDAD Y RUNTIME
+22.1 logs
+22.2 syslog/journald
+22.3 estadísticas
+22.4 stats socket
+22.5 Runtime API
+22.6 backend/server state
+22.7 métricas
+22.8 Prometheus: integración conceptual
+22.9 troubleshooting de disponibilidad
+22.10 operación sin reinicios innecesarios
+
+BLOQUE 23 — APACHE VS NGINX VS HAPROXY
+23.1 objetivos de cada producto
+23.2 modelos de concurrencia
+23.3 contenido estático
+23.4 contenido dinámico
+23.5 PHP-FPM
+23.6 reverse proxy
+23.7 load balancing
+23.8 TLS
+23.9 caching
+23.10 observabilidad
+23.11 seguridad
+23.12 selección arquitectónica según requisitos
+
+BLOQUE 24 — INTEGRACIÓN FEDORA/RHEL
+24.1 RPM/DNF
+24.2 systemd dependencies y ordering
+24.3 journald
+24.4 logrotate
+24.5 firewalld services/ports
+24.6 SELinux labels
+24.7 httpd_sys_content_t
+24.8 httpd_sys_rw_content_t
+24.9 restorecon/semanage fcontext
+24.10 httpd_can_network_connect
+24.11 sockets y puertos no estándar
+24.12 SELinux port labeling
+24.13 ausearch/sealert
+24.14 actualización y rollback operativo
+
+BLOQUE 25 — DIAGNÓSTICO HTTP/HTTPS POR CAPAS
+25.1 metodología: DNS → red → TCP/QUIC → TLS → HTTP → proxy → backend
+25.2 dig
+25.3 ip route
+25.4 ping: límites diagnósticos
+25.5 ss
+25.6 lsof
+25.7 curl -v/-I
+25.8 curl --resolve
+25.9 openssl s_client
+25.10 tcpdump
+25.11 journalctl
+25.12 access/error logs
+25.13 SELinux AVC
+25.14 400/401/403/404
+25.15 408/413/429
+25.16 500/502/503/504
+25.17 correlación de logs entre capas
+25.18 root cause analysis
+
+BLOQUE 26 — PERFORMANCE ENGINEERING
+26.1 latency
+26.2 throughput
+26.3 concurrency
+26.4 requests per second
+26.5 conexiones activas
+26.6 workers/threads
+26.7 file descriptors
+26.8 buffers
+26.9 timeouts
+26.10 keepalive
+26.11 compression
+26.12 caching
+26.13 TLS overhead
+26.14 carga del backend
+26.15 benchmarking responsable
+26.16 baseline → cambio → medición
+26.17 bottleneck analysis
+
+BLOQUE 27 — WEB SERVERS E IAM: AUTÓNOMO VS CONSUMIDOR
+27.1 Papel de Web Servers respecto a IAM
+27.2 Web server autónomo: sin IAM centralizado
+27.3 Identidad local vs identidad centralizada
+27.4 Autenticación vs autorización
+27.5 Apache Basic Authentication
+27.6 htpasswd y almacenamiento local de credenciales
+27.7 Require user / Require group
+27.8 Ventajas, límites y casos de uso del modelo local
+27.9 Nginx auth_basic y htpasswd
+27.10 Restricciones de acceso locales en Nginx
+27.11 HAProxy sin identidad humana centralizada
+27.12 Laboratorio: servicio web completamente autónomo
+27.13 Web server como consumidor de IAM
+27.14 Responsabilidad del PATH IAM vs responsabilidad del Web Server
+27.15 LDAP como fuente central de usuarios y grupos
+27.16 Apache como consumidor LDAP
+27.17 Autenticación Apache contra LDAP
+27.18 Autorización Apache basada en usuarios/grupos LDAP
+27.19 Kerberos aplicado a HTTP
+27.20 principal de servicio HTTP/host.example.com@REALM
+27.21 keytab del servicio HTTP
+27.22 SPNEGO / HTTP Negotiate
+27.23 SSO Kerberos en aplicaciones web
+27.24 FreeIPA como provider central: LDAP + Kerberos
+27.25 registrar un servicio HTTP en FreeIPA
+27.26 obtener, desplegar y proteger el keytab HTTP
+27.27 consumir usuarios y grupos centralizados sin crearlos en el web server
+27.28 SSSD/PAM: relación con la identidad del sistema y cuándo aplica
+27.29 Nginx e IAM: capacidades, límites y autenticación delegada
+27.30 reverse proxy / auth service como patrón de integración
+27.31 HAProxy como proxy/balanceador normalmente independiente de IAM humano
+27.32 cuándo HAProxy participa en una arquitectura de autenticación
+27.33 IAM disponible vs IAM no disponible
+27.34 diagnóstico LDAP con ldapsearch
+27.35 diagnóstico Kerberos con kinit/klist
+27.36 diagnóstico SPNEGO con curl --negotiate
+27.37 logs Apache/Nginx y journald durante autenticación
+27.38 errores 401 vs 403 en escenarios IAM
+27.39 laboratorio Apache + LDAP/FreeIPA
+27.40 laboratorio Apache + Kerberos/SPNEGO/FreeIPA
+27.41 comparar arquitectura autónoma vs consumidora de IAM
+27.42 checkpoint: integrar un servicio web con IAM sin administrar identidades localmente
+
+BLOQUE 28 — SEGURIDAD WEB SERVER
+28.1 threat model de infraestructura web
+28.2 least privilege
+28.3 filesystem permissions
+28.4 SELinux confinement
+28.5 firewall
+28.6 TLS hardening
+28.7 HSTS
+28.8 CSP: fundamentos
+28.9 X-Content-Type-Options
+28.10 clickjacking defenses
+28.11 Referrer-Policy
+28.12 directory listing
+28.13 information disclosure
+28.14 límites de body/request
+28.15 rate/connection limiting
+28.16 secretos y claves privadas
+28.17 actualizaciones
+28.18 auditoría de configuración
+
+BLOQUE 29 — ALTA DISPONIBILIDAD WEB
+29.1 SPOF
+29.2 múltiples web servers
+29.3 balanceador frontal
+29.4 health checks
+29.5 failover de backends
+29.6 session persistence
+29.7 stateless design
+29.8 TLS termination
+29.9 mantenimiento de nodos
+29.10 graceful draining
+29.11 Keepalived/VRRP: introducción
+29.12 límites del bloque: HA profunda como PATH independiente
+
+BLOQUE 30 — ARQUITECTURAS REALES
+30.1 Internet → Apache
+30.2 Internet → Nginx
+30.3 Internet → Nginx → aplicación
+30.4 Internet → HAProxy → Apache
+30.5 Internet → HAProxy → Nginx
+30.6 Internet → HAProxy → Nginx → PHP-FPM
+30.7 HAProxy TLS termination
+30.8 Nginx TLS termination
+30.9 end-to-end TLS
+30.10 múltiples dominios y backends
+30.11 diseño de logs y observabilidad
+30.12 análisis de trade-offs
+
+BLOQUE 31 — AUTOMATIZACIÓN Y OPERACIÓN
+31.1 configuración reproducible
+31.2 configuración estática vs templates
+31.3 validación antes de despliegue
+31.4 reload seguro
+31.5 despliegues con mínimo downtime
+31.6 gestión de certificados
+31.7 renovación automática
+31.8 logrotate
+31.9 Ansible para Apache
+31.10 Ansible para Nginx
+31.11 Ansible para HAProxy
+31.12 handlers y config validation
+31.13 rollback
+31.14 pruebas post-deploy
+
+BLOQUE 32 — TROUBLESHOOTING AVANZADO
+32.1 fallo DNS
+32.2 routing/firewall
+32.3 puerto sin listener
+32.4 SELinux denial
+32.5 fallo TCP
+32.6 fallo TLS
+32.7 certificado incorrecto
+32.8 HTTP incorrecto
+32.9 VirtualHost/server block incorrecto
+32.10 reverse proxy incorrecto
+32.11 backend caído
+32.12 PHP-FPM caído/saturado
+32.13 permisos
+32.14 timeout
+32.15 502 vs 503 vs 504
+32.16 packet capture
+32.17 correlación temporal de logs
+32.18 postmortem y prevención
+
+BLOQUE 33 — PROYECTO FINAL: WEB INFRASTRUCTURE
+33.1 Diseñar topología
+33.2 Preparar Fedora/RHEL
+33.3 DNS de laboratorio
+33.4 Apache backend
+33.5 Nginx backend
+33.6 PHP-FPM
+33.7 múltiples VirtualHosts/Server Blocks
+33.8 HAProxy frontal
+33.9 load balancing
+33.10 health checks
+33.11 TLS/HTTPS
+33.12 ACME/renovación
+33.13 firewalld
+33.14 SELinux
+33.15 logs centralmente comprensibles
+33.16 métricas básicas
+33.17 pruebas funcionales
+33.18 pruebas de rendimiento
+33.19 simular fallo de backend
+33.20 diagnosticar fallos introducidos
+33.21 hardening
+33.22 automatizar con Ansible
+33.23 documentación de arquitectura
+33.24 runbook de operación/troubleshooting
+33.25 checkpoint final: administrar, asegurar y diagnosticar la plataforma sin guía

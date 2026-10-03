@@ -4,15 +4,17 @@
 
 Ruta de cero a experto en Python, con Fedora como entorno principal y CPython como implementación de referencia. Incluye lenguaje, modelo de objetos, biblioteca estándar, ingeniería de software, concurrencia, asincronía, rendimiento e internals. La profundidad debe ser comparable al PATH de C++ del usuario. Un índice extenso no demuestra dominio: cada hito exige código, pruebas y explicación de decisiones.
 
-Los archivos suministran el índice y las instrucciones para generar lecciones; no son las 684 lecciones desarrolladas. Mantener los 32 bloques y su numeración, sin eliminar los temas solicitados.
+Los archivos suministran el índice y las instrucciones para generar lecciones; no son las 906 lecciones desarrolladas. Mantener los 32 bloques y su numeración, sin eliminar los temas solicitados.
 
 NumPy, pandas, Polars, Matplotlib y Seaborn tienen PATH propios. Introducir sus conexiones al final, sin convertirlos en dependencias de los laboratorios básicos. Frameworks web, ciencia de datos y aprendizaje automático son especializaciones posteriores.
 
 ## Versión y fuentes
 
-Objetivo: Python 3.15. Fecha de preparación: 2026-09-16. La documentación consultada identifica 3.15.0rc2; no presentar la versión final como publicada en esta fecha. Antes de desarrollar o ejecutar material, registrar versión exacta, implementación, sistema y tipo de build. Revisar la documentación 3.15 vigente y las dependencias compatibles. No sustituir el Python que utiliza Fedora para administrar el sistema; utilizar un intérprete y entorno aislados.
+Objetivo: Python 3.15. Fecha de revisión: 2026-09-30. Python 3.15 permanece en fase de candidato de lanzamiento a esta fecha; no presentar Python 3.15.0 final como publicado hasta verificarlo en la documentación oficial. Antes de desarrollar o ejecutar material, registrar versión exacta, implementación, sistema y tipo de build. Revisar la documentación 3.15 vigente y las dependencias compatibles. No sustituir el Python que utiliza Fedora para administrar el sistema; utilizar un intérprete y entorno aislados.
 
 La referencia oficial determina firmas, métodos, excepciones y comportamiento. Los libros aportan pedagogía, ejemplos y diseño; no constituyen una referencia normativa de 3.15. Etiquetar la versión de introducción cuando proceda: una característica utilizada en 3.15 no necesariamente apareció en 3.15.
+
+La cobertura específica de Python 3.15 debe integrarse en el bloque conceptual correspondiente y resumirse transversalmente en el bloque 30. Incluir explícitamente frozendict, sentinel y valores ausentes, unpacking en comprehensions y generator expressions, lazy imports, mejoras de TypedDict y TypeForm, UTF-8 por defecto, profiling/Tachyon, frame pointers, package startup configuration y los cambios pertinentes de free-threading, Stable ABI y C API. Verificar siempre el estado y la redacción final de cada PEP contra la documentación oficial de Python 3.15 antes de desarrollar la lección.
 
 Distinguir garantías de Python de detalles de CPython; marcar bytecode, layouts, GIL, JIT, free-threading, C API y cambios experimentales como dependientes de implementación, versión o build. Verificar las novedades específicas antes de enseñarlas; el bloque 30 organiza esa revisión.
 

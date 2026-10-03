@@ -1,0 +1,77 @@
+name: ip-addressing-subnetting-vlsm
+title: "IP Addressing + Subnetting + VLSM — 0 a Experto"
+language: es
+level: beginner_to_expert
+platform:
+  primary: Fedora/RHEL
+  concepts: vendor-neutral
+
+objectives:
+  - dominar IPv4 e IPv6 desde su representación binaria y hexadecimal
+  - calcular red, subred, broadcast, rangos y prefijos manualmente
+  - dominar CIDR, FLSM, VLSM, supernetting y route summarization
+  - diseñar planes de direccionamiento IPv4/IPv6 escalables
+  - implementar y verificar direccionamiento en Linux
+  - automatizar cálculos con Python ipaddress
+  - diagnosticar problemas de direccionamiento y solapamiento
+
+focus:
+  - IPv4
+  - IPv6
+  - classful_addressing_history
+  - CIDR
+  - subnetting
+  - FLSM
+  - VLSM
+  - supernetting
+  - route_summarization
+  - dual_stack
+  - IPAM
+  - Linux_networking
+  - troubleshooting
+
+lesson_style:
+  start_with: "🎯 OBJETIVO"
+  end_with: "🧠 QUÉ DEBES RECORDAR"
+  optional_sections:
+    - "🧪 Laboratorio/ejemplos"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+  requirements:
+    - explicar primero el razonamiento y después los atajos de cálculo
+    - mostrar binario en los temas de subnetting donde aporte comprensión
+    - incluir ejercicios manuales antes de automatizar
+    - usar ejemplos IPv4 e IPv6 progresivos
+    - incluir comandos reales de Fedora/RHEL en los laboratorios Linux
+    - incluir troubleshooting en los bloques prácticos
+    - tratar clases A/B/C/D/E como contexto histórico, no como diseño moderno
+    - utilizar CIDR como modelo moderno de direccionamiento
+
+labs:
+  enabled: true
+  environment: Fedora/RHEL
+  tools:
+    - ip
+    - nmcli
+    - ping
+    - tracepath
+    - traceroute
+    - ipcalc
+    - tcpdump
+    - tshark
+    - ss
+    - journalctl
+    - python
+
+final_project:
+  type: enterprise_network_addressing_design
+  requirements:
+    - multisite IPv4 design
+    - VLSM
+    - route summarization
+    - IPv6 addressing plan
+    - dual stack
+    - IPAM table
+    - Fedora/RHEL validation
+    - troubleshooting scenarios
+    - Python validation

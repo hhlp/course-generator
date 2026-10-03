@@ -2,7 +2,7 @@
 
 ## Política bibliográfica
 
-Fecha de preparación: 2026-09-16. Esta selección es una propuesta de apoyo, no un inventario de libros que el usuario haya confirmado poseer. La documentación oficial de la versión objetivo prevalece sobre ejemplos antiguos. No es necesario comprar todos los libros para seguir la ruta.
+Fecha de revisión: 2026-09-30. Esta selección es una propuesta de apoyo, no un inventario de libros que el usuario haya confirmado poseer. La documentación oficial de la versión objetivo prevalece sobre ejemplos antiguos. No es necesario comprar todos los libros para seguir la ruta.
 
 No inventar capítulos, números de apartado ni páginas. Asignar lecturas por tema y, si se dispone del índice de la edición concreta, agregar referencias exactas verificadas. La edición de un libro no determina la versión de Python con la que deben ejecutarse sus ejemplos.
 
@@ -27,6 +27,7 @@ Sitio del autor: https://effectivepython.com/
 ## Consulta normativa — Python 3.15
 
 - Documentación principal: https://docs.python.org/3.15/
+- What's New in Python 3.15: https://docs.python.org/3.15/whatsnew/3.15.html
 - Tutorial: https://docs.python.org/3.15/tutorial/
 - Referencia del lenguaje: https://docs.python.org/3.15/reference/
 - Biblioteca estándar: https://docs.python.org/3.15/library/

@@ -1,0 +1,440 @@
+LEARNING PATH — TIME / NTP / CHRONY — 0 A EXPERTO EN PROFUNDIDAD
+Plataforma principal: Fedora / Red Hat Enterprise Linux
+
+BLOQUE 0 — Fundamentos del tiempo en Linux
+0.1 Fecha, hora, timestamps, UTC, hora local, timezone, offset UTC y DST
+0.2 Unix Epoch / Unix time
+0.3 System Clock y Hardware Clock / RTC
+0.4 Reloj realtime y monotónico
+0.5 Clock drift y clock skew
+0.6 Precisión, exactitud, resolución y estabilidad
+0.7 Por qué se desincronizan los relojes
+0.8 Impacto sobre logs, auditoría, bases de datos y sistemas distribuidos
+0.9 Impacto sobre Kerberos, TLS y certificados
+
+BLOQUE 1 — Administración del tiempo en Linux
+1.1 `date`: lectura, formatos, UTC y Unix timestamps
+1.2 `timedatectl status` y `timedatectl show`
+1.3 Listar y configurar timezones
+1.4 Activar/desactivar sincronización NTP
+1.5 `/etc/localtime`, `/usr/share/zoneinfo` y `/etc/adjtime`
+1.6 `hwclock`: leer y modificar RTC
+1.7 System Clock → RTC y RTC → System Clock
+1.8 RTC en UTC vs localtime
+1.9 Laboratorio completo de fecha, timezone y RTC
+
+BLOQUE 2 — Fundamentos de sincronización y NTP
+2.1 Necesidad de sincronización
+2.2 Arquitectura cliente/servidor y UDP/123
+2.3 NTP timestamps
+2.4 Offset, delay, round-trip delay y jitter
+2.5 Frequency error y clock discipline
+2.6 Step vs slew
+2.7 Stratum 0, 1, 2+
+2.8 Reference clocks
+2.9 Servers, peers y pools
+2.10 Selección y redundancia de fuentes
+
+BLOQUE 3 — Implementaciones NTP y Chrony
+3.1 `ntpd`, `systemd-timesyncd` y Chrony
+3.2 Chrony en Fedora/RHEL
+3.3 `chronyd` y `chronyc`
+3.4 Arquitectura daemon/cliente
+3.5 Ventajas de Chrony en hosts físicos, VM y redes variables
+
+BLOQUE 4 — Instalación de Chrony
+4.1 Comprobar paquete con RPM
+4.2 Examinar archivos instalados
+4.3 `dnf install chrony`
+4.4 Documentación y páginas man
+4.5 `chronyd.service`
+4.6 `systemctl status/start/stop/restart/enable`
+4.7 Comprobar sincronización después de instalar
+4.8 Laboratorio de instalación limpia Fedora/RHEL
+
+BLOQUE 5 — Archivos, estado y configuración
+5.1 `/etc/chrony.conf`
+5.2 `/var/lib/chrony/drift` y estado persistente
+5.3 Directivas `server` y `pool`
+5.4 `iburst`, `burst`, `prefer`
+5.5 `minpoll`, `maxpoll`, `maxsources`
+5.6 `driftfile`, `makestep`, `rtcsync`, `leapsectz`
+5.7 Validación y despliegue de cambios
+5.8 Configuración mínima y configuración empresarial
+
+BLOQUE 6 — chronyc en profundidad
+6.1 `chronyc tracking`
+6.2 Reference ID, Stratum y Ref time
+6.3 System time, Last offset y RMS offset
+6.4 Frequency, Residual frequency y Skew
+6.5 Root delay, Root dispersion y Update interval
+6.6 Leap status
+6.7 `chronyc sources -v`
+6.8 Estados `^*`, `^+`, `^-`, `^?`, `^x`, `^~`
+6.9 Reachability, reach register y LastRx
+6.10 `chronyc sourcestats`
+6.11 `chronyc activity`, `ntpdata` y `serverstats`
+6.12 Laboratorio de interpretación de métricas
+
+BLOQUE 7 — Step, Slew y corrección del reloj
+7.1 Clock stepping vs clock slewing
+7.2 Riesgos de mover el reloj hacia atrás
+7.3 `makestep` en configuración
+7.4 `chronyc makestep`
+7.5 Corrección durante boot y durante operación
+7.6 Aplicaciones sensibles a saltos temporales
+7.7 Laboratorio con offsets pequeños y grandes
+
+BLOQUE 8 — Chrony como servidor NTP
+8.1 Directiva `allow`
+8.2 Restricción por redes
+8.3 Escucha UDP/123 y comprobación con `ss`
+8.4 Firewalld y servicio NTP
+8.5 Clientes internos
+8.6 Redundancia de servidores
+8.7 Redes sin Internet
+8.8 `local` y local stratum
+8.9 Holdover y failover
+8.10 Laboratorio servidor + clientes
+
+BLOQUE 9 — Logs: journald y /var/log/chrony
+9.1 Logging del servicio mediante systemd-journald
+9.2 `journalctl -u chronyd`
+9.3 `journalctl -u chronyd -b` y boots anteriores
+9.4 `journalctl -f -u chronyd`
+9.5 Filtros por fecha, hora y prioridad
+9.6 Errores, warnings, sources inaccesibles, DNS y red
+9.7 No asumir la existencia de `/var/log/chronyd.log`
+9.8 Directiva `log`
+9.9 Directiva `logdir`
+9.10 Directorio `/var/log/chrony/`
+9.11 `measurements.log`
+9.12 `statistics.log`
+9.13 `tracking.log`
+9.14 `rtc.log` cuando corresponda
+9.15 `tempcomp.log` cuando corresponda
+9.16 Categorías habilitadas vs archivos realmente creados
+9.17 Permisos, rotación y mantenimiento
+9.18 Correlación `journalctl` + `chronyc` + `/var/log/chrony`
+
+BLOQUE 10 — Troubleshooting sistemático
+10.1 Verificar paquete, servicio y configuración
+10.2 Verificar sources y selección
+10.3 DNS, IP, routing y conectividad
+10.4 UDP/123
+10.5 Reachability, offset y stratum
+10.6 Journald y logs propios de Chrony
+10.7 Firewalld y SELinux
+10.8 Conflictos con otros mecanismos de sincronización
+10.9 Construcción de un árbol de diagnóstico reproducible
+
+BLOQUE 11 — Herramientas de diagnóstico
+11.1 `systemctl`, `journalctl` y `chronyc`
+11.2 `timedatectl`, `date`, `hwclock`
+11.3 `ss -ulpn`
+11.4 `ip address` e `ip route`
+11.5 `dig` y `getent hosts`
+11.6 `firewall-cmd`
+11.7 `tcpdump` para UDP/123
+11.8 `ausearch` para SELinux
+11.9 Correlación daemon + red + métricas + logs
+
+BLOQUE 12 — Casos reales de troubleshooting
+12.1 `chronyd` no inicia
+12.2 Errores de configuración
+12.3 Source `^?`
+12.4 No aparece `^*`
+12.5 Reach = 0 o intermitente
+12.6 Pool/DNS no resuelve
+12.7 UDP/123 bloqueado
+12.8 Servidor remoto no responde
+12.9 Routing incorrecto
+12.10 Offset demasiado grande
+12.11 Drift excesivo
+12.12 Timezone o RTC incorrectos
+12.13 Problemas en VM
+12.14 Clientes que no sincronizan
+12.15 Recuperación después de una caída prolongada
+
+BLOQUE 13 — Seguridad y NTS
+13.1 Manipulación del tiempo y amenazas
+13.2 Impacto en Kerberos, TLS y auditoría
+13.3 NTP amplification
+13.4 Restricción de clientes
+13.5 Firewalld y SELinux
+13.6 Fuentes confiables
+13.7 Network Time Security (NTS)
+13.8 Chrony + NTS
+13.9 Validación y troubleshooting NTS
+
+BLOQUE 14 — Virtualización, containers y Kubernetes
+14.1 Host clock vs guest clock
+14.2 Clock drift en VM
+14.3 Suspensión, snapshots y migración
+14.4 KVM/QEMU y VMware
+14.5 Containers y kernel del host
+14.6 Time namespaces
+14.7 Podman
+14.8 Kubernetes y sincronización de nodos
+14.9 Impacto de nodos desincronizados
+
+BLOQUE 15 — Arquitectura empresarial
+15.1 Fuentes externas e internas
+15.2 Servidores NTP internos redundantes
+15.3 Evitar single points of failure
+15.4 Múltiples fuentes independientes
+15.5 Estratos internos
+15.6 Segmentación, DMZ y datacenter
+15.7 Redes aisladas
+15.8 Arquitectura multi-site
+15.9 Alta disponibilidad
+15.10 Monitorización centralizada
+
+BLOQUE 16 — GPS, GNSS, PPS y fuentes avanzadas
+16.1 Reference clocks
+16.2 GPS/GNSS
+16.3 PPS — Pulse Per Second
+16.4 Precisión y estabilidad
+16.5 Software timestamping
+16.6 Hardware/NIC timestamping
+16.7 Microsegundos y nanosegundos
+16.8 Cuándo NTP deja de ser suficiente
+
+BLOQUE 17 — PTP y linuxptp
+17.1 IEEE 1588 y conceptos PTP
+17.2 NTP vs PTP
+17.3 Grandmaster, Ordinary, Boundary y Transparent Clock
+17.4 `linuxptp`
+17.5 `ptp4l`
+17.6 `phc2sys`
+17.7 PHC — PTP Hardware Clock
+17.8 PHC ↔ System Clock
+17.9 Chrony + PTP
+17.10 Casos de uso
+
+BLOQUE 18 — Monitorización
+18.1 Offset, jitter, stratum y reachability
+18.2 Source seleccionada
+18.3 Frequency error y root dispersion
+18.4 Alertas por pérdida de sincronización
+18.5 Alertas por offset excesivo
+18.6 Prometheus
+18.7 Métricas de Chrony
+18.8 Grafana
+18.9 Logs centralizados
+
+BLOQUE 19 — Automatización con Ansible
+19.1 Instalación del paquete
+19.2 Gestión de `chrony.conf` con Jinja2
+19.3 Handlers
+19.4 Gestión de `chronyd.service`
+19.5 Firewalld
+19.6 Validación de sincronización
+19.7 Roles cliente/servidor
+19.8 Variables por datacenter
+19.9 Idempotencia y testing
+
+BLOQUE 20 — Hardening y buenas prácticas
+20.1 Múltiples fuentes fiables
+20.2 Evitar una única fuente
+20.3 Restringir servidores internos
+20.4 Minimizar exposición UDP/123
+20.5 NTS cuando corresponda
+20.6 UTC en servidores y RTC
+20.7 Monitorizar offset y reachability
+20.8 Centralizar logs
+20.9 Auditoría periódica
+
+BLOQUE 21 — Linux Timekeeping Internals
+21.1 Arquitectura interna del timekeeping del kernel Linux
+21.2 Clocksource vs clockevent
+21.3 Relojes CLOCK_REALTIME, CLOCK_MONOTONIC, CLOCK_BOOTTIME y variantes
+21.4 vDSO y lectura eficiente del tiempo
+21.5 Resolución vs precisión real
+21.6 Timers y high-resolution timers
+21.7 TSC y clocksources de hardware
+21.8 Clocksource rating y selección
+21.9 `/sys/devices/system/clocksource/`
+21.10 Kernel discipline del reloj
+21.11 `adjtimex()` y `clock_adjtime()`
+21.12 Frequency correction en el kernel
+21.13 Interacción userspace ↔ kernel
+21.14 Leap status a nivel kernel
+21.15 Time namespaces en profundidad
+21.16 Diagnóstico de clocksource inestable
+
+BLOQUE 22 — NTPv4 Protocol Internals
+22.1 Formato de un paquete NTPv4
+22.2 LI, VN, Mode
+22.3 Stratum, Poll y Precision
+22.4 Root Delay y Root Dispersion
+22.5 Reference ID
+22.6 Reference, Origin, Receive y Transmit Timestamp
+22.7 Derivación matemática de offset y delay
+22.8 Era NTP y representación temporal
+22.9 Poll interval y exponente de polling
+22.10 Reach register bit a bit
+22.11 Root distance
+22.12 Selection, clustering y combinación: conceptos
+22.13 Falsetickers y fuentes inconsistentes
+22.14 Kiss-o'-Death: concepto
+22.15 Captura de NTP con tcpdump
+22.16 Análisis de paquetes con Wireshark
+22.17 Relacionar paquetes con `chronyc ntpdata`
+
+BLOQUE 23 — Chrony Internals
+23.1 Pipeline de una medición desde el paquete hasta la disciplina del reloj
+23.2 Filtrado de muestras
+23.3 Historial de measurements
+23.4 Estimación de offset
+23.5 Estimación de frecuencia
+23.6 Regresión lineal y modelo del reloj
+23.7 Skew y error de estimación
+23.8 Source selection
+23.9 Sources aceptables, seleccionadas y rechazadas
+23.10 Falseticker detection
+23.11 Combining de múltiples fuentes
+23.12 Polling adaptativo
+23.13 Interleaved mode: concepto y casos de uso
+23.14 Presminsamples/presmaxsamples y control de muestras: conceptos
+23.15 Drift estimation
+23.16 Persistencia del drift
+23.17 Startup behavior
+23.18 Offline/online sources
+23.19 Holdover interno
+23.20 Interpretar decisiones de Chrony desde métricas y logs
+
+BLOQUE 24 — Clock Discipline, estadística y estabilidad
+24.1 Modelo matemático básico de un reloj
+24.2 Offset como función del tiempo
+24.3 Frequency offset en ppm
+24.4 Drift y estabilidad
+24.5 Ruido de medición
+24.6 Outliers
+24.7 Regresión aplicada a sincronización
+24.8 Desviación estándar
+24.9 Skew como incertidumbre
+24.10 Jitter vs frequency error
+24.11 Root dispersion como crecimiento de incertidumbre
+24.12 Holdover y degradación temporal
+24.13 Osciladores y temperatura
+24.14 Compensación de temperatura: concepto
+24.15 Qué métricas indican un reloj estable
+24.16 Ejercicios de cálculo de offset/delay
+24.17 Interpretación estadística de `sourcestats`
+
+BLOQUE 25 — Leap Seconds, escalas de tiempo y edge cases
+25.1 UTC, TAI y relación conceptual
+25.2 Leap seconds
+25.3 Indicador LI de NTP
+25.4 Comportamiento del sistema ante leap second
+25.5 Leap smear: concepto
+25.6 Leap smear vs leap second
+25.7 Riesgos al mezclar políticas de leap
+25.8 Epochs y rollover/eras
+25.9 Relojes que retroceden
+25.10 Suspensión prolongada
+25.11 Boot sin RTC fiable
+25.12 Grandes correcciones y aplicaciones distribuidas
+
+BLOQUE 26 — NTS Internals
+26.1 Objetivo de NTS
+26.2 Separación NTS-KE y NTP protegido
+26.3 NTS Key Establishment
+26.4 TLS en NTS-KE
+26.5 Cookies NTS
+26.6 Autenticadores
+26.7 Protección de integridad y autenticidad
+26.8 Rotación/renovación de cookies
+26.9 Flujo cliente → NTS-KE → NTP
+26.10 Qué protege NTS y qué no
+26.11 Captura y diagnóstico de una sesión NTS
+26.12 Fallos TLS/certificados
+26.13 Fallos NTS-KE
+26.14 Fallback y política operativa
+26.15 Troubleshooting forense de NTS
+
+BLOQUE 27 — PPS, PHC y hardware timestamping en profundidad
+27.1 PPS en Linux
+27.2 Ruta de una señal PPS
+27.3 Kernel PPS API: concepto
+27.4 PHC y dispositivos `/dev/ptp*`
+27.5 NICs con hardware timestamping
+27.6 SO_TIMESTAMPING: concepto
+27.7 RX/TX hardware timestamps
+27.8 Errores introducidos por software timestamping
+27.9 Relación NIC ↔ PHC ↔ System Clock
+27.10 `ethtool -T` como herramienta de inspección
+27.11 PPS/GNSS + Chrony
+27.12 Chrony con hardware timestamping: conceptos
+27.13 Diagnóstico de precisión sub-milisegundo
+
+BLOQUE 28 — PTP Internals e integración Chrony/PTP
+28.1 Best Master Clock Algorithm: concepto
+28.2 Sync, Follow_Up, Delay_Req y Delay_Resp
+28.3 One-step vs two-step clocks
+28.4 Path delay
+28.5 Boundary y Transparent Clocks
+28.6 PTP domains
+28.7 Hardware timestamping
+28.8 `ptp4l` en profundidad
+28.9 `phc2sys` en profundidad
+28.10 Disciplina PHC ↔ System Clock
+28.11 PTP como fuente y NTP como distribución
+28.12 Chrony + PHC/PTP
+28.13 Arquitecturas híbridas NTP/PTP
+28.14 Troubleshooting PTP con logs y herramientas
+
+BLOQUE 29 — Troubleshooting forense
+29.1 Metodología evidence-first
+29.2 Construir una línea temporal del incidente
+29.3 Correlacionar journald, `/var/log/chrony`, métricas y paquetes
+29.4 Determinar si el fallo es local, de red o de source
+29.5 Diferenciar delay, jitter, drift y source instability
+29.6 Diagnosticar asimetría de red
+29.7 Diagnosticar sources divergentes
+29.8 Diagnosticar falsetickers
+29.9 Diagnosticar clocksource/kernel
+29.10 Diagnosticar problemas de virtualización
+29.11 Diagnosticar NTS
+29.12 Diagnosticar PPS/PHC/PTP
+29.13 Capturas `tcpdump` antes/durante/después
+29.14 Comparar `tracking`, `sources`, `sourcestats` y `ntpdata`
+29.15 Root cause analysis
+29.16 Creación de runbooks y evidencias reproducibles
+
+BLOQUE 30 — Laboratorios avanzados
+30.1 Medir offset y delay a partir de cuatro timestamps
+30.2 Observar reach register evolucionar
+30.3 Provocar pérdida parcial de paquetes
+30.4 Provocar jitter y latencia
+30.5 Comparar step y slew
+30.6 Simular source inconsistente
+30.7 Analizar selección/rechazo de sources
+30.8 Capturar y decodificar NTPv4
+30.9 Examinar drift antes y después de estabilización
+30.10 Simular holdover
+30.11 Investigar un clocksource
+30.12 Laboratorio NTS
+30.13 Laboratorio PPS/PHC cuando haya hardware disponible
+30.14 Laboratorio PTP con linuxptp
+30.15 RCA completo de una avería temporal
+
+BLOQUE 31 — Proyecto final experto
+31.1 Dos servidores Chrony redundantes
+31.2 Clientes Fedora/RHEL
+31.3 Fuentes externas autorizadas
+31.4 Segmentación y firewalld
+31.5 SELinux
+31.6 NTS cuando sea aplicable
+31.7 Journald + `/var/log/chrony`
+31.8 Prometheus/Grafana
+31.9 Automatización Ansible
+31.10 Captura y análisis NTP
+31.11 Simulación de DNS roto, UDP/123 bloqueado y source caída
+31.12 Simulación de offset/drift/jitter
+31.13 Diagnóstico de source selection
+31.14 Runbook de recuperación
+31.15 Informe RCA
+31.16 Justificación arquitectónica NTP vs PTP
+31.17 Defensa técnica del diseño

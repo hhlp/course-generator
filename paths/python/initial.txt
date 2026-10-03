@@ -197,7 +197,7 @@
 5.9 Sets: unicidad y ausencia de índices
 5.10 Operadores de conjuntos y variantes in-place
 5.11 Hashabilidad y conjuntos de conjuntos
-5.12 frozendict y mappings inmutables en la versión objetivo
+5.12 Python 3.15 — PEP 814: frozendict, mapping incorporado e inmutable
 5.13 Listas de tuplas, diccionarios y sets
 5.14 Diccionarios de listas y estructuras heterogéneas
 5.15 Recorrer y actualizar estructuras anidadas
@@ -277,33 +277,38 @@
 6.14 Comprensiones anidadas y orden de evaluación
 6.15 Arbitrary nesting, preservación de estructura y flattening
 6.16 Comprensiones con enumerate y zip
-6.17 map: transformación funcional de iterables
-6.18 map con funciones, lambda y múltiples iterables
-6.19 map frente a comprensiones
-6.20 filter: filtrado funcional de iterables
-6.21 filter con funciones y lambda
-6.22 filter(None, iterable): truthiness y eliminación de valores falsy
-6.23 filter frente a comprensiones
-6.24 map + filter frente a comprensiones
-6.25 Expresiones generadoras: sintaxis y anatomía
-6.26 Generator expression frente a list comprehension
-6.27 Evaluación eager frente a lazy
-6.28 Consumo único, agotamiento y recreación de generadores
-6.29 Memoria: list comprehension frente a generator expression
-6.30 sum, min y max con generator expressions
-6.31 any y all con generator expressions y cortocircuito
-6.32 enumerate y zip con generator expressions
-6.33 Scope de variables en comprehensions y generator expressions
-6.34 tuple y frozenset construidos desde generator expressions
-6.35 Cuándo usar comprehension, map, filter o generator expression
-6.36 Legibilidad: cuándo sustituir una comprehension por un for tradicional
-6.37 Operador :=
-6.38 match y case
-6.39 Patrones de secuencia
-6.40 Patrones de mappings
-6.41 Patrones de clases
-6.42 Guardas, OR, as y captura de nombres
-6.43 Laboratorio: transformación, filtrado y clasificación de eventos
+6.17 Python 3.15 — PEP 798: unpacking con * en list comprehensions
+6.18 Python 3.15 — PEP 798: unpacking con * en set comprehensions
+6.19 Python 3.15 — PEP 798: unpacking con ** en dict comprehensions
+6.20 Python 3.15 — PEP 798: unpacking con * en generator expressions
+6.21 Unpacking comprehensions frente a múltiples for, flattening e itertools.chain
+6.22 map: transformación funcional de iterables
+6.23 map con funciones, lambda y múltiples iterables
+6.24 map frente a comprensiones
+6.25 filter: filtrado funcional de iterables
+6.26 filter con funciones y lambda
+6.27 filter(None, iterable): truthiness y eliminación de valores falsy
+6.28 filter frente a comprensiones
+6.29 map + filter frente a comprensiones
+6.30 Expresiones generadoras: sintaxis y anatomía
+6.31 Generator expression frente a list comprehension
+6.32 Evaluación eager frente a lazy
+6.33 Consumo único, agotamiento y recreación de generadores
+6.34 Memoria: list comprehension frente a generator expression
+6.35 sum, min y max con generator expressions
+6.36 any y all con generator expressions y cortocircuito
+6.37 enumerate y zip con generator expressions
+6.38 Scope de variables en comprehensions y generator expressions
+6.39 tuple y frozenset construidos desde generator expressions
+6.40 Cuándo usar comprehension, map, filter o generator expression
+6.41 Legibilidad: cuándo sustituir una comprehension por un for tradicional
+6.42 Operador :=
+6.43 match y case
+6.44 Patrones de secuencia
+6.45 Patrones de mappings
+6.46 Patrones de clases
+6.47 Guardas, OR, as y captura de nombres
+6.48 Laboratorio: transformación, filtrado y clasificación de eventos
 
 7. Funciones en profundidad
 7.1 def: definición y llamada
@@ -333,8 +338,15 @@
 7.25 Recursión y alternativas iterativas
 7.26 Docstrings y anotaciones
 7.27 Diseño de firmas y centinelas
-7.28 inspect.signature y enlace de argumentos
-7.29 Laboratorio: biblioteca de funciones
+7.28 None como valor real frente a argumento no proporcionado
+7.29 Patrón tradicional de centinela: MISSING = object()
+7.30 Python 3.15 — PEP 661: sentinel incorporado
+7.31 Identidad de sentinels y comparación con is
+7.32 sentinel en valores predeterminados de funciones
+7.33 sentinel y anotaciones de tipos
+7.34 Copia, deepcopy y pickle de sentinels
+7.35 inspect.signature y enlace de argumentos
+7.36 Laboratorio: biblioteca de funciones
 
 8. Iteradores, generadores e itertools
 8.1 Iterable frente a iterador
@@ -398,7 +410,16 @@
 10.13 importlib.resources
 10.14 importlib.metadata
 10.15 Importación diferida y compatibilidad
-10.16 Laboratorio: convertir scripts en paquete
+10.16 Importación eager frente a lazy
+10.17 Python 3.15 — PEP 810: explicit lazy imports
+10.18 lazy import y lazy from ... import
+10.19 Resolución en el primer uso y errores diferidos
+10.20 Restricciones de lazy imports y soft keyword lazy
+10.21 Compatibilidad mediante __lazy_modules__
+10.22 -X lazy_imports y PYTHON_LAZY_IMPORTS
+10.23 sys.get_lazy_imports(), sys.set_lazy_imports() y filtros
+10.24 types.LazyImportType, rendimiento y startup time
+10.25 Laboratorio: convertir scripts en paquete
 
 11. Orientación a objetos y herencia
 11.1 Clases, instancias y self
@@ -475,19 +496,22 @@
 14.10 Callable
 14.11 Protocol
 14.12 TypedDict y claves opcionales
-14.13 Literal, Final y ClassVar
-14.14 NewType
-14.15 Narrowing
-14.16 TypeGuard y TypeIs
-14.17 overload
-14.18 ParamSpec
-14.19 TypeVarTuple
-14.20 Self y Annotated
-14.21 Never y exhaustividad
-14.22 Evaluación de anotaciones según versión
-14.23 Stubs y py.typed
-14.24 Configurar un comprobador y migrar gradualmente
-14.25 Laboratorio: biblioteca tipada
+14.13 Python 3.15 — PEP 728: TypedDict cerrado y extra_items tipados
+14.14 Literal, Final y ClassVar
+14.15 NewType
+14.16 Narrowing
+14.17 TypeGuard y TypeIs
+14.18 overload
+14.19 ParamSpec
+14.20 TypeVarTuple
+14.21 Self y Annotated
+14.22 Python 3.15 — PEP 747: TypeForm y anotación de formas de tipos
+14.23 Python 3.15 — PEP 800: disjoint_base y bases disjuntas en el sistema de tipos
+14.24 Never y exhaustividad
+14.25 Evaluación de anotaciones según versión
+14.26 Stubs y py.typed
+14.27 Configurar un comprobador y migrar gradualmente
+14.28 Laboratorio: biblioteca tipada
 
 15. Modelado de datos
 15.1 Elegir tuplas, diccionarios o clases
@@ -513,38 +537,40 @@
 16.6 Modos r, w, a y x
 16.7 Modificadores t, b y +
 16.8 Encoding, UTF-8 y errores de codificación
-16.9 read(): lectura completa
-16.10 read(size): lectura por bloques
-16.11 readline(): lectura de una línea
-16.12 readlines(): lectura de todas las líneas
-16.13 Iteración sobre archivos: lectura línea a línea
-16.14 Lectura incremental y archivos grandes
-16.15 write(): escritura
-16.16 Escritura línea a línea
-16.17 writelines(): escritura de iterables
-16.18 Append y actualización de archivos
-16.19 tell, seek y posición
-16.20 flush, buffering y cierre
-16.21 Archivos binarios y bytes
-16.22 StringIO y BytesIO
-16.23 Escritura atómica y durabilidad
-16.24 tempfile
-16.25 shutil
-16.26 CSV: reader y writer
-16.27 CSV: DictReader y DictWriter
-16.28 CSV: dialectos, quoting y delimitadores
-16.29 JSON: load y loads
-16.30 JSON: dump y dumps
-16.31 JSON: conversiones entre tipos Python y JSON
-16.32 TOML y tomllib
-16.33 Configuración INI con configparser
-16.34 XML y entradas no fiables
-16.35 pickle, serialización y riesgos
-16.36 SQLite: conexiones y cursores
-16.37 SQL parametrizado
-16.38 Transacciones y rollback
-16.39 Migraciones simples
-16.40 Laboratorio: inventario persistente
+16.9 Python 3.15 — PEP 686: UTF-8 como encoding predeterminado
+16.10 Encoding explícito frente al encoding predeterminado y compatibilidad
+16.11 read(): lectura completa
+16.12 read(size): lectura por bloques
+16.13 readline(): lectura de una línea
+16.14 readlines(): lectura de todas las líneas
+16.15 Iteración sobre archivos: lectura línea a línea
+16.16 Lectura incremental y archivos grandes
+16.17 write(): escritura
+16.18 Escritura línea a línea
+16.19 writelines(): escritura de iterables
+16.20 Append y actualización de archivos
+16.21 tell, seek y posición
+16.22 flush, buffering y cierre
+16.23 Archivos binarios y bytes
+16.24 StringIO y BytesIO
+16.25 Escritura atómica y durabilidad
+16.26 tempfile
+16.27 shutil
+16.28 CSV: reader y writer
+16.29 CSV: DictReader y DictWriter
+16.30 CSV: dialectos, quoting y delimitadores
+16.31 JSON: load y loads
+16.32 JSON: dump y dumps
+16.33 JSON: conversiones entre tipos Python y JSON
+16.34 TOML y tomllib
+16.35 Configuración INI con configparser
+16.36 XML y entradas no fiables
+16.37 pickle, serialización y riesgos
+16.38 SQLite: conexiones y cursores
+16.39 SQL parametrizado
+16.40 Transacciones y rollback
+16.41 Migraciones simples
+16.42 Laboratorio: inventario persistente
 
 17. Biblioteca estándar aplicada
 17.1 datetime y timedelta
@@ -632,99 +658,100 @@
 20.22 Build frontend, build backend y [build-system]
 20.23 Dependencias de ejecución, desarrollo y opcionales
 20.24 Extras, dependency groups y marcadores de entorno
-20.25 Poetry: propósito, arquitectura e instalación
-20.26 poetry new e init
-20.27 pyproject.toml con Poetry
-20.28 poetry add, remove e install
-20.29 Grupos y dependencias opcionales en Poetry
-20.30 Entornos virtuales administrados por Poetry
-20.31 poetry.lock y resolución reproducible
-20.32 poetry run y ejecución dentro del entorno
-20.33 poetry build y artefactos sdist/wheel
-20.34 poetry publish y repositorios
-20.35 Configuración, caché y troubleshooting de Poetry
-20.36 Laboratorio: proyecto completo con Poetry
-20.37 uv: arquitectura y diferencias frente a pip, virtualenv y Poetry
-20.38 uv python: install, list, find, pin y uninstall
-20.39 .python-version y selección de intérprete con --python
-20.40 uv init y estructura de proyectos
-20.41 uv add y uv remove en proyectos reales
-20.42 uv sync y sincronización exacta
-20.43 uv lock y modelo de resolución
-20.44 uv.lock en profundidad
-20.45 --locked, --frozen y --no-sync
-20.46 Instalaciones editables y sincronización parcial
-20.47 uv tree y análisis del árbol de dependencias
-20.48 uv export: requirements.txt, pylock.toml y otros formatos
-20.49 uv run y selección de grupos/extras
-20.50 uv venv y gestión explícita de entornos
-20.51 uv pip: install, uninstall, sync, compile y compatibilidad con pip
-20.52 Migración desde pip, virtualenv, pip-tools y requirements.txt
-20.53 uv tool y uvx en profundidad
-20.54 uv tool install, list, uninstall y update-shell
-20.55 Herramientas globales frente a dependencias del proyecto
-20.56 Caché global de uv, deduplicación y mantenimiento
-20.57 Configuración de uv: archivos, variables y opciones
-20.58 Índices de paquetes, PyPI e índices alternativos
-20.59 Autenticación, credenciales y publicación segura
-20.60 tool.uv.sources y fuentes de dependencias
-20.61 Overrides, constraints y resolución avanzada
-20.62 Plataformas, requires-python y entornos de resolución
-20.63 Workspaces: concepto, miembros y lockfile compartido
-20.64 Dependencias entre miembros de un workspace
-20.65 Cuándo usar workspaces y cuándo proyectos separados
-20.66 uv build: sdist y wheel
-20.67 Build backend y uv_build
-20.68 Verificar artefactos en un entorno limpio
-20.69 uv version y versionado del proyecto
-20.70 uv publish y publicación en índices
-20.71 Trusted Publishing y gestión de secretos
-20.72 Datos empaquetados y entry points
-20.73 Instalación editable
-20.74 Reproducibilidad y portabilidad de uv.lock
-20.75 CI: uv sync --locked/--frozen y caché
-20.76 uv en contenedores y optimización de capas
-20.77 Matrices de versiones de Python
-20.78 Seguridad, procedencia y auditoría de dependencias
-20.79 Diagnóstico y troubleshooting de resolución/sincronización
-20.80 Documentación ejecutable
-20.81 Compatibilidad con herramientas estándar del ecosistema
-20.82 Laboratorio: paquete instalable, bloqueado, probado y construido con uv
-20.83 Laboratorio: workspace multipaquete con lockfile compartido
-20.84 Laboratorio: pipeline CI reproducible y publicación de práctica
-20.85 Pipenv: propósito y modelo Pipfile/Pipfile.lock
-20.86 pipenv install y creación del entorno
-20.87 Dependencias normales y de desarrollo
-20.88 Pipfile: fuentes, paquetes y requires
-20.89 Pipfile.lock y bloqueo de dependencias
-20.90 pipenv run y pipenv shell
-20.91 Selección y localización del entorno
-20.92 Actualización, sincronización y limpieza
-20.93 Seguridad y comprobación de dependencias
-20.94 Migración entre requirements.txt y Pipenv
-20.95 Laboratorio: proyecto reproducible con Pipenv
-20.96 Comparación conceptual: pip + virtualenv vs Poetry vs uv vs Pipenv
-20.97 Comparación de pyproject.toml, requirements.txt, poetry.lock, uv.lock y Pipfile.lock
-20.98 Resolución, sincronización y reproducibilidad entre gestores
-20.99 Qué herramienta administra Python, entornos, dependencias, build, publicación y CLI
-20.100 Migración entre gestores sin perder reproducibilidad
-20.101 Laboratorio comparativo: el mismo proyecto con los cuatro flujos
-20.102 Ecosistema Conda: filosofía y diferencias con el packaging Python tradicional
-20.103 Conda, Anaconda y Miniconda
-20.104 Entornos Conda y selección de versiones de Python
-20.105 conda create, activate, deactivate, env list y remove
-20.106 conda install, update, remove, list y search
-20.107 Channels, defaults y conda-forge
-20.108 environment.yml y reproducción de entornos
-20.109 Paquetes Python frente a paquetes no-Python
-20.110 Dependencias binarias y bibliotecas del sistema
-20.111 Interacción y riesgos de mezclar con pip
-20.112 Mamba: relación y compatibilidad con Conda
-20.113 Micromamba: instalación ligera y entornos
-20.114 Resolución de dependencias en Conda/Mamba
-20.115 Conda/Mamba frente a pip/virtualenv/Poetry/uv/Pipenv
-20.116 Cuándo tiene sentido el ecosistema Conda en ciencia de datos
-20.117 Laboratorio: entorno científico reproducible con Conda/Mamba
+20.25 Python 3.15 — PEP 829: archivos de configuración de arranque de paquetes
+20.26 Poetry: propósito, arquitectura e instalación
+20.27 poetry new e init
+20.28 pyproject.toml con Poetry
+20.29 poetry add, remove e install
+20.30 Grupos y dependencias opcionales en Poetry
+20.31 Entornos virtuales administrados por Poetry
+20.32 poetry.lock y resolución reproducible
+20.33 poetry run y ejecución dentro del entorno
+20.34 poetry build y artefactos sdist/wheel
+20.35 poetry publish y repositorios
+20.36 Configuración, caché y troubleshooting de Poetry
+20.37 Laboratorio: proyecto completo con Poetry
+20.38 uv: arquitectura y diferencias frente a pip, virtualenv y Poetry
+20.39 uv python: install, list, find, pin y uninstall
+20.40 .python-version y selección de intérprete con --python
+20.41 uv init y estructura de proyectos
+20.42 uv add y uv remove en proyectos reales
+20.43 uv sync y sincronización exacta
+20.44 uv lock y modelo de resolución
+20.45 uv.lock en profundidad
+20.46 --locked, --frozen y --no-sync
+20.47 Instalaciones editables y sincronización parcial
+20.48 uv tree y análisis del árbol de dependencias
+20.49 uv export: requirements.txt, pylock.toml y otros formatos
+20.50 uv run y selección de grupos/extras
+20.51 uv venv y gestión explícita de entornos
+20.52 uv pip: install, uninstall, sync, compile y compatibilidad con pip
+20.53 Migración desde pip, virtualenv, pip-tools y requirements.txt
+20.54 uv tool y uvx en profundidad
+20.55 uv tool install, list, uninstall y update-shell
+20.56 Herramientas globales frente a dependencias del proyecto
+20.57 Caché global de uv, deduplicación y mantenimiento
+20.58 Configuración de uv: archivos, variables y opciones
+20.59 Índices de paquetes, PyPI e índices alternativos
+20.60 Autenticación, credenciales y publicación segura
+20.61 tool.uv.sources y fuentes de dependencias
+20.62 Overrides, constraints y resolución avanzada
+20.63 Plataformas, requires-python y entornos de resolución
+20.64 Workspaces: concepto, miembros y lockfile compartido
+20.65 Dependencias entre miembros de un workspace
+20.66 Cuándo usar workspaces y cuándo proyectos separados
+20.67 uv build: sdist y wheel
+20.68 Build backend y uv_build
+20.69 Verificar artefactos en un entorno limpio
+20.70 uv version y versionado del proyecto
+20.71 uv publish y publicación en índices
+20.72 Trusted Publishing y gestión de secretos
+20.73 Datos empaquetados y entry points
+20.74 Instalación editable
+20.75 Reproducibilidad y portabilidad de uv.lock
+20.76 CI: uv sync --locked/--frozen y caché
+20.77 uv en contenedores y optimización de capas
+20.78 Matrices de versiones de Python
+20.79 Seguridad, procedencia y auditoría de dependencias
+20.80 Diagnóstico y troubleshooting de resolución/sincronización
+20.81 Documentación ejecutable
+20.82 Compatibilidad con herramientas estándar del ecosistema
+20.83 Laboratorio: paquete instalable, bloqueado, probado y construido con uv
+20.84 Laboratorio: workspace multipaquete con lockfile compartido
+20.85 Laboratorio: pipeline CI reproducible y publicación de práctica
+20.86 Pipenv: propósito y modelo Pipfile/Pipfile.lock
+20.87 pipenv install y creación del entorno
+20.88 Dependencias normales y de desarrollo
+20.89 Pipfile: fuentes, paquetes y requires
+20.90 Pipfile.lock y bloqueo de dependencias
+20.91 pipenv run y pipenv shell
+20.92 Selección y localización del entorno
+20.93 Actualización, sincronización y limpieza
+20.94 Seguridad y comprobación de dependencias
+20.95 Migración entre requirements.txt y Pipenv
+20.96 Laboratorio: proyecto reproducible con Pipenv
+20.97 Comparación conceptual: pip + virtualenv vs Poetry vs uv vs Pipenv
+20.98 Comparación de pyproject.toml, requirements.txt, poetry.lock, uv.lock y Pipfile.lock
+20.99 Resolución, sincronización y reproducibilidad entre gestores
+20.100 Qué herramienta administra Python, entornos, dependencias, build, publicación y CLI
+20.101 Migración entre gestores sin perder reproducibilidad
+20.102 Laboratorio comparativo: el mismo proyecto con los cuatro flujos
+20.103 Ecosistema Conda: filosofía y diferencias con el packaging Python tradicional
+20.104 Conda, Anaconda y Miniconda
+20.105 Entornos Conda y selección de versiones de Python
+20.106 conda create, activate, deactivate, env list y remove
+20.107 conda install, update, remove, list y search
+20.108 Channels, defaults y conda-forge
+20.109 environment.yml y reproducción de entornos
+20.110 Paquetes Python frente a paquetes no-Python
+20.111 Dependencias binarias y bibliotecas del sistema
+20.112 Interacción y riesgos de mezclar con pip
+20.113 Mamba: relación y compatibilidad con Conda
+20.114 Micromamba: instalación ligera y entornos
+20.115 Resolución de dependencias en Conda/Mamba
+20.116 Conda/Mamba frente a pip/virtualenv/Poetry/uv/Pipenv
+20.117 Cuándo tiene sentido el ecosistema Conda en ciencia de datos
+20.118 Laboratorio: entorno científico reproducible con Conda/Mamba
 
 21. Diseño y arquitectura
 21.1 Cohesión y acoplamiento
@@ -815,16 +842,21 @@
 25.4 timeit y errores de medición
 25.5 Profiling determinista y muestreo
 25.6 Herramientas de profiling de la versión objetivo
-25.7 Interpretar perfiles
-25.8 tracemalloc
-25.9 sys.getsizeof y límites
-25.10 Streaming y generadores
-25.11 Algoritmos antes de microoptimizar
-25.12 Cachés e invalidación
-25.13 Optimizar texto e I/O
-25.14 Medir concurrencia
-25.15 JIT y diferencias entre builds
-25.16 Laboratorio: optimización con evidencia
+25.7 Python 3.15 — PEP 799: paquete profiling
+25.8 profiling.tracing y compatibilidad con cProfile
+25.9 Tachyon y profiling.sampling: muestreo estadístico de alta frecuencia
+25.10 Profiling de procesos en ejecución, frecuencia de muestreo y overhead
+25.11 Python 3.15 — PEP 831: frame pointers por defecto y observabilidad del sistema
+25.12 Interpretar perfiles
+25.13 tracemalloc
+25.14 sys.getsizeof y límites
+25.15 Streaming y generadores
+25.16 Algoritmos antes de microoptimizar
+25.17 Cachés e invalidación
+25.18 Optimizar texto e I/O
+25.19 Medir concurrencia
+25.20 JIT y diferencias entre builds
+25.21 Laboratorio: optimización con evidencia
 
 26. Descriptores y metaprogramación
 26.1 dir, vars e inspect
@@ -877,10 +909,13 @@
 28.10 GIL y llamadas nativas
 28.11 Compatibilidad free-threaded
 28.12 Limited API y Stable ABI
-28.13 Bindings de C++
-28.14 Cython y alternativas
-28.15 Wheels nativos y pruebas
-28.16 Laboratorio: integrar y medir una función nativa
+28.13 Python 3.15 — PEP 803/820/793: Stable ABI para builds free-threaded
+28.14 Python 3.15 — PEP 788: protección de la C API durante finalización del intérprete
+28.15 Python 3.15 — PEP 782: PyBytesWriter C API
+28.16 Bindings de C++
+28.17 Cython y alternativas
+28.18 Wheels nativos y pruebas
+28.19 Laboratorio: integrar y medir una función nativa
 
 29. Seguridad y robustez
 29.1 Fronteras de confianza

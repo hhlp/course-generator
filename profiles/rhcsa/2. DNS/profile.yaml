@@ -1,0 +1,193 @@
+name: DNS
+title: "DNS + BIND 9 — 0 a Experto en Profundidad"
+language: es
+audience: "Administradores Linux, ingenieros de sistemas, DevOps/SRE y estudiantes que quieran dominar DNS en Fedora/RHEL"
+level: "0-a-experto-en-profundidad"
+
+platform:
+  primary:
+    - Fedora
+    - Red Hat Enterprise Linux
+  dns_server:
+    - BIND 9
+  components:
+    - systemd
+    - journald
+    - NetworkManager
+    - firewalld
+    - SELinux
+
+goals:
+  - "Comprender DNS como protocolo jerárquico y distribuido, no solo como configuración de BIND."
+  - "Administrar BIND 9 como servidor authoritative, recursive, caching y forwarding."
+  - "Diseñar y operar zonas forward y reverse para IPv4 e IPv6."
+  - "Dominar delegaciones, primary/secondary, AXFR, IXFR y NOTIFY."
+  - "Aplicar ACL, TSIG, DNSSEC, DDNS, RPZ y hardening."
+  - "Integrar BIND con Kea, FreeIPA y Kerberos."
+  - "Distinguir DNS independiente de IAM de DNS como infraestructura/dependencia de IAM."
+  - "Comprender que BIND no es normalmente un consumidor de identidades humanas, aunque DNS sea crítico para service discovery de Kerberos/LDAP/FreeIPA."
+  - "Diagnosticar DNS desde el cliente hasta el servidor authoritative."
+  - "Usar journald y logging propio de BIND para troubleshooting."
+  - "Automatizar validación y despliegue con Git, CI y Ansible."
+  - "Llegar a diseñar una infraestructura DNS empresarial resiliente y observable."
+
+lesson_format:
+  start: "🎯 OBJETIVO"
+  end: "🧠 QUÉ DEBES RECORDAR"
+  preferred_sections:
+    - "Conceptos"
+    - "Anatomía y funcionamiento"
+    - "Comandos"
+    - "Configuración"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "Troubleshooting"
+    - "Referencias"
+  require_explanations_before_commands: true
+  explain_command_output: true
+  include_verification_steps: true
+  include_failure_cases: true
+
+pedagogy:
+  progression:
+    - fundamentals
+    - protocol
+    - tools
+    - bind-administration
+    - authoritative
+    - recursive-caching
+    - zones
+    - security
+    - dnssec
+    - ddns
+    - observability
+    - troubleshooting
+    - automation
+    - architecture
+    - internals
+    - expert
+  laboratory_driven: true
+  production_mindset: true
+  avoid_copy_paste_only_learning: true
+  correlate_configuration_with_protocol_behavior: true
+
+labs:
+  environment: "Fedora/RHEL virtual machines or equivalent isolated lab"
+  require:
+    - "command verification"
+    - "configuration validation"
+    - "service status"
+    - "journal/log inspection"
+    - "network packet inspection when useful"
+    - "intentional failure and recovery in troubleshooting blocks"
+  final_project:
+    - "authoritative primary"
+    - "authoritative secondary"
+    - "separate recursive resolver"
+    - "forward and reverse zones"
+    - "IPv4 and IPv6"
+    - "TSIG"
+    - "DNSSEC"
+    - "DDNS"
+    - "Kea integration"
+    - "ACL"
+    - "SELinux"
+    - "firewalld"
+    - "logging"
+    - "monitoring"
+    - "backup and restore"
+    - "Ansible automation"
+    - "incident simulation and recovery"
+
+logging:
+  cover_journald: true
+  cover_bind_logging: true
+  journald_command: "journalctl -u named"
+  dedicated_log_design: "/var/log/named/"
+  warning: "No asumir que /var/log/named contiene logs por defecto; enseñar configuración, permisos, SELinux y rotación."
+
+troubleshooting:
+  priority: high
+  methodology: "cliente -> NSS/resolver local -> recursive resolver -> delegación -> authoritative -> respuesta"
+  tools:
+    - dig
+    - delv
+    - host
+    - getent
+    - resolvectl
+    - nmcli
+    - rndc
+    - named-checkconf
+    - named-checkzone
+    - journalctl
+    - tcpdump
+    - Wireshark
+    - ss
+    - strace
+
+security:
+  topics:
+    - ACL
+    - TSIG
+    - DNSSEC
+    - RRL
+    - RPZ
+    - SELinux
+    - firewalld
+    - least privilege
+    - open resolver prevention
+    - transfer restrictions
+    - DDNS authorization
+
+iam_relationship:
+  role: "infraestructura/dependencia de IAM; no consumidor normal de identidades humanas"
+  teach_both_modes: true
+  standalone_dns:
+    - "authoritative"
+    - "recursive/caching"
+    - "forwarding"
+    - "DNSSEC"
+    - "DDNS"
+  integrated_dns:
+    - "Kerberos service discovery"
+    - "LDAP service discovery"
+    - "SRV records"
+    - "KDC discovery"
+    - "FreeIPA integrated DNS"
+    - "FreeIPA with external DNS"
+    - "forward/reverse DNS for IAM"
+    - "DDNS"
+    - "TSIG vs GSS-TSIG concepts"
+  troubleshooting_chain: "DNS -> SRV -> Kerberos/LDAP -> FreeIPA"
+
+references:
+  prefer_current_official_docs_for_version_specific_behavior: true
+  use_rfc_at_advanced_levels: true
+  core_rfc:
+    - RFC1034
+    - RFC1035
+    - RFC1996
+    - RFC2136
+    - RFC2308
+    - RFC2317
+    - RFC2845
+    - RFC4033
+    - RFC4034
+    - RFC4035
+    - RFC5155
+    - RFC5936
+    - RFC6891
+    - RFC7344
+    - RFC7858
+    - RFC8078
+    - RFC8484
+    - RFC9250
+
+constraints:
+  - "Priorizar Fedora/RHEL en ejemplos de administración del sistema."
+  - "Distinguir conceptos DNS estándar de detalles específicos de BIND."
+  - "Advertir cuando una opción o comportamiento dependa de la versión de BIND."
+  - "No desactivar SELinux como solución de troubleshooting."
+  - "No enseñar un open resolver como configuración válida de producción."
+  - "Validar named.conf y las zonas antes de reload/restart siempre que sea posible."

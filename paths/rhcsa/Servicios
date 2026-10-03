@@ -54,13 +54,13 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-1. TIME
+1. TIME [YA]
 │
 └── Chrony / NTP
         │
         ▼
 
-2. DNS
+2. DNS [YA]
 │
 ├── BIND
 ├── authoritative DNS
@@ -71,7 +71,7 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-3. DHCP
+3. DHCP [YA]
 │
 ├── DHCPv4
 ├── DHCPv6
@@ -83,7 +83,7 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-4. DHCP + DNS INTEGRATION
+4. DHCP + DNS INTEGRATION [YA]
 │
 ├── Kea DHCP-DDNS / D2
 ├── BIND Dynamic Update
@@ -94,7 +94,7 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-5. IAM
+5. IAM [YA]
 │
 ├── LDAP
 ├── Kerberos
@@ -106,7 +106,7 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-6. FILE / STORAGE SERVICES
+6. FILE / STORAGE SERVICES [YA]
 │
 ├── NFS
 ├── autofs
@@ -122,7 +122,7 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-8. WEB SERVERS
+8. WEB SERVERS [YA]
 │
 ├── Apache
 │   ├── VirtualHost
@@ -136,7 +136,7 @@ RHEL / LINUX INFRASTRUCTURE — ORDEN DE CONSTRUCCIÓN
         │
         ▼
 
-9. PROXY / LOAD BALANCING
+9. PROXY / LOAD BALANCING [YA]
 │
 ├── Squid
 │   └── forward proxy

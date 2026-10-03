@@ -1,0 +1,896 @@
+# DNS + BIND 9 — 0 a Experto en Profundidad
+
+BLOQUE 0 — Fundamentos de DNS
+0.1 Qué es DNS y qué problema resuelve
+0.2 DNS como sistema distribuido y jerárquico
+0.3 Namespace DNS
+0.4 Root → TLD → dominio → subdominio
+0.5 FQDN y nombres relativos
+0.6 Resolver vs servidor DNS
+0.7 Stub resolver
+0.8 Recursive resolver
+0.9 Authoritative server
+0.10 Root servers
+0.11 TLD servers
+0.12 Delegación DNS
+0.13 Resolver una consulta paso a paso
+0.14 Recursive query vs iterative query
+0.15 DNS cache
+0.16 TTL
+0.17 Positive caching
+0.18 Negative caching
+0.19 DNS sobre UDP
+0.20 DNS sobre TCP
+0.21 Puerto 53 UDP/TCP
+0.22 EDNS(0)
+0.23 Tamaño de mensajes y truncation
+0.24 DNS message format
+0.25 Header: ID, flags y counters
+0.26 Question / Answer / Authority / Additional
+0.27 Flags: QR, AA, TC, RD, RA, AD, CD
+0.28 RCODE: NOERROR, NXDOMAIN, SERVFAIL, REFUSED
+0.29 DNS y /etc/nsswitch.conf
+0.30 /etc/resolv.conf
+0.31 search y domain
+0.32 nameserver
+0.33 glibc resolver
+0.34 systemd-resolved: conceptos y diferencias
+0.35 NetworkManager y configuración DNS
+0.36 Laboratorio: seguir una resolución completa
+
+BLOQUE 1 — Herramientas DNS en Linux
+1.1 dig
+1.2 Anatomía de la salida de dig
+1.3 dig A / AAAA
+1.4 dig MX
+1.5 dig NS
+1.6 dig SOA
+1.7 dig TXT
+1.8 dig CNAME
+1.9 dig PTR
+1.10 dig +short
+1.11 dig +noall +answer
+1.12 dig @server
+1.13 dig +trace
+1.14 dig +tcp
+1.15 dig +dnssec
+1.16 dig +comments
+1.17 dig +stats
+1.18 host
+1.19 nslookup y sus limitaciones
+1.20 getent hosts
+1.21 resolvectl
+1.22 nmcli y DNS
+1.23 rndc
+1.24 delv
+1.25 named-checkconf
+1.26 named-checkzone
+1.27 tcpdump para DNS
+1.28 Wireshark y estructura de paquetes DNS
+1.29 ss y sockets DNS
+1.30 journalctl
+1.31 Laboratorio de diagnóstico con dig + tcpdump
+
+BLOQUE 2 — Instalación de BIND 9 en Fedora/RHEL
+2.1 Qué es BIND
+2.2 Arquitectura de BIND 9
+2.3 named
+2.4 bind-utils
+2.5 Paquetes BIND en Fedora/RHEL
+2.6 Instalación con DNF
+2.7 Archivos proporcionados por los RPM
+2.8 rpm -qi / rpm -ql
+2.9 named.service
+2.10 systemctl status named
+2.11 Configuración inicial
+2.12 /etc/named.conf
+2.13 /etc/named/
+2.14 /var/named/
+2.15 Usuario named, propietario y permisos
+2.16 SELinux y BIND
+2.17 firewalld y dns.service
+2.18 UDP 53 y TCP 53
+2.19 Validar configuración
+2.20 named-checkconf
+2.21 named-checkzone
+2.22 named -g para debugging
+2.23 Laboratorio: primer servidor BIND
+
+BLOQUE 3 — named.conf en profundidad
+3.1 Sintaxis de named.conf
+3.2 Statements
+3.3 options {}
+3.4 zone {}
+3.5 include
+3.6 acl {}
+3.7 key {}
+3.8 server {}
+3.9 logging {}
+3.10 controls {}
+3.11 view {}
+3.12 listen-on
+3.13 listen-on-v6
+3.14 directory
+3.15 recursion
+3.16 allow-query
+3.17 allow-query-cache
+3.18 allow-recursion
+3.19 allow-transfer
+3.20 allow-update
+3.21 forward
+3.22 forwarders
+3.23 dnssec-validation
+3.24 minimal-responses
+3.25 version
+3.26 rate-limit
+3.27 Configuración modular mediante include
+3.28 Orden y alcance de las opciones
+3.29 Herencia de configuración
+3.30 Validación y debugging de named.conf
+
+BLOQUE 4 — Resource Records en profundidad
+4.1 Anatomía de un Resource Record
+4.2 owner/name
+4.3 TTL
+4.4 CLASS
+4.5 TYPE
+4.6 RDATA
+4.7 A
+4.8 AAAA
+4.9 NS
+4.10 SOA
+4.11 CNAME
+4.12 MX
+4.13 PTR
+4.14 TXT
+4.15 SRV
+4.16 CAA
+4.17 NAPTR
+4.18 SSHFP
+4.19 TLSA
+4.20 SVCB
+4.21 HTTPS
+4.22 DNSSEC records: introducción
+4.23 Wildcard records
+4.24 Apex del dominio
+4.25 CNAME y restricciones
+4.26 Alias vs canonical name
+4.27 Glue records
+4.28 Registros obsoletos y desconocidos
+4.29 Laboratorio de creación y consulta de RR
+
+BLOQUE 5 — Zonas DNS
+5.1 Qué es una zona
+5.2 Zona vs dominio
+5.3 Zone apex
+5.4 Master file format
+5.5 $ORIGIN
+5.6 $TTL
+5.7 @
+5.8 Nombres relativos
+5.9 Nombres absolutos
+5.10 SOA en profundidad
+5.11 Serial
+5.12 Refresh
+5.13 Retry
+5.14 Expire
+5.15 Negative caching TTL
+5.16 Estrategias de serial
+5.17 Primary server
+5.18 Secondary server
+5.19 Zone transfer
+5.20 AXFR
+5.21 IXFR
+5.22 NOTIFY
+5.23 Validación con named-checkzone
+5.24 Errores frecuentes de sintaxis
+5.25 Laboratorio: construir una zona desde cero
+
+BLOQUE 6 — Authoritative DNS
+6.1 Arquitectura authoritative-only
+6.2 recursion no
+6.3 Primary authoritative server
+6.4 Secondary authoritative server
+6.5 Delegación
+6.6 NS records
+6.7 Glue records
+6.8 In-bailiwick vs out-of-bailiwick
+6.9 Lame delegation
+6.10 Parent zone vs child zone
+6.11 Zone cuts
+6.12 Authority section
+6.13 AA flag
+6.14 Hidden primary
+6.15 Multi-secondary architecture
+6.16 NOTIFY
+6.17 AXFR
+6.18 IXFR
+6.19 Seguridad de transferencias
+6.20 TSIG para transferencias
+6.21 Alta disponibilidad
+6.22 Anycast: introducción
+6.23 Laboratorio primary + secondary
+
+BLOQUE 7 — Forward DNS Zones
+7.1 Forward lookup
+7.2 Zona example.internal
+7.3 SOA
+7.4 NS
+7.5 A
+7.6 AAAA
+7.7 CNAME
+7.8 MX
+7.9 TXT
+7.10 SRV
+7.11 CAA
+7.12 Subdominios
+7.13 Delegación de subdominios
+7.14 Wildcards
+7.15 Split namespace
+7.16 Validación
+7.17 Consultas con dig
+7.18 Laboratorio completo forward zone
+
+BLOQUE 8 — Reverse DNS
+8.1 Qué es reverse DNS
+8.2 PTR
+8.3 in-addr.arpa
+8.4 IPv4 reverse zones
+8.5 Cálculo de reverse zones IPv4
+8.6 /8, /16 y /24
+8.7 Delegaciones classless
+8.8 RFC 2317
+8.9 ip6.arpa
+8.10 IPv6 reverse DNS
+8.11 Nibble format
+8.12 PTR y FQDN
+8.13 Forward-confirmed reverse DNS
+8.14 Reverse DNS y correo electrónico
+8.15 Troubleshooting
+8.16 Laboratorio IPv4 reverse zone
+8.17 Laboratorio IPv6 reverse zone
+
+BLOQUE 9 — Recursive DNS
+9.1 Qué hace un recursive resolver
+9.2 Recursion
+9.3 Iterative resolution
+9.4 Root hints
+9.5 Root priming
+9.6 Cache
+9.7 TTL
+9.8 Cache hierarchy
+9.9 Positive cache
+9.10 Negative cache
+9.11 NXDOMAIN
+9.12 NODATA
+9.13 SERVFAIL
+9.14 Cache inspection
+9.15 rndc dumpdb
+9.16 rndc flush
+9.17 rndc flushname
+9.18 rndc flushtree
+9.19 Prefetch
+9.20 Serve stale
+9.21 QNAME minimization
+9.22 DNSSEC validation
+9.23 Resolver performance
+9.24 Open resolver y sus riesgos
+9.25 ACL para recursion
+9.26 Laboratorio: resolver recursivo seguro
+
+BLOQUE 10 — Caching DNS
+10.1 Caching-only server
+10.2 Arquitectura
+10.3 TTL y cache lifetime
+10.4 Negative caching
+10.5 Cache hit vs cache miss
+10.6 Warm cache vs cold cache
+10.7 Cache poisoning
+10.8 Bailiwick checking
+10.9 Randomización de puertos
+10.10 Transaction IDs
+10.11 DNSSEC como protección
+10.12 Métricas de cache
+10.13 Flush selectivo
+10.14 Troubleshooting de cache
+10.15 Laboratorio caching-only BIND
+
+BLOQUE 11 — DNS Forwarding
+11.1 Resolver vs forwarder
+11.2 forwarders {}
+11.3 forward first
+11.4 forward only
+11.5 Global forwarding
+11.6 Per-zone forwarding
+11.7 Conditional forwarding
+11.8 Arquitectura empresarial
+11.9 Forwarders internos
+11.10 Forwarders externos
+11.11 DNSSEC + forwarding
+11.12 Fallos del forwarder
+11.13 Troubleshooting
+11.14 Laboratorio conditional forwarding
+
+BLOQUE 12 — Primary / Secondary DNS
+12.1 Arquitectura primary-secondary
+12.2 Zone transfer
+12.3 AXFR
+12.4 IXFR
+12.5 NOTIFY
+12.6 Refresh mediante SOA
+12.7 Transfer source
+12.8 allow-transfer
+12.9 TSIG
+12.10 Secondary zone files
+12.11 Journal .jnl
+12.12 Transfer failures
+12.13 Serial mismatch
+12.14 Hidden primary
+12.15 Multi-secondary
+12.16 Disaster recovery
+12.17 Laboratorio HA DNS
+
+BLOQUE 13 — ACL y control de acceso
+13.1 BIND ACL
+13.2 localhost
+13.3 localnets
+13.4 none
+13.5 any
+13.6 ACL personalizadas
+13.7 allow-query
+13.8 allow-query-cache
+13.9 allow-recursion
+13.10 allow-transfer
+13.11 allow-update
+13.12 blackhole
+13.13 ACL por redes
+13.14 Separación authoritative/recursive
+13.15 Evitar open resolvers
+13.16 Laboratorio de hardening
+
+BLOQUE 14 — TSIG
+14.1 Qué es TSIG
+14.2 Autenticación DNS
+14.3 Shared secrets
+14.4 Algoritmos HMAC
+14.5 tsig-keygen
+14.6 key {}
+14.7 server {}
+14.8 TSIG + AXFR
+14.9 TSIG + IXFR
+14.10 TSIG + DDNS
+14.11 Rotación de claves
+14.12 Permisos de claves
+14.13 Troubleshooting
+14.14 Laboratorio TSIG
+
+BLOQUE 15 — DDNS
+15.1 Dynamic DNS
+15.2 RFC 2136
+15.3 DNS UPDATE
+15.4 nsupdate
+15.5 add
+15.6 delete
+15.7 prerequisites
+15.8 send
+15.9 allow-update
+15.10 update-policy
+15.11 TSIG + DDNS
+15.12 Journal files .jnl
+15.13 rndc freeze
+15.14 rndc thaw
+15.15 rndc sync
+15.16 Edición manual y zonas dinámicas
+15.17 Serial y DDNS
+15.18 DHCP + DDNS
+15.19 Kea + BIND
+15.20 Forward updates
+15.21 Reverse updates
+15.22 Seguridad de DDNS
+15.23 Troubleshooting
+15.24 Laboratorio completo DDNS
+
+BLOQUE 16 — DNSSEC — Fundamentos
+16.1 Problemas de seguridad del DNS tradicional
+16.2 Qué protege DNSSEC
+16.3 Qué NO protege DNSSEC
+16.4 Autenticidad
+16.5 Integridad
+16.6 Cadena de confianza
+16.7 Trust anchor
+16.8 DNSKEY
+16.9 RRSIG
+16.10 DS
+16.11 NSEC
+16.12 NSEC3
+16.13 ZSK
+16.14 KSK
+16.15 Key signing
+16.16 Zone signing
+16.17 AD flag
+16.18 CD flag
+16.19 Secure / insecure / bogus / indeterminate
+16.20 Validación DNSSEC con dig
+16.21 delv
+
+BLOQUE 17 — DNSSEC con BIND en profundidad
+17.1 DNSSEC moderno en BIND
+17.2 dnssec-policy
+17.3 Gestión automática de claves
+17.4 Key generation
+17.5 Zone signing
+17.6 Key rollover
+17.7 KSK rollover
+17.8 ZSK rollover
+17.9 CSK
+17.10 DS publication
+17.11 Parent-child trust
+17.12 CDS
+17.13 CDNSKEY
+17.14 Automated DNSSEC provisioning
+17.15 NSEC
+17.16 NSEC3
+17.17 Opt-out
+17.18 TTL y rollover
+17.19 Clock synchronization y DNSSEC
+17.20 Chrony/NTP como dependencia crítica
+17.21 Expired signatures
+17.22 Bogus responses
+17.23 DNSSEC validation failures
+17.24 Emergency rollover
+17.25 Laboratorio: zona firmada
+17.26 Laboratorio: cadena de confianza
+
+BLOQUE 18 — Views / Split DNS
+18.1 Qué son las views
+18.2 Split-horizon DNS
+18.3 match-clients
+18.4 match-destinations
+18.5 Vista interna
+18.6 Vista externa
+18.7 Zonas por view
+18.8 Recursion por view
+18.9 ACL + views
+18.10 DNSSEC + views
+18.11 Complejidad operacional
+18.12 Alternativas arquitectónicas
+18.13 Laboratorio split DNS
+
+BLOQUE 19 — Logging de BIND
+19.1 Sistema de logging de named
+19.2 logging {}
+19.3 channels
+19.4 categories
+19.5 severity
+19.6 default
+19.7 general
+19.8 queries
+19.9 query-errors
+19.10 security
+19.11 resolver
+19.12 lame-servers
+19.13 notify
+19.14 xfer-in
+19.15 xfer-out
+19.16 update
+19.17 update-security
+19.18 dnssec
+19.19 rpz
+19.20 rate-limit
+19.21 Logging hacia archivo
+19.22 /var/log/named/ y diseño de logs dedicados
+19.23 Permisos y SELinux para logs
+19.24 Rotación de logs
+19.25 journald
+19.26 journalctl -u named
+19.27 named -g
+19.28 Activar/desactivar query logging con rndc
+19.29 Evitar logging excesivo
+19.30 Laboratorio de observabilidad DNS
+
+BLOQUE 20 — SELinux + BIND
+20.1 Modelo SELinux de named
+20.2 named_t
+20.3 Tipos de archivos
+20.4 named_zone_t
+20.5 semanage fcontext
+20.6 restorecon
+20.7 Zonas dinámicas y SELinux
+20.8 /var/named/dynamic
+20.9 Logs personalizados
+20.10 audit.log
+20.11 ausearch
+20.12 sealert
+20.13 Booleans relacionados
+20.14 Diagnóstico AVC
+20.15 Por qué no usar setenforce 0 como solución
+20.16 Laboratorio SELinux
+
+BLOQUE 21 — firewalld + DNS
+21.1 Servicio dns
+21.2 UDP/53
+21.3 TCP/53
+21.4 Por qué DNS necesita ambos
+21.5 Zonas firewalld
+21.6 Interfaces
+21.7 Sources
+21.8 Rich rules
+21.9 Restringir DNS interno
+21.10 Zone transfers y TCP
+21.11 DNSSEC y tamaño de paquetes
+21.12 Troubleshooting firewall
+21.13 tcpdump
+21.14 Laboratorio
+
+BLOQUE 22 — Seguridad DNS
+22.1 Threat model
+22.2 Cache poisoning
+22.3 Spoofing
+22.4 Amplification attacks
+22.5 Reflection attacks
+22.6 Open resolver
+22.7 DNS tunneling
+22.8 Zone transfer leakage
+22.9 DNS reconnaissance
+22.10 Subdomain enumeration
+22.11 Random subdomain attacks
+22.12 NXDOMAIN floods
+22.13 Response Rate Limiting
+22.14 RRL
+22.15 ACL
+22.16 TSIG
+22.17 DNSSEC
+22.18 Minimal responses
+22.19 Ocultar información innecesaria
+22.20 Separar authoritative y recursive
+22.21 Least privilege
+22.22 SELinux
+22.23 Firewall
+22.24 Hardening checklist
+
+BLOQUE 23 — RPZ
+23.1 Response Policy Zones
+23.2 DNS firewall
+23.3 Arquitectura RPZ
+23.4 QNAME triggers
+23.5 IP triggers
+23.6 NXDOMAIN policies
+23.7 NODATA
+23.8 Redirect
+23.9 Passthru
+23.10 Logging RPZ
+23.11 Feeds
+23.12 Seguridad
+23.13 False positives
+23.14 Laboratorio RPZ
+
+BLOQUE 24 — DNS moderno y privacidad
+24.1 DNS tradicional
+24.2 DoT
+24.3 DNS over TLS
+24.4 DoH
+24.5 DNS over HTTPS
+24.6 DoQ
+24.7 DNS over QUIC
+24.8 DNSSEC vs DoT/DoH
+24.9 Autenticidad vs confidencialidad
+24.10 Enterprise DNS y encrypted DNS
+24.11 Políticas de red
+24.12 Limitaciones operacionales
+24.13 Arquitecturas modernas
+
+BLOQUE 25 — IPv6 + DNS
+25.1 AAAA
+25.2 Dual stack
+25.3 ip6.arpa
+25.4 Reverse IPv6
+25.5 Nibble boundaries
+25.6 IPv6 transport para DNS
+25.7 listen-on-v6
+25.8 Glue IPv6
+25.9 DNSSEC sobre IPv6
+25.10 Troubleshooting dual-stack
+25.11 Laboratorio
+
+BLOQUE 26 — Performance y escalabilidad
+26.1 Flujo interno de consultas
+26.2 Cache efficiency
+26.3 TTL tuning
+26.4 Recursive clients
+26.5 Concurrent queries
+26.6 TCP clients
+26.7 EDNS
+26.8 Prefetch
+26.9 Serve stale
+26.10 Minimal responses
+26.11 RRL
+26.12 CPU
+26.13 Memoria
+26.14 Network buffers
+26.15 Estadísticas BIND
+26.16 rndc stats
+26.17 statistics-channels
+26.18 Capacity planning
+26.19 Benchmarking
+26.20 Herramientas de carga y medición DNS
+26.21 Anycast DNS
+26.22 Escalabilidad horizontal
+
+BLOQUE 27 — Monitoring y observabilidad
+27.1 Qué monitorizar en DNS
+27.2 Availability
+27.3 Latency
+27.4 QPS
+27.5 RCODE
+27.6 NXDOMAIN rate
+27.7 SERVFAIL rate
+27.8 Cache hit ratio
+27.9 Recursive clients
+27.10 Zone transfer failures
+27.11 DNSSEC validation failures
+27.12 Signature expiration
+27.13 BIND statistics
+27.14 Prometheus exporters
+27.15 Grafana dashboards
+27.16 Logs centralizados
+27.17 Alerting
+27.18 Synthetic DNS queries
+27.19 Health checks
+27.20 Laboratorio de observabilidad
+
+BLOQUE 28 — Troubleshooting DNS en profundidad
+28.1 Metodología de diagnóstico
+28.2 Cliente → resolver → authoritative
+28.3 Comprobar /etc/nsswitch.conf
+28.4 Comprobar /etc/resolv.conf
+28.5 NetworkManager
+28.6 dig @resolver
+28.7 dig @authoritative
+28.8 dig +trace
+28.9 dig +tcp
+28.10 dig +dnssec
+28.11 delv
+28.12 NXDOMAIN
+28.13 NODATA
+28.14 SERVFAIL
+28.15 REFUSED
+28.16 Timeout
+28.17 Lame delegation
+28.18 Broken delegation
+28.19 Missing glue
+28.20 Incorrect glue
+28.21 Serial incorrecto
+28.22 AXFR failure
+28.23 IXFR failure
+28.24 NOTIFY failure
+28.25 Cache inconsistency
+28.26 DNSSEC bogus
+28.27 Expired RRSIG
+28.28 Missing DS
+28.29 Incorrect DS
+28.30 Clock skew
+28.31 Firewall UDP
+28.32 Firewall TCP
+28.33 EDNS problems
+28.34 MTU / fragmentation
+28.35 SELinux denials
+28.36 named-checkconf
+28.37 named-checkzone
+28.38 journalctl
+28.39 BIND logs
+28.40 rndc status
+28.41 rndc dumpdb
+28.42 tcpdump
+28.43 Wireshark
+28.44 strace como último recurso
+28.45 Laboratorios de incidentes reales
+
+BLOQUE 29 — Administración operacional
+29.1 rndc en profundidad
+29.2 rndc status
+29.3 reload
+29.4 reconfig
+29.5 refresh
+29.6 notify
+29.7 flush
+29.8 flushname
+29.9 flushtree
+29.10 dumpdb
+29.11 stats
+29.12 querylog
+29.13 freeze
+29.14 thaw
+29.15 sync
+29.16 validation
+29.17 zonestatus
+29.18 Gestión segura de rndc.key
+29.19 Backup de configuración
+29.20 Backup de zonas
+29.21 Restore
+29.22 Disaster recovery
+29.23 Upgrade de BIND
+29.24 Validación previa y posterior al upgrade
+
+BLOQUE 30 — Automatización DNS
+30.1 Automatización vs edición manual
+30.2 Git para configuración DNS
+30.3 Validación en CI
+30.4 named-checkconf en CI
+30.5 named-checkzone en CI
+30.6 Ansible + BIND
+30.7 Templates
+30.8 Static zone files
+30.9 Handlers
+30.10 Validación antes del reload
+30.11 nsupdate
+30.12 DDNS como API
+30.13 Terraform y proveedores DNS
+30.14 Infrastructure as Code
+30.15 Secrets y TSIG
+30.16 DNSSEC key management
+30.17 GitOps DNS
+30.18 Rollback
+30.19 Laboratorio de automatización
+
+BLOQUE 31 — Arquitecturas DNS empresariales
+31.1 Diseño de DNS interno
+31.2 DNS externo
+31.3 Separación authoritative/recursive
+31.4 Primary/secondary
+31.5 Hidden primary
+31.6 Split DNS
+31.7 Forwarding
+31.8 Conditional forwarding
+31.9 Multi-site DNS
+31.10 Branch offices
+31.11 DMZ
+31.12 DNS + VPN
+31.13 DNS + Active Directory
+31.14 DNS + FreeIPA
+31.15 DNS + Kerberos
+31.16 DNS + LDAP
+31.17 DNS + DHCP/Kea
+31.18 DDNS
+31.19 Containers
+31.20 Kubernetes DNS: introducción
+31.21 Cloud DNS: conceptos
+31.22 Hybrid DNS
+31.23 Anycast
+31.24 HA y disaster recovery
+
+BLOQUE 32 — DNS + DHCP/Kea + DDNS
+32.1 Relación DHCP/DNS
+32.2 DHCP hostname
+32.3 FQDN
+32.4 Dynamic updates
+32.5 Forward updates
+32.6 Reverse updates
+32.7 TSIG
+32.8 Kea DHCP
+32.9 Kea DDNS
+32.10 D2 server
+32.11 BIND update-policy
+32.12 TTL
+32.13 Lease lifetime vs DNS TTL
+32.14 Conflictos
+32.15 Cleanup de registros
+32.16 Seguridad
+32.17 Troubleshooting
+32.18 Laboratorio integrado Kea + BIND
+
+BLOQUE 33 — DNS respecto a IAM: independiente vs integrado
+33.1 Papel de DNS respecto a IAM
+33.2 DNS no es normalmente un consumidor de identidades humanas
+33.3 Escenario A: DNS independiente de IAM
+33.4 BIND authoritative sin LDAP/Kerberos/FreeIPA
+33.5 BIND recursive/caching sin IAM
+33.6 Forwarding, DNSSEC y DDNS independientes de IAM
+33.7 Escenario B: DNS como infraestructura y dependencia de IAM
+33.8 DNS como service discovery para IAM
+33.9 Registros SRV para servicios de identidad
+33.10 _kerberos._udp y _kerberos._tcp
+33.11 _ldap._tcp
+33.12 Descubrimiento de KDC
+33.13 Descubrimiento de servidores LDAP
+33.14 Forward y reverse DNS para hosts y servicios IAM
+33.15 DNS + Kerberos: nombres canónicos, FQDN y resolución
+33.16 DNS + FreeIPA: DNS integrado
+33.17 FreeIPA con DNS externo: responsabilidades y límites
+33.18 DDNS y actualizaciones dinámicas en entornos IAM
+33.19 Separar autenticación de usuarios de autenticación/autorización de operaciones DNS
+33.20 TSIG vs Kerberos/GSS-TSIG: conceptos y casos de uso
+33.21 Qué ocurre si DNS falla en una infraestructura IAM
+33.22 Troubleshooting: DNS → SRV → Kerberos/LDAP → FreeIPA
+33.23 Laboratorio A: BIND completamente independiente de IAM
+33.24 Laboratorio B: DNS proporcionando service discovery a IAM
+33.25 Laboratorio C: comparar FreeIPA con DNS integrado y DNS externo
+
+BLOQUE 34 — DNS + FreeIPA / Kerberos
+34.1 DNS como fundamento de IAM
+34.2 SRV records
+34.3 Kerberos service discovery
+34.4 LDAP service discovery
+34.5 FreeIPA integrated DNS
+34.6 Forward zones
+34.7 Reverse zones
+34.8 Dynamic updates
+34.9 DNSSEC considerations
+34.10 Troubleshooting de SRV
+34.11 Laboratorio
+
+BLOQUE 35 — DNS internals
+35.1 RFC 1034
+35.2 RFC 1035
+35.3 Evolución del protocolo
+35.4 Wire format
+35.5 Name compression
+35.6 Labels
+35.7 Message parsing
+35.8 EDNS
+35.9 OPT pseudo-RR
+35.10 Extended RCODE
+35.11 DNS Cookies
+35.12 TCP fallback
+35.13 Zone transfer protocol
+35.14 DNS UPDATE protocol
+35.15 DNSSEC validation algorithm
+35.16 Resolver algorithms
+35.17 Cache internals
+35.18 Bailiwick rules
+35.19 QNAME minimization
+35.20 Leer capturas DNS a nivel de paquete
+
+BLOQUE 36 — Laboratorio final
+36.1 Diseñar una infraestructura DNS desde cero
+36.2 Dos authoritative servers
+36.3 Resolver recursivo separado
+36.4 Forward zone
+36.5 Reverse IPv4
+36.6 Reverse IPv6
+36.7 Delegación
+36.8 Primary/secondary
+36.9 AXFR/IXFR
+36.10 TSIG
+36.11 DDNS
+36.12 Integración Kea
+36.13 DNSSEC
+36.14 Split DNS
+36.15 ACL
+36.16 firewalld
+36.17 SELinux
+36.18 Logging
+36.19 Monitoring
+36.20 Backup/restore
+36.21 Automatización Ansible
+36.22 Simular NXDOMAIN
+36.23 Simular SERVFAIL
+36.24 Romper una delegación
+36.25 Romper DNSSEC
+36.26 Romper una transferencia
+36.27 Diagnosticar con dig
+36.28 Diagnosticar con tcpdump
+36.29 Diagnosticar logs
+36.30 Recuperación completa
+
+BLOQUE 37 — Nivel experto
+37.1 Diseñar DNS authoritative a escala
+37.2 Diseñar recursive DNS a escala
+37.3 Separación de funciones
+37.4 DNSSEC lifecycle
+37.5 Key rollover operacional
+37.6 DDNS seguro
+37.7 Arquitecturas híbridas
+37.8 Anycast
+37.9 Resiliencia
+37.10 Capacity planning
+37.11 Performance engineering
+37.12 Incident response DNS
+37.13 DNS security monitoring
+37.14 Automatización completa
+37.15 Auditoría de configuración
+37.16 Migraciones DNS sin downtime
+37.17 Diseño multi-datacenter
+37.18 Disaster recovery
+37.19 Análisis de paquetes avanzado
+37.20 Lectura e interpretación de RFC
+37.21 Proyecto final: diseñar, desplegar, asegurar, automatizar, monitorizar y diagnosticar una infraestructura DNS empresarial completa

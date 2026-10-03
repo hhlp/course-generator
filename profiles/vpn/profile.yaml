@@ -1,0 +1,169 @@
+name: openvpn-wireguard
+title: "OpenVPN + WireGuard — 0 a experto"
+language: es
+level:
+  start: beginner
+  target: expert
+
+platform:
+  primary:
+    - Fedora
+    - RHEL
+  operating_system: Linux
+  shell: bash
+
+audience:
+  - administradores_de_sistemas
+  - ingenieros_de_redes
+  - devops
+  - sre
+  - estudiantes_de_linux
+
+objectives:
+  - comprender_los_fundamentos_de_vpn_y_tunelizacion
+  - dominar_openvpn
+  - dominar_wireguard
+  - comprender_routing_nat_dns_mtu_e_ipv6_aplicados_a_vpn
+  - integrar_vpn_con_firewalld_nftables_selinux_systemd_y_networkmanager
+  - diagnosticar_fallos_con_herramientas_linux
+  - automatizar_despliegues_con_ansible
+  - diseñar_arquitecturas_remote_access_site_to_site_y_multi_site
+  - comprender_internals_de_openvpn_y_wireguard
+  - comprender_vpn_con_y_sin_iam_centralizado
+  - integrar_openvpn_como_consumidor_de_iam
+  - comprender_pam_sssd_ldap_kerberos_y_freeipa_aplicados_a_openvpn
+  - comprender_por_que_wireguard_no_es_consumidor_directo_de_iam
+  - diseñar_provisioning_externo_de_peers_wireguard_gobernado_por_iam
+
+teaching:
+  approach: theory_then_practice
+  progressive_depth: true
+  command_explanations: true
+  explain_packet_flow: true
+  compare_alternatives: true
+  troubleshooting_first_class: true
+  security_by_default: true
+
+lesson_structure:
+  start:
+    heading: "🎯 OBJETIVO"
+    required: true
+  sections:
+    examples:
+      heading: "🧪 Laboratorio / ejemplos"
+      preferred: true
+    common_errors:
+      heading: "⚠️ Errores frecuentes"
+      preferred: true
+    important_idea:
+      heading: "💡 Idea importante"
+      preferred: true
+  end:
+    heading: "🧠 QUÉ DEBES RECORDAR"
+    required: true
+  references:
+    required: true
+    heading: "📚 Referencias"
+
+labs:
+  required: true
+  reproducible: true
+  preferred_environments:
+    - virtual_machines
+    - network_namespaces
+  tools:
+    - iproute2
+    - openvpn
+    - easy-rsa
+    - openssl
+    - wireguard-tools
+    - NetworkManager
+    - firewalld
+    - nftables
+    - systemd
+    - journalctl
+    - tcpdump
+    - tracepath
+    - iperf3
+    - ansible
+
+security:
+  selinux_mode: enforcing
+  disable_selinux_as_fix: false
+  disable_firewall_as_fix: false
+  use_fake_or_lab_secrets: true
+  emphasize_key_lifecycle: true
+  emphasize_least_privilege: true
+
+scope:
+  include:
+    - vpn_fundamentals
+    - networking
+    - cryptography
+    - openvpn
+    - wireguard
+    - ipv4
+    - ipv6
+    - routing
+    - policy_routing
+    - nat
+    - dns
+    - mtu
+    - mss
+    - firewalld
+    - nftables
+    - selinux
+    - systemd
+    - networkmanager
+    - observability
+    - ansible
+    - terraform_integration
+    - high_availability
+    - dynamic_routing
+    - frrouting
+    - internals
+    - troubleshooting
+    - iam_integration
+    - pam
+    - sssd
+    - ldap
+    - kerberos
+    - freeipa
+    - wireguard_external_identity_provisioning
+    - performance
+  exclude:
+    - windows_administration
+    - macos_administration
+
+references:
+  priority:
+    - official_documentation
+    - installed_man_pages
+    - linux_kernel_documentation
+    - standards_and_rfcs
+    - source_code
+    - technical_books
+  prefer_current_versions: true
+
+final_project:
+  required: true
+  deliverables:
+    - requirements
+    - threat_model
+    - network_design
+    - ipv4_ipv6_addressing
+    - routing_design
+    - firewall_design
+    - dns_design
+    - key_and_identity_design
+    - implementation
+    - ansible_automation
+    - observability
+    - backup_and_recovery
+    - high_availability
+    - functional_tests
+    - security_tests
+    - performance_tests
+    - failure_simulation
+    - troubleshooting_runbook
+    - architecture_documentation

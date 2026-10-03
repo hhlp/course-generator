@@ -1,0 +1,575 @@
+LEARNING PATH — DHCP + DNS INTEGRATION
+Nivel: 0 → Experto en profundidad
+Plataforma principal: Fedora / RHEL
+Enfoque: Kea DHCP-DDNS (D2) + BIND Dynamic Update + TSIG + IPv4/IPv6
+
+BLOQUE 0 — FUNDAMENTOS DE LA INTEGRACIÓN DHCP ↔ DNS
+
+0.1 Qué problema resuelve DHCP + DNS Integration
+0.2 DHCP, DNS y DDNS: responsabilidades y límites
+0.3 DNS estático vs Dynamic DNS
+0.4 Componentes de una arquitectura DHCP-DDNS
+0.5 Flujo cliente → DHCP → DDNS → DNS
+0.6 Forward DNS y Reverse DNS
+0.7 A, AAAA y PTR
+0.8 Hostname, FQDN y dominio
+0.9 DHCP lease como origen de cambios DNS
+0.10 Name Change Request (NCR)
+0.11 RFC 2136: DNS Dynamic Update
+0.12 Autenticación de actualizaciones mediante TSIG
+0.13 DHCID y prevención de conflictos
+0.14 TTL y ciclo de vida de registros dinámicos
+0.15 IPv4 frente a IPv6 en DHCP-DDNS
+0.16 Arquitectura objetivo del laboratorio
+0.17 Qué observar en logs durante una actualización
+0.18 Metodología básica de troubleshooting extremo a extremo
+0.19 Laboratorio: representar el flujo completo DHCP → DNS
+0.20 Checkpoint de fundamentos
+
+BLOQUE 1 — ARQUITECTURA KEA DHCP-DDNS
+
+1.1 Componentes de Kea
+1.2 kea-dhcp4
+1.3 kea-dhcp6
+1.4 kea-dhcp-ddns / D2
+1.5 Kea Control Agent y herramientas relacionadas
+1.6 Comunicación DHCP server ↔ D2
+1.7 Name Change Requests
+1.8 NCR add
+1.9 NCR remove
+1.10 Formato y contenido conceptual de una NCR
+1.11 Forward Change Requests
+1.12 Reverse Change Requests
+1.13 Flujo DHCPv4 → D2
+1.14 Flujo DHCPv6 → D2
+1.15 D2 → servidor DNS autoritativo
+1.16 Fallos parciales y consistencia
+1.17 Separación de responsabilidades entre Kea y BIND
+1.18 Diseño de topologías simples y distribuidas
+1.19 Laboratorio: identificar cada componente y flujo
+1.20 Checkpoint de arquitectura
+
+BLOQUE 2 — INSTALACIÓN Y PREPARACIÓN EN FEDORA / RHEL
+
+2.1 Diseño del laboratorio
+2.2 Requisitos de red
+2.3 Resolución de nombres previa
+2.4 Sincronización horaria y su importancia para TSIG
+2.5 Instalación de Kea
+2.6 Instalación de BIND
+2.7 Paquetes, binarios y archivos instalados
+2.8 Localización de configuraciones
+2.9 Usuarios y grupos de servicio
+2.10 Directorios de runtime y estado
+2.11 systemd units de Kea
+2.12 systemd unit de named
+2.13 systemctl status
+2.14 systemctl enable --now
+2.15 journalctl por unidad
+2.16 firewalld: DHCP
+2.17 firewalld: DNS
+2.18 puertos de D2 y comunicaciones internas
+2.19 SELinux: conceptos aplicables a Kea/BIND
+2.20 permisos de archivos y claves
+2.21 named-checkconf
+2.22 named-checkzone
+2.23 validación de configuración de Kea
+2.24 backup de configuraciones antes de cambios
+2.25 Laboratorio: instalar Kea + BIND y validar servicios
+2.26 Troubleshooting de instalación
+2.27 Checkpoint de instalación
+
+BLOQUE 3 — BIND COMO DNS AUTORITATIVO PARA DDNS
+
+3.1 Repaso de DNS autoritativo
+3.2 named.conf y archivos incluidos
+3.3 declaración de zonas
+3.4 zona forward
+3.5 zona reverse IPv4
+3.6 zona reverse IPv6
+3.7 SOA y NS
+3.8 registros estáticos y dinámicos
+3.9 journal de zona (.jnl)
+3.10 comportamiento de BIND con Dynamic Update
+3.11 carga y persistencia de cambios dinámicos
+3.12 freeze / thaw
+3.13 rndc y administración de zonas dinámicas
+3.14 serial SOA y actualizaciones dinámicas
+3.15 named-checkconf
+3.16 named-checkzone y sus limitaciones con zonas dinámicas
+3.17 dig SOA
+3.18 dig NS
+3.19 dig A / AAAA
+3.20 dig -x
+3.21 Laboratorio: preparar forward + reverse para DDNS
+3.22 Troubleshooting de zonas
+3.23 Checkpoint BIND
+
+BLOQUE 4 — RFC 2136 Y BIND DYNAMIC UPDATE
+
+4.1 Qué es RFC 2136
+4.2 estructura conceptual de DNS UPDATE
+4.3 prerequisites
+4.4 update add
+4.5 update delete
+4.6 actualización de A
+4.7 actualización de AAAA
+4.8 actualización de PTR
+4.9 nsupdate
+4.10 sesión interactiva de nsupdate
+4.11 nsupdate desde archivo
+4.12 server y zone
+4.13 update add con TTL
+4.14 update delete por nombre
+4.15 update delete por RRset
+4.16 send
+4.17 respuestas del servidor DNS
+4.18 REFUSED
+4.19 NOTAUTH
+4.20 NOTZONE
+4.21 SERVFAIL
+4.22 allow-update
+4.23 update-policy
+4.24 diferencias y elección segura
+4.25 inspección del cambio con dig
+4.26 inspección con rndc
+4.27 captura de DNS UPDATE con tcpdump
+4.28 análisis conceptual en Wireshark
+4.29 Laboratorio: actualización manual A/AAAA/PTR
+4.30 Troubleshooting RFC 2136
+4.31 Checkpoint Dynamic Update
+
+BLOQUE 5 — TSIG EN PROFUNDIDAD
+
+5.1 Por qué no permitir DDNS sin autenticación
+5.2 Qué es TSIG
+5.3 autenticación e integridad
+5.4 secreto compartido
+5.5 algoritmos HMAC
+5.6 generación de claves TSIG
+5.7 almacenamiento de claves
+5.8 permisos mínimos
+5.9 inclusión de claves en BIND
+5.10 asociación de TSIG con update-policy
+5.11 asociación de TSIG con allow-update
+5.12 configuración de la misma identidad en D2
+5.13 nsupdate firmado
+5.14 verificación de actualización autenticada
+5.15 BADKEY
+5.16 BADSIG
+5.17 BADTIME
+5.18 reloj del sistema y Chrony
+5.19 claves diferentes por función/zona
+5.20 principio de mínimo privilegio
+5.21 rotación de claves
+5.22 procedimiento de transición de claves
+5.23 revocación práctica de una clave comprometida
+5.24 evitar exposición en backups y repositorios
+5.25 logging relacionado con TSIG
+5.26 tcpdump y límites de lo observable
+5.27 Laboratorio: proteger updates con TSIG
+5.28 Laboratorio: provocar y diagnosticar BADKEY/BADSIG
+5.29 Checkpoint TSIG
+
+BLOQUE 6 — KEA D2 / DHCP-DDNS
+
+6.1 Función exacta de D2
+6.2 configuración de kea-dhcp-ddns
+6.3 ip-address y port
+6.4 forward-ddns
+6.5 reverse-ddns
+6.6 ddns-domains
+6.7 dns-servers
+6.8 claves TSIG en D2
+6.9 selección de zona
+6.10 selección de DNS server
+6.11 envío de updates
+6.12 recepción de NCR
+6.13 add NCR
+6.14 remove NCR
+6.15 actualización forward
+6.16 actualización reverse
+6.17 errores de comunicación con BIND
+6.18 errores TSIG
+6.19 errores de zona
+6.20 timeouts y reintentos
+6.21 comportamiento ante fallo parcial
+6.22 logging de D2
+6.23 niveles y destinos de logging
+6.24 journalctl para D2
+6.25 archivos de log cuando se configuran explícitamente
+6.26 correlación de eventos DHCP ↔ D2 ↔ BIND
+6.27 Laboratorio: D2 enviando una actualización a BIND
+6.28 Troubleshooting D2
+6.29 Checkpoint D2
+
+BLOQUE 7 — KEA DHCPv4 + DDNS
+
+7.1 habilitar DDNS en kea-dhcp4
+7.2 dhcp-ddns
+7.3 enable-updates
+7.4 server-ip / server-port
+7.5 sender-ip / sender-port
+7.6 max-queue-size
+7.7 ncr-protocol
+7.8 ncr-format
+7.9 ddns-send-updates
+7.10 ddns-override-no-update
+7.11 ddns-override-client-update
+7.12 ddns-replace-client-name
+7.13 ddns-generated-prefix
+7.14 ddns-qualifying-suffix
+7.15 hostname recibido del cliente
+7.16 FQDN generado por Kea
+7.17 DHCP Client FQDN option
+7.18 decisiones cliente vs servidor
+7.19 generación de NCR
+7.20 lease allocation → DNS ADD
+7.21 lease renewal
+7.22 cambio de dirección
+7.23 release
+7.24 expiration / reclamation
+7.25 DNS REMOVE
+7.26 DHCID
+7.27 conflictos de nombre
+7.28 TTL de registros
+7.29 Laboratorio: DHCPv4 lease → A + PTR
+7.30 Laboratorio: release/expiry → eliminación DNS
+7.31 Troubleshooting DHCPv4-DDNS
+7.32 Checkpoint DHCPv4
+
+BLOQUE 8 — KEA DHCPv6 + DDNS
+
+8.1 diferencias conceptuales respecto a DHCPv4
+8.2 DHCPv6 y DNS
+8.3 kea-dhcp6 + D2
+8.4 FQDN en DHCPv6
+8.5 AAAA
+8.6 reverse IPv6
+8.7 ip6.arpa
+8.8 nibble format
+8.9 cálculo de zona reverse IPv6
+8.10 generación de NCR IPv6
+8.11 lease IPv6 → AAAA
+8.12 lease IPv6 → PTR
+8.13 renovación
+8.14 expiración
+8.15 eliminación AAAA/PTR
+8.16 prefijos y consideraciones de diseño
+8.17 coexistencia DHCPv4 + DHCPv6
+8.18 dual stack
+8.19 consistencia A/AAAA/PTR
+8.20 Laboratorio: DHCPv6 lease → AAAA + PTR
+8.21 Troubleshooting DHCPv6-DDNS
+8.22 Checkpoint DHCPv6
+
+BLOQUE 9 — FORWARD DNS: A Y AAAA
+
+9.1 relación nombre → dirección
+9.2 construcción del FQDN
+9.3 qualifying suffix
+9.4 nombres suministrados por cliente
+9.5 nombres generados por servidor
+9.6 validación y normalización de nombres
+9.7 A dinámicos
+9.8 AAAA dinámicos
+9.9 TTL
+9.10 múltiples direcciones para un nombre
+9.11 dual stack
+9.12 actualización de registros existentes
+9.13 sustitución de nombre
+9.14 eliminación
+9.15 DHCID asociado
+9.16 conflictos y ownership
+9.17 dig A
+9.18 dig AAAA
+9.19 dig +trace: cuándo ayuda y cuándo no
+9.20 Laboratorio: seguimiento completo de un registro forward
+9.21 Troubleshooting forward DNS
+
+BLOQUE 10 — REVERSE DNS: PTR
+
+10.1 finalidad de reverse DNS
+10.2 in-addr.arpa
+10.3 ip6.arpa
+10.4 IPv4 → nombre reverse
+10.5 IPv6 → nombre reverse
+10.6 zonas reverse
+10.7 PTR dinámico
+10.8 relación PTR ↔ A
+10.9 relación PTR ↔ AAAA
+10.10 forward-confirmed reverse DNS como concepto
+10.11 inconsistencias forward/reverse
+10.12 PTR huérfanos
+10.13 registros forward sin PTR
+10.14 cambio de dirección
+10.15 eliminación de PTR
+10.16 dig -x IPv4
+10.17 dig -x IPv6
+10.18 nsupdate de PTR
+10.19 Laboratorio: crear y eliminar PTR mediante D2
+10.20 Troubleshooting reverse DNS
+
+BLOQUE 11 — DHCID Y CONFLICT RESOLUTION
+
+11.1 problema de ownership de nombres
+11.2 qué es DHCID
+11.3 relación lease ↔ identidad ↔ DNS
+11.4 Name Change Request y DHCID
+11.5 detección de conflicto
+11.6 mismo hostname desde clientes distintos
+11.7 reutilización de direcciones
+11.8 stale DNS
+11.9 estrategias de resolución
+11.10 seguridad frente a sobrescrituras
+11.11 análisis con dig
+11.12 análisis de logs
+11.13 Laboratorio: provocar conflicto de hostname
+11.14 Laboratorio: diagnosticar DHCID
+11.15 Checkpoint de conflictos
+
+BLOQUE 12 — LEASE ↔ DNS LIFECYCLE
+
+12.1 modelo completo del ciclo de vida
+12.2 solicitud inicial
+12.3 asignación del lease
+12.4 obtención/generación de hostname
+12.5 construcción de FQDN
+12.6 creación de NCR
+12.7 recepción por D2
+12.8 selección de zona
+12.9 autenticación TSIG
+12.10 RFC 2136 UPDATE
+12.11 creación de A/AAAA
+12.12 creación de PTR
+12.13 creación/uso de DHCID
+12.14 lease renewal
+12.15 DNS durante una renovación sin cambios
+12.16 cambio de hostname
+12.17 cambio de dirección
+12.18 release
+12.19 lease expiration
+12.20 lease reclamation
+12.21 generación de REMOVE NCR
+12.22 eliminación de A/AAAA
+12.23 eliminación de PTR
+12.24 eliminación/gestión de DHCID
+12.25 fallo durante ADD
+12.26 fallo durante REMOVE
+12.27 registros stale
+12.28 reconciliación conceptual DHCP ↔ DNS
+12.29 Laboratorio: observar un lease durante todo su ciclo
+12.30 Checkpoint lifecycle
+
+BLOQUE 13 — LOGGING Y OBSERVABILIDAD
+
+13.1 estrategia de logging extremo a extremo
+13.2 logs de kea-dhcp4
+13.3 logs de kea-dhcp6
+13.4 logs de kea-dhcp-ddns
+13.5 logs de named
+13.6 journald vs archivos de log
+13.7 journalctl -u
+13.8 journalctl -f
+13.9 journalctl --since / --until
+13.10 persistencia de journald
+13.11 /var/log y logging explícitamente configurado
+13.12 categorías y severidades de Kea
+13.13 debuglevel de Kea
+13.14 logging de BIND
+13.15 categorías update
+13.16 categorías security
+13.17 categorías queries cuando sean útiles
+13.18 timestamps y correlación
+13.19 seguir DHCP → NCR → D2 → BIND
+13.20 correlacionar IP, hostname y lease
+13.21 evitar debug excesivo en producción
+13.22 rotación de logs
+13.23 logrotate cuando corresponda
+13.24 métricas y estadísticas de Kea
+13.25 Control Agent/API como apoyo operativo
+13.26 rndc stats y observabilidad BIND
+13.27 tcpdump como fuente de evidencia
+13.28 Wireshark como apoyo de análisis
+13.29 Laboratorio: construir una línea temporal desde logs
+13.30 Checkpoint logging
+
+BLOQUE 14 — TROUBLESHOOTING METÓDICO
+
+14.1 troubleshooting por capas
+14.2 verificar cliente
+14.3 verificar lease DHCP
+14.4 verificar hostname/FQDN
+14.5 verificar configuración DDNS en Kea
+14.6 verificar generación de NCR
+14.7 verificar llegada de NCR a D2
+14.8 verificar D2
+14.9 verificar conectividad D2 → BIND
+14.10 verificar zona seleccionada
+14.11 verificar TSIG
+14.12 verificar RFC 2136
+14.13 verificar journal de zona
+14.14 verificar A/AAAA
+14.15 verificar PTR
+14.16 verificar DHCID
+14.17 lease existe pero A/AAAA no existe
+14.18 A/AAAA existe pero PTR no existe
+14.19 PTR existe pero forward no existe
+14.20 registros stale después de expirar lease
+14.21 hostname incorrecto
+14.22 dominio/suffix incorrecto
+14.23 actualización funciona con IPv4 pero no IPv6
+14.24 REFUSED
+14.25 NOTAUTH
+14.26 NOTZONE
+14.27 SERVFAIL
+14.28 BADKEY
+14.29 BADSIG
+14.30 BADTIME
+14.31 timeout
+14.32 connection refused
+14.33 firewall bloqueando tráfico
+14.34 SELinux denials
+14.35 permisos incorrectos de claves
+14.36 errores de sintaxis BIND
+14.37 errores de sintaxis Kea
+14.38 zona reverse incorrecta
+14.39 D2 apunta al DNS equivocado
+14.40 capturar DHCP con tcpdump
+14.41 capturar DNS UPDATE
+14.42 analizar paquete UPDATE
+14.43 nsupdate como prueba de aislamiento
+14.44 dig como prueba de resultado
+14.45 rndc como herramienta de diagnóstico
+14.46 journalctl y correlación temporal
+14.47 procedimiento reproducible de diagnóstico
+14.48 Laboratorio: escenarios de fallo intencionales
+14.49 Checkpoint troubleshooting
+
+BLOQUE 15 — SEGURIDAD Y HARDENING
+
+15.1 modelo de amenazas DHCP-DDNS
+15.2 riesgo de Dynamic Update abierto
+15.3 mínimo privilegio con update-policy
+15.4 segmentación de red
+15.5 limitar quién alcanza D2
+15.6 proteger DNS autoritativo
+15.7 TSIG por zona/servicio
+15.8 secretos fuera de repositorios
+15.9 propietarios y permisos
+15.10 rotación de secretos
+15.11 firewalld
+15.12 SELinux
+15.13 systemd hardening: conceptos aplicables
+15.14 auditoría de cambios
+15.15 logging de eventos de seguridad
+15.16 evitar exposición accidental de claves
+15.17 backups seguros
+15.18 recuperación de claves
+15.19 actualización de software
+15.20 validación después de upgrades
+15.21 Laboratorio: hardening de la integración
+15.22 Checkpoint seguridad
+
+BLOQUE 16 — ALTA DISPONIBILIDAD Y DISEÑO AVANZADO
+
+16.1 qué cambia cuando DHCP usa HA
+16.2 Kea HA y DDNS
+16.3 ownership de leases y updates
+16.4 evitar actualizaciones duplicadas
+16.5 D2 como dependencia
+16.6 D2 único vs diseño redundante
+16.7 DNS autoritativo primario/secundario
+16.8 Dynamic Update y servidor receptor
+16.9 transferencias de zona
+16.10 NOTIFY
+16.11 propagación a secundarios
+16.12 impacto de fallo del DNS primario
+16.13 impacto de fallo de D2
+16.14 impacto de pérdida de conectividad
+16.15 consistencia eventual
+16.16 recuperación tras caída
+16.17 colas y cambios pendientes: conceptos
+16.18 capacidad y rendimiento
+16.19 TTL y carga
+16.20 diseño multi-subnet
+16.21 múltiples dominios DDNS
+16.22 múltiples reverse zones
+16.23 separación IPv4/IPv6
+16.24 Laboratorio: analizar fallos en una topología HA
+16.25 Checkpoint arquitectura avanzada
+
+BLOQUE 17 — OPERACIÓN, MANTENIMIENTO Y RECUPERACIÓN
+
+17.1 checklist operativo
+17.2 comprobar servicios
+17.3 comprobar leases
+17.4 comprobar resolución forward
+17.5 comprobar resolución reverse
+17.6 comprobar updates autenticados
+17.7 backup de BIND
+17.8 backup de configuración Kea
+17.9 tratamiento correcto de zonas dinámicas al respaldar
+17.10 backup de claves TSIG
+17.11 restauración
+17.12 cambios planificados
+17.13 actualización de Kea
+17.14 actualización de BIND
+17.15 validación posterior
+17.16 detección de registros stale
+17.17 auditoría de consistencia lease ↔ DNS
+17.18 procedimientos de reparación
+17.19 documentación de incidentes
+17.20 runbooks
+17.21 Laboratorio: backup, fallo y recuperación
+17.22 Checkpoint operación
+
+BLOQUE 18 — LABORATORIO FINAL: DHCP → DNS COMPLETO
+
+18.1 diseñar la topología final
+18.2 preparar Fedora/RHEL
+18.3 instalar BIND
+18.4 crear zona forward
+18.5 crear reverse IPv4
+18.6 crear reverse IPv6
+18.7 validar zonas
+18.8 instalar Kea
+18.9 configurar DHCPv4
+18.10 configurar DHCPv6
+18.11 instalar/configurar D2
+18.12 generar TSIG
+18.13 proteger BIND con update-policy
+18.14 configurar TSIG en D2
+18.15 conectar DHCPv4 con D2
+18.16 conectar DHCPv6 con D2
+18.17 obtener lease IPv4
+18.18 comprobar A
+18.19 comprobar PTR IPv4
+18.20 obtener lease IPv6
+18.21 comprobar AAAA
+18.22 comprobar PTR IPv6
+18.23 renovar leases
+18.24 liberar/expirar leases
+18.25 comprobar eliminación DNS
+18.26 observar DHCID
+18.27 inspeccionar logs Kea
+18.28 inspeccionar logs D2
+18.29 inspeccionar logs BIND
+18.30 capturar DNS UPDATE
+18.31 provocar BADKEY
+18.32 provocar zona incorrecta
+18.33 provocar bloqueo de firewall
+18.34 provocar problema SELinux/permisos en entorno controlado
+18.35 diagnosticar cada fallo
+18.36 restaurar funcionamiento
+18.37 comprobar consistencia lease ↔ A/AAAA ↔ PTR
+18.38 documentar arquitectura
+18.39 crear checklist/runbook
+18.40 evaluación final
+
+RESULTADO FINAL
+
+Al completar el PATH, el alumno podrá diseñar, instalar, configurar, asegurar,
+observar y diagnosticar una integración DHCP-DNS completa con Kea y BIND;
+comprenderá el recorrido lease → NCR → D2 → TSIG → RFC 2136 → A/AAAA/PTR,
+así como el proceso inverso de eliminación cuando el lease deja de ser válido.

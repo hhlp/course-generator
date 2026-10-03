@@ -1,0 +1,353 @@
+PATH — IP ADDRESSING + SUBNETTING + VLSM — 0 → EXPERTO
+
+Objetivo: dominar el diseño, cálculo, implementación, validación y troubleshooting del direccionamiento IPv4/IPv6, desde binario y direccionamiento classful histórico hasta CIDR, FLSM, VLSM, sumarización, dual-stack e IPAM.
+
+BLOQUE 0 — Fundamentos del direccionamiento IP
+0.1 Qué es una dirección IP
+0.2 Dirección lógica vs dirección física
+0.3 IPv4 vs IPv6
+0.4 Bits, bytes, octetos y hexadecimal
+0.5 Binario aplicado a redes
+0.6 Decimal ↔ binario
+0.7 Hexadecimal aplicado a IPv6
+0.8 Dirección de red
+0.9 Dirección de host
+0.10 Network ID y Host ID
+0.11 Prefijo de red
+0.12 Máscara de red
+0.13 CIDR: /8, /16, /24...
+0.14 Network prefix + host portion
+0.15 Cómo determina un host si un destino es local o remoto
+0.16 AND binario aplicado a direcciones IP
+0.17 Laboratorio inicial de direccionamiento
+
+BLOQUE 1 — IPv4 en profundidad
+1.1 Estructura de una dirección IPv4
+1.2 Los 32 bits de IPv4
+1.3 Los cuatro octetos
+1.4 Representación decimal
+1.5 Representación binaria
+1.6 Network portion
+1.7 Host portion
+1.8 Máscara de subred
+1.9 Prefijo CIDR
+1.10 Dirección de red
+1.11 Dirección broadcast
+1.12 Primera dirección utilizable
+1.13 Última dirección utilizable
+1.14 Número total de direcciones
+1.15 Número de hosts utilizables
+1.16 Fórmula 2^n
+1.17 Network address vs host address
+1.18 Direcciones públicas
+1.19 Direcciones privadas RFC 1918
+1.20 Loopback 127.0.0.0/8
+1.21 Link-local 169.254.0.0/16
+1.22 0.0.0.0
+1.23 0.0.0.0/0
+1.24 255.255.255.255
+1.25 Direcciones especiales y reservadas
+1.26 CGNAT 100.64.0.0/10
+1.27 TEST-NET
+1.28 Multicast IPv4
+1.29 Laboratorio IPv4
+
+BLOQUE 2 — Direccionamiento classful: clases A, B, C, D y E
+2.1 Historia del direccionamiento classful
+2.2 Por qué existieron las clases
+2.3 Clase A
+2.4 Rango de Clase A
+2.5 Máscara natural /8
+2.6 Clase B
+2.7 Rango de Clase B
+2.8 Máscara natural /16
+2.9 Clase C
+2.10 Rango de Clase C
+2.11 Máscara natural /24
+2.12 Clase D y multicast
+2.13 Clase E y direcciones reservadas
+2.14 Identificar una clase mediante el primer octeto
+2.15 Identificarla mediante los primeros bits
+2.16 Network ID y Host ID en A/B/C
+2.17 Máscaras naturales
+2.18 Limitaciones del direccionamiento classful
+2.19 Desperdicio de direcciones
+2.20 De classful a classless
+2.21 CIDR reemplaza las clases
+2.22 Valor histórico de A/B/C/D/E
+2.23 Laboratorio de identificación de clases
+
+BLOQUE 3 — Máscaras IPv4
+3.1 Qué es una subnet mask
+3.2 Máscara decimal y binaria
+3.3 Bits de red = 1 y bits de host = 0
+3.4 Máscaras válidas y no válidas
+3.5 Prefijos /0 → /32
+3.6 CIDR → máscara
+3.7 Máscara → CIDR
+3.8 Wildcard mask
+3.9 Máscara ↔ wildcard
+3.10 Tabla completa /0–/32
+3.11 Direcciones por prefijo
+3.12 Hosts utilizables
+3.13 Casos /31 y /32
+3.14 RFC 3021 y punto a punto
+3.15 Laboratorio de máscaras
+
+BLOQUE 4 — Subnetting IPv4 desde cero
+4.1 Qué es subnetting
+4.2 Red vs subred
+4.3 Por qué crear subredes
+4.4 Borrowing bits
+4.5 Bits de subred y host
+4.6 2^n subredes
+4.7 2^h direcciones
+4.8 Hosts utilizables
+4.9 Incremento o block size
+4.10 Interesting octet
+4.11 Encontrar Network ID
+4.12 Encontrar Broadcast
+4.13 Primer y último host
+4.14 Rango completo
+4.15 Identificar la subred de una IP
+4.16 Saber si dos IP pertenecen a la misma subred
+4.17 Subnetting mediante binario
+4.18 Subnetting mediante block size
+4.19 Método rápido
+4.20 Verificación matemática
+
+BLOQUE 5 — Subnetting /8, /16 y /24
+5.1 Subnetting desde /8
+5.2 /8 → /9, /10, /16 y /24
+5.3 Subnetting desde /16
+5.4 /16 → /17, /20 y /24
+5.5 Subnetting desde /24
+5.6 /24 → /25, /26, /27 y /28
+5.7 /24 → /29 y /30
+5.8 /31 y /32
+5.9 Ejercicios combinados
+
+BLOQUE 6 — Saber red/subred a partir de IP + máscara
+6.1 IP + prefijo
+6.2 IP y máscara en binario
+6.3 Operación AND
+6.4 Obtener Network Address
+6.5 Obtener Broadcast Address
+6.6 Obtener rango de hosts
+6.7 192.168.1.137/24, /25, /26 y /27
+6.8 10.17.39.211/20
+6.9 172.16.139.17/21
+6.10 Resolver sin convertir los 32 bits
+6.11 Resolver mentalmente
+6.12 Verificar resultados
+
+BLOQUE 7 — CIDR en profundidad
+7.1 Classless Inter-Domain Routing
+7.2 Por qué apareció CIDR
+7.3 Notación y prefijos arbitrarios
+7.4 Prefix containment
+7.5 Subnet-of y supernet-of
+7.6 Subredes solapadas
+7.7 Longest Prefix Match
+7.8 CIDR y tablas de routing
+7.9 Asignación de direcciones
+7.10 Laboratorio CIDR
+
+BLOQUE 8 — FLSM
+8.1 Fixed Length Subnet Mask
+8.2 Dividir una red en subredes iguales
+8.3 Número de subredes y hosts
+8.4 Elegir prefijo
+8.5 Construir tabla de direccionamiento
+8.6 Network/Broadcast/Host range
+8.7 Desperdicio de direcciones
+8.8 FLSM vs VLSM
+8.9 Laboratorio completo FLSM
+
+BLOQUE 9 — VLSM desde cero
+9.1 Variable Length Subnet Mask
+9.2 Por qué existe VLSM
+9.3 FLSM vs VLSM
+9.4 Requisitos de hosts diferentes
+9.5 Ordenar necesidades de mayor a menor
+9.6 Elegir prefijo adecuado
+9.7 2^h - 2
+9.8 Asignar subredes sucesivas
+9.9 Encontrar el siguiente Network ID
+9.10 Evitar solapamientos
+9.11 Aprovechar espacio restante
+9.12 Validar diseño VLSM
+
+BLOQUE 10 — VLSM intermedio
+10.1 Diseñar una red para departamentos
+10.2 LAN de 100, 50, 25 y 10 hosts
+10.3 Enlaces punto a punto
+10.4 /30 vs /31
+10.5 Reservar crecimiento futuro
+10.6 Espacios libres y fragmentación
+10.7 Tablas VLSM
+10.8 Documentar Network/Prefix/Range/Broadcast
+10.9 Validación matemática
+10.10 Laboratorio VLSM
+
+BLOQUE 11 — VLSM avanzado
+11.1 Diseño jerárquico
+11.2 Campus y sedes
+11.3 VLANs
+11.4 Datacenter
+11.5 Management, servidores, usuarios y storage
+11.6 Point-to-point networks
+11.7 Reservas de crecimiento
+11.8 Agregación de prefijos
+11.9 Minimizar rutas
+11.10 Diseñar pensando en routing
+11.11 Renumbering
+11.12 Address planning
+11.13 IP Address Management (IPAM)
+11.14 Laboratorio empresarial
+
+BLOQUE 12 — Supernetting y sumarización
+12.1 Subnetting vs supernetting
+12.2 Prefijos contiguos y potencias de dos
+12.3 Límites binarios
+12.4 Encontrar bits comunes
+12.5 Calcular summary route
+12.6 Agregar /24 → /23 y /22
+12.7 Agregar múltiples redes
+12.8 Detectar cuándo no se pueden agregar
+12.9 Route summarization
+12.10 Longest Prefix Match
+12.11 Laboratorio
+
+BLOQUE 13 — IPv6 desde cero
+13.1 Por qué IPv6
+13.2 Espacio de 128 bits
+13.3 Hexadecimal y hextets
+13.4 Estructura IPv6
+13.5 Prefijo e Interface ID
+13.6 Escritura completa
+13.7 Eliminar ceros iniciales
+13.8 Compresión :: y sus reglas
+13.9 Expandir y comprimir IPv6
+13.10 Prefijo /64
+13.11 IPv6 no utiliza máscara decimal
+13.12 IPv6 no tiene broadcast
+13.13 Laboratorio hexadecimal/IPv6
+
+BLOQUE 14 — Tipos de direcciones IPv6
+14.1 Unicast
+14.2 Global Unicast 2000::/3
+14.3 Link-local fe80::/10
+14.4 Unique Local Address fc00::/7
+14.5 Multicast ff00::/8
+14.6 Anycast
+14.7 Loopback ::1
+14.8 Unspecified ::
+14.9 Solicited-node multicast
+14.10 IPv4-mapped IPv6
+14.11 Direcciones especiales
+14.12 Scope y zone/interface identifier
+14.13 Laboratorio
+
+BLOQUE 15 — Subnetting IPv6
+15.1 IPv6 subnetting
+15.2 Prefijo global, Subnet ID e Interface ID
+15.3 /48, /56, /60 y /64
+15.4 /127 y /128
+15.5 Dividir /48, /56 y /60 en /64
+15.6 Número de subredes disponibles
+15.7 Operaciones binarias/hexadecimales
+15.8 Diseñar un plan IPv6
+15.9 Por qué normalmente no se calcula número de hosts
+15.10 IPv6 subnetting vs IPv4 subnetting
+15.11 Laboratorio
+
+BLOQUE 16 — Diseño dual-stack IPv4 + IPv6
+16.1 Qué es dual stack
+16.2 Plan IPv4 y plan IPv6
+16.3 Correspondencia VLAN ↔ prefijo
+16.4 LAN, servidores, management, storage y DMZ
+16.5 Enlaces router-router y loopbacks
+16.6 DHCPv4
+16.7 SLAAC y DHCPv6
+16.8 DNS A y AAAA
+16.9 Reverse DNS IPv4 e IPv6
+16.10 Documentación del direccionamiento
+
+BLOQUE 17 — Linux: cálculo e inspección
+17.1 ip addr, ip -4 addr e ip -6 addr
+17.2 ip route e ip -6 route
+17.3 ip neigh
+17.4 ping, ping IPv6, traceroute y tracepath
+17.5 getent
+17.6 NetworkManager y nmcli
+17.7 Configuración IPv4/IPv6 estática
+17.8 Añadir/eliminar direcciones y rutas
+17.9 ipcalc
+17.10 Python ipaddress
+17.11 Laboratorio Fedora/RHEL
+
+BLOQUE 18 — Python para subnetting e IPAM
+18.1 módulo ipaddress
+18.2 IPv4Address, IPv4Network e IPv4Interface
+18.3 IPv6Address, IPv6Network e IPv6Interface
+18.4 network_address y broadcast_address
+18.5 netmask, hostmask y prefixlen
+18.6 hosts(), subnets() y supernet()
+18.7 subnet_of() y supernet_of()
+18.8 overlaps() y address_exclude()
+18.9 Automatizar cálculos VLSM
+18.10 Construir un pequeño IPAM
+
+BLOQUE 19 — Troubleshooting de direccionamiento
+19.1 IP, máscara, gateway o subred incorrectos
+19.2 Subredes solapadas
+19.3 Rutas incorrectas
+19.4 Longest Prefix Match inesperado
+19.5 IP duplicada
+19.6 ARP y Neighbor Discovery IPv6
+19.7 Link-local IPv6 y Duplicate Address Detection
+19.8 DNS vs problema IP
+19.9 DHCP vs configuración estática
+19.10 tcpdump y tshark/Wireshark
+19.11 ss e ip monitor
+19.12 journalctl y NetworkManager
+19.13 Metodología sistemática de troubleshooting
+
+BLOQUE 20 — Diseño de direccionamiento profesional
+20.1 Recopilar requisitos
+20.2 Sedes, VLANs, hosts y crecimiento
+20.3 Elegir bloque raíz IPv4
+20.4 Jerarquía región → sede → VLAN
+20.5 VLSM y summarization
+20.6 Reservas de crecimiento
+20.7 Infraestructura, loopbacks y point-to-point
+20.8 Management, servidores, clientes y DMZ
+20.9 IPv6 /48-/56-/64
+20.10 Convenciones de direccionamiento
+20.11 Documentación e IPAM
+20.12 Evitar solapamientos entre sedes
+20.13 VPN, cloud y on-premise
+20.14 Migraciones y renumbering
+
+BLOQUE 21 — Laboratorio final experto
+21.1 Diseñar una empresa multisede
+21.2 Obtener requisitos de hosts
+21.3 Seleccionar bloque IPv4
+21.4 Crear jerarquía IPv4
+21.5 Aplicar VLSM
+21.6 Crear VLANs, servidores, management y DMZ
+21.7 Crear enlaces punto a punto
+21.8 Reservar crecimiento
+21.9 Aplicar sumarización
+21.10 Diseñar direccionamiento IPv6
+21.11 Asignar /64
+21.12 Crear dual stack
+21.13 Construir tabla IPAM
+21.14 Configurar Fedora/RHEL
+21.15 Verificar rutas y conectividad
+21.16 Capturar tráfico
+21.17 Provocar errores de máscara y solapamientos
+21.18 Diagnosticar errores
+21.19 Automatizar validación con Python
+21.20 Documentar arquitectura final

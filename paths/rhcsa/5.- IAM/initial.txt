@@ -1,0 +1,864 @@
+IDENTITY & ACCESS MANAGEMENT — IAM
+Learning Path 0 → Experto en profundidad
+Plataforma principal: Fedora / RHEL
+
+BLOQUE 0 — FUNDAMENTOS DE IAM
+
+0.1 Qué es Identity & Access Management (IAM)
+0.2 Identity vs authentication vs authorization
+0.3 Authentication vs authorization vs accounting
+0.4 Modelo AAA
+0.5 IAM vs Identity Management (IdM)
+0.6 Identidades humanas, técnicas y de máquina
+0.7 Identidad local vs identidad centralizada
+0.8 Authentication factors: knowledge, possession e inherence
+0.9 Single-Factor Authentication vs MFA
+0.10 Principio de mínimo privilegio
+0.11 Separation of Duties
+0.12 Zero Trust: fundamentos aplicados a identidad
+0.13 Ciclo de vida de una identidad
+0.14 Provisioning, modificación y deprovisioning
+0.15 Credenciales, secretos, tokens, claves y certificados
+0.16 Authentication flow: aplicación → PAM/SSSD → proveedor de identidad
+0.17 Authorization flow y evaluación de políticas
+0.18 Introducción a logging, auditing y trazabilidad IAM
+0.19 Arquitectura IAM Linux empresarial
+0.20 Laboratorio: dibujar el flujo completo de identidad, autenticación y autorización
+
+BLOQUE 1 — LINUX IDENTITY
+
+1.1 Modelo de identidad de Linux
+1.2 Usuarios locales
+1.3 Grupos locales
+1.4 UID y GID
+1.5 Grupo primario y grupos suplementarios
+1.6 Usuarios normales, system users y service accounts
+1.7 /etc/passwd: estructura y campos
+1.8 /etc/shadow: estructura y campos
+1.9 /etc/group: estructura y campos
+1.10 /etc/gshadow
+1.11 /etc/login.defs
+1.12 useradd
+1.13 usermod
+1.14 userdel
+1.15 groupadd
+1.16 groupmod
+1.17 groupdel
+1.18 passwd
+1.19 chage
+1.20 id
+1.21 groups
+1.22 getent
+1.23 Password aging
+1.24 Account expiration
+1.25 Account locking
+1.26 Shells y /etc/shells
+1.27 Home directories y skeleton /etc/skel
+1.28 System accounts y nologin
+1.29 Resolución UID/GID
+1.30 Laboratorio: administrar usuarios y grupos desde cero
+1.31 Logs relacionados con login y cuentas
+1.32 Troubleshooting de identidad local
+
+BLOQUE 2 — NSS — NAME SERVICE SWITCH
+
+2.1 Qué problema resuelve NSS
+2.2 Arquitectura NSS y glibc
+2.3 /etc/nsswitch.conf
+2.4 Bases passwd, group y shadow
+2.5 hosts y resolución de nombres
+2.6 Fuente files
+2.7 Fuente DNS
+2.8 Fuente sss
+2.9 Orden de resolución
+2.10 Acciones y comportamiento de NSS
+2.11 getent passwd
+2.12 getent group
+2.13 getent hosts
+2.14 NSS y aplicaciones Linux
+2.15 NSS + SSSD
+2.16 Flujo aplicación → libc → NSS → backend
+2.17 Diagnóstico de resolución de usuarios y grupos
+2.18 Laboratorio NSS
+2.19 Troubleshooting NSS
+
+BLOQUE 3 — PAM — PLUGGABLE AUTHENTICATION MODULES
+
+3.1 Qué es PAM
+3.2 Arquitectura PAM
+3.3 Aplicaciones PAM-aware
+3.4 /etc/pam.d/
+3.5 /etc/pam.conf
+3.6 Tipos de módulo: auth
+3.7 account
+3.8 password
+3.9 session
+3.10 Control flag required
+3.11 requisite
+3.12 sufficient
+3.13 optional
+3.14 Sintaxis avanzada de control PAM
+3.15 Stack PAM y orden de evaluación
+3.16 pam_unix
+3.17 pam_sss
+3.18 pam_faillock
+3.19 pam_limits
+3.20 pam_access
+3.21 pam_pwquality
+3.22 pam_env
+3.23 PAM + login
+3.24 PAM + SSH
+3.25 PAM + sudo
+3.26 PAM + SSSD
+3.27 authselect en Fedora/RHEL
+3.28 Perfiles authselect
+3.29 Custom authselect profiles
+3.30 Seguridad al modificar PAM
+3.31 Logs PAM con journald
+3.32 Laboratorio: analizar un stack PAM real
+3.33 Laboratorio: política de password y bloqueo
+3.34 Troubleshooting PAM sin bloquear el sistema
+
+BLOQUE 4 — SUDO Y DELEGACIÓN DE PRIVILEGIOS
+
+4.1 su vs sudo
+4.2 Arquitectura sudo
+4.3 /etc/sudoers
+4.4 /etc/sudoers.d/
+4.5 visudo
+4.6 User specifications
+4.7 User_Alias
+4.8 Runas_Alias
+4.9 Host_Alias
+4.10 Cmnd_Alias
+4.11 RunAs
+4.12 Tags sudo
+4.13 NOPASSWD
+4.14 PASSWD
+4.15 Defaults
+4.16 Environment y secure_path
+4.17 Restricción de comandos
+4.18 Principio de mínimo privilegio con sudo
+4.19 sudo -l
+4.20 sudo logging
+4.21 sudo I/O logging
+4.22 sudo + PAM
+4.23 sudo + LDAP: conceptos
+4.24 sudo + SSSD
+4.25 sudo + FreeIPA
+4.26 Diseño seguro de reglas sudo
+4.27 Errores frecuentes
+4.28 Laboratorio de delegación administrativa
+4.29 Troubleshooting sudo
+
+BLOQUE 5 — LDAP FUNDAMENTALS
+
+5.1 Qué es un directory service
+5.2 Directorio vs base de datos relacional
+5.3 LDAP: historia y objetivos
+5.4 LDAP protocol
+5.5 Cliente y servidor LDAP
+5.6 LDAP Data Information Tree — DIT
+5.7 Entries
+5.8 Attributes
+5.9 Attribute types
+5.10 objectClass
+5.11 Schema
+5.12 Structural, auxiliary y abstract object classes
+5.13 Distinguished Name — DN
+5.14 Relative Distinguished Name — RDN
+5.15 Naming contexts
+5.16 Base DN
+5.17 Bind
+5.18 Anonymous bind
+5.19 Simple bind
+5.20 SASL bind
+5.21 Search operation
+5.22 Search base
+5.23 Search scopes: base, onelevel y subtree
+5.24 LDAP filters
+5.25 AND, OR y NOT filters
+5.26 Presence y substring filters
+5.27 Add, modify y delete
+5.28 Compare
+5.29 LDIF
+5.30 Referrals
+5.31 Aliases
+5.32 LDAP controls y extensions
+5.33 ACL / ACI: fundamentos
+5.34 LDAP sobre TLS
+5.35 StartTLS
+5.36 LDAPS y diferencias con StartTLS
+5.37 Puertos y conectividad
+5.38 ldapsearch
+5.39 ldapwhoami
+5.40 ldapadd
+5.41 ldapmodify
+5.42 ldapdelete
+5.43 Laboratorio: construir un DIT
+5.44 Laboratorio: consultas LDAP complejas
+5.45 Troubleshooting LDAP
+
+BLOQUE 6 — OPENLDAP
+
+6.1 Arquitectura OpenLDAP
+6.2 Componentes cliente y servidor
+6.3 slapd
+6.4 Instalación y disponibilidad según Fedora/RHEL
+6.5 Herramientas OpenLDAP
+6.6 Configuración dinámica cn=config
+6.7 olcDatabase
+6.8 Backends
+6.9 Suffix
+6.10 Root DN
+6.11 Credenciales administrativas
+6.12 Schemas
+6.13 LDIF de configuración
+6.14 ldapadd y carga inicial
+6.15 ldapmodify
+6.16 ldapdelete
+6.17 ldapsearch
+6.18 ldapwhoami
+6.19 ACL en OpenLDAP
+6.20 Índices
+6.21 TLS
+6.22 Certificados de servidor
+6.23 SASL
+6.24 Integración con Kerberos: conceptos
+6.25 Replicación: fundamentos
+6.26 syncrepl
+6.27 Provider / consumer
+6.28 Multi-provider: conceptos
+6.29 Backup
+6.30 Restore
+6.31 slapcat
+6.32 slapadd
+6.33 Performance y tuning
+6.34 Logging
+6.35 journald y diagnóstico
+6.36 Seguridad y hardening
+6.37 Laboratorio: servidor LDAP
+6.38 Laboratorio: TLS
+6.39 Laboratorio: replicación
+6.40 Troubleshooting OpenLDAP
+
+BLOQUE 7 — KERBEROS FUNDAMENTALS
+
+7.1 Problema que resuelve Kerberos
+7.2 Autenticación basada en tickets
+7.3 Criptografía simétrica necesaria para comprender Kerberos
+7.4 Realm
+7.5 Principal
+7.6 User principal
+7.7 Service principal
+7.8 Host principal
+7.9 KDC
+7.10 Authentication Server — AS
+7.11 Ticket Granting Server — TGS
+7.12 Authentication Service Exchange
+7.13 AS-REQ
+7.14 AS-REP
+7.15 Ticket Granting Exchange
+7.16 TGS-REQ
+7.17 TGS-REP
+7.18 Client/Server Authentication Exchange
+7.19 AP-REQ
+7.20 AP-REP
+7.21 Ticket Granting Ticket — TGT
+7.22 Service ticket
+7.23 Session keys
+7.24 Ticket cache
+7.25 Keytabs
+7.26 Service Principal Names
+7.27 Pre-authentication
+7.28 Ticket lifetime
+7.29 Renewable tickets
+7.30 Forwardable tickets
+7.31 Delegation
+7.32 Mutual authentication
+7.33 Replay protection
+7.34 Clock skew
+7.35 Dependencia de DNS
+7.36 Dependencia de NTP/Chrony
+7.37 Kerberos SSO
+7.38 Flujo completo Kerberos paso a paso
+7.39 Ataques conceptuales y defensas
+7.40 Laboratorio conceptual: seguir un ticket desde login hasta servicio
+
+BLOQUE 8 — MIT KERBEROS
+
+8.1 Arquitectura MIT Kerberos
+8.2 Instalación de cliente y KDC
+8.3 /etc/krb5.conf
+8.4 kdc.conf
+8.5 Realm configuration
+8.6 KDC database
+8.7 Creación de realm
+8.8 kadmin.local
+8.9 kadmin
+8.10 Crear principals
+8.11 Modificar principals
+8.12 Password policies
+8.13 Service principals
+8.14 ktadd
+8.15 Keytabs
+8.16 ktutil
+8.17 kinit
+8.18 klist
+8.19 kdestroy
+8.20 kvno
+8.21 Ticket caches
+8.22 Credential cache types
+8.23 DNS discovery
+8.24 SRV records
+8.25 Reverse DNS y canonicalization
+8.26 Chrony y sincronización
+8.27 Kerberized services
+8.28 SSH + GSSAPI
+8.29 Cross-realm trust
+8.30 Logging del KDC
+8.31 journalctl y logs configurados
+8.32 Backup y recuperación del KDC
+8.33 Hardening
+8.34 Laboratorio: desplegar un realm
+8.35 Laboratorio: keytabs y servicio
+8.36 Laboratorio: SSO con SSH
+8.37 Troubleshooting Kerberos
+
+BLOQUE 9 — SSSD
+
+9.1 Qué problema resuelve SSSD
+9.2 Arquitectura SSSD
+9.3 Monitor
+9.4 Backends
+9.5 Responders
+9.6 NSS responder
+9.7 PAM responder
+9.8 sudo responder
+9.9 SSH responder
+9.10 PAC responder: conceptos
+9.11 Domains
+9.12 Providers
+9.13 id_provider
+9.14 auth_provider
+9.15 access_provider
+9.16 chpass_provider
+9.17 sudo_provider
+9.18 LDAP provider
+9.19 Kerberos provider
+9.20 IPA provider
+9.21 AD provider
+9.22 /etc/sssd/sssd.conf
+9.23 Permisos seguros de sssd.conf
+9.24 Identity lookup
+9.25 Authentication
+9.26 Authorization
+9.27 Credential caching
+9.28 Offline authentication
+9.29 Enumeration
+9.30 Access control
+9.31 LDAP + Kerberos mediante SSSD
+9.32 NSS + SSSD
+9.33 PAM + SSSD
+9.34 sudo + SSSD
+9.35 SSH public key integration
+9.36 sssctl
+9.37 sss_cache
+9.38 Cache invalidation
+9.39 Debug levels
+9.40 Ubicación y lectura de logs SSSD
+9.41 journalctl
+9.42 Laboratorio: cliente LDAP
+9.43 Laboratorio: LDAP + Kerberos
+9.44 Laboratorio: autenticación offline
+9.45 Troubleshooting SSSD
+
+BLOQUE 10 — REALMD
+
+10.1 Objetivo de realmd
+10.2 Arquitectura y componentes
+10.3 Realm discovery
+10.4 DNS discovery
+10.5 realm discover
+10.6 realm list
+10.7 realm join
+10.8 realm leave
+10.9 realm permit
+10.10 realm deny
+10.11 realmd + SSSD
+10.12 realmd + Kerberos
+10.13 Integración con Active Directory: fundamentos
+10.14 Computer accounts
+10.15 Domain membership
+10.16 DNS requirements
+10.17 Logs
+10.18 journalctl
+10.19 Laboratorio de discovery y join
+10.20 Troubleshooting realmd
+
+BLOQUE 11 — FREEIPA / RED HAT IDENTITY MANAGEMENT
+
+11.1 Qué es FreeIPA
+11.2 FreeIPA vs Red Hat IdM
+11.3 Arquitectura
+11.4 389 Directory Server
+11.5 LDAP en FreeIPA
+11.6 MIT Kerberos en FreeIPA
+11.7 DNS integrado
+11.8 Dogtag Certificate System
+11.9 CA / PKI
+11.10 SSSD
+11.11 Certmonger
+11.12 HTTP/API
+11.13 Requisitos DNS
+11.14 Requisitos de tiempo
+11.15 Planificación de dominio y realm
+11.16 Instalación del servidor
+11.17 ipa-server-install
+11.18 Instalación con DNS integrado
+11.19 Firewall y servicios
+11.20 Web UI
+11.21 ipa CLI
+11.22 ipa help y descubrimiento de comandos
+11.23 Enrollment de clientes
+11.24 ipa-client-install
+11.25 Hosts
+11.26 Host groups
+11.27 Users
+11.28 Groups
+11.29 Service principals
+11.30 Keytabs
+11.31 Password policies
+11.32 Kerberos policies
+11.33 HBAC
+11.34 HBAC services
+11.35 HBAC rules
+11.36 sudo rules
+11.37 sudo commands y command groups
+11.38 Roles
+11.39 Privileges
+11.40 Permissions
+11.41 RBAC de administración FreeIPA
+11.42 OTP
+11.43 MFA
+11.44 Certificates
+11.45 Certificate profiles: conceptos
+11.46 Certmonger y renovación
+11.47 DNS zones
+11.48 DNS records
+11.49 Dynamic DNS
+11.50 Replicas
+11.51 Replication
+11.52 Topology
+11.53 CA replicas
+11.54 DNS replicas
+11.55 Backup
+11.56 Restore
+11.57 ipa-backup
+11.58 ipa-restore
+11.59 Trust con Active Directory: arquitectura
+11.60 SID y conceptos necesarios
+11.61 ID ranges
+11.62 Logs de FreeIPA
+11.63 Logs de Directory Server
+11.64 Logs Kerberos
+11.65 Logs HTTP
+11.66 Logs Dogtag
+11.67 journalctl
+11.68 ipa-healthcheck
+11.69 Monitoring
+11.70 Hardening
+11.71 Laboratorio: FreeIPA completo
+11.72 Laboratorio: réplica
+11.73 Laboratorio: HBAC
+11.74 Laboratorio: sudo centralizado
+11.75 Laboratorio: certificados
+11.76 Troubleshooting FreeIPA
+
+
+BLOQUE 12 — IAM COMO PROVIDER CENTRAL E INTEGRACIÓN DE SERVICIOS
+
+12.1 Modelo IAM Provider → Service Consumer
+12.2 IAM como fuente central de identidades
+12.3 Identidades humanas vs identidades técnicas y de máquina
+12.4 Usuarios centralizados vs usuarios locales
+12.5 Cuándo mantener cuentas locales y cuentas break-glass
+12.6 NSS/SSSD como resolución central de identidad
+12.7 PAM/SSSD como capa de autenticación
+12.8 Kerberos/GSSAPI como autenticación SSO
+12.9 LDAP como fuente de identidad y atributos
+12.10 FreeIPA/IdM como proveedor de identidad Linux
+12.11 Host principals
+12.12 Service principals
+12.13 Keytabs de servicios
+12.14 Machine identities
+12.15 Service accounts
+12.16 HBAC como autorización central de acceso a servicios
+12.17 sudo centralizado como política consumida
+12.18 Certificados de host y servicio
+12.19 DNS como dependencia de IAM y service discovery
+12.20 Chrony/NTP como dependencia crítica de Kerberos
+12.21 Patrón de integración OpenSSH + SSSD + PAM
+12.22 OpenSSH + Kerberos/GSSAPI + FreeIPA
+12.23 Patrón NFSv4 + Kerberos: sec=krb5, krb5i y krb5p
+12.24 Samba e identidad centralizada: arquitectura
+12.25 Patrón Squid + LDAP
+12.26 Patrón Squid + Kerberos/GSSAPI
+12.27 Postfix y directorio central: arquitectura
+12.28 Dovecot + LDAP/SSSD
+12.29 Dovecot/SASL + Kerberos/GSSAPI: conceptos
+12.30 Apache + LDAP
+12.31 Apache + Kerberos/GSSAPI
+12.32 Nginx y autenticación centralizada: arquitectura, delegation y límites
+12.33 OpenVPN + PAM
+12.34 OpenVPN + LDAP/FreeIPA: arquitectura
+12.35 OpenVPN: certificados vs identidad central
+12.36 WireGuard: claves de peers no equivalen a IAM de usuarios
+12.37 Separación de responsabilidades IAM ↔ aplicación/servicio
+12.38 Lifecycle de una identidad propagado a servicios consumidores
+12.39 Revocación central y efecto sobre consumidores
+12.40 Troubleshooting Provider → Consumer por capas
+12.41 Laboratorio: usuario FreeIPA accediendo mediante OpenSSH
+12.42 Laboratorio: misma identidad accediendo a NFSv4 Kerberizado
+12.43 Laboratorio: integrar un servicio HTTP/proxy con identidad central
+12.44 Laboratorio: deshabilitar una identidad y validar revocación transversal
+12.45 Diseño: matriz Provider → Consumer para la infraestructura completa
+
+BLOQUE 13 — MÉTODOS DE AUTENTICACIÓN
+
+13.1 Password authentication
+13.2 Password hashing y almacenamiento
+13.3 Password policies
+13.4 SSH public-key authentication
+13.5 Gestión del ciclo de vida de SSH keys
+13.6 SSH certificates
+13.7 X.509 certificates
+13.8 Kerberos
+13.9 OTP
+13.10 HOTP
+13.11 TOTP
+13.12 MFA
+13.13 Smart cards
+13.14 PKCS#11: fundamentos
+13.15 FIDO2 / security keys
+13.16 Passwordless authentication
+13.17 Selección del método según riesgo
+13.18 Authentication assurance
+13.19 Laboratorio comparativo
+
+BLOQUE 14 — AUTORIZACIÓN Y CONTROL DE ACCESO
+
+14.1 Authentication no es authorization
+14.2 Discretionary Access Control — DAC
+14.3 POSIX permissions
+14.4 POSIX ACL
+14.5 Role-Based Access Control — RBAC
+14.6 Attribute-Based Access Control — ABAC: conceptos
+14.7 Policy-Based Access Control: conceptos
+14.8 sudo como mecanismo de autorización
+14.9 FreeIPA HBAC
+14.10 FreeIPA sudo rules
+14.11 SELinux y Mandatory Access Control
+14.12 Relación IAM ↔ SELinux
+14.13 Least privilege
+14.14 Separation of Duties
+14.15 Policy design
+14.16 Deny-by-default
+14.17 Laboratorio: diseñar autorización por roles
+
+BLOQUE 15 — IDENTITY LIFECYCLE
+
+15.1 Joiner-Mover-Leaver
+15.2 Provisioning
+15.3 Onboarding
+15.4 Asignación inicial de privilegios
+15.5 Cambios de rol
+15.6 Revisión de accesos
+15.7 Recertificación
+15.8 Credential lifecycle
+15.9 Password expiration
+15.10 Key expiration
+15.11 Certificate expiration
+15.12 Account expiration
+15.13 Disable vs delete
+15.14 Offboarding
+15.15 Dormant accounts
+15.16 Orphan accounts
+15.17 Ownership de cuentas
+15.18 Audit trail
+15.19 Automatización del lifecycle
+15.20 Laboratorio: lifecycle completo de un empleado
+
+BLOQUE 16 — PRIVILEGED ACCESS MANAGEMENT — PAM
+
+16.1 Diferenciar PAM de Pluggable Authentication Modules
+16.2 Qué es Privileged Access Management
+16.3 Privileged identities
+16.4 Privileged accounts
+16.5 root
+16.6 Administrative accounts
+16.7 Shared accounts y sus riesgos
+16.8 Credential vaulting
+16.9 Password vaults
+16.10 SSH key vaulting
+16.11 Credential checkout
+16.12 Password rotation
+16.13 SSH key rotation
+16.14 Certificate rotation
+16.15 Just-in-Time — JIT
+16.16 Just-Enough-Access — JEA
+16.17 Approval workflows
+16.18 Temporary privileges
+16.19 Privilege elevation
+16.20 sudo como componente PAM
+16.21 FreeIPA como componente de control
+16.22 Least privilege
+16.23 Break-glass integration
+16.24 Arquitectura de una solución PAM empresarial
+16.25 Laboratorio de diseño PAM
+
+BLOQUE 17 — PRIVILEGED ACCOUNT & SESSION MANAGEMENT — PASM
+
+17.1 Qué es PASM
+17.2 PAM vs PASM
+17.3 Privileged sessions
+17.4 Session brokering
+17.5 Session proxying
+17.6 Session isolation
+17.7 Session recording
+17.8 Terminal recording
+17.9 Command recording
+17.10 Command auditing
+17.11 sudo I/O logging
+17.12 SSH session control
+17.13 auditd integration
+17.14 Session metadata
+17.15 User attribution
+17.16 Traceability
+17.17 Session termination
+17.18 Forensic analysis
+17.19 Retención y protección de registros
+17.20 Laboratorio: auditoría de una sesión privilegiada
+
+BLOQUE 18 — SERVICE ACCOUNTS Y MACHINE IDENTITIES
+
+18.1 Identidades humanas vs no humanas
+18.2 System accounts
+18.3 Service accounts
+18.4 Machine identities
+18.5 Host principals
+18.6 Service principals
+18.7 Kerberos keytabs
+18.8 X.509 machine certificates
+18.9 SSH host keys
+18.10 Non-interactive accounts
+18.11 Shell restrictions
+18.12 Least privilege
+18.13 Credential ownership
+18.14 Credential rotation
+18.15 Expiration
+18.16 Lifecycle management
+18.17 Inventario de identidades técnicas
+18.18 Laboratorio: identidad segura para un servicio
+
+BLOQUE 19 — SECRETS MANAGEMENT
+
+19.1 Qué es un secret
+19.2 Secret vs credential
+19.3 Passwords
+19.4 API keys
+19.5 Tokens
+19.6 SSH private keys
+19.7 TLS private keys
+19.8 Certificates
+19.9 Kerberos keytabs
+19.10 Storage seguro
+19.11 Encryption at rest
+19.12 Encryption in transit
+19.13 Access control de secretos
+19.14 Secret rotation
+19.15 Expiration
+19.16 Revocation
+19.17 Dynamic credentials: conceptos
+19.18 Secret injection: conceptos
+19.19 Evitar secretos en código y repositorios
+19.20 Environment variables y riesgos
+19.21 systemd credentials: introducción
+19.22 Audit de acceso a secretos
+19.23 Laboratorio: ciclo de vida de secretos
+
+BLOQUE 20 — BREAK-GLASS Y EMERGENCY ACCESS
+
+20.1 Qué es break-glass
+20.2 Cuándo debe existir
+20.3 Emergency accounts
+20.4 Offline emergency access
+20.5 Protección de credenciales
+20.6 Dual control
+20.7 Approval
+20.8 Monitoring
+20.9 Alerting
+20.10 Audit
+20.11 Credential rotation after use
+20.12 Testing periódico
+20.13 Incident procedures
+20.14 Laboratorio: diseñar un procedimiento break-glass
+
+BLOQUE 21 — LOGGING, AUDITING Y FORENSICS IAM
+
+21.1 Objetivos de auditoría IAM
+21.2 journald
+21.3 journalctl
+21.4 Login events
+21.5 PAM events
+21.6 sudo logs
+21.7 sudo I/O logs
+21.8 SSSD logs
+21.9 LDAP/OpenLDAP logs
+21.10 389 Directory Server logs
+21.11 Kerberos KDC logs
+21.12 FreeIPA logs
+21.13 SSH authentication logs
+21.14 auditd
+21.15 audit rules para identidad
+21.16 ausearch
+21.17 aureport
+21.18 last
+21.19 lastb
+21.20 lastlog / herramientas equivalentes según plataforma
+21.21 faillock
+21.22 Correlación de eventos
+21.23 Centralized logging
+21.24 Retención
+21.25 Integridad de logs
+21.26 Investigación de autenticación fallida
+21.27 Investigación de escalada de privilegios
+21.28 Forensic timeline
+21.29 Laboratorio de investigación IAM
+
+BLOQUE 22 — IAM SECURITY & HARDENING
+
+22.1 Threat model de IAM
+22.2 Least privilege
+22.3 MFA
+22.4 Password policies
+22.5 Account lockout
+22.6 Credential rotation
+22.7 Secure LDAP
+22.8 TLS verification
+22.9 Kerberos hardening
+22.10 Keytab protection
+22.11 SSH hardening
+22.12 sudo hardening
+22.13 PAM hardening
+22.14 SSSD hardening
+22.15 FreeIPA hardening
+22.16 Service account hardening
+22.17 Secrets protection
+22.18 Privileged account protection
+22.19 Credential theft: conceptos
+22.20 Password spraying: defensa
+22.21 Brute force: defensa
+22.22 Kerberos attack classes: conceptos y mitigación
+22.23 Replay attacks
+22.24 Lateral movement y control de privilegios
+22.25 Audit y detection
+22.26 Security baseline IAM
+22.27 Laboratorio de hardening
+
+BLOQUE 23 — TROUBLESHOOTING IAM
+
+23.1 Metodología de troubleshooting por capas
+23.2 Verificar hora
+23.3 Verificar DNS
+23.4 Verificar conectividad
+23.5 Verificar TLS
+23.6 Verificar identidad
+23.7 id
+23.8 getent
+23.9 NSS failures
+23.10 PAM failures
+23.11 authselect
+23.12 LDAP connectivity
+23.13 ldapsearch
+23.14 ldapwhoami
+23.15 Certificate verification
+23.16 Kerberos kinit
+23.17 klist
+23.18 kvno
+23.19 Keytabs
+23.20 Clock skew
+23.21 DNS SRV records
+23.22 SSSD status
+23.23 sssctl
+23.24 SSSD cache
+23.25 SSSD debug logs
+23.26 realmd
+23.27 FreeIPA client
+23.28 FreeIPA server
+23.29 HBAC
+23.30 sudo policies
+23.31 Certificate problems
+23.32 SELinux interactions
+23.33 firewalld
+23.34 ss
+23.35 tcpdump
+23.36 journalctl
+23.37 auditd
+23.38 Construcción de un troubleshooting decision tree
+23.39 Laboratorio: fallos intencionados
+23.40 Laboratorio: diagnóstico completo sin pistas
+
+BLOQUE 24 — PROYECTO FINAL: ENTERPRISE IAM
+
+24.1 Diseñar la arquitectura
+24.2 Definir dominio DNS y Kerberos realm
+24.3 Preparar Chrony/NTP
+24.4 Preparar DNS
+24.5 Desplegar FreeIPA/IdM
+24.6 Configurar LDAP
+24.7 Configurar Kerberos
+24.8 Configurar CA/PKI
+24.9 Enrolar clientes Linux
+24.10 Integrar NSS
+24.11 Integrar PAM
+24.12 Integrar SSSD
+24.13 Crear usuarios y grupos centralizados
+24.14 Crear hosts y host groups
+24.15 Configurar Kerberos SSO
+24.16 Configurar SSH
+24.17 Configurar sudo centralizado
+24.18 Diseñar HBAC
+24.19 Configurar MFA
+24.20 Gestionar certificados
+24.21 Crear service principals
+24.22 Gestionar keytabs
+24.23 Diseñar service accounts
+24.24 Implementar identity lifecycle
+24.25 Diseñar privileged access
+24.26 Diseñar break-glass
+24.27 Configurar réplica
+24.28 Validar replicación
+24.29 Backup
+24.30 Restore
+24.31 Integrar OpenSSH como consumidor de IAM
+24.32 Integrar NFSv4 Kerberizado como consumidor de IAM
+24.33 Integrar un servicio proxy/web con identidad central
+24.34 Validar una misma identidad en múltiples servicios
+24.35 Deshabilitar una identidad central y verificar revocación transversal
+24.36 Centralizar logging
+24.37 Configurar auditoría
+24.38 Aplicar hardening
+24.39 Crear runbooks
+24.40 Simular caída DNS
+24.41 Simular clock skew
+24.42 Simular fallo LDAP
+24.43 Simular fallo Kerberos
+24.44 Simular fallo SSSD
+24.45 Simular fallo de certificados
+24.46 Simular fallo HBAC/sudo
+24.47 Recuperar el servicio
+24.48 Documentar arquitectura
+24.49 Documentar procedimientos
+24.50 Checklist de producción
+24.51 Evaluación final: explicar el flujo completo sin herramientas

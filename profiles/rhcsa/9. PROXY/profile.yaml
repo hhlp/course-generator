@@ -1,0 +1,173 @@
+name: proxy-load-balancing
+language: es
+level: 0-a-experto-en-profundidad
+platform:
+  primary:
+  - Fedora
+  - RHEL
+  ecosystem:
+  - systemd
+  - firewalld
+  - SELinux
+  - RPM
+  - DNF
+audience:
+- administradores Linux
+- ingenieros de sistemas
+- ingenieros de infraestructura
+- DevOps
+- SRE
+objectives:
+- comprender forward proxy, reverse proxy y load balancing desde los fundamentos
+- dominar Squid como forward proxy
+- dominar Nginx como reverse proxy
+- dominar HAProxy para balanceo L4 y L7
+- implementar health checks, TLS y alta disponibilidad
+- integrar logging, métricas y observabilidad
+- aplicar seguridad y hardening en Fedora/RHEL
+- diagnosticar problemas por capas usando herramientas Linux
+- diseñar arquitecturas de producción resilientes y mantenibles
+- distinguir componentes Proxy/LB que requieren identidad humana de los que operan independientemente de IAM
+- integrar Squid como consumidor de LDAP, Kerberos/SPNEGO y FreeIPA cuando corresponda
+- evitar duplicar identidades locales cuando existe un proveedor IAM central
+core_technologies:
+- Squid
+- Nginx
+- HAProxy
+- Keepalived
+protocols:
+- TCP
+- UDP
+- HTTP/1.1
+- HTTP/2
+- HTTP/3
+- TLS
+- CONNECT
+- WebSocket
+- gRPC
+- VRRP
+teaching_style:
+  progression: concepto -> arquitectura -> instalación -> configuración -> validación -> operación -> logs -> seguridad ->
+    troubleshooting -> laboratorio
+  depth: high
+  theory_and_practice: true
+  explain_commands: true
+  explain_configuration_directives: true
+  explain_network_flow: true
+  production_context: true
+lesson_structure:
+  start: 🎯 OBJETIVO
+  recommended_sections:
+  - 📚 Conceptos
+  - 🧪 Laboratorio
+  - 💡 Idea importante
+  - ⚠️ Errores frecuentes
+  - 🔍 Troubleshooting
+  end: 🧠 QUÉ DEBES RECORDAR
+labs:
+  required: true
+  environment:
+  - virtual-machines
+  - containers-when-useful
+  components:
+  - clients
+  - forward-proxy
+  - reverse-proxy
+  - load-balancer
+  - multiple-backends
+  - high-availability
+  failure_injection: true
+  packet_capture: true
+  log_analysis: true
+operations:
+  installation: true
+  systemd: true
+  configuration_validation: true
+  upgrades_and_reload: true
+  logging: true
+  monitoring: true
+  troubleshooting: true
+security:
+  enabled: true
+  topics:
+  - SELinux
+  - firewalld
+  - TLS
+  - mTLS
+  - ACL
+  - authentication
+  - rate-limiting
+  - connection-limiting
+  - network-segmentation
+  - secret-management
+  - defensive-http-security
+observability:
+  logs: true
+  metrics: true
+  health_checks: true
+  runtime_state: true
+  prometheus: true
+  grafana: true
+troubleshooting_tools:
+- systemctl
+- journalctl
+- ss
+- lsof
+- curl
+- openssl
+- dig
+- tcpdump
+- tshark
+- ausearch
+final_project:
+  required: true
+  technologies:
+  - Squid
+  - Nginx
+  - HAProxy
+  - Keepalived
+  requirements:
+  - forward-proxy
+  - reverse-proxy
+  - L4-load-balancing
+  - L7-load-balancing
+  - health-checks
+  - TLS
+  - mTLS
+  - VIP
+  - failover
+  - SELinux
+  - firewalld
+  - logging
+  - metrics
+  - troubleshooting
+  - documentation
+  - Squid-IAM-consumer-integration
+  - central-users-and-groups
+  - Kerberos-SPNEGO-SSO
+  - IAM-and-non-IAM-comparison
+iam_integration:
+  role: optional-consumer
+  central_provider:
+  - LDAP
+  - Kerberos
+  - FreeIPA
+  consumer_cases:
+    Squid: primary-human-identity-consumer
+    Nginx: optional-external-or-delegated-authentication
+    HAProxy: normally-no-human-identity-required
+    Keepalived: no-human-identity-required
+  topics:
+  - authentication-vs-authorization
+  - users-and-groups
+  - LDAP
+  - Kerberos
+  - SPNEGO
+  - SSO
+  - service-principals
+  - keytabs
+  - DNS-and-time-dependencies
+  - identity-based-ACL
+  - logging-and-auditing
+  - IAM-troubleshooting
+  boundary: teach the consumer side; central identity lifecycle and governance belong to the IAM learning path

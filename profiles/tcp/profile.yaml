@@ -1,0 +1,83 @@
+name: tcpip
+title: "TCP/IP — 0 a experto en profundidad"
+language: es
+platform:
+  primary:
+    - Fedora
+    - RHEL
+level:
+  start: beginner
+  target: expert
+
+objectives:
+  - Comprender los modelos OSI y TCP/IP y la función de cada capa.
+  - Seguir la encapsulación y desencapsulación extremo a extremo.
+  - Dominar Ethernet, IPv4, IPv6, ARP/NDP, ICMP, routing, UDP y TCP.
+  - Comprender sockets, puertos, procesos y el stack de red Linux.
+  - Dominar ss, lsof, tcpdump, tshark y Nmap CLI desde básico hasta experto.
+  - Analizar PCAP y correlacionar paquetes con sockets, procesos, routing y estado del kernel.
+  - Diagnosticar fallos de conectividad, rendimiento, MTU, NAT y aplicaciones.
+  - Construir laboratorios reproducibles con Linux network namespaces.
+
+teaching:
+  depth: very_deep
+  progression: "concepto -> comando -> observación -> captura -> análisis -> troubleshooting"
+  theory_and_practice: true
+  labs: true
+  troubleshooting: true
+  logs_and_observability: true
+  command_explanations: true
+  packet_analysis: true
+  fedora_rhel_focus: true
+
+lesson_structure:
+  start: "🎯 OBJETIVO"
+  sections:
+    - "Conceptos y fundamentos"
+    - "Comandos y sintaxis"
+    - "Ejemplos"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "Troubleshooting"
+    - "Logs, counters y evidencias"
+    - "💡 Idea importante"
+  end: "🧠 QUÉ DEBES RECORDAR"
+
+tools:
+  core:
+    - ip
+    - ss
+    - lsof
+    - tcpdump
+    - tshark
+    - nmap
+  supporting:
+    - ping
+    - tracepath
+    - traceroute
+    - ethtool
+    - nstat
+    - conntrack
+    - iperf3
+    - ncat
+    - journalctl
+
+security:
+  nmap:
+    authorized_targets_only: true
+    preference: "laboratorios locales, namespaces y sistemas expresamente autorizados"
+
+final_project:
+  type: "TCP/IP troubleshooting lab"
+  requirements:
+    - Linux network namespaces
+    - IPv4
+    - IPv6
+    - TCP
+    - UDP
+    - routing
+    - NAT
+    - packet_capture
+    - PCAP_analysis
+    - intentional_failures
+    - evidence_based_diagnosis

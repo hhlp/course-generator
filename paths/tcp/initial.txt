@@ -1,0 +1,679 @@
+TCP/IP — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
+Fedora / RHEL · TCP/UDP · Linux networking · troubleshooting · packet analysis
+
+BLOQUE 0 — Fundamentos de redes, modelos OSI/TCP-IP y laboratorio
+0.1 Qué es una red y qué problemas resuelve
+0.2 Host, nodo, interfaz, enlace, switch, router y gateway
+0.3 LAN, WAN e Internet
+0.4 Comunicación end-to-end
+0.5 Protocolos de red
+0.6 PDU: datos, segmentos/datagramas, paquetes y frames
+0.7 Modelo OSI: introducción
+0.8 Capa 7 — Application
+0.9 Capa 6 — Presentation
+0.10 Capa 5 — Session
+0.11 Capa 4 — Transport
+0.12 Capa 3 — Network
+0.13 Capa 2 — Data Link
+0.14 Capa 1 — Physical
+0.15 Función de cada capa OSI
+0.16 Modelo TCP/IP: introducción
+0.17 Application Layer
+0.18 Transport Layer
+0.19 Internet Layer
+0.20 Network Access / Link Layer
+0.21 Modelo TCP/IP de 4 capas
+0.22 Variante TCP/IP de 5 capas
+0.23 OSI vs TCP/IP
+0.24 Correspondencia OSI ↔ TCP/IP
+0.25 Application Layer: HTTP(S), DNS, DHCP, SSH, SMTP y NTP
+0.26 Aplicación ↔ socket
+0.27 Transport Layer: TCP y UDP
+0.28 Puertos, multiplexación y demultiplexación
+0.29 TCP connection-oriented vs UDP connectionless
+0.30 Segment vs Datagram
+0.31 Internet Layer: IPv4, IPv6, ICMP e ICMPv6
+0.32 Direccionamiento, routing, TTL y Hop Limit
+0.33 Network Access / Link: Ethernet, MAC, ARP y NDP
+0.34 Physical Layer: bits, señales, velocidad, duplex y link state
+0.35 Encapsulación y desencapsulación
+0.36 Application Data → TCP/UDP → IP → Ethernet → bits
+0.37 Headers y payload: qué añade y elimina cada capa
+0.38 Comunicación en una LAN
+0.39 Comunicación entre redes
+0.40 Switch vs router
+0.41 Qué cambia en cada salto y qué permanece end-to-end
+0.42 Unicast, broadcast, multicast y anycast
+0.43 Latencia, RTT, jitter, pérdida, bandwidth y throughput
+0.44 MTU, MSS y fragmentación: introducción
+0.45 Instalación del laboratorio Fedora/RHEL
+0.46 iproute2, iputils, ss y lsof
+0.47 tcpdump, Wireshark/tshark
+0.48 Nmap/ncat
+0.49 ethtool, traceroute/tracepath, iperf3 y conntrack-tools
+0.50 man, --help y documentación upstream
+0.51 Laboratorio inicial: seguir una conexión a través del stack
+
+BLOQUE 1 — Ethernet y capa de enlace
+1.1 Ethernet y IEEE 802.3
+1.2 MAC addresses
+1.3 Ethernet frame
+1.4 EtherType
+1.5 Unicast, broadcast y multicast Ethernet
+1.6 MTU Ethernet
+1.7 VLAN y 802.1Q
+1.8 Interfaces Linux y estados UP/DOWN
+1.9 ip link
+1.10 ip -s link
+1.11 MAC address en Linux
+1.12 Counters, errors y drops
+1.13 Captura Ethernet con tcpdump
+1.14 Análisis Ethernet con tshark
+1.15 Troubleshooting de capa 2
+
+BLOQUE 2 — IPv4 y subnetting
+2.1 IPv4 y estructura de una dirección
+2.2 CIDR y máscaras
+2.3 Network, broadcast y host range
+2.4 Subnetting
+2.5 Supernetting y sumarización
+2.6 Direcciones públicas, privadas, loopback y link-local
+2.7 IPv4 header
+2.8 TTL, Protocol, DSCP y ECN
+2.9 Campos de fragmentación
+2.10 ip -4 address
+2.11 Direcciones múltiples
+2.12 ip route e ip route get
+2.13 Troubleshooting IPv4
+
+BLOQUE 3 — ARP y tabla de vecinos
+3.1 IPv4 → MAC
+3.2 ARP Request / Reply
+3.3 ARP cache
+3.4 ip neigh
+3.5 NUD: REACHABLE, STALE, DELAY, PROBE y FAILED
+3.6 Gratuitous ARP
+3.7 Conflictos y duplicate address
+3.8 Capturar y analizar ARP
+3.9 Troubleshooting ARP
+
+BLOQUE 4 — IPv6 y Neighbor Discovery
+4.1 Por qué IPv6
+4.2 Notación y prefix length
+4.3 Global unicast, link-local, unique local y multicast
+4.4 IPv6 header y extension headers
+4.5 ICMPv6
+4.6 Neighbor Discovery Protocol
+4.7 RS, RA, NS y NA
+4.8 SLAAC
+4.9 Duplicate Address Detection
+4.10 ip -6 address
+4.11 ip -6 route
+4.12 ip -6 neigh
+4.13 Captura y análisis IPv6
+4.14 Troubleshooting IPv6
+
+BLOQUE 5 — ICMP, ICMPv6 y diagnóstico
+5.1 ICMP e ICMPv6
+5.2 Echo Request / Reply
+5.3 Destination Unreachable
+5.4 Time Exceeded
+5.5 Redirect
+5.6 ping IPv4/IPv6
+5.7 RTT y packet loss
+5.8 TTL / Hop Limit
+5.9 tracepath y traceroute
+5.10 UDP, ICMP y TCP traceroute
+5.11 Path MTU Discovery
+5.12 Packet Too Big / Fragmentation Needed
+5.13 Captura ICMP con tcpdump/tshark
+5.14 Troubleshooting ICMP
+
+BLOQUE 6 — Routing Linux
+6.1 Routing y forwarding
+6.2 Directly connected routes
+6.3 Default gateway
+6.4 Routing table
+6.5 Longest Prefix Match
+6.6 Route metrics
+6.7 ip route show/get/add/del
+6.8 Multiple routing tables
+6.9 ip rule
+6.10 Policy-based routing
+6.11 Linux como router
+6.12 net.ipv4.ip_forward
+6.13 rp_filter
+6.14 Captura de tráfico routed
+6.15 Troubleshooting de routing
+
+BLOQUE 7 — Puertos, sockets y procesos
+7.1 Qué es un socket
+7.2 IP + protocolo + puerto
+7.3 Source/Destination IP y Port
+7.4 4-tuple y 5-tuple
+7.5 TCP socket vs UDP socket
+7.6 Listening y connected sockets
+7.7 Well-known, registered y ephemeral ports
+7.8 /etc/services
+7.9 Socket API conceptual
+7.10 bind(), listen(), accept(), connect()
+7.11 send()/recv()
+7.12 Linux socket lifecycle
+7.13 /proc/net
+7.14 Socket ↔ PID ↔ proceso
+
+BLOQUE 8 — UDP en profundidad
+8.1 UDP y datagramas
+8.2 UDP header
+8.3 Source/Destination Port, Length y Checksum
+8.4 Connectionless y ausencia de handshake
+8.5 Sin retransmisión ni ordering en el protocolo
+8.6 Pérdida y duplicación
+8.7 UDP y MTU
+8.8 Fragmentación IP y UDP
+8.9 ICMP Port Unreachable
+8.10 DNS, DHCP y QUIC sobre UDP
+8.11 UDP sockets en Linux
+8.12 Capturar y filtrar UDP
+8.13 Troubleshooting UDP
+
+BLOQUE 9 — TCP: fundamentos y handshake
+9.1 TCP y connection-oriented
+9.2 TCP header
+9.3 Sequence y Acknowledgment Number
+9.4 SYN, ACK, FIN, RST, PSH y URG
+9.5 TCP options
+9.6 MSS
+9.7 Window Scale
+9.8 SACK
+9.9 Timestamps
+9.10 TCP checksum
+9.11 Three-way handshake
+9.12 Transferencia de datos
+9.13 Four-way termination
+9.14 TCP Reset
+9.15 Capturar handshake y teardown
+9.16 Interpretación con tcpdump/tshark
+
+BLOQUE 10 — TCP State Machine
+10.1 TCP state machine
+10.2 CLOSED
+10.3 LISTEN
+10.4 SYN-SENT
+10.5 SYN-RECEIVED
+10.6 ESTABLISHED
+10.7 FIN-WAIT-1
+10.8 FIN-WAIT-2
+10.9 CLOSE-WAIT
+10.10 CLOSING
+10.11 LAST-ACK
+10.12 TIME-WAIT
+10.13 Half-open connections
+10.14 TIME_WAIT y CLOSE_WAIT en Linux
+10.15 RST y cierres anómalos
+10.16 Estados TCP con ss
+10.17 Diagnóstico de estados anómalos
+
+BLOQUE 11 — TCP reliability y flow control
+11.1 Sequence numbers y ACK
+11.2 Cumulative ACK
+11.3 Retransmission
+11.4 Duplicate ACK
+11.5 Out-of-order
+11.6 SACK
+11.7 RTT estimation y RTO
+11.8 Sliding Window
+11.9 Receive Window y Window Scaling
+11.10 Zero Window y Zero Window Probe
+11.11 Silly Window Syndrome
+11.12 Nagle
+11.13 Delayed ACK
+11.14 TCP_NODELAY
+11.15 Diagnóstico de retransmisiones y pérdida
+
+BLOQUE 12 — TCP congestion control
+12.1 Congestion vs flow control
+12.2 Congestion Window
+12.3 Slow Start
+12.4 Congestion Avoidance
+12.5 ssthresh
+12.6 Fast Retransmit y Fast Recovery
+12.7 AIMD
+12.8 Reno
+12.9 CUBIC
+12.10 BBR
+12.11 Congestion control en Linux
+12.12 sysctl TCP
+12.13 ss -i
+12.14 RTT, cwnd y retransmissions
+12.15 Diagnóstico de rendimiento TCP
+
+BLOQUE 13 — ss: básico
+13.1 Qué es ss y relación con iproute2
+13.2 ss vs netstat
+13.3 Sintaxis y salida
+13.4 -t, -u, -l, -a, -n, -p
+13.5 -4 y -6
+13.6 ss -lnt
+13.7 ss -lun
+13.8 ss -tunap
+13.9 Local Address:Port y Peer Address:Port
+13.10 Identificar listeners y conexiones
+13.11 Laboratorio básico
+
+BLOQUE 14 — ss: intermedio
+14.1 Filtrado de sockets
+14.2 Filtrar TCP/UDP
+14.3 Filtrar por estado
+14.4 listening, established, syn-sent y syn-recv
+14.5 time-wait y close-wait
+14.6 Filtrar source/destination
+14.7 Filtrar puertos
+14.8 Expresiones de filtros
+14.9 Procesos y PID
+14.10 ss -s
+14.11 Laboratorio intermedio
+
+BLOQUE 15 — ss: avanzado y experto
+15.1 ss -i
+15.2 TCP internal information
+15.3 RTT y RTO
+15.4 cwnd y ssthresh
+15.5 MSS y PMTU
+15.6 Window Scale
+15.7 retrans
+15.8 bytes_acked / bytes_received
+15.9 segs_out / segs_in
+15.10 pacing_rate y delivery_rate
+15.11 Congestion algorithm
+15.12 Timers
+15.13 Send-Q / Recv-Q
+15.14 Diagnóstico de retransmisiones y congestión
+15.15 Diagnóstico CLOSE_WAIT/TIME_WAIT
+15.16 Diagnóstico SYN-SENT/SYN-RECV
+15.17 Correlación ss ↔ tcpdump
+15.18 Laboratorio experto
+
+BLOQUE 16 — lsof networking: básico
+16.1 Qué es lsof
+16.2 File descriptors
+16.3 Sockets como file descriptors
+16.4 lsof -i
+16.5 lsof -i4 / -i6
+16.6 lsof -iTCP / -iUDP
+16.7 Filtrar por puerto
+16.8 LISTEN y ESTABLISHED
+16.9 PID, USER y COMMAND
+16.10 Laboratorio básico
+
+BLOQUE 17 — lsof networking: intermedio
+17.1 lsof -p
+17.2 lsof -a
+17.3 Combinar criterios
+17.4 Filtrar proceso, usuario, protocolo y host
+17.5 Rangos de puertos
+17.6 Estado TCP
+17.7 Socket ↔ PID ↔ executable ↔ file descriptor
+17.8 lsof + systemd
+17.9 lsof + ss
+17.10 Laboratorio intermedio
+
+BLOQUE 18 — lsof networking: avanzado y experto
+18.1 Inspección profunda de file descriptors
+18.2 Socket inode
+18.3 /proc/PID/fd y /proc/PID/net
+18.4 Network namespaces y procesos
+18.5 IPv4 vs IPv6 binding
+18.6 Wildcard vs localhost binding
+18.7 Diagnóstico address already in use
+18.8 Identificar quién ocupa un puerto
+18.9 Sockets heredados
+18.10 systemd socket activation
+18.11 Correlación lsof ↔ ss ↔ /proc ↔ tcpdump
+18.12 Laboratorio experto
+
+BLOQUE 19 — tcpdump: básico
+19.1 Packet capture y libpcap
+19.2 tcpdump -D e interfaces
+19.3 -i y pseudo-interfaz any
+19.4 -n / -nn
+19.5 -v / -vv / -vvv
+19.6 -c y -s
+19.7 -A / -X / -XX
+19.8 Capturar IPv4/IPv6
+19.9 Capturar TCP/UDP/ICMP/ARP
+19.10 Guardar PCAP con -w
+19.11 Leer PCAP con -r
+19.12 Laboratorio básico
+
+BLOQUE 20 — tcpdump: intermedio
+20.1 Capture expressions
+20.2 host, src, dst y net
+20.3 port, src port, dst port y portrange
+20.4 tcp, udp, icmp, ip, ip6 y arp
+20.5 and, or, not y agrupación
+20.6 Filtros combinados
+20.7 Snap length
+20.8 Timestamps
+20.9 Rotación de capturas
+20.10 Capturas seguras en producción
+20.11 Laboratorio intermedio
+
+BLOQUE 21 — tcpdump y BPF avanzado
+21.1 Berkeley Packet Filter
+21.2 Anatomía de filtros BPF
+21.3 Offsets y acceso a campos
+21.4 tcp[tcpflags]
+21.5 SYN, ACK, RST y FIN
+21.6 SYN sin ACK
+21.7 Payload TCP
+21.8 Fragmentación IP
+21.9 ICMP types
+21.10 Operaciones binarias y máscaras
+21.11 Construcción sistemática de filtros complejos
+21.12 Optimización de filtros
+21.13 Laboratorio BPF
+
+BLOQUE 22 — tcpdump: experto y troubleshooting
+22.1 Capturar handshake y teardown
+22.2 RST
+22.3 Retransmissions y pérdida
+22.4 MTU, fragmentación y PMTUD
+22.5 DNS
+22.6 TCP y UDP
+22.7 NAT y routing
+22.8 Network namespaces
+22.9 Capturas en múltiples interfaces
+22.10 tcpdump ↔ ss
+22.11 tcpdump ↔ tshark
+22.12 Crear PCAPs reproducibles
+22.13 Laboratorio experto
+
+BLOQUE 23 — tshark: básico
+23.1 Wireshark, tshark y dumpcap
+23.2 tshark -D
+23.3 Capturar tráfico
+23.4 Leer/escribir PCAP
+23.5 -r, -w y -c
+23.6 Capture filters vs Display filters
+23.7 -f y -Y
+23.8 IPv4/IPv6
+23.9 TCP/UDP/ICMP/DNS
+23.10 Laboratorio básico
+
+BLOQUE 24 — tshark: intermedio
+24.1 Wireshark Display Filter Language
+24.2 Operadores y campos
+24.3 ip.addr, ip.src e ip.dst
+24.4 tcp.port, tcp.srcport y tcp.dstport
+24.5 udp.port
+24.6 tcp.flags
+24.7 tcp.stream y udp.stream
+24.8 Follow TCP/UDP Stream
+24.9 -T fields y -e
+24.10 Separadores y extracción de columnas
+24.11 CSV y JSON
+24.12 Automatización shell
+24.13 Laboratorio intermedio
+
+BLOQUE 25 — tshark: avanzado
+25.1 Estadísticas
+25.2 Protocol Hierarchy
+25.3 Conversations
+25.4 Endpoints
+25.5 I/O Statistics
+25.6 TCP statistics
+25.7 tcp.analysis
+25.8 retransmission y fast_retransmission
+25.9 duplicate_ack y out_of_order
+25.10 lost_segment
+25.11 zero_window y window_full
+25.12 keep_alive
+25.13 RTT y sequence analysis
+25.14 Expert Information
+25.15 Extraer métricas de PCAP
+25.16 Procesamiento masivo de capturas
+25.17 Laboratorio avanzado
+
+BLOQUE 26 — tshark: experto y análisis PCAP
+26.1 Metodología de análisis PCAP
+26.2 Endpoints, conversations y timeline
+26.3 Reconstruir handshake y teardown
+26.4 Sequence/ACK
+26.5 Retransmissions y packet loss
+26.6 Out-of-order
+26.7 Window problems
+26.8 RST analysis
+26.9 RTT y throughput
+26.10 MTU/MSS
+26.11 DNS correlation
+26.12 TCP stream reconstruction
+26.13 UDP conversation analysis
+26.14 ICMP correlation
+26.15 Generar informes CLI
+26.16 tcpdump → PCAP → tshark
+26.17 Laboratorio experto
+
+BLOQUE 27 — Nmap CLI: básico
+27.1 Qué es Nmap y uso autorizado
+27.2 Sintaxis y targets
+27.3 Host discovery
+27.4 Port scanning
+27.5 TCP Connect Scan
+27.6 SYN Scan
+27.7 Selección de puertos y rangos
+27.8 open, closed y filtered
+27.9 Output básico
+27.10 Laboratorio básico
+
+BLOQUE 28 — Nmap CLI: intermedio
+28.1 UDP scan
+28.2 Service/version detection
+28.3 OS detection
+28.4 Timing
+28.5 Host discovery intermedio
+28.6 Selección avanzada de puertos
+28.7 Output normal, XML y grepable
+28.8 ncat
+28.9 Nmap + ss
+28.10 Nmap + tcpdump
+28.11 Laboratorio intermedio
+
+BLOQUE 29 — Nmap CLI: avanzado
+29.1 NSE y arquitectura
+29.2 Categorías NSE
+29.3 --script y --script-args
+29.4 Discovery y diagnostic scripts
+29.5 Service probes
+29.6 Fingerprinting
+29.7 TCP scan internals
+29.8 UDP scan internals
+29.9 Interpretar paquetes del scanner
+29.10 Nmap + tshark
+29.11 Laboratorio avanzado
+
+BLOQUE 30 — Nmap CLI: experto
+30.1 Anatomía completa de SYN scan
+30.2 Connect scan internals
+30.3 UDP scan internals
+30.4 ICMP discovery internals
+30.5 Estados y respuestas TCP
+30.6 RST interpretation
+30.7 ICMP unreachable
+30.8 Filtered vs dropped
+30.9 Capturar Nmap con tcpdump
+30.10 Analizar Nmap con tshark
+30.11 Correlación Nmap ↔ ss ↔ lsof ↔ tcpdump ↔ tshark
+30.12 Troubleshooting sistemático
+30.13 Laboratorio experto
+
+BLOQUE 31 — MTU, MSS, fragmentación y PMTUD
+31.1 MTU en profundidad
+31.2 Ethernet/IP MTU
+31.3 TCP MSS y negociación
+31.4 IPv4 fragmentation
+31.5 IPv6 y fragmentación
+31.6 Don't Fragment
+31.7 Path MTU Discovery
+31.8 ICMP Fragmentation Needed
+31.9 ICMPv6 Packet Too Big
+31.10 PMTUD black holes
+31.11 tracepath/ping y MTU
+31.12 tcpdump/tshark y fragmentación
+31.13 MSS clamping
+31.14 VPN/túneles y MTU
+31.15 Troubleshooting MTU/MSS
+
+BLOQUE 32 — NAT y connection tracking
+32.1 NAT, SNAT, DNAT y masquerading
+32.2 TCP/UDP y NAT
+32.3 Connection tracking
+32.4 NEW, ESTABLISHED, RELATED e INVALID
+32.5 conntrack CLI
+32.6 NAT y puertos
+32.7 Ephemeral ports
+32.8 NAT exhaustion
+32.9 Capturar antes/después de NAT
+32.10 Troubleshooting NAT
+
+BLOQUE 33 — Linux Network Namespaces
+33.1 Network namespaces
+33.2 ip netns
+33.3 Crear namespaces
+33.4 veth pairs
+33.5 Mover interfaces
+33.6 Direccionamiento
+33.7 Routing entre namespaces
+33.8 Linux bridge
+33.9 Namespaces + routing
+33.10 Namespaces + NAT
+33.11 tcpdump/ss/lsof dentro de namespaces
+33.12 Simular clientes, routers y servidores
+33.13 Introducción a networking de containers
+33.14 Laboratorio TCP/IP completo
+
+BLOQUE 34 — Kernel Linux y stack TCP/IP
+34.1 Linux networking stack
+34.2 RX path y TX path
+34.3 NIC → kernel → socket → proceso
+34.4 Proceso → socket → kernel → NIC
+34.5 sk_buff
+34.6 Socket buffers
+34.7 Receive/Send queues
+34.8 /proc/net
+34.9 /proc/sys/net
+34.10 sysctl net.ipv4/net.ipv6
+34.11 TCP/UDP parameters
+34.12 Buffer sizing
+34.13 Backlog y SYN backlog
+34.14 SYN cookies
+34.15 Ephemeral port range
+34.16 TCP keepalive
+34.17 FIN timeout
+34.18 nstat
+34.19 Kernel counters
+34.20 Diagnóstico del stack
+
+BLOQUE 35 — Rendimiento de red
+35.1 Latency vs bandwidth
+35.2 Bandwidth-delay product
+35.3 TCP throughput
+35.4 RTT y packet loss
+35.5 Receive/send buffers
+35.6 Window scaling
+35.7 Congestion window
+35.8 Retransmission impact
+35.9 iperf3
+35.10 TCP tests
+35.11 UDP tests
+35.12 Parallel streams
+35.13 ss -i durante pruebas
+35.14 tcpdump/tshark durante pruebas
+35.15 Identificar cuellos de botella
+
+BLOQUE 36 — Observabilidad y estadísticas TCP/IP
+36.1 ip -s link
+36.2 ss -s y ss -i
+36.3 nstat
+36.4 /proc/net/dev
+36.5 /proc/net/snmp
+36.6 /proc/net/netstat
+36.7 ethtool
+36.8 ethtool -S
+36.9 NIC counters
+36.10 Drops y errors
+36.11 Retransmissions
+36.12 TCP/UDP statistics
+36.13 Correlación métricas ↔ captura
+36.14 Correlación kernel ↔ socket ↔ proceso
+
+BLOQUE 37 — Troubleshooting TCP/IP sistemático
+37.1 Metodología Layer 1 → Layer 7
+37.2 ¿Existe interfaz y está UP?
+37.3 ¿Tiene IP?
+37.4 ¿Existe neighbor?
+37.5 ¿Existe ruta?
+37.6 ¿Responde gateway?
+37.7 ¿Funciona DNS?
+37.8 ¿Existe listener?
+37.9 ¿Está escuchando en IP/IPv4/IPv6 correctos?
+37.10 ¿Firewall/NAT?
+37.11 ¿Llega SYN?
+37.12 ¿Sale SYN/ACK?
+37.13 ¿Llega ACK?
+37.14 ¿RST?
+37.15 ¿Retransmissions o packet loss?
+37.16 ¿MTU/MSS/PMTUD?
+37.17 ¿Application timeout?
+37.18 ip + ping + tracepath
+37.19 ss + lsof
+37.20 nmap
+37.21 tcpdump + tshark
+37.22 journalctl y logs relacionados
+37.23 Checklist profesional de troubleshooting
+
+BLOQUE 38 — Laboratorios de fallos
+38.1 Puerto cerrado
+38.2 Puerto filtrado
+38.3 Servicio solo localhost
+38.4 Servicio solo IPv6
+38.5 Ruta/gateway incorrectos
+38.6 ARP/NDP failure
+38.7 DNS failure
+38.8 Firewall drop
+38.9 TCP RST
+38.10 SYN sin SYN/ACK
+38.11 SYN/ACK sin ACK
+38.12 TIME_WAIT masivo
+38.13 CLOSE_WAIT masivo
+38.14 Retransmisiones
+38.15 Packet loss y latencia
+38.16 MTU black hole
+38.17 UDP sin respuesta
+38.18 NAT incorrecto
+38.19 Capturar cada problema
+38.20 Diagnosticar sin conocer previamente la causa
+
+BLOQUE 39 — Proyecto final: TCP/IP Troubleshooting Lab
+39.1 Diseñar topología con namespaces
+39.2 Cliente, router y servidor
+39.3 IPv4 e IPv6
+39.4 Routing
+39.5 Servicio TCP
+39.6 Servicio UDP
+39.7 NAT y firewall
+39.8 Generar tráfico
+39.9 Inspeccionar interfaces, neighbors y routing
+39.10 Inspeccionar sockets con ss
+39.11 Asociar sockets/procesos con lsof
+39.12 Escanear con Nmap
+39.13 Capturar con tcpdump
+39.14 Analizar PCAP con tshark
+39.15 Introducir fallos intencionados
+39.16 Diagnosticar SYN failure y RST
+39.17 Diagnosticar UDP failure
+39.18 Diagnosticar routing y NAT
+39.19 Diagnosticar MTU y packet loss
+39.20 Correlacionar todas las capas OSI/TCP-IP
+39.21 Documentar evidencias
+39.22 Checklist final de troubleshooting

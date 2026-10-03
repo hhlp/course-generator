@@ -281,6 +281,30 @@ firewall-cmd --get-services
 
 ---
 
+## Documentación para integración IAM de OpenSSH
+
+### SSSD
+
+Utilizar la documentación actual de SSSD y las páginas man instaladas, especialmente `sssd(8)`, `sssd.conf(5)`, `sssctl(8)` y los providers correspondientes. Su función en este PATH es explicar la resolución/caché de identidades y la integración de autenticación y acceso consumida por OpenSSH.
+
+### PAM y NSS
+
+Utilizar las páginas man y documentación actual de Fedora/Linux para PAM, NSS, `getent(1)` e `id(1)`. Enseñar su posición en la cadena de resolución/autenticación sin convertir este PATH en el curso proveedor IAM.
+
+### Kerberos / GSSAPI
+
+Utilizar la documentación actual de MIT Kerberos, las páginas man instaladas (`kinit`, `klist`, `krb5.conf`) y la documentación OpenSSH de GSSAPI. Cubrir tickets/TGT y autenticación SSH, distinguiendo claramente autenticación Kerberos de identidad LDAP/FreeIPA.
+
+### FreeIPA
+
+Utilizar la documentación oficial actual de FreeIPA y la documentación Fedora/RHEL aplicable para enrolamiento de clientes, SSSD, Kerberos y HBAC. En este PATH FreeIPA se estudia como **provider consumido por OpenSSH**; la provisión y administración profunda de identidades pertenece al PATH IAM.
+
+### Regla arquitectónica IAM
+
+No recomendar crear cuentas locales duplicadas para representar usuarios que deben proceder del provider central. Los laboratorios deben demostrar la cadena `sshd → PAM/NSS → SSSD → IAM` y enseñar a diagnosticar DNS, sincronización temporal, Kerberos, SSSD y OpenSSH por capas. Watchdog queda fuera de esta integración.
+
+---
+
 ## Jerarquía de fuentes
 
 Ante contradicciones utilizar este orden orientativo:

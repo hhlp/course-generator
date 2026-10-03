@@ -1,0 +1,149 @@
+name: dhcp
+title: "DHCP 0 → Experto en profundidad"
+language: es
+
+platform:
+  primary:
+    - Fedora
+    - RHEL
+  dhcp_implementation:
+    - ISC Kea
+
+level:
+  start: beginner
+  end: expert
+  depth: deep
+
+audience:
+  - administradores Linux
+  - administradores RHEL/Fedora
+  - ingenieros de sistemas
+  - ingenieros de redes
+  - DevOps
+  - SRE
+
+objectives:
+  - comprender DHCPv4 en profundidad
+  - comprender DHCPv6 y su relación con SLAAC y Router Advertisement
+  - instalar y administrar ISC Kea
+  - configurar subnets, pools, leases y reservations
+  - dominar DHCP options
+  - implementar DHCP relay
+  - implementar Kea High Availability
+  - administrar logging y observabilidad
+  - diagnosticar problemas mediante logs y packet capture
+  - integrar DHCP con firewalld y SELinux
+  - diseñar una infraestructura DHCP de producción
+  - preparar la transición hacia DHCP y DNS dinámico
+
+teaching:
+  style: progressive
+  theory_and_practice: true
+  protocol_depth: deep
+  production_orientation: true
+  troubleshooting_first_class: true
+  labs_required: true
+  packet_analysis: true
+
+lesson_structure:
+  start: "🎯 OBJETIVO"
+  recommended_sections:
+    - "Conceptos"
+    - "Ejemplos"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "Troubleshooting"
+    - "Logs"
+  end: "🧠 QUÉ DEBES RECORDAR"
+
+core_topics:
+  - DHCPv4
+  - DHCPv6
+  - DORA
+  - SLAAC
+  - Router Advertisement
+  - Kea
+  - reservations
+  - options
+  - leases
+  - relay
+  - Option 82
+  - High Availability
+  - logging
+  - troubleshooting
+  - security
+  - observability
+
+logging:
+  required: true
+  topics:
+    - Kea loggers
+    - severity
+    - debuglevel
+    - journald
+    - journalctl
+    - file logging
+    - log rotation
+    - log correlation
+
+troubleshooting:
+  required: true
+  methodology:
+    - service status
+    - configuration validation
+    - sockets
+    - interfaces
+    - routing
+    - VLAN
+    - relay
+    - firewall
+    - SELinux
+    - logs
+    - packet capture
+    - lease state
+  tools:
+    - systemctl
+    - journalctl
+    - ss
+    - ip
+    - nmcli
+    - firewall-cmd
+    - ausearch
+    - tcpdump
+    - tshark
+    - Wireshark
+    - jq
+    - curl
+    - dig
+
+labs:
+  environment: isolated
+  public_access_required: false
+  scenarios:
+    - DHCPv4
+    - DHCPv6
+    - reservations
+    - custom options
+    - multiple subnets
+    - VLAN
+    - relay
+    - HA
+    - logging
+    - packet capture
+    - pool exhaustion
+    - firewall failure
+    - SELinux diagnostics
+    - relay failure
+    - HA failure
+
+next_path:
+  name: "DHCP + DNS Integration"
+  topics:
+    - DDNS
+    - Kea DHCP-DDNS
+    - BIND
+    - forward updates
+    - reverse updates
+    - TSIG
+    - integration troubleshooting

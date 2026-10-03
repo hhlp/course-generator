@@ -223,7 +223,19 @@ update-crypto-policies
 El alumno debe aprender a descubrir qué paquete instala un archivo, qué servicio controla
 un componente y dónde está documentada una configuración.
 
-## 9. Watchdog
+## 9. Integración OpenSSH con IAM centralizado
+
+OpenSSH debe tratarse como **consumer de IAM**, no como sistema proveedor de identidades.
+
+El PATH debe explicar la cadena `sshd → PAM/NSS → SSSD → IAM central (LDAP/Kerberos/FreeIPA)` y cubrir NSS, PAM, SSSD, Kerberos/GSSAPI, FreeIPA, enrolamiento del host, resolución de usuarios y grupos, HBAC, caché/offline y troubleshooting.
+
+No duplicar el PATH IAM: la creación, provisión, gobierno y administración profunda de usuarios, grupos, directorio, Kerberos y FreeIPA pertenecen al PATH IAM. Aquí se estudia cómo OpenSSH **consume** esas identidades y políticas.
+
+En troubleshooting IAM para SSH contemplar DNS y sincronización temporal antes de Kerberos, y después SSSD, NSS/PAM y `sshd`.
+
+Watchdog **no tiene papel respecto a IAM** y no debe introducir dependencias artificiales con LDAP, Kerberos, SSSD o FreeIPA.
+
+## 10. Watchdog
 
 Watchdog constituye una segunda parte diferenciada del PATH.
 
@@ -261,7 +273,7 @@ Explicar:
 - `sd_notify()` cuando corresponda;
 - diagnóstico.
 
-## 10. Parámetros del kernel
+## 11. Parámetros del kernel
 
 Explicar y verificar según disponibilidad/versiones:
 
@@ -286,7 +298,7 @@ modinfo
 lsmod
 ```
 
-## 11. systemd y watchdog
+## 12. systemd y watchdog
 
 Distinguir:
 
@@ -307,7 +319,7 @@ Type=notify
 
 sin mezclarlos como si fueran el mismo mecanismo.
 
-## 12. Método pedagógico
+## 13. Método pedagógico
 
 Cada lección debe comenzar obligatoriamente con:
 
@@ -330,7 +342,7 @@ Cada lección debe finalizar obligatoriamente con:
 Este último apartado debe contener entre 3 y 7 ideas esenciales y no limitarse a repetir
 el objetivo.
 
-## 13. Estilo
+## 14. Estilo
 
 - Español técnico claro.
 - Comandos y rutas exactos.
@@ -344,7 +356,7 @@ el objetivo.
 - Explicar cómo verificar cada cambio importante.
 - Indicar riesgos antes de cambios que puedan bloquear acceso SSH.
 
-## 14. Laboratorios
+## 15. Laboratorios
 
 Los laboratorios deben fomentar descubrimiento y diagnóstico.
 
@@ -369,7 +381,7 @@ grep WATCHDOG /boot/config-$(uname -r)
 
 No limitarse a “copiar comando → observar salida”. Explicar qué hipótesis se está verificando.
 
-## 15. Troubleshooting
+## 16. Troubleshooting
 
 Aplicar una metodología por capas:
 
@@ -401,7 +413,7 @@ firewall-cmd
 ausearch
 ```
 
-## 16. Criterio de profundidad
+## 17. Criterio de profundidad
 
 Una lección no está completa por definir el término.
 
@@ -420,7 +432,7 @@ Debe responder, según proceda:
 - cómo se diagnostica;
 - qué implicaciones de seguridad tiene.
 
-## 17. Resultado final esperado
+## 18. Resultado final esperado
 
 Al completar el PATH, el alumno debe poder administrar OpenSSH en Fedora de forma
 independiente, construir configuraciones modulares cliente/servidor, diagnosticar problemas

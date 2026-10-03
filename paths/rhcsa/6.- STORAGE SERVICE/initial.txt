@@ -1,0 +1,489 @@
+FILE / STORAGE SERVICES — 0 → EXPERTO EN PROFUNDIDAD
+
+BLOQUE 0 — FUNDAMENTOS DE FILE & STORAGE SERVICES
+0.1 File services vs block storage
+0.2 Local storage vs network storage
+0.3 File-level vs block-level access
+0.4 NAS vs SAN
+0.5 Cliente / servidor
+0.6 Stateful vs stateless protocols
+0.7 TCP/IP aplicado al almacenamiento
+0.8 Puertos y servicios
+0.9 Filesystems y almacenamiento remoto
+0.10 Mount points
+0.11 Persistencia de mounts
+0.12 /etc/fstab
+0.13 systemd mount units
+0.14 systemd automount units
+0.15 Network filesystems
+0.16 Permisos POSIX
+0.17 UID / GID
+0.18 ACL
+0.19 SELinux aplicado a file services
+0.20 firewalld aplicado a file services
+0.21 DNS y resolución de nombres
+0.22 Rendimiento, latencia, throughput e IOPS
+0.23 Logs: journald, rsyslog y /var/log
+0.24 Herramientas generales de diagnóstico
+0.25 Laboratorio base de almacenamiento en red
+0.26 Modelo de identidad en File/Storage: autónomo vs IAM centralizado
+0.27 Servicios que pueden operar sin IAM centralizado
+0.28 File/Storage como consumer de IAM: alcance y límites
+0.29 Transición pedagógica: identidad local → identidad central
+0.30 NFS, Samba e iSCSI: diferencias respecto a IAM
+
+BLOQUE 1 — NFS: FUNDAMENTOS E INSTALACIÓN
+1.1 Qué es NFS
+1.2 Arquitectura NFS
+1.3 NFS client / server
+1.4 NFSv2, NFSv3 y NFSv4
+1.5 NFSv3 vs NFSv4
+1.6 NFSv4.x
+1.7 RPC
+1.8 rpcbind
+1.9 nfsd
+1.10 mountd
+1.11 lockd
+1.12 statd
+1.13 Servicios NFS en RHEL/Fedora
+1.14 Puertos utilizados
+1.15 NFS sobre TCP
+1.16 File handles
+1.17 UID/GID mapping
+1.18 Stateful vs stateless
+1.19 Instalar nfs-utils
+1.20 Instalación y habilitación del servidor
+1.21 Instalación del cliente
+1.22 Verificación inicial con systemctl, ss y rpcinfo
+
+BLOQUE 2 — NFS SERVER
+2.1 /etc/exports
+2.2 Sintaxis de exports
+2.3 Exportar directorios
+2.4 Clientes, redes, hostnames y wildcards
+2.5 ro / rw
+2.6 sync / async
+2.7 root_squash / no_root_squash
+2.8 all_squash
+2.9 anonuid / anongid
+2.10 subtree_check / no_subtree_check
+2.11 fsid
+2.12 crossmnt
+2.13 Export trees
+2.14 exportfs -a / -r / -v / -u
+2.15 showmount
+2.16 Verificar exports
+2.17 Persistencia
+2.18 Laboratorio NFS server
+
+BLOQUE 3 — NFS CLIENT
+3.1 Descubrir exports
+3.2 mount -t nfs
+3.3 NFSv3 mounts
+3.4 NFSv4 mounts
+3.5 vers= / proto= / port=
+3.6 rsize / wsize
+3.7 hard vs soft
+3.8 timeo / retrans
+3.9 _netdev / nofail
+3.10 bg / fg
+3.11 /etc/fstab
+3.12 systemd .mount
+3.13 systemd .automount
+3.14 findmnt / mount / umount
+3.15 nfsstat / nfsiostat
+3.16 Laboratorio cliente NFS
+
+BLOQUE 4 — NFS SECURITY
+4.1 Modelo de seguridad
+4.2 UID/GID y confianza entre hosts
+4.3 root_squash en profundidad
+4.4 POSIX permissions y ACL
+4.5 NFSv4 ACL: conceptos
+4.6 SELinux y NFS
+4.7 Contextos, booleans, semanage y restorecon
+4.8 firewalld
+4.9 NFSv3 y puertos RPC
+4.10 NFSv4 y firewall
+4.11 Kerberos + NFS
+4.11.1 NFS sin IAM: sec=sys, UID/GID y confianza entre hosts
+4.11.2 Limitaciones de identidad local y coherencia UID/GID
+4.11.3 Transición de NFS autónomo a consumer de IAM
+4.11.4 NFS como consumer de Kerberos/FreeIPA
+4.12 sec=sys / krb5 / krb5i / krb5p
+4.13 rpc.gssd
+4.14 Principals y keytabs
+4.15 Laboratorio NFS seguro
+
+BLOQUE 5 — NFS PERFORMANCE, LOGS & TROUBLESHOOTING
+5.1 rsize / wsize / nconnect
+5.2 sync vs async
+5.3 Latencia y throughput
+5.4 Caching y attribute caching
+5.5 nfsstat / nfsiostat / iostat / vmstat
+5.6 ss / rpcinfo / tcpdump / tshark
+5.7 /proc/fs/nfs* y /proc/net/rpc/*
+5.8 systemctl y journalctl
+5.9 Localizar logs reales: journal, rsyslog y /var/log
+5.10 access denied / permission denied
+5.11 stale file handle
+5.12 UID/GID, DNS, firewall y SELinux
+5.13 RPC failures
+5.14 Hung mounts
+5.15 Recuperación ante servidor caído
+5.16 Laboratorio de troubleshooting
+
+BLOQUE 6 — AUTOFS: FUNDAMENTOS E INSTALACIÓN
+6.1 Qué es autofs
+6.2 Automount vs mount permanente
+6.3 Arquitectura autofs
+6.4 automount daemon
+6.5 Instalación
+6.6 autofs.service
+6.7 /etc/auto.master
+6.8 /etc/auto.master.d/
+6.9 Master maps
+6.10 Indirect maps
+6.11 Direct maps
+6.12 Wildcard maps
+6.13 Map syntax
+6.14 Timeout
+6.15 Relación autofs ↔ NFS
+6.16 Relación autofs ↔ systemd automount
+
+BLOQUE 7 — AUTOFS AVANZADO
+7.1 Indirect y direct maps
+7.2 /-
+7.3 Wildcards y substitution variables
+7.4 Multiple mounts / multimounts
+7.5 Replicated servers y failover
+7.6 Host maps
+7.7 Executable/program maps
+7.8 LDAP maps: conceptos
+7.9 NFS mediante autofs
+7.10 CIFS/SMB mediante autofs
+7.11 Opciones de montaje
+7.12 Seguridad y SELinux
+7.13 systemd integration
+7.14 Laboratorio avanzado
+
+BLOQUE 8 — AUTOFS LOGS & TROUBLESHOOTING
+8.1 systemctl status autofs
+8.2 journalctl -u autofs
+8.3 automount debugging
+8.4 automount --dumpmaps
+8.5 Validación de maps
+8.6 DNS / NFS / permisos / SELinux
+8.7 Timeouts
+8.8 Mounts que no desaparecen
+8.9 lsof / fuser / strace
+8.10 Localización y configuración de logs
+8.11 Laboratorio troubleshooting
+
+BLOQUE 9 — SAMBA / SMB: FUNDAMENTOS E INSTALACIÓN
+9.1 SMB/CIFS
+9.2 SMB1 / SMB2 / SMB3
+9.3 Por qué evitar SMB1
+9.4 Arquitectura Samba
+9.5 Windows ↔ Linux interoperability
+9.6 smbd / nmbd / winbindd
+9.7 NetBIOS y DNS
+9.8 Workgroups y domains
+9.9 Active Directory: introducción
+9.10 Usuarios y shares
+9.11 Instalación Samba
+9.12 Servicios systemd
+9.13 Puertos SMB
+9.14 Verificación inicial
+
+BLOQUE 10 — SAMBA SERVER
+10.1 /etc/samba/smb.conf
+10.2 [global]
+10.3 Shares
+10.4 testparm
+10.5 path / browseable / writable / read only
+10.6 valid users / invalid users
+10.7 write list / read list
+10.8 guest ok
+10.9 force user / force group
+10.10 create mask / directory mask
+10.11 inherit permissions
+10.12 Interfaces y hosts allow/deny
+10.13 smbpasswd / pdbedit
+10.14 Usuarios y grupos
+10.14.1 Samba autónomo: usuarios y grupos locales
+10.14.2 smbpasswd/pdbedit como modelo sin IAM centralizado
+10.14.3 Limitaciones del modelo de identidad local
+10.15 Shares públicos, privados y homes
+10.16 Laboratorio Samba server
+
+BLOQUE 11 — SAMBA CLIENT
+11.1 smbclient
+11.2 Listar shares y autenticarse
+11.3 Transferencia de archivos
+11.4 mount.cifs y cifs-utils
+11.5 Montaje manual
+11.6 SMB dialect y vers=
+11.7 username / password / domain
+11.8 uid / gid / file_mode / dir_mode
+11.9 credentials file
+11.10 /etc/fstab y _netdev
+11.11 systemd mounts
+11.12 autofs + CIFS
+11.13 Laboratorio cliente Linux
+
+BLOQUE 12 — SAMBA PERMISSIONS & SECURITY
+12.1 Permisos Samba vs filesystem
+12.2 POSIX permissions y ACL
+12.3 getfacl / setfacl
+12.4 Samba/Windows ACL
+12.5 Extended attributes
+12.6 Mapeo de identidades
+12.7 SELinux: samba_share_t
+12.8 semanage fcontext / restorecon / booleans
+12.9 firewalld
+12.10 SMB encryption
+12.11 SMB signing
+12.12 Protocol minimum
+12.13 Guest access y riesgos
+12.14 Hardening Samba
+12.15 Laboratorio de seguridad
+
+BLOQUE 13 — SAMBA + IAM / DIRECTORIOS CENTRALIZADOS
+13.0 De Samba autónomo a consumer de IAM
+13.0.1 Qué cambia al centralizar identidad
+13.0.2 LDAP, Kerberos, FreeIPA y Active Directory: responsabilidades
+13.0.3 Samba como member server y consumer de identidad central
+13.1 AD DS, DNS, Kerberos y LDAP
+13.2 Domain Controller vs member server
+13.3 Realm y join al dominio
+13.4 realmd / adcli
+13.5 SSSD vs winbind
+13.6 NSS y PAM
+13.7 SID / RID
+13.8 UID/GID mapping e idmap
+13.9 Kerberos tickets y keytabs
+13.10 smb.conf para AD
+13.11 Shares para usuarios AD
+13.12 ACL con usuarios/grupos AD
+13.13 Laboratorio member server
+
+BLOQUE 14 — SAMBA LOGS, TROUBLESHOOTING & PERFORMANCE
+14.1 testparm / smbstatus / smbclient / pdbedit
+14.2 wbinfo / getent / net
+14.3 kinit / klist
+14.4 journalctl y logs Samba
+14.5 log level / log file
+14.6 Debug dinámico
+14.7 Autenticación / permisos / ACL
+14.8 SELinux / firewall / DNS / Kerberos
+14.9 SMB negotiation
+14.10 tcpdump / tshark SMB
+14.11 Performance tuning
+14.12 Multichannel: conceptos
+14.13 Laboratorio troubleshooting
+
+BLOQUE 15 — iSCSI: FUNDAMENTOS E INSTALACIÓN
+15.1 File vs block storage
+15.2 SAN
+15.3 SCSI y SCSI over TCP/IP
+15.4 Target / Initiator / LUN
+15.5 IQN
+15.6 Portal / TPG
+15.7 Session / Connection
+15.8 Discovery / login / logout
+15.9 TCP 3260
+15.10 Linux LIO
+15.11 targetcli
+15.12 iscsi-initiator-utils
+15.13 Device Mapper
+15.14 Multipath: introducción
+15.15 Instalación de target e initiator
+
+BLOQUE 16 — iSCSI TARGET
+16.1 targetcli y LIO
+16.2 Backstores: block / fileio / pscsi / ramdisk
+16.3 Crear target e IQN
+16.4 Crear LUN
+16.5 Crear portal
+16.6 ACL por initiator IQN
+16.7 CHAP y Mutual CHAP
+16.8 Persistencia
+16.9 target.service
+16.10 firewalld y SELinux
+16.11 Verificación
+16.12 Laboratorio target
+
+BLOQUE 17 — iSCSI INITIATOR
+17.1 /etc/iscsi/initiatorname.iscsi
+17.2 iscsiadm
+17.3 Discovery SendTargets
+17.4 Nodes / sessions
+17.5 Login / logout
+17.6 CHAP
+17.7 Autostart / node.startup
+17.8 /var/lib/iscsi/
+17.9 lsblk / lsscsi / /dev/disk/by-path
+17.10 Crear filesystem y montar
+17.11 /etc/fstab / _netdev
+17.12 systemd dependencies
+17.13 Laboratorio initiator
+
+BLOQUE 18 — iSCSI + LVM
+18.1 iSCSI como block device
+18.2 GPT
+18.3 LVM sobre iSCSI
+18.4 pvcreate / vgcreate / lvcreate
+18.5 XFS / ext4
+18.6 Expansión del LUN
+18.7 SCSI/iSCSI rescan
+18.8 pvresize
+18.9 Expandir LV y filesystem
+18.10 Riesgos de acceso concurrente
+18.11 Filesystem local vs cluster filesystem
+18.12 Laboratorio expansión online
+
+BLOQUE 19 — iSCSI MULTIPATH
+19.1 Redundancia y múltiples paths
+19.2 device-mapper-multipath
+19.3 multipathd
+19.4 WWID
+19.5 /etc/multipath.conf
+19.6 multipath -ll
+19.7 Path groups
+19.8 Active/active y active/passive
+19.9 Path failure / failover / recovery
+19.10 Queueing
+19.11 iSCSI + multipath
+19.12 Network redundancy
+19.13 Laboratorio multipath
+
+BLOQUE 20 — iSCSI SECURITY
+20.1 Network isolation y storage VLAN
+20.2 Firewall
+20.3 ACL por IQN
+20.4 CHAP / Mutual CHAP
+20.5 Credenciales y limitaciones de CHAP
+20.5.1 iSCSI y la identidad de máquina/initiator frente a identidad humana
+20.5.2 Por qué iSCSI normalmente no es consumer del IAM de usuarios
+20.5.3 No confundir IQN/ACL/CHAP con LDAP/Kerberos/FreeIPA de usuarios
+20.6 IPsec: conceptos
+20.7 SELinux
+20.8 Least privilege
+20.9 Hardening y auditoría
+20.10 Laboratorio seguridad
+
+BLOQUE 21 — iSCSI PERFORMANCE
+21.1 Latencia / IOPS / throughput
+21.2 Queue depth
+21.3 MTU y jumbo frames
+21.4 TCP buffers
+21.5 NIC y bonding
+21.6 Multipath
+21.7 fio
+21.8 iostat / sar / vmstat / pidstat
+21.9 ss / ethtool / ip -s link
+21.10 Baselines y benchmarking correcto
+21.11 Laboratorio rendimiento
+
+BLOQUE 22 — iSCSI LOGS & TROUBLESHOOTING
+22.1 iscsiadm: session / node / discovery
+22.2 targetcli ls
+22.3 systemctl / journalctl / dmesg
+22.4 Kernel logs y /var/log según logging
+22.5 ss / tcpdump / tshark
+22.6 Discovery/login/CHAP failures
+22.7 ACL / IQN / firewall / SELinux
+22.8 LUN no visible
+22.9 SCSI rescan
+22.10 Sesiones perdidas
+22.11 Network failures
+22.12 Multipath failures
+22.13 Consideraciones de corrupción de filesystem
+22.14 Laboratorio troubleshooting
+
+BLOQUE 23 — SYSTEMD + NETWORK STORAGE
+23.1 Boot ordering
+23.2 remote-fs.target
+23.3 network.target vs network-online.target
+23.4 NetworkManager-wait-online
+23.5 .mount / .automount
+23.6 RequiresMountsFor=
+23.7 _netdev / nofail
+23.8 x-systemd.automount
+23.9 x-systemd.idle-timeout
+23.10 NFS/CIFS/iSCSI durante boot
+23.11 Fallos del storage remoto
+23.12 Evitar bloquear el boot
+23.13 Laboratorio systemd
+
+BLOQUE 24 — OBSERVABILIDAD
+24.1 Availability / capacity / latency
+24.2 Throughput / IOPS / errors / saturation
+24.3 journalctl
+24.4 Métricas NFS / Samba / iSCSI
+24.5 Multipath status
+24.6 Filesystem capacity e inode exhaustion
+24.7 Prometheus node_exporter
+24.8 Grafana
+24.9 Alerting
+24.10 Capacity planning
+24.11 Laboratorio observabilidad
+
+BLOQUE 25 — DISEÑO Y ARQUITECTURA
+25.1 Cuándo usar NFS / SMB / iSCSI / autofs
+25.2 NFS vs SMB vs iSCSI
+25.3 File vs block
+25.4 NAS vs SAN
+25.5 Availability / performance / security / scalability
+25.6 Failure domains
+25.7 Network design y storage network dedicada
+25.8 DNS y authentication dependencies
+25.9 Kerberos
+25.9.1 Arquitectura File/Storage sin IAM centralizado
+25.9.2 Arquitectura File/Storage consumiendo IAM centralizado
+25.9.3 NFS: sec=sys → Kerberos/FreeIPA
+25.9.4 Samba: usuarios locales → identidad central/Kerberos
+25.9.5 iSCSI: independencia habitual del IAM de usuarios
+25.9.6 Decidir qué servicios deben consumir IAM y cuáles no
+25.10 Backup y disaster recovery
+25.11 Capacity planning
+25.12 Documentación de arquitectura
+
+BLOQUE 26 — TROUBLESHOOTING METÓDICO
+26.1 Diagnóstico por capas
+26.2 Physical/network → IP → routing → DNS → firewall → TCP
+26.3 Protocol → authentication → authorization
+26.4 SELinux → filesystem → application
+26.5 ss / lsof / fuser / strace
+26.6 journalctl / dmesg
+26.7 tcpdump / tshark
+26.8 nfsstat / smbstatus / iscsiadm / multipath
+26.9 Árboles de diagnóstico
+26.10 Runbooks
+
+BLOQUE 27 — LABORATORIO FINAL
+27.1 Diseñar infraestructura de almacenamiento
+27.2 Servidor y clientes NFS
+27.3 autofs para shares
+27.4 Servidor y clientes Samba
+27.5 Usuarios, grupos y ACL
+27.5.1 Escenario A: File/Storage autónomo sin IAM centralizado
+27.5.2 Escenario B: NFS y Samba como consumers de IAM
+27.5.3 Comparar operación, seguridad y troubleshooting de ambos modelos
+27.5.4 Mantener iSCSI con su modelo IQN/ACL/CHAP
+27.6 SELinux y firewalld
+27.7 iSCSI target e initiators
+27.8 CHAP
+27.9 LVM sobre iSCSI
+27.10 Multipath
+27.11 Persistencia systemd
+27.12 Logging y monitoring
+27.13 Simular fallos NFS/Samba/iSCSI/path
+27.14 Capturar y analizar tráfico
+27.15 Hardening
+27.16 Performance testing
+27.17 Documentación de infraestructura
+27.18 Runbook operativo
+27.19 Runbook de troubleshooting
+27.20 Proyecto final

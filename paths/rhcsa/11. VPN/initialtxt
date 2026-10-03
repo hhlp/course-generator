@@ -1,0 +1,842 @@
+LEARNING PATH — OPENVPN + WIREGUARD
+0 → EXPERTO
+Orientación: Linux / Fedora / RHEL
+
+BLOQUE 0 — Fundamentos de VPN y redes
+0.1 Qué es una VPN
+0.2 VPN vs proxy vs túnel SSH
+0.3 VPN site-to-site vs remote-access
+0.4 VPN Layer 2 vs Layer 3
+0.5 Modelo OSI aplicado a VPN
+0.6 IPv4 e IPv6 para VPN
+0.7 Direcciones, prefijos y CIDR
+0.8 Subnetting aplicado a VPN
+0.9 Routing: fundamentos
+0.10 Tabla de rutas Linux
+0.11 Default gateway
+0.12 Static routes
+0.13 Policy routing: introducción
+0.14 NAT
+0.15 SNAT y DNAT
+0.16 MASQUERADE
+0.17 IP forwarding
+0.18 Puertos UDP/TCP
+0.19 MTU
+0.20 MSS
+0.21 Fragmentación
+0.22 Interfaces físicas y virtuales
+0.23 TUN vs TAP
+0.24 Namespaces de red: introducción
+0.25 VPN full tunnel
+0.26 VPN split tunnel
+0.27 Kill switch
+0.28 DNS a través de una VPN
+0.29 DNS leaks
+0.30 IPv6 leaks
+0.31 Laboratorio base de networking
+
+BLOQUE 1 — Criptografía aplicada a VPN
+1.1 Confidencialidad, integridad y autenticación
+1.2 Criptografía simétrica
+1.3 Criptografía asimétrica
+1.4 Hashes
+1.5 MAC y HMAC
+1.6 AEAD
+1.7 AES
+1.8 AES-GCM
+1.9 ChaCha20
+1.10 Poly1305
+1.11 Diffie-Hellman
+1.12 ECDH
+1.13 Forward secrecy
+1.14 Claves públicas y privadas
+1.15 Certificados X.509
+1.16 Certificate Authority
+1.17 PKI
+1.18 CRL
+1.19 Rotación de claves
+1.20 Gestión segura de secretos
+1.21 OpenSSL: fundamentos
+1.22 Laboratorio criptográfico
+
+BLOQUE 2 — Introducción a OpenVPN
+2.1 Qué es OpenVPN
+2.2 Arquitectura OpenVPN
+2.3 OpenVPN Community Edition
+2.4 OpenVPN 2.x
+2.5 Cliente y servidor
+2.6 Control channel
+2.7 Data channel
+2.8 OpenVPN sobre UDP
+2.9 OpenVPN sobre TCP
+2.10 TUN
+2.11 TAP
+2.12 Routed VPN
+2.13 Bridged VPN
+2.14 Topologías OpenVPN
+2.15 Archivos .ovpn
+2.16 Instalación en Fedora/RHEL
+2.17 Paquetes RPM
+2.18 systemd y OpenVPN
+2.19 Primer túnel OpenVPN
+
+BLOQUE 3 — PKI para OpenVPN
+3.1 Por qué OpenVPN utiliza PKI
+3.2 Easy-RSA
+3.3 Crear una CA
+3.4 Certificado de servidor
+3.5 Certificados de clientes
+3.6 Private keys
+3.7 Certificate signing requests
+3.8 Firmar certificados
+3.9 Validación de certificados
+3.10 Extended Key Usage
+3.11 Certificate revocation
+3.12 CRL
+3.13 Renovación de certificados
+3.14 Expiración
+3.15 Protección de la CA
+3.16 Offline CA
+3.17 Rotación de claves
+3.18 Backup y recuperación de PKI
+3.19 Laboratorio PKI completo
+
+BLOQUE 4 — Configuración básica OpenVPN
+4.1 server.conf
+4.2 client.conf
+4.3 Directivas fundamentales
+4.4 dev
+4.5 proto
+4.6 port
+4.7 server
+4.8 topology
+4.9 ca
+4.10 cert
+4.11 key
+4.12 dh
+4.13 tls-version-min
+4.14 data-ciphers
+4.15 auth
+4.16 keepalive
+4.17 persist-key
+4.18 persist-tun
+4.19 verb
+4.20 status
+4.21 log y log-append
+4.22 Configuración mínima servidor
+4.23 Configuración mínima cliente
+4.24 Primer remote-access VPN
+
+BLOQUE 5 — TLS y seguridad OpenVPN
+5.1 TLS en OpenVPN
+5.2 TLS handshake
+5.3 TLS control channel
+5.4 Data-channel encryption
+5.5 tls-auth
+5.6 tls-crypt
+5.7 tls-crypt-v2
+5.8 Static key protection
+5.9 Cipher negotiation
+5.10 data-ciphers
+5.11 data-ciphers-fallback
+5.12 Certificados cliente/servidor
+5.13 remote-cert-tls
+5.14 verify-x509-name
+5.15 Certificate pinning
+5.16 tls-version-min
+5.17 Hardening criptográfico
+5.18 Eliminar configuraciones legacy
+5.19 Laboratorio de hardening
+
+BLOQUE 6 — Routing con OpenVPN
+6.1 Red virtual VPN
+6.2 Dirección del servidor
+6.3 Direcciones de clientes
+6.4 push
+6.5 route
+6.6 push route
+6.7 redirect-gateway
+6.8 Full tunnel
+6.9 Split tunnel
+6.10 Client-to-client
+6.11 Acceso VPN → LAN
+6.12 Acceso LAN → VPN
+6.13 Site-to-site
+6.14 Rutas entre múltiples redes
+6.15 iroute
+6.16 client-config-dir
+6.17 CCD
+6.18 Rutas por cliente
+6.19 Policy routing
+6.20 Routing IPv6
+6.21 Laboratorio multi-red
+
+BLOQUE 7 — OpenVPN + firewalld/nftables
+7.1 Linux forwarding
+7.2 net.ipv4.ip_forward
+7.3 IPv6 forwarding
+7.4 firewalld
+7.5 Zonas
+7.6 Interfaces VPN y zonas
+7.7 Servicios y puertos
+7.8 Forwarding
+7.9 Masquerading
+7.10 NAT
+7.11 nftables
+7.12 OpenVPN y nftables
+7.13 Kill switch
+7.14 Filtrado entre clientes
+7.15 Filtrado VPN → LAN
+7.16 Filtrado VPN → Internet
+7.17 Logging
+7.18 Troubleshooting firewall
+7.19 Laboratorio firewalld
+7.20 Laboratorio nftables
+
+BLOQUE 8 — Clientes OpenVPN
+8.1 Linux client
+8.2 NetworkManager
+8.3 nmcli
+8.4 Importar .ovpn
+8.5 systemd client
+8.6 Múltiples perfiles
+8.7 Autostart
+8.8 Credentials
+8.9 DNS
+8.10 Split DNS
+8.11 Routes
+8.12 Cliente detrás de NAT
+8.13 Roaming
+8.14 Reconexión
+8.15 Laboratorio clientes Linux
+
+BLOQUE 9 — Autenticación avanzada OpenVPN
+9.1 Certificados
+9.2 Username/password
+9.3 auth-user-pass
+9.4 PAM
+9.5 Plugins
+9.6 Scripts de autenticación
+9.7 MFA: conceptos
+9.8 Certificado + credenciales
+9.9 Gestión de usuarios
+9.10 Revocación
+9.11 Per-client configuration
+9.12 Control de acceso
+9.13 Seguridad de credenciales
+9.14 Laboratorio autenticación
+
+
+BLOQUE 9A — VPN e Identity & Access Management (IAM)
+9A.1 Identidad, autenticación y autorización en una VPN
+9A.2 VPN independiente de IAM vs VPN consumidora de IAM
+9A.3 Separar identidad VPN, identidad Linux e identidad corporativa
+9A.4 OpenVPN sin IAM: PKI propia y certificados
+9A.5 OpenVPN sin IAM: usuarios/credenciales locales cuando corresponda
+9A.6 OpenVPN como consumidor de IAM
+9A.7 OpenVPN + PAM
+9A.8 OpenVPN + SSSD
+9A.9 OpenVPN + LDAP
+9A.10 OpenVPN + Kerberos: arquitectura y límites
+9A.11 OpenVPN + FreeIPA
+9A.12 Flujo OpenVPN → PAM → SSSD → FreeIPA
+9A.13 Certificado + identidad centralizada
+9A.14 Grupos y políticas de acceso centralizadas
+9A.15 MFA sobre autenticación centralizada
+9A.16 Alta, baja y revocación de usuarios
+9A.17 Qué ocurre cuando IAM no está disponible
+9A.18 Troubleshooting de autenticación OpenVPN/IAM
+9A.19 Logs OpenVPN, PAM, SSSD y Kerberos
+9A.20 Laboratorio: OpenVPN completamente independiente de IAM
+9A.21 Laboratorio: OpenVPN como consumidor de FreeIPA mediante PAM/SSSD
+9A.22 Comparar ambos modelos y sus dependencias
+
+BLOQUE 9B — WireGuard e IAM: modelo indirecto
+9B.1 Por qué WireGuard no autentica usuarios mediante PAM/LDAP/Kerberos
+9B.2 Identidad nativa de WireGuard: clave pública del peer
+9B.3 Peer no equivale necesariamente a usuario
+9B.4 WireGuard sin IAM: gestión autónoma de peers
+9B.5 Alta, baja y rotación manual de peers
+9B.6 Revocación mediante eliminación de claves/peers
+9B.7 AllowedIPs y autorización de red
+9B.8 Separar data plane y control plane
+9B.9 IAM como fuente externa de identidad
+9B.10 Usuario IAM → autorización → provisioning de peer
+9B.11 Lifecycle de usuario IAM → lifecycle de peer
+9B.12 Baja de usuario → retirada/deshabilitación del peer
+9B.13 Grupos IAM → políticas externas de provisioning
+9B.14 Automatización con Ansible/API/scripts
+9B.15 Auditoría y trazabilidad usuario ↔ peer
+9B.16 Riesgos de confundir clave WireGuard con identidad humana
+9B.17 Qué ocurre cuando IAM no está disponible
+9B.18 WireGuard sigue operando con configuración ya provisionada
+9B.19 Laboratorio: WireGuard completamente independiente de IAM
+9B.20 Laboratorio: provisioning de peers gobernado externamente por IAM
+9B.21 Comparación OpenVPN consumidor IAM vs WireGuard gestionado externamente
+
+BLOQUE 10 — Operación OpenVPN
+10.1 systemd units
+10.2 openvpn-server@
+10.3 openvpn-client@
+10.4 systemctl
+10.5 journalctl
+10.6 Logs
+10.7 Status file
+10.8 Management interface
+10.9 Métricas
+10.10 Monitoring
+10.11 Conexiones activas
+10.12 Estadísticas
+10.13 Rotación de logs
+10.14 Backup
+10.15 Restore
+10.16 Actualizaciones
+10.17 Certificate lifecycle
+10.18 Operación de producción
+
+BLOQUE 11 — Troubleshooting OpenVPN
+11.1 Metodología de diagnóstico
+11.2 Flujo de diagnóstico: servicio → logs → interfaz → routing → firewall → DNS
+11.3 Logs de OpenVPN
+11.4 journalctl y OpenVPN
+11.5 journalctl -u openvpn-server@...
+11.6 journalctl -u openvpn-client@...
+11.7 Logs del servidor vs logs del cliente
+11.8 verb y niveles de logging
+11.9 verb 0–11: cuándo utilizar cada nivel
+11.10 log
+11.11 log-append
+11.12 status y status-version
+11.13 Interpretar mensajes de conexión
+11.14 Interpretar TLS handshake
+11.15 AUTH_FAILED
+11.16 TLS Error / TLS handshake failed
+11.17 VERIFY ERROR
+11.18 Certificate verification failed
+11.19 Connection reset / timeout
+11.20 Errores de TUN/TAP
+11.21 Errores de routing
+11.22 Errores de DNS
+11.23 Errores de permisos
+11.24 Logs de systemd
+11.25 Logs de NetworkManager
+11.26 Logs de firewalld/nftables
+11.27 Logs SELinux / AVC
+11.28 ausearch aplicado a OpenVPN
+11.29 Correlacionar timestamps entre componentes
+11.30 Aumentar temporalmente el nivel de logging
+11.31 Evitar logging excesivo en producción
+11.32 Datos sensibles dentro de los logs
+11.33 Rotación y conservación de logs
+11.34 ip addr
+11.35 ip route
+11.36 ip rule
+11.37 ss
+11.38 ping
+11.39 traceroute / tracepath
+11.40 tcpdump
+11.41 Wireshark
+11.42 nft
+11.43 firewall-cmd
+11.44 openssl
+11.45 Problemas MTU/MSS
+11.46 Asymmetric routing
+11.47 Laboratorio: diagnosticar OpenVPN principalmente desde logs
+11.48 Laboratorio completo de troubleshooting
+BLOQUE 12 — Introducción a WireGuard
+12.1 Qué es WireGuard
+12.2 Filosofía de diseño
+12.3 WireGuard vs OpenVPN: arquitectura
+12.4 Integración con Linux
+12.5 WireGuard en el kernel Linux
+12.6 Interfaz WireGuard
+12.7 Peers
+12.8 Public/private keys
+12.9 Cryptokey routing
+12.10 UDP
+12.11 Roaming
+12.12 Stateless vs stateful concepts
+12.13 Instalación Fedora/RHEL
+12.14 wireguard-tools
+12.15 Primer túnel WireGuard
+
+BLOQUE 13 — Criptografía WireGuard
+13.1 Diseño criptográfico
+13.2 Noise Protocol Framework
+13.3 NoiseIK
+13.4 Curve25519
+13.5 ChaCha20
+13.6 Poly1305
+13.7 BLAKE2s
+13.8 HKDF
+13.9 SipHash
+13.10 Claves privadas
+13.11 Claves públicas
+13.12 Pre-shared keys
+13.13 Handshake
+13.14 Session keys
+13.15 Key rotation
+13.16 Forward secrecy
+13.17 Identidad de peers
+13.18 Modelo de seguridad
+
+BLOQUE 14 — Herramientas WireGuard
+14.1 wg
+14.2 wg genkey
+14.3 wg pubkey
+14.4 wg genpsk
+14.5 wg show
+14.6 wg showconf
+14.7 wg set
+14.8 wg setconf
+14.9 wg syncconf
+14.10 wg-quick
+14.11 wg-quick up
+14.12 wg-quick down
+14.13 wg-quick save
+14.14 Archivos wg0.conf
+14.15 Permisos de claves
+14.16 Laboratorio CLI
+
+BLOQUE 15 — Configuración WireGuard
+15.1 [Interface]
+15.2 PrivateKey
+15.3 Address
+15.4 ListenPort
+15.5 DNS
+15.6 MTU
+15.7 Table
+15.8 PreUp
+15.9 PostUp
+15.10 PreDown
+15.11 PostDown
+15.12 [Peer]
+15.13 PublicKey
+15.14 PresharedKey
+15.15 Endpoint
+15.16 AllowedIPs
+15.17 PersistentKeepalive
+15.18 Configuración servidor
+15.19 Configuración cliente
+15.20 Laboratorio completo
+
+BLOQUE 16 — Cryptokey Routing y AllowedIPs
+16.1 Qué es Cryptokey Routing
+16.2 AllowedIPs como routing
+16.3 AllowedIPs como control de origen
+16.4 Selección de peer
+16.5 Longest-prefix matching
+16.6 0.0.0.0/0
+16.7 ::/0
+16.8 Full tunnel
+16.9 Split tunnel
+16.10 Redes superpuestas
+16.11 Rutas específicas
+16.12 Múltiples peers
+16.13 Errores comunes de AllowedIPs
+16.14 Diseño de direccionamiento
+16.15 Laboratorio avanzado
+
+BLOQUE 17 — Routing y NAT WireGuard
+17.1 IP forwarding
+17.2 VPN → LAN
+17.3 LAN → VPN
+17.4 VPN → Internet
+17.5 NAT
+17.6 MASQUERADE
+17.7 Site-to-site
+17.8 Remote access
+17.9 Hub-and-spoke
+17.10 Peer-to-peer
+17.11 Multi-site
+17.12 IPv6
+17.13 Dual stack
+17.14 Policy routing
+17.15 Multiple routing tables
+17.16 ip rule
+17.17 fwmark
+17.18 Laboratorio routing avanzado
+
+BLOQUE 18 — WireGuard + firewalld/nftables
+18.1 WireGuard con firewalld
+18.2 Zonas
+18.3 Forwarding
+18.4 NAT
+18.5 Rich rules
+18.6 nftables
+18.7 Filtrado por interfaz
+18.8 Filtrado por subred
+18.9 Peer isolation
+18.10 Kill switch
+18.11 Leak prevention
+18.12 IPv6
+18.13 Logging
+18.14 Hardening
+18.15 Laboratorio firewall
+
+BLOQUE 19 — WireGuard + NetworkManager/systemd
+19.1 NetworkManager y WireGuard
+19.2 nmcli
+19.3 Importar configuraciones
+19.4 Crear conexión desde nmcli
+19.5 Autoconnect
+19.6 Routes
+19.7 DNS
+19.8 Split DNS
+19.9 wg-quick@.service
+19.10 systemctl
+19.11 journalctl
+19.12 Boot ordering
+19.13 Dependencias de red
+19.14 Múltiples interfaces WireGuard
+19.15 Laboratorio Fedora
+
+BLOQUE 20 — WireGuard avanzado
+20.1 NAT traversal
+20.2 PersistentKeepalive
+20.3 Roaming
+20.4 Endpoint dinámico
+20.5 Peers detrás de NAT
+20.6 CGNAT
+20.7 Dynamic DNS
+20.8 Multi-WAN
+20.9 Policy-based routing
+20.10 Multiple tunnels
+20.11 Namespace isolation
+20.12 WireGuard dentro de network namespaces
+20.13 Containers
+20.14 Podman
+20.15 Kubernetes: introducción
+20.16 Overlay networking
+20.17 WireGuard como building block
+
+BLOQUE 21 — Troubleshooting WireGuard
+21.1 Metodología de diagnóstico
+21.2 WireGuard y su filosofía respecto al logging
+21.3 Estado vs logs
+21.4 wg show
+21.5 Latest handshake
+21.6 Transfer RX/TX
+21.7 Endpoint
+21.8 AllowedIPs
+21.9 PersistentKeepalive
+21.10 Interpretar latest handshake
+21.11 Handshake correcto pero sin tráfico
+21.12 Handshake inexistente
+21.13 RX sin TX / TX sin RX
+21.14 journalctl
+21.15 journalctl -k
+21.16 Logs del kernel
+21.17 Logs de wg-quick@.service
+21.18 Logs de NetworkManager
+21.19 Logs de firewalld/nftables
+21.20 nftables logging
+21.21 Logs SELinux / AVC
+21.22 ausearch
+21.23 Correlacionar eventos y timestamps
+21.24 ip addr
+21.25 ip link
+21.26 ip route
+21.27 ip rule
+21.28 ip route get
+21.29 ss
+21.30 ping
+21.31 tracepath
+21.32 tcpdump
+21.33 Capturar UDP del puerto WireGuard
+21.34 Verificar tráfico cifrado
+21.35 Verificar tráfico antes/después del túnel
+21.36 Routing incorrecto
+21.37 AllowedIPs incorrecto
+21.38 Endpoint incorrecto
+21.39 NAT incorrecto
+21.40 Firewall bloqueando UDP
+21.41 DNS leaks
+21.42 MTU black holes
+21.43 Problemas IPv6
+21.44 Asymmetric routing
+21.45 Problemas detrás de NAT/CGNAT
+21.46 Laboratorio: handshake existe pero no hay conectividad
+21.47 Laboratorio: localizar un fallo mediante wg + logs + tcpdump
+21.48 Laboratorio completo de troubleshooting
+BLOQUE 22 — DNS para VPN
+22.1 DNS dentro de VPN
+22.2 Resolver Linux
+22.3 systemd-resolved
+22.4 NetworkManager DNS
+22.5 Split DNS
+22.6 DNS por dominio
+22.7 DNS interno
+22.8 DNS leaks
+22.9 IPv6 DNS
+22.10 DNSSEC y VPN
+22.11 Unbound
+22.12 DNS privado para clientes VPN
+22.13 Troubleshooting DNS
+22.14 Laboratorio DNS
+
+BLOQUE 23 — MTU, MSS y rendimiento
+23.1 Ethernet MTU
+23.2 VPN overhead
+23.3 Path MTU Discovery
+23.4 Fragmentación IPv4
+23.5 IPv6 y fragmentación
+23.6 MTU de túnel
+23.7 MSS
+23.8 MSS clamping
+23.9 TCP sobre VPN
+23.10 UDP sobre VPN
+23.11 TCP-over-TCP
+23.12 Latencia
+23.13 Throughput
+23.14 CPU
+23.15 iperf3
+23.16 ping
+23.17 tracepath
+23.18 tcpdump
+23.19 Benchmark OpenVPN
+23.20 Benchmark WireGuard
+23.21 Interpretar resultados
+23.22 Performance tuning
+
+BLOQUE 24 — Seguridad y hardening
+24.1 Threat modeling
+24.2 Superficie de ataque
+24.3 Least privilege
+24.4 Gestión de claves
+24.5 Permisos de archivos
+24.6 Secrets at rest
+24.7 Rotación
+24.8 Revocación
+24.9 OpenVPN PKI lifecycle
+24.10 WireGuard key lifecycle
+24.11 Firewall default-deny
+24.12 Client isolation
+24.13 Split tunnel y riesgos
+24.14 Full tunnel y riesgos
+24.15 Kill switches
+24.16 DNS leaks
+24.17 IPv6 leaks
+24.18 Logging seguro
+24.19 SELinux
+24.20 systemd hardening
+24.21 Auditoría
+24.22 Hardening checklist
+
+BLOQUE 25 — SELinux
+25.1 VPN y SELinux
+25.2 Contextos
+25.3 Dominios
+25.4 Puertos
+25.5 semanage
+25.6 ausearch
+25.7 audit2why
+25.8 Diagnóstico AVC
+25.9 OpenVPN bajo SELinux
+25.10 Scripts/hooks y SELinux
+25.11 WireGuard y componentes userspace
+25.12 Evitar desactivar SELinux
+25.13 Laboratorio Fedora enforcing
+
+BLOQUE 26 — Observabilidad
+26.1 Qué observar en una VPN
+26.2 Estado de túneles
+26.3 Peers
+26.4 Sesiones
+26.5 RX/TX
+26.6 Handshakes
+26.7 Logs
+26.8 journald
+26.9 Métricas
+26.10 Prometheus
+26.11 Exporters
+26.12 Grafana
+26.13 Dashboards
+26.14 Alertas
+26.15 Availability monitoring
+26.16 Latency monitoring
+26.17 Packet loss
+26.18 Capacity planning
+
+BLOQUE 27 — Automatización
+27.1 Automatizar despliegues VPN
+27.2 Bash
+27.3 Plantillas de configuración
+27.4 Gestión de claves
+27.5 Ansible
+27.6 Rol OpenVPN
+27.7 Rol WireGuard
+27.8 Inventarios
+27.9 Variables
+27.10 Vault
+27.11 Generación de peers
+27.12 Distribución de configuraciones
+27.13 Idempotencia
+27.14 Rotación automatizada
+27.15 Revocación OpenVPN
+27.16 Backups
+27.17 Testing
+27.18 CI/CD
+27.19 Terraform + VPN
+27.20 Infrastructure as Code
+
+BLOQUE 28 — Arquitecturas VPN
+28.1 Remote access
+28.2 Site-to-site
+28.3 Point-to-point
+28.4 Hub-and-spoke
+28.5 Full mesh
+28.6 Partial mesh
+28.7 Multi-site
+28.8 Road warrior
+28.9 Bastion/VPN gateway
+28.10 VPN gateway redundante
+28.11 Multi-homed gateway
+28.12 Multi-WAN
+28.13 Routing dinámico
+28.14 VPN + VLAN
+28.15 VPN + containers
+28.16 VPN + cloud
+28.17 Hybrid networking
+28.18 Diseño de direccionamiento
+28.19 Escalabilidad
+
+BLOQUE 29 — Routing avanzado
+29.1 Linux FIB
+29.2 ip route avanzado
+29.3 ip rule
+29.4 Multiple routing tables
+29.5 Policy-Based Routing
+29.6 fwmark
+29.7 nftables marks
+29.8 Source-based routing
+29.9 Asymmetric routing
+29.10 ECMP: conceptos
+29.11 Dynamic routing
+29.12 FRRouting
+29.13 OSPF sobre VPN
+29.14 BGP sobre VPN
+29.15 WireGuard + FRR
+29.16 OpenVPN + routing dinámico
+29.17 Laboratorio multi-site
+
+BLOQUE 30 — Alta disponibilidad
+30.1 Qué significa HA para una VPN
+30.2 Eliminación de SPOF
+30.3 Gateways redundantes
+30.4 Keepalived
+30.5 VRRP
+30.6 Floating IP
+30.7 Routing failover
+30.8 DNS failover
+30.9 OpenVPN HA
+30.10 WireGuard HA
+30.11 State considerations
+30.12 Failover testing
+30.13 Recovery
+30.14 Disaster recovery
+
+BLOQUE 31 — OpenVPN vs WireGuard
+31.1 Diferencias arquitectónicas
+31.2 Modelo criptográfico
+31.3 Gestión de identidad
+31.4 PKI vs public keys
+31.5 Configuración
+31.6 Routing
+31.7 Roaming
+31.8 NAT traversal
+31.9 Rendimiento
+31.10 Operación
+31.11 Observabilidad
+31.12 Gestión de usuarios
+31.13 Revocación
+31.14 Escalabilidad
+31.15 Casos de uso
+31.16 Migración OpenVPN → WireGuard
+31.17 Coexistencia
+31.18 Selección basada en requisitos
+
+BLOQUE 32 — Internals de OpenVPN
+32.1 Arquitectura interna
+32.2 Proceso cliente/servidor
+32.3 Control channel
+32.4 Data channel
+32.5 TLS negotiation
+32.6 Key material
+32.7 Packet processing
+32.8 TUN/TAP interaction
+32.9 Event loop
+32.10 Management interface
+32.11 Plugins
+32.12 Source code: orientación
+32.13 Debugging avanzado
+32.14 Captura y análisis de tráfico
+
+BLOQUE 33 — Internals de WireGuard
+33.1 Arquitectura del módulo Linux
+33.2 WireGuard kernel implementation
+33.3 Interfaces netlink
+33.4 wg userspace tools
+33.5 Packet flow
+33.6 Peer lookup
+33.7 Cryptokey routing internals
+33.8 AllowedIPs data structures
+33.9 Handshake internals
+33.10 Session lifecycle
+33.11 Timers
+33.12 Rekeying
+33.13 Cookie mechanism
+33.14 DoS mitigation
+33.15 Roaming internals
+33.16 Network namespaces
+33.17 Source code: orientación
+33.18 Debugging avanzado
+
+BLOQUE 34 — Laboratorios expertos
+34.1 OpenVPN remote-access desde cero
+34.2 WireGuard remote-access desde cero
+34.3 OpenVPN site-to-site
+34.4 WireGuard site-to-site
+34.5 Full tunnel dual-stack
+34.6 Split tunnel
+34.7 Split DNS
+34.8 VPN + firewalld
+34.9 VPN + nftables
+34.10 Kill switch
+34.11 Multi-site
+34.12 Hub-and-spoke
+34.13 Full mesh WireGuard
+34.14 Policy routing
+34.15 Network namespaces
+34.16 Podman sobre VPN
+34.17 Dynamic routing
+34.18 HA
+34.19 Monitoring
+34.20 Ansible deployment
+34.21 Rotación de claves
+34.22 Incident troubleshooting
+
+BLOQUE 35 — Proyecto final
+35.1 Analizar requisitos
+35.2 Threat model
+35.3 Elegir OpenVPN/WireGuard o coexistencia
+35.4 Diseñar direccionamiento IPv4/IPv6
+35.5 Diseñar topología
+35.6 Diseñar routing
+35.7 Diseñar firewall
+35.8 Diseñar DNS
+35.9 Diseñar gestión de identidad/claves
+35.10 Implementar infraestructura
+35.11 Automatizar con Ansible
+35.12 Implementar observabilidad
+35.13 Implementar backups
+35.14 Implementar rotación
+35.15 Implementar HA
+35.16 Pruebas funcionales
+35.17 Pruebas de seguridad
+35.18 Pruebas de rendimiento
+35.19 Simulación de fallos
+35.20 Troubleshooting
+35.21 Documentación
+35.22 Runbook operacional
+35.23 Arquitectura final de producción

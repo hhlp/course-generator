@@ -1,0 +1,117 @@
+name: dhcp-dns-integration
+title: "DHCP + DNS Integration — 0 a experto en profundidad"
+language: es
+level: "beginner-to-expert"
+
+platform:
+  primary:
+    - Fedora
+    - RHEL
+  family: "Red Hat Linux"
+
+scope:
+  include:
+    - Kea DHCPv4
+    - Kea DHCPv6
+    - Kea DHCP-DDNS
+    - Kea D2
+    - BIND 9
+    - RFC 2136
+    - TSIG
+    - DHCID
+    - A
+    - AAAA
+    - PTR
+    - IPv4
+    - IPv6
+    - lease-DNS lifecycle
+    - installation
+    - systemd
+    - journald
+    - logging
+    - firewalld
+    - SELinux
+    - troubleshooting
+    - observability
+    - security
+    - high availability
+    - backup and recovery
+
+learning_style:
+  depth: high
+  theory: true
+  hands_on: true
+  troubleshooting_first: true
+  production_context: true
+  protocol_analysis: true
+
+lesson_structure:
+  start_with: "🎯 OBJETIVO"
+  end_with: "🧠 QUÉ DEBES RECORDAR"
+  recommended_sections:
+    - "📚 LECTURA"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "🔍 Troubleshooting"
+    - "📋 Verificación"
+
+labs:
+  platform: "Fedora/RHEL"
+  require_commands: true
+  require_config_files: true
+  require_validation: true
+  require_logs: true
+  require_troubleshooting: true
+  require_ipv4: true
+  require_ipv6: true
+  final_project: true
+
+troubleshooting:
+  methodology:
+    - client
+    - lease
+    - hostname-fqdn
+    - kea-ddns-decision
+    - ncr
+    - d2
+    - network-connectivity
+    - zone-selection
+    - tsig
+    - rfc2136
+    - bind
+    - forward-record
+    - reverse-record
+    - dhcid
+  tools:
+    - systemctl
+    - journalctl
+    - dig
+    - nsupdate
+    - rndc
+    - named-checkconf
+    - named-checkzone
+    - tcpdump
+    - ss
+    - firewall-cmd
+
+logging:
+  teach_journald: true
+  teach_file_logging: true
+  teach_log_rotation: true
+  teach_event_correlation: true
+  warn_paths_are_version_and_configuration_dependent: true
+
+security:
+  tsig: true
+  least_privilege: true
+  update_policy: true
+  secret_rotation: true
+  firewalld: true
+  selinux: true
+
+final_outcome: >
+  El alumno será capaz de diseñar, instalar, configurar, asegurar, observar,
+  mantener y diagnosticar una integración DHCP-DNS completa basada en Kea
+  DHCPv4/DHCPv6, Kea D2 y BIND, siguiendo el ciclo lease → NCR → TSIG →
+  RFC 2136 → A/AAAA/PTR y su correspondiente proceso de eliminación.

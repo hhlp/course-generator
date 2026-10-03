@@ -1,0 +1,220 @@
+name: MAIL
+slug: mail
+language: es
+level: "0-a-experto"
+depth: profunda
+
+course:
+  title: "MAIL — De 0 a Experto en Profundidad"
+  description: >-
+    Administración completa de infraestructura de correo electrónico en Fedora/RHEL:
+    arquitectura, SMTP, Postfix, IMAP, Dovecot, SASL, TLS, SPF, DKIM, DMARC,
+    seguridad, logging, observabilidad, alta disponibilidad y troubleshooting.
+  audience:
+    - administradores Linux
+    - sysadmins Fedora/RHEL
+    - ingenieros de infraestructura
+    - DevOps/SRE
+    - estudiantes avanzados de administración de sistemas
+  goal: >-
+    Comprender y administrar un sistema de correo completo, desde DNS y SMTP hasta
+    almacenamiento IMAP, autenticación del dominio, seguridad, observabilidad y
+    diagnóstico end-to-end.
+
+platform:
+  primary:
+    - Fedora Linux
+    - Red Hat Enterprise Linux
+  ecosystem:
+    - RPM
+    - DNF
+    - systemd
+    - journald
+    - firewalld
+    - SELinux
+
+stack:
+  protocols:
+    - SMTP
+    - ESMTP
+    - Submission
+    - IMAP
+    - MIME
+    - SASL
+    - TLS
+  services:
+    - Postfix
+    - Dovecot
+  identity_integration:
+    role: consumer
+    standalone_modes:
+      - local-system-users
+      - virtual-users
+    centralized_iam:
+      - LDAP
+      - Kerberos
+      - FreeIPA
+    integration_layers:
+      - SASL
+      - SSSD
+      - PAM
+    principle: "Mail puede operar sin IAM centralizado; cuando existe IAM, Postfix/Dovecot consumen identidad/autenticación y no se convierten en el proveedor central."
+  domain_authentication:
+    - SPF
+    - DKIM
+    - DMARC
+    - ARC
+    - SRS
+  transport_security:
+    - STARTTLS
+    - MTA-STS
+    - TLS-RPT
+    - DANE
+  operations:
+    - DNS
+    - logging
+    - monitoring
+    - backup
+    - disaster-recovery
+    - high-availability
+    - troubleshooting
+    - IAM-integration
+
+lesson_style:
+  start_with: "🎯 OBJETIVO"
+  end_with: "🧠 QUÉ DEBES RECORDAR"
+  sections_when_useful:
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "📚 LECTURA"
+  characteristics:
+    - teoría profunda pero orientada a administración real
+    - comandos reproducibles
+    - explicar el porqué de cada configuración
+    - relacionar configuración con protocolos y arquitectura
+    - incluir ejemplos Fedora/RHEL
+    - incluir validación después de cada cambio relevante
+    - enseñar lectura de logs
+    - incluir troubleshooting sistemático
+    - evitar configuraciones opacas tipo copiar-y-pegar
+
+labs:
+  enabled: true
+  philosophy: "build-break-fix"
+  include:
+    - objetivo
+    - topología
+    - requisitos
+    - instalación
+    - configuración
+    - comandos
+    - validación
+    - logs
+    - errores frecuentes
+    - troubleshooting
+    - IAM-integration
+    - criterios de éxito
+
+troubleshooting:
+  priority: high
+  method:
+    - DNS
+    - red y puertos
+    - firewalld
+    - SELinux
+    - TLS
+    - SMTP
+    - SASL
+    - Postfix queue
+    - entrega local/LMTP
+    - almacenamiento
+    - IMAP
+    - SPF
+    - DKIM
+    - DMARC
+    - logs y correlación
+  tools:
+    - dig
+    - host
+    - resolvectl
+    - openssl
+    - nc
+    - swaks
+    - ss
+    - lsof
+    - tcpdump
+    - tshark
+    - journalctl
+    - postconf
+    - postqueue
+    - postcat
+    - doveconf
+    - doveadm
+
+security:
+  perspective: defensive
+  topics:
+    - open-relay-prevention
+    - TLS
+    - SASL
+    - least-privilege
+    - filesystem-permissions
+    - SELinux
+    - firewalld
+    - rate-limiting
+    - spoofing-defense
+    - SPF
+    - DKIM
+    - DMARC
+    - key-management
+
+logging:
+  teach_discovery: true
+  sources:
+    - journald
+    - Postfix
+    - Dovecot
+    - rsyslog
+  notes:
+    - "No asumir que /var/log/maillog existe en todas las instalaciones."
+    - "Enseñar cómo descubrir el destino real de los logs y cómo configurarlo."
+    - "Correlacionar Queue ID, Message-ID, sesiones SMTP y autenticación."
+
+references:
+  prefer:
+    - RFC
+    - documentación oficial Postfix
+    - documentación oficial Dovecot
+    - documentación Fedora/RHEL
+    - man pages
+  books_as_support: true
+
+final_project:
+  title: "Servidor Mail de Producción"
+  requires:
+    - architecture-design
+    - DNS
+    - Postfix
+    - Dovecot
+    - SMTP-Submission
+    - IMAP
+    - SASL
+    - TLS
+    - SPF
+    - DKIM
+    - DMARC
+    - antispam
+    - SELinux
+    - firewalld
+    - logging
+    - monitoring
+    - backup
+    - disaster-recovery
+    - hardening
+    - troubleshooting
+    - IAM-integration
+    - runbook
+    - architecture-documentation
+    - identity-model-documentation
+    - centralized-IAM-integration-when-applicable

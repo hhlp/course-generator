@@ -1,0 +1,600 @@
+9. PROXY / LOAD BALANCING — 0 A EXPERTO EN PROFUNDIDAD
+
+Objetivo general:
+Dominar proxies y balanceadores de carga desde los fundamentos de red y HTTP hasta el diseño, despliegue, seguridad, alta disponibilidad, observabilidad, optimización y troubleshooting de arquitecturas de producción basadas en Squid, Nginx y HAProxy sobre Fedora/RHEL.
+
+BLOQUE 0 — FUNDAMENTOS DE PROXY Y LOAD BALANCING
+0.1 Qué es un proxy y qué problemas resuelve
+0.2 Proxy vs gateway vs router vs NAT vs firewall
+0.3 Forward proxy vs reverse proxy
+0.4 Proxy vs load balancer vs CDN
+0.5 Flujo cliente → proxy → servidor/backend
+0.6 TCP/IP aplicado a proxies: IP, puertos, sockets y conexiones
+0.7 DNS y resolución de nombres en arquitecturas proxy
+0.8 HTTP request/response y persistencia de conexiones
+0.9 HTTP/1.1, HTTP/2 y fundamentos de HTTP/3
+0.10 TLS aplicado a proxies y balanceadores
+0.11 L4 vs L7
+0.12 Laboratorio: observar tráfico directo y mediante proxy
+
+BLOQUE 1 — FORWARD PROXY
+1.1 Arquitectura de forward proxy
+1.2 Casos de uso empresariales
+1.3 Explicit proxy
+1.4 Transparent/intercept proxy: conceptos, limitaciones y riesgos
+1.5 HTTP proxying
+1.6 HTTPS mediante proxy
+1.7 Método HTTP CONNECT
+1.8 Túneles TCP
+1.9 ACL y políticas de acceso
+1.10 Autenticación de clientes
+1.11 Filtering
+1.12 Caching
+1.13 Seguridad y riesgo de open proxy
+1.14 Laboratorio: diseño de una política de salida web
+
+BLOQUE 2 — REVERSE PROXY
+2.1 Arquitectura de reverse proxy
+2.2 Cliente → reverse proxy → backend
+2.3 Upstreams/backends
+2.4 HTTP forwarding
+2.5 Host y preservación del host original
+2.6 X-Forwarded-For
+2.7 X-Forwarded-Proto
+2.8 Forwarded
+2.9 Confianza y sanitización de headers de proxy
+2.10 TLS termination
+2.11 TLS passthrough
+2.12 TLS re-encryption/bridging
+2.13 Buffering
+2.14 Timeouts
+2.15 Keepalive y reutilización de conexiones
+2.16 WebSocket proxying
+2.17 HTTP/2 en el frontend y backend
+2.18 HTTP/3: arquitectura y consideraciones
+2.19 Laboratorio: reverse proxy hacia múltiples aplicaciones
+
+BLOQUE 3 — FUNDAMENTOS DE LOAD BALANCING
+3.1 Qué es load balancing
+3.2 Balanceo L4
+3.3 Balanceo L7
+3.4 TCP load balancing
+3.5 HTTP load balancing
+3.6 Round-robin
+3.7 Weighted round-robin
+3.8 Least connections
+3.9 Source hashing
+3.10 Consistent hashing: fundamentos
+3.11 Sticky sessions
+3.12 Session persistence
+3.13 Active health checks
+3.14 Passive health checks
+3.15 Retries y redispatch
+3.16 Backend draining
+3.17 Failover
+3.18 Graceful shutdown y graceful reload
+3.19 Laboratorio: comparar algoritmos de balanceo
+
+BLOQUE 4 — SQUID: INSTALACIÓN Y OPERACIÓN BASE
+4.1 Arquitectura de Squid
+4.2 Instalación en Fedora/RHEL
+4.3 Paquetes RPM y archivos instalados
+4.4 squid.service y systemd
+4.5 Estructura de configuración
+4.6 squid.conf
+4.7 Directivas y sintaxis
+4.8 Validación de configuración
+4.9 Puertos de escucha
+4.10 Permisos y filesystem
+4.11 firewalld
+4.12 SELinux
+4.13 Inicio, parada, restart y reload
+4.14 journalctl aplicado a Squid
+4.15 Laboratorio: instalar y levantar un forward proxy mínimo
+
+BLOQUE 5 — SQUID: ACL Y CONTROL DE ACCESO
+5.1 Modelo de ACL de Squid
+5.2 acl
+5.3 http_access
+5.4 src y srcdomain
+5.5 dst y dstdomain
+5.6 url_regex
+5.7 urlpath_regex
+5.8 Métodos HTTP
+5.9 CONNECT
+5.10 Safe_ports
+5.11 SSL_ports
+5.12 ACL por horario
+5.13 ACL combinadas
+5.14 allow/deny
+5.15 Orden de evaluación
+5.16 Diseño de políticas mantenibles
+5.17 Includes y organización de configuración
+5.18 Laboratorio: segmentación por redes, dominios y horarios
+
+BLOQUE 6 — SQUID: AUTENTICACIÓN E INTEGRACIÓN CON IAM
+6.1 Proxy/LB como consumidor de IAM vs funcionamiento independiente de IAM
+6.2 Qué identidad necesita realmente un forward proxy
+6.3 Arquitectura de authentication helpers
+6.4 Basic authentication
+6.5 proxy_auth
+6.6 ACL por usuario
+6.7 ACL y políticas basadas en grupos
+6.8 Identidades locales vs identidades centralizadas
+6.9 Squid como consumidor de un IAM central
+6.10 LDAP como fuente/directorio de identidad: integración y flujo de autenticación
+6.11 Kerberos/SPNEGO: autenticación integrada
+6.12 SSO con Kerberos: flujo navegador/cliente → Squid → KDC
+6.13 FreeIPA como proveedor central: LDAP + Kerberos
+6.14 Principals de servicio y SPN
+6.15 Keytabs: creación conceptual, distribución, permisos y rotación
+6.16 DNS, resolución de nombres y sincronización temporal como dependencias de Kerberos
+6.17 SSSD/PAM: cuándo intervienen y cuándo no forman parte del flujo de Squid
+6.18 Separación authentication vs authorization
+6.19 Mapeo usuario/grupo → ACL y política de acceso
+6.20 Seguridad de credenciales, keytabs y secretos
+6.21 Logs y auditoría de autenticación
+6.22 Diagnóstico de helpers LDAP
+6.23 Diagnóstico Kerberos/SPNEGO: tickets, principals y keytabs
+6.24 Troubleshooting IAM: DNS, tiempo, TLS, LDAP, Kerberos y autorización
+6.25 Laboratorio: Squid sin IAM mediante ACL de red
+6.26 Laboratorio: Squid consumiendo LDAP central
+6.27 Laboratorio: Squid + Kerberos/SPNEGO + FreeIPA para SSO
+6.28 Comparativa: mismo servicio con y sin IAM
+
+BLOQUE 7 — SQUID: CACHE
+7.1 Fundamentos de HTTP caching
+7.2 Cache-Control
+7.3 Expires
+7.4 ETag
+7.5 Last-Modified
+7.6 Validación y revalidación
+7.7 HIT, MISS y variantes
+7.8 cache_dir
+7.9 cache_mem
+7.10 refresh_pattern
+7.11 Objetos cacheables y no cacheables
+7.12 Jerarquías de caché
+7.13 cache_peer
+7.14 Parent/sibling: conceptos
+7.15 Rendimiento de caché
+7.16 Métricas de hit ratio
+7.17 Laboratorio: medir y analizar caching
+
+BLOQUE 8 — SQUID: HTTPS Y TLS
+8.1 CONNECT tunneling
+8.2 HTTPS sin inspección de contenido
+8.3 TLS interception: arquitectura y límites
+8.4 PKI y CA interna
+8.5 Certificados dinámicos: conceptos
+8.6 Confianza de certificados en clientes
+8.7 Implicaciones de seguridad
+8.8 Implicaciones de privacidad y cumplimiento
+8.9 HSTS y certificate pinning: implicaciones
+8.10 TLS moderno y limitaciones operativas
+8.11 Laboratorio controlado de CONNECT y diagnóstico TLS
+
+BLOQUE 9 — SQUID: LOGGING, MONITORIZACIÓN Y TROUBLESHOOTING
+9.1 access.log
+9.2 cache.log
+9.3 Formatos de log
+9.4 Códigos de resultado Squid
+9.5 journalctl
+9.6 systemctl status
+9.7 Validación/parsing de configuración
+9.8 curl mediante proxy
+9.9 curl con autenticación
+9.10 openssl s_client
+9.11 ss y lsof
+9.12 tcpdump y tshark
+9.13 DNS failures
+9.14 ACL failures
+9.15 CONNECT failures
+9.16 TLS failures
+9.17 Problemas de caché
+9.18 SELinux AVC y ausearch
+9.19 Rotación y retención de logs
+9.20 Laboratorio de troubleshooting completo
+
+BLOQUE 10 — NGINX COMO REVERSE PROXY
+10.1 Diferencia entre Nginx web server y reverse proxy
+10.2 Instalación en Fedora/RHEL
+10.3 nginx.service
+10.4 nginx.conf y conf.d
+10.5 Contextos http/server/location
+10.6 proxy_pass
+10.7 URI rewriting y comportamiento de proxy_pass
+10.8 proxy_set_header
+10.9 Host
+10.10 X-Forwarded-For y X-Forwarded-Proto
+10.11 upstream
+10.12 Resolución DNS de upstreams
+10.13 Buffering
+10.14 Request buffering
+10.15 Timeouts
+10.16 Keepalive hacia upstreams
+10.17 Manejo de errores de backend
+10.18 firewalld y SELinux
+10.19 Laboratorio: reverse proxy completo
+
+BLOQUE 11 — NGINX: LOAD BALANCING
+11.1 Upstream groups
+11.2 Round-robin por defecto
+11.3 least_conn
+11.4 ip_hash
+11.5 Hashing: conceptos
+11.6 Weight
+11.7 Backup servers
+11.8 max_fails
+11.9 fail_timeout
+11.10 Passive health/failure detection en capacidades estándar
+11.11 Connection reuse
+11.12 Persistencia de sesión: estrategias y límites
+11.13 Backend maintenance/draining: estrategias
+11.14 Laboratorio: pool de backends y simulación de fallos
+
+BLOQUE 12 — NGINX: TLS
+12.1 TLS termination
+12.2 Certificados y claves privadas
+12.3 Cadenas de certificados
+12.4 Protocolos TLS
+12.5 Cipher suites y configuración moderna
+12.6 SNI
+12.7 ALPN
+12.8 OCSP: fundamentos y capacidades según versión/distribución
+12.9 HSTS
+12.10 HTTPS hacia upstreams
+12.11 Verificación de certificados upstream
+12.12 CA de confianza
+12.13 mTLS cliente → Nginx
+12.14 mTLS Nginx → backend
+12.15 Rotación de certificados
+12.16 Laboratorio: reverse proxy TLS end-to-end
+
+BLOQUE 13 — NGINX: PROTOCOLOS Y CASOS AVANZADOS
+13.1 WebSocket
+13.2 Upgrade y Connection headers
+13.3 HTTP/2
+13.4 HTTP/3/QUIC: fundamentos y soporte según build
+13.5 gRPC proxying
+13.6 TCP proxying con stream
+13.7 UDP proxying con stream
+13.8 SNI routing: fundamentos
+13.9 Proxy Protocol: fundamentos
+13.10 Laboratorio multiprotocolo
+
+BLOQUE 14 — NGINX: LOGGING Y TROUBLESHOOTING
+14.1 access_log
+14.2 error_log
+14.3 log_format
+14.4 Variables de upstream
+14.5 Request time
+14.6 Upstream response time
+14.7 nginx -t
+14.8 systemctl y journalctl
+14.9 curl -v
+14.10 openssl s_client
+14.11 ss y lsof
+14.12 tcpdump y tshark
+14.13 Diagnóstico 400/403/404
+14.14 499
+14.15 502 Bad Gateway
+14.16 503 Service Unavailable
+14.17 504 Gateway Timeout
+14.18 DNS/upstream failures
+14.19 SELinux y firewalld
+14.20 Laboratorio de diagnóstico end-to-end
+
+BLOQUE 15 — HAPROXY: INSTALACIÓN Y FUNDAMENTOS
+15.1 Arquitectura de HAProxy
+15.2 Instalación Fedora/RHEL
+15.3 haproxy.service
+15.4 haproxy.cfg
+15.5 global
+15.6 defaults
+15.7 frontend
+15.8 backend
+15.9 listen
+15.10 bind
+15.11 server
+15.12 mode tcp
+15.13 mode http
+15.14 Timeouts esenciales
+15.15 Validación de configuración
+15.16 Reload sin interrumpir conexiones: fundamentos
+15.17 firewalld
+15.18 SELinux
+15.19 Laboratorio inicial
+
+BLOQUE 16 — HAPROXY: LOAD BALANCING L4
+16.1 TCP proxying
+16.2 Flujo de conexión L4
+16.3 TCP load balancing
+16.4 Connection handling
+16.5 TCP health checks
+16.6 Source balancing
+16.7 TLS passthrough
+16.8 Proxy Protocol
+16.9 Timeouts TCP
+16.10 Casos de uso: bases de datos y servicios TCP
+16.11 Laboratorio L4
+
+BLOQUE 17 — HAPROXY: L7 Y ROUTING HTTP
+17.1 HTTP mode
+17.2 Parsing HTTP
+17.3 ACL
+17.4 hdr()
+17.5 hdr(host)
+17.6 path
+17.7 path_beg
+17.8 path_reg: fundamentos
+17.9 Host-based routing
+17.10 Path-based routing
+17.11 Content switching
+17.12 use_backend
+17.13 default_backend
+17.14 Redirects
+17.15 Request/response header manipulation
+17.16 Forwarded headers
+17.17 Laboratorio: múltiples aplicaciones tras una VIP
+
+BLOQUE 18 — HAPROXY: ALGORITMOS, PERSISTENCIA Y CONTROL DE CARGA
+18.1 roundrobin
+18.2 static-rr
+18.3 leastconn
+18.4 source
+18.5 Hashing
+18.6 Weights
+18.7 Backup servers
+18.8 Stick tables
+18.9 Persistencia
+18.10 Cookies de persistencia: conceptos
+18.11 Connection limits
+18.12 maxconn
+18.13 Queueing
+18.14 Slow start
+18.15 Draining
+18.16 Laboratorio comparativo
+
+BLOQUE 19 — HAPROXY: HEALTH CHECKS
+19.1 Por qué los health checks son parte del balanceo
+19.2 TCP checks
+19.3 HTTP checks
+19.4 check
+19.5 inter
+19.6 fastinter/downinter: conceptos según versión
+19.7 fall
+19.8 rise
+19.9 Expected HTTP status
+19.10 URI de health check
+19.11 Custom health endpoints
+19.12 Agent checks
+19.13 Server state
+19.14 Backend recovery
+19.15 Evitar falsos positivos/negativos
+19.16 Laboratorio: fallo y recuperación automática
+
+BLOQUE 20 — HAPROXY: TLS
+20.1 TLS termination
+20.2 TLS passthrough
+20.3 TLS bridging/re-encryption
+20.4 Certificados y claves
+20.5 SNI
+20.6 ALPN
+20.7 Backend TLS
+20.8 Verificación de certificados backend
+20.9 CA files
+20.10 mTLS frontend
+20.11 mTLS backend
+20.12 Rotación y recarga de certificados
+20.13 Laboratorio TLS end-to-end
+
+BLOQUE 21 — HAPROXY: LOGGING, RUNTIME Y OBSERVABILIDAD
+21.1 Arquitectura de logging
+21.2 journald/syslog
+21.3 Formato de logs HTTP/TCP
+21.4 Timers de HAProxy
+21.5 Termination states
+21.6 Stats
+21.7 Stats socket
+21.8 Runtime API
+21.9 Inspección y modificación operativa en runtime
+21.10 Métricas
+21.11 Prometheus
+21.12 Grafana
+21.13 Conexiones y sesiones
+21.14 Colas
+21.15 Errores
+21.16 Latencia
+21.17 Backend health
+21.18 Laboratorio de observabilidad
+
+BLOQUE 22 — HIGH AVAILABILITY DEL LOAD BALANCER
+22.1 El load balancer como Single Point of Failure
+22.2 Activo/pasivo
+22.3 Activo/activo: modelos y limitaciones
+22.4 Virtual IP — VIP
+22.5 VRRP
+22.6 Keepalived
+22.7 Instalación y servicio Keepalived
+22.8 keepalived.conf
+22.9 MASTER/BACKUP
+22.10 Prioridades
+22.11 Advertisements
+22.12 Health tracking
+22.13 Track process/script/interface: conceptos y seguridad
+22.14 Failover
+22.15 Gratuitous ARP
+22.16 IPv6 y Neighbor Discovery
+22.17 Split brain: concepto y mitigación
+22.18 HAProxy + Keepalived
+22.19 Persistencia de estado: consideraciones
+22.20 Laboratorio: caída completa de un load balancer
+
+BLOQUE 23 — SEGURIDAD DE PROXIES Y BALANCEADORES
+23.1 Threat model
+23.2 Least privilege
+23.3 Usuarios y permisos de servicio
+23.4 SELinux
+23.5 firewalld
+23.6 Segmentación de red
+23.7 TLS hardening
+23.8 mTLS
+23.9 ACL
+23.10 Authentication y authorization
+23.11 Rate limiting
+23.12 Connection limiting
+23.13 Request/body size limits
+23.14 Header validation
+23.15 Ocultación/minimización de información
+23.16 Protección de backends
+23.17 Open proxy y abuso
+23.18 Request smuggling: fundamentos defensivos
+23.19 Host header attacks: fundamentos defensivos
+23.20 X-Forwarded-* spoofing
+23.21 Logs y auditoría
+23.22 Gestión de secretos y claves privadas
+23.23 Hardening systemd aplicable
+23.24 Identidad humana vs identidad de servicio/máquina
+23.25 IAM centralizado como dependencia opcional, no requisito universal
+23.26 Evitar bases de usuarios duplicadas cuando existe un IAM central
+23.27 Principio de mínimo privilegio aplicado a cuentas/principals de servicio
+23.28 Laboratorio de hardening
+
+BLOQUE 24 — RENDIMIENTO Y CAPACIDAD
+24.1 Latencia
+24.2 Throughput
+24.3 Requests/connections por segundo
+24.4 Conexiones concurrentes
+24.5 File descriptors
+24.6 Sockets
+24.7 TCP listen backlog
+24.8 Keepalive
+24.9 Connection pooling
+24.10 Buffering
+24.11 Caching
+24.12 TLS overhead
+24.13 CPU
+24.14 Memoria
+24.15 Límites systemd
+24.16 ulimit y límites del proceso
+24.17 sysctl relevantes: metodología, no tuning ciego
+24.18 ephemeral ports
+24.19 TIME_WAIT y estados TCP
+24.20 Benchmarking
+24.21 curl y herramientas de prueba HTTP
+24.22 Generadores de carga: metodología y seguridad
+24.23 Percentiles de latencia
+24.24 Saturation y bottlenecks
+24.25 Capacity planning
+24.26 Laboratorio de rendimiento
+
+BLOQUE 25 — TROUBLESHOOTING AVANZADO POR CAPAS
+25.1 Metodología reproducible de troubleshooting
+25.2 Definir síntoma, alcance y timeline
+25.3 Cliente
+25.4 DNS
+25.5 Routing
+25.6 Firewall
+25.7 SELinux
+25.8 Proxy/load balancer
+25.9 TLS
+25.10 Backend
+25.11 Aplicación
+25.12 ss
+25.13 lsof
+25.14 curl -v/-I
+25.15 openssl s_client
+25.16 dig
+25.17 ping/traceroute cuando sean aplicables
+25.18 tcpdump
+25.19 tshark
+25.20 journalctl
+25.21 ausearch
+25.22 Packet capture y filtros
+25.23 Correlación de logs
+25.24 Correlación por timestamps/request IDs
+25.25 Problemas intermitentes
+25.26 Connection reset/refused/timeout
+25.27 502/503/504
+25.28 Diagnóstico de health checks
+25.29 Diagnóstico de HA/VRRP
+25.30 Diagnóstico de autenticación central: LDAP/Kerberos/FreeIPA
+25.31 Correlación proxy ↔ IAM: logs, identidad, autorización y timestamps
+25.32 Distinguir fallo del proxy de fallo del proveedor IAM
+25.33 Laboratorio de incident response
+
+BLOQUE 26 — ARQUITECTURA Y DISEÑO DE PRODUCCIÓN
+26.1 Seleccionar Squid, Nginx o HAProxy según función
+26.2 Squid como forward proxy
+26.3 Nginx como reverse proxy
+26.4 HAProxy como balanceador L4/L7
+26.5 Nginx vs HAProxy: comparación técnica por capacidades
+26.6 Separación de funciones
+26.7 Proxy tiers
+26.8 DMZ
+26.9 Redes frontend/backend/management
+26.10 HA
+26.11 Escalabilidad horizontal
+26.12 Stateless vs stateful backends
+26.13 Session persistence y arquitectura de aplicación
+26.14 Zero-downtime deployments
+26.15 Blue/green
+26.16 Canary: fundamentos
+26.17 Rolling deployments
+26.18 Maintenance/draining
+26.19 DNS y service discovery: fundamentos
+26.20 Observabilidad desde el diseño
+26.21 Seguridad desde el diseño
+26.22 Documentación y diagramas operativos
+26.23 Runbooks
+26.24 Capacity planning
+26.25 Decidir si el componente debe consumir IAM
+26.26 Squid: caso típico de consumidor IAM para identidad humana
+26.27 Nginx: autenticación delegada/externa cuando la arquitectura lo requiera
+26.28 HAProxy: operación normalmente independiente de identidad humana
+26.29 Keepalived/VRRP: infraestructura HA sin identidad humana
+26.30 Separar identidad humana, identidad de servicio y controles de red
+26.31 Evitar forzar IAM en routing, health checks, TLS termination y balanceo puro
+26.32 Laboratorio: diseñar variantes con IAM y sin IAM
+
+BLOQUE 27 — PROYECTO FINAL INTEGRADOR
+27.1 Diseñar topología y direccionamiento del laboratorio
+27.2 Preparar clientes
+27.3 Desplegar Squid forward proxy
+27.4 Configurar ACL
+27.5 Configurar autenticación
+27.6 Configurar filtering
+27.7 Configurar caching
+27.8 Desplegar Nginx reverse proxy
+27.9 Desplegar varios backends web
+27.10 Desplegar HAProxy L4/L7
+27.11 Configurar algoritmos de balanceo
+27.12 Configurar health checks
+27.13 Configurar TLS termination
+27.14 Configurar TLS hacia backend
+27.15 Configurar mTLS en un flujo controlado
+27.16 Desplegar dos nodos HAProxy
+27.17 Desplegar Keepalived
+27.18 Configurar VIP y failover
+27.19 Configurar firewalld
+27.20 Resolver requisitos SELinux
+27.21 Centralizar/analizar logs
+27.22 Exponer métricas
+27.23 Integrar Prometheus/Grafana
+27.24 Simular caída de backend
+27.25 Simular degradación de backend
+27.26 Simular caída de load balancer
+27.27 Verificar failover
+27.28 Capturar tráfico con tcpdump/tshark
+27.29 Diagnosticar errores DNS/TCP/TLS/HTTP
+27.30 Ejecutar pruebas de carga controladas
+27.31 Documentar arquitectura, configuración y runbook
+27.32 Auditoría final de seguridad
+27.33 Integrar Squid con el IAM central del laboratorio
+27.34 Validar usuarios/grupos centralizados y ACL basadas en identidad
+27.35 Validar SSO Kerberos/SPNEGO y manejo de keytab
+27.36 Demostrar operación alternativa de Proxy/LB sin IAM
+27.37 Justificar qué componentes consumen IAM y cuáles no
+27.38 Checklist de producción
+27.39 Retrospectiva: decisiones, trade-offs y mejoras

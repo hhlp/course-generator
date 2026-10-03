@@ -1,0 +1,65 @@
+name: web-servers
+title: "Web Servers — Apache, Nginx y HAProxy"
+language: es
+level: "0-a-experto-en-profundidad"
+platform:
+  primary:
+    - Fedora
+    - RHEL
+  init: systemd
+  logging: journald
+  firewall: firewalld
+  mac: SELinux
+
+objectives:
+  - Dominar HTTP y HTTPS desde la perspectiva del administrador de sistemas.
+  - Instalar, configurar y operar Apache HTTP Server y Nginx.
+  - Integrar PHP-FPM de forma segura.
+  - Diseñar reverse proxies y balanceo con Apache, Nginx y HAProxy.
+  - Configurar TLS, certificados y renovación.
+  - Integrar systemd, journald, firewalld y SELinux.
+  - Analizar logs y diagnosticar fallos por capas.
+  - Medir y optimizar rendimiento.
+  - Automatizar despliegues con Ansible.
+  - Diferenciar Web Servers autónomos de Web Servers consumidores de IAM.
+  - Integrar autenticación centralizada LDAP/Kerberos/FreeIPA cuando corresponda, sin administrar identidades desde este PATH.
+
+lesson_style:
+  start: "🎯 OBJETIVO"
+  end: "🧠 QUÉ DEBES RECORDAR"
+  include_when_useful:
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "🔍 Troubleshooting"
+    - "🔐 Seguridad"
+    - "📚 LECTURA"
+
+requirements:
+  installation: mandatory
+  logs: mandatory
+  troubleshooting: mandatory
+  security: mandatory
+  hands_on_labs: mandatory
+  commands: mandatory
+  config_files: mandatory
+  failure_injection: recommended
+
+core_technologies:
+  - Apache HTTP Server
+  - Nginx
+  - PHP-FPM
+  - HAProxy
+  - OpenSSL
+  - ACME
+  - systemd
+  - journald
+  - firewalld
+  - SELinux
+  - LDAP (consumer integration)
+  - Kerberos / SPNEGO (consumer integration)
+  - FreeIPA (consumer integration)
+
+final_project:
+  required: true
+  description: "Infraestructura web multicapa Fedora/RHEL con TLS, PHP-FPM, HAProxy, balanceo, seguridad, logs, troubleshooting, automatización y comparación entre operación autónoma e integración como consumidor de IAM."

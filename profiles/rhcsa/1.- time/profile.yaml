@@ -1,0 +1,89 @@
+name: time-ntp-chrony-deep
+title: "TIME / NTP / Chrony — 0 a experto en profundidad"
+language: es
+level: "0-a-experto-en-profundidad"
+
+platforms:
+  primary:
+    - Fedora
+    - Red Hat Enterprise Linux
+
+audience:
+  - administradores Linux
+  - ingenieros de sistemas
+  - ingenieros de infraestructura
+  - SRE
+  - DevOps
+  - estudiantes RHCSA/RHCE que quieran profundizar
+
+learning_goal: >
+  Administrar y diseñar infraestructura temporal y comprender los internals
+  de Linux timekeeping, NTPv4, Chrony, NTS, PPS, PHC y PTP.
+
+lesson_style:
+  start: "🎯 OBJETIVO"
+  end: "🧠 QUÉ DEBES RECORDAR"
+  include_when_useful:
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "📚 LECTURA"
+
+depth:
+  installation: deep
+  configuration: deep
+  troubleshooting: forensic
+  logs: deep
+  linux_timekeeping_internals: true
+  ntpv4_internals: true
+  chrony_internals: true
+  statistics_and_clock_discipline: true
+  nts_internals: true
+  pps_phc_hardware_timestamping: true
+  ptp_internals: true
+
+logging:
+  primary_service_log: systemd-journald
+  commands:
+    - "journalctl -u chronyd"
+    - "journalctl -u chronyd -b"
+    - "journalctl -f -u chronyd"
+  chrony_file_logs:
+    typical_directory: "/var/log/chrony/"
+    directives:
+      - log
+      - logdir
+    possible_files:
+      - measurements.log
+      - statistics.log
+      - tracking.log
+      - rtc.log
+      - tempcomp.log
+    note: >
+      Los archivos dependen de las categorías habilitadas; comprobar siempre
+      la configuración efectiva y los archivos realmente existentes.
+
+labs:
+  required: true
+  packet_capture: true
+  statistics: true
+  failure_injection: true
+  root_cause_analysis: true
+
+final_project:
+  required: true
+  include:
+    - redundant_chrony_servers
+    - fedora_rhel_clients
+    - nts
+    - firewalld
+    - selinux
+    - journald
+    - chrony_file_logs
+    - ntp_packet_analysis
+    - linux_timekeeping_diagnostics
+    - monitoring
+    - ansible
+    - forensic_troubleshooting
+    - rca
+    - ntp_vs_ptp_architecture
