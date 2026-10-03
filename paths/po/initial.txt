@@ -169,10 +169,14 @@
 10.8 Relative y Affinity Estimation
 10.9 Bucket System
 10.10 No Estimates
-10.11 Throughput y Cycle Time
-10.12 Forecasting probabilístico
-10.13 Introducción a Monte Carlo
-10.14 Anti-patrones de estimación
+10.11 Velocity: utilidad, límites y por qué no es productividad
+10.12 Throughput y Cycle Time como alternativa basada en flujo
+10.13 Datos históricos y forecasting
+10.14 Forecasting probabilístico
+10.15 Introducción a Monte Carlo
+10.16 Forecast de fecha vs forecast de alcance
+10.17 Estimación, forecast y compromiso: diferencias
+10.18 Anti-patrones de estimación y forecasting
 
 11. ORDENAR EL PRODUCT BACKLOG
 11.1 Ordering vs prioridad
@@ -293,22 +297,46 @@
 18.11 Increment y Definition of Done
 18.12 Release del producto
 
-19. FLOW Y FORECASTING
-19.1 Flow para Product Owners
-19.2 Lead Time
-19.3 Cycle Time
-19.4 Work Item Age
-19.5 Throughput
-19.6 WIP
-19.7 Little's Law
-19.8 Scatterplot
-19.9 Cumulative Flow Diagram
-19.10 Aging WIP
-19.11 Service Level Expectation
-19.12 Forecasting probabilístico
-19.13 Monte Carlo
-19.14 Forecast con datos históricos
-19.15 Comunicar forecasts
+19. FLOW, CHARTS Y FORECASTING PARA PRODUCT OWNERS
+19.1 Por qué el Product Owner necesita comprender el flujo
+19.2 Product Backlog vs Sprint Backlog vs workflow
+19.3 De los PBIs y su estado a los datos de flujo
+19.4 Lead Time
+19.5 Cycle Time
+19.6 Work Item Age
+19.7 Throughput
+19.8 WIP
+19.9 WIP Limit y políticas explícitas
+19.10 Consecuencias de exceso de WIP
+19.11 Little's Law: WIP ≈ Throughput × Cycle Time
+19.12 Service Level Expectation (SLE)
+19.13 Cumulative Flow Diagram (CFD): construcción conceptual e interpretación
+19.14 Cycle Time Scatterplot: origen de datos e interpretación
+19.15 Aging WIP Chart: origen de datos e interpretación
+19.16 Throughput Run Chart: origen de datos e interpretación
+19.17 Burndown: relación con Sprint Backlog y trabajo restante
+19.18 Burnup: trabajo completado, alcance y cambios de scope
+19.19 Qué puede y qué no puede concluir un Product Owner de los charts
+19.20 Detectar cuellos de botella, variabilidad y riesgo
+19.21 Flow Metrics para decisiones de producto
+19.22 WIP y Product Backlog Ordering
+19.23 Flow y Product Goal
+19.24 Flow y Sprint Goal
+19.25 Flow y Release Planning
+19.26 Forecasting probabilístico
+19.27 Monte Carlo
+19.28 Forecast de fechas
+19.29 Forecast de alcance
+19.30 Forecast con datos históricos
+19.31 Comunicar forecasts e incertidumbre
+19.32 DoD: cuándo el trabajo está realmente Done
+19.33 DoR: práctica opcional, no compromiso oficial de Scrum
+19.34 Acceptance Criteria vs DoD vs DoR
+19.35 WIP Limit vs DoD vs DoR
+19.36 Velocity como planificación, no como KPI de productividad
+19.37 Flow metrics para mejorar el sistema, no para evaluar personas
+19.38 Anti-patrones de métricas para Product Owners
+19.39 Laboratorio: Sprint Backlog → datos → charts → forecast → decisión de producto
 
 20. PRODUCT OWNERSHIP A ESCALA
 20.1 Un producto con múltiples equipos
@@ -395,6 +423,8 @@
 24.19 Gestión de cambios y stakeholders
 24.20 Sprint Review simulada
 24.21 Adaptación del Product Backlog
-24.22 Flow y Forecast
-24.23 Evaluar Product Goal
-24.24 Presentar Product Strategy completa
+24.22 Sprint Backlog → datos → charts → Flow y Forecast
+24.23 Interpretar WIP, Cycle Time, Throughput, CFD, Aging WIP y Scatterplot
+24.24 Construir y comparar forecast de fecha y alcance
+24.25 Evaluar Product Goal
+24.26 Presentar Product Strategy completa

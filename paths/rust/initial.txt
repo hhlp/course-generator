@@ -1,0 +1,670 @@
+# Curso: Rust 0 → Experto en Profundidad
+
+RUST — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
+
+Objetivo general
+Dominar Rust desde los fundamentos del lenguaje hasta programación de sistemas, concurrencia,
+async, unsafe, FFI, diseño idiomático, rendimiento, internals del compilador y desarrollo
+profesional de crates y aplicaciones.
+
+0. PREPARACIÓN Y ECOSISTEMA
+0.1. Qué es Rust y systems programming
+0.2. Rust frente a C, C++ y Go
+0.3. rustup; stable, beta y nightly
+0.4. rustc, cargo, rustfmt, clippy, rustdoc y rust-analyzer
+0.5. toolchains, targets y components
+0.6. Primer proyecto con Cargo
+
+1. FUNDAMENTOS DEL LENGUAJE
+1.1. Sintaxis; variables, mutabilidad, shadowing y constantes
+1.2. Tipos escalares: integers, floating point, bool, char
+1.3. Tuples y arrays
+1.4. Inferencia y anotaciones de tipos
+1.5. Type aliases, casts, coercions y never type (!)
+
+2. EXPRESIONES Y CONTROL DE FLUJO
+2.1. Statements vs expressions y bloques
+2.2. if como expresión
+2.3. loop, while, for y ranges
+2.4. break con/sin valor, continue y labels
+2.5. match
+2.6. if let, while let y let else
+
+3. FUNCIONES
+3.1. fn, parámetros y retornos
+3.2. Expresión final y return
+3.3. Associated functions
+3.4. Diverging functions
+3.5. Function items y function pointers
+3.6. Recursividad
+
+4. OWNERSHIP Y MOVES
+4.1. Stack vs heap
+4.2. Ownership y move semantics
+4.3. Copy y Clone
+4.4. Drop, scopes y RAII
+4.5. Asignaciones, argumentos y retornos
+4.6. Partial moves y destructuring
+
+5. REFERENCES Y BORROWING
+5.1. &T y &mut T
+5.2. Shared/mutable references
+5.3. Reglas del borrowing y aliasing
+5.4. Reborrowing
+5.5. Dereferencing, auto-deref y deref coercion
+5.6. Dangling references
+5.7. Borrow checker
+
+6. LIFETIMES
+6.1. Concepto, inferencia y anotaciones
+6.2. 'a, múltiples lifetimes y lifetime elision
+6.3. 'static
+6.4. Structs y methods con referencias
+6.5. Lifetime bounds
+6.6. Reborrowing, variance y NLL
+
+7. STRINGS Y TEXTO
+7.1. str, &str y String
+7.2. UTF-8, chars y bytes
+7.3. Slicing, concatenación y format!
+7.4. Parsing, búsqueda y transformación
+7.5. OsStr/OsString y Path/PathBuf
+7.6. Unicode
+
+8. STRUCTS
+8.1. Definición e instanciación
+8.2. Field init shorthand y update syntax
+8.3. Tuple/unit structs
+8.4. Methods, associated functions, impl y Self
+8.5. Ownership dentro de structs
+
+9. ENUMS
+9.1. Variants y variants con datos
+9.2. Option<T> y Result<T,E>
+9.3. Discriminants y representación
+9.4. Algebraic data types
+
+10. PATTERN MATCHING
+10.1. match y patrones literales
+10.2. Destructuring de structs, enums, tuples y arrays/slices
+10.3. Ranges, _, .. y @ bindings
+10.4. Guards y refutability
+10.5. let, if let, while let, let else y matches!
+
+11. COLLECTIONS
+11.1. Vec, VecDeque, LinkedList
+11.2. HashMap/BTreeMap
+11.3. HashSet/BTreeSet
+11.4. BinaryHeap
+11.5. Entry API
+11.6. Capacity, allocation y hashing
+11.7. Elección de estructura
+
+12. ERROR HANDLING
+12.1. panic!; abort vs unwind
+12.2. Result y Option
+12.3. unwrap, expect y ?
+12.4. Propagación y combinators
+12.5. map, map_err y and_then
+12.6. Custom errors y Error trait
+12.7. From/Into
+12.8. Diseño idiomático de errores
+
+13. CRATES Y MODULE SYSTEM
+13.1. Packages, crates y modules
+13.2. mod, pub, use y paths
+13.3. crate, self y super
+13.4. Visibility
+13.5. lib.rs y main.rs
+13.6. Re-exports
+13.7. Organización de proyectos
+
+14. CARGO EN PROFUNDIDAD
+14.1. Arquitectura de Cargo
+14.2. Cargo.toml
+14.3. Cargo.lock
+14.4. Packages, crates, targets y manifests
+14.5. Dependencies
+14.6. dev-dependencies
+14.7. build-dependencies
+14.8. Features
+14.9. Optional dependencies
+14.10. Workspaces
+14.11. Profiles
+14.12. Build scripts — build.rs
+
+14.13. Cargo CLI — fundamentos
+14.14. cargo new
+14.15. cargo init
+14.16. cargo build
+14.17. cargo run
+14.18. cargo check
+14.19. cargo clean
+
+14.20. Cargo CLI — testing y benchmarking
+14.21. cargo test
+14.22. Selección y filtrado de tests
+14.23. Argumentos después de --
+14.24. cargo bench
+
+14.25. Cargo CLI — documentación
+14.26. cargo doc
+14.27. cargo doc --open
+
+14.28. Cargo CLI — dependencias
+14.29. cargo add
+14.30. cargo remove
+14.31. cargo update
+14.32. cargo tree
+14.33. cargo tree -i
+14.34. cargo tree -d
+14.35. cargo tree -e features
+14.36. cargo metadata
+
+14.37. Cargo CLI — packages y workspaces
+14.38. --package / -p
+14.39. --workspace
+14.40. --exclude
+14.41. --lib
+14.42. --bin
+14.43. --example
+14.44. --test
+14.45. --bench
+
+14.46. Cargo CLI — features
+14.47. --features
+14.48. --all-features
+14.49. --no-default-features
+
+14.50. Cargo CLI — compilación
+14.51. --release
+14.52. --profile
+14.53. --target
+14.54. --target-dir
+14.55. --jobs / -j
+14.56. --keep-going
+14.57. --offline
+14.58. --locked
+14.59. --frozen
+
+14.60. Cargo CLI — instalación
+14.61. cargo install
+14.62. cargo uninstall
+14.63. cargo install --path
+14.64. cargo install --git
+
+14.65. Cargo CLI — publicación
+14.66. cargo login
+14.67. cargo package
+14.68. cargo publish
+14.69. cargo yank
+14.70. crates.io
+14.71. Packaging y verificación antes de publicar
+
+14.72. Cargo CLI — inspección avanzada
+14.73. cargo locate-project
+14.74. cargo pkgid
+14.75. cargo metadata en profundidad
+14.76. cargo tree en profundidad
+14.77. cargo vendor
+14.78. cargo verify-project
+
+14.79. Cargo y variables de entorno
+14.80. CARGO_HOME
+14.81. RUSTFLAGS
+14.82. CARGO_TARGET_DIR
+14.83. Configuración .cargo/config.toml
+
+14.84. Cargo aliases
+14.85. Cargo subcommands
+14.86. Creación de subcomandos cargo-*
+14.87. Cargo y completions del shell
+
+14.88. Cargo avanzado
+14.89. Dependency resolution
+14.90. SemVer y version requirements
+14.91. Feature resolver
+14.92. resolver = "3"
+14.93. Source replacement
+14.94. Registries alternativos
+14.95. Vendoring
+14.96. Reproducible/offline builds
+14.97. Cross compilation con Cargo
+14.98. Cargo y CI/CD
+14.99. Diagnóstico y troubleshooting de Cargo
+14.100. Laboratorio — workspace multi-crate completo
+
+15. TRAITS
+15.1. Definición, implementación y default methods
+15.2. Trait bounds y where
+15.3. Blanket implementations y supertraits
+15.4. Associated types/constants
+15.5. Fully qualified syntax
+15.6. Coherence
+
+16. GENERICS
+16.1. Functions, structs, enums e impl genéricos
+16.2. Bounds y monomorphization
+16.3. Static dispatch y turbofish
+16.4. Const generics
+16.5. Generic Associated Types
+
+17. TRAIT OBJECTS Y POLIMORFISMO
+17.1. dyn Trait y dynamic dispatch
+17.2. Vtables y dyn compatibility
+17.3. Box<dyn Trait> y &dyn Trait
+17.4. impl Trait y return-position impl Trait
+17.5. Static vs dynamic dispatch
+17.6. Diseño de APIs
+
+18. UTILITY TRAITS
+18.1. Clone, Copy, Drop, Default
+18.2. Debug y Display
+18.3. From/Into y TryFrom/TryInto
+18.4. AsRef/AsMut y Borrow
+18.5. Deref/DerefMut
+18.6. PartialEq/Eq, PartialOrd/Ord y Hash
+18.7. Iterator/IntoIterator/FromIterator/Extend
+
+19. OPERATOR OVERLOADING
+19.1. Add/Sub/Mul/Div/Rem
+19.2. Neg y Not
+19.3. Index/IndexMut
+19.4. Assignment operators
+19.5. PartialEq y PartialOrd
+
+20. CLOSURES
+20.1. Sintaxis e inferencia
+20.2. Captura por borrow, mutable borrow y move
+20.3. Fn, FnMut y FnOnce
+20.4. Closures como argumentos y retornos
+20.5. Lifetimes
+
+21. ITERATORS
+21.1. Iterator e IntoIterator
+21.2. iter, iter_mut e into_iter
+21.3. next
+21.4. map/filter/filter_map/flat_map/flatten
+21.5. enumerate/zip/chain/take/skip/peekable
+21.6. fold/reduce/collect
+21.7. sum/product/any/all/find/position
+21.8. Lazy evaluation
+21.9. Custom iterators y rendimiento
+
+22. SMART POINTERS
+22.1. Box, Rc, Arc
+22.2. Cell, RefCell y UnsafeCell
+22.3. Cow, Pin y Weak
+22.4. Interior mutability
+22.5. Reference counting
+22.6. Ownership patterns
+
+23. MEMORIA
+23.1. Stack, heap y allocations
+23.2. Layout, alignment y padding
+23.3. size_of/align_of
+23.4. References y pointers
+23.5. RAII y destructors
+23.6. Leaks
+23.7. MaybeUninit y ManuallyDrop
+23.8. Memoria desde la perspectiva del compilador
+
+24. INPUT/OUTPUT Y FILESYSTEM
+24.1. Read, Write y BufRead
+24.2. stdin/stdout/stderr
+24.3. File, BufReader y BufWriter
+24.4. seek
+24.5. Paths/directories/metadata/permissions
+24.6. Binary I/O y buffering
+
+25. TESTING
+25.1. #[test] y assertions
+25.2. Unit/integration tests
+25.3. Test modules y should_panic
+25.4. Result en tests
+25.5. Fixtures y doctests
+25.6. Property-based testing
+25.7. Fuzzing y benchmarking
+
+26. THREADS
+26.1. std::thread, spawn y JoinHandle
+26.2. move closures y thread::scope
+26.3. Send y Sync
+26.4. Arc, Mutex, RwLock, Condvar y Barrier
+26.5. Channels/mpsc
+26.6. Thread-local storage
+26.7. Scoped threads
+
+27. ATOMICS Y MEMORY MODEL
+27.1. AtomicBool y tipos Atomic*
+27.2. load/store/swap/compare_exchange/fetch_*
+27.3. Ordering: Relaxed, Acquire, Release, AcqRel, SeqCst
+27.4. Happens-before, memory ordering y fences
+27.5. Spin locks
+27.6. Lock-free y conceptos wait-free
+27.7. ABA problem, false sharing y cache effects
+
+28. ASYNCHRONOUS PROGRAMMING
+28.1. async, async fn y .await
+28.2. Future, Poll, Context y Waker
+28.3. Pin
+28.4. Executors, runtimes y tasks
+28.5. async blocks y async move
+28.6. Streams y async I/O
+28.7. Cancellation, timeouts y select
+28.8. Channels y sincronización
+28.9. Structured concurrency
+28.10. Blocking vs async
+
+29. FUTURES EN PROFUNDIDAD
+29.1. Future trait
+29.2. State machines y polling
+29.3. Pending/Ready
+29.4. Waker y RawWaker
+29.5. Pin/Unpin
+29.6. Self-referential futures
+29.7. Combinators
+29.8. Executor internals
+29.9. Laboratorio: mini executor
+
+30. MACROS
+30.1. macro_rules!
+30.2. Metavariables, fragment specifiers y repetition
+30.3. Hygiene
+30.4. Procedural macros: derive, attribute, function-like
+30.5. TokenStream, tokens, parsing y AST
+30.6. Generación de código
+
+31. UNSAFE RUST
+31.1. unsafe blocks/functions
+31.2. Raw pointers
+31.3. Unsafe traits/impl
+31.4. Mutable statics y unions
+31.5. Invariants, aliasing, validity y provenance
+31.6. Soundness
+31.7. Encapsulación segura de unsafe
+
+32. FOREIGN FUNCTION INTERFACE — FFI
+32.1. ABI y extern "C"
+32.2. #[repr(C)]
+32.3. Tipos y strings C
+32.4. Pointers y ownership entre lenguajes
+32.5. Callbacks
+32.6. Static/dynamic linking
+32.7. bindgen/cbindgen
+32.8. Wrappers seguros
+
+33. ATRIBUTOS Y COMPILACIÓN CONDICIONAL
+33.1. #[derive], #[cfg] y cfg!
+33.2. target_os/target_arch
+33.3. Features
+33.4. Lint/documentation/custom attributes
+
+34. RUSTDOC Y DOCUMENTACIÓN
+34.1. /// y //!
+34.2. Markdown
+34.3. Ejemplos ejecutables y doctests
+34.4. cargo doc
+34.5. Documentación de APIs y crates
+
+35. DISEÑO IDIOMÁTICO
+35.1. Ownership-oriented design
+35.2. Newtype y builder
+35.3. Typestate
+35.4. Extension/sealed traits
+35.5. RAII guards
+35.6. Zero-cost abstractions
+35.7. Parse, don't validate
+35.8. Estados inválidos irrepresentables
+35.9. Composición y diseño Rustacean
+
+36. TYPE-DRIVEN DESIGN
+36.1. Tipos como invariantes
+36.2. Phantom types y PhantomData
+36.3. Marker y zero-sized types
+36.4. Typestate
+36.5. Const generics
+36.6. Associated types y GATs
+36.7. HRTB
+36.8. Garantías en compile time
+
+37. PERFORMANCE
+37.1. Zero-cost abstractions y monomorphization
+37.2. Allocations/copies/cache locality/data layout
+37.3. Iterator optimization e inlining
+37.4. LTO, codegen units y release profiles
+37.5. Benchmarking y profiling
+37.6. Flamegraphs, perf y heap profiling
+37.7. Optimización basada en mediciones
+
+38. COMPILER Y TOOLCHAIN INTERNO
+38.1. rustc
+38.2. Lexer/parser/AST
+38.3. HIR, THIR y MIR
+38.4. Borrow checking
+38.5. Monomorphization
+38.6. LLVM IR/LLVM
+38.7. Code generation/linking
+38.8. Incremental compilation
+38.9. Diagnósticos del compilador
+
+39. BORROW CHECKER EN PROFUNDIDAD
+39.1. Places, moves, loans y regions
+39.2. NLL y reborrowing
+39.3. Variance
+39.4. Drop checking
+39.5. Two-phase borrows
+39.6. Interior mutability
+39.7. Aliasing
+39.8. Razonamiento de errores complejos
+
+40. NETWORKING
+40.1. TCP/UDP
+40.2. TcpListener/TcpStream/UdpSocket
+40.3. Protocolos y framing
+40.4. Blocking/non-blocking I/O
+40.5. Async networking
+40.6. HTTP
+40.7. Diseño de servidores
+
+41. SYSTEMS PROGRAMMING
+41.1. Procesos y threads
+41.2. Filesystems
+41.3. Signals, pipes y sockets
+41.4. Memory mapping
+41.5. Syscalls
+41.6. Unix/Linux APIs
+41.7. libc y FFI
+41.8. Abstracciones seguras sobre el SO
+
+42. CLI APPLICATIONS
+42.1. Argumentos y subcommands
+42.2. stdin/stdout/stderr y exit codes
+42.3. Environment y configuración
+42.4. Logging y signals
+42.5. Pipes
+42.6. Testing y distribución
+
+43. SERIALIZACIÓN Y DATOS
+43.1. JSON, TOML, YAML, CSV y formatos binarios
+43.2. serde
+43.3. Serialize/Deserialize
+43.4. Custom serializers
+43.5. Zero-copy cuando corresponda
+
+44. LOGGING, TRACING Y OBSERVABILITY
+44.1. Logging y niveles
+44.2. Structured logging
+44.3. tracing: spans/events/instrumentation
+44.4. Métricas
+44.5. Error observability
+44.6. Observabilidad async
+
+45. SEGURIDAD
+45.1. Memory safety
+45.2. Integer overflow y bounds checking
+45.3. Unsafe/FFI boundaries
+45.4. Dependency security y cargo audit
+45.5. Supply chain
+45.6. Secrets
+45.7. Parsing seguro
+45.8. DoS
+45.9. Secure API design
+
+46. DEPENDENCIAS Y SUPPLY CHAIN
+46.1. crates.io y SemVer
+46.2. Cargo.lock y dependency trees
+46.3. Features
+46.4. MSRV
+46.5. Auditing y licensing
+46.6. Reproducible builds
+46.7. Publicación de crates
+
+47. CROSS COMPILATION
+47.1. Targets y target triples
+47.2. rustup target
+47.3. Linkers y libc
+47.4. musl y static linking
+47.5. Cross compilation
+47.6. Builds reproducibles
+
+48. NO_STD Y EMBEDDED — INTRODUCCIÓN
+48.1. std, core y alloc
+48.2. #![no_std]
+48.3. Panic handlers
+48.4. Allocators
+48.5. Bare metal
+48.6. Restricciones de embedded
+
+49. API / LIBRARY DESIGN
+49.1. Public API y encapsulation
+49.2. Traits/generics/error types
+49.3. SemVer y compatibility
+49.4. MSRV y feature flags
+49.5. Documentation/testing
+49.6. Evolución de una crate
+
+50. ADVANCED TRAITS & TYPE SYSTEM
+50.1. HRTB y GATs
+50.2. Associated types/bounds
+50.3. RPIT y RPITIT
+50.4. impl Trait y dyn Trait
+50.5. Const generics
+50.6. Variance y subtyping
+50.7. Auto traits
+50.8. Límites del type system
+
+51. ASYNC INTERNO Y AVANZADO
+51.1. Transformación async → Future
+51.2. State machines y pinning
+51.3. Wake mechanism
+51.4. Executors/schedulers/work stealing
+51.5. Cancellation safety
+51.6. Backpressure y bounded concurrency
+51.7. Async synchronization
+51.8. Debugging async
+
+52. CONCURRENCIA AVANZADA
+52.1. Shared state y message passing
+52.2. Atomics
+52.3. Lock-free structures y wait-free concepts
+52.4. Memory ordering
+52.5. Cache coherence y false sharing
+52.6. Contention
+52.7. Synchronization primitives
+52.8. Diseño y verificación
+
+53. UNSAFE EN PROFUNDIDAD
+53.1. Unsafe contracts e invariants
+53.2. Validity, aliasing y provenance
+53.3. Lifetimes manuales
+53.4. Raw allocation
+53.5. Initialization/destruction
+53.6. Pointer arithmetic
+53.7. Slices desde raw pointers
+53.8. FFI y concurrency
+53.9. Sound abstractions
+53.10. Miri
+
+54. RUST COMPILER / LANGUAGE INTERNALS
+54.1. Arquitectura rustc y query system
+54.2. HIR/MIR
+54.3. Type checking y trait solving
+54.4. Borrow checking
+54.5. Monomorphization
+54.6. LLVM/codegen
+54.7. Diagnostics
+54.8. Evolución del lenguaje
+
+55. DEBUGGING
+55.1. Compiler diagnostics
+55.2. RUST_BACKTRACE
+55.3. Logging/tracing
+55.4. gdb/lldb/rust-gdb/rust-lldb
+55.5. Core dumps
+55.6. Sanitizers
+55.7. Miri y Valgrind
+55.8. perf
+55.9. Debugging de concurrencia
+
+56. RUST PROFESIONAL
+56.1. Estructura de proyectos y workspaces
+56.2. Arquitectura y API boundaries
+56.3. Testing strategy y documentation
+56.4. CI/CD
+56.5. linting/formatting
+56.6. Dependency management/security
+56.7. Profiling/observability
+56.8. Releases y mantenimiento
+
+57. PROYECTOS PROGRESIVOS
+57.1. CLI
+57.2. Parser
+57.3. grep simplificado
+57.4. Filesystem utility
+57.5. Aplicación multithreaded
+57.6. TCP/concurrent/async server
+57.7. REST service
+57.8. Serialization library
+57.9. FFI wrapper
+57.10. Custom iterator
+57.11. Procedural macro
+57.12. Synchronization primitive
+57.13. Systems utility
+
+58. PROYECTO FINAL — RUSTACEAN
+58.1. Workspace multi-crate
+58.2. Library + binaries
+58.3. Traits/generics y ownership/lifetimes complejos
+58.4. Concurrencia y async
+58.5. Networking y persistence
+58.6. Arquitectura de errores
+58.7. Observability
+58.8. Tests/benchmarks/profiling
+58.9. Unsafe justificado cuando sea necesario
+58.10. Documentación, CI/CD, packaging y release
+
+ESTÁNDAR DE CADA LECCIÓN
+🎯 OBJETIVO
+Teoría y modelo mental
+Sintaxis/anatomía
+Ejemplos progresivos
+🧪 Laboratorio
+⚠️ Errores frecuentes
+💡 Idea importante
+📚 LECTURA
+🧠 QUÉ DEBES RECORDAR
+
+
+CRITERIOS DIDÁCTICOS
+- Enseñar primero el modelo mental y después la sintaxis.
+- Ownership, borrowing y lifetimes deben reforzarse durante todo el curso, no estudiarse una sola vez.
+- Todo concepto importante debe incluir código compilable y ejercicios.
+- Mostrar errores reales del compilador y enseñar a interpretarlos.
+- Diferenciar explícitamente safe Rust de unsafe Rust.
+- En concurrencia, explicar Send, Sync, atomics y el memory model antes de estructuras lock-free avanzadas.
+- En async, explicar Future, Poll, Waker y Pin, no limitarse a usar un runtime.
+- Incluir rendimiento sólo con mediciones, benchmarks y profiling.
+- Los bloques expertos deben conectar el lenguaje con rustc, MIR, LLVM, ABI, SO y hardware.
+- Usar documentación oficial como autoridad primaria para semántica y comportamiento del lenguaje.
+- Terminar cada bloque importante con laboratorios y cada nivel con un proyecto integrador.

@@ -1,0 +1,1245 @@
+JAVA — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
+
+Objetivo general
+Dominar Java moderno desde cero hasta un nivel experto: lenguaje, orientación a objetos, genéricos,
+colecciones, programación funcional, Streams, I/O/NIO, networking, reflexión, concurrencia,
+multihilo, programación asíncrona, virtual threads, bases de datos con JDBC, persistencia,
+JavaFX, testing, build tools, JVM, bytecode, memoria, garbage collection, JIT, rendimiento,
+profiling, seguridad, arquitectura, observabilidad, XML, internacionalización, AWT/Swing, FFM y troubleshooting.
+
+El aprendizaje será práctico. Cada bloque debe combinar teoría, ejemplos ejecutables,
+laboratorios y, cuando corresponda, análisis interno de la JVM y herramientas CLI.
+
+===============================================================================
+0. ENTORNO, PLATAFORMA Y ECOSISTEMA JAVA
+===============================================================================
+0.1 Qué es Java: lenguaje, plataforma y ecosistema
+0.2 JDK, JRE y JVM
+0.3 OpenJDK y distribuciones del JDK
+0.4 Versiones Java, LTS y compatibilidad
+0.5 Instalación y configuración del JDK
+0.6 JAVA_HOME y PATH
+0.7 Estructura de un programa Java
+0.8 Compilar con javac
+0.9 Ejecutar con java
+0.10 REPL con jshell
+0.11 Inspección inicial con javap
+0.12 JAR y comando jar
+0.13 classpath
+0.14 module-path
+0.15 IDE frente a CLI
+0.16 Maven y Gradle: visión general
+0.17 Git en proyectos Java
+LAB: instalar el JDK, compilar y ejecutar sin IDE, crear un JAR y explorar una clase con javap.
+
+===============================================================================
+1. FUNDAMENTOS DEL LENGUAJE
+===============================================================================
+1.1 Sintaxis y estructura
+1.2 Comentarios y documentación
+1.3 Identificadores y palabras reservadas
+1.4 Variables y constantes
+1.5 Tipos primitivos
+1.6 Literales
+1.7 Inferencia local con var
+1.8 Operadores aritméticos
+1.9 Operadores relacionales
+1.10 Operadores lógicos
+1.11 Operadores bit a bit
+1.12 Asignación y operadores compuestos
+1.13 Precedencia y asociatividad
+1.14 Casting y conversiones
+1.15 Overflow y underflow
+1.16 String básico
+1.17 Entrada y salida por consola
+1.18 if / else
+1.19 switch clásico y switch expressions
+1.20 for / enhanced for
+1.21 while / do-while
+1.22 break / continue
+1.23 bloques y scope
+LAB: calculadora CLI y pequeños problemas algorítmicos.
+
+===============================================================================
+2. MÉTODOS
+===============================================================================
+2.1 Declaración e invocación
+2.2 Parámetros
+2.3 Valores de retorno
+2.4 void
+2.5 Sobrecarga
+2.6 varargs
+2.7 Scope de variables
+2.8 Métodos static
+2.9 Recursividad
+2.10 Paso de argumentos en Java
+2.11 Paso por valor y referencias a objetos
+2.12 Diseño de métodos pequeños y cohesivos
+LAB: biblioteca de utilidades y algoritmos recursivos.
+
+===============================================================================
+3. ARRAYS Y ALGORITMOS BÁSICOS
+===============================================================================
+3.1 Declaración, creación e inicialización
+3.2 Índices y recorrido
+3.3 Arrays de objetos
+3.4 Arrays multidimensionales
+3.5 Arrays irregulares
+3.6 java.util.Arrays
+3.7 copyOf / fill / equals / compare
+3.8 sort / binarySearch
+3.9 Conversión entre arrays y colecciones
+3.10 Complejidad básica de operaciones
+LAB: estadísticas, matrices, búsqueda y ordenación.
+
+===============================================================================
+4. PROGRAMACIÓN ORIENTADA A OBJETOS
+===============================================================================
+4.1 Clase y objeto
+4.2 Estado y comportamiento
+4.3 Campos
+4.4 Métodos de instancia
+4.5 Constructores
+4.6 this
+4.7 Encapsulación
+4.8 Modificadores de acceso
+4.9 static
+4.10 final
+4.11 Inicializadores
+4.12 Clases anidadas e internas
+4.13 Clases locales y anónimas
+4.14 Inmutabilidad
+4.15 Records como objetos de datos
+4.16 Ciclo de vida de objetos
+PROYECTO 1: aplicación CLI orientada a objetos.
+
+===============================================================================
+5. HERENCIA, ABSTRACCIÓN Y POLIMORFISMO
+===============================================================================
+5.1 extends
+5.2 super
+5.3 overriding
+5.4 @Override
+5.5 Upcasting y downcasting
+5.6 instanceof y pattern matching
+5.7 Dynamic dispatch
+5.8 Clases abstractas
+5.9 Interfaces
+5.10 Métodos default y static en interfaces
+5.11 Interfaces funcionales: introducción
+5.12 Sealed classes e interfaces
+5.13 Jerarquías cerradas
+5.14 Composición frente a herencia
+5.15 Principio de sustitución
+LAB: modelar una jerarquía extensible y otra sellada.
+
+===============================================================================
+6. OBJECT, IGUALDAD E INMUTABILIDAD
+===============================================================================
+6.1 java.lang.Object
+6.2 toString()
+6.3 equals()
+6.4 hashCode()
+6.5 Contrato equals/hashCode
+6.6 getClass()
+6.7 Identidad frente a igualdad
+6.8 Objects utility class
+6.9 Value objects
+6.10 Copias defensivas
+6.11 Diseño de tipos inmutables
+LAB: implementar correctamente entidades y value objects.
+
+===============================================================================
+7. EXCEPCIONES Y GESTIÓN DE RECURSOS
+===============================================================================
+7.1 Throwable
+7.2 Error y Exception
+7.3 Checked y unchecked exceptions
+7.4 try / catch / finally
+7.5 Multi-catch
+7.6 throw
+7.7 throws
+7.8 Excepciones personalizadas
+7.9 Encadenamiento y causas
+7.10 try-with-resources
+7.11 AutoCloseable
+7.12 Diseño de APIs y excepciones
+7.13 Anti-patrones: swallowing, catch genérico y control de flujo por excepción
+7.14 Assertions: propósito y contrato
+7.15 assert expression;
+7.16 assert expression : message;
+7.17 -ea / --enableassertions
+7.18 -da / --disableassertions
+7.19 Activación por clase y package
+7.20 Assertions vs exceptions
+7.21 Assertions vs validación de entrada
+7.22 Cuándo NO usar assert
+LAB: capa robusta de validación y errores; experimentar con assertions activadas/desactivadas.
+
+===============================================================================
+8. ENUMS, RECORDS, SEALED TYPES Y PATTERN MATCHING
+===============================================================================
+8.1 Enum
+8.2 Estado y comportamiento en enums
+8.3 EnumSet y EnumMap
+8.4 Records
+8.5 Record constructors
+8.6 Sealed / non-sealed / final
+8.7 Pattern matching
+8.8 Patrones con switch
+8.9 Modelado algebraico de dominios en Java
+LAB: modelar estados y resultados mediante tipos modernos.
+
+===============================================================================
+9. PACKAGES, MÓDULOS Y ENCAPSULACIÓN
+===============================================================================
+9.1 package e import
+9.2 Accesibilidad
+9.3 unnamed package
+9.4 JAR
+9.5 JPMS
+9.6 module-info.java
+9.7 requires / exports
+9.8 opens
+9.9 requires transitive
+9.10 services: uses/provides
+9.11 module-path
+9.12 jdeps
+9.13 jlink
+9.14 jpackage
+LAB: convertir una aplicación en proyecto modular y crear runtime/package.
+
+===============================================================================
+10. GENERICS — EN PROFUNDIDAD
+===============================================================================
+10.1 Motivación y type safety
+10.2 Clases e interfaces genéricas
+10.3 Métodos genéricos
+10.4 Type inference
+10.5 Bounded type parameters
+10.6 Multiple bounds
+10.7 Wildcards
+10.8 Unbounded wildcard
+10.9 ? extends
+10.10 ? super
+10.11 PECS
+10.12 Invariance
+10.13 Capture conversion
+10.14 Recursive type bounds
+10.15 Type erasure
+10.16 Bridge methods
+10.17 Reifiable y non-reifiable types
+10.18 Heap pollution
+10.19 @SafeVarargs
+10.20 Restricciones de generics
+10.21 Arrays y generics
+10.22 Diseño de APIs genéricas
+LAB: construir una API genérica type-safe y analizar su bytecode.
+
+===============================================================================
+11. COLLECTIONS FRAMEWORK — EN PROFUNDIDAD
+===============================================================================
+11.1 Iterable
+11.2 Collection
+11.3 List
+11.4 Set
+11.5 SortedSet / NavigableSet
+11.6 Queue
+11.7 Deque
+11.8 Map
+11.9 SortedMap / NavigableMap
+11.10 ArrayList
+11.11 LinkedList
+11.12 HashSet / LinkedHashSet / TreeSet
+11.13 HashMap / LinkedHashMap / TreeMap
+11.14 ArrayDeque
+11.15 PriorityQueue
+11.16 Iterator / ListIterator
+11.17 fail-fast iterators
+11.18 Comparable
+11.19 Comparator
+11.20 Collections utility class
+11.21 Factory methods: List.of / Set.of / Map.of
+11.22 Unmodifiable vs immutable
+11.23 Hashing y tablas hash
+11.24 Árboles y ordenación
+11.25 Big-O de las colecciones
+11.26 Elección de estructura de datos
+LAB: benchmark y comparación razonada de estructuras.
+
+===============================================================================
+12. LAMBDAS E INTERFACES FUNCIONALES
+===============================================================================
+12.1 Lambda expressions
+12.2 Target typing
+12.3 Captura de variables
+12.4 Effectively final
+12.5 java.util.function
+12.6 Predicate
+12.7 Function
+12.8 Consumer
+12.9 Supplier
+12.10 UnaryOperator / BinaryOperator
+12.11 BiFunction y variantes Bi*
+12.12 Primitive specializations
+12.13 Method references
+12.14 Composición de funciones
+12.15 Closures en Java
+LAB: refactorizar código imperativo hacia funciones.
+
+===============================================================================
+13. PROGRAMACIÓN FUNCIONAL — EN PROFUNDIDAD
+===============================================================================
+13.1 Paradigma funcional
+13.2 Funciones puras
+13.3 Efectos secundarios
+13.4 Inmutabilidad
+13.5 Higher-order functions
+13.6 Function composition
+13.7 Currying y partial application: conceptos y aproximación en Java
+13.8 Optional
+13.9 map / flatMap en Optional
+13.10 Lazy evaluation
+13.11 Recursión y sus límites en Java
+13.12 Diseño funcional de APIs
+13.13 Imperativo vs declarativo
+LAB: pipeline funcional sin estado mutable compartido.
+
+===============================================================================
+14. STREAM API — EN PROFUNDIDAD
+===============================================================================
+14.1 Streams frente a Collections
+14.2 Pipeline
+14.3 Sources
+14.4 Operaciones intermedias
+14.5 Operaciones terminales
+14.6 Lazy evaluation
+14.7 map
+14.8 flatMap
+14.9 filter
+14.10 distinct / sorted / limit / skip
+14.11 takeWhile / dropWhile
+14.12 reduce
+14.13 collect
+14.14 Collector
+14.15 Collectors
+14.16 groupingBy
+14.17 partitioningBy
+14.18 mapping / filtering / flatMapping
+14.19 teeing
+14.20 Primitive streams
+14.21 Spliterator
+14.22 Parallel streams
+14.23 ForkJoinPool y parallel streams
+14.24 Side effects y non-interference
+14.25 Cuándo NO usar Streams
+PROYECTO 2: procesamiento y análisis de datos con Streams.
+
+===============================================================================
+15. STRINGS, TEXTO, REGEX Y UNICODE
+===============================================================================
+15.1 String e inmutabilidad
+15.2 String pool
+15.3 StringBuilder
+15.4 Formateo
+15.5 Text blocks
+15.6 Unicode, code points y UTF
+15.7 Pattern y Matcher
+15.8 Regex
+LAB: parser y procesador de texto Unicode.
+
+===============================================================================
+16. NÚMEROS, BIGDECIMAL Y FECHA/HORA
+===============================================================================
+16.1 Wrappers
+16.2 Autoboxing/unboxing
+16.3 Math
+16.4 Random y números pseudoaleatorios
+16.5 BigInteger
+16.6 BigDecimal
+16.7 Escala, precisión y rounding
+16.8 java.time
+16.9 Instant
+16.10 LocalDate / LocalTime / LocalDateTime
+16.11 ZonedDateTime
+16.12 Duration / Period
+16.13 DateTimeFormatter
+16.14 Zonas horarias
+LAB: cálculo monetario y planificación temporal segura.
+
+===============================================================================
+17. FILES E I/O
+===============================================================================
+17.1 Streams de bytes
+17.2 Streams de caracteres
+17.3 InputStream / OutputStream
+17.4 Reader / Writer
+17.5 Buffered I/O
+17.6 Data streams
+17.7 Object serialization y sus riesgos
+17.8 PrintWriter
+17.9 Charset
+17.10 try-with-resources
+17.11 Console
+LAB: lector/escritor de formatos y procesamiento de ficheros grandes.
+
+===============================================================================
+18. NIO Y NIO.2
+===============================================================================
+18.1 Path
+18.2 Files
+18.3 Directorios
+18.4 Attributes
+18.5 FileVisitor
+18.6 WatchService
+18.7 Channels
+18.8 Buffers
+18.9 FileChannel
+18.10 Scatter/gather
+18.11 Memory-mapped files
+18.12 Selectors
+18.13 AsynchronousFileChannel
+18.14 AsynchronousSocketChannel
+LAB: monitor de directorios y servidor I/O.
+
+===============================================================================
+19. NETWORKING Y HTTP
+===============================================================================
+19.1 Fundamentos TCP/UDP aplicados a Java
+19.2 InetAddress
+19.3 Socket / ServerSocket
+19.4 DatagramSocket
+19.5 URI / URL
+19.6 HTTP
+19.7 java.net.http.HttpClient
+19.8 HttpRequest / HttpResponse
+19.9 Requests síncronos
+19.10 Requests asíncronos
+19.11 WebSocket API
+19.12 Timeouts y errores
+LAB: cliente HTTP y servicio TCP concurrente.
+
+===============================================================================
+20. REFLECTION, METHOD HANDLES Y DINAMISMO
+===============================================================================
+20.1 Class<?>
+20.2 Inspección de tipos
+20.3 Method
+20.4 Field
+20.5 Constructor
+20.6 Invocación dinámica
+20.7 Acceso y encapsulación
+20.8 MethodHandle / MethodHandles
+20.9 MethodType
+20.10 Dynamic proxies
+20.11 Costes y casos de uso
+LAB: mini-framework basado en reflexión/anotaciones.
+
+===============================================================================
+21. ANNOTATIONS Y ANNOTATION PROCESSING
+===============================================================================
+21.1 Anotaciones estándar
+21.2 Definir anotaciones
+21.3 @Target
+21.4 @Retention
+21.5 @Repeatable
+21.6 Lectura mediante reflection
+21.7 Compile-time annotation processing
+21.8 Processor API
+21.9 Generación de código
+LAB: annotation processor sencillo.
+
+===============================================================================
+22. CONCURRENCIA Y MULTIHILO — FUNDAMENTOS
+===============================================================================
+22.1 Proceso vs thread
+22.2 Concurrencia vs paralelismo
+22.3 Thread
+22.4 Runnable
+22.5 Creación y lifecycle
+22.6 start vs run
+22.7 join
+22.8 sleep
+22.9 interruption
+22.10 Daemon threads
+22.11 Shared mutable state
+22.12 Race conditions
+22.13 synchronized
+22.14 Monitores e intrinsic locks
+22.15 wait / notify / notifyAll
+22.16 Deadlock
+22.17 Livelock
+22.18 Starvation
+22.19 Thread safety
+LAB: reproducir y corregir race conditions y deadlocks.
+
+===============================================================================
+23. JAVA MEMORY MODEL — EN PROFUNDIDAD
+===============================================================================
+23.1 Por qué existe el JMM
+23.2 Atomicity
+23.3 Visibility
+23.4 Ordering
+23.5 Happens-before
+23.6 volatile
+23.7 synchronized y memoria
+23.8 final-field semantics
+23.9 Safe publication
+23.10 Data races
+23.11 Reordering
+23.12 Double-checked locking
+LAB: experimentos de visibilidad, volatile y publicación segura.
+
+===============================================================================
+24. JAVA.UTIL.CONCURRENT
+===============================================================================
+24.1 Lock
+24.2 ReentrantLock
+24.3 Condition
+24.4 ReadWriteLock
+24.5 StampedLock
+24.6 Semaphore
+24.7 CountDownLatch
+24.8 CyclicBarrier
+24.9 Phaser
+24.10 Exchanger
+24.11 AtomicInteger y familia Atomic*
+24.12 LongAdder
+24.13 ConcurrentHashMap
+24.14 CopyOnWriteArrayList
+24.15 BlockingQueue
+24.16 ConcurrentLinkedQueue
+24.17 Lock-free y CAS: fundamentos
+LAB: productor/consumidor y estructuras concurrentes.
+
+===============================================================================
+25. EXECUTORS, THREAD POOLS Y FORK/JOIN
+===============================================================================
+25.1 Executor
+25.2 ExecutorService
+25.3 ThreadPoolExecutor
+25.4 Configuración de pools
+25.5 Queueing
+25.6 Rejection policies
+25.7 Callable
+25.8 Future
+25.9 ScheduledExecutorService
+25.10 ForkJoinPool
+25.11 RecursiveTask / RecursiveAction
+25.12 Work stealing
+25.13 CPU-bound vs I/O-bound
+25.14 Shutdown ordenado
+LAB: servidor de tareas con pools medidos y configurados.
+
+===============================================================================
+26. PROGRAMACIÓN ASÍNCRONA
+===============================================================================
+26.1 Sincronía vs asincronía
+26.2 Future y sus limitaciones
+26.3 CompletableFuture
+26.4 completedFuture
+26.5 supplyAsync
+26.6 runAsync
+26.7 thenApply
+26.8 thenAccept
+26.9 thenRun
+26.10 thenCompose
+26.11 thenCombine
+26.12 allOf
+26.13 anyOf
+26.14 exceptionally / handle / whenComplete
+26.15 Executors personalizados
+26.16 Cancelación y timeouts
+26.17 Pipelines asíncronos
+LAB: agregador asíncrono de múltiples servicios.
+
+===============================================================================
+27. VIRTUAL THREADS
+===============================================================================
+27.1 Platform threads vs virtual threads
+27.2 Motivación
+27.3 Thread.ofVirtual
+27.4 Thread.startVirtualThread
+27.5 Executors y virtual threads
+27.6 Thread-per-task
+27.7 Blocking I/O
+27.8 Scheduling
+27.9 Carrier threads
+27.10 Pinning: concepto, diagnóstico y evolución según JDK
+27.11 ThreadLocal y virtual threads
+27.12 Escalabilidad
+27.13 Cuándo usar y cuándo no usar virtual threads
+LAB: comparar platform threads, pools y virtual threads.
+
+===============================================================================
+28. STRUCTURED CONCURRENCY Y CONTEXTO DE TAREAS
+===============================================================================
+28.1 Problema de tareas concurrentes no estructuradas
+28.2 Task trees
+28.3 Lifetime y ownership
+28.4 Cancelación
+28.5 Propagación de errores
+28.6 Fan-out/fan-in
+28.7 Structured Concurrency API según el JDK objetivo
+28.8 Scoped values/contexto según el JDK objetivo
+28.9 Estado preview/final de APIs: verificar para la versión estudiada
+LAB: servicio concurrente estructurado.
+PROYECTO 3: aplicación concurrente/async con virtual threads.
+
+===============================================================================
+29. BASES DE DATOS Y JDBC — EN PROFUNDIDAD
+===============================================================================
+29.1 Arquitectura JDBC
+29.2 Drivers JDBC
+29.3 DriverManager
+29.4 Connection
+29.5 Statement
+29.6 PreparedStatement
+29.7 CallableStatement
+29.8 ResultSet
+29.9 Tipos SQL ↔ Java
+29.10 CRUD
+29.11 Parámetros y SQL injection
+29.12 Transactions
+29.13 Auto-commit
+29.14 commit / rollback
+29.15 Savepoints
+29.16 Isolation levels
+29.17 Batch operations
+29.18 Generated keys
+29.19 DatabaseMetaData
+29.20 ResultSetMetaData
+29.21 Manejo correcto de recursos
+29.22 PostgreSQL como BD principal de laboratorio
+LAB: CRUD JDBC completo con PostgreSQL.
+
+===============================================================================
+30. DATASOURCE, POOLING Y TRANSACCIONES
+===============================================================================
+30.1 DataSource
+30.2 Connection pooling
+30.3 Coste de abrir conexiones
+30.4 HikariCP
+30.5 Configuración del pool
+30.6 Pool sizing
+30.7 Timeouts
+30.8 Leak detection
+30.9 Transacciones en capas de aplicación
+LAB: medir JDBC directo frente a pooling.
+
+===============================================================================
+31. PERSISTENCIA Y ORM
+===============================================================================
+31.1 DAO
+31.2 Repository
+31.3 Data Mapper
+31.4 ORM: concepto
+31.5 Jakarta Persistence/JPA
+31.6 Entities
+31.7 Entity lifecycle
+31.8 Relationships
+31.9 Fetch strategies
+31.10 JPQL
+31.11 Criteria: introducción
+31.12 Hibernate
+31.13 N+1
+31.14 Transactions
+31.15 JDBC vs ORM
+LAB: implementar el mismo dominio con JDBC y JPA/Hibernate.
+
+===============================================================================
+32. JAVAFX — GUI
+===============================================================================
+32.1 Arquitectura JavaFX
+32.2 Application
+32.3 JavaFX Application Thread
+32.4 Stage
+32.5 Scene
+32.6 Scene Graph
+32.7 Nodes
+32.8 Layout panes
+32.9 Controls
+32.10 Menús
+32.11 Dialogs
+32.12 Events
+32.13 Properties
+32.14 ObservableValue
+32.15 Binding
+32.16 Collections observables
+32.17 CSS
+32.18 FXML
+32.19 Controllers
+32.20 MVC / MVP / MVVM
+LAB: aplicación JavaFX modular.
+
+===============================================================================
+33. JAVAFX AVANZADO + CONCURRENCIA + BD
+===============================================================================
+33.1 TableView
+33.2 TreeView
+33.3 ListView
+33.4 Charts
+33.5 Canvas
+33.6 Shapes
+33.7 Animations
+33.8 Multimedia
+33.9 Task
+33.10 Service
+33.11 Worker
+33.12 Actualización segura de UI
+33.13 Background work
+33.14 Integración JDBC
+33.15 Pool de conexiones
+33.16 Arquitectura de aplicación desktop
+33.17 Empaquetado con jpackage
+PROYECTO 4: aplicación JavaFX + PostgreSQL + JDBC/HikariCP.
+
+===============================================================================
+34. TESTING
+===============================================================================
+34.1 Pirámide de testing
+34.2 JUnit
+34.3 Lifecycle
+34.4 Assertions
+34.5 Exception testing
+34.6 Parameterized tests
+34.7 Nested tests
+34.8 Test doubles
+34.9 Mockito
+34.10 Mock / stub / spy
+34.11 Integration testing
+34.12 Database testing
+34.13 Testcontainers
+34.14 Tests concurrentes
+34.15 Tests deterministas
+34.16 Coverage y sus límites
+LAB: suite completa para proyectos anteriores.
+
+===============================================================================
+35. LOGGING
+===============================================================================
+35.1 Logging vs println
+35.2 java.util.logging
+35.3 SLF4J
+35.4 Logback
+35.5 Niveles
+35.6 Parameterized logging
+35.7 Exceptions y stack traces
+35.8 MDC
+35.9 Structured logging
+35.10 Rotación y configuración
+35.11 Datos sensibles en logs
+LAB: instrumentar una aplicación para diagnóstico.
+
+===============================================================================
+36. MAVEN — EN PROFUNDIDAD
+===============================================================================
+36.1 POM
+36.2 Coordinates
+36.3 Standard directory layout
+36.4 Lifecycle
+36.5 Phases y goals
+36.6 Dependencies
+36.7 Scopes
+36.8 Transitive dependencies
+36.9 dependencyManagement
+36.10 Plugins
+36.11 Profiles
+36.12 Multi-module
+36.13 Maven Wrapper
+36.14 Repositories
+36.15 Reproducible builds
+36.16 mvn dependency:tree
+LAB: proyecto multi-module reproducible.
+
+===============================================================================
+37. GRADLE — EN PROFUNDIDAD
+===============================================================================
+37.1 Gradle model
+37.2 Gradle Wrapper
+37.3 Tasks
+37.4 Plugins
+37.5 Dependencies
+37.6 Configurations
+37.7 Kotlin DSL
+37.8 Multi-project builds
+37.9 Incremental builds
+37.10 Build cache
+37.11 Dependency insight
+LAB: reproducir el proyecto Maven con Gradle.
+
+===============================================================================
+38. JVM — ARQUITECTURA INTERNA
+===============================================================================
+38.1 JVM Specification: visión general
+38.2 Class file
+38.3 Class loader subsystem
+38.4 Bootstrap/platform/application class loaders
+38.5 Loading
+38.6 Linking: verification/preparation/resolution
+38.7 Initialization
+38.8 Runtime data areas
+38.9 Heap
+38.10 Java stacks
+38.11 Frames
+38.12 PC register
+38.13 Native method stacks
+38.14 Metaspace
+38.15 Execution engine
+38.16 JNI: introducción
+LAB: observar carga de clases y runtime con herramientas JDK.
+
+===============================================================================
+39. BYTECODE — EN PROFUNDIDAD
+===============================================================================
+39.1 javap -c -v
+39.2 Constant pool
+39.3 Descriptores
+39.4 Operand stack
+39.5 Local variable array
+39.6 Instrucciones de carga/almacenamiento
+39.7 Aritmética
+39.8 Control flow
+39.9 Invocación de métodos
+39.10 invokevirtual / invokestatic / invokespecial / invokeinterface
+39.11 invokedynamic
+39.12 Lambdas y bytecode
+39.13 Generics y erasure en bytecode
+LAB: desensamblar ejemplos de POO, lambdas y generics.
+
+===============================================================================
+40. MEMORIA Y GARBAGE COLLECTION
+===============================================================================
+40.1 Stack vs heap
+40.2 Object allocation
+40.3 TLAB: concepto
+40.4 Reachability
+40.5 GC roots
+40.6 Strong/soft/weak/phantom references
+40.7 ReferenceQueue
+40.8 Generational hypothesis
+40.9 Young/old generations según collector
+40.10 Stop-the-world
+40.11 Collectors disponibles según JDK
+40.12 G1
+40.13 ZGC
+40.14 Otros collectors relevantes al JDK estudiado
+40.15 Heap sizing
+40.16 GC logs
+40.17 Memory leaks en Java
+40.18 OutOfMemoryError
+LAB: provocar, observar y diagnosticar presión de memoria.
+
+===============================================================================
+41. JIT Y OPTIMIZACIONES DE LA JVM
+===============================================================================
+41.1 Interpretación y compilación
+41.2 Tiered compilation
+41.3 Profiling runtime
+41.4 Hot methods
+41.5 Inlining
+41.6 Escape analysis
+41.7 Scalar replacement
+41.8 Lock optimizations
+41.9 Speculative optimization
+41.10 Deoptimization
+41.11 Code cache
+41.12 Por qué el warmup importa
+LAB: observar warmup y compilación JIT.
+
+===============================================================================
+42. PERFORMANCE — EN PROFUNDIDAD
+===============================================================================
+42.1 Performance como disciplina experimental
+42.2 Latency
+42.3 Throughput
+42.4 Percentiles
+42.5 CPU
+42.6 Memoria
+42.7 Allocations
+42.8 GC
+42.9 I/O
+42.10 Contention
+42.11 Locks
+42.12 Thread pools
+42.13 Virtual threads
+42.14 Bases de datos
+42.15 Caching
+42.16 Backpressure: concepto
+42.17 Medir antes de optimizar
+LAB: localizar y corregir un cuello de botella real.
+
+===============================================================================
+43. PROFILING Y DIAGNÓSTICO
+===============================================================================
+43.1 jcmd
+43.2 jps
+43.3 jstack
+43.4 jmap
+43.5 jstat
+43.6 jinfo
+43.7 JConsole
+43.8 VisualVM
+43.9 Java Flight Recorder
+43.10 JDK Mission Control
+43.11 Thread dumps
+43.12 Heap dumps
+43.13 Native Memory Tracking
+43.14 Deadlock diagnosis
+43.15 High CPU diagnosis
+43.16 Memory leak diagnosis
+LAB: incidente simulado de producción.
+
+===============================================================================
+44. JMH Y MICROBENCHMARKING
+===============================================================================
+44.1 Por qué System.nanoTime no basta
+44.2 JMH
+44.3 @Benchmark
+44.4 Warmup
+44.5 Measurement
+44.6 Forks
+44.7 State
+44.8 Blackhole
+44.9 Dead-code elimination
+44.10 Constant folding
+44.11 Benchmarking concurrente
+44.12 Interpretación de resultados
+LAB: comparar implementaciones evitando benchmarks engañosos.
+
+===============================================================================
+45. DISEÑO DE SOFTWARE
+===============================================================================
+45.1 Cohesión
+45.2 Acoplamiento
+45.3 SOLID
+45.4 Composition over inheritance
+45.5 Dependency inversion
+45.6 Tell, Don't Ask
+45.7 Law of Demeter
+45.8 Inmutabilidad
+45.9 API design
+45.10 Refactoring
+45.11 Code smells
+LAB: refactorizar una aplicación legacy.
+
+===============================================================================
+46. DESIGN PATTERNS
+===============================================================================
+46.1 Factory
+46.2 Builder
+46.3 Singleton y sus problemas
+46.4 Adapter
+46.5 Decorator
+46.6 Facade
+46.7 Proxy
+46.8 Strategy
+46.9 Observer
+46.10 Command
+46.11 Template Method
+46.12 State
+46.13 Iterator
+46.14 Patterns con lambdas
+46.15 Cuándo NO usar un patrón
+LAB: implementar y refactorizar patrones en contexto.
+
+===============================================================================
+47. ARQUITECTURA DE APLICACIONES JAVA
+===============================================================================
+47.1 Layered architecture
+47.2 Domain model
+47.3 DTO
+47.4 Service layer
+47.5 Repository
+47.6 Hexagonal architecture
+47.7 Ports and adapters
+47.8 Clean Architecture
+47.9 Dependency boundaries
+47.10 Modular monolith: fundamentos
+47.11 Diseño para testabilidad
+PROYECTO 5: reorganizar el proyecto de BD/GUI con arquitectura explícita.
+
+===============================================================================
+48. SEGURIDAD JAVA
+===============================================================================
+48.1 Principios de secure coding
+48.2 SecureRandom
+48.3 MessageDigest
+48.4 MAC
+48.5 Cifrado simétrico/asimétrico: APIs
+48.6 Signature
+48.7 KeyStore
+48.8 TrustStore
+48.9 Certificados
+48.10 TLS
+48.11 Password handling
+48.12 SQL injection
+48.13 Path traversal
+48.14 Deserialization risks
+48.15 Secret management
+48.16 Dependencias vulnerables
+LAB: endurecer una aplicación existente.
+
+===============================================================================
+49. OBSERVABILIDAD Y OPERACIÓN
+===============================================================================
+49.1 Logs
+49.2 Metrics
+49.3 Traces: concepto
+49.4 Health information
+49.5 JVM metrics
+49.6 GC metrics
+49.7 Thread metrics
+49.8 Connection pool metrics
+49.9 Correlation IDs
+49.10 Diagnóstico basado en evidencia
+LAB: preparar una aplicación para operación y troubleshooting.
+
+===============================================================================
+50. JAVA MODERNO Y EVOLUCIÓN DEL JDK
+===============================================================================
+50.1 Cómo evoluciona Java
+50.2 JEPs
+50.3 Preview features
+50.4 Incubator modules
+50.5 Records
+50.6 Sealed classes
+50.7 Pattern matching
+50.8 Switch expressions
+50.9 Text blocks
+50.10 Virtual threads
+50.11 APIs concurrentes modernas
+50.12 Migración entre versiones
+50.13 Deprecation y removal
+50.14 jdeps y compatibilidad
+LAB: migrar un proyecto y analizar incompatibilidades.
+
+===============================================================================
+51. INGENIERÍA JAVA REAL
+===============================================================================
+51.1 Estructura de repositorio
+51.2 Git workflow
+51.3 Versionado
+51.4 Maven/Gradle
+51.5 Gestión de dependencias
+51.6 Configuración
+51.7 Testing automatizado
+51.8 Static analysis
+51.9 CI/CD
+51.10 JAR modular
+51.11 Runtime image con jlink
+51.12 Distribución con jpackage
+51.13 Contenedores: conceptos aplicados a Java
+51.14 Builds reproducibles
+LAB: pipeline de build/test/package.
+
+===============================================================================
+52. TROUBLESHOOTING JAVA — EN PROFUNDIDAD
+===============================================================================
+52.1 Método sistemático de diagnóstico
+52.2 Leer stack traces
+52.3 ClassNotFoundException
+52.4 NoClassDefFoundError
+52.5 ClassCastException
+52.6 NullPointerException
+52.7 StackOverflowError
+52.8 OutOfMemoryError
+52.9 Deadlocks
+52.10 Livelocks
+52.11 Starvation
+52.12 High CPU
+52.13 Memory leaks
+52.14 Excessive GC
+52.15 Thread pool exhaustion
+52.16 Connection pool exhaustion
+52.17 File descriptor/resource leaks
+52.18 Thread dumps
+52.19 Heap dumps
+52.20 JFR
+52.21 GC logs
+52.22 Correlación de métricas, logs y dumps
+LAB: resolver una colección de incidentes reproducibles.
+
+===============================================================================
+53. PROYECTO FINAL — APLICACIÓN JAVA DE PRODUCCIÓN
+===============================================================================
+53.1 Definición del dominio y requisitos
+53.2 Proyecto modular
+53.3 Maven o Gradle
+53.4 Arquitectura por capas/hexagonal
+53.5 Modelo de dominio
+53.6 Generics y Collections
+53.7 Streams y programación funcional
+53.8 PostgreSQL
+53.9 JDBC
+53.10 HikariCP
+53.11 Transacciones
+53.12 JavaFX
+53.13 Trabajo de background sin bloquear la UI
+53.14 Concurrencia
+53.15 CompletableFuture cuando sea apropiado
+53.16 Virtual threads cuando sean apropiados
+53.17 Logging estructurado
+53.18 Testing unitario
+53.19 Integration testing/Testcontainers
+53.20 Seguridad
+53.21 Empaquetado
+53.22 jlink/jpackage
+53.23 Profiling con JFR/JMC
+53.24 Microbenchmark con JMH donde tenga sentido
+53.25 Análisis de memoria y GC
+53.26 Documentación técnica
+53.27 Troubleshooting drill final
+
+===============================================================================
+54. INTERNATIONALIZATION (I18N) — EN PROFUNDIDAD
+===============================================================================
+54.1 Qué es internacionalización y localización
+54.2 Locale
+54.3 Locale.Builder
+54.4 ResourceBundle
+54.5 Resource bundles por propiedades y clases
+54.6 Resolución y fallback de recursos
+54.7 MessageFormat
+54.8 NumberFormat
+54.9 DecimalFormat
+54.10 Currency
+54.11 Formato localizado de fecha/hora
+54.12 Collator y ordenación lingüística
+54.13 Unicode y code points
+54.14 Normalización Unicode
+54.15 Charset y encoding
+54.16 Diseño de aplicaciones traducibles
+54.17 Errores frecuentes de i18n
+LAB: internacionalizar una aplicación en varios locales y probar fallback, números, moneda y fechas.
+
+===============================================================================
+55. XML EN JAVA — EN PROFUNDIDAD
+===============================================================================
+55.1 XML: documentos, elementos, atributos y entidades
+55.2 XML well-formed
+55.3 Namespaces
+55.4 DTD
+55.5 XML Schema: fundamentos
+55.6 Parsing DOM
+55.7 DocumentBuilder / DocumentBuilderFactory
+55.8 Navegación y modificación DOM
+55.9 Parsing SAX
+55.10 SAXParser y handlers
+55.11 Parsing StAX
+55.12 XMLInputFactory / XMLStreamReader
+55.13 Escritura XML
+55.14 XPath
+55.15 XSLT
+55.16 Validación
+55.17 DOM vs SAX vs StAX
+55.18 Seguridad XML
+55.19 XXE y procesamiento seguro
+55.20 Límites, rendimiento y memoria
+LAB: leer el mismo documento con DOM, SAX y StAX; validar y consultar con XPath de forma segura.
+
+===============================================================================
+56. COMPILACIÓN, COMPILER API Y SCRIPTING
+===============================================================================
+56.1 Pipeline source → javac → class → JVM
+56.2 javac en profundidad
+56.3 Opciones de compilación
+56.4 classpath y module-path durante compilación
+56.5 Compilación incremental: concepto
+56.6 javax.tools
+56.7 ToolProvider
+56.8 JavaCompiler
+56.9 JavaFileObject
+56.10 DiagnosticCollector
+56.11 Compilación programática
+56.12 Annotation processing y compilación
+56.13 Generación de código
+56.14 JShell
+56.15 JShell API
+56.16 Scripting: concepto y evolución en la plataforma
+56.17 Engines externos cuando proceda
+56.18 Carga/ejecución dinámica y sus riesgos
+LAB: compilar código desde una aplicación Java e inspeccionar diagnósticos y bytecode.
+
+===============================================================================
+57. AWT, EVENT MODEL Y GRAPHICS2D
+===============================================================================
+57.1 Historia AWT/Swing/JavaFX y papel actual
+57.2 AWT: arquitectura básica
+57.3 Components y Containers
+57.4 Event delegation model
+57.5 Event / Listener
+57.6 Layout managers
+57.7 Graphics
+57.8 Graphics2D
+57.9 Shapes
+57.10 Stroke / Paint / Composite
+57.11 Transformaciones
+57.12 Fonts y texto
+57.13 Colors
+57.14 Images
+57.15 Rendering hints
+57.16 Printing: fundamentos
+LAB: aplicación gráfica pequeña con eventos y Graphics2D.
+
+===============================================================================
+58. SWING — COMPONENTES, EDT Y GRÁFICOS AVANZADOS
+===============================================================================
+58.1 Swing sobre AWT
+58.2 JFrame
+58.3 JPanel
+58.4 JLabel / JButton
+58.5 Text components
+58.6 JCheckBox / JRadioButton
+58.7 JComboBox
+58.8 Menus
+58.9 Dialogs
+58.10 Layout managers
+58.11 Event Dispatch Thread (EDT)
+58.12 SwingUtilities.invokeLater
+58.13 SwingWorker
+58.14 Models
+58.15 JList
+58.16 JTable
+58.17 JTree
+58.18 MVC en Swing
+58.19 Look and Feel
+58.20 Custom painting
+58.21 Drag and drop / clipboard: fundamentos
+58.22 Accessibility: fundamentos
+58.23 Swing frente a JavaFX
+LAB: aplicación Swing con JTable/JTree y trabajo en background sin bloquear el EDT.
+
+===============================================================================
+59. FOREIGN FUNCTION & MEMORY API (FFM) — EN PROFUNDIDAD
+===============================================================================
+59.1 Motivación de interoperabilidad nativa
+59.2 JNI: problemas y comparación conceptual
+59.3 Foreign Function & Memory API
+59.4 MemorySegment
+59.5 Arena
+59.6 Lifetime de memoria
+59.7 MemoryLayout
+59.8 ValueLayout
+59.9 Offsets y acceso estructurado
+59.10 Alineación
+59.11 Memoria on-heap vs off-heap
+59.12 Linker
+59.13 SymbolLookup
+59.14 FunctionDescriptor
+59.15 Downcall handles
+59.16 Upcalls
+59.17 Llamadas a funciones C
+59.18 Estructuras nativas
+59.19 Seguridad espacial y temporal de memoria
+59.20 Concurrencia y acceso a segmentos
+59.21 Rendimiento y costes de transición Java/native
+59.22 FFM vs JNI: criterios de elección
+59.23 Estado exacto de la API según el JDK objetivo
+LAB: reservar memoria nativa, modelar una estructura y llamar una función de una librería C.
+
+RESULTADO FINAL
+El alumno debe poder diseñar, implementar, probar, depurar, perfilar, optimizar, empaquetar y
+mantener aplicaciones Java reales, y explicar no solo qué hace su código sino cómo interactúa
+con el compilador, el bytecode, la JVM, la memoria, el sistema de concurrencia y los recursos
+externos.

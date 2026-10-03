@@ -1,0 +1,102 @@
+course:
+  title: "Java — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  primary_book:
+    title: "Core Java, Volumes I & II"
+    edition: "14th"
+    author: "Cay S. Horstmann"
+
+learner:
+  assumed_knowledge:
+    - "Ningún conocimiento previo de Java"
+    - "Conocimientos generales de informática son útiles pero no obligatorios"
+  goals:
+    - "Dominar Java moderno"
+    - "Comprender la JVM y no únicamente la sintaxis"
+    - "Programar aplicaciones concurrentes y asíncronas correctamente"
+    - "Trabajar con bases de datos mediante JDBC"
+    - "Construir interfaces desktop con JavaFX"
+    - "Comprender AWT/Swing y el modelo gráfico/eventos de Java SE"
+    - "Trabajar con XML e internacionalización"
+    - "Comprender interoperabilidad nativa mediante FFM"
+    - "Diagnosticar y optimizar aplicaciones Java"
+
+environment:
+  os_focus:
+    - "Linux"
+  runtime:
+    - "OpenJDK"
+  database:
+    - "PostgreSQL"
+  gui:
+    - "JavaFX"
+  build_tools:
+    - "Maven"
+    - "Gradle"
+  testing:
+    - "JUnit"
+    - "Mockito"
+    - "Testcontainers"
+
+lesson_style:
+  opening: "🎯 OBJETIVO"
+  closing: "🧠 QUÉ DEBES RECORDAR"
+  preferred_sections:
+    - "Explicación conceptual"
+    - "Sintaxis y anatomía"
+    - "Ejemplos ejecutables"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores frecuentes"
+    - "💡 Idea importante"
+    - "📚 LECTURA"
+    - "Referencias"
+  code_requirements:
+    - "Código completo cuando sea necesario para comprender el ejemplo"
+    - "Explicar la salida esperada"
+    - "Mostrar variantes correctas e incorrectas cuando aporten valor"
+    - "Usar CLI del JDK cuando ayude a comprender el mecanismo interno"
+  depth:
+    - "Explicar qué"
+    - "Explicar cómo"
+    - "Explicar por qué"
+    - "Explicar cuándo usarlo"
+    - "Explicar cuándo no usarlo"
+    - "Explicar costes y trade-offs"
+
+progression:
+  approach: "teoría + ejemplo + laboratorio + proyecto incremental"
+  projects:
+    - "Aplicación CLI orientada a objetos"
+    - "Procesador de datos funcional con Streams"
+    - "Aplicación concurrente/asíncrona"
+    - "Aplicación JavaFX + PostgreSQL"
+    - "Refactor arquitectónico"
+    - "Proyecto final integrado"
+
+special_focus:
+  - "Generics y Collections en profundidad"
+  - "Programación funcional"
+  - "Concurrencia y multihilo"
+  - "Java Memory Model"
+  - "Programación asíncrona"
+  - "Virtual threads"
+  - "JDBC y bases de datos"
+  - "JavaFX"
+  - "JVM, bytecode, GC y JIT"
+  - "Performance y profiling"
+  - "Troubleshooting"
+  - "XML y procesamiento seguro"
+  - "Internacionalización (i18n)"
+  - "Compiler API y scripting"
+  - "AWT, Swing y Graphics2D"
+  - "Foreign Function & Memory API (FFM)"
+
+constraints:
+  - "No depender de un IDE para enseñar los fundamentos"
+  - "No introducir ORM antes de JDBC"
+  - "No introducir abstracciones concurrentes avanzadas sin explicar threads y JMM"
+  - "Distinguir APIs estables, preview e incubator según el JDK objetivo"
+  - "No optimizar sin medición"

@@ -46,3 +46,5 @@ scope:
   include_exam_preparation: true
   include_english_written_reasoning_for_psm_iii: true
   include_nexus: true
+  include_chart_construction_labs: true
+  chart_learning_depth: "data-calculation-construction-interpretation-limitations"

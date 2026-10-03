@@ -1,0 +1,76 @@
+course:
+  id: rust-zero-to-expert
+  title: "Rust 0 → Experto en Profundidad"
+  language: es
+  level:
+    start: beginner
+    end: expert
+  primary_platform: Linux
+  focus:
+    - language_fundamentals
+    - ownership
+    - borrowing
+    - lifetimes
+    - traits
+    - generics
+    - type_system
+    - concurrency
+    - atomics
+    - async
+    - systems_programming
+    - unsafe
+    - ffi
+    - performance
+    - compiler_internals
+    - professional_rust
+
+toolchain:
+  default_channel: stable
+  package_manager: cargo
+  components:
+    - rustc
+    - cargo
+    - rustfmt
+    - clippy
+    - rustdoc
+    - rust-analyzer
+  nightly_policy: "Usar sólo cuando el contenido lo requiera explícitamente."
+
+pedagogy:
+  approach: theory_to_practice
+  explain_mental_models: true
+  compiler_diagnostics: true
+  progressive_examples: true
+  laboratories: true
+  progressive_projects: true
+  final_project: true
+  safe_rust_first: true
+  performance_requires_measurement: true
+
+lesson_template:
+  - "🎯 OBJETIVO"
+  - "Teoría y modelo mental"
+  - "Sintaxis / anatomía"
+  - "Ejemplos progresivos"
+  - "🧪 Laboratorio"
+  - "⚠️ Errores frecuentes"
+  - "💡 Idea importante"
+  - "📚 LECTURA"
+  - "🧠 QUÉ DEBES RECORDAR"
+
+sources:
+  official_docs: primary
+  books: primary_and_supplementary
+  reference_semantics: official_rust_reference
+  unsafe_reference: rustonomicon
+  compiler_reference: rustc_dev_guide
+
+quality:
+  require_compilable_examples: true
+  distinguish_safe_and_unsafe: true
+  explain_tradeoffs: true
+  include_testing: true
+  include_debugging: true
+  include_security: true
+  include_performance: true
+  include_reading_references: true

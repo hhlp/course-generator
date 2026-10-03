@@ -48,6 +48,11 @@ compromisos y eventos.
 - Daniel S. Vacanti. *Actionable Agile Metrics for Predictability*.
 - Daniel S. Vacanti. *When Will It Be Done? Lean-Agile Forecasting to Answer Your Customers' Most Important Question*.
 
+Estas referencias deben utilizarse para WIP, Cycle Time, Throughput, Work Item Age, SLE,
+Little’s Law, CFD, Scatterplots, Aging WIP, métricas de flujo y forecasting probabilístico.
+Los charts específicos de Scrum deben apoyarse además en la bibliografía del PATH Scrum,
+pero contextualizados aquí para decisiones del Product Owner y sin duplicar el curso Scrum.
+
 ## Scrum avanzado y escalado
 
 - Scrum.org. *The Nexus Guide*.

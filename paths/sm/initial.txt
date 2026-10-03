@@ -208,36 +208,96 @@
 8.2 métricas al servicio del empirismo
 8.3 information radiators
 8.4 Scrum Board como práctica opcional
-8.5 Sprint Burndown
-8.6 Product/Release Burndown
-8.7 Burnup Chart
-8.8 Burndown frente a Burnup
-8.9 Velocity Chart
-8.10 Cumulative Flow Diagram
-8.11 WIP
-8.12 Throughput
-8.13 Lead Time
-8.14 Cycle Time
-8.15 Control Chart
-8.16 Cycle Time Scatterplot
-8.17 histograma de Cycle Time
-8.18 Aging Work in Progress Chart
-8.19 Work Item Age
-8.20 Throughput Run Chart
-8.21 WIP Chart
-8.22 Flow Efficiency
-8.23 Sprint Goal progress
-8.24 Product Goal progress
-8.25 dashboards para stakeholders
-8.26 output frente a outcome
-8.27 vanity metrics
-8.28 métricas como targets
-8.29 charts engañosos
-8.30 selección del chart según la pregunta
-8.31 laboratorio: Burndown y Burnup
-8.32 laboratorio: CFD
-8.33 laboratorio: Cycle Time y Aging WIP
-8.34 laboratorio: dashboard Scrum
+
+8.5 Procedencia y modelo de datos para métricas y charts
+8.6 Product Backlog frente a Sprint Backlog como fuentes de datos
+8.7 PBI / Work Item como unidad de observación
+8.8 Story Points como medida opcional, no prescrita por Scrum
+8.9 charts basados en Story Points frente a charts basados en conteo de items
+8.10 campos mínimos de un dataset: identificador, estado, fechas, tamaño y scope
+8.11 fechas Started / Finished y timestamps de transición
+8.12 estados del workflow y tiempo en cada estado
+8.13 trabajo restante
+8.14 trabajo completado
+8.15 scope total y cambios de scope
+8.16 WIP como snapshot del trabajo iniciado y no terminado
+8.17 Throughput como items terminados por intervalo
+8.18 Cycle Time como tiempo Started → Finished
+8.19 Work Item Age como edad del trabajo todavía no terminado
+8.20 laboratorio: construir un dataset desde Product Backlog y Sprint Backlog
+8.21 laboratorio: mismo Sprint con dataset basado en Story Points y basado en conteo de items
+8.22 mapa dato → métrica → chart
+
+8.23 Sprint Burndown: estructura, ejes, trabajo restante y línea de referencia
+8.24 Sprint Burndown: obtener trabajo restante desde el Sprint Backlog
+8.25 Sprint Burndown basado en Story Points como práctica opcional
+8.26 Sprint Burndown basado en items u otra medida de trabajo
+8.27 Sprint Burndown: cálculo y construcción manual paso a paso
+8.28 Sprint Burndown: actualización diaria
+8.29 Sprint Burndown: interpretación, patrones, anomalías y limitaciones
+8.30 Product/Release Burndown: scope, trabajo restante y fuente de datos
+8.31 Product/Release Burndown: construcción paso a paso
+8.32 Product/Release Burndown: cambios de alcance e interpretación
+
+8.33 Burnup Chart: trabajo completado y scope total
+8.34 Burnup Chart: procedencia de los datos
+8.35 Burnup Chart: construcción paso a paso
+8.36 Burnup Chart: representar cambios de scope
+8.37 Burnup Chart: interpretación, patrones y limitaciones
+8.38 Burndown frente a Burnup: diferencias y selección según la pregunta
+
+8.39 Velocity Chart: Story Points completados por Sprint
+8.40 Velocity Chart: dataset histórico, cálculo y construcción
+8.41 Velocity Chart: variabilidad e interpretación
+8.42 velocity no es productividad ni objetivo
+8.43 limitación: Velocity Chart depende de una práctica de sizing como Story Points
+
+8.44 Cumulative Flow Diagram: estados, bandas y WIP
+8.45 Cumulative Flow Diagram: obtener datos desde estados y transiciones del workflow
+8.46 Cumulative Flow Diagram: construcción desde datos históricos
+8.47 Cumulative Flow Diagram: interpretación y detección de bottlenecks
+
+8.48 WIP
+8.49 Throughput
+8.50 Lead Time
+8.51 Cycle Time
+8.52 relaciones entre WIP, Throughput, Lead Time y Cycle Time
+8.53 Control Chart: datos, construcción e interpretación
+8.54 Cycle Time Scatterplot: Started/Finished, cálculo, percentiles y outliers
+8.55 histograma de Cycle Time: intervalos, frecuencias y distribución
+8.56 Aging Work in Progress Chart: items activos, edad y riesgo
+8.57 Work Item Age
+8.58 Throughput Run Chart: items terminados por intervalo, construcción y tendencias
+8.59 WIP Chart: snapshots de WIP, construcción e interpretación
+8.60 Flow Efficiency: tiempo activo frente a tiempo total, cálculo y limitaciones
+
+8.61 Sprint Goal progress
+8.62 Product Goal progress
+8.63 dashboards para stakeholders
+8.64 output frente a outcome
+8.65 vanity metrics
+8.66 métricas como targets y Goodhart's Law
+8.67 charts engañosos y errores de visualización
+8.68 selección del chart según la pregunta
+
+8.69 laboratorio: construir Sprint Burndown desde Sprint Backlog
+8.70 laboratorio: construir Sprint Burndown con Story Points
+8.71 laboratorio: construir Sprint Burndown sin Story Points
+8.72 laboratorio: construir Product/Release Burndown desde cero
+8.73 laboratorio: construir Burnup desde cero
+8.74 laboratorio: mismo dataset — Burndown frente a Burnup
+8.75 laboratorio: construir e interpretar Velocity Chart
+8.76 laboratorio: construir CFD desde estados y transiciones del workflow
+8.77 laboratorio: calcular Cycle Time desde Started/Finished
+8.78 laboratorio: construir Cycle Time Scatterplot
+8.79 laboratorio: construir histograma de Cycle Time
+8.80 laboratorio: construir Aging WIP y compararlo con una SLE
+8.81 laboratorio: construir Throughput Run Chart
+8.82 laboratorio: construir WIP Chart
+8.83 laboratorio: calcular Flow Efficiency
+8.84 laboratorio: interpretar charts y detectar anomalías
+8.85 laboratorio: seleccionar el chart adecuado según la pregunta
+8.86 laboratorio: construir un dashboard Scrum completo
 
 9. Forecasting probabilístico y Evidence-Based Management
 9.1 forecasting empírico
@@ -420,21 +480,135 @@
 18.16 laboratorio
 
 19. Scrum con Kanban y flow metrics
-19.1 Kanban complementando Scrum
-19.2 visualizar workflow
-19.3 limitar WIP
-19.4 gestionar activamente trabajo en progreso
-19.5 inspeccionar y adaptar workflow
-19.6 Cycle Time
-19.7 Work Item Age
-19.8 Throughput
-19.9 WIP
-19.10 SLE
-19.11 CFD avanzado
-19.12 políticas explícitas
-19.13 flow-based forecasting
-19.14 cuellos de botella
-19.15 laboratorio
+19.1 Scrum como framework base y Kanban como estrategia complementaria de flujo
+19.2 qué añade Kanban a Scrum y qué no cambia de Scrum
+19.3 Scrum Events, Accountabilities, Artifacts y Commitments se mantienen
+19.4 evitar duplicar el PATH independiente de Kanban
+
+19.5 visualizar el flujo del Sprint Backlog
+19.6 PBI / Work Item como unidad de flujo
+19.7 workflow: To Do → In Progress → Review/Test → Done
+19.8 puntos de inicio y finalización del trabajo
+19.9 timestamps de transición entre estados
+19.10 políticas explícitas de entrada y salida de cada estado
+19.11 inspeccionar y adaptar el workflow
+
+19.12 WIP — Work In Progress
+19.13 qué significa WIP dentro de Scrum
+19.14 trabajo seleccionado frente a trabajo iniciado
+19.15 WIP actual: items iniciados y todavía no terminados
+19.16 WIP por estado
+19.17 WIP total
+19.18 WIP medio durante un período
+19.19 WIP medido en items frente a Story Points
+19.20 WIP no es Velocity ni Capacity
+19.21 laboratorio: calcular WIP desde un Sprint Backlog
+
+19.22 WIP Limits
+19.23 WIP actual frente a WIP Limit
+19.24 límite WIP por estado
+19.25 límite WIP global
+19.26 establecer un límite inicial
+19.27 qué hacer cuando se alcanza el WIP Limit
+19.28 stop starting, start finishing
+19.29 detectar WIP Limit demasiado alto o demasiado bajo
+19.30 ajustar WIP Limits usando evidencia
+19.31 WIP, multitasking, colaboración y bottlenecks
+
+19.32 Cycle Time
+19.33 definición de Started y Finished
+19.34 cálculo: Cycle Time = Finished - Started
+19.35 Cycle Time por item
+19.36 Cycle Time medio y mediana
+19.37 distribución de Cycle Time
+19.38 percentiles de Cycle Time
+19.39 variabilidad y outliers
+19.40 laboratorio: calcular Cycle Time desde timestamps
+
+19.41 Work Item Age
+19.42 trabajo iniciado pero todavía no terminado
+19.43 cálculo: Work Item Age = ahora - Started
+19.44 comparar Work Item Age con Cycle Time histórico
+19.45 identificar items envejecidos y trabajo en riesgo
+19.46 laboratorio: calcular Work Item Age
+
+19.47 Throughput
+19.48 definición: items terminados por intervalo
+19.49 cálculo: Throughput = items Done / período
+19.50 throughput diario, semanal y por Sprint
+19.51 distribución y variabilidad histórica
+19.52 Throughput frente a Velocity
+19.53 laboratorio: calcular Throughput
+
+19.54 Little's Law
+19.55 relación entre WIP, Throughput y Cycle Time
+19.56 WIP = Throughput × Cycle Time
+19.57 Cycle Time = WIP / Throughput
+19.58 Throughput = WIP / Cycle Time
+19.59 unidades compatibles
+19.60 condiciones y límites de aplicación
+19.61 laboratorio: comprobar Little's Law con datos de flujo
+
+19.62 Service Level Expectation — SLE
+19.63 SLE como expectativa probabilística basada en Cycle Time histórico
+19.64 distribución histórica y percentiles
+19.65 ejemplo: 85 % de los items terminan en N días o menos
+19.66 SLE frente a deadline y commitment
+19.67 usar SLE con Work Item Age
+19.68 laboratorio: construir e interpretar una SLE
+
+19.69 charts de flujo aplicados a Scrum
+19.70 Cumulative Flow Diagram — CFD
+19.71 construir CFD desde estados y transiciones
+19.72 interpretar bandas, WIP y bottlenecks
+19.73 Cycle Time Scatterplot
+19.74 construir Scatterplot desde Started/Finished
+19.75 percentiles y outliers
+19.76 Aging Work in Progress Chart
+19.77 construir Aging WIP desde items activos
+19.78 comparar edad con SLE
+19.79 Throughput Run Chart
+19.80 construir Throughput Run Chart por intervalos
+19.81 interpretar variabilidad y tendencias
+
+19.82 políticas explícitas del workflow
+19.83 Definition of Done y la salida hacia Done
+19.84 DoD como Commitment del Increment, no como práctica Kanban
+19.85 Definition of Ready como práctica opcional
+19.86 DoR como posible política de entrada y riesgos de convertirla en gate rígido
+19.87 Acceptance Criteria frente a políticas del workflow
+19.88 DoD frente a DoR frente a Acceptance Criteria
+19.89 WIP Limit frente a DoD y DoR: conceptos diferentes
+19.90 políticas de workflow no sustituyen Scrum ni la DoD
+
+19.91 flow metrics durante los Scrum Events
+19.92 Sprint Planning: throughput histórico, WIP, SLE y forecasting
+19.93 Daily Scrum: WIP, Work Item Age, bloqueos y foco en terminar
+19.94 Sprint Review: resultados y tendencias de flujo
+19.95 Sprint Retrospective: Cycle Time, Throughput, WIP y experimentos de mejora
+
+19.96 flow-based forecasting
+19.97 forecasting basado en Throughput
+19.98 forecasting basado en Cycle Time
+19.99 relación con Monte Carlo del bloque de forecasting
+19.100 detectar y analizar cuellos de botella
+
+19.101 laboratorio integral Scrum + Kanban
+19.102 crear Product Backlog y seleccionar Sprint Backlog
+19.103 construir workflow y políticas explícitas
+19.104 relacionar DoD, DoR opcional y Acceptance Criteria con el workflow
+19.105 establecer WIP Limits
+19.106 simular movimiento de items y registrar timestamps
+19.107 calcular WIP, Cycle Time, Work Item Age y Throughput
+19.108 comprobar Little's Law
+19.109 construir una SLE
+19.110 construir CFD
+19.111 construir Cycle Time Scatterplot
+19.112 construir Aging WIP Chart
+19.113 construir Throughput Run Chart
+19.114 detectar bottlenecks
+19.115 usar métricas durante los Scrum Events
+19.116 proponer y evaluar un experimento de mejora del flujo
 
 20. Anti-patterns y Zombie Scrum
 20.1 qué es Zombie Scrum

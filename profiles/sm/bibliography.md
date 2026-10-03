@@ -112,18 +112,18 @@ transparencia, inspección, adaptación, aprendizaje y mejores decisiones.
 
 ## Product Backlog, User Stories y slicing
 
-21. Cohn, Mike. **User Stories Applied**.
+22. Cohn, Mike. **User Stories Applied**.
     User Stories, estimación y planificación como prácticas complementarias.
-22. Wake, Bill. **INVEST** y literatura relacionada.
-23. Lawrence, Richard; Connaughton, Peter. **50 Quick Ideas to Improve Your User Stories**.
+23. Wake, Bill. **INVEST** y literatura relacionada.
+24. Lawrence, Richard; Connaughton, Peter. **50 Quick Ideas to Improve Your User Stories**.
     Slicing y mejora de historias.
 
 ## Coaching, liderazgo y cambio
 
-24. Adkins, Lyssa. **Coaching Agile Teams**.
-25. Sutherland, Jeff; Schwaber, Ken; Scrum.org — artículos y learning series oficiales sobre
+25. Adkins, Lyssa. **Coaching Agile Teams**.
+26. Sutherland, Jeff; Schwaber, Ken; Scrum.org — artículos y learning series oficiales sobre
     Scrum Master, leadership, coaching, facilitation, mentoring y teaching.
-26. Senge, Peter M. **The Fifth Discipline**.
+27. Senge, Peter M. **The Fifth Discipline**.
     Profundización opcional para systems thinking y organizaciones que aprenden.
 
 ## Uso por hitos

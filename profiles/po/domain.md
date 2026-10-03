@@ -64,8 +64,18 @@ del Product Owner.
 Story Points y Planning Poker se estudian como técnicas posibles, nunca como medidas de
 productividad.
 
-También se estudian métricas de flujo: WIP, Throughput, Cycle Time, Work Item Age, CFD y
-forecasting probabilístico, incluyendo una introducción práctica a Monte Carlo.
+También se estudian métricas de flujo: WIP, WIP Limit, Throughput, Cycle Time, Work Item Age,
+Lead Time, SLE y Little’s Law, además de CFD, Cycle Time Scatterplot, Aging WIP y Throughput
+Run Chart. Burndown y Burnup se contextualizan desde la perspectiva del Product Owner,
+explicando de qué datos proceden y qué decisiones permiten apoyar sin convertirlos en métricas
+de productividad individual.
+
+El alumno debe conectar Product Backlog/Sprint Backlog → estados del trabajo → datos → charts
+→ flow metrics → forecasting → decisiones de producto. El forecasting incluye datos históricos,
+forecast probabilístico, Monte Carlo, forecast de fechas y forecast de alcance.
+
+El PATH no duplica la mecánica profunda del PATH Scrum/Kanban: prioriza interpretación,
+Product Backlog Ordering, Product Goal, Sprint Goal, Release Planning, riesgo e incertidumbre.
 
 ## Stakeholders
 

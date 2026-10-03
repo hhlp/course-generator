@@ -59,12 +59,46 @@ CI/CD, DevOps, deuda técnica y evolución de la DoD. Diferenciar DoD, Acceptanc
 
 ## Charts, métricas y forecasting
 
-Cubrir Burndown, Burnup, Velocity Chart, Cumulative Flow Diagram, Control Chart, Cycle Time
-Scatterplot, histogramas, Aging WIP, Throughput Run Chart, WIP Chart y dashboards.
+Cubrir Sprint Burndown, Product/Release Burndown, Burnup, Velocity Chart, Cumulative Flow
+Diagram, Control Chart, Cycle Time Scatterplot, histogramas de Cycle Time, Aging Work in
+Progress Chart, Throughput Run Chart, WIP Chart y dashboards.
 
-Cubrir WIP, throughput, lead time, cycle time, work item age, SLE, flow efficiency y
-forecasting probabilístico con Monte Carlo. Las métricas deben apoyar empirismo y decisiones,
-no convertirse en objetivos de productividad individual.
+Antes de construir los charts, enseñar explícitamente la procedencia y el modelo de los datos.
+Distinguir Product Backlog, Sprint Backlog y registros del workflow como posibles fuentes.
+El alumno debe comprender cómo un PBI o Work Item genera observaciones como estado, fecha
+de inicio, fecha de finalización, timestamps de transición, trabajo restante, trabajo completado,
+scope y, cuando el equipo haya elegido esa práctica, Story Points.
+
+Story Points no son prescritos por Scrum y no deben presentarse como requisito para generar
+métricas o charts. Explicar qué visualizaciones pueden construirse usando Story Points y cuáles
+pueden trabajar con conteo de items, fechas, estados o tiempos. En particular, mostrar Sprint
+Burndown con y sin Story Points; Velocity Chart cuando se utiliza sizing mediante Story Points;
+y flow metrics basadas principalmente en items y tiempo.
+
+La progresión pedagógica para cada visualización debe ser:
+
+fuente de datos → dataset → métrica/cálculo → construcción del chart → actualización →
+interpretación → patrones/anomalías → limitaciones → decisiones posibles.
+
+Los charts no deben enseñarse únicamente como conceptos. Para cada visualización relevante,
+el alumno debe aprender qué pregunta responde, qué datos necesita, cómo obtener y preparar
+esos datos, qué cálculos son necesarios, cómo construir el chart paso a paso, cómo actualizarlo,
+cómo interpretarlo y cuáles son sus limitaciones, patrones engañosos y anti-patrones de uso.
+
+Los laboratorios deben partir de datasets concretos y exigir construir manualmente las
+visualizaciones principales antes de interpretar sus resultados. Incluir un laboratorio que
+derive un dataset desde Product Backlog/Sprint Backlog y otro que compare el mismo Sprint
+representado mediante Story Points y mediante conteo de items.
+
+Los laboratorios deben incluir al menos Burndown, Burnup, Velocity Chart, CFD, Cycle Time
+Scatterplot, histograma de Cycle Time, Aging WIP, Throughput Run Chart y WIP Chart. También
+debe practicarse la comparación de varios charts construidos a partir del mismo dataset y la
+selección de la visualización adecuada según la pregunta que se intenta responder.
+
+Cubrir WIP, throughput, lead time, cycle time, work item age, SLE y flow efficiency,
+incluyendo su cálculo e interpretación, y conectarlos posteriormente con forecasting
+probabilístico mediante Monte Carlo. Las métricas deben apoyar transparencia, empirismo,
+inspección, adaptación y decisiones; no convertirse en objetivos de productividad individual.
 
 ## Retrospectivas
 

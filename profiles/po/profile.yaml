@@ -74,11 +74,17 @@ course_focus:
   - evidence-based management
   - product economics
   - flow
+  - flow metrics
+  - scrum charts interpretation
+  - probabilistic forecasting
   - forecasting
 
 constraints:
   avoid_scrum_path_duplication: true
   scrum_topics_are_contextualized_for_product_owner: true
+  flow_mechanics_are_not_duplicated_from_scrum_kanban_path: true
+  charts_must_explain_data_origin_and_product_owner_interpretation: true
+  metrics_must_not_be_used_for_individual_productivity: true
   emphasize_outcomes_over_outputs: true
   product_backlog_is_not_a_requirements_document: true
   refinement_is_continuous_activity_not_scrum_event: true
