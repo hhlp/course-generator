@@ -1,6 +1,6 @@
 # Curso: Rust 0 → Experto en Profundidad
 
-RUST — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
+RUST — LEARNING PATH 0 → EXPERTO
 
 Objetivo general
 Dominar Rust desde los fundamentos del lenguaje hasta programación de sistemas, concurrencia,
