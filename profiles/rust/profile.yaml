@@ -1,5 +1,4 @@
 course:
-  id: rust-zero-to-expert
   title: "Rust 0 → Experto en Profundidad"
   language: es
   level:
@@ -23,6 +22,12 @@ course:
     - performance
     - compiler_internals
     - professional_rust
+    - regex_integration
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 toolchain:
   default_channel: stable
@@ -46,6 +51,8 @@ pedagogy:
   final_project: true
   safe_rust_first: true
   performance_requires_measurement: true
+  regex_theory_external_path: true
+  regex_rust_usage_in_depth: true
 
 lesson_template:
   - "🎯 OBJETIVO"
@@ -74,3 +81,9 @@ quality:
   include_security: true
   include_performance: true
   include_reading_references: true
+  regex_policy:
+    teach_regex_theory: false
+    teach_rust_api_and_integration: true
+    require_compilable_examples: true
+    cover_unicode_and_bytes: true
+    cover_performance_and_security: true

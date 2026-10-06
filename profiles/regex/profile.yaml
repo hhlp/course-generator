@@ -35,6 +35,10 @@ regex_policy:
   distinguish_engine_specific_behavior: true
   prefer_language_agnostic_examples: true
   programming_language_examples: false
+  explain_consumption_vs_assertion: true
+  require_engine_or_dialect_label_when_nonportable: true
+  require_positive_and_negative_examples_when_useful: true
+  require_performance_security_notes_when_relevant: true
 
 lesson_structure:
   objective:

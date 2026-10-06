@@ -53,6 +53,11 @@ level_model:
     - grammatical_choice
     - structural_analysis
     - error_diagnosis
+    - scope_analysis
+    - reference_analysis
+    - constituency_analysis
+    - acceptability_analysis
+    - register_variation
     - mastery
   global_progression:
     A2: "introduce and establish"
@@ -77,6 +82,15 @@ pedagogy:
   compare_alternative_constructions: true
   error_analysis: true
   structural_analysis: true
+  scope_analysis: true
+  negation_and_polarity_analysis: true
+  reference_and_definiteness_analysis: true
+  raising_and_control_analysis: true
+  constituency_analysis: true
+  grammaticality_vs_acceptability: true
+  descriptive_vs_prescriptive_distinction: true
+  register_and_variation_analysis: true
+  ambiguity_analysis: true
   require_natural_examples: true
   require_original_exercises: true
   avoid_unnecessary_repetition: true
@@ -177,6 +191,11 @@ references:
       title: "Advanced Grammar in Use"
       edition: "4th Edition"
       role: "principal pedagogical grammar and backbone"
+  pedagogical_descriptive:
+    - author: "Ronald Carter; Michael McCarthy"
+      title: "Cambridge Grammar of English"
+      publisher: "Cambridge University Press"
+      role: "advanced pedagogical-descriptive reference for grammar in context, grammatical choice, spoken/written patterns and variation"
   advanced:
     - title: "The Cambridge Grammar of the English Language"
       role: "advanced syntactic reference"
@@ -219,6 +238,13 @@ quality_checks:
   verify_level_boundaries: true
   verify_constraints_are_explained: true
   verify_acceptability_judgments_are_explained: true
+  verify_scope_relations_are_explained: true
+  verify_reference_and_definiteness_distinctions: true
+  verify_raising_control_diagnostics: true
+  verify_constituency_analysis_when_relevant: true
+  verify_grammaticality_acceptability_register_distinction: true
+  verify_descriptive_prescriptive_claims_are_distinguished: true
+  verify_ambiguity_analysis_when_relevant: true
 
 level_specific:
   boundaries:
@@ -235,4 +261,12 @@ level_specific:
     structural_analysis: true
     error_diagnosis: true
     acceptability_analysis: true
+    negation_and_polarity: true
+    scope_analysis: true
+    reference_and_definiteness: true
+    raising_and_control: true
+    constituency_analysis: true
+    descriptive_vs_prescriptive: true
+    register_variation: true
+    ambiguity_analysis: true
     final_mastery_project: true

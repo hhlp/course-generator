@@ -381,6 +381,21 @@ El proyecto `coreutils-toolkit` debe integrar progresivamente:
 
 El proyecto debe poder trabajar sobre datos y árboles reales, pero las pruebas destructivas deben realizarse primero sobre fixtures reproducibles.
 
+## Granularidad de las lecciones
+
+Cada entrada `XX.YY` del `initial.txt` representa una **lección real**, no un simple ítem de inventario. Una lección debe tener amplitud suficiente para desarrollar un objetivo específico, explicación técnica, ejemplos o práctica cuando proceda, errores/limitaciones relevantes y un cierre con ideas que recordar.
+
+Reglas de diseño:
+
+- agrupar opciones hermanas, formatos, modificadores o conceptos inseparables cuando por separado producirían lecciones triviales;
+- conservar separados los conceptos que introducen un modelo mental, riesgo, mecanismo, decisión de diseño o práctica sustancialmente distinta;
+- no crear una lección independiente para una sola flag, especificador de formato o palabra clave salvo que su semántica justifique por sí misma una unidad completa;
+- mantener laboratorios integradores como lecciones propias cuando cierren un bloque;
+- permitir repetición únicamente cuando exista progresión explícita: fundamentos -> uso -> composición -> seguridad/rendimiento -> internals -> integración/proyecto;
+- preservar todos los conceptos del temario aunque varios se integren en una misma lección.
+
+El objetivo no es minimizar el número de lecciones, sino evitar microlecciones artificiales sin perder profundidad.
+
 ## Estructura pedagógica
 
 Cada lección debe:

@@ -393,7 +393,13 @@
 18.8 pipelines
 18.9 evitar procesos innecesarios
 18.10 legibilidad frente a one-liners extremos
-18.11 laboratorio: resolver el mismo problema con distintas herramientas
+18.11 modelo de procesamiento sed frente a awk
+18.12 selección y transformación de líneas frente a registros y campos
+18.13 cuándo un programa sed está evolucionando hacia un problema de awk
+18.14 traducir soluciones sed sencillas a awk y comparar el diseño
+18.15 combinar sed y awk sin duplicar trabajo
+18.16 criterios de diseño de pipelines clásicos Unix
+18.17 laboratorio: resolver el mismo problema con sed, awk y pipelines combinados
 
 19. Sed + find + xargs
 

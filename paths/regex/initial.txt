@@ -923,3 +923,163 @@
 43.28 comparar comportamiento entre dialectos cuando sea posible
 43.29 generar informe de análisis
 43.30 proyecto final: construir un Regex Analyzer reutilizable
+
+
+44. Extensiones expertas dependientes del motor
+44.1 por qué estas construcciones no son Regex universal
+44.2 branch-reset groups
+44.3 (?|...)
+44.4 numeración de capturas en branch-reset groups
+44.5 grupos con nombres duplicados cuando estén soportados
+44.6 diferencias entre duplicate names y branch-reset
+44.7 subroutine call frente a backreference
+44.8 reutilizar patrón frente a reutilizar texto capturado
+44.9 DEFINE conditional
+44.10 (?(DEFINE)...)
+44.11 organizar bibliotecas internas de subpatrones
+44.12 \K como reset del inicio del match cuando esté soportado
+44.13 \K frente a lookbehind
+44.14 \G y posición de continuación cuando esté soportado
+44.15 \Q...\E y quoting literal cuando esté soportado
+44.16 verbos de control
+44.17 verbos de control del backtracking
+44.18 (*SKIP)
+44.19 (*FAIL) / (*F)
+44.20 (*PRUNE)
+44.21 (*COMMIT)
+44.22 (*THEN)
+44.23 interacción entre control verbs y alternativas
+44.24 callouts como concepto cuando estén soportados
+44.25 match/reset/start semantics dependientes del motor
+44.26 portabilidad de construcciones expertas
+44.27 cuándo no utilizar estas extensiones
+44.28 laboratorio comparativo
+
+
+45. Compilación e internals de un motor Regex
+45.1 del patrón textual a la ejecución
+45.2 tokenización del patrón
+45.3 parsing
+45.4 árbol de sintaxis abstracta — AST
+45.5 nodos literales
+45.6 nodos de concatenación
+45.7 nodos de alternancia
+45.8 nodos de repetición
+45.9 nodos de assertion
+45.10 nullable
+45.11 first-set como concepto
+45.12 simplificación del AST
+45.13 optimización del patrón
+45.14 extracción de literales
+45.15 required literals
+45.16 prefijos y sufijos útiles
+45.17 prefiltros
+45.18 construcción de Thompson
+45.19 fragmentos NFA
+45.20 estados epsilon
+45.21 simulación Thompson NFA
+45.22 Pike VM como modelo
+45.23 DFA completo
+45.24 subset construction
+45.25 lazy DFA
+45.26 motores híbridos
+45.27 one-pass matching cuando sea posible
+45.28 memoria frente a tiempo
+45.29 compilación frente a matching
+45.30 interpretación frente a JIT
+45.31 caches y límites
+45.32 optimizaciones dependientes de implementación
+45.33 por qué dos motores pueden ejecutar el mismo patrón de forma distinta
+45.34 laboratorio: transformar conceptualmente regex → AST → NFA
+
+
+46. Complejidad de Regex en profundidad
+46.1 tamaño del patrón y tamaño de la entrada
+46.2 coste de compilación
+46.3 coste de búsqueda
+46.4 coste de matching
+46.5 comportamiento lineal
+46.6 comportamiento superlineal
+46.7 comportamiento polinómico
+46.8 comportamiento exponencial
+46.9 ambigüedad estructural
+46.10 caminos alternativos equivalentes
+46.11 cuantificadores anidados
+46.12 cuantificadores consecutivos solapados
+46.13 alternativas solapadas
+46.14 análisis conceptual de (a+)+
+46.15 análisis conceptual de (a|aa)+
+46.16 análisis conceptual de patrones equivalentes a .*.*
+46.17 entrada de éxito frente a entrada de fallo
+46.18 prefijos largos antes del fallo
+46.19 attacker-controlled input
+46.20 pattern-controlled input
+46.21 límites de tiempo
+46.22 límites de memoria
+46.23 mitigación mediante rediseño
+46.24 mitigación mediante atomicidad
+46.25 mitigación mediante posesividad
+46.26 elección de un motor con garantías adecuadas
+46.27 benchmark reproducible
+46.28 perfilado conceptual
+46.29 laboratorio de complejidad y ReDoS controlado
+
+
+47. Regex y análisis léxico
+47.1 pattern matching frente a tokenización
+47.2 token
+47.3 lexeme
+47.4 token specification mediante regex
+47.5 conjunto de reglas léxicas
+47.6 prioridad entre reglas
+47.7 longest match
+47.8 leftmost-longest y lexers
+47.9 keywords frente a identifiers
+47.10 whitespace
+47.11 comentarios
+47.12 números
+47.13 strings
+47.14 estados o modos de lexer
+47.15 cuándo una regex individual no basta
+47.16 texto → tokens
+47.17 lexer → token stream
+47.18 token stream → parser
+47.19 regex frente a gramática
+47.20 por qué los parsers resuelven estructuras anidadas
+47.21 laboratorio: diseñar conceptualmente un lexer pequeño
+
+
+48. Proyecto final experto — Regex Analyzer ampliado
+48.1 ampliar el Regex Analyzer del bloque 43
+48.2 construir AST del patrón
+48.3 visualizar el AST
+48.4 clasificar nodos consumidores
+48.5 clasificar assertions zero-width
+48.6 calcular nullable conceptualmente
+48.7 estimar first-set conceptualmente
+48.8 identificar literales obligatorios
+48.9 localizar ramas ambiguas
+48.10 localizar puntos de backtracking
+48.11 visualizar el árbol de decisiones
+48.12 detectar cuantificadores anidados
+48.13 detectar alternativas solapadas
+48.14 clasificar riesgos de complejidad de forma aproximada
+48.15 explicar por qué existe el riesgo
+48.16 sugerir refactorizaciones conservando semántica
+48.17 comparar greedy/lazy/possessive cuando el motor lo permita
+48.18 comparar grupo normal/atómico
+48.19 generar corpus positivo
+48.20 generar corpus negativo
+48.21 generar boundary cases
+48.22 generar casos Unicode
+48.23 generar casos adversarios controlados
+48.24 ejecutar pruebas de regresión
+48.25 ejecutar benchmark
+48.26 comparar dialectos
+48.27 comparar motores
+48.28 registrar versión y configuración del motor
+48.29 producir informe de portabilidad
+48.30 producir informe de rendimiento
+48.31 producir informe de seguridad/ReDoS
+48.32 documentar limitaciones del analizador
+48.33 proyecto final: Regex Analyzer experto reutilizable

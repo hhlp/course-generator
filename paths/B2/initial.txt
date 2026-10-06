@@ -498,111 +498,153 @@
 26.19 Phrasal verbs
 26.20 B1 grammar checkpoint
 
-27. B2 tense and aspect
+27. B2 tense and aspect — system, meaning and viewpoint
 27.1 Tense vs aspect
-27.2 Simple aspect
-27.3 Continuous aspect
-27.4 Perfect aspect
-27.5 Perfect continuous aspect
-27.6 Present simple vs present continuous
-27.7 Present perfect simple vs continuous
-27.8 Past simple vs past continuous
-27.9 Past simple vs present perfect
-27.10 Past perfect vs past simple
-27.11 Past perfect simple vs continuous
-27.12 Present forms referring to the future
-27.13 will vs going to
-27.14 Future continuous
-27.15 Future perfect
-27.16 Future perfect continuous: extension
-27.17 Future viewed from the past: would
-27.18 Choosing tense and aspect from context
-27.19 Time reference vs grammatical tense
-27.20 Narrative tense combinations
-27.21 Advanced tense error analysis
-27.22 Tense and aspect consolidation
+27.2 Grammatical tense vs time reference
+27.3 Simple aspect
+27.4 Continuous aspect
+27.5 Perfect aspect
+27.6 Perfect continuous aspect
+27.7 Lexical aspect: states, activities, accomplishments and achievements — practical introduction
+27.8 Stative vs dynamic verbs
+27.9 Verbs with stative and dynamic meanings: think, have, see, taste and related patterns
+27.10 Present simple vs present continuous
+27.11 Temporary vs permanent situations
+27.12 Habitual and repeated uses of continuous forms
+27.13 Present continuous for change, development and trends
+27.14 Present perfect simple vs continuous
+27.15 Perfect aspect: anteriority and current relevance
+27.16 Result vs duration/activity
+27.17 Past simple vs past continuous
+27.18 Past simple vs present perfect
+27.19 Past perfect vs past simple
+27.20 Past perfect simple vs continuous
+27.21 Present forms referring to the future
+27.22 will vs going to
+27.23 Future continuous
+27.24 Future perfect
+27.25 Future perfect continuous: extension
+27.26 Future viewed from the past: would
+27.27 was/were going to and was/were about to
+27.28 Tense choice in subordinate clauses
+27.29 Sequence of tenses: practical B2 system
+27.30 Narrative viewpoint and tense combinations
+27.31 Choosing tense and aspect from context
+27.32 Advanced tense/aspect error analysis
+27.33 Tense and aspect transformations
+27.34 Tense and aspect consolidation
 
-28. B2 modality
-28.1 Modal verbs: structural review
-28.2 Modal + base infinitive
-28.3 Modal + continuous infinitive
-28.4 Modal + perfect infinitive
-28.5 Modal + perfect continuous infinitive
-28.6 Ability: can / could / be able to
-28.7 Permission: can / could / may
-28.8 Possibility: may / might / could
-28.9 Probability and degrees of certainty
-28.10 Obligation: must / have to
-28.11 Necessity: need / need to
-28.12 Lack of necessity: needn't / don't have to
-28.13 Prohibition: mustn't / can't
-28.14 Advice: should / ought to / had better
-28.15 Present deduction: must / may / might / can't
-28.16 Past deduction: must have / may have / might have / can't have
-28.17 could have done
-28.18 should have done
-28.19 needn't have done
-28.20 Modal meanings in the past
-28.21 would
-28.22 Modal verbs and passive structures
-28.23 Modality consolidation
+28. B2 modality — form, meaning and speaker stance
+28.1 Modal verbs vs modality
+28.2 Core modals vs semi-modals
+28.3 Modal + base infinitive
+28.4 Modal + continuous infinitive
+28.5 Modal + perfect infinitive
+28.6 Modal + perfect continuous infinitive
+28.7 Modal + passive infinitive
+28.8 Epistemic modality: knowledge, probability and deduction
+28.9 Deontic modality: obligation, permission and prohibition
+28.10 Dynamic modality: ability, willingness and disposition
+28.11 Ability: can / could / be able to
+28.12 Permission: can / could / may
+28.13 Possibility: may / might / could
+28.14 Probability and degrees of certainty
+28.15 Obligation: must / have to
+28.16 must: deontic vs epistemic meaning
+28.17 Necessity: need / need to
+28.18 need as modal vs lexical verb
+28.19 Lack of necessity: needn't / don't have to
+28.20 Prohibition: mustn't / can't
+28.21 Advice: should / ought to / had better
+28.22 Present deduction: must / may / might / can't
+28.23 Past deduction: must have / may have / might have / can't have
+28.24 could have done
+28.25 should have done
+28.26 needn't have done vs didn't need to
+28.27 Modal meanings in the past
+28.28 would: willingness, habitual past, hypothetical meaning and future-in-the-past
+28.29 could: ability, possibility, permission and hypothetical meaning
+28.30 dare as modal-like and lexical verb — controlled extension
+28.31 Modal verbs and passive structures
+28.32 Speaker attitude and modal choice
+28.33 Modality contrast and error analysis
+28.34 Modality consolidation
 
 29. B2 conditional and hypothetical structures
 29.1 Conditional-system review
-29.2 Zero conditional
-29.3 First conditional
-29.4 Second conditional
-29.5 Third conditional
-29.6 Real vs hypothetical condition
-29.7 Present hypothetical meaning
-29.8 Past hypothetical meaning
-29.9 Mixed conditionals: past → present
-29.10 Mixed conditionals: present → past
-29.11 unless
-29.12 as long as
-29.13 provided / providing
-29.14 in case
-29.15 even if
-29.16 whether ... or not
-29.17 wish + past
-29.18 wish + past perfect
-29.19 wish + would
-29.20 if only + past
-29.21 if only + past perfect
-29.22 would rather
-29.23 would rather + subject + past
-29.24 it's time + past
-29.25 Hypothetical meaning without if
-29.26 Conditional and hypothetical consolidation
+29.2 Condition clause vs consequence clause
+29.3 Open vs hypothetical conditions
+29.4 Tense form vs temporal meaning in conditionals
+29.5 Zero conditional
+29.6 First conditional
+29.7 Second conditional
+29.8 Third conditional
+29.9 Real vs hypothetical condition
+29.10 Present hypothetical meaning
+29.11 Past hypothetical meaning
+29.12 Mixed conditionals: past → present
+29.13 Mixed conditionals: present → past
+29.14 Modal verbs in conditional clauses and results
+29.15 unless
+29.16 as long as
+29.17 provided / providing
+29.18 in case
+29.19 even if
+29.20 whether ... or not
+29.21 suppose / supposing
+29.22 on condition that
+29.23 otherwise
+29.24 without + noun/-ing as an implied condition
+29.25 Implied conditions without an explicit if-clause
+29.26 wish + past
+29.27 wish + past perfect
+29.28 wish + would
+29.29 if only + past
+29.30 if only + past perfect
+29.31 would rather
+29.32 would rather + subject + past
+29.33 it's time + past
+29.34 Hypothetical meaning without if
+29.35 Conditional inversion: Had I known / Were I / Should you need — B2+ introduction
+29.36 Conditional meaning and transformation
+29.37 Conditional and hypothetical error analysis
+29.38 Conditional and hypothetical consolidation
 
 30. B2 passive and causative structures
 30.1 Active vs passive: advanced review
-30.2 Passive across tense and aspect
-30.3 Present simple passive
-30.4 Present continuous passive
-30.5 Present perfect passive
-30.6 Past simple passive
-30.7 Past continuous passive
-30.8 Past perfect passive
-30.9 Future passive
-30.10 Modal + passive
-30.11 Passive infinitive: to be done
-30.12 Perfect passive infinitive: to have been done
-30.13 Passive -ing form: being done
-30.14 Perfect passive -ing form: having been done
-30.15 Passive with two objects
-30.16 Reporting passive structures
-30.17 It is said that...
-30.18 He is said to...
-30.19 He is believed to...
-30.20 He is thought to have...
-30.21 be supposed to
-30.22 have something done
-30.23 get something done
-30.24 have vs get causatives
-30.25 Passive and causative consolidation
+30.2 Transitivity and passive formation
+30.3 Passive across tense and aspect
+30.4 Present simple passive
+30.5 Present continuous passive
+30.6 Present perfect passive
+30.7 Past simple passive
+30.8 Past continuous passive
+30.9 Past perfect passive
+30.10 Future passive
+30.11 Modal + passive
+30.12 Passive infinitive: to be done
+30.13 Perfect passive infinitive: to have been done
+30.14 Passive -ing form: being done
+30.15 Perfect passive -ing form: having been done
+30.16 Passive with two objects
+30.17 Agent expression with by
+30.18 Agent suppression: when and why the agent is omitted
+30.19 Passive choice and information structure
+30.20 Restrictions on passivization
+30.21 Reporting passive structures
+30.22 It is said that...
+30.23 He is said to...
+30.24 He is believed to...
+30.25 He is thought to have...
+30.26 be supposed to
+30.27 be-passive vs get-passive
+30.28 have something done
+30.29 get something done
+30.30 have vs get causatives
+30.31 Passive and causative transformations
+30.32 Passive and causative consolidation
 
-31. B2 reported speech
+31. B2 reported speech and reporting patterns
 31.1 Direct vs reported speech
 31.2 Backshift
 31.3 Present → past
@@ -614,121 +656,176 @@
 31.9 Pronoun changes
 31.10 Time-expression changes
 31.11 Place-expression changes
-31.12 When backshift is unnecessary
-31.13 Reported questions
-31.14 Reported yes/no questions
-31.15 Reported wh-questions
-31.16 Reported commands
-31.17 Reported requests
-31.18 say vs tell
-31.19 Reporting verbs + that-clause
-31.20 Reporting verbs + to-infinitive
-31.21 Reporting verbs + -ing
-31.22 Reported speech consolidation
+31.12 Viewpoint and reference changes
+31.13 When backshift is unnecessary
+31.14 Reported questions
+31.15 Reported yes/no questions
+31.16 Reported wh-questions
+31.17 Reported commands
+31.18 Reported requests
+31.19 say vs tell
+31.20 Reporting verbs + that-clause
+31.21 Reporting verbs + to-infinitive
+31.22 Reporting verbs + object + to-infinitive
+31.23 Reporting verbs + -ing
+31.24 Reporting verbs + preposition + -ing
+31.25 advise doing vs advise somebody to do
+31.26 suggest doing vs suggest that...
+31.27 remind somebody to...
+31.28 accuse somebody of...
+31.29 Reporting facts, claims, commands and suggestions
+31.30 Reporting pattern transformations
+31.31 Reported speech error analysis
+31.32 Reported speech consolidation
 
-32. B2 gerunds, infinitives and verb patterns
-32.1 Verb patterns: overview
+32. B2 gerunds, infinitives and complementation
+32.1 Verb patterns and complementation: overview
 32.2 Verb + -ing
 32.3 Verb + to-infinitive
 32.4 Verb + object + to-infinitive
-32.5 Verb + -ing vs to-infinitive
-32.6 remember doing vs remember to do
-32.7 forget doing vs forget to do
-32.8 regret doing vs regret to do
-32.9 stop doing vs stop to do
-32.10 try doing vs try to do
-32.11 mean doing vs mean to do
-32.12 go on doing vs go on to do
-32.13 like doing vs like to do
-32.14 would like to do
-32.15 prefer doing vs prefer to do
-32.16 would prefer
-32.17 would rather
-32.18 Preposition + -ing
-32.19 Verb + preposition + -ing
-32.20 Adjective + preposition + -ing
-32.21 be used to doing
-32.22 get used to doing
-32.23 used to do vs be used to doing
-32.24 Verb patterns consolidation
+32.5 Bare infinitive
+32.6 make / let + object + bare infinitive
+32.7 help + (to-)infinitive
+32.8 Passive transformation: make → be made to
+32.9 Verb + -ing vs to-infinitive
+32.10 remember doing vs remember to do
+32.11 forget doing vs forget to do
+32.12 regret doing vs regret to do
+32.13 stop doing vs stop to do
+32.14 try doing vs try to do
+32.15 mean doing vs mean to do
+32.16 go on doing vs go on to do
+32.17 like doing vs like to do
+32.18 would like to do
+32.19 prefer doing vs prefer to do
+32.20 would prefer
+32.21 would rather
+32.22 Preposition + -ing
+32.23 Verb + preposition + -ing
+32.24 Adjective + preposition + -ing
+32.25 be used to doing
+32.26 get used to doing
+32.27 used to do vs be used to doing
+32.28 Perception verbs: see/hear/watch/feel + object + bare infinitive/-ing
+32.29 Perfect infinitive: to have done
+32.30 Continuous infinitive: to be doing
+32.31 Passive infinitive: to be done
+32.32 Perfect gerund: having done
+32.33 Passive gerund: being done / having been done
+32.34 for + noun/pronoun + to-infinitive
+32.35 Infinitival complementation
+32.36 Verb-pattern transformations and meaning changes
+32.37 Verb-pattern error analysis
+32.38 Verb patterns and complementation consolidation
 
 33. B2 relative and participle clauses
-33.1 Defining relative clauses
-33.2 Non-defining relative clauses
-33.3 who / which / that
-33.4 whose
-33.5 whom
-33.6 where
-33.7 Subject relative pronouns
-33.8 Object relative pronouns
-33.9 Omitting relative pronouns
-33.10 Preposition + relative pronoun
-33.11 Relative pronoun + preposition
-33.12 Quantifier + whom / which
-33.13 -ing relative clauses
-33.14 -ed relative clauses
-33.15 Reduced relative clauses
-33.16 Present participle clauses
-33.17 Past participle clauses
-33.18 Perfect participle clauses: having done
-33.19 Passive perfect participles: having been done
-33.20 Relative and participle clause consolidation
+33.1 Relative clauses as noun-phrase postmodifiers
+33.2 Antecedents and relative pronouns
+33.3 Defining relative clauses
+33.4 Non-defining relative clauses
+33.5 Restrictive vs supplementary information
+33.6 who / which / that
+33.7 whose
+33.8 whom
+33.9 where
+33.10 Subject relative pronouns
+33.11 Object relative pronouns
+33.12 Relative-pronoun grammatical function
+33.13 Omitting relative pronouns: possibilities and restrictions
+33.14 Preposition + relative pronoun
+33.15 Relative pronoun + preposition
+33.16 Quantifier + whom / which
+33.17 Full relative clause → reduced relative clause
+33.18 -ing relative clauses
+33.19 -ed relative clauses
+33.20 Reduced relative clauses
+33.21 Present participle clauses
+33.22 Past participle clauses
+33.23 Perfect participle clauses: having done
+33.24 Passive perfect participles: having been done
+33.25 Participle clause and understood subject
+33.26 Dangling participles as a grammatical error
+33.27 Relative and participle clause transformations
+33.28 Relative and participle clause consolidation
 
-34. B2 nouns, articles, determiners and quantifiers
-34.1 Countable vs uncountable: advanced review
-34.2 Nouns with countable and uncountable meanings
-34.3 Singular vs plural meaning
-34.4 Compound nouns
-34.5 Possessive 's vs of
-34.6 Complex noun phrases
-34.7 a/an
-34.8 the
-34.9 Zero article
-34.10 Generic reference
-34.11 Articles with geographical names
-34.12 Articles with institutions
-34.13 some vs any
-34.14 no vs none
-34.15 much vs many
-34.16 little vs a little
-34.17 few vs a few
-34.18 all vs all of
-34.19 most vs most of
-34.20 both / either / neither
-34.21 each vs every
-34.22 all vs every vs whole
-34.23 Quantifier + of
-34.24 Determiner-system consolidation
+34. B2 noun phrases, articles, determiners and quantifiers
+34.1 Noun phrase: structure and grammatical function
+34.2 Head noun and noun-phrase boundaries
+34.3 Determiner + premodifier + head + postmodifier
+34.4 Premodification with adjectives
+34.5 Premodification with nouns
+34.6 Postmodification with prepositional phrases
+34.7 Postmodification with relative clauses
+34.8 Postmodification with participle clauses
+34.9 Postmodification with to-infinitive clauses
+34.10 Modifier vs complement in noun phrases — B2 introduction
+34.11 Complex noun phrases: structural analysis
+34.12 Countable vs uncountable: advanced review
+34.13 Nouns with countable and uncountable meanings
+34.14 Singular vs plural meaning
+34.15 Compound nouns
+34.16 Possessive 's vs of
+34.17 Determiner system: overview
+34.18 Predeterminers, central determiners and postdeterminers — practical introduction
+34.19 a/an
+34.20 the
+34.21 Zero article
+34.22 Generic reference
+34.23 Articles with geographical names
+34.24 Articles with institutions
+34.25 some vs any
+34.26 no vs none
+34.27 much vs many
+34.28 little vs a little
+34.29 few vs a few
+34.30 all vs all of
+34.31 most vs most of
+34.32 both / either / neither
+34.33 each vs every
+34.34 all vs every vs whole
+34.35 Quantifier + of
+34.36 Quantifiers inside complex noun phrases
+34.37 Noun-phrase error analysis
+34.38 Noun phrase and determiner consolidation
 
-35. B2 adjectives, adverbs and comparison
-35.1 Adjective position
-35.2 Adjective order
-35.3 -ing vs -ed adjectives
-35.4 Adjective + preposition
-35.5 Adjective + to-infinitive
-35.6 Adjective vs adverb
-35.7 Adverb position
-35.8 Adverbs of frequency
-35.9 Adverbs of degree
-35.10 hard vs hardly
-35.11 late vs lately
-35.12 near vs nearly
-35.13 so vs such
-35.14 too vs enough
-35.15 quite / rather / fairly / pretty
-35.16 Comparative adjectives
-35.17 Comparative adverbs
-35.18 Comparative modifiers
-35.19 much / far / a lot + comparative
-35.20 slightly / a little + comparative
-35.21 as ... as
-35.22 not as/so ... as
-35.23 Superlatives
-35.24 the + comparative, the + comparative
-35.25 Comparatives and superlatives consolidation
+35. B2 adjective phrases, adverb phrases and comparison
+35.1 Adjective phrase: head and modifiers
+35.2 Adverb phrase: head and modifiers
+35.3 Attributive vs predicative adjectives
+35.4 Postpositive adjectives: introduction
+35.5 Adjective order
+35.6 -ing vs -ed adjectives
+35.7 Gradable vs non-gradable adjectives
+35.8 Intensifiers with gradable and non-gradable adjectives
+35.9 Adjective + preposition
+35.10 Adjective + to-infinitive
+35.11 Adjective vs adverb
+35.12 Adverb position
+35.13 Adverbs of frequency
+35.14 Adverbs of degree
+35.15 Sentence adverbs: B2 introduction
+35.16 Viewpoint and focusing adverbs: B2 introduction
+35.17 hard vs hardly
+35.18 late vs lately
+35.19 near vs nearly
+35.20 so vs such
+35.21 too vs enough
+35.22 quite / rather / fairly / pretty
+35.23 Comparative adjectives
+35.24 Comparative adverbs
+35.25 Comparative modifiers
+35.26 much / far / a lot + comparative
+35.27 slightly / a little + comparative
+35.28 as ... as
+35.29 not as/so ... as
+35.30 Superlatives
+35.31 the + comparative, the + comparative
+35.32 Comparison inside complex structures
+35.33 Adjective/adverb phrase error analysis
+35.34 Adjective, adverb and comparison consolidation
 
-36. B2 word order, emphasis and auxiliaries
-36.1 Basic word order review
+36. B2 word order, information structure, emphasis and auxiliaries
+36.1 Canonical English word order
 36.2 Verb + object
 36.3 Place and time
 36.4 Adverb position
@@ -737,7 +834,7 @@
 36.7 even
 36.8 Auxiliary verbs
 36.9 Auxiliary vs main verb
-36.10 Ellipsis with auxiliary verbs
+36.10 Auxiliary substitution and ellipsis
 36.11 I think so / I hope so
 36.12 Neither do I / So do I
 36.13 Question tags
@@ -745,102 +842,171 @@
 36.15 Indirect questions
 36.16 Subject vs object questions
 36.17 Emphatic do
-36.18 Word order and emphasis consolidation
+36.18 Information structure: given vs new information — introduction
+36.19 End-focus
+36.20 End-weight
+36.21 Fronting: B2 introduction
+36.22 Subject–auxiliary inversion
+36.23 Negative inversion: B2+ recognition and bridge to C1
+36.24 Anticipatory it
+36.25 Existential there
+36.26 Extraposition: B2 introduction
+36.27 It-clefts: B2+ introduction
+36.28 Wh-clefts/pseudo-clefts: B2+ introduction
+36.29 Neutral vs marked word order
+36.30 Word-order transformations
+36.31 Word order and emphasis error analysis
+36.32 Word order, information structure and auxiliaries consolidation
 
-37. B2 conjunctions, prepositions and clause linking
-37.1 although / though / even though
-37.2 despite / in spite of
-37.3 although vs despite
-37.4 because / because of
-37.5 so / therefore
-37.6 in case
-37.7 unless
-37.8 as long as
-37.9 provided / providing
-37.10 as
-37.11 like vs as
-37.12 as if / as though
-37.13 during vs while
-37.14 for
-37.15 by vs until
-37.16 by the time
-37.17 Purpose: to / in order to / so as to
-37.18 Purpose: so that
-37.19 Result structures
-37.20 Reason structures
-37.21 Concession structures
-37.22 Clause-linking consolidation
+37. B2 conjunctions, subordination and clause linking
+37.1 Coordination vs subordination
+37.2 Coordinator vs subordinator
+37.3 Finite vs non-finite subordinate clauses: linking overview
+37.4 although / though / even though
+37.5 despite / in spite of
+37.6 although + clause vs despite + noun/-ing
+37.7 because / because of
+37.8 because + clause vs because of + noun phrase
+37.9 so / therefore
+37.10 in case
+37.11 unless
+37.12 as long as
+37.13 provided / providing
+37.14 as
+37.15 like vs as
+37.16 as if / as though
+37.17 during vs while
+37.18 for
+37.19 by vs until
+37.20 by the time
+37.21 Time clauses
+37.22 Reason clauses
+37.23 Purpose: to / in order to / so as to
+37.24 Purpose: so that
+37.25 Purpose clauses
+37.26 Result structures and clauses
+37.27 Concession structures and clauses
+37.28 Condition clauses
+37.29 Comparison clauses: introduction
+37.30 Choosing clause vs phrase linking structures
+37.31 Clause-linking transformations
+37.32 Clause-linking error analysis
+37.33 Clause-linking consolidation
 
-38. B2 preposition system
-38.1 at / on / in: time
-38.2 at / on / in: position
-38.3 to / at / in / into
-38.4 by
-38.5 for
-38.6 from
-38.7 of
-38.8 with
-38.9 about
-38.10 on
-38.11 Noun + preposition
-38.12 Adjective + preposition
-38.13 Verb + preposition
-38.14 Verb + to / at
-38.15 Verb + about / for
-38.16 Verb + of
-38.17 Verb + from
-38.18 Verb + on
-38.19 Verb + in / into
-38.20 Verb + with
-38.21 Dependent prepositions
-38.22 Preposition-system consolidation
+38. B2 preposition and prepositional-phrase system
+38.1 Preposition vs particle
+38.2 Simple vs complex prepositions
+38.3 Prepositional phrase: structure
+38.4 Preposition complement
+38.5 PP as complement
+38.6 PP as modifier
+38.7 PP as adjunct
+38.8 at / on / in: time
+38.9 at / on / in: position
+38.10 to / at / in / into
+38.11 by
+38.12 for
+38.13 from
+38.14 of
+38.15 with
+38.16 about
+38.17 on
+38.18 Noun + preposition
+38.19 Adjective + preposition
+38.20 Verb + preposition
+38.21 Verb + to / at
+38.22 Verb + about / for
+38.23 Verb + of
+38.24 Verb + from
+38.25 Verb + on
+38.26 Verb + in / into
+38.27 Verb + with
+38.28 Dependent vs free prepositions
+38.29 Preposition stranding
+38.30 Prepositional-phrase analysis
+38.31 Preposition-system error analysis
+38.32 Preposition-system consolidation
 
-39. B2 phrasal and prepositional verbs
-39.1 Phrasal verbs: structural analysis
+39. B2 phrasal, prepositional and phrasal-prepositional verbs
+39.1 Multi-word verbs: structural overview
 39.2 Verb + adverb particle
 39.3 Verb + preposition
-39.4 Phrasal-prepositional verbs
+39.4 Phrasal-prepositional verbs / three-part verbs
 39.5 Transitive phrasal verbs
 39.6 Intransitive phrasal verbs
 39.7 Separable phrasal verbs
 39.8 Inseparable phrasal verbs
 39.9 Pronoun placement
-39.10 Literal vs idiomatic meaning
-39.11 Phrasal verbs with in
-39.12 Phrasal verbs with out
-39.13 Phrasal verbs with on
-39.14 Phrasal verbs with off
-39.15 Phrasal verbs with up
-39.16 Phrasal verbs with down
-39.17 Phrasal verbs with away
-39.18 Phrasal verbs with back
-39.19 Particle meaning and aspect
-39.20 Phrasal vs prepositional verb analysis
-39.21 Phrasal-verb consolidation
+39.10 Particle movement
+39.11 Preposition vs particle: syntactic diagnostics
+39.12 Stress as a secondary structural diagnostic — no pronunciation training
+39.13 Literal vs idiomatic meaning
+39.14 Particle meaning and aspect
+39.15 Phrasal verbs with in
+39.16 Phrasal verbs with out
+39.17 Phrasal verbs with on
+39.18 Phrasal verbs with off
+39.19 Phrasal verbs with up
+39.20 Phrasal verbs with down
+39.21 Phrasal verbs with away
+39.22 Phrasal verbs with back
+39.23 Complementation patterns of multi-word verbs
+39.24 Phrasal vs prepositional verb analysis
+39.25 Multi-word verb error analysis
+39.26 Multi-word verb consolidation
 
-40. B2 complex grammar integration
-40.1 Finite vs non-finite clauses
-40.2 Main vs subordinate clauses
-40.3 Declarative clauses
-40.4 Interrogative clauses
-40.5 Imperative clauses
-40.6 Relative clauses
-40.7 Conditional clauses
-40.8 Time clauses
-40.9 Reason clauses
-40.10 Purpose clauses
-40.11 Result clauses
-40.12 Concession clauses
-40.13 that-clauses
-40.14 wh-clauses
-40.15 to-infinitive clauses
-40.16 -ing clauses
-40.17 -ed clauses
-40.18 Clause reduction
-40.19 Coordination vs subordination
-40.20 Combining grammatical structures
-40.21 Complex grammar error analysis
-40.22 Complex grammar consolidation
+40. B2 grammatical structure — word, phrase, clause and sentence
+40.1 Levels of grammatical structure: word → phrase → clause → sentence
+40.2 Constituent: introduction and identification
+40.3 Phrase: definition and boundaries
+40.4 Phrase head and dependents
+40.5 Noun phrase (NP)
+40.6 Verb phrase (VP)
+40.7 Adjective phrase (AdjP)
+40.8 Adverb phrase (AdvP)
+40.9 Prepositional phrase (PP)
+40.10 Clause: definition and structure
+40.11 Subject and predicate
+40.12 Verb as clause nucleus
+40.13 Direct object
+40.14 Indirect object
+40.15 Subject complement
+40.16 Object complement
+40.17 Adjunct
+40.18 Complement vs adjunct
+40.19 Modifier vs complement
+40.20 Clause elements and grammatical functions
+40.21 S + V
+40.22 S + V + O
+40.23 S + V + C
+40.24 S + V + A
+40.25 S + V + IO + DO
+40.26 S + V + O + C
+40.27 Finite vs non-finite clauses
+40.28 Main vs subordinate clauses
+40.29 Declarative clauses
+40.30 Interrogative clauses
+40.31 Imperative clauses
+40.32 Relative clauses
+40.33 Conditional clauses
+40.34 Time, reason, purpose, result and concession clauses
+40.35 that-clauses
+40.36 wh-clauses
+40.37 to-infinitive clauses
+40.38 -ing clauses
+40.39 -ed clauses
+40.40 Clause embedding
+40.41 Clause complementation
+40.42 Clause reduction
+40.43 Coordination vs subordination
+40.44 Combining phrases and clauses into complex sentences
+40.45 Sentence decomposition: sentence → clauses → phrases → words
+40.46 Sentence construction: words → phrases → clauses → sentence
+40.47 Structural transformations
+40.48 Structural ambiguity: B2 introduction
+40.49 Complex grammar error analysis
+40.50 B2 grammatical analysis laboratory
+40.51 Complex grammar consolidation
 
 41. Final B1 → B2 grammar integration
 41.1 Present tense system
@@ -849,28 +1015,39 @@
 41.4 Past perfect system
 41.5 Future system
 41.6 Tense and aspect
-41.7 Modal system
-41.8 Modal perfect structures
-41.9 Conditional system
-41.10 Hypothetical structures
-41.11 Passive system
-41.12 Causative structures
-41.13 Reported speech
-41.14 Questions and auxiliary verbs
-41.15 Gerunds and infinitives
-41.16 Verb patterns
-41.17 Noun system
-41.18 Article system
-41.19 Determiners and quantifiers
-41.20 Relative clauses
-41.21 Participle clauses
-41.22 Adjective and adverb system
-41.23 Comparison
-41.24 Word order
-41.25 Conjunctions
-41.26 Prepositions
-41.27 Phrasal verbs
-41.28 Complex sentence grammar
-41.29 B1 → B2 contrastive grammar review
-41.30 B2 grammar diagnostic
-41.31 Final B2 grammar checkpoint
+41.7 Time reference vs grammatical tense
+41.8 Modal system and modality
+41.9 Modal perfect structures
+41.10 Conditional system
+41.11 Hypothetical structures
+41.12 Passive system
+41.13 Causative structures
+41.14 Reported speech and reporting patterns
+41.15 Questions and auxiliary verbs
+41.16 Gerunds and infinitives
+41.17 Verb patterns and complementation
+41.18 Noun system
+41.19 Noun phrase structure
+41.20 Article system
+41.21 Determiners and quantifiers
+41.22 Relative clauses
+41.23 Participle clauses
+41.24 Adjective phrase and adverb phrase systems
+41.25 Comparison
+41.26 Word order and information structure
+41.27 Conjunctions and subordination
+41.28 Prepositions and prepositional phrases
+41.29 Phrasal and multi-word verbs
+41.30 Phrase structure
+41.31 Clause structure
+41.32 Grammatical functions: subject, objects, complements and adjuncts
+41.33 Finite vs non-finite system
+41.34 Complementation vs modification
+41.35 Coordination vs subordination
+41.36 Complex sentence grammar
+41.37 Grammar transformations
+41.38 Integrated sentence analysis
+41.39 Structural ambiguity: introductory analysis
+41.40 B1 → B2 contrastive grammar review
+41.41 B2 grammar diagnostic
+41.42 Final B2 grammar checkpoint

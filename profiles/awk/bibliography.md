@@ -41,6 +41,27 @@ Si un tema avanzado del PATH no está cubierto suficientemente por esta
 obra, complementar con las referencias de GNU awk, POSIX y
 profundización.
 
+
+### sed & awk — Dale Dougherty, Arnold Robbins
+
+Referencia pedagógica clásica y transversal para estudiar AWK dentro del ecosistema Unix de procesamiento de texto y comprender su relación con `sed`.
+
+Uso prioritario para:
+
+- filosofía y modelo de procesamiento de texto de Unix;
+- transición desde `sed` hacia AWK;
+- modelo `pattern { action }`;
+- registros y campos;
+- patterns y expresiones regulares aplicadas a AWK;
+- variables, expresiones y control de flujo;
+- salida y generación de informes;
+- arrays asociativos;
+- funciones;
+- programas AWK progresivamente más estructurados;
+- idioms y resolución de problemas reales con `sed` y AWK.
+
+Debe utilizarse como referencia pedagógica complementaria, especialmente cuando aporte una explicación clásica o una comparación útil entre `sed` y AWK. No sustituye POSIX para portabilidad ni GNU Awk User's Guide para características específicas de `gawk`.
+
 ## Normativa
 
 ### POSIX / The Open Group --- awk
@@ -327,7 +348,7 @@ No presentar intuiciones de rendimiento como resultados medidos.
 
 ### Fundamentos
 
-Principal: - Learning AWK Programming
+Principal: - Learning AWK Programming; - sed & awk — Dale Dougherty, Arnold Robbins
 
 Normativa: - POSIX awk
 
@@ -335,7 +356,7 @@ Motor: - GNU Awk User's Guide
 
 ### Intermedio
 
-Principal: - Learning AWK Programming
+Principal: - Learning AWK Programming; - sed & awk — Dale Dougherty, Arnold Robbins
 
 Normativa: - POSIX awk
 
@@ -371,6 +392,8 @@ Cada lección puede utilizar estas categorías:
 ### Principal
 
 Learning AWK Programming cuando cubra el tema.
+
+`sed & awk` — Dale Dougherty, Arnold Robbins, cuando aporte una explicación pedagógica complementaria o la relación entre sed y AWK.
 
 ### Normativa
 
@@ -408,6 +431,9 @@ Formato recomendado:
 Principal:
   Learning AWK Programming
   └── capítulo/sección verificada
+
+  sed & awk — Dale Dougherty, Arnold Robbins
+  └── capítulo/sección verificada cuando corresponda
 
 Normativa:
   POSIX — awk

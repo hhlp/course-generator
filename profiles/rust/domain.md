@@ -9,7 +9,9 @@ de sistemas y producción.
 
 El curso cubre desde una persona sin conocimientos previos de Rust hasta un nivel
 capaz de razonar sobre ownership, lifetimes, type system, concurrencia, atomics,
-async/Futures, unsafe, FFI, performance y componentes internos del compilador.
+async/Futures, unsafe, FFI, performance y componentes internos del compilador, además de
+integrar expresiones regulares idiomáticamente en aplicaciones Rust sin duplicar la teoría
+de expresiones regulares cubierta por su PATH especializado.
 
 ## Áreas
 
@@ -18,29 +20,30 @@ async/Futures, unsafe, FFI, performance y componentes internos del compilador.
 3. Ownership, moves, borrowing y lifetimes
 4. Algebraic data types y pattern matching
 5. Collections, strings e I/O
-6. Errors
-7. Crates, modules y Cargo
-8. Traits, generics y type system
-9. Closures e iterators
-10. Smart pointers e interior mutability
-11. Memoria y data layout
-12. Testing y documentación
-13. Threads y synchronization
-14. Atomics y Rust memory model
-15. Async, Future y executors
-16. Macros y procedural macros
-17. Unsafe Rust y soundness
-18. FFI
-19. Diseño idiomático y type-driven design
-20. Performance, benchmarking y profiling
-21. Networking y systems programming
-22. CLI, serialization y observability
-23. Seguridad y supply chain
-24. Cross compilation y no_std
-25. Library/API design
-26. Compiler internals
-27. Debugging
-28. Ingeniería profesional y proyectos
+6. Uso e integración de expresiones regulares desde Rust
+7. Errors
+8. Crates, modules y Cargo
+9. Traits, generics y type system
+10. Closures e iterators
+11. Smart pointers e interior mutability
+12. Memoria y data layout
+13. Testing y documentación
+14. Threads y synchronization
+15. Atomics y Rust memory model
+16. Async, Future y executors
+17. Macros y procedural macros
+18. Unsafe Rust y soundness
+19. FFI
+20. Diseño idiomático y type-driven design
+21. Performance, benchmarking y profiling
+22. Networking y systems programming
+23. CLI, serialization y observability
+24. Seguridad y supply chain
+25. Cross compilation y no_std
+26. Library/API design
+27. Compiler internals
+28. Debugging
+29. Ingeniería profesional y proyectos
 
 ## Profundidad esperada
 
@@ -82,3 +85,11 @@ Safe Rust es la opción predeterminada. Unsafe debe aparecer después de dominar
 ownership, borrowing, lifetimes, representación de memoria y APIs seguras.
 
 La optimización debe estar respaldada por benchmarks y profiling.
+
+## Política de expresiones regulares
+
+Este PATH no sustituye al curso especializado de expresiones regulares. La sintaxis, teoría,
+autómatas, construcción de patrones y dominio conceptual de regex pertenecen a ese PATH.
+Aquí se enseña cómo usar ese conocimiento desde Rust: crates y APIs, compilación y reutilización
+de patrones, Match/Captures, iteración, reemplazo, RegexSet, Unicode/bytes, errores, testing,
+rendimiento, seguridad e integración con CLI, archivos, logs y aplicaciones reales.

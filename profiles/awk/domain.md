@@ -13,6 +13,12 @@ campos, las expresiones, los patterns, las actions, los arrays
 asociativos, las funciones y la entrada/salida antes de abordar
 extensiones avanzadas.
 
+## Enfoque bibliográfico de profundidad
+
+El PATH debe combinar una progresión pedagógica moderna con referencias clásicas. `Learning AWK Programming` continúa como guía principal cuando cubra directamente la materia, mientras que *sed & awk* de Dale Dougherty y Arnold Robbins debe utilizarse como referencia pedagógica transversal para reforzar el modelo de procesamiento de texto Unix, la relación entre `sed` y AWK, pattern-action, registros/campos, arrays, funciones, informes e idioms.
+
+La autoridad técnica no cambia: POSIX determina la semántica portable y GNU Awk User's Guide/documentación de la versión objetivo determina el comportamiento y las extensiones de `gawk`.
+
 ## Alcance
 
 El PATH cubre:

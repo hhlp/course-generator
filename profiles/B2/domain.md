@@ -51,11 +51,11 @@ Gerund, infinitive, object + infinitive, preposition + -ing y verbos cuyo signif
 ### Noun phrase
 Countability, articles, singular/plural, noun+noun, possessives, determiners y quantifiers.
 
-### Clause grammar
-Questions, auxiliary verbs, relative clauses, reduced relatives, participle clauses, finite/non-finite clauses y subordinación.
+### Phrase and clause grammar
+Word → phrase → clause → sentence; constituent structure; NP, VP, AdjP, AdvP y PP; head, modifier, complement y adjunct; subject, direct/indirect object, subject/object complement; questions, auxiliary verbs, relative clauses, reduced relatives, participle clauses, finite/non-finite clauses, complementation, embedding, coordination y subordinación.
 
-### Modification
-Adjectives, adverbs, degree, comparison, position and word order.
+### Modification and information structure
+Adjective/adverb phrases, degree, comparison, attributive/predicative function, gradability, word order, given/new information, end-focus, end-weight y una introducción B2 a fronting, inversion, extraposition y cleft structures.
 
 ### Linking and prepositions
 Conjunctions, time/reason/purpose/result/concession clauses, prepositions y dependent prepositions.
@@ -71,8 +71,11 @@ Cobertura sistemática del núcleo B1/B1+ y de las Units 1–145 de Murphy reorg
 Bloque 26:
 Integración y checkpoint B1.
 
-Bloques 27–40:
-Profundización B2 mediante contraste, análisis estructural y combinación de construcciones.
+Bloques 27–39:
+Profundización B2 mediante contraste, restricciones, significado, transformaciones y combinación de construcciones.
+
+Bloque 40:
+Integración estructural explícita: word → phrase → clause → sentence, funciones gramaticales, complementation/modification, finite/non-finite clauses, embedding y análisis de oraciones.
 
 Bloque 41:
 Integración final y diagnóstico B2.
@@ -96,7 +99,7 @@ Estos contenidos deben pertenecer a paths separados.
 
 Una lección no debe limitarse a una definición. Cuando corresponda debe explicar:
 
-forma → significado → uso → contraste → excepciones → errores → ejemplos → práctica → integración.
+forma → estructura → función → significado → uso → contraste → restricciones → excepciones → transformación → análisis → ejemplos → práctica → integración.
 
 Las explicaciones pueden usar terminología gramatical precisa, pero deben introducirla progresivamente.
 
@@ -106,4 +109,8 @@ Las explicaciones principales pueden darse en español. Las estructuras, ejemplo
 
 ## Nivel de salida
 
-Al finalizar, el estudiante debe disponer de una base gramatical B2 sólida y estar preparado para pasar a un path C1–C2 basado en gramática avanzada.
+Al finalizar, el estudiante debe disponer de una base gramatical B2 sólida, poder descomponer y construir estructuras desde word → phrase → clause → sentence, justificar elecciones gramaticales básicas mediante forma/función/significado y estar preparado para pasar a un path C1–C2 basado en gramática avanzada.
+
+## Frontera B2 → C1/C2
+
+B2 puede introducir para reconocimiento y transición estructuras como conditional inversion, negative inversion, fronting, clefts, extraposition y structural ambiguity, pero su dominio exhaustivo, usos marcados, excepciones avanzadas, nominalisation densa, advanced information packaging y discourse grammar pertenecen al path C1–C2.

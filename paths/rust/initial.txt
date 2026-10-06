@@ -485,164 +485,212 @@ profesional de crates y aplicaciones.
 42.5. Pipes
 42.6. Testing y distribución
 
-43. SERIALIZACIÓN Y DATOS
-43.1. JSON, TOML, YAML, CSV y formatos binarios
-43.2. serde
-43.3. Serialize/Deserialize
-43.4. Custom serializers
-43.5. Zero-copy cuando corresponda
+43. EXPRESIONES REGULARES EN RUST — USO E INTEGRACIÓN
+43.1. Papel de regex dentro de aplicaciones Rust; relación con el PATH específico de Regex
+43.2. Alcance: usar expresiones regulares en Rust, no volver a enseñar la teoría de regex
+43.3. Ecosistema: crate regex y cuándo considerar regex-lite, fancy-regex u otros motores
+43.4. Añadir regex con Cargo y controlar versiones/features
+43.5. Regex::new y compilación de un patrón
+43.6. Gestión de patrones inválidos con Result y regex::Error
+43.7. Raw string literals r"..." y r#"..."# para patrones legibles
+43.8. is_match para comprobaciones booleanas
+43.9. find y Match: start, end, as_str y rangos de bytes
+43.10. find_iter para recorrer coincidencias
+43.11. captures y Captures
+43.12. Grupos de captura posicionales desde la API de Rust
+43.13. Grupos con nombre desde la API de Rust
+43.14. captures_iter para múltiples coincidencias y capturas
+43.15. Indexación de capturas vs get/name y manejo seguro de ausencia
+43.16. replace y replace_all
+43.17. Reemplazos literales, referencias a capturas y escaping del replacement
+43.18. Reemplazos mediante closures
+43.19. split y splitn con Regex
+43.20. RegexSet para comprobar muchos patrones eficientemente
+43.21. RegexBuilder: configuración programática del motor
+43.22. Flags/configuración desde Rust y cuándo preferir RegexBuilder
+43.23. Regex::escape para convertir texto no confiable en patrón literal
+43.24. Regex estáticas/reutilizables con LazyLock/LazyLock<Regex> y evitar recompilación en loops
+43.25. Ownership, borrowing y lifetimes de Match/Captures respecto al texto de entrada
+43.26. Integración con iterators: map, filter_map, collect y pipelines de procesamiento
+43.27. Integración con Option, Result y el operador ?
+43.28. Regex sobre Unicode/UTF-8 y consecuencias para índices de String
+43.29. regex::bytes para datos arbitrarios y búsqueda orientada a bytes
+43.30. Diferencias prácticas entre regex::Regex y regex::bytes::Regex
+43.31. Límites del motor regex de Rust y reconocimiento de patrones no soportados
+43.32. Seguridad: patrones/texto no confiables, límites de entrada y prevención de abuso de recursos
+43.33. Rendimiento: coste de compilación, reutilización, RegexSet y medición con benchmarks
+43.34. Diseño de APIs que reciben patrones, Regex precompiladas o configuración
+43.35. Testing de código que utiliza regex: casos positivos, negativos, bordes y regresiones
+43.36. Debugging de patrones desde Rust sin reenseñar la sintaxis del PATH Regex
+43.37. Integración con CLI: filtros tipo grep y validación de argumentos
+43.38. Integración con lectura de archivos y procesamiento línea a línea
+43.39. Integración con parsing ligero de logs y extracción de campos
+43.40. Integración con serde/datos cuando regex participa en validación o transformación
+43.41. Cuándo NO usar regex en Rust: parsers, split, strip_prefix/suffix y APIs específicas
+43.42. Laboratorio — buscador de texto con patrones suministrados por CLI
+43.43. Laboratorio — extractor de campos de logs con capturas nombradas
+43.44. Laboratorio — transformación masiva con replace_all y closures
+43.45. Laboratorio — comparación Regex vs RegexSet y coste de recompilación
+43.46. Mini proyecto — grep simplificado idiomático con archivos, iterators, errores y regex
 
-44. LOGGING, TRACING Y OBSERVABILITY
-44.1. Logging y niveles
-44.2. Structured logging
-44.3. tracing: spans/events/instrumentation
-44.4. Métricas
-44.5. Error observability
-44.6. Observabilidad async
+44. SERIALIZACIÓN Y DATOS
+44.1. JSON, TOML, YAML, CSV y formatos binarios
+44.2. serde
+44.3. Serialize/Deserialize
+44.4. Custom serializers
+44.5. Zero-copy cuando corresponda
 
-45. SEGURIDAD
-45.1. Memory safety
-45.2. Integer overflow y bounds checking
-45.3. Unsafe/FFI boundaries
-45.4. Dependency security y cargo audit
-45.5. Supply chain
-45.6. Secrets
-45.7. Parsing seguro
-45.8. DoS
-45.9. Secure API design
+45. LOGGING, TRACING Y OBSERVABILITY
+45.1. Logging y niveles
+45.2. Structured logging
+45.3. tracing: spans/events/instrumentation
+45.4. Métricas
+45.5. Error observability
+45.6. Observabilidad async
 
-46. DEPENDENCIAS Y SUPPLY CHAIN
-46.1. crates.io y SemVer
-46.2. Cargo.lock y dependency trees
-46.3. Features
-46.4. MSRV
-46.5. Auditing y licensing
-46.6. Reproducible builds
-46.7. Publicación de crates
+46. SEGURIDAD
+46.1. Memory safety
+46.2. Integer overflow y bounds checking
+46.3. Unsafe/FFI boundaries
+46.4. Dependency security y cargo audit
+46.5. Supply chain
+46.6. Secrets
+46.7. Parsing seguro
+46.8. DoS
+46.9. Secure API design
 
-47. CROSS COMPILATION
-47.1. Targets y target triples
-47.2. rustup target
-47.3. Linkers y libc
-47.4. musl y static linking
-47.5. Cross compilation
-47.6. Builds reproducibles
+47. DEPENDENCIAS Y SUPPLY CHAIN
+47.1. crates.io y SemVer
+47.2. Cargo.lock y dependency trees
+47.3. Features
+47.4. MSRV
+47.5. Auditing y licensing
+47.6. Reproducible builds
+47.7. Publicación de crates
 
-48. NO_STD Y EMBEDDED — INTRODUCCIÓN
-48.1. std, core y alloc
-48.2. #![no_std]
-48.3. Panic handlers
-48.4. Allocators
-48.5. Bare metal
-48.6. Restricciones de embedded
+48. CROSS COMPILATION
+48.1. Targets y target triples
+48.2. rustup target
+48.3. Linkers y libc
+48.4. musl y static linking
+48.5. Cross compilation
+48.6. Builds reproducibles
 
-49. API / LIBRARY DESIGN
-49.1. Public API y encapsulation
-49.2. Traits/generics/error types
-49.3. SemVer y compatibility
-49.4. MSRV y feature flags
-49.5. Documentation/testing
-49.6. Evolución de una crate
+49. NO_STD Y EMBEDDED — INTRODUCCIÓN
+49.1. std, core y alloc
+49.2. #![no_std]
+49.3. Panic handlers
+49.4. Allocators
+49.5. Bare metal
+49.6. Restricciones de embedded
 
-50. ADVANCED TRAITS & TYPE SYSTEM
-50.1. HRTB y GATs
-50.2. Associated types/bounds
-50.3. RPIT y RPITIT
-50.4. impl Trait y dyn Trait
-50.5. Const generics
-50.6. Variance y subtyping
-50.7. Auto traits
-50.8. Límites del type system
+50. API / LIBRARY DESIGN
+50.1. Public API y encapsulation
+50.2. Traits/generics/error types
+50.3. SemVer y compatibility
+50.4. MSRV y feature flags
+50.5. Documentation/testing
+50.6. Evolución de una crate
 
-51. ASYNC INTERNO Y AVANZADO
-51.1. Transformación async → Future
-51.2. State machines y pinning
-51.3. Wake mechanism
-51.4. Executors/schedulers/work stealing
-51.5. Cancellation safety
-51.6. Backpressure y bounded concurrency
-51.7. Async synchronization
-51.8. Debugging async
+51. ADVANCED TRAITS & TYPE SYSTEM
+51.1. HRTB y GATs
+51.2. Associated types/bounds
+51.3. RPIT y RPITIT
+51.4. impl Trait y dyn Trait
+51.5. Const generics
+51.6. Variance y subtyping
+51.7. Auto traits
+51.8. Límites del type system
 
-52. CONCURRENCIA AVANZADA
-52.1. Shared state y message passing
-52.2. Atomics
-52.3. Lock-free structures y wait-free concepts
-52.4. Memory ordering
-52.5. Cache coherence y false sharing
-52.6. Contention
-52.7. Synchronization primitives
-52.8. Diseño y verificación
+52. ASYNC INTERNO Y AVANZADO
+52.1. Transformación async → Future
+52.2. State machines y pinning
+52.3. Wake mechanism
+52.4. Executors/schedulers/work stealing
+52.5. Cancellation safety
+52.6. Backpressure y bounded concurrency
+52.7. Async synchronization
+52.8. Debugging async
 
-53. UNSAFE EN PROFUNDIDAD
-53.1. Unsafe contracts e invariants
-53.2. Validity, aliasing y provenance
-53.3. Lifetimes manuales
-53.4. Raw allocation
-53.5. Initialization/destruction
-53.6. Pointer arithmetic
-53.7. Slices desde raw pointers
-53.8. FFI y concurrency
-53.9. Sound abstractions
-53.10. Miri
+53. CONCURRENCIA AVANZADA
+53.1. Shared state y message passing
+53.2. Atomics
+53.3. Lock-free structures y wait-free concepts
+53.4. Memory ordering
+53.5. Cache coherence y false sharing
+53.6. Contention
+53.7. Synchronization primitives
+53.8. Diseño y verificación
 
-54. RUST COMPILER / LANGUAGE INTERNALS
-54.1. Arquitectura rustc y query system
-54.2. HIR/MIR
-54.3. Type checking y trait solving
-54.4. Borrow checking
-54.5. Monomorphization
-54.6. LLVM/codegen
-54.7. Diagnostics
-54.8. Evolución del lenguaje
+54. UNSAFE EN PROFUNDIDAD
+54.1. Unsafe contracts e invariants
+54.2. Validity, aliasing y provenance
+54.3. Lifetimes manuales
+54.4. Raw allocation
+54.5. Initialization/destruction
+54.6. Pointer arithmetic
+54.7. Slices desde raw pointers
+54.8. FFI y concurrency
+54.9. Sound abstractions
+54.10. Miri
 
-55. DEBUGGING
-55.1. Compiler diagnostics
-55.2. RUST_BACKTRACE
-55.3. Logging/tracing
-55.4. gdb/lldb/rust-gdb/rust-lldb
-55.5. Core dumps
-55.6. Sanitizers
-55.7. Miri y Valgrind
-55.8. perf
-55.9. Debugging de concurrencia
+55. RUST COMPILER / LANGUAGE INTERNALS
+55.1. Arquitectura rustc y query system
+55.2. HIR/MIR
+55.3. Type checking y trait solving
+55.4. Borrow checking
+55.5. Monomorphization
+55.6. LLVM/codegen
+55.7. Diagnostics
+55.8. Evolución del lenguaje
 
-56. RUST PROFESIONAL
-56.1. Estructura de proyectos y workspaces
-56.2. Arquitectura y API boundaries
-56.3. Testing strategy y documentation
-56.4. CI/CD
-56.5. linting/formatting
-56.6. Dependency management/security
-56.7. Profiling/observability
-56.8. Releases y mantenimiento
+56. DEBUGGING
+56.1. Compiler diagnostics
+56.2. RUST_BACKTRACE
+56.3. Logging/tracing
+56.4. gdb/lldb/rust-gdb/rust-lldb
+56.5. Core dumps
+56.6. Sanitizers
+56.7. Miri y Valgrind
+56.8. perf
+56.9. Debugging de concurrencia
 
-57. PROYECTOS PROGRESIVOS
-57.1. CLI
-57.2. Parser
-57.3. grep simplificado
-57.4. Filesystem utility
-57.5. Aplicación multithreaded
-57.6. TCP/concurrent/async server
-57.7. REST service
-57.8. Serialization library
-57.9. FFI wrapper
-57.10. Custom iterator
-57.11. Procedural macro
-57.12. Synchronization primitive
-57.13. Systems utility
+57. RUST PROFESIONAL
+57.1. Estructura de proyectos y workspaces
+57.2. Arquitectura y API boundaries
+57.3. Testing strategy y documentation
+57.4. CI/CD
+57.5. linting/formatting
+57.6. Dependency management/security
+57.7. Profiling/observability
+57.8. Releases y mantenimiento
 
-58. PROYECTO FINAL — RUSTACEAN
-58.1. Workspace multi-crate
-58.2. Library + binaries
-58.3. Traits/generics y ownership/lifetimes complejos
-58.4. Concurrencia y async
-58.5. Networking y persistence
-58.6. Arquitectura de errores
-58.7. Observability
-58.8. Tests/benchmarks/profiling
-58.9. Unsafe justificado cuando sea necesario
-58.10. Documentación, CI/CD, packaging y release
+58. PROYECTOS PROGRESIVOS
+58.1. CLI
+58.2. Parser
+58.3. grep simplificado
+58.4. Filesystem utility
+58.5. Aplicación multithreaded
+58.6. TCP/concurrent/async server
+58.7. REST service
+58.8. Serialization library
+58.9. FFI wrapper
+58.10. Custom iterator
+58.11. Procedural macro
+58.12. Synchronization primitive
+58.13. Systems utility
+
+59. PROYECTO FINAL — RUSTACEAN
+59.1. Workspace multi-crate
+59.2. Library + binaries
+59.3. Traits/generics y ownership/lifetimes complejos
+59.4. Concurrencia y async
+59.5. Networking y persistence
+59.6. Arquitectura de errores
+59.7. Observability
+59.8. Tests/benchmarks/profiling
+59.9. Unsafe justificado cuando sea necesario
+59.10. Documentación, CI/CD, packaging y release
 
 ESTÁNDAR DE CADA LECCIÓN
 🎯 OBJETIVO

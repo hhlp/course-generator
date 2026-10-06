@@ -31,7 +31,13 @@ The curriculum develops advanced control and analysis of:
 - word order, fronting, inversion and emphasis;
 - clefting, extraposition, existential constructions and information packaging;
 - complex clause architecture, embedding and structural ambiguity;
-- grammatical variation, register-sensitive grammatical choice and meaning contrasts between alternative constructions.
+- grammatical variation, register-sensitive grammatical choice and meaning contrasts between alternative constructions;
+- negation, polarity and semantic/syntactic scope;
+- definiteness, specificity, reference and quantifier scope;
+- raising, control and advanced complementation diagnostics;
+- constituency, attachment and competing structural analyses;
+- grammaticality, acceptability and interpretation;
+- descriptive vs prescriptive grammar where relevant to advanced usage.
 
 ## Level model
 
@@ -48,7 +54,10 @@ The progression is:
 7. explain meaning changes produced by grammatical alternatives;
 8. analyse the construction inside complex sentences;
 9. diagnose grammatical errors and ambiguity;
-10. exercise C1→C2 grammatical choice with precision.
+10. exercise C1→C2 grammatical choice with precision;
+11. distinguish grammaticality, acceptability, register and prescriptive preference;
+12. identify scope, attachment and reference ambiguities;
+13. justify competing structural analyses when more than one interpretation is possible.
 
 ## Principal reference architecture
 
@@ -60,7 +69,7 @@ Reference grammars are used to deepen areas where a learner needs more explicit 
 
 ### Included
 
-Advanced grammar, grammatical terminology, sentence analysis, form–meaning contrasts, syntactic constraints, grammatical acceptability, alternative constructions, ambiguity, error analysis and grammar-sensitive register distinctions.
+Advanced grammar, grammatical terminology, sentence analysis, form–meaning contrasts, syntactic constraints, grammatical acceptability, alternative constructions, negation and polarity, scope, reference, definiteness, raising and control, constituency, ambiguity, error analysis, descriptive/prescriptive distinctions and grammar-sensitive register variation.
 
 ### Excluded as independent subjects
 

@@ -1,3 +1,51 @@
+0. Grammar Foundations
+0.1 What is grammar?
+0.2 Grammar at A2: form, meaning and use
+0.3 Word → phrase → clause → sentence
+0.4 Parts of speech: overview
+0.5 Nouns
+0.6 Pronouns
+0.7 Verbs
+0.8 Adjectives
+0.9 Adverbs
+0.10 Determiners
+0.11 Prepositions
+0.12 Conjunctions
+0.13 Subject and predicate
+0.14 Subject
+0.15 Verb
+0.16 Object
+0.17 Direct object
+0.18 Indirect object
+0.19 Complement: introduction
+0.20 Subject + verb
+0.21 Subject + verb + object
+0.22 Subject + be + complement
+0.23 Main verb vs auxiliary verb
+0.24 Person and number
+0.25 Subject–verb agreement
+0.26 Base form
+0.27 Third-person -s form
+0.28 Past form
+0.29 Past participle
+0.30 -ing form
+0.31 Finite vs non-finite verb: introduction
+0.32 Tense vs time: introduction
+0.33 Aspect: simple vs continuous/perfect — introduction
+0.34 Voice: active vs passive — introduction
+0.35 Modality: introduction
+0.36 Phrase vs clause
+0.37 Main clause vs subordinate clause
+0.38 Statement
+0.39 Negative sentence
+0.40 Question
+0.41 Imperative
+0.42 Basic English word order
+0.43 Contractions: grammatical role
+0.44 Identifying grammatical structure in a sentence
+0.45 Correct vs incorrect: introduction to grammatical diagnosis
+0.46 Grammar terminology checkpoint
+
 1. Present
 1.1 Present Simple
 1.2 Present Simple: affirmative and negative
@@ -93,395 +141,468 @@
 7.12 Should / shouldn't
 7.13 Would
 7.14 Would like
-7.14.1 I'd rather / would rather
-7.14.2 Would rather + base form
-7.15 Modal + base form
-7.16 Imperative
-7.17 Negative imperative
-7.18 Let's
+7.15 I'd rather / would rather
+7.16 Would rather + base form
+7.17 Modal + base form
+7.18 Imperative
+7.19 Negative imperative
+7.20 Let's
 
-8. There and It
-8.1 There is / there are
-8.2 There isn't / there aren't
-8.3 Is there...? / Are there...?
-8.4 There was / there were
-8.5 There wasn't / there weren't
-8.6 Was there...? / Were there...?
-8.7 There has been / there have been
-8.8 Has there been...? / Have there been...?
-8.9 There will be
-8.10 There won't be
-8.11 Will there be...?
-8.12 There is going to be
-8.13 There are going to be
-8.14 There + modal + be
-8.15 There can be
-8.16 There could be
-8.17 There may be
-8.18 There might be
-8.19 There must be
-8.20 There should be
-8.21 It as subject
-8.22 It's + adjective
-8.23 It for time
-8.24 It for weather
-8.25 It for distance
-8.26 There vs it
+8. Checkpoint I — A2 Foundations
+8.1 Identify parts of speech in A2 sentences
+8.2 Identify subject, auxiliary, main verb, object and complement
+8.3 Compare present, past and future forms
+8.4 Recognize simple, continuous and perfect patterns introduced so far
+8.5 Diagnose basic agreement and auxiliary errors
+8.6 Transform affirmative ↔ negative ↔ interrogative
+8.7 Mixed foundations laboratory
 
-9. Auxiliary Verbs
-9.1 What is an auxiliary verb?
-9.2 Auxiliary verb vs main verb
-9.3 Be as a main verb
-9.4 Be as an auxiliary verb
-9.5 Have as a main verb
-9.6 Have as an auxiliary verb
-9.7 Do as a main verb
-9.8 Do as an auxiliary verb
-9.9 Modal auxiliary verbs
-9.10 Do / does / did
-9.11 Have / has / had
-9.12 Am / is / are / was / were
-9.13 Auxiliary verbs in negatives
-9.14 Auxiliary verbs in questions
-9.15 Short answers
-9.16 So do I / Neither do I
-9.17 Auxiliary verbs: comparison and review
+9. There and It
+9.1 There is / there are
+9.2 There isn't / there aren't
+9.3 Is there...? / Are there...?
+9.4 There was / there were
+9.5 There wasn't / there weren't
+9.6 Was there...? / Were there...?
+9.7 There has been / there have been
+9.8 Has there been...? / Have there been...?
+9.9 There will be
+9.10 There won't be
+9.11 Will there be...?
+9.12 There is going to be
+9.13 There are going to be
+9.14 There + modal + be
+9.15 There can be
+9.16 There could be
+9.17 There may be
+9.18 There might be
+9.19 There must be
+9.20 There should be
+9.21 It as subject
+9.22 It's + adjective
+9.23 It for time
+9.24 It for weather
+9.25 It for distance
+9.26 There vs it
 
-10. Questions
-10.1 Yes/No questions
-10.2 Wh- questions
-10.3 What
-10.4 Who
-10.5 Whom: introduction
-10.6 Whose
-10.7 Which
-10.8 When
-10.9 Where
-10.10 Why
-10.11 How
-10.12 How much / how many
-10.13 How long
-10.14 How often
-10.15 How far
-10.16 How old
-10.17 Subject questions
-10.18 Object questions
-10.19 Who...? as subject
-10.20 Who...? as object
-10.21 Who...? subject vs object questions
-10.22 Questions with prepositions
-10.23 What ... like?
-10.24 What vs which
-10.25 Question word order
-10.26 Direct questions
-10.27 Indirect / embedded questions: introduction
-10.28 Do you know where...?
-10.29 I don't know what...
-10.30 Question word + subject + verb
-10.31 Direct vs indirect question word order
+10. Auxiliary Verbs
+10.1 What is an auxiliary verb?
+10.2 Auxiliary verb vs main verb
+10.3 Be as a main verb
+10.4 Be as an auxiliary verb
+10.5 Have as a main verb
+10.6 Have as an auxiliary verb
+10.7 Do as a main verb
+10.8 Do as an auxiliary verb
+10.9 Modal auxiliary verbs
+10.10 Do / does / did
+10.11 Have / has / had
+10.12 Am / is / are / was / were
+10.13 Auxiliary verbs in negatives
+10.14 Auxiliary verbs in questions
+10.15 Short answers
+10.16 So do I / Neither do I
+10.17 Auxiliary verbs: comparison and review
 
-11. Reported Speech
-11.1 Direct Speech
-11.2 Reported Speech
-11.3 Direct vs Reported Speech
-11.4 Say / tell
-11.5 Reported statements
-11.6 Basic tense changes
-11.7 Pronoun changes
-11.8 Time-expression changes
-11.9 Reported questions
-11.10 Reported commands
-11.11 Tell/ask + object + to-infinitive
-11.12 Basic backshift
+11. Questions
+11.1 Yes/No questions
+11.2 Wh- questions
+11.3 What
+11.4 Who
+11.5 Whom: introduction
+11.6 Whose
+11.7 Which
+11.8 When
+11.9 Where
+11.10 Why
+11.11 How
+11.12 How much / how many
+11.13 How long
+11.14 How often
+11.15 How far
+11.16 How old
+11.17 Subject questions
+11.18 Object questions
+11.19 Who...? as subject
+11.20 Who...? as object
+11.21 Who...? subject vs object questions
+11.22 Questions with prepositions
+11.23 What ... like?
+11.24 What vs which
+11.25 Question word order
+11.26 Direct questions
+11.27 Indirect / embedded questions: introduction
+11.28 Do you know where...?
+11.29 I don't know what...
+11.30 Question word + subject + verb
+11.31 Direct vs indirect question word order
 
-12. -ing and to
-12.1 Verb + -ing
-12.2 Verb + to-infinitive
-12.3 Verb + object + to-infinitive
-12.4 Preposition + -ing
-12.5 Like / love / hate + -ing
-12.6 Want / need / would like + to
-12.7 Start / begin + -ing/to
-12.8 Go + -ing
-12.9 To + infinitive for purpose
-12.10 -ing vs to-infinitive: introduction
+12. Reported Speech
+12.1 Direct Speech
+12.2 Reported Speech
+12.3 Direct vs Reported Speech
+12.4 Say / tell
+12.5 Reported statements
+12.6 Basic tense changes
+12.7 Pronoun changes
+12.8 Time-expression changes
+12.9 Reported questions
+12.10 Reported commands
+12.11 Tell/ask + object + to-infinitive
+12.12 Basic backshift
 
-13. Go, Get, Do, Make and Have
-13.1 Go
-13.2 Go + preposition
-13.3 Go + -ing
-13.4 Get
-13.5 Get + adjective
-13.6 Get + noun
-13.7 Get to + place
-13.8 Get + past participle
-13.9 Do
-13.10 Do + noun
-13.11 Make
-13.12 Make + noun
-13.13 Do vs make
-13.14 Have
-13.15 Have + noun
-13.16 Have vs have got
-13.17 Common structures with go/get/do/make/have
+13. -ing and to
+13.1 Verb + -ing
+13.2 Verb + to-infinitive
+13.3 Verb + object + to-infinitive
+13.4 Preposition + -ing
+13.5 Like / love / hate + -ing
+13.6 Want / need / would like + to
+13.7 Start / begin + -ing/to
+13.8 Go + -ing
+13.9 To + infinitive for purpose
+13.10 -ing vs to-infinitive: introduction
 
-14. Pronouns and Possessives
-14.1 Subject pronouns
-14.2 Object pronouns
-14.3 Possessive adjectives
-14.4 Possessive pronouns
-14.5 My vs mine
-14.6 Your vs yours
-14.7 His / her / hers
-14.8 Its
-14.9 Our / ours
-14.10 Their / theirs
-14.11 Reflexive pronouns
-14.12 Myself / yourself / himself...
-14.13 Possessive 's
-14.14 Whose...?
+14. Go, Get, Do, Make and Have
+14.1 Go
+14.2 Go + preposition
+14.3 Go + -ing
+14.4 Get
+14.5 Get + adjective
+14.6 Get + noun
+14.7 Get to + place
+14.8 Get + past participle
+14.9 Do
+14.10 Do + noun
+14.11 Make
+14.12 Make + noun
+14.13 Do vs make
+14.14 Have
+14.15 Have + noun
+14.16 Have vs have got
+14.17 Common structures with go/get/do/make/have
 
-15. Countable and Uncountable Nouns
-15.1 Countable nouns
-15.2 Uncountable nouns
-15.3 Countable vs uncountable
-15.4 Singular countable nouns
-15.5 Plural countable nouns
-15.6 Irregular plurals
-15.7 Nouns that can be countable or uncountable
-15.8 A/an with countable nouns
-15.9 Some with plural/uncountable nouns
-15.10 Containers and quantities
-15.11 A piece of / a bottle of / a cup of...
+15. Checkpoint II — A2 Verb System and Clause Core
+15.1 Auxiliary system review: be / have / do / modals
+15.2 Present Perfect vs Past Simple
+15.3 Present Simple vs Present Continuous
+15.4 Past Simple vs Past Continuous
+15.5 Future-form contrasts
+15.6 Active ↔ Passive transformations
+15.7 Direct ↔ Reported Speech transformations
+15.8 Question formation and word-order diagnosis
+15.9 Verb complementation: -ing / to-infinitive
+15.10 Mixed verb-system laboratory
 
-16. Some*, Any*, No* and Every*
-16.1 Some
-16.2 Any
-16.3 Some vs any
-16.4 No
-16.5 None
-16.6 Somebody / someone
-16.7 Something
-16.8 Somewhere
-16.9 Anybody / anyone
-16.10 Anything
-16.11 Anywhere
-16.12 Nobody / no one
-16.13 Nothing
-16.14 Nowhere
-16.15 Everybody / everyone
-16.16 Everything
-16.17 Everywhere
-16.18 Somebody vs anybody vs nobody vs everybody
-16.19 Something vs anything vs nothing vs everything
-16.20 Somewhere vs anywhere vs nowhere vs everywhere
+16. Pronouns and Possessives
+16.1 Subject pronouns
+16.2 Object pronouns
+16.3 Possessive adjectives
+16.4 Possessive pronouns
+16.5 My vs mine
+16.6 Your vs yours
+16.7 His / her / hers
+16.8 Its
+16.9 Our / ours
+16.10 Their / theirs
+16.11 Reflexive pronouns
+16.12 Myself / yourself / himself...
+16.13 Possessive 's
+16.14 Whose...?
 
-17. Quantity
-17.1 Much
-17.2 Many
-17.3 Much vs many
-17.4 A lot of
-17.5 Lots of
-17.6 Much/many vs a lot of
-17.7 A few
-17.8 Few
-17.9 A little
-17.10 Little
-17.11 How much?
-17.12 How many?
-17.13 Enough
-17.14 Too much
-17.15 Too many
+17. Countable and Uncountable Nouns
+17.1 Countable nouns
+17.2 Uncountable nouns
+17.3 Countable vs uncountable
+17.4 Singular countable nouns
+17.5 Plural countable nouns
+17.6 Irregular plurals
+17.7 Nouns that can be countable or uncountable
+17.8 A/an with countable nouns
+17.9 Some with plural/uncountable nouns
+17.10 Containers and quantities
+17.11 A piece of / a bottle of / a cup of...
 
-18. Both, Either and Neither
-18.1 Both
-18.2 Both ... and
-18.3 Either
-18.4 Either ... or
-18.5 Neither
-18.6 Neither ... nor
-18.7 Both vs either vs neither
-18.8 Both of
-18.9 Either of
-18.10 Neither of
-18.11 Both/either/neither + pronoun
-18.12 So do I / Neither do I
+18. Some*, Any*, No* and Every*
+18.1 Some
+18.2 Any
+18.3 Some vs any
+18.4 No
+18.5 None
+18.6 Somebody / someone
+18.7 Something
+18.8 Somewhere
+18.9 Anybody / anyone
+18.10 Anything
+18.11 Anywhere
+18.12 Nobody / no one
+18.13 Nothing
+18.14 Nowhere
+18.15 Everybody / everyone
+18.16 Everything
+18.17 Everywhere
+18.18 Somebody vs anybody vs nobody vs everybody
+18.19 Something vs anything vs nothing vs everything
+18.20 Somewhere vs anywhere vs nowhere vs everywhere
 
-19. One and Ones
-19.1 One as a substitute
-19.2 Ones as a substitute
-19.3 One vs ones
-19.4 The one
-19.5 The ones
-19.6 This one / that one
-19.7 These ones / those ones
-19.8 Which one?
-19.9 Which ones?
-19.10 One/ones after adjectives
+19. Quantity
+19.1 Much
+19.2 Many
+19.3 Much vs many
+19.4 A lot of
+19.5 Lots of
+19.6 Much/many vs a lot of
+19.7 A few
+19.8 Few
+19.9 A little
+19.10 Little
+19.11 How much?
+19.12 How many?
+19.13 Enough
+19.14 Too much
+19.15 Too many
 
-20. A, An and The
-20.1 A / an
-20.2 A vs an
-20.3 The
-20.4 A/an vs the
-20.5 First vs subsequent reference
-20.6 The with unique things
-20.7 The with places
-20.8 The with geographical names
-20.9 Zero article
-20.10 General vs specific reference
-20.11 Articles with countable nouns
-20.12 Articles with uncountable nouns
+20. Both, Either and Neither
+20.1 Both
+20.2 Both ... and
+20.3 Either
+20.4 Either ... or
+20.5 Neither
+20.6 Neither ... nor
+20.7 Both vs either vs neither
+20.8 Both of
+20.9 Either of
+20.10 Neither of
+20.11 Both/either/neither + pronoun
+20.12 So do I / Neither do I
 
-21. Determiners and Pronouns
-21.1 Determiners: introduction
-21.2 Determiner vs pronoun
-21.3 This / that
-21.4 These / those
-21.5 Some / any
-21.6 No / none
-21.7 All
-21.8 All of
-21.9 Most
-21.10 Most of
-21.11 Both
-21.12 Either
-21.13 Neither
-21.14 Each
-21.15 Every
-21.16 Each vs every
-21.17 Another
-21.18 Other
-21.19 Others
-21.20 The other
-21.21 The others
-21.22 Determiners used before nouns
-21.23 Pronouns used without nouns
+21. One and Ones
+21.1 One as a substitute
+21.2 Ones as a substitute
+21.3 One vs ones
+21.4 The one
+21.5 The ones
+21.6 This one / that one
+21.7 These ones / those ones
+21.8 Which one?
+21.9 Which ones?
+21.10 One/ones after adjectives
 
-22. Adjectives and Adverbs
-22.1 Adjectives
-22.2 Adverbs
-22.3 Adjective vs adverb
-22.4 Adverbs ending in -ly
-22.5 Good vs well
-22.6 Adjective position
-22.7 Adverb position
-22.8 Adverbs of frequency
-22.9 Comparative adjectives
-22.10 Superlative adjectives
-22.11 Irregular comparatives
-22.12 Than
-22.13 As ... as
-22.14 Not as ... as
-22.15 Too + adjective/adverb
-22.16 Adjective/adverb + enough
-22.17 -ed vs -ing adjectives
+22. A, An and The
+22.1 A / an
+22.2 A vs an
+22.3 The
+22.4 A/an vs the
+22.5 First vs subsequent reference
+22.6 The with unique things
+22.7 The with places
+22.8 The with geographical names
+22.9 Zero article
+22.10 General vs specific reference
+22.11 Articles with countable nouns
+22.12 Articles with uncountable nouns
 
-23. Word Order
-23.1 Basic sentence order
-23.2 Subject + verb
-23.3 Subject + verb + object
-23.4 Place and time
-23.5 Verb + object + place + time
-23.6 Adverb position
-23.7 Frequency adverbs
-23.8 Still
-23.9 Yet
-23.10 Already
-23.11 Just
-23.12 Word order in questions
-23.13 Word order with auxiliary verbs
-23.14 Verbs with two objects
-23.15 Verb + indirect object + direct object
-23.16 Give me the book
-23.17 Verb + direct object + to + indirect object
-23.18 Give the book to me
-23.19 Give me the book vs Give the book to me
-23.20 Pronouns with two-object structures
+23. Determiners and Pronouns
+23.1 Determiners: introduction
+23.2 Determiner vs pronoun
+23.3 This / that
+23.4 These / those
+23.5 Some / any
+23.6 No / none
+23.7 All
+23.8 All of
+23.9 Most
+23.10 Most of
+23.11 Both
+23.12 Either
+23.13 Neither
+23.14 Each
+23.15 Every
+23.16 Each vs every
+23.17 Another
+23.18 Other
+23.19 Others
+23.20 The other
+23.21 The others
+23.22 Determiners used before nouns
+23.23 Pronouns used without nouns
 
-24. Conjunctions and Clauses
-24.1 And
-24.2 But
-24.3 Or
-24.4 So
-24.5 Because
-24.6 Although
-24.7 When
-24.8 While
-24.9 Before
-24.10 After
-24.11 Until
-24.12 As soon as
-24.13 If
-24.14 Unless
-24.15 Main clauses
-24.16 Subordinate clauses
-24.17 Relative clauses: introduction
-24.18 Who / which / that
-24.19 Zero Conditional
-24.20 Zero Conditional: form and use
-24.21 First Conditional
-24.22 First Conditional: form and use
-24.23 Zero vs First Conditional
+24. Adjectives and Adverbs
+24.1 Adjectives
+24.2 Adverbs
+24.3 Adjective vs adverb
+24.4 Adverbs ending in -ly
+24.5 Good vs well
+24.6 Adjective position
+24.7 Adverb position
+24.8 Adverbs of frequency
+24.9 Comparative adjectives
+24.10 Superlative adjectives
+24.11 Irregular comparatives
+24.12 Than
+24.13 As ... as
+24.14 Not as ... as
+24.15 Too + adjective/adverb
+24.16 Adjective/adverb + enough
+24.17 -ed vs -ing adjectives
 
-25. Prepositions
-25.1 Prepositions: introduction
-25.2 At / on / in: time
-25.3 From ... to
-25.4 Until
-25.5 Since / for
-25.6 Before / after
-25.7 During / while
-25.8 By / until
-25.9 At / on / in: place
-25.10 In / at / on: places
-25.11 To / in / at: movement and location
-25.12 Into / out of
-25.13 On / off
-25.14 Up / down
-25.15 Over / under
-25.16 Above / below
-25.17 Between / among
-25.18 Through / across
-25.19 By / with
-25.20 About
-25.21 Adjective + preposition
-25.22 Verb + preposition
-25.23 Preposition + -ing
-25.24 Prepositions at the end of questions
-25.25 Who ... with?
-25.26 What ... for?
-25.27 Where ... from?
-25.28 Prepositions at the end of clauses: introduction
+25. Word Order
+25.1 Basic sentence order
+25.2 Subject + verb
+25.3 Subject + verb + object
+25.4 Place and time
+25.5 Verb + object + place + time
+25.6 Adverb position
+25.7 Frequency adverbs
+25.8 Still
+25.9 Yet
+25.10 Already
+25.11 Just
+25.12 Word order in questions
+25.13 Word order with auxiliary verbs
+25.14 Verbs with two objects
+25.15 Verb + indirect object + direct object
+25.16 Give me the book
+25.17 Verb + direct object + to + indirect object
+25.18 Give the book to me
+25.19 Give me the book vs Give the book to me
+25.20 Pronouns with two-object structures
 
-26. Phrasal Verbs
-26.1 What is a phrasal verb?
-26.2 Verb + particle
-26.3 Phrasal verb vs verb + preposition
-26.4 Intransitive phrasal verbs
-26.5 Transitive phrasal verbs
-26.6 Separable phrasal verbs
-26.7 Inseparable phrasal verbs
-26.8 Phrasal verbs with noun objects
-26.9 Phrasal verbs with pronoun objects
-26.10 Particle position
-26.11 Go in / go out
-26.12 Come in / come back
-26.13 Get up
-26.14 Sit down / stand up
-26.15 Fall over / fall down
-26.16 Go away
-26.17 Run away
-26.18 Put on
-26.19 Take off
-26.20 Turn on
-26.21 Turn off
-26.22 Pick up
-26.23 Put down
-26.24 Take out
-26.25 Put away
-26.26 Put on your shoes
-26.27 Put your shoes on
-26.28 Put them on
-26.29 Pronouns between verb and particle
-26.30 Common A2 phrasal verbs: review
+26. Conjunctions and Clauses
+26.1 And
+26.2 But
+26.3 Or
+26.4 So
+26.5 Because
+26.6 Although
+26.7 When
+26.8 While
+26.9 Before
+26.10 After
+26.11 Until
+26.12 As soon as
+26.13 If
+26.14 Unless
+26.15 Main clauses
+26.16 Subordinate clauses
+26.17 Relative clauses: introduction
+26.18 Who / which / that
+26.19 Zero Conditional
+26.20 Zero Conditional: form and use
+26.21 First Conditional
+26.22 First Conditional: form and use
+26.23 Zero vs First Conditional
+
+27. Prepositions
+27.1 Prepositions: introduction
+27.2 At / on / in: time
+27.3 From ... to
+27.4 Until
+27.5 Since / for
+27.6 Before / after
+27.7 During / while
+27.8 By / until
+27.9 At / on / in: place
+27.10 In / at / on: places
+27.11 To / in / at: movement and location
+27.12 Into / out of
+27.13 On / off
+27.14 Up / down
+27.15 Over / under
+27.16 Above / below
+27.17 Between / among
+27.18 Through / across
+27.19 By / with
+27.20 About
+27.21 Adjective + preposition
+27.22 Verb + preposition
+27.23 Preposition + -ing
+27.24 Prepositions at the end of questions
+27.25 Who ... with?
+27.26 What ... for?
+27.27 Where ... from?
+27.28 Prepositions at the end of clauses: introduction
+
+28. Phrasal Verbs
+28.1 What is a phrasal verb?
+28.2 Verb + particle
+28.3 Phrasal verb vs verb + preposition
+28.4 Intransitive phrasal verbs
+28.5 Transitive phrasal verbs
+28.6 Separable phrasal verbs
+28.7 Inseparable phrasal verbs
+28.8 Phrasal verbs with noun objects
+28.9 Phrasal verbs with pronoun objects
+28.10 Particle position
+28.11 Go in / go out
+28.12 Come in / come back
+28.13 Get up
+28.14 Sit down / stand up
+28.15 Fall over / fall down
+28.16 Go away
+28.17 Run away
+28.18 Put on
+28.19 Take off
+28.20 Turn on
+28.21 Turn off
+28.22 Pick up
+28.23 Put down
+28.24 Take out
+28.25 Put away
+28.26 Put on your shoes
+28.27 Put your shoes on
+28.28 Put them on
+28.29 Pronouns between verb and particle
+28.30 Common A2 phrasal verbs: review
+
+29. Checkpoint III — A2 Nominal System, Modification and Clauses
+29.1 Pronouns and possessives review
+29.2 Countable vs uncountable diagnosis
+29.3 Articles and reference
+29.4 Determiner vs pronoun analysis
+29.5 Quantifier contrasts
+29.6 Adjective vs adverb diagnosis
+29.7 Word-order correction
+29.8 Clause and conjunction analysis
+29.9 Zero vs First Conditional
+29.10 Preposition-pattern review
+29.11 Phrasal-verb particle-position diagnosis
+29.12 Mixed nominal-and-clause laboratory
+
+30. Final A2 Grammar Integration
+30.1 Analyze the anatomy of an A2 sentence
+30.2 Identify form, grammatical meaning and use
+30.3 Identify tense, aspect, voice and modality at A2 depth
+30.4 Identify subject, auxiliary, main verb, object and complement
+30.5 Identify noun, pronoun, determiner, adjective, adverb, preposition and conjunction
+30.6 Choose between competing A2 structures
+30.7 Present Simple vs Present Continuous: integrated diagnosis
+30.8 Past Simple vs Past Continuous: integrated diagnosis
+30.9 Present Perfect vs Past Simple: integrated diagnosis
+30.10 Will vs going to vs present forms for future
+30.11 Must vs have to vs should
+30.12 There vs it
+30.13 Active vs Passive
+30.14 Direct vs Reported Speech
+30.15 Some/any/no/every families
+30.16 Much/many/a lot of/few/little
+30.17 Both/either/neither
+30.18 Articles and determiners
+30.19 Adjective vs adverb
+30.20 Direct vs indirect question word order
+30.21 Main vs subordinate clause
+30.22 Zero vs First Conditional
+30.23 Verb + preposition vs phrasal verb
+30.24 Transform affirmative ↔ negative ↔ interrogative
+30.25 Transform active ↔ passive at A2 level
+30.26 Transform direct ↔ reported patterns at A2 level
+30.27 Diagnose agreement errors
+30.28 Diagnose auxiliary errors
+30.29 Diagnose verb-form errors
+30.30 Diagnose word-order errors
+30.31 Diagnose determiner/article/quantity errors
+30.32 Diagnose preposition and particle-placement errors
+30.33 Mixed grammar troubleshooting laboratory
+30.34 Cumulative A2 grammar checkpoint
+30.35 A2 → B1 boundary: what is mastered now?
+30.36 A2 → B1 boundary: what is deliberately deferred?

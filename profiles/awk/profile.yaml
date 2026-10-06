@@ -55,6 +55,19 @@ lesson_structure:
     min_items: 3
     max_items: 7
 
+bibliography_policy:
+  primary:
+    - Learning AWK Programming
+    - "sed & awk — Dale Dougherty, Arnold Robbins"
+  normative:
+    - POSIX awk
+  engine:
+    - GNU Awk User's Guide
+  deepening:
+    - Effective awk Programming
+  distinguish_portable_from_gawk: true
+  exact_chapter_section_page_only_when_verified: true
+
 quality:
   forbid_generic_scaffold: true
   require_topic_specific_headings: true

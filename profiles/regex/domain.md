@@ -43,9 +43,14 @@ El curso debe cubrir progresivamente:
 - motores tipo Perl;
 - motores backtracking;
 - motores basados en autómatas;
+- parsing conceptual del patrón y representación mediante AST;
 - compilación conceptual de regex;
+- simplificación y optimización conceptual del patrón;
 - autómatas finitos y relación con lenguajes regulares;
+- construcción de Thompson a nivel pedagógico;
 - NFA/DFA a nivel pedagógico;
+- subset construction y minimización de DFA a nivel conceptual;
+- Pike VM, lazy DFA y motores híbridos como modelos de implementación;
 - backtracking;
 - complejidad;
 - catastrophic backtracking;
@@ -54,6 +59,7 @@ El curso debe cubrir progresivamente:
 - portabilidad;
 - testing y depuración;
 - diseño de patrones mantenibles;
+- análisis léxico y relación regex → token → lexer → parser;
 - límites teóricos y prácticos de regex.
 
 ## Regla fundamental: base agnóstica
@@ -141,7 +147,9 @@ El curso debe cubrir:
 - ReDoS;
 - estrategias para reducir ambigüedad;
 - grupos atómicos y cuantificadores posesivos cuando estén disponibles;
-- elección de motores con garantías distintas de complejidad.
+- elección de motores con garantías distintas de complejidad;
+- distinguir comportamiento lineal, polinómico y exponencial cuando sea relevante;
+- distinguir entrada controlada por la aplicación de entrada controlada por un atacante.
 
 No afirmar que todas las regex tienen el mismo coste ni que todos los motores usan backtracking.
 

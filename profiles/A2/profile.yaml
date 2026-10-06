@@ -1,5 +1,5 @@
 course:
-  title: "English Grammar A2"
+  title: "English Grammar A2 — Deep Path"
   language: "es"
   target_language: "en"
   level:
@@ -7,7 +7,8 @@ course:
     to: "A2"
     framework: "CEFR"
   scope: "grammar-only"
-  primary_reference: "Basic Grammar in Use — Raymond Murphy"
+  depth: "deep"
+  primary_reference: "Basic Grammar in Use — Raymond Murphy — Fourth Edition"
   independent_course: true
   block_start: 0
 
@@ -18,13 +19,16 @@ files:
 
 objective:
   primary: >-
-    Desarrollar una base sólida de gramática inglesa A2 mediante el estudio
-    progresivo de la forma, el significado y el uso de las estructuras,
-    preparando la transición posterior hacia B1 sin introducir contenidos
-    avanzados antes de tiempo.
+    Dominar la gramática inglesa A2 dentro de los límites CEFR del nivel mediante
+    fundamentos gramaticales, forma, significado, uso, restricciones, contrastes,
+    análisis estructural, transformaciones, diagnóstico de errores, práctica controlada
+    y consolidación acumulativa, preparando la transición posterior hacia B1 sin
+    introducir contenidos avanzados antes de tiempo.
 
 curriculum:
   grammar_required: true
+  deep_path: true
+  depth_inside_level_boundary: true
   independent_strands:
     vocabulary: false
     pronunciation: false
@@ -36,29 +40,37 @@ curriculum:
   incidental_context_allowed: true
   incidental_context_rule: >-
     El vocabulario y las oraciones contextuales pueden utilizarse para demostrar
-    gramática, pero nunca deben convertirse en objetivos independientes de la lección.
+    gramática, pero nunca deben convertirse en objetivos independientes.
 
 level_model:
-  type: "single-level"
+  type: "single-level-deep"
   progression:
+    - prerequisites
     - recognition
+    - terminology
+    - anatomy
     - form
     - meaning
     - use
+    - constraints
     - contrast
+    - structural_analysis
     - transformation
+    - error_diagnosis
     - controlled_practice
     - consolidation
+    - integration
   global_progression:
-    A2: "introduce and establish"
+    A2: "introduce, establish, analyze and troubleshoot"
     B1: "consolidate and extend"
     B2: "contrast and use complex structures"
-    C1: "advanced structures and exceptions"
+    C1: "advanced structures, constraints and exceptions"
     C2: "mastery, nuance and grammatical analysis"
   avoid_repetition_without_new_depth: true
+  never_use_higher_level_content_to_fake_depth: true
 
 pedagogy:
-  style: "profundo, práctico, progresivo, contrastivo y centrado exclusivamente en gramática"
+  style: "profundo, práctico, progresivo, contrastivo, analítico y centrado exclusivamente en gramática"
   explanation_language: "Spanish"
   grammar_terminology: "English"
   examples_language: "English"
@@ -71,10 +83,33 @@ pedagogy:
   explain_constraints: true
   compare_alternative_constructions: true
   error_analysis: true
-  structural_analysis: false
+  structural_analysis: true
+  transformation_analysis: true
+  grammar_troubleshooting: true
   require_natural_examples: true
   require_original_exercises: true
   avoid_unnecessary_repetition: true
+
+depth_model:
+  apply_when_relevant:
+    - "prerequisite concepts"
+    - "grammatical anatomy"
+    - "canonical form"
+    - "affirmative / negative / interrogative"
+    - "auxiliary behavior"
+    - "word order"
+    - "contractions"
+    - "spelling rules"
+    - "grammatical meaning"
+    - "A2 uses"
+    - "constraints"
+    - "contrasts"
+    - "transformations"
+    - "correct vs incorrect"
+    - "rule diagnosis"
+    - "controlled practice"
+    - "cumulative review"
+  do_not_pad_lessons: true
 
 lesson_structure:
   objective:
@@ -96,34 +131,64 @@ lesson_structure:
     heading: "📘 GRAMMAR"
     requirements:
       - "Definir la estructura gramatical."
+      - "Mostrar su anatomía cuando sea relevante."
       - "Mostrar la forma o patrón."
-      - "Explicar significado y uso principal."
-      - "Incluir formas afirmativa, negativa e interrogativa cuando corresponda."
+      - "Explicar significado y uso."
+      - "Explicar restricciones A2."
+      - "Incluir afirmativa, negativa e interrogativa cuando corresponda."
       - "Explicar auxiliares, orden y contracciones cuando sean relevantes."
       - "Contrastar estructuras que suelen confundirse."
+  grammatical_analysis:
+    required_when_relevant: true
+    heading: "🔬 ANÁLISIS GRAMATICAL"
+    identify_when_applicable:
+      - subject
+      - predicate
+      - auxiliary
+      - main_verb
+      - object
+      - indirect_object
+      - complement
+      - determiner
+      - pronoun
+      - preposition
+      - clause
+      - verb_form
   examples:
     required: true
     heading: "💬 EXAMPLES"
     requirements:
       - "Usar múltiples ejemplos naturales en inglés."
       - "Demostrar claramente la estructura objetivo."
-      - "Evitar ejemplos que dependan de gramática avanzada todavía no explicada."
-  practice:
-    required: true
-    heading: "🧪 Laboratorio/ejemplos"
-    purpose: "ejercicios controlados, transformaciones y práctica de forma, significado y uso"
+      - "Incluir pares contrastivos cuando aporten comprensión."
+      - "Evitar gramática avanzada todavía no explicada."
   common_errors:
-    required: false
+    required_when_relevant: true
     heading: "⚠️ Errores frecuentes"
+  troubleshooting:
+    required_for_major_topics: true
+    heading: "🔧 GRAMMAR TROUBLESHOOTING"
+    sequence:
+      - "show incorrect form"
+      - "locate the problem"
+      - "identify the broken rule"
+      - "correct the form"
+      - "explain the correction"
+      - "contrast with a nearby valid structure"
   important_idea:
     required: false
     heading: "💡 Idea importante"
-  grammatical_analysis:
-    required: false
-    heading: "🔬 ANÁLISIS GRAMATICAL"
-    use_when:
-      - "un análisis simple ayude a identificar sujeto, verbo, objeto, auxiliar o complemento"
-      - "sea útil explicar el orden de palabras o una transformación"
+  practice:
+    required: true
+    heading: "🧪 Laboratorio/ejemplos"
+    include_when_applicable:
+      - identification
+      - form_completion
+      - transformation
+      - contrast_selection
+      - error_correction
+      - error_diagnosis
+      - mixed_controlled_practice
   remember:
     required: true
     position: last
@@ -155,14 +220,17 @@ content_rules:
   include_common_errors: true
   include_sentence_analysis: true
   include_transformations: true
+  include_error_diagnosis: true
   include_consolidation_lessons: true
   include_checkpoints: true
+  include_final_integration: true
   preserve_english_examples: true
 
 references:
   principal:
     - author: "Raymond Murphy"
-      title: "Basic Grammar in Use - fourth edition"
+      title: "Basic Grammar in Use"
+      edition: "Fourth Edition"
       role: "principal pedagogical grammar and backbone"
   later_levels:
     - author: "Raymond Murphy"
@@ -180,14 +248,17 @@ references:
 
 generation:
   lesson_depth: "high"
+  deep_path_standard: true
   standalone_lessons: true
   cumulative_progression: true
   avoid_unnecessary_repetition: true
   preserve_cross_references: true
   checkpoints:
-    - "A2 foundations"
-    - "A2 consolidation"
-    - "A2 → B1 transition"
+    - "A2 Foundations"
+    - "A2 Verb System and Clause Core"
+    - "A2 Nominal System, Modification and Clauses"
+    - "Final A2 Grammar Integration"
+    - "A2 → B1 boundary"
 
 quality_checks:
   require_objective_first: true
@@ -195,12 +266,30 @@ quality_checks:
   verify_lesson_is_grammar_focused: true
   verify_examples_support_grammar_target: true
   verify_terminology_is_explained: true
+  verify_structural_analysis_when_relevant: true
+  verify_error_diagnosis_for_major_topics: true
   verify_contrasts_are_semantically_accurate: true
+  verify_transformations_preserve_meaning_when_required: true
   verify_no_skill_block_drift: true
   verify_no_unverified_exact_bibliographic_reference: true
   verify_level_boundaries: true
+  verify_no_B1_B2_content_used_as_A2_depth: true
 
 level_specific:
+  foundations:
+    include:
+      - "word / phrase / clause / sentence"
+      - "parts of speech overview"
+      - "subject / predicate / object / complement"
+      - "main verb vs auxiliary"
+      - "person / number / agreement"
+      - "base / -s / past / past participle / -ing forms"
+      - "finite vs non-finite: introduction"
+      - "tense vs time: introduction"
+      - "aspect: introduction"
+      - "voice: introduction"
+      - "modality: introduction"
+      - "basic word order"
   boundaries:
     reported_speech:
       include:

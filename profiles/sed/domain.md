@@ -2,7 +2,7 @@
 
 ## Identidad del curso
 
-**Nombre:** sed — Learning Path 0 → Experto
+**Nombre:** sed — Learning Path 0 → Experto en profundidad
 **Plataforma principal:** Fedora
 **Implementación principal:** GNU sed
 **Shell de laboratorio:** Bash/Zsh
@@ -46,6 +46,8 @@ El dominio incluye:
 - procesamiento NUL;
 - múltiples archivos;
 - integración con `grep`, `awk`, `find` y `xargs`;
+- comparación explícita del modelo orientado a líneas de `sed` con el modelo de registros y campos de `awk`;
+- criterios para migrar una solución de `sed` a `awk` cuando aumente la complejidad;
 - transformación de configuraciones y logs;
 - debugging;
 - seguridad;
@@ -126,6 +128,12 @@ El curso debe enseñar las fronteras de responsabilidad:
 **awk** → procesamiento de registros y campos con lógica más estructurada.
 **find** → localizar objetos del filesystem.
 **xargs** → construir ejecuciones a partir de streams de argumentos.
+
+La relación `sed`/`awk` debe estudiarse también mediante soluciones equivalentes y
+pipelines combinados. El objetivo no es enseñar `awk` de 0 a experto dentro de este
+PATH, sino reconocer el punto en el que una transformación deja de ser naturalmente
+orientada a líneas y pasa a beneficiarse del modelo de registros, campos, variables y
+acciones de `awk`.
 
 También debe enseñarse cuándo una transformación debería pasar a Perl, Python,
 `jq`, `yq` u otro parser especializado.

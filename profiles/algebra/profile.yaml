@@ -1,0 +1,261 @@
+course:
+  title: "Álgebra Booleana — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  domain: "Álgebra Booleana"
+  mode: "deep"
+  audience:
+    - "estudiantes de informática"
+    - "programadores"
+    - "administradores y profesionales técnicos que quieran reforzar fundamentos"
+    - "estudiantes de matemáticas discretas y lógica digital"
+  prerequisites:
+    required: []
+    recommended:
+      - "aritmética básica"
+      - "nociones elementales de conjuntos"
+
+goals:
+  - "Comprender el Álgebra Booleana desde sus fundamentos."
+  - "Dominar operadores, leyes, equivalencias y demostraciones."
+  - "Construir y analizar tablas de verdad."
+  - "Representar funciones mediante minterms, maxterms, SOP, POS, CNF y DNF."
+  - "Simplificar y minimizar funciones con métodos algebraicos, Karnaugh, Quine–McCluskey y Petrick."
+  - "Comprender la estructura matemática de las álgebras booleanas."
+  - "Dominar expansión de Shannon, BDD, OBDD y ROBDD."
+  - "Comprender SAT y los fundamentos de DPLL/CDCL."
+  - "Conocer minimización heurística mediante Espresso."
+  - "Aplicar Álgebra Booleana a lógica digital, programación, bitwise y SQL."
+  - "Elegir el método adecuado de representación, minimización o verificación."
+
+pedagogy:
+  progression: "strict"
+  explain_from_first_principles: true
+  depth: "high"
+  derivations_step_by_step: true
+  show_intermediate_steps: true
+  name_law_on_each_transformation: true
+  truth_tables_required: true
+  proofs_required: true
+  counterexamples_when_useful: true
+  calculations_required: true
+  visual_reasoning:
+    karnaugh_maps: true
+    decision_trees: true
+    bdd: true
+    logic_circuits: true
+  connect_theory_and_practice: true
+  compare_alternative_methods: true
+  discuss_tradeoffs: true
+  include_common_mistakes: true
+  verify_results: true
+
+lesson_structure:
+  required_sections:
+    - "🎯 OBJETIVO"
+    - "🧪 Laboratorio"
+    - "⚠️ Errores"
+    - "💡 Idea"
+    - "🧠 QUÉ DEBES RECORDAR"
+  requirements:
+    theory: true
+    definitions: true
+    notation: true
+    worked_examples: true
+    exercises: true
+    solutions_or_guidance: true
+    verification: true
+    prerequisite_links: true
+
+notation:
+  preferred:
+    not: "¬A"
+    and: "A ∧ B"
+    or: "A ∨ B"
+    xor: "A ⊕ B"
+    implication: "A → B"
+    biconditional: "A ↔ B"
+  explain_alternative_notations: true
+  distinguish_math_digital_programming_notation: true
+
+coverage:
+  fundamentals: true
+  propositional_logic_foundations: true
+  boolean_values: true
+  boolean_variables: true
+  basic_operators: true
+  derived_operators: true
+  truth_tables: true
+  expressions: true
+  precedence: true
+  boolean_laws: true
+  de_morgan: true
+  absorption: true
+  consensus: true
+  duality: true
+  equivalence: true
+  algebraic_simplification: true
+  boolean_functions: true
+  literals_terms_clauses: true
+  minterms: true
+  maxterms: true
+  sop: true
+  pos: true
+  dnf: true
+  cnf: true
+  karnaugh:
+    enabled: true
+    variables:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+    prime_implicants: true
+    essential_prime_implicants: true
+    dont_cares: true
+    sop: true
+    pos: true
+  quine_mccluskey: true
+  petrick_method: true
+  axiomatic_boolean_algebra: true
+  partial_orders: true
+  lattices: true
+  set_theory_relation: true
+  homomorphisms_intro: true
+  isomorphisms_intro: true
+  functional_completeness: true
+  nand_only: true
+  nor_only: true
+  shannon_expansion: true
+  cofactors: true
+  boolean_difference_intro: true
+  decision_trees: true
+  bdd: true
+  obdd: true
+  robdd: true
+  sat:
+    satisfiability: true
+    cnf_sat: true
+    two_sat: true
+    three_sat: true
+    brute_force: true
+    unit_propagation: true
+    pure_literals: true
+    dpll: true
+    cdcl_intro: true
+  espresso: true
+  exact_vs_heuristic_minimization: true
+  digital_logic_application: true
+  programming_application: true
+  bitwise_application: true
+  bit_masks: true
+  sql_three_valued_logic: true
+
+digital_logic_boundary:
+  purpose: "Aplicación del Álgebra Booleana, no sustitución por un curso de Digital Design."
+  include:
+    - "logic gates"
+    - "expression to circuit"
+    - "circuit to expression"
+    - "combinational circuits"
+    - "half/full adders"
+    - "subtractors"
+    - "multiplexers/demultiplexers"
+    - "encoders/decoders"
+    - "comparators"
+    - "intro to latches"
+    - "intro to flip-flops"
+    - "intro to registers"
+    - "intro to counters"
+  defer_to_digital_design_path:
+    - "FSM en profundidad"
+    - "clock-domain crossing"
+    - "timing analysis"
+    - "setup/hold"
+    - "metastability"
+    - "hazards avanzados"
+    - "HDL en profundidad"
+    - "FPGA"
+    - "síntesis física"
+
+programming:
+  languages:
+    - "Python"
+    - "C++"
+    - "Rust"
+    - "Go"
+    - "Java"
+    - "JavaScript"
+    - "TypeScript"
+  require_boolean_vs_bitwise_distinction: true
+  require_short_circuit: true
+  require_masks_and_flags: true
+  language_sections_are_applications: true
+
+sql:
+  enabled: true
+  require_null: true
+  require_unknown: true
+  require_three_valued_truth_tables: true
+  warn_against_classical_boolean_assumptions: true
+
+labs:
+  required: true
+  progression:
+    - "paper-and-pencil truth tables"
+    - "algebraic proofs"
+    - "canonical forms"
+    - "Karnaugh maps"
+    - "Quine–McCluskey/Petrick"
+    - "Shannon decomposition"
+    - "BDD/ROBDD"
+    - "SAT modeling"
+    - "software verification"
+    - "logic-circuit application"
+  encourage_automation_after_manual_mastery: true
+
+assessment:
+  checkpoints: true
+  cumulative_exercises: true
+  require_explanation_not_only_answer: true
+  require_method_selection: true
+  require_equivalence_verification: true
+  final_project: true
+
+final_project:
+  required_outputs:
+    - "requirements"
+    - "variables"
+    - "truth table"
+    - "minterms"
+    - "maxterms"
+    - "SOP"
+    - "POS"
+    - "CNF"
+    - "DNF"
+    - "algebraic simplification"
+    - "Karnaugh minimization"
+    - "Quine–McCluskey/Petrick result"
+    - "method comparison"
+    - "Shannon decomposition"
+    - "BDD/ROBDD"
+    - "SAT formulation/check"
+    - "logic circuit"
+    - "NAND-only implementation"
+    - "NOR-only implementation"
+    - "software implementation"
+    - "exhaustive validation"
+    - "trade-off justification"
+
+quality_rules:
+  no_unexplained_jumps: true
+  no_memorization_only: true
+  no_advanced_topic_before_prerequisites: true
+  distinguish_equivalent_from_identical: true
+  distinguish_simplified_from_minimal: true
+  distinguish_boolean_from_bitwise: true
+  distinguish_classical_boolean_from_sql_three_valued_logic: true
+  always_validate_nontrivial_transformations: true

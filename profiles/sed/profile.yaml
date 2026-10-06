@@ -1,5 +1,5 @@
 name: sed
-title: "sed — Learning Path 0 → Experto"
+title: "sed — Learning Path 0 → Experto en profundidad"
 description: >
   Curso progresivo y profundo de GNU sed, desde los fundamentos del procesamiento
   de streams hasta pattern space, hold space, procesamiento multilínea, branching,
@@ -26,6 +26,7 @@ objectives:
   - Dominar procesamiento multilínea, labels, branching y loops.
   - Diferenciar GNU sed, POSIX sed y aspectos relevantes de portabilidad.
   - Integrar sed con grep, awk, find, xargs, shell y herramientas Fedora.
+  - Comparar sed y awk y reconocer cuándo migrar una transformación al modelo de registros y campos de awk.
   - Saber cuándo sed no es la herramienta apropiada.
 
 lesson_structure:
@@ -52,13 +53,19 @@ content_requirements:
   references_per_lesson: true
 
 reference_policy:
-  primary_book:
-    title: "Definitive Guide to sed: Tutorial and Reference"
-    author: "Daniel A. Goldman"
+  primary_books:
+    - title: "Definitive Guide to sed: Tutorial and Reference"
+      author: "Daniel A. Goldman"
+      role: "Referencia principal específica de sed"
+    - title: "sed & awk"
+      authors:
+        - "Dale Dougherty"
+        - "Arnold Robbins"
+      role: "Segunda referencia principal para filosofía Unix, diseño de scripts e integración sed/awk"
   primary_documentation:
     - "GNU sed manual"
     - "POSIX sed specification"
   rule: >
-    El libro sirve como referencia pedagógica principal. La documentación oficial
+    Los libros sirven como referencias pedagógicas principales. La documentación oficial
     de GNU sed y POSIX se utiliza para validar sintaxis, comportamiento,
     extensiones y portabilidad.

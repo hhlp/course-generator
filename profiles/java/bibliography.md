@@ -50,8 +50,36 @@ los fundamentos.
 Colección de soluciones y técnicas prácticas. No sustituye al libro troncal: se utiliza para
 ampliar laboratorios y mostrar soluciones idiomáticas a problemas concretos.
 
-**Bloques:** transversal; especialmente Strings, regex, números, fechas, I/O, networking,
-Collections, concurrencia y aplicaciones.
+**Bloques:** transversal; especialmente Strings, uso de regex desde Java, números, fechas,
+I/O, networking, Collections, concurrencia y aplicaciones. En regex se utiliza únicamente
+para la integración con las APIs Java (`Pattern`, `Matcher`, `String`, Streams, etc.); la
+teoría y sintaxis de expresiones regulares pertenecen al PATH Regex.
+
+---
+
+## Expresiones regulares — integración con Java
+
+Las expresiones regulares tienen un PATH especializado independiente. Este curso de Java
+**no duplica la enseñanza de Regex**.
+
+En Java se estudia cómo aplicar patrones previamente aprendidos mediante:
+
+- `java.util.regex.Pattern`;
+- `java.util.regex.Matcher`;
+- operaciones regex de `String`;
+- grupos y grupos nombrados desde la API;
+- búsqueda, extracción, sustitución y tokenización;
+- `Matcher.results()` y Streams;
+- escaping entre literales Java y patrones;
+- Unicode;
+- `PatternSyntaxException`;
+- reutilización de `Pattern`, rendimiento y thread-safety;
+- integración con I/O y procesamiento de texto.
+
+**Bloque principal:** 15.
+
+Para sintaxis, construcción de patrones, metacaracteres, cuantificadores, alternancia,
+lookarounds, backreferences, teoría de motores y regex avanzado, utilizar el PATH Regex.
 
 ---
 

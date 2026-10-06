@@ -9,7 +9,8 @@ Programación e ingeniería de software con Java moderno y la plataforma JVM.
 El curso cubre cuatro capas conectadas:
 
 1. **Lenguaje Java**: sintaxis, tipos, POO, excepciones, generics, Collections, lambdas,
-   programación funcional, Streams, módulos, annotations, reflection, assertions e internacionalización.
+   programación funcional, Streams, módulos, annotations, reflection, assertions, internacionalización
+   y uso de expresiones regulares mediante las APIs de Java.
 2. **Biblioteca y aplicaciones**: I/O/NIO, XML, networking/HTTP, JDBC, persistencia, JavaFX,
    AWT/Swing/Graphics2D, Compiler API/scripting, testing, logging, Maven y Gradle.
 3. **Concurrencia**: threads, Java Memory Model, sincronización, java.util.concurrent,
@@ -17,6 +18,14 @@ El curso cubre cuatro capas conectadas:
    distinguiendo claramente concurrencia, paralelismo, multihilo y asincronía.
 4. **JVM y producción**: class files, bytecode, class loading, memoria, GC, JIT, FFM/native interop,
    profiling, JFR/JMC, JMH, performance, seguridad, observabilidad y troubleshooting.
+
+## Relación con el PATH Regex
+
+Regex se considera una competencia transversal con PATH propio. Este dominio no reenseña la
+sintaxis ni la teoría general de expresiones regulares. El curso Java cubre en profundidad
+su **aplicación dentro de Java**: `Pattern`, `Matcher`, APIs de `String`, Streams, escaping,
+Unicode, manejo de errores, rendimiento, reutilización, thread-safety e integración con I/O
+y procesamiento de texto.
 
 ## Plataforma de referencia
 

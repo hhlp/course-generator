@@ -1,668 +1,416 @@
-# GREP EN PROFUNDIDAD — bibliography.md
+# REGEX EN PROFUNDIDAD — bibliography.md
 
 ## 1. Política bibliográfica
 
-Esta bibliografía acompaña al PATH **GREP EN PROFUNDIDAD** sobre Fedora Linux.
+Esta bibliografía acompaña al PATH **REGEX EN PROFUNDIDAD**.
 
-Las fuentes deben priorizarse en este orden conceptual:
+El curso es deliberadamente agnóstico respecto a lenguajes de programación y herramientas. Las fuentes deben utilizarse para enseñar primero el modelo conceptual de las expresiones regulares y, después, distinguir de forma explícita aquello que depende de un dialecto, motor o implementación concreta.
 
-1. documentación oficial de la herramienta;
-2. especificaciones y documentación normativa;
-3. documentación oficial del motor o biblioteca implicada;
-4. código fuente y documentación técnica del proyecto;
-5. documentación de Fedora para integración con el sistema;
-6. bibliografía de profundización;
-7. fuentes auxiliares de consulta.
+Prioridad recomendada:
 
-Las lecciones deben evitar referencias exactas no verificadas. No deben inventarse capítulos, secciones, páginas, opciones ni comportamiento de una versión concreta.
+1. bibliografía principal de Regex;
+2. especificaciones normativas cuando exista comportamiento estandarizado;
+3. documentación oficial del dialecto o motor cuando una característica no sea universal;
+4. documentación técnica de implementaciones para internals, rendimiento y seguridad;
+5. documentación local de Fedora únicamente como entorno práctico de experimentación.
 
-Dado que Regex dispone de un PATH independiente, la bibliografía general de expresiones regulares pertenece principalmente a ese PATH. Aquí se conservan las fuentes necesarias para entender cómo GNU grep y ripgrep implementan y utilizan sus respectivos dialectos y motores.
+No se deben inventar páginas, capítulos, nombres de secciones, restricciones de versión ni características de un motor. Las referencias exactas solo deben utilizarse cuando hayan sido verificadas.
 
 ---
 
-## 2. Principal — GNU grep
-
-### GNU Project — GNU Grep Manual
-
-Fuente principal para GNU grep.
-
-Utilizar para:
-
-- invocación;
-- matching;
-- opciones;
-- BRE;
-- ERE;
-- fixed strings;
-- salida;
-- contexto;
-- recursividad;
-- binarios;
-- locale;
-- comportamiento;
-- exit status;
-- aspectos de rendimiento documentados;
-- diferencias y extensiones GNU.
-
-Debe ser la referencia principal en las lecciones centradas específicamente en GNU grep.
-
-### GNU grep — código fuente oficial
-
-Fuente primaria para las lecciones de arquitectura interna.
-
-Utilizar para investigar:
-
-- implementación;
-- flujo de búsqueda;
-- fixed-string matching;
-- regex matching;
-- integración con PCRE2;
-- buffering;
-- manejo de archivos;
-- optimizaciones;
-- implementación de opciones;
-- evolución entre versiones.
-
-Las explicaciones de internals deben corresponder a la versión examinada.
-
----
-
-## 3. Principal — ripgrep
-
-### BurntSushi — ripgrep
-
-Repositorio y documentación oficial del proyecto ripgrep.
-
-Fuente principal para:
-
-- `rg`;
-- comportamiento predeterminado;
-- recursividad;
-- ignore files;
-- globs;
-- tipos;
-- hidden files;
-- binarios;
-- Unicode;
-- multiline;
-- PCRE2;
-- configuración;
-- salida;
-- `--json`;
-- rendimiento;
-- arquitectura;
-- decisiones de diseño.
-
-Debe consultarse también:
-
-- README;
-- FAQ;
-- GUIDE;
-- CHANGELOG;
-- documentación incluida en el repositorio;
-- ayuda de `rg`;
-- manual instalado cuando esté disponible.
-
-### `rg --help`
-
-Fuente operativa fundamental.
-
-Debe utilizarse para comprobar la disponibilidad y semántica de opciones en la versión instalada.
-
-### `man rg`
-
-Fuente local de consulta en Fedora cuando el paquete instalado proporcione la página de manual.
-
----
-
-## 4. Normativa — POSIX
-
-### The Open Group — POSIX / Base Specifications
-
-Referencia normativa para los aspectos portables de `grep` y expresiones regulares POSIX.
-
-Utilizar especialmente para:
-
-- utilidad `grep`;
-- Basic Regular Expressions;
-- Extended Regular Expressions;
-- locale;
-- clases de caracteres;
-- comportamiento portable;
-- exit status;
-- diferencias entre POSIX y extensiones GNU.
-
-Las lecciones deben distinguir explícitamente:
-
-```text
-POSIX
-GNU extension
-ripgrep-specific
-PCRE2-specific
-```
-
-cuando la distinción sea relevante.
-
----
-
-## 5. Motor — PCRE2
-
-### PCRE2 Project — documentación oficial
-
-Fuente primaria para las características PCRE2 utilizadas mediante GNU grep o ripgrep.
-
-Utilizar para:
-
-- sintaxis PCRE2;
-- lookahead;
-- lookbehind;
-- backreferences;
-- `\K`;
-- Unicode;
-- opciones del motor;
-- matching;
-- restricciones;
-- rendimiento;
-- comportamiento dependiente de versión.
-
-No debe asumirse que toda característica documentada por PCRE2 está necesariamente expuesta de la misma manera por `grep -P` o `rg -P`.
-
-La herramienta concreta sigue siendo responsable de su integración con PCRE2.
-
----
-
-## 6. Motor — Rust regex
-
-### Rust `regex` crate — documentación oficial
-
-Fuente primaria para comprender el motor utilizado por ripgrep cuando corresponda.
-
-Utilizar para:
-
-- sintaxis admitida;
-- Unicode;
-- clases;
-- grupos;
-- alternancia;
-- cuantificadores;
-- anchors;
-- word boundaries;
-- características deliberadamente no soportadas;
-- garantías y decisiones de rendimiento.
-
-Debe ser especialmente importante para el bloque dedicado al motor regex predeterminado de ripgrep.
-
-### `regex-automata` — documentación oficial
-
-Fuente de profundización para la arquitectura moderna del ecosistema regex utilizado por ripgrep.
-
-Utilizar para:
-
-- autómatas;
-- construcción de motores;
-- estrategias de búsqueda;
-- DFA;
-- NFA;
-- híbridos;
-- prefiltros;
-- arquitectura interna;
-- trade-offs memoria/tiempo.
-
-Las explicaciones deben ajustarse a las versiones realmente utilizadas por la versión de ripgrep estudiada.
-
----
-
-## 7. Motor — ecosistema grep de Rust
-
-### crates `grep-*` utilizados por ripgrep
-
-Consultar el código y documentación del ecosistema de crates empleado por ripgrep para separar responsabilidades como:
-
-- búsqueda;
-- matching;
-- impresión;
-- parsing;
-- selección de archivos;
-- decodificación;
-- integración de motores.
-
-Esta fuente es especialmente relevante para:
-
-**44. Arquitectura interna de ripgrep**
-
-y para:
-
-**46. Construir herramientas sobre ripgrep**
-
----
-
-## 8. Ignore y recorrido
-
-### Rust `ignore` crate — documentación y código oficial
-
-Fuente principal para estudiar:
-
-- recorrido paralelo;
-- `.gitignore`;
-- `.ignore`;
-- `.rgignore`;
-- archivos ocultos;
-- reglas de exclusión;
-- jerarquías;
-- selección de archivos.
-
-Debe utilizarse para explicar por qué ripgrep puede no examinar un archivo que GNU grep sí examinaría bajo una invocación aparentemente similar.
-
----
-
-## 9. Git
-
-### Git Documentation — `git grep`
-
-Fuente principal para:
-
-- `git grep`;
-- opciones;
-- alcance de búsqueda;
-- integración con repositorios;
-- diferencias respecto a búsquedas sobre el filesystem.
-
-### Git Documentation — `git log`
-
-Fuente principal para:
-
-- `git log -G`;
-- `git log -S`;
-- búsqueda en historial;
-- diferencias entre buscar el working tree y buscar cambios históricos.
-
-Git se utiliza como herramienta relacionada; la bibliografía general de Git queda fuera del alcance de este PATH.
-
----
-
-## 10. Fedora
-
-### Fedora Documentation
-
-Referencia para el contexto operativo del curso.
-
-Utilizar cuando corresponda para:
-
-- paquetes;
-- instalación;
-- administración del sistema;
-- journal;
-- herramientas disponibles;
-- integración con Fedora.
-
-### RPM documentation
-
-Referencia para los laboratorios que utilizan:
-
-```text
-rpm -ql
-rpm -qa
-rpm -q --requires
-rpm -q --provides
-```
-
-y para interpretar correctamente los datos sobre los que se realizan búsquedas.
-
-### DNF documentation
-
-Referencia para `dnf` y `dnf repoquery` cuando se utilicen como fuentes de datos para grep/rg.
-
-### systemd documentation / manual pages
-
-Referencia principal para `journalctl` y para comprender correctamente los datos de los laboratorios sobre journal y unidades.
-
-Este PATH utiliza estas herramientas como fuentes de datos; su enseñanza exhaustiva pertenece a sus respectivos PATH.
-
----
-
-## 11. Shell y entorno Unix
-
-### GNU Bash Reference Manual
-
-Referencia auxiliar cuando una lección necesite explicar:
-
-- quoting;
-- pipelines;
-- redirecciones;
-- exit status;
-- variables;
-- command substitution;
-- comportamiento del shell que afecta a grep.
-
-### Zsh Documentation
-
-Referencia preferente para las automatizaciones Zsh del curso.
-
-Utilizar para:
-
-- funciones;
-- parámetros;
-- arrays cuando sean necesarios;
-- quoting;
-- expansión;
-- módulos reutilizables;
-- construcción del módulo final de búsqueda.
-
-El curso no debe transformarse en un curso completo de Bash o Zsh.
-
----
-
-## 12. Herramientas Unix relacionadas
-
-### GNU Findutils Manual
-
-Referencia para:
-
-- `find`;
-- `-exec`;
-- `-print0`;
-- selección de archivos por metadata;
-- integración segura con grep.
-
-### GNU Coreutils Manual
-
-Referencia auxiliar para herramientas utilizadas en pipelines, entre ellas:
-
-- `sort`;
-- `uniq`;
-- `cut`;
-- `tr`;
-- otras utilidades cuando corresponda.
-
-### GNU sed Manual
-
-Referencia auxiliar cuando se compare filtrado con transformación o se combine grep/rg con sed.
-
-### GNU Gawk Manual
-
-Referencia auxiliar cuando se compare grep con procesamiento estructurado mediante AWK.
-
-La enseñanza exhaustiva de find, Coreutils, sed y AWK pertenece a PATH independientes cuando existan.
-
----
-
-## 13. Benchmarking
-
-### `time` — documentación correspondiente a la implementación utilizada
-
-Referencia básica para mediciones temporales.
-
-### hyperfine — documentación oficial
-
-Referencia recomendada para benchmarks reproducibles de comandos.
-
-Utilizar para:
-
-- warmup;
-- múltiples ejecuciones;
-- comparación de comandos;
-- interpretación responsable de resultados.
-
-Los resultados de benchmark deben acompañarse de descripción del dataset, filesystem, cache, versión de las herramientas, locale y motores utilizados cuando estos factores puedan afectar a la comparación.
-
----
-
-## 14. Profundización — expresiones regulares
-
-### Jeffrey E. F. Friedl — *Mastering Regular Expressions*
-
-Referencia clásica de profundización para comprender:
-
-- motores regex;
-- backtracking;
-- eficiencia;
-- comportamiento de diferentes familias de motores.
-
-Su contenido general pertenece principalmente al PATH de Regex. En GREP EN PROFUNDIDAD debe utilizarse cuando ayude a explicar diferencias observables entre motores utilizados por grep/rg.
+## 2. Bibliografía principal
 
 ### Michael Fitzgerald — *Introducing Regular Expressions: Unraveling Regular Expressions, Step-by-Step*
 
-Referencia complementaria y progresiva para consolidar la lectura, construcción y comprensión práctica de expresiones regulares.
+Fuente principal de introducción progresiva.
 
-En GREP EN PROFUNDIDAD debe utilizarse como apoyo cuando una lección de GNU grep o ripgrep necesite recordar o aplicar conceptos de Regex sin volver a desarrollar desde cero el PATH independiente de Regex.
+Utilizar especialmente para:
 
-Es especialmente útil como puente entre el uso práctico de patrones y las particularidades que después introduce cada herramienta o motor.
+- fundamentos;
+- patrón, texto y match;
+- literales y metacaracteres;
+- clases de caracteres;
+- cuantificadores;
+- anclas;
+- grupos y capturas;
+- alternancia;
+- primeras técnicas de construcción;
+- lectura progresiva de patrones;
+- sustitución y aplicaciones prácticas cuando corresponda.
 
-### Russ Cox — artículos sobre regular expression matching
+Su función dentro del PATH es proporcionar una transición clara desde cero hacia el dominio operativo de Regex.
 
-Material de profundización especialmente útil para:
+### Jeffrey E. F. Friedl — *Mastering Regular Expressions*
+
+Fuente principal de profundización conceptual y de comportamiento de motores.
+
+Utilizar especialmente para:
+
+- semántica de matching;
+- funcionamiento de motores;
+- motores dirigidos por regex y por texto;
+- NFA y DFA desde la perspectiva práctica;
+- backtracking;
+- greedy/lazy;
+- capturas y backreferences;
+- optimización;
+- eficiencia;
+- diseño de expresiones;
+- diferencias entre implementaciones;
+- razonamiento sobre la ejecución de patrones.
+
+Debe utilizarse para explicar el **porqué** del comportamiento, no solamente la sintaxis.
+
+### Jan Goyvaerts & Steven Levithan — *Regular Expressions Cookbook*
+
+Fuente principal para técnicas, patrones y resolución sistemática de problemas.
+
+Utilizar especialmente para:
+
+- construcción práctica de regex;
+- técnicas de matching y extracción;
+- lookaround;
+- grupos y backreferences;
+- Unicode;
+- sustitución;
+- problemas clásicos;
+- técnicas avanzadas;
+- diferencias entre dialectos;
+- portabilidad;
+- soluciones alternativas a un mismo problema;
+- selección consciente de características según el motor.
+
+Debe evitarse convertir las recetas en patrones memorizados: cada solución debe explicarse desde su semántica y sus restricciones.
+
+---
+
+## 3. Normativa — POSIX
+
+### The Open Group — POSIX / Base Specifications
+
+Fuente normativa para Basic Regular Expressions y Extended Regular Expressions.
+
+Utilizar para:
+
+- POSIX BRE;
+- POSIX ERE;
+- bracket expressions;
+- character classes POSIX;
+- interval expressions;
+- anchors;
+- subexpressions;
+- backreferences cuando correspondan;
+- semántica POSIX;
+- leftmost-longest;
+- locale;
+- portabilidad.
+
+Debe distinguirse siempre entre lo definido por POSIX y las extensiones de implementaciones concretas.
+
+---
+
+## 4. Motor y dialecto — PCRE2
+
+### PCRE2 Project — documentación oficial
+
+Fuente primaria cuando el PATH estudie características modernas o específicas de PCRE2.
+
+Utilizar para verificar:
+
+- grupos con nombre;
+- lookahead y lookbehind;
+- restricciones y evolución del lookbehind;
+- grupos atómicos;
+- cuantificadores posesivos;
+- backreferences;
+- subrutinas;
+- recursión;
+- condicionales;
+- branch-reset groups;
+- duplicate names cuando estén permitidos;
+- `\K`;
+- `\G` cuando corresponda;
+- quoting como `\Q...\E` cuando corresponda;
+- control verbs;
+- backtracking control verbs;
+- callouts;
+- Unicode;
+- JIT;
+- límites configurables;
+- comportamiento dependiente de versión.
+
+PCRE2 debe presentarse como un dialecto/motor concreto, no como sinónimo de Regex.
+
+---
+
+## 5. Motores basados en autómatas
+
+### RE2 — documentación y código oficial
+
+Fuente de referencia para estudiar un modelo deliberadamente distinto de los motores tradicionales de backtracking.
+
+Utilizar para:
+
+- matching con garantías de tiempo distintas;
+- ausencia deliberada de determinadas extensiones;
+- seguridad frente a expresividad;
+- autómatas;
+- límites de memoria;
+- comparación conceptual con motores tipo PCRE.
+
+### Rust `regex` / `regex-automata` — documentación oficial
+
+Fuentes complementarias para estudiar implementaciones modernas basadas en múltiples estrategias de automátas.
+
+Utilizar cuando sea útil para comprender:
 
 - Thompson NFA;
-- backtracking;
-- complejidad;
-- comparación conceptual de implementaciones regex.
+- PikeVM;
+- DFA;
+- lazy DFA;
+- híbridos;
+- one-pass matching cuando corresponda;
+- prefiltros;
+- literal extraction;
+- estrategias de búsqueda;
+- trade-offs entre memoria y tiempo.
 
-Debe conectarse con los motores realmente estudiados y no utilizarse para sustituir su documentación oficial.
+El PATH no depende de Rust como lenguaje; estas fuentes se utilizan exclusivamente como documentación de motores.
 
 ---
 
-## 15. Profundización — algoritmos de búsqueda
+## 6. Teoría de lenguajes y autómatas
 
-Para los bloques expertos pueden consultarse textos académicos y documentación primaria sobre:
+Para las lecciones teóricas deben utilizarse fuentes académicas o documentación técnica fiable sobre:
 
-- finite automata;
+- alfabetos;
+- cadenas;
+- lenguajes;
+- lenguajes regulares;
+- álgebra regular;
+- conjunto vacío y cadena vacía;
+- unión;
+- concatenación;
+- estrella y cierre de Kleene;
+- autómatas finitos;
 - NFA;
 - DFA;
+- construcción de Thompson;
+- subset construction;
+- equivalencia entre expresiones regulares clásicas y autómatas finitos;
+- minimización de DFA a nivel conceptual;
+- pumping lemma como herramienta conceptual;
+- límites de los lenguajes regulares.
+
+La teoría debe utilizarse para explicar comportamiento práctico, rendimiento y límites, no para transformar el PATH en un curso independiente de teoría de computación.
+
+---
+
+## 7. Unicode
+
+### Unicode Consortium — Unicode Standard y Unicode Technical Standards/Reports relevantes
+
+Fuente normativa para conceptos Unicode utilizados por Regex.
+
+Utilizar para verificar:
+
+- code points;
+- code units;
+- combining marks;
+- normalization;
+- general categories;
+- scripts;
+- properties;
+- case mapping y case folding;
+- grapheme clusters;
+- extended grapheme clusters;
+- word boundaries cuando corresponda;
+- emoji y secuencias de caracteres.
+
+Las características Regex concretas como `\p{...}` o `\X` deben verificarse además contra el motor que las implemente.
+
+---
+
+## 8. Rendimiento y arquitectura de motores
+
+### Russ Cox — artículos sobre Regular Expression Matching
+
+Fuente complementaria especialmente útil para:
+
+- Thompson NFA;
+- comparación entre enfoques basados en autómatas y backtracking;
+- complejidad;
+- comportamiento patológico;
+- diseño de motores;
+- relación entre expresividad y garantías de rendimiento.
+
+Debe conectarse con motores reales y con las limitaciones de cada implementación.
+
+Para bloques expertos también puede consultarse documentación primaria y literatura técnica sobre:
+
+- regex parsing;
+- AST;
+- compilación de patrones;
+- simplificación y optimización;
 - Thompson construction;
-- substring search;
-- Aho-Corasick;
+- Pike VM;
+- DFA completo;
+- lazy DFA;
+- motores híbridos;
 - prefiltros;
-- vectorización/SIMD;
+- literal extraction;
+- required literals;
+- prefix/suffix acceleration;
+- JIT;
 - complejidad temporal y espacial.
 
-Estas fuentes deben utilizarse para comprender las decisiones internas de GNU grep y ripgrep, no para convertir el PATH en un curso general de teoría de autómatas.
+---
+
+## 9. Seguridad — ReDoS
+
+Para catastrophic backtracking y Regular Expression Denial of Service deben priorizarse fuentes técnicas y de seguridad que permitan estudiar:
+
+- ambigüedad;
+- cuantificadores anidados;
+- alternativas solapadas;
+- crecimiento lineal, polinómico y exponencial;
+- entradas adversarias;
+- attacker-controlled input;
+- límites de ejecución;
+- límites de memoria;
+- auditoría de patrones;
+- motores con garantías distintas de complejidad;
+- mitigaciones mediante rediseño, atomicidad o cuantificadores posesivos cuando proceda.
+
+No deben construirse ejemplos peligrosos contra servicios reales; los laboratorios deben ejecutarse de forma controlada y local.
 
 ---
 
-## 16. Source code archaeology
+## 10. Fedora como laboratorio
 
-Para los bloques:
+Fedora Linux es el entorno práctico preferido, pero no define la semántica general de Regex.
 
-```text
-43. Arquitectura interna de GNU grep
-44. Arquitectura interna de ripgrep
-45. grep, rg y teoría de motores regex
-46. Construir herramientas sobre ripgrep
-```
+Cuando una lección necesite ejecutar o comparar motores, debe documentarse:
 
-la bibliografía primaria debe incluir código fuente real.
+- herramienta utilizada;
+- versión;
+- dialecto;
+- motor;
+- flags/modos;
+- locale;
+- Unicode mode cuando corresponda.
 
-El procedimiento recomendado es:
-
-1. identificar la versión instalada;
-2. identificar la versión/tag correspondiente del código;
-3. localizar la opción o subsistema estudiado;
-4. seguir llamadas y estructuras relevantes;
-5. contrastar con documentación;
-6. construir un experimento mínimo;
-7. verificar el comportamiento;
-8. documentar qué parte es observable y qué parte procede de la implementación.
-
-No deben afirmarse detalles internos únicamente por intuición.
+Herramientas como `grep`, `rg`, `sed` o `awk` pueden utilizarse puntualmente como bancos de pruebas, pero su enseñanza exhaustiva pertenece a sus respectivos PATH.
 
 ---
 
-## 17. Documentación local en Fedora
-
-Antes de recurrir a fuentes secundarias, el curso debe fomentar la investigación local:
-
-```bash
-grep --version
-grep --help
-man grep
-info grep
-
-rg --version
-rg --help
-man rg
-
-rpm -qi grep
-rpm -ql grep
-
-rpm -qi ripgrep
-rpm -ql ripgrep
-```
-
-También puede utilizarse:
-
-```bash
-apropos grep
-man -k grep
-```
-
-cuando sea útil para descubrir documentación relacionada.
-
-La versión instalada es importante porque opciones, motores y comportamiento pueden evolucionar.
-
----
-
-## 18. Jerarquía recomendada por categoría de LECTURA
-
-La sección `📚 LECTURA` de cada lección debe utilizar las categorías definidas por el perfil.
+## 11. Jerarquía recomendada para 📚 LECTURA
 
 ### Principal
 
-Normalmente:
+Según la lección:
 
-- GNU Grep Manual, para GNU grep;
-- documentación oficial de ripgrep, para `rg`.
+- Fitzgerald;
+- Friedl;
+- Goyvaerts & Levithan.
 
 ### Normativa
 
-Normalmente:
+Según corresponda:
 
-- POSIX, cuando exista comportamiento estandarizado relevante.
+- POSIX;
+- Unicode Standard.
 
 ### Motor
 
-Según la lección:
+Según corresponda:
 
 - PCRE2;
-- Rust `regex`;
-- `regex-automata`;
-- `ignore`;
-- crates `grep-*`.
+- RE2;
+- Rust `regex` / `regex-automata`;
+- documentación oficial de otra implementación utilizada explícitamente por la lección.
 
 ### Profundización
 
 Según el tema:
 
-- código fuente;
 - Friedl;
 - Russ Cox;
-- literatura de algoritmos/autómatas;
-- documentación de implementación.
+- literatura de autómatas y lenguajes formales;
+- documentación técnica/código fuente de motores.
 
 ### Consulta
 
-Según el laboratorio:
+Solo cuando sea relevante para un laboratorio:
 
-- Fedora;
-- RPM;
-- DNF;
-- systemd;
-- Git;
-- Zsh;
-- Bash;
-- Findutils;
-- Coreutils;
-- sed;
-- Gawk;
-- hyperfine.
+- documentación local de Fedora;
+- manual de la herramienta utilizada como banco de pruebas.
 
-No es obligatorio rellenar artificialmente todas las categorías con fuentes irrelevantes. La selección debe ser específica de la lección.
+No es obligatorio utilizar artificialmente todas las categorías en cada lección.
 
 ---
 
-## 19. Política de referencias exactas
+## 12. Política de referencias exactas
 
-El generador debe aplicar la siguiente regla:
-
-> Una referencia específica es mejor que una referencia genérica solamente cuando ha sido verificada.
+Una referencia específica debe utilizarse únicamente cuando haya sido verificada.
 
 Por tanto:
 
 - no inventar páginas;
 - no inventar capítulos;
 - no inventar nombres de secciones;
-- no atribuir una característica a una versión sin comprobarla;
-- no asumir que GNU grep y POSIX grep son equivalentes;
-- no asumir que `grep -P` equivale directamente a invocar PCRE2;
-- no asumir que el motor predeterminado de ripgrep admite características de PCRE2;
-- no asumir que una descripción antigua de los internals sigue siendo válida.
-
-Cuando no pueda verificarse una referencia más precisa, debe citarse honestamente la fuente a un nivel más general.
+- no atribuir sintaxis universal a una extensión particular;
+- no asumir que PCRE2 representa a todos los motores;
+- no asumir que POSIX BRE y ERE son equivalentes;
+- no asumir que `\w`, `\d`, `.`, `\b`, `^` o `$` tienen semántica idéntica en todos los motores;
+- no asumir soporte de lookbehind, backreferences, atomicidad, posesividad, recursión o control verbs sin verificarlo;
+- no asumir que una descripción de internals corresponde a versiones distintas de la estudiada.
 
 ---
 
-## 20. Mapa bibliográfico del PATH
+## 13. Mapa bibliográfico del PATH
 
 | Área | Fuente prioritaria |
 |---|---|
-| GNU grep | GNU Grep Manual |
-| grep portable | POSIX |
-| BRE/ERE en grep | GNU Grep Manual + POSIX |
-| `grep -P` | GNU grep + PCRE2 |
-| ripgrep | documentación oficial de ripgrep |
-| regex predeterminado de rg | Rust `regex` |
-| internals regex de rg | `regex-automata` |
-| ignores/recorrido rg | `ignore` crate + ripgrep |
-| PCRE2 en rg | ripgrep + PCRE2 |
-| Git | Git Documentation |
-| Fedora | Fedora Documentation |
-| RPM | RPM documentation |
-| DNF | DNF documentation |
-| journal | systemd documentation |
-| find | GNU Findutils |
-| pipelines | manuales GNU + shell |
-| Zsh | Zsh Documentation |
-| benchmarking | hyperfine + `time` |
-| teoría regex | PATH Regex + Friedl + Russ Cox |
-| internals GNU grep | código fuente GNU grep |
-| internals ripgrep | código fuente ripgrep y crates asociados |
-| proyecto final | conjunto de las fuentes anteriores |
+| Introducción y progresión | Fitzgerald |
+| Semántica y motores | Friedl |
+| Técnicas y recetas | Goyvaerts & Levithan |
+| POSIX BRE/ERE | POSIX / The Open Group |
+| PCRE2 | documentación oficial PCRE2 |
+| Unicode | Unicode Consortium + documentación del motor |
+| motores lineales/autómatas | RE2 + documentación técnica |
+| motores modernos híbridos | `regex` / `regex-automata` |
+| Thompson NFA y rendimiento | Friedl + Russ Cox + fuentes técnicas |
+| teoría formal | literatura académica de lenguajes/autómatas |
+| ReDoS | documentación técnica/seguridad + documentación del motor |
+| portabilidad | POSIX + documentación de los motores comparados |
+| proyecto Regex Analyzer | conjunto de las fuentes anteriores |
 
 ---
 
-## 21. Referencias bibliográficas base
+## 14. Referencias bibliográficas base
 
-- GNU Project. **GNU Grep Manual**.
-- GNU Project. **GNU grep source code and project documentation**.
-- The Open Group. **POSIX / The Open Group Base Specifications**.
-- BurntSushi. **ripgrep — official project documentation and source code**.
-- Rust ecosystem. **regex crate documentation**.
-- Rust ecosystem. **regex-automata documentation**.
-- Rust ecosystem. **ignore crate documentation**.
-- PCRE2 Project. **PCRE2 documentation**.
-- Git Project. **Git Documentation**.
-- Fedora Project. **Fedora Documentation**.
-- RPM Project. **RPM documentation**.
-- DNF Project. **DNF documentation**.
-- systemd Project. **systemd manual pages and documentation**.
-- GNU Project. **GNU Findutils Manual**.
-- GNU Project. **GNU Coreutils Manual**.
-- GNU Project. **GNU sed Manual**.
-- GNU Project. **GNU Gawk Manual**.
-- GNU Project. **GNU Bash Reference Manual**.
-- Zsh Project. **Zsh Documentation**.
 - Fitzgerald, Michael. **Introducing Regular Expressions: Unraveling Regular Expressions, Step-by-Step**.
 - Friedl, Jeffrey E. F. **Mastering Regular Expressions**.
+- Goyvaerts, Jan; Levithan, Steven. **Regular Expressions Cookbook**.
+- The Open Group. **POSIX / Base Specifications — Regular Expressions**.
+- PCRE2 Project. **PCRE2 documentation**.
+- Unicode Consortium. **The Unicode Standard and relevant Unicode Technical Reports/Standards**.
+- Google. **RE2 documentation and source code**.
+- Rust ecosystem. **regex and regex-automata documentation**.
 - Cox, Russ. **Regular Expression Matching** articles.
-- hyperfine project. **Official documentation**.
 
 ---
 
-## 22. Criterio final
+## 15. Criterio final
 
-La bibliografía debe permitir que cada lección pueda responder tres preguntas:
+Cada lección debe poder responder:
 
-1. **¿Qué comportamiento documenta oficialmente la herramienta?**
-2. **¿Qué parte procede de una norma, motor, biblioteca o implementación concreta?**
-3. **¿Cómo podemos verificar ese comportamiento en Fedora y, cuando sea necesario, en el código fuente?**
+1. ¿Qué significa conceptualmente esta construcción?
+2. ¿Qué texto consume y qué condiciones solamente comprueba?
+3. ¿Es parte del núcleo regular clásico, de POSIX o una extensión moderna?
+4. ¿Qué depende del dialecto o del motor?
+5. ¿Cómo afecta al backtracking, rendimiento o seguridad cuando corresponda?
+6. ¿Cómo puede verificarse el comportamiento sin confundir la herramienta de prueba con Regex como concepto?
 
-Ese criterio debe mantenerse desde las primeras búsquedas con `grep` hasta el proyecto final `grep-rg-debugger`.
+Ese criterio debe mantenerse desde el primer literal hasta el Regex Analyzer final.

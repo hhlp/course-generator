@@ -8,11 +8,17 @@ Primary book for the course. It provides the pedagogical backbone for advanced g
 
 Use it for explanation, contrasts, advanced usage patterns and exercise-oriented consolidation. The learning path reorganises and expands the domain rather than reproducing the book text.
 
+## Advanced pedagogical-descriptive reference
+
+### Carter, Ronald; McCarthy, Michael — *Cambridge Grammar of English*. Cambridge University Press
+
+Advanced pedagogical-descriptive reference bridging learner grammar and large reference grammars. Use it especially for grammar in context, grammatical choice, spoken and written grammatical patterns, discourse-sensitive usage and variation between alternative constructions. At C1→C2 it should deepen nuance, constraints and authentic usage rather than repeat B2-level presentation.
+
 ## Advanced reference grammars
 
 ### Huddleston, Rodney & Pullum, Geoffrey K. et al. — *The Cambridge Grammar of the English Language*
 
-Deep reference for syntactic categories, clause structure, complementation, coordination, negation, information packaging and detailed grammatical analysis. Use for expert-level clarification rather than as the default introductory explanation.
+Deep reference for syntactic categories, clause structure, complementation, raising and control, coordination, negation and polarity, scope, information packaging, constituency, grammaticality/acceptability distinctions and detailed grammatical analysis. Use for expert-level clarification rather than as the default introductory explanation.
 
 ### Quirk, Randolph; Greenbaum, Sidney; Leech, Geoffrey; Svartvik, Jan — *A Comprehensive Grammar of the English Language*
 
@@ -20,7 +26,7 @@ Major descriptive reference for advanced structures, clause patterns, complement
 
 ### Biber, Douglas; Johansson, Stig; Leech, Geoffrey; Conrad, Susan; Finegan, Edward — *Longman Grammar of Spoken and Written English*
 
-Corpus-based reference particularly useful when grammatical alternatives vary according to register, distribution or authentic usage. Use to complement structural explanation with evidence about grammatical variation.
+Corpus-based reference particularly useful when grammatical alternatives vary according to register, distribution, frequency or authentic usage; especially valuable for separating structural possibility from usage preference. Use to complement structural explanation with evidence about grammatical variation.
 
 ## Supporting pedagogical reference
 
@@ -33,10 +39,11 @@ Useful consultation reference for difficult contrasts, common advanced learner p
 For lesson generation, prefer sources in this order according to the question being answered:
 
 1. *Advanced Grammar in Use* — pedagogical progression and principal advanced grammar reference.
-2. *The Cambridge Grammar of the English Language* — detailed modern syntactic analysis.
-3. *A Comprehensive Grammar of the English Language* — broad descriptive grammar and comparison.
-4. *Longman Grammar of Spoken and Written English* — corpus evidence and register-sensitive grammatical variation.
-5. *Practical English Usage* — learner-oriented clarification of difficult usage points.
+2. *Cambridge Grammar of English* — advanced pedagogical-descriptive grammar, contextual usage, grammatical choice and spoken/written variation.
+3. *The Cambridge Grammar of the English Language* — detailed modern syntactic analysis.
+4. *A Comprehensive Grammar of the English Language* — broad descriptive grammar and comparison.
+5. *Longman Grammar of Spoken and Written English* — corpus evidence and register-sensitive grammatical variation.
+6. *Practical English Usage* — learner-oriented clarification of difficult usage points.
 
 ## Bibliographic policy
 

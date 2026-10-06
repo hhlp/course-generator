@@ -101,3 +101,17 @@ documentación estándar y RFCs relevantes.
 Los libros no deben seguirse de forma estrictamente lineal. Cada lección debe
 seleccionar la fuente que mejor explique el concepto y contrastarla con la
 documentación oficial vigente.
+
+
+## Expresiones regulares en Rust — referencias de integración
+
+- **regex crate documentation (docs.rs / crate regex)** — referencia primaria para la API de `Regex`, `RegexSet`, `RegexBuilder`, `Captures`, `Match`, reemplazos y módulo `bytes`.
+- **regex crate repository/documentation** — comportamiento, límites del motor, Unicode, rendimiento y decisiones de diseño.
+- **Rust standard library documentation** — `LazyLock`, `String`, `str`, iterators, `Option`, `Result` y APIs de texto usadas junto con regex.
+
+### Política bibliográfica para regex
+
+La teoría y sintaxis completa de expresiones regulares se delega al PATH específico de Regex.
+Estas referencias se usan para enseñar **cómo aplicar regex desde Rust** con profundidad: API,
+ownership/borrowing, errores, iterators, Unicode/bytes, rendimiento, seguridad, testing e integración
+con aplicaciones. No se duplicará el desarrollo teórico del PATH de Regex.

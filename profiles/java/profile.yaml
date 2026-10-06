@@ -9,6 +9,11 @@ course:
     edition: "14th"
     author: "Cay S. Horstmann"
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 learner:
   assumed_knowledge:
     - "Ningún conocimiento previo de Java"
@@ -21,6 +26,7 @@ learner:
     - "Construir interfaces desktop con JavaFX"
     - "Comprender AWT/Swing y el modelo gráfico/eventos de Java SE"
     - "Trabajar con XML e internacionalización"
+    - "Aplicar expresiones regulares desde Java mediante Pattern, Matcher, String y Streams sin duplicar el PATH Regex"
     - "Comprender interoperabilidad nativa mediante FFM"
     - "Diagnosticar y optimizar aplicaciones Java"
 
@@ -79,6 +85,7 @@ progression:
 special_focus:
   - "Generics y Collections en profundidad"
   - "Programación funcional"
+  - "Integración y uso de regex desde Java (Pattern/Matcher/String/Streams)"
   - "Concurrencia y multihilo"
   - "Java Memory Model"
   - "Programación asíncrona"
@@ -100,3 +107,4 @@ constraints:
   - "No introducir abstracciones concurrentes avanzadas sin explicar threads y JMM"
   - "Distinguir APIs estables, preview e incubator según el JDK objetivo"
   - "No optimizar sin medición"
+  - "No reenseñar Regex en el PATH Java: la teoría y sintaxis pertenecen al PATH Regex; aquí se estudia su aplicación e integración en Java"

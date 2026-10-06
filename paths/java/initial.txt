@@ -336,7 +336,7 @@ LAB: pipeline funcional sin estado mutable compartido.
 PROYECTO 2: procesamiento y análisis de datos con Streams.
 
 ===============================================================================
-15. STRINGS, TEXTO, REGEX Y UNICODE
+15. STRINGS, TEXTO, UNICODE Y USO DE REGEX EN JAVA
 ===============================================================================
 15.1 String e inmutabilidad
 15.2 String pool
@@ -344,9 +344,50 @@ PROYECTO 2: procesamiento y análisis de datos con Streams.
 15.4 Formateo
 15.5 Text blocks
 15.6 Unicode, code points y UTF
-15.7 Pattern y Matcher
-15.8 Regex
-LAB: parser y procesador de texto Unicode.
+15.7 Integración de expresiones regulares en Java: alcance y relación con el PATH Regex
+15.8 java.util.regex
+15.9 Pattern: compilación y reutilización de patrones
+15.10 Pattern.compile()
+15.11 Flags de Pattern y combinación de flags
+15.12 Matcher: creación, estado y ciclo de uso
+15.13 matches() / find() / lookingAt()
+15.14 group() / group(int) / group(String)
+15.15 start() / end()
+15.16 Capturing groups desde la API Java
+15.17 Named capturing groups desde Java
+15.18 Matcher.reset() / region() / usePattern()
+15.19 replaceFirst() / replaceAll()
+15.20 appendReplacement() / appendTail()
+15.21 Matcher.quoteReplacement()
+15.22 Pattern.quote()
+15.23 String.matches()
+15.24 String.replaceFirst() / replaceAll()
+15.25 String.split() y Pattern.split()
+15.26 Pattern.splitAsStream()
+15.27 Matcher.results() y procesamiento con Streams
+15.28 Pattern.asPredicate() / asMatchPredicate()
+15.29 Escaping Java string literal ↔ patrón regex
+15.30 Text blocks y patrones regex multilínea
+15.31 Unicode y regex desde la API Java
+15.32 Rendimiento: compilar una vez y reutilizar Pattern
+15.33 Coste de String.matches() y compilaciones repetidas
+15.34 Thread-safety: Pattern compartible y Matcher no compartible
+15.35 Validación, búsqueda, extracción, sustitución y tokenización desde Java
+15.36 Regex aplicado a I/O, Streams y procesamiento de texto
+15.37 Manejo de PatternSyntaxException
+15.38 Diagnóstico de patrones desde aplicaciones Java
+15.39 Diseño de APIs Java que reciben o encapsulan Pattern
+15.40 Cuándo usar regex desde Java y cuándo preferir parser/API especializada
+LAB: aplicar patrones ya estudiados en el PATH Regex mediante Pattern/Matcher, extracción,
+reemplazo, split y Streams sobre texto Unicode, comparando compilación repetida frente a
+reutilización de Pattern.
+
+NOTA DE ALCANCE: este bloque NO vuelve a enseñar la teoría ni la sintaxis general de
+expresiones regulares. El PATH Regex es el responsable de metacaracteres, cuantificadores,
+clases de caracteres, alternancia, grupos, anchors, lookarounds, backreferences, construcción
+y razonamiento de patrones, portabilidad entre motores y demás fundamentos/temas avanzados.
+Aquí se estudia exclusivamente cómo consumir, ejecutar, integrar, diagnosticar y optimizar
+esos patrones dentro de programas Java.
 
 ===============================================================================
 16. NÚMEROS, BIGDECIMAL Y FECHA/HORA

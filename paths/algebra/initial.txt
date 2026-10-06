@@ -1,0 +1,676 @@
+ÁLGEBRA BOOLEANA — 0 → EXPERTO EN PROFUNDIDAD
+
+BLOQUE I — FUNDAMENTOS
+0. Introducción al Álgebra Booleana
+0.1 Qué es un álgebra
+0.2 Qué es el Álgebra Booleana
+0.3 George Boole y contexto histórico
+0.4 Lógica proposicional vs Álgebra Booleana
+0.5 Dominio booleano B = {0,1}
+0.6 False / True y 0 / 1
+0.7 Proposiciones y valores de verdad
+0.8 Interpretación matemática, lógica, informática y digital
+0.9 Aplicaciones del Álgebra Booleana
+1. Valores booleanos
+1.1 0 = False
+1.2 1 = True
+1.3 Interpretación lógica
+1.4 Interpretación matemática
+1.5 Interpretación digital
+1.6 Representación y notación
+2. Variables booleanas
+2.1 Variables A, B, C…
+2.2 Dominio {0,1}
+2.3 Asignaciones y valuaciones
+2.4 Combinaciones de variables
+2.5 Número de combinaciones: 2^n
+3. Operaciones fundamentales
+3.1 NOT — negación
+3.2 Complemento ¬A
+3.3 Tabla de verdad de NOT
+3.4 AND — conjunción
+3.5 A ∧ B
+3.6 Tabla de verdad de AND
+3.7 OR — disyunción inclusiva
+3.8 A ∨ B
+3.9 Tabla de verdad de OR
+3.10 Operaciones con más de dos operandos
+4. Operadores derivados
+4.1 NAND
+4.2 NOR
+4.3 XOR — disyunción exclusiva
+4.4 XNOR
+4.5 Implicación A → B
+4.6 Bicondicional A ↔ B
+4.7 Equivalencia lógica
+4.8 Construcción de operadores derivados desde AND/OR/NOT
+4.9 Relaciones entre operadores
+4.10 Tablas de verdad comparadas
+5. Tablas de verdad
+5.1 Construcción sistemática
+5.2 Una variable: 2^1 combinaciones
+5.3 Dos variables: 2^2 combinaciones
+5.4 Tres variables: 2^3 combinaciones
+5.5 n variables: 2^n combinaciones
+5.6 Columnas intermedias
+5.7 Expresiones compuestas
+5.8 Lectura e interpretación
+5.9 Tabla de verdad → expresión
+5.10 Comprobación de equivalencias
+6. Expresiones booleanas
+6.1 Literales, operandos y operadores
+6.2 Subexpresiones
+6.3 Expresiones simples
+6.4 Expresiones compuestas
+6.5 Evaluación paso a paso
+6.6 Árboles de expresión
+6.7 Sustitución de valores
+7. Precedencia y asociatividad
+7.1 Paréntesis
+7.2 NOT
+7.3 AND
+7.4 XOR
+7.5 OR
+7.6 Implicación
+7.7 Bicondicional
+7.8 Eliminación de ambigüedad
+7.9 Reescritura explícita mediante paréntesis
+
+BLOQUE II — LEYES DEL ÁLGEBRA BOOLEANA
+8. Ley de identidad
+8.1 A ∨ 0 = A
+8.2 A ∧ 1 = A
+8.3 Demostración algebraica y por tabla
+9. Ley de dominación / Null
+9.1 A ∨ 1 = 1
+9.2 A ∧ 0 = 0
+9.3 Demostración por tabla
+10. Ley de idempotencia
+10.1 A ∨ A = A
+10.2 A ∧ A = A
+11. Ley del complemento
+11.1 A ∨ ¬A = 1
+11.2 A ∧ ¬A = 0
+12. Involución / doble negación
+12.1 ¬¬A = A
+12.2 Aplicación en expresiones anidadas
+13. Ley conmutativa
+13.1 A ∨ B = B ∨ A
+13.2 A ∧ B = B ∧ A
+14. Ley asociativa
+14.1 (A ∨ B) ∨ C = A ∨ (B ∨ C)
+14.2 (A ∧ B) ∧ C = A ∧ (B ∧ C)
+15. Ley distributiva
+15.1 A ∧ (B ∨ C) = (A ∧ B) ∨ (A ∧ C)
+15.2 A ∨ (B ∧ C) = (A ∨ B) ∧ (A ∨ C)
+15.3 Diferencias respecto al álgebra aritmética
+16. Leyes de absorción
+16.1 A ∨ (A ∧ B) = A
+16.2 A ∧ (A ∨ B) = A
+16.3 Variantes derivadas
+17. Leyes de De Morgan
+17.1 ¬(A ∧ B) = ¬A ∨ ¬B
+17.2 ¬(A ∨ B) = ¬A ∧ ¬B
+17.3 Extensión a n variables
+17.4 Negación de expresiones complejas
+17.5 Demostración por tablas de verdad
+18. Principio de dualidad
+18.1 AND ↔ OR
+18.2 0 ↔ 1
+18.3 Dual de una expresión
+18.4 Dual de una identidad
+18.5 Uso de dualidad para derivar leyes
+19. Teoremas derivados
+19.1 Teorema de consenso
+19.2 Redundancia
+19.3 Absorciones generalizadas
+19.4 Variantes de distributividad
+19.5 Derivación de teoremas desde leyes básicas
+
+BLOQUE III — EQUIVALENCIA, DEMOSTRACIÓN Y SIMPLIFICACIÓN
+20. Equivalencia booleana
+20.1 Equivalencia semántica
+20.2 Equivalencia algebraica
+20.3 Comprobación mediante tabla de verdad
+20.4 Transformación mediante identidades
+20.5 Igualdad sintáctica vs equivalencia
+21. Simplificación algebraica
+21.1 Aplicación sistemática de identidades
+21.2 Eliminación de términos redundantes
+21.3 Factorización
+21.4 Absorción
+21.5 Complementos
+21.6 De Morgan
+21.7 Consenso
+21.8 Estrategias de simplificación
+21.9 Comparación de soluciones equivalentes
+21.10 Coste de una expresión
+22. Técnicas de demostración
+22.1 Demostración mediante tabla de verdad
+22.2 Demostración mediante equivalencias
+22.3 Transformación algebraica paso a paso
+22.4 Dualidad
+22.5 Demostración directa
+22.6 Refutación mediante contraejemplo
+22.7 Errores frecuentes en demostraciones
+
+BLOQUE IV — FUNCIONES BOOLEANAS
+23. Funciones booleanas
+23.1 f : {0,1}^n → {0,1}
+23.2 Variables de entrada
+23.3 Valor de salida
+23.4 Representación algebraica
+23.5 Representación mediante tabla
+23.6 Representación mediante conjunto de minterms
+23.7 Número de funciones booleanas posibles: 2⁽²n)
+23.8 Igualdad y equivalencia de funciones
+24. Literales, términos y cláusulas
+24.1 Literal positivo
+24.2 Literal negativo
+24.3 Producto
+24.4 Suma
+24.5 Término producto
+24.6 Término suma
+24.7 Cláusula
+24.8 Terminología lógica vs lógica digital
+25. Minterms
+25.1 Definición
+25.2 Construcción
+25.3 Cada variable aparece exactamente una vez
+25.4 Representación binaria
+25.5 Índice decimal
+25.6 Notación m_i
+25.7 Notación Σm(…)
+25.8 Tabla de verdad → minterms
+26. Maxterms
+26.1 Definición
+26.2 Construcción
+26.3 Cada variable aparece exactamente una vez
+26.4 Representación binaria
+26.5 Índice decimal
+26.6 Notación M_i
+26.7 Notación ΠM(…)
+26.8 Tabla de verdad → maxterms
+
+BLOQUE V — FORMAS CANÓNICAS Y NORMALES
+27. SOP — Sum of Products
+27.1 Productos
+27.2 Suma de productos
+27.3 SOP estándar
+27.4 SOP canónica
+27.5 Construcción desde minterms
+27.6 Notación Σm
+28. POS — Product of Sums
+28.1 Sumas
+28.2 Producto de sumas
+28.3 POS estándar
+28.4 POS canónica
+28.5 Construcción desde maxterms
+28.6 Notación ΠM
+29. Conversión SOP ↔ POS
+29.1 Conversión mediante tabla de verdad
+29.2 Relación minterms/maxterms
+29.3 Uso del complemento
+29.4 Verificación de equivalencia
+30. DNF — Disjunctive Normal Form
+30.1 Definición
+30.2 DNF
+30.3 DNF completa/canónica
+30.4 Relación con SOP
+30.5 Conversión de fórmulas a DNF
+31. CNF — Conjunctive Normal Form
+31.1 Definición
+31.2 CNF
+31.3 CNF completa/canónica
+31.4 Relación con POS
+31.5 Conversión de fórmulas a CNF
+32. CNF/DNF vs SOP/POS
+32.1 Diferencias conceptuales
+32.2 Terminología de lógica matemática
+32.3 Terminología de diseño digital
+32.4 Equivalencias y matices
+
+BLOQUE VI — MINIMIZACIÓN
+33. Minimización de funciones booleanas
+33.1 Objetivos
+33.2 Número de literales
+33.3 Número de términos
+33.4 Número de operaciones
+33.5 Niveles lógicos
+33.6 Coste lógico
+33.7 Solución mínima vs solución simplificada
+34. Mapas de Karnaugh
+34.1 Fundamento
+34.2 Código Gray
+34.3 K-map de 2 variables
+34.4 K-map de 3 variables
+34.5 K-map de 4 variables
+34.6 Mapas de 5 y 6 variables
+34.7 Limitaciones prácticas
+34.8 Adyacencia
+34.9 Wrap-around
+34.10 Agrupaciones de 1, 2, 4, 8, 16…
+34.11 Grupos máximos
+34.12 Solapamiento
+34.13 Cobertura
+34.14 Conversión tabla → K-map
+34.15 Conversión K-map → expresión
+35. Implicantes
+35.1 Implicante
+35.2 Implicante primo
+35.3 Implicante primo esencial
+35.4 Cobertura
+35.5 Selección mínima
+35.6 Prime implicant chart
+36. Don’t-care conditions
+36.1 Significado de X
+36.2 Condiciones no alcanzables/no relevantes
+36.3 Uso opcional
+36.4 Simplificación SOP
+36.5 Simplificación POS
+37. Karnaugh para SOP
+37.1 Agrupar unos
+37.2 Obtener implicantes
+37.3 Seleccionar cobertura
+37.4 Obtener expresión mínima
+38. Karnaugh para POS
+38.1 Agrupar ceros
+38.2 Obtener términos suma
+38.3 Seleccionar cobertura
+38.4 Obtener expresión mínima
+39. Quine–McCluskey
+39.1 Motivación
+39.2 Representación binaria
+39.3 Agrupación por número de unos
+39.4 Combinación de términos
+39.5 Eliminación de una diferencia
+39.6 Iteraciones
+39.7 Obtención de prime implicants
+39.8 Prime implicant chart
+39.9 Essential prime implicants
+39.10 Selección de cobertura
+39.11 Ejemplos completos paso a paso
+39.12 Comparación con Karnaugh
+40. Método de Petrick
+40.1 Problema de cobertura restante
+40.2 Expresión de Petrick
+40.3 Multiplicación booleana
+40.4 Absorción
+40.5 Cobertura mínima
+40.6 Integración con Quine–McCluskey
+
+BLOQUE VII — ESTRUCTURA MATEMÁTICA AVANZADA
+41. Definición axiomática de Álgebra Booleana
+41.1 Conjunto B
+41.2 Operaciones binarias
+41.3 Operación de complemento
+41.4 Elementos 0 y 1
+41.5 Axiomas
+41.6 Modelos de álgebra booleana
+42. Orden parcial
+42.1 Definición de ≤
+42.2 Reflexividad
+42.3 Antisimetría
+42.4 Transitividad
+42.5 Orden inducido por las operaciones booleanas
+43. Retículos
+43.1 Meet
+43.2 Join
+43.3 Elementos mínimo y máximo
+43.4 Bounded lattice
+43.5 Distributive lattice
+43.6 Complemented lattice
+43.7 Álgebra booleana como retículo distributivo complementado
+44. Relación con teoría de conjuntos
+44.1 AND ↔ intersección
+44.2 OR ↔ unión
+44.3 NOT ↔ complemento
+44.4 0 ↔ conjunto vacío
+44.5 1 ↔ conjunto universal
+44.6 Leyes de De Morgan para conjuntos
+44.7 Isomorfismo conceptual entre operaciones
+45. Homomorfismos e isomorfismos
+45.1 Preservación de operaciones
+45.2 Homomorfismo
+45.3 Isomorfismo
+45.4 Equivalencia estructural
+45.5 Ejemplos finitos introductorios
+
+BLOQUE VIII — COMPLETITUD FUNCIONAL
+46. Conjuntos funcionalmente completos
+46.1 Expresabilidad
+46.2 {AND, OR, NOT}
+46.3 Construcción de funciones arbitrarias
+46.4 Bases funcionales
+46.5 Introducción a criterios de completitud
+47. NAND como operador universal
+47.1 NOT usando NAND
+47.2 AND usando NAND
+47.3 OR usando NAND
+47.4 XOR usando NAND
+47.5 Implementación NAND-only
+47.6 Construcción de cualquier función booleana
+48. NOR como operador universal
+48.1 NOT usando NOR
+48.2 OR usando NOR
+48.3 AND usando NOR
+48.4 XOR usando NOR
+48.5 Implementación NOR-only
+48.6 Construcción de cualquier función booleana
+
+BLOQUE IX — SHANNON Y REPRESENTACIÓN AVANZADA
+49. Expansión de Shannon
+49.1 Expansión respecto a una variable
+49.2 Cofactor con x = 0
+49.3 Cofactor con x = 1
+49.4 Cofactor positivo
+49.5 Cofactor negativo
+49.6 Identidad de expansión
+49.7 Ejemplos paso a paso
+50. Descomposición de Shannon
+50.1 Descomposición recursiva
+50.2 Árbol de descomposición
+50.3 Representación de funciones
+50.4 Relación con multiplexores
+50.5 Base para BDD
+51. Diferencia/derivada booleana — introducción
+51.1 Definición
+51.2 Sensibilidad respecto a una variable
+51.3 XOR entre cofactors
+51.4 Aplicaciones introductorias
+
+BLOQUE X — BINARY DECISION DIAGRAMS
+52. Árboles binarios de decisión
+52.1 Variables
+52.2 Decisiones 0/1
+52.3 Hojas terminales
+52.4 Construcción desde Shannon
+52.5 Crecimiento del árbol
+53. BDD — Binary Decision Diagrams
+53.1 Definición
+53.2 Nodos
+53.3 Aristas 0 y 1
+53.4 Terminales
+53.5 Representación de funciones
+53.6 Operaciones básicas
+54. OBDD — Ordered Binary Decision Diagrams
+54.1 Orden fijo de variables
+54.2 Construcción
+54.3 Impacto del orden
+54.4 Tamaño de representación
+55. ROBDD — Reduced Ordered BDD
+55.1 Eliminación de nodos redundantes
+55.2 Fusión de subgrafos isomorfos
+55.3 Reducción
+55.4 Forma canónica para un orden dado
+55.5 Comprobación de equivalencia
+55.6 Ventajas y limitaciones
+
+BLOQUE XI — SATISFACIBILIDAD
+56. Clasificación de fórmulas
+56.1 Satisfacible
+56.2 Insatisfacible
+56.3 Tautología
+56.4 Contradicción
+56.5 Contingencia
+56.6 Modelos/asignaciones
+57. Boolean SAT
+57.1 Problema SAT
+57.2 CNF-SAT
+57.3 2-SAT
+57.4 3-SAT
+57.5 Modelos
+57.6 Relación con tablas de verdad
+57.7 Introducción a complejidad computacional de SAT
+58. SAT solving — fundamentos
+58.1 Búsqueda exhaustiva
+58.2 Unit clauses
+58.3 Unit propagation
+58.4 Pure literal elimination
+58.5 Backtracking
+58.6 DPLL
+58.7 Conflictos
+58.8 Introducción a CDCL
+58.9 Casos de uso de SAT solvers
+
+BLOQUE XII — MINIMIZACIÓN A ESCALA
+59. Límites de Karnaugh
+59.1 Escalabilidad
+59.2 Errores humanos
+59.3 Número elevado de variables
+60. Límites de Quine–McCluskey
+60.1 Crecimiento combinatorio
+60.2 Coste computacional
+60.3 Casos apropiados
+61. Espresso
+61.1 Motivación
+61.2 Minimización heurística de dos niveles
+61.3 Cubiertas
+61.4 Cubos/implicantes
+61.5 Expand
+61.6 Reduce
+61.7 Irredundant
+61.8 Iteración heurística
+61.9 Resultado heurístico vs óptimo exacto
+62. Minimización exacta vs heurística
+62.1 Optimalidad
+62.2 Coste
+62.3 Escalabilidad
+62.4 Trade-offs
+62.5 Elección del método
+
+BLOQUE XIII — APLICACIÓN A LÓGICA DIGITAL
+63. Puertas lógicas
+63.1 NOT
+63.2 AND
+63.3 OR
+63.4 NAND
+63.5 NOR
+63.6 XOR
+63.7 XNOR
+63.8 Símbolos y tablas de verdad
+64. Expresión → circuito
+64.1 Descomposición de la expresión
+64.2 Puertas necesarias
+64.3 Conexión
+64.4 Validación
+65. Circuito → expresión
+65.1 Identificación de puertas
+65.2 Señales intermedias
+65.3 Expresión final
+65.4 Tabla de verdad
+66. Simplificación de circuitos
+66.1 Expresión equivalente
+66.2 Reducción de puertas
+66.3 Reducción de niveles
+66.4 Validación funcional
+67. Implementación NAND-only
+67.1 Transformación algebraica
+67.2 Bubble pushing — introducción
+67.3 Implementaciones prácticas
+68. Implementación NOR-only
+68.1 Transformación algebraica
+68.2 Implementaciones prácticas
+69. Circuitos combinacionales
+69.1 Half adder
+69.2 Full adder
+69.3 Half/full subtractor
+69.4 Multiplexer
+69.5 Demultiplexer
+69.6 Encoder
+69.7 Priority encoder — introducción
+69.8 Decoder
+69.9 Comparator
+69.10 Derivación desde requisitos y tablas
+70. Circuitos secuenciales — fundamentos y frontera
+70.1 Diferencia combinacional/secuencial
+70.2 Estado
+70.3 Memoria
+70.4 Latches
+70.5 Flip-flops
+70.6 Registros
+70.7 Contadores
+70.8 Relación con funciones booleanas
+70.9 Frontera con Digital Logic / Digital Design avanzado
+
+BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
+71. Booleanos en programación
+71.1 true / false
+71.2 Condiciones
+71.3 Comparaciones
+71.4 AND / OR / NOT
+71.5 Expresiones complejas
+71.6 Diferencias entre notación matemática y lenguajes
+72. Short-circuit evaluation
+72.1 Evaluación de AND
+72.2 Evaluación de OR
+72.3 Orden de evaluación
+72.4 Expresiones con efectos secundarios
+72.5 Ventajas y riesgos
+73. Boolean vs bitwise
+73.1 Logical AND vs bitwise AND
+73.2 Logical OR vs bitwise OR
+73.3 XOR
+73.4 NOT vs complemento bitwise
+73.5 Booleanos vs palabras binarias
+73.6 Errores comunes
+74. Bit masks y flags
+74.1 Máscaras
+74.2 Set bit
+74.3 Clear bit
+74.4 Toggle bit
+74.5 Test bit
+74.6 Flags múltiples
+74.7 Combinación de máscaras
+74.8 Relación con Álgebra Booleana
+75. Aplicación en Python
+75.1 bool, True y False
+75.2 and / or / not
+75.3 Truthiness
+75.4 Short-circuit
+75.5 any() / all()
+75.6 &, |, ^, ~
+75.7 Máscaras y flags
+76. Aplicación en C y C++
+76.1 bool
+76.2 && / || / !
+76.3 &, |, ^, ~
+76.4 Máscaras
+76.5 Flags
+77. Aplicación en Rust
+77.1 bool
+77.2 && / || / !
+77.3 &, |, ^, !
+77.4 Tipos enteros y máscaras
+78. Aplicación en Go
+78.1 bool
+78.2 && / || / !
+78.3 Operadores bitwise
+78.4 Máscaras
+79. Aplicación en Java
+79.1 boolean
+79.2 && / || / !
+79.3 & / | / ^ / ~
+79.4 Short-circuit vs evaluación completa
+80. Aplicación en JavaScript y TypeScript
+80.1 boolean
+80.2 truthy/falsy
+80.3 && / || / !
+80.4 Short-circuit y retorno de operandos
+80.5 Operadores bitwise
+80.6 Particularidades de TypeScript
+81. SQL y lógica ternaria
+81.1 Predicados
+81.2 AND
+81.3 OR
+81.4 NOT
+81.5 Precedencia
+81.6 NULL
+81.7 UNKNOWN
+81.8 Tablas de verdad de tres valores
+81.9 IS NULL / IS NOT NULL
+81.10 Errores al trasladar lógica booleana clásica a SQL
+
+BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
+82. Equivalencia de funciones grandes
+82.1 Tablas vs métodos simbólicos
+82.2 BDD
+82.3 SAT
+82.4 Estrategias de verificación
+83. Canonicalidad
+83.1 Qué significa una representación canónica
+83.2 Formas canónicas
+83.3 ROBDD para un orden dado
+83.4 Utilidad en equivalencia
+84. Complejidad de representación
+84.1 Tabla de verdad
+84.2 SOP/POS
+84.3 CNF/DNF
+84.4 BDD
+84.5 Efecto del número de variables
+85. Complejidad de minimización
+85.1 Explosión combinatoria
+85.2 Métodos exactos
+85.3 Métodos heurísticos
+85.4 Límites prácticos
+86. Representación simbólica
+86.1 Fórmulas
+86.2 DAGs
+86.3 BDD
+86.4 CNF para SAT
+86.5 Trade-offs
+87. SAT vs BDD
+87.1 Representación
+87.2 Canonicalidad
+87.3 Satisfacibilidad
+87.4 Equivalencia
+87.5 Casos de uso
+88. Métodos algebraicos vs gráficos vs algorítmicos
+88.1 Álgebra manual
+88.2 Tablas de verdad
+88.3 Karnaugh
+88.4 Quine–McCluskey
+88.5 Espresso
+88.6 BDD
+88.7 SAT
+89. Selección del método apropiado
+89.1 Según número de variables
+89.2 Según objetivo
+89.3 Según necesidad de optimalidad
+89.4 Según escalabilidad
+89.5 Según verificación o síntesis
+90. Problemas expertos integradores
+90.1 Requisitos → función
+90.2 Función → formas canónicas
+90.3 Minimización por métodos distintos
+90.4 Equivalencia
+90.5 Satisfacibilidad
+90.6 Representación BDD
+90.7 Implementación lógica
+90.8 Implementación software
+90.9 Comparación de costes y métodos
+91. Proyecto final integrador
+91.1 Definir requisitos lógicos reales
+91.2 Identificar variables booleanas
+91.3 Formalizar condiciones
+91.4 Construir tabla de verdad
+91.5 Obtener minterms
+91.6 Obtener maxterms
+91.7 Construir SOP
+91.8 Construir POS
+91.9 Construir CNF
+91.10 Construir DNF
+91.11 Simplificar algebraicamente
+91.12 Simplificar con Karnaugh
+91.13 Resolver con Quine–McCluskey/Petrick
+91.14 Comparar resultados
+91.15 Aplicar Shannon
+91.16 Construir BDD/ROBDD
+91.17 Formular y comprobar satisfacibilidad
+91.18 Diseñar circuito lógico
+91.19 Implementar NAND-only
+91.20 Implementar NOR-only
+91.21 Implementar una versión software
+91.22 Validar exhaustivamente todas las entradas
+91.23 Documentar decisiones, equivalencias y trade-offs
+91.24 Defender la selección del método utilizado
