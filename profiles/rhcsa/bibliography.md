@@ -35,6 +35,16 @@
 - Michael Kerrisk — *The Linux Programming Interface*, como consulta para conceptos de procesos, filesystem, señales y APIs; no como libro base de administración.
 - Brendan Gregg — *Systems Performance*, como profundización conceptual de metodología y diagnóstico de rendimiento; usar solo en el alcance administrativo del PATH.
 
+
+## Bibliografía complementaria estructural — Linux y administración práctica
+- Michael Hausenblas — *Learning Modern Linux: A Handbook for the Cloud Native Practitioner*. Arquitectura Linux contemporánea, kernel, procesos, aislamiento y contenedores; especialmente bloques 0, 7, 8, 12, 13, 32 y 35. No sustituye la documentación de RHEL 10.
+- Carla Schroder — *Linux Cookbook: Essential Skills for Linux Users and System & Network Administrators*. Recetas de administración y diagnóstico; bloques 2–6, 9–16, 18–19, 24–31 y 38. Adaptar comandos y rutas a RHEL 10.
+- Daniel J. Barrett — *Linux Pocket Guide: Essential Commands*. Consulta rápida de comandos y operaciones CLI; bloques 0, 2–6, 12, 16, 24, 30 y 38. No reemplaza laboratorios ni manuales.
+- Kenneth Hess — *Practical Linux System Administration: A Guide to Installation, Configuration, and Management*. Enfoque transversal de instalación, mantenimiento, seguridad y operaciones; bloques 1, 9–16, 18–21, 24–29, 34–39 y 42. Verificar diferencias de distribución y versión.
+
+## Criterio de integración
+Los libros amplían modelos mentales y ejemplos, pero las instrucciones ejecutables se contrastan con RHEL 10, la documentación instalada y los objetivos EX200 vigentes. No introducir tecnologías de cloud-native o desarrollo de kernel como requisitos del examen.
+
 ## Regla bibliográfica
 Los libros RHCSA organizan y refuerzan el aprendizaje, pero no limitan el temario. No asumir que un procedimiento sigue siendo válido solo porque aparece en un libro. Verificar cambios de RHEL 10, herramientas, opciones y objetivos EX200 contra documentación oficial y manuales del sistema.
 

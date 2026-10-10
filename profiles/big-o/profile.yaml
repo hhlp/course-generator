@@ -24,6 +24,7 @@ scope:
     - go
     - javascript
     - typescript
+    - java
 
 pedagogy:
   style: "profundo, práctico, progresivo, riguroso y orientado al razonamiento"

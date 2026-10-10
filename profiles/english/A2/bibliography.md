@@ -18,7 +18,8 @@ Use it to support:
 - pronouns and possessives;
 - countable/uncountable nouns;
 - articles, determiners and quantifiers;
-- adjectives and adverbs;
+- adjectives and adverbs: types, formation, position, comparison and adjective order;
+- adverb categories and placement: frequency, manner, place, time, degree, probability and focus;
 - word order;
 - conjunctions and basic clauses;
 - prepositions;
@@ -60,6 +61,24 @@ Bibliography supports both coverage and depth. For an A2 grammar point, referenc
 - controlled original practice.
 
 Depth must remain inside the A2 level boundary.
+
+## Adjectives and adverbs — expanded A2 mapping
+
+The principal reference supports the basic adjective/adverb distinction, adjective position,
+common adjective sequences, -ly adverbs, frequency, comparisons and elementary sentence order.
+The expanded path adds original, controlled lessons on:
+
+- adjective categories and the typical opinion → size → age → shape → colour → origin → material → purpose sequence;
+- attributive/predicative adjectives and introductory coordination;
+- adverb categories, formation, exceptions and comparison;
+- initial, mid and final adverb placement, including frequency, auxiliaries and be;
+- the common manner → place → time adverbial order, with appropriate flexibility;
+- identification, reordering and error diagnosis.
+
+Advanced classification labels (e.g. coordinate/cumulative, gradable/non-gradable, scope)
+are introductory only, using simple A2 examples. They are not a licence to introduce
+advanced syntax or discourse analysis. These categories and sequences are tendencies,
+not inviolable rules; do not teach unnatural adjective strings as normal speech.
 
 ## Additional A2 mapping
 

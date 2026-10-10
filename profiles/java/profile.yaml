@@ -27,6 +27,7 @@ learner:
     - "Comprender AWT/Swing y el modelo gráfico/eventos de Java SE"
     - "Trabajar con XML e internacionalización"
     - "Aplicar expresiones regulares desde Java mediante Pattern, Matcher, String y Streams sin duplicar el PATH Regex"
+    - "Aplicar Big-O al código, Collections, Streams y decisiones de rendimiento Java sin duplicar el PATH Big-O"
     - "Comprender interoperabilidad nativa mediante FFM"
     - "Diagnosticar y optimizar aplicaciones Java"
 
@@ -84,6 +85,7 @@ progression:
 
 special_focus:
   - "Generics y Collections en profundidad"
+  - "Big-O aplicado a Java: análisis de código, APIs y estructuras sin reenseñar el PATH Big-O"
   - "Programación funcional"
   - "Integración y uso de regex desde Java (Pattern/Matcher/String/Streams)"
   - "Concurrencia y multihilo"
@@ -108,3 +110,4 @@ constraints:
   - "Distinguir APIs estables, preview e incubator según el JDK objetivo"
   - "No optimizar sin medición"
   - "No reenseñar Regex en el PATH Java: la teoría y sintaxis pertenecen al PATH Regex; aquí se estudia su aplicación e integración en Java"
+  - "No reenseñar Big-O en el PATH Java: la teoría general pertenece al PATH Big-O; aquí se estudia su aplicación al código, APIs, Collections, Streams y rendimiento Java"

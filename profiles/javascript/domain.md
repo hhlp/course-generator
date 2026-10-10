@@ -33,6 +33,12 @@ callbacks → Promises → async/await → composición concurrente → Event Lo
 
 Los bloques 14 y 15 constituyen el núcleo. Los bloques 11, 12, 13, 17, 18, 20, 22, 26 y 29 refuerzan el tema desde protocolos, módulos, errores, memoria, Node.js, testing, especificación, rendimiento y proyecto final.
 
+## Eje especial: Big O aplicado a JavaScript
+El Bloque 27 analiza complejidad temporal y espacial sobre código y APIs reales de JavaScript. No sustituye ni repite el learning path general de Big O. Debe distinguir complejidad asintótica, garantías de ECMAScript, costes esperados de implementación y medidas empíricas en Node.js/V8. Se incluyen bucles, recursión, colecciones, strings, algoritmos, memoria, benchmarks, profiling y laboratorios de refactorización.
+
+## Eje especial: Regex aplicado a JavaScript
+Las lecciones 6.15–6.45 se centran en la API `RegExp`, integración con `String`, flags, estado `lastIndex`, Unicode, construcción segura, testing, procesamiento de logs y rendimiento/ReDoS. Los fundamentos matemáticos y la teoría general de regex corresponden al path independiente. No incorporar sus libros especializados a esta bibliografía. Verificar disponibilidad de flags y métodos en el Node.js objetivo; no asumir compatibilidad universal.
+
 ## Estrategia bibliográfica
 - *Head First JavaScript Programming*: introducción pedagógica.
 - *JavaScript: The Definitive Guide*: cobertura general y referencia.
@@ -52,12 +58,15 @@ Una fuente conceptual nunca sustituye a la especificación cuando la lección es
 - MongoDB se usa como aplicación de JavaScript; su lenguaje de consulta no debe confundirse con la semántica del lenguaje.
 - TypeScript pertenece a su learning path independiente.
 - Evitar micro-optimizaciones sin medición.
+- Mantener separados los paths generales de Big O y Regex; estudiar aquí únicamente su aplicación a JavaScript.
 - No presentar modelos pedagógicos como descripciones literales del funcionamiento interno.
 
 ## Práctica
 Cada tema importante debe incluir ejemplos ejecutables y, cuando aporte valor, laboratorios. Los temas de scope, closures, `this`, prototypes y asincronía deben incluir ejercicios que confronten predicciones del alumno con el comportamiento real.
 
 Los temas de concurrencia deben incluir experimentos observables sobre orden de ejecución, microtasks, bloqueo del Event Loop, cancelación, límites de concurrencia, backpressure, workers, race conditions y Atomics.
+
+Los laboratorios de Big O deben exigir estimación, medición y justificación de costes; los de regex deben cubrir APIs, Unicode, estados, casos límite y ReDoS.
 
 ## Nivel experto
 El dominio experto implica poder explicar un comportamiento desde varias capas:

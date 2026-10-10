@@ -41,6 +41,7 @@ Si un tema avanzado del PATH no está cubierto suficientemente por esta
 obra, complementar con las referencias de GNU awk, POSIX y
 profundización.
 
+## Segunda referencia principal
 
 ### sed & awk — Dale Dougherty, Arnold Robbins
 

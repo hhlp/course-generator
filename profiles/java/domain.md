@@ -10,7 +10,7 @@ El curso cubre cuatro capas conectadas:
 
 1. **Lenguaje Java**: sintaxis, tipos, POO, excepciones, generics, Collections, lambdas,
    programación funcional, Streams, módulos, annotations, reflection, assertions, internacionalización
-   y uso de expresiones regulares mediante las APIs de Java.
+   uso de expresiones regulares mediante las APIs de Java y aplicación de Big-O al código y APIs Java.
 2. **Biblioteca y aplicaciones**: I/O/NIO, XML, networking/HTTP, JDBC, persistencia, JavaFX,
    AWT/Swing/Graphics2D, Compiler API/scripting, testing, logging, Maven y Gradle.
 3. **Concurrencia**: threads, Java Memory Model, sincronización, java.util.concurrent,
@@ -19,7 +19,15 @@ El curso cubre cuatro capas conectadas:
 4. **JVM y producción**: class files, bytecode, class loading, memoria, GC, JIT, FFM/native interop,
    profiling, JFR/JMC, JMH, performance, seguridad, observabilidad y troubleshooting.
 
-## Relación con el PATH Regex
+## Relación con los PATHs especializados
+
+Big-O y Regex se consideran competencias transversales con PATH propio. Java no reenseña sus fundamentos generales: estudia su aplicación concreta dentro del lenguaje, biblioteca y JVM.
+
+### Relación con el PATH Big-O
+
+El curso aplica análisis de complejidad a arrays, Collections, Strings, Streams, recursividad, I/O, JDBC y concurrencia; compara estructuras según sus operaciones dominantes y separa complejidad asintótica de benchmarking, JIT, GC, allocations y costes constantes. La teoría matemática general, notaciones asintóticas y técnicas generales de análisis pertenecen al PATH Big-O.
+
+### Relación con el PATH Regex
 
 Regex se considera una competencia transversal con PATH propio. Este dominio no reenseña la
 sintaxis ni la teoría general de expresiones regulares. El curso Java cubre en profundidad

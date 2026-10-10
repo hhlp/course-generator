@@ -72,3 +72,15 @@ Al terminar, el alumno debe ser capaz de:
 - Trabajar con monorepos y proyectos de gran escala.
 - Diseñar fronteras de seguridad y validar datos externos.
 - Construir herramientas propias de análisis estático.
+
+## Expresiones regulares aplicadas a TypeScript
+
+Estudiar las APIs ECMAScript RegExp y String desde TypeScript: tipado de coincidencias, grupos opcionales, narrowing, Unicode, estado de RegExp, transformación de texto, validación de entradas, procesamiento de logs y pruebas. No duplicar el curso independiente de teoría y sintaxis Regex. Diferenciar siempre tipado estático de validación efectiva en runtime. Evaluar ReDoS, backtracking y mitigaciones sin presuponer que TypeScript cambia el motor Regex.
+
+## Big O Notation aplicada a TypeScript
+
+Analizar complejidad temporal, espacial, amortizada y de casos de algoritmos y colecciones utilizados desde TypeScript. Contrastar modelos asintóticos con mediciones reales, V8, memoria, concurrencia, workers, streams y backpressure. No duplicar el curso general de Big O: priorizar análisis de código TypeScript y del JavaScript emitido. Separar complejidad algorítmica de costes del compilador/type checker; no presentar complejidades de operaciones de colecciones como garantías normativas universales.
+
+## Integración pedagógica transversal
+
+Conectar Regex con los bloques 2, 24, 25, 30 y 36, y Big O con los bloques 17, 21, 27, 28, 29, 34 y 35. El proyecto final debe incorporar extracción de texto segura, pruebas de casos límite, análisis asintótico, benchmarks reproducibles y evaluación de memoria. Mantener intactos los contenidos existentes y la separación compile time/runtime.

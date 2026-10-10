@@ -283,3 +283,76 @@
 8.24  versioning
 8.25  RPM C++
 8.26  proyecto C++23 completo
+
+9.1   Introducción a std::regex y relación con el PATH general de Regex
+9.2   Cabeceras <regex>, tipos y requisitos de C++23
+9.3   Gramáticas ECMAScript, basic, extended, awk, grep y egrep
+9.4   Construcción de std::regex y regex_constants::syntax_option_type
+9.5   Literales raw string R"(...)" y escaping en C++
+9.6   std::regex_match: coincidencia completa
+9.7   std::regex_search: búsqueda parcial
+9.8   std::regex_replace: sustituciones y formato
+9.9   std::smatch, std::cmatch y std::match_results
+9.10   std::sub_match, grupos capturados, prefix y suffix
+9.11   std::regex_constants::match_flag_type
+9.12   std::sregex_iterator y recorrido de coincidencias
+9.13   std::sregex_token_iterator: tokens y separadores
+9.14   Iteradores bidireccionales, rangos y sobrecargas regex
+9.15   std::string, std::string_view y lifetime de los datos
+9.16   std::wregex, codificación, Unicode y limitaciones
+9.17   Validación de formatos de entrada con regex
+9.18   Extracción estructurada de campos de logs
+9.19   Procesamiento de archivos y streams con regex
+9.20   Regex y std::filesystem: selección de rutas
+9.21   std::regex_error y diagnóstico de expresiones inválidas
+9.22   Coste de construcción, compilación y reutilización de patrones
+9.23   Complejidad y casos patológicos: backtracking y ReDoS
+9.24   Diferencias entre implementaciones de std::regex
+9.25   Alternativas: parsing manual, std::from_chars y algoritmos STL
+9.26   Integración opcional de PCRE2 y diferencias de sintaxis
+9.27   Tests parametrizados y casos límite con GoogleTest
+9.28   Fuzzing, sanitizers y validación de entradas no confiables
+9.29   Benchmark: regex frente a búsqueda y parsing especializados
+9.30   Proyecto: analizador de logs con std::regex, CMake y tests
+
+10.1   Big-O aplicado a C++: alcance y relación con el PATH general
+10.2   Tiempo, memoria, tamaño de entrada y modelo de coste
+10.3   O(1), O(log n), O(n), O(n log n), O(n²) y exponencial
+10.4   Peor caso, caso medio, mejor caso y cotas amortizadas
+10.5   Análisis de bucles simples, anidados y dependientes
+10.6   Análisis de recursividad y pila de llamadas
+10.7   Copias, movimientos, referencias y costes ocultos
+10.8   Asignaciones dinámicas, allocators y coste de memoria
+10.9   std::array y arrays: acceso y recorrido
+10.10   std::vector: indexación, push_back y crecimiento amortizado
+10.11   std::vector: inserción, borrado y realocaciones
+10.12   std::deque: acceso, inserción y costes
+10.13   std::list y std::forward_list: operaciones y locality
+10.14   std::map y std::multimap: árboles y coste logarítmico
+10.15   std::set y std::multiset: búsqueda y modificación
+10.16   std::unordered_map y std::unordered_set: promedio y peor caso
+10.17   Hashing, colisiones, rehash, load_factor y reserve
+10.18   std::stack, std::queue y std::priority_queue
+10.19   std::string: append, búsqueda, substr y copias
+10.20   std::span, std::string_view y operaciones sin copia
+10.21   Iteradores, categorías, distancias y invalidación
+10.22   std::sort, std::stable_sort y std::partial_sort
+10.23   std::find, std::lower_bound y búsqueda binaria
+10.24   std::binary_search, std::partition y precondiciones
+10.25   std::remove, erase-remove y std::erase_if
+10.26   std::ranges y views: evaluación diferida y costes
+10.27   std::transform, std::accumulate y std::reduce
+10.28   Algoritmos paralelos y políticas de ejecución
+10.29   Complejidad de templates y metaprogramación en compilación
+10.30   Complejidad espacial, memoria auxiliar y ownership
+10.31   Estructuras de datos propias: lista, árbol y heap
+10.32   Grafos en C++: representaciones y recorridos BFS/DFS
+10.33   Dijkstra en C++: estructuras y costes
+10.34   Complejidad algorítmica frente a complejidad del compilador
+10.35   Localidad de caché, false sharing y branch prediction
+10.36   std::chrono y metodología de microbenchmarks
+10.37   Optimización -O0/-O2/-O3 y efectos en mediciones
+10.38   Linux perf: ciclos, instrucciones, cache misses
+10.39   Benchmarks reproducibles, ruido y warm-up
+10.40   Selección de contenedores por cargas de trabajo reales
+10.41   Proyecto: comparar algoritmos y contenedores con CMake, tests y perf

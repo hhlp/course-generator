@@ -1,0 +1,538 @@
+OPENPGP, GNUPG (GPG) Y SEQUOIA PGP — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
+
+Objetivo: dominar el estándar OpenPGP, operar GnuPG y Sequoia PGP en Fedora, automatizar flujos seguros y desarrollar herramientas Rust con sequoia-openpgp.
+Convenciones: N.x identifica una lección; N.x.y se reserva para ampliaciones dentro de la lección. Cada lección requiere teoría, comandos o API cuando proceda, laboratorio, validación, seguridad y troubleshooting.
+No se presuponen comandos idénticos entre versiones de sq; comprobar `sq --help` y documentación de la versión instalada.
+
+BLOQUE 0 — ORIENTACIÓN, ECOSISTEMA Y LABORATORIO FEDORA
+
+0.1 Historia PGP y OpenPGP
+0.2 Objetivos, alcance y resultados esperados
+0.3 OpenPGP estándar frente a implementaciones
+0.4 GnuPG, Sequoia y otras implementaciones
+0.5 Casos de uso: correo, archivos, software y Git
+0.6 Amenazas que OpenPGP sí mitiga
+0.7 Amenazas que OpenPGP no mitiga
+0.8 Identidad, autenticación, confidencialidad e integridad
+0.9 Mapa de protocolos y componentes
+0.10 Fedora: versiones y políticas criptográficas
+0.11 Laboratorio con usuarios Alice, Bob y Carol
+0.12 Máquinas virtuales y contenedores de prueba
+0.13 Directorios GNUPGHOME aislados
+0.14 Herramientas de inspección y diagnóstico
+0.15 Reglas de manejo de secretos en laboratorios
+0.16 Checkpoint: matriz de amenazas y pruebas
+
+BLOQUE 1 — CRIPTOGRAFÍA APLICADA NECESARIA
+
+1.1 Confidencialidad, integridad y autenticidad
+1.2 Cifrado simétrico y modelos de amenaza
+1.3 Cifrado asimétrico y criptografía híbrida
+1.4 Firmas digitales y verificaciones
+1.5 Funciones hash y resistencia a colisiones
+1.6 KDF, passphrases y protección de claves
+1.7 Aleatoriedad, CSPRNG y entropía
+1.8 RSA: usos y tamaños
+1.9 Curvas elípticas: Ed25519 y X25519
+1.10 Algoritmos heredados y obsolescencia
+1.11 AEAD, nonces y autenticación de mensajes
+1.12 Forward secrecy: qué no garantiza OpenPGP
+1.13 Metadatos, análisis de tráfico y privacidad
+1.14 Agilidad criptográfica y políticas
+1.15 Laboratorio: firmas, cifrado y manipulación
+1.16 Checkpoint: selección de algoritmos
+
+BLOQUE 2 — NORMATIVA OPENPGP Y EVOLUCIÓN
+
+2.1 RFC 4880: legado y compatibilidad
+2.2 RFC 9580: alcance y terminología
+2.3 Versiones de claves y firmas
+2.4 Certificados v4 y v6
+2.5 Identificadores y fingerprints
+2.6 Algoritmos y suites permitidas
+2.7 Paquetes y codificación
+2.8 S2K y protección de secretos
+2.9 AEAD y protección de integridad
+2.10 Manejo de extensiones y campos desconocidos
+2.11 Compatibilidad entre versiones
+2.12 Comportamiento de implementación y normativa
+2.13 Vectores de prueba y pruebas de conformidad
+2.14 Registro de algoritmos e interoperabilidad
+2.15 Lectura guiada de RFC
+2.16 Checkpoint: matriz normativa
+
+BLOQUE 3 — MODELO DE DATOS Y PAQUETES OPENPGP
+
+3.1 Claves primarias y certificados
+3.2 Subclaves y capacidades
+3.3 User IDs y atributos
+3.4 Self-signatures y binding signatures
+3.5 Firmas de certificación
+3.6 Firmas de revocación
+3.7 Expiración y preferencias
+3.8 Estructura de mensajes
+3.9 Paquetes literales y comprimidos
+3.10 Paquetes de sesión y cifrado
+3.11 Paquetes de firma y one-pass signature
+3.12 ASCII Armor y CRC
+3.13 Serialización binaria y longitudes
+3.14 Fingerprints y key IDs: límites
+3.15 Inspección de paquetes seguros
+3.16 Checkpoint: disección de certificados
+
+BLOQUE 4 — GNUPG: INSTALACIÓN Y CONFIGURACIÓN
+
+4.1 Paquetes de Fedora y repositorios
+4.2 Instalación y comprobación de versiones
+4.3 gpg, gpgv y gpgconf
+4.4 Arquitectura de GnuPG
+4.5 GNUPGHOME y estructura de directorios
+4.6 Permisos de archivos y umask
+4.7 gpg.conf y configuración por usuario
+4.8 gpg-agent.conf y dirmngr.conf
+4.9 Opciones predeterminadas y precedencia
+4.10 Modo batch y modo interactivo
+4.11 Variables de entorno y TTY
+4.12 Aislamiento de perfiles de laboratorio
+4.13 Respaldo previo a cambios
+4.14 Pruebas de instalación
+4.15 Diagnóstico de instalación
+4.16 Checkpoint: configuración reproducible
+
+BLOQUE 5 — CLI GPG DE BÁSICO A EXPERTO
+
+5.1 Ayuda, manual y opciones globales
+5.2 --list-keys y --list-secret-keys
+5.3 --with-colons y formatos estables
+5.4 --fingerprint y --with-subkey-fingerprint
+5.5 --show-keys e inspección sin importar
+5.6 --import y --export
+5.7 --armor y salidas binarias
+5.8 --encrypt y --decrypt
+5.9 --sign, --clearsign y --detach-sign
+5.10 --verify y códigos de salida
+5.11 --recipient, --local-user y selección
+5.12 --output, stdin, stdout y tuberías
+5.13 --batch, --yes y --no-tty
+5.14 --status-fd y --command-fd
+5.15 --pinentry-mode y límites de automatización
+5.16 --list-packets: uso defensivo
+5.17 --quick-generate-key y familia quick
+5.18 --edit-key y comandos interactivos
+5.19 gpgv para verificaciones acotadas
+5.20 Checkpoint: scripts CLI robustos
+
+BLOQUE 6 — CREACIÓN DE CLAVES Y DISEÑO DE IDENTIDADES
+
+6.1 Identidades personales y de servicio
+6.2 Generación interactiva y desatendida
+6.3 Claves primarias y separación de funciones
+6.4 Subclaves de firma, cifrado y autenticación
+6.5 Elección de algoritmos actuales
+6.6 Ed25519 y X25519 en contexto
+6.7 RSA para interoperabilidad heredada
+6.8 Longitud, expiración y renovación
+6.9 UID múltiples y minimización de datos
+6.10 Protección con passphrase
+6.11 Configuración de preferencias
+6.12 Certificaciones y self-signatures
+6.13 Fingerprint y validación independiente
+6.14 Claves de prueba frente a producción
+6.15 Política de ciclo de vida
+6.16 Checkpoint: identidad completa
+
+BLOQUE 7 — ADMINISTRACIÓN Y CICLO DE VIDA DE CLAVES
+
+7.1 Inventario de certificados y secretos
+7.2 Exportación de certificados públicos
+7.3 Exportación de claves secretas: riesgos
+7.4 Exportación de subclaves y secretos parciales
+7.5 Backups cifrados y offline
+7.6 Recuperación verificada en entorno aislado
+7.7 Adición y eliminación de UID
+7.8 Cambio de expiración
+7.9 Renovación y publicación de cambios
+7.10 Rotación planificada de subclaves
+7.11 Compromiso de claves y respuesta
+7.12 Certificados de revocación
+7.13 Revocación de UID y subclaves
+7.14 Retirada de algoritmos antiguos
+7.15 Migración entre estaciones
+7.16 Eliminación segura y límites de borrado
+7.17 Auditoría de ciclo de vida
+7.18 Checkpoint: simulacro de compromiso
+
+BLOQUE 8 — FIRMAS DIGITALES Y VERIFICACIÓN
+
+8.1 Firma de archivo detached
+8.2 Firma cleartext
+8.3 Firma de mensajes OpenPGP
+8.4 Firmas binarias y ASCII Armor
+8.5 Identidad de firmante y selección
+8.6 Verificación criptográfica vs autenticación
+8.7 Comprobación de fingerprint por canal externo
+8.8 Firmas expiradas y revocadas
+8.9 Verificación con gpg y gpgv
+8.10 Verificación en pipelines
+8.11 Canonicalización de texto
+8.12 Manipulación de contenido y fallos
+8.13 Firmas múltiples y formatos
+8.14 Firmas de releases y artefactos
+8.15 Registro de resultados verificables
+8.16 Checkpoint: auditoría de firmas
+
+BLOQUE 9 — CIFRADO, DESCIFRADO Y FORMATOS
+
+9.1 Cifrado de archivos a destinatario
+9.2 Cifrado a múltiples destinatarios
+9.3 Cifrado simétrico con passphrase
+9.4 Criptografía híbrida y claves de sesión
+9.5 Descifrado y selección de subclave
+9.6 Cifrado de archivos grandes y streaming
+9.7 Cifrado y compresión: tradeoffs
+9.8 AEAD en OpenPGP moderno
+9.9 Protección de integridad y errores
+9.10 ASCII Armor vs binario
+9.11 Cifrado para uno mismo y copias
+9.12 Cifrado por lotes y automatización
+9.13 Compatibilidad de algoritmos
+9.14 Errores de recipient y certificados
+9.15 Evitar exposición de plaintext
+9.16 Checkpoint: flujo cifrado entre usuarios
+
+BLOQUE 10 — IDENTIDAD, CERTIFICACIÓN Y CONFIANZA
+
+10.1 Autenticidad criptográfica vs identidad
+10.2 Web of Trust y supuestos
+10.3 Ownertrust y validez de claves
+10.4 Certificación local y exportable
+10.5 Firmas de terceros y privacy
+10.6 TOFU y conflictos de identidad
+10.7 Trust models de GnuPG
+10.8 Introducers y trust paths
+10.9 Verificación presencial y remota
+10.10 Ataques de sustitución de certificados
+10.11 Revocación y caducidad en decisiones
+10.12 Políticas organizativas de confianza
+10.13 Confianza en Sequoia: comparación
+10.14 Pruebas con certificados contradictorios
+10.15 Checkpoint: evaluación de confianza
+
+BLOQUE 11 — DESCUBRIMIENTO Y DISTRIBUCIÓN DE CERTIFICADOS
+
+11.1 Publicación de certificados
+11.2 Keyservers y sincronización
+11.3 HKP y HKPS
+11.4 Web Key Directory WKD
+11.5 WKD avanzado y hosting
+11.6 Obtención mediante direcciones de correo
+11.7 Autenticación del certificado recuperado
+11.8 Actualizaciones, expiración y revocación
+11.9 Privacidad y exposición de UID
+11.10 Importación selectiva y limpieza
+11.11 Fallo de servidores y resiliencia
+11.12 Controles contra poisoning
+11.13 Distribución interna de empresa
+11.14 Laboratorio WKD en entorno controlado
+11.15 Checkpoint: distribución segura
+
+BLOQUE 12 — ARQUITECTURA INTERNA DE GNUPG
+
+12.1 gpg-agent y caché de passphrase
+12.2 Pinentry y experiencia interactiva
+12.3 Sockets de gpg-agent
+12.4 dirmngr y acceso a red
+12.5 scdaemon y dispositivos
+12.6 gpg-connect-agent
+12.7 gpgconf y administración
+12.8 gpgsm: S/MIME como protocolo distinto
+12.9 gpgv y verificadores mínimos
+12.10 Keybox y almacenamiento de certificados
+12.11 keyboxd y diferencias entre versiones
+12.12 IPC y procesos de GnuPG
+12.13 systemd user services y sockets
+12.14 Logs y diagnóstico de agentes
+12.15 Políticas de caché y bloqueo
+12.16 Checkpoint: trazado completo de operación
+
+BLOQUE 13 — TARJETAS OPENPGP Y HARDWARE TOKENS
+
+13.1 Threat model de claves hardware
+13.2 OpenPGP Card y APDU: visión general
+13.3 YubiKey y dispositivos compatibles
+13.4 Preparación de scdaemon y pcscd
+13.5 Generación de claves en token vs importación
+13.6 PIN, admin PIN y retries
+13.7 Touch policies y confirmación física
+13.8 Subclaves residentes y claves offline
+13.9 Certificados públicos y backup
+13.10 Pérdida o bloqueo del dispositivo
+13.11 Recuperación y dispositivos de respaldo
+13.12 Uso con GnuPG en Fedora
+13.13 Uso desde Sequoia: soporte y límites
+13.14 Auditoría de operaciones hardware
+13.15 Checkpoint: despliegue de token
+
+BLOQUE 14 — CORREO ELECTRÓNICO CON OPENPGP
+
+14.1 Modelo de amenazas del correo
+14.2 PGP/MIME vs inline PGP
+14.3 MIME, adjuntos y codificaciones
+14.4 Thunderbird y configuración
+14.5 Intercambio de certificados
+14.6 Firma y cifrado de mensajes
+14.7 Verificación de mensajes recibidos
+14.8 Metadatos que permanecen visibles
+14.9 Asuntos, destinatarios y cabeceras
+14.10 Problemas de HTML y contenido remoto
+14.11 Autocrypt: propósito y límites
+14.12 Revocación y cambios de certificado
+14.13 Correo en organizaciones y políticas
+14.14 Interop entre clientes
+14.15 Errores frecuentes de correo cifrado
+14.16 Checkpoint: intercambio completo Alice/Bob
+
+BLOQUE 15 — SEQUOIA PGP: FUNDAMENTOS E INSTALACIÓN
+
+15.1 Historia y objetivos del proyecto
+15.2 Arquitectura de Sequoia
+15.3 sq y ecosistema de herramientas
+15.4 Bibliotecas y crates Rust
+15.5 Instalación de sq en Fedora
+15.6 Versiones, features y documentación
+15.7 Configuración y almacenamiento
+15.8 Certificados, claves y autenticación
+15.9 Diferencias conceptuales frente a GnuPG
+15.10 Políticas criptográficas de Sequoia
+15.11 Ejemplos y datos de prueba
+15.12 Laboratorio aislado para sq
+15.13 Seguridad de operaciones CLI
+15.14 Checkpoint: entorno Sequoia reproducible
+
+BLOQUE 16 — SQ CLI EN PROFUNDIDAD
+
+16.1 Ayuda y exploración de comandos
+16.2 Generación y administración de claves
+16.3 Certificados: importar, exportar e inspeccionar
+16.4 User IDs y certificaciones
+16.5 Firmas y verificaciones
+16.6 Cifrado y descifrado
+16.7 Inspección de paquetes
+16.8 Almacenamiento y configuración
+16.9 Gestión de trust y autenticación
+16.10 Verificación con políticas explícitas
+16.11 Entrada/salida y tuberías
+16.12 Formatos de salida y scripting
+16.13 Diagnóstico de incompatibilidades de versión
+16.14 Pruebas de operaciones por lotes
+16.15 Comparativa funcional sq y gpg
+16.16 Checkpoint: flujos completos con sq
+
+BLOQUE 17 — SEQUOIA: PKI, AUTENTICACIÓN Y POLÍTICAS
+
+17.1 Certificados y vínculos de identidad
+17.2 Autenticación de certificados
+17.3 Trust roots y trust paths
+17.4 Certificaciones y delegación
+17.5 Política criptográfica configurable
+17.6 Políticas de algoritmos y expiración
+17.7 Validez temporal y revocación
+17.8 Certificate store y key store
+17.9 Diseño de PKI interna OpenPGP
+17.10 Autenticación de correo y UID
+17.11 Amenazas de suplantación
+17.12 Auditoría de decisiones de confianza
+17.13 Pruebas de confianza adversariales
+17.14 Checkpoint: política corporativa
+
+BLOQUE 18 — INTEROPERABILIDAD GNUPG Y SEQUOIA
+
+18.1 Intercambio de certificados
+18.2 Exportación/importación de claves
+18.3 Firmar con gpg y verificar con sq
+18.4 Firmar con sq y verificar con gpg
+18.5 Cifrar con gpg y descifrar con sq
+18.6 Cifrar con sq y descifrar con gpg
+18.7 Claves v4, v6 y soporte real
+18.8 Ed25519/X25519 y compatibilidad
+18.9 RSA y algoritmos heredados
+18.10 AEAD y variaciones de implementación
+18.11 Firmas expiradas y revocaciones
+18.12 Tratamiento de certificados malformados
+18.13 Diferencias de trust y autenticación
+18.14 Migración controlada de herramientas
+18.15 Matriz de pruebas automatizadas
+18.16 Checkpoint: informe de interoperabilidad
+
+BLOQUE 19 — ANÁLISIS DE PAQUETES Y DEPURACIÓN BINARIA
+
+19.1 Gramática de paquetes OpenPGP
+19.2 Old-format y new-format headers
+19.3 Longitudes parciales y streaming
+19.4 Paquetes de claves y firmas
+19.5 Subpaquetes de firma
+19.6 Paquetes de datos literales
+19.7 Paquetes comprimidos
+19.8 Paquetes de sesión cifrada
+19.9 Paquetes de datos cifrados
+19.10 Armor y codificación
+19.11 gpg --list-packets
+19.12 Inspección con sq packet
+19.13 Límites de parsing y recursos
+19.14 Datos truncados y corruptos
+19.15 Fuzzing: conceptos y seguridad
+19.16 Checkpoint: informe de un paquete
+
+BLOQUE 20 — DESARROLLO RUST CON SEQUOIA-OPENPGP
+
+20.1 Estructura de un proyecto Cargo
+20.2 Dependencias y características del crate
+20.3 Lectura de certificados
+20.4 Construcción de certificados de prueba
+20.5 APIs de parsing y serialización
+20.6 Streaming de mensajes
+20.7 Cifrado a destinatarios
+20.8 Descifrado con políticas
+20.9 Firmas detached y embebidas
+20.10 Verificación de firmas
+20.11 StandardPolicy y alternativas
+20.12 Control de validez y tiempo
+20.13 Errores y resultados tipados
+20.14 Gestión de secretos en memoria
+20.15 Pruebas unitarias e integración
+20.16 Fuzz testing y corpus
+20.17 Compatibilidad de versiones del crate
+20.18 Diseño de CLI propia segura
+20.19 Checkpoint: mini herramienta OpenPGP
+
+BLOQUE 21 — GIT, FIRMAS Y CADENA DE SUMINISTRO
+
+21.1 Firma de commits con OpenPGP
+21.2 Firma de tags anotados
+21.3 Configuración de user.signingkey
+21.4 Verificación local de commits y tags
+21.5 Identidades múltiples personal/trabajo
+21.6 GPG en agentes y terminales
+21.7 Sequoia en flujos de verificación
+21.8 Política de firmas en repositorios
+21.9 Verificación en CI
+21.10 Releases firmadas y checksums
+21.11 Threat model de supply chain
+21.12 Diferencia con Sigstore y otras firmas
+21.13 Rotación de claves de mantenedores
+21.14 Procedimiento de incidentes
+21.15 Checkpoint: release verificable
+
+BLOQUE 22 — FEDORA, RPM Y VERIFICACIÓN DE SOFTWARE
+
+22.1 Modelo de confianza en distribución Linux
+22.2 Firmas de paquetes RPM
+22.3 Claves RPM y keyring de RPM
+22.4 rpm --checksig y verificación
+22.5 Repositorio DNF y claves de firma
+22.6 repo_gpgcheck y gpgcheck
+22.7 Importación controlada de claves
+22.8 Separación de firmas RPM y OpenPGP genérico
+22.9 Creación y firma de paquetes de laboratorio
+22.10 Validación de artefactos antes de instalar
+22.11 Rotación de claves de repositorio
+22.12 Compromiso y recuperación
+22.13 Integración con automatización Fedora
+22.14 Logs de verificación y errores
+22.15 Checkpoint: repositorio firmado de prueba
+
+BLOQUE 23 — AUTOMATIZACIÓN, SERVICIOS Y CI/CD
+
+23.1 Diseño de scripts Bash idempotentes
+23.2 Estados de salida y --status-fd
+23.3 Modo batch seguro
+23.4 Passphrases y pinentry en automatización
+23.5 No incrustar secretos en argumentos
+23.6 Secret stores y credenciales efímeras
+23.7 Ansible: distribución de certificados
+23.8 Ansible: verificación de artefactos
+23.9 Python: subprocess sin shell insegura
+23.10 Rust: integración CLI vs biblioteca
+23.11 GitHub Actions y firmas
+23.12 Servicios systemd de usuario
+23.13 Rotación programada y alertas
+23.14 Pruebas de integración y regresión
+23.15 Logs sin filtración de secretos
+23.16 Checkpoint: pipeline de firma/verificación
+
+BLOQUE 24 — HARDENING Y RESPUESTA A INCIDENTES
+
+24.1 Modelo de amenazas por perfil
+24.2 Protección de claves primarias offline
+24.3 Subclaves online de alcance limitado
+24.4 Permisos, SELinux y aislamiento
+24.5 Protección de passphrase y pinentry
+24.6 Bloqueo de sesión y caché del agente
+24.7 Tokens y controles físicos
+24.8 Riesgos de exfiltración y backups
+24.9 Ataques a la cadena de confianza
+24.10 Algoritmos débiles y downgrade
+24.11 Errores de parsing y contenido hostil
+24.12 Caducidad, revocación y reemplazo
+24.13 Playbook de compromiso de clave
+24.14 Revisión de configuración Fedora
+24.15 Pruebas de restauración
+24.16 Checkpoint: auditoría de seguridad
+
+BLOQUE 25 — OBSERVABILIDAD Y TROUBLESHOOTING
+
+25.1 Método reproducible de diagnóstico
+25.2 Errores de permisos y GNUPGHOME
+25.3 gpg-agent no disponible
+25.4 Pinentry y TTY
+25.5 scdaemon y acceso a tokens
+25.6 dirmngr, DNS y TLS
+25.7 Importación de certificados defectuosos
+25.8 No public key y no secret key
+25.9 BAD signature y trust insuficiente
+25.10 Caducidad y revocación
+25.11 Algoritmos no admitidos
+25.12 Incompatibilidades gpg/sq
+25.13 --status-fd y códigos de retorno
+25.14 journalctl y logs de usuario
+25.15 strace: límites y exposición de secretos
+25.16 Matriz síntoma-causa-solución
+25.17 Checkpoint: laboratorio de fallos
+
+BLOQUE 26 — ARQUITECTURA EXPERTA Y ESTÁNDARES
+
+26.1 Evaluación de políticas criptográficas
+26.2 RFC 9580 y evolución del ecosistema
+26.3 Interoperabilidad de implementaciones
+26.4 Migración de algoritmos
+26.5 Agilidad y resistencia futura
+26.6 Post-quantum: estado y cautelas
+26.7 Diseño de servicios de firma
+26.8 Separación de roles y dual control
+26.9 Gestión de identidades a escala
+26.10 Revocación y continuidad operativa
+26.11 Auditoría y trazabilidad
+26.12 Diseño de pruebas de conformidad
+26.13 Revisión de código criptográfico
+26.14 Evaluación de proveedores y tokens
+26.15 Runbooks y procedimientos
+26.16 Checkpoint: revisión arquitectónica
+
+BLOQUE 27 — PROYECTO FINAL INTEGRAL
+
+27.1 Requisitos y modelo de amenazas
+27.2 Topología Fedora de laboratorio
+27.3 Diseño de identidades y subclaves
+27.4 Creación y resguardo de clave primaria
+27.5 Provisionamiento de certificados
+27.6 Política de confianza documentada
+27.7 Flujos gpg y sq interoperables
+27.8 Correo firmado y cifrado
+27.9 Repositorio Git con tags firmados
+27.10 RPM de laboratorio y verificación
+27.11 Pipeline de CI con verificación
+27.12 Backups, restauración y revocación
+27.13 Simulación de incidente
+27.14 Pruebas de compatibilidad y regresión
+27.15 Métricas, evidencias y documentación
+27.16 Auditoría final y defensa técnica

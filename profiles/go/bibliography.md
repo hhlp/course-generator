@@ -69,6 +69,20 @@ Sitio oficial: https://go.dev/
 
 Documentación de paquetes: https://pkg.go.dev/
 
+
+## Referencias específicas — Big O y regexp en Go
+
+- **Go standard library — regexp**: https://pkg.go.dev/regexp
+- **Go regexp/syntax**: https://pkg.go.dev/regexp/syntax
+- **RE2 Syntax**: https://github.com/google/re2/wiki/Syntax (referencia de sintaxis y restricciones; contrastar con `regexp/syntax`).
+- **Go standard library — slices, maps, sort, container/heap, strings, bytes**: https://pkg.go.dev/std
+- **Go testing y benchmarking**: https://pkg.go.dev/testing
+- **Go diagnostics y pprof**: https://go.dev/doc/diagnostics
+- **Go command y módulos**: https://pkg.go.dev/cmd/go
+- **Go flag, os, os/signal**: https://pkg.go.dev/flag y https://pkg.go.dev/os/signal
+
+Los PATH independientes de Big O y Regex aportan la teoría general; estas fuentes se utilizan para su aplicación específica a Go. *Efficient Go* sigue siendo el libro principal para medir y razonar sobre rendimiento; *Go Cookbook* apoya los laboratorios de regexp y CLI.
+
 ## Estrategia de lectura
 
 ### Nivel inicial

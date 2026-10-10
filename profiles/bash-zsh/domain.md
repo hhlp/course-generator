@@ -2,9 +2,12 @@
 
 ## 1. Propósito del PATH
 
-Este PATH enseña Bash y Zsh desde los fundamentos del shell Unix hasta un nivel experto de uso interactivo, scripting, depuración, rendimiento, seguridad, extensibilidad e internals.
+Este PATH enseña Bash y Zsh desde los fundamentos del shell Unix hasta
+un nivel experto de uso interactivo, scripting, depuración, rendimiento,
+seguridad, extensibilidad e internals.
 
-El objetivo no es memorizar comandos aislados. El alumno debe construir un modelo mental correcto de cómo un shell:
+El objetivo no es memorizar comandos aislados. El alumno debe construir
+un modelo mental correcto de cómo un shell:
 
 - lee y tokeniza una línea de comandos;
 - analiza sintaxis;
@@ -17,15 +20,19 @@ El objetivo no es memorizar comandos aislados. El alumno debe construir un model
 - ejecuta builtins, funciones y programas externos;
 - mantiene entorno, variables, opciones, historial y estado interactivo.
 
-El PATH debe permitir comprender qué comportamiento pertenece a POSIX `sh`, qué es específico de Bash y qué es específico de Zsh.
+El PATH debe permitir comprender qué comportamiento pertenece a POSIX
+`sh`, qué es específico de Bash y qué es específico de Zsh.
 
 ## 2. Entorno de referencia
 
 Plataforma principal: Fedora Linux.
 
-Los ejemplos y laboratorios deben priorizar herramientas, rutas, paquetes y convenciones disponibles en Fedora. Cuando una característica dependa de la versión instalada, debe comprobarse mediante comandos como:
+Los ejemplos y laboratorios deben priorizar herramientas, rutas,
+paquetes y convenciones disponibles en Fedora. Cuando una característica
+dependa de la versión instalada, debe comprobarse mediante comandos
+como:
 
-```bash
+``` bash
 bash --version
 zsh --version
 rpm -q bash zsh
@@ -34,27 +41,46 @@ rpm -ql bash
 rpm -ql zsh
 ```
 
-No debe asumirse que el comportamiento observado en otro sistema operativo o distribución es idéntico al de Fedora.
+No debe asumirse que el comportamiento observado en otro sistema
+operativo o distribución es idéntico al de Fedora.
+
+## 2A. Secuencia obligatoria y separación Bash/Zsh
+
+El itinerario se recorre en este orden, sin alternar bloques completos de Bash y Zsh:
+
+1. **Fundamentos comunes (bloques 0–1):** terminal, procesos, POSIX y entorno de laboratorio.
+2. **Bash de cero a experto (bloques 2–69):** sintaxis, scripting, administración, seguridad, automatización, internals y proyecto Bash. Es la primera especialización completa.
+3. **Zsh de cero a experto (bloques 70–92):** estudiar Zsh como lenguaje propio, desde sus diferencias fundamentales y modo nativo hasta ZLE, completion, internals, dotfiles y proyectos. Los fundamentos comunes se recuperan con ejercicios Zsh, no se dan por equivalentes los dialectos.
+4. **Comparación e integración (bloques 93–100):** portabilidad, migración, antipatrones, herramientas y proyectos conjuntos.
+
+Los títulos de `initial.txt` incluyen un prefijo de ámbito (Fundamentos comunes, Bash, Zsh o Integración). Las lecciones heredadas que mencionan el otro dialecto dentro de una especialización son **puntos de contraste**, no autorización para fusionar ambos lenguajes ni enseñar su semántica como idéntica. En los bloques Bash, cualquier código Zsh debe identificarse como comparación y viceversa. Los bloques de integración sí pueden usar ambos dialectos explícitamente.
+
+El bloque de Regex se limita a su **aplicación** en los shells; el PATH independiente de Regex contiene su teoría y bibliografía especializada.
 
 ## 3. Alcance funcional
 
 El PATH cubre de forma progresiva:
 
-1. fundamentos de shell, terminal, TTY, procesos, entorno y file descriptors;
-2. sintaxis, quoting, parámetros, variables y expansiones;
-3. globbing, arrays, aritmética, redirecciones y pipelines;
-4. condicionales, bucles, funciones, scripts y bibliotecas;
-5. procesos, job control, señales y process substitution;
-6. programación defensiva, seguridad, debugging, testing y logging;
-7. configuración, startup, prompt, historial y completion de Bash;
-8. características avanzadas e internals de Bash;
-9. Zsh nativo, opciones, expansiones, globbing y arrays;
-10. `fpath`, `autoload`, hooks, ZLE, `compsys`, módulos y plugins de Zsh;
-11. rendimiento interactivo y de scripting;
-12. portabilidad POSIX/Bash/Zsh;
-13. integración con systemd, SSH, contenedores, automatización y CI;
-14. internals, código fuente, tracing y profiling;
-15. diseño de CLIs, librerías, dotfiles, frameworks y toolkits de producción.
+1.  fundamentos de shell, terminal, TTY, procesos, entorno y file
+    descriptors;
+2.  sintaxis, quoting, parámetros, variables y expansiones;
+3.  globbing y Regex aplicada a Bash/Zsh, incluyendo selección del
+    motor, quoting, capturas e integración con utilities;
+4.  arrays, aritmética, redirecciones y pipelines;
+5.  condicionales, bucles, funciones, scripts y bibliotecas;
+6.  procesos, job control, señales y process substitution;
+7.  programación defensiva, seguridad, debugging, testing y logging;
+8.  configuración, startup, prompt, historial y completion de Bash;
+9.  características avanzadas e internals de Bash;
+10. Zsh nativo, opciones, expansiones, globbing y arrays;
+11. `fpath`, `autoload`, hooks, ZLE, `compsys`, módulos y plugins de
+    Zsh;
+12. rendimiento interactivo y de scripting;
+13. portabilidad POSIX/Bash/Zsh;
+14. integración con systemd, SSH, contenedores, automatización y CI;
+15. internals, código fuente, tracing y profiling;
+16. diseño de CLIs, librerías, dotfiles, frameworks y toolkits de
+    producción.
 
 ## 4. Política de dialectos
 
@@ -64,7 +90,8 @@ Toda lección debe distinguir explícitamente entre:
 - Bash;
 - Zsh.
 
-Nunca debe enseñarse una extensión de Bash o Zsh como si fuera una propiedad universal del shell.
+Nunca debe enseñarse una extensión de Bash o Zsh como si fuera una
+propiedad universal del shell.
 
 Cuando proceda, debe indicarse:
 
@@ -95,11 +122,13 @@ Ejemplos especialmente sensibles:
 
 ## 5. Modelo mental obligatorio
 
-Las explicaciones deben enseñar el orden conceptual de operación del shell y no reducirlo a recetas.
+Las explicaciones deben enseñar el orden conceptual de operación del
+shell y no reducirlo a recetas.
 
-Cuando sea relevante, una lección debe relacionar el tema con esta secuencia:
+Cuando sea relevante, una lección debe relacionar el tema con esta
+secuencia:
 
-```text
+``` text
 input
 → token recognition
 → parsing
@@ -110,13 +139,15 @@ input
 → exit status
 ```
 
-Debe explicarse que el orden exacto y las excepciones dependen del dialecto y del contexto sintáctico.
+Debe explicarse que el orden exacto y las excepciones dependen del
+dialecto y del contexto sintáctico.
 
 ## 6. Quoting, expansión y argv
 
 Quoting y expansión son conceptos centrales del PATH.
 
-El alumno debe aprender a razonar sobre el `argv` final recibido por un comando y distinguir:
+El alumno debe aprender a razonar sobre el `argv` final recibido por un
+comando y distinguir:
 
 - texto escrito en el shell;
 - tokens sintácticos;
@@ -126,19 +157,46 @@ El alumno debe aprender a razonar sobre el `argv` final recibido por un comando 
 - pathname expansion;
 - argumentos finales.
 
-Debe evitarse la explicación simplista de que "el shell sustituye variables".
+Debe evitarse la explicación simplista de que “el shell sustituye
+variables”.
 
-## 7. Globbing frente a expresiones regulares
+## 7. Globbing frente a expresiones regulares y política de Regex aplicada
 
-Los patrones de pathname del shell no deben confundirse con expresiones regulares.
+Los patrones de pathname del shell no deben confundirse con expresiones
+regulares.
 
-Cuando una lección necesite regex, debe limitarse a la integración necesaria con el shell, por ejemplo `[[ string =~ regex ]]` en Bash.
+Este PATH debe enseñar Regex **aplicada a Bash/Zsh en profundidad de
+integración**, sin duplicar el PATH independiente de Regex. El alumno
+debe aprender a reconocer qué motor interpreta el patrón, cómo el shell
+procesa primero quoting/expansiones y cómo pasar el patrón correctamente
+al motor receptor.
 
-La teoría general y profunda de expresiones regulares pertenece al PATH independiente de Regex.
+Cobertura obligatoria cuando corresponda:
+
+- `[[ string =~ regex ]]` en Bash y su `BASH_REMATCH`;
+- regex en `[[ ... ]]` de Zsh y sus mecanismos de captura;
+- diferencias Bash/Zsh que afecten al uso real;
+- POSIX BRE/ERE como dialectos relevantes para utilities;
+- PCRE en Zsh cuando se habilite explícitamente y herramientas externas
+  que la utilicen;
+- integración con `grep`, `ripgrep`, `sed`, AWK y otras utilities sin
+  enseñar de nuevo toda su semántica interna;
+- quoting de patrones, patrones almacenados en variables y doble
+  interpretación shell → motor regex;
+- validación, extracción, exit status, capturas y testing;
+- locale, seguridad, input no confiable, mantenibilidad y rendimiento;
+- decisión entre glob, regex, fixed-string matching y parser
+  especializado.
+
+La teoría formal, construcción exhaustiva de expresiones, motores en
+profundidad y técnicas generales avanzadas pertenecen al PATH
+independiente de Regex. Aquí el objetivo es **usar Regex correctamente
+desde Bash/Zsh**.
 
 ## 8. Integración con otros PATHs
 
-Este PATH puede usar herramientas externas para enseñar composición Unix, pero no debe duplicar sus cursos especializados.
+Este PATH puede usar herramientas externas para enseñar composición
+Unix, pero no debe duplicar sus cursos especializados.
 
 Se permite introducir y usar:
 
@@ -150,9 +208,28 @@ Se permite introducir y usar:
 - jq;
 - herramientas del sistema.
 
-Cuando el contenido alcance internals, sintaxis avanzada o semántica propia de esas herramientas, debe remitirse al PATH correspondiente.
+Cuando el contenido alcance internals, sintaxis avanzada o semántica
+propia de esas herramientas, debe remitirse al PATH correspondiente.
 
-El foco aquí es cómo Bash/Zsh invocan, conectan y controlan dichas herramientas.
+El foco aquí es cómo Bash/Zsh invocan, conectan y controlan dichas
+herramientas.
+
+## 8A. Idiomas Bash y eficiencia de la CLI
+
+El PATH incorpora *bash Idioms* para enseñar diseño, legibilidad, refactorización y patrones idiomáticos de Bash, sin convertirlos en reglas universales de Zsh.
+
+*Efficient Linux at the Command Line* apoya la composición de comandos, los pipelines observables y la productividad interactiva. Los ejemplos deben distinguir el trabajo realizado por el shell de la semántica propia de las herramientas externas. En los bloques Zsh, reescribir los ejemplos con semántica Zsh nativa cuando corresponda.
+
+Priorizar claridad, mediciones reproducibles, control de errores, quoting correcto y pruebas sobre trucos crípticos o microoptimizaciones. No duplicar contenidos especializados de Coreutils, sed, awk, Regex ni administración de Linux.
+
+## 8A. Aplicaciones de Bash a seguridad y datos
+
+Además del lenguaje, se estudian dos aplicaciones prácticas completas sin requerir PATH independientes de ciberseguridad o ciencia de datos:
+
+- **Operaciones de seguridad con Bash:** auditorías defensivas, inventario, logs, redes, recopilación de evidencias y automatización segura; toda prueba intrusiva se limita a entornos propios, aislados y autorizados.
+- **Procesamiento y análisis de datos desde Bash:** adquisición, limpieza, transformación, validación, pipelines ETL, CSV/TSV, JSON/NDJSON, análisis exploratorio y reproducibilidad.
+
+En ambas áreas, el centro pedagógico es la composición, ejecución, control de errores, seguridad, rendimiento y pruebas de scripts Bash. No se duplican los cursos especializados de Coreutils, sed, awk o Regex. Los ejemplos de Zsh se tratan únicamente como adaptaciones o contrastes etiquetados, sin confundir dialectos.
 
 ## 9. Bash
 
@@ -186,11 +263,12 @@ Incluye:
 - programmable completion;
 - job control.
 
-Las lecciones avanzadas deben conectar el comportamiento visible con los internals y el código fuente de Bash cuando aporte valor pedagógico.
+Las lecciones avanzadas deben conectar el comportamiento visible con los
+internals y el código fuente de Bash cuando aporte valor pedagógico.
 
 ## 10. Zsh
 
-Zsh debe enseñarse como shell propio, no como "Bash mejorado".
+Zsh debe enseñarse como shell propio, no como “Bash mejorado”.
 
 Debe prestarse especial atención a:
 
@@ -220,7 +298,7 @@ El PATH debe promover una arquitectura modular y comprensible.
 
 Una estructura válida de referencia es:
 
-```text
+``` text
 ~/.config/zsh/
 ├── .zshenv
 ├── .zprofile
@@ -232,11 +310,14 @@ Una estructura válida de referencia es:
 └── conf.d/
 ```
 
-La estructura no debe imponerse como única solución, pero sí utilizarse para enseñar separación de responsabilidades, orden de carga, dependencias, `fpath`, `autoload`, lazy loading y profiling.
+La estructura no debe imponerse como única solución, pero sí utilizarse
+para enseñar separación de responsabilidades, orden de carga,
+dependencias, `fpath`, `autoload`, lazy loading y profiling.
 
 ## 12. POSIX y portabilidad
 
-POSIX debe utilizarse como referencia normativa para el Shell Command Language cuando el tema sea portable.
+POSIX debe utilizarse como referencia normativa para el Shell Command
+Language cuando el tema sea portable.
 
 Debe distinguirse entre:
 
@@ -245,13 +326,16 @@ Debe distinguirse entre:
 - scripts Zsh;
 - uso interactivo específico de Bash/Zsh.
 
-No se debe recomendar compatibilidad POSIX cuando el objetivo real de la lección requiera explícitamente características modernas de Bash o Zsh.
+No se debe recomendar compatibilidad POSIX cuando el objetivo real de la
+lección requiera explícitamente características modernas de Bash o Zsh.
 
-La portabilidad debe ser una decisión de diseño, no una obligación automática.
+La portabilidad debe ser una decisión de diseño, no una obligación
+automática.
 
 ## 13. Seguridad
 
-Toda explicación que pueda introducir vulnerabilidades debe abordar sus implicaciones.
+Toda explicación que pueda introducir vulnerabilidades debe abordar sus
+implicaciones.
 
 Temas obligatorios cuando correspondan:
 
@@ -273,7 +357,8 @@ Temas obligatorios cuando correspondan:
 - `source` de contenido no confiable;
 - plugins no confiables.
 
-Las prácticas inseguras pueden mostrarse con fines didácticos, pero deben identificarse explícitamente como tales y corregirse.
+Las prácticas inseguras pueden mostrarse con fines didácticos, pero
+deben identificarse explícitamente como tales y corregirse.
 
 ## 14. Robustez y manejo de errores
 
@@ -294,7 +379,8 @@ Las lecciones deben enseñar:
 
 ## 15. Procesos, terminal y sistema operativo
 
-Las lecciones avanzadas deben relacionar el shell con conceptos de Linux:
+Las lecciones avanzadas deben relacionar el shell con conceptos de
+Linux:
 
 - `fork`/`clone` de forma conceptual cuando proceda;
 - `execve`;
@@ -311,7 +397,8 @@ Las lecciones avanzadas deben relacionar el shell con conceptos de Linux:
 - `termios`;
 - job control.
 
-Cuando sea útil, deben observarse estos mecanismos con herramientas reales como `ps`, `pstree`, `strace`, `lsof` y `/proc`.
+Cuando sea útil, deben observarse estos mecanismos con herramientas
+reales como `ps`, `pstree`, `strace`, `lsof` y `/proc`.
 
 ## 16. Herramientas de calidad
 
@@ -336,9 +423,11 @@ Estas herramientas no sustituyen la comprensión del lenguaje.
 
 ## 17. Internals y código fuente
 
-En los bloques de internals se permite y se recomienda estudiar el código fuente upstream.
+En los bloques de internals se permite y se recomienda estudiar el
+código fuente upstream.
 
-Para Bash, pueden relacionarse conceptos con archivos o subsistemas como:
+Para Bash, pueden relacionarse conceptos con archivos o subsistemas
+como:
 
 - parser;
 - expansión;
@@ -361,7 +450,9 @@ Para Zsh:
 - ZLE;
 - completion.
 
-No deben inventarse nombres de archivos, funciones o estructuras internas. Las referencias al source deben verificarse contra la versión utilizada.
+No deben inventarse nombres de archivos, funciones o estructuras
+internas. Las referencias al source deben verificarse contra la versión
+utilizada.
 
 ## 18. Política de versiones
 
@@ -369,46 +460,50 @@ El contenido conceptual debe intentar ser estable entre versiones.
 
 Cuando una característica dependa de versión:
 
-1. indicar la versión mínima cuando esté verificada;
-2. comprobar la versión disponible en Fedora;
-3. no extrapolar comportamiento de una versión futura o antigua;
-4. citar la documentación correspondiente.
+1.  indicar la versión mínima cuando esté verificada;
+2.  comprobar la versión disponible en Fedora;
+3.  no extrapolar comportamiento de una versión futura o antigua;
+4.  citar la documentación correspondiente.
 
-El PATH no debe quedar artificialmente bloqueado a una única versión si el concepto es estable.
+El PATH no debe quedar artificialmente bloqueado a una única versión si
+el concepto es estable.
 
 ## 19. Fuentes y jerarquía de autoridad
 
 Orden preferente para resolver dudas técnicas:
 
-1. estándar POSIX cuando se trate de comportamiento POSIX;
-2. manual oficial de Bash para Bash;
-3. manual oficial de Zsh para Zsh;
-4. documentación y código fuente upstream;
-5. documentación y empaquetado Fedora para comportamiento de la distribución;
-6. bibliografía técnica seleccionada;
-7. herramientas de análisis y experimentación reproducible.
+1.  estándar POSIX cuando se trate de comportamiento POSIX;
+2.  manual oficial de Bash para Bash;
+3.  manual oficial de Zsh para Zsh;
+4.  documentación y código fuente upstream;
+5.  documentación y empaquetado Fedora para comportamiento de la
+    distribución;
+6.  bibliografía técnica seleccionada;
+7.  herramientas de análisis y experimentación reproducible.
 
-Una fuente secundaria nunca debe prevalecer sobre la documentación normativa o upstream cuando exista contradicción verificable.
+Una fuente secundaria nunca debe prevalecer sobre la documentación
+normativa o upstream cuando exista contradicción verificable.
 
 ## 20. Estructura de las lecciones
 
 Cada lección debe comenzar siempre con:
 
-```text
+``` text
 🎯 OBJETIVO
 ```
 
 Debe incluir:
 
-```text
+``` text
 📚 LECTURA
 ```
 
-usando únicamente referencias apropiadas al tema y las categorías definidas en `bibliography.md`.
+usando únicamente referencias apropiadas al tema y las categorías
+definidas en `bibliography.md`.
 
 Cuando aporten valor pedagógico pueden incluirse:
 
-```text
+``` text
 🧪 Laboratorio / ejemplos
 ⚠️ Errores frecuentes
 💡 Idea importante
@@ -416,7 +511,7 @@ Cuando aporten valor pedagógico pueden incluirse:
 
 Toda lección debe terminar con:
 
-```text
+``` text
 🧠 QUÉ DEBES RECORDAR
 ```
 
@@ -424,19 +519,24 @@ con entre 3 y 7 ideas esenciales.
 
 ## 21. Política de referencias por lección
 
-No debe forzarse una referencia de cada categoría bibliográfica en todas las lecciones.
+No debe forzarse una referencia de cada categoría bibliográfica en todas
+las lecciones.
 
-Deben seleccionarse únicamente las fuentes que realmente correspondan al tema.
+Deben seleccionarse únicamente las fuentes que realmente correspondan al
+tema.
 
-Las referencias exactas a capítulos, secciones o nodos del manual solo deben incluirse cuando hayan sido verificadas.
+Las referencias exactas a capítulos, secciones o nodos del manual solo
+deben incluirse cuando hayan sido verificadas.
 
-Si no puede verificarse una sección exacta, debe citarse la obra o manual sin inventar numeración.
+Si no puede verificarse una sección exacta, debe citarse la obra o
+manual sin inventar numeración.
 
 ## 22. Laboratorios
 
 Los laboratorios deben ser reproducibles, incrementales y observables.
 
-Siempre que sea posible deben permitir comprobar el modelo explicado mediante:
+Siempre que sea posible deben permitir comprobar el modelo explicado
+mediante:
 
 - exit status;
 - `printf`;
@@ -449,11 +549,13 @@ Siempre que sea posible deben permitir comprobar el modelo explicado mediante:
 - `strace`;
 - tests automatizados.
 
-Debe preferirse comprender el comportamiento antes que copiar una solución terminada.
+Debe preferirse comprender el comportamiento antes que copiar una
+solución terminada.
 
 ## 23. Proyectos
 
-Los proyectos integradores no deben ser simples recopilaciones de ejercicios.
+Los proyectos integradores no deben ser simples recopilaciones de
+ejercicios.
 
 Deben combinar varias capacidades, por ejemplo:
 
@@ -468,17 +570,21 @@ Deben combinar varias capacidades, por ejemplo:
 - documentación;
 - seguridad.
 
-El proyecto final `bash-zsh-toolkit` debe demostrar dominio conjunto de scripting, interacción, arquitectura modular, debugging, testing, portabilidad, rendimiento y seguridad.
+El proyecto final `bash-zsh-toolkit` debe demostrar dominio conjunto de
+scripting, interacción, arquitectura modular, debugging, testing,
+portabilidad, rendimiento y seguridad.
 
 ## 24. Criterio de nivel experto
 
 Al terminar el PATH, el alumno debe ser capaz de:
 
-- explicar cómo el shell transforma una línea de comandos en procesos y argumentos;
+- explicar cómo el shell transforma una línea de comandos en procesos y
+  argumentos;
 - predecir expansiones y quoting sin recurrir al ensayo-error;
 - diseñar scripts robustos y seguros;
 - decidir correctamente entre POSIX sh, Bash y Zsh;
-- diagnosticar problemas de procesos, pipelines, señales y file descriptors;
+- diagnosticar problemas de procesos, pipelines, señales y file
+  descriptors;
 - escribir completion Bash y Zsh;
 - extender Zsh mediante funciones, hooks, ZLE y módulos disponibles;
 - perfilar y optimizar configuraciones y scripts;

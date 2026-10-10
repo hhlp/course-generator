@@ -1,158 +1,181 @@
 course:
-  title: "TypeScript — 0 → Experto"
-  language: "es"
+  title: TypeScript — 0 → Experto
+  language: es
   level:
-    from: "0"
-    to: "experto"
-  objective: >-
-    Dominar TypeScript desde la semántica de JavaScript y ECMAScript hasta
-    su sistema de tipos, Node.js, asincronía, concurrencia, paralelismo,
-    memoria y runtime, diseño type-safe, compilador, AST, TypeChecker,
-    Compiler API, rendimiento y seguridad, comprendiendo compile time y runtime.
-
+    from: '0'
+    to: experto
+  objective: Dominar TypeScript desde la semántica de JavaScript y ECMAScript hasta su sistema de
+    tipos, Node.js, asincronía, concurrencia, paralelismo, memoria y runtime, diseño type-safe, compilador,
+    AST, TypeChecker, Compiler API, rendimiento y seguridad, comprendiendo compile time y runtime.
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 scope:
   include:
-    - fundamentos de TypeScript
-    - sistema de tipos
-    - narrowing y control-flow analysis
-    - generics
-    - mapped types
-    - conditional types
-    - template literal types
-    - type-level programming
-    - diseño de APIs type-safe
-    - ECMAScript relevante para TypeScript
-    - JavaScript emitido
-    - runtime validation
-    - Node.js
-    - asincronía
-    - event loop
-    - concurrencia
-    - paralelismo
-    - worker threads
-    - Web Workers
-    - SharedArrayBuffer y Atomics
-    - memoria y garbage collection
-    - motores JavaScript y V8
-    - testing y type testing
-    - tooling
-    - monorepos
-    - librerías
-    - performance del compilador
-    - performance del runtime
-    - seguridad
-    - compiler internals
-    - AST
-    - TypeChecker
-    - Compiler API
-    - Language Service
-    - tsserver
-    - arquitectura TypeScript a gran escala
+  - fundamentos de TypeScript
+  - sistema de tipos
+  - narrowing y control-flow analysis
+  - generics
+  - mapped types
+  - conditional types
+  - template literal types
+  - type-level programming
+  - diseño de APIs type-safe
+  - ECMAScript relevante para TypeScript
+  - JavaScript emitido
+  - runtime validation
+  - Node.js
+  - asincronía
+  - event loop
+  - concurrencia
+  - paralelismo
+  - worker threads
+  - Web Workers
+  - SharedArrayBuffer y Atomics
+  - memoria y garbage collection
+  - motores JavaScript y V8
+  - testing y type testing
+  - tooling
+  - monorepos
+  - librerías
+  - performance del compilador
+  - performance del runtime
+  - seguridad
+  - compiler internals
+  - AST
+  - TypeChecker
+  - Compiler API
+  - Language Service
+  - tsserver
+  - arquitectura TypeScript a gran escala
+  - Regex aplicada a TypeScript y APIs RegExp
+  - tipado de coincidencias y grupos Regex
+  - Unicode y estado de RegExp
+  - seguridad ReDoS
+  - Big O aplicada a TypeScript
+  - complejidad temporal y espacial
+  - complejidad amortizada de colecciones
+  - coste algorítmico vs coste del type checker
   principles:
-    - "TypeScript no sustituye la semántica de JavaScript."
-    - "Separar siempre compile time de runtime."
-    - "Inspeccionar el JavaScript emitido cuando sea pedagógicamente relevante."
-    - "Diferenciar asincronía, concurrencia y paralelismo."
-    - "Diferenciar performance del type checker de performance del runtime."
-    - "Type safety no equivale a runtime safety."
-
+  - TypeScript no sustituye la semántica de JavaScript.
+  - Separar siempre compile time de runtime.
+  - Inspeccionar el JavaScript emitido cuando sea pedagógicamente relevante.
+  - Diferenciar asincronía, concurrencia y paralelismo.
+  - Diferenciar performance del type checker de performance del runtime.
+  - Type safety no equivale a runtime safety.
+  - No duplicar los paths independientes de Regex y Big O.
+  - Analizar complejidad sobre código TypeScript y JavaScript emitido; distinguir garantías de supuestos
+    de implementación.
 pedagogy:
-  style: "profundo, práctico, progresivo y orientado a ingeniería real"
+  style: profundo, práctico, progresivo y orientado a ingeniería real
   indentation: false
-  numbering: "single-level"
+  numbering: single-level
   lesson_structure:
     objective:
       required: true
       position: first
-      heading: "🎯 OBJETIVO"
+      heading: 🎯 OBJETIVO
     reading:
       required: true
-      heading: "📚 LECTURA"
+      heading: 📚 LECTURA
       categories:
-        - principal
-        - normativa
-        - runtime
-        - profundizacion
-        - consulta
+      - principal
+      - normativa
+      - runtime
+      - profundizacion
+      - consulta
       exact_references_only_when_verified: true
     lab:
       required: false
-      heading: "🧪 Laboratorio/ejemplos"
+      heading: 🧪 Laboratorio/ejemplos
     common_errors:
       required: false
-      heading: "⚠️ Errores frecuentes"
+      heading: ⚠️ Errores frecuentes
     important_idea:
       required: false
-      heading: "💡 Idea importante"
+      heading: 💡 Idea importante
     remember:
       required: true
       position: last
-      heading: "🧠 QUÉ DEBES RECORDAR"
+      heading: 🧠 QUÉ DEBES RECORDAR
       min_items: 3
       max_items: 7
   closing_requirements:
     min_points: 3
     max_points: 7
     avoid_repeating_objective: true
-
 content_requirements:
   preserve_path_order: true
   no_unrequested_topics: true
   code_examples:
     required_when_useful: true
-    language: "typescript"
+    language: typescript
     include_javascript_emit_when_relevant: true
   compile_time_runtime:
     explicitly_distinguish: true
   labs:
     prefer_real_nodejs_examples: true
     include_diagnostics_and_profiling_when_relevant: true
+    include_regex_and_complexity_labs: true
   security:
     distinguish_static_types_from_runtime_validation: true
-
+  regex:
+    focus: aplicacion practica en TypeScript, no teoria general
+    require_runtime_checks: true
+    include_unicode_state_and_redos: true
+  big_o:
+    focus: analisis aplicado a TypeScript
+    require_time_and_space: true
+    compare_asymptotic_with_measured_performance: true
+    separate_type_checker_from_runtime: true
 bibliography:
   primary:
-    - "Effective TypeScript — Dan Vanderkam"
-    - "Learning TypeScript — Josh Goldberg"
-    - "Programming TypeScript — Boris Cherny"
-    - "TypeScript Quickly — Yakov Fain, Anton Moiseev"
+  - Effective TypeScript — Dan Vanderkam
+  - Learning TypeScript — Josh Goldberg
+  - Programming TypeScript — Boris Cherny
+  - TypeScript Quickly — Yakov Fain, Anton Moiseev
   normative:
-    - "TypeScript Handbook"
-    - "TypeScript TSConfig Reference"
-    - "TypeScript Compiler API / TypeScript source"
-    - "ECMAScript Language Specification (ECMA-262)"
-    - "Node.js Documentation"
+  - TypeScript Handbook
+  - TypeScript TSConfig Reference
+  - TypeScript Compiler API / TypeScript source
+  - ECMAScript Language Specification (ECMA-262)
+  - Node.js Documentation
+  - ECMAScript RegExp specification
+  - MDN RegExp and String methods
+  - TypeScript Wiki — Performance
   complementary:
-    - "JavaScript: The Definitive Guide — David Flanagan"
-    - "You Don't Know JS Yet — Kyle Simpson"
-    - "Multithreaded JavaScript — Thomas Hunter II, Bryan English"
-
+  - 'JavaScript: The Definitive Guide — David Flanagan'
+  - You Don't Know JS Yet — Kyle Simpson
+  - Multithreaded JavaScript — Thomas Hunter II, Bryan English
+  - Introduction to Algorithms — Cormen, Leiserson, Rivest, Stein
+  - OWASP — ReDoS
+  - V8 Documentation / V8 Blog
 final_project:
   required: true
   requirements:
-    - strict TypeScript
-    - domain modeling
-    - branded types
-    - discriminated unions
-    - generics
-    - runtime validation
-    - Node.js
-    - asynchronous I/O
-    - cancellation
-    - controlled concurrency
-    - worker threads
-    - typed error handling
-    - tests
-    - type tests
-    - security boundaries
-    - CPU and memory profiling
-    - compiler performance analysis
-    - JavaScript emit analysis
-    - Compiler API or AST tooling
-    - CI
-    - documentation
+  - strict TypeScript
+  - domain modeling
+  - branded types
+  - discriminated unions
+  - generics
+  - runtime validation
+  - Node.js
+  - asynchronous I/O
+  - cancellation
+  - controlled concurrency
+  - worker threads
+  - typed error handling
+  - tests
+  - type tests
+  - security boundaries
+  - CPU and memory profiling
+  - compiler performance analysis
+  - JavaScript emit analysis
+  - Compiler API or AST tooling
+  - CI
+  - documentation
+  - typed RegExp parsing and input validation
+  - ReDoS risk assessment
+  - asymptotic time and space analysis
+  - reproducible benchmarks

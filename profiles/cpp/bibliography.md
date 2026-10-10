@@ -567,3 +567,38 @@ El generador debe:
 10. utilizar documentación oficial para herramientas externas.
 
 Las referencias bibliográficas deben apoyar la lección, no sustituir su explicación.
+
+## 25. Expresiones regulares aplicadas a C++ — Bloque 9
+
+**Alcance:** API, semántica, limitaciones, rendimiento y pruebas de regex en C++. Los fundamentos formales y las técnicas generales de patrones pertenecen al PATH independiente de Regex.
+
+- **cppreference — Regular expressions library (`<regex>`)**: fuente de consulta principal para `std::basic_regex`, `std::regex_match`, `std::regex_search`, `std::regex_replace`, `std::match_results`, iteradores y opciones de coincidencia. Verificar firmas y requisitos por estándar.
+- **ISO/IEC 14882 — C++ standard, regular expressions library**: autoridad normativa para gramáticas admitidas, comportamiento, errores y garantías.
+- **GCC libstdc++ documentation y LLVM libc++ documentation**: compatibilidad, diferencias y limitaciones de implementación.
+- **PCRE2 API documentation**: referencia complementaria para integrar PCRE2 como dependencia externa, distinguiendo claramente su API de `std::regex`.
+- **GoogleTest documentation y CMake documentation**: pruebas y construcción del proyecto del bloque.
+
+No atribuir a `std::regex` características de PCRE2 ni prometer soporte Unicode pleno. Las referencias exactas a capítulos/secciones solo se darán cuando estén verificadas.
+
+## 26. Complejidad algorítmica aplicada a C++ — Bloque 10
+
+- **Cormen, Leiserson, Rivest y Stein — Introduction to Algorithms**: referencia de profundización para análisis, estructuras de datos y algoritmos; la teoría general se estudia en el PATH independiente Big-O.
+- **cppreference — Containers library y Algorithms library**: consulta principal de garantías de complejidad de operaciones y algoritmos de la STL.
+- **ISO/IEC 14882 — C++ standard library requirements**: referencia normativa para requisitos de complejidad, precondiciones y garantías.
+- **The C++ Programming Language (Stroustrup)** y **A Tour of C++ (Stroustrup)**: criterios de diseño y selección de contenedores.
+- **GCC optimization options / Clang optimization documentation**: efectos del compilador en rendimiento real.
+- **Linux perf documentation**: medición de eventos de CPU y perfiles.
+- **Google Benchmark documentation**: metodología de microbenchmarks, cuando se incorpore como dependencia opcional.
+
+Distinguir complejidad asintótica, garantías de la biblioteca, coste amortizado y rendimiento medido. No extrapolar benchmarks particulares como garantías universales.
+
+## 27. Mapa adicional de fuentes
+
+| Bloque | Fuente principal | Complementarias |
+|---|---|---|
+| 9 | cppreference `<regex>` y estándar ISO C++ | libstdc++, libc++, PCRE2, GoogleTest |
+| 10 | cppreference STL y estándar ISO C++ | CLRS, Stroustrup, GCC/Clang, perf, Google Benchmark |
+
+## 28. Integración transversal de Regex y Big-O
+
+En las lecciones 1.25 (parsing), 1.28–1.29 (algoritmos y contenedores), 3.26–3.29 (STL e iteradores), 4.7–4.11 (Ranges), 8.17–8.20 (profiling y optimización) y 8.26 (proyecto final), introducir conexiones breves y referencias cruzadas a los bloques 9 y 10 sin duplicar sus contenidos.

@@ -136,8 +136,37 @@ Bloque 6 — Strings, números y utilidades fundamentales
 6.12 BigInt en profundidad
 6.13 Date
 6.14 Intl: internacionalización
-6.15 RegExp: fundamentos
-6.16 RegExp avanzado
+6.15 RegExp en JavaScript: introducción y alcance frente al path Regex
+6.16 Literales regex frente a new RegExp()
+6.17 RegExp y métodos de String: mapa de APIs
+6.18 Flags g, i, m, s, u, v, y y d: semántica y compatibilidad
+6.19 RegExp.prototype.test()
+6.20 RegExp.prototype.exec() y resultados
+6.21 String.prototype.match()
+6.22 String.prototype.matchAll() e iteración
+6.23 String.prototype.search()
+6.24 String.prototype.replace()
+6.25 String.prototype.replaceAll()
+6.26 String.prototype.split()
+6.27 Capturing groups y named groups en APIs JavaScript
+6.28 Backreferences: uso y comportamiento en JavaScript
+6.29 Lookahead y lookbehind: soporte y casos prácticos
+6.30 Unicode, UTF-16 y Unicode property escapes
+6.31 UnicodeSets y flag v
+6.32 lastIndex, estado y reutilización de RegExp
+6.33 Diferencias prácticas entre flags g y y
+6.34 RegExp.escape() y construcción dinámica segura: disponibilidad por runtime
+6.35 Callbacks de reemplazo y argumentos
+6.36 Extracción iterativa y procesamiento de coincidencias
+6.37 Validación, normalización y extracción: límites de regex
+6.38 Regex con archivos y streams de Node.js
+6.39 Rendimiento de RegExp: medición y benchmarks
+6.40 Backtracking: implicaciones prácticas y patrones costosos
+6.41 ReDoS: detección, límites y mitigaciones
+6.42 Testing de RegExp: casos límite, Unicode y fuzzing básico
+6.43 Debugging y diagnóstico de coincidencias
+6.44 Laboratorio: parser y extractor de logs
+6.45 Laboratorio: validación y transformación de datos
 
 Bloque 7 — Arrays y colecciones
 7.1 Creación y naturaleza de Array
@@ -527,7 +556,7 @@ Bloque 25 — Motores JavaScript y V8
 
 Bloque 26 — Rendimiento y profiling
 26.1 Medir antes de optimizar
-26.2 Complejidad algorítmica aplicada a JavaScript
+26.2 Introducción a la complejidad aplicada: enlace al Bloque 27
 26.3 CPU profiling
 26.4 Memory profiling
 26.5 Benchmarking correcto
@@ -542,51 +571,87 @@ Bloque 26 — Rendimiento y profiling
 26.14 Diagnóstico de event-loop blocking
 26.15 Optimization y deoptimization con herramientas de runtime
 
-Bloque 27 — Seguridad JavaScript fuera del navegador
-27.1 Principios de secure coding
-27.2 Validación de entradas
-27.3 Prototype pollution
-27.4 Object injection
-27.5 eval() y Function constructor
-27.6 Command injection en Node.js
-27.7 Path traversal
-27.8 Manejo seguro de archivos
-27.9 Secrets y environment variables
-27.10 Dependencias y supply-chain security
-27.11 Denial of service algorítmico
-27.12 Regular expression denial of service
-27.13 Deserialización y datos no confiables
-27.14 Permisos y aislamiento del runtime cuando estén disponibles
+Bloque 27 — Big O y complejidad algorítmica aplicada a JavaScript
+27.1 Alcance: aplicar Big O sin duplicar el path general
+27.2 Tamaño de entrada, operaciones dominantes y modelos de coste
+27.3 O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ) y O(n!) en código JavaScript
+27.4 Mejor caso, caso medio, peor caso y análisis amortizado
+27.5 Complejidad temporal frente a complejidad espacial
+27.6 Bucles simples, anidados y dependientes
+27.7 Recursividad: recurrencias y profundidad de pila
+27.8 Arrays: acceso por índice, push y pop
+27.9 Arrays: shift, unshift, splice y slice
+27.10 Arrays: map, filter, reduce, find, some y every
+27.11 Arrays: sort y toSorted; coste y garantías de especificación
+27.12 Arrays dispersos, copias y costes de memoria
+27.13 Object: acceso, enumeración y propiedades
+27.14 Map y Set: costes esperados y garantías de ECMAScript
+27.15 WeakMap y WeakSet: identidad, memoria y límites de observación
+27.16 Strings: concatenación, búsqueda y costes Unicode
+27.17 Búsqueda lineal frente a búsqueda binaria sobre datos ordenados
+27.18 Hashing, índices y estructuras auxiliares
+27.19 Memoización y trade-offs entre tiempo y espacio
+27.20 Algoritmos de ordenación y comparación práctica
+27.21 Estructuras de datos: colas, pilas y alternativas eficientes
+27.22 Algoritmos sobre árboles y grafos implementados en JavaScript
+27.23 Complejidad de Promises y composición de operaciones
+27.24 Complejidad, I/O, streams y backpressure
+27.25 Worker Threads: paralelismo, overhead y límites de escalabilidad
+27.26 Coste asintótico frente a constantes, JIT y optimizaciones V8
+27.27 Garbage collection, asignaciones y complejidad espacial real
+27.28 Benchmarking reproducible con Node.js y perf_hooks
+27.29 CPU profiling y análisis de cuellos de botella
+27.30 Complejidad algorítmica de regex y riesgo de ReDoS
+27.31 Laboratorio: medir y explicar operaciones sobre Array, Map y Set
+27.32 Laboratorio: refactorizar un algoritmo cuadrático
+27.33 Laboratorio: comparar memoria, latencia y throughput
+27.34 Proyecto de evaluación: justificar algoritmo, estructura y mediciones
 
-Bloque 28 — JavaScript aplicado a datos, scripting y MongoDB
-28.1 JavaScript como lenguaje de scripting
-28.2 Objetos y documentos
-28.3 Arrays y documentos anidados
-28.4 JSON frente a objetos JavaScript
-28.5 JSON frente a BSON: diferencias conceptuales
-28.6 Funciones de transformación de datos
-28.7 Procesamiento de colecciones
-28.8 JavaScript en herramientas y shells de MongoDB: contexto
-28.9 Sintaxis JavaScript usada al construir consultas MongoDB
-28.10 Objetos de consulta, proyección y actualización
-28.11 Callbacks y funciones en automatización
-28.12 Scripts Node.js para interactuar con servicios y bases de datos
-28.13 Separar semántica JavaScript de APIs específicas de MongoDB
+Bloque 28 — Seguridad JavaScript fuera del navegador
+28.1 Principios de secure coding
+28.2 Validación de entradas
+28.3 Prototype pollution
+28.4 Object injection
+28.5 eval() y Function constructor
+28.6 Command injection en Node.js
+28.7 Path traversal
+28.8 Manejo seguro de archivos
+28.9 Secrets y environment variables
+28.10 Dependencias y supply-chain security
+28.11 Denial of service algorítmico
+28.12 Regular expression denial of service: análisis adversarial, límites y mitigaciones
+28.13 Deserialización y datos no confiables
+28.14 Permisos y aislamiento del runtime cuando estén disponibles
 
-Bloque 29 — Proyecto final y dominio experto
-29.1 Diseñar una aplicación CLI modular
-29.2 ESM y arquitectura de módulos
-29.3 Configuración y validación
-29.4 Procesamiento asíncrono
-29.5 Streams y backpressure
-29.6 Worker threads cuando aporten valor
-29.7 Persistencia mediante una API externa o base de datos
-29.8 Testing completo
-29.9 Logging y observabilidad básica
-29.10 Profiling CPU y memoria
-29.11 Análisis de AST sobre parte del proyecto
-29.12 Diagnóstico de una optimización/deoptimización
-29.13 Auditoría de seguridad
-29.14 Empaquetado y scripts npm
-29.15 Documentación técnica
-29.16 Explicar el proyecto desde sintaxis hasta runtime y motor
+Bloque 29 — JavaScript aplicado a datos, scripting y MongoDB
+29.1 JavaScript como lenguaje de scripting
+29.2 Objetos y documentos
+29.3 Arrays y documentos anidados
+29.4 JSON frente a objetos JavaScript
+29.5 JSON frente a BSON: diferencias conceptuales
+29.6 Funciones de transformación de datos
+29.7 Procesamiento de colecciones
+29.8 JavaScript en herramientas y shells de MongoDB: contexto
+29.9 Sintaxis JavaScript usada al construir consultas MongoDB
+29.10 Objetos de consulta, proyección y actualización
+29.11 Callbacks y funciones en automatización
+29.12 Scripts Node.js para interactuar con servicios y bases de datos
+29.13 Separar semántica JavaScript de APIs específicas de MongoDB
+
+Bloque 30 — Proyecto final y dominio experto
+30.1 Diseñar una aplicación CLI modular
+30.2 ESM y arquitectura de módulos
+30.3 Configuración y validación
+30.4 Procesamiento asíncrono
+30.5 Streams y backpressure
+30.6 Worker threads cuando aporten valor
+30.7 Persistencia mediante una API externa o base de datos
+30.8 Testing completo
+30.9 Logging y observabilidad básica
+30.10 Profiling CPU y memoria y análisis Big O aplicado
+30.11 Análisis de AST sobre parte del proyecto
+30.12 Diagnóstico de una optimización/deoptimización
+30.13 Auditoría de seguridad
+30.14 Empaquetado y scripts npm
+30.15 Documentación técnica
+30.16 Explicar el proyecto desde sintaxis hasta runtime y motor

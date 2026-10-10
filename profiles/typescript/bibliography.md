@@ -56,3 +56,30 @@ Referencia complementaria para concurrencia, Worker Threads, Web Workers, Shared
 - Node.js Documentation se usa para comportamiento específico del runtime Node.js.
 - Las referencias exactas de capítulos o secciones solo deben indicarse cuando hayan sido verificadas.
 - No atribuir a un libro contenido que no se haya comprobado directamente.
+
+## Referencias específicas: Regex en TypeScript
+
+### MDN — RegExp y métodos String de ECMAScript
+Consulta de APIs `RegExp`, `test`, `exec`, `match`, `matchAll`, `replace`, `replaceAll`, `search` y `split`, flags, Unicode y comportamiento de `lastIndex`.
+
+### ECMAScript ECMA-262 — RegExp
+Referencia normativa para semántica de patrones, operaciones y coincidencias en runtime; verificar edición y compatibilidad del motor antes de afirmar soporte.
+
+### OWASP — Regular expression Denial of Service (ReDoS)
+Referencia complementaria de seguridad para backtracking, patrones vulnerables y mitigaciones.
+
+Los libros del curso independiente de Regex no se incorporan a esta bibliografía.
+
+## Referencias específicas: Big O aplicada a TypeScript
+
+### Introduction to Algorithms — Cormen, Leiserson, Rivest y Stein
+Consulta complementaria para notación asintótica, recurrencias, análisis amortizado, estructuras de datos y algoritmos; aplicar estos conceptos a ejemplos TypeScript, sin duplicar el path general.
+
+### Node.js Documentation — Diagnostics y Performance
+Medición de CPU, memoria, event loop, workers y benchmarking en Node.js.
+
+### TypeScript Wiki — Performance
+Diagnóstico del coste de type checking, organización de proyectos, tipos complejos y optimización del compilador.
+
+### V8 Documentation / V8 Blog
+Contexto de optimizaciones del motor, GC y efectos del runtime que no pueden deducirse únicamente de Big O.

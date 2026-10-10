@@ -39,3 +39,13 @@ Mantener SELinux enforcing salvo ejercicios explícitos de diagnóstico. No reco
 
 ## Resultado final
 El alumno debe poder instalar, configurar, actualizar, securizar, observar, automatizar, diagnosticar, recuperar y documentar un servidor RHEL 10; además debe estar preparado para practicar las competencias vigentes del EX200.
+
+## Profundidad reforzada y uso de los libros nuevos
+En cada lección práctica relevante: describir prerrequisitos, paquetes y versiones, archivos y rutas, comandos con explicación de opciones, cambios runtime/persistentes, validación antes y después de reiniciar, ubicación de logs (journald y /var/log cuando exista), fallos reproducibles y recuperación segura. No inventar rutas de logs: comprobar paquete, configuración y versión.
+
+Integrar *Learning Modern Linux* para arquitectura y aislamiento; *Linux Cookbook* para recetas originales y escenarios; *Linux Pocket Guide* para fluidez CLI; y *Practical Linux System Administration* para operación integral. Mantener los dos textos RHCSA como apoyo al examen y la documentación oficial como autoridad.
+
+Los contenidos compartidos con PATH especializados (Bash/Zsh, systemd, SELinux, firewalld, OpenSSH, contenedores, IAM y servicios de infraestructura) serán autosuficientes para administrar RHEL 10, sin duplicar la especialización completa. Distinguir identidad local y consumo de IAM central; no implementar aquí un proveedor IAM.
+
+## Evaluación práctica y progresión
+Cada bloque operacional debe proponer observación, configuración, verificación, diagnóstico y rollback cuando aplique. Usar laboratorios guiados, fallos inducidos con snapshot y casos sin instrucciones paso a paso. Evaluar evidencias (salidas, logs, estado persistente, runbook), no solo ejecución de comandos. Etiquetar claramente las extensiones fuera de EX200.

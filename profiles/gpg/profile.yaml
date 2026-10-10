@@ -1,0 +1,61 @@
+name: OpenPGP, GnuPG y Sequoia PGP — 0 a experto
+slug: openpgp-gnupg-sequoia
+language: es
+level:
+  from: cero
+  to: experto
+depth: en profundidad
+platform:
+  primary: Fedora Linux
+  development: Rust / Cargo
+  environment: laboratorio local sin exposición pública
+course:
+  outline_file: initial.txt
+  domain_file: domain.md
+  bibliography_file: bibliography.md
+  blocks: 28
+  lesson_numbering: N.x; sublecciones N.x.y cuando aporten profundidad
+  preserve_order: true
+pedagogy:
+  each_lesson:
+  - objetivo y prerrequisitos
+  - fundamentos y arquitectura
+  - instalación/configuración si aplica
+  - comandos y opciones o API detallados
+  - laboratorio reproducible
+  - validación y resultados esperados
+  - seguridad y amenazas
+  - errores frecuentes y troubleshooting
+  - checkpoint o ejercicios
+  projects:
+  - interoperabilidad GnuPG-Sequoia
+  - Git y releases firmadas
+  - proyecto final integral
+scope:
+  standard:
+  - RFC 9580
+  - RFC 4880 (legado)
+  - OpenPGP packets
+  - trust y autenticación
+  implementations:
+  - GnuPG
+  - Sequoia PGP
+  - sequoia-openpgp
+  integrations:
+  - Fedora
+  - correo PGP/MIME
+  - Git
+  - RPM/DNF
+  - Ansible
+  - CI/CD
+  - hardware tokens
+safety:
+  use_test_keys: true
+  no_public_services_required: true
+  verify_version_specific_features: true
+  avoid_real_secrets_in_labs: true
+bibliography_priority:
+- 'Michael W. Lucas — PGP & GPG: Email for the Practical Paranoid'
+- RFC 9580
+- Documentación GnuPG
+- Documentación Sequoia PGP

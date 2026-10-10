@@ -124,6 +124,23 @@ El proyecto final debe integrar:
 
 CLI, configuración, HTTP, persistencia, concurrencia, context, errores, logging, métricas, tracing, testing, fuzzing, race detection, benchmarks, profiling, optimización, PGO, seguridad, containerización y graceful shutdown.
 
+
+## Big O aplicado a Go
+
+El bloque específico de complejidad aplica conceptos del PATH independiente de Big O; no repite su fundamentación matemática. En cada estructura o algoritmo indicar operación, tamaño de entrada, caso de análisis, complejidad temporal y espacial, supuestos y límites de la garantía. Distinguir complejidad esperada/amortizada de garantías en peor caso. Contrastar con `testing.B`, `-benchmem`, `benchstat` y `pprof`, sin presentar tiempos medidos como prueba de una cota asintótica. Analizar costes de `append`, slices, maps, strings, ordenación, estructuras genéricas y concurrencia.
+
+## Regex aplicado a Go
+
+Enseñar el paquete `regexp` y su sintaxis RE2 en profundidad aplicada, remitiendo al PATH independiente de regex para teoría general. Incluir familias de métodos, capturas, sustituciones, UTF-8 e índices en bytes, seguridad, pruebas y benchmarks. No atribuir a RE2 lookarounds ni backreferences; distinguir complejidad lineal en la entrada para patrón fijo de costes dependientes del patrón. Comparar con `strings`, `bytes` y parsers específicos.
+
+## Desarrollo CLI en Go
+
+Enseñar aplicaciones CLI de producción con biblioteca estándar primero: `flag`, `os`, `io`, `context`, `os/signal`, `filepath`, formatos de salida, códigos de salida, configuración, subcomandos, testing, empaquetado y distribución. Mantener ejemplos Fedora/Linux y diferenciar extensiones de terceros de funcionalidades estándar.
+
+## Integración transversal
+
+Relacionar Big O con slices, maps, generics, concurrencia, benchmarks y performance; relacionar regex con logs, seguridad, CLI y streaming. El proyecto final incluirá análisis de complejidad documentado y un subcomando de extracción de logs basado en `regexp`, con tests, fuzzing y benchmarks. Mantener la numeración correlativa del `initial.txt` como referencia canónica de bloques.
+
 ## Autoridad de fuentes
 
 Orden de prioridad ante discrepancias:

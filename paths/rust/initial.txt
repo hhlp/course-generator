@@ -477,13 +477,224 @@ profesional de crates y aplicaciones.
 41.7. libc y FFI
 41.8. Abstracciones seguras sobre el SO
 
-42. CLI APPLICATIONS
-42.1. Argumentos y subcommands
-42.2. stdin/stdout/stderr y exit codes
-42.3. Environment y configuración
-42.4. Logging y signals
-42.5. Pipes
-42.6. Testing y distribución
+42. CLI APPLICATION DEVELOPMENT IN RUST — DE CERO A EXPERTO
+Alcance: desarrollo de aplicaciones CLI/TUI; Cargo, Regex, Big-O, async y systems programming se integran sin duplicar sus bloques.
+Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
+
+— FUNDAMENTOS Y ARQUITECTURA CLI —
+42.1. CLI vs TUI vs daemon; filosofía Unix y composición
+42.2. Casos de uso y contratos de interfaz
+42.3. Diseño command → parse → validate → execute → report
+42.4. Binarios, crates de biblioteca y separación de responsabilidades
+42.5. UX y consistencia de comandos
+42.6. Laboratorio: especificación de una utilidad Linux
+
+— ARGUMENTOS NATIVOS —
+42.7. std::env::args y args_os
+42.8. OsString, Unicode y rutas no UTF-8
+42.9. Flags, opciones y argumentos posicionales sin frameworks
+42.10. Parsing manual y sus límites
+42.11. Argumentos inválidos y mensajes de uso
+
+— PARSING PROFESIONAL CON CLAP —
+42.12. Añadir clap con Cargo y seleccionar features
+42.13. Parser derive frente a builder API
+42.14. Parser, Args y Subcommand
+42.15. ArgAction, valores predeterminados y valores múltiples
+42.16. ValueEnum y parseo tipado
+42.17. value_parser, validadores y errores de entrada
+42.18. Conflictos, requisitos y grupos de argumentos
+42.19. Subcommands anidados y aliases
+42.20. Help, version, long_help y plantillas
+42.21. Deprecaciones y evolución compatible de la CLI
+42.22. Laboratorio: CLI con subcomandos anidados
+
+— ENTRADA, SALIDA Y CONTRATOS UNIX —
+42.23. stdin, stdout y stderr desde std::io
+42.24. Read, BufRead y Write en CLI
+42.25. Lectura incremental de stdin y streaming
+42.26. Flush, buffering y latencia
+42.27. ExitCode y códigos de salida semánticos
+42.28. Broken pipe y consumidores que cierran temprano
+42.29. Redirecciones, pipes y encadenamiento
+42.30. Salida humana frente a salida para máquinas
+42.31. Formato JSON, JSON Lines, CSV y texto tabular
+42.32. Quiet, verbose, dry-run y modo no interactivo
+42.33. Laboratorio: filtro compatible con pipelines
+
+— CONFIGURACIÓN Y ENTORNO —
+42.34. std::env::var y var_os
+42.35. Precedencia CLI > entorno > archivo > defaults
+42.36. Archivos TOML, YAML y JSON con serde
+42.37. Configuración XDG y rutas multiplataforma
+42.38. Validación de configuración y errores contextualizados
+42.39. Perfiles, múltiples entornos y overrides
+42.40. Recarga y persistencia atómica de configuración
+42.41. Laboratorio: CLI configurable y reproducible
+
+— FILESYSTEM Y DATOS —
+42.42. Path, PathBuf y normalización segura
+42.43. Metadatos, permisos y enlaces simbólicos
+42.44. Recorrido de directorios con walkdir
+42.45. Glob patterns y filtrado de archivos
+42.46. Lectura y escritura eficiente de archivos grandes
+42.47. Archivos temporales y escrituras atómicas
+42.48. Colisiones, race conditions y TOCTOU
+42.49. Tratamiento de archivos binarios y codificación
+42.50. Laboratorio: buscador y transformador de archivos
+
+— ERRORES Y DIAGNÓSTICO —
+42.51. Diseño de errores para herramientas CLI
+42.52. anyhow para aplicaciones y context
+42.53. thiserror para errores tipados
+42.54. Conversión de errores y operador ?
+42.55. Mensajes para usuario frente a diagnósticos técnicos
+42.56. Cadenas de causas y backtraces
+42.57. Exit status por clase de error
+42.58. Panic vs error recuperable
+42.59. Laboratorio: errores accionables y testeables
+
+— LOGGING Y OBSERVABILIDAD —
+42.60. log y env_logger: alcance y uso
+42.61. tracing: eventos, spans y niveles
+42.62. tracing-subscriber y filtros por entorno
+42.63. Logs estructurados y salida JSON
+42.64. Separar datos stdout de logs stderr
+42.65. Correlación y diagnósticos de operaciones
+42.66. Redacción de secretos en logs
+42.67. Laboratorio: CLI instrumentada
+
+— TERMINAL Y EXPERIENCIA DE USUARIO —
+42.68. Detección de TTY y no-TTY
+42.69. ANSI, color y NO_COLOR
+42.70. indicatif: barras de progreso y spinners
+42.71. Tablas y formato de salida adaptable
+42.72. Diálogos, confirmaciones y prompts
+42.73. Modo batch sin interacción
+42.74. Anchura de terminal, Unicode y accesibilidad
+42.75. Laboratorio: experiencia interactiva y scriptable
+
+— TUI CON RATATUI —
+42.76. Diferencias entre CLI y TUI
+42.77. ratatui: terminal, frame, widgets y layout
+42.78. crossterm: raw mode, eventos y restauración
+42.79. Arquitectura de estado y event loop
+42.80. Teclado, navegación y foco
+42.81. Tablas, listas, gráficos y paneles
+42.82. Redimensionamiento, refresh y rendimiento
+42.83. Eventos async y actualizaciones en vivo
+42.84. Restauración del terminal ante errores y panic
+42.85. Testing de estado y snapshots de interfaz
+42.86. Laboratorio: monitor TUI de servicios
+
+— PROCESOS, SEÑALES Y LINUX —
+42.87. std::process::Command y Stdio
+42.88. Argumentos seguros sin invocar shell
+42.89. Captura y streaming de stdout/stderr de hijos
+42.90. Pipelines entre procesos y prevención de deadlocks
+42.91. Timeouts, cancelación y limpieza de hijos
+42.92. Signals y Ctrl+C
+42.93. Graceful shutdown y códigos de terminación
+42.94. Permisos, usuarios y privilegios mínimos
+42.95. Integración con systemd y journald
+42.96. Laboratorio: administrador CLI de procesos
+
+— ASYNC, RED Y AUTOMATIZACIÓN —
+42.97. Cuándo elegir sync frente a async en CLI
+42.98. Tokio runtime y tareas en comandos
+42.99. Clientes HTTP con reqwest
+42.100. Timeouts, retries y backoff
+42.101. Descargas streaming y límites de memoria
+42.102. Concurrencia acotada y rate limiting
+42.103. Cancelación y cierre ordenado de tareas
+42.104. Autenticación de API y gestión de credenciales
+42.105. Laboratorio: cliente de API robusto
+
+— SEGURIDAD DE HERRAMIENTAS CLI —
+42.106. Threat modeling de una CLI
+42.107. Validación de entradas y paths
+42.108. Command injection y shell escaping
+42.109. Secretos: entorno, archivos y entrada interactiva
+42.110. Permisos de archivos y umask
+42.111. Symlinks y escrituras seguras
+42.112. Límites de recursos y entradas maliciosas
+42.113. Dependencias, cargo audit y licencias
+42.114. Laboratorio: revisión de seguridad de una utilidad
+
+— TESTING Y CALIDAD —
+42.115. Unit tests de parsing y lógica de negocio
+42.116. Integration tests de binarios
+42.117. assert_cmd y predicates
+42.118. assert_fs y directorios temporales
+42.119. Golden tests y snapshots de salida
+42.120. Tests de stdin/stdout/stderr y exit codes
+42.121. Pruebas de pipes y ejecución no interactiva
+42.122. Tests de señales y procesos con aislamiento
+42.123. Property-based testing y fuzzing de entradas
+42.124. CI con fmt, clippy y cargo test
+42.125. Laboratorio: suite E2E reproducible
+
+— RENDIMIENTO Y DEPURACIÓN —
+42.126. Análisis de complejidad de operaciones CLI: remisión a Big-O
+42.127. Streaming vs cargar archivos completos
+42.128. Buffer sizes, asignaciones y zero-copy
+42.129. Benchmarks con Criterion
+42.130. perf y flamegraphs en Fedora
+42.131. Profiling de CPU y memoria
+42.132. Diagnósticos con RUST_BACKTRACE, gdb y lldb
+42.133. Laboratorio: optimización medida de un filtro
+
+— COMPLETIONS Y DOCUMENTACIÓN —
+42.134. clap_complete para Bash, Zsh y Fish
+42.135. Generación e instalación de completions
+42.136. Ayuda contextual y ejemplos de uso
+42.137. Man pages con clap_mangen
+42.138. README, tutoriales y ejemplos de shell
+42.139. Compatibilidad de scripts y versionado de comandos
+42.140. Laboratorio: help, completions y man page
+
+— DISTRIBUCIÓN Y FEDORA —
+42.141. Build release, strip y perfiles Cargo
+42.142. Targets Linux GNU y musl: diferencias
+42.143. Instalación local y rutas de ejecutables
+42.144. RPM SPEC para aplicaciones Rust
+42.145. Integración con Fedora packaging y rpmbuild
+42.146. systemd user/system units cuando corresponda
+42.147. Archivos de configuración, man pages y completions en RPM
+42.148. Firma, checksums y procedencia de artefactos
+42.149. Laboratorio: empaquetar e instalar RPM en Fedora
+
+— CI/CD Y MANTENIMIENTO —
+42.150. GitHub Actions: fmt, clippy, tests y build
+42.151. Matriz de targets y MSRV
+42.152. Cache de dependencias y builds reproducibles
+42.153. Tags, SemVer y changelog
+42.154. GitHub Releases y publicación de binarios
+42.155. SBOM, auditoría y supply chain
+42.156. Compatibilidad hacia atrás y migración de flags
+42.157. Laboratorio: pipeline de release
+
+— ARQUITECTURA AVANZADA Y EXTENSIBILIDAD —
+42.158. Separar core library, adapters y frontend CLI
+42.159. Diseño de comandos extensibles
+42.160. Plugins y subcomandos externos: riesgos y contratos
+42.161. Múltiples binarios en un workspace
+42.162. APIs para automatización y salida estable
+42.163. Telemetría opt-in y privacidad
+42.164. Internacionalización y mensajes de error
+42.165. Laboratorio: workspace multi-binario
+
+— PROYECTOS PROGRESIVOS Y FINAL —
+42.166. Proyecto 1: conversor de archivos con flags y stdin
+42.167. Proyecto 2: grep simplificado integrado con bloque Regex
+42.168. Proyecto 3: analizador de logs con JSON Lines
+42.169. Proyecto 4: administrador de procesos y servicios Linux
+42.170. Proyecto 5: cliente HTTP/API con configuración y retries
+42.171. Proyecto 6: dashboard TUI con ratatui
+42.172. Proyecto final: herramienta Fedora con subcommands, tests y RPM
+42.173. Proyecto final: completions, man pages y CI/CD
+42.174. Proyecto final: revisión de seguridad, benchmarks y release
+42.175. Checkpoint: auditoría de calidad y mantenimiento profesional
 
 43. EXPRESIONES REGULARES EN RUST — USO E INTEGRACIÓN
 43.1. Papel de regex dentro de aplicaciones Rust; relación con el PATH específico de Regex
@@ -533,164 +744,233 @@ profesional de crates y aplicaciones.
 43.45. Laboratorio — comparación Regex vs RegexSet y coste de recompilación
 43.46. Mini proyecto — grep simplificado idiomático con archivos, iterators, errores y regex
 
-44. SERIALIZACIÓN Y DATOS
-44.1. JSON, TOML, YAML, CSV y formatos binarios
-44.2. serde
-44.3. Serialize/Deserialize
-44.4. Custom serializers
-44.5. Zero-copy cuando corresponda
+44. BIG-O EN RUST — APLICACIÓN Y ANÁLISIS
+44.1. Papel de Big-O al diseñar y revisar código Rust; relación con el PATH específico de Big-O
+44.2. Alcance: aplicar complejidad algorítmica en Rust, no volver a enseñar la teoría matemática de Big-O
+44.3. Traducir operaciones Rust a un modelo de coste: acceso, recorrido, comparación, hashing, allocation y copia/move
+44.4. Distinguir complejidad asintótica, coste constante y rendimiento real en Rust
+44.5. Analizar secuencias de statements, branches y loops en código Rust
+44.6. for, while, loop y ranges: derivar la complejidad según el número de iteraciones
+44.7. Loops anidados, dependientes e independientes
+44.8. Recursividad en Rust: identificar recurrencias sin reenseñar su teoría matemática
+44.9. Ownership, borrowing, Copy y Clone: qué cambia el coste y qué no cambia Big-O
+44.10. move semantics: evitar asumir que todo move copia los datos
+44.11. Clone explícito y su complejidad dependiente del tipo
+44.12. String, &str, UTF-8 y coste de operaciones de texto
+44.13. Vec<T>: indexación, push/pop, insert/remove y crecimiento amortizado
+44.14. VecDeque<T>: acceso y operaciones en extremos
+44.15. LinkedList<T>: complejidad teórica frente a costes prácticos y cache locality
+44.16. HashMap<K,V> y HashSet<T>: caso promedio, peor caso, hashing y capacidad
+44.17. BTreeMap<K,V> y BTreeSet<T>: operaciones logarítmicas y comparación con hashing
+44.18. BinaryHeap<T>: peek, push y pop
+44.19. Elegir collections de std según complejidad y patrón real de acceso
+44.20. Capacity, reserve, reallocations y complejidad amortizada
+44.21. Iterators: coste de map, filter, enumerate, zip, chain, take y skip
+44.22. Lazy evaluation: por qué una cadena de iterators no implica múltiples recorridos automáticamente
+44.23. collect y coste de materializar una secuencia
+44.24. fold, reduce, sum, any, all, find y short-circuiting
+44.25. Iterator adapters anidados y composición de complejidades
+44.26. slices: indexación, iteración, split y búsquedas
+44.27. sort, sort_unstable y familia de operaciones de ordenación: consultar garantías de complejidad de la API
+44.28. binary_search sobre slices ordenados y coste de mantener el orden
+44.29. contains, position y búsquedas lineales
+44.30. Hashing, comparación y claves costosas: incorporar el coste de K a la complejidad
+44.31. Generics y monomorphization: relación con rendimiento sin alterar por sí sola la clase Big-O
+44.32. Static dispatch vs dynamic dispatch: constantes de ejecución frente a complejidad asintótica
+44.33. Box, Rc y Arc: operaciones, reference counting y costes relevantes
+44.34. Mutex/RwLock/atomics: distinguir complejidad algorítmica de contention y synchronization cost
+44.35. Threads y paralelismo: work, span y por qué más threads no cambian automáticamente Big-O
+44.36. async/await: complejidad del algoritmo frente a scheduling, polling e I/O
+44.37. Allocations y memoria auxiliar: introducción a space complexity aplicada a tipos Rust
+44.38. Stack vs heap y complejidad espacial de estructuras y algoritmos
+44.39. In-place vs allocating algorithms
+44.40. Recorrer por referencia vs consumir con into_iter: impacto de ownership sin confundirlo con Big-O
+44.41. APIs zero-copy y reducción de constantes/allocations
+44.42. Detectar O(n²) accidental en código idiomático aparentemente compacto
+44.43. Anti-pattern: contains/find dentro de un loop y alternativas con HashSet/HashMap
+44.44. Anti-pattern: insert/remove repetidos en el centro de Vec
+44.45. Anti-pattern: concatenación/reconstrucción repetida de String y buffers
+44.46. Anti-pattern: collect intermedio innecesario dentro de pipelines
+44.47. Transformar algoritmos Rust de O(n²) a O(n), O(n log n) u otra clase mejor cuando sea posible
+44.48. Time-space trade-offs usando maps, sets, caches y precomputación
+44.49. Leer documentación de std/crates para obtener garantías de complejidad sin asumirlas
+44.50. Big-O de crates externas: distinguir garantías documentadas de inferencias sobre implementación
+44.51. cargo test para validar corrección antes de optimizar
+44.52. Benchmarking con Criterion y/o herramientas equivalentes para contrastar comportamiento empírico
+44.53. cargo bench, perfiles release y prevención de benchmarks engañosos
+44.54. Profiling con perf/flamegraphs: localizar costes reales después del análisis asintótico
+44.55. Relación entre Big-O, cache locality, branch prediction, allocations y constantes
+44.56. Tamaños pequeños vs escalabilidad: cuándo una mejor clase asintótica puede no ser más rápida
+44.57. Diseñar benchmarks variando n para observar tendencias de crecimiento
+44.58. Testing de propiedades/invariantes durante una optimización algorítmica
+44.59. Documentar expectativas y garantías de complejidad en APIs Rust cuando formen parte del contrato
+44.60. Revisar una función Rust y justificar paso a paso su complejidad temporal y espacial
+44.61. Laboratorio — analizar operaciones de Vec, VecDeque, HashMap, BTreeMap y BinaryHeap
+44.62. Laboratorio — detectar y eliminar un O(n²) accidental con HashSet
+44.63. Laboratorio — comparar búsqueda lineal, HashMap y BTreeMap para distintos tamaños
+44.64. Laboratorio — comparar pipelines de iterators sin/con materializaciones intermedias
+44.65. Laboratorio — medir crecimiento con benchmarks sin confundir tiempo medido con notación Big-O
+44.66. Laboratorio — optimizar un procesamiento de texto manteniendo corrección y ownership idiomático
+44.67. Mini proyecto — analizador de rendimiento algorítmico de una aplicación Rust: hipótesis Big-O, benchmarks, profiling y conclusiones
 
-45. LOGGING, TRACING Y OBSERVABILITY
-45.1. Logging y niveles
-45.2. Structured logging
-45.3. tracing: spans/events/instrumentation
-45.4. Métricas
-45.5. Error observability
-45.6. Observabilidad async
+45. SERIALIZACIÓN Y DATOS
+45.1. JSON, TOML, YAML, CSV y formatos binarios
+45.2. serde
+45.3. Serialize/Deserialize
+45.4. Custom serializers
+45.5. Zero-copy cuando corresponda
 
-46. SEGURIDAD
-46.1. Memory safety
-46.2. Integer overflow y bounds checking
-46.3. Unsafe/FFI boundaries
-46.4. Dependency security y cargo audit
-46.5. Supply chain
-46.6. Secrets
-46.7. Parsing seguro
-46.8. DoS
-46.9. Secure API design
+46. LOGGING, TRACING Y OBSERVABILITY
+46.1. Logging y niveles
+46.2. Structured logging
+46.3. tracing: spans/events/instrumentation
+46.4. Métricas
+46.5. Error observability
+46.6. Observabilidad async
 
-47. DEPENDENCIAS Y SUPPLY CHAIN
-47.1. crates.io y SemVer
-47.2. Cargo.lock y dependency trees
-47.3. Features
-47.4. MSRV
-47.5. Auditing y licensing
-47.6. Reproducible builds
-47.7. Publicación de crates
+47. SEGURIDAD
+47.1. Memory safety
+47.2. Integer overflow y bounds checking
+47.3. Unsafe/FFI boundaries
+47.4. Dependency security y cargo audit
+47.5. Supply chain
+47.6. Secrets
+47.7. Parsing seguro
+47.8. DoS
+47.9. Secure API design
 
-48. CROSS COMPILATION
-48.1. Targets y target triples
-48.2. rustup target
-48.3. Linkers y libc
-48.4. musl y static linking
-48.5. Cross compilation
-48.6. Builds reproducibles
+48. DEPENDENCIAS Y SUPPLY CHAIN
+48.1. crates.io y SemVer
+48.2. Cargo.lock y dependency trees
+48.3. Features
+48.4. MSRV
+48.5. Auditing y licensing
+48.6. Reproducible builds
+48.7. Publicación de crates
 
-49. NO_STD Y EMBEDDED — INTRODUCCIÓN
-49.1. std, core y alloc
-49.2. #![no_std]
-49.3. Panic handlers
-49.4. Allocators
-49.5. Bare metal
-49.6. Restricciones de embedded
+49. CROSS COMPILATION
+49.1. Targets y target triples
+49.2. rustup target
+49.3. Linkers y libc
+49.4. musl y static linking
+49.5. Cross compilation
+49.6. Builds reproducibles
 
-50. API / LIBRARY DESIGN
-50.1. Public API y encapsulation
-50.2. Traits/generics/error types
-50.3. SemVer y compatibility
-50.4. MSRV y feature flags
-50.5. Documentation/testing
-50.6. Evolución de una crate
+50. NO_STD Y EMBEDDED — INTRODUCCIÓN
+50.1. std, core y alloc
+50.2. #![no_std]
+50.3. Panic handlers
+50.4. Allocators
+50.5. Bare metal
+50.6. Restricciones de embedded
 
-51. ADVANCED TRAITS & TYPE SYSTEM
-51.1. HRTB y GATs
-51.2. Associated types/bounds
-51.3. RPIT y RPITIT
-51.4. impl Trait y dyn Trait
-51.5. Const generics
-51.6. Variance y subtyping
-51.7. Auto traits
-51.8. Límites del type system
+51. API / LIBRARY DESIGN
+51.1. Public API y encapsulation
+51.2. Traits/generics/error types
+51.3. SemVer y compatibility
+51.4. MSRV y feature flags
+51.5. Documentation/testing
+51.6. Evolución de una crate
 
-52. ASYNC INTERNO Y AVANZADO
-52.1. Transformación async → Future
-52.2. State machines y pinning
-52.3. Wake mechanism
-52.4. Executors/schedulers/work stealing
-52.5. Cancellation safety
-52.6. Backpressure y bounded concurrency
-52.7. Async synchronization
-52.8. Debugging async
+52. ADVANCED TRAITS & TYPE SYSTEM
+52.1. HRTB y GATs
+52.2. Associated types/bounds
+52.3. RPIT y RPITIT
+52.4. impl Trait y dyn Trait
+52.5. Const generics
+52.6. Variance y subtyping
+52.7. Auto traits
+52.8. Límites del type system
 
-53. CONCURRENCIA AVANZADA
-53.1. Shared state y message passing
-53.2. Atomics
-53.3. Lock-free structures y wait-free concepts
-53.4. Memory ordering
-53.5. Cache coherence y false sharing
-53.6. Contention
-53.7. Synchronization primitives
-53.8. Diseño y verificación
+53. ASYNC INTERNO Y AVANZADO
+53.1. Transformación async → Future
+53.2. State machines y pinning
+53.3. Wake mechanism
+53.4. Executors/schedulers/work stealing
+53.5. Cancellation safety
+53.6. Backpressure y bounded concurrency
+53.7. Async synchronization
+53.8. Debugging async
 
-54. UNSAFE EN PROFUNDIDAD
-54.1. Unsafe contracts e invariants
-54.2. Validity, aliasing y provenance
-54.3. Lifetimes manuales
-54.4. Raw allocation
-54.5. Initialization/destruction
-54.6. Pointer arithmetic
-54.7. Slices desde raw pointers
-54.8. FFI y concurrency
-54.9. Sound abstractions
-54.10. Miri
+54. CONCURRENCIA AVANZADA
+54.1. Shared state y message passing
+54.2. Atomics
+54.3. Lock-free structures y wait-free concepts
+54.4. Memory ordering
+54.5. Cache coherence y false sharing
+54.6. Contention
+54.7. Synchronization primitives
+54.8. Diseño y verificación
 
-55. RUST COMPILER / LANGUAGE INTERNALS
-55.1. Arquitectura rustc y query system
-55.2. HIR/MIR
-55.3. Type checking y trait solving
-55.4. Borrow checking
-55.5. Monomorphization
-55.6. LLVM/codegen
-55.7. Diagnostics
-55.8. Evolución del lenguaje
+55. UNSAFE EN PROFUNDIDAD
+55.1. Unsafe contracts e invariants
+55.2. Validity, aliasing y provenance
+55.3. Lifetimes manuales
+55.4. Raw allocation
+55.5. Initialization/destruction
+55.6. Pointer arithmetic
+55.7. Slices desde raw pointers
+55.8. FFI y concurrency
+55.9. Sound abstractions
+55.10. Miri
 
-56. DEBUGGING
-56.1. Compiler diagnostics
-56.2. RUST_BACKTRACE
-56.3. Logging/tracing
-56.4. gdb/lldb/rust-gdb/rust-lldb
-56.5. Core dumps
-56.6. Sanitizers
-56.7. Miri y Valgrind
-56.8. perf
-56.9. Debugging de concurrencia
+56. RUST COMPILER / LANGUAGE INTERNALS
+56.1. Arquitectura rustc y query system
+56.2. HIR/MIR
+56.3. Type checking y trait solving
+56.4. Borrow checking
+56.5. Monomorphization
+56.6. LLVM/codegen
+56.7. Diagnostics
+56.8. Evolución del lenguaje
 
-57. RUST PROFESIONAL
-57.1. Estructura de proyectos y workspaces
-57.2. Arquitectura y API boundaries
-57.3. Testing strategy y documentation
-57.4. CI/CD
-57.5. linting/formatting
-57.6. Dependency management/security
-57.7. Profiling/observability
-57.8. Releases y mantenimiento
+57. DEBUGGING
+57.1. Compiler diagnostics
+57.2. RUST_BACKTRACE
+57.3. Logging/tracing
+57.4. gdb/lldb/rust-gdb/rust-lldb
+57.5. Core dumps
+57.6. Sanitizers
+57.7. Miri y Valgrind
+57.8. perf
+57.9. Debugging de concurrencia
 
-58. PROYECTOS PROGRESIVOS
-58.1. CLI
-58.2. Parser
-58.3. grep simplificado
-58.4. Filesystem utility
-58.5. Aplicación multithreaded
-58.6. TCP/concurrent/async server
-58.7. REST service
-58.8. Serialization library
-58.9. FFI wrapper
-58.10. Custom iterator
-58.11. Procedural macro
-58.12. Synchronization primitive
-58.13. Systems utility
+58. RUST PROFESIONAL
+58.1. Estructura de proyectos y workspaces
+58.2. Arquitectura y API boundaries
+58.3. Testing strategy y documentation
+58.4. CI/CD
+58.5. linting/formatting
+58.6. Dependency management/security
+58.7. Profiling/observability
+58.8. Releases y mantenimiento
 
-59. PROYECTO FINAL — RUSTACEAN
-59.1. Workspace multi-crate
-59.2. Library + binaries
-59.3. Traits/generics y ownership/lifetimes complejos
-59.4. Concurrencia y async
-59.5. Networking y persistence
-59.6. Arquitectura de errores
-59.7. Observability
-59.8. Tests/benchmarks/profiling
-59.9. Unsafe justificado cuando sea necesario
-59.10. Documentación, CI/CD, packaging y release
+59. PROYECTOS PROGRESIVOS
+59.1. CLI
+59.2. Parser
+59.3. grep simplificado
+59.4. Filesystem utility
+59.5. Aplicación multithreaded
+59.6. TCP/concurrent/async server
+59.7. REST service
+59.8. Serialization library
+59.9. FFI wrapper
+59.10. Custom iterator
+59.11. Procedural macro
+59.12. Synchronization primitive
+59.13. Systems utility
+
+60. PROYECTO FINAL — RUSTACEAN
+60.1. Workspace multi-crate
+60.2. Library + binaries
+60.3. Traits/generics y ownership/lifetimes complejos
+60.4. Concurrencia y async
+60.5. Networking y persistence
+60.6. Arquitectura de errores
+60.7. Observability
+60.8. Tests/benchmarks/profiling
+60.9. Unsafe justificado cuando sea necesario
+60.10. Documentación, CI/CD, packaging y release
 
 ESTÁNDAR DE CADA LECCIÓN
 🎯 OBJETIVO

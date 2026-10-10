@@ -44,7 +44,8 @@ posteriormente en PATH especializados:
 - Rust;
 - Go;
 - JavaScript;
-- TypeScript.
+- TypeScript;
+- Java.
 
 Los PATH específicos reutilizarán esta teoría y se concentrarán en
 estructuras estándar, garantías documentadas, runtimes, implementaciones

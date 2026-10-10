@@ -445,6 +445,39 @@
 24.15 Too + adjective/adverb
 24.16 Adjective/adverb + enough
 24.17 -ed vs -ing adjectives
+24.18 Adjectives: descriptive and evaluative types
+24.19 Adjective categories: opinion, size, age, shape, colour, origin, material and purpose
+24.20 Attributive adjectives: before a noun
+24.21 Predicative adjectives: after linking verbs
+24.22 Attributive vs predicative adjective position
+24.23 Order of adjectives: general sequence before a noun
+24.24 Opinion adjectives vs factual adjectives
+24.25 Size, age and shape: adjective order
+24.26 Colour, origin and material: adjective order
+24.27 Purpose modifiers: noun modifiers vs adjectives
+24.28 Two or more adjectives: guided ordering practice
+24.29 Coordinate vs cumulative adjectives: introduction
+24.30 Commas and and between coordinate adjectives
+24.31 Gradable vs non-gradable adjectives: introduction
+24.32 Adverbs of manner
+24.33 Adverbs of place
+24.34 Adverbs of time
+24.35 Adverbs of frequency: types and meaning
+24.36 Adverbs of degree
+24.37 Adverbs of certainty and probability: introduction
+24.38 Focusing adverbs: only, also, even — introduction
+24.39 Sequence adverbs: first, then, finally
+24.40 Adverb formation: adjective + -ly
+24.41 Adverb spelling: -y to -ily and -le to -ly
+24.42 Adverbs without -ly: fast, hard, late
+24.43 Adjectives ending in -ly: friendly, lovely
+24.44 Hard vs hardly; late vs lately — introduction
+24.45 Adverbs modifying verbs, adjectives and other adverbs
+24.46 Comparative adverbs: faster, more carefully
+24.47 Superlative adverbs: fastest, most carefully
+24.48 Irregular adverb comparison: well, badly, far
+24.49 Adjective vs adverb: error diagnosis and correction
+24.50 Adjective and adverb classification laboratory
 
 25. Word Order
 25.1 Basic sentence order
@@ -467,6 +500,22 @@
 25.18 Give the book to me
 25.19 Give me the book vs Give the book to me
 25.20 Pronouns with two-object structures
+25.21 Adverb placement: initial, mid and final position
+25.22 Frequency adverbs before the main verb
+25.23 Frequency adverbs after be
+25.24 Adverbs with auxiliary and modal verbs
+25.25 Manner adverbs: position with verbs and objects
+25.26 Place adverbials: typical position
+25.27 Time adverbials: initial and final position
+25.28 Basic order of manner, place and time adverbials
+25.29 Adverbial order: flexibility and emphasis — introduction
+25.30 Degree adverbs before adjectives and adverbs
+25.31 Probably and certainly: basic sentence position
+25.32 Only, also and even: position and scope — introduction
+25.33 Never, rarely and always: frequency and position
+25.34 Adverbs in negative sentences and questions
+25.35 Adjective order vs adverbial order: comparison
+25.36 Adverb placement: guided correction laboratory
 
 26. Conjunctions and Clauses
 26.1 And
@@ -568,6 +617,9 @@
 29.10 Preposition-pattern review
 29.11 Phrasal-verb particle-position diagnosis
 29.12 Mixed nominal-and-clause laboratory
+29.13 Identify adjective types and apply the basic adjective order
+29.14 Classify adverbs by meaning and grammatical function
+29.15 Correct adjective order and adverb placement in A2 sentences
 
 30. Final A2 Grammar Integration
 30.1 Analyze the anatomy of an A2 sentence
@@ -606,3 +658,6 @@
 30.34 Cumulative A2 grammar checkpoint
 30.35 A2 → B1 boundary: what is mastered now?
 30.36 A2 → B1 boundary: what is deliberately deferred?
+30.37 Adjective categories and order: integrated review
+30.38 Adverb categories and placement: integrated review
+30.39 Adjective vs adverb order: cumulative correction laboratory

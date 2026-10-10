@@ -1,50 +1,64 @@
 name: rhcsa-rhel10-admin
-title: "RHCSA / Administración Red Hat Enterprise Linux 10 — 0 a experto práctico"
+title: RHCSA / Administración Red Hat Enterprise Linux 10 — 0 a experto en profundidad
 language: es
 platform:
-  primary: "Red Hat Enterprise Linux 10"
+  primary: Red Hat Enterprise Linux 10
   extensions:
-    - "Fedora"
-
+  - Fedora
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
-goal: "Administrar un servidor RHEL 10 real; RHCSA/EX200 es un hito, no el límite."
+goal: Administrar un servidor RHEL 10 real; RHCSA/EX200 es un hito, no el límite.
 certification:
   name: RHCSA
   exam: EX200
-  policy: "Contrastar siempre el alcance del examen con los objetivos oficiales vigentes."
+  policy: Contrastar siempre el alcance del examen con los objetivos oficiales vigentes.
 pedagogy:
-  opening: "🎯 OBJETIVO"
-  closing: "🧠 QUÉ DEBES RECORDAR"
-  closing_points: "3-7"
+  opening: 🎯 OBJETIVO
+  closing: 🧠 QUÉ DEBES RECORDAR
+  closing_points: 3-7
   optional_sections:
-    - "🧪 Laboratorio/ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-  depth: "profunda, didáctica, operacional y progresiva"
+  - 🧪 Laboratorio/ejemplos
+  - ⚠️ Errores frecuentes
+  - 💡 Idea importante
+  depth: de cero a experto en profundidad administrativa, didáctica, operacional y progresiva
   require_model_mental: true
   require_persistence: true
   require_verification: true
   require_troubleshooting: true
   require_recovery_when_applicable: true
+  require_installation_when_applicable: true
+  require_commands_and_config_paths: true
+  require_logs_and_journal_when_applicable: true
+  require_prechecks_and_postchecks: true
+  require_reboot_validation_when_applicable: true
+  require_safe_rollback_when_applicable: true
+  avoid_duplicate_specialized_paths: true
 scope:
   tags:
-    CORE: "Fundamentos Linux imprescindibles"
-    EX200: "Preparación directamente relacionada con RHCSA"
-    RHEL: "Administración RHEL"
-    RHEL+: "Administración RHEL más allá del examen"
-    FEDORA: "Extensión Fedora"
-    LINUX+: "Ampliación Linux"
+    CORE: Fundamentos Linux imprescindibles
+    EX200: Preparación directamente relacionada con RHCSA
+    RHEL: Administración RHEL
+    RHEL+: Administración RHEL más allá del examen
+    FEDORA: Extensión Fedora
+    LINUX+: Ampliación Linux
 storage:
-  core: [XFS, ext4, LVM, swap]
-  rhel_extended: [Stratis]
-  fedora_extended: [Btrfs]
+  core:
+  - XFS
+  - ext4
+  - LVM
+  - swap
+  rhel_extended:
+  - Stratis
+  fedora_extended:
+  - Btrfs
 software:
-  core: [RPM, DNF]
-  fedora_extended: [Flatpak]
+  core:
+  - RPM
+  - DNF
+  fedora_extended:
+  - Flatpak
 containers:
   runtime: Podman
   include_rootless: true
@@ -52,37 +66,47 @@ containers:
   include_quadlet: true
 operations:
   emphasize:
-    - installation
-    - hardware
-    - kernel
-    - boot
-    - systemd
-    - identity
-    - PAM/NSS
-    - filesystems
-    - storage
-    - networking
-    - SSH
-    - firewalld
-    - SELinux
-    - logging
-    - software
-    - scheduling
-    - NFS/AutoFS
-    - Apache_httpd
-    - Cockpit
-    - tuned
-    - containers
-    - performance
-    - hardening
-    - backup
-    - troubleshooting
-    - disaster_recovery
+  - installation
+  - hardware
+  - kernel
+  - boot
+  - systemd
+  - identity
+  - PAM/NSS
+  - filesystems
+  - storage
+  - networking
+  - SSH
+  - firewalld
+  - SELinux
+  - logging
+  - software
+  - scheduling
+  - NFS/AutoFS
+  - Apache_httpd
+  - Cockpit
+  - tuned
+  - containers
+  - performance
+  - hardening
+  - backup
+  - troubleshooting
+  - disaster_recovery
+  - linux_namespaces
+  - cgroups_v2
+  - linux_capabilities
+  - operational_runbooks
+  - root_cause_analysis
 bibliography:
   primary:
-    - "Asghar Ghori — RHCSA Red Hat Enterprise Linux 10 Training and Exam Preparation Guide (EX200), Fourth Edition"
-    - "Sander van Vugt — Red Hat RHCSA 10 Cert Guide: EX200"
+  - Asghar Ghori — RHCSA Red Hat Enterprise Linux 10 Training and Exam Preparation Guide (EX200), Fourth Edition
+  - 'Sander van Vugt — Red Hat RHCSA 10 Cert Guide: EX200'
   authority:
-    - "Objetivos oficiales vigentes EX200"
-    - "Documentación oficial vigente RHEL 10"
-    - "man/info y documentación instalada"
+  - Objetivos oficiales vigentes EX200
+  - Documentación oficial vigente RHEL 10
+  - man/info y documentación instalada
+  complementary_structural:
+  - 'Michael Hausenblas — Learning Modern Linux: A Handbook for the Cloud Native Practitioner'
+  - 'Carla Schroder — Linux Cookbook: Essential Skills for Linux Users and System & Network Administrators'
+  - 'Daniel J. Barrett — Linux Pocket Guide: Essential Commands'
+  - 'Kenneth Hess — Practical Linux System Administration: A Guide to Installation, Configuration, and Management'

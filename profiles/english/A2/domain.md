@@ -49,7 +49,8 @@ Include:
 - questions and word order;
 - verb complementation with `-ing` and `to`;
 - nouns, pronouns, possessives, articles, determiners and quantifiers;
-- adjectives and adverbs;
+- adjective types, attributive/predicative position, common adjective order and comparisons;
+- adverb types, formation, comparison and placement within A2 sentence patterns;
 - conjunctions, basic clauses, Zero and First Conditional;
 - prepositions;
 - phrasal-verb grammar at A2;
@@ -68,6 +69,28 @@ Exclude as independent course skills:
 - exam-preparation strategies.
 
 Vocabulary and natural sentences may appear only as vehicles for grammar.
+
+## Adjectives and adverbs: expanded A2 scope
+
+Block 24 develops adjective/adverb classification and morphology, adjective order,
+basic coordination and comparison. Block 25 develops adverb placement within sentences,
+including main verbs, be, auxiliaries, frequency, manner, place and time.
+
+Teach the adjective sequence opinion → size → age → shape → colour → origin →
+material → purpose as a useful default, not a categorical grammatical law.
+Explain that some purpose modifiers are nouns used attributively.
+
+Teach manner → place → time as a common unmarked ordering of adverbials,
+not a universal order of all adverb classes. Explain that position can change
+with meaning, emphasis and construction.
+
+Keep probability/focusing adverbs, gradability and adjective coordination
+introductory at A2; defer detailed scope, stylistic variation and advanced
+constraints to later levels. Use natural, short examples rather than forced
+strings with every adjective category.
+
+Include controlled classification, construction, reordering, comparison and
+troubleshooting in Checkpoint III and Final A2 integration.
 
 ## Level boundary
 
@@ -139,6 +162,8 @@ Typical A2 diagnoses include:
 - article/determiner choice;
 - countability/quantity;
 - adjective/adverb choice;
+- adjective category and order;
+- adverb type and sentence placement;
 - question word order;
 - preposition choice;
 - phrasal-verb particle position.

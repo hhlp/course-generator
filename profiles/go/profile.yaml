@@ -39,6 +39,9 @@ code:
 focus:
   - lenguaje Go y programación idiomática
   - biblioteca estándar
+  - complejidad algorítmica y Big O aplicado a Go
+  - expresiones regulares con regexp y RE2
+  - desarrollo profesional de CLI
   - packages, modules y workspaces
   - errores como valores
   - generics
@@ -78,3 +81,24 @@ quality:
   include_common_errors: true
   cumulative_labs: true
   final_project: true
+  preserve_all_existing_lessons: true
+  complexity_analysis_with_assumptions: true
+  regex_go_specific_not_general_theory: true
+  benchmarks_are_not_asymptotic_proofs: true
+  cli_standard_library_first: true
+
+specializations:
+  big_o:
+    focus: "Complejidad aplicada a estructuras, algoritmos y concurrencia en Go"
+    cross_reference_general_path: true
+    require_time_and_space_analysis: true
+    require_benchmarks_and_profiling: true
+  regex:
+    engine: "RE2 / Go regexp"
+    cross_reference_general_path: true
+    require_utf8_byte_index_explanation: true
+    require_tests_fuzzing_benchmarks: true
+  cli:
+    prefer_standard_library: true
+    require_signal_handling: true
+    require_exit_code_and_stream_testing: true

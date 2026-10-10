@@ -41,6 +41,14 @@ Su función es de profundización conceptual. No sustituye a ECMA-262 como refer
 - ESTree — especificación/convenio de AST del ecosistema JavaScript.
 - Documentación de ESLint y herramientas AST empleadas en laboratorios.
 
+## Big O y Regex aplicados a JavaScript (sin duplicar sus paths independientes)
+- ECMA-262 — especificación normativa de Array, Map, Set, String y RegExp; distinguir garantías normativas de costes dependientes del motor.
+- MDN Web Docs — referencia de `RegExp`, flags, métodos `String` y colecciones JavaScript; verificar compatibilidad por versión.
+- Documentación oficial de Node.js — `perf_hooks`, Inspector, CPU profiling, benchmarks, streams y Worker Threads.
+- Documentación técnica oficial de V8 — rendimiento de RegExp, JIT, estructuras internas y garbage collection cuando proceda.
+
+Los libros especializados de teoría de expresiones regulares pertenecen exclusivamente al learning path Regex y **no forman parte de la bibliografía de JavaScript**. Big O se estudia aquí aplicado al código JavaScript, sin reproducir el curso teórico independiente.
+
 ## Mapa de uso de la bibliografía
 | Fuente | Función principal |
 |---|---|

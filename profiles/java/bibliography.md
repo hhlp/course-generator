@@ -105,13 +105,25 @@ Temas prioritarios:
 
 ---
 
+## Big-O — aplicación dentro de Java
+
+Big-O dispone de un PATH especializado independiente. Este curso de Java **no duplica la teoría general de complejidad algorítmica**.
+
+En Java se estudia cómo aplicar ese conocimiento a código y APIs concretas: arrays, Collections, hashing, árboles, queues/deques, Strings, Streams, recursividad, I/O, JDBC, concurrencia y decisiones de rendimiento. También se distingue explícitamente el análisis asintótico de la medición empírica con JMH y de factores propios de la JVM como JIT, GC, allocations y locality.
+
+**Bloque principal:** 12.
+
+Referencias Java de apoyo: *Core Java, Volumes I & II*, *Java Generics and Collections*, *Think Java* y *Java Performance*. Para la teoría matemática y algorítmica completa se utiliza el PATH Big-O.
+
+---
+
 ## Programación funcional
 
 ### Ben Weidig — *A Functional Approach to Java*
 
 Referencia principal para el salto desde lambdas/Streams hacia pensamiento funcional en Java.
 
-**Bloques principales:** 12–14.
+**Bloques principales:** 13–15.
 
 Temas:
 - funciones y composición;
@@ -130,7 +142,7 @@ Temas:
 
 Referencia especializada para concurrencia moderna.
 
-**Bloques principales:** 22–28.
+**Bloques principales:** 23–29.
 
 El PATH debe usarla para conectar:
 `Thread → sincronización → JMM → java.util.concurrent → Executors → Future →
@@ -147,7 +159,7 @@ documentación del JDK utilizado.
 
 Referencia principal de performance.
 
-**Bloques principales:** 38–44, 49 y 52.
+**Bloques principales:** 39–45, 50 y 53.
 
 Temas:
 - JVM;
@@ -171,7 +183,7 @@ flags y herramientas evolucionan entre versiones.
 Referencia para conectar conocimiento del lenguaje con diseño mantenible, testing,
 refactoring y organización de aplicaciones.
 
-**Bloques principales:** 34, 45–47, 51 y proyectos.
+**Bloques principales:** 35, 46–48, 52 y proyectos.
 
 ---
 
@@ -187,7 +199,7 @@ Para asegurar que el PATH no omita capítulos del libro troncal, se estudian exp
 - AWT, Swing y Graphics2D, aunque JavaFX siga siendo la GUI principal del curso;
 - Foreign Function & Memory API (FFM) e interoperabilidad nativa.
 
-**Bloques principales añadidos:** 54–59, además de la ampliación del bloque 7.
+**Bloques principales añadidos:** 55–60, además de la ampliación del bloque 7.
 
 ---
 

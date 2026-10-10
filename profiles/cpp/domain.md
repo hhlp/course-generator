@@ -821,3 +821,33 @@ runtime
 ↓
 sistema Linux
 ```
+
+## 54. Bloque 9 — Regex aplicada a C++
+
+Este bloque enseña a utilizar expresiones regulares en programas C++23. No vuelve a impartir la teoría formal ni el catálogo general de expresiones del PATH Regex. Parte de patrones ya conocidos y explica la API de `<regex>`, sus tipos, sobrecargas, iteradores, opciones, errores y garantías.
+
+Progresión: `std::regex` → `std::regex_match`/`search`/`replace` → capturas y `match_results` → iteradores → archivos/logs → validación y pruebas → coste, backtracking y alternativas → proyecto.
+
+En los laboratorios se debe compilar con GCC y Clang, usar entradas válidas y malformadas, documentar la gramática empleada, medir patrones costosos sin exponer servicios públicos y evitar asumir soporte Unicode universal. Explicar por qué un parser específico o `std::from_chars` puede ser mejor opción.
+
+Proyecto 9.30: analizador de logs, con biblioteca reutilizable, CLI, pruebas de coincidencia/extracción, manejo de errores, CMake, sanitizers y documentación.
+
+## 55. Bloque 10 — Big-O aplicada a C++
+
+El PATH general de Big-O proporciona la teoría matemática. Este bloque se centra en calcular y comprobar costes de código C++ real y en interpretar las garantías normativas de la STL.
+
+Diferenciar en cada caso: coste temporal, coste espacial, promedio, peor caso, coste amortizado, invalidación de iteradores y coste real de memoria/caché. Para contenedores, comparar operaciones concretas en lugar de afirmar que un contenedor es siempre más rápido.
+
+Progresión: análisis de funciones → contenedores y asignaciones → algoritmos STL/Ranges → estructuras y grafos → costes de compilación → benchmarks con `std::chrono`/Google Benchmark → `perf` → decisiones de diseño.
+
+Un benchmark debe declarar hardware, compilador, versión, flags, tamaños, distribución de entradas, repeticiones y posibles fuentes de ruido; no confundir observación experimental con garantía asintótica.
+
+Proyecto 10.41: banco de pruebas de estructuras y algoritmos, con datasets reproducibles, pruebas de corrección, CMake, mediciones comparables, profiling y análisis de resultados.
+
+## 56. Conexiones transversales y orden de estudio
+
+Los identificadores 1–8 permanecen intactos para conservar los proyectos y dependencias existentes. Los bloques 9 y 10 se agregan al final de `initial.txt`, pero Big-O puede estudiarse una vez adquiridos los fundamentos de contenedores y algoritmos del Bloque 1. Regex requiere strings, iteradores, archivos y manejo de errores.
+
+Vincular Regex con parsing (1.25) y procesamiento de archivos (1.24); Big-O con algoritmos y contenedores (1.28–1.29, 3.26–3.29), Ranges (4.7–4.11), profiling (8.17–8.20) y el proyecto final (8.26).
+
+Los bloques nuevos deben respetar las mismas secciones pedagógicas, exactitud bibliográfica, requisitos de compilación, laboratorios y validación establecidos para el resto del PATH.

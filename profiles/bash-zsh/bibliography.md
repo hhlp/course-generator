@@ -2,25 +2,31 @@
 
 ## 1. Criterio bibliográfico
 
-La bibliografía del PATH se divide en cinco categorías compatibles con `profile.yaml`:
+La bibliografía del PATH se divide en cinco categorías compatibles con
+`profile.yaml`:
 
 - **Principal** — material pedagógico base para aprender Bash y Zsh.
-- **Normativa** — especificaciones que definen comportamiento portable o contractual.
-- **Motor** — documentación y código fuente de los propios shells para internals.
-- **Profundización** — obras y guías para ampliar diseño, uso avanzado y práctica.
-- **Consulta** — manuales, man pages y documentación auxiliar para resolver dudas concretas.
+- **Normativa** — especificaciones que definen comportamiento portable o
+  contractual.
+- **Motor** — documentación y código fuente de los propios shells para
+  internals.
+- **Profundización** — obras y guías para ampliar diseño, uso avanzado y
+  práctica.
+- **Consulta** — manuales, man pages y documentación auxiliar para
+  resolver dudas concretas.
 
-Las fuentes oficiales y normativas tienen prioridad sobre libros o tutoriales cuando exista una discrepancia técnica.
+Las fuentes oficiales y normativas tienen prioridad sobre libros o
+tutoriales cuando exista una discrepancia técnica.
 
----
+------------------------------------------------------------------------
 
 # 2. PRINCIPAL
 
 ## P1. GNU Bash Reference Manual
 
-**Autoría:** GNU Project / Free Software Foundation; Bash mantenido por Chet Ramey y colaboradores.
-**Obra:** *Bash Reference Manual*.
-**Versión de referencia actual verificada:** Bash 5.3, Edition 5.3, 18 May 2025.
+**Autoría:** GNU Project / Free Software Foundation; Bash mantenido por
+Chet Ramey y colaboradores. **Obra:** *Bash Reference Manual*. **Versión
+de referencia actual verificada:** Bash 5.3, Edition 5.3, 18 May 2025.
 
 Uso principal:
 
@@ -42,15 +48,16 @@ Uso principal:
 - programmable completion;
 - Bash-specific features.
 
-Debe ser la fuente principal para cualquier afirmación específica sobre Bash.
+Debe ser la fuente principal para cualquier afirmación específica sobre
+Bash.
 
----
+------------------------------------------------------------------------
 
 ## P2. The Z Shell Manual
 
-**Autoría original:** Paul Falstad; Zsh Development Group y colaboradores.
-**Obra:** *The Z Shell Manual*.
-**Versión de referencia actual verificada:** Zsh 5.9.2, updated/released 12 July 2026.
+**Autoría original:** Paul Falstad; Zsh Development Group y
+colaboradores. **Obra:** *The Z Shell Manual*. **Versión de referencia
+actual verificada:** Zsh 5.9.2, updated/released 12 July 2026.
 
 Uso principal:
 
@@ -74,17 +81,16 @@ Uso principal:
 - job control;
 - emulation modes.
 
-Debe ser la fuente principal para cualquier afirmación específica sobre Zsh.
+Debe ser la fuente principal para cualquier afirmación específica sobre
+Zsh.
 
----
+------------------------------------------------------------------------
 
 ## P3. Kiddle, Oliver; Peek, Jerry; Stephenson, Peter — From Bash to Z Shell
 
 **Título:** *From Bash to Z Shell: Conquering the Command Line*.
-**Editorial:** Apress.
-**Edición:** 1st edition.
-**Publicación:** 2004/2005.
-**ISBN:** 978-1-59059-376-9.
+**Editorial:** Apress. **Edición:** 1st edition. **Publicación:**
+2004/2005. **ISBN:** 978-1-59059-376-9.
 
 Uso recomendado:
 
@@ -97,16 +103,18 @@ Uso recomendado:
 - shell functions;
 - comparación de ambos shells.
 
-Aunque la obra es anterior a las versiones actuales, sigue siendo especialmente valiosa por tratar Bash y Zsh conjuntamente. Los detalles dependientes de versión deben verificarse en los manuales upstream actuales.
+Aunque la obra es anterior a las versiones actuales, sigue siendo
+especialmente valiosa por tratar Bash y Zsh conjuntamente. Los detalles
+dependientes de versión deben verificarse en los manuales upstream
+actuales.
 
----
+------------------------------------------------------------------------
 
 # 3. NORMATIVA
 
 ## N1. POSIX.1-2024 — Shell Command Language
 
-**Organización:** The Open Group / IEEE.
-**Estándar:** POSIX.1-2024.
+**Organización:** The Open Group / IEEE. **Estándar:** POSIX.1-2024.
 **Sección principal:** Shell Command Language.
 
 Uso obligatorio para:
@@ -128,9 +136,10 @@ Uso obligatorio para:
 - exit status;
 - comportamiento de utilities shell definidas por POSIX.
 
-No debe utilizarse POSIX para atribuir a Bash o Zsh extensiones que el estándar no define.
+No debe utilizarse POSIX para atribuir a Bash o Zsh extensiones que el
+estándar no define.
 
----
+------------------------------------------------------------------------
 
 ## N2. POSIX.1-2024 — Base Definitions
 
@@ -146,14 +155,14 @@ Uso recomendado para conceptos transversales:
 - locale;
 - regular expression definitions cuando una utilidad POSIX las requiera.
 
----
+------------------------------------------------------------------------
 
 # 4. MOTOR
 
 ## M1. GNU Bash source tree
 
-**Proyecto:** GNU Bash.
-**Fuente:** código fuente upstream correspondiente a la versión estudiada.
+**Proyecto:** GNU Bash. **Fuente:** código fuente upstream
+correspondiente a la versión estudiada.
 
 Uso:
 
@@ -168,14 +177,16 @@ Uso:
 - Readline integration;
 - tracing de implementación.
 
-La estructura interna puede cambiar entre versiones. Los nombres de archivos, funciones y estructuras deben verificarse contra el source utilizado antes de incluirse en una lección.
+La estructura interna puede cambiar entre versiones. Los nombres de
+archivos, funciones y estructuras deben verificarse contra el source
+utilizado antes de incluirse en una lección.
 
----
+------------------------------------------------------------------------
 
 ## M2. Zsh source tree
 
-**Proyecto:** Zsh.
-**Fuente:** código fuente upstream correspondiente a la versión estudiada.
+**Proyecto:** Zsh. **Fuente:** código fuente upstream correspondiente a
+la versión estudiada.
 
 Uso:
 
@@ -189,9 +200,10 @@ Uso:
 - ZLE;
 - completion internals.
 
-Al igual que en Bash, las referencias concretas al source deben verificarse contra la versión real.
+Al igual que en Bash, las referencias concretas al source deben
+verificarse contra la versión real.
 
----
+------------------------------------------------------------------------
 
 ## M3. Bash CHANGES / NEWS / release documentation
 
@@ -202,9 +214,10 @@ Uso:
 - identificar comportamiento dependiente de versión;
 - estudiar evolución del shell.
 
-No sustituye al Reference Manual para describir el comportamiento vigente.
+No sustituye al Reference Manual para describir el comportamiento
+vigente.
 
----
+------------------------------------------------------------------------
 
 ## M4. Zsh NEWS / ChangeLog / release documentation
 
@@ -215,16 +228,14 @@ Uso equivalente para:
 - cambios en completion, ZLE, globbing o módulos;
 - compatibilidad.
 
----
+------------------------------------------------------------------------
 
 # 5. PROFUNDIZACIÓN
 
 ## D1. Newham, Cameron — Learning the bash Shell, 3rd Edition
 
-**Título:** *Learning the bash Shell, Third Edition*.
-**Autor:** Cameron Newham.
-**Editorial:** O'Reilly Media.
-**Publicación:** March 2005.
+**Título:** *Learning the bash Shell, Third Edition*. **Autor:** Cameron
+Newham. **Editorial:** O’Reilly Media. **Publicación:** March 2005.
 **ISBN:** 978-0-596-00965-6.
 
 Uso recomendado:
@@ -238,16 +249,16 @@ Uso recomendado:
 - customization;
 - debugging.
 
-La edición cubre una generación anterior de Bash; cualquier detalle específico de versión debe contrastarse con el GNU Bash Reference Manual actual.
+La edición cubre una generación anterior de Bash; cualquier detalle
+específico de versión debe contrastarse con el GNU Bash Reference Manual
+actual.
 
----
+------------------------------------------------------------------------
 
 ## D2. Albing, Carl; Vossen, JP — bash Cookbook, 2nd Edition
 
-**Título:** *bash Cookbook, 2nd Edition*.
-**Autores:** Carl Albing, JP Vossen.
-**Editorial:** O'Reilly Media.
-**Publicación:** October 2017.
+**Título:** *bash Cookbook, 2nd Edition*. **Autores:** Carl Albing, JP
+Vossen. **Editorial:** O’Reilly Media. **Publicación:** October 2017.
 
 Uso recomendado:
 
@@ -260,16 +271,16 @@ Uso recomendado:
 - scripting real;
 - recetas que después deben explicarse desde el modelo formal del shell.
 
-No debe convertirse en fuente normativa cuando contradiga documentación upstream.
+No debe convertirse en fuente normativa cuando contradiga documentación
+upstream.
 
----
+------------------------------------------------------------------------
 
 ## D3. Kochan, Stephen G.; Wood, Patrick — Shell Programming in Unix, Linux and OS X, 4th Edition
 
-**Editorial:** Addison-Wesley Professional.
-**Edición:** 4th.
-**Publicación:** 2016.
-**ISBN-13:** 978-0-13-449668-9 (eBook) / 978-0-13-449600-9 (print).
+**Editorial:** Addison-Wesley Professional. **Edición:** 4th.
+**Publicación:** 2016. **ISBN-13:** 978-0-13-449668-9 (eBook) /
+978-0-13-449600-9 (print).
 
 Uso recomendado:
 
@@ -280,14 +291,14 @@ Uso recomendado:
 - debugging;
 - relación entre shell y utilities.
 
-Útil especialmente en bloques de portabilidad y fundamentos previos a extensiones Bash/Zsh.
+Útil especialmente en bloques de portabilidad y fundamentos previos a
+extensiones Bash/Zsh.
 
----
+------------------------------------------------------------------------
 
-## D4. Stephenson, Peter — A User's Guide to the Z-Shell
+## D4. Stephenson, Peter — A User’s Guide to the Z-Shell
 
-**Autor:** Peter Stephenson.
-**Obra:** *A User's Guide to the Z-Shell*.
+**Autor:** Peter Stephenson. **Obra:** *A User’s Guide to the Z-Shell*.
 **Fecha:** 2003.
 
 Uso recomendado:
@@ -302,9 +313,92 @@ Uso recomendado:
 - features interactivas;
 - explicación pedagógica de Zsh.
 
-Es una guía histórica muy valiosa pero no reemplaza al manual Zsh 5.9.2 para comportamiento actual.
+Es una guía histórica muy valiosa pero no reemplaza al manual Zsh 5.9.2
+para comportamiento actual.
 
----
+------------------------------------------------------------------------
+
+## D5. Varma, Jayant; Johnson, Chris F. A. — Pro Bash, 3rd Edition
+
+**Título:** *Pro Bash: Learn to Script and Program the GNU/Linux Shell, Third Edition*.
+**Autores:** Jayant Varma y Chris F. A. Johnson.
+
+Uso recomendado:
+
+- programación y scripting de Bash desde los fundamentos hasta técnicas avanzadas;
+- variables, parámetros, expansiones, arrays y funciones;
+- estructuras de control, entrada/salida y procesos;
+- diseño de scripts reutilizables, mantenibles y robustos;
+- automatización de tareas en GNU/Linux;
+- aplicación práctica mediante ejemplos y ejercicios.
+
+Esta obra complementa al *GNU Bash Reference Manual* y a *bash Cookbook*.
+No debe emplearse para atribuir a Zsh comportamientos exclusivos de Bash;
+las diferencias se contrastarán con *The Z Shell Manual*.
+
+------------------------------------------------------------------------
+
+## D6. Albing, Carl; Vossen, JP — bash Idioms
+
+**Título:** *bash Idioms: Write Powerful, Flexible, Readable Shell Scripts*.
+
+Uso recomendado:
+
+- patrones idiomáticos y expresivos en Bash;
+- refactorización, legibilidad y mantenimiento;
+- expansión de parámetros, control de flujo y funciones;
+- diseño de scripts robustos sin complejidad innecesaria.
+
+Aplicar especialmente en los bloques Bash 46 y 50, y en la revisión de antipatrones del bloque 95. No atribuir a Zsh las construcciones específicas de Bash.
+
+------------------------------------------------------------------------
+
+## D7. Barrett, Daniel J. — Efficient Linux at the Command Line
+
+**Título:** *Efficient Linux at the Command Line*.
+
+Uso recomendado:
+
+- productividad y composición de comandos Unix;
+- pipelines legibles y transformaciones encadenadas;
+- selección adecuada de herramientas externas y builtins;
+- eficiencia del trabajo interactivo y diagnóstico de flujos CLI.
+
+Aplicar en Bash 30 y 57 y, como contraste de uso interactivo, en Zsh 86. No duplicar los PATH especializados de Coreutils, sed, awk o Regex.
+
+------------------------------------------------------------------------
+
+## D8. Troncone, Paul; Albing, Carl — Cybersecurity Ops with bash
+
+**Título:** *Cybersecurity Ops with bash: Attack, Defend, and Analyze from the Command Line*.
+
+Uso recomendado:
+
+- automatización de auditorías y diagnóstico de seguridad con Bash;
+- recopilación de evidencias, inspección de procesos, redes y logs;
+- análisis defensivo, correlación de eventos y triage;
+- laboratorios autorizados y aislados para comprender técnicas ofensivas y defensivas;
+- validación, registro y seguridad operacional de los scripts.
+
+Aplicar especialmente en Bash 33, 41 y 56. El objetivo es la aplicación de Bash a operaciones de seguridad, no sustituir una formación integral en ciberseguridad.
+
+------------------------------------------------------------------------
+
+## D9. Janssens, Jeroen — Data Science at the Command Line
+
+**Título:** *Data Science at the Command Line: Obtain, Scrub, Explore, and Model Data with Unix Power Tools*. Preferir la segunda edición.
+
+Uso recomendado:
+
+- obtención, limpieza, transformación y exploración de datos desde CLI;
+- composición de herramientas Unix y pipelines reproducibles;
+- CSV, TSV, JSON/NDJSON y herramientas apropiadas para cada formato;
+- procesamiento incremental, control de calidad y medición de rendimiento;
+- proyectos ETL y análisis exploratorio básico desde Bash.
+
+Aplicar especialmente en Bash 12, 30, 57 y 64. La semántica profunda de sed, awk, Coreutils y Regex pertenece a sus PATH respectivos; aquí se enseña la orquestación desde el shell.
+
+------------------------------------------------------------------------
 
 # 6. CONSULTA
 
@@ -312,11 +406,12 @@ Es una guía histórica muy valiosa pero no reemplaza al manual Zsh 5.9.2 para c
 
 Referencia local de la versión instalada de Bash.
 
-Debe consultarse especialmente cuando se quiera contrastar el manual upstream con el binario y documentación realmente instalados en Fedora.
+Debe consultarse especialmente cuando se quiera contrastar el manual
+upstream con el binario y documentación realmente instalados en Fedora.
 
 Comandos útiles:
 
-```bash
+``` bash
 man bash
 info bash
 help
@@ -324,15 +419,16 @@ help <builtin>
 type <name>
 ```
 
----
+------------------------------------------------------------------------
 
 ## C2. `man zsh` y manuales Zsh por sección
 
-Zsh distribuye su documentación en varias páginas de manual especializadas.
+Zsh distribuye su documentación en varias páginas de manual
+especializadas.
 
 Consultar según disponibilidad de la versión instalada, por ejemplo:
 
-```bash
+``` bash
 man zsh
 man zshmisc
 man zshexpn
@@ -347,7 +443,7 @@ man zshcompwid
 
 La lista exacta debe comprobarse mediante el paquete instalado.
 
----
+------------------------------------------------------------------------
 
 ## C3. Fedora Packages — bash
 
@@ -361,14 +457,14 @@ Uso:
 
 Comandos locales complementarios:
 
-```bash
+``` bash
 rpm -q bash
 rpm -qi bash
 rpm -ql bash
 rpm -q bash-doc
 ```
 
----
+------------------------------------------------------------------------
 
 ## C4. Fedora Packages — zsh
 
@@ -381,14 +477,14 @@ Uso:
 
 Comandos locales:
 
-```bash
+``` bash
 rpm -q zsh
 rpm -qi zsh
 rpm -ql zsh
 rpm -q zsh-html
 ```
 
----
+------------------------------------------------------------------------
 
 ## C5. ShellCheck documentation
 
@@ -405,17 +501,20 @@ Uso:
 
 Limitación importante:
 
-ShellCheck no es una especificación del lenguaje y su soporte se centra en dialectos Bourne-style como `sh`, Bash, Dash, Ksh y BusyBox. No debe utilizarse como autoridad general sobre semántica nativa de Zsh.
+ShellCheck no es una especificación del lenguaje y su soporte se centra
+en dialectos Bourne-style como `sh`, Bash, Dash, Ksh y BusyBox. No debe
+utilizarse como autoridad general sobre semántica nativa de Zsh.
 
----
+------------------------------------------------------------------------
 
 ## C6. `help`, `type`, `command`, `whence` y experimentación controlada
 
-La introspección del propio shell forma parte de las fuentes de consulta práctica.
+La introspección del propio shell forma parte de las fuentes de consulta
+práctica.
 
 Bash:
 
-```bash
+``` bash
 help
 type -a name
 command -V name
@@ -425,20 +524,23 @@ set -o
 
 Zsh:
 
-```zsh
+``` zsh
 whence -va name
 which -a name
 setopt
 zmodload
 ```
 
-Los experimentos deben utilizarse para verificar y comprender, no para sustituir documentación cuando el comportamiento esté formalmente definido.
+Los experimentos deben utilizarse para verificar y comprender, no para
+sustituir documentación cuando el comportamiento esté formalmente
+definido.
 
----
+------------------------------------------------------------------------
 
 # 7. HERRAMIENTAS AUXILIARES
 
-Estas fuentes/herramientas son complementarias y no forman la autoridad normativa del PATH:
+Estas fuentes/herramientas son complementarias y no forman la autoridad
+normativa del PATH:
 
 - ShellCheck;
 - shfmt;
@@ -453,31 +555,32 @@ Estas fuentes/herramientas son complementarias y no forman la autoridad normativ
 - `/proc`;
 - Git para inspección del código fuente y evolución histórica.
 
----
+------------------------------------------------------------------------
 
 # 8. ASIGNACIÓN DE FUENTES POR ÁREA
 
-| Área | Fuente prioritaria |
-|---|---|
-| Fundamentos del shell | POSIX + GNU Bash Manual + Zsh Manual |
-| Sintaxis portable | POSIX.1-2024 |
-| Bash básico/avanzado | GNU Bash Reference Manual |
-| Bash interactivo | GNU Bash Manual + `man bash` |
-| Zsh básico/avanzado | The Z Shell Manual |
-| Zsh interactivo | Zsh Manual + User's Guide |
-| Comparación Bash/Zsh | From Bash to Z Shell + manuales actuales |
-| Portabilidad | POSIX + ShellCheck como herramienta auxiliar |
-| Seguridad | manuales upstream + análisis explícito del contexto |
-| Internals Bash | source tree Bash + documentación de release |
-| Internals Zsh | source tree Zsh + documentación de release |
-| Fedora | Fedora Packages + RPM local |
-| Completion Bash | Bash Manual + bash-completion cuando corresponda |
-| Completion Zsh | Zsh `compsys`/`compwid` manual |
-| ZLE | Zsh ZLE manual |
-| Testing | Bats / ShellSpec + herramientas estándar |
-| Profiling | `time`, hyperfine, zprof, perf/strace según nivel |
+| Área                          | Fuente prioritaria                                                                      |
+|-------------------------------|-----------------------------------------------------------------------------------------|
+| Fundamentos del shell         | POSIX + GNU Bash Manual + Zsh Manual                                                    |
+| Regex aplicada desde Bash/Zsh | Bash Manual + Zsh Manual + definiciones POSIX de regex; teoría general en el PATH Regex |
+| Sintaxis portable             | POSIX.1-2024                                                                            |
+| Bash básico/avanzado          | GNU Bash Reference Manual                                                               |
+| Bash interactivo              | GNU Bash Manual + `man bash`                                                            |
+| Zsh básico/avanzado           | The Z Shell Manual                                                                      |
+| Zsh interactivo               | Zsh Manual + User’s Guide                                                               |
+| Comparación Bash/Zsh          | From Bash to Z Shell + manuales actuales                                                |
+| Portabilidad                  | POSIX + ShellCheck como herramienta auxiliar                                            |
+| Seguridad                     | manuales upstream + análisis explícito del contexto                                     |
+| Internals Bash                | source tree Bash + documentación de release                                             |
+| Internals Zsh                 | source tree Zsh + documentación de release                                              |
+| Fedora                        | Fedora Packages + RPM local                                                             |
+| Completion Bash               | Bash Manual + bash-completion cuando corresponda                                        |
+| Completion Zsh                | Zsh `compsys`/`compwid` manual                                                          |
+| ZLE                           | Zsh ZLE manual                                                                          |
+| Testing                       | Bats / ShellSpec + herramientas estándar                                                |
+| Profiling                     | `time`, hyperfine, zprof, perf/strace según nivel                                       |
 
----
+------------------------------------------------------------------------
 
 # 9. POLÍTICA DE REFERENCIAS EN LAS LECCIONES
 
@@ -485,7 +588,7 @@ La sección `📚 LECTURA` debe elegir solo fuentes relevantes.
 
 Ejemplo conceptual para una lección Bash:
 
-```text
+``` text
 📚 LECTURA
 
 Principal:
@@ -498,7 +601,7 @@ Motor:
 GNU Bash source — únicamente en lecciones de implementación/internals
 
 Profundización:
-bash Cookbook / Learning the bash Shell — cuando aporte contexto pedagógico
+Pro Bash / bash Cookbook / bash Idioms / Efficient Linux at the Command Line / Learning the bash Shell — según el tema
 
 Consulta:
 man bash / help builtin
@@ -506,7 +609,7 @@ man bash / help builtin
 
 Ejemplo conceptual para Zsh:
 
-```text
+``` text
 📚 LECTURA
 
 Principal:
@@ -525,18 +628,23 @@ Consulta:
 man zsh... correspondiente
 ```
 
-No se deben inventar números de capítulo, nodos o secciones para completar artificialmente una referencia.
+No se deben inventar números de capítulo, nodos o secciones para
+completar artificialmente una referencia.
 
----
+------------------------------------------------------------------------
 
 # 10. POLÍTICA DE ACTUALIZACIÓN
 
 Antes de generar un bloque cuya precisión dependa de versión:
 
-1. identificar la versión de Bash/Zsh objetivo;
-2. comprobar documentación upstream;
-3. comprobar la versión empaquetada por Fedora si el laboratorio depende de ella;
-4. preferir conceptos estables cuando no sea necesaria una versión concreta;
-5. registrar cambios relevantes de versión en la propia lección.
+1.  identificar la versión de Bash/Zsh objetivo;
+2.  comprobar documentación upstream;
+3.  comprobar la versión empaquetada por Fedora si el laboratorio
+    depende de ella;
+4.  preferir conceptos estables cuando no sea necesaria una versión
+    concreta;
+5.  registrar cambios relevantes de versión en la propia lección.
 
-La bibliografía puede actualizarse sin modificar la arquitectura pedagógica del PATH cuando aparezcan nuevas versiones de Bash, Zsh o POSIX.
+La bibliografía puede actualizarse sin modificar la arquitectura
+pedagógica del PATH cuando aparezcan nuevas versiones de Bash, Zsh o
+POSIX.

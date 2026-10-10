@@ -36,6 +36,32 @@ example_policy:
   show_exit_status_when_relevant: true
   show_stderr_stdout_when_relevant: true
 
+regex_policy:
+  mode: applied_integration
+  independent_regex_path_is_authoritative_for_theory: true
+  do_not_duplicate_regex_course: true
+  distinguish_glob_from_regex: true
+  identify_regex_engine_or_dialect: true
+  cover_bash_regex_operator: true
+  cover_bash_rematch: true
+  cover_zsh_regex_matching: true
+  cover_zsh_captures: true
+  cover_posix_bre_ere_when_relevant: true
+  cover_zsh_pcre_when_relevant: true
+  cover_external_tools_integration:
+    - grep
+    - ripgrep
+    - sed
+    - awk
+    - find
+  explain_shell_then_regex_parsing: true
+  explain_regex_quoting: true
+  explain_dynamic_patterns: true
+  address_untrusted_input: true
+  address_locale: true
+  address_performance: true
+  require_positive_negative_edge_tests: true
+
 lesson_structure:
   objective:
     required: true
@@ -99,3 +125,24 @@ artifacts:
 validation:
   enabled: false
   commands: []
+
+# Referencias de profundización: orientación editorial para la generación.
+reference_focus:
+  bash_idioms:
+    dialect: bash
+    blocks: [46, 50, 95]
+    focus: [idiomatic_scripting, readability, refactoring, maintainability]
+  efficient_linux_cli:
+    dialect: cross_shell_with_native_semantics
+    blocks: [30, 57, 86, 95]
+    focus: [command_composition, pipeline_design, productivity, measurement]
+  cybersecurity_ops_bash:
+    dialect: bash
+    blocks: [33, 41, 56]
+    focus: [defensive_auditing, log_analysis, network_inspection, incident_triage, safe_automation]
+    authorized_isolated_labs: true
+  data_science_cli:
+    dialect: bash_with_external_unix_tools
+    blocks: [12, 30, 57, 64]
+    focus: [data_acquisition, cleaning, etl_pipelines, csv_tsv_json, validation, reproducibility]
+  avoid_duplicate_specialized_paths: true
