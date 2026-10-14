@@ -196,3 +196,19 @@ datos; construir consultas complejas correctas; crear interfaces mediante
 views; programar funciones, procedimientos y triggers cuando estén
 justificados; detectar errores semánticos; y diagnosticar problemas de
 rendimiento desde el punto de vista de consultas y rutinas SQL.
+
+## Profundidad adicional y verificación de dominio
+
+Se amplía el alcance de **uso de SQL** (sin trasladar aquí tareas DBA ni diseño de esquemas) para incluir:
+
+- Semántica de NULL, multiconjuntos, frames de ventana, recursión y equivalencia de consultas.
+- Concurrencia observable desde SQL: MVCC, snapshots, anomalías, locking y reintentos.
+- Interpretación de planes, buffers, estimaciones, planes preparados y benchmarking reproducible.
+- Seguridad de consultas y rutinas, incluyendo SQL parametrizado, privilegios y `search_path`.
+- Testing SQL sistemático: fixtures, invariantes, casos adversariales, regresión y concurrencia.
+
+Cada lección avanzada debe diferenciar: **sintaxis**, **semántica**, **supuestos**, **contraejemplos**, **comportamiento PostgreSQL dependiente de versión**, **verificación reproducible** y **coste observable**.
+
+### Criterios de aceptación del proyecto final
+
+El proyecto debe incluir scripts ejecutables con `psql`, versión del servidor documentada, datos de prueba deterministas, resultados esperados, pruebas de NULL/duplicados/conjuntos vacíos, pruebas de regresión de rutinas y views, al menos un escenario de concurrencia reproducible y evidencia de optimización con planes comparados. pgTAP es opcional.

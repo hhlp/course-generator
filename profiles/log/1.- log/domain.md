@@ -463,3 +463,28 @@ El proyecto final debe producir una plataforma donde el alumno pueda demostrar:
 - procedimiento de troubleshooting documentado;
 - dimensionamiento básico;
 - auditoría de seguridad y fiabilidad.
+
+## Ampliación de alcance — revisión profunda
+
+Se incorporan cinco bloques avanzados (45–49), seguidos del laboratorio integrador (50) y del proyecto final (51). Se conservan las lecciones originales y su progresión.
+
+### Auditoría Linux
+Cubrir el pipeline kernel audit → auditd → archivos/plugins → consulta y correlación. Diferenciar eventos audit de mensajes ordinarios de journald; explicar backlog, pérdida y permisos. No sustituir un PATH dedicado a seguridad ofensiva o a administración completa de políticas de auditoría.
+
+### Aplicaciones y contenedores
+Cubrir decisiones de emisión de logs, esquemas, redacción de datos, stdout/stderr, integración con systemd y Podman (incluido rootless). No ampliar a administración general de contenedores ni a orquestación.
+
+### Seguridad y preservación forense
+Enseñar amenaza, evidencia, integridad, confianza en el origen, conservación, acceso, retención y cadena de custodia. Distinguir cifrado de transporte de integridad persistente y explicar los límites de cada control.
+
+### Operación medible
+Definir y verificar indicadores: eventos emitidos/recibidos, descartes, retrasos, ocupación de cola, drenaje, reintentos y disponibilidad. Utilizar impstats y estadísticas de syslog-ng. Las plataformas externas de métricas son solo integraciones conceptuales.
+
+### Resiliencia verificable
+Los laboratorios no deben prometer ausencia absoluta de pérdida: generar IDs únicos y secuencias, medir pérdida/duplicación/desorden, registrar precondiciones y límites, repetir pruebas de recuperación y documentar rollback.
+
+### Reglas reforzadas para cada lección práctica
+Cuando corresponda, desarrollar: fundamentos y arquitectura, prerequisitos, instalación en Fedora, archivos/rutas/unidades, configuración comentada, validación de sintaxis, aplicación segura, verificación funcional, inspección de logs, errores frecuentes, diagnóstico por capas, recuperación y laboratorio reproducible. Cada lección comienza con 🎯 OBJETIVO y termina con 🧠 QUÉ DEBES RECORDAR (3–7 puntos).
+
+### Proyecto final y criterios de aceptación
+Además de los requisitos existentes, demostrar trazabilidad de eventos, evidencia de configuración, resultados cuantificados de pérdidas y duplicados, medidas de latencia y backlog, respuesta a fallos, controles de acceso, política de retención y runbooks. Mantener el laboratorio y proyecto final como últimos bloques.

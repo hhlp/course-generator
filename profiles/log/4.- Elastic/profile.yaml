@@ -1,23 +1,17 @@
-name: elastic-stack
-title: "ELASTIC STACK EN PROFUNDIDAD — FEDORA"
-language: es
-platform: fedora
-level:
-  start: beginner
-  end: expert
-
-path:
-  file: initial.txt
-  domain: domain.md
-  bibliography: bibliografy.md
-
+---
 course:
-  objective: >
-    Enseñar Elastic Stack desde fundamentos hasta nivel experto, incluyendo
-    Elasticsearch, Lucene, ingest pipelines, Logstash, Beats, Elastic Agent,
-    Fleet, ECS, Kibana, alerting, seguridad, clustering, ILM, snapshots,
-    rendimiento, troubleshooting, observabilidad e internals, con Fedora
-    como plataforma principal.
+  title: ELASTIC STACK EN PROFUNDIDAD — FEDORA
+  language: es
+  level:
+    start: cero
+    end: experto
+  objective: Enseñar Elastic Stack desde fundamentos hasta nivel experto,
+    incluyendo Elasticsearch, Lucene, ingest pipelines, Logstash, Beats,
+    Elastic Agent, Fleet, ECS, Kibana, alerting, seguridad, clustering, ILM,
+    snapshots, rendimiento, troubleshooting, observabilidad e internals,
+    con Fedora como plataforma principal. Incorporar búsqueda vectorial e
+    híbrida, identidad federada, fiabilidad end-to-end, recuperación,
+    automatización declarativa y pruebas de resiliencia.
   approach:
     - conceptual
     - practical
@@ -33,17 +27,27 @@ course:
     - disabling_security_as_default_fix
     - universal_performance_magic_numbers
     - unnecessary_topic_duplication
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 lesson:
-  required_opening: "🎯 OBJETIVO"
-  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
   closing_key_points:
     min: 3
     max: 7
   optional_sections:
-    - "🧪 Laboratorio / ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
+    - 🧪 Laboratorio / ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
   depth: deep
   style: didactic
   explain:
@@ -79,7 +83,7 @@ sources:
     - fedora_official_documentation
     - opentelemetry_official_documentation
     - selected_books
-  bibliography_file: bibliografy.md
+  bibliography_file: bibliography.md
   require_version_check_for:
     - APIs
     - configuration_options
@@ -106,7 +110,6 @@ fedora:
     - curl
     - openssl
   do_not_turn_lesson_into_general_fedora_course: true
-
 elastic:
   components:
     - Elasticsearch
@@ -299,3 +302,58 @@ completion:
     - automate
     - explain_core_internals
     - design_and_operate_production_architecture
+
+advanced_depth:
+  preserve_existing_lessons: true
+  blocks: 40
+  lesson_numbering: append_sequentially_within_each_original_block
+  search:
+    - dense_vector
+    - knn
+    - ANN
+    - HNSW
+    - hybrid_search
+    - RRF
+    - relevance_evaluation
+  security:
+    - LDAP
+    - Active_Directory
+    - PKI
+    - SAML
+    - OIDC
+    - realm_order
+    - role_mapping
+    - licensing_checks
+  reliability:
+    - at_least_once
+    - idempotency
+    - deduplication
+    - replay
+    - backpressure
+    - DLQ
+  disaster_recovery:
+    - RPO
+    - RTO
+    - restore_drills
+    - quorum_loss
+    - fault_injection
+  automation:
+    - Terraform
+    - Ansible
+    - GitOps
+    - CI_CD
+    - secrets_management
+  observability:
+    - APM
+    - OpenTelemetry_Collector
+    - OTLP
+    - distributed_tracing
+  require_version_and_license_verification: true
+  lab_acceptance:
+    - prerequisites
+    - commands
+    - expected_observations
+    - verification
+    - failure_injection
+    - troubleshooting
+    - cleanup

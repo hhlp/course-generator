@@ -323,3 +323,27 @@ sistemáticamente:
 - dónde está definida la política relevante
 - cómo modificar correctamente el comportamiento
 - cómo verificar que la solución es segura y persistente
+
+## Extensión de nivel experto
+
+Los bloques 27–31 profundizan en CIL, constraints, pruebas de regresión, automatización declarativa e ingeniería inversa. El proyecto final se desplaza al bloque 32 sin perder sus objetivos originales.
+
+## Criterios obligatorios de profundidad
+
+Cada lección debe incluir una explicación conceptual, mecanismos internos pertinentes, comandos reales de Fedora, interpretación de salidas, diagnóstico, riesgos, reversión y conexiones con otros bloques. No repetir fundamentos cuando se profundice en un tema: referenciar su lección previa.
+
+## Pruebas y evidencias
+
+Los laboratorios de políticas deben definir estado inicial, permisos esperados y prohibidos, pasos reproducibles, comprobaciones positivas y negativas, evidencias AVC cuando existan y limpieza/rollback. Las operaciones potencialmente disruptivas se realizarán en VM desechable o snapshot.
+
+## Semántica de las decisiones
+
+No equiparar ausencia de AVC con acceso permitido. Diferenciar permisos DAC, decisiones TE, restricciones RBAC/MLS, constraints, ramas condicionales y efectos de dontaudit. Distinguir evidencia observada, consulta estática e inferencia.
+
+## Precisión de plataforma
+
+No asumir rutas internas inmutables del policy store ni disponibilidad de paquetes, herramientas o políticas históricas. Comprobar en la versión Fedora del laboratorio y documentar alternativas.
+
+## Proyecto final ampliado
+
+El selinux-debugger debe producir explicaciones trazables, distinguir hechos de hipótesis, incorporar pruebas automatizadas, mostrar relaciones en DOT/JSON y permitir comparar estado runtime, personalizaciones locales y política instalada.

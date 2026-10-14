@@ -34,3 +34,20 @@ No sustituye un curso completo de Java, Gradle o administración de Jenkins. Est
 
 ## Proyecto final
 Aplicación Groovy estructurada con POO, colecciones, closures, JSON/XML, DSL propio, metaprogramación, Spock y Gradle, culminando en una Jenkins Shared Library y un Jenkinsfile consumidor.
+
+## Ampliación de competencias expertas
+- Semántica avanzada: igualdad/identidad, coerción, GString, alcance, tipos y anotaciones de delegación.
+- Arquitectura JVM: classloaders, bytecode, profiling, Java Memory Model y límites de rendimiento.
+- Ingeniería de lenguaje: MOP, AST personalizadas, type checking extensions, DSL verificables y seguridad.
+- Integración profesional: NIO.2, CLI robusta, HTTP/REST, JSON, XML, CSV y YAML mediante bibliotecas.
+- Calidad: Spock, CodeNarc, JaCoCo, JFR, JMH, debugging y Gradle reproducible.
+- Jenkins avanzado: CPS, @NonCPS, serialización, checkpoints, controller/agents, Script Security y Shared Libraries probadas.
+
+## Profundidad obligatoria por lección xx.yy
+Cada lección desarrollará el mecanismo, sintaxis, ejemplos ejecutables, casos límite, errores frecuentes, seguridad y laboratorio reproducible. Incluirá diagnóstico y criterios de verificación cuando corresponda. Las características dependientes de versión deben identificarse y contrastarse con la documentación de la versión elegida.
+
+## Delimitación con otros learning paths
+Regex se aplica mediante APIs de Groovy, sin duplicar la teoría completa del path de Regex. Java, Gradle y Jenkins se explican en lo necesario para dominar su integración con Groovy; el curso no sustituye sus paths independientes. GroovyShell y GroovyClassLoader no se consideran fronteras de seguridad para código no confiable.
+
+## Evaluación
+Checkpoints por bloque, laboratorios progresivos, pruebas automatizadas y diagnóstico de fallos. El proyecto final (bloque 34) debe demostrar una aplicación Groovy mantenible y una Shared Library probada en Jenkins, incluyendo casos CPS y serialización.

@@ -1111,3 +1111,35 @@ infraestructura
 → performance data/logging
 
 y diagnosticar cualquier punto relevante de esa cadena.
+
+
+## 49. Profundización experta adicional — bloques 50–56
+
+Los bloques 0–49 se mantienen íntegros. El proyecto final anterior se conserva y amplía en el bloque 56.
+
+### 49.1 Monitorización avanzada de aplicaciones (50)
+Explicar comprobaciones de síntomas y componentes, HTTP/HTTPS, APIs REST, JSON, TLS, DNS, procesos, systemd, bases de datos y colas. Distinguir liveness, readiness y comprobación funcional. Para cada check: objetivo, permisos, límites, umbrales, comando, salida esperable, falsos positivos, verificación y troubleshooting.
+
+### 49.2 Métricas históricas (51)
+Explicar el contrato de perfdata y rangos de thresholds con ejemplos límite; procesamiento, almacenamiento, retención, RRDTool, PNP4Nagios como referencia histórica y alternativas externas actuales. No presentar RRD o Grafana como capacidades integradas de Nagios Core.
+
+### 49.3 Gestión operativa de alertas (52)
+Diseñar alertas accionables y evaluar ruido, dependencias, flapping, reintentos, escalaciones, acknowledgements y downtime. Distinguir correlación y deduplicación externas de funciones nativas de Nagios. Usar SLI/SLO como contexto de diseño, no como función nativa.
+
+### 49.4 Nagios como código (53)
+Construir un rol Ansible reproducible, inventario y templates, validación previa `nagios -v`, CI, pruebas Molecule donde proceda, secretos, rollback y detección de drift. Diferenciar instalación empaquetada y upstream; verificar unit systemd y rutas reales.
+
+### 49.5 HA, DR y arquitecturas empresariales (54)
+Diferenciar engine, web, transporte y datos. Enseñar active/passive, riesgos active/active, fencing, failover, backup/restauración y pruebas de RPO/RTO. Pacemaker/Corosync es integración opcional, no funcionalidad nativa. Evitar notificaciones y checks duplicados tras conmutación.
+
+### 49.6 Internals aplicados (55)
+Vincular source code y comportamiento observable mediante strace, gdb, perf y sanitizers en laboratorio. Explicar Event Broker y NEB, scheduler, workers, estados y retención. Identificar versión, archivos y funciones realmente existentes antes de presentar rutas de código.
+
+### 49.7 Proyecto final experto (56)
+Conservar todos los entregables anteriores, añadir checks de aplicaciones, métricas, automatización, HA/DR y diagnóstico interno. Exigir arquitectura documentada, reproducibilidad, runbooks, pruebas de fallo, validación de seguridad y demostración de recuperación.
+
+## 50. Reglas transversales de profundidad y reproducibilidad
+
+Cada lección técnica debe contener, cuando aplique: arquitectura y prerequisitos, configuración completa contextualizada, parámetros explicados, comandos reproducibles, interpretación de resultados, pruebas negativas, seguridad, SELinux/firewalld, logs, verificación, troubleshooting y criterios de aceptación. Mantener 🎯 OBJETIVO al principio y 🧠 QUÉ DEBES RECORDAR al final. No repetir cursos independientes de Apache, systemd, SELinux, Python, Ansible o bases de datos.
+
+No inventar nombres de paquetes, rutas, unidades, políticas, opciones ni salidas exactas. Verificar diferencias de Fedora/RHEL y versiones upstream. Nunca presentar herramientas históricas como integraciones actuales sin advertencia de compatibilidad.

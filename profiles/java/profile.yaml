@@ -1,3 +1,4 @@
+---
 course:
   title: "Java — 0 a Experto en Profundidad"
   language: "es"
@@ -8,6 +9,7 @@ course:
     title: "Core Java, Volumes I & II"
     edition: "14th"
     author: "Cay S. Horstmann"
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -26,8 +28,10 @@ learner:
     - "Construir interfaces desktop con JavaFX"
     - "Comprender AWT/Swing y el modelo gráfico/eventos de Java SE"
     - "Trabajar con XML e internacionalización"
-    - "Aplicar expresiones regulares desde Java mediante Pattern, Matcher, String y Streams sin duplicar el PATH Regex"
-    - "Aplicar Big-O al código, Collections, Streams y decisiones de rendimiento Java sin duplicar el PATH Big-O"
+    - "Aplicar expresiones regulares desde Java mediante Pattern, Matcher,
+       String y Streams sin duplicar el PATH Regex"
+    - "Aplicar Big-O al código, Collections, Streams y decisiones de
+      rendimiento Java sin duplicar el PATH Big-O"
     - "Comprender interoperabilidad nativa mediante FFM"
     - "Diagnosticar y optimizar aplicaciones Java"
 
@@ -85,7 +89,8 @@ progression:
 
 special_focus:
   - "Generics y Collections en profundidad"
-  - "Big-O aplicado a Java: análisis de código, APIs y estructuras sin reenseñar el PATH Big-O"
+  - "Big-O aplicado a Java: análisis de código, APIs y estructuras sin
+      reenseñar el PATH Big-O"
   - "Programación funcional"
   - "Integración y uso de regex desde Java (Pattern/Matcher/String/Streams)"
   - "Concurrencia y multihilo"
@@ -106,8 +111,12 @@ special_focus:
 constraints:
   - "No depender de un IDE para enseñar los fundamentos"
   - "No introducir ORM antes de JDBC"
-  - "No introducir abstracciones concurrentes avanzadas sin explicar threads y JMM"
+  - "No introducir abstracciones concurrentes avanzadas sin explicar
+      threads y JMM"
   - "Distinguir APIs estables, preview e incubator según el JDK objetivo"
   - "No optimizar sin medición"
-  - "No reenseñar Regex en el PATH Java: la teoría y sintaxis pertenecen al PATH Regex; aquí se estudia su aplicación e integración en Java"
-  - "No reenseñar Big-O en el PATH Java: la teoría general pertenece al PATH Big-O; aquí se estudia su aplicación al código, APIs, Collections, Streams y rendimiento Java"
+  - "No reenseñar Regex en el PATH Java: la teoría y sintaxis pertenecen al
+      PATH Regex; aquí se estudia su aplicación e integración en Java"
+  - "No reenseñar Big-O en el PATH Java: la teoría general pertenece al PATH
+      Big-O; aquí se estudia su aplicación al código, APIs, Collections, Streams
+      y rendimiento Java"

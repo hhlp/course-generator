@@ -12,7 +12,7 @@ DDL, restricciones, transacciones y triggers se explican con la profundidad nece
 ## Entorno y prerrequisitos
 Inicio desde cero en diseño. Introducir conjuntos y lógica sin presuponer formación matemática avanzada. Para los laboratorios de implementación se requiere SQL básico, adquirido en la ruta complementaria.
 Usar PostgreSQL 18 como base reproducible, en un entorno local Fedora/RHEL o un contenedor. Indicar la versión exacta y las extensiones empleadas en cada laboratorio; contrastar diferencias de versión con documentación oficial. Python es opcional para comprobar cierres y generar datos.
-El archivo profile.yaml referencia ../../config/pedagogy.md, que debe existir en el proyecto course-generator. Los cuatro archivos se colocan juntos, por ejemplo en paths/database-design/. La bibliografía se llama deliberadamente bibliografy.md y la referencia del perfil debe coincidir.
+El archivo profile.yaml referencia ../../config/pedagogy.md, que debe existir en el proyecto course-generator. Los cuatro archivos se colocan juntos, por ejemplo en paths/database-design/. La bibliografía se llama deliberadamente bibliography.md y la referencia del perfil debe coincidir.
 
 ## Progresión y evaluación
 - Bloques 0–8: fundamentos, requisitos, modelo conceptual y restricciones. Entrega: glosario, diagrama y catálogo de invariantes.
@@ -64,3 +64,32 @@ Las vistas materializadas persisten resultados y su actualización debe planific
 
 ## Proyecto final
 Entregar requisitos, glosario, diagrama, dependencias, claves, demostraciones, diccionario de datos, DDL y pruebas. Añadir historial de precios, migración, estimación de capacidad y comparación de agregados. La defensa debe justificar integridad, rendimiento, tolerancia a retrasos y recuperación, documentando alternativas descartadas y limitaciones de la evidencia.
+
+## Ampliación de profundidad y trazabilidad
+
+Se conservan íntegros los títulos y objetivos de las lecciones originales, ampliados con lecciones numeradas dentro de sus mismos bloques. No convertir esta ruta en un curso de sintaxis SQL, de administración PostgreSQL ni de ingeniería distribuida general.
+
+### Evidencias mínimas por tramo
+
+- **0–8:** formalización de predicados, glosario, trazabilidad de requisitos, modelo conceptual y catálogo de restricciones con casos que deben rechazarse.
+- **9–19:** enumeración y demostración de claves, cierres, cubiertas, síntesis 3FN, descomposición BCNF, chase, contraejemplos y justificación de dependencias multivaluadas y de reunión.
+- **20–27:** DDL ejecutable, pruebas negativas, restricciones temporales, estrategias de evolución y análisis de concurrencia.
+- **28–33:** cálculos de almacenamiento y coste con unidades, comparación de hipótesis, estimaciones de cardinalidad y benchmarks reproducibles.
+- **34–35:** comparación de cinco estrategias de agregación bajo cargas variables; pruebas de rollback, traslados, reintentos, contención y reconciliación.
+- **36:** defensa con matriz de decisiones, supuestos, límites y rúbrica explícita.
+
+### Laboratorios y evaluación obligatorios
+
+Cada lección debe incluir 🎯 OBJETIVO, un ejemplo explicado paso a paso, 🧪 LABORATORIO / EJEMPLOS con resultado esperado, ⚠️ ERRORES FRECUENTES, 📚 LECTURA y 🧠 QUÉ DEBES RECORDAR (3–7 puntos que no repitan el objetivo). 💡 IDEA IMPORTANTE es opcional. Los laboratorios formales deben presentar solución y contraejemplos cuando proceda; los experimentos deben separar predicción y observación.
+
+### Rúbrica del proyecto integrador
+
+| Criterio | Peso | Evidencia |
+|---|---:|---|
+| Semántica y requisitos | 20 % | Trazabilidad, casos límite e invariantes |
+| Corrección relacional | 25 % | Claves, dependencias, demostraciones y contraejemplos |
+| Implementación y evolución | 20 % | DDL, pruebas negativas, migración |
+| Costes y reproducibilidad | 20 % | Estimaciones, mediciones y análisis de sensibilidad |
+| Agregados y concurrencia | 15 % | Consistencia, pruebas concurrentes y reconciliación |
+
+No declarar una prueba superada sin resultados observados. Documentar la versión del motor, datos, semilla, hardware, parámetros y límites del experimento.

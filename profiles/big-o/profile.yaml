@@ -1,9 +1,11 @@
-name: algorithmic-complexity-general
-title: "Complejidad Algorítmica y Big O — 0 → Experto"
-language: es
-level:
-  start: beginner
-  end: expert
+---
+course:
+  title: "Complejidad Algorítmica y Big O — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  mode: "deep"
 
 scope:
   language_agnostic: true
@@ -116,7 +118,8 @@ quality:
 
 bibliography:
   principal:
-    - "Introduction to Algorithms, 4th Edition — Cormen, Leiserson, Rivest, Stein"
+    - "Introduction to Algorithms, 4th Edition — Cormen, Leiserson, Rivest,
+        Stein"
     - "Algorithm Design — Kleinberg, Tardos"
   practical:
     - "The Algorithm Design Manual, 3rd Edition — Skiena"

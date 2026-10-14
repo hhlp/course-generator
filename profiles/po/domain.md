@@ -34,6 +34,28 @@ ordering y eliminación de trabajo obsoleto.
 
 Debe distinguirse explícitamente de un evento oficial de Scrum.
 
+### Profundización operativa del Refinement
+
+El alumnado debe preparar, facilitar y evaluar un ciclo completo de refinement: seleccionar
+PBIs en función del Product Goal, reunir evidencia de discovery y feedback, identificar
+incertidumbres, conversar con Developers y stakeholders cuando aporte valor, descomponer
+trabajo y registrar decisiones y cuestiones abiertas. Se distingue la colaboración sobre
+PBIs de la responsabilidad del Product Owner sobre su ordenación y la responsabilidad de
+los Developers sobre el dimensionamiento.
+
+Se practica el refinamiento progresivo de oportunidades y elementos grandes hasta PBIs
+comprensibles, evitando imponer una plantilla universal o una Definition of Ready obligatoria.
+En productos con múltiples equipos se trabaja sobre un Product Backlog único y se gestionan
+dependencias sin duplicar backlogs por equipo. La relación con forecasting se estudia
+como gestión de incertidumbre, no como garantía de fechas: el refinamiento puede mejorar
+la comprensión de los elementos, pero no sustituye los datos empíricos de flujo.
+
+La efectividad se evalúa por claridad compartida, decisiones informadas, riesgos descubiertos,
+capacidad de adaptación y reducción de trabajo innecesario; nunca por número de PBIs
+refinados ni por métricas de productividad individual. Los laboratorios deben incluir
+artefactos de entrada, conversaciones simuladas, PBIs antes/después y criterios de revisión.
+
+
 ## Product Discovery
 
 El Product Owner debe aprender a reducir incertidumbre antes y durante Delivery mediante
@@ -102,3 +124,10 @@ productos con IA y Product Leadership.
 El alumno debe gestionar un producto ficticio o real de extremo a extremo: problema,
 usuarios, visión, estrategia, Product Goal, discovery, Story Map, Product Backlog,
 refinement, ordering, métricas, roadmap, experimentos, flow, forecasting y adaptación.
+
+
+## Hitos PSPO y profundidad verificable
+
+La ruta prepara progresivamente para PSPO I (tras el bloque 11), PSPO II (tras el 20) y PSPO III (tras el 23), con un proyecto final experto tras el bloque 24. Son checkpoints pedagógicos, no equivalencias ni garantías de certificación. Cada hito exige escenarios, explicación de decisiones, evaluación de alternativas y evidencia de aprendizaje. La profundidad de cada lección debe incluir conceptos, aplicaciones, límites, anti-patrones y práctica contextualizada, sin duplicar el PATH Scrum/Kanban.
+
+El proyecto final requiere un dossier trazable de visión, estrategia, Product Goal, discovery, backlog, decisiones de ordering, experimentos, métricas, forecast y defensa argumentada con rúbrica.

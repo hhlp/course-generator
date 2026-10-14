@@ -26,6 +26,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 0.19 Fedora/RHEL como plataforma del PATH
 0.20 laboratorio: preparar el entorno de automatización
 
+0.21 Laboratorio: SSH con claves y sudo sin contraseña interactiva
+0.22 Laboratorio: repositorio Git y estructura reproducible
+0.23 Diagnóstico: conectividad, DNS y Python de nodos
+
 1. Introducción a Ansible
 
 1.1 qué es Ansible
@@ -44,6 +48,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 1.14 ansible-config
 1.15 documentación oficial
 1.16 laboratorio: primer entorno Ansible
+
+1.17 Diferencias entre paquete ansible y ansible-core
+1.18 Versiones y matriz de compatibilidad de Python y collections
+1.19 Laboratorio: aislar dependencias del nodo de control
 
 2. Configuración de Ansible
 
@@ -67,6 +75,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 2.18 logging
 2.19 seguridad de la configuración
 2.20 laboratorio: construir un ansible.cfg de proyecto
+
+2.21 Precedencia entre configuración, keywords, variables y CLI
+2.22 ANSIBLE_*: inspección y diagnóstico de variables de entorno
+2.23 Configuración de persistencia SSH y pipelining
 
 3. Inventarios
 
@@ -96,6 +108,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 3.24 inventarios para múltiples entornos
 3.25 laboratorio: inventario Fedora/RHEL
 
+3.26 Inventarios dinámicos: cache, refresh y fallos
+3.27 Inventarios constructed: keyed_groups y compose
+3.28 Diagnóstico: precedencia y conflictos entre grupos
+
 4. Comandos ad hoc
 
 4.1 ansible CLI
@@ -123,6 +139,9 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 4.23 parallelismo
 4.24 one-liners seguros
 4.25 laboratorio: administrar varios hosts RHEL
+
+4.26 ansible-console: inspección interactiva
+4.27 Diferencias entre conexión fallida, unreachable y fallo de módulo
 
 5. Playbooks y YAML
 
@@ -153,6 +172,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 5.25 --step
 5.26 tags
 5.27 laboratorio: primer playbook reproducible
+
+5.28 module_defaults y grupos de acciones
+5.29 environment y variables de entorno de tareas
+5.30 vars_prompt y entrada interactiva segura
+5.31 Comportamiento de run_once con serial
 
 6. Módulos y documentación
 
@@ -186,6 +210,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 6.28 changed y failed
 6.29 laboratorio: catálogo práctico de módulos
 
+6.30 Valores de retorno comunes y específicos
+6.31 ansible-doc: ejemplos, opciones y metadata
+6.32 Compatibilidad y deprecaciones de módulos
+
 7. Variables, facts y precedencia
 
 7.1 variables
@@ -216,6 +244,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 7.26 omit
 7.27 laboratorio: modelar configuración mediante variables
 
+7.28 Precedencia de variables frente a playbook keywords
+7.29 Variables privadas y exposición de roles e imports
+7.30 Diagnóstico de variables: tipos, coerción y colisiones
+
 8. Jinja2 y templates
 
 8.1 Jinja2 en Ansible
@@ -245,6 +277,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 8.25 validación antes de desplegar
 8.26 laboratorio: generar configuraciones
 
+8.27 Regex filters en Ansible: aplicación sin repetir teoría regex
+8.28 Filtros de red y transformaciones con ansible.utils
+8.29 Undefined, native types y errores de renderizado
+
 9. Condicionales, bucles y control de flujo
 
 9.1 when
@@ -273,6 +309,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 9.24 max_fail_percentage
 9.25 laboratorio: playbooks con flujo complejo
 
+9.26 Importación estática frente a inclusión dinámica
+9.27 loop con include_tasks e include_role
+9.28 until, retries y diferencias entre fallos y condiciones
+9.29 Delegación y efectos de contexto de variables
+
 10. Handlers, errores e idempotencia
 
 10.1 handlers
@@ -297,6 +338,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 10.20 re-ejecución segura
 10.21 laboratorio: comprobar idempotencia
 
+10.22 meta: clear_host_errors, end_host, end_play y reset_connection
+10.23 ignore_unreachable y recuperación controlada
+10.24 Pruebas negativas: fallos, rescate y reejecución
+10.25 Idempotencia de cambios no declarativos
+
 11. Roles
 
 11.1 qué es un role
@@ -320,6 +366,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 11.19 roles por servicio
 11.20 roles por capa
 11.21 laboratorio: role RHEL
+
+11.22 role argument validation mediante argument_specs
+11.23 Contratos de roles: inputs, outputs y compatibilidad
+11.24 Pruebas de roles con Molecule en Fedora/RHEL
 
 12. Collections y Ansible Galaxy
 
@@ -347,6 +397,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 12.22 colecciones validadas
 12.23 laboratorio: consumir y crear una collection
 
+12.24 Versionado semántico y restricciones de dependencias
+12.25 Compatibilidad de collections con ansible-core
+12.26 Publicación, firma y verificación de contenido
+
 13. Vault, secretos y seguridad básica
 
 13.1 Ansible Vault
@@ -370,6 +424,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 13.19 SSH keys
 13.20 known_hosts
 13.21 laboratorio: proyecto sin secretos en claro
+
+13.22 Vault frente a secret managers externos: límites
+13.23 Evitar filtración de secretos en callbacks y diffs
+13.24 Rotación y revocación de credenciales
 
 14. Administración Fedora/RHEL con Ansible
 
@@ -400,6 +458,16 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 14.25 actualizaciones y reboot
 14.26 laboratorio: configurar un servidor RHEL completo
 
+14.27 Red Hat System Roles: instalación y catálogo
+14.28 Comparación System Roles frente a roles propios
+14.29 NetworkManager mediante nmstate y System Roles
+14.30 Chrony y sincronización horaria
+14.31 SELinux: fcontext, ports, booleans y políticas
+14.32 Particionado, LVM, filesystems y montajes persistentes
+14.33 Reinicio seguro con reboot y wait_for_connection
+14.34 Troubleshooting: journalctl, systemctl y ausearch
+14.35 Laboratorio: servidor RHEL con System Roles
+
 15. Automatización de servicios RHEL
 
 15.1 patrón instalar-configurar-habilitar
@@ -422,6 +490,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 15.18 backup de configuración
 15.19 rollback
 15.20 laboratorio: desplegar una pila de servicios
+
+15.21 Validación de configuración antes de reiniciar servicios
+15.22 Dependencias y orden de despliegue multi-servicio
+15.23 Despliegue seguro con backup y rollback probado
 
 16. HITO — nivel RHCE / Ansible
 
@@ -455,6 +527,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 16.28 laboratorio integrador de nivel RHCE
 16.29 checkpoint: conocimientos necesarios para RHCE/Ansible alcanzados
 
+16.30 Simulacro práctico: inventario, roles y Vault sin ayudas
+16.31 Simulacro práctico: NetworkManager, storage, SELinux y firewall
+16.32 Verificación de requisitos frente a objetivos oficiales de examen vigentes
+16.33 Diagnóstico cronometrado de playbooks fallidos
+
 17. Ansible avanzado — diseño de automatización
 
 17.1 arquitectura de proyectos grandes
@@ -481,6 +558,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 17.22 canary: patrón
 17.23 laboratorio avanzado
 
+17.24 run_once con serial: comportamiento por lote
+17.25 Delegación, concurrency y race conditions
+17.26 Orquestación de fallos parciales y compensaciones
+
 18. Lookups, filters y plugins de uso avanzado
 
 18.1 lookup plugins
@@ -505,6 +586,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 18.20 terminal/httpapi/netconf concepts
 18.21 precedencia y plugin loader
 18.22 laboratorio: extender comportamiento sin crear módulos
+
+18.23 ansible.utils: filtros y validaciones de datos
+18.24 Seguridad de lookups ejecutados en el controlador
+18.25 Depuración del plugin loader
 
 19. Networking con Ansible
 
@@ -533,6 +618,14 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 19.23 automatización multi-vendor
 19.24 laboratorio de red
 
+19.25 ansible.netcommon: conexiones y utilidades
+19.26 ansible.utils: validación de estructuras de red
+19.27 NETCONF: candidate, commit y rollback según dispositivo
+19.28 Estados gathered, parsed y rendered según soporte del módulo
+19.29 Prechecks y postchecks de configuración
+19.30 GNS3: laboratorio multifabricante y validación
+19.31 Fallos parciales y recuperación en cambios de red
+
 20. Containers — Podman, Buildah y Skopeo
 
 20.1 Ansible y OCI
@@ -558,6 +651,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 20.21 SELinux y containers
 20.22 firewalld
 20.23 laboratorio: servicio containerizado
+
+20.24 Quadlet rootless: unidades y ciclo de vida
+20.25 Subuid/subgid, linger y persistencia de servicios
+20.26 Diagnóstico de SELinux, volúmenes y redes rootless
+20.27 Pruebas de actualización y rollback de containers
 
 21. Kubernetes y OpenShift
 
@@ -585,6 +683,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 21.22 GitOps coexistence
 21.23 laboratorio: desplegar aplicación en Kubernetes/OpenShift
 
+21.24 Reconciliación y diferencias entre Ansible y controllers Kubernetes
+21.25 API discovery, autenticación y errores de permisos
+21.26 Server-side apply, field ownership y conflictos
+21.27 Pruebas de despliegue y rollback
+
 22. Cloud automation
 
 22.1 principios de cloud automation
@@ -608,6 +711,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 22.19 cost/safety guardrails
 22.20 laboratorio cloud
 
+22.21 Rate limits, paginación y reintentos en APIs cloud
+22.22 Inventarios cloud: cache, tags y seguridad
+22.23 Limpieza de recursos y prevención de costes
+
 23. IaC e integración con Terraform/OpenTofu
 
 23.1 Ansible frente a Terraform/OpenTofu
@@ -627,6 +734,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 23.15 separación de responsabilidades
 23.16 Packer: integración conceptual
 23.17 laboratorio: OpenTofu/Terraform + Ansible
+
+23.18 Terraform outputs: JSON y generación de inventario
+23.19 Drift entre provisioning y configuración
+23.20 Dependencias, orquestación y destrucción segura
 
 24. CI/CD para contenido Ansible
 
@@ -653,6 +764,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 24.21 security scanning
 24.22 laboratorio: pipeline CI para role/collection
 
+24.23 Matrices de compatibilidad ansible-core/Python/collections
+24.24 Pruebas negativas, regresión y promoción entre entornos
+24.25 CI de Execution Environments y escaneo de imágenes
+
 25. Testing y calidad
 
 25.1 pirámide de testing para automatización
@@ -676,6 +791,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 25.19 compatibilidad de versiones
 25.20 matrices de prueba
 25.21 laboratorio: suite completa
+
+25.22 Molecule con Podman: limitaciones de systemd
+25.23 Molecule con máquinas virtuales Fedora/RHEL
+25.24 Pruebas negativas y de recuperación
+25.25 Criterios de aceptación y cobertura de escenarios
 
 26. AWX
 
@@ -709,6 +829,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 26.28 troubleshooting
 26.29 laboratorio: plataforma AWX
 
+26.30 Instalación de AWX Operator en laboratorio Kubernetes
+26.31 Operación de AWX: actualizaciones y migraciones
+26.32 Backup y restauración verificados
+26.33 Diagnóstico de jobs, pods, workers y base de datos
+
 27. Red Hat Ansible Automation Platform
 
 27.1 AAP y componentes
@@ -740,6 +865,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 27.27 operación empresarial
 27.28 laboratorio AAP
 
+27.29 Topologías Automation Mesh: execution y hop nodes
+27.30 Instalación y actualización según versión de AAP
+27.31 Autenticación empresarial y políticas de acceso
+27.32 Disaster recovery: simulación y validación
+
 28. Execution Environments y ansible-builder
 
 28.1 por qué Execution Environments
@@ -763,6 +893,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 28.19 reproducibilidad
 28.20 hardening
 28.21 laboratorio: EE personalizado
+
+28.22 Resolver incompatibilidades Python y dependencias de collections
+28.23 Construcción multi-etapa y minimización de imágenes
+28.24 Diagnóstico de EE con ansible-navigator y ansible-runner
+28.25 Pruebas de reproducibilidad, firmas y SBOM
 
 29. Event-Driven Ansible
 
@@ -791,6 +926,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 29.23 loops de automatización
 29.24 laboratorio: auto-remediation
 
+29.25 Deduplicación, idempotencia y correlación de eventos
+29.26 Backpressure, reintentos y eventos perdidos
+29.27 Prevención de bucles de remediación y circuit breakers
+29.28 Pruebas de reglas y simulación de eventos
+
 30. Desarrollo de módulos Ansible
 
 30.1 cuándo desarrollar un módulo
@@ -818,6 +958,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 30.23 colecciones
 30.24 laboratorio: módulo propio
 
+30.25 Argument validation: mutually_exclusive y required_one_of
+30.26 Pruebas unitarias de idempotencia y diff
+30.27 Excepciones, errores recuperables y trazas seguras
+30.28 Depuración de módulos en nodos gestionados
+
 31. Desarrollo de plugins
 
 31.1 arquitectura de plugins
@@ -843,6 +988,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 31.21 testing
 31.22 packaging en collections
 31.23 laboratorio: plugin propio
+
+31.24 Ciclo de vida y puntos de extensión de action plugins
+31.25 Compatibilidad y deprecación de interfaces de plugins
+31.26 Pruebas de plugins con ansible-test
 
 32. Ansible internals
 
@@ -876,6 +1025,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 32.28 lectura del código fuente
 32.29 laboratorio: seguir una task
 
+32.30 Traza completa CLI → estrategia → conexión → módulo → callback
+32.31 Variables y templating: depuración del código fuente
+32.32 Inspección de AnsiballZ y ejecución remota
+32.33 Análisis de concurrencia y procesos de workers
+
 33. Seguridad y supply chain
 
 33.1 threat model de automatización
@@ -907,6 +1061,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 33.27 compliance
 33.28 laboratorio: hardening del sistema Ansible
 
+33.29 Amenazas de ejecución de contenido no confiable
+33.30 Verificación de firmas de collections y EE
+33.31 Gestión de incidentes y revocación de credenciales
+33.32 Pruebas de exposición de secretos en logs
+
 34. Escala, rendimiento y alta disponibilidad
 
 34.1 forks
@@ -937,6 +1096,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 34.26 capacity planning
 34.27 benchmarking
 34.28 laboratorio: optimizar miles de hosts
+
+34.29 Benchmarks reproducibles y métricas de referencia
+34.30 Contención y saturación del controlador
+34.31 Diagnóstico de cuellos de botella en red y ejecución
+34.32 Pruebas de capacidad con degradación controlada
 
 35. Observabilidad y troubleshooting
 
@@ -971,6 +1135,11 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 35.29 runbooks
 35.30 laboratorio: metodología de diagnóstico
 
+35.31 Árbol de decisión: inventario, transporte, privilegios, módulo
+35.32 Diagnóstico de fallos intermitentes y reintentos
+35.33 Análisis de eventos de ansible-runner y Controller
+35.34 Laboratorio: incidente integral con informe de causa raíz
+
 36. Gobernanza y arquitectura empresarial
 
 36.1 automation governance
@@ -1003,6 +1172,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 36.28 centro de excelencia de automatización
 36.29 laboratorio: diseñar gobierno empresarial
 
+36.30 Matriz RACI y responsabilidades por automatización
+36.31 Políticas de promoción, aprobación y rollback
+36.32 Ejercicios de continuidad y recuperación
+
 37. Arquitectura experta y diseño de plataforma
 
 37.1 control plane de automatización
@@ -1034,6 +1207,10 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 37.27 ADR
 37.28 documentación de arquitectura
 37.29 laboratorio: blueprint empresarial
+
+37.30 ADR: evaluación de trade-offs con criterios medibles
+37.31 Topologías de control y ejecución con aislamiento
+37.32 Validación de arquitectura mediante pruebas de resiliencia
 
 38. PROYECTO FINAL EXPERTO — plataforma completa de automatización
 
@@ -1140,3 +1317,8 @@ Progresión: Ansible Core → sistemas Fedora/RHEL → HITO RHCE/Ansible → Ans
 38.101 documentar operación y recuperación
 38.102 realizar prueba de desastre/rollback
 38.103 entregar arquitectura final
+38.104 Definir pruebas de aceptación automatizadas por componente
+38.105 Documentar matriz de versiones y compatibilidad
+38.106 Ejecutar simulación de fallo de credenciales y recuperación
+38.107 Verificar reproducibilidad desde repositorio limpio
+38.108 Publicar informe de evidencias, límites y deuda técnica

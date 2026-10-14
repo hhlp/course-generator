@@ -1,61 +1,186 @@
-name: OpenPGP, GnuPG y Sequoia PGP — 0 a experto
-slug: openpgp-gnupg-sequoia
-language: es
-level:
-  from: cero
-  to: experto
-depth: en profundidad
-platform:
-  primary: Fedora Linux
+---
+course:
+  title: "OpenPGP, GnuPG y Sequoia PGP — 0 a experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  preserve_order: true
+  preserve_all_original_lessons: true
+  platform:
+    - Fedora
+    - Linux
   development: Rust / Cargo
   environment: laboratorio local sin exposición pública
-course:
-  outline_file: initial.txt
-  domain_file: domain.md
-  bibliography_file: bibliography.md
-  blocks: 28
-  lesson_numbering: N.x; sublecciones N.x.y cuando aporten profundidad
-  preserve_order: true
+  mode: "deep"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 pedagogy:
   each_lesson:
-  - objetivo y prerrequisitos
-  - fundamentos y arquitectura
-  - instalación/configuración si aplica
-  - comandos y opciones o API detallados
-  - laboratorio reproducible
-  - validación y resultados esperados
-  - seguridad y amenazas
-  - errores frecuentes y troubleshooting
-  - checkpoint o ejercicios
+    - 🎯 objetivo y prerrequisitos
+    - fundamentos y arquitectura en profundidad
+    - instalación y configuración en Fedora cuando aplique
+    - comandos completos y explicación de opciones o APIs con firmas y errores
+    - 🧪 laboratorio reproducible con datos ficticios
+    - validación, resultados esperados y pruebas negativas
+    - ⚠️ seguridad, amenazas, errores frecuentes y troubleshooting
+    - 💡 idea clave y 🧠 recordar
+    - checkpoint con criterios de salida
   projects:
-  - interoperabilidad GnuPG-Sequoia
-  - Git y releases firmadas
-  - proyecto final integral
+    - interoperabilidad GnuPG-Sequoia
+    - Git y releases firmadas
+    - proyecto final integral
+  expert_requirements:
+    - explicar cada comando y flag relevante, no solo enumerarlo
+    - separar normativa RFC de soporte de implementaciones
+    - registrar versiones de gpg, sq, crate y backend criptográfico
+    - incluir ejemplos de fallo y su diagnóstico
+    - incluir scripts reproducibles, controles para evitar exposición de
+      secretos
+    - no repetir temarios generales de Rust, Bash, IAM o Regex
+  command_depth:
+    required:
+      - propósito y prerequisitos
+      - sintaxis exacta según versión instalada
+      - argumentos y flags relevantes, valores por defecto y precedencia
+      - ejemplos seguros y explicación línea por línea
+      - stdin, stdout, stderr, códigos de salida y parsing cuando aplique
+      - efectos secundarios, idempotencia y tratamiento de secretos
+      - verificación, fallos comunes y reversión
+    cli:
+      - gpg
+      - gpgv
+      - gpgconf
+      - gpg-connect-agent
+      - sq
+      - rpm
+      - git
+    avoid: No listar comandos sin explicar su semántica, ni asumir
+           equivalencia entre ver. de sq
+  rust_api_depth:
+    required:
+      - versión del crate y features/backend criptográfico
+      - tipos, traits, firmas y contratos
+      - ownership, borrowing y lifetimes cuando afecten a la API
+      - políticas, validación temporal y autenticación
+      - errores tipados y propagación segura
+      - ejemplos completos compilables con Cargo.toml
+      - tests unitarios, integración, interoperabilidad y fuzzing cuando aplique
+      - manejo de secretos, memoria y límites de recursos
+    avoid: No repetir curso de Rust; explicar su aplicación concreta a Sequoia
+  lab_standard:
+    environment:
+      - Fedora
+      - GNUPGHOME
+      - almacenes de prueba aislados; Alice/Bob/Carol; sin claves reales
+    steps:
+      - objetivo y topología
+      - prerrequisitos y versiones
+      - preparación y comandos/código íntegros
+      - ejecución y observación
+      - validación criptográfica y autenticación por separado
+      - pruebas de error y escenarios adversariales
+      - limpieza o rollback
+      - evidencias y criterios de aceptación
+    levels:
+      - guiado
+      - semi-guiado
+      - autónomo experto
+  troubleshooting_depth:
+    method:
+      - síntoma reproducible
+      - hipótesis y causas probables
+      - comandos de diagnóstico y fuentes de logs
+      - interpretación de mensajes y códigos de retorno
+      - corrección mínima y verificación
+      - prevención y recuperación
+    components:
+      - gpg-agent
+      - pinentry
+      - dirmngr
+      - scdaemon
+      - pcscd
+      - keyboxd
+      - sq
+      - políticas criptográficas
+      - Fedora/SELinux
+      - Git/RPM/CI
+  security_depth:
+    - modelo de amenazas por operación
+    - separación de clave primaria y subclaves
+    - backup, rotación, expiración, revocación y restauración
+    - identidad autenticada frente a firma válida
+    - protección de passphrases y secretos en procesos/logs
+    - hardware tokens y pérdida de dispositivo
+    - algoritmos heredados, downgrade y compatibilidad
+    - respuesta a incidentes y pruebas de recuperación
+  assessment:
+    per_lesson:
+      - ejercicio práctico verificable
+      - preguntas de razonamiento y decisiones
+      - prueba positiva y negativa cuando proceda
+    per_block:
+      - checkpoint integrador
+      - matriz de validación
+      - diagnóstico de fallo inducido
+    final:
+      - interoperabilidad GnuPG/Sequoia
+      - herramienta Rust con sequoia-openpgp
+      - Git y artefactos firmados
+      - gestión de compromiso y restauración
+      - informe técnico reproducible
 scope:
   standard:
-  - RFC 9580
-  - RFC 4880 (legado)
-  - OpenPGP packets
-  - trust y autenticación
+    - RFC 9580
+    - RFC 4880 (legado)
+    - OpenPGP packets
+    - trust y autenticación
   implementations:
-  - GnuPG
-  - Sequoia PGP
-  - sequoia-openpgp
+    - GnuPG
+    - Sequoia PGP
+    - sequoia-openpgp
   integrations:
-  - Fedora
-  - correo PGP/MIME
-  - Git
-  - RPM/DNF
-  - Ansible
-  - CI/CD
-  - hardware tokens
+    - Fedora
+    - correo PGP/MIME
+    - Git
+    - RPM/DNF
+    - Ansible
+    - CI/CD
+    - hardware tokens
+  bibliography_scopes:
+    S1: fundamentos y correo
+    S2: estándar OpenPGP
+    S3: GnuPG y agentes
+    S4: Sequoia CLI y confianza
+    S5: Sequoia Rust API
+    S6: Fedora, Git, RPM y automatización
+    S7: tokens, seguridad y conformidad
+
 safety:
   use_test_keys: true
   no_public_services_required: true
   verify_version_specific_features: true
   avoid_real_secrets_in_labs: true
+  require_negative_tests: true
+  never_assume_sq_command_syntax: true
+  verify_trust_separately_from_signature: true
+
 bibliography_priority:
-- 'Michael W. Lucas — PGP & GPG: Email for the Practical Paranoid'
-- RFC 9580
-- Documentación GnuPG
-- Documentación Sequoia PGP
+  - 'Michael W. Lucas — PGP & GPG: Email for the Practical Paranoid'
+  - RFC 9580
+  - Documentación GnuPG
+  - Documentación Sequoia PGP
+
+depth_policy:
+  mandatory: true
+  progression:
+    - fundamentos desde cero
+    - operación guiada
+    - administración avanzada
+    - internals y diseño
+    - interoperabilidad y casos adversariales
+    - arquitectura y criterio experto

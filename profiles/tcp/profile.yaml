@@ -1,13 +1,15 @@
-name: tcpip
-title: "TCP/IP — 0 a experto en profundidad"
-language: es
-platform:
-  primary:
-    - Fedora
-    - RHEL
-level:
-  start: beginner
-  target: expert
+---
+course:
+  title: "TCP/IP — 0 a experto en profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+  mode: "deep"
 
 objectives:
   - Comprender los modelos OSI y TCP/IP y la función de cada capa.
@@ -15,13 +17,19 @@ objectives:
   - Dominar Ethernet, IPv4, IPv6, ARP/NDP, ICMP, routing, UDP y TCP.
   - Comprender sockets, puertos, procesos y el stack de red Linux.
   - Dominar ss, lsof, tcpdump, tshark y Nmap CLI desde básico hasta experto.
-  - Analizar PCAP y correlacionar paquetes con sockets, procesos, routing y estado del kernel.
+  - Analizar PCAP y correlacionar paquetes con sockets, procesos,
+    routing y estado del kernel.
   - Diagnosticar fallos de conectividad, rendimiento, MTU, NAT y aplicaciones.
   - Construir laboratorios reproducibles con Linux network namespaces.
 
 teaching:
-  depth: very_deep
-  progression: "concepto -> comando -> observación -> captura -> análisis -> troubleshooting"
+  progression:
+    - concepto
+    - comando
+    - observación
+    - captura
+    - análisis
+    - troubleshooting
   theory_and_practice: true
   labs: true
   troubleshooting: true
@@ -65,7 +73,8 @@ tools:
 security:
   nmap:
     authorized_targets_only: true
-    preference: "laboratorios locales, namespaces y sistemas expresamente autorizados"
+    preference: "laboratorios locales, namespaces y sistemas
+        expresamente autorizados"
 
 final_project:
   type: "TCP/IP troubleshooting lab"
@@ -81,3 +90,33 @@ final_project:
     - PCAP_analysis
     - intentional_failures
     - evidence_based_diagnosis
+
+scope_policy:
+  bibliography_scopes: [S01, S02, S03, S04, S05, S06, S07, S08, S09]
+  choose_references_by_block: true
+  verify_rfc_currency: true
+  prefer_current_upstream_for_cli: true
+
+ipv4_ipv6_boundary:
+  independent_path: "Diseño de redes IPv4/IPv6"
+  include:
+    - address_and_header_interpretation
+    - operational_prefix_and_mask_calculations
+    - network_broadcast_identification
+    - cidr_and_route_reading
+    - historical_classful_context
+    - dual_stack_diagnostics
+  exclude:
+    - exhaustive_vlsm_design
+    - address_plan_design
+    - subnet_capacity_planning
+    - hierarchical_network_design
+    - topology_design
+
+advanced_depth:
+  preserve_existing_lessons: true
+  protocol_packet_evidence: true
+  kernel_rx_tx_offloads: true
+  tcp_loss_recovery_and_ecn: true
+  performance_tc_and_bufferbloat: true
+  dual_stack_troubleshooting: true

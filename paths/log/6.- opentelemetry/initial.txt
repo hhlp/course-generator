@@ -27,6 +27,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 0.23 laboratorio: validar Fundamentos de observabilidad
 0.24 laboratorio: provocar y diagnosticar fallos en Fundamentos de observabilidad
 0.25 laboratorio: integrar Fundamentos de observabilidad end-to-end
+0.26 Diferenciar monitorización, observabilidad y telemetría mediante un incidente reproducible
+0.27 Definir preguntas operativas, SLIs, SLOs y presupuesto de error
+0.28 Comparar métricas, trazas y logs para diagnosticar una petición fallida
+0.29 Evaluar coste, calidad y cobertura de instrumentación
 
 1. Arquitectura de OpenTelemetry
 
@@ -55,6 +59,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 1.23 laboratorio: validar Arquitectura de OpenTelemetry
 1.24 laboratorio: provocar y diagnosticar fallos en Arquitectura de OpenTelemetry
 1.25 laboratorio: integrar Arquitectura de OpenTelemetry end-to-end
+1.26 Analizar los conceptos y contratos específicos de Arquitectura de OpenTelemetry
+1.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Arquitectura de OpenTelemetry
+1.28 Examinar limitaciones, estabilidad y compatibilidad de Arquitectura de OpenTelemetry
+1.29 Comparar alternativas y diagnosticar fallos reales de Arquitectura de OpenTelemetry
 
 2. Señales y modelo de telemetría
 
@@ -83,6 +91,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 2.23 laboratorio: validar Señales y modelo de telemetría
 2.24 laboratorio: provocar y diagnosticar fallos en Señales y modelo de telemetría
 2.25 laboratorio: integrar Señales y modelo de telemetría end-to-end
+2.26 Analizar los conceptos y contratos específicos de Señales y modelo de telemetría
+2.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Señales y modelo de telemetría
+2.28 Examinar limitaciones, estabilidad y compatibilidad de Señales y modelo de telemetría
+2.29 Comparar alternativas y diagnosticar fallos reales de Señales y modelo de telemetría
 
 3. Resources
 
@@ -111,6 +123,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 3.23 laboratorio: validar Resources
 3.24 laboratorio: provocar y diagnosticar fallos en Resources
 3.25 laboratorio: integrar Resources end-to-end
+3.26 Resource frente a atributos de span, datapoint y log record
+3.27 service.name, service.namespace, service.instance.id y resource detectors
+3.28 Conflictos y precedencia de atributos de Resource
+3.29 Agrupación de series y trazas por identidad de servicio
 
 4. Attributes
 
@@ -139,6 +155,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 4.23 laboratorio: validar Attributes
 4.24 laboratorio: provocar y diagnosticar fallos en Attributes
 4.25 laboratorio: integrar Attributes end-to-end
+4.26 Analizar los conceptos y contratos específicos de Attributes
+4.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Attributes
+4.28 Examinar limitaciones, estabilidad y compatibilidad de Attributes
+4.29 Comparar alternativas y diagnosticar fallos reales de Attributes
 
 5. Semantic Conventions
 
@@ -167,6 +187,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 5.23 laboratorio: validar Semantic Conventions
 5.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions
 5.25 laboratorio: integrar Semantic Conventions end-to-end
+5.26 Estado de estabilidad de convenciones por señal y lenguaje
+5.27 Migración y versionado de semantic conventions con schema_url
+5.28 Opt-in de convenciones HTTP/DB según instrumentación y versión
+5.29 Verificar nombres y unidades contra upstream
 
 6. Context
 
@@ -195,6 +219,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 6.23 laboratorio: validar Context
 6.24 laboratorio: provocar y diagnosticar fallos en Context
 6.25 laboratorio: integrar Context end-to-end
+6.26 Analizar los conceptos y contratos específicos de Context
+6.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Context
+6.28 Examinar limitaciones, estabilidad y compatibilidad de Context
+6.29 Comparar alternativas y diagnosticar fallos reales de Context
 
 7. Context propagation
 
@@ -223,6 +251,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 7.23 laboratorio: validar Context propagation
 7.24 laboratorio: provocar y diagnosticar fallos en Context propagation
 7.25 laboratorio: integrar Context propagation end-to-end
+7.26 Analizar los conceptos y contratos específicos de Context propagation
+7.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Context propagation
+7.28 Examinar limitaciones, estabilidad y compatibilidad de Context propagation
+7.29 Comparar alternativas y diagnosticar fallos reales de Context propagation
 
 8. Baggage
 
@@ -251,6 +283,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 8.23 laboratorio: validar Baggage
 8.24 laboratorio: provocar y diagnosticar fallos en Baggage
 8.25 laboratorio: integrar Baggage end-to-end
+8.26 Analizar los conceptos y contratos específicos de Baggage
+8.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Baggage
+8.28 Examinar limitaciones, estabilidad y compatibilidad de Baggage
+8.29 Comparar alternativas y diagnosticar fallos reales de Baggage
 
 9. Traces
 
@@ -279,6 +315,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 9.23 laboratorio: validar Traces
 9.24 laboratorio: provocar y diagnosticar fallos en Traces
 9.25 laboratorio: integrar Traces end-to-end
+9.26 TraceId, SpanId, parent span y causalidad distribuida
+9.27 SpanKind CLIENT/SERVER/PRODUCER/CONSUMER/INTERNAL
+9.28 Trazas asíncronas, fan-out y operaciones de mensajería
+9.29 Rastreo de latencia crítica y spans incompletos
 
 10. Spans
 
@@ -307,6 +347,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 10.23 laboratorio: validar Spans
 10.24 laboratorio: provocar y diagnosticar fallos en Spans
 10.25 laboratorio: integrar Spans end-to-end
+10.26 Analizar los conceptos y contratos específicos de Spans
+10.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Spans
+10.28 Examinar limitaciones, estabilidad y compatibilidad de Spans
+10.29 Comparar alternativas y diagnosticar fallos reales de Spans
 
 11. Span relationships y links
 
@@ -335,6 +379,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 11.23 laboratorio: validar Span relationships y links
 11.24 laboratorio: provocar y diagnosticar fallos en Span relationships y links
 11.25 laboratorio: integrar Span relationships y links end-to-end
+11.26 Analizar los conceptos y contratos específicos de Span relationships y links
+11.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Span relationships y links
+11.28 Examinar limitaciones, estabilidad y compatibilidad de Span relationships y links
+11.29 Comparar alternativas y diagnosticar fallos reales de Span relationships y links
 
 12. Events y status
 
@@ -363,6 +411,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 12.23 laboratorio: validar Events y status
 12.24 laboratorio: provocar y diagnosticar fallos en Events y status
 12.25 laboratorio: integrar Events y status end-to-end
+12.26 Analizar los conceptos y contratos específicos de Events y status
+12.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Events y status
+12.28 Examinar limitaciones, estabilidad y compatibilidad de Events y status
+12.29 Comparar alternativas y diagnosticar fallos reales de Events y status
 
 13. Metrics
 
@@ -391,6 +443,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 13.23 laboratorio: validar Metrics
 13.24 laboratorio: provocar y diagnosticar fallos en Metrics
 13.25 laboratorio: integrar Metrics end-to-end
+13.26 Modelo de métricas: streams, puntos y temporality
+13.27 Delta versus cumulative: conversión, resets y compatibilidad
+13.28 Histogramas explícitos, exponenciales y exemplars
+13.29 Cardinalidad y pérdida de fidelidad por agregación
 
 14. Instrumentos métricos
 
@@ -419,6 +475,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 14.23 laboratorio: validar Instrumentos métricos
 14.24 laboratorio: provocar y diagnosticar fallos en Instrumentos métricos
 14.25 laboratorio: integrar Instrumentos métricos end-to-end
+14.26 Analizar los conceptos y contratos específicos de Instrumentos métricos
+14.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Instrumentos métricos
+14.28 Examinar limitaciones, estabilidad y compatibilidad de Instrumentos métricos
+14.29 Comparar alternativas y diagnosticar fallos reales de Instrumentos métricos
 
 15. Aggregations
 
@@ -447,6 +507,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 15.23 laboratorio: validar Aggregations
 15.24 laboratorio: provocar y diagnosticar fallos en Aggregations
 15.25 laboratorio: integrar Aggregations end-to-end
+15.26 Analizar los conceptos y contratos específicos de Aggregations
+15.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Aggregations
+15.28 Examinar limitaciones, estabilidad y compatibilidad de Aggregations
+15.29 Comparar alternativas y diagnosticar fallos reales de Aggregations
 
 16. Histograms y Exponential Histograms
 
@@ -475,6 +539,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 16.23 laboratorio: validar Histograms y Exponential Histograms
 16.24 laboratorio: provocar y diagnosticar fallos en Histograms y Exponential Histograms
 16.25 laboratorio: integrar Histograms y Exponential Histograms end-to-end
+16.26 Analizar los conceptos y contratos específicos de Histograms y Exponential Histograms
+16.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Histograms y Exponential Histograms
+16.28 Examinar limitaciones, estabilidad y compatibilidad de Histograms y Exponential Histograms
+16.29 Comparar alternativas y diagnosticar fallos reales de Histograms y Exponential Histograms
 
 17. Logs
 
@@ -503,6 +571,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 17.23 laboratorio: validar Logs
 17.24 laboratorio: provocar y diagnosticar fallos en Logs
 17.25 laboratorio: integrar Logs end-to-end
+17.26 LogRecord, severity number/text y observed timestamp
+17.27 Contexto de trace_id/span_id en registros
+17.28 Ingesta estructurada, multiline y normalización
+17.29 Prevención de duplicados, secretos y pérdida de registros
 
 18. LogRecord
 
@@ -531,6 +603,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 18.23 laboratorio: validar LogRecord
 18.24 laboratorio: provocar y diagnosticar fallos en LogRecord
 18.25 laboratorio: integrar LogRecord end-to-end
+18.26 Analizar los conceptos y contratos específicos de LogRecord
+18.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de LogRecord
+18.28 Examinar limitaciones, estabilidad y compatibilidad de LogRecord
+18.29 Comparar alternativas y diagnosticar fallos reales de LogRecord
 
 19. correlación logs-traces-metrics
 
@@ -559,6 +635,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 19.23 laboratorio: validar correlación logs-traces-metrics
 19.24 laboratorio: provocar y diagnosticar fallos en correlación logs-traces-metrics
 19.25 laboratorio: integrar correlación logs-traces-metrics end-to-end
+19.26 Analizar los conceptos y contratos específicos de correlación logs-traces-metrics
+19.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de correlación logs-traces-metrics
+19.28 Examinar limitaciones, estabilidad y compatibilidad de correlación logs-traces-metrics
+19.29 Comparar alternativas y diagnosticar fallos reales de correlación logs-traces-metrics
 
 20. OpenTelemetry Protocol — OTLP
 
@@ -587,6 +667,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 20.23 laboratorio: validar OpenTelemetry Protocol — OTLP
 20.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry Protocol — OTLP
 20.25 laboratorio: integrar OpenTelemetry Protocol — OTLP end-to-end
+20.26 Protocolo OTLP: señales, envelopes y errores parciales
+20.27 Comparar OTLP/gRPC y OTLP/HTTP con trazas de red
+20.28 Negotiation de TLS, compresión, tamaño de mensaje y límites
+20.29 Retries seguros, códigos de error y exportación parcial
 
 21. OTLP/gRPC
 
@@ -615,6 +699,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 21.23 laboratorio: validar OTLP/gRPC
 21.24 laboratorio: provocar y diagnosticar fallos en OTLP/gRPC
 21.25 laboratorio: integrar OTLP/gRPC end-to-end
+21.26 Analizar los conceptos y contratos específicos de OTLP/gRPC
+21.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de OTLP/gRPC
+21.28 Examinar limitaciones, estabilidad y compatibilidad de OTLP/gRPC
+21.29 Comparar alternativas y diagnosticar fallos reales de OTLP/gRPC
 
 22. OTLP/HTTP
 
@@ -643,6 +731,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 22.23 laboratorio: validar OTLP/HTTP
 22.24 laboratorio: provocar y diagnosticar fallos en OTLP/HTTP
 22.25 laboratorio: integrar OTLP/HTTP end-to-end
+22.26 Analizar los conceptos y contratos específicos de OTLP/HTTP
+22.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de OTLP/HTTP
+22.28 Examinar limitaciones, estabilidad y compatibilidad de OTLP/HTTP
+22.29 Comparar alternativas y diagnosticar fallos reales de OTLP/HTTP
 
 23. Protobuf y modelo OTLP
 
@@ -671,6 +763,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 23.23 laboratorio: validar Protobuf y modelo OTLP
 23.24 laboratorio: provocar y diagnosticar fallos en Protobuf y modelo OTLP
 23.25 laboratorio: integrar Protobuf y modelo OTLP end-to-end
+23.26 Analizar los conceptos y contratos específicos de Protobuf y modelo OTLP
+23.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Protobuf y modelo OTLP
+23.28 Examinar limitaciones, estabilidad y compatibilidad de Protobuf y modelo OTLP
+23.29 Comparar alternativas y diagnosticar fallos reales de Protobuf y modelo OTLP
 
 24. OpenTelemetry API
 
@@ -699,6 +795,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 24.23 laboratorio: validar OpenTelemetry API
 24.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry API
 24.25 laboratorio: integrar OpenTelemetry API end-to-end
+24.26 Identificar interfaces, valores por defecto y estabilidad de OpenTelemetry API
+24.27 Construir ejemplo funcional mínimo de OpenTelemetry API
+24.28 Validar ciclo de vida, propagación de errores y shutdown de OpenTelemetry API
+24.29 Contrastar configuración de desarrollo y producción de OpenTelemetry API
 
 25. OpenTelemetry SDK
 
@@ -727,6 +827,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 25.23 laboratorio: validar OpenTelemetry SDK
 25.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry SDK
 25.25 laboratorio: integrar OpenTelemetry SDK end-to-end
+25.26 TracerProvider, MeterProvider y LoggerProvider por SDK
+25.27 Procesadores, readers, temporality y exporters
+25.28 BatchSpanProcessor, force_flush y shutdown
+25.29 Configuración declarativa y variables OTEL_* con precedencia
 
 26. Providers
 
@@ -755,6 +859,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 26.23 laboratorio: validar Providers
 26.24 laboratorio: provocar y diagnosticar fallos en Providers
 26.25 laboratorio: integrar Providers end-to-end
+26.26 Identificar interfaces, valores por defecto y estabilidad de Providers
+26.27 Construir ejemplo funcional mínimo de Providers
+26.28 Validar ciclo de vida, propagación de errores y shutdown de Providers
+26.29 Contrastar configuración de desarrollo y producción de Providers
 
 27. Instrumentation libraries
 
@@ -783,6 +891,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 27.23 laboratorio: validar Instrumentation libraries
 27.24 laboratorio: provocar y diagnosticar fallos en Instrumentation libraries
 27.25 laboratorio: integrar Instrumentation libraries end-to-end
+27.26 Identificar interfaces, valores por defecto y estabilidad de Instrumentation libraries
+27.27 Construir ejemplo funcional mínimo de Instrumentation libraries
+27.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentation libraries
+27.29 Contrastar configuración de desarrollo y producción de Instrumentation libraries
 
 28. Instrumentación automática
 
@@ -811,6 +923,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 28.23 laboratorio: validar Instrumentación automática
 28.24 laboratorio: provocar y diagnosticar fallos en Instrumentación automática
 28.25 laboratorio: integrar Instrumentación automática end-to-end
+28.26 Identificar interfaces, valores por defecto y estabilidad de Instrumentación automática
+28.27 Construir ejemplo funcional mínimo de Instrumentación automática
+28.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentación automática
+28.29 Contrastar configuración de desarrollo y producción de Instrumentación automática
 
 29. Instrumentación manual
 
@@ -839,6 +955,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 29.23 laboratorio: validar Instrumentación manual
 29.24 laboratorio: provocar y diagnosticar fallos en Instrumentación manual
 29.25 laboratorio: integrar Instrumentación manual end-to-end
+29.26 Identificar interfaces, valores por defecto y estabilidad de Instrumentación manual
+29.27 Construir ejemplo funcional mínimo de Instrumentación manual
+29.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentación manual
+29.29 Contrastar configuración de desarrollo y producción de Instrumentación manual
 
 30. Instrumentación de aplicaciones
 
@@ -867,6 +987,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 30.23 laboratorio: validar Instrumentación de aplicaciones
 30.24 laboratorio: provocar y diagnosticar fallos en Instrumentación de aplicaciones
 30.25 laboratorio: integrar Instrumentación de aplicaciones end-to-end
+30.26 Identificar interfaces, valores por defecto y estabilidad de Instrumentación de aplicaciones
+30.27 Construir ejemplo funcional mínimo de Instrumentación de aplicaciones
+30.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentación de aplicaciones
+30.29 Contrastar configuración de desarrollo y producción de Instrumentación de aplicaciones
 
 31. OpenTelemetry Collector
 
@@ -895,6 +1019,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 31.23 laboratorio: validar OpenTelemetry Collector
 31.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry Collector
 31.25 laboratorio: integrar OpenTelemetry Collector end-to-end
+31.26 Diferencias entre Collector Core, Contrib y distribuciones propias
+31.27 Validación de configuración y componentes compilados
+31.28 Orden de procesadores, fan-out y aislamiento de fallos
+31.29 Versionado, upgrades y pruebas de regresión
 
 32. Arquitectura interna del Collector
 
@@ -923,6 +1051,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 32.23 laboratorio: validar Arquitectura interna del Collector
 32.24 laboratorio: provocar y diagnosticar fallos en Arquitectura interna del Collector
 32.25 laboratorio: integrar Arquitectura interna del Collector end-to-end
+32.26 Service graph interno: receiver → consumer → processor → exporter
+32.27 Pipeline fan-out y mutabilidad de pdata
+32.28 Component lifecycle, start/shutdown y errores
+32.29 Diagnóstico con telemetría interna y perfiles
 
 33. Configuración del Collector
 
@@ -951,6 +1083,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 33.23 laboratorio: validar Configuración del Collector
 33.24 laboratorio: provocar y diagnosticar fallos en Configuración del Collector
 33.25 laboratorio: integrar Configuración del Collector end-to-end
+33.26 Identificar interfaces, valores por defecto y estabilidad de Configuración del Collector
+33.27 Construir ejemplo funcional mínimo de Configuración del Collector
+33.28 Validar ciclo de vida, propagación de errores y shutdown de Configuración del Collector
+33.29 Contrastar configuración de desarrollo y producción de Configuración del Collector
 
 34. Receivers
 
@@ -979,6 +1115,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 34.23 laboratorio: validar Receivers
 34.24 laboratorio: provocar y diagnosticar fallos en Receivers
 34.25 laboratorio: integrar Receivers end-to-end
+34.26 Identificar interfaces, valores por defecto y estabilidad de Receivers
+34.27 Construir ejemplo funcional mínimo de Receivers
+34.28 Validar ciclo de vida, propagación de errores y shutdown de Receivers
+34.29 Contrastar configuración de desarrollo y producción de Receivers
 
 35. Processors
 
@@ -1007,6 +1147,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 35.23 laboratorio: validar Processors
 35.24 laboratorio: provocar y diagnosticar fallos en Processors
 35.25 laboratorio: integrar Processors end-to-end
+35.26 Identificar interfaces, valores por defecto y estabilidad de Processors
+35.27 Construir ejemplo funcional mínimo de Processors
+35.28 Validar ciclo de vida, propagación de errores y shutdown de Processors
+35.29 Contrastar configuración de desarrollo y producción de Processors
 
 36. Exporters
 
@@ -1035,6 +1179,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 36.23 laboratorio: validar Exporters
 36.24 laboratorio: provocar y diagnosticar fallos en Exporters
 36.25 laboratorio: integrar Exporters end-to-end
+36.26 Identificar interfaces, valores por defecto y estabilidad de Exporters
+36.27 Construir ejemplo funcional mínimo de Exporters
+36.28 Validar ciclo de vida, propagación de errores y shutdown de Exporters
+36.29 Contrastar configuración de desarrollo y producción de Exporters
 
 37. Connectors
 
@@ -1063,6 +1211,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 37.23 laboratorio: validar Connectors
 37.24 laboratorio: provocar y diagnosticar fallos en Connectors
 37.25 laboratorio: integrar Connectors end-to-end
+37.26 Identificar interfaces, valores por defecto y estabilidad de Connectors
+37.27 Construir ejemplo funcional mínimo de Connectors
+37.28 Validar ciclo de vida, propagación de errores y shutdown de Connectors
+37.29 Contrastar configuración de desarrollo y producción de Connectors
 
 38. Extensions
 
@@ -1091,6 +1243,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 38.23 laboratorio: validar Extensions
 38.24 laboratorio: provocar y diagnosticar fallos en Extensions
 38.25 laboratorio: integrar Extensions end-to-end
+38.26 Identificar interfaces, valores por defecto y estabilidad de Extensions
+38.27 Construir ejemplo funcional mínimo de Extensions
+38.28 Validar ciclo de vida, propagación de errores y shutdown de Extensions
+38.29 Contrastar configuración de desarrollo y producción de Extensions
 
 39. Pipelines
 
@@ -1119,6 +1275,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 39.23 laboratorio: validar Pipelines
 39.24 laboratorio: provocar y diagnosticar fallos en Pipelines
 39.25 laboratorio: integrar Pipelines end-to-end
+39.26 Identificar interfaces, valores por defecto y estabilidad de Pipelines
+39.27 Construir ejemplo funcional mínimo de Pipelines
+39.28 Validar ciclo de vida, propagación de errores y shutdown de Pipelines
+39.29 Contrastar configuración de desarrollo y producción de Pipelines
 
 40. Collector Agent
 
@@ -1147,6 +1307,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 40.23 laboratorio: validar Collector Agent
 40.24 laboratorio: provocar y diagnosticar fallos en Collector Agent
 40.25 laboratorio: integrar Collector Agent end-to-end
+40.26 Explicar el mecanismo real y orden de ejecución de Collector Agent
+40.27 Configurar parámetros, límites y condiciones de error de Collector Agent
+40.28 Medir throughput, memoria y pérdida de telemetría en Collector Agent
+40.29 Comparar patrones correctos y antipatrones de Collector Agent
 
 41. Collector Gateway
 
@@ -1175,6 +1339,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 41.23 laboratorio: validar Collector Gateway
 41.24 laboratorio: provocar y diagnosticar fallos en Collector Gateway
 41.25 laboratorio: integrar Collector Gateway end-to-end
+41.26 Explicar el mecanismo real y orden de ejecución de Collector Gateway
+41.27 Configurar parámetros, límites y condiciones de error de Collector Gateway
+41.28 Medir throughput, memoria y pérdida de telemetría en Collector Gateway
+41.29 Comparar patrones correctos y antipatrones de Collector Gateway
 
 42. topologías de despliegue
 
@@ -1203,6 +1371,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 42.23 laboratorio: validar topologías de despliegue
 42.24 laboratorio: provocar y diagnosticar fallos en topologías de despliegue
 42.25 laboratorio: integrar topologías de despliegue end-to-end
+42.26 Explicar el mecanismo real y orden de ejecución de topologías de despliegue
+42.27 Configurar parámetros, límites y condiciones de error de topologías de despliegue
+42.28 Medir throughput, memoria y pérdida de telemetría en topologías de despliegue
+42.29 Comparar patrones correctos y antipatrones de topologías de despliegue
 
 43. load balancing
 
@@ -1231,6 +1403,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 43.23 laboratorio: validar load balancing
 43.24 laboratorio: provocar y diagnosticar fallos en load balancing
 43.25 laboratorio: integrar load balancing end-to-end
+43.26 Afinidad por trace_id para tail sampling distribuido
+43.27 Load balancing por DNS, endpoints y descubrimiento
+43.28 Rebalanceos, cambios de topología y trazas incompletas
+43.29 Verificar distribución y continuidad de traces
 
 44. batching
 
@@ -1259,6 +1435,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 44.23 laboratorio: validar batching
 44.24 laboratorio: provocar y diagnosticar fallos en batching
 44.25 laboratorio: integrar batching end-to-end
+44.26 Explicar el mecanismo real y orden de ejecución de batching
+44.27 Configurar parámetros, límites y condiciones de error de batching
+44.28 Medir throughput, memoria y pérdida de telemetría en batching
+44.29 Comparar patrones correctos y antipatrones de batching
 
 45. memory management
 
@@ -1287,6 +1467,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 45.23 laboratorio: validar memory management
 45.24 laboratorio: provocar y diagnosticar fallos en memory management
 45.25 laboratorio: integrar memory management end-to-end
+45.26 memory_limiter, límites hard/soft y GC de Go
+45.27 OOMKilled versus throttling versus caída por backpressure
+45.28 Presupuesto de memoria de batch, colas y pipelines
+45.29 Laboratorio con carga y medición RSS/heap
 
 46. queues
 
@@ -1315,6 +1499,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 46.23 laboratorio: validar queues
 46.24 laboratorio: provocar y diagnosticar fallos en queues
 46.25 laboratorio: integrar queues end-to-end
+46.26 Sending queues en memoria y almacenamiento persistente cuando esté soportado
+46.27 Tamaño, consumidores y comportamiento ante saturación
+46.28 At-least-once, duplicados y límites de durabilidad
+46.29 Simular backend inaccesible y recuperación
 
 47. retries
 
@@ -1343,6 +1531,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 47.23 laboratorio: validar retries
 47.24 laboratorio: provocar y diagnosticar fallos en retries
 47.25 laboratorio: integrar retries end-to-end
+47.26 Explicar el mecanismo real y orden de ejecución de retries
+47.27 Configurar parámetros, límites y condiciones de error de retries
+47.28 Medir throughput, memoria y pérdida de telemetría en retries
+47.29 Comparar patrones correctos y antipatrones de retries
 
 48. backpressure
 
@@ -1371,6 +1563,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 48.23 laboratorio: validar backpressure
 48.24 laboratorio: provocar y diagnosticar fallos en backpressure
 48.25 laboratorio: integrar backpressure end-to-end
+48.26 Explicar el mecanismo real y orden de ejecución de backpressure
+48.27 Configurar parámetros, límites y condiciones de error de backpressure
+48.28 Medir throughput, memoria y pérdida de telemetría en backpressure
+48.29 Comparar patrones correctos y antipatrones de backpressure
 
 49. resiliencia y pérdida de telemetría
 
@@ -1399,6 +1595,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 49.23 laboratorio: validar resiliencia y pérdida de telemetría
 49.24 laboratorio: provocar y diagnosticar fallos en resiliencia y pérdida de telemetría
 49.25 laboratorio: integrar resiliencia y pérdida de telemetría end-to-end
+49.26 Explicar el mecanismo real y orden de ejecución de resiliencia y pérdida de telemetría
+49.27 Configurar parámetros, límites y condiciones de error de resiliencia y pérdida de telemetría
+49.28 Medir throughput, memoria y pérdida de telemetría en resiliencia y pérdida de telemetría
+49.29 Comparar patrones correctos y antipatrones de resiliencia y pérdida de telemetría
 
 50. tail sampling
 
@@ -1427,6 +1627,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 50.23 laboratorio: validar tail sampling
 50.24 laboratorio: provocar y diagnosticar fallos en tail sampling
 50.25 laboratorio: integrar tail sampling end-to-end
+50.26 Decisiones de tail sampling por latencia, status y atributos
+50.27 Ventana de decisión, memoria y trazas incompletas
+50.28 Consistencia de routing por trace_id entre instancias
+50.29 Evaluar sesgos y coste de decisiones de sampling
 
 51. head sampling
 
@@ -1455,6 +1659,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 51.23 laboratorio: validar head sampling
 51.24 laboratorio: provocar y diagnosticar fallos en head sampling
 51.25 laboratorio: integrar head sampling end-to-end
+51.26 Explicar el mecanismo real y orden de ejecución de head sampling
+51.27 Configurar parámetros, límites y condiciones de error de head sampling
+51.28 Medir throughput, memoria y pérdida de telemetría en head sampling
+51.29 Comparar patrones correctos y antipatrones de head sampling
 
 52. probabilistic sampling
 
@@ -1483,6 +1691,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 52.23 laboratorio: validar probabilistic sampling
 52.24 laboratorio: provocar y diagnosticar fallos en probabilistic sampling
 52.25 laboratorio: integrar probabilistic sampling end-to-end
+52.26 Explicar el mecanismo real y orden de ejecución de probabilistic sampling
+52.27 Configurar parámetros, límites y condiciones de error de probabilistic sampling
+52.28 Medir throughput, memoria y pérdida de telemetría en probabilistic sampling
+52.29 Comparar patrones correctos y antipatrones de probabilistic sampling
 
 53. sampling avanzado
 
@@ -1511,6 +1723,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 53.23 laboratorio: validar sampling avanzado
 53.24 laboratorio: provocar y diagnosticar fallos en sampling avanzado
 53.25 laboratorio: integrar sampling avanzado end-to-end
+53.26 Explicar el mecanismo real y orden de ejecución de sampling avanzado
+53.27 Configurar parámetros, límites y condiciones de error de sampling avanzado
+53.28 Medir throughput, memoria y pérdida de telemetría en sampling avanzado
+53.29 Comparar patrones correctos y antipatrones de sampling avanzado
 
 54. filtering
 
@@ -1539,6 +1755,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 54.23 laboratorio: validar filtering
 54.24 laboratorio: provocar y diagnosticar fallos en filtering
 54.25 laboratorio: integrar filtering end-to-end
+54.26 Explicar el mecanismo real y orden de ejecución de filtering
+54.27 Configurar parámetros, límites y condiciones de error de filtering
+54.28 Medir throughput, memoria y pérdida de telemetría en filtering
+54.29 Comparar patrones correctos y antipatrones de filtering
 
 55. transformations
 
@@ -1567,6 +1787,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 55.23 laboratorio: validar transformations
 55.24 laboratorio: provocar y diagnosticar fallos en transformations
 55.25 laboratorio: integrar transformations end-to-end
+55.26 Explicar el mecanismo real y orden de ejecución de transformations
+55.27 Configurar parámetros, límites y condiciones de error de transformations
+55.28 Medir throughput, memoria y pérdida de telemetría en transformations
+55.29 Comparar patrones correctos y antipatrones de transformations
 
 56. enrichment
 
@@ -1595,6 +1819,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 56.23 laboratorio: validar enrichment
 56.24 laboratorio: provocar y diagnosticar fallos en enrichment
 56.25 laboratorio: integrar enrichment end-to-end
+56.26 Explicar el mecanismo real y orden de ejecución de enrichment
+56.27 Configurar parámetros, límites y condiciones de error de enrichment
+56.28 Medir throughput, memoria y pérdida de telemetría en enrichment
+56.29 Comparar patrones correctos y antipatrones de enrichment
 
 57. redaction
 
@@ -1623,6 +1851,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 57.23 laboratorio: validar redaction
 57.24 laboratorio: provocar y diagnosticar fallos en redaction
 57.25 laboratorio: integrar redaction end-to-end
+57.26 Explicar el mecanismo real y orden de ejecución de redaction
+57.27 Configurar parámetros, límites y condiciones de error de redaction
+57.28 Medir throughput, memoria y pérdida de telemetría en redaction
+57.29 Comparar patrones correctos y antipatrones de redaction
 
 58. routing
 
@@ -1651,6 +1883,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 58.23 laboratorio: validar routing
 58.24 laboratorio: provocar y diagnosticar fallos en routing
 58.25 laboratorio: integrar routing end-to-end
+58.26 Explicar el mecanismo real y orden de ejecución de routing
+58.27 Configurar parámetros, límites y condiciones de error de routing
+58.28 Medir throughput, memoria y pérdida de telemetría en routing
+58.29 Comparar patrones correctos y antipatrones de routing
 
 59. OpenTelemetry Transformation Language — OTTL
 
@@ -1679,6 +1915,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 59.23 laboratorio: validar OpenTelemetry Transformation Language — OTTL
 59.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry Transformation Language — OTTL
 59.25 laboratorio: integrar OpenTelemetry Transformation Language — OTTL end-to-end
+59.26 Sintaxis OTTL: contextos, paths, statements y condiciones
+59.27 Funciones, conversión de tipos y tratamiento de errores
+59.28 Diferencias entre transform, filter y redaction
+59.29 Pruebas de OTTL con casos de datos reales y edge cases
 
 60. OpenTelemetry Collector Contrib
 
@@ -1707,6 +1947,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 60.23 laboratorio: validar OpenTelemetry Collector Contrib
 60.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry Collector Contrib
 60.25 laboratorio: integrar OpenTelemetry Collector Contrib end-to-end
+60.26 Explicar el mecanismo real y orden de ejecución de OpenTelemetry Collector Contrib
+60.27 Configurar parámetros, límites y condiciones de error de OpenTelemetry Collector Contrib
+60.28 Medir throughput, memoria y pérdida de telemetría en OpenTelemetry Collector Contrib
+60.29 Comparar patrones correctos y antipatrones de OpenTelemetry Collector Contrib
 
 61. receivers del ecosistema
 
@@ -1735,6 +1979,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 61.23 laboratorio: validar receivers del ecosistema
 61.24 laboratorio: provocar y diagnosticar fallos en receivers del ecosistema
 61.25 laboratorio: integrar receivers del ecosistema end-to-end
+61.26 Explicar el mecanismo real y orden de ejecución de receivers del ecosistema
+61.27 Configurar parámetros, límites y condiciones de error de receivers del ecosistema
+61.28 Medir throughput, memoria y pérdida de telemetría en receivers del ecosistema
+61.29 Comparar patrones correctos y antipatrones de receivers del ecosistema
 
 62. processors del ecosistema
 
@@ -1763,6 +2011,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 62.23 laboratorio: validar processors del ecosistema
 62.24 laboratorio: provocar y diagnosticar fallos en processors del ecosistema
 62.25 laboratorio: integrar processors del ecosistema end-to-end
+62.26 Explicar el mecanismo real y orden de ejecución de processors del ecosistema
+62.27 Configurar parámetros, límites y condiciones de error de processors del ecosistema
+62.28 Medir throughput, memoria y pérdida de telemetría en processors del ecosistema
+62.29 Comparar patrones correctos y antipatrones de processors del ecosistema
 
 63. exporters del ecosistema
 
@@ -1791,6 +2043,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 63.23 laboratorio: validar exporters del ecosistema
 63.24 laboratorio: provocar y diagnosticar fallos en exporters del ecosistema
 63.25 laboratorio: integrar exporters del ecosistema end-to-end
+63.26 Explicar el mecanismo real y orden de ejecución de exporters del ecosistema
+63.27 Configurar parámetros, límites y condiciones de error de exporters del ecosistema
+63.28 Medir throughput, memoria y pérdida de telemetría en exporters del ecosistema
+63.29 Comparar patrones correctos y antipatrones de exporters del ecosistema
 
 64. connectors del ecosistema
 
@@ -1819,6 +2075,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 64.23 laboratorio: validar connectors del ecosistema
 64.24 laboratorio: provocar y diagnosticar fallos en connectors del ecosistema
 64.25 laboratorio: integrar connectors del ecosistema end-to-end
+64.26 Explicar el mecanismo real y orden de ejecución de connectors del ecosistema
+64.27 Configurar parámetros, límites y condiciones de error de connectors del ecosistema
+64.28 Medir throughput, memoria y pérdida de telemetría en connectors del ecosistema
+64.29 Comparar patrones correctos y antipatrones de connectors del ecosistema
 
 65. distribución personalizada del Collector
 
@@ -1847,6 +2107,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 65.23 laboratorio: validar distribución personalizada del Collector
 65.24 laboratorio: provocar y diagnosticar fallos en distribución personalizada del Collector
 65.25 laboratorio: integrar distribución personalizada del Collector end-to-end
+65.26 Manifest de componentes y versión exacta de distribuciones
+65.27 Minimización de superficie de ataque y SBOM
+65.28 Compilación reproducible, firmas y actualización
+65.29 Pruebas de compatibilidad de componentes Contrib
 
 66. OpenTelemetry Collector Builder
 
@@ -1875,6 +2139,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 66.23 laboratorio: validar OpenTelemetry Collector Builder
 66.24 laboratorio: provocar y diagnosticar fallos en OpenTelemetry Collector Builder
 66.25 laboratorio: integrar OpenTelemetry Collector Builder end-to-end
+66.26 Analizar los conceptos y contratos específicos de OpenTelemetry Collector Builder
+66.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de OpenTelemetry Collector Builder
+66.28 Examinar limitaciones, estabilidad y compatibilidad de OpenTelemetry Collector Builder
+66.29 Comparar alternativas y diagnosticar fallos reales de OpenTelemetry Collector Builder
 
 67. Prometheus Receiver
 
@@ -1903,6 +2171,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 67.23 laboratorio: validar Prometheus Receiver
 67.24 laboratorio: provocar y diagnosticar fallos en Prometheus Receiver
 67.25 laboratorio: integrar Prometheus Receiver end-to-end
+67.26 Documentar compatibilidad de señales y protocolo de Prometheus Receiver
+67.27 Configurar un pipeline mínimo verificable de Prometheus Receiver
+67.28 Comparar push/pull, temporality y mapeo de atributos en Prometheus Receiver
+67.29 Diagnosticar fallos de exportación, duplicación y pérdida en Prometheus Receiver
 
 68. Prometheus Exporter
 
@@ -1931,6 +2203,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 68.23 laboratorio: validar Prometheus Exporter
 68.24 laboratorio: provocar y diagnosticar fallos en Prometheus Exporter
 68.25 laboratorio: integrar Prometheus Exporter end-to-end
+68.26 Documentar compatibilidad de señales y protocolo de Prometheus Exporter
+68.27 Configurar un pipeline mínimo verificable de Prometheus Exporter
+68.28 Comparar push/pull, temporality y mapeo de atributos en Prometheus Exporter
+68.29 Diagnosticar fallos de exportación, duplicación y pérdida en Prometheus Exporter
 
 69. integración con Prometheus
 
@@ -1959,6 +2235,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 69.23 laboratorio: validar integración con Prometheus
 69.24 laboratorio: provocar y diagnosticar fallos en integración con Prometheus
 69.25 laboratorio: integrar integración con Prometheus end-to-end
+69.26 Documentar compatibilidad de señales y protocolo de integración con Prometheus
+69.27 Configurar un pipeline mínimo verificable de integración con Prometheus
+69.28 Comparar push/pull, temporality y mapeo de atributos en integración con Prometheus
+69.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración con Prometheus
 
 70. Remote Write
 
@@ -1987,6 +2267,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 70.23 laboratorio: validar Remote Write
 70.24 laboratorio: provocar y diagnosticar fallos en Remote Write
 70.25 laboratorio: integrar Remote Write end-to-end
+70.26 Documentar compatibilidad de señales y protocolo de Remote Write
+70.27 Configurar un pipeline mínimo verificable de Remote Write
+70.28 Comparar push/pull, temporality y mapeo de atributos en Remote Write
+70.29 Diagnosticar fallos de exportación, duplicación y pérdida en Remote Write
 
 71. integración Grafana
 
@@ -2015,6 +2299,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 71.23 laboratorio: validar integración Grafana
 71.24 laboratorio: provocar y diagnosticar fallos en integración Grafana
 71.25 laboratorio: integrar integración Grafana end-to-end
+71.26 Documentar compatibilidad de señales y protocolo de integración Grafana
+71.27 Configurar un pipeline mínimo verificable de integración Grafana
+71.28 Comparar push/pull, temporality y mapeo de atributos en integración Grafana
+71.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Grafana
 
 72. integración Loki
 
@@ -2043,6 +2331,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 72.23 laboratorio: validar integración Loki
 72.24 laboratorio: provocar y diagnosticar fallos en integración Loki
 72.25 laboratorio: integrar integración Loki end-to-end
+72.26 Documentar compatibilidad de señales y protocolo de integración Loki
+72.27 Configurar un pipeline mínimo verificable de integración Loki
+72.28 Comparar push/pull, temporality y mapeo de atributos en integración Loki
+72.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Loki
 
 73. integración Tempo
 
@@ -2071,6 +2363,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 73.23 laboratorio: validar integración Tempo
 73.24 laboratorio: provocar y diagnosticar fallos en integración Tempo
 73.25 laboratorio: integrar integración Tempo end-to-end
+73.26 Documentar compatibilidad de señales y protocolo de integración Tempo
+73.27 Configurar un pipeline mínimo verificable de integración Tempo
+73.28 Comparar push/pull, temporality y mapeo de atributos en integración Tempo
+73.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Tempo
 
 74. integración Grafana Stack
 
@@ -2099,6 +2395,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 74.23 laboratorio: validar integración Grafana Stack
 74.24 laboratorio: provocar y diagnosticar fallos en integración Grafana Stack
 74.25 laboratorio: integrar integración Grafana Stack end-to-end
+74.26 Documentar compatibilidad de señales y protocolo de integración Grafana Stack
+74.27 Configurar un pipeline mínimo verificable de integración Grafana Stack
+74.28 Comparar push/pull, temporality y mapeo de atributos en integración Grafana Stack
+74.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Grafana Stack
 
 75. integración Elasticsearch
 
@@ -2127,6 +2427,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 75.23 laboratorio: validar integración Elasticsearch
 75.24 laboratorio: provocar y diagnosticar fallos en integración Elasticsearch
 75.25 laboratorio: integrar integración Elasticsearch end-to-end
+75.26 Documentar compatibilidad de señales y protocolo de integración Elasticsearch
+75.27 Configurar un pipeline mínimo verificable de integración Elasticsearch
+75.28 Comparar push/pull, temporality y mapeo de atributos en integración Elasticsearch
+75.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Elasticsearch
 
 76. integración Elastic Stack
 
@@ -2155,6 +2459,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 76.23 laboratorio: validar integración Elastic Stack
 76.24 laboratorio: provocar y diagnosticar fallos en integración Elastic Stack
 76.25 laboratorio: integrar integración Elastic Stack end-to-end
+76.26 Documentar compatibilidad de señales y protocolo de integración Elastic Stack
+76.27 Configurar un pipeline mínimo verificable de integración Elastic Stack
+76.28 Comparar push/pull, temporality y mapeo de atributos en integración Elastic Stack
+76.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Elastic Stack
 
 77. integración OpenSearch
 
@@ -2183,6 +2491,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 77.23 laboratorio: validar integración OpenSearch
 77.24 laboratorio: provocar y diagnosticar fallos en integración OpenSearch
 77.25 laboratorio: integrar integración OpenSearch end-to-end
+77.26 Documentar compatibilidad de señales y protocolo de integración OpenSearch
+77.27 Configurar un pipeline mínimo verificable de integración OpenSearch
+77.28 Comparar push/pull, temporality y mapeo de atributos en integración OpenSearch
+77.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración OpenSearch
 
 78. integración Jaeger
 
@@ -2211,6 +2523,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 78.23 laboratorio: validar integración Jaeger
 78.24 laboratorio: provocar y diagnosticar fallos en integración Jaeger
 78.25 laboratorio: integrar integración Jaeger end-to-end
+78.26 Documentar compatibilidad de señales y protocolo de integración Jaeger
+78.27 Configurar un pipeline mínimo verificable de integración Jaeger
+78.28 Comparar push/pull, temporality y mapeo de atributos en integración Jaeger
+78.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Jaeger
 
 79. integración Zipkin
 
@@ -2239,6 +2555,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 79.23 laboratorio: validar integración Zipkin
 79.24 laboratorio: provocar y diagnosticar fallos en integración Zipkin
 79.25 laboratorio: integrar integración Zipkin end-to-end
+79.26 Documentar compatibilidad de señales y protocolo de integración Zipkin
+79.27 Configurar un pipeline mínimo verificable de integración Zipkin
+79.28 Comparar push/pull, temporality y mapeo de atributos en integración Zipkin
+79.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Zipkin
 
 80. instrumentación HTTP
 
@@ -2267,6 +2587,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 80.23 laboratorio: validar instrumentación HTTP
 80.24 laboratorio: provocar y diagnosticar fallos en instrumentación HTTP
 80.25 laboratorio: integrar instrumentación HTTP end-to-end
+80.26 Propagación traceparent y tracestate en HTTP
+80.27 Atributos HTTP estables, códigos y rutas parametrizadas
+80.28 Evitar alta cardinalidad en URL, headers y query strings
+80.29 Laboratorio cliente-servidor con fallo inducido
 
 81. instrumentación gRPC
 
@@ -2295,6 +2619,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 81.23 laboratorio: validar instrumentación gRPC
 81.24 laboratorio: provocar y diagnosticar fallos en instrumentación gRPC
 81.25 laboratorio: integrar instrumentación gRPC end-to-end
+81.26 Analizar los conceptos y contratos específicos de instrumentación gRPC
+81.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación gRPC
+81.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación gRPC
+81.29 Comparar alternativas y diagnosticar fallos reales de instrumentación gRPC
 
 82. instrumentación bases de datos
 
@@ -2323,6 +2651,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 82.23 laboratorio: validar instrumentación bases de datos
 82.24 laboratorio: provocar y diagnosticar fallos en instrumentación bases de datos
 82.25 laboratorio: integrar instrumentación bases de datos end-to-end
+82.26 Consultas DB: semconv, statement sanitization y riesgos PII
+82.27 Connection pools, transacciones y spans de consulta
+82.28 Diferenciar métricas de pool y spans de operaciones
+82.29 Diagnosticar N+1 y latencia sin registrar secretos
 
 83. instrumentación mensajería
 
@@ -2351,6 +2683,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 83.23 laboratorio: validar instrumentación mensajería
 83.24 laboratorio: provocar y diagnosticar fallos en instrumentación mensajería
 83.25 laboratorio: integrar instrumentación mensajería end-to-end
+83.26 Analizar los conceptos y contratos específicos de instrumentación mensajería
+83.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación mensajería
+83.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación mensajería
+83.29 Comparar alternativas y diagnosticar fallos reales de instrumentación mensajería
 
 84. instrumentación servicios distribuidos
 
@@ -2379,6 +2715,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 84.23 laboratorio: validar instrumentación servicios distribuidos
 84.24 laboratorio: provocar y diagnosticar fallos en instrumentación servicios distribuidos
 84.25 laboratorio: integrar instrumentación servicios distribuidos end-to-end
+84.26 Analizar los conceptos y contratos específicos de instrumentación servicios distribuidos
+84.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación servicios distribuidos
+84.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación servicios distribuidos
+84.29 Comparar alternativas y diagnosticar fallos reales de instrumentación servicios distribuidos
 
 85. instrumentación Linux
 
@@ -2407,6 +2747,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 85.23 laboratorio: validar instrumentación Linux
 85.24 laboratorio: provocar y diagnosticar fallos en instrumentación Linux
 85.25 laboratorio: integrar instrumentación Linux end-to-end
+85.26 Analizar los conceptos y contratos específicos de instrumentación Linux
+85.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación Linux
+85.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación Linux
+85.29 Comparar alternativas y diagnosticar fallos reales de instrumentación Linux
 
 86. host metrics
 
@@ -2435,6 +2779,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 86.23 laboratorio: validar host metrics
 86.24 laboratorio: provocar y diagnosticar fallos en host metrics
 86.25 laboratorio: integrar host metrics end-to-end
+86.26 Analizar los conceptos y contratos específicos de host metrics
+86.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de host metrics
+86.28 Examinar limitaciones, estabilidad y compatibilidad de host metrics
+86.29 Comparar alternativas y diagnosticar fallos reales de host metrics
 
 87. file logs
 
@@ -2463,6 +2811,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 87.23 laboratorio: validar file logs
 87.24 laboratorio: provocar y diagnosticar fallos en file logs
 87.25 laboratorio: integrar file logs end-to-end
+87.26 Analizar los conceptos y contratos específicos de file logs
+87.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de file logs
+87.28 Examinar limitaciones, estabilidad y compatibilidad de file logs
+87.29 Comparar alternativas y diagnosticar fallos reales de file logs
 
 88. syslog y OpenTelemetry
 
@@ -2491,6 +2843,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 88.23 laboratorio: validar syslog y OpenTelemetry
 88.24 laboratorio: provocar y diagnosticar fallos en syslog y OpenTelemetry
 88.25 laboratorio: integrar syslog y OpenTelemetry end-to-end
+88.26 Analizar los conceptos y contratos específicos de syslog y OpenTelemetry
+88.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de syslog y OpenTelemetry
+88.28 Examinar limitaciones, estabilidad y compatibilidad de syslog y OpenTelemetry
+88.29 Comparar alternativas y diagnosticar fallos reales de syslog y OpenTelemetry
 
 89. journald y OpenTelemetry
 
@@ -2519,6 +2875,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 89.23 laboratorio: validar journald y OpenTelemetry
 89.24 laboratorio: provocar y diagnosticar fallos en journald y OpenTelemetry
 89.25 laboratorio: integrar journald y OpenTelemetry end-to-end
+89.26 Permisos de lectura journal, cursor y persistencia
+89.27 Campos journald y mapeo a Resource/LogRecord
+89.28 Diferencias entre journald, syslog y filelog
+89.29 Validar recuperación después de reinicio y rotación
 
 90. contenedores
 
@@ -2547,6 +2907,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 90.23 laboratorio: validar contenedores
 90.24 laboratorio: provocar y diagnosticar fallos en contenedores
 90.25 laboratorio: integrar contenedores end-to-end
+90.26 Analizar los conceptos y contratos específicos de contenedores
+90.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de contenedores
+90.28 Examinar limitaciones, estabilidad y compatibilidad de contenedores
+90.29 Comparar alternativas y diagnosticar fallos reales de contenedores
 
 91. Podman
 
@@ -2575,6 +2939,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 91.23 laboratorio: validar Podman
 91.24 laboratorio: provocar y diagnosticar fallos en Podman
 91.25 laboratorio: integrar Podman end-to-end
+91.26 Analizar los conceptos y contratos específicos de Podman
+91.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Podman
+91.28 Examinar limitaciones, estabilidad y compatibilidad de Podman
+91.29 Comparar alternativas y diagnosticar fallos reales de Podman
 
 92. Docker
 
@@ -2603,6 +2971,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 92.23 laboratorio: validar Docker
 92.24 laboratorio: provocar y diagnosticar fallos en Docker
 92.25 laboratorio: integrar Docker end-to-end
+92.26 Analizar los conceptos y contratos específicos de Docker
+92.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Docker
+92.28 Examinar limitaciones, estabilidad y compatibilidad de Docker
+92.29 Comparar alternativas y diagnosticar fallos reales de Docker
 
 93. Kubernetes
 
@@ -2737,6 +3109,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 93.128 laboratorio: construir Kubernetes → OTel → Prometheus/Loki/Tempo
 93.129 laboratorio: construir Kubernetes → OTel → Elastic/OpenSearch
 93.130 laboratorio final: diseñar y diagnosticar una plataforma OpenTelemetry Kubernetes de producción
+93.131 Topologías DaemonSet, Deployment, Gateway y sidecar
+93.132 Operator, Instrumentation CRD y Target Allocator
+93.133 RBAC mínimo, NetworkPolicies, mTLS y secretos
+93.134 Escalado con afinidad de trazas y pruebas de fallos
 
 94. Kubernetes Collector patterns
 
@@ -2765,6 +3141,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 94.23 laboratorio: validar Kubernetes Collector patterns
 94.24 laboratorio: provocar y diagnosticar fallos en Kubernetes Collector patterns
 94.25 laboratorio: integrar Kubernetes Collector patterns end-to-end
+94.26 Examinar especificación y estabilidad de Kubernetes Collector patterns
+94.27 Mapear atributos obligatorios, recomendados y condicionales de Kubernetes Collector patterns
+94.28 Crear pruebas de migración y compatibilidad de Kubernetes Collector patterns
+94.29 Validar cardinalidad y privacidad en Kubernetes Collector patterns
 
 95. Kubernetes Attributes Processor
 
@@ -2793,6 +3173,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 95.23 laboratorio: validar Kubernetes Attributes Processor
 95.24 laboratorio: provocar y diagnosticar fallos en Kubernetes Attributes Processor
 95.25 laboratorio: integrar Kubernetes Attributes Processor end-to-end
+95.26 Examinar especificación y estabilidad de Kubernetes Attributes Processor
+95.27 Mapear atributos obligatorios, recomendados y condicionales de Kubernetes Attributes Processor
+95.28 Crear pruebas de migración y compatibilidad de Kubernetes Attributes Processor
+95.29 Validar cardinalidad y privacidad en Kubernetes Attributes Processor
 
 96. service discovery
 
@@ -2821,6 +3205,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 96.23 laboratorio: validar service discovery
 96.24 laboratorio: provocar y diagnosticar fallos en service discovery
 96.25 laboratorio: integrar service discovery end-to-end
+96.26 Examinar especificación y estabilidad de service discovery
+96.27 Mapear atributos obligatorios, recomendados y condicionales de service discovery
+96.28 Crear pruebas de migración y compatibilidad de service discovery
+96.29 Validar cardinalidad y privacidad en service discovery
 
 97. Resource Detection
 
@@ -2849,6 +3237,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 97.23 laboratorio: validar Resource Detection
 97.24 laboratorio: provocar y diagnosticar fallos en Resource Detection
 97.25 laboratorio: integrar Resource Detection end-to-end
+97.26 Examinar especificación y estabilidad de Resource Detection
+97.27 Mapear atributos obligatorios, recomendados y condicionales de Resource Detection
+97.28 Crear pruebas de migración y compatibilidad de Resource Detection
+97.29 Validar cardinalidad y privacidad en Resource Detection
 
 98. Semantic Conventions para infraestructura
 
@@ -2877,6 +3269,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 98.23 laboratorio: validar Semantic Conventions para infraestructura
 98.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para infraestructura
 98.25 laboratorio: integrar Semantic Conventions para infraestructura end-to-end
+98.26 Examinar especificación y estabilidad de Semantic Conventions para infraestructura
+98.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para infraestructura
+98.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para infraestructura
+98.29 Validar cardinalidad y privacidad en Semantic Conventions para infraestructura
 
 99. Semantic Conventions para HTTP
 
@@ -2905,6 +3301,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 99.23 laboratorio: validar Semantic Conventions para HTTP
 99.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para HTTP
 99.25 laboratorio: integrar Semantic Conventions para HTTP end-to-end
+99.26 Examinar especificación y estabilidad de Semantic Conventions para HTTP
+99.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para HTTP
+99.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para HTTP
+99.29 Validar cardinalidad y privacidad en Semantic Conventions para HTTP
 
 100. Semantic Conventions para bases de datos
 
@@ -2933,6 +3333,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 100.23 laboratorio: validar Semantic Conventions para bases de datos
 100.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para bases de datos
 100.25 laboratorio: integrar Semantic Conventions para bases de datos end-to-end
+100.26 Examinar especificación y estabilidad de Semantic Conventions para bases de datos
+100.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para bases de datos
+100.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para bases de datos
+100.29 Validar cardinalidad y privacidad en Semantic Conventions para bases de datos
 
 101. Semantic Conventions para messaging
 
@@ -2961,6 +3365,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 101.23 laboratorio: validar Semantic Conventions para messaging
 101.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para messaging
 101.25 laboratorio: integrar Semantic Conventions para messaging end-to-end
+101.26 Examinar especificación y estabilidad de Semantic Conventions para messaging
+101.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para messaging
+101.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para messaging
+101.29 Validar cardinalidad y privacidad en Semantic Conventions para messaging
 
 102. Semantic Conventions para RPC
 
@@ -2989,6 +3397,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 102.23 laboratorio: validar Semantic Conventions para RPC
 102.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para RPC
 102.25 laboratorio: integrar Semantic Conventions para RPC end-to-end
+102.26 Examinar especificación y estabilidad de Semantic Conventions para RPC
+102.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para RPC
+102.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para RPC
+102.29 Validar cardinalidad y privacidad en Semantic Conventions para RPC
 
 103. Semantic Conventions para logs
 
@@ -3017,6 +3429,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 103.23 laboratorio: validar Semantic Conventions para logs
 103.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para logs
 103.25 laboratorio: integrar Semantic Conventions para logs end-to-end
+103.26 Examinar especificación y estabilidad de Semantic Conventions para logs
+103.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para logs
+103.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para logs
+103.29 Validar cardinalidad y privacidad en Semantic Conventions para logs
 
 104. Semantic Conventions para métricas
 
@@ -3045,6 +3461,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 104.23 laboratorio: validar Semantic Conventions para métricas
 104.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para métricas
 104.25 laboratorio: integrar Semantic Conventions para métricas end-to-end
+104.26 Examinar especificación y estabilidad de Semantic Conventions para métricas
+104.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para métricas
+104.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para métricas
+104.29 Validar cardinalidad y privacidad en Semantic Conventions para métricas
 
 105. Semantic Conventions para traces
 
@@ -3073,6 +3493,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 105.23 laboratorio: validar Semantic Conventions para traces
 105.24 laboratorio: provocar y diagnosticar fallos en Semantic Conventions para traces
 105.25 laboratorio: integrar Semantic Conventions para traces end-to-end
+105.26 Examinar especificación y estabilidad de Semantic Conventions para traces
+105.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para traces
+105.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para traces
+105.29 Validar cardinalidad y privacidad en Semantic Conventions para traces
 
 106. cardinalidad
 
@@ -3101,6 +3525,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 106.23 laboratorio: validar cardinalidad
 106.24 laboratorio: provocar y diagnosticar fallos en cardinalidad
 106.25 laboratorio: integrar cardinalidad end-to-end
+106.26 Calcular cardinalidad como producto de dimensiones
+106.27 Atributos de alta cardinalidad: user_id, request_id y paths
+106.28 Limitar vistas métricas y filtrar atributos sin romper correlación
+106.29 Medir impacto de cardinalidad en RAM y coste
 
 107. gestión de atributos
 
@@ -3129,6 +3557,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 107.23 laboratorio: validar gestión de atributos
 107.24 laboratorio: provocar y diagnosticar fallos en gestión de atributos
 107.25 laboratorio: integrar gestión de atributos end-to-end
+107.26 Analizar los conceptos y contratos específicos de gestión de atributos
+107.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de gestión de atributos
+107.28 Examinar limitaciones, estabilidad y compatibilidad de gestión de atributos
+107.29 Comparar alternativas y diagnosticar fallos reales de gestión de atributos
 
 108. costes de observabilidad
 
@@ -3157,6 +3589,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 108.23 laboratorio: validar costes de observabilidad
 108.24 laboratorio: provocar y diagnosticar fallos en costes de observabilidad
 108.25 laboratorio: integrar costes de observabilidad end-to-end
+108.26 Analizar los conceptos y contratos específicos de costes de observabilidad
+108.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de costes de observabilidad
+108.28 Examinar limitaciones, estabilidad y compatibilidad de costes de observabilidad
+108.29 Comparar alternativas y diagnosticar fallos reales de costes de observabilidad
 
 109. diseño de pipelines
 
@@ -3185,6 +3621,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 109.23 laboratorio: validar diseño de pipelines
 109.24 laboratorio: provocar y diagnosticar fallos en diseño de pipelines
 109.25 laboratorio: integrar diseño de pipelines end-to-end
+109.26 Analizar los conceptos y contratos específicos de diseño de pipelines
+109.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño de pipelines
+109.28 Examinar limitaciones, estabilidad y compatibilidad de diseño de pipelines
+109.29 Comparar alternativas y diagnosticar fallos reales de diseño de pipelines
 
 110. diseño multi-pipeline
 
@@ -3213,6 +3653,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 110.23 laboratorio: validar diseño multi-pipeline
 110.24 laboratorio: provocar y diagnosticar fallos en diseño multi-pipeline
 110.25 laboratorio: integrar diseño multi-pipeline end-to-end
+110.26 Analizar los conceptos y contratos específicos de diseño multi-pipeline
+110.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño multi-pipeline
+110.28 Examinar limitaciones, estabilidad y compatibilidad de diseño multi-pipeline
+110.29 Comparar alternativas y diagnosticar fallos reales de diseño multi-pipeline
 
 111. diseño multi-backend
 
@@ -3241,6 +3685,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 111.23 laboratorio: validar diseño multi-backend
 111.24 laboratorio: provocar y diagnosticar fallos en diseño multi-backend
 111.25 laboratorio: integrar diseño multi-backend end-to-end
+111.26 Analizar los conceptos y contratos específicos de diseño multi-backend
+111.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño multi-backend
+111.28 Examinar limitaciones, estabilidad y compatibilidad de diseño multi-backend
+111.29 Comparar alternativas y diagnosticar fallos reales de diseño multi-backend
 
 112. multi-tenancy
 
@@ -3269,6 +3717,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 112.23 laboratorio: validar multi-tenancy
 112.24 laboratorio: provocar y diagnosticar fallos en multi-tenancy
 112.25 laboratorio: integrar multi-tenancy end-to-end
+112.26 Definir threat model y fronteras de confianza para multi-tenancy
+112.27 Configurar mínimos privilegios y secretos en multi-tenancy
+112.28 Probar fallos de autenticación, acceso y exposición en multi-tenancy
+112.29 Auditar controles y procedimientos de recuperación de multi-tenancy
 
 113. seguridad
 
@@ -3297,6 +3749,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 113.23 laboratorio: validar seguridad
 113.24 laboratorio: provocar y diagnosticar fallos en seguridad
 113.25 laboratorio: integrar seguridad end-to-end
+113.26 Threat model: telemetría no confiable, PII y exfiltración
+113.27 Separar identidad de workload, Collector y backend
+113.28 Cifrado en tránsito, autorización y segmentación de red
+113.29 Auditar configuración y pruebas de filtrado de secretos
 
 114. TLS
 
@@ -3325,6 +3781,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 114.23 laboratorio: validar TLS
 114.24 laboratorio: provocar y diagnosticar fallos en TLS
 114.25 laboratorio: integrar TLS end-to-end
+114.26 Definir threat model y fronteras de confianza para TLS
+114.27 Configurar mínimos privilegios y secretos en TLS
+114.28 Probar fallos de autenticación, acceso y exposición en TLS
+114.29 Auditar controles y procedimientos de recuperación de TLS
 
 115. mTLS
 
@@ -3353,6 +3813,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 115.23 laboratorio: validar mTLS
 115.24 laboratorio: provocar y diagnosticar fallos en mTLS
 115.25 laboratorio: integrar mTLS end-to-end
+115.26 Definir threat model y fronteras de confianza para mTLS
+115.27 Configurar mínimos privilegios y secretos en mTLS
+115.28 Probar fallos de autenticación, acceso y exposición en mTLS
+115.29 Auditar controles y procedimientos de recuperación de mTLS
 
 116. autenticación
 
@@ -3381,6 +3845,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 116.23 laboratorio: validar autenticación
 116.24 laboratorio: provocar y diagnosticar fallos en autenticación
 116.25 laboratorio: integrar autenticación end-to-end
+116.26 Definir threat model y fronteras de confianza para autenticación
+116.27 Configurar mínimos privilegios y secretos en autenticación
+116.28 Probar fallos de autenticación, acceso y exposición en autenticación
+116.29 Auditar controles y procedimientos de recuperación de autenticación
 
 117. autorización
 
@@ -3409,6 +3877,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 117.23 laboratorio: validar autorización
 117.24 laboratorio: provocar y diagnosticar fallos en autorización
 117.25 laboratorio: integrar autorización end-to-end
+117.26 Definir threat model y fronteras de confianza para autorización
+117.27 Configurar mínimos privilegios y secretos en autorización
+117.28 Probar fallos de autenticación, acceso y exposición en autorización
+117.29 Auditar controles y procedimientos de recuperación de autorización
 
 118. secretos
 
@@ -3437,6 +3909,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 118.23 laboratorio: validar secretos
 118.24 laboratorio: provocar y diagnosticar fallos en secretos
 118.25 laboratorio: integrar secretos end-to-end
+118.26 Definir threat model y fronteras de confianza para secretos
+118.27 Configurar mínimos privilegios y secretos en secretos
+118.28 Probar fallos de autenticación, acceso y exposición en secretos
+118.29 Auditar controles y procedimientos de recuperación de secretos
 
 119. protección de datos sensibles
 
@@ -3465,6 +3941,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 119.23 laboratorio: validar protección de datos sensibles
 119.24 laboratorio: provocar y diagnosticar fallos en protección de datos sensibles
 119.25 laboratorio: integrar protección de datos sensibles end-to-end
+119.26 Definir threat model y fronteras de confianza para protección de datos sensibles
+119.27 Configurar mínimos privilegios y secretos en protección de datos sensibles
+119.28 Probar fallos de autenticación, acceso y exposición en protección de datos sensibles
+119.29 Auditar controles y procedimientos de recuperación de protección de datos sensibles
 
 120. PII y redaction
 
@@ -3493,6 +3973,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 120.23 laboratorio: validar PII y redaction
 120.24 laboratorio: provocar y diagnosticar fallos en PII y redaction
 120.25 laboratorio: integrar PII y redaction end-to-end
+120.26 Definir threat model y fronteras de confianza para PII y redaction
+120.27 Configurar mínimos privilegios y secretos en PII y redaction
+120.28 Probar fallos de autenticación, acceso y exposición en PII y redaction
+120.29 Auditar controles y procedimientos de recuperación de PII y redaction
 
 121. hardening del Collector
 
@@ -3521,6 +4005,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 121.23 laboratorio: validar hardening del Collector
 121.24 laboratorio: provocar y diagnosticar fallos en hardening del Collector
 121.25 laboratorio: integrar hardening del Collector end-to-end
+121.26 Definir threat model y fronteras de confianza para hardening del Collector
+121.27 Configurar mínimos privilegios y secretos en hardening del Collector
+121.28 Probar fallos de autenticación, acceso y exposición en hardening del Collector
+121.29 Auditar controles y procedimientos de recuperación de hardening del Collector
 
 122. Collector como servicio systemd
 
@@ -3549,6 +4037,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 122.23 laboratorio: validar Collector como servicio systemd
 122.24 laboratorio: provocar y diagnosticar fallos en Collector como servicio systemd
 122.25 laboratorio: integrar Collector como servicio systemd end-to-end
+122.26 Crear unidad systemd con DynamicUser o usuario dedicado
+122.27 ExecStart, ExecReload, restart policy y watchdog si aplica
+122.28 Hardening con ProtectSystem, NoNewPrivileges y capabilities
+122.29 journalctl, systemd-analyze security y rollback
 
 123. despliegue en Fedora
 
@@ -3577,6 +4069,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 123.23 laboratorio: validar despliegue en Fedora
 123.24 laboratorio: provocar y diagnosticar fallos en despliegue en Fedora
 123.25 laboratorio: integrar despliegue en Fedora end-to-end
+123.26 Definir threat model y fronteras de confianza para despliegue en Fedora
+123.27 Configurar mínimos privilegios y secretos en despliegue en Fedora
+123.28 Probar fallos de autenticación, acceso y exposición en despliegue en Fedora
+123.29 Auditar controles y procedimientos de recuperación de despliegue en Fedora
 
 124. configuración y filesystem
 
@@ -3605,6 +4101,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 124.23 laboratorio: validar configuración y filesystem
 124.24 laboratorio: provocar y diagnosticar fallos en configuración y filesystem
 124.25 laboratorio: integrar configuración y filesystem end-to-end
+124.26 Definir threat model y fronteras de confianza para configuración y filesystem
+124.27 Configurar mínimos privilegios y secretos en configuración y filesystem
+124.28 Probar fallos de autenticación, acceso y exposición en configuración y filesystem
+124.29 Auditar controles y procedimientos de recuperación de configuración y filesystem
 
 125. permisos y usuario de servicio
 
@@ -3633,6 +4133,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 125.23 laboratorio: validar permisos y usuario de servicio
 125.24 laboratorio: provocar y diagnosticar fallos en permisos y usuario de servicio
 125.25 laboratorio: integrar permisos y usuario de servicio end-to-end
+125.26 Definir threat model y fronteras de confianza para permisos y usuario de servicio
+125.27 Configurar mínimos privilegios y secretos en permisos y usuario de servicio
+125.28 Probar fallos de autenticación, acceso y exposición en permisos y usuario de servicio
+125.29 Auditar controles y procedimientos de recuperación de permisos y usuario de servicio
 
 126. SELinux
 
@@ -3661,6 +4165,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 126.23 laboratorio: validar SELinux
 126.24 laboratorio: provocar y diagnosticar fallos en SELinux
 126.25 laboratorio: integrar SELinux end-to-end
+126.26 Etiquetado SELinux de ejecutable, config y almacenamiento
+126.27 Diagnóstico AVC con ausearch y audit2why
+126.28 Permisos de red y políticas locales mínimas
+126.29 Evitar desactivar SELinux como solución
 
 127. firewalld
 
@@ -3689,6 +4197,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 127.23 laboratorio: validar firewalld
 127.24 laboratorio: provocar y diagnosticar fallos en firewalld
 127.25 laboratorio: integrar firewalld end-to-end
+127.26 Definir threat model y fronteras de confianza para firewalld
+127.27 Configurar mínimos privilegios y secretos en firewalld
+127.28 Probar fallos de autenticación, acceso y exposición en firewalld
+127.29 Auditar controles y procedimientos de recuperación de firewalld
 
 128. monitorización del propio Collector
 
@@ -3717,6 +4229,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 128.23 laboratorio: validar monitorización del propio Collector
 128.24 laboratorio: provocar y diagnosticar fallos en monitorización del propio Collector
 128.25 laboratorio: integrar monitorización del propio Collector end-to-end
+128.26 Métricas accepted, refused, sent y failed por componente
+128.27 Alertas sobre colas, memoria, errores y saturación
+128.28 Telemetría interna y límites de autoobservabilidad
+128.29 Pruebas de fallo y verificación de alarmas
 
 129. internal telemetry
 
@@ -3745,6 +4261,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 129.23 laboratorio: validar internal telemetry
 129.24 laboratorio: provocar y diagnosticar fallos en internal telemetry
 129.25 laboratorio: integrar internal telemetry end-to-end
+129.26 Analizar los conceptos y contratos específicos de internal telemetry
+129.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de internal telemetry
+129.28 Examinar limitaciones, estabilidad y compatibilidad de internal telemetry
+129.29 Comparar alternativas y diagnosticar fallos reales de internal telemetry
 
 130. métricas internas
 
@@ -3773,6 +4293,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 130.23 laboratorio: validar métricas internas
 130.24 laboratorio: provocar y diagnosticar fallos en métricas internas
 130.25 laboratorio: integrar métricas internas end-to-end
+130.26 Analizar los conceptos y contratos específicos de métricas internas
+130.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de métricas internas
+130.28 Examinar limitaciones, estabilidad y compatibilidad de métricas internas
+130.29 Comparar alternativas y diagnosticar fallos reales de métricas internas
 
 131. logs internos
 
@@ -3801,6 +4325,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 131.23 laboratorio: validar logs internos
 131.24 laboratorio: provocar y diagnosticar fallos en logs internos
 131.25 laboratorio: integrar logs internos end-to-end
+131.26 Analizar los conceptos y contratos específicos de logs internos
+131.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de logs internos
+131.28 Examinar limitaciones, estabilidad y compatibilidad de logs internos
+131.29 Comparar alternativas y diagnosticar fallos reales de logs internos
 
 132. zPages y diagnóstico
 
@@ -3829,6 +4357,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 132.23 laboratorio: validar zPages y diagnóstico
 132.24 laboratorio: provocar y diagnosticar fallos en zPages y diagnóstico
 132.25 laboratorio: integrar zPages y diagnóstico end-to-end
+132.26 zPages, exposición local y riesgo de datos sensibles
+132.27 pprof y perfiles de heap/CPU con control de acceso
+132.28 Correlación de diagnósticos con métricas internas
+132.29 Procedimiento de incident response del Collector
 
 133. health checks
 
@@ -3857,6 +4389,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 133.23 laboratorio: validar health checks
 133.24 laboratorio: provocar y diagnosticar fallos en health checks
 133.25 laboratorio: integrar health checks end-to-end
+133.26 Analizar los conceptos y contratos específicos de health checks
+133.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de health checks
+133.28 Examinar limitaciones, estabilidad y compatibilidad de health checks
+133.29 Comparar alternativas y diagnosticar fallos reales de health checks
 
 134. troubleshooting OTLP
 
@@ -3885,6 +4421,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 134.23 laboratorio: validar troubleshooting OTLP
 134.24 laboratorio: provocar y diagnosticar fallos en troubleshooting OTLP
 134.25 laboratorio: integrar troubleshooting OTLP end-to-end
+134.26 Reproducir una avería de troubleshooting OTLP con datos de prueba
+134.27 Localizar la etapa de pérdida de datos en troubleshooting OTLP
+134.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting OTLP
+134.29 Documentar corrección, prueba de regresión y runbook de troubleshooting OTLP
 
 135. troubleshooting receivers
 
@@ -3913,6 +4453,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 135.23 laboratorio: validar troubleshooting receivers
 135.24 laboratorio: provocar y diagnosticar fallos en troubleshooting receivers
 135.25 laboratorio: integrar troubleshooting receivers end-to-end
+135.26 Reproducir una avería de troubleshooting receivers con datos de prueba
+135.27 Localizar la etapa de pérdida de datos en troubleshooting receivers
+135.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting receivers
+135.29 Documentar corrección, prueba de regresión y runbook de troubleshooting receivers
 
 136. troubleshooting processors
 
@@ -3941,6 +4485,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 136.23 laboratorio: validar troubleshooting processors
 136.24 laboratorio: provocar y diagnosticar fallos en troubleshooting processors
 136.25 laboratorio: integrar troubleshooting processors end-to-end
+136.26 Reproducir una avería de troubleshooting processors con datos de prueba
+136.27 Localizar la etapa de pérdida de datos en troubleshooting processors
+136.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting processors
+136.29 Documentar corrección, prueba de regresión y runbook de troubleshooting processors
 
 137. troubleshooting exporters
 
@@ -3969,6 +4517,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 137.23 laboratorio: validar troubleshooting exporters
 137.24 laboratorio: provocar y diagnosticar fallos en troubleshooting exporters
 137.25 laboratorio: integrar troubleshooting exporters end-to-end
+137.26 Reproducir una avería de troubleshooting exporters con datos de prueba
+137.27 Localizar la etapa de pérdida de datos en troubleshooting exporters
+137.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting exporters
+137.29 Documentar corrección, prueba de regresión y runbook de troubleshooting exporters
 
 138. troubleshooting pipelines
 
@@ -3997,6 +4549,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 138.23 laboratorio: validar troubleshooting pipelines
 138.24 laboratorio: provocar y diagnosticar fallos en troubleshooting pipelines
 138.25 laboratorio: integrar troubleshooting pipelines end-to-end
+138.26 Reproducir una avería de troubleshooting pipelines con datos de prueba
+138.27 Localizar la etapa de pérdida de datos en troubleshooting pipelines
+138.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting pipelines
+138.29 Documentar corrección, prueba de regresión y runbook de troubleshooting pipelines
 
 139. troubleshooting context propagation
 
@@ -4025,6 +4581,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 139.23 laboratorio: validar troubleshooting context propagation
 139.24 laboratorio: provocar y diagnosticar fallos en troubleshooting context propagation
 139.25 laboratorio: integrar troubleshooting context propagation end-to-end
+139.26 Reproducir una avería de troubleshooting context propagation con datos de prueba
+139.27 Localizar la etapa de pérdida de datos en troubleshooting context propagation
+139.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting context propagation
+139.29 Documentar corrección, prueba de regresión y runbook de troubleshooting context propagation
 
 140. troubleshooting missing spans
 
@@ -4053,6 +4613,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 140.23 laboratorio: validar troubleshooting missing spans
 140.24 laboratorio: provocar y diagnosticar fallos en troubleshooting missing spans
 140.25 laboratorio: integrar troubleshooting missing spans end-to-end
+140.26 Reproducir una avería de troubleshooting missing spans con datos de prueba
+140.27 Localizar la etapa de pérdida de datos en troubleshooting missing spans
+140.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting missing spans
+140.29 Documentar corrección, prueba de regresión y runbook de troubleshooting missing spans
 
 141. troubleshooting missing metrics
 
@@ -4081,6 +4645,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 141.23 laboratorio: validar troubleshooting missing metrics
 141.24 laboratorio: provocar y diagnosticar fallos en troubleshooting missing metrics
 141.25 laboratorio: integrar troubleshooting missing metrics end-to-end
+141.26 Reproducir una avería de troubleshooting missing metrics con datos de prueba
+141.27 Localizar la etapa de pérdida de datos en troubleshooting missing metrics
+141.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting missing metrics
+141.29 Documentar corrección, prueba de regresión y runbook de troubleshooting missing metrics
 
 142. troubleshooting missing logs
 
@@ -4109,6 +4677,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 142.23 laboratorio: validar troubleshooting missing logs
 142.24 laboratorio: provocar y diagnosticar fallos en troubleshooting missing logs
 142.25 laboratorio: integrar troubleshooting missing logs end-to-end
+142.26 Reproducir una avería de troubleshooting missing logs con datos de prueba
+142.27 Localizar la etapa de pérdida de datos en troubleshooting missing logs
+142.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting missing logs
+142.29 Documentar corrección, prueba de regresión y runbook de troubleshooting missing logs
 
 143. troubleshooting cardinalidad
 
@@ -4137,6 +4709,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 143.23 laboratorio: validar troubleshooting cardinalidad
 143.24 laboratorio: provocar y diagnosticar fallos en troubleshooting cardinalidad
 143.25 laboratorio: integrar troubleshooting cardinalidad end-to-end
+143.26 Reproducir una avería de troubleshooting cardinalidad con datos de prueba
+143.27 Localizar la etapa de pérdida de datos en troubleshooting cardinalidad
+143.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting cardinalidad
+143.29 Documentar corrección, prueba de regresión y runbook de troubleshooting cardinalidad
 
 144. troubleshooting rendimiento
 
@@ -4165,6 +4741,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 144.23 laboratorio: validar troubleshooting rendimiento
 144.24 laboratorio: provocar y diagnosticar fallos en troubleshooting rendimiento
 144.25 laboratorio: integrar troubleshooting rendimiento end-to-end
+144.26 Reproducir una avería de troubleshooting rendimiento con datos de prueba
+144.27 Localizar la etapa de pérdida de datos en troubleshooting rendimiento
+144.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting rendimiento
+144.29 Documentar corrección, prueba de regresión y runbook de troubleshooting rendimiento
 
 145. troubleshooting memoria
 
@@ -4193,6 +4773,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 145.23 laboratorio: validar troubleshooting memoria
 145.24 laboratorio: provocar y diagnosticar fallos en troubleshooting memoria
 145.25 laboratorio: integrar troubleshooting memoria end-to-end
+145.26 Reproducir una avería de troubleshooting memoria con datos de prueba
+145.27 Localizar la etapa de pérdida de datos en troubleshooting memoria
+145.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting memoria
+145.29 Documentar corrección, prueba de regresión y runbook de troubleshooting memoria
 
 146. troubleshooting queues y backpressure
 
@@ -4221,6 +4805,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 146.23 laboratorio: validar troubleshooting queues y backpressure
 146.24 laboratorio: provocar y diagnosticar fallos en troubleshooting queues y backpressure
 146.25 laboratorio: integrar troubleshooting queues y backpressure end-to-end
+146.26 Reproducir una avería de troubleshooting queues y backpressure con datos de prueba
+146.27 Localizar la etapa de pérdida de datos en troubleshooting queues y backpressure
+146.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting queues y backpressure
+146.29 Documentar corrección, prueba de regresión y runbook de troubleshooting queues y backpressure
 
 147. debugging end-to-end
 
@@ -4249,6 +4837,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 147.23 laboratorio: validar debugging end-to-end
 147.24 laboratorio: provocar y diagnosticar fallos en debugging end-to-end
 147.25 laboratorio: integrar debugging end-to-end end-to-end
+147.26 Reproducir una avería de debugging end-to-end con datos de prueba
+147.27 Localizar la etapa de pérdida de datos en debugging end-to-end
+147.28 Inspeccionar métricas internas, logs y códigos de error de debugging end-to-end
+147.29 Documentar corrección, prueba de regresión y runbook de debugging end-to-end
 
 148. testing de pipelines
 
@@ -4277,6 +4869,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 148.23 laboratorio: validar testing de pipelines
 148.24 laboratorio: provocar y diagnosticar fallos en testing de pipelines
 148.25 laboratorio: integrar testing de pipelines end-to-end
+148.26 Validación sintáctica y semántica de pipelines
+148.27 Pruebas golden con payloads OTLP y assertions
+148.28 Pruebas de carga, fallos, duplicados y recuperación
+148.29 CI de configuraciones y regresión entre versiones
 
 149. generación de telemetría de prueba
 
@@ -4305,6 +4901,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 149.23 laboratorio: validar generación de telemetría de prueba
 149.24 laboratorio: provocar y diagnosticar fallos en generación de telemetría de prueba
 149.25 laboratorio: integrar generación de telemetría de prueba end-to-end
+149.26 Analizar los conceptos y contratos específicos de generación de telemetría de prueba
+149.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de generación de telemetría de prueba
+149.28 Examinar limitaciones, estabilidad y compatibilidad de generación de telemetría de prueba
+149.29 Comparar alternativas y diagnosticar fallos reales de generación de telemetría de prueba
 
 150. observabilidad distribuida
 
@@ -4333,6 +4933,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 150.23 laboratorio: validar observabilidad distribuida
 150.24 laboratorio: provocar y diagnosticar fallos en observabilidad distribuida
 150.25 laboratorio: integrar observabilidad distribuida end-to-end
+150.26 Analizar los conceptos y contratos específicos de observabilidad distribuida
+150.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de observabilidad distribuida
+150.28 Examinar limitaciones, estabilidad y compatibilidad de observabilidad distribuida
+150.29 Comparar alternativas y diagnosticar fallos reales de observabilidad distribuida
 
 151. service graphs
 
@@ -4361,6 +4965,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 151.23 laboratorio: validar service graphs
 151.24 laboratorio: provocar y diagnosticar fallos en service graphs
 151.25 laboratorio: integrar service graphs end-to-end
+151.26 Analizar los conceptos y contratos específicos de service graphs
+151.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de service graphs
+151.28 Examinar limitaciones, estabilidad y compatibilidad de service graphs
+151.29 Comparar alternativas y diagnosticar fallos reales de service graphs
 
 152. trace-to-logs
 
@@ -4389,6 +4997,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 152.23 laboratorio: validar trace-to-logs
 152.24 laboratorio: provocar y diagnosticar fallos en trace-to-logs
 152.25 laboratorio: integrar trace-to-logs end-to-end
+152.26 Analizar los conceptos y contratos específicos de trace-to-logs
+152.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de trace-to-logs
+152.28 Examinar limitaciones, estabilidad y compatibilidad de trace-to-logs
+152.29 Comparar alternativas y diagnosticar fallos reales de trace-to-logs
 
 153. trace-to-metrics
 
@@ -4417,6 +5029,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 153.23 laboratorio: validar trace-to-metrics
 153.24 laboratorio: provocar y diagnosticar fallos en trace-to-metrics
 153.25 laboratorio: integrar trace-to-metrics end-to-end
+153.26 Analizar los conceptos y contratos específicos de trace-to-metrics
+153.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de trace-to-metrics
+153.28 Examinar limitaciones, estabilidad y compatibilidad de trace-to-metrics
+153.29 Comparar alternativas y diagnosticar fallos reales de trace-to-metrics
 
 154. exemplars
 
@@ -4445,6 +5061,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 154.23 laboratorio: validar exemplars
 154.24 laboratorio: provocar y diagnosticar fallos en exemplars
 154.25 laboratorio: integrar exemplars end-to-end
+154.26 Exemplars y relación entre series métricas y traces
+154.27 Reservoirs, sampling y visibilidad de exemplars
+154.28 Compatibilidad de backend y formatos de exportación
+154.29 Laboratorio salto de métrica a trace
 
 155. correlación entre señales
 
@@ -4473,6 +5093,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 155.23 laboratorio: validar correlación entre señales
 155.24 laboratorio: provocar y diagnosticar fallos en correlación entre señales
 155.25 laboratorio: integrar correlación entre señales end-to-end
+155.26 Analizar los conceptos y contratos específicos de correlación entre señales
+155.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de correlación entre señales
+155.28 Examinar limitaciones, estabilidad y compatibilidad de correlación entre señales
+155.29 Comparar alternativas y diagnosticar fallos reales de correlación entre señales
 
 156. diseño de una plataforma de observabilidad
 
@@ -4501,6 +5125,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 156.23 laboratorio: validar diseño de una plataforma de observabilidad
 156.24 laboratorio: provocar y diagnosticar fallos en diseño de una plataforma de observabilidad
 156.25 laboratorio: integrar diseño de una plataforma de observabilidad end-to-end
+156.26 Analizar los conceptos y contratos específicos de diseño de una plataforma de observabilidad
+156.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño de una plataforma de observabilidad
+156.28 Examinar limitaciones, estabilidad y compatibilidad de diseño de una plataforma de observabilidad
+156.29 Comparar alternativas y diagnosticar fallos reales de diseño de una plataforma de observabilidad
 
 157. alta disponibilidad del Collector
 
@@ -4529,6 +5157,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 157.23 laboratorio: validar alta disponibilidad del Collector
 157.24 laboratorio: provocar y diagnosticar fallos en alta disponibilidad del Collector
 157.25 laboratorio: integrar alta disponibilidad del Collector end-to-end
+157.26 HA por señal y análisis de componentes stateful
+157.27 Distribución de carga, afinidad y failover
+157.28 Evitar pérdida y duplicados durante rolling upgrades
+157.29 Simulación de fallo de nodo y backend
 
 158. escalabilidad horizontal
 
@@ -4557,6 +5189,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 158.23 laboratorio: validar escalabilidad horizontal
 158.24 laboratorio: provocar y diagnosticar fallos en escalabilidad horizontal
 158.25 laboratorio: integrar escalabilidad horizontal end-to-end
+158.26 Analizar los conceptos y contratos específicos de escalabilidad horizontal
+158.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de escalabilidad horizontal
+158.28 Examinar limitaciones, estabilidad y compatibilidad de escalabilidad horizontal
+158.29 Comparar alternativas y diagnosticar fallos reales de escalabilidad horizontal
 
 159. balanceo de collectors
 
@@ -4585,6 +5221,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 159.23 laboratorio: validar balanceo de collectors
 159.24 laboratorio: provocar y diagnosticar fallos en balanceo de collectors
 159.25 laboratorio: integrar balanceo de collectors end-to-end
+159.26 Analizar los conceptos y contratos específicos de balanceo de collectors
+159.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de balanceo de collectors
+159.28 Examinar limitaciones, estabilidad y compatibilidad de balanceo de collectors
+159.29 Comparar alternativas y diagnosticar fallos reales de balanceo de collectors
 
 160. capacity planning
 
@@ -4613,6 +5253,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 160.23 laboratorio: validar capacity planning
 160.24 laboratorio: provocar y diagnosticar fallos en capacity planning
 160.25 laboratorio: integrar capacity planning end-to-end
+160.26 Modelar eventos/s, bytes/s, batches, colas y retención
+160.27 Pruebas de carga con percentiles y factor de crecimiento
+160.28 Presupuesto de CPU, RAM, red y almacenamiento
+160.29 Documento de dimensionamiento y criterios de escalado
 
 161. performance tuning
 
@@ -4641,6 +5285,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 161.23 laboratorio: validar performance tuning
 161.24 laboratorio: provocar y diagnosticar fallos en performance tuning
 161.25 laboratorio: integrar performance tuning end-to-end
+161.26 Analizar los conceptos y contratos específicos de performance tuning
+161.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de performance tuning
+161.28 Examinar limitaciones, estabilidad y compatibilidad de performance tuning
+161.29 Comparar alternativas y diagnosticar fallos reales de performance tuning
 
 162. Collector internals
 
@@ -4669,6 +5317,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 162.23 laboratorio: validar Collector internals
 162.24 laboratorio: provocar y diagnosticar fallos en Collector internals
 162.25 laboratorio: integrar Collector internals end-to-end
+162.26 Examinar interfaces, contratos y ciclo de vida de Collector internals
+162.27 Seguir el flujo de pdata y la propagación de errores en Collector internals
+162.28 Implementar pruebas unitarias, de integración y benchmarks para Collector internals
+162.29 Evaluar compatibilidad, concurrencia y evolución upstream de Collector internals
 
 163. component lifecycle
 
@@ -4697,6 +5349,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 163.23 laboratorio: validar component lifecycle
 163.24 laboratorio: provocar y diagnosticar fallos en component lifecycle
 163.25 laboratorio: integrar component lifecycle end-to-end
+163.26 Examinar interfaces, contratos y ciclo de vida de component lifecycle
+163.27 Seguir el flujo de pdata y la propagación de errores en component lifecycle
+163.28 Implementar pruebas unitarias, de integración y benchmarks para component lifecycle
+163.29 Evaluar compatibilidad, concurrencia y evolución upstream de component lifecycle
 
 164. consumer model
 
@@ -4725,6 +5381,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 164.23 laboratorio: validar consumer model
 164.24 laboratorio: provocar y diagnosticar fallos en consumer model
 164.25 laboratorio: integrar consumer model end-to-end
+164.26 Examinar interfaces, contratos y ciclo de vida de consumer model
+164.27 Seguir el flujo de pdata y la propagación de errores en consumer model
+164.28 Implementar pruebas unitarias, de integración y benchmarks para consumer model
+164.29 Evaluar compatibilidad, concurrencia y evolución upstream de consumer model
 
 165. pdata
 
@@ -4753,6 +5413,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 165.23 laboratorio: validar pdata
 165.24 laboratorio: provocar y diagnosticar fallos en pdata
 165.25 laboratorio: integrar pdata end-to-end
+165.26 pdata: Traces/Metrics/Logs y ownership
+165.27 Mutabilidad, copias, reference semantics y fan-out
+165.28 Recorrido de ResourceSpans y ScopeSpans
+165.29 Benchmark y pruebas unitarias con pdata
 
 166. receiver internals
 
@@ -4781,6 +5445,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 166.23 laboratorio: validar receiver internals
 166.24 laboratorio: provocar y diagnosticar fallos en receiver internals
 166.25 laboratorio: integrar receiver internals end-to-end
+166.26 Examinar interfaces, contratos y ciclo de vida de receiver internals
+166.27 Seguir el flujo de pdata y la propagación de errores en receiver internals
+166.28 Implementar pruebas unitarias, de integración y benchmarks para receiver internals
+166.29 Evaluar compatibilidad, concurrencia y evolución upstream de receiver internals
 
 167. processor internals
 
@@ -4809,6 +5477,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 167.23 laboratorio: validar processor internals
 167.24 laboratorio: provocar y diagnosticar fallos en processor internals
 167.25 laboratorio: integrar processor internals end-to-end
+167.26 Examinar interfaces, contratos y ciclo de vida de processor internals
+167.27 Seguir el flujo de pdata y la propagación de errores en processor internals
+167.28 Implementar pruebas unitarias, de integración y benchmarks para processor internals
+167.29 Evaluar compatibilidad, concurrencia y evolución upstream de processor internals
 
 168. exporter internals
 
@@ -4837,6 +5509,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 168.23 laboratorio: validar exporter internals
 168.24 laboratorio: provocar y diagnosticar fallos en exporter internals
 168.25 laboratorio: integrar exporter internals end-to-end
+168.26 Examinar interfaces, contratos y ciclo de vida de exporter internals
+168.27 Seguir el flujo de pdata y la propagación de errores en exporter internals
+168.28 Implementar pruebas unitarias, de integración y benchmarks para exporter internals
+168.29 Evaluar compatibilidad, concurrencia y evolución upstream de exporter internals
 
 169. connector internals
 
@@ -4865,6 +5541,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 169.23 laboratorio: validar connector internals
 169.24 laboratorio: provocar y diagnosticar fallos en connector internals
 169.25 laboratorio: integrar connector internals end-to-end
+169.26 Examinar interfaces, contratos y ciclo de vida de connector internals
+169.27 Seguir el flujo de pdata y la propagación de errores en connector internals
+169.28 Implementar pruebas unitarias, de integración y benchmarks para connector internals
+169.29 Evaluar compatibilidad, concurrencia y evolución upstream de connector internals
 
 170. pipeline internals
 
@@ -4893,6 +5573,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 170.23 laboratorio: validar pipeline internals
 170.24 laboratorio: provocar y diagnosticar fallos en pipeline internals
 170.25 laboratorio: integrar pipeline internals end-to-end
+170.26 Examinar interfaces, contratos y ciclo de vida de pipeline internals
+170.27 Seguir el flujo de pdata y la propagación de errores en pipeline internals
+170.28 Implementar pruebas unitarias, de integración y benchmarks para pipeline internals
+170.29 Evaluar compatibilidad, concurrencia y evolución upstream de pipeline internals
 
 171. queue internals
 
@@ -4921,6 +5605,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 171.23 laboratorio: validar queue internals
 171.24 laboratorio: provocar y diagnosticar fallos en queue internals
 171.25 laboratorio: integrar queue internals end-to-end
+171.26 Examinar interfaces, contratos y ciclo de vida de queue internals
+171.27 Seguir el flujo de pdata y la propagación de errores en queue internals
+171.28 Implementar pruebas unitarias, de integración y benchmarks para queue internals
+171.29 Evaluar compatibilidad, concurrencia y evolución upstream de queue internals
 
 172. OTLP internals
 
@@ -4949,6 +5637,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 172.23 laboratorio: validar OTLP internals
 172.24 laboratorio: provocar y diagnosticar fallos en OTLP internals
 172.25 laboratorio: integrar OTLP internals end-to-end
+172.26 Examinar interfaces, contratos y ciclo de vida de OTLP internals
+172.27 Seguir el flujo de pdata y la propagación de errores en OTLP internals
+172.28 Implementar pruebas unitarias, de integración y benchmarks para OTLP internals
+172.29 Evaluar compatibilidad, concurrencia y evolución upstream de OTLP internals
 
 173. desarrollo de componentes personalizados
 
@@ -4977,6 +5669,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 173.23 laboratorio: validar desarrollo de componentes personalizados
 173.24 laboratorio: provocar y diagnosticar fallos en desarrollo de componentes personalizados
 173.25 laboratorio: integrar desarrollo de componentes personalizados end-to-end
+173.26 Interfaces y factories del Collector para nuevos componentes
+173.27 Config validation, lifecycle y consumer contracts
+173.28 Telemetría interna, testing y documentación
+173.29 Distribución custom con Builder y CI
 
 174. desarrollo de receivers
 
@@ -5005,6 +5701,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 174.23 laboratorio: validar desarrollo de receivers
 174.24 laboratorio: provocar y diagnosticar fallos en desarrollo de receivers
 174.25 laboratorio: integrar desarrollo de receivers end-to-end
+174.26 Examinar interfaces, contratos y ciclo de vida de desarrollo de receivers
+174.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de receivers
+174.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de receivers
+174.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de receivers
 
 175. desarrollo de processors
 
@@ -5033,6 +5733,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 175.23 laboratorio: validar desarrollo de processors
 175.24 laboratorio: provocar y diagnosticar fallos en desarrollo de processors
 175.25 laboratorio: integrar desarrollo de processors end-to-end
+175.26 Examinar interfaces, contratos y ciclo de vida de desarrollo de processors
+175.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de processors
+175.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de processors
+175.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de processors
 
 176. desarrollo de exporters
 
@@ -5061,6 +5765,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 176.23 laboratorio: validar desarrollo de exporters
 176.24 laboratorio: provocar y diagnosticar fallos en desarrollo de exporters
 176.25 laboratorio: integrar desarrollo de exporters end-to-end
+176.26 Examinar interfaces, contratos y ciclo de vida de desarrollo de exporters
+176.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de exporters
+176.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de exporters
+176.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de exporters
 
 177. desarrollo de connectors
 
@@ -5089,6 +5797,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 177.23 laboratorio: validar desarrollo de connectors
 177.24 laboratorio: provocar y diagnosticar fallos en desarrollo de connectors
 177.25 laboratorio: integrar desarrollo de connectors end-to-end
+177.26 Examinar interfaces, contratos y ciclo de vida de desarrollo de connectors
+177.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de connectors
+177.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de connectors
+177.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de connectors
 
 178. testing de componentes
 
@@ -5117,6 +5829,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 178.23 laboratorio: validar testing de componentes
 178.24 laboratorio: provocar y diagnosticar fallos en testing de componentes
 178.25 laboratorio: integrar testing de componentes end-to-end
+178.26 Examinar interfaces, contratos y ciclo de vida de testing de componentes
+178.27 Seguir el flujo de pdata y la propagación de errores en testing de componentes
+178.28 Implementar pruebas unitarias, de integración y benchmarks para testing de componentes
+178.29 Evaluar compatibilidad, concurrencia y evolución upstream de testing de componentes
 
 179. Collector Builder avanzado
 
@@ -5145,6 +5861,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 179.23 laboratorio: validar Collector Builder avanzado
 179.24 laboratorio: provocar y diagnosticar fallos en Collector Builder avanzado
 179.25 laboratorio: integrar Collector Builder avanzado end-to-end
+179.26 Examinar interfaces, contratos y ciclo de vida de Collector Builder avanzado
+179.27 Seguir el flujo de pdata y la propagación de errores en Collector Builder avanzado
+179.28 Implementar pruebas unitarias, de integración y benchmarks para Collector Builder avanzado
+179.29 Evaluar compatibilidad, concurrencia y evolución upstream de Collector Builder avanzado
 
 180. contribución al ecosistema OpenTelemetry
 
@@ -5173,6 +5893,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 180.23 laboratorio: validar contribución al ecosistema OpenTelemetry
 180.24 laboratorio: provocar y diagnosticar fallos en contribución al ecosistema OpenTelemetry
 180.25 laboratorio: integrar contribución al ecosistema OpenTelemetry end-to-end
+180.26 Guías de contribución, issues, proposals y revisión
+180.27 Tests, linters y compatibilidad con especificación
+180.28 Documentar estabilidad, seguridad y mantenimiento
+180.29 Crear PR mínimo y reproducible con changelog
 
 181. Arquitecturas reales
 
@@ -5188,6 +5912,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 181.10 infraestructura híbrida
 181.11 arquitectura multi-cluster
 181.12 arquitectura multi-tenant
+181.13 Diagrama de flujos, puertos, confianza y límites de cada arquitectura
+181.14 Matriz de compatibilidad de señal/protocolo/backend
+181.15 Análisis de fallo de cada salto y rutas alternativas
+181.16 Decisiones ADR y pruebas de aceptación de arquitectura
 
 182. Laboratorios integradores
 
@@ -5214,6 +5942,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 182.21 diagnosticar pérdida de telemetría
 182.22 analizar backpressure
 182.23 optimizar Collector
+182.24 Laboratorio integrador con SLO de pérdida de telemetría
+182.25 Matriz de pruebas por señal, versión y backend
+182.26 Fault injection: latencia, corte de red y reinicios
+182.27 Informe de rendimiento y evidencias reproducibles
 
 183. PROYECTO FINAL EXPERTO
 
@@ -5247,3 +5979,7 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 183.28 analizar backpressure
 183.29 optimizar rendimiento
 183.30 documentar arquitectura completa
+183.31 Definir criterios de aceptación medibles del proyecto
+183.32 Entregar configuración versionada, tests y runbooks
+183.33 Ejecutar simulacro de incidentes y recuperación
+183.34 Defender trade-offs de coste, seguridad y resiliencia

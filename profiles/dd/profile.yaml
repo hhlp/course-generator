@@ -1,10 +1,14 @@
-name: database-design
-
-description: >
-  Diseño de bases de datos relacionales de cero a experto:
-  teoría, normalización, costes y consistencia de agregados.
-
-language: es
+---
+course:
+  title: database-design — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  description: 'Diseño relacional de cero a experto: modelado, demostraciones
+    formales, normalización, PostgreSQL 18, costes medibles, agregados y
+    consistencia concurrente.'
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -12,31 +16,45 @@ files:
   bibliography: bibliography.md
 
 pedagogy:
-  style: profundo, práctico, progresivo y orientado a diseño de bases de datos relacionales
-
+  style: profundo, práctico, progresivo y orientado a diseño de bases de
+    datos relacionales
   lesson_structure:
-    required_opening: "🎯 OBJETIVO"
-    required_reading: "📚 LECTURA"
-    required_closing: "🧠 QUÉ DEBES RECORDAR"
-
+    required_opening: 🎯 OBJETIVO
+    required_reading: 📚 LECTURA
+    required_closing: 🧠 QUÉ DEBES RECORDAR
     reading_categories:
       - principal
       - normativa
       - motor
       - profundizacion
       - consulta
-
     exact_references_only_when_verified: true
-
     optional_sections:
-      - "🧪 Laboratorio/ejemplos"
-      - "⚠️ Errores frecuentes"
-      - "💡 Idea importante"
-
+      - 💡 IDEA IMPORTANTE
+    required_sections:
+      - 🎯 OBJETIVO
+      - 🧪 LABORATORIO / EJEMPLOS
+      - ⚠️ ERRORES FRECUENTES
+      - 📚 LECTURA
+      - 🧠 QUÉ DEBES RECORDAR
+    example_requirements:
+      worked_example_step_by_step: true
+      state_assumptions_and_units: true
+      include_counterexample_when_relevant: true
+      expected_results_for_labs: true
+      distinguish_estimate_from_measurement: true
   closing_requirements:
     min_points: 3
     max_points: 7
     avoid_repeating_objective: true
-
   indentation: false
   numbering: single-level
+  assessment:
+    formal_proofs_for_normalization: true
+    negative_integrity_tests: true
+    reproducible_postgresql_benchmarks: true
+    design_tradeoff_justification: true
+  bibliography_policy:
+    map_sources_by_scope: true
+    verify_editions_and_exact_references: true
+    avoid_invented_page_numbers: true

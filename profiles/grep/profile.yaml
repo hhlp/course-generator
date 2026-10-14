@@ -1,20 +1,33 @@
-name: grep
-title: GREP EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "Grep — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: "deep"
+
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 scope:
   programming_languages: false
   windows: false
   base_language_agnostic: true
   preferred_environment: Fedora Linux
+
 regex_policy:
   distinguish_dialect_specific_features: true
   distinguish_engine_specific_behavior: true
   prefer_language_agnostic_examples: true
   programming_language_examples: false
+
 lesson_structure:
   objective:
     required: true
@@ -24,11 +37,11 @@ lesson_structure:
     required: true
     heading: 📚 LECTURA
     categories:
-    - principal
-    - normativa
-    - motor
-    - profundizacion
-    - consulta
+      - principal
+      - normativa
+      - motor
+      - profundizacion
+      - consulta
     exact_references_only_when_verified: true
   lab:
     required: false
@@ -45,6 +58,7 @@ lesson_structure:
     heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
+
 quality:
   forbid_generic_scaffold: true
   require_topic_specific_headings: true
@@ -52,11 +66,13 @@ quality:
   require_self_contained_lesson: true
   audit_before_save: true
   repair_on_fail: true
+
 output:
   format: markdown
   zip_block: true
   write_index: true
   write_manifest: true
+
 artifacts:
   enabled: true
   default_strategy: auto
@@ -65,6 +81,7 @@ artifacts:
     integrator_projects: auto
     diagnostic_projects: auto
     require_project_for_every_block: false
+
 validation:
   enabled: false
   commands: []

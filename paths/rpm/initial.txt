@@ -88,6 +88,14 @@
 0.87 comparación de versiones
 0.88 rpmdev-vercmp
 
+
+0.900 Ampliación avanzada — revisión de profundidad
+0.900.1 Evolución de RPM 4.x a RPM 6.x y comprobación de versión instalada
+0.900.2 Compatibilidad de formato RPM, firmas y herramientas entre versiones
+0.900.3 Anatomía del paquete: lead histórico, signature header, main header y payload
+0.900.4 Compresión del payload, cpio y análisis con rpm2cpio
+0.900.5 Diferenciar capacidades upstream de políticas de Fedora
+
 1. SPEC y construcción de paquetes
 1.1 estructura completa de un SPEC
 1.2 cabecera del SPEC
@@ -174,6 +182,25 @@
 1.83 instalar un SRPM con rpm -i
 1.84 obtener SPEC y Sources desde un SRPM
 1.85 laboratorio final: SPEC completo desde cero
+
+
+1.900 Ampliación avanzada — revisión de profundidad
+1.900.1 %generate_buildrequires y dependencias dinámicas de compilación
+1.900.2 %bcond y variantes de compilación
+1.900.3 %conf y configuración moderna cuando la versión lo soporte
+1.900.4 Macros %cmake, %cmake_build, %cmake_install y %ctest
+1.900.5 Macros %meson, %meson_build, %meson_install y %meson_test
+1.900.6 Macros %pyproject_buildrequires, %pyproject_wheel, %pyproject_install y %pyproject_save_files
+1.900.7 Packaging de Rust con macros Cargo según Fedora
+1.900.8 Packaging de Go con macros y políticas Fedora
+1.900.9 Packaging de shell scripts y aplicaciones CLI
+1.900.10 Empaquetar bibliotecas compartidas, SONAME, -libs y -devel
+1.900.11 Dependency generators, filtros y atributos de archivo
+1.900.12 %generate_buildrequires: laboratorio reproducible
+1.900.13 Subpackages de debug y símbolos de depuración
+1.900.14 Versionado de snapshots, prereleases y dist tags
+1.900.15 Migración segura de archivos %config(noreplace)
+1.900.16 Build de SPEC con múltiples arquitecturas y condicionantes
 
 2. RPM por dentro: transacciones, dependencias y solver
 2.1 instalación
@@ -589,6 +616,17 @@
 2.112.299 README final
 2.112.300 mini-solver-debugger v1.0
 
+
+2.900 Ampliación avanzada — revisión de profundidad
+2.900.1 Arquitectura de librpm y fronteras entre librpm, libdnf5 y libsolv
+2.900.2 Generadores automáticos de dependencias y fileattrs
+2.900.3 Dependencias ELF, shebang, pkgconfig y soname
+2.900.4 Orden de scriptlets y triggers: trazas reproducibles
+2.900.5 Dependencias de orden de transacción y restricciones
+2.900.6 Debugging de transacciones con pruebas aisladas
+2.900.7 Versionado RPM 6 y compatibilidad con herramientas de inspección
+2.900.8 Limitaciones del solver ante políticas de selección de DNF5
+
 3. Comando rpm en profundidad
 3.1 Consultar RPMs instalados
 3.1.1 rpm -q
@@ -604,7 +642,7 @@
 3.1.11 rpm -q --whatrequires
 3.1.12 rpm -q --scripts
 3.1.13 rpm -q --triggers
-3.1.14 rpm -q –changelog
+3.1.14 rpm -q --changelog
 3.2 Consultar RPMs sin instalar
 3.2.1 rpm -qp
 3.2.2 rpm -qpi
@@ -716,7 +754,7 @@
 3.8.11.6 bogdando/rpmdeps
 3.8.12 rpmgraph
 3.8.12.1 herramienta histórica/no disponible en nuestra instalación
-3.8.11.2 alternativa externa: mambelli/rpmdepsgraph
+3.8.12.2 alternativa externa: mambelli/rpmdepsgraph
 3.8.13 visualizar relaciones de dependencias
 3.8.13.1 rpmdepsgraph.sh
 3.8.13.2 formato Graphviz DOT
@@ -742,6 +780,17 @@
 3.8.30 laboratorio: analizar un SPEC con rpmspec
 3.8.31 laboratorio final: mapa completo del ecosistema RPM
 
+
+3.900 Ampliación avanzada — revisión de profundidad
+3.900.1 Queryformat avanzado: iteración, etiquetas y condiciones
+3.900.2 Inspección de cabeceras, tags y metadata de archivos
+3.900.3 RPMDB SQLite: localización, copia segura y diagnóstico
+3.900.4 Consulta de estado de paquetes y diferencias con historial DNF
+3.900.5 Firmas OpenPGP y compatibilidad según versión RPM
+3.900.6 Prácticas seguras para reparar rpmdb sin perder evidencia
+3.900.7 Inspección y comparación de payload con rpm2cpio
+3.900.8 Laboratorio de consultas programáticas y JSON
+
 4. Repositorios RPM y DNF
 4.1 Fundamentos de repositorios RPM
 4.1.1 Estructura de un repositorio
@@ -753,7 +802,6 @@
 4.1.7 checksums e identificación de metadata
 4.1.8 relación RPM → repository metadata → DNF/libsolv
 
-4.2 createrepo_c
 4.3 createrepo_c
 4.3.1 Crear un repositorio local
 4.3.2 Actualizar un repositorio existente
@@ -853,6 +901,20 @@
 4.11.13 comparar metadata RPM con metadata del repositorio
 4.11.14 seguir el camino completo: SPEC ↓ RPM ↓ createrepo_c ↓ repodata ↓ DNF ↓ libdnf ↓ libsolv ↓ transacción RPM
 
+
+4.900 Ampliación avanzada — revisión de profundidad
+4.900.1 DNF5 CLI frente a DNF4: diferencias y compatibilidad
+4.900.2 Configuración de DNF5, variables y opciones por repositorio
+4.900.3 Comandos de historial y diagnóstico en DNF5
+4.900.4 libdnf5: arquitectura, API y conceptos principales
+4.900.5 createrepo_c avanzado, metadata incremental y compresión
+4.900.6 Repositorios HTTPS, certificados y proxies
+4.900.7 Repo GPG check, firma de repomd.xml y rotación de claves
+4.900.8 Prioridad, coste, excludes y políticas de selección
+4.900.9 Multilib, arquitecturas y repositorios mezclados
+4.900.10 Pruebas de actualización, downgrade y distro-sync
+4.900.11 Laboratorio: publicar un repositorio local firmado
+
 5. Integración con el sistema Fedora systemd
 
 5.1 Integración con systemd
@@ -901,6 +963,24 @@
 
 5.10 Kernel
 5.10.1 kernel modules y relación con RPM
+
+
+5.900 Ampliación avanzada — revisión de profundidad
+5.900.1 Empaquetado de unidades systemd: service, socket, timer y presets
+5.900.2 Política Fedora sobre scriptlets systemd y macros actuales
+5.900.3 tmpfiles.d: rutas volátiles y ownership
+5.900.4 sysusers.d: usuarios y grupos del servicio
+5.900.5 SELinux: contexts, restorecon, políticas y módulos empaquetados
+5.900.6 firewalld: servicios XML y configuración distribuida
+5.900.7 Empaquetado de bibliotecas compartidas, ldconfig y SONAME
+5.900.8 Packaging de kernel modules: kmod, akmods y Secure Boot (alcance y límites)
+5.900.9 Integración de udev rules, D-Bus y polkit
+5.900.10 Desktop files, icon cache, AppStream y MIME
+5.900.11 Integración con logrotate y journald
+5.900.12 Alternatives: uso correcto y pruebas de actualización
+5.900.13 Filesystem Hierarchy Standard, /usr/libexec y directorios de estado
+5.900.14 Laboratorio: servicio completo con systemd, sysusers, tmpfiles y SELinux
+5.900.15 Laboratorio: biblioteca C con subpaquetes -libs y -devel
 
 6. Calidad, seguridad y reproducibilidad
 
@@ -1028,6 +1108,20 @@
 6.14 Laboratorio final
 6.14.1 Auditoría completa de un RPM antes de enviarlo a Fedora
 
+
+6.900 Ampliación avanzada — revisión de profundidad
+6.900.1 ABI/API compatibility, símbolos y soname en upgrades
+6.900.2 Validación de licencias SPDX y archivos con licencias múltiples
+6.900.3 SBOM: generación, alcance y validación de contenido
+6.900.4 Cadena de suministro: procedencia, firmas y trazabilidad
+6.900.5 Reproducibilidad bit a bit y límites de entornos de build
+6.900.6 Comparar artefactos con diffoscope y analizar no determinismo
+6.900.7 Vulnerabilidades y actualizaciones de dependencias empaquetadas
+6.900.8 Tests de instalación, actualización, eliminación y rollback
+6.900.9 Pruebas de compatibilidad entre releases Fedora
+6.900.10 Inspección de paquetes binarios y políticas de hardening
+6.900.11 Auditoría integral de SPEC, SRPM y RPM con evidencia
+
 7. Fedora Packaging Workflow profesional
 
 7.1 Dist-git y fedpkg
@@ -1060,7 +1154,6 @@
 7.2.9 root cache de mock
 7.2.10 limpiar/recrear el entorno de mock
 
-7.3 Koji
 
 7.4 Koji
 7.4.1 arquitectura de Koji
@@ -1101,7 +1194,6 @@
 7.6.10 diferencias Rawhide vs stable
 7.6.11 freezes del ciclo Fedora
 
-7.7 COPR
 
 7.8 COPR
 7.8.1 proyectos COPR
@@ -1182,6 +1274,19 @@
 7.13.12 pasar de testing a stable
 7.13.13 actualizar upstream y realizar un segundo release
 7.13.14 backport del fix a una rama estable
+
+
+7.900 Ampliación avanzada — revisión de profundidad
+7.900.1 Packit: configuración, builds y pruebas en PR
+7.900.2 GitHub Actions: lint, SRPM, mock y publicación controlada
+7.900.3 Integración Packit y COPR para builds automatizados
+7.900.4 Fedora CI gating y resultados de pruebas
+7.900.5 Estrategias de branches, release y backport
+7.900.6 Gestión de CVE y mantenimiento de seguridad
+7.900.7 Automatización de versiones y changelogs
+7.900.8 Rebuilds, mass rebuilds y cambios de toolchain
+7.900.9 Credenciales, tokens y firma en pipelines CI/CD
+7.900.10 Laboratorio: pipeline completo Git → COPR → revisión
 
 8. Diagnóstico y troubleshooting RPM
 
@@ -1431,6 +1536,19 @@
 8.23.13 diagnóstico completo de un paquete roto
 8.23.14 examen final: desde el síntoma hasta la causa raíz
 
+
+8.900 Ampliación avanzada — revisión de profundidad
+8.900.1 Diagnóstico de dependencias automáticas incorrectas
+8.900.2 Diagnóstico de fallos %generate_buildrequires
+8.900.3 Fallos de empaquetado Python, Rust, Go y C/C++
+8.900.4 Depuración de transacciones y scripts sin afectar el host
+8.900.5 Diagnóstico de firmas, claves y metadatos firmados
+8.900.6 Problemas de ABI, SONAME y bibliotecas compartidas
+8.900.7 Problemas de permisos, capabilities y SELinux
+8.900.8 Diagnóstico de logs y evidencias de mock, Koji, COPR y Bodhi
+8.900.9 Matriz de síntomas, hipótesis, pruebas y correcciones
+8.900.10 Laboratorio de recuperación de repositorio y rpmdb
+
 9. LABORATORIO FINAL — RPM / DNF / libsolv Repositorio: pkg-A pkg-B pkg-C pkg-D pkg-E
 
 9.1 Preparación del laboratorio
@@ -1587,3 +1705,15 @@
 9.14.15 comprobar la nueva solución en libsolv
 
 9.15 mini-rpm-solver-debugger
+
+9.900 Ampliación avanzada — revisión de profundidad
+9.900.1 Validación de regresión para versiones 1, 2 y 3
+9.900.2 Generar SRPM y construir con mock en varias releases
+9.900.3 Publicación de paquetes en COPR y verificación del repositorio
+9.900.4 Integrar rpmlint, rpminspect y pruebas funcionales
+9.900.5 Automatizar CI con Packit o GitHub Actions
+9.900.6 Probar upgrade, downgrade y eliminación con configuraciones persistentes
+9.900.7 Verificar firmas RPM y metadata del repositorio
+9.900.8 Generar informe de dependencias y decisiones SAT/UNSAT
+9.900.9 Documentar causa raíz de una transacción fallida
+9.900.10 Entregables finales: SPEC, SRPM, RPM, repo, tests, logs y README

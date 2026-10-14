@@ -276,3 +276,29 @@ Combinar documentación con experimentación real en Fedora.
 Objetivo:
 
 precisión técnica + prácticas actuales + profundidad + comprensión interna + experiencia práctica.
+
+
+## 22. Referencias adicionales organizadas por scope
+
+| Scope | Referencias prioritarias | Uso |
+|---|---|---|
+| RPM formato e internals (0, 2, 3) | RPM upstream docs, código RPM, man rpm | Cabeceras, rpmdb, transacciones, firma |
+| SPEC y macros (1) | RPM upstream manual, Fedora Packaging Guidelines | BuildRequires dinámicos, macros y subpackages |
+| DNF5 y repositorios (4) | DNF5/libdnf5 docs, createrepo_c, libsolv | Repositorios, políticas, SAT/UNSAT |
+| Integración Fedora (5) | Fedora Packaging Guidelines, systemd packaging docs, SELinux docs | Servicios, bibliotecas, seguridad |
+| Calidad y seguridad (6) | Fedora Packaging Guidelines, reproducible-builds.org, SPDX specification | Reproducibilidad, licencias, SBOM |
+| Workflow (7) | Fedora Package Maintainer docs, Packit docs, COPR, Koji, Bodhi | CI/CD, builds y publicación |
+| Diagnóstico (8) | Mock docs, rpmlint, rpminspect, libsolv docs | Análisis de errores y logs |
+| Proyecto final (9) | Todas las fuentes anteriores y SPEC reales de Fedora | Validación de extremo a extremo |
+
+### Referencias complementarias por ecosistema
+
+- Fedora Python Packaging Guidelines y macros pyproject: paquetes Python.
+- Fedora Rust Packaging Guidelines y herramientas Cargo: paquetes Rust.
+- Fedora Go Packaging Guidelines: paquetes Go.
+- Fedora C/C++ Packaging Guidelines y políticas de bibliotecas: ELF, ABI, SONAME y subpackages devel.
+- Fedora systemd Packaging Guidelines y documentación systemd: servicios, presets, tmpfiles y sysusers.
+- Documentación oficial de Packit: integración CI y COPR.
+- Documentación oficial de SPDX: expresión de licencias y metadatos.
+
+**Nota de vigencia:** las opciones, macros y políticas cambian entre versiones. Consultar documentación correspondiente a la versión de Fedora y RPM usada en cada laboratorio.

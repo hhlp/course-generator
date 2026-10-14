@@ -1,23 +1,30 @@
+---
 course:
-  id: pandas3
-  title: "Pandas 3 — Learning Path 0 → Experto"
+  title: Pandas 3 — 0 a Experto en Profundidad
   language: es
-  target_version: "Pandas 3.x"
-  blocks: 18
-  lessons: 216
+  level:
+    start: cero
+    end: experto
+  target_version: Pandas 3.x
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
-  style: "profundo, práctico, progresivo y orientado a datos reales"
+  style: profundo, práctico, progresivo y orientado a datos reales
   indentation: false
   numbering: single-level
   lesson_structure:
     objective:
       required: true
       position: first
-      heading: "🎯 OBJETIVO"
+      heading: 🎯 OBJETIVO
     reading:
       required: true
-      heading: "📚 LECTURA"
+      heading: 📚 LECTURA
       categories:
         - principal
         - normativa
@@ -26,28 +33,39 @@ pedagogy:
         - consulta
       exact_references_only_when_verified: true
     lab:
-      required: false
-      heading: "🧪 Laboratorio/ejemplos"
+      required: true
+      heading: 🧪 Laboratorio/ejemplos
     common_errors:
-      required: false
-      heading: "⚠️ Errores frecuentes"
+      required: true
+      heading: ⚠️ Errores frecuentes
     important_idea:
-      required: false
-      heading: "💡 Idea importante"
+      required: true
+      heading: 💡 Idea importante
     remember:
       required: true
       position: last
-      heading: "🧠 QUÉ DEBES RECORDAR"
+      heading: 🧠 QUÉ DEBES RECORDAR
       min_items: 3
       max_items: 7
       avoid_repeating_objective: true
+  depth_requirements:
+    conceptual_foundations: true
+    step_by_step_explanation: true
+    internal_mechanisms_when_relevant: true
+    progressive_examples: true
+    edge_cases_and_null_semantics: true
+    performance_and_memory_when_relevant: true
+    version_specific_behavior: true
+    troubleshooting: true
+    exercises_with_expected_results: true
+    complexity_when_relevant: true
 
 sources:
   precedence:
-    - "Documentación oficial de pandas 3.x para API y comportamiento vigente"
-    - "Pandas for Everyone, Second Edition — Daniel Y. Chen"
-    - "Effective Pandas: Patterns for Data Manipulation — Matt Harrison"
-    - "Pandas in Action — Boris Paskhaver"
+    - Documentación oficial de pandas 3.x para API y comportamiento vigente
+    - Pandas for Everyone, Second Edition — Daniel Y. Chen
+    - 'Effective Pandas: Patterns for Data Manipulation — Matt Harrison'
+    - Pandas in Action — Boris Paskhaver
   official_docs_override_older_book_behavior: true
 
 pandas3:
@@ -59,6 +77,13 @@ pandas3:
   vectorization: preferred_when_appropriate
   method_chaining: teach
   migration_from_older_pandas: required
+  arrow_interoperability: required
+  extension_dtypes: required
+  internal_architecture: required
+  benchmarking: required
+  advanced_testing: required
+  api_stability: distinguish_public_and_private
+  compatibility_check: verify_against_target_pandas_3_minor_release
 
 content_rules:
   preserve_path_structure: true
@@ -66,3 +91,27 @@ content_rules:
   use_realistic_datasets: true
   compare_idiomatic_and_non_idiomatic_patterns: true
   avoid_unverified_page_or_chapter_references: true
+  preserve_existing_216_lessons: true
+  expected_blocks: 22
+  expected_lessons: 414
+  datasets_reproducible: true
+  labs_include_assertions: true
+  avoid_private_apis_in_production_examples: true
+  separate_pandas_scope_from_numpy_sql_polars: true
+
+milestones:
+  - id: foundations
+    after_block: 5
+    name: Fundamentos y modelo de memoria
+  - id: data-workflows
+    after_block: 13
+    name: Manipulación y análisis tabular
+  - id: engineering
+    after_block: 16
+    name: Pipelines y calidad
+  - id: expert
+    after_block: 20
+    name: Arquitectura, Arrow, rendimiento y testing
+  - id: capstone
+    after_block: 21
+    name: Proyecto final y migración Pandas 3

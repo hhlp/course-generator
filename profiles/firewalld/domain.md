@@ -6,35 +6,47 @@ Este PATH enseña administración de firewall en Fedora con **firewalld** como i
 
 ## Alcance
 
-El dominio cubre el PATH 0–26:
+El dominio cubre el PATH 0–38, conservando las lecciones originales de 0–26 y añadiendo especialización de 27–38:
 
 0. Fundamentos de firewall en Linux
 1. Arquitectura de firewalld
-2. Zonas
-3. Servicios
-4. Puertos
-5. Interfaces
-6. Rich rules
-7. IP sets
-8. NAT y masquerade
-9. Forwarding
-10. IPv6
-11. Políticas
-12. Runtime frente a permanent
-13. Persistencia y configuración
-14. firewalld + systemd
-15. firewalld + NetworkManager
-16. firewalld + SELinux
-17. firewalld + nftables
-18. Diagnóstico con `nft list ruleset`
-19. Diagnóstico y troubleshooting
-20. Seguridad
-21. Automatización
-22. Casos prácticos
+2. Instalación y estado en Fedora
+3. Configuración y archivos
+4. Modelo runtime y permanent
+5. Zonas
+6. Interfaces y zonas
+7. Sources
+8. Servicios
+9. Puertos
+10. Protocolos
+11. ICMP
+12. Rich Rules
+13. Policies
+14. Forwarding
+15. NAT
+16. Connection tracking
+17. Direct interface y reglas de bajo nivel
+18. firewalld y nftables
+19. Logging y diagnóstico
+20. firewalld + systemd
+21. firewalld + SELinux
+22. IPv6
 23. Seguridad y diseño
-24. Laboratorio integrador
-25. Proyecto final
-26. Bibliografía y fuentes de consulta
+24. Investigación de problemas
+25. Laboratorios
+26. Proyecto final - firewalld-debugger
+27. IP sets en profundidad
+28. Rich rules avanzadas
+29. Policies avanzadas
+30. D-Bus y API de firewalld
+31. nftables y Netfilter avanzado
+32. Logging y observabilidad avanzada
+33. Seguridad operativa y recuperación
+34. Automatización con Ansible
+35. Virtualización y contenedores
+36. Troubleshooting experto
+37. Laboratorios expertos
+38. Proyecto experto integrador — firewalld architecture & debugger
 
 ## Plataforma de referencia
 
@@ -132,3 +144,25 @@ La automatización debe perseguir estados declarativos e idempotentes. Debe veri
 ## Resultado esperado
 
 Al finalizar, el alumno debe poder diseñar, implementar, auditar y diagnosticar un firewall Fedora real; explicar por qué una comunicación está permitida o bloqueada; rastrear la configuración desde firewalld hasta nftables; integrar el firewall con servicios, interfaces, NetworkManager, systemd y SELinux; y recuperar el sistema de configuraciones incorrectas.
+
+## Profundidad técnica obligatoria (ampliación)
+
+Cada tema relevante deberá explicar modelo conceptual, condiciones previas, sintaxis y parámetros, archivos persistentes, ejecución en Fedora, verificación observable, comportamiento runtime/permanent, seguridad y rollback, errores frecuentes y diagnóstico multicapa. No se asumirán opciones ni objetos disponibles sin comprobar la versión instalada.
+
+Los laboratorios deben indicar topología, requisitos, comandos comentados, resultados esperados, pruebas negativas, limpieza y recuperación. Se deben distinguir explícitamente hechos derivados de la documentación de hipótesis del laboratorio.
+
+## Competencias avanzadas y límites
+
+- Rastrear tráfico host/forwarded y sus decisiones a través de zonas, sources, policies, rich rules y nftables.
+- Utilizar IP sets y prioridades de forma verificable.
+- Diagnosticar IPv6 sin bloquear protocolos imprescindibles para Neighbor Discovery y PMTUD.
+- Automatizar con Ansible y D-Bus sin perder idempotencia ni acceso remoto.
+- Entender la convivencia con NetworkManager, libvirt, Podman y Docker según versiones y backend.
+- Auditar logs de daemon y paquetes, counters, conntrack y tracing en entornos controlados.
+- Documentar reversión y recuperación para cada cambio disruptivo.
+
+Este PATH no sustituye cursos completos de nftables, Ansible, SELinux o redes; profundiza únicamente en los mecanismos necesarios para administrar firewalld a nivel experto.
+
+## Evaluación y proyecto
+
+Cada bloque avanzado incluye verificación práctica y al menos un escenario de fallo. El bloque 26 conserva el proyecto original firewalld-debugger; el bloque 38 lo integra en una arquitectura multi-zona y dual-stack con pruebas, automatización y runbook de recuperación.

@@ -11,6 +11,13 @@
 0.10 Dependencias
 0.11 Primer programa
 
+0.12 SDKMAN! y gestión de versiones
+0.13 JDK compatibles y matriz de compatibilidad
+0.14 Groovy en Fedora: instalación, PATH y troubleshooting
+0.15 groovyConsole y herramientas interactivas
+0.16 Dependencias con @Grab y riesgos de reproducibilidad
+0.17 Laboratorio reproducible: primer proyecto y diagnóstico
+
 1. Sintaxis y sistema de tipos
 1.1 Variables
 1.2 def
@@ -30,6 +37,17 @@
 1.16 Operadores de expresiones regulares
 1.17 Precedencia de operadores
 
+1.18 Números, BigDecimal y coerción numérica
+1.19 Igualdad ==, identidad is(), === y !==
+1.20 Acceso directo a campos .@ y acceso seguro a índices ?[]
+1.21 Operadores in, as, .&, :: y method pointers
+1.22 Asignación múltiple y destructuring
+1.23 Ámbito léxico, shadowing y variables locales
+1.24 @Field y diferencias entre scripts y clases
+1.25 asType(), asBoolean() y coerción personalizada
+1.26 Type checking extensions y resolución de métodos
+1.27 Compatibilidad semántica según versión de Groovy
+
 2. Strings y GStrings
 2.1 String
 2.2 GString
@@ -43,6 +61,12 @@
 2.10 Manipulación de texto
 2.11 String vs GString
 
+2.12 GString: evaluación diferida y closures interpoladas
+2.13 GString como clave de Map: igualdad y hashCode
+2.14 stripIndent(), stripMargin() y normalización
+2.15 Codificaciones Unicode, Charset y escapes
+2.16 StringBuilder y costes de concatenación
+
 3. Control de flujo
 3.1 if / else
 3.2 switch
@@ -54,6 +78,10 @@
 3.8 Ranges
 3.9 Iteración idiomática
 3.10 Groovy Truth aplicado al control de flujo
+
+3.11 switch avanzado: casos de tipo, rangos y patrones soportados
+3.12 Control de flujo con excepciones y finally
+3.13 Sentencias y expresiones switch según versión
 
 4. Colecciones
 4.1 List
@@ -78,6 +106,13 @@
 4.20 sort
 4.21 Transformaciones encadenadas
 
+4.22 Spread-map y spread-dot sobre colecciones
+4.23 Vistas, copias y mutabilidad de colecciones
+4.24 Comparadores, ordenación estable y colisiones
+4.25 Lazy evaluation e iteradores
+4.26 Complejidad y costes de transformaciones encadenadas
+4.27 Map con claves String y GString: trampas
+
 5. Métodos y funciones
 5.1 Definición de métodos
 5.2 Parámetros
@@ -88,6 +123,11 @@
 5.7 Sobrecarga
 5.8 Métodos estáticos
 5.9 Method references
+
+5.10 Parámetros tipados y resolución de sobrecargas
+5.11 Coerción SAM y adaptación de closures
+5.12 Métodos con argumentos map y ambigüedad de named arguments
+5.13 Recursión, tail recursion y @TailRecursive
 
 6. Closures
 6.1 Qué es una Closure
@@ -114,6 +154,12 @@
 6.22 Composition
 6.23 Closure vs Java lambda
 
+6.24 Closures anidadas: owner y delegate reales
+6.25 @DelegatesTo y type checking en DSL
+6.26 @ClosureParams y firmas inferidas
+6.27 Trampas de captura y concurrencia
+6.28 Trampas CPS al usar closures en Jenkins
+
 7. Programación orientada a objetos
 7.1 Classes
 7.2 Objects
@@ -132,6 +178,13 @@
 7.15 Generics
 7.16 Polimorfismo
 
+7.17 Propiedades frente a campos y acceso directo
+7.18 Trait conflict resolution y super de traits
+7.19 Interfaces funcionales y coerción
+7.20 Records y compatibilidad por versión
+7.21 Clases internas, anónimas y sealed types cuando corresponda
+7.22 Inmutabilidad, igualdad y contratos hashCode
+
 8. Transformaciones AST
 8.1 Qué es una AST
 8.2 Compile-time metaprogramming
@@ -147,6 +200,11 @@
 8.12 @TypeChecked
 8.13 @CompileStatic
 
+8.14 Orden y alcance de transformaciones AST
+8.15 @AutoClone y @Sortable
+8.16 @Field y @PackageScope
+8.17 Compatibilidad de AST transforms con @CompileStatic
+
 9. Excepciones
 9.1 Throwable
 9.2 Exception
@@ -155,6 +213,10 @@
 9.5 throw
 9.6 Excepciones personalizadas
 9.7 Checked exceptions y Groovy
+
+9.8 Causas, suppressed exceptions y stack traces
+9.9 Try-with-resources e interoperabilidad Java
+9.10 Diseño de jerarquías de errores y recuperación
 
 10. Archivos, streams e I/O
 10.1 File
@@ -167,6 +229,14 @@
 10.8 Directorios
 10.9 Procesamiento de archivos
 
+10.10 Path y Files de java.nio.file
+10.11 Charsets, BOM y lectura robusta
+10.12 Copias, movimientos atómicos y permisos
+10.13 Archivos temporales y cleanup seguro
+10.14 Streams binarios y buffers
+10.15 Recorrido de árboles y enlaces simbólicos
+10.16 Seguridad: path traversal y TOCTOU
+
 11. Regex y procesamiento de texto
 11.1 Expresiones regulares
 11.2 Pattern
@@ -176,6 +246,10 @@
 11.6 Slashy strings y regex
 11.7 Procesamiento de logs
 
+11.8 Grupos nombrados, replacement y escaping en Groovy
+11.9 Regex en logs: rendimiento y ReDoS
+11.10 Límites: aplicación de regex, no teoría completa
+
 12. JSON, XML y datos
 12.1 JsonSlurper
 12.2 JsonOutput
@@ -184,6 +258,13 @@
 12.5 MarkupBuilder
 12.6 StreamingMarkupBuilder
 12.7 Transformación de datos
+
+12.8 JsonGenerator y opciones de serialización
+12.9 JSON streaming y grandes volúmenes
+12.10 XML namespaces y seguridad XXE
+12.11 CSV con bibliotecas interoperables
+12.12 YAML con librerías JVM y carga segura
+12.13 Validación de esquemas y errores de datos
 
 13. Scripts y automatización
 13.1 Anatomía de un script Groovy
@@ -197,6 +278,13 @@
 13.9 Automatización Linux
 13.10 Scripts administrativos
 
+13.11 CliBuilder y diseño de interfaces CLI
+13.12 ProcessBuilder, quoting y argumentos seguros
+13.13 Timeout, exit code, stdout y stderr
+13.14 Signals, shutdown hooks y cleanup
+13.15 Idempotencia y dry-run
+13.16 Logging estructurado y configuración externa
+
 14. Interoperabilidad Java
 14.1 Usar Java desde Groovy
 14.2 Usar Groovy desde Java
@@ -207,6 +295,12 @@
 14.7 Generics
 14.8 Bytecode
 14.9 Diferencias semánticas Java/Groovy
+
+14.10 Coerción entre tipos Java y Groovy
+14.11 GroovyObject, proxies y reflexión
+14.12 Module path, classloaders y dependencias
+14.13 Generics: erasure y restricciones
+14.14 Java records y APIs modernas
 
 15. Groovy Development Kit
 15.1 Qué es el GDK
@@ -219,6 +313,11 @@
 15.8 Extensiones para File
 15.9 Iteración idiomática
 
+15.10 DefaultGroovyStaticMethods
+15.11 Extension modules propios
+15.12 Resolución y conflictos de métodos de extensión
+15.13 Inspección del GDK y documentación API
+
 16. Programación funcional
 16.1 Funciones de orden superior
 16.2 Closures
@@ -229,6 +328,10 @@
 16.7 Currying
 16.8 Inmutabilidad
 16.9 Pipelines de transformación
+
+16.10 Efectos laterales y pureza
+16.11 Lazy pipelines y memoria
+16.12 Comparación de costes con Java Streams
 
 17. Metaprogramación
 17.1 Qué es metaprogramación
@@ -246,6 +349,12 @@
 17.13 Runtime metaprogramming
 17.14 Riesgos de la metaprogramación
 
+17.15 GroovyInterceptable y precedencia de interceptación
+17.16 MetaClassRegistry y limpieza de cambios globales
+17.17 Cachés, concurrencia y fugas en metaprogramación
+17.18 ExpandoMetaClass por instancia vs por clase
+17.19 Pruebas de MOP y comportamiento dinámico
+
 18. DSL
 18.1 Qué es un DSL
 18.2 Internal DSL
@@ -260,6 +369,12 @@
 18.11 DSL con tipado estático
 18.12 Diseñar nuestro propio DSL
 
+18.13 @DelegatesTo para DSL con IDE
+18.14 BuilderSupport frente a builders específicos
+18.15 Validación de gramática y errores útiles
+18.16 DSL seguro con límites de ejecución
+18.17 Diseño de DSL versionado y compatible
+
 19. AST avanzada
 19.1 Fases del compilador
 19.2 AST nodes
@@ -268,6 +383,13 @@
 19.5 Annotation-driven transformations
 19.6 CompilationCustomizer
 19.7 Crear una transformación propia
+
+19.8 AST Browser y exploración de nodos
+19.9 ASTTransformation y SourceUnit
+19.10 ClassNode, MethodNode y Expression
+19.11 ASTTransformationCustomizer
+19.12 Testing de transformaciones con compilación real
+19.13 Type checking extensions: hooks y reglas
 
 20. Concurrencia
 20.1 Threads JVM
@@ -280,6 +402,14 @@
 20.8 Race conditions
 20.9 Thread safety
 20.10 Diseño concurrente
+
+20.11 Java Memory Model y happens-before
+20.12 Locks, atomics y visibilidad
+20.13 Cancelación, interrupciones y timeouts
+20.14 CompletableFuture: composición y manejo de errores
+20.15 GPars: actores, dataflow y compatibilidad
+20.16 Structured concurrency y virtual threads: interoperabilidad según JDK
+20.17 Diagnóstico de deadlocks y thread dumps
 
 21. Testing
 21.1 Testing en Groovy
@@ -295,6 +425,14 @@
 21.11 Spies
 21.12 Testing de scripts
 
+21.13 Spock: fixtures, setupSpec y cleanupSpec
+21.14 Interaction testing y cardinalidad
+21.15 Data tables avanzadas y unroll
+21.16 Testing de excepciones y async
+21.17 Testcontainers e integración cuando proceda
+21.18 Cobertura con JaCoCo y mutation testing
+21.19 Testing de CLI, scripts y procesos
+
 22. Build y dependencias
 22.1 Gradle y Groovy
 22.2 build.gradle
@@ -306,6 +444,14 @@
 22.8 Custom tasks
 22.9 Groovy en Gradle DSL
 22.10 Publicación
+
+22.11 Gradle wrapper y version catalogs
+22.12 Groovy DSL vs Kotlin DSL
+22.13 GroovyCompile, toolchains y joint compilation
+22.14 Dependencias bloqueadas y reproducibilidad
+22.15 Test, cobertura y quality gates
+22.16 Publicación Maven y firmas
+22.17 Build cache y configuration cache: compatibilidad
 
 23. Rendimiento e internals
 23.1 Compilador Groovy
@@ -320,6 +466,13 @@
 23.10 Profiling
 23.11 Optimización
 
+23.12 javap, ASM y lectura de bytecode
+23.13 JFR y herramientas de profiling
+23.14 JMH y trampas de microbenchmarks
+23.15 GC, allocations y coste de GString
+23.16 Benchmarks dinámico vs @CompileStatic
+23.17 Classloaders, metaspace y fugas
+
 24. Seguridad
 24.1 Ejecutar código dinámico
 24.2 GroovyShell
@@ -330,6 +483,13 @@
 24.7 Jenkins Script Security
 24.8 Diseño seguro de DSL
 
+24.9 GroovyShell no es un sandbox de seguridad
+24.10 Inyección de comandos y escaping
+24.11 XXE, deserialización y carga de clases
+24.12 Secretos, logging y credenciales
+24.13 Dependency scanning y supply chain
+24.14 Amenazas de Script Console y privilegios Jenkins
+
 25. Groovy embebido
 25.1 GroovyShell
 25.2 Binding
@@ -338,6 +498,12 @@
 25.5 CompilerConfiguration
 25.6 CompilationCustomizer
 25.7 Crear una aplicación extensible mediante Groovy
+
+25.8 Ciclo de vida de classloaders y aislamiento
+25.9 Recarga de scripts y cachés
+25.10 Timeouts y límites de recursos externos
+25.11 Arquitectura de plugins y extensibilidad
+25.12 Tests de integración del motor embebido
 
 26. Groovy para Jenkins
 26.1 Por qué Jenkins utiliza Groovy
@@ -360,6 +526,14 @@
 26.18 matrix
 26.19 Manejo de errores
 
+26.20 Sintaxis Jenkins Pipeline vs Groovy estándar
+26.21 Pasos Jenkins vs llamadas a métodos Groovy
+26.22 Persistencia de estado entre checkpoints
+26.23 Credenciales, withCredentials y masking
+26.24 Timeouts, retries y control de errores
+26.25 Pipeline as Code y linting
+26.26 Agentes y ejecución en controller
+
 27. Jenkins Shared Libraries
 27.1 Qué es una Shared Library
 27.2 Estructura src/
@@ -376,6 +550,14 @@
 27.13 Versionado
 27.14 Crear una biblioteca CI/CD reutilizable
 
+27.15 vars/ vs src/: estado y serialización
+27.16 Clases con steps/context explícito
+27.17 @Library en compilación vs library() en ejecución
+27.18 Diseño semver y compatibilidad
+27.19 JenkinsPipelineUnit: mocks y límites
+27.20 Pruebas reales de Jenkins Pipeline
+27.21 Documentación de API y versionado de librerías
+
 28. Jenkins internals y Groovy
 28.1 Jenkins object model
 28.2 Jenkins API desde Groovy
@@ -390,6 +572,14 @@
 28.11 Groovy Sandbox
 28.12 Administración automatizada
 
+28.13 Modelo de seguridad y permisos de Script Console
+28.14 Jenkins.instance y API con control de acceso
+28.15 init.groovy.d: idempotencia y orden de carga
+28.16 Jenkins Configuration as Code: frontera de responsabilidades
+28.17 Administración de credenciales sin exposición
+28.18 Jenkins CPS: introducción al motor de ejecución
+28.19 Seguridad del controller y agents
+
 29. Diseño profesional
 29.1 Groovy idiomático
 29.2 Legibilidad
@@ -402,16 +592,83 @@
 29.9 Seguridad
 29.10 Performance
 
-30. Proyecto final
-30.1 Diseñar una aplicación Groovy
-30.2 Modelo orientado a objetos
-30.3 Collections
-30.4 Closures
-30.5 JSON/XML
-30.6 DSL propio
-30.7 Metaprogramación
-30.8 Testing con Spock
-30.9 Gradle
-30.10 Jenkins Shared Library
-30.11 Jenkinsfile consumidor
-30.12 Pipeline CI/CD completo
+29.11 CodeNarc y reglas de estilo
+29.12 Observabilidad, trazabilidad y diagnósticos
+29.13 Revisión de código y compatibilidad de versiones
+29.14 Estrategia de migración de Groovy y Jenkins
+
+30. Tooling, debugging y calidad profesional
+30.1 GroovyConsole, groovysh e IDE
+30.2 Configuración de IntelliJ y depurador
+30.3 Breakpoints, watches y evaluación
+30.4 Stack traces, logging SLF4J y MDC
+30.5 CodeNarc: reglas, baseline y excepciones
+30.6 JaCoCo y cobertura de pruebas
+30.7 Gradle quality gates y CI
+30.8 jcmd, jstack, jmap y JFR
+30.9 Diagnóstico de classloaders y dependencias
+30.10 Laboratorio: depuración de fallo complejo
+
+31. HTTP, APIs REST y formatos de integración
+31.1 java.net.http.HttpClient desde Groovy
+31.2 Peticiones GET, POST, PUT, PATCH y DELETE
+31.3 Headers, query parameters y URI encoding
+31.4 Autenticación Basic, Bearer y OAuth: consumo
+31.5 TLS, certificados y validación
+31.6 Timeouts, reintentos, backoff y rate limiting
+31.7 Paginación y streaming de respuestas
+31.8 JSON: validación, mapeo y errores
+31.9 CSV y YAML: bibliotecas y carga segura
+31.10 Tests HTTP con servidor simulado
+31.11 Diseño de cliente REST reutilizable
+31.12 Laboratorio: CLI integradora con API
+
+32. Groovy avanzado para Jenkins CPS
+32.1 Qué es CPS y por qué Jenkins transforma Pipeline
+32.2 Continuations, checkpoints y reanudación
+32.3 @NonCPS: alcance y restricciones
+32.4 Llamadas CPS a no-CPS y viceversa
+32.5 CPS method mismatches: síntomas y diagnóstico
+32.6 Closures y métodos GDK bajo CPS
+32.7 Serialización del estado y NotSerializableException
+32.8 Objetos no serializables y diseño seguro
+32.9 Durabilidad y recuperación tras reinicio
+32.10 Paralelismo de Pipeline vs threads JVM
+32.11 Persistencia de estado y tamaño de programa
+32.12 Ejecución controller vs agents
+32.13 Sandbox, Script Approval y trusted libraries
+32.14 Laboratorio: reproducir y corregir fallos CPS
+
+33. Ingeniería de Shared Libraries profesionales
+33.1 Diseño de capas vars/, src/ y resources/
+33.2 APIs estables y contratos para pipelines
+33.3 Paso explícito de steps y contexto
+33.4 Estado, serialización y CPS en clases
+33.5 Diseño seguro de credenciales
+33.6 Configuración, defaults y validación
+33.7 Versionado semántico y compatibilidad
+33.8 Carga implícita, @Library y library()
+33.9 Tests unitarios con JenkinsPipelineUnit
+33.10 Pruebas de integración en Jenkins real
+33.11 Estrategias de release y rollback
+33.12 Documentación, ejemplos y catálogo
+33.13 Observabilidad y diagnóstico de pipelines
+33.14 Proyecto: librería reutilizable versionada
+
+34. Proyecto final experto
+34.1 Definición de requisitos y criterios de aceptación
+34.2 Arquitectura de aplicación Groovy modular
+34.3 POO, traits, colecciones y closures
+34.4 CLI, configuración y manejo de errores
+34.5 Integración HTTP con JSON y YAML
+34.6 DSL interno con delegación y validación
+34.7 Metaprogramación y AST justificada
+34.8 Testing Spock, cobertura y calidad
+34.9 Gradle wrapper y dependencias reproducibles
+34.10 Shared Library con API estable
+34.11 Jenkinsfile Declarative y Scripted consumidor
+34.12 Pruebas CPS, serialización y reanudación
+34.13 Seguridad, credenciales y análisis estático
+34.14 CI/CD, publicación y rollback
+34.15 Profiling, troubleshooting y documentación
+34.16 Defensa técnica y evaluación final

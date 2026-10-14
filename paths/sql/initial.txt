@@ -34,6 +34,12 @@ SQL — LEARNING PATH 0 → EXPERTO (PostgreSQL)
 0.11 Leer mensajes de error de PostgreSQL
 0.12 Laboratorio: preparar el entorno SQL
 
+
+0.13 psql avanzado: variables, \gset y \gexec
+0.14 \copy frente a COPY: permisos y rutas
+0.15 Automatizar scripts con -v ON_ERROR_STOP=1 y -f
+0.16 Transacciones y limpieza reproducible de laboratorios
+
 1. SELECT * FROM
 
 1.1 Anatomía de una consulta SELECT
@@ -91,6 +97,11 @@ BEGINNER
 4.9 IS DISTINCT FROM / IS NOT DISTINCT FROM
 4.10 Laboratorio: expresiones y tipos
 
+
+4.11 Conversiones implícitas, literales de tipo unknown y resolución de operadores
+4.12 Precisión numeric frente a tipos de coma flotante
+4.13 Collations y comparación de texto: efectos observables
+
 5. FILTERING DATASETS & WILDCARDS
 
 5.1 WHERE
@@ -105,6 +116,11 @@ BEGINNER
 5.10 Expresiones regulares PostgreSQL: ~, ~*, !~, !~*
 5.11 Filtrado de fechas y rangos
 5.12 Laboratorio: construir filtros progresivamente
+
+
+5.13 LIKE ... ESCAPE y patrones literales
+5.14 Rangos temporales semiabiertos [inicio, fin)
+5.15 Comparaciones de texto, Unicode y collations: casos límite
 
 6. FUNCTIONS, DATES & GROUPING
 
@@ -129,6 +145,12 @@ BEGINNER
 6.19 Orden lógico:
 FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
 6.20 Laboratorio: análisis agregado
+
+
+6.21 AT TIME ZONE, zonas horarias y cambios DST
+6.22 date_bin() y agrupación temporal por intervalos
+6.23 ORDER BY dentro de agregados sensibles al orden
+6.24 Agregados sobre conjuntos vacíos y NULL
 
 7. BRIDGING THE GAP TO INTERMEDIATE SQL
 
@@ -168,6 +190,11 @@ INTERMEDIATE
 8.17 LATERAL JOIN en PostgreSQL
 8.18 Laboratorio: consultas multitabla
 
+
+8.19 Predicados ON frente a WHERE en OUTER JOIN
+8.20 Joins many-to-many y control de cardinalidad
+8.21 Identificar y prevenir double counting
+
 9. CASE & CONDITIONAL LOGIC
 
 9.1 CASE searched
@@ -198,6 +225,11 @@ INTERMEDIATE
 10.13 Materialización de CTEs en PostgreSQL
 10.14 MATERIALIZED / NOT MATERIALIZED
 10.15 Laboratorio: consultas por etapas y recursión
+
+
+10.16 SEARCH DEPTH FIRST / BREADTH FIRST en CTE recursivas
+10.17 CYCLE y detección de ciclos
+10.18 Recursión: terminación, profundidad y costes
 
 11. SET OPERATIONS
 
@@ -230,6 +262,10 @@ INTERMEDIATE
 12.13 Subconsulta frente a CTE
 12.14 NULL y NOT IN: caso crítico
 12.15 Laboratorio: elegir la forma adecuada de consulta
+
+
+12.16 Error de subconsulta escalar que devuelve más de una fila
+12.17 EXISTS frente a IN: semántica, NULL y rendimiento medido
 
 13. SELF JOINS
 
@@ -269,6 +305,12 @@ INTERMEDIATE
 14.22 Named windows con WINDOW
 14.23 Varias ventanas en una consulta
 14.24 Laboratorio: análisis temporal y rankings
+
+
+14.25 Peer groups y empates con ORDER BY
+14.26 Frame por defecto y comportamiento de LAST_VALUE
+14.27 EXCLUDE CURRENT ROW / GROUP / TIES / NO OTHERS
+14.28 Ventanas con fechas irregulares: ROWS frente a RANGE
 
 15. QUERY OPTIMIZATION FROM SQL
 
@@ -364,6 +406,11 @@ INTERMEDIATE
 
 ADVANCED
 
+
+16.59 Evolución compatible de contratos de views
+16.60 Privilegios y dependencias en cadenas de views
+16.61 Pruebas de views actualizables con CHECK OPTION
+
 17. ADVANCED AGGREGATION
 
 17.1 Agregación multidimensional
@@ -378,6 +425,11 @@ ADVANCED
 17.10 Percentiles
 17.11 percentile_cont() / percentile_disc()
 17.12 Laboratorio: informes analíticos complejos
+
+
+17.13 Estadística descriptiva: stddev, variance, corr y regr_*
+17.14 GROUPING() para distinguir subtotal y NULL real
+17.15 Ordered-set e hypothetical-set aggregates: diferencias
 
 18. ADVANCED POSTGRESQL QUERYING
 
@@ -395,6 +447,11 @@ ADVANCED
 18.12 Full-text search desde SQL: introducción
 18.13 Laboratorio: datos semiestructurados
 
+
+18.14 jsonb_path_query() y jsonb_to_recordset()
+18.15 SQL/JSON y diferencias según versión de PostgreSQL
+18.16 LATERAL con expansión de arrays y JSON
+
 19. DATA MODIFICATION SQL
 
 19.1 INSERT
@@ -411,6 +468,12 @@ ADVANCED
 19.12 Modificación de datos mediante CTEs
 19.13 Precauciones con modificaciones masivas
 19.14 Laboratorio: pipelines DML
+
+
+19.15 INSERT DEFAULT VALUES y OVERRIDING SYSTEM VALUE
+19.16 MERGE frente a ON CONFLICT: concurrencia y garantías
+19.17 RETURNING y valores OLD/NEW cuando la versión lo permita
+19.18 DML masivo: previsualización, transacciones y validación
 
 20. TRANSACTIONS FROM SQL
 
@@ -431,6 +494,14 @@ ADVANCED
 20.15 SKIP LOCKED
 20.16 Deadlocks: reconocerlos desde una sesión SQL
 20.17 Laboratorio: concurrencia con dos sesiones psql
+
+
+20.18 MVCC observable: snapshots y visibilidad
+20.19 SET TRANSACTION y transacciones READ ONLY / DEFERRABLE
+20.20 Lost updates y write skew: reproducir y prevenir
+20.21 Serialization failures y reintentos de transacciones completas
+20.22 Bloqueos de filas y orden consistente para evitar deadlocks
+20.23 Advisory locks desde SQL: límites y riesgos
 
 21. SQL ANALYTICS
 
@@ -453,6 +524,12 @@ ADVANCED
 
 EXPERT
 
+
+21.17 Análisis RFM y segmentación mediante SQL
+21.18 Medianas, percentiles y estadísticas aplicadas
+21.19 Ventanas temporales irregulares y datos faltantes
+21.20 Detección de anomalías con técnicas SQL
+
 22. ADVANCED QUERY PATTERNS
 
 22.1 Relational division mediante SQL
@@ -470,6 +547,10 @@ EXPERT
 22.13 Composición de consultas complejas
 22.14 Laboratorio: catálogo de patrones SQL
 
+
+22.15 Demostrar equivalencia entre consultas mediante contraejemplos
+22.16 Consultas temporales as-of con empates y claves de desempate
+
 23. SQL SEMANTICS & CORRECTNESS
 
 23.1 Pensamiento en conjuntos y bags/multisets
@@ -486,6 +567,11 @@ EXPERT
 23.12 Errores por granularidad de datos
 23.13 Evitar double counting
 23.14 Laboratorio: encontrar bugs SQL sutiles
+
+
+23.15 Validación con EXCEPT ALL en ambas direcciones
+23.16 Tablas vacías, NULL y duplicados como fixtures adversariales
+23.17 Propiedades e invariantes para verificar consultas
 
 24. QUERY PLANS & PERFORMANCE
 
@@ -506,6 +592,13 @@ EXPERT
 costosas
 24.15 Laboratorio: tuning de consultas
 
+
+24.16 EXPLAIN (ANALYZE, BUFFERS, VERBOSE, SETTINGS)
+24.17 Planning Time frente a Execution Time
+24.18 Spills a disco, sorts y hash batches
+24.19 Prepared statements: planes genéricos frente a personalizados
+24.20 Estadísticas y estimaciones: observar sin administrar el servidor
+
 25. SQL STYLE, SAFETY & MAINTAINABILITY
 
 25.1 SQL legible y mantenible
@@ -520,6 +613,11 @@ costosas
 25.10 PREPARE / EXECUTE en PostgreSQL
 25.11 Revisar una consulta antes de producción
 25.12 Laboratorio: refactorizar SQL
+
+
+25.13 RLS desde la perspectiva del consumidor de SQL
+25.14 SQL parametrizado y separación de identificadores/valores
+25.15 Pruebas de regresión y revisión segura de SQL
 
 26. POSTGRESQL BUILT-IN FUNCTIONS & OPERATORS
 
@@ -554,6 +652,10 @@ costosas
 26.29 Consultar documentación y firmas de funciones
 26.30 Laboratorio: resolver problemas usando funciones nativas
 
+
+26.31 Firmas, tipos unknown y resolución de sobrecargas
+26.32 Funciones estadísticas y agregados especializados
+
 27. POSTGRESQL ADVANCED SQL TYPES & EXPRESSIONS
 
 27.1 PostgreSQL como extensión práctica del SQL estándar
@@ -586,6 +688,10 @@ costosas
 27.28 Domains y enums como tipos consumidos por SQL
 27.29 Dollar-quoted strings
 27.30 Laboratorio: SQL PostgreSQL avanzado con tipos complejos
+
+
+27.31 Comparación práctica: arrays, JSONB, ranges y filas
+27.32 Collations deterministas/no deterministas: implicaciones de consulta
 
 28. CREATE FUNCTION & SQL-LANGUAGE FUNCTIONS
 
@@ -623,6 +729,12 @@ costosas
 28.32 Consultar funciones con psql
 28.33 pg_proc como catálogo de aprendizaje, no administración
 28.34 Laboratorio: construir una biblioteca de SQL functions
+
+
+28.35 SQL-standard function body y dependencias
+28.36 Inlining de funciones SQL y limitaciones
+28.37 Polimorfismo avanzado y resolución de sobrecargas
+28.38 Pruebas de volatilidad, STRICT y seguridad
 
 29. PL/PGSQL — FUNDAMENTALS
 
@@ -662,6 +774,12 @@ costosas
 29.34 Scope de variables
 29.35 Laboratorio: primeras funciones PL/pgSQL
 
+
+29.36 SELECT INTO STRICT y NO_DATA_FOUND / TOO_MANY_ROWS
+29.37 GET DIAGNOSTICS para estado de ejecución
+29.38 Conflictos de nombres: plpgsql.variable_conflict
+29.39 Variables, columnas y parámetros: resolución y scope
+
 30. PL/PGSQL — ADVANCED
 
 30.1 Ejecución de sentencias SQL dentro de PL/pgSQL
@@ -696,6 +814,12 @@ costosas
 30.30 Cuándo NO utilizar PL/pgSQL
 30.31 Laboratorio: lógica procedural y SQL dinámico
 
+
+30.32 Plan cache de PL/pgSQL y decisiones generic/custom
+30.33 Depuración y profiling de funciones: estrategias y herramientas opcionales
+30.34 SQL dinámico: parámetros de datos frente a identificadores
+30.35 EXCEPTION, subtransacciones y costes
+
 31. STORED FUNCTIONS & PROCEDURES
 
 31.1 Stored function como abstracción de lógica reutilizable
@@ -729,6 +853,11 @@ costosas
 31.29 Rendimiento de funciones
 31.30 Inlining de SQL functions: concepto
 31.31 Laboratorio: API interna mediante funciones y procedimientos
+
+
+31.32 CALL anidado y restricciones de control transaccional
+31.33 Procedimientos: contexto de invocación y restricciones
+31.34 Pruebas de idempotencia, concurrencia y evolución de firmas
 
 32. TRIGGERS
 
@@ -781,6 +910,12 @@ costosas
 32.47 Cuándo justificar un INSTEAD OF trigger
 32.48 Laboratorio: diseñar, probar y depurar triggers
 
+
+32.49 Constraint triggers diferibles y SET CONSTRAINTS
+32.50 Triggers e INSERT ... ON CONFLICT
+32.51 Triggers en tablas particionadas: comportamiento
+32.52 Pruebas de recursión, efectos secundarios y concurrencia
+
 33. POSTGRESQL SQL EXPERT
 
 33.1 Elegir entre SQL declarativo, SQL function y PL/pgSQL
@@ -826,6 +961,14 @@ costosas
 33.41 Elegir entre view, materialized view, CTE, temporary table y función
 33.42 Laboratorio: refactorizar una solución de beginner a expert
 
+
+33.43 SQL testing: fixtures reproducibles y resultados esperados
+33.44 Comparación de consultas mediante EXCEPT ALL
+33.45 Pruebas de regresión de views, funciones y procedimientos
+33.46 Introducción a pgTAP como herramienta opcional
+33.47 Pruebas de concurrencia con sesiones independientes
+33.48 Automatizar pruebas con psql y ON_ERROR_STOP
+
 34. POSTGRESQL SQL CAPSTONE — QUERY & DATABASE PROGRAMMING
 
 34.1 Importar un dataset real en PostgreSQL
@@ -863,6 +1006,13 @@ costosas
 34.33 Documentar decisiones sobre triggers
 34.34 Crear tests SQL reproducibles
 34.35 Proyecto final: entregar consultas, funciones, procedimientos, triggers y documentación reproducibles
+
+
+34.36 Entregar fixtures y tests automatizados reproducibles
+34.37 Probar casos límite: NULL, duplicados, conjuntos vacíos
+34.38 Validar equivalencia y regresiones con EXCEPT ALL
+34.39 Incluir tests de concurrencia y recuperación de errores
+34.40 Documentar versión PostgreSQL y extensiones opcionales
 
 FRONTERA CON DATABASE DESIGN
 

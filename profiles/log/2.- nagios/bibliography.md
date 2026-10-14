@@ -678,3 +678,45 @@ debe permitir avanzar desde:
 hasta:
 
 "entiendo por qué Nagios programó el check, cómo lo ejecutó, cómo procesó su resultado, por qué produjo ese estado y cómo diagnosticar el flujo cuando falla".
+
+
+# 31. FUENTES ADICIONALES POR SCOPE — AMPLIACIÓN EXPERTA
+
+## Scope: monitorización de aplicaciones (bloque 50)
+- Nagios Plugins, documentación de `check_http`, `check_curl`, `check_tcp`, `check_dns` y sus opciones según versión: https://www.nagios-plugins.org/doc/
+- Documentación oficial de las aplicaciones monitorizadas (PostgreSQL, MySQL, MongoDB, servidores web). Usar únicamente para diseñar checks específicos, sin convertir el PATH en un curso de esas aplicaciones.
+- RFC Editor: HTTP, TLS y DNS cuando el comportamiento del check dependa del protocolo: https://www.rfc-editor.org/
+
+## Scope: métricas históricas (bloque 51)
+- RRDTool, documentación oficial: https://oss.oetiker.ch/rrdtool/
+- PNP4Nagios, documentación y código de referencia histórica. Verificar estado de mantenimiento y compatibilidad antes de recomendar despliegues: https://github.com/lingej/pnp4nagios
+- Grafana, documentación de fuentes de datos: https://grafana.com/docs/
+- Nagios Plugin Development Guidelines para formato perfdata, unidades y rangos: https://www.monitoring-plugins.org/doc/guidelines.html
+
+## Scope: alertas y fiabilidad (bloque 52)
+- Google SRE Book y Site Reliability Workbook: https://sre.google/books/
+- Documentación oficial Nagios Core: notificaciones, dependencias, escalaciones, flapping y downtime. Distinguir mecanismos nativos de integración externa.
+
+## Scope: IaC y CI/CD (bloque 53)
+- Ansible Documentation: https://docs.ansible.com/
+- Molecule Documentation: https://ansible.readthedocs.io/projects/molecule/
+- Documentación oficial Nagios Core: verificación previa de configuración (`nagios -v`).
+- Git Documentation: https://git-scm.com/docs
+
+## Scope: HA y recuperación (bloque 54)
+- ClusterLabs Pacemaker/Corosync: https://clusterlabs.org/
+- Documentación Red Hat de HA y fencing: https://docs.redhat.com/
+- Documentación Nagios Core de retención, passive checks y distribución. No atribuir HA automática al producto base.
+
+## Scope: internals aplicados (bloque 55)
+- Nagios Core fuente oficial, fijando commit/tag: https://github.com/NagiosEnterprises/nagioscore
+- GNU GDB: https://sourceware.org/gdb/documentation/
+- strace: https://strace.io/
+- Linux perf: https://perf.wiki.kernel.org/
+- GCC instrumentation y sanitizers: https://gcc.gnu.org/onlinedocs/
+
+## Scope: proyecto final (bloque 56)
+- Reutilizar las fuentes primarias anteriores, documentando versiones exactas, fecha de consulta, compatibilidad y decisiones de arquitectura.
+
+## Política de vigencia
+Separar siempre componentes activos, históricos y externos. No asumir compatibilidad entre versiones de Nagios Core, NRPE, NCPA, PNP4Nagios, plugins o paquetes Fedora/RHEL sin comprobarla en el entorno.

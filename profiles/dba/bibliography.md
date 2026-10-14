@@ -461,3 +461,25 @@ Las fuentes se utilizan para construir una explicación coherente alrededor de l
 Cada lección debe poder combinar varias fuentes cuando sea necesario.
 
 La selección debe priorizar comprensión, precisión técnica, observabilidad y aplicación práctica.
+
+
+## Referencias operativas ampliadas — por scope
+
+### Backup, restauración y DR
+- **pgBackRest Official User Guide** — instalación, configuración, backup full/differential/incremental, archivado WAL, cifrado, retención, restore y comprobación. https://pgbackrest.org/user-guide.html
+- **Barman Official Documentation** — arquitectura de backup remoto, WAL streaming/archiving, retención, restore y DR. https://docs.pgbarman.org/
+
+### Alta disponibilidad y routing
+- **Patroni Documentation** — configuración de cluster, REST API, DCS, failover, switchover, watchdog y rejoin. https://patroni.readthedocs.io/
+- **etcd Documentation** — quorum, operación y seguridad del almacén distribuido. https://etcd.io/docs/
+- **HAProxy Documentation** — health checks y routing TCP. https://www.haproxy.org/
+
+### Seguridad, autenticación y auditoría
+- **PostgreSQL Official Documentation** — GSSAPI, SCRAM, TLS, client authentication y control de privilegios (usar documentación de versión objetivo). https://www.postgresql.org/docs/current/
+- **pgAudit documentation** — auditoría SQL, requisitos y límites de extensión. https://github.com/pgaudit/pgaudit
+
+### Operación, migraciones y diagnóstico
+- **PostgreSQL Official Documentation** — pg_upgrade, collation, logical replication, monitoring, EXPLAIN y runtime config. https://www.postgresql.org/docs/current/
+- **PostgreSQL Source Code** — buffer manager, memory contexts, resource owners y planner. https://git.postgresql.org/gitweb/?p=postgresql.git
+
+**Política:** para versiones 16/17/18 o posteriores, comprobar sintaxis, valores por defecto y disponibilidad de cada función contra la documentación de la versión estudiada.

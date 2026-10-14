@@ -1,20 +1,26 @@
+---
 course:
-  title: JavaScript — 0 a Experto
-  language: es
-  level: 0 → experto
+  title: "Javascript — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
   runtime_focus: Node.js
   browser_focus: secundario
   specification: ECMAScript / ECMA-262
+  mode: "deep"
+
 pedagogy:
-  style: profundo, práctico, progresivo y orientado a comprensión real del lenguaje y runtime
+  style: profundo, práctico, progresivo y orientado a comprensión real del
+    lenguaje y runtime
   lesson_structure:
     required_opening: 🎯 OBJETIVO
     required_closing: 🧠 QUÉ DEBES RECORDAR
     optional_sections:
-    - 📚 LECTURA
-    - 🧪 Laboratorio/ejemplos
-    - ⚠️ Errores frecuentes
-    - 💡 Idea importante
+      - 📚 LECTURA
+      - 🧪 Laboratorio/ejemplos
+      - ⚠️ Errores frecuentes
+      - 💡 Idea importante
   closing_requirements:
     min_points: 3
     max_points: 7
@@ -30,14 +36,14 @@ lesson_structure:
     required: true
     heading: 📚 LECTURA
     categories:
-    - principal
-    - conceptual_depth
-    - normativa
-    - runtime
-    - concurrencia
-    - motor
-    - profundizacion
-    - consulta
+      - principal
+      - conceptual_depth
+      - normativa
+      - runtime
+      - concurrencia
+      - motor
+      - profundizacion
+      - consulta
     exact_references_only_when_verified: true
   lab:
     required: false
@@ -54,6 +60,7 @@ lesson_structure:
     heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
+
 content:
   code_examples: true
   runnable_examples_preferred: true
@@ -63,82 +70,6 @@ content:
   avoid_unverified_exact_book_pages: true
   async_concurrency_depth: expert
   conceptual_depth_topics:
-  - types
-  - coercion
-  - scope
-  - closures
-  - functions
-  - this
-  - objects
-  - prototypes
-  - classes
-  - async
-  async_topics:
-  - callbacks
-  - promises
-  - async_await
-  - async_iterators
-  - event_loop
-  - jobs_and_microtasks
-  - cancellation
-  - abort_controller
-  - timeouts
-  - concurrency_limits
-  - queues
-  - producer_consumer
-  - backpressure
-  - worker_threads
-  - worker_pools
-  - message_passing
-  - transferables
-  - shared_array_buffer
-  - atomics
-  - race_conditions
-  - deadlock_livelock_starvation
-  - agents_and_agent_clusters
-  - async_hooks
-  - async_local_storage
-  - profiling
-  algorithmic_complexity:
-    depth: expert_applied
-    block: 27
-    scope:
-    - time_complexity
-    - space_complexity
-    - array_operations
-    - map_set_object
-    - recursion
-    - algorithms
-    - benchmarking
-    - profiling
-    - runtime_tradeoffs
-    avoid_reteaching_general_big_o: true
-    require_measured_labs: true
-  regex_js:
-    depth: expert_applied
-    lessons: 6.15-6.45
-    scope:
-    - regexp_api
-    - string_integration
-    - flags
-    - last_index
-    - unicode
-    - dynamic_escaping
-    - node_streams
-    - redos
-    - testing
-    avoid_reteaching_regex_theory: true
-    verify_runtime_support: true
-bibliography:
-  principal:
-  - 'JavaScript: The Definitive Guide, 7th Edition — David Flanagan'
-  - Head First JavaScript Programming, Second Edition — Eric Freeman, Elisabeth Robson
-  - 'JavaScript Cookbook: Programming the Web, 3rd Edition — Adam D. Scott, Matthew MacDonald et al.'
-  conceptual_depth:
-  - title: You Don't Know JS Yet
-    author: Kyle Simpson
-    role: deep_language_models
-    priority_topics:
     - types
     - coercion
     - scope
@@ -149,45 +80,127 @@ bibliography:
     - prototypes
     - classes
     - async
-    normative_authority: false
+  async_topics:
+    - callbacks
+    - promises
+    - async_await
+    - async_iterators
+    - event_loop
+    - jobs_and_microtasks
+    - cancellation
+    - abort_controller
+    - timeouts
+    - concurrency_limits
+    - queues
+    - producer_consumer
+    - backpressure
+    - worker_threads
+    - worker_pools
+    - message_passing
+    - transferables
+    - shared_array_buffer
+    - atomics
+    - race_conditions
+    - deadlock_livelock_starvation
+    - agents_and_agent_clusters
+    - async_hooks
+    - async_local_storage
+    - profiling
+  algorithmic_complexity:
+    depth: expert_applied
+    block: 27
+    scope:
+      - time_complexity
+      - space_complexity
+      - array_operations
+      - map_set_object
+      - recursion
+      - algorithms
+      - benchmarking
+      - profiling
+      - runtime_tradeoffs
+    avoid_reteaching_general_big_o: true
+    require_measured_labs: true
+  regex_js:
+    depth: expert_applied
+    lessons: 6.15-6.45
+    scope:
+      - regexp_api
+      - string_integration
+      - flags
+      - last_index
+      - unicode
+      - dynamic_escaping
+      - node_streams
+      - redos
+      - testing
+    avoid_reteaching_regex_theory: true
+    verify_runtime_support: true
+
+bibliography:
+  principal:
+    - 'JavaScript: The Definitive Guide, 7th Edition — David Flanagan'
+    - Head First JavaScript Programming, Second Edition — Eric Freeman,
+      Elisabeth Robson
+    - 'JavaScript Cookbook: Programming the Web, 3rd Edition — Adam D. Scott,
+      Matthew MacDonald et al.'
+  conceptual_depth:
+    - title: You Don't Know JS Yet
+      author: Kyle Simpson
+      role: deep_language_models
+      priority_topics:
+        - types
+        - coercion
+        - scope
+        - closures
+        - functions
+        - this
+        - objects
+        - prototypes
+        - classes
+        - async
+      normative_authority: false
   concurrency:
-  - 'Multithreaded JavaScript: Concurrency Beyond the Event Loop — Thomas Hunter II, Bryan English'
+    - 'Multithreaded JavaScript: Concurrency Beyond the Event Loop —
+      Thomas Hunter II, Bryan English'
   ecosystem:
-  - JavaScript Everywhere — Adam D. Scott
+    - JavaScript Everywhere — Adam D. Scott
   normative:
-  - ECMA-262
-  - TC39
-  - Node.js official documentation
-  - MDN Web Docs
+    - ECMA-262
+    - TC39
+    - Node.js official documentation
+    - MDN Web Docs
   applied_big_o_regex:
-  - ECMA-262 (Array, Map, Set, String, RegExp)
-  - MDN Web Docs (RegExp, String and collections)
-  - Node.js official documentation (perf_hooks, Inspector, profiling)
-  - V8 official technical documentation
+    - ECMA-262 (Array, Map, Set, String, RegExp)
+    - MDN Web Docs (RegExp, String and collections)
+    - Node.js official documentation (perf_hooks, Inspector, profiling)
+    - V8 official technical documentation
+
 source_policy:
   normative_precedence:
-  - ECMA-262
-  - official runtime documentation
-  - verified current documentation
+    - ECMA-262
+    - official runtime documentation
+    - verified current documentation
   conceptual_sources_support_understanding: true
   books_do_not_override_current_specification: true
   exact_chapter_or_page_references_only_when_verified: true
   do_not_attribute_unverified_content_to_book_volumes: true
   exclude_regex_path_specialist_books: true
+
 assessment:
   require_reasoning: true
   require_debugging: true
   require_labs: true
   final_project: true
   final_project_topics:
-  - esm
-  - async_processing
-  - streams
-  - backpressure
-  - worker_threads
-  - testing
-  - profiling
-  - ast
-  - security
-  - big_o_applied
-  - regexp_api_and_redos
+    - esm
+    - async_processing
+    - streams
+    - backpressure
+    - worker_threads
+    - testing
+    - profiling
+    - ast
+    - security
+    - big_o_applied
+    - regexp_api_and_redos

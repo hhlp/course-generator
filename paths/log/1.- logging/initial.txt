@@ -1176,99 +1176,221 @@
 44.32 laboratorio: seguir técnicamente un mensaje desde write() hasta almacenamiento
 
 
-45. Laboratorio de integración
-45.1 preparar varios hosts Fedora
-45.2 identificar productores
-45.3 configurar journald persistente
-45.4 definir límites de almacenamiento
-45.5 configurar rate limiting
-45.6 generar eventos con logger
-45.7 generar eventos con systemd-cat
-45.8 crear un servicio systemd productor
-45.9 consultar campos estructurados
-45.10 configurar rsyslog
-45.11 configurar un collector
-45.12 configurar TCP
-45.13 configurar TLS
-45.14 configurar certificados
-45.15 configurar RELP
-45.16 configurar queues persistentes
-45.17 provocar caída del collector
-45.18 comprobar buffering
-45.19 recuperar el collector
-45.20 verificar entrega
-45.21 crear reglas de filtrado
-45.22 crear templates
-45.23 parsear JSON
-45.24 normalizar eventos
-45.25 separar logs por host
-45.26 separar logs por servicio
-45.27 configurar logrotate
-45.28 probar rotación
-45.29 provocar un error SELinux
-45.30 diagnosticar el AVC
-45.31 provocar un bloqueo de firewalld
-45.32 diagnosticar la red
-45.33 provocar expiración o error TLS
-45.34 diagnosticar TLS
-45.35 simular filesystem lleno
-45.36 analizar comportamiento
-45.37 medir eventos por segundo
-45.38 medir almacenamiento
-45.39 documentar arquitectura
-45.40 reconstruir el recorrido completo de un evento
+45. Linux Audit y logging de seguridad
+45.1 Arquitectura del subsistema Linux Audit: kernel y espacio de usuario
+45.2 Diferencias entre audit, journald y Syslog
+45.3 Eventos de auditoría frente a logs de aplicación
+45.4 Instalación y paquetes audit en Fedora
+45.5 Servicios auditd y configuración auditd.conf
+45.6 Archivos /var/log/audit y permisos
+45.7 Reglas de auditoría y auditctl
+45.8 Reglas persistentes en /etc/audit/rules.d
+45.9 augenrules y carga de reglas
+45.10 Syscalls, watches, filtros y claves de auditoría
+45.11 UID, AUID, sesion e identidad original
+45.12 Formato de registros y eventos multi-registro
+45.13 ausearch: consultas por tiempo, usuario y clave
+45.14 aureport: informes operativos
+45.15 Backlog del kernel y eventos descartados
+45.16 Rate limiting y comportamiento ante saturación
+45.17 SELinux AVC y correlación con audit
+45.18 auditd y forwarding: plugins y dispatcher
+45.19 Integración conceptual con colectores centrales
+45.20 Protección y retención de registros audit
+45.21 Troubleshooting del pipeline audit
+45.22 Laboratorio: auditar cambios en archivos y correlacionar eventos
+
+46. Logging de aplicaciones y contenedores
+46.1 Diseño de eventos desde la aplicación
+46.2 Niveles de severidad y criterios de emisión
+46.3 stdout y stderr frente a archivos propios
+46.4 Logging estructurado con JSON y key=value
+46.5 Esquemas, versionado y compatibilidad
+46.6 Campos obligatorios y convenciones de nombres
+46.7 Identificadores de petición y correlación
+46.8 Timestamps, zona horaria y reloj monotónico
+46.9 Eventos multilinea y stack traces
+46.10 Escape y prevención de log injection
+46.11 Redacción de secretos y datos personales
+46.12 Volumen, sampling y rate limiting en el productor
+46.13 systemd StandardOutput y StandardError
+46.14 systemd-cat y campos del journal
+46.15 Introducción al logging de Podman
+46.16 Drivers de logging y configuración efectiva de Podman
+46.17 Consultar logs con podman logs
+46.18 Relación entre logs de contenedor y journald
+46.19 Contenedores rootless, permisos y visibilidad
+46.20 Persistencia y ciclo de vida de los logs
+46.21 Evitar duplicados entre contenedor y host
+46.22 Troubleshooting de logs ausentes o truncados
+46.23 Laboratorio: aplicación y contenedor con logs estructurados
+
+47. Seguridad avanzada y conservación forense
+47.1 Modelo de amenazas del pipeline de logging
+47.2 Confidencialidad, integridad y disponibilidad
+47.3 Manipulación, borrado y truncamiento de eventos
+47.4 Log forging y caracteres de control
+47.5 Identidad del emisor y límites de confianza
+47.6 Integridad de transporte frente a integridad de almacenamiento
+47.7 Forward Secure Sealing: alcance y limitaciones
+47.8 Syslog firmado RFC 5848: conceptos y límites
+47.9 TLS mutuo y gestión del ciclo de vida de certificados
+47.10 Segregación de funciones y mínimo privilegio
+47.11 Permisos Unix, ACL y contextos SELinux
+47.12 Protección de claves privadas y secretos
+47.13 Retención por categorías y minimización de datos
+47.14 Políticas de acceso y auditoría de consultas
+47.15 Preservación de evidencias y cadena de custodia
+47.16 Hashes, inventario y metadatos de evidencias
+47.17 Sincronización horaria y reconstrucción temporal
+47.18 Almacenamiento inmutable: conceptos y limitaciones
+47.19 Backups, restauración y verificación de evidencias
+47.20 Borrado y caducidad: implicaciones operativas
+47.21 Runbook de respuesta a manipulación
+47.22 Laboratorio: preservar y verificar un conjunto de logs
+
+48. Operación y métricas internas del pipeline
+48.1 Objetivos operativos y SLO de logging
+48.2 Indicadores: ingestión, pérdida, retraso y duplicados
+48.3 Backlog, ocupación y tiempo de drenaje de colas
+48.4 Health checks de productores y collectors
+48.5 rsyslog impstats: habilitación y formato
+48.6 Interpretación de contadores de rsyslog
+48.7 Suspensión y reanudación de acciones
+48.8 Diagnóstico de queues y workers
+48.9 syslog-ng-ctl: estadísticas y estado
+48.10 Contadores y persist files de syslog-ng
+48.11 Logs internos del daemon y errores de configuración
+48.12 Métricas de journald: uso de disco y descartes
+48.13 Monitorización de filesystem e inodos
+48.14 Monitorización de sockets y conexiones
+48.15 Seguimiento de certificados y caducidad
+48.16 Eventos sintéticos con identificadores únicos
+48.17 Medición de latencia extremo a extremo
+48.18 Detección de pérdidas mediante secuencias
+48.19 Dashboards y alertas: integración conceptual sin desarrollar Prometheus
+48.20 Runbooks de saturación, pérdida y retraso
+48.21 Checklist de operación diaria y mantenimiento
+48.22 Laboratorio: diagnosticar degradación con estadísticas internas
+
+49. Pruebas de resiliencia, rendimiento y recuperación
+49.1 Plan de pruebas y criterios de aceptación
+49.2 Topología reproducible de varios hosts Fedora
+49.3 Generadores de eventos y tasas controladas
+49.4 Identificadores únicos y secuencias para verificar entrega
+49.5 Línea base de throughput y latencia
+49.6 Medición de CPU, memoria, red y disco
+49.7 Pruebas de ráfagas y log storms
+49.8 Caída temporal del collector
+49.9 Interrupción de red y DNS
+49.10 Expiración y rechazo de certificados TLS
+49.11 Colas llenas y backpressure
+49.12 Filesystem lleno e inodos agotados
+49.13 Reinicio controlado de rsyslog y syslog-ng
+49.14 Persistencia de buffers tras reinicio
+49.15 Recuperación y tiempo de drenaje
+49.16 Medición de pérdida, duplicación y desorden
+49.17 Validación de límites de RELP y TCP
+49.18 Dimensionamiento mediante resultados medidos
+49.19 Pruebas de rotación con escrituras concurrentes
+49.20 Pruebas de recuperación del journal
+49.21 Registro de evidencias y resultados reproducibles
+49.22 Rollback y restauración de laboratorio
+49.23 Laboratorio: campaña completa de resiliencia con informe
+
+50. Laboratorio de integración
+50.1 preparar varios hosts Fedora
+50.2 identificar productores
+50.3 configurar journald persistente
+50.4 definir límites de almacenamiento
+50.5 configurar rate limiting
+50.6 generar eventos con logger
+50.7 generar eventos con systemd-cat
+50.8 crear un servicio systemd productor
+50.9 consultar campos estructurados
+50.10 configurar rsyslog
+50.11 configurar un collector
+50.12 configurar TCP
+50.13 configurar TLS
+50.14 configurar certificados
+50.15 configurar RELP
+50.16 configurar queues persistentes
+50.17 provocar caída del collector
+50.18 comprobar buffering
+50.19 recuperar el collector
+50.20 verificar entrega
+50.21 crear reglas de filtrado
+50.22 crear templates
+50.23 parsear JSON
+50.24 normalizar eventos
+50.25 separar logs por host
+50.26 separar logs por servicio
+50.27 configurar logrotate
+50.28 probar rotación
+50.29 provocar un error SELinux
+50.30 diagnosticar el AVC
+50.31 provocar un bloqueo de firewalld
+50.32 diagnosticar la red
+50.33 provocar expiración o error TLS
+50.34 diagnosticar TLS
+50.35 simular filesystem lleno
+50.36 analizar comportamiento
+50.37 medir eventos por segundo
+50.38 medir almacenamiento
+50.39 documentar arquitectura
+50.40 reconstruir el recorrido completo de un evento
 
 
-46. Proyecto final — plataforma de logging Fedora
-46.1 definir requisitos
-46.2 definir productores de logs
-46.3 definir volumen esperado
-46.4 definir retención
-46.5 definir requisitos de seguridad
-46.6 diseñar arquitectura
-46.7 configurar journald
-46.8 configurar persistencia
-46.9 configurar límites
-46.10 configurar namespaces cuando proceda
-46.11 integrar servicios systemd
-46.12 seleccionar rsyslog o syslog-ng
-46.13 justificar la elección
-46.14 configurar collector central
-46.15 configurar clientes
-46.16 configurar routing
-46.17 configurar parsing
-46.18 configurar normalización
-46.19 configurar logs estructurados
-46.20 configurar queues
-46.21 configurar almacenamiento persistente de queues
-46.22 configurar TLS
-46.23 configurar certificados
-46.24 configurar autenticación
-46.25 configurar RELP cuando proceda
-46.26 configurar firewalld
-46.27 configurar SELinux
-46.28 configurar almacenamiento
-46.29 configurar logrotate
-46.30 definir política de retención
-46.31 probar caída de red
-46.32 probar caída del collector
-46.33 probar filesystem lleno
-46.34 probar log storm
-46.35 probar certificados incorrectos
-46.36 comprobar recuperación
-46.37 comprobar mensajes perdidos
-46.38 comprobar duplicados
-46.39 medir rendimiento
-46.40 dimensionar queues
-46.41 dimensionar almacenamiento
-46.42 construir procedimiento de troubleshooting
-46.43 documentar flujo aplicación → journald
-46.44 documentar flujo journald → rsyslog/syslog-ng
-46.45 documentar transporte remoto
-46.46 documentar collector → almacenamiento
-46.47 documentar rotación y retención
-46.48 crear checklist operacional
-46.49 crear checklist de seguridad
-46.50 crear checklist de recuperación
-46.51 auditoría completa del sistema
-46.52 proyecto final: plataforma centralizada, segura, persistente y tolerante a fallos de logging sobre Fedora
+51. Proyecto final — plataforma de logging Fedora
+51.1 definir requisitos
+51.2 definir productores de logs
+51.3 definir volumen esperado
+51.4 definir retención
+51.5 definir requisitos de seguridad
+51.6 diseñar arquitectura
+51.7 configurar journald
+51.8 configurar persistencia
+51.9 configurar límites
+51.10 configurar namespaces cuando proceda
+51.11 integrar servicios systemd
+51.12 seleccionar rsyslog o syslog-ng
+51.13 justificar la elección
+51.14 configurar collector central
+51.15 configurar clientes
+51.16 configurar routing
+51.17 configurar parsing
+51.18 configurar normalización
+51.19 configurar logs estructurados
+51.20 configurar queues
+51.21 configurar almacenamiento persistente de queues
+51.22 configurar TLS
+51.23 configurar certificados
+51.24 configurar autenticación
+51.25 configurar RELP cuando proceda
+51.26 configurar firewalld
+51.27 configurar SELinux
+51.28 configurar almacenamiento
+51.29 configurar logrotate
+51.30 definir política de retención
+51.31 probar caída de red
+51.32 probar caída del collector
+51.33 probar filesystem lleno
+51.34 probar log storm
+51.35 probar certificados incorrectos
+51.36 comprobar recuperación
+51.37 comprobar mensajes perdidos
+51.38 comprobar duplicados
+51.39 medir rendimiento
+51.40 dimensionar queues
+51.41 dimensionar almacenamiento
+51.42 construir procedimiento de troubleshooting
+51.43 documentar flujo aplicación → journald
+51.44 documentar flujo journald → rsyslog/syslog-ng
+51.45 documentar transporte remoto
+51.46 documentar collector → almacenamiento
+51.47 documentar rotación y retención
+51.48 crear checklist operacional
+51.49 crear checklist de seguridad
+51.50 crear checklist de recuperación
+51.51 auditoría completa del sistema
+51.52 proyecto final: plataforma centralizada, segura, persistente y tolerante a fallos de logging sobre Fedora

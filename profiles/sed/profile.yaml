@@ -1,22 +1,28 @@
-name: sed
-title: "sed — Learning Path 0 → Experto en profundidad"
-description: >
-  Curso progresivo y profundo de GNU sed, desde los fundamentos del procesamiento
-  de streams hasta pattern space, hold space, procesamiento multilínea, branching,
-  portabilidad POSIX, seguridad, rendimiento e internals.
-
-language: es
-level: "0-to-expert"
+---
+course:
+  title: "Sed — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+      - Linux
+    implementation: GNU sed
+    shell: Bash/Zsh
+  description: >
+    Curso progresivo y profundo de GNU sed, desde los fundamentos del
+    procesamiento de streams hasta pattern space, hold space,
+    procesamiento multilínea, branching, portabilidad POSIX, seguridad,
+    rendimiento e internals.
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
-platform:
-  primary: Fedora
-  implementation: GNU sed
-  shell: Bash/Zsh
 
 objectives:
   - Dominar sed como editor de streams y no solo como colección de one-liners.
@@ -26,7 +32,8 @@ objectives:
   - Dominar procesamiento multilínea, labels, branching y loops.
   - Diferenciar GNU sed, POSIX sed y aspectos relevantes de portabilidad.
   - Integrar sed con grep, awk, find, xargs, shell y herramientas Fedora.
-  - Comparar sed y awk y reconocer cuándo migrar una transformación al modelo de registros y campos de awk.
+  - Comparar sed y awk y reconocer cuándo migrar una transformación al
+      modelo de registros y campos de awk.
   - Saber cuándo sed no es la herramienta apropiada.
 
 lesson_structure:
@@ -61,11 +68,12 @@ reference_policy:
       authors:
         - "Dale Dougherty"
         - "Arnold Robbins"
-      role: "Segunda referencia principal para filosofía Unix, diseño de scripts e integración sed/awk"
+      role: "Segunda referencia principal para filosofía Unix, diseño
+          de scripts e integración sed/awk"
   primary_documentation:
     - "GNU sed manual"
     - "POSIX sed specification"
   rule: >
-    Los libros sirven como referencias pedagógicas principales. La documentación oficial
-    de GNU sed y POSIX se utiliza para validar sintaxis, comportamiento,
-    extensiones y portabilidad.
+    Los libros sirven como referencias pedagógicas principales.
+    La documentación oficial de GNU sed y POSIX se utiliza para
+    validar sintaxis, comportamiento, extensiones y portabilidad.

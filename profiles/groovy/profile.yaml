@@ -1,54 +1,66 @@
-name: groovy
-title: "Groovy — 0 a experto"
-language: es
+---
+course:
+  title: Groovy — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  description: 'Curso de Groovy desde cero a experto en profundidad:
+    semántica, JVM, closures, POO, DSL, MOP, AST, testing, rendimiento,
+    seguridad, APIs y especialización avanzada en Jenkins CPS y Shared
+    Libraries.'
+  mode: deep
 
-description: >
-  Curso profundo, práctico y progresivo de Groovy sobre la JVM,
-  desde sintaxis, colecciones, closures y POO hasta metaprogramación,
-  DSL, AST, internals, Spock, Gradle y especialización en Jenkins.
-
-audience:
-  level: "0 a experto"
-  prerequisites:
-    - "Fundamentos generales de programación recomendados, pero no obligatorios"
-    - "Conocimientos básicos de Linux útiles para laboratorios"
-    - "Java ayuda en interoperabilidad e internals, pero se introduce lo necesario"
-
-goals:
-  - "Dominar Groovy como lenguaje de propósito general sobre la JVM"
-  - "Comprender closures, delegation y resolución de métodos en profundidad"
-  - "Dominar colecciones y programación idiomática con el GDK"
-  - "Comprender interoperabilidad Groovy/Java y fundamentos de la JVM"
-  - "Aprender metaprogramación dinámica y compile-time"
-  - "Diseñar DSL internos mantenibles"
-  - "Crear y probar aplicaciones Groovy con Gradle y Spock"
-  - "Comprender Groovy aplicado a Jenkins Pipeline y Shared Libraries"
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
-  style: "profundo, práctico, progresivo y orientado a comprensión interna"
+  style:
+    - profundo
+    - práctico
+    - progresivo
+    - orientado a comprensión interna
   lesson_structure:
-    required_opening: "🎯 OBJETIVO"
-    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    required_opening: 🎯 OBJETIVO
+    required_closing: 🧠 QUÉ DEBES RECORDAR
     optional_sections:
-      - "📚 LECTURA"
-      - "🧪 Laboratorio/ejemplos"
-      - "⚠️ Errores frecuentes"
-      - "💡 Idea importante"
+      - 📚 LECTURA
+      - 🧪 Laboratorio/ejemplos
+      - ⚠️ Errores frecuentes
+      - 💡 Idea importante
   closing_requirements:
     min_points: 3
     max_points: 7
     avoid_repeating_objective: true
   indentation: false
   numbering: single-level
-
+  depth: 'en profundidad: fundamentos, mecanismo interno, alternativas, límites,
+    troubleshooting y casos de producción'
+  progression:
+    - concepto
+    - semántica
+    - ejemplo mínimo
+    - laboratorio
+    - diagnóstico
+    - integración
+  lesson_granularity: cada lección debe desarrollar un objetivo concreto sin
+    agrupar superficialmente múltiples temas
+  assessment:
+    block_checkpoint: true
+    hands_on_labs: true
+    troubleshooting_cases: true
+    cumulative_projects: true
+    final_project: true
 lesson_structure:
   objective:
     required: true
     position: first
-    heading: "🎯 OBJETIVO"
+    heading: 🎯 OBJETIVO
   reading:
     required: true
-    heading: "📚 LECTURA"
+    heading: 📚 LECTURA
     categories:
       - principal
       - oficial
@@ -60,21 +72,20 @@ lesson_structure:
       - consulta
     exact_references_only_when_verified: true
   lab:
-    required: false
-    heading: "🧪 Laboratorio/ejemplos"
+    required: true
+    heading: 🧪 Laboratorio/ejemplos
   common_errors:
-    required: false
-    heading: "⚠️ Errores frecuentes"
+    required: true
+    heading: ⚠️ Errores frecuentes
   important_idea:
     required: false
-    heading: "💡 Idea importante"
+    heading: 💡 Idea importante
   remember:
     required: true
     position: last
-    heading: "🧠 QUÉ DEBES RECORDAR"
+    heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
-
 technical_policy:
   distinguish_groovy_from_jenkins_dsl: true
   distinguish_dynamic_from_static_typing: true
@@ -82,8 +93,15 @@ technical_policy:
   explain_jvm_when_relevant: true
   security_context_for_dynamic_code: true
   avoid_unverified_version_claims: true
-
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+  explain_cps_serialization_and_noncps: true
+  distinguish_controller_from_agent_execution: true
+  avoid_claiming_groovyshell_is_secure_sandbox: true
+  prefer_version_pinned_reproducible_examples: true
+  include_debugging_and_troubleshooting: true
+  do_not_repeat_general_regex_theory: true
+curriculum:
+  blocks: 35
+  block_range: 0-34
+  preserve_existing_lessons: true
+  specialization: Jenkins CPS y Shared Libraries
+  final_project_block: 34

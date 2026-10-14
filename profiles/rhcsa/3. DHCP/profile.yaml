@@ -1,26 +1,17 @@
-name: dhcp
-title: "DHCP 0 → Experto en profundidad"
-language: es
-
-platform:
-  primary:
-    - Fedora
-    - RHEL
-  dhcp_implementation:
-    - ISC Kea
-
-level:
-  start: beginner
-  end: expert
-  depth: deep
-
-audience:
-  - administradores Linux
-  - administradores RHEL/Fedora
-  - ingenieros de sistemas
-  - ingenieros de redes
-  - DevOps
-  - SRE
+---
+course:
+  title: "DHCP 0 → Experto en profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+      - Linux
+    dhcp_implementation:
+      - ISC Kea
 
 objectives:
   - comprender DHCPv4 en profundidad

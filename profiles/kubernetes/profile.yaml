@@ -1,10 +1,11 @@
-name: kubernetes
-title: "Kubernetes — 0 a Experto"
-language: es
-
+---
 course:
-  level: "0_to_expert"
-  platform: "Linux"
+  title: Kubernetes — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform: Linux
   orientation:
     - cloud_native
     - kubernetes
@@ -21,6 +22,7 @@ course:
     - CKA
     - CKS
     - Kubestronaut
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -28,22 +30,33 @@ files:
   bibliography: bibliography.md
 
 pedagogy:
-  required_opening_section: "🎯 OBJETIVO"
-  required_closing_section: "🧠 QUÉ DEBES RECORDAR"
+  required_opening_section: 🎯 OBJETIVO
+  required_closing_section: 🧠 QUÉ DEBES RECORDAR
   closing_key_points:
     min: 3
     max: 7
   optional_sections:
-    - "🧪 Laboratorio / ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
+    - 🧪 Laboratorio / ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
   style:
-    depth: "deep"
+    depth: deep
     progressive: true
     didactic: true
     practical: true
     avoid_superficial_summaries: true
-
+  operational_depth:
+    prerequisites: true
+    architecture: true
+    installation_and_configuration: true
+    command_explanations: true
+    validation: true
+    logs_and_metrics: true
+    failure_scenarios: true
+    troubleshooting: true
+    recovery: true
+    version_caveats: true
+    independent_exercises: true
 technical_policy:
   upstream_first: true
   explain_version_dependent_behavior: true
@@ -51,7 +64,7 @@ technical_policy:
   explain_alpha_beta_stable_status: true
   avoid_single_cloud_vendor_lock_in: true
   prefer_portable_kubernetes_concepts: true
-
+  check_current_upstream_docs_for_versioned_features: true
 lab_policy:
   include_commands: true
   include_yaml: true
@@ -72,7 +85,9 @@ lab_policy:
     - tcpdump
     - conntrack
     - nsenter
-
+  include_validation_steps: true
+  include_recovery_steps: true
+  include_systemd_journald_selinux_firewalld_when_relevant: true
 environments:
   primary:
     - kubeadm
@@ -80,30 +95,36 @@ environments:
     - kind
     - minikube
     - k3d
-
 milestones:
   - id: kcna
-    title: "HITO KCNA"
-    purpose: "Validar fundamentos Kubernetes y cloud-native."
+    title: HITO KCNA
+    purpose: Validar fundamentos Kubernetes y cloud-native.
+    after_block: 14
   - id: kcsa
-    title: "HITO KCSA"
-    purpose: "Validar fundamentos de seguridad cloud-native y Kubernetes."
+    title: HITO KCSA
+    purpose: Validar fundamentos de seguridad cloud-native y Kubernetes.
+    after_block: 15
   - id: ckad
-    title: "HITO CKAD"
-    purpose: "Validar desarrollo de aplicaciones Kubernetes."
+    title: HITO CKAD
+    purpose: Validar desarrollo de aplicaciones Kubernetes.
+    after_block: 17
   - id: cka
-    title: "HITO CKA"
-    purpose: "Validar administración de clusters Kubernetes."
+    title: HITO CKA
+    purpose: Validar administración de clusters Kubernetes.
+    after_block: 25
   - id: cks
-    title: "HITO CKS"
-    purpose: "Validar seguridad avanzada de Kubernetes."
-    prerequisite: "Active CKA certification"
+    title: HITO CKS
+    purpose: Validar seguridad avanzada de Kubernetes.
+    prerequisite: Active CKA certification
+    after_block: 31
   - id: kubestronaut
-    title: "HITO KUBESTRONAUT"
-    purpose: "Consolidar las cinco credenciales principales antes del tramo experto."
+    title: HITO KUBESTRONAUT
+    purpose: Consolidar las cinco credenciales principales antes del tramo
+      experto.
+    after_block: 32
 
 expert_track:
-  starts_after: "HITO KUBESTRONAUT"
+  starts_after: HITO KUBESTRONAUT
   areas:
     - kubectl_cli
     - api_internals
@@ -142,4 +163,12 @@ expert_track:
 
 final_project:
   required: true
-  goal: "Diseñar, desplegar, asegurar, observar, actualizar, romper, diagnosticar y recuperar una plataforma Kubernetes de nivel producción."
+  goal:
+    - Diseñar
+    - desplegar
+    - asegurar
+    - observar
+    - actualizar
+    - romper
+    - diagnosticar
+    - recuperar una plataforma Kubernetes de nivel producción.

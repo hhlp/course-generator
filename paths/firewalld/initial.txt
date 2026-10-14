@@ -370,3 +370,209 @@
 26.15 consultar journal
 26.16 detectar posibles conflictos SELinux
 26.17 reconstruir el camino de un paquete
+
+
+27. IP sets en profundidad
+27.1 Qué problema resuelven los IP sets y cuándo utilizarlos
+27.2 Tipos de conjuntos admitidos por la versión instalada
+27.3 IP individuales, redes y familias IPv4/IPv6
+27.4 Inspeccionar conjuntos disponibles y activos
+27.5 Crear y eliminar conjuntos en runtime
+27.6 Crear y eliminar conjuntos permanentemente
+27.7 Añadir, eliminar y consultar entradas
+27.8 Importar listas de direcciones de forma controlada
+27.9 Archivos XML y validación de conjuntos
+27.10 Asociar un IP set a una zona como source
+27.11 Referenciar conjuntos desde rich rules
+27.12 Actualización dinámica y consistencia runtime/permanent
+27.13 Rendimiento, escala y límites de memoria
+27.14 Evitar bloqueos masivos y falsos positivos
+27.15 Laboratorio: allowlist administrativa y denylist con rollback
+
+28. Rich rules avanzadas
+28.1 Gramática completa y compatibilidad por versión
+28.2 Prioridad numérica y orden de evaluación
+28.3 Prioridades negativas, cero y positivas
+28.4 Interacción entre reglas de zona y rich rules
+28.5 Acciones accept, reject y drop y sus efectos
+28.6 Logging log, audit y limit según soporte
+28.7 Límites de tasa y unidades
+28.8 Source, destination y familias de direcciones
+28.9 Servicios, puertos y protocolos en reglas
+28.10 ICMP, icmp-type e icmp-block
+28.11 Uso de IP sets en rich rules
+28.12 NAT y redirecciones con rich rules
+28.13 Inspección del ruleset generado
+28.14 Conflictos y reglas aparentemente ineficaces
+28.15 Laboratorio: acceso selectivo y trazabilidad
+
+29. Policies avanzadas
+29.1 Modelo de políticas frente a zonas
+29.2 Ingress y egress y direcciones de tráfico
+29.3 Zonas simbólicas HOST y ANY
+29.4 Creación y eliminación de policies
+29.5 Asociación de zonas ingress y egress
+29.6 Targets y comportamiento por defecto
+29.7 Prioridades y orden de evaluación
+29.8 Servicios, puertos, protocolos y rich rules
+29.9 Policies para tráfico originado en el host
+29.10 Policies para tráfico destinado al host
+29.11 Policies para forwarding entre redes
+29.12 Policies y NAT/masquerade
+29.13 Separación DMZ, LAN y WAN
+29.14 Verificación con nftables y pruebas de conectividad
+29.15 Laboratorio: matriz de flujos permitidos y denegados
+
+30. D-Bus y API de firewalld
+30.1 Arquitectura de D-Bus y servicio firewalld
+30.2 Objetos, interfaces, métodos, propiedades y señales
+30.3 Diferencias entre APIs runtime y config
+30.4 Introspección de interfaces con herramientas D-Bus
+30.5 Permisos y autorización para operaciones administrativas
+30.6 Biblioteca Python firewalld y compatibilidad
+30.7 Leer zonas, servicios, sources y policies
+30.8 Crear y modificar objetos con API
+30.9 Manejo de excepciones y validación de entradas
+30.10 Suscripción a eventos y cambios de estado
+30.11 Evitar condiciones de carrera
+30.12 Transacciones lógicas, comprobación y rollback
+30.13 Comparación API, CLI y automatización declarativa
+30.14 Laboratorio: inventario read-only mediante Python
+
+31. nftables y Netfilter avanzado
+31.1 Recorrido real del paquete por hooks Netfilter
+31.2 Familias ip, ip6, inet y sus implicaciones
+31.3 Base chains y cadenas regulares
+31.4 Prioridades de hooks y coexistencia de gestores
+31.5 Expresiones match, verdict y counters
+31.6 Sets y maps del backend nftables
+31.7 Conntrack, estados y reglas generadas
+31.8 NAT y orden de procesamiento
+31.9 Inspección estructurada con nft -a list ruleset
+31.10 Diferenciar tablas gestionadas y ajenas a firewalld
+31.11 nft monitor y eventos de reglas
+31.12 nft monitor trace y nftrace en laboratorio
+31.13 Interpretar trazas y localizar el verdict
+31.14 Precauciones al mezclar reglas manuales y firewalld
+31.15 Laboratorio: seguir un paquete y explicar su decisión
+
+32. Logging y observabilidad avanzada
+32.1 Logs del daemon frente a logs de paquetes
+32.2 journalctl: unidades, prioridad y tiempo
+32.3 LogDenied y comportamiento por versión
+32.4 Reglas rich con log y audit
+32.5 Prefijos, niveles y límites de tasa
+32.6 NFLOG y consumidores de eventos
+32.7 Counters de nftables
+32.8 Tracing de nftables en entornos aislados
+32.9 Captura tcpdump antes y después del host
+32.10 Correlación entre socket, paquete y reglas
+32.11 Volumen, rotación, retención y privacidad
+32.12 Observabilidad de conexiones conntrack
+32.13 Alertas y señales de configuración errónea
+32.14 Laboratorio: evidencia reproducible de un bloqueo
+
+33. Seguridad operativa y recuperación
+33.1 Inventario previo y copia de configuración
+33.2 Riesgos de administración remota
+33.3 Pruebas en runtime y sesiones SSH independientes
+33.4 Temporizadores de rollback y confirmación
+33.5 --timeout para aperturas temporales compatibles
+33.6 Panic mode: alcance y recuperación
+33.7 Lockdown: identificar soporte histórico y alternativas actuales
+33.8 Cambios de zona en interfaces activas
+33.9 Recarga, complete-reload y conexiones existentes
+33.10 Recuperación por consola fuera de banda
+33.11 Restauración de XML y configuraciones
+33.12 Auditoría de cambios y mínimo privilegio
+33.13 Protección frente a reglas excesivamente amplias
+33.14 Laboratorio: simular fallo y recuperar acceso
+
+34. Automatización con Ansible
+34.1 Estado deseado e idempotencia
+34.2 Colección ansible.posix y módulo firewalld
+34.3 Dependencias y versiones de colección
+34.4 Gestión de zonas y servicios
+34.5 Gestión de puertos, sources y rich rules
+34.6 Gestión de policies según soporte del módulo
+34.7 Persistencia, immediate y offline
+34.8 Handlers y recargas seguras
+34.9 Roles y variables por entorno
+34.10 Plantillas XML cuando el módulo no cubra una función
+34.11 Validación previa y comprobación posterior
+34.12 Check mode, diff y limitaciones
+34.13 Molecule y pruebas de integración en VMs
+34.14 Estrategias de rollback y serial para hosts remotos
+34.15 Laboratorio: rol de firewall para gateway Fedora
+
+35. Virtualización y contenedores
+35.1 Interfaces virtuales, bridges y veth
+35.2 Namespaces de red y trayectorias de paquetes
+35.3 Zonas para redes virtuales
+35.4 libvirt: redes NAT, bridge y filtrado
+35.5 Podman: rootless y rootful
+35.6 Netavark y diferencias dependientes de versión
+35.7 Docker: reglas de firewall y convivencia con firewalld
+35.8 Publicación de puertos y exposición efectiva
+35.9 Forwarding, NAT y políticas de contenedores
+35.10 Evitar editar reglas administradas por otros gestores
+35.11 Interacción con NetworkManager
+35.12 Diagnóstico desde host y contenedor
+35.13 Laboratorio: servicio publicado y segmentación segura
+
+36. Troubleshooting experto
+36.1 Método hipótesis → evidencia → aislamiento
+36.2 Distinguir DNS, routing, socket y firewall
+36.3 Problemas de escucha en loopback o dirección errónea
+36.4 Selección inesperada de zona por source o interfaz
+36.5 Prioridades de policies y rich rules
+36.6 Rutas asimétricas y retorno de tráfico
+36.7 Reverse path filtering y rp_filter
+36.8 Conntrack INVALID, agotamiento y timeouts
+36.9 MTU, PMTUD e ICMPv6
+36.10 Forwarding sysctl frente a permiso de firewall
+36.11 Conflictos con otros gestores nftables
+36.12 SELinux AVC frente a bloqueo de red
+36.13 Trazas nftables y capturas simultáneas
+36.14 Diagnóstico de reinicio o reload inesperado
+36.15 Informe de causa raíz y corrección verificable
+
+37. Laboratorios expertos
+37.1 Preparar topología Fedora con namespaces o VMs
+37.2 Inventario y baseline reproducible
+37.3 LAN, DMZ y WAN con interfaces diferenciadas
+37.4 Servicios expuestos solo en zona DMZ
+37.5 Allowlist de SSH con IP set
+37.6 Rich rules con prioridades y logging
+37.7 Policy de salida desde HOST
+37.8 Policy de tránsito LAN → WAN
+37.9 NAT y DNAT con retorno verificado
+37.10 Dual-stack IPv4/IPv6 con ICMPv6 funcional
+37.11 Captura y trazado de flujos permitidos
+37.12 Captura y trazado de flujos bloqueados
+37.13 Inyectar error de zona y diagnosticar
+37.14 Inyectar error de routing y diagnosticar
+37.15 Ejecutar rollback ante pérdida de acceso
+37.16 Automatizar y verificar idempotencia
+37.17 Documentar matriz de pruebas y resultados
+
+38. Proyecto experto integrador — firewalld architecture & debugger
+38.1 Requisitos, amenazas y límites de confianza
+38.2 Diseño de topología, zonas y policies
+38.3 Matriz de flujos IPv4/IPv6
+38.4 Repositorio de configuración versionado
+38.5 Inventario de interfaces y NetworkManager
+38.6 Inventario de servicios, puertos y sources
+38.7 Inventario de IP sets y rich rules
+38.8 Inventario de policies y prioridades
+38.9 Comprobación de sysctl y forwarding
+38.10 Comprobación de NAT y conntrack
+38.11 Trazabilidad firewalld → nftables
+38.12 Diagnóstico de sockets y SELinux
+38.13 Registro de evidencias y logs relevantes
+38.14 Automatización idempotente con Ansible
+38.15 Pruebas unitarias y de integración
+38.16 Escenarios de fallo y recuperación
+38.17 Auditoría de mínimo privilegio
+38.18 Documentación operativa y runbook
+38.19 Demostración final y criterios de aceptación

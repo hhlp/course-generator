@@ -127,3 +127,33 @@ La bibliografía complementaria nunca debe utilizarse para asumir compatibilidad
 Antes de generar una lección dependiente de versión, contrastar conceptos, nombres de APIs, plugins y opciones con la documentación oficial de la versión contemporánea.
 
 Las referencias a Elasticsearch pueden utilizarse únicamente como contexto histórico o comparación explícita, nunca como autoridad primaria sobre el comportamiento actual de OpenSearch.
+
+
+## Bibliografía complementaria por scope (revisión ampliada)
+
+### Information Retrieval y relevancia
+- Christopher D. Manning, Prabhakar Raghavan, Hinrich Schütze — *Introduction to Information Retrieval*. Fundamentos de indexación, evaluación y recuperación. https://nlp.stanford.edu/IR-book/
+- Doug Turnbull y John Berryman — *Relevant Search*. Relevancia, evaluación y ajuste de búsqueda; no asumir equivalencia de APIs.
+
+### Apache Lucene e internals
+- Michael McCandless, Erik Hatcher y Otis Gospodnetic — *Lucene in Action*, 2.ª edición. Fundamentos históricos de Lucene; validar internals contemporáneos en fuentes oficiales.
+- Documentación de Apache Lucene: https://lucene.apache.org/
+
+### Sistemas distribuidos
+- Martin Kleppmann — *Designing Data-Intensive Applications*. Replicación, consistencia, particionado y tolerancia a fallos.
+
+### Observabilidad y SRE
+- Charity Majors, Liz Fong-Jones y George Miranda — *Observability Engineering*. Instrumentación, señales y diagnóstico.
+- Google — *Site Reliability Engineering*. SLO, incidentes y operación. https://sre.google/books/
+
+### Benchmarking y Search AI
+- OpenSearch Benchmark: https://opensearch.org/docs/latest/benchmark/ (comprobar ruta vigente).
+- Documentación oficial de OpenSearch: Neural Search, ML Commons, Vector Search, Search Pipelines y evaluación de relevancia. https://docs.opensearch.org/
+
+### Data Streams, almacenamiento y migraciones
+- Documentación oficial de OpenSearch sobre Data Streams, segment replication, remote-backed storage, snapshots, cross-cluster replication y upgrades. https://docs.opensearch.org/
+
+### IaC y plataforma
+- Documentación oficial de Terraform, Ansible, Fedora, systemd, SELinux y Podman; confirmar módulos y providers compatibles antes de utilizarlos.
+
+**Criterio:** los libros externos explican principios generales; para configuración, endpoints, versiones y disponibilidad prevalece la documentación oficial de OpenSearch.

@@ -1760,3 +1760,200 @@ ZABBIX EN PROFUNDIDAD
 81.78 generar informe técnico final
 81.79 construir mapa completo de flujos internos
 81.80 proyecto final: operar y diagnosticar una plataforma Zabbix de producción
+
+
+# AMPLIACIÓN DE LA REVISIÓN PROFUNDA — BLOQUES 82–90
+
+82. Monitorización de logs en profundidad
+82.1 modelo de monitorización de logs y límites frente a plataformas de logging
+82.2 items log[] y logrt[]: sintaxis y comportamiento por versión
+82.3 items log.count[] y logrt.count[]
+82.4 checks activos y dependencia del agente
+82.5 permisos y acceso a archivos
+82.6 rotación por renombrado y por copia/truncado
+82.7 identificación de archivos y relecturas
+82.8 encoding y líneas largas
+82.9 expresiones regulares y filtros
+82.10 extracción de severidad y campos
+82.11 preprocessing y dependent items sobre logs
+82.12 journald y estrategias de exportación sin asumir soporte directo
+82.13 correlación de eventos de log con métricas
+82.14 retención, privacidad y secretos
+82.15 diagnóstico de registros perdidos y duplicados
+82.16 laboratorio: detectar errores de una aplicación systemd
+82.17 laboratorio: rotación y caída temporal del agente
+82.18 proyecto: monitorización reproducible de logs
+
+83. Browser monitoring y monitorización sintética
+83.1 diferencias entre HTTP agent, web scenarios y browser items
+83.2 disponibilidad por versión y requisitos de browser pollers
+83.3 arquitectura y ejecución de browser items
+83.4 configuración del navegador y aislamiento
+83.5 scripts JavaScript y API documentada de browser items
+83.6 navegación, selectores y esperas
+83.7 cookies, sesiones y autenticación
+83.8 medición de tiempos y recursos
+83.9 errores JavaScript y fallos de carga
+83.10 TLS, certificados y redirecciones
+83.11 captura de resultados y datos sensibles
+83.12 preprocessing y métricas derivadas
+83.13 intervalos, timeouts y concurrencia
+83.14 dimensionamiento y consumo de recursos
+83.15 diagnóstico del browser poller
+83.16 laboratorio: flujo de login en aplicación local
+83.17 laboratorio: fallo sintético y trigger
+83.18 proyecto: pruebas sintéticas de una aplicación
+
+84. VMware y virtualización
+84.1 arquitectura del monitoreo VMware en Zabbix
+84.2 compatibilidad por versión con vCenter y ESXi
+84.3 credenciales de solo lectura y permisos mínimos
+84.4 VMware collectors y proceso de adquisición
+84.5 VMwareCacheSize y métricas internas pertinentes
+84.6 descubrimiento de hipervisores
+84.7 descubrimiento de máquinas virtuales
+84.8 templates oficiales y macros VMware
+84.9 métricas de CPU, RAM y estado
+84.10 datastores, almacenamiento y latencia
+84.11 interfaces y red virtual
+84.12 alarmas y disponibilidad
+84.13 intervalos y costes de consultas API
+84.14 relación con Zabbix Proxy cuando aplique
+84.15 TLS, certificados y seguridad
+84.16 diagnóstico de collectors y caches
+84.17 laboratorio: inventario y métricas en entorno de prueba
+84.18 proyecto: capacidad y alertas de virtualización
+
+85. Agent 2: desarrollo de plugins
+85.1 arquitectura de Agent 2 y puntos de extensión
+85.2 plugins integrados frente a plugins externos
+85.3 compatibilidad de SDK y API por versión
+85.4 lenguaje Go y estructura mínima de plugin
+85.5 registro de métricas y keys
+85.6 parámetros y validación
+85.7 ciclo de vida y manejo de errores
+85.8 concurrencia y timeouts
+85.9 recursos y cancelación
+85.10 seguridad y ejecución con privilegios mínimos
+85.11 configuración y distribución
+85.12 logging y diagnóstico de plugins
+85.13 pruebas unitarias y de integración
+85.14 versionado y compatibilidad
+85.15 empaquetado RPM y despliegue en Fedora
+85.16 laboratorio: plugin para servicio local
+85.17 laboratorio: fallos y recuperación
+85.18 proyecto: plugin con CI y documentación
+
+86. Correlación avanzada y calidad de alertas
+86.1 modelo de ruido y fatiga de alertas
+86.2 trigger dependencies y propagación
+86.3 cause y symptom en Problems
+86.4 event correlation: condiciones y operaciones
+86.5 correlación global frente a dependencias
+86.6 deduplicación y eventos múltiples
+86.7 hysteresis y recovery expressions
+86.8 flapping y ventanas temporales
+86.9 nodata y detección de ausencia
+86.10 mantenimiento planificado y supresión
+86.11 tags para correlación y routing
+86.12 escalados y límites de notificación
+86.13 severidad e impacto de negocio
+86.14 SLI, SLO y políticas de alertas
+86.15 auditoría de falsos positivos y negativos
+86.16 laboratorio: caída de red con múltiples síntomas
+86.17 laboratorio: reducción medible de ruido
+86.18 proyecto: catálogo de alertas operables
+
+87. Zabbix como código
+87.1 principios de configuración declarativa
+87.2 modelo de objetos y dependencias
+87.3 API y operaciones idempotentes
+87.4 Ansible: inventario y colecciones compatibles
+87.5 Ansible: despliegue Server, Proxy y Agent 2
+87.6 Ansible: hosts, grupos y templates
+87.7 Terraform: provider, recursos y soporte por versión
+87.8 Terraform: state, import y drift
+87.9 export/import de templates YAML
+87.10 Git y revisión de cambios
+87.11 validación de templates y compatibilidad
+87.12 CI/CD y entornos dev/staging
+87.13 secretos y tokens sin exponerlos
+87.14 plan de rollback y cambios destructivos
+87.15 pruebas de integración contra API
+87.16 auditoría y trazabilidad
+87.17 laboratorio: despliegue idempotente con Ansible
+87.18 laboratorio: detección de drift con Terraform
+87.19 proyecto: pipeline GitOps con aprobación
+
+88. Extensibilidad del frontend
+88.1 arquitectura PHP del frontend
+88.2 módulos frontend y casos de uso
+88.3 estructura de directorios y manifiesto según versión
+88.4 hooks y APIs documentadas de extensión
+88.5 widgets personalizados
+88.6 parámetros y formularios
+88.7 renderizado y actualización de datos
+88.8 API y permisos de usuario
+88.9 seguridad frente a XSS y CSRF
+88.10 validación y sanitización
+88.11 localización y accesibilidad
+88.12 compatibilidad entre versiones
+88.13 empaquetado y despliegue
+88.14 testing funcional y diagnóstico PHP
+88.15 laboratorio: widget sencillo para métricas
+88.16 laboratorio: permisos y errores
+88.17 proyecto: módulo frontend mantenible
+
+89. Pruebas de carga y resiliencia
+89.1 objetivos y métricas de aceptación
+89.2 línea base de NVPS y queue
+89.3 generación controlada de métricas sintéticas
+89.4 carga de Agent 2 y zabbix_sender
+89.5 saturación de pollers y timeouts
+89.6 presión sobre preprocessing
+89.7 carga de escritura PostgreSQL
+89.8 caches y utilización de memoria
+89.9 capacidad de proxies y buffers
+89.10 pérdida de conectividad y backlog
+89.11 caída y recuperación de Server
+89.12 failover de proxy groups
+89.13 pruebas de frontend y API
+89.14 límites de laboratorio y protección del entorno
+89.15 medición de RTO y pérdida de datos
+89.16 observación de cuellos de botella
+89.17 laboratorio: carga incremental con rollback
+89.18 laboratorio: fallo de red y recuperación
+89.19 proyecto: informe reproducible de resiliencia
+
+90. Continuidad y recuperación avanzada
+90.1 inventario de activos recuperables
+90.2 RPO y RTO verificables
+90.3 estrategias de backup lógico y físico PostgreSQL
+90.4 WAL archiving y PITR
+90.5 consistencia de base de datos y configuración
+90.6 certificados, PSK y gestión de secretos
+90.7 recuperación de Server y frontend
+90.8 recuperación de proxies y buffers
+90.9 reconstrucción de agentes y plantillas
+90.10 HA de PostgreSQL y dependencias externas
+90.11 orquestación de recuperación
+90.12 verificación de integridad tras restore
+90.13 pruebas de datos históricos y eventos
+90.14 failback y retorno a operación normal
+90.15 gestión de versiones durante DR
+90.16 simulacros y evidencias
+90.17 laboratorio: restauración a punto en el tiempo
+90.18 laboratorio: reconstrucción desde backups
+90.19 proyecto: plan DR probado y auditado
+
+
+# AMPLIACIÓN DEL PROYECTO FINAL (bloque 81; ejecutar al concluir los bloques 82–90)
+81.81 incorporar monitorización de logs y rotación
+81.82 incorporar prueba sintética de navegador
+81.83 monitorizar VMware o simular un escenario documentado
+81.84 desplegar y verificar plugin externo de Agent 2
+81.85 medir y reducir ruido de alertas
+81.86 provisionar configuración con Ansible y Terraform
+81.87 desplegar widget frontend personalizado
+81.88 ejecutar prueba de carga y resiliencia controlada
+81.89 probar PITR y continuidad con RPO/RTO medidos

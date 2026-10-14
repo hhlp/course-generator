@@ -2,7 +2,7 @@
 
 ## Objetivo y alcance
 
-Desarrollar desde cero la capacidad de preparar datos con Polars, crear visualizaciones con Matplotlib y realizar exploración estadística con Seaborn. Culminar en pipelines reproducibles, verificables y eficientes. El programa canónico es initial.txt: 29 bloques (0–28) y 236 lecciones. No omitir ni fusionar lecciones al generar contenidos. El temario es un índice de lecciones que se desarrollarán, no un curso ya redactado.
+Desarrollar desde cero la capacidad de preparar datos con Polars, crear visualizaciones con Matplotlib y realizar exploración estadística con Seaborn. Culminar en pipelines reproducibles, verificables y eficientes. El programa canónico es initial.txt: 29 bloques (0–28) y 312 lecciones. No omitir ni fusionar lecciones al generar contenidos. El temario es un índice de lecciones que se desarrollarán, no un curso ya redactado.
 
 Polars es la biblioteca de datos; no confundirla con gráficos polares, que se estudian en 15.4. Matplotlib aporta el control de figuras; Seaborn, visualización estadística. NumPy, pandas, Arrow y estadística son conocimientos auxiliares. No convertir esta ruta en un curso completo de pandas, desarrollo web, aprendizaje automático o administración de bases de datos.
 
@@ -64,4 +64,28 @@ Cada proyecto debe entregar pregunta, datos y licencia/procedencia, contrato de 
 
 ## Uso del paquete en course-generator
 
-Ubicar los cuatro archivos en paths/python-graficos/. El perfil referencia el archivo compartido ../../config/pedagogy.md, que no forma parte de este paquete. Mantener el nombre solicitado bibliografy.md y la clave files.bibliography apuntando a él. La sintaxis YAML y la numeración pueden verificarse independientemente; la compatibilidad completa del perfil debe comprobarse con el cargador de la instalación real de course-generator, no disponible en esta entrega.
+Ubicar los cuatro archivos en paths/python-graficos/. El perfil referencia el archivo compartido ../../config/pedagogy.md, que no forma parte de este paquete. Utilizar el nombre único bibliography.md y la clave files.bibliography apuntando a él. La sintaxis YAML y la numeración pueden verificarse independientemente; la compatibilidad completa del perfil debe comprobarse con el cargador de la instalación real de course-generator, no disponible en esta entrega.
+
+## Profundidad ampliada y criterios de dominio experto
+
+Conservar íntegramente las lecciones originales; las lecciones añadidas complementan y no sustituyen sus contenidos. En cada lección desarrollar progresivamente fundamentos, mecanismo interno, API actual, casos límite, costes, decisiones de diseño, ejemplo ejecutable, validación y diagnóstico cuando aplique. No afirmar compatibilidad de APIs sin comprobar versiones.
+
+### Polars avanzado (3–9)
+
+Explicar esquemas, namespaces, evaluación de expresiones y ventanas, joins no equitativos, optimización lazy, profiling y motores de ejecución. Separar garantías de API de detalles de implementación sujetos a versión. Comparar eager/lazy y lectura/materialización con benchmarks medibles.
+
+### Matplotlib avanzado (10–17)
+
+Desarrollar el árbol de Artists, FigureCanvas, Renderer, transforms, normalización y color, eventos, callbacks, Path/Patch/Collections, layout engines, blitting y limitaciones de backends. Toda interacción debe documentar backend y entorno de ejecución.
+
+### Seaborn avanzado (18–23)
+
+Distinguir observación, unidad experimental, estimador, remuestreo e incertidumbre. Profundizar en seaborn.objects: Plot, marcas, estadísticas, movimientos, escalas, facetas, composición y exportación. No dar por garantizada una clase o firma sin consultar la versión instalada.
+
+### Integración y verificación (24–28)
+
+Construir pipelines de datos a figuras con contratos de entrada/salida, pruebas de transformaciones, pruebas de imágenes con tolerancias y entornos controlados, benchmarks de consulta/conversión/renderizado, ejecución headless, CLI reproducible y CI. Cada proyecto experto entregará código, dependencias fijadas, datos reproducibles, pruebas, gráficos, análisis crítico y troubleshooting documentado.
+
+### Criterios de evaluación
+
+En los laboratorios avanzados pedir una implementación funcional, una explicación de decisiones, un caso de fallo y su diagnóstico, una comprobación automatizada y una reflexión sobre límites. Mantener el formato de lecciones numeradas N.M y las convenciones de OBJETIVO, Laboratorio, Errores, Idea, Lectura y QUÉ DEBES RECORDAR.

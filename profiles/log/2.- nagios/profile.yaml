@@ -1,20 +1,27 @@
-name: nagios
+---
+course:
+  title: NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
+  language: es
+  level:
+    start: cero
+    end: experto
+  description: "Curso progresivo y profundo de Nagios Core sobre Fedora/RHEL,
+     desde fundamentos de monitorización hasta arquitectura, administración,
+     seguridad, monitorización remota, automatización, distributed monitoring,
+     alta disponibilidad, troubleshooting e internals. Incluye monitorización
+     avanzada de aplicaciones, métricas históricas, gestión operativa de
+     alertas, IaC/CI-CD, recuperación ante desastres y depuración avanzada."
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+      - Linux
+  mode: deep
 
-title: "NAGIOS EN PROFUNDIDAD — FEDORA/RHEL"
-
-description: >
-  Curso progresivo y profundo de Nagios Core sobre Fedora/RHEL,
-  desde fundamentos de monitorización hasta arquitectura,
-  administración, seguridad, monitorización remota,
-  automatización, distributed monitoring, alta disponibilidad,
-  troubleshooting e internals.
-
-language: es
-
-platform:
-  primary: Fedora
-  secondary:
-    - RHEL
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 domain:
   primary: Nagios Core
@@ -28,10 +35,6 @@ domain:
     - systemd
     - SELinux
     - firewalld
-
-audience:
-  starting_level: beginner
-  target_level: expert
 
 goals:
   - comprender la arquitectura de Nagios Core
@@ -59,6 +62,12 @@ goals:
   - diseñar alta disponibilidad
   - diagnosticar problemas complejos
   - comprender internals de Nagios Core
+  - diseñar checks funcionales de aplicaciones y APIs
+  - procesar métricas históricas y evaluar integraciones de visualización
+  - reducir ruido y diseñar alertas accionables
+  - implementar Nagios como código con Ansible y CI/CD
+  - probar HA, restauración y recuperación ante desastres
+  - instrumentar y depurar internals con herramientas Linux
 
 depth:
   level: expert
@@ -70,6 +79,11 @@ depth:
   explain_troubleshooting: true
   include_security: true
   include_labs: true
+  explain_parameters: true
+  include_failure_injection: true
+  include_acceptance_criteria: true
+  require_version_awareness: true
+  reproducible_labs: true
 
 pedagogy:
   progressive: true
@@ -83,27 +97,23 @@ pedagogy:
 lesson_structure:
   objective:
     required: true
-    heading: "🎯 OBJETIVO"
+    heading: 🎯 OBJETIVO
     position: first
-
   laboratory:
     required: false
-    heading: "🧪 Laboratorio/ejemplos"
+    heading: 🧪 Laboratorio/ejemplos
     include_when_useful: true
-
   common_errors:
     required: false
-    heading: "⚠️ Errores frecuentes"
+    heading: ⚠️ Errores frecuentes
     include_when_useful: true
-
   important_idea:
     required: false
-    heading: "💡 Idea importante"
+    heading: 💡 Idea importante
     include_when_useful: true
-
   remember:
     required: true
-    heading: "🧠 QUÉ DEBES RECORDAR"
+    heading: 🧠 QUÉ DEBES RECORDAR
     position: last
     minimum_points: 3
     maximum_points: 7
@@ -114,16 +124,13 @@ content_rules:
   do_not_skip_architecture: true
   do_not_skip_operational_context: true
   do_not_skip_troubleshooting: true
-
   explain_commands: true
   explain_configuration: true
   explain_expected_behavior: true
   explain_verification: true
   explain_failure_modes: true
-
   use_realistic_examples: true
   avoid_invented_exact_output: true
-
   distinguish:
     - Fedora packaging vs upstream installation
     - Nagios Core vs Nagios XI
@@ -138,7 +145,6 @@ content_rules:
 
 nagios:
   core_is_primary: true
-
   core_topics:
     - configuration
     - object model
@@ -171,14 +177,12 @@ nagios:
     - CGI
     - Event Broker
     - NEB
-
   remote_monitoring:
     - NRPE
     - NCPA
     - SSH
     - SNMP
     - passive checks
-
   plugin_development:
     depth: basic_to_intermediate
     focus:
@@ -190,7 +194,6 @@ nagios:
       - timeouts
       - security
       - troubleshooting
-
     avoid:
       - turning lessons into a general programming course
 
@@ -200,9 +203,7 @@ fedora:
   init_system: systemd
   firewall: firewalld
   mandatory_access_control: SELinux
-
   prefer_native_tools: true
-
   commands:
     - dnf
     - rpm
@@ -223,7 +224,6 @@ security:
   firewalld_enabled: true
   prefer_encrypted_protocols: true
   protect_secrets: true
-
   never_recommend_as_normal_solution:
     - disabling SELinux
     - disabling firewalld
@@ -234,7 +234,6 @@ security:
 
 troubleshooting:
   enabled: true
-
   methodology:
     - identify symptom
     - determine scope
@@ -259,7 +258,6 @@ troubleshooting:
 internals:
   enabled: true
   source_code_allowed: true
-
   topics:
     - startup
     - configuration parser
@@ -283,17 +281,14 @@ internals:
     - Event Broker
     - NEB modules
     - CGI
-
   rules:
     - explain concept before implementation
     - relate source code to observable behavior
     - distinguish stable behavior from implementation detail
     - do not dump large source fragments
-
 labs:
   enabled: true
   progressive: true
-
   types:
     - discovery
     - configuration
@@ -303,7 +298,6 @@ labs:
     - security
     - architecture
     - internals
-
   workflow:
     - observe
     - configure
@@ -314,7 +308,6 @@ labs:
     - diagnose
     - repair
     - verify
-
 sources:
   priority:
     - Nagios Core official documentation
@@ -332,7 +325,6 @@ sources:
     - Net-SNMP documentation
     - Linux man-pages
     - recognized technical books
-
   prefer_primary_sources: true
   verify_version_specific_behavior: true
   distinguish_historical_information: true
@@ -340,7 +332,6 @@ sources:
 final_project:
   required: true
   level: expert
-
   integrates:
     - Fedora/RHEL
     - Nagios Core
@@ -367,6 +358,12 @@ final_project:
     - distributed monitoring
     - high availability
     - troubleshooting
+    - application monitoring
+    - historical performance data
+    - alert quality
+    - Ansible role and CI/CD
+    - backup and disaster recovery
+    - source-level diagnostics
 
 output:
   format: markdown
@@ -374,3 +371,41 @@ output:
   technical_terms: preserve_when_useful
   commands_in_code_blocks: true
   configuration_in_code_blocks: true
+
+advanced_blocks:
+  50: application_monitoring
+  51: historical_metrics
+  52: alert_operations
+  53: infrastructure_as_code
+  54: enterprise_ha_disaster_recovery
+  55: applied_internals
+  56: expert_capstone
+
+advanced_rules:
+  preserve_existing_lessons: true
+  avoid_cross_path_duplication: true
+  validate_package_and_version_specific_details: true
+  distinguish_native_vs_external_integrations: true
+  distinguish_historical_vs_maintained_tools: true
+  require_lab_verification: true
+  require_troubleshooting_steps: true
+  explain_threshold_boundary_cases: true
+  selinux_enforcing: true
+  restrict_agent_exposure: true
+
+milestones:
+  - id: nagios-foundations
+    after_block: 14
+    name: Nagios Core — Fundamentos y plugins
+  - id: nagios-operations
+    after_block: 35
+    name: Nagios Core — Operación avanzada
+  - id: nagios-architecture
+    after_block: 49
+    name: Nagios Core — Arquitectura y diagnóstico
+  - id: nagios-engineering
+    after_block: 55
+    name: Nagios Core — Ingeniería experta
+  - id: nagios-capstone
+    after_block: 56
+    name: Proyecto final experto

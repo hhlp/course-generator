@@ -143,19 +143,29 @@ Las claves privadas, PSK, certificados y credenciales utilizadas en ejemplos deb
 
 Este PATH puede apoyarse en itinerarios independientes de systemd, SELinux, firewalld, Ansible y observabilidad. Aquí esos componentes se estudian específicamente desde la perspectiva de OpenVPN y WireGuard, evitando repetir innecesariamente cursos completos de cada tecnología.
 
-## Relación con Identity & Access Management (IAM)
-
-El itinerario debe enseñar explícitamente dos modos de operación: VPN autónoma sin IAM centralizado y VPN integrada con una plataforma central de identidad. La integración es opcional y no debe convertirse en requisito para aprender o desplegar OpenVPN o WireGuard.
-
-### OpenVPN
-OpenVPN puede funcionar de forma independiente mediante su PKI, certificados y mecanismos propios, y también puede actuar como consumidor de IAM cuando la autenticación se integra con PAM/SSSD y servicios centrales como LDAP, Kerberos o FreeIPA. El curso debe distinguir autenticación, autorización, certificados y pertenencia a grupos, así como estudiar dependencias, fallos y logs de cada capa.
-
-### WireGuard
-WireGuard no debe presentarse como consumidor directo de PAM, LDAP, Kerberos o FreeIPA. Su identidad nativa se basa en claves públicas de peers y cryptokey routing. IAM puede participar en un plano de control externo que autorice, aprovisione, retire o audite peers, pero no sustituye el mecanismo criptográfico nativo del túnel.
-
-### Principio pedagógico
-Cada tecnología se estudiará primero sin IAM para comprender su modelo nativo. Después se añadirá la integración centralizada cuando corresponda. Los laboratorios deben permitir comparar dependencia, disponibilidad, lifecycle, revocación, auditoría y troubleshooting en ambos modelos.
-
 ## Resultado esperado
 
 Al finalizar, el estudiante debe ser capaz de diseñar, desplegar, asegurar, automatizar, observar, diagnosticar y mantener arquitecturas OpenVPN y WireGuard desde escenarios de acceso remoto sencillos hasta redes site-to-site, multi-site y de alta disponibilidad.
+
+## Ampliación de alcance experto (revisión profunda)
+
+### IAM para OpenVPN
+Estudiar autenticación y autorización diferenciadas: PAM, SSSD, FreeIPA, RADIUS y MFA mediante componentes compatibles. Explicar el papel de LDAP/Kerberos como servicios de identidad subyacentes, no como autenticación integrada automática de OpenVPN. Correlacionar logs de OpenVPN, PAM, SSSD, proveedores IAM y SELinux.
+
+### Identidad y gestión de peers WireGuard
+WireGuard autentica peers mediante claves criptográficas; no incorpora PAM, LDAP, Kerberos ni MFA de usuario de manera nativa. La asociación con personas, la autorización por grupos y el onboarding/offboarding requieren sistemas externos, inventario y políticas de red.
+
+### Ingeniería e internals
+Profundizar en TLS 1.3, DCO y compatibilidad OpenVPN, además de mensajes WireGuard, NoiseIK, cookies, protección antirreplay, temporizadores, netlink, código fuente y trazas. Distinguir siempre configuración del protocolo y comportamiento de herramientas auxiliares como wg-quick.
+
+### Operación y resiliencia
+Diseñar indicadores de servicio, monitorización sintética, alertas, control de cambios, backup/restore probado, actualizaciones y rollback. Diferenciar con pruebas medibles el failover de gateways de la continuidad de sesiones. Medir RTO/RPO y registrar evidencias.
+
+### Criterios de profundidad por lección
+Cada lección debe incluir objetivo, explicación conceptual, flujo de paquetes o secuencia de eventos cuando aplique, comandos explicados opción por opción, archivos/rutas afectados, integración Fedora/RHEL, observación de estado, logs pertinentes, errores habituales, seguridad, laboratorio reproducible, verificación, limpieza y referencias concretas. Evitar repetir contenidos de otros itinerarios salvo su aplicación directa a VPN.
+
+### Criterios de aceptación de laboratorios
+Los laboratorios deben tener topología explícita, prerrequisitos, comandos de preparación, configuración, pruebas positivas y negativas, evidencia de routing/firewall/DNS, captura o logs cuando proceda, rollback y criterios de éxito. Probar dual-stack, caída de túnel, rutas de retorno, revocación de acceso, recuperación y fugas DNS/IPv6.
+
+### Estructura revisada
+Se conservan los bloques 0–33 y se profundizan; se añaden 34 OpenVPN + IAM, 35 Gestión de identidad y peers WireGuard, 36 Ingeniería de protocolos VPN y 37 Operación VPN en producción y resiliencia. Los laboratorios expertos pasan a 38 y el proyecto final a 39.

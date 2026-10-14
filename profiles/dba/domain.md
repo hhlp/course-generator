@@ -2036,3 +2036,38 @@ Al finalizar, el alumno debe ser capaz de:
 El objetivo final no es memorizar PostgreSQL.
 
 El objetivo es **comprenderlo suficientemente bien como para investigar, administrar y diagnosticar sistemas PostgreSQL reales con criterio técnico**.
+
+
+---
+
+## 60. Profundización operativa adicional (ampliación)
+
+Las ampliaciones del temario preservan las lecciones originales. En cada lección sobre herramientas externas se debe distinguir claramente el núcleo PostgreSQL de los componentes externos.
+
+### Backups profesionales
+
+Desarrollar pgBackRest y Barman con instalación, prerequisitos, topología, configuración real, políticas de retención, cifrado, WAL archiving, recuperación completa y PITR, restauración en host aislado y pruebas medibles de RPO/RTO. No presentar estas herramientas como funcionalidades nativas.
+
+### HA ejecutable
+
+Desplegar Patroni, etcd y HAProxy en nodos de laboratorio, documentar configuración por nodo, roles de cada componente, quorum, DCS, TLS, health checks, fencing, switchover, failover, split brain, rejoin, pg_rewind y simulación de particiones de red. Explicar condiciones de seguridad antes de automatizar.
+
+### Seguridad e identidad
+
+Estudiar GSSAPI/Kerberos para autenticación PostgreSQL, keytabs, principals, mapeo de identidades, pg_hba.conf, troubleshooting y límites frente a IAM; tratar MD5 como tecnología heredada y verificar su disponibilidad por versión antes de enseñar una migración a SCRAM. Incluir ciclo de vida de certificados, secretos y pgaudit.
+
+### Cambios y migraciones de producción
+
+Incluir collations ICU/libc, compatibilidad de extensiones, riesgos de reindexación, planes de cutover/rollback, validación de secuencias y permisos, DDL con mínimo bloqueo, timeouts y procedimientos de recuperación.
+
+### Rendimiento e internals
+
+Cubrir planes genéricos/personalizados, invalidación del plan cache, prepared statements, regresiones del planner, correlación de wait events con Linux, buffer pins, memory contexts y resource owners.
+
+## 61. Contrato de profundidad para cada lección
+
+Para cada tema, cuando aplique: objetivo verificable; prerequisitos y versión; arquitectura y mecanismo; comandos/SQL reales; explicación de parámetros; permisos y riesgos; laboratorio reproducible; resultados esperados; observabilidad; fallos inducidos solo en laboratorio; diagnóstico; recuperación/rollback; diferencias de versión; errores frecuentes; síntesis de 3–7 ideas. No inventar rutas, paquetes ni opciones. Evitar repetir explicaciones completas del PATH de SQL, Database Design, Linux, Ansible o IAM: introducir únicamente la integración necesaria.
+
+## 62. Control de calidad del temario
+
+Mantener numeración `bloque.lección`, conservar todos los títulos originales, verificar continuidad, evitar repeticiones didácticas y exigir ejercicios de integración que combinen PostgreSQL, SQL administrativo, systemd, SELinux, firewalld, observabilidad, backup y recuperación. La documentación oficial de la versión objetivo prevalece en cualquier discrepancia.

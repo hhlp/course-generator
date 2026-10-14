@@ -276,3 +276,21 @@ No trasladar automáticamente documentación de Elasticsearch a OpenSearch.
 ## Objetivo final
 
 Al terminar el PATH, el alumno debe poder diseñar, desplegar, asegurar, administrar, observar, escalar, optimizar y diagnosticar una plataforma OpenSearch Stack de producción y comprender suficientemente sus internals para investigar problemas complejos.
+
+
+## Ampliación experta: bloques 61–66
+
+Conservar las lecciones originales y desarrollar seis bloques adicionales: Data Streams, almacenamiento avanzado, relevancia y RAG, SRE, IaC/GitOps y migraciones. El proyecto final pasa al bloque 67.
+
+### Reglas de validación técnica
+- Verificar la compatibilidad por versión de cada API, plugin y configuración antes de proponer comandos.
+- Diferenciar funcionalidades nativas, plugins y servicios externos.
+- No confundir réplicas, snapshots y almacenamiento remoto.
+- Medir p50/p95/p99, throughput, recursos, errores y resultados de búsqueda antes y después de optimizaciones.
+- Para toda práctica operativa: prerrequisitos, configuración, ejecución, validación, fallos frecuentes y recuperación.
+- Para IaC: idempotencia, secretos externos, control de cambios, validación automatizada y rollback.
+- Para SRE: SLI, SLO, alertas accionables, RPO/RTO y runbooks reproducibles.
+- Mantener separados los cursos completos de Terraform, Ansible y OpenTelemetry: aquí enseñar integración con OpenSearch.
+
+### Entorno seguro
+Los laboratorios destructivos se ejecutan exclusivamente en un entorno aislado. No exponer nodos o credenciales de demostración a redes públicas. Usar TLS y mínimo privilegio en producción.

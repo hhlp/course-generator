@@ -82,3 +82,31 @@ Prioridad:
 4. Libros especializados.
 
 No se inventan capítulos, páginas, secciones ni números de edición. Las referencias exactas solo se incluyen cuando han sido verificadas.
+
+
+## Referencias adicionales por scope
+
+### Lenguaje, AST y herramientas (oficial)
+- Apache Groovy — Language Specification, Semantics, Operators, Closures, Metaprogramming, AST Transformations y Type Checking Extensions. https://groovy-lang.org/documentation.html
+- Apache Groovy — Groovy Development Kit y API documentation. https://groovy-lang.org/
+- CodeNarc — documentación oficial de reglas, Gradle y análisis estático. https://codenarc.org/
+
+### Integración y JVM
+- Oracle/OpenJDK — java.net.http.HttpClient, java.nio.file, java.util.concurrent y Java Flight Recorder. https://docs.oracle.com/en/java/javase/
+- OpenJDK — JMH (Java Microbenchmark Harness). https://github.com/openjdk/jmh
+- GPars — documentación del proyecto, sujeta a verificación de compatibilidad. https://gpars.org/
+
+### Testing y build
+- Spock Framework — User Guide, interacción, fixtures y data-driven tests. https://spockframework.org/
+- JaCoCo — documentación oficial. https://www.jacoco.org/jacoco/
+- Gradle — Groovy plugin, toolchains, dependency locking, publishing y testing. https://docs.gradle.org/current/userguide/userguide.html
+
+### Jenkins: CPS y Shared Libraries
+- Jenkins — Pipeline CPS Method Mismatches. https://www.jenkins.io/doc/book/pipeline/cps-method-mismatches/
+- Jenkins — Extending with Shared Libraries. https://www.jenkins.io/doc/book/pipeline/shared-libraries/
+- Jenkins — Pipeline Best Practices. https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/
+- Jenkins — Script Security. https://www.jenkins.io/doc/book/managing/script-approval/
+- JenkinsPipelineUnit — proyecto y documentación para unit tests de pipelines; complementar con integración real. https://github.com/jenkinsci/JenkinsPipelineUnit
+
+## Política de alcance bibliográfico
+Clasificar cada lectura según el bloque y scope; no presentar herramientas o librerías opcionales como parte obligatoria del lenguaje. Verificar versiones compatibles de Groovy, JDK, Spock, Gradle y Jenkins antes de fijar comandos o dependencias.

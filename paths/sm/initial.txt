@@ -102,6 +102,52 @@
 4.15 Definition of Done como commitment
 4.16 Artifact frente a Commitment
 4.17 laboratorio
+4.18 Sprint Backlog: estructura y componentes
+4.19 Sprint Goal, PBIs seleccionados y plan de entrega
+4.20 Responsabilidad de los Developers sobre el Sprint Backlog
+4.21 Construcción del Sprint Backlog durante Sprint Planning
+4.22 Selección de PBIs y relación con el Sprint Goal
+4.23 Capacity y disponibilidad de los Developers
+4.24 Descomposición opcional de PBIs en tareas técnicas
+4.25 Estimación del trabajo y planificación realista
+4.26 Visualización del Sprint Backlog y Scrum Board
+4.27 Estados y seguimiento del trabajo
+4.28 Actualización continua del Sprint Backlog
+4.29 Daily Scrum y adaptación diaria del plan
+4.30 Incorporación de trabajo descubierto durante el Sprint
+4.31 Cambios de alcance y negociación con el Product Owner
+4.32 Protección del Sprint Goal ante cambios
+4.33 Gestión de impedimentos y dependencias
+4.34 Trabajo bloqueado y alternativas de adaptación
+4.35 Seguimiento del progreso hacia el Sprint Goal
+4.36 Sprint Backlog y Definition of Done
+4.37 Trabajo no terminado al finalizar el Sprint
+4.38 Sprint Backlog frente a Product Backlog
+4.39 Sprint Backlog y transparencia del trabajo
+4.40 Anti-patrones: Sprint Backlog como contrato fijo
+4.41 Anti-patrones: Scrum Master administrando las tareas
+4.42 Laboratorio: construir un Sprint Backlog completo
+4.43 Laboratorio: simular actualizaciones diarias
+4.44 Laboratorio: gestionar cambios e impedimentos
+4.45 Laboratorio integral: ejecutar y adaptar un Sprint Backlog
+4.46 Product Backlog Items nuevos durante un Sprint
+4.47 Diferenciar bugs, defects, incidents y hotfixes
+4.48 Registrar y clasificar bugs en el Product Backlog
+4.49 Bug descubierto durante el desarrollo de un PBI
+4.50 Bug de producción frente a bug del Sprint actual
+4.51 Ordenación de bugs por el Product Owner
+4.52 Evaluar urgencia, impacto y riesgo de un hotfix
+4.53 Incorporar un PBI al Sprint Backlog durante el Sprint
+4.54 Negociar cambios de alcance con el Product Owner
+4.55 Replanificación de capacidad y trabajo restante
+4.56 Mantener el Sprint Goal ante trabajo imprevisto
+4.57 Hotfix crítico y política de atención de incidentes
+4.58 Calidad, Definition of Done y regresiones
+4.59 Trabajo no terminado y retorno al Product Backlog para reordenación
+4.60 Anti-patrones: introducir trabajo urgente sin transparencia
+4.61 Laboratorio: incorporar un bug durante el Sprint
+4.62 Laboratorio: gestionar un hotfix crítico en producción
+4.63 Laboratorio: renegociar alcance y adaptar el Sprint Backlog
 
 5. Definition of Done — DoD en profundidad
 5.1 qué es Definition of Done
@@ -319,6 +365,13 @@
 9.17 laboratorio: Monte Carlo
 9.18 laboratorio: métricas EBM
 
+9.19 Calidad de datos: missing values, cambios de workflow y sesgo de selección
+9.20 Distribuciones empíricas de throughput y supuestos de estabilidad
+9.21 Monte Carlo reproducible: muestreo, iteraciones y semillas
+9.22 Análisis de sensibilidad ante cambios de alcance y capacidad
+9.23 Forecasts probabilísticos: comunicación sin falsa precisión
+9.24 Laboratorio: comparar forecasts con datos incompletos
+
 10. Calidad, deuda técnica, DevOps y profesionalismo
 10.1 calidad incorporada
 10.2 deuda técnica
@@ -374,6 +427,13 @@
 12.14 ética y límites
 12.15 laboratorio
 
+12.16 Diagnóstico contextual antes de escoger una postura
+12.17 Contratos y expectativas de intervención del Scrum Master
+12.18 Intervención mínima efectiva: criterios y riesgos
+12.19 Transición de teaching a mentoring y coaching
+12.20 Retirada gradual y autonomía verificable
+12.21 Laboratorio: seleccionar postura, justificarla y medir efectos
+
 13. Self-management, equipos y dinámicas humanas
 13.1 autonomía y accountability
 13.2 empowerment
@@ -391,6 +451,12 @@
 13.14 disfunciones de equipo
 13.15 laboratorio
 
+13.16 Acuerdos de trabajo y revisión empírica
+13.17 Modelos de conflicto: posiciones, intereses y necesidades
+13.18 Diseño de decisiones inclusivas y reversibles
+13.19 Seguridad psicológica: señales observables y límites
+13.20 Laboratorio: conflicto entre Developers y Product Owner
+
 14. Facilitación profesional
 14.1 qué es facilitación
 14.2 neutralidad
@@ -405,6 +471,13 @@
 14.11 facilitación remota
 14.12 workshops
 14.13 laboratorio
+
+14.14 Diseñar una agenda desde el propósito y el resultado esperado
+14.15 Técnicas de escucha y síntesis neutral
+14.16 Gestionar silencios, dominación y desacuerdos
+14.17 Facilitación de decisiones: opciones, criterios y registro
+14.18 Evaluación de una sesión y mejora del diseño
+14.19 Laboratorio: facilitar Sprint Review con stakeholders en desacuerdo
 
 15. Retrospectives en profundidad y antipatterns
 15.1 propósito de la Sprint Retrospective
@@ -427,6 +500,11 @@
 15.18 técnicas de retrospectiva
 15.19 laboratorio: rescatar una retrospectiva disfuncional
 
+15.20 Diseñar una retrospectiva basada en datos y contexto
+15.21 Trazabilidad de acciones: hipótesis, responsable y revisión
+15.22 Medir efectos de acciones sin convertir métricas en objetivos
+15.23 Laboratorio: dos retrospectivas consecutivas y seguimiento
+
 16. Coaching y mentoring
 16.1 coaching frente a mentoring
 16.2 coaching stance
@@ -444,6 +522,12 @@
 16.14 comunidades de práctica
 16.15 límites éticos
 16.16 laboratorio
+
+16.17 Escucha por niveles y preguntas abiertas
+16.18 Contratos de coaching y consentimiento
+16.19 Conversaciones difíciles: observación, impacto y petición
+16.20 Diferenciar coaching de terapia y de evaluación del desempeño
+16.21 Laboratorio: sesión de coaching con transcripción y retroalimentación
 
 17. Product Ownership y valor para Scrum Masters
 17.1 visión y Product Goal
@@ -478,6 +562,13 @@
 18.14 cambio emergente
 18.15 pensamiento sistémico
 18.16 laboratorio
+
+18.17 Mapa de impedimentos: síntoma, causa, impacto y propietario
+18.18 Causal loop diagrams y bucles reforzadores/equilibradores
+18.19 Incentivos, estructuras y efectos no deseados
+18.20 Diseño de experimentos organizacionales pequeños y reversibles
+18.21 Evaluación de impacto y seguimiento de impedimentos sistémicos
+18.22 Laboratorio: intervenir en dependencias interdepartamentales
 
 19. Scrum con Kanban y flow metrics
 19.1 Scrum como framework base y Kanban como estrategia complementaria de flujo
@@ -664,6 +755,12 @@
 22.10 intervención mínima efectiva
 22.11 laboratorio
 
+22.12 Mapeo de límites del sistema y actores
+22.13 Arquetipos sistémicos y consecuencias de segundo orden
+22.14 Hipótesis causales frente a correlación
+22.15 Decisiones bajo incertidumbre: reversibilidad y señales
+22.16 Laboratorio: construir y debatir un causal loop diagram
+
 23. Teaching avanzado
 23.1 teaching frente a coaching
 23.2 enseñar Scrum
@@ -687,6 +784,13 @@
 24.8 límites éticos
 24.9 laboratorio
 
+24.10 Coaching organizacional: acuerdos, patrocinio y confidencialidad
+24.11 Diagnóstico multicapas: equipo, producto, dirección y políticas
+24.12 Mapa de actores y resistencias sin etiquetar personas
+24.13 Diseño de experimentos de cambio y criterios de parada
+24.14 Revisión de resultados, efectos colaterales y sostenibilidad
+24.15 Laboratorio: plan de cambio organizacional de 90 días
+
 25. Product Value y EBM avanzado
 25.1 valor como hipótesis
 25.2 customer y stakeholder value
@@ -702,6 +806,12 @@
 25.12 evidencia frente a opinión
 25.13 laboratorio
 
+25.14 De outputs a outcomes: árbol de hipótesis de valor
+25.15 Diseñar Key Value Measures y comprobar su validez
+25.16 Líneas base, señales tempranas y variables de confusión
+25.17 Experimentos: hipótesis, umbrales y decisiones
+25.18 Laboratorio: construir un cuadro EBM con decisiones explícitas
+
 26. Escalado: fundamentos antes de Nexus
 26.1 por qué escalar
 26.2 por qué no escalar prematuramente
@@ -716,6 +826,11 @@
 26.11 descaling
 26.12 anti-patrones de escalado
 26.13 laboratorio
+
+26.14 Topologías de equipo y dependencias de integración
+26.15 Mapa de dependencias y coste de coordinación
+26.16 Criterios para desescalar antes de introducir estructuras
+26.17 Laboratorio: comparar alternativas de un equipo frente a varios
 
 27. Nexus Framework for Scaling Scrum
 27.1 Nexus: propósito y teoría
@@ -738,6 +853,12 @@
 27.18 distributed teams
 27.19 Nexus anti-patterns
 27.20 laboratorio: diseñar y operar un Nexus
+
+27.21 Nexus Integration Team: accountability y límites
+27.22 Estrategias de integración frecuente y visibilidad del trabajo pendiente
+27.23 Riesgos de arquitectura y pruebas entre equipos
+27.24 Simulación de conflicto entre equipos y dependencias cruzadas
+27.25 Laboratorio: fallo de integración y recuperación del Integrated Increment
 
 28. Casos complejos de Scrum Master
 28.1 Product Owner ausente
@@ -779,6 +900,13 @@
 29.17 ejercicios escritos
 29.18 revisión crítica de respuestas
 
+29.19 Rúbrica: precisión normativa, contexto, opciones y trade-offs
+29.20 Rúbrica: justificación empírica y Scrum Values
+29.21 Respuestas en inglés: estructura claim–evidence–reasoning
+29.22 Identificar suposiciones, incertidumbre y datos faltantes
+29.23 Revisión entre pares de respuestas escritas
+29.24 Laboratorio: tres casos ambiguos con revisión y reescritura
+
 30. HITO PSM III — dominio distinguido
 30.1 repaso integral PSM I
 30.2 repaso integral PSM II
@@ -800,6 +928,11 @@
 30.18 simulacro PSM III
 30.19 revisión crítica
 30.20 repaso final PSM III
+
+30.21 Simulacro escrito: casos extensos con tiempo limitado
+30.22 Autoevaluación por rúbrica y plan de mejora
+30.23 Defensa de intervenciones alternativas y consecuencias
+30.24 Laboratorio: revisión crítica de respuestas en inglés
 
 31. Proyecto final — Scrum Master Expert
 31.1 definir un producto complejo
@@ -830,3 +963,10 @@
 31.26 evaluación mediante empirismo
 31.27 defensa escrita de decisiones en inglés
 31.28 retrospectiva integral del sistema
+31.29 Entregable: registro de decisiones y evidencias por Sprint
+31.30 Entregable: dataset de flujo y charts reproducibles
+31.31 Entregable: guiones y actas de facilitación con decisiones
+31.32 Entregable: mapa causal de impedimento organizacional
+31.33 Entregable: experimento de mejora con línea base y resultados
+31.34 Evaluación final: rúbrica de empirismo, valores, liderazgo y valor
+31.35 Defensa final escrita en inglés con revisión crítica

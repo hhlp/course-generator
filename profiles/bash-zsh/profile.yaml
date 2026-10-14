@@ -1,6 +1,14 @@
-name: bash-zsh
-title: BASH-ZSH EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "bash-zsh — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - RHEL
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -139,10 +147,12 @@ reference_focus:
   cybersecurity_ops_bash:
     dialect: bash
     blocks: [33, 41, 56]
-    focus: [defensive_auditing, log_analysis, network_inspection, incident_triage, safe_automation]
+    focus: [defensive_auditing, log_analysis, network_inspection,
+            incident_triage, safe_automation]
     authorized_isolated_labs: true
   data_science_cli:
     dialect: bash_with_external_unix_tools
     blocks: [12, 30, 57, 64]
-    focus: [data_acquisition, cleaning, etl_pipelines, csv_tsv_json, validation, reproducibility]
+    focus: [data_acquisition, cleaning, etl_pipelines, csv_tsv_json,
+            validation, reproducibility]
   avoid_duplicate_specialized_paths: true

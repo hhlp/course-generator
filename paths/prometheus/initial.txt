@@ -103,6 +103,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 2.34 actualización
 2.35 rollback
 2.36 laboratorio: desplegar Prometheus como servicio Fedora
+2.37 Health checks: /-/healthy frente a /-/ready
+2.38 Recarga segura mediante systemd ExecReload y señales
+2.39 Verificación de la configuración efectiva y flags activos
+2.40 Rollback con compatibilidad de TSDB y binarios
+2.41 Laboratorio: actualizar, verificar y revertir sin pérdida de datos
 
 3. Configuración de Prometheus
 3.1 estructura de prometheus.yml
@@ -138,6 +143,13 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 3.31 separación de reglas
 3.32 buenas prácticas
 3.33 laboratorio: construir una configuración modular
+3.34 scrape_protocols y negociación de formatos
+3.35 sample_limit y target_limit
+3.36 label_limit y límites de longitud de etiquetas
+3.37 body_size_limit y límites de ingesta
+3.38 scrape_native_histograms y opciones dependientes de versión
+3.39 Configuración de timeouts HTTP y cabeceras
+3.40 Laboratorio: probar límites y errores de scraping
 
 4. Modelo de datos
 4.1 modelo dimensional de Prometheus
@@ -184,6 +196,12 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 4.42 bounded frente a unbounded labels
 4.43 diseño correcto de métricas
 4.44 laboratorio: diseñar un modelo de métricas
+4.45 Diferencia entre cardinalidad activa y series creadas
+4.46 Churn y lifecycle de series
+4.47 Staleness y ausencia de datos frente a cero
+4.48 Presupuesto de cardinalidad por job y equipo
+4.49 Exemplars: concepto y límites del alcance Prometheus
+4.50 Laboratorio: estimar series y coste de etiquetas
 
 5. Exposition format y scraping
 5.1 endpoint /metrics
@@ -212,6 +230,12 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 5.24 staleness
 5.25 stale markers
 5.26 laboratorio: analizar manualmente /metrics
+5.27 Negociación Content-Type y compatibilidad de protocolos
+5.28 Errores de parseo y fallos parciales de scraping
+5.29 Out-of-order, duplicados y timestamps explícitos
+5.30 Diferencia entre sample limit y metric relabeling
+5.31 Análisis de scrape_timeout y latencias
+5.32 Laboratorio: reproducir fallos de exposición e ingesta
 
 6. Exporters
 6.1 qué es un exporter
@@ -287,6 +311,18 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 6.71 laboratorio: inventariar exporters disponibles
 6.72 laboratorio: desplegar varios exporters
 6.73 laboratorio: integrar Node + Blackbox + servicio de base de datos
+6.74 Exporters y separación de privilegios
+6.75 Seguridad de collectors con acceso a host y sockets
+6.76 Exporters de PostgreSQL: permisos mínimos y consultas
+6.77 Exporters de MySQL: credenciales y privilegios
+6.78 Exporters de MongoDB: selección y compatibilidad
+6.79 Exporters de Redis: endpoints y autenticación
+6.80 Exporters de Kubernetes: kube-state-metrics y cAdvisor
+6.81 Exporters para hardware: BMC/IPMI y riesgos
+6.82 Diagnóstico de collectors lentos y costosos
+6.83 Métricas internas de exporters y autoobservación
+6.84 Control de cardinalidad por collectors y configuración
+6.85 Laboratorio: comparar coste y riesgo de tres exporters
 
 7. Targets
 7.1 concepto de target
@@ -306,6 +342,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 7.15 target metadata
 7.16 diagnóstico de targets
 7.17 laboratorio: investigar targets UP/DOWN
+7.18 Diferenciar target DOWN de métrica ausente
+7.19 Targets descartados: inspección y límites
+7.20 Diagnóstico de labels después de relabeling
+7.21 Laboratorio: analizar un target que cambia de dirección
 
 8. Service discovery
 8.1 qué es service discovery
@@ -351,6 +391,14 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 8.41 debugging de discovery
 8.42 laboratorio: file-based service discovery
 8.43 laboratorio: transformar targets mediante relabeling
+8.44 HTTP service discovery y su modelo de actualización
+8.45 file_sd: atomicidad, permisos y validación
+8.46 DNS SD: TTL, tipos de registro y limitaciones
+8.47 Relabeling: orden de acciones y etiquetas temporales
+8.48 Diferencia entre relabel_configs, metric_relabel_configs y write_relabel_configs
+8.49 Ejercicios de relabeling con cadenas de transformaciones
+8.50 Diagnóstico de credenciales y conectividad en discovery
+8.51 Laboratorio: HTTP SD y depuración de labels
 
 9. PromQL — Fundamentos
 9.1 qué es PromQL
@@ -390,6 +438,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 9.35 by
 9.36 without
 9.37 laboratorio: consultas fundamentales
+9.38 Semántica de ausencia, cero y NaN
+9.39 Lookback delta y evaluación temporal
+9.40 Selectores con matching vacío y errores frecuentes
+9.41 Comparación bool y filtrado de vectores
+9.42 Laboratorio: explorar evaluaciones con timestamps
 
 10. PromQL — Funciones y counters
 10.1 funciones PromQL
@@ -419,6 +472,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 10.25 clamp_min()
 10.26 clamp_max()
 10.27 laboratorio: CPU, memoria, red y disco con PromQL
+10.28 Orden correcto: sum(rate()) frente a rate(sum())
+10.29 Counters con resets y extrapolación de rate
+10.30 Funciones sobre histogramas nativos y restricciones
+10.31 PromQL: funciones experimentales y feature flags
+10.32 Laboratorio: detectar consultas incorrectas de counters
 
 11. PromQL — Vector matching
 11.1 binary operations entre vectores
@@ -437,6 +495,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 11.14 diferencias respecto a SQL
 11.15 patrones de consulta
 11.16 laboratorio: correlacionar métricas
+11.17 Propagación de metric name y etiquetas en operaciones
+11.18 Operaciones entre floats e histogramas
+11.19 Anotaciones por combinaciones incompatibles
+11.20 Laboratorio: matching ambiguo y resolución
 
 12. PromQL — Range queries y subqueries
 12.1 range vector selectors
@@ -455,6 +517,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 12.14 coste computacional
 12.15 consultas de larga duración
 12.16 laboratorio: análisis temporal avanzado
+12.17 Semántica de límites de ventanas temporales
+12.18 Resolución, step y carga de range queries
+12.19 Subqueries anidadas y coste de memoria
+12.20 Laboratorio: comparar resultados con distintos steps
 
 13. PromQL — Histogramas
 13.1 histogramas
@@ -478,6 +544,13 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 13.19 migración conceptual
 13.20 errores frecuentes
 13.21 laboratorio: calcular latencias p95/p99
+13.22 Histogramas nativos: esquemas y resolución
+13.23 Histogramas mixtos: muestras float e histogram
+13.24 histogram_count(), histogram_sum() y histogram_avg()
+13.25 histogram_fraction() y estimación de proporciones
+13.26 Advertencias y anotaciones de funciones de histogramas
+13.27 Agregación entre instancias: límites de compatibilidad
+13.28 Laboratorio: comparar percentiles clásicos y nativos
 
 14. PromQL — Avanzado
 14.1 composición de consultas
@@ -505,6 +578,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 14.23 absent_over_time()
 14.24 PromQL anti-patterns
 14.25 laboratorio: biblioteca de consultas operativas
+14.26 Explicar planes y estadísticas de consultas cuando estén disponibles
+14.27 Diagnóstico de consultas con demasiadas muestras
+14.28 SLO: presupuesto de errores y ventanas múltiples
+14.29 SLI basados en histogramas y tasas
+14.30 Laboratorio: optimización de una consulta costosa
 
 15. Recording rules
 15.1 qué son recording rules
@@ -527,6 +605,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 15.18 reglas para dashboards
 15.19 reglas para alertas
 15.20 laboratorio: construir una jerarquía de recording rules
+15.21 Dependencias entre grupos y evaluación concurrente según versión
+15.22 Observabilidad de retrasos de evaluación
+15.23 Gestión de naming y ownership de reglas
+15.24 Laboratorio: regresión de recording rules
 
 16. Alerting rules
 16.1 arquitectura de alertas
@@ -557,6 +639,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 16.26 SLO-based alerts
 16.27 testing con promtool
 16.28 laboratorio: diseñar un conjunto operativo de alertas
+16.29 Alertas por ausencia de telemetría sin falsos positivos
+16.30 Flapping, keep_firing_for y tiempos de evaluación
+16.31 Alertas de SLO multi-window y burn-rate
+16.32 Laboratorio: diseñar alertas ante fallos parciales
 
 17. Alertmanager
 17.1 qué es Alertmanager
@@ -602,6 +688,12 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 17.41 troubleshooting
 17.42 laboratorio: construir routing tree completo
 17.43 laboratorio: inhibition + silences + receivers
+17.44 Validación y testing de rutas con amtool
+17.45 Clustering: puertos, gossip y particiones
+17.46 Persistencia del estado y silences en HA
+17.47 Tiempos de notificación y deduplicación
+17.48 Secretos en receivers y plantillas seguras
+17.49 Laboratorio: simular partición y recuperación de Alertmanager
 
 18. HTTP API
 18.1 Prometheus HTTP API
@@ -625,6 +717,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 18.19 administración mediante API
 18.20 seguridad de la API
 18.21 laboratorio: investigar Prometheus exclusivamente mediante HTTP/API
+18.22 API: límites de consulta y paginación donde corresponda
+18.23 API administrativa: flags y riesgos
+18.24 Parámetros de consulta: timeout, limit y estadísticas según versión
+18.25 Laboratorio: automatizar inspección con curl y jq
 
 19. TSDB
 19.1 almacenamiento local
@@ -662,6 +758,14 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 19.33 filesystem
 19.34 capacidad
 19.35 laboratorio: diseccionar físicamente una TSDB
+19.36 Modelo de capacidad: muestras por segundo, bytes y retención
+19.37 WAL, Head y memoria: relación con cardinalidad
+19.38 Memory mapping y presión de memoria
+19.39 Snapshots consistentes y procedimiento de restauración
+19.40 Estrategias ante corrupción: seguridad y pérdida potencial
+19.41 Impacto de churn en índices y almacenamiento
+19.42 Benchmarks reproducibles y observabilidad de compaction
+19.43 Laboratorio: dimensionar TSDB con tres escenarios
 
 20. Federation
 20.1 qué es federation
@@ -679,6 +783,9 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 20.13 federation frente a HA
 20.14 limitaciones
 20.15 laboratorio: arquitectura Prometheus local → Prometheus global
+20.16 Federation: semántica de labels y duplicación
+20.17 Fallo de federation y detección de datos incompletos
+20.18 Laboratorio: comparar federation y remote write
 
 21. Remote write
 21.1 qué es remote write
@@ -710,6 +817,13 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 21.27 métricas internas de remote write
 21.28 troubleshooting
 21.29 laboratorio: analizar el pipeline de remote write
+21.30 Remote Write 1.0: modelo y compatibilidad
+21.31 Remote Write 2.0: protocolo y negociación
+21.32 Compatibilidad de receivers y validación de interoperabilidad
+21.33 Backpressure, colas y límites de memoria
+21.34 Reintentos, pérdida potencial y recuperación
+21.35 WAL truncation y backlog: diagnóstico por versión
+21.36 Laboratorio: receptor lento y recuperación del pipeline
 
 22. Remote read
 22.1 qué es remote read
@@ -724,6 +838,9 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 22.10 casos de uso
 22.11 alternativas arquitectónicas
 22.12 laboratorio: estudiar flujo query → remote storage
+22.13 Remote read: límites y estado de soporte según versión
+22.14 Comparación con query layer de almacenamiento distribuido
+22.15 Laboratorio: medir latencia y coste remoto
 
 23. Prometheus Agent Mode
 23.1 concepto de agent
@@ -739,6 +856,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 23.11 Kubernetes
 23.12 comparación con servidor completo
 23.13 laboratorio: diseñar arquitectura con agentes
+23.14 Compatibilidad y ciclo de vida de Agent Mode según versión
+23.15 WAL de agente y recuperación tras desconexión
+23.16 Diferencia entre Agent Mode y OpenTelemetry Collector
+23.17 Laboratorio: agente sin conectividad al receiver
 
 24. Alta disponibilidad
 24.1 qué significa HA en Prometheus
@@ -761,6 +882,13 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 24.18 disponibilidad del ingestion path
 24.19 disaster recovery
 24.20 laboratorio: diseñar Prometheus sin single point of failure
+24.21 HA: etiquetas de réplica y deduplicación aguas abajo
+24.22 HA de ingesta frente a HA de consulta
+24.23 Thanos: conceptos de sidecar, querier y object storage
+24.24 Grafana Mimir: arquitectura conceptual y multitenancy
+24.25 VictoriaMetrics: compatibilidad y diferencias arquitectónicas
+24.26 Fallos correlacionados y dominios de fallo
+24.27 Laboratorio: simular caída de una réplica y del query path
 
 25. Escalabilidad y rendimiento
 25.1 límites de una instancia
@@ -787,6 +915,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 25.22 benchmark
 25.23 métricas internas de Prometheus
 25.24 laboratorio: realizar capacity planning
+25.25 Cálculo de tasa de ingestión y dimensionamiento
+25.26 Presupuestos de memoria y series activas
+25.27 Benchmark de scraping y evaluación de reglas
+25.28 Diagnóstico de query concurrency y muestras máximas
+25.29 Laboratorio: capacity planning con datos cuantitativos
 
 26. Seguridad
 26.1 threat model
@@ -817,6 +950,14 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 26.26 seguridad de Pushgateway
 26.27 network segmentation
 26.28 laboratorio: hardening de una instalación Prometheus
+26.29 Autenticación y TLS en web.config.yml según componente
+26.30 Protección de endpoints administrativos y lifecycle
+26.31 Secretos con permisos restrictivos y rotación
+26.32 systemd-analyze security y mitigaciones prácticas
+26.33 SELinux: AVC, audit2why y política mínima
+26.34 Firewalld: segmentación por origen y servicio
+26.35 Threat modeling de exporters y service discovery
+26.36 Laboratorio: auditoría de exposición de endpoints
 
 27. Troubleshooting
 27.1 metodología de diagnóstico
@@ -867,6 +1008,12 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 27.46 logs
 27.47 profiling
 27.48 laboratorio: escenario completo de averías
+27.49 Árbol de decisión para fallos de scraping
+27.50 Diagnóstico de WAL con presión de disco
+27.51 Análisis de query log y profiling
+27.52 Diagnóstico de alertas duplicadas y silencios inesperados
+27.53 Diagnóstico de latencia de remote write y pérdida de muestras
+27.54 Laboratorio: incidente con múltiples causas
 
 28. Herramientas de administración
 28.1 prometheus
@@ -890,6 +1037,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 28.19 scripts de administración
 28.20 automatización
 28.21 laboratorio: construir toolkit de diagnóstico Prometheus
+28.22 promtool: análisis TSDB y consultas de diagnóstico
+28.23 amtool: pruebas de rutas, silencios y estado
+28.24 systemd-analyze security aplicado a Prometheus
+28.25 Automatización de verificaciones con shell y Ansible
+28.26 Laboratorio: toolkit reproducible con resultados esperados
 
 29. Testing de reglas
 29.1 por qué probar reglas
@@ -908,6 +1060,12 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 29.14 regresiones
 29.15 CI
 29.16 laboratorio: suite completa de tests
+29.17 Tests de staleness y ausencia de series
+29.18 Tests de histogramas según soporte de promtool
+29.19 Validación de configuración y reglas en CI
+29.20 Pruebas de integración de Alertmanager y receivers
+29.21 Pruebas de rollback y compatibilidad de versiones
+29.22 Laboratorio: pipeline de tests con casos negativos
 
 30. Diseño de monitorización
 30.1 empezar por objetivos
@@ -932,6 +1090,11 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 30.20 documentación
 30.21 evolución de la plataforma
 30.22 laboratorio: diseñar monitorización para infraestructura real
+30.23 Modelo de ownership y catálogo de métricas
+30.24 Definición de presupuesto de series por servicio
+30.25 Diseño de meta-monitoring independiente
+30.26 SLO para la plataforma de monitorización
+30.27 Laboratorio: revisión de arquitectura y trade-offs
 
 31. Integración con Grafana
 31.1 papel de Grafana
@@ -965,6 +1128,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 32.15 sistemas compatibles con remote write
 32.16 diseño vendor-neutral
 32.17 laboratorio: diseñar stack de observabilidad
+32.18 OpenTelemetry Collector: diferencias entre recepción y scraping
+32.19 Exemplars y correlación conceptual con trazas
+32.20 Interoperabilidad de OpenMetrics y Remote Write
+32.21 Laboratorio: diagrama de integración sin duplicar otros PATH
 
 33. Internals — Scraping e ingestion
 33.1 arquitectura interna del servidor
@@ -987,6 +1154,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 33.18 staleness tracking
 33.19 métricas internas
 33.20 laboratorio: seguir una sample desde exporter hasta TSDB
+33.21 Traza de error desde discovery hasta scrape
+33.22 Métricas de control de límites de ingestión
+33.23 Concurrencia y scheduling del scraping
+33.24 Laboratorio: reproducir staleness tras pérdida de target
 
 34. Internals — TSDB
 34.1 arquitectura interna de TSDB
@@ -1016,6 +1187,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 34.25 churn internals
 34.26 failure recovery
 34.27 laboratorio: recorrer estructuras internas de TSDB
+34.28 Relación Head, WAL, mmap y bloques persistentes
+34.29 Análisis de índice y postings con cardinalidad elevada
+34.30 Recuperación ante fallo de disco y consistencia
+34.31 Laboratorio: inspección de bloques y churn
 
 35. Internals — PromQL engine
 35.1 arquitectura del query engine
@@ -1042,6 +1217,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 35.22 profiling
 35.23 optimización
 35.24 laboratorio: explicar internamente una consulta compleja
+35.25 Anotaciones de PromQL por muestras incompatibles
+35.26 Seguimiento del AST hasta el evaluador
+35.27 Profiling CPU y heap del query engine
+35.28 Laboratorio: comparar coste de expresiones equivalentes
 
 36. Internals — Rules, alerting y remote
 36.1 rule manager
@@ -1065,6 +1244,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 36.19 remote read internals
 36.20 federation internals
 36.21 laboratorio: reconstruir el flujo completo de datos
+36.22 Remote Write 2.0: diferencias internas dependientes de versión
+36.23 Fallos y reintentos de notifier y remote write
+36.24 Trazado de una alerta hasta el receiver
+36.25 Laboratorio: analizar backpressure
 
 37. Código fuente y desarrollo de Prometheus
 37.1 repositorio de Prometheus
@@ -1090,6 +1273,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 37.21 leer código sin convertirse en desarrollador de Prometheus
 37.22 seguir un bug desde comportamiento hasta código
 37.23 laboratorio: mapa del código fuente
+37.24 Fijar tag o commit para lectura reproducible
+37.25 Tests de regresión como documentación del comportamiento
+37.26 pprof y herramientas Go para lectura guiada
+37.27 Laboratorio: rastrear un bug en una versión concreta
 
 38. Arquitecturas avanzadas
 38.1 single-node
@@ -1112,6 +1299,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 38.18 arquitectura híbrida
 38.19 trade-offs
 38.20 laboratorio: diseñar arquitectura empresarial
+38.21 Comparación de Thanos, Mimir y VictoriaMetrics por requisitos
+38.22 Arquitectura multi-región y continuidad de consulta
+38.23 Separación de tenancy y límites de cardinalidad
+38.24 Laboratorio: ADR para arquitectura empresarial
 
 39. Operación en producción
 39.1 checklist de producción
@@ -1140,6 +1331,13 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 39.24 postmortems
 39.25 mantenimiento
 39.26 laboratorio: operación completa de producción
+39.27 Ansible: despliegue idempotente y plantillas de configuración
+39.28 GitOps: revisión y promoción de reglas
+39.29 CI/CD: promtool y pruebas antes de aplicar
+39.30 Rollout canario, reload y rollback seguro
+39.31 Backup y restauración: medición de RPO y RTO
+39.32 Meta-monitoring externo e incident response
+39.33 Laboratorio: ejecutar simulacro de disaster recovery
 
 40. Proyecto final — Plataforma Prometheus
 40.1 definir requisitos
@@ -1212,3 +1410,10 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 40.68 prueba de fallo controlada
 40.69 reconstruir el flujo exporter → scrape → TSDB → PromQL → rules → Alertmanager
 40.70 proyecto final: plataforma Prometheus de producción completamente administrable y diagnosticable
+40.71 Entregable: repositorio Ansible para Prometheus y exporters
+40.72 Entregable: pipeline CI para configuración y reglas
+40.73 Entregable: informe de dimensionamiento cuantitativo
+40.74 Entregable: prueba documentada de RPO/RTO
+40.75 Entregable: matriz de amenazas y controles
+40.76 Entregable: informe de fallos inyectados y recuperación
+40.77 Evaluación final: criterios de aceptación y evidencias

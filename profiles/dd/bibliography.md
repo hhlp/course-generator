@@ -50,3 +50,28 @@ Se fija la rama 18 para facilitar la reproducción. Consultar la documentación 
 Citar autor, título y edición realmente consultada. Asignar capítulos o páginas únicamente después de verificarlos en esa edición. Para ETNF, RFNF y SKNF consultar la formulación concreta de Date; no inventar equivalencias con otras formas normales.
 Los modelos numéricos didácticos deben identificarse como simplificaciones. Los resultados de benchmarks deben proceder de ejecuciones registradas; nunca atribuir cifras hipotéticas a los libros o a PostgreSQL.
 La lectura guía el razonamiento; la evaluación requiere ejemplos resueltos, contraejemplos y decisiones justificadas.
+
+## Referencias complementarias por scope (ampliación)
+
+Estas obras complementan, pero no sustituyen, a C. J. Date. Antes de citar capítulos, verificar la edición concreta utilizada.
+
+| Scope | Obra | Uso principal |
+|---|---|---|
+| Modelado conceptual y lógico (0–8, 22) | Ramez Elmasri y Shamkant B. Navathe, *Fundamentals of Database Systems* | ER/EER, restricciones, transformación y revisión de esquemas |
+| Diseño práctico (3–6, 22–24) | Michael J. Hernandez, *Database Design for Mere Mortals* | Requisitos, entrevistas, entidades y reglas de negocio |
+| Internals y diseño físico (25, 28–33) | Alex Petrov, *Database Internals* | Índices, almacenamiento y compromisos físicos; contrastar particularidades con PostgreSQL |
+| Implementación PostgreSQL (20–25, 27, 33–35) | Dimitri Fontaine, *The Art of PostgreSQL* | Casos de implementación y contraste de decisiones; no reemplaza la documentación oficial |
+| Concurrencia y consistencia (27, 34–35) | Martin Kleppmann, *Designing Data-Intensive Applications* | Consistencia, mantenimiento de derivados, fallos y sistemas distribuidos; uso selectivo |
+| Modelado analítico (26) | Ralph Kimball y Margy Ross, *The Data Warehouse Toolkit* | Granularidad, dimensiones, hechos y cambios históricos |
+
+## Reglas de asignación de lecturas
+
+- **Principal:** Date para definiciones, dependencias, normalización y pruebas formales.
+- **Normativa:** documentación oficial PostgreSQL 18 para sintaxis, semántica y límites del motor.
+- **Motor:** documentación de índices, almacenamiento, planificador, EXPLAIN y transacciones de PostgreSQL 18.
+- **Profundización:** obras complementarias solo para el bloque y la cuestión técnica pertinentes.
+- **Consulta:** glosarios y referencias de apoyo verificables, sin páginas o capítulos inventados.
+
+## Lecturas orientadas a ejercicios cuantitativos
+
+Para los bloques 28–35, combinar *Database System Concepts*, *Database Internals* y documentación PostgreSQL. Cada ejercicio debe distinguir modelo matemático simplificado, supuestos, estimación del planificador, medición real y coste operativo. Evitar atribuir fórmulas didácticas exactas al optimizador de PostgreSQL.

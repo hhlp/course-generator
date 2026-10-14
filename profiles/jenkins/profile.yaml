@@ -1,101 +1,121 @@
-name: jenkins
-title: Jenkins — 0 a experto
-language: es
-platform:
-  primary:
-    - Fedora
-    - RHEL
-  shell: bash
+---
+course:
+  title: Jenkins — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+    shell: bash
+  mode: deep
+  progression:
+    - fundamentos
+    - instalacion_y_administracion
+    - jobs_y_pipelines
+    - groovy_aplicado
+    - scm_y_agents
+    - seguridad_e_integraciones
+    - observabilidad_y_operacion
+    - cps_y_shared_libraries
+    - internals_y_plugin_development
+    - testing_y_automatizacion
+    - arquitectura_y_recuperacion
+    - proyecto_final
+  labs: true
+  project_based: true
+  production_orientation: true
+  preserve_existing_jenkins_topics: true
 
-level:
-  start: beginner
-  target: expert
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
-  style: profundo, práctico, progresivo y orientado a administración real y CI/CD
-  lesson_structure:
-    required_opening: "🎯 OBJETIVO"
-    required_closing: "🧠 QUÉ DEBES RECORDAR"
-    optional_sections:
-      - "📚 LECTURA"
-      - "🧪 Laboratorio/ejemplos"
-      - "⚠️ Errores frecuentes"
-      - "💡 Idea importante"
+  style:
+    - profundo
+    - práctico
+    - progresivo
+    - orientado a administración real
+    - CI/CD
+  depth: zero_to_expert
+  require_explanations: true
+  require_real_commands: true
+  require_configuration_examples: true
+  require_paths_and_logs_when_applicable: true
+  require_troubleshooting: true
+  require_security_context: true
+  require_testing: true
+  allow_nested_lesson_numbering: true
+  lab_progression:
+    - basico
+    - intermedio
+    - avanzado
+    - experto
   closing_requirements:
     min_points: 3
     max_points: 7
     avoid_repeating_objective: true
-  indentation: false
-  numbering: single-level
 
 lesson_structure:
   objective:
     required: true
     position: first
-    heading: "🎯 OBJETIVO"
+    heading: 🎯 OBJETIVO
   reading:
     required: true
-    heading: "📚 LECTURA"
+    heading: 📚 LECTURA
     categories:
       - principal
       - oficial
-      - groovy
+      - pipeline
+      - administracion
       - seguridad
+      - desarrollo_plugins
+      - testing
       - profundizacion
       - consulta
     exact_references_only_when_verified: true
   lab:
-    required: false
-    heading: "🧪 Laboratorio/ejemplos"
+    required: true
+    heading: 🧪 Laboratorio/ejemplos
+    when_applicable: true
   common_errors:
-    required: false
-    heading: "⚠️ Errores frecuentes"
+    required: true
+    heading: ⚠️ Errores frecuentes
   important_idea:
     required: false
-    heading: "💡 Idea importante"
+    heading: 💡 Idea importante
   remember:
     required: true
     position: last
-    heading: "🧠 QUÉ DEBES RECORDAR"
+    heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
-
-course:
-  progression:
-    - fundamentos
-    - jenkins_basico
-    - pipelines
-    - groovy_esencial
-    - integraciones
-    - administracion
-    - groovy_profundo
-    - cps_y_shared_libraries
-    - arquitectura_y_operacion_avanzada
-    - proyecto_final
-  labs: true
-  project_based: true
-  production_orientation: true
-
 groovy:
+  independent_learning_path_exists: true
+  repeat_full_language_curriculum: false
   essential_in_pipeline_stage: true
-  advanced_block_required: true
-  advanced_topics:
-    - object_model
-    - closures
-    - collections
-    - metaprogramming
-    - dsl
-    - testing
+  advanced_block_required: false
+  jenkins_applied_block_required: true
   jenkins_specific_topics:
+    - pipeline_dsl
+    - binding
+    - closures_in_steps
     - cps
     - serialization
     - noncps
     - sandbox
     - script_security
     - shared_libraries
-    - pipeline_dsl
+    - pipeline_testing
 
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+quality_gates:
+  validate_yaml: true
+  preserve_existing_jenkins_content: true
+  avoid_duplicate_groovy_language_path: true
+  include_labs_and_troubleshooting: true
+  verify_version_sensitive_details: true

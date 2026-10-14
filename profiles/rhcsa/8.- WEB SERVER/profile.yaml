@@ -1,15 +1,24 @@
-name: web-servers
-title: "Web Servers — Apache, Nginx y HAProxy"
-language: es
-level: "0-a-experto-en-profundidad"
-platform:
-  primary:
-    - Fedora
-    - RHEL
+---
+course:
+  title: "Web Servers — Apache, Nginx y HAProxy en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
   init: systemd
   logging: journald
   firewall: firewalld
   mac: SELinux
+  mode: "deep"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 objectives:
   - Dominar HTTP y HTTPS desde la perspectiva del administrador de sistemas.
@@ -22,7 +31,8 @@ objectives:
   - Medir y optimizar rendimiento.
   - Automatizar despliegues con Ansible.
   - Diferenciar Web Servers autónomos de Web Servers consumidores de IAM.
-  - Integrar autenticación centralizada LDAP/Kerberos/FreeIPA cuando corresponda, sin administrar identidades desde este PATH.
+  - Integrar autenticación centralizada LDAP/Kerberos/FreeIPA cuando
+    corresponda, sin administrar identidades desde este PATH.
 
 lesson_style:
   start: "🎯 OBJETIVO"
@@ -62,4 +72,6 @@ core_technologies:
 
 final_project:
   required: true
-  description: "Infraestructura web multicapa Fedora/RHEL con TLS, PHP-FPM, HAProxy, balanceo, seguridad, logs, troubleshooting, automatización y comparación entre operación autónoma e integración como consumidor de IAM."
+  description: "Infraestructura web multicapa Fedora/RHEL con TLS, PHP-FPM,
+    HAProxy, balanceo, seguridad, logs, troubleshooting, automatización y
+    comparación entre operación autónoma e integración como consumidor de IAM."

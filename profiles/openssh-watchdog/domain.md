@@ -438,3 +438,29 @@ Al completar el PATH, el alumno debe poder administrar OpenSSH en Fedora de form
 independiente, construir configuraciones modulares cliente/servidor, diagnosticar problemas
 por capas, aplicar hardening razonado y comprender/configurar los mecanismos watchdog del
 kernel, hardware, userspace y systemd.
+
+
+## 19. Ampliación experta obligatoria — OpenSSH
+
+Profundizar en SSH-2 por capas (RFC y extensiones), handshake, KEX, rekeying, canales y estados. Incluir CA SSH de usuario y host, certificados, principals, KRL, rotación y caducidad; FIDO2 con soporte dependiente del entorno; MFA, PAM, GSSAPI, autorización y control de forwarding. Explicar internals de OpenSSH Portable, separación de privilegios, automatización segura, observabilidad y respuesta a incidentes. Exigir proyecto final verificable con controles de seguridad y recuperación.
+
+## 20. Ampliación experta obligatoria — Watchdog
+
+Añadir pretimeout y su soporte variable, API/ioctl, ciclo de vida del driver, propiedad exclusiva de `/dev/watchdog`, virtualización KVM/QEMU, recuperación por capas, pstore/kdump, diferencias entre watchdog de servicio y de host, observabilidad, fencing y riesgos de split-brain. Toda prueba destructiva se realizará exclusivamente en entorno aislado y recuperable.
+
+## 21. Reglas de seguridad y validación reforzadas
+
+- Conservar todas las lecciones anteriores al ampliar y renumerar sin colisiones.
+- Cada laboratorio debe documentar prerrequisitos, hipótesis, procedimiento, salida esperada, validación, errores y rollback.
+- Para SSH, validar con `ssh -G`, `sshd -t`, `sshd -T -C` y pruebas reales según proceda; `ssh -Q` no demuestra por sí solo algoritmos negociados.
+- Para watchdog, no asumir disponibilidad de opciones de kernel, dispositivos ni pretimeout; inspeccionar antes de modificar.
+- Nunca provocar reset, panic o lockup en el host principal.
+- Diferenciar material original del PATH, ampliaciones pedagógicas y comportamiento confirmado por documentación instalada.
+
+## 22. Proyectos finales
+
+El proyecto OpenSSH incluirá configuración modular, CA de usuarios y hosts, bastión, control de acceso, auditoría y recuperación. El proyecto Watchdog incluirá inventario, elección de mecanismo, recuperación de servicios, pruebas aisladas, evidencias postmortem y runbook de operación.
+
+## 23. Integración bibliográfica de Pro OpenSSH — Michael Stahnke
+
+Usar *Pro OpenSSH* (Apress) como referencia complementaria orientada a administración práctica. Relacionar sus contenidos con las lecciones existentes de configuración cliente/servidor, autenticación, claves y agentes, forwarding, transferencia de archivos, hardening y troubleshooting. No crear un bloque artificial dedicado exclusivamente al libro ni eliminar contenidos existentes. Contrastar siempre ejemplos históricos con OpenSSH Portable y Fedora actuales. No atribuirle cobertura de certificados modernos, FIDO2 u otras capacidades posteriores a su edición sin comprobación bibliográfica.

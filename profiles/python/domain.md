@@ -4,7 +4,7 @@
 
 Ruta de cero a experto en Python, con Fedora como entorno principal y CPython como implementación de referencia. Incluye lenguaje, modelo de objetos, biblioteca estándar, ingeniería de software, concurrencia, asincronía, rendimiento e internals. La profundidad debe ser comparable al PATH de C++ del usuario. Un índice extenso no demuestra dominio: cada hito exige código, pruebas y explicación de decisiones.
 
-Los archivos suministran el índice y las instrucciones para generar lecciones; no son las 906 lecciones desarrolladas. Mantener los 32 bloques y su numeración, sin eliminar los temas solicitados.
+Los archivos suministran el índice y las instrucciones para generar lecciones; no son lecciones desarrolladas. Mantener los 32 bloques y su numeración, sin eliminar los temas solicitados.
 
 NumPy, pandas, Polars, Matplotlib y Seaborn tienen PATH propios. Introducir sus conexiones al final, sin convertirlos en dependencias de los laboratorios básicos. Frameworks web, ciencia de datos y aprendizaje automático son especializaciones posteriores.
 
@@ -17,6 +17,19 @@ La referencia oficial determina firmas, métodos, excepciones y comportamiento. 
 La cobertura específica de Python 3.15 debe integrarse en el bloque conceptual correspondiente y resumirse transversalmente en el bloque 30. Incluir explícitamente frozendict, sentinel y valores ausentes, unpacking en comprehensions y generator expressions, lazy imports, mejoras de TypedDict y TypeForm, UTF-8 por defecto, profiling/Tachyon, frame pointers, package startup configuration y los cambios pertinentes de free-threading, Stable ABI y C API. Verificar siempre el estado y la redacción final de cada PEP contra la documentación oficial de Python 3.15 antes de desarrollar la lección.
 
 Distinguir garantías de Python de detalles de CPython; marcar bytecode, layouts, GIL, JIT, free-threading, C API y cambios experimentales como dependientes de implementación, versión o build. Verificar las novedades específicas antes de enseñarlas; el bloque 30 organiza esa revisión.
+
+
+## Integración transversal sin duplicación: Regex y Big O
+
+Los PATH independientes de **Regex** y **Big O Notation** ya existen y son la fuente de profundización teórica. Este PATH de Python NO los reproduce ni incorpora sus libros especializados como bibliografía principal. Las lecciones añadidas son aplicaciones concretas del lenguaje, de la biblioteca estándar y de sus costes de ejecución.
+
+**Regex en Python:** explicar con profundidad operativa la API de `re` (`compile`, `search`, `match`, `fullmatch`, `findall`, `finditer`, `split`, `sub`, `subn`, `escape`), objetos `Pattern` y `Match`, flags, grupos, sustituciones, Unicode, `bytes`, errores, integración con archivos, logs y CLI. Comparar con operaciones directas de `str` cuando estas sean más simples. Cubrir seguridad frente a backtracking patológico y ReDoS, sin volver a impartir gramáticas formales de expresiones regulares, taxonomía de motores ni teoría avanzada del PATH Regex. Para teoría y técnicas generales, remitir expresamente al PATH independiente de Regex, sin suponer que se ha completado previamente.
+
+**Big O aplicado a Python:** analizar tiempo y espacio de operaciones sobre `list`, `tuple`, `dict`, `set`, `frozenset`, `deque`, `heapq`, `bisect`, `str`, ordenación, búsqueda, bucles, comprensiones, generadores y recursión. Distinguir mejor/promedio/peor caso cuando corresponda, coste amortizado, dependencia de la implementación, tamaño de entrada, colisiones y consumo de memoria. Justificar los supuestos y contrastarlos con `timeit`, profiling y, cuando proceda, `pyperf`. No reproducir demostraciones matemáticas generales, análisis exhaustivo de recurrencias ni el temario del PATH Big O Notation; remitir a ese PATH para profundización formal.
+
+**Regla por lección:** comenzar con un caso Python real, presentar sintaxis/firma, entrada, salida y pruebas; indicar complejidad y límites solo cuando estén sustentados; añadir referencias cruzadas a los PATH separados como ampliación, no como requisito obligatorio. No atribuir garantías de complejidad de CPython a todas las implementaciones. No enseñar Regex como sustituto universal de parsers.
+
+**Evaluación transversal:** pruebas con Unicode, entradas vacías, coincidencias múltiples, errores de patrones, patrones adversarios con límites de ejecución seguros; experimentos de tamaños crecientes y medidas reproducibles, sin confundir benchmarks con pruebas matemáticas. El proyecto final debe justificar decisiones algorítmicas, medirlas y documentar riesgos de Regex.
 
 ## Progresión y prerrequisitos
 

@@ -1208,3 +1208,21 @@ books/secondary sources
 ```
 
 Esta jerarquía debe preservar exactitud técnica y evitar que el PATH quede obsoleto por depender de material secundario.
+
+# 55. REFERENCIAS COMPLEMENTARIAS PARA BLOQUES 82–90
+
+Priorizar las secciones de la **documentación oficial de Zabbix 7.4** y contrastar con **Zabbix 7.0 LTS** cuando el comportamiento sea distinto. Verificar siempre el nombre exacto de la sección antes de citarla.
+
+| Bloque | Fuentes oficiales y ámbitos |
+|---|---|
+| 82. Logs | Zabbix agent items: log monitoring, active checks, regular expressions; documentación systemd/journald y logrotate |
+| 83. Browser | Zabbix browser items, browser pollers, JavaScript browser monitoring, requisitos de navegador |
+| 84. VMware | Zabbix VMware monitoring, VMware collectors y VMware templates; documentación VMware vSphere API |
+| 85. Agent 2 plugins | Zabbix Agent 2 plugins y código fuente oficial; Go documentation y SDK/API de la versión |
+| 86. Alertas | Zabbix event correlation, trigger dependencies, problem update, maintenance, actions y services; Google SRE Workbook |
+| 87. IaC | Zabbix API, export/import, Ansible collections compatibles, Terraform provider compatible y sus notas de versión |
+| 88. Frontend | Zabbix frontend modules, widget development y código fuente UI; documentación PHP y OWASP |
+| 89. Resiliencia | Zabbix internal checks, performance tuning, proxies, HA y PostgreSQL performance monitoring |
+| 90. DR | Zabbix backup/upgrade, PostgreSQL backup and restore, continuous archiving and point-in-time recovery, documentación de TimescaleDB cuando aplique |
+
+Las fuentes de Ansible y Terraform son complementarias: no suponer que un módulo o recurso concreto existe sin verificar versión, colección y provider. Para pruebas de recuperación, la documentación PostgreSQL es la autoridad para WAL/PITR.

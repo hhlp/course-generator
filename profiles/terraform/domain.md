@@ -78,3 +78,22 @@ El curso debe cubrir en profundidad:
 ## Resultado esperado
 
 Al finalizar, el estudiante debe dominar Terraform CLI de forma interactiva y automatizada; diseñar, implementar, probar, versionar, asegurar, automatizar, mantener, diagnosticar y evolucionar infraestructura gestionada con Terraform; comprender el state y el grafo de dependencias; construir módulos; integrar Terraform con Ansible y CI/CD; adoptar infraestructura existente; y trasladar estos conocimientos a distintos providers sin depender conceptualmente de un cloud concreto.
+
+## Profundidad adicional obligatoria — versión ampliada
+
+- Preservar íntegramente los 25 bloques originales y desarrollar los bloques 25–29 como especializaciones.
+- Para cada tema: fundamentos, arquitectura, sintaxis, semántica, ejemplos ejecutables, resultados esperados, seguridad, errores frecuentes, diagnóstico, recuperación y límites.
+- Distinguir Terraform Core, provider, HCP Terraform y OpenTofu; verificar disponibilidad y versión de cada capacidad antes de enseñar comandos.
+- Profundizar en cty, parsing HCL, grafo, RPC, plan modifiers, state lineage/serial, deposed instances y recuperación.
+- Enseñar Terraform Stacks con condiciones de disponibilidad, evitando asumir que funciona en cualquier instalación local.
+- Enseñar recursos efímeros y write-only arguments solo cuando la versión de Terraform y el provider los soporten.
+- Priorizar laboratorios seguros en Fedora/RHEL, KVM/libvirt, cloud-init y Ansible con red privada.
+- Evitar credenciales reales, destrucciones accidentales y operaciones de state sin snapshot, revisión y runbook.
+- Incluir testing de módulos y providers, seguridad de pipelines, gobernanza, contratos y migraciones.
+- Evaluar objetivos por milestones y proyecto integrador final.
+
+## Laboratorios y evidencias
+
+Cada lección práctica debe explicar prerrequisitos, topología, versiones, archivos, comandos, resultados esperados, pruebas de idempotencia, fallos reproducibles, limpieza y criterios de aceptación.
+
+Los laboratorios que necesiten HCP Terraform, clouds u otros servicios externos se marcarán opcionales, con alternativa local cuando sea viable.

@@ -74,3 +74,25 @@ Las referencias exactas de una lección solo deben incluirse cuando hayan sido v
 3. Pro Vagrant para profundización.
 4. Documentación de Fedora/libvirt/QEMU/KVM para las capas inferiores.
 5. Packer y Ansible para las integraciones correspondientes.
+
+## Mapa de referencias por scope
+
+| Scope y bloques | Referencia prioritaria | Apoyo |
+| --- | --- | --- |
+| Fundamentos y CLI (0, 2, 4, 5) | HashiCorp Vagrant Documentation | Vagrant: Up and Running; Pro Vagrant |
+| KVM/libvirt y provider (1, 12) | vagrant-libvirt Documentation; libvirt Documentation | Fedora Documentation; QEMU Documentation; Linux kernel KVM documentation |
+| Boxes y distribución (3, 14) | HashiCorp Vagrant Documentation; vagrant-libvirt Documentation | Fedora Documentation; Packer Documentation |
+| Networking y storage (6, 7, 8, 13) | libvirt Documentation; vagrant-libvirt Documentation | QEMU Documentation; Fedora Documentation |
+| Provisioning y Ansible (9, 10, 11) | HashiCorp Vagrant Documentation; Ansible Documentation | Pro Vagrant |
+| Packer e imágenes (15) | HashiCorp Packer Documentation | Fedora Documentation; Vagrant Documentation |
+| Plugins, Ruby e internals (16, 17, 24) | HashiCorp Vagrant Documentation y código fuente de Vagrant | Pro Vagrant |
+| Seguridad, troubleshooting, rendimiento (18, 19, 20) | Fedora Documentation; libvirt Documentation; QEMU Documentation | vagrant-libvirt Documentation; Linux kernel KVM documentation |
+| Equipo, CI/CD, integración y proyecto (21–23, 25) | Vagrant, Ansible y Packer Documentation | Pro Vagrant; Terraform/OpenTofu Documentation solo como comparación |
+
+## Reglas de uso en lecciones
+
+- Identificar el scope y citar primero la documentación de la capa que controla la función.
+- Indicar cuándo una opción depende de la versión de Vagrant, vagrant-libvirt, libvirt, QEMU o Fedora.
+- No extrapolar ejemplos de VirtualBox a libvirt sin verificar equivalencia.
+- Para internals, recurrir al código fuente y tests de la versión estudiada, sin inventar rutas internas.
+- Mantener los dos libros como apoyo conceptual y práctico; la documentación vigente manda en la sintaxis.

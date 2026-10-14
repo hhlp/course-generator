@@ -1,7 +1,29 @@
-name: terraform
-title: TERRAFORM EN PROFUNDIDAD — LEARNING PATH 0 → EXPERTO
-platform: Linux
-language: es
+---
+course:
+  title: TERRAFORM EN PROFUNDIDAD — LEARNING PATH 0 → EXPERTO
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+  milestones:
+    - id: terraform-foundations
+      after_block: 5
+      name: Terraform Foundations — CLI, HCL y providers
+    - id: terraform-associate
+      after_block: 13
+      name: Terraform Associate — preparación conceptual y práctica; verificar
+        objetivos vigentes
+    - id: terraform-advanced
+      after_block: 21
+      name: Terraform Advanced — operación, seguridad e internals
+    - id: terraform-expert
+      after_block: 29
+      name: Terraform Expert — arquitectura, recuperación y on-premises
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -15,11 +37,11 @@ lesson_structure:
   reading:
     required: true
   lab:
-    required: false
+    required: true
   common_errors:
-    required: false
+    required: true
   important_idea:
-    required: false
+    required: true
   remember:
     required: true
     position: last
@@ -38,6 +60,14 @@ quality:
   mark_legacy_or_deprecated_cli_commands: true
   audit_before_save: true
   repair_on_fail: true
+  require_expected_lab_results: true
+  require_troubleshooting_scenarios: true
+  require_safe_recovery_guidance: true
+  require_security_considerations: true
+  require_version_compatibility_notes: true
+  require_core_provider_opentofu_distinction: true
+  require_on_premises_examples: true
+  preserve_existing_lessons: true
 
 output:
   format: markdown
@@ -49,11 +79,12 @@ artifacts:
   enabled: true
   default_strategy: auto
   overrides:
-    "24.21":
+    '24.21':
       strategy: standalone_project
       project_id: terraform-production-platform
       knowledge_dependencies:
         - bloque-0
+        - bloque-1
         - bloque-2
         - bloque-3
         - bloque-4
@@ -62,15 +93,20 @@ artifacts:
         - bloque-7
         - bloque-8
         - bloque-9
+        - bloque-10
+        - bloque-11
+        - bloque-12
+        - bloque-13
+        - bloque-14
+        - bloque-15
+        - bloque-16
+        - bloque-17
+        - bloque-18
+        - bloque-19
         - bloque-20
         - bloque-21
         - bloque-22
         - bloque-23
-        - bloque-24
-        - bloque-25
-        - bloque-27
-        - bloque-28
-        - bloque-33
       artifact_dependencies: []
       required_files:
         - README.md
@@ -93,4 +129,8 @@ validation:
   enabled: true
   commands:
     - terraform fmt -check -recursive
+    - terraform init -backend=false
     - terraform validate
+  notes: terraform validate requiere inicialización y dependencias instaladas;
+    ejecutar tests y plan solo con fixtures/credenciales apropiadas y sin
+    recursos reales no autorizados.

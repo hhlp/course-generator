@@ -1,19 +1,24 @@
-name: sql
-title: "SQL — 0 a Experto"
-description: >
-  Curso profundo de SQL como lenguaje de consulta, transformación, análisis,
-  manipulación y programación de datos, usando PostgreSQL como plataforma práctica. Excluye
-  normalización y diseño relacional, cubiertos por el PATH Database Design.
+---
+course:
+  title: "SQL — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary: PostgreSQL
+    cli: psql
+  description: >
+    Curso profundo de SQL como lenguaje de consulta, transformación, análisis,
+    manipulación y programación de datos, usando PostgreSQL como plataforma
+    práctica. Excluye normalización y diseño relacional, cubiertos por el
+    PATH Database Design.
+  mode: "deep"
 
-language: es
-
-level:
-  start: beginner
-  end: expert
-
-platform:
-  primary: PostgreSQL
-  cli: psql
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 dialect_policy:
   primary: PostgreSQL
@@ -169,11 +174,6 @@ laboratories:
     - EXPLAIN ANALYZE
     - query optimization
 
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
-
 references:
   authoritative:
     - name: "PostgreSQL Official Documentation"
@@ -191,14 +191,17 @@ references:
 
   primary:
     - "Head First SQL, 2nd Edition — Kimberley Fessel"
-    - "Beginning SQL Queries: From Novice to Professional, 2nd Edition — Clare Churcher"
+    - "Beginning SQL Queries: From Novice to Professional, 2nd Edition
+      — Clare Churcher"
     - "Learning SQL, 3rd Edition — Alan Beaulieu"
     - "SQL Cookbook, 2nd Edition — Anthony Molinaro, Robert de Graaf"
-    - "SQL for Data Analysis: Advanced Techniques for Transforming Data into Insights — Cathy Tanimura"
+    - "SQL for Data Analysis: Advanced Techniques for Transforming Data
+      into Insights — Cathy Tanimura"
     - "SQL for Data Analytics, Fourth Edition — Packt"
     - "SQL in a Nutshell, 4th Edition — Kevin Kline, Regina O. Obe, Leo S. Hsu"
     - "SQL for Data Analytics, Third Edition — Packt"
-    - "SQL Essentials for Data Analysis: A 50-Day Hands-on Challenge Book — Benjamin Bennett Alexander"
+    - "SQL Essentials for Data Analysis: A 50-Day Hands-on Challenge Book
+      — Benjamin Bennett Alexander"
 
   bibliography_roles:
     fundamentals:
@@ -263,3 +266,43 @@ final_project:
     - stored procedure examples
     - justified trigger implementation
     - routine safety and performance validation
+
+deep_learning_requirements:
+  preserve_existing_blocks_and_lessons: true
+  require_for_advanced_lessons:
+    - syntax_and_semantics
+    - assumptions_and_edge_cases
+    - executable_postgresql_examples
+    - counterexamples_and_common_errors
+    - reproducible_verification
+    - performance_or_concurrency_when_relevant
+  emphasize_topics:
+    - sql_correctness_and_equivalence
+    - window_frame_semantics
+    - mvcc_and_transaction_retries
+    - explain_and_plan_estimation
+    - sql_injection_and_secure_routines
+    - regression_testing
+  version_policy:
+    document_postgresql_server_version: true
+    verify_version_dependent_syntax_against_official_docs: true
+    optional_extensions_must_be_labeled: true
+
+sql_testing:
+  enabled: true
+  reproducible_psql_scripts: true
+  stop_on_error: true
+  fixtures_and_expected_results: true
+  required_edge_cases:
+    - nulls
+    - duplicates
+    - empty_sets
+    - cardinality_changes
+  validation_methods:
+    - except_all_both_directions
+    - invariants
+    - regression_tests
+    - concurrent_session_scenarios
+  optional_tools:
+    - pgTAP
+  capstone_required: true

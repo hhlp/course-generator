@@ -815,54 +815,183 @@
 25.24 reconstruir configuración desde cero
 25.25 laboratorio final: auditoría SELinux completa de un sistema Fedora
 
-26. Proyecto final — selinux-debugger universal
-26.1 diseño general
-26.2 arquitectura modular
-26.3 modo --file
-26.4 modo --path
-26.5 modo --process
-26.6 modo --pid
-26.7 modo --type
-26.8 modo --domain
-26.9 modo --attribute
-26.10 modo --context
-26.11 modo --user
-26.12 modo --role
-26.13 modo --class
-26.14 modo --permission
-26.15 modo --port
-26.16 modo --interface
-26.17 modo --node
-26.18 modo --avc
-26.19 modo --package
-26.20 obtener contexto actual
-26.21 obtener contexto esperado
-26.22 descubrir type
-26.23 descubrir atributos
-26.24 descubrir reglas allow
-26.25 descubrir conditional rules
-26.26 descubrir transiciones
-26.27 descubrir booleans
-26.28 descubrir port types
-26.29 descubrir file contexts
-26.30 descubrir personalizaciones semanage
-26.31 buscar AVC relacionados
-26.32 ejecutar audit2why
-26.33 detectar probable label incorrecto
-26.34 detectar contexto esperado diferente
-26.35 detectar boolean relevante
-26.36 detectar port type relevante
-26.37 detectar política realmente ausente
-26.38 detectar reglas indirectas mediante atributos
-26.39 explicar por qué una operación está permitida
-26.40 explicar por qué está denegada
-26.41 modo --why SOURCE │ PERMISSION ▼ CLASS ▼ TARGET
-26.42 correlación con RPM
-26.43 correlación con systemd
-26.44 correlación con procesos
-26.45 correlación con archivos
-26.46 salida humana
-26.47 salida JSON
-26.48 salida Graphviz DOT
-26.49 mapa de relaciones
-26.50 laboratorio/proyecto final: investigar automáticamente un objeto desconocido y justificar cada decisión SELinux encontrada
+26. Preparación del proyecto experto y metodología reproducible
+26.1 Definir laboratorio Fedora y versiones de paquetes
+26.2 Inventario de política y módulos instalados
+26.3 Establecer snapshots y procedimiento de recuperación
+26.4 Definir requisitos funcionales y de seguridad del debugger
+26.5 Modelo de evidencias: observado, inferido y desconocido
+26.6 Definir casos de prueba positivos y negativos
+26.7 Diseñar CLI, formato JSON y códigos de salida
+26.8 Planificar trazabilidad de consultas SETools
+26.9 Laboratorio: establecer baseline verificable antes del proyecto
+
+27. CIL — Common Intermediate Language en profundidad
+27.1 Propósito de CIL y relación con políticas HLL
+27.2 Pipeline HLL → CIL → política binaria
+27.3 Sintaxis S-expressions y declaraciones
+27.4 type, typeattribute y typeattributeset
+27.5 class, classorder, common y classpermissionset
+27.6 sid, sidorder y sidcontext
+27.7 user, role, userrole y roletype
+27.8 sensitivity, category, level y range
+27.9 allow, auditallow, dontaudit y neverallow
+27.10 type_transition, type_change y type_member
+27.11 roletransition y rangetransition
+27.12 boolean, booleanif y tunableif
+27.13 block, blockinherit y blockabstract
+27.14 macro, call y parámetros
+27.15 in y namespaces de declaraciones
+27.16 constrain, mlsconstrain y validatetrans
+27.17 filecon, portcon, nodecon y genfscon
+27.18 secilc: opciones, errores y compilación
+27.19 Comparar política fuente, CIL y política cargada
+27.20 Inspección de CIL instalado en el policy store
+27.21 Resolución de conflictos y prioridades de módulos
+27.22 Seguridad y mantenimiento de políticas CIL
+27.23 Laboratorio: construir un módulo CIL mínimo
+27.24 Laboratorio: convertir y comparar un módulo HLL y CIL
+
+28. Constraints, MLS y garantías de seguridad
+28.1 Modelo formal de decisiones de acceso
+28.2 Evaluación conjunta de DAC, TE, RBAC y MLS
+28.3 Constraints frente a reglas allow
+28.4 constrain y expresiones sobre contextos
+28.5 mlsconstrain y relaciones de dominancia
+28.6 validatetrans y mlsvalidatetrans
+28.7 Restricciones sobre usuario, rol y tipo
+28.8 typebounds y límites de tipos
+28.9 neverallow como invariante de compilación
+28.10 dontaudit y visibilidad de auditoría
+28.11 Permissive por dominio y límites de diagnóstico
+28.12 Interacción con booleans y reglas condicionales
+28.13 Distinguir denegación TE de denegación por constraint
+28.14 Análisis con SETools y consultas de política
+28.15 Ejemplos de flujo MLS y categorías MCS
+28.16 Pruebas positivas y negativas de acceso
+28.17 Laboratorio: investigar una denegación por constraint
+28.18 Laboratorio: verificar invariantes de una política
+
+29. Testing, validación y regresión de políticas SELinux
+29.1 Estrategia de pruebas por capas
+29.2 Laboratorios desechables en Fedora VM
+29.3 Pruebas de sintaxis con checkmodule y secilc
+29.4 Compilación y empaquetado con semodule_package
+29.5 Validación de dependencias y símbolos
+29.6 Pruebas de neverallow y constraints
+29.7 Pruebas positivas: accesos esperados
+29.8 Pruebas negativas: accesos prohibidos
+29.9 Pruebas de transiciones y entrypoints
+29.10 Pruebas de contextos esperados con matchpathcon
+29.11 Pruebas de booleans y ramas condicionales
+29.12 Pruebas de port types y bind/connect
+29.13 Pruebas de persistencia tras relabel y reinicio
+29.14 Pruebas de actualización y retirada de módulos
+29.15 Comparación de políticas entre versiones Fedora
+29.16 Recogida y correlación de AVC
+29.17 Evitar generar allow a partir de AVC sin revisión
+29.18 CI: validación estática, pruebas en VM y artefactos
+29.19 Matriz de compatibilidad por versión Fedora
+29.20 Estrategias de rollback y snapshots
+29.21 Criterios de aceptación y evidencias
+29.22 Laboratorio: suite de regresión para un daemon
+
+30. Automatización declarativa y operaciones SELinux
+30.1 Inventario del estado SELinux y cambios locales
+30.2 Automatización frente a administración manual
+30.3 Ansible: colecciones y módulos SELinux disponibles
+30.4 Gestionar modo enforcing/permissive con cautela
+30.5 Gestionar fcontext de manera declarativa
+30.6 Aplicar restorecon después de cambios de mapeo
+30.7 Gestionar booleans persistentes
+30.8 Gestionar port types
+30.9 Gestionar módulos y prioridades
+30.10 Gestionar login mappings y usuarios SELinux
+30.11 Idempotencia y modo check
+30.12 Detectar drift entre estado deseado y efectivo
+30.13 Separar política distribuida y personalizaciones
+30.14 Exportar e importar configuración con semanage
+30.15 Respaldos de policy store y restauración
+30.16 Orquestación segura de relabel y reinicios
+30.17 Automatización de diagnósticos AVC
+30.18 Logs, evidencias y reportes estructurados
+30.19 Pruebas de integración en Fedora
+30.20 CI/CD y aprobación de cambios sensibles
+30.21 Rollback y recuperación ante errores
+30.22 Laboratorio: role Ansible para un servicio confinado
+
+31. Ingeniería inversa, auditoría y evolución de políticas
+31.1 Metodología de análisis de políticas desconocidas
+31.2 Adquisición de versión, módulos y policy store
+31.3 Identificar dominios, tipos y atributos relevantes
+31.4 Expandir atributos y reglas indirectas
+31.5 Reconstruir relaciones source → target → class → permission
+31.6 Analizar rutas de transiciones entre dominios
+31.7 Reconstruir contextos de ejecutables y entrypoints
+31.8 Inspeccionar booleans y ramas activas
+31.9 Inspeccionar constraints y reglas neverallow
+31.10 Comparar políticas cargadas y políticas en disco
+31.11 Comparar políticas entre versiones Fedora
+31.12 Correlacionar reglas con módulos de origen
+31.13 Correlacionar módulos con paquetes RPM
+31.14 Analizar superficie de acceso de un dominio
+31.15 Detectar permisos excesivos y oportunidades de reducción
+31.16 Representar relaciones mediante Graphviz
+31.17 Distinguir inferencias de evidencias verificadas
+31.18 Limitaciones de análisis estático de política
+31.19 Revisión de cambios y threat modeling
+31.20 Informe de auditoría reproducible
+31.21 Laboratorio: auditar una política desconocida
+31.22 Laboratorio: justificar cambios mínimos y verificar regresiones
+
+32. Proyecto final — selinux-debugger universal
+32.1 diseño general
+32.2 arquitectura modular
+32.3 modo --file
+32.4 modo --path
+32.5 modo --process
+32.6 modo --pid
+32.7 modo --type
+32.8 modo --domain
+32.9 modo --attribute
+32.10 modo --context
+32.11 modo --user
+32.12 modo --role
+32.13 modo --class
+32.14 modo --permission
+32.15 modo --port
+32.16 modo --interface
+32.17 modo --node
+32.18 modo --avc
+32.19 modo --package
+32.20 obtener contexto actual
+32.21 obtener contexto esperado
+32.22 descubrir type
+32.23 descubrir atributos
+32.24 descubrir reglas allow
+32.25 descubrir conditional rules
+32.26 descubrir transiciones
+32.27 descubrir booleans
+32.28 descubrir port types
+32.29 descubrir file contexts
+32.30 descubrir personalizaciones semanage
+32.31 buscar AVC relacionados
+32.32 ejecutar audit2why
+32.33 detectar probable label incorrecto
+32.34 detectar contexto esperado diferente
+32.35 detectar boolean relevante
+32.36 detectar port type relevante
+32.37 detectar política realmente ausente
+32.38 detectar reglas indirectas mediante atributos
+32.39 explicar por qué una operación está permitida
+32.40 explicar por qué está denegada
+32.41 modo --why SOURCE │ PERMISSION ▼ CLASS ▼ TARGET
+32.42 correlación con RPM
+32.43 correlación con systemd
+32.44 correlación con procesos
+32.45 correlación con archivos
+32.46 salida humana
+32.47 salida JSON
+32.48 salida Graphviz DOT
+32.49 mapa de relaciones
+32.50 laboratorio/proyecto final: investigar automáticamente un objeto desconocido y justificar cada decisión SELinux encontrada

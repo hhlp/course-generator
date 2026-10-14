@@ -500,3 +500,49 @@ Para `container-debugger` utilizar:
 - OCI Image Specification.
 
 El proyecto final debe consolidar el dominio, no limitarse a envolver comandos.
+
+## 14. Scopes expertos y asignación de fuentes (bloques 40–52)
+
+Los tres libros originales siguen siendo las referencias pedagógicas principales. Para los temas no cubiertos con suficiente detalle, se utilizan especificaciones y documentación técnica, sin atribuir a los libros contenido que no se haya comprobado.
+
+| Scope | Bloque | Referencia pedagógica | Referencia técnica prioritaria |
+|---|---:|---|---|
+| Linux internals y OCI runtime | 40 | Podman in Action | Linux man-pages, OCI Runtime Spec, runc/crun |
+| Podman avanzado | 41 | Podman for DevOps; Podman in Action | Podman manual y documentación Quadlet |
+| Docker BuildKit/Buildx | 42 | The Ultimate Docker Container Book | Docker Build docs; BuildKit upstream |
+| Buildah experto | 43 | Podman for DevOps | Buildah manual; containers/image |
+| Skopeo experto | 44 | Podman for DevOps | Skopeo manual; containers-transports; OCI Distribution |
+| Storage avanzado | 45 | Podman in Action | containers/storage; OverlayFS; kernel docs |
+| Networking avanzado | 46 | Podman for DevOps | Netavark; Aardvark DNS; Docker networking docs |
+| Compose avanzado | 47 | The Ultimate Docker Container Book | Compose Specification; Docker Compose; Podman docs |
+| Quadlet avanzado | 48 | Podman in Action | Quadlet y systemd manuales actuales |
+| Supply chain security | 49 | Podman for DevOps | Sigstore/Cosign; SPDX; CycloneDX; SLSA; Syft/Trivy/Grype |
+| Observabilidad | 50 | Podman for DevOps | Podman/Docker events; cgroups v2; Prometheus; OpenTelemetry |
+| Operación y recuperación | 51 | Los tres libros | Documentación oficial de engines, registries y volúmenes |
+| containers/* y capstone | 52 | Podman in Action | containers/image, storage, common; conmon; crun; Netavark |
+
+### Jerarquía de autoridad unificada
+
+1. Especificaciones normativas aplicables (OCI, Compose) para formatos y contratos.
+2. Documentación oficial y páginas `man` de la **versión instalada** para comportamiento y opciones.
+3. Documentación de Fedora/Red Hat para integración de plataforma.
+4. Documentación técnica y código upstream para internals y detalles de implementación.
+5. Los tres libros para explicaciones y progresión pedagógica.
+6. Fuentes secundarias contrastadas cuando sea necesario.
+
+Los scopes indican dónde consultar; no implican que cada fuente cubra todas las lecciones.
+
+
+## 15. Docker Swarm — fuentes por scope (bloques 53–61)
+
+| Scope | Bloques | Fuente pedagógica | Fuente técnica prioritaria |
+|---|---|---|---|
+| Arquitectura y cluster | 53–54 | The Ultimate Docker Container Book, cuando la edición lo cubra | Docker Docs: Swarm mode overview, How nodes work, Raft consensus |
+| Servicios y scheduling | 55 | The Ultimate Docker Container Book, cuando proceda | Docker Docs: Services, docker service y docker node CLI |
+| Redes overlay | 56 | Fundamentos de networking del PATH | Docker Docs: Swarm networking, overlay network driver |
+| Stacks y persistencia | 57 | The Ultimate Docker Container Book, cuando proceda | Docker Docs: docker stack deploy, secrets, configs y volumes |
+| Seguridad y recuperación | 58 | Fundamentos de seguridad del PATH | Docker Docs: PKI, autolock, backup and restore a swarm |
+| Operación y diagnóstico | 59 | Laboratorios del PATH | Docker Engine CLI/API, daemon logs y documentación oficial |
+| Automatización y capstone | 60–61 | Los tres libros como apoyo conceptual | Docker Engine API, Docker Swarm CLI, OCI y manuales de Ansible |
+
+Documentación principal: https://docs.docker.com/engine/swarm/ y https://docs.docker.com/reference/cli/docker/ . La cobertura de Swarm en cada libro no se presupone: para comportamiento actual y opciones concretas prevalece la documentación oficial.

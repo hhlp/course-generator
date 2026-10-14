@@ -1,10 +1,23 @@
-name: prometheus
-title: "PROMETHEUS DE 0 A EXPERTO"
-language: es
+---
+course:
+  title: Prometheus — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 domain:
   subject: prometheus
-  platform: fedora
+  platform:
+    - fedora
+    - RHEL
+    - Linux
   orientation:
     - administracion
     - operacion
@@ -22,28 +35,15 @@ domain:
     - remote-write
     - high-availability
 
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
-
-audience:
-  level_start: beginner
-  level_end: expert
-  assumptions:
-    - fundamentos generales de Linux
-    - uso basico de shell
-    - conocimientos basicos de redes recomendados
-
 pedagogy:
-  required_opening: "🎯 OBJETIVO"
-  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
   remember_min_items: 3
   remember_max_items: 7
   optional_sections:
-    - "🧪 Laboratorio/ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
   style:
     - profundo
     - didactico
@@ -61,6 +61,12 @@ content:
   include_troubleshooting: true
   include_security_implications: true
   include_relationships_between_topics: true
+  preserve_existing_lessons: true
+  append_new_lessons_within_blocks: true
+  require_reproducible_labs: true
+  require_expected_results: true
+  require_cleanup_steps: true
+  require_version_compatibility_checks: true
 
 prometheus:
   exporters:
@@ -78,19 +84,85 @@ prometheus:
       - diagnosticar
     avoid:
       - convertir_el_path_en_un_curso_de_programacion_de_exporters
-
   promql:
     depth: expert
     require_step_by_step_explanations: true
-
+    include_native_histograms: true
+    include_staleness_and_annotations: true
   grafana:
     depth: integration_only
     defer_advanced_topics_to_separate_path: true
-
   internals:
     depth: advanced
     source_code_reading: guided
     developer_training: false
+  scraping:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  service_discovery:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  alertmanager:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  tsdb:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  remote_write:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  remote_read:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  high_availability:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  security:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  troubleshooting:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  testing:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  production:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  capacity_planning:
+    depth: expert
+    include_labs: true
+    include_diagnostics: true
+    include_version_caveats: true
+  distributed_storage:
+    depth: comparative_integration
+    systems:
+      - thanos
+      - grafana_mimir
+      - victoriametrics
+    defer_full_courses: true
 
 fedora:
   integrate:
@@ -101,15 +173,19 @@ fedora:
     - selinux
     - filesystem_permissions
     - networking_tools
+    - systemd_analyze_security
+    - selinux_audit
+    - tls_certificates
+    - least_privilege
   do_not_invent_packages: true
   distinguish_distribution_from_upstream: true
-
-references:
-  domain_file: domain.md
-  bibliography_file: bibliografy.md
 
 generation:
   lesson_output_language: es
   keep_technical_terms_when_standard: true
   prefer_current_official_documentation: true
   mention_version_dependencies: true
+  preserve_all_existing_block_ids: true
+  require_lesson_verification: true
+  require_lesson_troubleshooting: true
+  avoid_unverified_version_claims: true

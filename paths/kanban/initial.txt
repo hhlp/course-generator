@@ -24,6 +24,11 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 0.19 cambio evolutivo
 0.20 laboratorio: modelar un sistema
 
+0.21 Ley de Little: intuición y condiciones de estabilidad
+0.22 Ley de Kingman: utilización, variabilidad y tiempo de espera
+0.23 Simulación de colas con llegadas y servicios variables
+0.24 Laboratorio: comparar optimización local y global con datos
+
 1. Fundamentos de Kanban
 1.1 origen y evolución de Kanban
 1.2 Kanban en conocimiento
@@ -46,6 +51,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 1.19 delivery point
 1.20 lead time end-to-end
 1.21 laboratorio: identificar un servicio
+
+1.22 Kanban como estrategia evolutiva: hipótesis y señales
+1.23 Comparación operativa Kanban, Scrum y Scrumban sin confundir métodos
+1.24 Caso práctico: mapear límites de servicio y responsabilidad
 
 2. Visualización y modelado del workflow
 2.1 por qué visualizar
@@ -70,6 +79,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 2.20 anti-patrones visuales
 2.21 laboratorio: diseñar tablero
 
+2.22 Definición de workflow: estados de espera frente a trabajo activo
+2.23 Políticas de bloqueo, escalado y envejecimiento visible
+2.24 Diseño de tableros multi-servicio y trazabilidad end-to-end
+
 3. WIP, pull y gestión de capacidad
 3.1 WIP
 3.2 coste del exceso de WIP
@@ -91,6 +104,11 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 3.18 balance demanda-capacidad
 3.19 laboratorio WIP
 
+3.20 Cálculo inicial de límites WIP a partir de throughput y SLE
+3.21 Calibración experimental de WIP y efectos sobre colas
+3.22 Gestión de capacidad compartida y variabilidad de disponibilidad
+3.23 Laboratorio cuantitativo: escenarios WIP, capacidad y aging
+
 4. Políticas explícitas y clases de servicio
 4.1 políticas explícitas
 4.2 políticas de entrada
@@ -111,6 +129,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 4.17 riesgo
 4.18 revisión de políticas
 4.19 laboratorio
+
+4.20 Políticas para interrumpir, cancelar y reabrir trabajo
+4.21 Expedite: capacidad reservada, impacto y coste de interrupción
+4.22 Auditoría y versionado de políticas explícitas
 
 5. Métricas de flujo
 5.1 arrival rate
@@ -140,6 +162,13 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 5.25 métricas accionables
 5.26 laboratorio
 
+5.27 Definiciones operativas: inicio, fin, unidades y fuentes de datos
+5.28 Calidad de datos: censura, duplicados, outliers y elementos abiertos
+5.29 Segmentación de métricas sin ocultar variabilidad
+5.30 Little’s Law: conservación del flujo, hipótesis y casos inválidos
+5.31 Kingman: aproximación de colas y límites de aplicabilidad
+5.32 Ejercicio: interpretar CFD, scatterplot y aging con un dataset
+
 6. Predictibilidad y forecasting
 6.1 predicción en sistemas complejos
 6.2 probabilidad
@@ -165,6 +194,14 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 6.22 story points frente a forecasting
 6.23 laboratorio Monte Carlo
 
+6.24 Monte Carlo reproducible: semillas, muestras y trazabilidad
+6.25 Bootstrap empírico y sesgos de muestreo
+6.26 Dependencia temporal, autocorrelación y estacionalidad
+6.27 Backtesting y calibración de probabilidades de entrega
+6.28 Sensibilidad a WIP, throughput, tamaño y cambios de alcance
+6.29 Intervalos predictivos frente a fechas comprometidas
+6.30 Laboratorio: forecast reproducible, validación y explicación de incertidumbre
+
 7. Cadencias y feedback loops
 7.1 feedback
 7.2 cadencias
@@ -184,6 +221,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 7.16 escalado
 7.17 feedback cliente
 7.18 laboratorio
+
+7.19 Ficha de cadencia: propósito, participantes, datos, decisiones y seguimiento
+7.20 Trazabilidad de acciones y decisiones entre cadencias
+7.21 Simulación de Service Delivery Review y Operations Review
 
 8. STATIK y diseño de sistemas Kanban
 8.1 STATIK
@@ -205,6 +246,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 8.17 iteración
 8.18 anti-patrones
 8.19 laboratorio STATIK
+
+8.20 STATIK con datos: entrevistas, tipos de demanda y capacidad observada
+8.21 Criterios de salida de un diseño STATIK y plan de evolución
+8.22 Caso completo: STATIK de servicio con múltiples clases de trabajo
 
 9. Gestión de servicios y orientación al cliente
 9.1 service orientation
@@ -229,6 +274,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 9.20 diseño evolutivo
 9.21 laboratorio
 
+9.22 Acuerdos entre servicios: dependencias, interfaces y políticas
+9.23 Análisis de demanda fallida y capacidad real del servicio
+9.24 Ejercicio: Service Delivery Review con evidencia y decisiones
+
 10. Fit for Purpose — fundamentos
 10.1 problema F4P
 10.2 fitness for purpose
@@ -247,6 +296,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 10.15 leading y lagging indicators
 10.16 feedback F4P
 10.17 laboratorio
+
+10.18 Diseño de entrevistas y encuestas de propósito
+10.19 Sesgos de selección, respuesta y supervivencia
+10.20 Operationalizar fitness criteria con umbrales verificables
 
 11. Fit for Purpose — diseño y medición avanzada
 11.1 fitness landscape
@@ -271,6 +324,11 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 11.20 F4P y Kanban
 11.21 laboratorio
 
+11.22 Fitness box score: construcción y lectura por segmento
+11.23 Análisis longitudinal de cambios de expectativas
+11.24 Experimentos controlados y decisiones basadas en fitness
+11.25 Laboratorio: diseñar medición F4P y analizar sesgos
+
 12. Upstream Kanban — fundamentos
 12.1 qué es upstream
 12.2 upstream frente a downstream
@@ -292,6 +350,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 12.18 WIP upstream
 12.19 flow upstream
 12.20 laboratorio
+
+12.21 Mapear puntos de decisión, compromiso y descarte
+12.22 Coste de mantener opciones abiertas y caducidad
+12.23 Políticas de entrada y salida para sistemas upstream
 
 13. Demand Management
 13.1 demanda
@@ -319,6 +381,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 13.23 demand shaping
 13.24 laboratorio
 
+13.25 Análisis de demanda estacional y tasas por clase
+13.26 Políticas de admisión ante sobrecarga
+13.27 Ejercicio: demand shaping y comparación de escenarios
+
 14. Discovery y gestión de opciones
 14.1 opciones
 14.2 idea frente a opción
@@ -344,6 +410,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 14.22 dependencias
 14.23 riesgo y aprendizaje
 14.24 laboratorio
+
+14.25 Valor de información y coste de reducir incertidumbre
+14.26 Criterios explícitos para matar, pivotar o dividir opciones
+14.27 Diseño de experimentos safe-to-fail en discovery
 
 15. Selección, replenishment y commitment
 15.1 selección
@@ -371,6 +441,12 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 15.23 feedback upstream-downstream
 15.24 laboratorio
 
+15.25 Cost of Delay y perfiles temporales de coste
+15.26 CD3: coste del retraso dividido por duración y sus límites
+15.27 Selección con capacidad restringida y dependencias
+15.28 Decisiones reversibles e irreversibles y coste de espera
+15.29 Simulación de replenishment con demanda superior a capacidad
+
 16. Portfolio Kanban y coordinación de servicios
 16.1 portfolio como sistema
 16.2 portfolio Kanban
@@ -394,6 +470,11 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 16.20 portfolio review
 16.21 strategy review
 16.22 laboratorio
+
+16.23 Forecast probabilístico a nivel portfolio: supuestos y límites
+16.24 Mapa de dependencias y bloqueos inter-servicio
+16.25 Capacidad compartida, asignación y costes de coordinación
+16.26 Laboratorio: portfolio saturado, escenarios y decisiones
 
 17. Kanban Maturity Model (KMM) — evolución y madurez organizacional
 17.1 qué es KMM
@@ -488,6 +569,14 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 17.90 laboratorio: F4P + Upstream + Delivery + KMM
 17.91 laboratorio final: roadmap KMM
 
+17.92 Evidencias observables frente a adopción nominal de prácticas
+17.93 Diagnóstico KMM con capacidades heterogéneas entre servicios
+17.94 Dependencias y condiciones previas de prácticas de transición
+17.95 Diseño de experimentos evolutivos y criterios de éxito
+17.96 Evaluación de liderazgo, cultura y resistencia al cambio
+17.97 Roadmap de capacidades con medidas de resultado verificables
+17.98 Caso práctico: diagnóstico con evidencias contradictorias
+
 18. Enterprise Kanban y sistemas de sistemas
 18.1 empresa como red de servicios
 18.2 service network
@@ -513,6 +602,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 18.22 escalado sin uniformidad
 18.23 laboratorio
 
+18.24 Mapeo cuantitativo de redes de servicios y cuellos sistémicos
+18.25 Gestión de capacidad compartida sin uniformizar equipos
+18.26 Escenarios de interrupción, resiliencia y recuperación
+
 19. Riesgo, economía y toma de decisiones
 19.1 riesgo Kanban
 19.2 risk dimensions
@@ -536,6 +629,11 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 19.20 risk-based classes
 19.21 incertidumbre
 19.22 laboratorio
+
+19.23 Cost of Delay: perfiles, unidades, supuestos y sensibilidad
+19.24 CD3 y coste de oportunidad: decisiones comparadas
+19.25 Riesgos correlacionados y dependencias de entrega
+19.26 Ejercicio económico: seleccionar entre opciones con restricciones
 
 20. Analítica avanzada y mejora del sistema
 20.1 estabilidad
@@ -562,6 +660,11 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 20.22 Goodhart's Law
 20.23 laboratorio
 
+20.24 Diseño de gráficos de control y límites de interpretación
+20.25 Comparación antes/después: confusores y regresión a la media
+20.26 Cohortes, segmentación y sesgo de agregación
+20.27 Laboratorio: experimento de mejora y evaluación estadística
+
 21. Anti-patrones y troubleshooting Kanban
 21.1 Kanban como tablero
 21.2 sin WIP limits
@@ -586,6 +689,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 21.21 mejora sin hipótesis
 21.22 KMM como ranking
 21.23 laboratorio
+
+21.24 Diagnóstico estructurado: síntoma, hipótesis, datos, experimento y decisión
+21.25 Troubleshooting de forecast descalibrado y datos defectuosos
+21.26 Caso práctico: recuperación de flujo con WIP excesivo
 
 22. Proyecto final — Enterprise Kanban System
 22.1 definir caso
@@ -627,3 +734,10 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 22.37 retrospectiva
 22.38 plan 90 días
 22.39 presentación final
+22.40 Dataset reproducible y diccionario de métricas del proyecto
+22.41 Simulación de colas y calibración de límites WIP
+22.42 Backtesting del forecast y análisis de sensibilidad
+22.43 Encuestas F4P y análisis de sesgos por segmento
+22.44 Matriz de evidencias de diagnóstico KMM
+22.45 Criterios de aceptación, rúbrica y defensa de decisiones
+22.46 Plan de medición de resultados a 30, 60 y 90 días

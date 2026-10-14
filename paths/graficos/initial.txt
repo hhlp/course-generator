@@ -37,6 +37,9 @@
 3.6 Conversión de tipos y conversiones estrictas
 3.7 Diferencias conceptuales respecto a pandas: índices y expresiones
 3.8 Laboratorio: construir y validar un conjunto de datos
+3.9 Namespaces de expresiones: str, dt, list, arr y struct
+3.10 Inferencia y sobrescritura de esquemas; Schema y SchemaError
+3.11 Tipos categóricos y compatibilidad entre columnas
 
 4. POLARS — Expresiones y transformaciones
 4.1 Expresiones y contextos de evaluación
@@ -47,6 +50,10 @@
 4.6 Condicionales con when, then y otherwise
 4.7 Selectores y transformación de múltiples columnas
 4.8 Laboratorio: calcular indicadores sin bucles por fila
+4.9 Expansión de expresiones y selección mediante selectores
+4.10 Expresiones de ventana con over y mapping_strategy
+4.11 Operaciones horizontales, fold y reduce
+4.12 Evaluación paralela, dependencias y expresiones no deterministas
 
 5. POLARS — Calidad y limpieza
 5.1 Diferencias entre valores nulos y NaN
@@ -57,6 +64,9 @@
 5.6 Detección y tratamiento justificado de valores atípicos
 5.7 Validaciones de rangos, tipos y coherencia
 5.8 Laboratorio: limpiar un CSV con errores documentados
+5.9 Imputación por grupos y validación posterior
+5.10 Valores infinitos, NaN y null: comportamiento en agregaciones
+5.11 Contratos de calidad y detección temprana de anomalías
 
 6. POLARS — Lectura, escritura e interoperabilidad
 6.1 Lectura y escritura de CSV
@@ -67,6 +77,10 @@
 6.6 Conversión a NumPy y pandas: tipos, copias y memoria
 6.7 Lectura de múltiples archivos y evolución del esquema
 6.8 Laboratorio: convertir datos originales en un conjunto analítico
+6.9 scan_csv, scan_parquet y pushdown durante la lectura
+6.10 Inferencia de tipos en archivos heterogéneos y schema_overrides
+6.11 Particiones Parquet, estadísticas y filtros
+6.12 Lectura desde fuentes remotas: costes, credenciales y límites
 
 7. POLARS — Agregaciones, combinaciones y remodelado
 7.1 group_by y agregaciones múltiples
@@ -77,6 +91,9 @@
 7.6 Concatenación vertical y horizontal
 7.7 pivot, unpivot, explode y formatos largo/ancho
 7.8 Laboratorio: preparar tablas adecuadas para Seaborn
+7.9 Joins no equitativos con join_where: requisitos y límites
+7.10 Joins con claves nulas, coalescencia y sufijos
+7.11 Agregaciones con listas y estructuras anidadas
 
 8. POLARS — Fechas, series temporales y ventanas
 8.1 Date, Datetime, Duration y análisis de fechas
@@ -87,6 +104,9 @@
 8.6 Ventanas móviles y expresiones con over
 8.7 Joins temporales con join_asof
 8.8 Laboratorio: indicadores diarios y tendencias móviles
+8.9 rolling y group_by_dynamic: diferencias y límites
+8.10 Ventanas temporales con fronteras inclusivas y calendario
+8.11 Datos irregulares: upsampling y relleno controlado
 
 9. POLARS — Polars avanzado y rendimiento
 9.1 Ejecución eager y lazy
@@ -99,6 +119,12 @@
 9.8 Expresiones nativas frente a funciones Python
 9.9 Medición de tiempo, memoria y coste de conversión
 9.10 Laboratorio: optimizar una consulta sobre múltiples Parquet
+9.11 Optimización lazy: simplificación de expresiones y subplanes
+9.12 Profiling de consultas y diferencias entre explain y profile
+9.13 Ejecución streaming: motor, compatibilidad y fallback
+9.14 Paralelismo, thread pool y coste de operaciones
+9.15 Benchmark reproducible: calentamiento, memoria y sesgos
+9.16 Errores de ejecución lazy y depuración de planes
 
 10. MATPLOTLIB — Arquitectura y primeros gráficos
 10.1 Figure, Axes, Axis y Artist
@@ -109,6 +135,8 @@
 10.6 Tamaño de figura y resolución
 10.7 Mostrar, guardar y cerrar figuras
 10.8 Laboratorio: función reutilizable que devuelve Figure y Axes
+10.9 FigureCanvas, Renderer y ciclo de dibujo
+10.10 Jerarquía de Artists y recorrido de la figura
 
 11. MATPLOTLIB — Gráficos fundamentales
 11.1 Líneas y series ordenadas
@@ -129,6 +157,8 @@
 12.6 Anotaciones, flechas y regiones destacadas
 12.7 Coordenadas de datos, ejes y figura
 12.8 Laboratorio: explicar un resultado mediante anotaciones
+12.9 Transformaciones compuestas: Affine2D y blended transforms
+12.10 Transformaciones inversas y coordenadas de pantalla
 
 13. MATPLOTLIB — Figuras compuestas y diseño
 13.1 Cuadrículas de subplots
@@ -139,6 +169,8 @@
 13.6 Layout y prevención de solapamientos
 13.7 Leyendas comunes, colorbars e inset axes
 13.8 Laboratorio: informe gráfico de múltiples paneles
+13.9 Layout engines: constrained y tight, restricciones
+13.10 Inset axes, colorbars y control fino de espacios
 
 14. MATPLOTLIB — Color y visualización científica
 14.1 Paletas cualitativas, secuenciales y divergentes
@@ -149,6 +181,8 @@
 14.6 Campos vectoriales con quiver y streamplot
 14.7 Datos irregulares y triangulación
 14.8 Laboratorio: representar una magnitud con unidades y escala coherentes
+14.9 ScalarMappable, norm y colormap: relación y uso
+14.10 Normalizaciones personalizadas y representación de valores fuera de rango
 
 15. MATPLOTLIB — Incertidumbre y gráficos especializados
 15.1 Barras de error
@@ -159,6 +193,8 @@
 15.6 Visualización de distribuciones acumuladas
 15.7 Comparación de estimaciones y observaciones
 15.8 Laboratorio: mostrar incertidumbre sin ocultar los datos
+15.9 Propagación de incertidumbre y supuestos estadísticos
+15.10 Visualización multivariante sin sobrecargar canales visuales
 
 16. MATPLOTLIB — Estilos y publicación
 16.1 Configuración con rcParams
@@ -169,6 +205,8 @@
 16.6 Gráficos vectoriales, rasterización y tamaño de archivo
 16.7 Diseño para pantalla, impresión y accesibilidad
 16.8 Laboratorio: producir una figura lista para un informe técnico
+16.9 Gestión de fuentes, incrustación y diferencias entre formatos
+16.10 Metadatos, exportación reproducible y pruebas de legibilidad
 
 17. MATPLOTLIB — Interactividad, animación e internals
 17.1 Backends gráficos y renderizado sin pantalla
@@ -181,6 +219,13 @@
 17.8 Collections, actualización de artistas y blitting
 17.9 Diagnóstico de consumo de memoria y figuras abiertas
 17.10 Laboratorio: explorador interactivo de una serie temporal
+17.11 FigureCanvas y backends: capacidades y limitaciones
+17.12 Callbacks, mpl_connect y mpl_disconnect
+17.13 Path, Patch y Collections personalizados
+17.14 Blitting: invalidación, redraw y restricciones
+17.15 Renderizado incremental y profiling de artistas
+17.16 Diseño de widgets reutilizables y gestión del estado
+17.17 Pruebas de animación, codecs y fallos de exportación
 
 18. SEABORN — Fundamentos e integración de Seaborn
 18.1 Relación entre Seaborn y Matplotlib
@@ -191,6 +236,8 @@
 18.6 Uso de DataFrames de Polars y comprobación de compatibilidad
 18.7 Personalización posterior mediante Matplotlib
 18.8 Laboratorio: explorar datos preparados con Polars
+18.9 Compatibilidad de objetos DataFrame e intercambio de datos según versión
+18.10 Diferencias entre agregación en Polars y estimación en Seaborn
 
 19. SEABORN — Relaciones y evolución temporal
 19.1 scatterplot
@@ -201,6 +248,8 @@
 19.6 Representación de intervalos y variabilidad
 19.7 Facetas por filas y columnas
 19.8 Laboratorio: distinguir datos individuales y tendencias agregadas
+19.9 Bootstrap, unidades experimentales y observaciones dependientes
+19.10 Estimadores robustos y significado de barras de error
 
 20. SEABORN — Distribuciones
 20.1 histplot y sensibilidad al binning
@@ -211,6 +260,8 @@
 20.6 displot y comparación entre grupos
 20.7 Normalización común e independiente
 20.8 Laboratorio: comparar distribuciones de tamaños desiguales
+20.9 KDE multivariante y normalización condicional
+20.10 Comparación de densidades con muestras desbalanceadas
 
 21. SEABORN — Variables categóricas
 21.1 stripplot y swarmplot
@@ -221,6 +272,8 @@
 21.6 pointplot y comparación de efectos
 21.7 catplot, orden de categorías y escalas
 21.8 Laboratorio: mostrar datos originales junto a sus resúmenes
+21.9 Intervalos, estimadores y semántica de categorías en versiones actuales
+21.10 Superposición de observaciones y resúmenes sin ocultar datos
 
 22. SEABORN — Regresión, matrices y análisis multivariante
 22.1 regplot y lmplot
@@ -231,6 +284,8 @@
 22.6 heatmap: anotaciones, máscaras y escalas
 22.7 clustermap: distancias, escalado y dependencias necesarias
 22.8 Laboratorio: explorar relaciones evitando conclusiones causales injustificadas
+22.9 Correlación parcial, confusión y límites de regresión exploratoria
+22.10 Clustering jerárquico: distancia, enlace y estandarización
 
 23. SEABORN — Composición avanzada con Seaborn
 23.1 FacetGrid y funciones personalizadas
@@ -241,6 +296,15 @@
 23.6 Facetas, emparejamiento y composición
 23.7 Integración con figuras y ejes de Matplotlib
 23.8 Laboratorio: construir una visualización declarativa por capas
+23.9 seaborn.objects: arquitectura de Plot y propiedades
+23.10 Marks: Dot, Line, Bar, Area y selección justificada
+23.11 Stats: Agg, Est, Hist y transformaciones disponibles
+23.12 Moves: Stack, Dodge, Jitter y posicionamiento
+23.13 Scales: continuas, categóricas, color y tamaño
+23.14 Faceting, pairing y resolución de escalas
+23.15 Theme, layout y personalización de objetos
+23.16 Composición y exportación mediante Matplotlib
+23.17 Compatibilidad, limitaciones y migración desde API clásica
 
 24. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Pipeline completo: Polars → visualización
 24.1 Separar carga, limpieza, análisis y presentación
@@ -251,6 +315,8 @@
 24.6 Controlar conversiones, tipos y memoria
 24.7 Diseñar funciones de gráficos parametrizables
 24.8 Laboratorio: pipeline reproducible desde Parquet hasta PDF
+24.9 Fronteras entre lazy query, materialización y visualización
+24.10 Contratos de datos tipados y orden estable de categorías
 
 25. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Grandes volúmenes y rendimiento visual
 25.1 Diferenciar el coste de la consulta y el del renderizado
@@ -261,6 +327,8 @@
 25.6 Rasterización y simplificación de elementos
 25.7 Medición reproducible y comparación de alternativas
 25.8 Laboratorio: visualizar un conjunto grande con límites explícitos
+25.9 Perfilado separado de consultas, conversiones y renderizado
+25.10 Estrategias de reducción de datos y validación de fidelidad visual
 
 26. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Calidad, pruebas y automatización
 26.1 Organización de un proyecto de análisis visual
@@ -271,6 +339,10 @@
 26.6 Generación por lotes y backend sin pantalla
 26.7 Dependencias, semillas y trazabilidad de los datos
 26.8 Laboratorio: regenerar un informe mediante un único comando
+26.9 Pruebas parametrizadas, fixtures y datasets sintéticos
+26.10 Pruebas de imagen y tolerancias entre plataformas
+26.11 CLI reproducible con uv y generación automatizada de informes
+26.12 Integración continua: pruebas headless y artefactos
 
 27. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Troubleshooting
 27.1 Errores de esquema y conversiones en Polars
@@ -281,6 +353,8 @@
 27.6 Diferencias entre estadísticas calculadas y dibujadas
 27.7 Problemas de fuentes, layouts, backends y exportación
 27.8 Laboratorio: diagnosticar un pipeline defectuoso
+27.9 Diagnóstico de errores de streaming y optimizador lazy
+27.10 Diagnóstico de callbacks, renderers y memoria gráfica
 
 28. INTEGRACIÓN: POLARS + MATPLOTLIB + SEABORN — Proyectos finales
 28.1 Análisis exploratorio de un conjunto de datos desconocido
@@ -291,3 +365,5 @@
 28.6 Explorador interactivo con controles de Matplotlib
 28.7 Proyecto integral: lectura lazy, validaciones, análisis y exportación
 28.8 Defensa del proyecto: justificar gráficos, estadísticas y rendimiento
+28.9 Proyecto experto: benchmark y optimización de extremo a extremo
+28.10 Proyecto experto: biblioteca de visualización reusable y probada

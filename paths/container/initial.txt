@@ -901,3 +901,463 @@
 39.35 modo verbose
 39.36 modo diagnóstico
 39.37 proyecto final: implementar container-debugger
+
+40. Linux Container Internals y OCI Runtime
+40.1 clone, clone3, unshare y setns: propósito y diferencias
+40.2 crear namespaces con unshare y observarlos con lsns
+40.3 /proc/PID/ns y persistencia de namespaces
+40.4 mount propagation: private, shared y slave
+40.5 pivot_root, chroot y montaje del rootfs
+40.6 OCI runtime bundle: rootfs y config.json
+40.7 OCI runtime state: create, start, kill y delete
+40.8 hooks y anotaciones OCI: compatibilidad y riesgos
+40.9 runc: ejecución, estado y depuración
+40.10 crun: arquitectura, ejecución y comparación
+40.11 conmon, supervisión y recolección de exit status
+40.12 containerd shim y relación con dockerd
+40.13 cgroup v2: jerarquía y delegación
+40.14 systemd scopes y slices para contenedores
+40.15 seccomp en el flujo de ejecución
+40.16 capabilities y bounding set observables
+40.17 strace para analizar fallos de arranque
+40.18 nsenter para inspeccionar namespaces
+40.19 laboratorio: construir un entorno aislado con herramientas Linux
+40.20 laboratorio: inspeccionar bundle OCI y runtime
+40.21 troubleshooting: identificar fallos en runtime y namespaces
+
+41. Podman — administración avanzada
+41.1 podman system: info, df, prune y reset; riesgos
+41.2 podman unshare y diagnóstico de mappings
+41.3 podman machine: alcance y escenarios
+41.4 podman system connection y conexiones remotas
+41.5 SSH y socket Podman: seguridad y permisos
+41.6 podman system service y API remota
+41.7 podman healthcheck y health status
+41.8 podman secret: creación, uso y rotación
+41.9 podman auto-update: políticas y verificación
+41.10 podman container checkpoint/restore y CRIU
+41.11 restricciones de checkpoint: kernel, red y storage
+41.12 podman kube generate y kube play
+41.13 podman events y auditoría de operaciones
+41.14 podman image, manifest y búsqueda avanzada
+41.15 podman container cleanup y lifecycle avanzado
+41.16 podman volume y network: operaciones avanzadas
+41.17 podman system migrate y cambios de versión
+41.18 rootless en sesiones systemd y linger
+41.19 laboratorio: operación remota con SSH
+41.20 laboratorio: actualización controlada con rollback
+41.21 troubleshooting: sockets, API, permisos y versiones
+
+42. Docker BuildKit y Buildx — experto
+42.1 arquitectura BuildKit y LLB
+42.2 Docker Buildx y plugins CLI
+42.3 buildx builders: create, ls, inspect y use
+42.4 drivers docker, docker-container, kubernetes y remote
+42.5 build contexts locales, Git y remotos
+42.6 Dockerfile frontend y directiva syntax
+42.7 RUN --mount: cache, bind, secret y ssh
+42.8 cache mounts y coherencia de dependencias
+42.9 exportación e importación de caché
+42.10 caché en registry y caché local
+42.11 multi-stage y targets
+42.12 buildx bake y definición declarativa
+42.13 build multi-platform y exportadores
+42.14 output types: image, registry, local, tar y OCI
+42.15 build provenance y attestations
+42.16 generación de SBOM en builds compatibles
+42.17 secretos y protección frente a filtraciones
+42.18 rootless BuildKit: limitaciones y configuración
+42.19 diagnóstico de builders y buildkitd
+42.20 laboratorio: build reproducible con caché externa
+42.21 laboratorio: construir y publicar imagen multi-platform
+
+43. Buildah — workflows expertos
+43.1 buildah bud frente a construcción imperativa
+43.2 buildah from, run, copy, config y commit como pipeline
+43.3 buildah unshare y mounts rootless
+43.4 isolation: modos y selección según plataforma
+43.5 build context y ficheros ignore
+43.6 caché de capas y opciones de reutilización
+43.7 squash y tradeoffs de auditoría
+43.8 secretos en build y montajes temporales
+43.9 SSH en construcción: alcance y limitaciones
+43.10 buildah config: user, env, cmd, entrypoint y labels
+43.11 buildah manifest: create, add, inspect y push
+43.12 arquitecturas nativas y emulación QEMU
+43.13 formato OCI frente a Docker: compatibilidad
+43.14 reproducibilidad: timestamps, fuentes y dependencias
+43.15 push con TLS, credenciales y digests
+43.16 firmas: herramientas compatibles y verificación
+43.17 construcción rootless en CI
+43.18 laboratorio: crear imagen sin Containerfile
+43.19 laboratorio: build multi-arquitectura con Buildah
+43.20 troubleshooting: mount, userns, aislamiento y caché
+
+44. Skopeo — workflows expertos
+44.1 arquitectura de containers/image y transports
+44.2 docker://: referencias, tags y digests
+44.3 containers-storage: y almacenamiento compartido
+44.4 dir:, oci: y oci-archive:
+44.5 docker-archive: y compatibilidad de formatos
+44.6 skopeo inspect, --raw y --config
+44.7 skopeo list-tags y búsqueda de versiones
+44.8 skopeo copy y opciones de formato
+44.9 --all e índices multi-arquitectura
+44.10 preservación de digests: requisitos y límites
+44.11 skopeo sync: origen, destino y filtros
+44.12 copias registry a registry y autenticación
+44.13 policy.json: evaluación de confianza
+44.14 registries.d y configuración de firmas
+44.15 firmas y formatos soportados por versión
+44.16 TLS, CAs privadas y credenciales efímeras
+44.17 rate limits, retries y errores HTTP
+44.18 mirrors y sincronización de repositorios
+44.19 air-gap: exportación, transporte e importación
+44.20 laboratorio: sincronización reproducible entre registries
+44.21 troubleshooting: manifests, blobs, digests y políticas
+
+45. Storage avanzado y persistencia
+45.1 arquitectura containers/storage y drivers
+45.2 overlayfs: lowerdir, upperdir, workdir y merged
+45.3 copy-up, whiteouts y rendimiento
+45.4 graphroot y runroot: diseño y migración
+45.5 rootless storage y filesystem del host
+45.6 fuse-overlayfs: cuándo es necesario
+45.7 idmapped mounts y compatibilidad del kernel
+45.8 podman unshare y ownership de volúmenes
+45.9 bind mounts y propagación de montajes
+45.10 SELinux :z, :Z y restorecon: casos seguros
+45.11 volúmenes nombrados y ciclo de vida
+45.12 volúmenes compartidos y concurrencia
+45.13 backup consistente: parada y snapshots
+45.14 restauración de volúmenes y permisos
+45.15 migración de datos entre hosts
+45.16 cuotas, inodos y no space left
+45.17 limpieza segura: prune, retención y evidencias
+45.18 laboratorio: backup y restore con validación
+45.19 laboratorio: resolver UID/GID y SELinux
+45.20 troubleshooting: overlay, mounts y corrupción
+
+46. Networking avanzado de contenedores
+46.1 topología Linux: namespaces, veth y bridge
+46.2 rutas, ARP/NDP y tablas de vecinos
+46.3 NAT y port publishing con nftables
+46.4 Netavark: configuración y diagnóstico
+46.5 Aardvark DNS: resolución entre contenedores
+46.6 Docker bridge y redes definidas por usuario
+46.7 rootless networking: pasta y alternativas por versión
+46.8 host, none, bridge y network namespace compartido
+46.9 DNS del contenedor: resolv.conf y search domains
+46.10 IPv6: habilitación, rutas y publicación
+46.11 MTU, fragmentación y PMTUD
+46.12 firewalld y nftables: interacción real
+46.13 puertos privilegiados y rootless
+46.14 comunicación entre pods y contenedores
+46.15 aislamiento entre redes y controles de acceso
+46.16 ss, ip, tcpdump y conntrack para diagnóstico
+46.17 trazado de paquetes host a contenedor
+46.18 laboratorio: capturar DNS y HTTP entre contenedores
+46.19 laboratorio: fallo de MTU, DNS y NAT
+46.20 troubleshooting: distinguir DNS, firewall y routing
+
+47. Compose avanzado y portabilidad
+47.1 Compose Specification y modelos de proyecto
+47.2 services, networks, volumes y configs
+47.3 variables: interpolación y precedencia
+47.4 archivos compose y overrides
+47.5 profiles y activación selectiva
+47.6 depends_on: condiciones y healthchecks
+47.7 healthchecks y readiness frente a startup
+47.8 restart, stop_grace_period y señales
+47.9 secrets y configs: soporte por implementación
+47.10 build, target, args y plataformas
+47.11 resource limits y compatibilidad
+47.12 volúmenes y permisos rootless
+47.13 docker compose config y validación
+47.14 docker compose up, down, exec, logs y watch
+47.15 Podman Compose y proveedores Compose
+47.16 podman compose: proveedor externo y compatibilidad
+47.17 diferencias de networking y pods
+47.18 migración de docker compose a Podman
+47.19 laboratorio: aplicación web, DB y proxy
+47.20 laboratorio: portabilidad y matriz de diferencias
+
+48. Quadlet y systemd — avanzado
+48.1 Quadlet como generador systemd
+48.2 rutas de unidades rootful y rootless
+48.3 .container: opciones y ciclo de vida
+48.4 .pod y namespaces compartidos
+48.5 .volume y persistencia
+48.6 .network y dependencias
+48.7 .image: adquisición declarativa
+48.8 .build: construcción declarativa según versión
+48.9 .kube: despliegue de YAML compatible
+48.10 generación de unidades y systemd-analyze
+48.11 After, Wants, Requires y dependencias reales
+48.12 User services, linger y arranque tras reboot
+48.13 secrets, EnvironmentFile y credenciales
+48.14 Restart, TimeoutStartSec y healthchecks
+48.15 auto-update: timers y rollback limitado
+48.16 journalctl y logging de unidades
+48.17 hardening systemd compatible con contenedores
+48.18 cambios de configuración y daemon-reload
+48.19 laboratorio: servicio rootless tras reinicio
+48.20 laboratorio: despliegue multicontenedor Quadlet
+48.21 troubleshooting: generador, permisos y dependencias
+
+49. Seguridad de la cadena de suministro
+49.1 modelo de amenazas del ciclo build-push-pull-run
+49.2 origen y confianza de imágenes base
+49.3 tags mutables, digests e índices
+49.4 firma de imágenes y verificación
+49.5 Sigstore Cosign: conceptos y práctica
+49.6 policy.json y políticas de aceptación
+49.7 SBOM: SPDX y CycloneDX
+49.8 Syft y herramientas equivalentes de inventario
+49.9 escaneo de vulnerabilidades y falsos positivos
+49.10 Trivy y Grype: uso orientativo
+49.11 provenance y attestations
+49.12 SLSA: niveles y alcance en builds
+49.13 secret scanning y fugas en layers
+49.14 build secrets frente a ARG y ENV
+49.15 minimal images, distroless y scratch
+49.16 actualización y rebuild de imágenes
+49.17 principio de mínimo privilegio en runtime
+49.18 seccomp, SELinux, capabilities y rootless
+49.19 controles de publicación en CI/CD
+49.20 laboratorio: SBOM, escaneo y firma
+49.21 laboratorio: bloquear imagen no confiable
+49.22 troubleshooting: firmas, políticas y provenance
+
+50. Observabilidad y diagnóstico avanzado
+50.1 señales: logs, métricas, eventos y trazas
+50.2 stdout, stderr y drivers de logging
+50.3 journald y correlación con systemd
+50.4 podman events y docker events
+50.5 stats y métricas de cgroups v2
+50.6 CPU throttling y presión de memoria
+50.7 memory.events y OOM diagnosis
+50.8 PSI: pressure stall information
+50.9 métricas de host y contenedor con Prometheus
+50.10 exporters: alcance y límites
+50.11 dashboards de Grafana: métricas útiles
+50.12 Loki y correlación de logs: integración opcional
+50.13 OpenTelemetry: trazas de aplicación frente a runtime
+50.14 tracing de syscalls con strace
+50.15 eBPF y bpftrace: introducción aplicada
+50.16 tcpdump y diagnóstico de tráfico
+50.17 latencia de almacenamiento y OverlayFS
+50.18 análisis de fugas y crecimiento de recursos
+50.19 laboratorio: incidente con CPU y memoria
+50.20 laboratorio: reconstruir línea temporal de fallos
+50.21 troubleshooting: distinguir causa y síntoma
+
+51. Operación, mantenimiento y recuperación
+51.1 diseño de entornos de desarrollo y producción
+51.2 inventario y políticas de imágenes
+51.3 estrategias de actualización y rollback
+51.4 retención de imágenes y limpieza segura
+51.5 backup de volúmenes y consistencia de datos
+51.6 restauración y verificación de integridad
+51.7 disaster recovery y objetivos RPO/RTO
+51.8 migración entre hosts Fedora
+51.9 compatibilidad de versiones y formatos OCI
+51.10 migración Docker a Podman y viceversa
+51.11 migración de registries con Skopeo
+51.12 servicios persistentes y Quadlet
+51.13 procedimientos de parada y arranque
+51.14 gestión de certificados y rotación de secretos
+51.15 actualización de imágenes y gestión de CVEs
+51.16 capacity planning: CPU, RAM, storage y red
+51.17 auditoría y registros de cambios
+51.18 runbooks y procedimientos de incidente
+51.19 laboratorio: restaurar aplicación completa
+51.20 laboratorio: actualización con rollback
+51.21 troubleshooting: recuperación tras fallo de host
+
+52. Internals containers/* y proyecto experto integrador
+52.1 containers/image: transports, manifests y firmas
+52.2 containers/storage: imágenes, capas y contenedores
+52.3 containers/common: configuración compartida
+52.4 conmon: ciclo de vida y logs
+52.5 crun y runc: interfaces OCI
+52.6 Netavark y Aardvark DNS: responsabilidades
+52.7 flujo Buildah → containers/storage → Podman
+52.8 flujo Skopeo → registry → Podman/Docker
+52.9 trazar la identidad de imagen por digest
+52.10 diseño de arquitectura del proyecto container-debugger
+52.11 detección segura de engine y versión
+52.12 adaptadores Podman y Docker sin asumir paridad
+52.13 recopilación JSON y normalización
+52.14 diagnóstico de namespaces y cgroups
+52.15 diagnóstico de mounts, UID/GID y SELinux
+52.16 diagnóstico de DNS, redes y puertos
+52.17 diagnóstico de imágenes con Buildah y Skopeo
+52.18 modo read-only y principio de mínimo privilegio
+52.19 pruebas unitarias, integración y escenarios rotos
+52.20 informe humano y JSON con evidencias
+52.21 laboratorio final: build, registry, deploy, incidente y recuperación
+52.22 entrega final: container-debugger con documentación y runbook
+
+
+53. Docker Swarm — fundamentos y arquitectura
+53.1 Swarm mode frente a Docker Engine standalone
+53.2 Swarm frente a Compose, Podman pods y Kubernetes
+53.3 Manager y worker: responsabilidades
+53.4 Desired state y reconciliación
+53.5 Services, tasks, containers y slots
+53.6 Raft y estado distribuido
+53.7 Quorum y tolerancia a fallos
+53.8 Scheduler y placement
+53.9 Service discovery y DNS interno
+53.10 Routing mesh e ingress
+53.11 Overlay networking y VXLAN
+53.12 PKI y mTLS entre nodos
+53.13 Tokens de unión y roles
+53.14 Limitaciones, casos de uso y vigencia de Swarm
+53.15 Laboratorio: topología de tres managers y dos workers
+
+
+54. Docker Swarm — instalación y ciclo de vida del clúster
+54.1 Requisitos Fedora: Docker Engine, systemd, firewall y SELinux
+54.2 Planificación de hosts, IP y DNS
+54.3 Puertos TCP 2377, TCP/UDP 7946 y UDP 4789
+54.4 Instalación y comprobación de Docker Engine
+54.5 docker swarm init y --advertise-addr
+54.6 docker swarm join-token y join
+54.7 docker node ls, inspect y ps
+54.8 Promote y demote de managers
+54.9 Availability: active, pause y drain
+54.10 Node labels y engine labels
+54.11 docker swarm update y rotación de CA
+54.12 Autolock, unlock-key y recuperación segura
+54.13 docker swarm leave y leave --force
+54.14 Reconfiguración de managers y quorum
+54.15 Laboratorio: construir, validar y desmantelar clúster
+
+
+55. Docker Swarm — servicios y scheduling
+55.1 docker service create, ls, ps e inspect
+55.2 Servicios replicated y global
+55.3 Replicas y docker service scale
+55.4 docker service update y rollback
+55.5 Placement constraints y preferences
+55.6 Node labels y distribución
+55.7 Reservas y límites de CPU y memoria
+55.8 Healthchecks y restart policy
+55.9 Update parallelism, delay y failure-action
+55.10 Rollback configuration
+55.11 Puertos published: ingress y host
+55.12 Templates y variables en servicios
+55.13 Jobs replicated-job y global-job según versión
+55.14 Diagnóstico de tareas rechazadas y pending
+55.15 Laboratorio: despliegue, escalado, rolling update y rollback
+
+
+56. Docker Swarm — networking multinodo
+56.1 Overlay networks y control/data plane
+56.2 Ingress network y routing mesh
+56.3 VIP y DNSRR: service discovery
+56.4 IPVS y balanceo interno
+56.5 VXLAN, MTU y fragmentación
+56.6 Puertos, firewall y nftables
+56.7 --data-path-addr y separación de tráfico
+56.8 Cifrado de overlay --opt encrypted
+56.9 Attachable overlays y contenedores standalone
+56.10 Publicación de puertos ingress frente a host
+56.11 Redes externas y segmentación
+56.12 Resolución DNS entre servicios
+56.13 tcpdump, ss, ip y diagnóstico VXLAN
+56.14 Fallos de MTU, routing, DNS y conectividad
+56.15 Laboratorio: trazar tráfico entre hosts y servicios
+
+
+57. Docker Swarm — stacks, persistencia y configuración
+57.1 docker stack deploy, ls, services, ps y rm
+57.2 Compose file para stack y subconjunto soportado
+57.3 Diferencias docker compose up frente a stack deploy
+57.4 Sección deploy: replicas, placement, update_config
+57.5 Imágenes en registry y resolución de digest
+57.6 Secrets: create, inspect, uso y rotación
+57.7 Configs: create, distribución y versionado
+57.8 Variables de entorno y datos sensibles
+57.9 Volumes locales y afinidad de tareas
+57.10 Drivers de volúmenes compartidos y compatibilidad
+57.11 Persistencia, consistencia y almacenamiento externo
+57.12 Bind mounts y rutas idénticas entre nodos
+57.13 Backups de datos de aplicación
+57.14 Despliegue de proxy, app y base de datos
+57.15 Laboratorio: stack multinodo con secrets y persistencia
+
+
+58. Docker Swarm — seguridad, HA y recuperación
+58.1 Threat model de Swarm
+58.2 PKI integrada y certificados de nodos
+58.3 mTLS del plano de control
+58.4 Gestión y rotación de join tokens
+58.5 Autolock y protección de claves Raft
+58.6 Secrets y configs: controles y límites
+58.7 RBAC: límites del modelo de permisos de Swarm
+58.8 Docker socket y privilegios de administración
+58.9 Hardening de hosts Fedora, SELinux y firewalld
+58.10 Quorum: mayoría y número impar de managers
+58.11 Pérdida de managers y recuperación de quorum
+58.12 docker swarm init --force-new-cluster: riesgos
+58.13 Backup consistente de /var/lib/docker/swarm
+58.14 Restore de managers y validación
+58.15 Laboratorio: fallo de manager y recuperación documentada
+
+
+59. Docker Swarm — operación, observabilidad y troubleshooting
+59.1 docker node/service/stack inspect y formatos JSON
+59.2 docker service logs y drivers compatibles
+59.3 docker events, journald y logs de daemon
+59.4 Métricas de host, engine, tasks y servicios
+59.5 Prometheus/Grafana como integración opcional
+59.6 Capacidad y distribución de recursos
+59.7 Actualización de nodos y mantenimiento drain
+59.8 Actualización de Docker Engine y compatibilidad
+59.9 Incidentes: servicio pending/rejected
+59.10 Incidentes: imagen inaccesible y registry auth
+59.11 Incidentes: overlay, ingress, DNS y MTU
+59.12 Incidentes: pérdida de quorum
+59.13 Incidentes: volumen ausente y tareas reprogramadas
+59.14 Runbooks, RPO/RTO y pruebas de restauración
+59.15 Laboratorio: inyección de fallos y diagnóstico reproducible
+
+
+60. Docker Swarm — automatización e interoperabilidad experta
+60.1 Docker CLI/API para administrar servicios y nodos
+60.2 Automatización idempotente con Ansible
+60.3 Bootstrap y teardown reproducibles de laboratorio
+60.4 Pipeline Buildah → Skopeo → registry → Swarm
+60.5 Buildx y publicación multi-arquitectura
+60.6 Firmas, SBOM, digests y despliegue
+60.7 Comparación Compose, Swarm, Quadlet y Kubernetes
+60.8 Límites de portabilidad de compose.yaml
+60.9 Migración de Compose a Swarm: cambios reales
+60.10 Migración desde Swarm: evaluación y estrategias
+60.11 Diseño de pruebas funcionales y de resiliencia
+60.12 Versionado de stacks y promoción entre entornos
+60.13 Políticas de actualización y rollback
+60.14 Laboratorio: pipeline y despliegue multinodo
+60.15 Proyecto: aplicación distribuida segura y reproducible
+
+
+61. Proyecto final — container-debugger con Docker Swarm
+61.1 Arquitectura ampliada sin romper adaptadores existentes
+61.2 Detección de Swarm activo/inactivo
+61.3 Inventario de nodos, roles y availability
+61.4 Inventario de services, tasks y stacks
+61.5 Inspección de redes overlay e ingress
+61.6 Análisis de placement y desired state
+61.7 Inspección de secrets/configs sin revelar valores
+61.8 Comprobación de quorum y estado de managers
+61.9 Correlación tasks → containers → nodes
+61.10 Diagnóstico de fallos de red y puertos
+61.11 Detección de servicios sin réplicas sanas
+61.12 Informes JSON y humano con evidencias
+61.13 Modo read-only y permisos mínimos
+61.14 Pruebas unitarias, integración y fallos simulados
+61.15 Laboratorio final: build, deploy, incidente, rollback y restore
+61.16 Entrega: container-debugger ampliado, documentación y runbook

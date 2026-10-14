@@ -1,43 +1,37 @@
-name: vagrant
-title: "Vagrant 0 → Experto — Fedora, KVM/QEMU y libvirt"
-language: es
-
-audience:
-  level: "0 a experto"
-  profile:
-    - administradores Linux
-    - ingenieros DevOps
-    - desarrolladores
-    - ingenieros de infraestructura
-    - estudiantes de automatización e IaC
-
-platform:
-  host_os: Fedora
-  guest_os:
-    - Fedora
-    - Linux
-  virtualization:
-    - KVM
-    - QEMU
-    - libvirt
-  vagrant_provider: libvirt
-
-scope:
-  primary:
-    - Vagrant
-    - Vagrantfile
-    - vagrant-libvirt
-    - boxes
-    - networking
-    - storage
-    - synced folders
-    - provisioning
-    - multi-machine
-    - snapshots
-    - troubleshooting
-    - security
-    - performance
-    - internals
+---
+course:
+  title: "Vagrant 0 → Experto — Fedora, KVM/QEMU y libvirt en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  mode: "deep"
+  platform:
+    host_os: Fedora
+    guest_os:
+      - Fedora
+      - Linux
+    virtualization:
+      - KVM
+      - QEMU
+      - libvirt
+    vagrant_provider: libvirt
+  scope:
+    primary:
+      - Vagrant
+      - Vagrantfile
+      - vagrant-libvirt
+      - boxes
+      - networking
+      - storage
+      - synced folders
+      - provisioning
+      - multi-machine
+      - snapshots
+      - troubleshooting
+      - security
+      - performance
+      - internals
   integrations:
     - Ansible
     - Packer
@@ -47,6 +41,11 @@ scope:
     - VirtualBox
     - VMware
     - Hyper-V
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
   style: profundo, práctico, progresivo y orientado a administración real
@@ -131,7 +130,41 @@ bibliography_policy:
   exact_references_only_when_verified: true
   do_not_invent_pages_or_sections: true
 
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
+deep_coverage:
+  mandatory_for_operational_lessons:
+    - architecture_and_prerequisites
+    - installation_or_setup
+    - configuration_with_explanations
+    - commands_and_options
+    - expected_output_and_validation
+    - security_and_permissions
+    - logs_and_troubleshooting
+    - reproducible_lab_and_cleanup
+  distinguish_capability_layers:
+    - vagrant_core
+    - vagrant_libvirt_provider
+    - libvirt
+    - qemu_kvm
+    - fedora_host_and_guest
+  provider_compatibility_must_be_verified: true
+  do_not_assume_libvirt_features_exposed_by_provider: true
+  avoid_unverified_version_specific_commands: true
+  include_failure_injection_in_advanced_labs: true
+  explain_recovery_and_rollback: true
+  require_logs_and_expected_results: true
+  include_security_supply_chain: true
+  require_reproducible_destroy_and_rebuild: true
+  assessment:
+    require_block_acceptance_criteria: true
+    require_operational_labs: true
+    require_idempotency_checks_when_applicable: true
+    require_troubleshooting_evidence: true
+    final_project_tests:
+      - clean_environment_bootstrap
+      - multi_machine_connectivity
+      - dns_and_ssh_validation
+      - ansible_idempotency
+      - snapshot_and_recovery_validation
+      - performance_baseline
+      - full_destroy_and_rebuild
+      - documentation_and_runbook

@@ -1,6 +1,14 @@
-name: awk
-title: AWK EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "awk — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - RHEL
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md

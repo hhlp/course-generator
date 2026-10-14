@@ -1,22 +1,22 @@
-name: go
-title: "GO — DE 0 A EXPERTO"
-description: "Learning Path profundo de Go: lenguaje, concurrencia, servicios, runtime, profiling, performance e internals."
-
-language: es
-platform: "Fedora/Linux"
-level: "0-to-expert"
+---
+course:
+  title: "GO — DE 0 A EXPERTO Profundidad"
+  description: "Learning Path profundo de Go: lenguaje, concurrencia,
+      servicios, runtime, profiling, performance e internals."
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - Linux
+  mode: "deep"
+  official_docs_priority: true
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
-course:
-  path: initial.txt
-  lesson_style: deep
-  preserve_depth: true
-  version_aware: true
-  official_docs_priority: true
 
 pedagogy:
   opening_section: "🎯 OBJETIVO"
@@ -66,9 +66,11 @@ references:
   concurrency:
     - "Learn Concurrent Programming with Go — James Cutajar"
   professional:
-    - "Go in Action, Second Edition — Joel Holmes, Andrew Walker, William Kennedy"
+    - "Go in Action, Second Edition — Joel Holmes, Andrew Walker,
+        William Kennedy"
   cookbook:
-    - "Go Cookbook: Expert Solutions for Commonly Needed Go Tasks — Sau Sheong Chang"
+    - "Go Cookbook: Expert Solutions for Commonly Needed Go
+        Tasks — Sau Sheong Chang"
   authoritative:
     - "Official Go Documentation"
     - "The Go Programming Language Specification"
@@ -89,7 +91,8 @@ quality:
 
 specializations:
   big_o:
-    focus: "Complejidad aplicada a estructuras, algoritmos y concurrencia en Go"
+    focus: "Complejidad aplicada a estructuras, algoritmos y
+        concurrencia en Go"
     cross_reference_general_path: true
     require_time_and_space_analysis: true
     require_benchmarks_and_profiling: true

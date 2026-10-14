@@ -1,3 +1,4 @@
+---
 course:
   title: English Grammar B1 → B2
   language: es
@@ -17,7 +18,10 @@ files:
   bibliography: bibliography.md
 
 objective:
-  primary: Consolidar y ampliar la gramática inglesa desde B1 hasta B2 mediante un estudio progresivo y contrastivo de forma, significado, uso, restricciones, transformaciones y relaciones entre estructuras gramaticales.
+  primary: Consolidar y ampliar la gramática inglesa desde B1 hasta B2 mediante
+      un estudio progresivo y contrastivo de forma, significado, uso,
+      restricciones, transformaciones y relaciones entre estructuras
+      gramaticales.
 curriculum:
   grammar_required: true
   independent_strands:
@@ -29,27 +33,29 @@ curriculum:
     speaking: false
     integrated_skills: false
   incidental_context_allowed: true
-  incidental_context_rule: El vocabulario y las oraciones contextuales pueden utilizarse para demostrar gramática, pero nunca deben convertirse en objetivos independientes de la lección.
+  incidental_context_rule: El vocabulario y las oraciones contextuales pueden
+           utilizarse para demostrar gramática, pero nunca deben convertirse en
+           objetivos independientes de la lección.
 level_model:
   type: continuum
   artificial_b1_b2_split: false
   progression:
-  - recognition
-  - form
-  - meaning
-  - use
-  - contrast
-  - constraints
-  - exceptions
-  - transformation
-  - sentence_analysis
-  - integration
-  - structural_analysis
+    - recognition
+    - form
+    - meaning
+    - use
+    - contrast
+    - constraints
+    - exceptions
+    - transformation
+    - sentence_analysis
+    - integration
+    - structural_analysis
   structural_progression:
-  - word
-  - phrase
-  - clause
-  - sentence
+    - word
+    - phrase
+    - clause
+    - sentence
   global_progression:
     A2: introduce and establish
     B1: consolidate and extend
@@ -58,7 +64,8 @@ level_model:
     C2: mastery, nuance and grammatical analysis
   avoid_repetition_without_new_depth: true
 pedagogy:
-  style: profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical
+  style: profundo, práctico, progresivo, contrastivo y orientado al dominio
+      gramatical
   explanation_language: Spanish
   grammar_terminology: English
   examples_language: English
@@ -90,33 +97,35 @@ lesson_structure:
   reading:
     required: true
     heading: 📚 LECTURA
-    purpose: referencia bibliográfica gramatical; no actividad de comprensión lectora
+    purpose: referencia bibliográfica gramatical; no actividad de
+        comprensión lectora
     categories:
-    - principal
-    - supplementary
+      - principal
+      - supplementary
     exact_references_only_when_verified: true
   explanation:
     required: true
     heading: 📘 GRAMMAR
     requirements:
-    - Explicar la estructura gramatical con precisión.
-    - Distinguir forma, significado y uso.
-    - Incluir afirmativa, negativa e interrogativa cuando corresponda.
-    - Explicar auxiliares, orden y contracciones cuando sean relevantes.
-    - Comparar estructuras que suelen confundirse.
-    - Incluir excepciones y restricciones relevantes al nivel.
+      - Explicar la estructura gramatical con precisión.
+      - Distinguir forma, significado y uso.
+      - Incluir afirmativa, negativa e interrogativa cuando corresponda.
+      - Explicar auxiliares, orden y contracciones cuando sean relevantes.
+      - Comparar estructuras que suelen confundirse.
+      - Incluir excepciones y restricciones relevantes al nivel.
   examples:
     required: true
     heading: 💬 EXAMPLES
     requirements:
-    - Usar ejemplos naturales en inglés.
-    - Aumentar progresivamente la dificultad.
-    - Incluir contrastes mínimos cuando sean útiles.
-    - Incluir análisis o transformación cuando ayude a entender la regla.
+      - Usar ejemplos naturales en inglés.
+      - Aumentar progresivamente la dificultad.
+      - Incluir contrastes mínimos cuando sean útiles.
+      - Incluir análisis o transformación cuando ayude a entender la regla.
   practice:
     required: true
     heading: 🧪 Laboratorio/ejemplos
-    purpose: práctica gramatical, transformaciones, contrastes y análisis de forma, significado y uso
+    purpose: práctica gramatical, transformaciones, contrastes y análisis de
+        forma, significado y uso
   common_errors:
     required: false
     heading: ⚠️ Errores frecuentes
@@ -127,9 +136,10 @@ lesson_structure:
     required: false
     heading: 🔬 ANÁLISIS GRAMATICAL
     use_when:
-    - sea útil identificar constituyentes y funciones
-    - una transformación requiera explicar relaciones entre cláusulas
-    - sea necesario justificar orden, complemento, adjunto o elección estructural
+      - sea útil identificar constituyentes y funciones
+      - una transformación requiera explicar relaciones entre cláusulas
+      - sea necesario justificar orden, complemento, adjunto o elección
+        estructural
   remember:
     required: true
     position: last
@@ -169,10 +179,10 @@ content_rules:
   preserve_english_examples: true
 references:
   principal:
-  - author: Raymond Murphy
-    title: English Grammar in Use
-    edition: Fifth Edition
-    role: principal pedagogical grammar and backbone
+    - author: Raymond Murphy
+      title: English Grammar in Use
+      edition: Fifth Edition
+      role: principal pedagogical grammar and backbone
   citation_policy:
     exact_references_only_when_verified: true
     never_invent_page_numbers: true
@@ -181,22 +191,24 @@ references:
     paraphrase_sources: true
     do_not_copy_source_exercises: true
   supplementary:
-  - author: Michael Swan
-    title: Practical English Usage
-    role: B1-B2 usage, contrast, exceptions and common learner problems
+    - author: Michael Swan
+      title: Practical English Usage
+      role: B1-B2 usage, contrast, exceptions and common learner problems
   reserved_for_c1_c2:
-  - author: Ronald Carter; Michael McCarthy
-    title: Cambridge Grammar of English
-    role: advanced descriptive grammar reserved for the C1-C2 path
-  - author: Rodney Huddleston; Geoffrey K. Pullum
-    title: The Cambridge Grammar of the English Language
-    role: advanced formal/descriptive reference reserved for C1-C2 or expert analysis
+    - author: Ronald Carter; Michael McCarthy
+      title: Cambridge Grammar of English
+      role: advanced descriptive grammar reserved for the C1-C2 path
+    - author: Rodney Huddleston; Geoffrey K. Pullum
+      title: The Cambridge Grammar of the English Language
+      role: advanced formal/descriptive reference reserved for C1-C2
+          or expert analysis
   bibliography_policy:
     course_sources:
-    - principal
-    - supplementary
+      - principal
+      - supplementary
     web_reference_sites_as_course_bibliography: false
-    rule: Cambridge Dictionary Grammar and British Council LearnEnglish Grammar are not course bibliography sources.
+    rule: Cambridge Dictionary Grammar and British Council LearnEnglish
+        Grammar are not course bibliography sources.
 generation:
   lesson_depth: high
   standalone_lessons: true
@@ -204,11 +216,14 @@ generation:
   avoid_unnecessary_repetition: true
   preserve_cross_references: true
   checkpoints:
-  - A2 → B1 transition
-  - B1 grammar
-  - B2 grammar
-  - Final B1 → B2 integration
-  lesson_depth_rule: 'Profundidad alta dentro del nivel B1-B2: explicar forma, significado, uso, contraste, restricciones, excepciones relevantes, transformaciones y análisis estructural, sin convertir la lección en gramática avanzada C1-C2.'
+    - A2 → B1 transition
+    - B1 grammar
+    - B2 grammar
+    - Final B1 → B2 integration
+  lesson_depth_rule: 'Profundidad alta dentro del nivel B1-B2: explicar forma,
+      significado, uso, contraste, restricciones, excepciones relevantes,
+      transformaciones y análisis estructural, sin convertir la lección en
+      gramática avanzada C1-C2.'
   respect_c1_c2_boundary: true
 quality_checks:
   require_objective_first: true
@@ -227,7 +242,12 @@ level_specific:
   boundaries:
     from: B1
     to: B2
-    rule: Consolidar estructuras introducidas en A2 solo cuando exista nueva profundidad, contraste, restricción, excepción o integración propia de B1-B2. En B2 se permite análisis de word, phrase, clause, sentence, constituent, head, modifier, complement, adjunct y funciones gramaticales cuando apoye la comprensión; no desarrollar como objetivo central la gramática avanzada reservada para C1-C2.
+    rule: Consolidar estructuras introducidas en A2 solo cuando exista nueva
+        profundidad, contraste, restricción, excepción o integración propia
+        de B1-B2. En B2 se permite análisis de word, phrase, clause, sentence,
+        constituent, head, modifier, complement, adjunct y funciones
+        gramaticales cuando apoye la comprensión; no desarrollar como objetivo
+        central la gramática avanzada reservada para C1-C2.
   required_topics:
     contrastive_teaching: true
     exceptions_when_level_relevant: true
@@ -240,20 +260,22 @@ level_specific:
     information_structure_introduction: true
   c1_c2_boundary:
     introduce_but_do_not_exhaust:
-    - conditional_inversion
-    - negative_inversion
-    - fronting
-    - clefts
-    - extraposition
-    - structural_ambiguity
+      - conditional_inversion
+      - negative_inversion
+      - fronting
+      - clefts
+      - extraposition
+      - structural_ambiguity
     reserve_deep_mastery_for_c1_c2:
-    - advanced_inversion
-    - advanced_information_packaging
-    - advanced_nominalisation
-    - advanced_complementation
-    - advanced_discourse_grammar
-    - marked_word_order
-    policy: Los contenidos puente pueden introducirse de forma limitada en B2, pero su análisis sistemático, excepciones avanzadas, variación discursiva y dominio formal pertenecen al path C1-C2.
+      - advanced_inversion
+      - advanced_information_packaging
+      - advanced_nominalisation
+      - advanced_complementation
+      - advanced_discourse_grammar
+      - marked_word_order
+    policy: Los contenidos puente pueden introducirse de forma limitada en B2,
+        pero su análisis sistemático, excepciones avanzadas, variación
+        discursiva y dominio formal pertenecen al path C1-C2.
     do_not_use_as_b2_core_references:
-    - Cambridge Grammar of English — Carter & McCarthy
-    - The Cambridge Grammar of the English Language — Huddleston & Pullum
+      - Cambridge Grammar of English — Carter & McCarthy
+      - The Cambridge Grammar of the English Language — Huddleston & Pullum

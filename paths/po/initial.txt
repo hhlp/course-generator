@@ -157,6 +157,15 @@
 9.16 Limpieza y eliminación de PBIs
 9.17 Anti-patrones
 9.18 Laboratorio completo de Refinement
+9.19 Preparar el refinement: objetivo, contexto, PBIs candidatos y evidencias disponibles
+9.20 Facilitar el refinement paso a paso: participantes, conversaciones, decisiones y seguimiento
+9.21 Refinement basado en evidencia: feedback, discovery, métricas, hipótesis y actualización de PBIs
+9.22 Refinement progresivo: oportunidades y elementos grandes hasta PBIs pequeños y comprensibles
+9.23 Refinement y forecasting: incertidumbre, tamaño, throughput y límites de las previsiones
+9.24 Refinement con múltiples equipos: Product Backlog único, dependencias y colaboración transversal
+9.25 Evaluar la efectividad del refinement: claridad, aprendizaje, bloqueos y preparación sin burocracia
+9.26 Laboratorio guiado: antes, durante y después de un refinement con artefactos verificables
+9.27 Caso avanzado: refinar PBIs ante nueva evidencia, conflictos y cambio de estrategia
 
 10. ESTIMACIÓN PARA PRODUCT OWNERS
 10.1 Por qué estimamos
@@ -195,6 +204,9 @@
 11.14 Stakeholder input
 11.15 Decisión final del Product Owner
 11.16 Laboratorio de ordering
+
+11.17 Caso PSPO I: justificar el orden del backlog ante valor, riesgo y dependencias
+11.18 Checkpoint PSPO I: preguntas situacionales, evidencia y retroalimentación
 
 12. PRODUCT DISCOVERY
 12.1 Discovery vs Delivery
@@ -349,6 +361,9 @@
 20.8 Scaling anti-patterns
 20.9 Product Ownership organizacional
 
+20.10 Caso PSPO II: estrategia de producto con múltiples equipos y conflictos
+20.11 Checkpoint PSPO II: discovery, EBM, economía, stakeholders y escalado
+
 21. PRODUCT OWNER AVANZADO
 21.1 Product Thinking
 21.2 Systems Thinking
@@ -401,6 +416,9 @@
 23.12 Coaching de Product Owners
 23.13 Evaluación de madurez
 
+23.14 Caso PSPO III: decisión compleja con restricciones y alternativas
+23.15 Checkpoint PSPO III: defensa argumentada y evaluación de madurez
+
 24. PROYECTO FINAL — PRODUCT OWNER END-TO-END
 24.1 Seleccionar un producto y problema
 24.2 Mercado, usuarios y stakeholders
@@ -428,3 +446,6 @@
 24.24 Construir y comparar forecast de fecha y alcance
 24.25 Evaluar Product Goal
 24.26 Presentar Product Strategy completa
+24.27 Entregables finales: dossier de producto y trazabilidad de decisiones
+24.28 Defensa del proyecto: hipótesis, evidencia, riesgos y trade-offs
+24.29 Rúbrica de evaluación experta y plan de mejora

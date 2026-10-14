@@ -907,3 +907,34 @@ Al finalizar el PATH, el alumno debe poder:
 - diagnosticar fallos extremo a extremo;
 - leer internals con un objetivo operacional;
 - diseñar una plataforma de observabilidad reproducible y mantenible.
+
+
+## 32. Ampliación experta — criterios obligatorios de profundidad
+
+Los bloques 111–121 amplían el temario sin sustituir ni renumerar los bloques 0–110. El bloque 110 conserva su condición de proyecto integrador original; el bloque 121 aporta una evaluación adicional de incidentes.
+
+Para cada procedimiento técnico relevante, enseñar: propósito, arquitectura, prerequisitos, instalación o configuración, significado de opciones, rutas y permisos, comandos de validación, resultado esperado, logs y métricas de diagnóstico, fallos deliberados, seguridad, rendimiento, compatibilidad de versiones y procedimiento de recuperación. No exigir un laboratorio artificial en cada lección conceptual; sí laboratorios verificables en operaciones significativas.
+
+### 32.1 Fedora y despliegue
+
+Grafana, Loki y Alloy deben tener prácticas nativas en Fedora con systemd, journalctl, firewalld, SELinux, gestión de secretos, verificación de procedencia de paquetes/binarios y comprobación de puertos. No asumir que Loki o Alloy dispongan de un RPM oficial para una versión concreta: comprobar métodos de distribución disponibles antes de documentarlos. Mantener SELinux activo.
+
+### 32.2 Ingestión fiable y datos sensibles
+
+Enseñar la diferencia entre un origen que no genera logs, un collector que no los lee, una transmisión fallida, un rechazo por límites y una consulta incorrecta. Medir pérdidas, duplicados, latencia y reintentos cuando las capacidades de la versión lo permitan. Evitar indexar identificadores de alta cardinalidad y redactar datos sensibles antes de su persistencia.
+
+### 32.3 Automatización y pruebas
+
+Añadir Terraform Provider de Grafana, Ansible y GitOps como aplicación al stack, sin reenseñar los PATH completos de esas herramientas. Validar configuración y esquema, mantener secretos fuera de Git, ensayar drift, upgrades y rollback; verificar qué recursos son compatibles con cada proveedor/versión.
+
+### 32.4 Resiliencia
+
+Explicar RPO/RTO, WAL, backups de configuración, almacenamiento de objetos, retención, restauración, degradación parcial, alta disponibilidad y pruebas de desastre. Distinguir expresamente entre persistencia de logs y backup de la base de datos interna de Grafana.
+
+### 32.5 Criterios de aceptación
+
+Cada laboratorio operacional debe definir estado inicial, pasos reproducibles, comandos o consultas de verificación, evidencia observable, fallo o variación cuando proceda, limpieza y criterios de éxito. En benchmarks registrar dataset, hardware, versiones, configuración, carga, métricas y límites de validez de las conclusiones.
+
+### 32.6 Límites y versiones
+
+Distinguir siempre Grafana OSS, Enterprise y Cloud. Confirmar disponibilidad real de OIDC, RBAC, APIs, inhibición de alertas, componentes Alloy y opciones de Loki en la versión estudiada. No inventar defaults, rutas, nombres de métricas ni garantías de entrega.

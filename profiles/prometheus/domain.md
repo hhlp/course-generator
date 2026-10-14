@@ -260,3 +260,23 @@ El proyecto final debe integrar una plataforma Prometheus operativa y diagnostic
 Prometheus + exporters + service discovery + relabeling + PromQL + recording rules + alerting rules + Alertmanager + TSDB + HA/remote cuando corresponda + seguridad + testing + troubleshooting + documentación + runbooks.
 
 El alumno debe ser capaz de reconstruir y explicar el flujo completo de una métrica desde su origen hasta una consulta o alerta.
+
+
+## Requisitos ampliados de profundidad (revisión 2026)
+
+- Conservar los bloques 0–40 y todos los IDs originales. Las lecciones añadidas deben numerarse consecutivamente dentro de cada bloque.
+- PromQL: demostrar semántica de staleness, ausencia frente a cero, lookback, vector matching, subqueries, anotaciones y histogramas clásicos/nativos; explicar restricciones dependientes de versión.
+- Scraping: diferenciar límites de targets, samples, labels y tamaño de respuesta; comprobar el punto del pipeline donde se aplica cada límite.
+- Exporters: evaluar privilegios, coste de collectors, compatibilidad, mantenimiento, seguridad y cardinalidad; priorizar instalación y operación sobre programación.
+- TSDB: incluir cálculos cuantitativos de ingesta, retención, series activas, churn, RAM y almacenamiento; ejercicios de recuperación y consistencia.
+- Remote Write: comparar versiones de protocolo, compatibilidad con receptores, colas, reintentos, backpressure, backlog y recuperación.
+- HA: distinguir disponibilidad de scraping, ingesta, consultas y notificaciones; comparar conceptualmente Thanos, Mimir y VictoriaMetrics sin desarrollar sus cursos completos.
+- Seguridad Fedora: incluir mínimo privilegio, systemd-analyze security, TLS, secretos, auditoría SELinux, firewalld y segmentación de red.
+- Producción: incluir Ansible, validación de configuración, tests de reglas en CI/CD, rollout, rollback, meta-monitoring, RPO/RTO y runbooks verificables.
+- Internals: seguir implementaciones en un tag/commit reproducible, con profiling y lectura guiada; no exigir desarrollar Prometheus.
+- Cada laboratorio debe incluir prerrequisitos, pasos reproducibles, comandos explicados, resultados esperados, verificación, errores frecuentes, limpieza y evidencia de aprendizaje.
+- No asumir que una opción, endpoint o feature flag existe en todas las versiones; contrastar con documentación oficial y `--help`.
+
+## Límites entre PATHs
+
+Grafana, Kubernetes, OpenTelemetry, Ansible y las plataformas de almacenamiento distribuido se tratan solo en la medida necesaria para integrar u operar Prometheus. El aprendizaje avanzado de esas tecnologías pertenece a sus respectivos PATHs.

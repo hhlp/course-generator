@@ -1,18 +1,22 @@
-name: numpy
-title: "NumPy — Learning Path 0 → Experto"
-description: "Curso profundo de NumPy 2.x: ndarray, dtype, broadcasting, vectorización, precisión, álgebra lineal, rendimiento, internals, protocolos y extensibilidad."
-language: es
+---
+course:
+  title: NumPy — 0 a Experto en Profundidad
+  primary_library: NumPy
+  version_policy: NumPy 2.x estable; verificar APIs y cambios contra la
+    documentación oficial vigente
+  language: es
+  level:
+    start: cero
+    end: experto
+  description: 'Curso profundo de NumPy 2.x: ndarray, dtype, broadcasting,
+    vectorización, precisión, álgebra lineal, rendimiento, internals,
+    protocolos y extensibilidad.'
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
-course:
-  platform: "Python + NumPy"
-  level: "0 → experto"
-  primary_library: "NumPy"
-  version_policy: "NumPy 2.x estable; verificar APIs y cambios contra la documentación oficial vigente"
 
 generation:
   preserve_path_order: true
@@ -24,14 +28,14 @@ generation:
   explain_version_differences: true
 
 lesson:
-  required_opening: "🎯 OBJETIVO"
-  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
   closing_key_points_min: 3
   closing_key_points_max: 7
   optional_sections:
-    - "🧪 Laboratorio / ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
+    - 🧪 Laboratorio / ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
 
 technical_focus:
   - ndarray
@@ -56,3 +60,23 @@ technical_focus:
   - array_protocols
   - compiled_extensions
   - numpy_2_migration
+
+depth_requirements:
+  explain_internal_behavior: true
+  explain_shape_transformations: true
+  explain_dtype_promotion: true
+  explain_memory_ownership: true
+  explain_numerical_stability: true
+  explain_time_complexity: true
+  explain_space_complexity: true
+  compare_alternatives: true
+  include_edge_cases: true
+  include_troubleshooting: true
+  include_property_tests: true
+  include_performance_measurements: true
+
+expert_labs:
+  predict_execute_inspect_explain: true
+  test_invariants: true
+  benchmark_when_relevant: true
+  document_version_specific_apis: true

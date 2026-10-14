@@ -1,3 +1,4 @@
+---
 course:
   title: "Álgebra Booleana — 0 a Experto en Profundidad"
   language: "es"
@@ -6,29 +7,11 @@ course:
     end: "experto"
   domain: "Álgebra Booleana"
   mode: "deep"
-  audience:
-    - "estudiantes de informática"
-    - "programadores"
-    - "administradores y profesionales técnicos que quieran reforzar fundamentos"
-    - "estudiantes de matemáticas discretas y lógica digital"
-  prerequisites:
-    required: []
-    recommended:
-      - "aritmética básica"
-      - "nociones elementales de conjuntos"
 
-goals:
-  - "Comprender el Álgebra Booleana desde sus fundamentos."
-  - "Dominar operadores, leyes, equivalencias y demostraciones."
-  - "Construir y analizar tablas de verdad."
-  - "Representar funciones mediante minterms, maxterms, SOP, POS, CNF y DNF."
-  - "Simplificar y minimizar funciones con métodos algebraicos, Karnaugh, Quine–McCluskey y Petrick."
-  - "Comprender la estructura matemática de las álgebras booleanas."
-  - "Dominar expansión de Shannon, BDD, OBDD y ROBDD."
-  - "Comprender SAT y los fundamentos de DPLL/CDCL."
-  - "Conocer minimización heurística mediante Espresso."
-  - "Aplicar Álgebra Booleana a lógica digital, programación, bitwise y SQL."
-  - "Elegir el método adecuado de representación, minimización o verificación."
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
   progression: "strict"
@@ -155,7 +138,8 @@ coverage:
   sql_three_valued_logic: true
 
 digital_logic_boundary:
-  purpose: "Aplicación del Álgebra Booleana, no sustitución por un curso de Digital Design."
+  purpose: "Aplicación del Álgebra Booleana, no sustitución por un curso de
+      Digital Design."
   include:
     - "logic gates"
     - "expression to circuit"

@@ -1,6 +1,14 @@
-name: cpp
-title: C++ EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "c++ — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - Linux
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md

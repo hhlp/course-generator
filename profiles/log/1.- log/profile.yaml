@@ -1,24 +1,26 @@
-name: logging
+---
+course:
+  title: LOGGING EN LINUX — FEDORA en profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    primary:
+      - Fedora
+      - Linux
+      - RHEL
+  course_goal: Enseñar logging en Linux sobre Fedora desde los fundamentos
+    hasta diseño, seguridad, rendimiento, fiabilidad, troubleshooting e
+    internals, cubriendo systemd-journald, journalctl, Syslog, rsyslog,
+    syslog-ng, logging remoto, TLS, RELP, parsing, colas, buffers, logging
+    estructurado y logrotate.
+  mode: deep
 
-title: "LOGGING EN LINUX — FEDORA"
-
-language: es
-
-platform:
-  primary: Fedora Linux
-  family:
-    - Fedora
-    - RHEL-compatible
-
-level:
-  start: beginner
-  end: expert
-
-course_goal: >-
-  Enseñar logging en Linux sobre Fedora desde los fundamentos hasta diseño,
-  seguridad, rendimiento, fiabilidad, troubleshooting e internals, cubriendo
-  systemd-journald, journalctl, Syslog, rsyslog, syslog-ng, logging remoto,
-  TLS, RELP, parsing, colas, buffers, logging estructurado y logrotate.
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 scope:
   include:
@@ -59,6 +61,13 @@ scope:
     - reliability
     - high availability concepts
     - internals
+    - Linux Audit y auditd
+    - logging de aplicaciones y Podman
+    - conservación forense y cadena de custodia
+    - estadísticas internas impstats y syslog-ng-ctl
+    - pruebas de resiliencia verificables
+    - RFC 5426
+    - RFC 5848
   exclude_deep_coverage:
     - Grafana
     - Loki
@@ -76,15 +85,15 @@ scope:
 
 pedagogy:
   objective_first: true
-  objective_heading: "🎯 OBJETIVO"
+  objective_heading: 🎯 OBJETIVO
   mandatory_closing: true
-  closing_heading: "🧠 QUÉ DEBES RECORDAR"
+  closing_heading: 🧠 QUÉ DEBES RECORDAR
   closing_min_points: 3
   closing_max_points: 7
   optional_sections:
-    - "🧪 Laboratorio / ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
+    - 🧪 Laboratorio / ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
   style:
     - completo
     - profundo
@@ -110,6 +119,11 @@ lesson_rules:
   verify_effect_after_change: true
   include_recovery_or_rollback_when_useful: true
   use_current_installed_docs_when_version_sensitive: true
+  explain_installation_when_relevant: true
+  show_real_paths_units_and_packages: true
+  include_logs_and_troubleshooting_when_relevant: true
+  include_safe_failure_and_recovery_when_relevant: true
+  verify_delivery_guarantees_empirically: true
 
 fedora_rules:
   prefer_rpm_dnf: true
@@ -176,7 +190,7 @@ rsyslog:
     - RELP
 
 syslog_ng:
-  pipeline_model: "source -> parser/filter/rewrite -> log path -> destination"
+  pipeline_model: source -> parser/filter/rewrite -> log path -> destination
   emphasize:
     - sources
     - destinations
@@ -286,6 +300,12 @@ labs:
     - diagnose
     - restore
     - verify_recovery
+  verification:
+    - unique event identifiers
+    - event sequence numbers
+    - loss duplicate and reordering measurements
+    - baseline and post recovery checks
+    - documented rollback
 
 internals:
   depth: operationally_relevant
@@ -310,21 +330,51 @@ internals:
 
 references:
   priority:
-    - installed man pages
     - official upstream documentation
+    - installed man pages
     - Fedora documentation
     - applicable RFCs
     - upstream library documentation
     - advanced books
-  files:
-    domain: domain.md
-    bibliography: bibliografy.md
 
 final_project:
   required: true
-  goal: >-
-    Construir una plataforma centralizada, segura, persistente y tolerante a
-    fallos de logging sobre Fedora, con journald, rsyslog o syslog-ng,
+  goal: Construir una plataforma centralizada, segura, persistente y tolerante
+    a fallos de logging sobre Fedora, con journald, rsyslog o syslog-ng,
     transporte seguro, queues/buffers, parsing, routing, almacenamiento,
     logrotate, SELinux, firewalld, troubleshooting, recuperación y
     dimensionamiento básico.
+  acceptance_criteria:
+    - demonstrate end-to-end traceability
+    - quantify loss duplicates latency and queue backlog
+    - document security and retention controls
+    - provide incident and recovery runbooks
+    - retain evidence of failure and recovery tests
+
+advanced_blocks:
+  - id: 45
+    title: Linux Audit y logging de seguridad
+    focus: profundidad operativa, validación y laboratorio reproducible
+  - id: 46
+    title: Logging de aplicaciones y contenedores
+    focus: profundidad operativa, validación y laboratorio reproducible
+  - id: 47
+    title: Seguridad avanzada y conservación forense
+    focus: profundidad operativa, validación y laboratorio reproducible
+  - id: 48
+    title: Operación y métricas internas del pipeline
+    focus: profundidad operativa, validación y laboratorio reproducible
+  - id: 49
+    title: Pruebas de resiliencia, rendimiento y recuperación
+    focus: profundidad operativa, validación y laboratorio reproducible
+
+course_structure:
+  original_topic_blocks_preserved: true
+  advanced_blocks:
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+  integration_lab_block: 50
+  final_project_block: 51

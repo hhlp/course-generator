@@ -1,104 +1,115 @@
+---
 course:
-  id: python-network-automation
-  title: Python Network Automation / Network Programmability — 0 → Experto en Profundidad
-  language: es
+  title: "Python Network Automation / Network Programmability — 0 → Experto
+      en Profundidad"
   specialization: Cisco Routers & Switches
-  level: 0-to-expert
-  depth: deep
-  primary_reference: Python for Network Automation / Python for Network Engineer — Syed Asif
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  mode: "deep"
+  primary_reference: Python for Network Automation / Python for Network
+      Engineer — Syed Asif
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 scope:
   teach_python_from_scratch: false
   python_prerequisite: PATH general de Python
   teach_regex_from_scratch: false
   regex_prerequisite: PATH general de Regex
   focus:
-  - network automation
-  - network programmability
-  - Cisco routing and switching automation
-  - SSH and CLI automation
-  - configuration management
-  - model-driven networking
-  - validation
-  - troubleshooting
-  - testing
-  - security
-  - scale
+    - network automation
+    - network programmability
+    - Cisco routing and switching automation
+    - SSH and CLI automation
+    - configuration management
+    - model-driven networking
+    - validation
+    - troubleshooting
+    - testing
+    - security
+    - scale
   ansible_prerequisite: PATH general de Ansible
 platforms:
   primary:
-  - Cisco IOS
-  - Cisco IOS XE
-  - Cisco IOS XR
-  - Cisco NX-OS
+    - Cisco IOS
+    - Cisco IOS XE
+    - Cisco IOS XR
+    - Cisco NX-OS
   architecture_goal: multivendor-ready
 lab:
   primary: GNS3
   alternatives:
-  - Cisco CML
-  - EVE-NG
-  - Cisco DevNet Sandboxes
-  - physical devices
-  progression: single-device → multi-device → multi-site → controlled failure scenarios
+    - Cisco CML
+    - EVE-NG
+    - Cisco DevNet Sandboxes
+    - physical devices
+  progression: single-device → multi-device → multi-site → controlled
+      failure scenarios
 toolchain:
   ssh_low_level:
-  - Paramiko
+    - Paramiko
   cli:
-  - Netmiko
-  - Scrapli
+    - Netmiko
+    - Scrapli
   abstraction:
-  - NAPALM
+    - NAPALM
   orchestration:
-  - Nornir
+    - Nornir
   templating:
-  - Jinja2
+    - Jinja2
   parsing:
-  - TextFSM
-  - ntc-templates
-  - TTP
-  - Genie
+    - TextFSM
+    - ntc-templates
+    - TTP
+    - Genie
   netconf:
-  - ncclient
-  - scrapli-netconf
+    - ncclient
+    - scrapli-netconf
   api:
-  - requests
-  - httpx
+    - requests
+    - httpx
   models:
-  - YANG
-  - OpenConfig
-  - pyang
+    - YANG
+    - OpenConfig
+    - pyang
   gnmi:
-  - pygnmi
+    - pygnmi
   cisco_validation:
-  - pyATS
-  - Genie
-  - Unicon
+    - pyATS
+    - Genie
+    - Unicon
   source_of_truth:
-  - NetBox
-  - pynetbox
+    - NetBox
+    - pynetbox
   validation:
-  - pytest
-  - pyATS
+    - pytest
+    - pyATS
   network_declarative_automation:
-  - Ansible
-  - ansible.netcommon
-  - cisco.ios
-  - cisco.iosxr
-  - cisco.nxos
-  - ansible-runner
+    - Ansible
+    - ansible.netcommon
+    - cisco.ios
+    - cisco.iosxr
+    - cisco.nxos
+    - ansible-runner
 pedagogy:
   sequence:
-  - fundamentals
-  - installation
-  - configuration
-  - connectivity
-  - read_state
-  - make_change
-  - validate
-  - logging
-  - troubleshooting
-  - security
-  - lab
-  - scale
+    - fundamentals
+    - installation
+    - configuration
+    - connectivity
+    - read_state
+    - make_change
+    - validate
+    - logging
+    - troubleshooting
+    - security
+    - lab
+    - scale
   lesson_requirements:
     objective: true
     theory: true
@@ -114,44 +125,46 @@ pedagogy:
     idea: 💡 Idea
     remember: 🧠 Recordar
 rules:
-- No convertir el curso en una repetición del PATH general de Python.
-- No reenseñar Regex; aplicarla únicamente donde sea necesaria.
-- No convertir el bloque de Ansible en una repetición del PATH general de Ansible; enseñar únicamente su aplicación profunda a Network Automation y Cisco.
-- Explicar por qué se selecciona cada librería, protocolo o framework.
-- Distinguir read-only automation de configuration automation.
-- No asumir que comando enviado significa cambio correcto.
-- Incluir pre-check, diff, post-check y rollback en cambios avanzados.
-- Incluir logging y troubleshooting de forma transversal.
-- No hardcodear credenciales.
-- No desactivar validación SSH/TLS como práctica de producción.
-- Controlar concurrencia y blast radius.
-- Preferir interfaces estructuradas/model-driven cuando sean apropiadas.
-- Mantener ejemplos Cisco, pero diseñar capas extensibles a multivendor.
-- Verificar capacidades y sintaxis específicas contra documentación vigente.
+  - No convertir el curso en una repetición del PATH general de Python.
+  - No reenseñar Regex; aplicarla únicamente donde sea necesaria.
+  - No convertir el bloque de Ansible en una repetición del PATH general
+    de Ansible; enseñar únicamente su aplicación profunda a Network
+    Automation y Cisco.
+  - Explicar por qué se selecciona cada librería, protocolo o framework.
+  - Distinguir read-only automation de configuration automation.
+  - No asumir que comando enviado significa cambio correcto.
+  - Incluir pre-check, diff, post-check y rollback en cambios avanzados.
+  - Incluir logging y troubleshooting de forma transversal.
+  - No hardcodear credenciales.
+  - No desactivar validación SSH/TLS como práctica de producción.
+  - Controlar concurrencia y blast radius.
+  - Preferir interfaces estructuradas/model-driven cuando sean apropiadas.
+  - Mantener ejemplos Cisco, pero diseñar capas extensibles a multivendor.
+  - Verificar capacidades y sintaxis específicas contra documentación vigente.
 capstone:
   name: Cisco Network Automation Platform
   must_include:
-  - inventory_or_source_of_truth
-  - external_secrets
-  - SSH_CLI
-  - Netmiko_or_Scrapli
-  - NAPALM_where_useful
-  - Nornir_orchestration
-  - Jinja2_intended_config
-  - NETCONF_or_RESTCONF
-  - pyATS_Genie_validation
-  - backups
-  - pre_checks
-  - diff
-  - staged_deployment
-  - post_checks
-  - compliance
-  - rollback
-  - structured_logging
-  - tests
-  - CI_CD
-  - troubleshooting_runbook
-  - Ansible_network_automation
-  - Ansible_pre_post_checks
-  - Ansible_staged_deployment
-  - Ansible_pyATS_integration
+    - inventory_or_source_of_truth
+    - external_secrets
+    - SSH_CLI
+    - Netmiko_or_Scrapli
+    - NAPALM_where_useful
+    - Nornir_orchestration
+    - Jinja2_intended_config
+    - NETCONF_or_RESTCONF
+    - pyATS_Genie_validation
+    - backups
+    - pre_checks
+    - diff
+    - staged_deployment
+    - post_checks
+    - compliance
+    - rollback
+    - structured_logging
+    - tests
+    - CI_CD
+    - troubleshooting_runbook
+    - Ansible_network_automation
+    - Ansible_pre_post_checks
+    - Ansible_staged_deployment
+    - Ansible_pyATS_integration

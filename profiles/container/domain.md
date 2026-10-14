@@ -569,3 +569,43 @@ Debe poder responder preguntas como:
 - ¿cómo diagnosticar todo el flujo de forma reproducible?
 
 Ese nivel de comprensión define el nivel **experto** de este dominio.
+
+## 24. Ampliación experta — bloques 40–52
+
+Los bloques 0–39 se conservan íntegros. Los laboratorios integrales de 38 y 39 son una primera implementación; el bloque 52 constituye la ampliación experta y entrega definitiva, sin sustituir las prácticas anteriores.
+
+- **Bloque 40 — Linux Container Internals y OCI Runtime:** 21 lecciones de profundización y laboratorios.
+- **Bloque 41 — Podman — administración avanzada:** 21 lecciones de profundización y laboratorios.
+- **Bloque 42 — Docker BuildKit y Buildx — experto:** 21 lecciones de profundización y laboratorios.
+- **Bloque 43 — Buildah — workflows expertos:** 20 lecciones de profundización y laboratorios.
+- **Bloque 44 — Skopeo — workflows expertos:** 21 lecciones de profundización y laboratorios.
+- **Bloque 45 — Storage avanzado y persistencia:** 20 lecciones de profundización y laboratorios.
+- **Bloque 46 — Networking avanzado de contenedores:** 20 lecciones de profundización y laboratorios.
+- **Bloque 47 — Compose avanzado y portabilidad:** 20 lecciones de profundización y laboratorios.
+- **Bloque 48 — Quadlet y systemd — avanzado:** 21 lecciones de profundización y laboratorios.
+- **Bloque 49 — Seguridad de la cadena de suministro:** 22 lecciones de profundización y laboratorios.
+- **Bloque 50 — Observabilidad y diagnóstico avanzado:** 21 lecciones de profundización y laboratorios.
+- **Bloque 51 — Operación, mantenimiento y recuperación:** 21 lecciones de profundización y laboratorios.
+- **Bloque 52 — Internals containers/* y proyecto experto integrador:** 22 lecciones de profundización y laboratorios.
+
+### Requisitos verificables del nivel experto
+
+- Inspeccionar namespaces, cgroups, UID/GID, mounts y procesos reales, distinguiendo runtime y engine.
+- Construir, firmar, inspeccionar, copiar y ejecutar una imagen OCI, verificando digests y plataformas.
+- Administrar contenedores rootless, servicios Quadlet, redes y volúmenes en Fedora sin desactivar SELinux.
+- Diagnosticar problemas con evidencias reproducibles: logs, eventos, syscalls, métricas, paquetes y manifiestos.
+- Ejecutar backups, restauraciones y cambios de versión con comprobación de integridad.
+- Implementar `container-debugger` en modo de solo lectura, con informes JSON y pruebas.
+
+### Límites y coordinación con otros PATH
+
+Kubernetes, systemd, SELinux, redes, Bash, CI/CD y observabilidad se aplican a contenedores, sin repetir sus cursos generales. Las funciones opcionales y los flags dependen de versiones instaladas; cada lección debe comprobar compatibilidad con `--help`, `man` y documentación upstream.
+
+
+## 25. Docker Swarm — ampliación multinodo (bloques 53–61)
+
+Docker Swarm se incorpora como materia principal de orquestación integrada en Docker Engine, sin confundirlo con Docker Compose, Podman pods, Quadlet o Kubernetes. Cubrir arquitectura manager/worker, Raft/quorum, PKI/mTLS, servicios y tareas, scheduling, redes overlay/VXLAN, ingress y DNS, stacks, secrets/configs, volúmenes distribuidos, seguridad, observabilidad, alta disponibilidad, recuperación y automatización.
+
+Se exigen laboratorios Fedora multinodo con verificación de puertos, firewalld, SELinux, tolerancia a fallos, actualizaciones, rollback, backups y troubleshooting basado en evidencias. Swarm no debe presentarse como equivalente funcional a Kubernetes ni como solución de almacenamiento distribuido. Las capacidades y flags se validarán contra la versión instalada de Docker Engine.
+
+Los bloques 0–52 permanecen intactos. El bloque 61 amplía el proyecto container-debugger para diagnosticar servicios, tareas, nodos, redes y quorum, sin sustituir el proyecto original.

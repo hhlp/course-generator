@@ -20,6 +20,14 @@
 1.19 rpm -ql openssh-clients
 1.20 rpm -ql openssh-server
 1.21 laboratorio: construir el mapa completo de OpenSSH instalado en Fedora
+1.22 SSH-2: RFC 4251, 4252, 4253 y 4254 y extensiones posteriores
+1.23 capas: transporte, autenticación y conexión
+1.24 identificación de versión y negociación SSH_MSG_KEXINIT
+1.25 intercambio de claves, secreto compartido y derivación de claves
+1.26 NEWKEYS, rekeying y protección de integridad
+1.27 canales, sesiones, requests y ventanas de flujo
+1.28 modelo de amenazas y límites de confidencialidad
+1.29 laboratorio: capturar handshake con tcpdump y analizar ssh -vvv
 
 2. Descubrir dónde se configura OpenSSH
 2.1 man ssh
@@ -61,7 +69,7 @@
 3.10 estructura modular recomendada
 3.10.1 ~/.ssh/
 3.10.1.1 config
-3.10.1.2 config.d/
+3.10.1.2.0 config.d/
 3.10.1.2.1 10-base.conf
 3.10.1.2.2 20-personal.conf
 3.10.1.2.3 30-work.conf
@@ -110,6 +118,11 @@
 4.13 investigar un parámetro efectivo
 4.14 laboratorio:
 4.14.1 comando ssh → ~/.ssh/config → Include → config.d/*.conf → Host → valor efectivo → ssh -G
+4.15 diferencias entre first-value-wins del cliente y excepciones
+4.16 orden de Include, Host y Match y contexto
+4.17 sshd -T -C user=,host=,addr=,laddr=,lport=
+4.18 distinguir directivas acumulativas y reemplazos
+4.19 laboratorio: matriz de precedencia cliente/servidor
 
 5. Configuración del cliente SSH
 5.1 Host
@@ -217,6 +230,11 @@
 7.23 ssh -Q key
 7.24 crypto-policies de Fedora
 7.25 laboratorio: descubrir algoritmos realmente permitidos
+7.26 firma RSA-SHA2 frente a algoritmo de clave RSA
+7.27 diferencias entre listado ssh -Q y negociación permitida
+7.28 negociación observada con ssh -vvv y sshd -T
+7.29 políticas criptográficas Fedora: verificar restricciones reales
+7.30 laboratorio: negociación compatible y rechazo controlado
 
 8. Claves SSH
 8.1 ssh-keygen
@@ -237,6 +255,12 @@
 8.16 no-port-forwarding
 8.17 no-X11-forwarding
 8.18 laboratorio: administrar múltiples identidades SSH
+8.19 rotación de claves, inventario y revocación
+8.20 opciones permitidas en authorized_keys: permitopen y permitlisten
+8.21 FIDO2: claves ed25519-sk y ecdsa-sk según soporte
+8.22 touch, verificación de usuario y claves residentes
+8.23 agentes y proveedores de llaves de seguridad
+8.24 laboratorio: autenticación con llave hardware o simulación documental
 
 9. ssh-agent
 9.1 qué es ssh-agent
@@ -248,6 +272,10 @@
 9.7 agent forwarding
 9.8 riesgos de ForwardAgent
 9.9 laboratorio
+9.10 ssh-add -t y ssh-add -c
+9.11 restricciones de destino en ssh-agent cuando estén disponibles
+9.12 socket del agente, aislamiento y riesgo de suplantación
+9.13 laboratorio: agente con caducidad y confirmación
 
 10. Host keys y known_hosts
 10.1 identidad del servidor
@@ -262,6 +290,11 @@
 10.10 ssh-keygen -F
 10.11 ssh-keygen -R
 10.12 laboratorio: investigar completamente la identidad de un servidor
+10.13 UpdateHostKeys y rotación de host keys
+10.14 SSHFP con DNSSEC y VerifyHostKeyDNS
+10.15 @cert-authority y @revoked en known_hosts
+10.16 ssh-keygen -H y gestión de known_hosts
+10.17 laboratorio: rotación de identidad de host verificada
 
 11. Bastion hosts y ProxyJump
 11.1 jump host
@@ -284,6 +317,11 @@
 12.6 GatewayPorts
 12.7 ExitOnForwardFailure
 12.8 laboratorio
+12.9 StreamLocalForward y sockets Unix
+12.10 PermitOpen, PermitListen y DisableForwarding
+12.11 StreamLocalBindUnlink y permisos de socket
+12.12 túneles reversos y exposición accidental
+12.13 laboratorio: restricciones efectivas de forwarding
 
 13. SFTP y SCP
 13.1 sftp
@@ -294,6 +332,11 @@
 13.6 ChrootDirectory
 13.7 ForceCommand internal-sftp
 13.8 laboratorio
+13.9 SCP moderno sobre SFTP y modo legacy -O según versión
+13.10 sftp en batch con -b y códigos de fallo
+13.11 chroot: propiedad root y directorios escribibles separados
+13.12 límites y auditoría de subsistemas SFTP
+13.13 laboratorio: transferencia automatizada con permisos restringidos
 
 14. OpenSSH + systemd en Fedora
 14.1 sshd.service
@@ -368,6 +411,10 @@
 17.29 laboratorio: aplicar y verificar una regla HBAC
 17.30 laboratorio: diagnosticar un fallo de identidad/autenticación central
 17.31 límite del PATH: provisión y administración profunda de identidades se estudia en IAM
+17.32 SSSD SSH responder y recuperación de claves públicas cuando aplique
+17.33 certificados SSH y principales de identidad central
+17.34 MFA y AuthenticationMethods con PAM y claves
+17.35 diagnóstico de GSSAPI y delegación de credenciales
 
 18. Seguridad y hardening OpenSSH
 18.1 reducir superficie de ataque
@@ -383,6 +430,11 @@
 18.11 crypto-policies Fedora
 18.12 logs
 18.13 laboratorio de hardening
+18.14 Threat modeling para acceso remoto
+18.15 MaxStartups y mecanismos de penalización por origen según versión
+18.16 LogVerbose, exposición de datos y auditoría
+18.17 hardening comprobado por sshd -T -C
+18.18 plan de rollback y acceso de emergencia
 
 19. Troubleshooting OpenSSH
 19.1 ssh -v
@@ -406,6 +458,11 @@
 19.19 routing
 19.20 tcpdump
 19.21 laboratorio: investigar completamente un fallo SSH
+19.22 troubleshooting por fases del protocolo
+19.23 diagnóstico de certificados y principales
+19.24 diagnóstico de llaves FIDO2
+19.25 fallos de multiplexación y sockets
+19.26 registro de evidencias y árbol de decisión
 
 20. Laboratorio final OpenSSH
 20.1 inventariar paquetes
@@ -425,248 +482,373 @@
 20.15 investigar SELinux
 20.16 investigar crypto-policies
 20.17 mapa completo del ecosistema OpenSSH
-20.20 mini-ssh-debugger
+20.18 mini-ssh-debugger
 
 21. Fundamentos de Watchdog
-21.1 qué es un watchdog
-21.2 watchdog timer
-21.3 keepalive
-21.4 timeout
-21.5 reset
-21.6 watchdog hardware
-21.7 watchdog software
-21.8 watchdog del kernel
-21.9 soft lockup
-21.10 hard lockup
-21.11 NMI watchdog
-21.12 watchdog framework
-21.13 watchdog driver
-21.14 /dev/watchdog
-21.15 /dev/watchdog0
-21.16 daemon watchdog
-21.17 watchdog de systemd
-21.18 diferencias fundamentales: lockup detector ≠ watchdog framework ≠ watchdog hardware ≠ /dev/watchdog ≠ daemon watchdog ≠ systemd watchdog
+29.1 qué es un watchdog
+29.2 watchdog timer
+29.3 keepalive
+29.4 timeout
+29.5 reset
+29.6 watchdog hardware
+29.7 watchdog software
+29.8 watchdog del kernel
+29.9 soft lockup
+29.10 hard lockup
+29.11 NMI watchdog
+29.12 watchdog framework
+29.13 watchdog driver
+29.14 /dev/watchdog
+29.15 /dev/watchdog0
+29.16 daemon watchdog
+29.17 watchdog de systemd
+29.18 diferencias fundamentales: lockup detector ≠ watchdog framework ≠ watchdog hardware ≠ /dev/watchdog ≠ daemon watchdog ≠ systemd watchdog
 22. Configuración Watchdog del kernel Fedora
-22.1 uname -r
-22.2 /boot/config-$(uname -r)
-22.3 CONFIG_WATCHDOG
-22.4 CONFIG_WATCHDOG_CORE
-22.5 CONFIG_WATCHDOG_NOWAYOUT
-22.6 CONFIG_SOFT_WATCHDOG
-22.7 CONFIG_HARDLOCKUP_DETECTOR
-22.8 CONFIG_WQ_WATCHDOG
-22.9 built-in = y
-22.10 module = m
-22.11 disabled
-22.12 laboratorio: descubrir todo el soporte watchdog compilado en el kernel Fedora actual
+30.1 uname -r
+30.2 /boot/config-$(uname -r)
+30.3 CONFIG_WATCHDOG
+30.4 CONFIG_WATCHDOG_CORE
+30.5 CONFIG_WATCHDOG_NOWAYOUT
+30.6 CONFIG_SOFT_WATCHDOG
+30.7 CONFIG_HARDLOCKUP_DETECTOR
+30.8 CONFIG_WQ_WATCHDOG
+30.9 built-in = y
+30.10 module = m
+30.11 disabled
+30.12 laboratorio: descubrir todo el soporte watchdog compilado en el kernel Fedora actual
 23. Lockup detectors del kernel
-23.1 soft lockup
-23.2 hard lockup
-23.3 NMI
-23.4 heartbeat del detector
-23.5 kernel.watchdog
-23.6 kernel.soft_watchdog
-23.7 kernel.nmi_watchdog
-23.8 kernel.watchdog_thresh
-23.9 kernel.watchdog_cpumask
-23.10 /proc/sys/kernel/watchdog
-23.11 /proc/sys/kernel/soft_watchdog
-23.12 /proc/sys/kernel/nmi_watchdog
-23.13 /proc/sys/kernel/watchdog_thresh
-23.14 /proc/sys/kernel/watchdog_cpumask
-23.15 laboratorio: investigar todos los sysctl watchdog
+31.1 soft lockup
+31.2 hard lockup
+31.3 NMI
+31.4 heartbeat del detector
+31.5 kernel.watchdog
+31.6 kernel.soft_watchdog
+31.7 kernel.nmi_watchdog
+31.8 kernel.watchdog_thresh
+31.9 kernel.watchdog_cpumask
+31.10 /proc/sys/kernel/watchdog
+31.11 /proc/sys/kernel/soft_watchdog
+31.12 /proc/sys/kernel/nmi_watchdog
+31.13 /proc/sys/kernel/watchdog_thresh
+31.14 /proc/sys/kernel/watchdog_cpumask
+31.15 laboratorio: investigar todos los sysctl watchdog
 24. watchdog_thresh
-24.1 significado
-24.2 hard lockup threshold
-24.3 soft lockup threshold
-24.4 relación entre ambos
-24.5 sysctl
-24.6 cambio temporal
-24.7 persistencia
-24.8 /etc/sysctl.conf
-24.9 /etc/sysctl.d/
-24.10 laboratorio
+32.1 significado
+32.2 hard lockup threshold
+32.3 soft lockup threshold
+32.4 relación entre ambos
+32.5 sysctl
+32.6 cambio temporal
+32.7 persistencia
+32.8 /etc/sysctl.conf
+32.9 /etc/sysctl.d/
+32.10 laboratorio
 25. Parámetros Watchdog en kernel command line
-25.1 /proc/cmdline
-25.2 nowatchdog
-25.3 watchdog_thresh=
-25.4 nmi_watchdog=
-25.5 softlockup_panic=
-25.6 hardlockup_panic=
-25.7 grubby --info=ALL
-25.8 agregar argumentos
-25.9 eliminar argumentos
-25.10 persistencia
-25.11 laboratorio: boot parameter ↓ kernel ↓ /proc ↓ sysctl
+33.1 /proc/cmdline
+33.2 nowatchdog
+33.3 watchdog_thresh=
+33.4 nmi_watchdog=
+33.5 softlockup_panic=
+33.6 hardlockup_panic=
+33.7 grubby --info=ALL
+33.8 agregar argumentos
+33.9 eliminar argumentos
+33.10 persistencia
+33.11 laboratorio: boot parameter ↓ kernel ↓ /proc ↓ sysctl
 26. Watchdog Framework del kernel
-26.1 arquitectura
-26.2 watchdog core
-26.3 watchdog_device
-26.4 watchdog_ops
-26.5 watchdog_info
-26.6 register_watchdog_device()
-26.7 unregister_watchdog_device()
-26.8 userspace API
-26.9 /dev/watchdogN
-26.10 ioctl
-26.11 WDIOC_GETSUPPORT
-26.12 WDIOC_GETSTATUS
-26.13 WDIOC_GETBOOTSTATUS
-26.14 WDIOC_KEEPALIVE
-26.15 WDIOC_SETTIMEOUT
-26.16 WDIOC_GETTIMEOUT
-26.17 WDIOC_GETTIMELEFT
-26.18 magic close
-26.19 nowayout
-26.20 laboratorio: userspace ↓ /dev/watchdog0 ↓ watchdog core ↓ driver ↓ hardware
+34.1 arquitectura
+34.2 watchdog core
+34.3 watchdog_device
+34.4 watchdog_ops
+34.5 watchdog_info
+34.6 register_watchdog_device()
+34.7 unregister_watchdog_device()
+34.8 userspace API
+34.9 /dev/watchdogN
+34.10 ioctl
+34.11 WDIOC_GETSUPPORT
+34.12 WDIOC_GETSTATUS
+34.13 WDIOC_GETBOOTSTATUS
+34.14 WDIOC_KEEPALIVE
+34.15 WDIOC_SETTIMEOUT
+34.16 WDIOC_GETTIMEOUT
+34.17 WDIOC_GETTIMELEFT
+34.18 magic close
+34.19 nowayout
+34.20 laboratorio: userspace ↓ /dev/watchdog0 ↓ watchdog core ↓ driver ↓ hardware
 27. Drivers Watchdog
-27.1 drivers/watchdog/
-27.2 detectar drivers disponibles
-27.3 lsmod
-27.4 modinfo
-27.5 modprobe
-27.6 parámetros de módulo
-27.7 timeout
-27.8 heartbeat
-27.9 nowayout
-27.10 iTCO_wdt
-27.11 softdog
-27.12 IPMI watchdog
-27.13 otros drivers según hardware
-27.14 laboratorio: identificar el watchdog de nuestra máquina
+35.1 drivers/watchdog/
+35.2 detectar drivers disponibles
+35.3 lsmod
+35.4 modinfo
+35.5 modprobe
+35.6 parámetros de módulo
+35.7 timeout
+35.8 heartbeat
+35.9 nowayout
+35.10 iTCO_wdt
+35.11 softdog
+35.12 IPMI watchdog
+35.13 otros drivers según hardware
+35.14 laboratorio: identificar el watchdog de nuestra máquina
 28. Descubrir parámetros de drivers
-28.1 modinfo <driver>
-28.2 parm:
-28.2.1 /sys/module/
-28.2.2 /sys/module/<driver>/parameters/
-28.5 parámetros actuales
-28.6 parámetros cargables
-28.7 modprobe driver parametro=valor
-28.8 /etc/modprobe.d/
-28.9 options driver ...
-28.10 initramfs
-28.11 dracut
-28.12 laboratorio: documentación ↓ modinfo ↓ sysfs ↓ modprobe.d ↓ driver
+36.1 modinfo <driver>
+36.2 parm:
+36.2.1 /sys/module/
+36.2.2 /sys/module/<driver>/parameters/
+36.3 parámetros actuales
+36.4 parámetros cargables
+36.5 modprobe driver parametro=valor
+36.6 /etc/modprobe.d/
+36.7 options driver ...
+36.8 initramfs
+36.9 dracut
+36.10 laboratorio: documentación ↓ modinfo ↓ sysfs ↓ modprobe.d ↓ driver
+21. Certificados SSH y autoridad certificadora (CA)
+21.1 arquitectura de certificados OpenSSH y diferencias con X.509
+21.2 CA de usuarios frente a CA de hosts
+21.3 ssh-keygen -s: emisión, identificadores, seriales y validez
+21.4 principals, extensiones y critical options
+21.5 TrustedUserCAKeys y AuthorizedPrincipalsFile
+21.6 AuthorizedPrincipalsCommand y privilegios mínimos
+21.7 certificados de host y @cert-authority
+21.8 revocación KRL con ssh-keygen -k y -Q
+21.9 rotación de CA, caducidad y respuesta a incidentes
+21.10 laboratorio: CA de usuarios, CA de hosts y revocación
+
+22. Autenticación avanzada, MFA y llaves de seguridad
+22.1 AuthenticationMethods: combinaciones de factores
+22.2 PAM, keyboard-interactive y GSSAPI
+22.3 FIDO2, touch y user verification
+22.4 IdentityAgent y gestión de identidades
+22.5 controles por usuario, grupo y dirección con Match
+22.6 laboratorio: exigir clave más segundo factor sin bloquear acceso
+
+23. OpenSSH internals y protocolo en profundidad
+23.1 arquitectura de procesos ssh y sshd
+23.2 separación de privilegios y proceso monitor
+23.3 transport, packet layer y dispatch
+23.4 session channels y flow control
+23.5 KEX, host authentication y rekeying
+23.6 código fuente OpenSSH Portable y técnicas de lectura
+23.7 strace y depuración controlada sin exponer secretos
+23.8 laboratorio: correlacionar paquete, proceso, canal y log
+
+24. SSH en automatización y operaciones
+24.1 BatchMode y gestión de códigos de salida
+24.2 comandos remotos, stdin, stdout, stderr y quoting
+24.3 ControlMaster en automatización concurrente
+24.4 host key pinning y secretos en CI/CD
+24.5 Ansible y OpenSSH: ProxyJump, inventario y control de hosts
+24.6 rotación y expiración de credenciales de máquinas
+24.7 laboratorio: despliegue automatizado verificable
+
+25. Auditoría, observabilidad y respuesta a incidentes SSH
+25.1 LogLevel, LogVerbose y privacidad
+25.2 journald, auditd y trazabilidad de autenticaciones
+25.3 detección de intentos fallidos y anomalías
+25.4 respuesta ante compromiso de clave o CA
+25.5 revocación, rotación y recuperación de acceso
+25.6 laboratorio: investigación de incidente con evidencias
+
+26. Acceso remoto a escala y arquitectura segura
+26.1 bastiones y segmentación de red
+26.2 identidades de servicio frente a identidades humanas
+26.3 CA de corta duración y política de principals
+26.4 gestión de configuración declarativa y pruebas
+26.5 modelos de amenaza, mínimos privilegios y break-glass
+26.6 laboratorio: arquitectura multihost de acceso seguro
+
+27. Diagnóstico avanzado OpenSSH
+27.1 fallos de transporte, KEX, autenticación y canal
+27.2 errores de certificados, principals y KRL
+27.3 errores FIDO2, agente y multiplexación
+27.4 problemas de MTU, DNS y latencia
+27.5 matriz de evidencias y aislamiento de capas
+27.6 laboratorio: cinco incidencias reproducibles
+
+28. Proyecto experto OpenSSH
+28.1 inventario y diseño de acceso
+28.2 configuración modular y validación efectiva
+28.3 CA SSH y certificados de usuarios y hosts
+28.4 bastión, SFTP restringido y forwarding controlado
+28.5 integración opcional como consumer de IAM
+28.6 auditoría, rotación y plan de recuperación
+28.7 entregables: diagramas, scripts, evidencias y pruebas de aceptación
+
 29. /dev/watchdog y sysfs
-29.1 /dev/watchdog
-29.2 /dev/watchdog0
-29.3 múltiples watchdogs
-29.4 major/minor
-29.5 udev
-29.6 /sys/class/watchdog/
-29.7 /sys/class/watchdog/watchdog0/
-29.8 identity
-29.9 state
-29.10 status
-29.11 timeout
-29.12 timeleft
-29.13 bootstatus
-29.14 nowayout
-29.15 laboratorio: mapear /dev/watchdog0 hasta el driver
+37.1 /dev/watchdog
+37.2 /dev/watchdog0
+37.3 múltiples watchdogs
+37.4 major/minor
+37.5 udev
+37.6 /sys/class/watchdog/
+37.7 /sys/class/watchdog/watchdog0/
+37.8 identity
+37.9 state
+37.10 status
+37.11 timeout
+37.12 timeleft
+37.13 bootstatus
+37.14 nowayout
+37.15 laboratorio: mapear /dev/watchdog0 hasta el driver
 30. Paquete watchdog de Fedora
-30.1 dnf install watchdog
-30.2 rpm -qi watchdog
-30.3 rpm -ql watchdog
-30.4 watchdog
-30.5 wd_identify
-30.6 wd_keepalive
-30.7 /etc/watchdog.conf
-30.8 /etc/watchdog.d/
-30.9 watchdog.service
-30.10 watchdog-ping.service
-30.11 man watchdog
-30.12 man watchdog.conf
-30.13 laboratorio: investigar completamente el paquete
+38.1 dnf install watchdog
+38.2 rpm -qi watchdog
+38.3 rpm -ql watchdog
+38.4 watchdog
+38.5 wd_identify
+38.6 wd_keepalive
+38.7 /etc/watchdog.conf
+38.8 /etc/watchdog.d/
+38.9 watchdog.service
+38.10 watchdog-ping.service
+38.11 man watchdog
+38.12 man watchdog.conf
+38.13 laboratorio: investigar completamente el paquete
 31. watchdog.conf en profundidad
-31.1 watchdog-device
-31.2 watchdog-timeout
-31.3 interval
-31.4 realtime
-31.5 priority
-31.6 max-load-1
-31.7 max-load-5
-31.8 max-load-15
-31.9 memory
-31.10 temperature
-31.11 file
-31.12 change
-31.13 pidfile
-31.14 ping
-31.15 interface
-31.16 test-binary
-31.17 repair-binary
-31.18 retry-timeout
-31.19 repair-maximum
-31.20 laboratorio: construir watchdog.conf progresivamente
+39.1 watchdog-device
+39.2 watchdog-timeout
+39.3 interval
+39.4 realtime
+39.5 priority
+39.6 max-load-1
+39.7 max-load-5
+39.8 max-load-15
+39.9 memory
+39.10 temperature
+39.11 file
+39.12 change
+39.13 pidfile
+39.14 ping
+39.15 interface
+39.16 test-binary
+39.17 repair-binary
+39.18 retry-timeout
+39.19 repair-maximum
+39.20 laboratorio: construir watchdog.conf progresivamente
 32. Watchdog y red
-32.1 por qué watchdog puede usar ping
-32.2 ping como health check
-32.3 comprobar gateway
-32.4 comprobar router
-32.5 comprobar servidor remoto
-32.6 diferencia: SSH → comunicación cliente-servidor watchdog ping → comprobación de salud
-32.7 laboratorio
+40.1 por qué watchdog puede usar ping
+40.2 ping como health check
+40.3 comprobar gateway
+40.4 comprobar router
+40.5 comprobar servidor remoto
+40.6 diferencia: SSH → comunicación cliente-servidor watchdog ping → comprobación de salud
+40.7 laboratorio
 33. systemd Watchdog
-33.1 watchdog de PID 1
-33.2 watchdog hardware
-33.3 RuntimeWatchdogSec=
-33.4 RebootWatchdogSec=
-33.5 KExecWatchdogSec=
-33.6 watchdog de servicios
-33.7 WatchdogSec=
-33.8 sd_notify()
-33.9 WATCHDOG=1
-33.10 WatchdogSignal=
-33.11 RuntimeWatchdogSec= vs WatchdogSec=
-33.12 laboratorio: crear un servicio systemd con watchdog
+41.1 watchdog de PID 1
+41.2 watchdog hardware
+41.3 RuntimeWatchdogSec=
+41.4 RebootWatchdogSec=
+41.5 KExecWatchdogSec=
+41.6 watchdog de servicios
+41.7 WatchdogSec=
+41.8 sd_notify()
+41.9 WATCHDOG=1
+41.10 WatchdogSignal=
+41.11 RuntimeWatchdogSec= vs WatchdogSec=
+41.12 laboratorio: crear un servicio systemd con watchdog
+41.13 pretimeout, acciones previas a reset y soporte real del dispositivo
+41.14 propiedad exclusiva de /dev/watchdog y conflictos entre daemons
+41.15 Restart=, RestartSec= y StartLimitBurst= en servicios
+41.16 NotifyAccess=, Type=notify y sd_watchdog_enabled()
+41.17 diferencia entre recuperación de proceso y reinicio de host
 34. Watchdog + kernel panic
-34.1 panic
-34.2 kernel.panic
-34.3 panic_on_oops
-34.4 softlockup_panic
-34.5 hardlockup_panic
-34.6 panic + watchdog
-34.7 reboot automático
-34.8 laboratorio controlado
+42.1 panic
+42.2 kernel.panic
+42.3 panic_on_oops
+42.4 softlockup_panic
+42.5 hardlockup_panic
+42.6 panic + watchdog
+42.7 reboot automático
+42.8 laboratorio controlado
 35. Diagnóstico Watchdog
-35.1 dmesg
-35.2 journalctl -k
-35.3 journalctl -b
-35.4 journalctl -u watchdog
-35.5 sysctl
-35.6 /proc
-35.7 /sys
-35.8 lsmod
-35.9 modinfo
-35.10 modprobe
-35.11 /dev/watchdog*
-35.12 /sys/class/watchdog/
-35.13 wd_identify
-35.14 systemctl
-35.15 laboratorio: diagnosticar un watchdog que no funciona
+43.1 dmesg
+43.2 journalctl -k
+43.3 journalctl -b
+43.4 journalctl -u watchdog
+43.5 sysctl
+43.6 /proc
+43.7 /sys
+43.8 lsmod
+43.9 modinfo
+43.10 modprobe
+43.11 /dev/watchdog*
+43.12 /sys/class/watchdog/
+43.13 wd_identify
+43.14 systemctl
+43.15 laboratorio: diagnosticar un watchdog que no funciona
+43.16 pstore, ramoops, kdump y journal persistente
+43.17 diferenciar reset watchdog, kernel panic y reinicio solicitado
 36. Seguridad y riesgos
-36.1 riesgo de reboot accidental
-36.2 probar primero en VM
-36.3 nowayout
-36.4 magic close
-36.5 watchdog demasiado agresivo
-36.6 false positives
-36.7 servicios críticos
-36.8 estrategias de prueba segura
+44.1 riesgo de reboot accidental
+44.2 probar primero en VM
+44.3 nowayout
+44.4 magic close
+44.5 watchdog demasiado agresivo
+44.6 false positives
+44.7 servicios críticos
+44.8 estrategias de prueba segura
+44.9 riesgos de split-brain y fencing en sistemas distribuidos
+44.10 observabilidad, alertas y evidencia posterior al reinicio
 37. Laboratorio final Watchdog
-37.1 inventariar CONFIG_WATCHDOG*
-37.2 inventariar lockup detectors
-37.3 inventariar sysctl
-37.4 inventariar kernel command line
-37.5 descubrir drivers
-37.6 descubrir parámetros
-37.7 identificar hardware
-37.8 localizar /dev/watchdog*
-37.9 recorrer /sys/class/watchdog/
-37.10 recorrer /sys/module/<driver>/
-37.11 analizar daemon watchdog
-37.12 analizar systemd watchdog
-37.13 analizar logs
-37.14 simular fallo de forma segura
-37.15 verificar recuperación
-37.16 construir mapa completo del ecosistema Watchdog
+45.1 inventariar CONFIG_WATCHDOG*
+45.2 inventariar lockup detectors
+45.3 inventariar sysctl
+45.4 inventariar kernel command line
+45.5 descubrir drivers
+45.6 descubrir parámetros
+45.7 identificar hardware
+45.8 localizar /dev/watchdog*
+45.9 recorrer /sys/class/watchdog/
+45.10 recorrer /sys/module/<driver>/
+45.11 analizar daemon watchdog
+45.12 analizar systemd watchdog
+45.13 analizar logs
+45.14 simular fallo de forma segura
+45.15 verificar recuperación
+45.16 construir mapa completo del ecosistema Watchdog
+
+46. Watchdog pretimeout y API avanzada
+46.1 WDIOC_SETPRETIMEOUT y WDIOC_GETPRETIMEOUT
+46.2 pretimeout governors y capacidades por driver
+46.3 WDIOC_GETTIMELEFT, watchdog_info y límites de soporte
+46.4 magic close y nowayout en escenarios de fallo
+46.5 laboratorio: inventario read-only y prueba aislada
+
+47. Watchdog en KVM, QEMU y hardware físico
+47.1 drivers y dispositivos disponibles en QEMU/KVM
+47.2 i6300esb y virtio-watchdog según soporte real
+47.3 softdog frente a watchdog hardware
+47.4 comportamiento del hipervisor ante expiración
+47.5 laboratorio: VM desechable, snapshot y reset controlado
+
+48. Internals y concurrencia del watchdog kernel
+48.1 watchdog core, watchdog_ops y ciclo de vida
+48.2 userspace heartbeat y petting hardware
+48.3 open/close, exclusividad y carreras
+48.4 pretimeout, timeout y reinicio de emergencia
+48.5 lectura de drivers/watchdog en fuentes kernel
+48.6 laboratorio: trazar eventos con observabilidad segura
+
+49. Recuperación, diagnóstico forense y observabilidad
+49.1 journal persistente, pstore, ramoops y kdump
+49.2 diferenciar panic, OOM, lockup y reset watchdog
+49.3 systemd service watchdog frente a RuntimeWatchdogSec
+49.4 métricas, alertas y falsos positivos
+49.5 laboratorio: reconstruir línea temporal de un reinicio
+
+50. Watchdog en alta disponibilidad y producción
+50.1 watchdog frente a health checks y fencing
+50.2 riesgo de split-brain y recuperación distribuida
+50.3 políticas de reinicio, backoff y límites
+50.4 runbooks, pruebas de aceptación y rollback
+50.5 laboratorio: fallo de servicio y fallo de nodo aislados
+
+51. Proyecto experto Watchdog
+51.1 inventario de kernel, módulos, sysctl y dispositivos
+51.2 selección justificada de watchdog y ownership
+51.3 configuración de systemd y daemon sin competencia
+51.4 ensayos en VM con recuperación verificable
+51.5 captura de evidencias y diagnóstico postmortem
+51.6 entregables: arquitectura, runbook y criterios de seguridad

@@ -142,3 +142,55 @@ Al terminar, el alumno debe poder explicar Scrum con precisión, aplicar sus pri
 facilitar equipos y eventos, trabajar con Product Owners y stakeholders, utilizar métricas
 sin abusar de ellas, ayudar a eliminar impedimentos, trabajar sobre cambio organizacional,
 escalar un producto mediante Nexus y razonar al nivel exigible en PSM I, PSM II y PSM III.
+
+
+## Profundidad transversal obligatoria — práctica profesional
+
+Para cada tema de liderazgo, coaching, facilitación, conflictos, cambio organizacional, escalado y PSM III, seguir la secuencia: **concepto → fundamentos → contexto → aplicación → ejemplo → escenario complejo → intervención → consecuencias → anti-patrones → laboratorio → evaluación**. Explicar tanto cuándo intervenir como cuándo no intervenir. Distinguir claramente reglas del Scrum Guide, guías complementarias y propuestas de autores.
+
+### Coaching, equipos y facilitación
+
+Enseñar diagnóstico de contexto, escucha, preguntas abiertas, acuerdos, límites éticos, conflictos, decisiones inclusivas, diseño de sesiones y evaluación de sus efectos. Los laboratorios deben incluir guiones, transcripciones o registros de decisiones y una revisión crítica posterior. No confundir coaching profesional con terapia ni con evaluación jerárquica.
+
+### Sistemas y cambio organizacional
+
+Exigir mapas de actores, dependencias y causalidad; diferenciar síntomas de hipótesis de causa; estudiar incentivos, consecuencias no intencionadas y experimentos reversibles. Incluir evidencia previa, criterio de éxito, fecha de revisión y aprendizaje posterior.
+
+### Forecasting y Evidence-Based Management
+
+Utilizar datasets documentados, comprobar consistencia de timestamps y estados, explicitar supuestos, realizar análisis de sensibilidad y comunicar incertidumbre. Los experimentos de valor deben distinguir outputs de outcomes y no convertir métricas en objetivos individuales.
+
+### Nexus y escalado
+
+Trabajar con escenarios de integración fallida, dependencias cruzadas y responsabilidad del Nexus Integration Team. Contrastar cada regla formal con la versión vigente de The Nexus Guide; no presentar las técnicas de arquitectura como elementos obligatorios del framework.
+
+### Evaluación de PSM III y proyecto final
+
+Practicar respuestas escritas en inglés con rúbricas: precisión respecto a Scrum, reconocimiento de contexto y supuestos, alternativas, razonamiento empírico, Scrum Values, efectos secundarios y claridad. No prometer equivalencia con exámenes oficiales. El proyecto final debe aportar registros de decisiones, datasets reproducibles, charts, evidencias de facilitación, mapa sistémico, experimentos y defensa crítica.
+
+### Reglas de preservación y evaluación
+
+Mantener la progresión PSM I → PSM II → PSM III, sin eliminar temas originales. Cada laboratorio debe definir situación inicial, objetivo, datos/recursos, pasos, entregables, criterios de evaluación, errores frecuentes y reflexión. No sustituir práctica profesional real por aprobar simulacros.
+
+
+## Sprint Backlog — gestión operativa y cambios durante el Sprint
+
+Enseñar de manera explícita cómo los Developers construyen y mantienen el Sprint Backlog: Sprint Goal, PBIs seleccionados y plan accionable. Cubrir Sprint Planning, capacidad, desglose opcional en tareas, actualización diaria, trabajo descubierto, seguimiento del Sprint Goal, transparencia y Definition of Done. Los Developers son responsables del Sprint Backlog; el Scrum Master facilita la comprensión de Scrum y la autogestión, sin asignar tareas ni convertirse en administrador del artefacto.
+
+Diferenciar las decisiones del Product Owner (ordenación y valor del Product Backlog) de las decisiones de los Developers (plan y adaptación del Sprint Backlog). Explicar cómo se negocia con el Product Owner el alcance cuando se aprende más, sin realizar cambios que pongan en peligro el Sprint Goal y sin reducir la calidad. Scrum no prescribe un workflow, una herramienta de tickets ni una política específica de hotfixes.
+
+### Bugs, hotfixes, incidentes y PBIs nuevos
+
+Comparar defectos descubiertos en el trabajo del Sprint, bugs existentes en producción, incidentes urgentes, hotfixes y solicitudes de funcionalidad. No afirmar que todo trabajo inesperado deba convertirse necesariamente en un PBI antes de actuar; explicar cuándo registrar un PBI, cuándo actualizar directamente el plan de los Developers y cómo mantener la trazabilidad. Para un nuevo PBI que se considere durante el Sprint, enseñar evaluación de valor y urgencia con el Product Owner, capacidad e impacto por los Developers, adaptación del Sprint Backlog y comunicación transparente.
+
+Incluir criterios de severidad, riesgo, impacto de cliente, regresión, pruebas, Definition of Done, política de incidentes y alternativas ante compromisos de capacidad. Distinguir trabajo no Done al finalizar el Sprint de un Increment terminado y evitar atribuir al Scrum Master autoridad para imponer o aprobar cambios de alcance.
+
+### Laboratorios obligatorios
+
+1. Construir un Sprint Backlog desde un Product Backlog y un Sprint Goal, con plan y capacidad explícitos.
+2. Simular actualizaciones diarias, nuevos hallazgos, dependencias y trabajo bloqueado.
+3. Incorporar un bug durante el Sprint justificando su tratamiento y documentando cambios.
+4. Simular un hotfix de producción crítico en el día 5 de un Sprint de dos semanas, con evaluación de urgencia, decisiones del Product Owner y Developers, alternativas, pruebas y protección del Sprint Goal.
+5. Renegociar alcance y evaluar el trabajo no Done al finalizar el Sprint.
+
+Cada laboratorio debe aportar Sprint Backlog antes/después, decisiones y responsables, efecto sobre el Sprint Goal, evidencia de calidad, cambios de scope y reflexión crítica. Conectar con los bloques 7, 8 y 19 para capacity, charts y WIP sin repetir sus explicaciones completas.

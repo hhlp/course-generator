@@ -51,3 +51,18 @@ La documentación oficial es la referencia principal de APIs y compatibilidad. N
 Incluir una lectura principal y, cuando aporten valor, lecturas complementarias o de profundización. Citar título y URL específica del tema; para libros usar capítulos sólo cuando hayan sido comprobados en la edición consultada. Señalar APIs obsoletas, alternativas actuales y límites de compatibilidad. Distinguir documentación consultada de lectura propuesta.
 
 Las páginas de integración de Polars, la guía inicial de Matplotlib y la portada de Seaborn se consultaron al preparar este paquete. Las demás referencias se ofrecen como rutas de consulta; no implican que todos sus ejemplos se hayan ejecutado.
+
+## Profundización por API y calidad (ampliación)
+
+- **Polars Lazy API y optimización:** https://docs.pola.rs/user-guide/lazy/ — optimizador, planes y ejecución; contrastar las opciones de motor streaming con la versión instalada.
+- **Polars expresiones:** https://docs.pola.rs/user-guide/expressions/ — contextos, namespaces y ventanas.
+- **Polars testing:** https://docs.pola.rs/api/python/stable/reference/testing.html — pruebas de Series y DataFrame.
+- **Matplotlib Artists:** https://matplotlib.org/stable/users/explain/artists/artist_intro.html — arquitectura y jerarquía.
+- **Matplotlib transforms:** https://matplotlib.org/stable/users/explain/artists/transforms_tutorial.html — coordenadas y composición.
+- **Matplotlib backends:** https://matplotlib.org/stable/users/explain/figure/backends.html — renderizado e interactividad.
+- **Matplotlib events:** https://matplotlib.org/stable/users/explain/figure/event_handling.html — callbacks y eventos.
+- **Seaborn objects:** https://seaborn.pydata.org/tutorial/objects_interface.html — API declarativa, marcas, estadísticas y composición.
+- **Seaborn statistical estimation:** https://seaborn.pydata.org/tutorial/error_bars.html — intervalos, incertidumbre y estimadores.
+- **pytest:** https://docs.pytest.org/ — fixtures, parametrización y pruebas reproducibles.
+
+Las URLs son puntos de consulta, no certificación de disponibilidad futura. Comprobar clases, parámetros y comportamientos en las versiones efectivamente instaladas.

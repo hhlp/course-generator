@@ -1,10 +1,10 @@
+---
 name: openvpn-wireguard
-title: "OpenVPN + WireGuard — 0 a experto"
+title: OpenVPN + WireGuard — 0 a experto (revisión profunda, 40 bloques)
 language: es
 level:
   start: beginner
   target: expert
-
 platform:
   primary:
     - Fedora
@@ -12,12 +12,10 @@ platform:
   operating_system: Linux
   shell: bash
 
-audience:
-  - administradores_de_sistemas
-  - ingenieros_de_redes
-  - devops
-  - sre
-  - estudiantes_de_linux
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 objectives:
   - comprender_los_fundamentos_de_vpn_y_tunelizacion
@@ -29,11 +27,6 @@ objectives:
   - automatizar_despliegues_con_ansible
   - diseñar_arquitecturas_remote_access_site_to_site_y_multi_site
   - comprender_internals_de_openvpn_y_wireguard
-  - comprender_vpn_con_y_sin_iam_centralizado
-  - integrar_openvpn_como_consumidor_de_iam
-  - comprender_pam_sssd_ldap_kerberos_y_freeipa_aplicados_a_openvpn
-  - comprender_por_que_wireguard_no_es_consumidor_directo_de_iam
-  - diseñar_provisioning_externo_de_peers_wireguard_gobernado_por_iam
 
 teaching:
   approach: theory_then_practice
@@ -43,27 +36,34 @@ teaching:
   compare_alternatives: true
   troubleshooting_first_class: true
   security_by_default: true
+  depth: in_depth
+  mechanism_before_configuration: true
+  explain_command_options: true
+  explain_file_paths_and_effects: true
+  explain_logs_and_error_signatures: true
+  require_positive_and_negative_tests: true
+  avoid_unnecessary_cross_path_repetition: true
 
 lesson_structure:
   start:
-    heading: "🎯 OBJETIVO"
+    heading: 🎯 OBJETIVO
     required: true
   sections:
     examples:
-      heading: "🧪 Laboratorio / ejemplos"
+      heading: 🧪 Laboratorio / ejemplos
       preferred: true
     common_errors:
-      heading: "⚠️ Errores frecuentes"
+      heading: ⚠️ Errores frecuentes
       preferred: true
     important_idea:
-      heading: "💡 Idea importante"
+      heading: 💡 Idea importante
       preferred: true
   end:
-    heading: "🧠 QUÉ DEBES RECORDAR"
+    heading: 🧠 QUÉ DEBES RECORDAR
     required: true
   references:
     required: true
-    heading: "📚 Referencias"
+    heading: 📚 Referencias
 
 labs:
   required: true
@@ -86,7 +86,13 @@ labs:
     - tracepath
     - iperf3
     - ansible
-
+  require_topology: true
+  require_prerequisites: true
+  require_verification: true
+  require_rollback: true
+  require_log_evidence_when_applicable: true
+  require_ipv4_ipv6_leak_tests: true
+  require_failure_injection: true
 security:
   selinux_mode: enforcing
   disable_selinux_as_fix: false
@@ -123,14 +129,17 @@ scope:
     - frrouting
     - internals
     - troubleshooting
-    - iam_integration
-    - pam
-    - sssd
-    - ldap
-    - kerberos
-    - freeipa
-    - wireguard_external_identity_provisioning
     - performance
+    - openvpn_pam_sssd_freeipa
+    - radius_mfa
+    - wireguard_external_identity_lifecycle
+    - openvpn_dco
+    - protocol_engineering
+    - kernel_tracing
+    - sli_slo
+    - disaster_recovery
+    - change_management
+    - failover_session_continuity
   exclude:
     - windows_administration
     - macos_administration
@@ -144,7 +153,6 @@ references:
     - source_code
     - technical_books
   prefer_current_versions: true
-
 final_project:
   required: true
   deliverables:
@@ -167,3 +175,46 @@ final_project:
     - failure_simulation
     - troubleshooting_runbook
     - architecture_documentation
+    - iam_and_peer_lifecycle
+    - operational_sli_slo
+    - tested_restore
+    - failover_and_recovery_evidence
+    - automated_regression_tests
+
+curriculum:
+  block_count: 40
+  preserve_existing_lessons: true
+  added_blocks:
+    - id: 34
+      name: OpenVPN + IAM e identidad centralizada
+    - id: 35
+      name: WireGuard — Gestión de identidad y peers
+    - id: 36
+      name: Ingeniería de protocolos VPN
+    - id: 37
+      name: Operación VPN en producción y resiliencia
+  expert_labs_block: 38
+  final_project_block: 39
+
+milestones:
+  - id: networking-crypto
+    after_block: 1
+    name: Fundamentos VPN y criptografía
+  - id: openvpn-operations
+    after_block: 11
+    name: OpenVPN operativo y troubleshooting
+  - id: wireguard-operations
+    after_block: 21
+    name: WireGuard operativo y troubleshooting
+  - id: vpn-architecture
+    after_block: 33
+    name: Arquitectura e internals VPN
+  - id: vpn-production
+    after_block: 37
+    name: IAM, protocolos y operación en producción
+  - id: vpn-expert-labs
+    after_block: 38
+    name: Laboratorios expertos
+  - id: vpn-final
+    after_block: 39
+    name: Proyecto final experto

@@ -1,21 +1,30 @@
-name: ansible
-title: "Ansible — de cero a experto absoluto"
-language: es
-platform:
-  primary: [Fedora, RHEL]
-  exclude: [Windows]
-level: zero-to-expert
+---
+course:
+  title: "ansible — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+    exclude:
+      - Windows
 
 lesson_structure:
   objective_first: true
-  objective_heading: "🎯 OBJETIVO"
+  objective_heading: 🎯 OBJETIVO
   remember_last: true
-  remember_heading: "🧠 QUÉ DEBES RECORDAR"
-  remember_points: "3-7"
+  remember_heading: 🧠 QUÉ DEBES RECORDAR
+  remember_points: 3-7
   optional_sections:
-    - "🧪 Laboratorio/ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
+    - 💡 Idea importante
+  required_for_practical_lessons:
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - Validación y resultados esperados
+    - Troubleshooting y recuperación
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -30,13 +39,20 @@ depth:
   include_security: true
   include_validation: true
   include_idempotency: true
-
+  include_configuration: true
+  include_prerequisites: true
+  include_expected_results: true
+  include_failure_scenarios: true
+  include_recovery: true
+  include_version_compatibility: true
+  include_reproducible_labs: true
+  distinguish_verified_from_assumed: true
 milestones:
   rhce_ansible:
     block: 16
-    label: "HITO — nivel RHCE / Ansible"
-    meaning: "Checkpoint RHCE/Ansible; el PATH continúa hacia Ansible/AAP profesional y experto."
-
+    label: HITO — nivel RHCE / Ansible
+    meaning: Checkpoint RHCE/Ansible; el PATH continúa hacia Ansible/AAP
+      profesional y experto.
 scope:
   ansible_core: true
   rhel_systems: true
@@ -59,7 +75,17 @@ scope:
   observability_troubleshooting: true
   governance: true
   enterprise_architecture: true
-
 final_project:
   block: 38
-  lessons: 103
+  lessons: 108
+  acceptance_tests_required: true
+  evidence_required: true
+lab_policy:
+  platforms:
+    - Fedora
+    - RHEL
+  require_commands_and_files: true
+  require_validation: true
+  require_idempotency_check: true
+  require_cleanup_or_rollback_when_applicable: true
+  conceptual_lesson_alternative: análisis o experimento reproducible

@@ -1,33 +1,29 @@
-name: rpm
-title: "RPM PACKAGING EN PROFUNDIDAD — FEDORA"
-
-language: es
+---
+course:
+  title: RPM PACKAGING EN PROFUNDIDAD — FEDORA
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    primary: Fedora Linux
+    ecosystem:
+      - Fedora
+      - RHEL
+      - Linux
+  domain: rpm-packaging
+  description: 'Ruta de aprendizaje completa y progresiva sobre RPM y el
+    ecosistema de empaquetado de Fedora. Parte de los fundamentos del formato
+    RPM y progresa hacia SPEC files, SRPM, dependencias, scriptlets, rpmdb,
+    macros, generación automática de dependencias, Mock, rpmlint, Fedora
+    Packaging Guidelines, COPR, dist-git, Koji, Bodhi, repositorios RPM e
+    internals de RPM.'
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
-platform:
-  primary: Fedora Linux
-  ecosystem:
-    - Fedora
-    - RHEL
-    - CentOS Stream
-
-domain: rpm-packaging
-
-level:
-  start: beginner
-  end: expert
-
-description: >
-  Ruta de aprendizaje completa y progresiva sobre RPM y el ecosistema
-  de empaquetado de Fedora. Parte de los fundamentos del formato RPM
-  y progresa hacia SPEC files, SRPM, dependencias, scriptlets, rpmdb,
-  macros, generación automática de dependencias, Mock, rpmlint,
-  Fedora Packaging Guidelines, COPR, dist-git, Koji, Bodhi,
-  repositorios RPM e internals de RPM.
 
 objectives:
   - Comprender completamente el formato y modelo de paquetes RPM.
@@ -49,7 +45,7 @@ objectives:
   - Comprender internals de RPM y automatizar workflows de packaging.
 
 pedagogy:
-  progression: "0-to-expert"
+  progression: 0-to-expert
   depth: deep
   style: technical-didactic
   theory_and_practice: true
@@ -59,32 +55,42 @@ pedagogy:
   progressive_labs: true
   troubleshooting: true
   real_world_examples: true
+  command_explanations: true
+  expected_output_and_verification: true
+  version_aware_examples: true
+  compare_upstream_vs_fedora: true
+  preserve_existing_lessons: true
+  troubleshooting_per_block: true
+  hands_on_validation: true
 
 lesson_structure:
   first_section:
-    title: "🎯 OBJETIVO"
+    title: 🎯 OBJETIVO
     required: true
   development:
     required: true
     depth: deep
   laboratory:
-    title: "🧪 Laboratorio/ejemplos"
+    title: 🧪 Laboratorio/ejemplos
     required_when_useful: true
   common_errors:
-    title: "⚠️ Errores frecuentes"
+    title: ⚠️ Errores frecuentes
     required_when_useful: true
   important_idea:
-    title: "💡 Idea importante"
+    title: 💡 Idea importante
     required_when_useful: true
   final_section:
-    title: "🧠 QUÉ DEBES RECORDAR"
+    title: 🧠 QUÉ DEBES RECORDAR
     required: true
     key_points:
       minimum: 3
       maximum: 7
 
 technical_environment:
-  distribution: Fedora Linux
+  distribution:
+    - Fedora
+    - RHEL
+    - Linux
   shell: zsh
   commands:
     - rpm
@@ -105,6 +111,13 @@ technical_environment:
     - koji
     - bodhi
     - copr
+  validation_tools:
+    - yamllint
+    - rpmlint
+    - fedora-review
+    - rpminspect
+    - mock
+    - diffoscope
 
 final_workflow:
   - upstream
@@ -130,3 +143,23 @@ quality:
   mark_historical_features: true
   distinguish_rpm_from_dnf: true
   distinguish_upstream_from_fedora_policy: true
+  show_source_provenance: true
+  verify_macro_availability_on_target_fedora: true
+  separate_historical_and_current_practices: true
+  prefer_fedora_packaging_guidelines: true
+
+curriculum:
+  blocks:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  numbering_policy: preserve-existing-identifiers; append reviewed content
+    under X.900
+  capstone: RPM-DNF-libsolv end-to-end

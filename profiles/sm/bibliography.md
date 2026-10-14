@@ -65,12 +65,10 @@
 
 14. Schwaber, Ken; Scrum.org. **The Nexus Framework for Scaling Scrum**.
     Referencia práctica para aplicar Nexus a múltiples Scrum Teams sobre un único producto.
-15. Scrum.org. **The Nexus Guide**.
-    Autoridad normativa para Nexus; prevalece sobre descripciones secundarias.
 
 ## Métricas, flujo y forecasting
 
-16. Davis, Christopher W. H. **Agile Metrics in Action: Measuring and Enhancing the Performance of Agile Teams**.
+15. Davis, Christopher W. H. **Agile Metrics in Action: Measuring and Enhancing the Performance of Agile Teams**.
     Referencia general para comprender cómo seleccionar, construir, interpretar y comunicar
     métricas en equipos ágiles. Utilizar para conectar medición con mejora continua, calidad,
     entrega, predictibilidad y toma de decisiones basada en evidencia. Especialmente útil para
@@ -78,22 +76,22 @@
     una métrica en un objetivo. Sus prácticas deben distinguirse de los elementos prescritos
     por Scrum.
 
-17. Vacanti, Daniel S. **Actionable Agile Metrics for Predictability**.
+16. Vacanti, Daniel S. **Actionable Agile Metrics for Predictability**.
     Referencia principal para métricas de flujo y predictibilidad. Profundizar en Cycle Time,
     Throughput, Work In Progress, Cumulative Flow Diagram, Work Item Age y análisis de la
     estabilidad del sistema de trabajo.
 
-18. Vacanti, Daniel S. **When Will It Be Done?**
+17. Vacanti, Daniel S. **When Will It Be Done?**
     Referencia principal para forecasting probabilístico. Utilizar para probabilidades,
     percentiles, historical data, simulaciones Monte Carlo y las preguntas «cuándo estará
     terminado» y «cuánto podremos terminar».
 
-19. Scrum.org. **Kanban Guide for Scrum Teams / Professional Scrum with Kanban resources**.
+18. Scrum.org. **Kanban Guide for Scrum Teams / Professional Scrum with Kanban resources**.
     Fuente para integrar prácticas Kanban con Scrum: visualización del workflow, WIP,
     gestión activa del trabajo, inspección y adaptación del workflow, Cycle Time,
     Work Item Age, Throughput y Service Level Expectation.
 
-21. Scrum.org. **Evidence-Based Management Guide**.
+19. Scrum.org. **Evidence-Based Management Guide**.
     Referencia para conectar métricas con valor, outcomes, experimentación y toma de
     decisiones empírica. Utilizar para Current Value, Unrealized Value, Time-to-Market
     y Ability-to-Innovate.
@@ -112,18 +110,18 @@ transparencia, inspección, adaptación, aprendizaje y mejores decisiones.
 
 ## Product Backlog, User Stories y slicing
 
-22. Cohn, Mike. **User Stories Applied**.
+20. Cohn, Mike. **User Stories Applied**.
     User Stories, estimación y planificación como prácticas complementarias.
-23. Wake, Bill. **INVEST** y literatura relacionada.
-24. Lawrence, Richard; Connaughton, Peter. **50 Quick Ideas to Improve Your User Stories**.
+21. Wake, Bill. **INVEST** y literatura relacionada.
+22. Lawrence, Richard; Connaughton, Peter. **50 Quick Ideas to Improve Your User Stories**.
     Slicing y mejora de historias.
 
 ## Coaching, liderazgo y cambio
 
-25. Adkins, Lyssa. **Coaching Agile Teams**.
-26. Sutherland, Jeff; Schwaber, Ken; Scrum.org — artículos y learning series oficiales sobre
+23. Adkins, Lyssa. **Coaching Agile Teams**.
+24. Sutherland, Jeff; Schwaber, Ken; Scrum.org — artículos y learning series oficiales sobre
     Scrum Master, leadership, coaching, facilitation, mentoring y teaching.
-27. Senge, Peter M. **The Fifth Discipline**.
+25. Senge, Peter M. **The Fifth Discipline**.
     Profundización opcional para systems thinking y organizaciones que aprenden.
 
 ## Uso por hitos
@@ -154,3 +152,31 @@ para ejemplos, casos y aplicación práctica.
 Cuando exista conflicto entre un libro y la definición formal vigente de Scrum, prevalece
 **The Scrum Guide**. Para Nexus, prevalece **The Nexus Guide**. Los libros y técnicas
 complementarias amplían la práctica, pero no redefinen Scrum.
+
+
+## Ampliación por scope — liderazgo, equipos, sistemas y valor
+
+- **Facilitación** — Parker, Priya. *The Art of Gathering*. Diseño de encuentros con propósito y participación; complemento práctico, no normativa Scrum.
+- **Coaching** — Bungay Stanier, Michael. *The Coaching Habit*. Preguntas, escucha y hábitos conversacionales para el Scrum Master.
+- **Equipos y conflicto** — Lencioni, Patrick. *The Five Dysfunctions of a Team*. Modelo interpretativo de disfunciones; evaluar críticamente su aplicación y límites.
+- **Pensamiento sistémico** — Meadows, Donella H. *Thinking in Systems*. Bucles de retroalimentación, estructuras y efectos indirectos.
+- **Cambio organizacional** — Manns, Mary Lynn; Rising, Linda. *Fearless Change*. Patrones para introducir cambios mediante colaboración y experimentos.
+- **Producto y valor** — Perri, Melissa. *Escaping the Build Trap*. Orientación a resultados, estrategia y aprendizaje sobre valor.
+
+### Asignación recomendada a bloques
+
+- 12–16: *The Coaching Habit*, *The Art of Gathering*, *The Five Dysfunctions of a Team*.
+- 18, 22 y 24: *Thinking in Systems*, *Fearless Change*.
+- 9, 17 y 25: *Escaping the Build Trap* junto con Evidence-Based Management y las fuentes de forecasting existentes.
+- 26–27: priorizar *The Nexus Guide* vigente como referencia normativa.
+- 29–31: integrar todas las referencias mediante casos, práctica y argumentación; ningún libro sustituye la experiencia real.
+
+
+## Scope — Sprint Backlog, bugs y hotfixes durante el Sprint
+
+- **The Scrum Guide** (Schwaber y Sutherland): referencia normativa para Sprint Goal, Sprint Backlog, responsabilidades de Developers, adaptación del plan, calidad y negociación del alcance durante el Sprint.
+- **Mastering Professional Scrum** (Ockerman y Reindl): práctica profesional de autogestión, planificación empírica, transparencia y colaboración con el Product Owner.
+- **Fixing Your Scrum** (Ripley y Miller): casos y anti-patrones de cambios de alcance, urgencias, intervenciones del Scrum Master y problemas del equipo.
+- **Professional Scrum Team**: colaboración y responsabilidad colectiva frente a defectos, trabajo no planificado y calidad.
+
+Estas referencias fundamentan las lecciones 4.18–4.63. Los mecanismos concretos de clasificación de incidentes, tickets y hotfixes son prácticas operativas complementarias, no reglas obligatorias de Scrum. Para gráficos, capacidad y flujo, reutilizar las fuentes ya asignadas a los bloques 7, 8 y 19.

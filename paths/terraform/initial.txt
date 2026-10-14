@@ -70,6 +70,11 @@ BLOQUE 1 — TERRAFORM CLI: DE FUNDAMENTOS A AUTOMATIZACIÓN
 1.49 Patrones y antipatrónes de automatización con CLI
 1.50 Laboratorio: workflow CLI completo, reproducible y automatizable
 
+1.51 terraform stacks: disponibilidad, ámbito y referencia CLI por versión
+1.52 terraform query: disponibilidad y casos de uso según versión
+1.53 Subcomandos experimentales y criterios para evitar dependencias inestables
+1.54 terraform test: -filter, ejecución selectiva y artefactos de prueba
+1.55 Automatización de comandos: captura de stdout/stderr y códigos de retorno
 BLOQUE 2 — HCL Y MODELO DE CONFIGURACIÓN
 
 2.1 Sintaxis fundamental de HCL
@@ -92,6 +97,9 @@ BLOQUE 2 — HCL Y MODELO DE CONFIGURACIÓN
 2.18 terraform validate
 2.19 Laboratorio: modelar una configuración completa
 
+2.20 Bloques y atributos anidados: límites de sintaxis y semántica
+2.21 Configuraciones JSON .tf.json y diferencias frente a HCL
+2.22 Validación estática frente a evaluación dependiente del provider
 BLOQUE 3 — VALORES, TIPOS, VARIABLES Y EXPRESIONES
 
 3.1 Sistema de tipos de Terraform
@@ -121,6 +129,11 @@ BLOQUE 3 — VALORES, TIPOS, VARIABLES Y EXPRESIONES
 3.25 Conversiones y normalización de datos
 3.26 Laboratorio: configuración parametrizable y tipada
 
+3.27 Funciones can y try: tratamiento de errores de evaluación
+3.28 Evaluación parcial, valores desconocidos y propagación
+3.29 Ephemeral values y ephemeralasnull según versión
+3.30 Precedencia, conversiones implícitas y pérdida de información
+3.31 Funciones avanzadas de colecciones y agrupaciones
 BLOQUE 4 — RECURSOS Y CICLO DE VIDA
 
 4.1 Modelo declarativo de recursos
@@ -144,6 +157,10 @@ BLOQUE 4 — RECURSOS Y CICLO DE VIDA
 4.19 Reemplazo controlado de recursos
 4.20 Laboratorio: infraestructura con dependencias y lifecycle
 
+4.21 Write-only arguments: garantías y limitaciones según provider
+4.22 Propagación de reemplazos y deposed instances
+4.23 Condiciones pre/post frente a check blocks
+4.24 Importancia de identidades estables en for_each
 BLOQUE 5 — PROVIDERS Y DATA SOURCES
 
 5.1 Qué es un provider
@@ -163,6 +180,10 @@ BLOQUE 5 — PROVIDERS Y DATA SOURCES
 5.15 Providers locales para aprender sin cloud
 5.16 Laboratorio: combinar varios providers y data sources
 
+5.17 Firmas, hashes y trust boundaries de providers
+5.18 Resolución de versiones y selección de dependencias
+5.19 Mirrors, caché y entornos air-gapped
+5.20 Configuraciones de provider heredadas y aliases en módulos
 BLOQUE 6 — PLAN, APPLY Y GRAFO DE DEPENDENCIAS
 
 6.1 Cómo Terraform construye el grafo
@@ -202,6 +223,11 @@ BLOQUE 7 — TERRAFORM STATE EN PROFUNDIDAD
 7.17 Separación de states
 7.18 Laboratorio: inspeccionar, mover y recuperar state
 
+7.19 Lineage y serial del state: consistencia y límites
+7.20 Deposed instances y operaciones interrumpidas
+7.21 Análisis de snapshots sin editar state manualmente
+7.22 State forensics: evidencias, copias y restauración ensayada
+7.23 Recuperación segura tras partial apply
 BLOQUE 8 — IMPORTACIÓN Y ADOPCIÓN DE INFRAESTRUCTURA EXISTENTE
 
 8.1 Infraestructura existente y Terraform
@@ -218,6 +244,9 @@ BLOQUE 8 — IMPORTACIÓN Y ADOPCIÓN DE INFRAESTRUCTURA EXISTENTE
 8.12 Validación posterior al import
 8.13 Laboratorio: adoptar infraestructura preexistente
 
+8.14 Importación masiva: estrategias y validaciones
+8.15 Configuración generada: revisión y normalización
+8.16 Importación y refactoring con módulos anidados
 BLOQUE 9 — MÓDULOS
 
 9.1 Qué problema resuelve un módulo
@@ -242,6 +271,10 @@ BLOQUE 9 — MÓDULOS
 9.20 Publicación y consumo de módulos
 9.21 Laboratorio: crear una biblioteca de módulos reutilizables
 
+9.22 Contratos de módulos y compatibilidad semántica
+9.23 Testing de módulos con fixtures y mocks
+9.24 Evolución de APIs públicas de módulos
+9.25 Versionado, changelog y deprecaciones
 BLOQUE 10 — BACKENDS Y REMOTE STATE
 
 10.1 Local backend
@@ -261,6 +294,10 @@ BLOQUE 10 — BACKENDS Y REMOTE STATE
 10.15 Disaster recovery
 10.16 Laboratorio: migrar state local a backend remoto
 
+10.17 Fallos de locking y resolución segura de conflictos
+10.18 Versionado de snapshots y restauración verificable
+10.19 Pruebas de migración y reversibilidad entre backends
+10.20 Modelo de permisos para backends compartidos
 BLOQUE 11 — WORKSPACES, ENTORNOS Y ARQUITECTURA DE REPOSITORIOS
 
 11.1 Terraform CLI workspaces
@@ -297,6 +334,10 @@ BLOQUE 12 — TERRAFORM + ANSIBLE
 12.15 Idempotencia extremo a extremo
 12.16 Laboratorio: provisionar hosts y configurarlos con Ansible
 
+12.17 Inventario dinámico para libvirt/KVM y redes privadas
+12.18 Cloud-init para bootstrap y Ansible para configuración
+12.19 Diseño de pipeline idempotente y desacoplado
+12.20 Recuperación cuando Terraform termina pero Ansible falla
 BLOQUE 13 — TESTING Y CALIDAD
 
 13.1 terraform fmt como control de calidad
@@ -317,6 +358,11 @@ BLOQUE 13 — TESTING Y CALIDAD
 13.16 Documentación automatizada
 13.17 Laboratorio: suite de pruebas para un módulo
 
+13.18 Tests negativos y assertions de error
+13.19 Fixtures, mocks y overrides en profundidad
+13.20 Pruebas de contrato para módulos
+13.21 Pruebas de integración y aislamiento de recursos
+13.22 Análisis de cobertura funcional y matriz de compatibilidad
 BLOQUE 14 — SEGURIDAD Y SECRETOS
 
 14.1 Modelo de amenazas de Terraform
@@ -338,6 +384,11 @@ BLOQUE 14 — SEGURIDAD Y SECRETOS
 14.17 Least privilege
 14.18 Laboratorio: pipeline sin secretos en el repositorio
 
+14.19 Valores efímeros y canales seguros de credenciales
+14.20 Argumentos write-only y exposición residual de secretos
+14.21 Autenticación federada y credenciales de corta duración
+14.22 Threat modeling de pipelines y artefactos de plan
+14.23 Hardening de runners y protección de logs
 BLOQUE 15 — CI/CD PARA TERRAFORM
 
 15.1 Terraform en Git
@@ -400,6 +451,9 @@ BLOQUE 17 — TERRAFORM A ESCALA Y GOBERNANZA
 17.18 Observabilidad del proceso IaC
 17.19 Laboratorio: diseñar una plataforma Terraform para varios equipos
 
+17.20 Terraform Stacks: límites y aplicabilidad
+17.21 Estrategias de actualización con mínima interrupción
+17.22 Gestión de dependencias y contratos entre equipos
 BLOQUE 18 — TROUBLESHOOTING Y OPERACIÓN
 
 18.1 Método sistemático de troubleshooting
@@ -443,6 +497,11 @@ BLOQUE 19 — INTERNALS DE TERRAFORM
 19.17 Debugging avanzado
 19.18 Laboratorio: analizar Terraform desde Core hasta provider
 
+19.19 Sistema de valores cty y evaluación parcial
+19.20 Graph transformers y fases de construcción del grafo
+19.21 Protocolo RPC y negociación de capacidades
+19.22 Plan modifiers y consistencia de planes
+19.23 Lectura orientada del código fuente de Terraform Core
 BLOQUE 20 — PROVIDER DEVELOPMENT
 
 20.1 Cuándo desarrollar un provider
@@ -463,6 +522,11 @@ BLOQUE 20 — PROVIDER DEVELOPMENT
 20.16 Publicación en Registry
 20.17 Laboratorio: provider mínimo funcional
 
+20.18 State upgrades y migraciones de esquemas
+20.19 Plan modifiers y comportamiento de unknown values
+20.20 ImportState y validación de identidad
+20.21 Depuración local de provider con trazas
+20.22 Pruebas de compatibilidad y aceptación automatizadas
 BLOQUE 21 — TERRAFORM Y OPENTOFU
 
 21.1 Origen y objetivos de OpenTofu
@@ -478,6 +542,10 @@ BLOQUE 21 — TERRAFORM Y OPENTOFU
 21.11 Evaluar Terraform vs OpenTofu según requisitos
 21.12 Laboratorio: ejecutar y comparar una configuración compatible
 
+21.13 Cifrado de state en OpenTofu y modelo de claves
+21.14 Divergencias en funcionalidades y compatibilidad de versiones
+21.15 Migraciones reversibles: requisitos y riesgos
+21.16 Pruebas comparativas con una matriz de compatibilidad
 BLOQUE 22 — ESPECIALIZACIÓN: CLOUD Y PLATAFORMAS
 
 22.1 Por qué AWS, Azure y GCP no son prerrequisitos de Terraform
@@ -497,6 +565,8 @@ BLOQUE 22 — ESPECIALIZACIÓN: CLOUD Y PLATAFORMAS
 22.15 Multi-cloud: beneficios, costes y complejidad
 22.16 Laboratorio: aplicar los mismos fundamentos a providers diferentes
 
+22.17 Provider libvirt/KVM: limitaciones y validación de soporte
+22.18 Cloud-init, almacenamiento y redes privadas on-premises
 BLOQUE 23 — PATRONES Y ANTIPATRONES AVANZADOS
 
 23.1 DRY vs claridad en IaC
@@ -540,3 +610,101 @@ BLOQUE 24 — PROYECTO FINAL: PLATAFORMA IAC DE PRODUCCIÓN
 24.19 Documentar operación y troubleshooting
 24.20 Auditoría final del proyecto
 24.21 Proyecto final: plataforma IaC reproducible, modular, segura y mantenible
+24.22 Criterios de aceptación y pruebas de recuperación integral
+
+BLOQUE 25 — TERRAFORM STACKS Y ORQUESTACIÓN AVANZADA
+
+25.1 Motivación, límites y modelo de Terraform Stacks
+25.2 Componentes y deployment units
+25.3 Component configurations y dependencias
+25.4 Deployment configurations y entornos
+25.5 Inputs, outputs y contratos entre componentes
+25.6 Estados separados y coordinación
+25.7 Versionado y actualización de componentes
+25.8 Flujos de planificación y despliegue
+25.9 Gestión de errores parciales
+25.10 Seguridad y secretos entre componentes
+25.11 Ejecución remota y permisos
+25.12 Disponibilidad, edición y compatibilidad por versión
+25.13 Comparación con root modules tradicionales
+25.14 Diseño de una arquitectura multi-entorno
+25.15 Laboratorio: stack reproducible con componentes aislados
+
+BLOQUE 26 — INTERNALS AVANZADOS Y CÓDIGO FUENTE
+
+26.1 Mapa del repositorio y arquitectura en Go
+26.2 HCL parser, AST y decodificación
+26.3 cty: tipos, valores y marcas
+26.4 Unknown values y evaluación parcial
+26.5 Carga y expansión de módulos
+26.6 Graph transformers y construcción del DAG
+26.7 Orden topológico y concurrencia
+26.8 Resource instances y expansión de for_each
+26.9 Plan, refresh y reconciliación
+26.10 Provider plugin discovery y handshake
+26.11 RPC y protocolo de providers
+26.12 Schemas, diagnostics y plan modifiers
+26.13 Serialización de state y plan
+26.14 Logging, trazas y debugging
+26.15 Construcción y tests de Terraform Core
+26.16 Lectura guiada de una operación plan
+26.17 Laboratorio: reproducir y explicar un problema interno
+
+BLOQUE 27 — STATE FORENSICS Y DISASTER RECOVERY
+
+27.1 Modelo de amenazas y criticidad del state
+27.2 Lineage, serial y snapshots
+27.3 Bindings y resource instances
+27.4 Deposed instances y reemplazos
+27.5 Detección de inconsistencias
+27.6 Backups cifrados y versionados
+27.7 Captura de evidencias y cadena de decisiones
+27.8 Locking y conflictos concurrentes
+27.9 Recuperación de locks sin pérdida de datos
+27.10 Restauración de snapshots con validación
+27.11 Partial apply y recursos huérfanos
+27.12 Reimportación y reconstrucción controlada
+27.13 Migraciones de backend fallidas
+27.14 Runbooks de respuesta a incidentes
+27.15 RPO, RTO y pruebas periódicas
+27.16 Laboratorio: incidente simulado con recuperación completa
+
+BLOQUE 28 — ARQUITECTURA EMPRESARIAL DE PLATAFORMAS IAC
+
+28.1 Modelos organizativos y ownership
+28.2 Estructuras de repositorios y monorepo vs multirepo
+28.3 Catálogo interno de módulos
+28.4 Contratos y versionado entre equipos
+28.5 Diseño de límites de state
+28.6 GitOps aplicado a infraestructura
+28.7 Revisión de planes y aprobaciones
+28.8 GitHub Actions y runners seguros
+28.9 GitLab CI y entornos protegidos
+28.10 Policy as Code con Sentinel y OPA
+28.11 Supply chain y procedencia de artefactos
+28.12 Observabilidad y auditoría de ejecuciones
+28.13 Costes y límites de presupuesto
+28.14 Gestión de upgrades a escala
+28.15 SLOs y respuesta a incidentes de IaC
+28.16 Laboratorio: plataforma multi-equipo con gobernanza
+
+BLOQUE 29 — TERRAFORM ON-PREMISES CON FEDORA/RHEL
+
+29.1 Arquitectura de laboratorio sin nube pública
+29.2 KVM, libvirt y redes aisladas
+29.3 Providers libvirt: elección y compatibilidad
+29.4 Imágenes y cloud-init
+29.5 Definición declarativa de máquinas virtuales
+29.6 Storage pools y volúmenes
+29.7 Redes NAT, bridges y aislamiento
+29.8 Provisioning de varias máquinas
+29.9 Outputs e inventario de Ansible
+29.10 Configuración de Linux con roles Ansible
+29.11 SELinux, firewalld y SSH
+29.12 State y backend en red privada
+29.13 Gestión de secretos en el laboratorio
+29.14 Pruebas de idempotencia y drift
+29.15 Snapshots y límites de rollback
+29.16 Troubleshooting de libvirt y provider
+29.17 Laboratorio: clúster Linux reproducible
+29.18 Proyecto: infraestructura on-premises y Ansible

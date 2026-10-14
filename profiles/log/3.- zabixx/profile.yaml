@@ -1,11 +1,20 @@
-name: zabbix
-title: ZABBIX EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "Zabbix — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
-  bibliography: bibliografy.md
+  bibliography: bibliography.md
 
 scope:
   operating_system: Fedora Linux
@@ -425,6 +434,45 @@ artifacts:
     integrator_projects: auto
     diagnostic_projects: auto
     require_project_for_every_block: false
+
+
+advanced_extension:
+  preserve_existing_blocks: true
+  new_blocks: [82, 83, 84, 85, 86, 87, 88, 89, 90]
+  log_monitoring:
+    enabled: true
+    include_rotation_and_active_checks: true
+    avoid_duplicate_logging_path: true
+  browser_monitoring:
+    enabled: true
+    verify_browser_poller_requirements: true
+  vmware_monitoring:
+    enabled: true
+    require_version_compatibility_check: true
+  agent2_plugin_development:
+    enabled: true
+    include_go_tests_and_packaging: true
+  alert_quality:
+    enabled: true
+    measure_noise_and_false_positives: true
+  infrastructure_as_code:
+    enabled: true
+    ansible: true
+    terraform: true
+    git_and_ci: true
+    verify_provider_compatibility: true
+  frontend_extensions:
+    enabled: true
+    include_modules_and_widgets: true
+  resilience_testing:
+    enabled: true
+    controlled_failure_injection: true
+    require_baseline_and_rollback: true
+  disaster_recovery:
+    enabled: true
+    postgresql_pitr: true
+    measured_rpo_rto: true
+    verify_restores: true
 
 validation:
   enabled: false

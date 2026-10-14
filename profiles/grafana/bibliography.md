@@ -561,3 +561,58 @@ Ejemplos:
 En caso de conflicto entre un libro, tutorial, ejemplo antiguo y documentación oficial vigente:
 
 **prevalece la documentación oficial de la versión que se está utilizando.**
+
+
+## 14. Referencias adicionales para las ampliaciones expertas
+
+### Terraform Provider de Grafana
+
+Documentación y recursos del proveedor: https://registry.terraform.io/providers/grafana/grafana/latest/docs
+
+Repositorio y ejemplos: https://github.com/grafana/terraform-provider-grafana
+
+Usar para recursos disponibles, autenticación, diferencias por edición, cambios de esquema y gestión del estado; verificar soporte exacto por versión.
+
+### Ansible
+
+https://docs.ansible.com/ansible/latest/
+
+Usar únicamente para aplicar roles, templates, handlers, validaciones y despliegues reproducibles del stack.
+
+### Grafana dashboards y prácticas de diseño
+
+https://grafana.com/docs/grafana/latest/dashboards/
+
+### Loki operaciones y upgrades
+
+https://grafana.com/docs/loki/latest/operations/
+
+https://grafana.com/docs/loki/latest/setup/upgrade/
+
+### Alloy troubleshooting y configuración
+
+https://grafana.com/docs/alloy/latest/troubleshoot/
+
+https://grafana.com/docs/alloy/latest/reference/
+
+### Grafana upgrades y seguridad
+
+https://grafana.com/docs/grafana/latest/upgrade-guide/
+
+https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/
+
+### Bibliografía por nuevos bloques
+
+| Bloques | Fuentes preferentes |
+|---|---|
+| 111–113 | Loki docs, Alloy docs, Fedora, systemd, SELinux |
+| 114 | Grafana dashboards, paneles, transformaciones |
+| 115 | Grafana Alerting, Loki Ruler, SRE Workbook |
+| 116 | Terraform Provider de Grafana, Ansible, Grafana provisioning/API |
+| 117 | Loki operations, storage, retention, upgrades |
+| 118 | Loki operations, métricas internas, SRE |
+| 119 | Grafana security, Loki multi-tenancy, Fedora |
+| 120 | Release notes y upgrade guides de Grafana, Loki y Alloy |
+| 121 | Grafana/Loki/Alloy troubleshooting, Prometheus como integración |
+
+Las URL anteriores son puntos de entrada; confirmar la ruta exacta y versión de cada subpágina antes de utilizarla como referencia normativa en una lección.

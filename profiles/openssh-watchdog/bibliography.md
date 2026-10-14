@@ -22,6 +22,21 @@ Utilizar especialmente para:
 - automatización;
 - administración y troubleshooting conceptual.
 
+### Stahnke, Michael — Pro OpenSSH (Apress)
+
+**Referencia complementaria de administración práctica de OpenSSH.**
+
+Utilizar por scope, especialmente en:
+
+- instalación, configuración y operación de clientes y servidores;
+- autenticación por clave pública, gestión de identidades y agentes;
+- configuración de acceso, seguridad y restricciones;
+- reenvío de puertos, túneles y conexiones mediante bastiones;
+- transferencia de archivos y administración remota;
+- diagnóstico y resolución de problemas operativos.
+
+**Criterio temporal:** distinguir el contenido histórico del libro de las funcionalidades modernas (certificados OpenSSH, FIDO2, nuevas opciones y defaults). Para la sintaxis, algoritmos y prácticas recomendadas prevalecen las páginas man y documentación de la versión instalada en Fedora. No atribuir al libro cobertura de funcionalidades posteriores a su publicación.
+
 ### Regla de uso
 
 El libro es una fuente conceptual e histórica de gran valor, pero su segunda edición es
@@ -344,6 +359,7 @@ enseñar al alumno cómo descubrirlo.
 | Área | Fuente prioritaria |
 |---|---|
 | Fundamentos SSH | Barrett et al., *SSH, The Secure Shell*, 2e |
+| Administración práctica OpenSSH | Stahnke, *Pro OpenSSH* + manuales actuales |
 | Cliente OpenSSH | `ssh(1)`, `ssh_config(5)` |
 | Servidor OpenSSH | `sshd(8)`, `sshd_config(5)` |
 | Claves | `ssh-keygen(1)` |
@@ -364,3 +380,26 @@ enseñar al alumno cómo descubrirlo.
 
 Barrett, Daniel J.; Silverman, Richard E.; Byrnes, Robert G.
 *SSH, The Secure Shell: The Definitive Guide*. 2nd Edition. O'Reilly Media.
+
+
+## Referencias adicionales por scope — ampliación experta
+
+### OpenSSH: protocolo, certificados, FIDO2 e internals
+
+- IETF RFC 4251, 4252, 4253 y 4254: arquitectura, autenticación, transporte y conexión SSH-2. Consultar actualizaciones y extensiones pertinentes.
+- OpenSSH Portable: release notes, PROTOCOL, PROTOCOL.certkeys, PROTOCOL.krl y código fuente correspondiente a la versión instalada.
+- `ssh-keygen(1)`, `ssh_config(5)`, `sshd_config(5)`, `ssh-agent(1)`, `ssh-add(1)` y `sshd(8)`: CA, certificados, principals, FIDO2, restricciones, revocación y depuración.
+- Documentación oficial FIDO Alliance para el modelo de autenticadores FIDO2, diferenciándolo de los detalles específicos de OpenSSH.
+- `auditd(8)`, `journalctl(1)` y manuales de Fedora: observabilidad y respuesta a incidentes.
+
+### Watchdog: API, virtualización, recuperación y producción
+
+- Linux Kernel Documentation, sección watchdog: watchdog API, watchdog-kernel-api y drivers específicos de la versión.
+- `include/uapi/linux/watchdog.h` y `drivers/watchdog/` en el árbol fuente del kernel correspondiente.
+- systemd: `systemd.service(5)`, `systemd-system.conf(5)`, `sd_notify(3)` y `sd_watchdog_enabled(3)`.
+- QEMU y libvirt: documentación oficial de dispositivos watchdog virtualizados y acciones de expiración.
+- Linux Kernel Documentation: pstore, ramoops, kdump y lockup watchdogs para diagnóstico postmortem.
+
+### Política de comprobación experta
+
+No dar por garantizado el soporte de FIDO2, opciones de OpenSSH, pretimeout, drivers de virtualización ni sysctl. Verificar versión, compilación, empaquetado, permisos y capacidades efectivas en el laboratorio Fedora antes de ofrecer comandos modificadores. Los ensayos que puedan reiniciar un host deben ejecutarse únicamente en VM desechable o entorno expresamente aislado.

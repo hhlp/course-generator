@@ -287,3 +287,19 @@ Debe integrar:
 ## Resultado esperado
 
 Al finalizar el PATH el alumno debe estar preparado no solo para afrontar KCNA, KCSA, CKAD, CKA y CKS, sino también para operar Kubernetes en producción, diseñar plataformas internas, comprender los componentes internos y continuar hacia contribución upstream o arquitectura especializada.
+
+## Requisitos reforzados de profundidad operativa
+
+Cada lección práctica relevante debe desarrollar: requisitos previos, arquitectura y flujo de datos, instalación/configuración paso a paso, comandos con explicación de parámetros, validación de resultados, logs y métricas, fallos reproducibles, troubleshooting, recuperación, seguridad, variaciones según versión y ejercicio autónomo. No convertir cada sublección en una mera definición.
+
+En Fedora/RHEL se documentarán systemd, journald, SELinux, firewalld, cgroup v2 y configuración del runtime cuando correspondan. Evitar asumir que los valores de configuración son universales.
+
+Para las APIs y características sujetas a evolución (DRA, Gateway API, Helm, admission, etc.), indicar versión objetivo, madurez, disponibilidad y límites; verificar contra documentación upstream antes de generar cada lección.
+
+## Evidencias y criterios de aceptación
+
+- Cada bloque operativo concluye con un laboratorio verificable y al menos un fallo deliberado con recuperación.
+- Los bloques de seguridad incluyen controles preventivos, detección, auditoría y validación de mínimos privilegios.
+- Los bloques de producción incorporan runbooks, objetivos SLI/SLO y pruebas de restauración cuando apliquen.
+- El proyecto final entrega manifiestos reproducibles, procedimientos, decisiones arquitectónicas, pruebas y evidencias.
+- Mantener separados los conceptos Kubernetes de los detalles de herramientas externas con PATH propio; enseñar su integración práctica aquí.

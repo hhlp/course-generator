@@ -1,4 +1,4 @@
-# bibliografy.md — Prometheus
+# bibliography.md — Prometheus
 
 ## Principal
 
@@ -134,3 +134,36 @@ Para comportamiento que pueda variar entre versiones:
 5. libros y material complementario.
 
 El curso no debe fijar como universal un comportamiento dependiente de versión sin indicarlo.
+
+
+## Referencias ampliadas por scope (revisión profunda)
+
+### A. Protocolos y compatibilidad
+- Prometheus Remote Write specifications (1.0 y 2.0): https://prometheus.io/docs/specs/
+- Prometheus configuration reference y feature flags: https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+- Prometheus querying functions: https://prometheus.io/docs/prometheus/latest/querying/functions/
+- Prometheus native histograms: https://prometheus.io/docs/specs/native_histograms/
+
+### B. Exporters, discovery y Kubernetes (integración, no curso de Kubernetes)
+- Prometheus exporters and integrations: https://prometheus.io/docs/instrumenting/exporters/
+- Prometheus Operator: https://prometheus-operator.dev/
+- kube-state-metrics: https://github.com/kubernetes/kube-state-metrics
+
+### C. HA, almacenamiento y arquitecturas (comparativa conceptual)
+- Thanos documentation: https://thanos.io/tip/thanos/getting-started.md/
+- Grafana Mimir documentation: https://grafana.com/docs/mimir/latest/
+- VictoriaMetrics documentation: https://docs.victoriametrics.com/
+
+### D. Seguridad, pruebas y operación
+- Prometheus security model: https://prometheus.io/docs/operating/security/
+- Prometheus unit testing rules: https://prometheus.io/docs/prometheus/latest/configuration/unit_testing_rules/
+- Prometheus management API: https://prometheus.io/docs/prometheus/latest/management_api/
+- systemd-analyze manual: https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html
+- Ansible documentation: https://docs.ansible.com/
+
+### E. Código e internals
+- Prometheus TSDB: https://github.com/prometheus/prometheus/tree/main/tsdb
+- Prometheus promql: https://github.com/prometheus/prometheus/tree/main/promql
+- Go profiling pprof: https://pkg.go.dev/net/http/pprof
+
+> Todas las referencias externas ampliadas deben contrastarse con la versión estudiada. Las plataformas externas se estudian como integración y comparación, no como PATH independientes.

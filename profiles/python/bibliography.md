@@ -91,3 +91,10 @@ Elegir versiones compatibles con el intérprete del laboratorio y fijarlas en el
 ## Regla de referencias por lección
 
 Dar título y autor del libro, edición, tema o capítulo confirmado, y enlaces oficiales pertinentes. Situar las referencias específicas antes de «🧠 QUÉ DEBES RECORDAR», para preservar el cierre pedagógico. Si no se puede verificar una página, omitir el número y referenciar el tema.
+
+## Referencias cruzadas — Regex y Big O Notation (sin bibliografía duplicada)
+
+- **Regex:** PATH independiente de Regex para teoría de patrones, motores y backtracking avanzado. En Python utilizar como fuente normativa la documentación oficial del módulo `re`: https://docs.python.org/3.15/library/re.html y la referencia de `str` y `bytes`. No trasladar aquí la bibliografía especializada de ese PATH.
+- **Big O Notation:** PATH independiente de Big O para fundamentos matemáticos, notaciones, recurrencias y demostraciones. En Python consultar https://wiki.python.org/moin/TimeComplexity (orientativo y dependiente de implementación), https://docs.python.org/3.15/library/timeit.html y https://docs.python.org/3.15/library/profile.html. Verificar supuestos y versión; las mediciones no demuestran cotas asintóticas. No trasladar aquí los libros especializados de ese PATH.
+
+**Asignación práctica:** bloques 4, 16–19 y 29 para Regex; 5–8, 19, 21 y 25 para Big O; bloque 31 para integración y validación de ambos.

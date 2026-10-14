@@ -1,6 +1,14 @@
-name: python
-title: PYTHON 3.15 EN PROFUNDIDAD — DE CERO A EXPERTO
-platform: Fedora Linux
+---
+course:
+  title: Python 3.15 — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+    platform:
+      - Fedora
+      - Linux
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -32,6 +40,12 @@ quality:
   require_self_contained_lesson: true
   audit_before_save: true
   repair_on_fail: true
+  cross_path_no_duplication: true
+  require_python_specific_regex_examples: true
+  require_complexity_assumptions_and_measurement: true
+  cross_path_references:
+    - regex
+    - big-o-notation
 
 output:
   format: markdown

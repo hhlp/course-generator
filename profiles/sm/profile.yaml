@@ -1,21 +1,18 @@
-name: scrum
-title: "SCRUM — 0 A EXPERTO"
-description: >
-  Ruta profunda de Scrum desde fundamentos hasta dominio profesional,
-  separada por los hitos Professional Scrum Master I, II y III, e incluyendo
-  prácticas complementarias de producto, estimación, métricas, flujo,
-  retrospectivas, coaching, facilitación y escalado con Nexus.
-language: es
-platform: general
-level: zero-to-expert
-
-files:
-  pedagogy: ../../config/pedagogy.md
-  domain: domain.md
-  bibliography: bibliography.md
-
+---
 course:
-  path: initial.txt
+  title: "SCRUM — 0 A EXPERTO en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  description: >
+    Ruta profunda de Scrum desde fundamentos hasta dominio profesional,
+    separada por los hitos Professional Scrum Master I, II y III, e incluyendo
+    prácticas complementarias de producto, estimación, métricas, flujo,
+    retrospectivas, coaching, facilitación y escalado con Nexus.
+    Profundidad práctica con escenarios complejos, laboratorios verificables,
+    evaluación de intervenciones y argumentación escrita para PSM III.
+  mode: "deep"
   milestones:
     - id: psm-i
       after_block: 11
@@ -29,6 +26,11 @@ course:
     - id: expert-project
       after_block: 31
       name: "Scrum Master Expert — Proyecto final"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 pedagogy:
   required_opening: "🎯 OBJETIVO"
@@ -47,4 +49,9 @@ scope:
   include_english_written_reasoning_for_psm_iii: true
   include_nexus: true
   include_chart_construction_labs: true
-  chart_learning_depth: "data-calculation-construction-interpretation-limitations"
+  chart_learning_depth:
+    - data
+    - calculation
+    - construction
+    - interpretation
+    - limitations

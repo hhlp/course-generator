@@ -20,6 +20,17 @@ compromisos y eventos.
 - Mike Cohn. *User Stories Applied: For Agile Software Development*.
 - Jeff Patton; Peter Economy. *User Story Mapping: Discover the Whole Story, Build the Right Product*.
 
+### Aplicación al Product Backlog Refinement
+
+- *The Professional Product Owner*: accountability del Product Owner, valor y Product Backlog.
+- *User Stories Applied*: conversación, división de historias y criterios de aceptación.
+- *User Story Mapping*: descomposición progresiva orientada a actividades y resultados.
+- *Continuous Discovery Habits* y *Testing Business Ideas*: evidencia e hipótesis para revisar PBIs.
+- *Actionable Agile Metrics for Predictability* y *When Will It Be Done?*: interpretación de flujo y previsiones, sin equiparar refinement con precisión garantizada.
+- *The Scrum Guide*: delimitar refinement como actividad y no como evento formal; dimensionamiento a cargo de Developers.
+
+Estas referencias son orientativas por temática, sin atribuir capítulos concretos no verificados.
+
 ## Product Discovery
 
 - Teresa Torres. *Continuous Discovery Habits: Discover Products that Create Customer Value and Business Value*.
@@ -78,3 +89,11 @@ Las lecciones pueden utilizar las categorías:
 
 No deben inventarse capítulos, páginas o secciones exactas. Solo deben incluirse referencias
 bibliográficas exactas cuando hayan sido verificadas.
+
+
+## Preparación de hitos PSPO
+
+- Scrum.org — recursos oficiales y orientaciones de evaluación para Professional Scrum Product Owner I, II y III (consultar la versión vigente).
+- *The Scrum Guide* y *Evidence-Based Management Guide*: referencias normativas transversales a los tres hitos.
+
+La bibliografía del PATH se aplica mediante casos de producto y análisis de decisiones; ninguna referencia garantiza superar una evaluación oficial.

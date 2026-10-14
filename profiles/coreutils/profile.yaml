@@ -1,10 +1,20 @@
-name: coreutils
-title: COREUTILS EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "coreutils — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - RHEL
+  mode: "deep"
+
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 scope:
   programming_languages: false
   windows: false
@@ -24,11 +34,11 @@ lesson_structure:
     required: true
     heading: 📚 LECTURA
     categories:
-    - principal
-    - normativa
-    - motor
-    - profundizacion
-    - consulta
+      - principal
+      - normativa
+      - motor
+      - profundizacion
+      - consulta
     exact_references_only_when_verified: true
   lab:
     required: false

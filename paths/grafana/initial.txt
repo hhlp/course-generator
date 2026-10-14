@@ -1782,3 +1782,187 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 110.58 documentar runbooks
 110.59 auditoría final de seguridad
 110.60 proyecto: plataforma completa Grafana + Loki + Alloy + integración Prometheus
+
+
+# AMPLIACIONES EXPERTAS — BLOQUES ADICIONALES (SIN ELIMINAR EL TEMARIO ORIGINAL)
+
+111. Instalación y operación de Loki en Fedora
+111.1 requisitos y matriz de versiones
+111.2 elección de binario, paquete o contenedor
+111.3 procedencia y verificación de artefactos
+111.4 usuario y grupo de servicio
+111.5 estructura de directorios y permisos
+111.6 configuración mínima reproducible
+111.7 almacenamiento local de desarrollo
+111.8 unidad systemd y dependencias
+111.9 variables de entorno y credenciales
+111.10 SELinux: contextos y denegaciones
+111.11 firewalld: exposición mínima
+111.12 endpoints de health y readiness
+111.13 logs mediante journalctl
+111.14 validación de configuración y arranque
+111.15 ingestión y consulta de prueba
+111.16 actualización y rollback
+111.17 laboratorio: despliegue nativo y diagnóstico
+
+112. Instalación y operación de Grafana Alloy en Fedora
+112.1 requisitos y versiones compatibles
+112.2 instalación y procedencia de binarios
+112.3 servicio systemd y usuario
+112.4 configuración Alloy y sintaxis
+112.5 validación de configuración
+112.6 permisos para journald
+112.7 lectura de archivos y rotación
+112.8 persistencia de posiciones y reinicios
+112.9 SELinux y firewalld
+112.10 secretos y TLS
+112.11 endpoints y métricas internas
+112.12 depuración de componentes
+112.13 reintentos y tratamiento de errores
+112.14 backpressure y pérdida potencial de logs
+112.15 laboratorio: journald a Loki con reinicio y fallo controlado
+
+113. Grafana Alloy avanzado y fiabilidad de ingestión
+113.1 grafo de componentes y dependencias
+113.2 discovery y relabeling
+113.3 loki.source.file y targets
+113.4 loki.source.journal
+113.5 loki.source.syslog
+113.6 loki.source.docker cuando aplique
+113.7 loki.process y etapas
+113.8 loki.relabel y diseño de labels
+113.9 loki.write y destinos
+113.10 multiline y timestamps
+113.11 structured metadata y redacción de secretos
+113.12 gestión de cardinalidad
+113.13 métricas de cola, rechazos y reintentos
+113.14 comportamiento ante caída de Loki
+113.15 validación de no duplicación y pérdidas
+113.16 laboratorio: pipeline con fallos de red y recuperación
+
+114. Diseño experto de dashboards y pruebas
+114.1 preguntas operacionales y usuarios objetivo
+114.2 jerarquía visual y accesibilidad
+114.3 elección de visualización por tipo de dato
+114.4 consistencia de unidades y umbrales
+114.5 variables encadenadas y coste
+114.6 paneles reutilizables
+114.7 data frames y transformaciones
+114.8 consultas y reducción de carga
+114.9 validación de datos vacíos y errores
+114.10 pruebas de permisos y navegación
+114.11 versionado y pruebas de regresión
+114.12 laboratorio: dashboard evaluado con criterios de aceptación
+
+115. Alerting experto y fiabilidad de notificaciones
+115.1 estados y transiciones de instancias
+115.2 No Data y Error
+115.3 pending y keep firing
+115.4 routing y grouping
+115.5 silences y mute timings
+115.6 plantillas y datos de alertas
+115.7 Grafana-managed frente a data source-managed
+115.8 Loki Ruler frente a Grafana Alerting
+115.9 HA de evaluación y notificación
+115.10 deduplicación y límites
+115.11 inhibición y compatibilidad por componente
+115.12 fallos de contact points
+115.13 pruebas de entrega y recuperación
+115.14 runbooks y reducción de ruido
+115.15 laboratorio: simulación de alertas y fallos
+
+116. Automatización avanzada: Terraform, Ansible y GitOps
+116.1 Grafana Terraform Provider y alcance
+116.2 recursos de dashboards y folders
+116.3 data sources y gestión de secretos
+116.4 alerting declarativo según soporte
+116.5 Ansible para Fedora y systemd
+116.6 plantillas Loki y Alloy
+116.7 separación de entornos
+116.8 estado remoto y secretos Terraform
+116.9 validación estática y pruebas
+116.10 detección de drift
+116.11 revisiones y aprobaciones
+116.12 despliegue incremental
+116.13 rollback verificable
+116.14 laboratorio: reconstrucción reproducible
+
+117. Resiliencia, backup y disaster recovery de Loki
+117.1 modelo de durabilidad y objetivos RPO/RTO
+117.2 WAL y recuperación del ingester
+117.3 persistencia del Compactor
+117.4 object storage: disponibilidad y versionado
+117.5 consistencia y fallos de almacenamiento
+117.6 backup de configuración y secretos
+117.7 estrategia de restauración
+117.8 fallos de red y particiones
+117.9 fallos del ring y miembros
+117.10 pérdida de instancias y réplicas
+117.11 pruebas de retención y eliminación
+117.12 migración de esquema y compatibilidad
+117.13 upgrade y rollback seguros
+117.14 laboratorio: restauración y prueba de desastre
+
+118. Benchmarks y capacity planning experimental
+118.1 perfil de carga y dataset reproducible
+118.2 eventos y bytes por segundo
+118.3 cardinalidad y streams activos
+118.4 compresión y tamaño de chunks
+118.5 medición de CPU RAM y red
+118.6 latencias de ingestión
+118.7 latencias de consulta p50 p95 p99
+118.8 concurrencia y límites
+118.9 coste de object storage
+118.10 pruebas de consultas LogQL
+118.11 cachés y query splitting
+118.12 dimensionamiento con margen
+118.13 documentación de hipótesis y resultados
+118.14 laboratorio: benchmark antes y después
+
+119. Seguridad avanzada e identidad
+119.1 OIDC y SSO según edición
+119.2 OAuth y mapeo de roles
+119.3 LDAP como integración según soporte
+119.4 permisos de folders y dashboards
+119.5 service accounts y rotación
+119.6 capacidad RBAC por edición
+119.7 TLS y proxies de confianza
+119.8 autenticación de Loki en gateway
+119.9 aislamiento multi-tenant
+119.10 credenciales de object storage
+119.11 protección y redacción de logs sensibles
+119.12 auditoría y trazabilidad
+119.13 hardening de systemd y SELinux
+119.14 laboratorio: pruebas de acceso y aislamiento
+
+120. Migraciones y compatibilidad operativa
+120.1 inventario y fijación de versiones
+120.2 release notes y breaking changes
+120.3 matriz Grafana Loki Alloy
+120.4 cambios de configuración
+120.5 migración de agentes antiguos a Alloy
+120.6 evolución de schemas de Loki
+120.7 backups y snapshots previos
+120.8 plan de despliegue por etapas
+120.9 validación de queries y dashboards
+120.10 validación de alertas
+120.11 pruebas de retención
+120.12 rollback y límites de reversibilidad
+120.13 laboratorio: upgrade ensayado con checklist
+
+121. Diagnóstico extremo a extremo y evaluación final
+121.1 logs ausentes en el origen
+121.2 errores de permisos del collector
+121.3 errores de parseo y timestamp
+121.4 rechazos de Loki por límites
+121.5 problemas de ring y WAL
+121.6 errores de object storage
+121.7 consultas con selectores incorrectos
+121.8 desfase temporal y zonas horarias
+121.9 data source y autenticación Grafana
+121.10 fallos de dashboard y transformaciones
+121.11 fallos silenciosos de alerting
+121.12 correlación con métricas Prometheus
+121.13 hipótesis, evidencia y verificación
+121.14 runbook de recuperación y postmortem
+121.15 laboratorio: incidente completo con evaluación

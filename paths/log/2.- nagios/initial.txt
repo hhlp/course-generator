@@ -1108,55 +1108,257 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 49.24 estrategia de troubleshooting
 
 
-50. Proyecto final experto
+50. Monitorización avanzada de aplicaciones
 
-50.1 diseñar una plataforma Nagios completa
-50.2 preparar servidores Fedora/RHEL
-50.3 instalar Nagios Core
-50.4 configurar Apache y acceso web
-50.5 integrar systemd
-50.6 configurar SELinux
-50.7 configurar firewalld
-50.8 crear estructura modular de configuración
-50.9 crear templates
-50.10 registrar hosts
-50.11 crear hostgroups
-50.12 definir services
-50.13 crear servicegroups
-50.14 configurar plugins
-50.15 monitorizar recursos locales
-50.16 monitorizar servicios TCP/IP
-50.17 monitorizar hosts mediante SSH
-50.18 desplegar NRPE
-50.19 desplegar NCPA
-50.20 integrar SNMP
-50.21 configurar passive checks
-50.22 configurar freshness
-50.23 configurar flapping detection
-50.24 configurar contacts
-50.25 configurar contactgroups
-50.26 configurar notifications
-50.27 configurar acknowledgements
-50.28 configurar downtime
-50.29 crear event handlers
-50.30 configurar dependencies
-50.31 configurar escalations
-50.32 utilizar macros
-50.33 recoger performance data
-50.34 configurar logging
-50.35 comprobar state retention
-50.36 automatizar configuración
-50.37 versionar configuración mediante Git
-50.38 validar configuración antes del despliegue
-50.39 diseñar monitorización distribuida
-50.40 diseñar alta disponibilidad
-50.41 aplicar hardening
-50.42 realizar pruebas de fallo
-50.43 diagnosticar problemas deliberadamente introducidos
-50.44 medir latencia y rendimiento del scheduler
-50.45 documentar arquitectura
-50.46 crear runbook de operaciones
-50.47 crear runbook de troubleshooting
-50.48 realizar auditoría final de seguridad
-50.49 realizar auditoría final de monitorización
-50.50 proyecto final: operar y diagnosticar una plataforma Nagios de producción
+50.1 Alcance y objetivos de la monitorización de aplicaciones
+50.2 Checks de extremo a extremo frente a checks de componentes
+50.3 HTTP: códigos de estado, cabeceras, redirecciones y contenido
+50.4 HTTPS: cadena de confianza, hostname, caducidad y renovación
+50.5 check_http y check_curl: selección y compatibilidad por versión
+50.6 APIs REST: autenticación, métodos, tiempos de respuesta y JSON
+50.7 Validación semántica de respuestas y falsos positivos
+50.8 DNS: consultas A, AAAA, MX, TXT, PTR y resolución autoritativa
+50.9 TCP: conexiones, timeouts y protocolos con check_tcp
+50.10 TLS: handshake, SNI y certificados
+50.11 Servicios systemd: estado, reinicios y fallo persistente
+50.12 Procesos Linux: cardinalidad, argumentos y consumo
+50.13 Filesystem: espacio, inodos, mounts y latencia
+50.14 Memoria, CPU, carga y presión de recursos
+50.15 Bases de datos: conexión, consulta mínima y límites de permisos
+50.16 PostgreSQL: disponibilidad, transacciones y conexiones
+50.17 MySQL/MariaDB: conexión y comprobaciones de salud
+50.18 MongoDB: disponibilidad y estado de réplica mediante checks adecuados
+50.19 Colas y brokers: backlog, consumidores y antigüedad de mensajes
+50.20 Aplicaciones detrás de reverse proxy y balanceadores
+50.21 Health endpoints: readiness frente a liveness
+50.22 Dependencias entre servicios y supresión de alertas en cascada
+50.23 Thresholds adaptados a impacto de negocio
+50.24 Checks sintéticos y comprobaciones multi-paso
+50.25 Diseño de plugins para JSON y APIs con secretos protegidos
+50.26 Laboratorio: monitorizar una aplicación web con API y base de datos
+50.27 Laboratorio: simular fallo parcial, latencia y degradación
+50.28 Troubleshooting: distinguir caída de aplicación, red, TLS y dependencia
+
+
+51. Métricas históricas y visualización
+
+51.1 Estados frente a datos de rendimiento
+51.2 Sintaxis completa de performance data
+51.3 Unidades, etiquetas, warning, critical, minimum y maximum
+51.4 Rangos Nagios: 0:10, 10:, ~:10 y @10:20
+51.5 Extracción de performance data de hosts y servicios
+51.6 Comandos de procesamiento frente a archivos de perfdata
+51.7 Rotación, spool y consumo por procesadores externos
+51.8 RRDTool: conceptos de RRD, DS, RRA y consolidación
+51.9 RRDTool: resolución, retención y pérdida de granularidad
+51.10 PNP4Nagios: arquitectura y carácter histórico; comprobar mantenimiento
+51.11 Compatibilidad de integraciones con Nagios Core actual
+51.12 Visualización y gráficos de tendencias
+51.13 Tasas, percentiles, promedios y máximos
+51.14 Capacidad y crecimiento de almacenamiento
+51.15 Series temporales externas y alternativas actuales
+51.16 Grafana: integración mediante backend compatible, no nativa automática
+51.17 Diferencias entre Nagios Core y una TSDB
+51.18 Etiquetas, cardinalidad y costes operativos
+51.19 Backup y restauración de métricas
+51.20 Seguridad del pipeline de métricas
+51.21 Laboratorio: exportar y visualizar perfdata
+51.22 Laboratorio: investigar pérdida de muestras y retrasos
+51.23 Troubleshooting: errores de formato y almacenamiento
+
+
+52. Observabilidad operativa y gestión de alertas
+
+52.1 Monitorización, observabilidad e incident management
+52.2 Indicadores accionables y señales de usuario
+52.3 SLI, SLO y SLA como contexto externo a Nagios
+52.4 Diseño de checks orientados a síntomas
+52.5 Alert fatigue y falsos positivos
+52.6 Ruido, duplicados y cascadas de fallos
+52.7 Correlación basada en topología y dependencies
+52.8 Host parents, reachability y reducción de cascadas
+52.9 Flapping, hysteresis y umbrales
+52.10 Reintentos, SOFT/HARD y tiempo hasta detectar
+52.11 Contactos, turnos y ventanas de notificación
+52.12 Escalado por criticidad e impacto
+52.13 Deduplificación en herramientas externas
+52.14 Agrupación y enriquecimiento de alertas
+52.15 Integración con ticketing y mensajería mediante comandos seguros
+52.16 Acknowledgements, ownership y seguimiento
+52.17 Downtime programado frente a silenciamiento impropio
+52.18 Runbooks y diagnóstico reproducible
+52.19 Postmortems sin culpabilización y mejora de checks
+52.20 Medición de cobertura, precisión y tiempo de detección
+52.21 Laboratorio: diseñar política de alertas para una plataforma
+52.22 Laboratorio: provocar cascada y corregir ruido
+52.23 Troubleshooting: notificación ausente, duplicada o tardía
+
+
+53. Nagios como código — IaC y CI/CD
+
+53.1 Modelo declarativo de configuración Nagios
+53.2 Organización de repositorio por entorno y responsabilidad
+53.3 Inventario de hosts, servicios y ownership
+53.4 Templates de objetos y herencia controlada
+53.5 Ansible: estructura de rol y defaults/vars
+53.6 Ansible: tareas, handlers y templates Jinja2
+53.7 Ansible: paquetes Fedora/RHEL y diferencias upstream
+53.8 Gestión de secretos con Ansible Vault u otro gestor apropiado
+53.9 Gestión de permisos y contextos SELinux
+53.10 Firewalld declarativo para servidores y agentes
+53.11 Validación de sintaxis con nagios -v
+53.12 Validación de referencias entre objetos y dependencias
+53.13 Pruebas de plugins y contratos de salida
+53.14 Molecule: escenarios de prueba y límites del entorno
+53.15 CI: lint, test, configuración y validación
+53.16 Entrega por entornos dev, staging y producción
+53.17 Despliegue atómico y activación controlada
+53.18 Reload/restart: comprobar soporte real de unidad
+53.19 Rollback, backups y control de cambios
+53.20 Detección de drift y reconciliación
+53.21 Generación de configuración a partir de inventario
+53.22 Git: revisiones, ramas y pull requests
+53.23 Seguridad de la cadena de suministro de plugins
+53.24 Laboratorio: rol Ansible reproducible de Nagios Core
+53.25 Laboratorio: pipeline que rechaza configuración inválida
+53.26 Laboratorio: rollback ante fallo de despliegue
+
+
+54. Arquitecturas empresariales y recuperación ante desastres
+
+54.1 Requisitos de disponibilidad de la plataforma de monitorización
+54.2 SPOF del engine, interfaz, transporte y almacenamiento
+54.3 Monitorización distribuida: pollers, resultados pasivos y fronteras
+54.4 Segmentación y enlaces WAN
+54.5 Dimensionamiento por hosts, servicios y frecuencia
+54.6 HA active/passive: ventajas y limitaciones
+54.7 HA active/active: riesgos de duplicados y coordinación
+54.8 Pacemaker/Corosync como opción de cluster, no requisito universal
+54.9 Recursos, VIP y fencing para evitar split brain
+54.10 Sincronización de configuración y versiones
+54.11 Estado retenido y consistencia tras failover
+54.12 Transporte seguro y buffer de resultados pasivos
+54.13 Separación de HA de engine y HA de interfaz
+54.14 Observación externa del propio Nagios
+54.15 Backups: configuración, secretos, estado y evidencias
+54.16 Restauración probada y verificación de integridad
+54.17 RPO/RTO y objetivos medibles
+54.18 Runbooks de conmutación y retorno
+54.19 Pruebas de fallos de red, disco y proceso
+54.20 Recuperación ante desastre de un nodo completo
+54.21 Seguridad y control de acceso en múltiples sedes
+54.22 Laboratorio: simular failover sin alertas duplicadas
+54.23 Laboratorio: restaurar desde backup en entorno aislado
+54.24 Troubleshooting: split brain, checks perdidos y estados obsoletos
+
+
+55. Ingeniería avanzada e internals aplicados
+
+55.1 Mapa del repositorio y versión de Nagios Core
+55.2 Compilación reproducible y símbolos de depuración
+55.3 Arquitectura de procesos y workers
+55.4 Inicialización, parsing y creación de objetos
+55.5 Scheduler: cola de eventos y tiempos programados
+55.6 Ejecución de checks y control de timeouts
+55.7 Procesamiento de resultados y máquina de estados
+55.8 Transiciones SOFT/HARD y decisiones de notificación
+55.9 External commands y control de acceso
+55.10 Event Broker y API NEB
+55.11 Ciclo de vida de módulos NEB y compatibilidad ABI
+55.12 Instrumentación con strace de procesos y syscalls
+55.13 Depuración con gdb y backtraces
+55.14 Core dumps y límites de seguridad
+55.15 Sanitizers y herramientas de memoria en laboratorio
+55.16 Profiling de CPU y memoria
+55.17 Análisis de latencia de scheduling y execution time
+55.18 Diagnóstico de bloqueos y saturación de workers
+55.19 Trazabilidad de macros y command expansion
+55.20 Persistencia, retention y recuperación tras reinicio
+55.21 Pruebas de regresión y escenarios controlados
+55.22 Interpretar logs y eventos junto con el código fuente
+55.23 Laboratorio: seguir un check completo con debugger
+55.24 Laboratorio: aislar un cuello de botella realista
+55.25 Laboratorio: investigar fallo en un módulo de prueba
+
+
+56. Proyecto final experto ampliado
+
+56.1 diseñar una plataforma Nagios completa
+56.2 preparar servidores Fedora/RHEL
+56.3 instalar Nagios Core
+56.4 configurar Apache y acceso web
+56.5 integrar systemd
+56.6 configurar SELinux
+56.7 configurar firewalld
+56.8 crear estructura modular de configuración
+56.9 crear templates
+56.10 registrar hosts
+56.11 crear hostgroups
+56.12 definir services
+56.13 crear servicegroups
+56.14 configurar plugins
+56.15 monitorizar recursos locales
+56.16 monitorizar servicios TCP/IP
+56.17 monitorizar hosts mediante SSH
+56.18 desplegar NRPE
+56.19 desplegar NCPA
+56.20 integrar SNMP
+56.21 configurar passive checks
+56.22 configurar freshness
+56.23 configurar flapping detection
+56.24 configurar contacts
+56.25 configurar contactgroups
+56.26 configurar notifications
+56.27 configurar acknowledgements
+56.28 configurar downtime
+56.29 crear event handlers
+56.30 configurar dependencies
+56.31 configurar escalations
+56.32 utilizar macros
+56.33 recoger performance data
+56.34 configurar logging
+56.35 comprobar state retention
+56.36 automatizar configuración
+56.37 versionar configuración mediante Git
+56.38 validar configuración antes del despliegue
+56.39 diseñar monitorización distribuida
+56.40 diseñar alta disponibilidad
+56.41 aplicar hardening
+56.42 realizar pruebas de fallo
+56.43 diagnosticar problemas deliberadamente introducidos
+56.44 medir latencia y rendimiento del scheduler
+56.45 documentar arquitectura
+56.46 crear runbook de operaciones
+56.47 crear runbook de troubleshooting
+56.48 realizar auditoría final de seguridad
+56.49 realizar auditoría final de monitorización
+56.50 proyecto final: operar y diagnosticar una plataforma Nagios de producción
+
+56.51 Definir requisitos, alcance y criterios de aceptación
+56.52 Diseñar topología Fedora/RHEL con redes aisladas
+56.53 Instalar Nagios Core con procedimiento reproducible
+56.54 Desplegar Apache/CGI con TLS y autenticación
+56.55 Aplicar SELinux enforcing y firewalld mínimo
+56.56 Crear configuración modular y templates reutilizables
+56.57 Registrar hosts, servicios y dependencias
+56.58 Configurar plugins locales y remotos
+56.59 Monitorizar Linux por SSH, NRPE y NCPA
+56.60 Integrar SNMPv3 y resultados pasivos
+56.61 Monitorizar HTTP, APIs, TLS, DNS y bases de datos
+56.62 Implementar thresholds, freshness y flapping
+56.63 Configurar contacts, notificaciones y escalaciones
+56.64 Diseñar ventanas de mantenimiento y acknowledgements
+56.65 Crear event handlers con límites de seguridad
+56.66 Procesar performance data y visualizar tendencias
+56.67 Configurar logging y state retention
+56.68 Construir rol Ansible y pipeline de validación
+56.69 Probar despliegue, rollback y recuperación
+56.70 Diseñar monitorización distribuida y HA
+56.71 Realizar simulacros de failover y desastre
+56.72 Medir latencia del scheduler y carga
+56.73 Aplicar auditoría de seguridad y revisión de secretos
+56.74 Diagnosticar fallos deliberados de plugins, agentes y red
+56.75 Investigar un flujo interno del engine con herramientas de depuración
+56.76 Entregar diagramas, runbooks y matriz de checks
+56.77 Demostrar cobertura, precisión y trazabilidad de alertas
+56.78 Presentar auditoría final y defensa técnica del diseño

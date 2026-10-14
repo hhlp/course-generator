@@ -215,3 +215,20 @@ de:
 Estos contenidos pertenecen al PATH **Relational Database Design**, cuya
 bibliografía puede apoyarse separadamente en C. J. Date y otras obras
 especializadas en diseño y teoría relacional.
+
+## Refuerzo transversal para nivel experto
+
+### SQL testing y regresión
+
+- **pgTAP — documentación oficial del proyecto:** herramienta opcional para tests automatizados de consultas, funciones, views y triggers. Su instalación y disponibilidad dependen del laboratorio.
+- **PostgreSQL Documentation — psql, EXPLAIN, Concurrency Control, PL/pgSQL y SQL Commands:** referencia primaria para scripts reproducibles, interpretación de planes, concurrencia y programación segura.
+
+### Asignación por áreas ampliadas
+
+- **Semántica y corrección (8, 12, 14, 23):** Churcher, SQL Cookbook y PostgreSQL Documentation.
+- **Analítica y estadística (17, 21):** Tanimura, SQL for Data Analytics y documentación de agregados PostgreSQL.
+- **Transacciones y planes (19, 20, 24):** PostgreSQL Documentation, especialmente MVCC, aislamiento, EXPLAIN y PREPARE.
+- **Rutinas, procedimientos y triggers (28–32):** PostgreSQL Documentation y tutorial de Neon como apoyo secundario.
+- **Testing y proyecto (33–34):** documentación de psql y pgTAP, con datasets mínimos reproducibles.
+
+**Regla:** mantener las nueve referencias principales existentes; ninguna fuente complementaria sustituye la documentación oficial de la versión de PostgreSQL utilizada.

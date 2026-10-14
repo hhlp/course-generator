@@ -285,3 +285,37 @@ El estudiante debe aprender dónde encontrar:
 - módulos instalados
 
 El objetivo final es poder investigar una política SELinux desconocida.
+
+# Referencias por scope (selección para el generador)
+
+La prioridad de fuentes se aplica por tema: para sintaxis y comportamiento actual de Fedora, prevalecen las páginas man y la documentación de la versión instalada frente al libro de 2020.
+
+## Administración y diagnóstico — bloques 0–16
+- Sven Vermeulen, *SELinux System Administration*, 3.ª ed.: base conceptual y administración.
+- Fedora SELinux Documentation y páginas man locales: comandos, paquetes y comportamiento de plataforma.
+- The SELinux Notebook: contextos, clases, permisos, MLS/MCS y auditoría.
+
+## Desarrollo, módulos y Reference Policy — bloques 17–20
+- SELinux Reference Policy: macros, interfaces, templates y estructura de módulos.
+- Fedora SELinux Policy: implementación concreta y evolución de políticas distribuidas.
+- SELinux Project / SELinux userspace: checkpolicy, checkmodule, semodule_package, semodule.
+
+## Integraciones e internals — bloques 21–23
+- Documentación de Fedora, systemd y container-selinux para la versión de laboratorio.
+- The SELinux Notebook y código fuente Linux/SELinux userspace para hooks, AVC, SID y policydb.
+
+## CIL y constraints — bloques 27–28
+- SELinux Project, documentación CIL y secilc (incluyendo sus manuales).
+- The SELinux Notebook: lenguaje de política, constraints y decisiones de acceso.
+- Código fuente upstream: semántica exacta de compilación y validación.
+
+## Testing, automatización e ingeniería inversa — bloques 29–31
+- SETools (seinfo, sesearch, apol), documentación upstream y man pages.
+- Documentación de Ansible y de las colecciones instaladas: verificar nombres y parámetros de módulos antes de utilizarlos.
+- Fedora SELinux Policy y repositorios upstream para pruebas de regresión y comparaciones de versiones.
+
+## Proyecto final — bloque 32
+- Combinar fuentes de administración, SETools, auditoría, CIL y policy source; citar la procedencia de cada conclusión.
+
+## Regla de trazabilidad
+Cada lección debe indicar qué fuente sustenta la explicación, qué se ha comprobado en Fedora y qué depende de la versión. Evitar atribuir comandos o comportamientos modernos al libro cuando no los documente.

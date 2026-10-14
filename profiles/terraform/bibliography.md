@@ -84,3 +84,23 @@ La documentación oficial se utiliza para:
 - En contenidos sobre AWS, Azure, GCP, Kubernetes u otros providers, consultar también la documentación oficial del provider correspondiente.
 - En contenidos Terraform/OpenTofu, verificar las capacidades actuales de ambos proyectos y no asumir compatibilidad absoluta.
 - Si un libro describe una versión antigua, conservar su explicación conceptual cuando siga siendo válida y actualizar la parte técnica con documentación oficial.
+
+## Organización por scopes — revisión profunda
+
+| Scope | Bibliografía pedagógica | Documentación normativa complementaria |
+|---|---|---|
+| IaC, HCL y CLI | Terraform: Up & Running; Terraform in Action | Terraform Language y Terraform CLI |
+| Providers, módulos y state | Terraform in Action; Terraform Cookbook | Terraform Registry, provider docs, backends y state |
+| Testing, seguridad y automatización | Terraform Cookbook; Terraform in Depth | Terraform test, security y HCP Terraform |
+| Internals y desarrollo de providers | Terraform in Depth | Terraform Plugin Framework, protocolo y código fuente |
+| Escalabilidad y Stacks | Terraform in Depth; Terraform: Up & Running | Terraform Stacks y HCP Terraform, según versión y edición |
+| Terraform y OpenTofu | Terraform in Depth | Documentación oficial de ambos proyectos |
+| Infraestructura local y on-premises | Terraform Cookbook; Terraform in Action | Documentación del provider libvirt elegido, libvirt, KVM y Ansible |
+
+## Política de actualización técnica
+
+- Verificar versiones mínimas y disponibilidad real de Terraform Stacks, terraform query, recursos efímeros, argumentos write-only y demás capacidades recientes.
+- No asumir que todos los providers admiten funciones, operaciones write-only, importación o recursos efímeros.
+- Separar documentación de Core, providers, HCP Terraform y OpenTofu.
+- Registrar fecha de verificación y URL oficial al desarrollar cada lección sensible a versión.
+- No atribuir capítulos específicos a libros sin comprobar su índice o texto.

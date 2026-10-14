@@ -1,34 +1,70 @@
 # Bibliografía — OpenPGP, GnuPG y Sequoia PGP
 
-## Obra principal
+## Política de fuentes
 
-1. Michael W. Lucas. **PGP & GPG: Email for the Practical Paranoid**. No Starch Press. Texto práctico de referencia; contrastar comandos y recomendaciones antiguas con las versiones actuales.
+La obra de Michael W. Lucas aporta el enfoque práctico e histórico. RFC 9580 es la referencia normativa principal; la documentación de cada versión instalada determina la sintaxis y las capacidades reales. Ningún ejemplo de un libro antiguo se considera seguro por defecto.
 
-## Normativa esencial
+## S1 — Fundamentos, criptografía aplicada y correo
 
-2. IETF. **RFC 9580 — OpenPGP** (2024). https://www.rfc-editor.org/rfc/rfc9580.html — referencia normativa principal para OpenPGP moderno.
-3. IETF. **RFC 4880 — OpenPGP Message Format** (2007). https://www.rfc-editor.org/rfc/rfc4880.html — lectura histórica para interoperabilidad y formatos heredados; RFC 9580 lo sustituye.
-4. IETF. **RFC 3156 — MIME Security with OpenPGP**. https://www.rfc-editor.org/rfc/rfc3156.html — PGP/MIME.
-5. IETF. **RFC 7929 — DNS-Based Authentication of Named Entities (DANE) Bindings for OpenPGP**. https://www.rfc-editor.org/rfc/rfc7929.html — OPENPGPKEY DNS.
+- **Michael W. Lucas — PGP & GPG: Email for the Practical Paranoid.** No Starch Press. Obra principal práctica, contextualizada históricamente.
+- **GNU Privacy Handbook.** https://www.gnupg.org/gph/en/manual.html — fundamentos y flujos tradicionales; contrastar prácticas antiguas.
 
-## GnuPG y Linux
+## S2 — Normativa OpenPGP y formatos
 
-6. GnuPG Project. **Manual de GnuPG y documentación de componentes**. https://www.gnupg.org/documentation/ — gpg, gpgv, gpg-agent, gpgconf, dirmngr, gpgsm.
-7. GnuPG Project. **The GNU Privacy Handbook**. https://www.gnupg.org/gph/en/manual.html — fundamentos prácticos, contextualizados históricamente.
-8. Fedora Project. **Documentación de seguridad, RPM y DNF**. https://docs.fedoraproject.org/ — integración Linux y verificación de paquetes.
-9. RPM Project. **Documentación oficial**. https://rpm.org/documentation.html — firmas y validación RPM.
+- **RFC 9580 — OpenPGP.** https://www.rfc-editor.org/rfc/rfc9580.html — norma moderna.
+- **RFC 4880 — OpenPGP Message Format.** https://www.rfc-editor.org/rfc/rfc4880.html — legado e interoperabilidad.
+- **RFC 3156 — MIME Security with OpenPGP.** https://www.rfc-editor.org/rfc/rfc3156.html — PGP/MIME.
+- **RFC 7929 — DANE Bindings for OpenPGP.** https://www.rfc-editor.org/rfc/rfc7929.html — registros OPENPGPKEY en DNS.
+- **IANA — OpenPGP Parameters.** https://www.iana.org/assignments/pgp-parameters/pgp-parameters.xhtml — registros y algoritmos; verificar actualizaciones.
 
-## Sequoia PGP y Rust
+## S3 — GnuPG, agentes, CLI y ciclo de vida
 
-10. Sequoia PGP. **Documentación oficial y guías de sq**. https://sequoia-pgp.org/docs/ — consultar por versión.
-11. Sequoia PGP. **sq User Guide**. https://book.sequoia-pgp.org/ — flujos CLI, certificados y autenticación.
-12. Sequoia PGP. **API de sequoia-openpgp**. https://docs.rs/sequoia-openpgp/ — bibliotecas Rust y ejemplos.
-13. Rust Project. **The Rust Programming Language**. https://doc.rust-lang.org/book/ — consulta transversal para desarrollo con Sequoia.
-14. Rust Project. **Cargo Book**. https://doc.rust-lang.org/cargo/ — dependencias, tests y builds.
+- **GnuPG — Documentation.** https://www.gnupg.org/documentation/ — manuales gpg, gpgv, gpg-agent, gpgconf, dirmngr, scdaemon, gpg-connect-agent.
+- **GnuPG — Manual de la versión instalada.** `gpg --version`, `gpg --help`, `man gpg`, `man gpg-agent`, `man gpgconf`; autoridad operativa local.
 
-## Uso de la bibliografía
+## S4 — Sequoia PGP, sq y autenticación
 
-- Prioridad: RFC 9580 para comportamiento normativo moderno; manuales de las versiones instaladas para sintaxis ejecutable.
-- El libro principal aporta el itinerario práctico y la perspectiva de correo seguro, no sustituye documentación de GnuPG/Sequoia contemporánea.
-- Verificar compatibilidad real de claves v6, AEAD, algoritmos y dispositivos antes de ejecutar laboratorios cruzados.
-- No equiparar firmas RPM, OpenPGP, SSH y S/MIME: identificar estándares, herramientas y almacenes de confianza de cada caso.
+- **Sequoia PGP — Documentation.** https://sequoia-pgp.org/docs/ — arquitectura y herramientas.
+- **Sequoia — sq User Guide.** https://book.sequoia-pgp.org/ — flujos CLI; validar con `sq --help`.
+
+## S5 — Sequoia Rust API y testing
+
+- **sequoia-openpgp — API Reference.** https://docs.rs/sequoia-openpgp/ — Cert, políticas, parsing, streams y helpers.
+- **The Rust Programming Language.** https://doc.rust-lang.org/book/ — referencia transversal, sin duplicar el path Rust.
+- **The Cargo Book.** https://doc.rust-lang.org/cargo/ — features, tests y builds.
+
+## S6 — Fedora, RPM, Git y automatización
+
+- **Fedora Documentation.** https://docs.fedoraproject.org/ — SELinux, sistema y herramientas.
+- **RPM Project — Documentation.** https://rpm.org/documentation.html — firmas RPM y verificación.
+- **Git Documentation.** https://git-scm.com/docs — firma y verificación de commits y tags.
+- **GitHub Actions Documentation.** https://docs.github.com/en/actions — integración CI y permisos.
+- **Ansible Documentation.** https://docs.ansible.com/ — distribución idempotente y validaciones.
+
+## S7 — Hardware tokens, seguridad y conformidad
+
+- **OpenPGP Card — especificación y documentación del proyecto.** https://www.g10code.com/p-card.html — protocolo de tarjeta; cotejar versión del dispositivo.
+- **Yubico — OpenPGP.** https://developers.yubico.com/PGP/ — procedimientos de token; no asumir equivalencia entre modelos.
+- **GnuPG y Sequoia — documentación de seguridad y notas de versión.** Referencia para compatibilidad, correcciones y políticas.
+
+## Matriz de aplicación por bloques
+
+| Bloques | Scopes principales |
+|---|---|
+| 0–3 | S1, S2 |
+| 4–12 | S2, S3 |
+| 13 | S3, S7 |
+| 14 | S1, S2, S3 |
+| 15–17 | S2, S4 |
+| 18–19 | S2, S3, S4, S7 |
+| 20 | S2, S5 |
+| 21–23 | S3, S4, S6 |
+| 24–27 | S2–S7 |
+
+## Reglas de uso
+
+1. Separar especificación, comportamiento de implementación y elección pedagógica.
+2. Documentar versión, backend criptográfico y sistema operativo en cada laboratorio.
+3. Verificar soporte de v6, AEAD, algoritmos, smartcards y comandos antes de ejecutar.
+4. No confundir firmas OpenPGP, firmas Git, firmas nativas RPM, SSH y S/MIME.
+5. No requerir servicios públicos ni claves reales para los laboratorios.

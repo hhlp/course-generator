@@ -1,30 +1,52 @@
-name: postgresql-admin
-label: PostgreSQL Server Administration
-language: es
-
+---
 course:
-  title: PostgreSQL Server Administration — de 0 a experto
-  audience: Administradores de sistemas, DBAs, ingenieros de plataforma y desarrolladores que necesiten operar PostgreSQL en producción
-  level: zero-to-expert
-  primary_platform: Fedora/RHEL/Linux
+  title: PostgreSQL Server Administration — de 0 a experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  primary_platform:
+    - Fedora
+    - RHEL
+    - Linux
   database: PostgreSQL
-  version_policy: PostgreSQL moderno; priorizar la versión estable actual y señalar diferencias relevantes entre versiones
+  version_policy: PostgreSQL moderno; priorizar la versión estable actual y
+    señalar diferencias relevantes entre versiones
+  mode: deep
 
 pedagogy:
   style: profundo, práctico, progresivo y orientado a administración real
   lesson_structure:
-    required_opening: "🎯 OBJETIVO"
-    required_closing: "🧠 QUÉ DEBES RECORDAR"
+    required_opening: 🎯 OBJETIVO
+    required_closing: 🧠 QUÉ DEBES RECORDAR
     optional_sections:
-      - "🧪 Laboratorio/ejemplos"
-      - "⚠️ Errores frecuentes"
-      - "💡 Idea importante"
+      - 🧪 Laboratorio/ejemplos
+      - ⚠️ Errores frecuentes
+      - 💡 Idea importante
   closing_requirements:
     min_points: 3
     max_points: 7
     avoid_repeating_objective: true
   indentation: false
   numbering: single-level
+  depth_contract:
+    minimum_level: deep_mechanistic_and_operational
+    required_when_applicable:
+      - prerequisites_and_version
+      - architecture_and_mechanism
+      - installation_and_configuration
+      - real_commands_and_sql
+      - permissions_and_risks
+      - verification_and_observability
+      - reproducible_lab
+      - expected_results
+      - failure_diagnosis
+      - recovery_or_rollback
+      - version_differences
+      - common_mistakes
+    avoid_recipe_only_lessons: true
+    preserve_original_lessons: true
+    numbering_pattern: block.lesson
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -52,7 +74,16 @@ content:
     - desarrollo de aplicaciones
     - ORMs
     - vendor lock-in cloud
-  sql_scope: incluir únicamente SQL necesario para administración, diagnóstico, catálogos, EXPLAIN, estadísticas y mantenimiento
+  sql_scope: incluir únicamente SQL necesario para administración, diagnóstico,
+    catálogos, EXPLAIN, estadísticas y mantenimiento
+  advanced_expansions:
+    - pgBackRest and Barman
+    - Patroni etcd HAProxy production-like HA
+    - GSSAPI Kerberos and SCRAM migration
+    - hot standby conflicts and failover slots
+    - DDL and migrations with rollback
+    - plan cache and query regression
+    - buffer pins and memory contexts
 
 platform:
   linux:
@@ -78,14 +109,16 @@ sources:
     - PostgreSQL 16 Administration Cookbook
     - Learn PostgreSQL, Second Edition
   version_sensitive_topics_use_official_docs_first: true
-
 labs:
   required_when_useful: true
   prefer_real_server_observation: true
   include_failure_scenarios: true
   include_recovery_validation: true
   include_production_like_scenarios: true
-
+  safety:
+    destructive_scenarios_only_in_disposable_environments: true
+    verify_restoration: true
+    measure_rpo_rto_when_applicable: true
 expertise_targets:
   - instalar e inicializar clusters PostgreSQL
   - comprender procesos y almacenamiento interno
@@ -106,7 +139,6 @@ expertise_targets:
   - diagnosticar corrupción e incidentes
   - relacionar PostgreSQL con Linux, systemd, SELinux y firewalld
   - comprender internals suficientes para troubleshooting experto
-
 output:
   tone: técnico, didáctico y preciso
   examples: preferir comandos y consultas reproducibles
@@ -114,3 +146,4 @@ output:
   explain_tradeoffs: true
   warn_version_differences: true
   avoid_shallow_summaries: true
+  require_validation_and_rollback: true

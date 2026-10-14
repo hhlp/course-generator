@@ -1,3 +1,4 @@
+---
 course:
   title: "English Grammar C1 → C2"
   language: "es"
@@ -35,8 +36,9 @@ curriculum:
     integrated_skills: false
   incidental_context_allowed: true
   incidental_context_rule: >-
-    El vocabulario y las oraciones contextuales pueden utilizarse para demostrar
-    gramática, pero nunca deben convertirse en objetivos independientes de la lección.
+    El vocabulario y las oraciones contextuales pueden utilizarse para
+    demostrar gramática, pero nunca deben convertirse en objetivos
+    independientes de la lección.
 
 level_model:
   type: "continuum"
@@ -68,7 +70,8 @@ level_model:
   avoid_repetition_without_new_depth: true
 
 pedagogy:
-  style: "profundo, práctico, progresivo, contrastivo y orientado al dominio gramatical"
+  style: "profundo, práctico, progresivo, contrastivo y orientado al
+         dominio gramatical"
   explanation_language: "Spanish"
   grammar_terminology: "English"
   examples_language: "English"
@@ -103,7 +106,8 @@ lesson_structure:
   reading:
     required: true
     heading: "📚 LECTURA"
-    purpose: "referencia bibliográfica gramatical; no actividad de comprensión lectora"
+    purpose: "referencia bibliográfica gramatical;
+        no actividad de comprensión lectora"
     categories:
       - principal
       - normativa
@@ -126,12 +130,14 @@ lesson_structure:
     requirements:
       - "Incluir ejemplos naturales y gramaticalmente precisos."
       - "Incluir contrastes mínimos cuando sean útiles."
-      - "Explicar por qué cambia el significado, la aceptabilidad o la estructura."
+      - "Explicar por qué cambia el significado, la aceptabilidad
+         o la estructura."
       - "Permitir ejemplos avanzados adecuados a C1-C2."
   practice:
     required: true
     heading: "🧪 Laboratorio/ejemplos"
-    purpose: "manipulación, transformación, contraste, diagnóstico y análisis gramatical avanzado"
+    purpose: "manipulación, transformación, contraste, diagnóstico y análisis
+        gramatical avanzado"
   common_errors:
     required: false
     heading: "⚠️ Errores frecuentes"
@@ -146,7 +152,8 @@ lesson_structure:
       - "exista ambigüedad estructural"
       - "sea necesario distinguir complemento y adjunto"
       - "sea útil identificar constituyentes o funciones"
-      - "la elección entre construcciones dependa de restricciones sintácticas o semánticas"
+      - "la elección entre construcciones dependa de restricciones sintácticas
+        o semánticas"
   remember:
     required: true
     position: last
@@ -195,7 +202,8 @@ references:
     - author: "Ronald Carter; Michael McCarthy"
       title: "Cambridge Grammar of English"
       publisher: "Cambridge University Press"
-      role: "advanced pedagogical-descriptive reference for grammar in context, grammatical choice, spoken/written patterns and variation"
+      role: "advanced pedagogical-descriptive reference for grammar in context,
+          grammatical choice, spoken/written patterns and variation"
   advanced:
     - title: "The Cambridge Grammar of the English Language"
       role: "advanced syntactic reference"
@@ -251,8 +259,9 @@ level_specific:
     from: "C1"
     to: "C2"
     rule: >-
-      Evitar repetir contenidos B1-B2 salvo cuando se estudien con nueva profundidad,
-      restricciones, excepciones, variación, análisis estructural o elección gramatical avanzada.
+      Evitar repetir contenidos B1-B2 salvo cuando se estudien con nueva
+      profundidad, restricciones, excepciones, variación, análisis estructural
+      o elección gramatical avanzada.
   required_topics:
     preserve_c1_c2_continuity: true
     advanced_constraints: true

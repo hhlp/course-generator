@@ -1,25 +1,33 @@
-name: file-storage-services
-title: "FILE / STORAGE SERVICES — 0 → Experto en profundidad"
-language: es
-level: beginner-to-expert
-
-platform:
-  primary:
-    - Fedora
-    - Red Hat Enterprise Linux
+---
+course:
+  title: "FILE / STORAGE SERVICES — 0 → Experto en profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
   init_system: systemd
   security:
     selinux: enforcing
     firewall: firewalld
+  scope:
+    - NFS
+    - autofs
+    - Samba
+    - SMB
+    - iSCSI
+    - LIO
+    - multipath
+  mode: "deep"
 
-scope:
-  - NFS
-  - autofs
-  - Samba
-  - SMB
-  - iSCSI
-  - LIO
-  - multipath
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 
 teaching:
   approach: theory-to-production

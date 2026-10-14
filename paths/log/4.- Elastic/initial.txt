@@ -24,6 +24,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 0.21 ciclo de vida de los datos
 0.22 alta disponibilidad y escalabilidad
 0.23 laboratorio: construir el mapa conceptual completo de Elastic Stack
+0.24 Licencias, distribuciones y capacidades según versión
+0.25 Arquitecturas alternativas y criterios de selección
+0.26 Casos de uso: logging, observabilidad, seguridad y búsqueda semántica
 
 1. Instalación y arquitectura en Fedora
 1.1 arquitectura distribuida
@@ -50,6 +53,15 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 1.22 firewalld
 1.23 SELinux
 1.24 laboratorio: desplegar un Elastic Stack básico en Fedora
+1.25 Compatibilidad de versiones entre componentes y matriz de soporte Fedora/RHEL
+1.26 Instalación RPM paso a paso y verificación de firmas y repositorios
+1.27 Bootstrap seguro y autoconfiguración de seguridad
+1.28 Contraseñas iniciales, enrollment tokens y certificados
+1.29 Rutas de datos, logs, configuración y permisos de servicio
+1.30 Validación de TLS y conectividad mediante curl
+1.31 Límites systemd, sysctl y persistencia de parámetros
+1.32 Diagnóstico de AVC SELinux sin desactivar enforcing
+1.33 Desinstalación controlada y limpieza de laboratorio
 
 2. Elasticsearch: fundamentos y REST API
 2.1 qué es Elasticsearch
@@ -73,6 +85,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 2.19 Multi Get API
 2.20 cat APIs introductorias
 2.21 laboratorio: manipular documentos mediante REST API
+2.22 Refresh y visibilidad near-real-time
+2.23 Durabilidad de escrituras y opciones de consistencia
+2.24 Indexación idempotente con identificadores estables
 
 3. Modelo de datos y mappings
 3.1 mapping
@@ -104,6 +119,10 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 3.27 límites de mappings
 3.28 actualización y evolución del esquema
 3.29 laboratorio: diseñar mappings para logs heterogéneos
+3.30 dense_vector y representación vectorial
+3.31 semantic_text y capacidades semánticas sujetas a versión
+3.32 indexación de vectores y restricciones de mappings
+3.33 Evolución de mappings sin pérdida de datos
 
 4. Análisis de texto
 4.1 analyzer
@@ -125,6 +144,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 4.17 text frente a keyword
 4.18 index-time frente a search-time analysis
 4.19 laboratorio: construir y diagnosticar un analyzer personalizado
+4.20 Relevancia BM25 y efectos de analyzers
+4.21 Análisis multilingüe y sinónimos en producción
 
 5. Índices, aliases y templates
 5.1 creación y configuración de índices
@@ -144,6 +165,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 5.15 split
 5.16 clone
 5.17 laboratorio: diseñar templates reutilizables para logging
+5.18 Estrategias de alias para migraciones sin interrupción
+5.19 Validación de templates antes del despliegue
 
 6. Data streams
 6.1 qué es un data stream
@@ -163,6 +186,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 6.15 time series data streams
 6.16 estrategias para logs y métricas
 6.17 laboratorio: implementar un data stream completo
+6.18 Data stream lifecycle: condiciones de rollover y retención
+6.19 Comparación práctica DSL e ILM y criterios de elección
 
 7. Búsquedas y Query DSL
 7.1 Search API
@@ -197,6 +222,15 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 7.30 runtime_mappings
 7.31 named queries
 7.32 laboratorio: construir consultas Query DSL progresivamente complejas
+7.33 Búsqueda vectorial exacta y aproximada
+7.34 kNN y approximate nearest neighbors (ANN)
+7.35 HNSW: grafo, parámetros y compromisos
+7.36 Filtros previos y posteriores en búsqueda vectorial
+7.37 Búsqueda híbrida léxica y vectorial
+7.38 Reciprocal Rank Fusion (RRF)
+7.39 Reranking y relevancia: disponibilidad según versión/licencia
+7.40 Evaluación de calidad de búsqueda y datasets de prueba
+7.41 Seguridad y coste de consultas de alta complejidad
 
 8. Resultados, ordenación y paginación
 8.1 hits y total hits
@@ -215,6 +249,7 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 8.14 explain
 8.15 Profile API
 8.16 laboratorio: implementar paginación estable sobre grandes resultados
+8.17 Paginación de resultados híbridos y consideraciones de consistencia
 
 9. Aggregations
 9.1 arquitectura de aggregations
@@ -238,6 +273,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 9.19 moving functions
 9.20 rendimiento y precisión
 9.21 laboratorio: construir análisis temporal de logs
+9.22 Aggregations de alta cardinalidad y memoria
+9.23 Medición de errores aproximados en agregaciones
 
 10. KQL, Lucene y ES|QL
 10.1 lenguajes de consulta del ecosistema Elastic
@@ -259,6 +296,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 10.17 DISSECT y GROK
 10.18 casos de uso operacionales
 10.19 laboratorio: resolver el mismo análisis con Query DSL, KQL y ES|QL
+10.20 ES|QL: modelo de ejecución y límites
+10.21 ES|QL: funciones avanzadas y procesamiento de series temporales
+10.22 ES|QL: inspección de planes y optimización cuando esté disponible
+10.23 Elasticsearch SQL REST API
+10.24 SQL frente a ES|QL, KQL y Query DSL
+10.25 Restricciones de compatibilidad y licenciamiento por lenguaje
 
 11. Shards, replicas y routing
 11.1 shard primario
@@ -281,6 +324,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 11.18 disk watermarks
 11.19 Cluster Allocation Explain API
 11.20 laboratorio: provocar y diagnosticar shards no asignados
+11.21 Análisis de decisiones de allocation y balanceo
+11.22 Replica shards y tolerancia real a fallos
 
 12. Nodos y clustering
 12.1 node roles
@@ -303,6 +348,11 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 12.18 rolling restart
 12.19 diseño de clusters de producción
 12.20 laboratorio: desplegar y operar un cluster multi-node
+12.21 Bootstrap seguro de quorum en cluster nuevo
+12.22 Votaciones, exclusión de nodos y mantenimiento
+12.23 Pérdida de quorum y procedimiento de recuperación
+12.24 Rolling restarts y reinicios completos comparados
+12.25 Pruebas de resiliencia por fault domain
 
 13. Ingest pipelines
 13.1 ingest node
@@ -328,6 +378,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 13.21 metadata durante ingestión
 13.22 diseño y rendimiento
 13.23 laboratorio: construir un pipeline para logs de sistema
+13.24 Ingest pipelines: dead-letter strategies y quarantine indices
+13.25 Idempotencia y deduplicación en ingestión
+13.26 Tratamiento de timestamps erróneos y eventos tardíos
 
 14. Enrichment, runtime fields y scripting
 14.1 enrich policies
@@ -344,6 +397,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 14.12 scripts almacenados
 14.13 seguridad y coste de scripts
 14.14 laboratorio: enriquecer eventos y crear campos runtime
+14.15 Estrategias de enriquecimiento y actualización de políticas
+14.16 Coste de runtime fields frente a indexación
 
 15. Logstash: arquitectura
 15.1 qué es Logstash
@@ -361,6 +416,7 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 15.13 back pressure
 15.14 monitoring APIs
 15.15 laboratorio: desplegar Logstash en Fedora
+15.16 Aislamiento de pipelines y backpressure por componente
 
 16. Logstash: inputs, filters y outputs
 16.1 file input
@@ -385,6 +441,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 16.20 stdout output
 16.21 codecs json y multiline
 16.22 laboratorio: construir un pipeline Logstash completo
+16.23 Tratamiento de errores de plugins y compatibilidad ECS
+16.24 Configuración de TLS mutuo en entradas y salidas
 
 17. Fiabilidad y rendimiento de Logstash
 17.1 in-memory queue
@@ -404,6 +462,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 17.15 Flow Metrics
 17.16 troubleshooting de pipelines
 17.17 laboratorio: simular caída de Elasticsearch sin perder eventos
+17.18 Garantías at-least-once y límites del exactly-once
+17.19 Deduplicación mediante document_id y claves deterministas
+17.20 Replay reproducible de colas y entradas
+17.21 DLQ: límites de cobertura y políticas de reprocesamiento
+17.22 Persistencia y recuperación ante cierre abrupto
+17.23 Métricas de pérdida, duplicación y latencia end-to-end
 
 18. Beats
 18.1 arquitectura de Beats
@@ -429,6 +493,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 18.21 seguridad TLS
 18.22 monitoring
 18.23 laboratorio: enviar logs y métricas desde Fedora
+18.24 Compatibilidad y ciclo de vida de Beats por versión
+18.25 Pruebas de rotación, truncado y duplicados en filestream
 
 19. Elastic Agent, Fleet e Integrations
 19.1 Elastic Agent
@@ -450,6 +516,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 19.17 integración Custom Logs
 19.18 integración con servicios
 19.19 laboratorio: gestionar agentes Fedora mediante Fleet
+19.20 Alta disponibilidad y escalado de Fleet Server
+19.21 Certificados y trust chain de Fleet Server
+19.22 Políticas y configuración de outputs por entorno
+19.23 Diagnóstico de agentes offline y enrolamiento fallido
+19.24 Rotación de credenciales y recuperación de agentes
+19.25 Limitaciones y plan de migración Beats a Agent
 
 20. Elastic Common Schema — ECS
 20.1 objetivos de ECS
@@ -473,6 +545,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 20.19 versionado de ECS
 20.20 diseño de mappings ECS
 20.21 laboratorio: normalizar journald, syslog y aplicación a ECS
+20.22 ECS y OpenTelemetry semantic conventions: correspondencias
+20.23 Versionado y control de cambios de esquemas
 
 21. Kibana: fundamentos y administración
 21.1 arquitectura de Kibana
@@ -492,6 +566,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 21.15 APIs de Kibana
 21.16 importación y exportación
 21.17 laboratorio: preparar un espacio operacional
+21.18 Kibana encryption keys y persistencia segura
+21.19 Saved objects migrations y compatibilidad
 
 22. Visualizaciones y dashboards
 22.1 principios de visualización
@@ -513,6 +589,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 22.17 dashboard-only workflows mediante privilegios
 22.18 rendimiento de dashboards
 22.19 laboratorio: construir un dashboard de operación Linux
+22.20 Diseño de dashboards con SLI/SLO y preguntas de operación
+22.21 Pruebas de rendimiento de dashboards
 
 23. Alerting
 23.1 arquitectura de alerting
@@ -533,6 +611,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 23.16 snooze
 23.17 gestión y troubleshooting
 23.18 laboratorio: crear alertas operacionales de extremo a extremo
+23.19 Alertas: ruido, deduplicación, supresión y escalado
+23.20 Alertas como código y pruebas de recuperación
 
 24. Seguridad
 24.1 modelo de seguridad
@@ -561,6 +641,16 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 24.24 principio de mínimo privilegio
 24.25 exposición segura de Elasticsearch y Kibana
 24.26 laboratorio: asegurar un cluster multi-node
+24.27 LDAP y Active Directory como realms: soporte y licencia
+24.28 Kerberos y autenticación integrada: alcance y requisitos
+24.29 OpenID Connect (OIDC)
+24.30 SAML y single sign-on (SSO)
+24.31 PKI realm y autenticación mediante certificados
+24.32 Comparación de realms, orden y fallbacks
+24.33 Gestión del ciclo de vida de certificados
+24.34 Seguridad de Fleet, Logstash y agentes
+24.35 Auditoría de accesos y límites por licencia
+24.36 Modelo de amenazas y protección de secretos
 
 25. ILM y data tiers
 25.1 Index Lifecycle Management
@@ -584,6 +674,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 25.19 ILM con data streams
 25.20 data stream lifecycle frente a ILM
 25.21 laboratorio: implementar hot/warm/cold y retención
+25.22 Políticas de retención y obligaciones de conservación
+25.23 Simulación y verificación de lifecycle
 
 26. Snapshots, SLM y disaster recovery
 26.1 snapshots
@@ -605,6 +697,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 26.17 disaster recovery
 26.18 pruebas de restauración
 26.19 laboratorio: destruir y recuperar datos mediante snapshots
+26.20 Definición de RPO y RTO
+26.21 Restauración en cluster alternativo
+26.22 Restauración de feature states y objetos de sistema
+26.23 Procedimientos de recuperación total y parcial
+26.24 Pruebas periódicas de restauración y evidencias
+26.25 Restricciones de compatibilidad de snapshots entre versiones
 
 27. Cross-cluster y arquitecturas avanzadas
 27.1 remote clusters
@@ -621,6 +719,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 27.12 separación geográfica
 27.13 centralización frente a federación
 27.14 laboratorio: diseñar una arquitectura multi-cluster
+27.15 Latencia y fallos de redes entre clusters
+27.16 Modelo de licenciamiento de CCS y CCR
 
 28. Rendimiento y capacity planning
 28.1 metodología de rendimiento
@@ -652,6 +752,10 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 28.27 capacity planning
 28.28 crecimiento y retención
 28.29 laboratorio: medir y ajustar un workload de logs
+28.30 Benchmark de búsqueda vectorial e híbrida
+28.31 Medición de recall, latencia y throughput
+28.32 Dimensionamiento por tasas de ingestión y retención
+28.33 Modelo de coste de almacenamiento y data tiers
 
 29. JVM, memoria y almacenamiento
 29.1 JVM de Elasticsearch
@@ -672,6 +776,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 29.16 disk watermarks
 29.17 errores de espacio
 29.18 laboratorio: diagnosticar presión de memoria y disco
+29.19 Translog y efectos de almacenamiento en durabilidad
+29.20 Diagnóstico de presión de page cache
 
 30. Monitorización del propio Elastic Stack
 30.1 observabilidad de la plataforma
@@ -695,6 +801,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 30.19 logs internos
 30.20 alertas sobre la propia plataforma
 30.21 laboratorio: construir un panel de salud de Elastic Stack
+30.22 SLI y SLO de la plataforma Elastic
+30.23 Alertas de saturación de ingestión y retraso de indexación
 
 31. Troubleshooting
 31.1 metodología sistemática de diagnóstico
@@ -729,6 +837,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 31.30 hot threads
 31.31 journalctl y logs de servicios
 31.32 laboratorio: resolver una plataforma deliberadamente averiada
+31.33 Diagnóstico de relevancia de búsqueda vectorial
+31.34 Diagnóstico de pérdida y duplicación de eventos
+31.35 Diagnóstico de errores de autenticación federada
 
 32. Logging Linux → Elastic Stack
 32.1 arquitectura de centralización
@@ -755,6 +866,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 32.22 buffering
 32.23 diseño end-to-end
 32.24 laboratorio: Fedora → journald/rsyslog → Elastic Stack
+32.25 Topologías con buffering duradero y puntos de fallo
+32.26 Trazabilidad de un evento desde journald hasta Kibana
 
 33. Observabilidad: logs, métricas y traces
 33.1 observabilidad frente a monitoring
@@ -778,6 +891,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 33.19 integración OpenTelemetry/Elastic
 33.20 correlación logs-traces
 33.21 laboratorio: investigar un incidente utilizando varias señales
+33.22 Instrumentación APM de una aplicación de ejemplo
+33.23 OpenTelemetry Collector: receivers, processors y exporters
+33.24 Propagación de contexto entre servicios
+33.25 Correlación de trace.id, span.id y logs
+33.26 Trazas distribuidas y diagnóstico de latencia
+33.27 APM y OpenTelemetry: límites de integración y versiones
 
 34. Automatización y APIs
 34.1 REST APIs administrativas
@@ -798,6 +917,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 34.16 Git
 34.17 automatización con herramientas externas
 34.18 laboratorio: reconstruir configuración desde artefactos versionados
+34.19 Terraform para infraestructura de laboratorio Elastic
+34.20 Ansible para instalación y configuración idempotente
+34.21 GitOps y revisión de cambios de configuración
+34.22 CI/CD: lint, validación y pruebas de integración
+34.23 Gestión de secretos sin introducirlos en Git
+34.24 Rollback declarativo y detección de drift
 
 35. Upgrades y migraciones
 35.1 ciclo de versiones
@@ -816,6 +941,10 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 35.14 pruebas previas
 35.15 rollback y límites del rollback
 35.16 laboratorio: diseñar un procedimiento de actualización de producción
+35.17 Matriz de compatibilidad entre Elasticsearch, Kibana, Agent y Logstash
+35.18 Ensayo de upgrades en entorno aislado
+35.19 Migración de saved objects y componentes de seguridad
+35.20 Estrategias ante downgrade no soportado
 
 36. Diseño de producción y hardening
 36.1 requisitos y SLO
@@ -839,6 +968,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 36.19 observabilidad de la plataforma
 36.20 runbooks
 36.21 laboratorio: revisar una arquitectura de producción
+36.22 Threat modeling y segmentación de redes
+36.23 Pruebas de failover y objetivos de disponibilidad
+36.24 Presupuesto de almacenamiento y crecimiento
 
 37. Internals de Apache Lucene
 37.1 función de Lucene dentro de Elasticsearch
@@ -862,6 +994,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 37.19 merge policy
 37.20 relación entre refresh y nuevos segmentos
 37.21 laboratorio: relacionar estructuras Lucene con comportamiento observable
+37.22 Vectores y estructuras de búsqueda aproximada en Lucene
+37.23 HNSW: construcción, navegación y costes
+37.24 Internals de BM25 y comparación con similitud vectorial
 
 38. Internals de Elasticsearch y del Stack
 38.1 arquitectura interna de Elasticsearch
@@ -895,6 +1030,12 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 38.29 internals de Kibana
 38.30 saved objects y comunicación con Elasticsearch
 38.31 laboratorio: seguir internamente una escritura y una búsqueda
+38.32 Durabilidad: translog, fsync y recuperación tras caída
+38.33 Indexación distribuida y confirmación de escrituras
+38.34 Replication, checkpoints y garantías de recuperación
+38.35 Recuperación de shards y sincronización de segmentos según versión
+38.36 Internals de consultas híbridas y fusión de rankings
+38.37 Relación entre HNSW, segmentos y merges
 
 39. Proyecto final experto
 39.1 definir requisitos de una plataforma centralizada
@@ -955,3 +1096,10 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 39.56 documentar procedimientos de actualización
 39.57 auditoría final de seguridad
 39.58 laboratorio final: operar y diagnosticar una plataforma Elastic Stack completa
+39.59 Implementar búsqueda vectorial e híbrida con evaluación
+39.60 Integrar identidad externa en laboratorio aislado cuando esté disponible
+39.61 Implementar infraestructura reproducible con Terraform y Ansible
+39.62 Definir y medir RPO, RTO, SLI y SLO
+39.63 Ejecutar pruebas de resiliencia y recuperación documentadas
+39.64 Verificar compatibilidad, licencias y coste de la arquitectura
+39.65 Ejecutar pipeline CI de validación de configuraciones

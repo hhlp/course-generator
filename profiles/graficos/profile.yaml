@@ -1,17 +1,28 @@
-name: python-graficos
-title: MATPLOTLIB + SEABORN + POLARS — LEARNING PATH 0 → EXPERTO
-language: es
+---
+course:
+  title: POLARS + MATPLOTLIB + SEABORN — LEARNING PATH 0 → EXPERTO en
+    profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  mode: deep
+
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 pedagogy:
   opening_section: 🎯 OBJETIVO
   closing_section: 🧠 QUÉ DEBES RECORDAR
   closing_key_points_min: 3
   closing_key_points_max: 7
   optional_sections:
-  - 🧪 Laboratorio/ejemplos
-  - ⚠️ Errores frecuentes
-  - 💡 Idea importante
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
   reading_section: 📚 LECTURA
+  depth_guidance: Desarrollar mecanismo, API, ejemplos ejecutables, casos
+    límite, rendimiento, troubleshooting y validación; preservar cada lección
+    del initial.txt.

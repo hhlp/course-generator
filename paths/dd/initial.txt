@@ -15,6 +15,8 @@
 1.5 Equivalencia y contraejemplos
 1.6 Conjuntos frente a multiconjuntos
 1.7 Laboratorio: formalizar reglas de negocio
+1.8 Lógica de primer orden: sintaxis, interpretación y modelos
+1.9 Restricciones universales y existenciales con ejemplos
 
 2. Modelo relacional
 2.1 Dominios y tipos
@@ -25,6 +27,8 @@
 2.6 Ausencia de orden y duplicados
 2.7 Predicados y estados válidos
 2.8 Laboratorio: distinguir relaciones de tablas SQL
+2.9 Igualdad de relaciones y semántica de atributos
+2.10 Relvars base y derivadas: invariantes y actualizaciones
 
 3. Requisitos y semántica
 3.1 Glosario del dominio
@@ -34,6 +38,8 @@
 3.5 Requisitos históricos
 3.6 Ejemplos y contraejemplos
 3.7 Laboratorio: especificación del sistema de pedidos
+3.8 Descubrimiento de requisitos mediante casos límite
+3.9 Trazabilidad requisito → regla → restricción → prueba
 
 4. Modelado conceptual entidad-relación
 4.1 Entidades fuertes y débiles
@@ -44,6 +50,8 @@
 4.6 Entidades asociativas
 4.7 Especialización y generalización
 4.8 Laboratorio: diagrama conceptual y restricciones
+4.9 Restricciones min–max y exclusividad
+4.10 Generalización total/parcial y disjunta/solapada
 
 5. Claves e identidad
 5.1 Superclaves
@@ -54,6 +62,8 @@
 5.6 Atributos primos y no primos
 5.7 Identificadores artificiales y unicidad de negocio
 5.8 Laboratorio: demostrar minimalidad de las claves
+5.9 Algoritmo sistemático de enumeración de claves candidatas
+5.10 Identidad estable y cambios de identificadores naturales
 
 6. Del modelo conceptual al relacional
 6.1 Transformación de entidades
@@ -64,6 +74,8 @@
 6.6 Alternativas para subtipos y supertipos
 6.7 Restricciones que no captura la transformación
 6.8 Laboratorio: derivar y defender el esquema
+6.9 Transformación de relaciones ternarias sin pérdida de semántica
+6.10 Comparación de mapeos de jerarquías con restricciones
 
 7. Álgebra relacional para razonar sobre diseños
 7.1 Restricción, proyección y renombrado
@@ -73,6 +85,8 @@
 7.5 Semirreunión, antirreunión y división: interpretación lógica
 7.6 Cierre de las operaciones
 7.7 Laboratorio: comprobar reconstrucción de hechos sin desarrollar un curso de consultas
+7.8 Demostración de equivalencia de expresiones relacionales
+7.9 Contraejemplos de reconstrucción y reuniones espurias
 
 8. Integridad y restricciones
 8.1 Restricciones de dominio
@@ -82,6 +96,8 @@
 8.5 Reglas declarativas y validación de aplicación
 8.6 Diseño de contraejemplos
 8.7 Laboratorio: catálogo de invariantes y datos rechazados
+8.8 Invariantes de transición y restricciones interrelacionales
+8.9 Matriz de reglas, mecanismos y pruebas negativas
 
 9. Redundancia y anomalías
 9.1 Redundancia de hechos frente a repetición de valores
@@ -91,6 +107,7 @@
 9.5 Datos derivados
 9.6 Introducción a la descomposición
 9.7 Laboratorio: provocar y explicar anomalías
+9.8 Anomalías frente a requisitos de conservación histórica
 
 10. Dependencias funcionales
 10.1 Semántica de X determina Y
@@ -101,6 +118,8 @@
 10.6 Dependencias derivadas del negocio
 10.7 Límites de inferir reglas a partir de muestras
 10.8 Laboratorio: extraer dependencias de requisitos
+10.9 Inferencia semántica y contraejemplos de dependencias
+10.10 Dependencias condicionales y límites del modelo clásico
 
 11. Herramientas formales
 11.1 Axiomas de Armstrong
@@ -111,6 +130,9 @@
 11.6 Atributos extraños y cubierta mínima
 11.7 Enumeración de claves candidatas
 11.8 Laboratorio: cálculo manual y comprobador en Python
+11.9 Demostración paso a paso de cubiertas equivalentes
+11.10 Coste combinatorio de búsqueda de claves y podas
+11.11 Chase de dependencias funcionales: procedimiento guiado
 
 12. Primera forma normal: 1FN
 12.1 Definición relacional y dominios
@@ -121,6 +143,7 @@
 12.6 Atomicidad relativa al dominio
 12.7 Tipos estructurados frente a hechos independientes
 12.8 Laboratorio: modelar múltiples teléfonos
+12.9 Atomicidad relativa al dominio: casos debatibles
 
 13. Segunda forma normal: 2FN
 13.1 Definición y requisito de 1FN
@@ -129,6 +152,7 @@
 13.4 Claves compuestas
 13.5 Separación de hechos de entidades y asociaciones
 13.6 Laboratorio: descomponer líneas de pedido
+13.7 Ejemplos con varias claves candidatas solapadas
 
 14. Tercera forma normal: 3FN
 14.1 Definición formal por dependencias funcionales
@@ -138,6 +162,8 @@
 14.5 Síntesis a 3FN
 14.6 Preservación de dependencias y relación que contiene una clave
 14.7 Laboratorio: empleados, departamentos y sedes
+14.8 Algoritmo de síntesis a 3FN completamente resuelto
+14.9 Demostración de preservación y reconstrucción
 
 15. Forma normal de Boyce-Codd: BCNF
 15.1 Determinantes y superclaves
@@ -146,6 +172,7 @@
 15.4 Algoritmo de descomposición
 15.5 Pérdida potencial de preservación de dependencias
 15.6 Laboratorio: diseño en 3FN que incumple BCNF
+15.7 Ejemplo formal 3FN versus BCNF con dependencias no preservadas
 
 16. Calidad de una descomposición
 16.1 Reconstrucción sin pérdida
@@ -155,6 +182,9 @@
 16.5 Preservación de dependencias
 16.6 Procedimiento chase y sus supuestos
 16.7 Laboratorio: demostrar propiedades de dos alternativas
+16.8 Chase tabular completo para reunión sin pérdida
+16.9 Tuplas espurias: construcción de contraejemplos
+16.10 Decisión multicriterio entre descomposiciones
 
 17. Dependencias multivaluadas y 4FN
 17.1 Hechos multivaluados independientes
@@ -164,6 +194,7 @@
 17.5 Definición de 4FN
 17.6 Descomposición sin pérdida
 17.7 Laboratorio: idiomas y aficiones con y sin independencia
+17.8 Axiomas y razonamiento sobre dependencias multivaluadas
 
 18. Dependencias de reunión y 5FN
 18.1 Join dependencies
@@ -172,6 +203,7 @@
 18.4 Dependencias implicadas por claves candidatas
 18.5 Semántica de relaciones ternarias
 18.6 Laboratorio: proveedores, piezas y proyectos con contraejemplos
+18.7 Verificación de dependencias de reunión mediante contraejemplos
 
 19. Normalización avanzada
 19.1 6FN y relaciones irreducibles
@@ -181,6 +213,7 @@
 19.5 SKNF: definición y alcance
 19.6 Comparación de supuestos y límites
 19.7 Laboratorio: lectura crítica de ejemplos de Date
+19.8 Alcance y limitaciones de formas normales especializadas
 
 20. Diferencias entre SQL y el modelo relacional
 20.1 Multiconjuntos y duplicados como problema de representación
@@ -189,6 +222,7 @@
 20.4 Unicidad y ausencia de valores
 20.5 Alternativas de diseño para atributos opcionales
 20.6 Laboratorio: comparar esquemas con y sin NULL sin repetir técnicas de consulta
+20.7 Comparación de restricciones con NULL y lógica ternaria
 
 21. Implementación del diseño en PostgreSQL
 21.1 Tipos y dominios
@@ -200,6 +234,8 @@
 21.7 Índices frente a restricciones
 21.8 Triggers para invariantes no expresables declarativamente
 21.9 Laboratorio: DDL y pruebas positivas y negativas
+21.10 Unicidad condicional y restricciones sobre subconjuntos
+21.11 Deferrable, concurrencia y límites de triggers
 
 22. Patrones de modelado
 22.1 Direcciones, contactos y catálogos
@@ -211,6 +247,8 @@
 22.7 Aislamiento lógico multicliente y claves
 22.8 Unidades, monedas y precisión
 22.9 Laboratorio: comparar alternativas y sus invariantes
+22.10 Inventario: movimientos frente a saldo persistido
+22.11 Dinero, redondeo y unidades: invariantes de negocio
 
 23. Diseño temporal e histórico
 23.1 Estado actual e historial
@@ -221,6 +259,8 @@
 23.6 Claves y restricciones temporales
 23.7 6FN y modelado temporal
 23.8 Laboratorio: historial de precios y asignaciones
+23.9 Correcciones retroactivas y auditoría bitemporal
+23.10 Restricciones de no solapamiento y casos límite
 
 24. Antipatrones y revisión
 24.1 EAV y compromisos de integridad
@@ -231,6 +271,7 @@
 24.6 Claves sustitutas sin unicidad de negocio
 24.7 Derivados sin sincronización
 24.8 Laboratorio: auditoría y propuesta de corrección
+24.9 Antipatrones de estados y banderas inconsistentes
 
 25. Diseño físico y rendimiento
 25.1 Separación entre diseño lógico y físico
@@ -241,6 +282,9 @@
 25.6 Vistas y vistas materializadas
 25.7 Desnormalización sustentada por mediciones
 25.8 Laboratorio: alternativas físicas para el mismo modelo lógico
+25.9 Selectividad y orden de columnas de índices compuestos
+25.10 Coste de mantenimiento y amplificación de escritura
+25.11 Particionado: claves únicas y restricciones globales
 
 26. Diseño transaccional y analítico
 26.1 Objetivos de OLTP y OLAP
@@ -251,6 +295,8 @@
 26.6 Medidas aditivas, semiaditivas y no aditivas
 26.7 Transformación desde el modelo operacional
 26.8 Laboratorio: diseñar un modelo analítico sin duplicar el curso SQL
+26.9 Granularidad de hechos y prevención del doble conteo
+26.10 Dimensiones lentamente cambiantes: criterios de diseño
 
 27. Evolución y validación
 27.1 Migraciones y compatibilidad
@@ -261,6 +307,8 @@
 27.6 Pruebas de integridad
 27.7 Diccionario de datos y decisiones
 27.8 Laboratorio: migrar sin pérdida y con comprobaciones
+27.9 Migraciones online, backfill y validación progresiva
+27.10 Carreras entre validación y escrituras concurrentes
 
 28. Estimación de almacenamiento
 28.1 Filas, páginas y bloques
@@ -271,6 +319,9 @@
 28.6 MVCC, versiones y crecimiento
 28.7 Proyecciones de capacidad
 28.8 Laboratorio: contrastar estimaciones con tamaños medidos
+28.9 Ejemplo numérico de páginas con alineación y fillfactor
+28.10 Cálculo de tamaño de índices y sensibilidad
+28.11 MVCC, bloat y escenarios de crecimiento
 
 29. Estadísticas, selectividad y cardinalidad
 29.1 Frecuencias y valores distintos
@@ -281,6 +332,8 @@
 29.6 Cardinalidad de reuniones
 29.7 Error de estimación y propagación
 29.8 Laboratorio: conjuntos uniformes y sesgados
+29.9 Estimación de cardinalidad de joins con claves y sesgo
+29.10 Errores de independencia y estadísticas extendidas
 
 30. Modelos de coste
 30.1 E/S secuencial y aleatoria
@@ -291,6 +344,9 @@
 30.6 Coste de lectura, escritura y mantenimiento
 30.7 Supuestos y sensibilidad del modelo
 30.8 Laboratorio: comparar alternativas con unidades explícitas
+30.9 Comparación de modelos de coste con unidades homogéneas
+30.10 Análisis de sensibilidad y punto de equilibrio
+30.11 Coste total de propiedad: recursos y mantenimiento
 
 31. Coste de accesos y operadores
 31.1 Recorrido secuencial
@@ -301,6 +357,8 @@
 31.6 Merge join y ordenación previa
 31.7 Ordenación externa y agregación
 31.8 Laboratorio: modelos simplificados de páginas, memoria y CPU
+31.9 Derivación de costes de nested loop, hash y merge join
+31.10 Umbrales de memoria y derrames: ejercicios numéricos
 
 32. Optimizador y decisiones de diseño
 32.1 Planes lógicos y físicos
@@ -311,6 +369,8 @@
 32.6 Costes de materialización
 32.7 Límites de los modelos
 32.8 Laboratorio: comparar planes manteniendo fija la consulta
+32.9 Cambios de diseño que alteran el espacio de planes
+32.10 Distinción entre coste estimado y tiempo medido
 
 33. Laboratorio de medición en PostgreSQL
 33.1 EXPLAIN y EXPLAIN ANALYZE
@@ -321,6 +381,9 @@
 33.6 Repeticiones, caché y concurrencia
 33.7 Latencias p50, p95 y p99 y throughput
 33.8 Laboratorio: informe reproducible de alternativas físicas
+33.9 Diseño experimental: calentamiento, repetición y dispersión
+33.10 Interpretación de p50, p95, p99 y throughput
+33.11 Control de variables y reproducibilidad de benchmarks
 
 34. Datos derivados y agregados
 34.1 Hechos base, derivados e importes históricos
@@ -332,6 +395,10 @@
 34.7 SUM y COUNT para mantener AVG
 34.8 MIN, MAX y DISTINCT: límites del mantenimiento simple
 34.9 Laboratorio: comparar cinco estrategias de total de pedido
+34.10 Derivación del umbral Q/W para materializar totales
+34.11 Ejercicio resuelto de costes con cinco estrategias
+34.12 Redondeo, descuentos, impuestos y hechos históricos
+34.13 Costes de refresco, invalidación y reconciliación
 
 35. Consistencia de agregados bajo concurrencia
 35.1 Invariante entre detalle y resumen
@@ -343,6 +410,9 @@
 35.7 Mantenimiento asíncrono, idempotencia y retraso
 35.8 Reconciliación, reconstrucción y recuperación
 35.9 Laboratorio: cargas concurrentes y verificación contra el detalle
+35.10 Demostración de incrementos atómicos y prevención de pérdidas
+35.11 Pruebas de interbloqueo, reintentos y pedidos calientes
+35.12 Outbox, deduplicación y reconciliación de agregados asíncronos
 
 36. Proyecto final integrador
 36.1 Requisitos de compras, ventas, inventario y proveedores
@@ -356,3 +426,5 @@
 36.9 Benchmark de lecturas y escrituras y pruebas concurrentes
 36.10 Migración, reconciliación y documentación de decisiones
 36.11 Defensa final con evidencias y limitaciones
+36.12 Rúbrica de evaluación: corrección, evidencia y trade-offs
+36.13 Defensa de supuestos y análisis de sensibilidad

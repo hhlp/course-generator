@@ -80,3 +80,12 @@ No asumir que TCP/IP dispone de un único archivo en /var/log. Enseñar a locali
 
 ## Nivel final esperado
 El alumno debe poder recibir un fallo de conectividad desconocido, formular hipótesis por capas, obtener evidencia con CLI, capturar el tráfico necesario, interpretar el PCAP y localizar razonadamente la capa y causa del problema.
+
+## Delimitación respecto al path independiente de diseño IPv4/IPv6
+Este curso explica direcciones, prefijos, máscaras, CIDR, network/broadcast y cálculos operativos mínimos para leer rutas, entender paquetes y diagnosticar conectividad. Las clases A–E se enseñan como contexto histórico. **No** desarrolla planificación de direccionamiento, VLSM exhaustivo, dimensionamiento de subredes, jerarquías de direccionamiento ni diseño de topologías: estos pertenecen al path específico de diseño IPv4/IPv6.
+
+## Ampliaciones de profundidad
+Ethernet/FCS y switching; comportamiento dual-stack; ECN y recuperación TCP; NAPI, GRO/GSO/TSO, RSS/RPS y colas del kernel; qdisc/tc, bufferbloat y pruebas de rendimiento; troubleshooting con hipótesis, evidencia PCAP y validación de correcciones.
+
+## Uso de bibliografía por scope
+Los scopes S01–S09 de bibliography.md orientan las referencias por bloque y lección. Diferenciar libros didácticos, fuentes operativas Linux y estándares normativos actualizados.

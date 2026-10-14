@@ -169,3 +169,25 @@ Todo el conocimiento debe converger en el workflow:
 upstream → SPEC → Sources/Patches → SRPM → Mock → rpmlint → review → COPR → dist-git → Koji → Bodhi → repository.
 
 El objetivo no es simplemente ejecutar `rpmbuild`, sino comprender el ecosistema RPM/Fedora como un sistema completo y poder diagnosticar cada frontera del proceso.
+
+
+## 36. Ampliación avanzada por bloques (revisión)
+
+Conservar los bloques 0–9 y todas las lecciones anteriores. Las nuevas lecciones X.900.n profundizan en prácticas modernas, sin reemplazar los temas originales.
+
+- **0:** compatibilidad RPM 4/6, formato y payload.
+- **1:** SPEC avanzado, buildrequires dinámicos y empaquetado por lenguaje.
+- **2:** librpm, dependency generators, transacciones y solver.
+- **3:** consultas programáticas, rpmdb SQLite y firma.
+- **4:** DNF5/libdnf5, publicación y confianza en repositorios.
+- **5:** integración completa con systemd, SELinux, bibliotecas y módulos kernel.
+- **6:** ABI, seguridad de la cadena de suministro, SBOM y reproducibilidad.
+- **7:** Packit, CI/CD, COPR, mantenimiento y gating.
+- **8:** metodología de diagnóstico basada en evidencias y logs.
+- **9:** proyecto integrador, publicación, regresión y documentación.
+
+## 37. Criterios de competencia verificables
+
+Cada bloque deberá incluir explicación de mecanismos internos, comandos reales en Fedora, salidas esperadas (marcadas como ilustrativas cuando proceda), verificación, errores frecuentes, procedimientos de diagnóstico y laboratorio. Distinguir comportamiento de RPM upstream, política Fedora y funciones de DNF5/libdnf5/libsolv. Verificar macros y opciones contra la versión instalada antes de presentarlas como universales.
+
+El proyecto final exige SPEC, SRPM, RPM binario, pruebas en Mock, inspección de dependencias, repositorio firmado de laboratorio, pruebas de instalación/actualización/eliminación y evidencias de troubleshooting.

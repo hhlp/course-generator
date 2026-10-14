@@ -1,3 +1,4 @@
+---
 course:
   title: English Grammar A2 — Deep Path
   language: es
@@ -11,15 +12,18 @@ course:
   primary_reference: Basic Grammar in Use — Raymond Murphy — Fourth Edition
   independent_course: true
   block_start: 0
+
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 objective:
-  primary: Dominar la gramática inglesa A2 dentro de los límites CEFR del nivel mediante fundamentos gramaticales,
-    forma, significado, uso, restricciones, contrastes, análisis estructural, transformaciones, diagnóstico
-    de errores, práctica controlada y consolidación acumulativa, preparando la transición posterior hacia
-    B1 sin introducir contenidos avanzados antes de tiempo.
+  primary: Dominar la gramática inglesa A2 dentro de los límites CEFR del nivel
+    mediante fundamentos gramaticales, forma, significado, uso, restricciones,
+    contrastes, análisis estructural, transformaciones, diagnóstico de errores,
+    práctica controlada y consolidación acumulativa, preparando la transición
+    posterior hacia B1 sin introducir contenidos avanzados antes de tiempo.
 curriculum:
   grammar_required: true
   deep_path: true
@@ -33,26 +37,27 @@ curriculum:
     speaking: false
     integrated_skills: false
   incidental_context_allowed: true
-  incidental_context_rule: El vocabulario y las oraciones contextuales pueden utilizarse para demostrar
-    gramática, pero nunca deben convertirse en objetivos independientes.
+  incidental_context_rule: El vocabulario y las oraciones contextuales pueden
+    utilizarse para demostrar gramática, pero nunca deben convertirse en
+    objetivos independientes.
 level_model:
   type: single-level-deep
   progression:
-  - prerequisites
-  - recognition
-  - terminology
-  - anatomy
-  - form
-  - meaning
-  - use
-  - constraints
-  - contrast
-  - structural_analysis
-  - transformation
-  - error_diagnosis
-  - controlled_practice
-  - consolidation
-  - integration
+    - prerequisites
+    - recognition
+    - terminology
+    - anatomy
+    - form
+    - meaning
+    - use
+    - constraints
+    - contrast
+    - structural_analysis
+    - transformation
+    - error_diagnosis
+    - controlled_practice
+    - consolidation
+    - integration
   global_progression:
     A2: introduce, establish, analyze and troubleshoot
     B1: consolidate and extend
@@ -62,7 +67,8 @@ level_model:
   avoid_repetition_without_new_depth: true
   never_use_higher_level_content_to_fake_depth: true
 pedagogy:
-  style: profundo, práctico, progresivo, contrastivo, analítico y centrado exclusivamente en gramática
+  style: profundo, práctico, progresivo, contrastivo, analítico y centrado
+      exclusivamente en gramática
   explanation_language: Spanish
   grammar_terminology: English
   examples_language: English
@@ -83,23 +89,23 @@ pedagogy:
   avoid_unnecessary_repetition: true
 depth_model:
   apply_when_relevant:
-  - prerequisite concepts
-  - grammatical anatomy
-  - canonical form
-  - affirmative / negative / interrogative
-  - auxiliary behavior
-  - word order
-  - contractions
-  - spelling rules
-  - grammatical meaning
-  - A2 uses
-  - constraints
-  - contrasts
-  - transformations
-  - correct vs incorrect
-  - rule diagnosis
-  - controlled practice
-  - cumulative review
+    - prerequisite concepts
+    - grammatical anatomy
+    - canonical form
+    - affirmative / negative / interrogative
+    - auxiliary behavior
+    - word order
+    - contractions
+    - spelling rules
+    - grammatical meaning
+    - A2 uses
+    - constraints
+    - contrasts
+    - transformations
+    - correct vs incorrect
+    - rule diagnosis
+    - controlled practice
+    - cumulative review
   do_not_pad_lessons: true
 lesson_structure:
   objective:
@@ -109,49 +115,50 @@ lesson_structure:
   reading:
     required: true
     heading: 📚 LECTURA
-    purpose: referencia bibliográfica gramatical; no actividad de comprensión lectora
+    purpose: referencia bibliográfica gramatical; no actividad de
+        comprensión lectora
     categories:
-    - principal
-    - normativa
-    - profundizacion
-    - consulta
+      - principal
+      - normativa
+      - profundizacion
+      - consulta
     exact_references_only_when_verified: true
   explanation:
     required: true
     heading: 📘 GRAMMAR
     requirements:
-    - Definir la estructura gramatical.
-    - Mostrar su anatomía cuando sea relevante.
-    - Mostrar la forma o patrón.
-    - Explicar significado y uso.
-    - Explicar restricciones A2.
-    - Incluir afirmativa, negativa e interrogativa cuando corresponda.
-    - Explicar auxiliares, orden y contracciones cuando sean relevantes.
-    - Contrastar estructuras que suelen confundirse.
+      - Definir la estructura gramatical.
+      - Mostrar su anatomía cuando sea relevante.
+      - Mostrar la forma o patrón.
+      - Explicar significado y uso.
+      - Explicar restricciones A2.
+      - Incluir afirmativa, negativa e interrogativa cuando corresponda.
+      - Explicar auxiliares, orden y contracciones cuando sean relevantes.
+      - Contrastar estructuras que suelen confundirse.
   grammatical_analysis:
     required_when_relevant: true
     heading: 🔬 ANÁLISIS GRAMATICAL
     identify_when_applicable:
-    - subject
-    - predicate
-    - auxiliary
-    - main_verb
-    - object
-    - indirect_object
-    - complement
-    - determiner
-    - pronoun
-    - preposition
-    - clause
-    - verb_form
+      - subject
+      - predicate
+      - auxiliary
+      - main_verb
+      - object
+      - indirect_object
+      - complement
+      - determiner
+      - pronoun
+      - preposition
+      - clause
+      - verb_form
   examples:
     required: true
     heading: 💬 EXAMPLES
     requirements:
-    - Usar múltiples ejemplos naturales en inglés.
-    - Demostrar claramente la estructura objetivo.
-    - Incluir pares contrastivos cuando aporten comprensión.
-    - Evitar gramática avanzada todavía no explicada.
+      - Usar múltiples ejemplos naturales en inglés.
+      - Demostrar claramente la estructura objetivo.
+      - Incluir pares contrastivos cuando aporten comprensión.
+      - Evitar gramática avanzada todavía no explicada.
   common_errors:
     required_when_relevant: true
     heading: ⚠️ Errores frecuentes
@@ -159,12 +166,12 @@ lesson_structure:
     required_for_major_topics: true
     heading: 🔧 GRAMMAR TROUBLESHOOTING
     sequence:
-    - show incorrect form
-    - locate the problem
-    - identify the broken rule
-    - correct the form
-    - explain the correction
-    - contrast with a nearby valid structure
+      - show incorrect form
+      - locate the problem
+      - identify the broken rule
+      - correct the form
+      - explain the correction
+      - contrast with a nearby valid structure
   important_idea:
     required: false
     heading: 💡 Idea importante
@@ -172,13 +179,13 @@ lesson_structure:
     required: true
     heading: 🧪 Laboratorio/ejemplos
     include_when_applicable:
-    - identification
-    - form_completion
-    - transformation
-    - contrast_selection
-    - error_correction
-    - error_diagnosis
-    - mixed_controlled_practice
+      - identification
+      - form_completion
+      - transformation
+      - contrast_selection
+      - error_correction
+      - error_diagnosis
+      - mixed_controlled_practice
   remember:
     required: true
     position: last
@@ -215,17 +222,17 @@ content_rules:
   preserve_english_examples: true
 references:
   principal:
-  - author: Raymond Murphy
-    title: Basic Grammar in Use
-    edition: Fourth Edition
-    role: principal pedagogical grammar and backbone
+    - author: Raymond Murphy
+      title: Basic Grammar in Use
+      edition: Fourth Edition
+      role: principal pedagogical grammar and backbone
   later_levels:
-  - author: Raymond Murphy
-    title: English Grammar in Use
-    role: B1-B2 continuation
-  - author: Martin Hewings
-    title: Advanced Grammar in Use
-    role: C1-C2 continuation
+    - author: Raymond Murphy
+      title: English Grammar in Use
+      role: B1-B2 continuation
+    - author: Martin Hewings
+      title: Advanced Grammar in Use
+      role: C1-C2 continuation
   citation_policy:
     exact_references_only_when_verified: true
     never_invent_page_numbers: true
@@ -240,11 +247,11 @@ generation:
   avoid_unnecessary_repetition: true
   preserve_cross_references: true
   checkpoints:
-  - A2 Foundations
-  - A2 Verb System and Clause Core
-  - A2 Nominal System, Modification and Clauses
-  - Final A2 Grammar Integration
-  - A2 → B1 boundary
+    - A2 Foundations
+    - A2 Verb System and Clause Core
+    - A2 Nominal System, Modification and Clauses
+    - Final A2 Grammar Integration
+    - A2 → B1 boundary
 quality_checks:
   require_objective_first: true
   require_remember_last: true
@@ -264,120 +271,121 @@ quality_checks:
 level_specific:
   foundations:
     include:
-    - word / phrase / clause / sentence
-    - parts of speech overview
-    - subject / predicate / object / complement
-    - main verb vs auxiliary
-    - person / number / agreement
-    - base / -s / past / past participle / -ing forms
-    - 'finite vs non-finite: introduction'
-    - 'tense vs time: introduction'
-    - 'aspect: introduction'
-    - 'voice: introduction'
-    - 'modality: introduction'
-    - basic word order
+      - word / phrase / clause / sentence
+      - parts of speech overview
+      - subject / predicate / object / complement
+      - main verb vs auxiliary
+      - person / number / agreement
+      - base / -s / past / past participle / -ing forms
+      - 'finite vs non-finite: introduction'
+      - 'tense vs time: introduction'
+      - 'aspect: introduction'
+      - 'voice: introduction'
+      - 'modality: introduction'
+      - basic word order
   boundaries:
     reported_speech:
       include:
-      - basic reported statements
-      - say vs tell
-      - basic tense changes
-      - pronoun and time-expression changes
-      - reported questions
-      - reported commands
-      - basic backshift
+        - basic reported statements
+        - say vs tell
+        - basic tense changes
+        - pronoun and time-expression changes
+        - reported questions
+        - reported commands
+        - basic backshift
       defer:
         B1_B2:
-        - full systematic backshift
-        - advanced reporting verbs
-        - advanced reporting patterns
+          - full systematic backshift
+          - advanced reporting verbs
+          - advanced reporting patterns
     conditionals:
       include:
-      - Zero Conditional
-      - First Conditional
+        - Zero Conditional
+        - First Conditional
       defer:
         B1:
-        - Second Conditional
+          - Second Conditional
         B2:
-        - Third Conditional
+          - Third Conditional
         B2_C1:
-        - Mixed Conditionals
+          - Mixed Conditionals
     passive:
       include:
-      - Active vs Passive
-      - be + past participle
-      - Present Simple Passive
-      - Past Simple Passive
-      - Future Passive
-      - Passive with basic modal verbs
-      - Present Continuous Passive as introduction
-      - by + agent
-      - agent omission
-      - basic Active → Passive transformations
+        - Active vs Passive
+        - be + past participle
+        - Present Simple Passive
+        - Past Simple Passive
+        - Future Passive
+        - Passive with basic modal verbs
+        - Present Continuous Passive as introduction
+        - by + agent
+        - agent omission
+        - basic Active → Passive transformations
   required_topics:
     existential_there:
       required_sequence:
-      - there is / there are
-      - there was / there were
-      - there has been / there have been
-      - there will be
-      - there + modal + be
+        - there is / there are
+        - there was / there were
+        - there has been / there have been
+        - there will be
+        - there + modal + be
       require_there_will_be_explicitly: true
     auxiliary_verbs:
       distinguish_main_vs_auxiliary:
-      - be
-      - have
-      - do
+        - be
+        - have
+        - do
     determiners_pronouns:
       intentional_overlap: true
       families:
-      - some / any / no / every compounds
-      - both / either / neither
-      - all / most / each / every
-      - another / other / others / the other / the others
+        - some / any / no / every compounds
+        - both / either / neither
+        - all / most / each / every
+        - another / other / others / the other / the others
     phrasal_verbs:
       level: introductory A2
       include:
-      - verb + particle
-      - transitive vs intransitive
-      - separable vs inseparable
-      - noun-object placement
-      - pronoun-object placement
-      - common A2 phrasal verbs
+        - verb + particle
+        - transitive vs intransitive
+        - separable vs inseparable
+        - noun-object placement
+        - pronoun-object placement
+        - common A2 phrasal verbs
       avoid_unbounded_vocabulary_lists: true
     indirect_questions:
       include:
-      - direct vs indirect question word order
-      - Do you know where...?
-      - I don't know what...
-      - question word + subject + verb
+        - direct vs indirect question word order
+        - Do you know where...?
+        - I don't know what...
+        - question word + subject + verb
     two_object_verbs:
       include:
-      - verb + indirect object + direct object
-      - verb + direct object + to + indirect object
-      - pronoun-sensitive patterns such as Give it to me
+        - verb + indirect object + direct object
+        - verb + direct object + to + indirect object
+        - pronoun-sensitive patterns such as Give it to me
     would_rather:
       include:
-      - would rather + base form
+        - would rather + base form
       advanced_hypothetical_patterns_deferred: true
     adjectives_adverbs:
       depth: A2 in-depth, with advanced categories introduced only
       adjectives:
-      - descriptive and evaluative categories
-      - opinion, size, age, shape, colour, origin, material and purpose
-      - attributive vs predicative position
-      - typical adjective order (guideline, not absolute rule)
-      - 'coordinate vs cumulative: introduction'
-      - 'gradable vs non-gradable: introduction'
-      - comparatives, superlatives and -ed/-ing adjectives
+        - descriptive and evaluative categories
+        - opinion, size, age, shape, colour, origin, material and purpose
+        - attributive vs predicative position
+        - typical adjective order (guideline, not absolute rule)
+        - 'coordinate vs cumulative: introduction'
+        - 'gradable vs non-gradable: introduction'
+        - comparatives, superlatives and -ed/-ing adjectives
       adverbs:
-      - manner, place, time, frequency, degree, probability, focus and sequence
-      - -ly formation, spelling and common exceptions
-      - adverbs modifying verbs, adjectives and adverbs
-      - comparison of adverbs
-      - initial, mid and final placement
-      - placement with be, main verbs, auxiliaries and modals
-      - common manner-place-time adverbial order (not universal)
-      - 'only, also, even: introductory meaning and placement'
+        - manner, place, time, frequency, degree, probability, focus and
+            sequence
+        - -ly formation, spelling and common exceptions
+        - adverbs modifying verbs, adjectives and adverbs
+        - comparison of adverbs
+        - initial, mid and final placement
+        - placement with be, main verbs, auxiliaries and modals
+        - common manner-place-time adverbial order (not universal)
+        - 'only, also, even: introductory meaning and placement'
       checkpoint_and_final_integration: true
       defer_advanced_scope_and_discourse_uses: true

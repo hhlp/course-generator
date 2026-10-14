@@ -22,6 +22,10 @@ Bloque 0 — Fundamentos y entorno LaTeX
 0.19 CTAN
 0.20 texdoc y documentación local
 
+0.21 Diferencia entre formato LaTeX, motor y distribución
+0.22 Herramientas de diagnóstico: kpsewhich, texdoc y kpathsea
+0.23 Primer laboratorio reproducible: fuente, compilación, PDF y log
+
 Bloque 1 — Sintaxis y estructura básica
 1.1 Comandos
 1.2 Argumentos obligatorios {...}
@@ -69,6 +73,14 @@ Bloque 1 — Sintaxis y estructura básica
 1.44 Ejemplo completo: encontrar → documentar → instalar → importar → utilizar
 1.45 Diagnosticar «File `package.sty' not found»
 
+1.46 tlmgr frente a paquetes RPM de Fedora: responsabilidades y riesgos
+1.47 kpsewhich -var-value=TEXMFHOME y TEXMFLOCAL
+1.48 TDS: TeX Directory Structure
+1.49 mktexlsr, texhash y bases de datos de nombres
+1.50 texdoc -l y elección entre varios manuales
+1.51 Instalación y actualización de fuentes: rutas y cachés
+1.52 Diagnóstico de versiones y dependencias incompatibles
+
 Bloque 2 — Estructura de documentos
 2.1 article
 2.2 report
@@ -93,6 +105,7 @@ Bloque 2 — Estructura de documentos
 2.21 \includeonly
 2.22 Organización de proyectos
 
+
 Bloque 3 — Texto y composición tipográfica
 3.1 Familias tipográficas
 3.2 Serif, sans serif y monoespaciada
@@ -115,6 +128,10 @@ Bloque 3 — Texto y composición tipográfica
 3.19 microtype
 3.20 Calidad tipográfica
 
+3.21 Algoritmo de composición de párrafos y justificación
+3.22 Viudas, huérfanas y control de cortes
+3.23 Interacción entre microtipografía, motor y fuentes
+
 Bloque 4 — Listas, cajas y contenido estructurado
 4.1 itemize
 4.2 enumerate
@@ -132,6 +149,7 @@ Bloque 4 — Listas, cajas y contenido estructurado
 4.14 Reglas
 4.15 Cajas y dimensiones
 
+
 Bloque 5 — Diseño de página
 5.1 Modelo de página de TeX
 5.2 Márgenes
@@ -148,6 +166,7 @@ Bloque 5 — Diseño de página
 5.13 Saltos de página
 5.14 Float pages
 5.15 Diseño profesional de documentos
+
 
 Bloque 6 — Matemáticas I: fundamentos
 6.1 Modo matemático
@@ -167,6 +186,10 @@ Bloque 6 — Matemáticas I: fundamentos
 6.15 amsmath
 6.16 equation
 6.17 Numeración de ecuaciones
+
+6.18 Diferencias entre estilos matemáticos display, text, script y scriptscript
+6.19 Delimitadores de tamaño manual frente a automáticos
+6.20 Diagnóstico de errores de espaciado y numeración matemática
 
 Bloque 7 — Matemáticas II: composición avanzada
 7.1 align
@@ -193,6 +216,11 @@ Bloque 7 — Matemáticas II: composición avanzada
 7.22 Referencias matemáticas
 7.23 Composición matemática profesional
 
+7.24 Alineaciones anidadas y entornos AMS: restricciones
+7.25 Matemáticas extensas: saltos de página y ecuaciones partidas
+7.26 Diseño de entornos de teoremas y referencias consistentes
+7.27 Laboratorio integrador: documento matemático con teoremas y referencias
+
 Bloque 8 — Tablas
 8.1 tabular
 8.2 Columnas l/c/r
@@ -210,6 +238,11 @@ Bloque 8 — Tablas
 8.14 Tablas profesionales
 8.15 Tablas complejas
 
+8.16 tabularray y modelo de tablas moderno
+8.17 Celdas complejas, alineación vertical y anchuras
+8.18 Tablas accesibles: encabezados y estructura semántica
+8.19 Diagnóstico de overfull y problemas de longtable
+
 Bloque 9 — Imágenes y floats
 9.1 graphicx
 9.2 \includegraphics
@@ -226,6 +259,7 @@ Bloque 9 — Imágenes y floats
 9.13 Float placement avanzado
 9.14 Gestión profesional de figuras
 
+
 Bloque 10 — Referencias cruzadas
 10.1 \label
 10.2 \ref
@@ -240,6 +274,7 @@ Bloque 10 — Referencias cruzadas
 10.11 Referencias automáticas
 10.12 PDF metadata
 10.13 Bookmarks
+
 
 Bloque 11 — Bibliografía y citas
 11.1 Bibliografías en LaTeX
@@ -258,6 +293,12 @@ Bloque 11 — Bibliografía y citas
 11.14 Estilos personalizados
 11.15 Gestión de grandes bases bibliográficas
 
+11.16 Arquitectura de procesamiento: LaTeX, Biber y reruns
+11.17 Modelo de datos biblatex y tipos personalizados
+11.18 Refsections, refcontexts y bibliografías segmentadas
+11.19 Sourcemaps y normalización de datos bibliográficos
+11.20 Diagnóstico de incompatibilidades de versiones biblatex/Biber
+
 Bloque 12 — Índices, glosarios y nomenclatura
 12.1 Índices
 12.2 makeindex
@@ -269,6 +310,7 @@ Bloque 12 — Índices, glosarios y nomenclatura
 12.8 Nomenclatura
 12.9 Automatización de índices
 12.10 Integración con latexmk
+
 
 Bloque 13 — Color y diseño visual
 13.1 xcolor
@@ -283,6 +325,7 @@ Bloque 13 — Color y diseño visual
 13.10 Callouts
 13.11 Diseño consistente
 13.12 Creación de identidad visual
+
 
 Bloque 14 — TikZ I: fundamentos
 14.1 PGF y TikZ
@@ -301,6 +344,9 @@ Bloque 14 — TikZ I: fundamentos
 14.14 Scope
 14.15 Grids
 
+14.16 PGF keys y reutilización de estilos
+14.17 Coordenadas relativas, calculadas y sistemas de referencia
+
 Bloque 15 — TikZ II: diagramas
 15.1 Posicionamiento
 15.2 positioning
@@ -317,6 +363,9 @@ Bloque 15 — TikZ II: diagramas
 15.13 Estilos reutilizables
 15.14 Libraries TikZ
 
+15.15 Algoritmos de colocación de grafos y sus límites
+15.16 Diagramas parametrizados y bibliotecas reutilizables
+
 Bloque 16 — TikZ III: gráficos avanzados
 16.1 Intersections
 16.2 Decorations
@@ -330,6 +379,10 @@ Bloque 16 — TikZ III: gráficos avanzados
 16.10 Externalization
 16.11 Optimización
 16.12 Creación de componentes gráficos reutilizables
+
+16.13 Decoraciones avanzadas y control de paths
+16.14 Externalization: caché, dependencias y shell escape
+16.15 Optimización de bibliotecas y recursos gráficos
 
 Bloque 17 — PGFPlots y visualización de datos
 17.1 pgfplots
@@ -348,6 +401,12 @@ Bloque 17 — PGFPlots y visualización de datos
 17.14 groupplots
 17.15 Visualización científica reproducible
 
+17.16 Lectura de CSV y tratamiento de datos con pgfplotstable
+17.17 Filtros, expresiones y transformaciones de datos
+17.18 Compatibilidad de versiones y reproducibilidad de figuras
+17.19 Pruebas de calidad visual de gráficos científicos
+17.20 Laboratorio integrador: diagramas TikZ y gráficos PGFPlots con datos externos
+
 Bloque 18 — Fuentes y Unicode
 18.1 Codificación
 18.2 inputenc: contexto histórico
@@ -363,6 +422,12 @@ Bloque 18 — Fuentes y Unicode
 18.12 Características OpenType
 18.13 Tipografía multilingüe
 
+18.14 NFSS en profundidad: familias, series, formas y sustituciones
+18.15 fontspec: selección y configuración de familias
+18.16 unicode-math: rangos, alfabetos y compatibilidad
+18.17 HarfBuzz y conformación de texto en LuaHBTeX
+18.18 Diagnóstico de fuentes ausentes y glifos faltantes
+
 Bloque 19 — Internacionalización
 19.1 babel
 19.2 polyglossia
@@ -374,6 +439,7 @@ Bloque 19 — Internacionalización
 19.8 Documentos multilingües
 19.9 Unicode
 19.10 Escrituras y sistemas complejos
+
 
 Bloque 20 — Clases de documentos avanzadas
 20.1 KOMA-Script
@@ -388,6 +454,7 @@ Bloque 20 — Clases de documentos avanzadas
 20.10 Libros
 20.11 Artículos científicos
 20.12 Presentaciones con Beamer
+
 
 Bloque 21 — Beamer
 21.1 Estructura
@@ -407,6 +474,7 @@ Bloque 21 — Beamer
 21.15 Handouts
 21.16 Presentaciones profesionales
 
+
 Bloque 22 — Documentos científicos y técnicos
 22.1 Arquitectura de un paper
 22.2 Fórmulas
@@ -423,6 +491,7 @@ Bloque 22 — Documentos científicos y técnicos
 22.13 Reproducibilidad
 22.14 Plantillas editoriales
 
+
 Bloque 23 — Documentos grandes
 23.1 Arquitectura de proyecto
 23.2 main.tex
@@ -437,6 +506,7 @@ Bloque 23 — Documentos grandes
 23.11 Gestión de dependencias
 23.12 Proyectos de tesis
 23.13 Proyectos de libros
+
 
 Bloque 24 — Automatización y toolchain
 24.1 Ciclo de compilación
@@ -454,6 +524,12 @@ Bloque 24 — Automatización y toolchain
 24.13 Detección de errores
 24.14 Docker/Podman para builds reproducibles
 
+24.15 Shell escape: superficie de riesgo y uso restringido
+24.16 Builds deterministas: versiones, entradas y metadatos
+24.17 Integración segura de minted y herramientas externas
+24.18 Pruebas de compilación para varios motores
+24.19 Laboratorio integrador: pipeline reproducible y seguro de compilación
+
 Bloque 25 — Diagnóstico y debugging
 25.1 Cómo leer errores de TeX
 25.2 Logs
@@ -470,6 +546,11 @@ Bloque 25 — Diagnóstico y debugging
 25.13 Técnicas de aislamiento
 25.14 Debugging sistemático
 
+25.15 Trazas de expansión y ejecución
+25.16 Errores de catcodes y tokens activos
+25.17 Diagnóstico de fallos de bibliografía y herramientas externas
+25.18 Análisis de archivos .log, .fls y .fdb_latexmk
+
 Bloque 26 — Personalización de LaTeX
 26.1 \newcommand
 26.2 \renewcommand
@@ -483,6 +564,10 @@ Bloque 26 — Personalización de LaTeX
 26.10 Comandos robustos
 26.11 Interfaces documentales
 26.12 Diseño de macros mantenibles
+
+26.13 Interfaces con NewDocumentCommand y validación de argumentos
+26.14 Hooks del kernel: registro, orden y diagnóstico
+26.15 Compatibilidad y deprecación de macros personalizadas
 
 Bloque 27 — Programación moderna con xparse/expl3
 27.1 LaTeX2e programming
@@ -507,6 +592,17 @@ Bloque 27 — Programación moderna con xparse/expl3
 27.20 Interfaces con xparse
 27.21 Messages y errores
 27.22 Diseño de APIs LaTeX
+
+27.23 Ámbito local y global de variables expl3
+27.24 Expansión: variantes N, n, V, v, o, x, e y f
+27.25 Generación y selección de variantes de funciones
+27.26 Quarks, sentinels y valores especiales
+27.27 l3regex: patrones y reemplazos aplicados a LaTeX
+27.28 l3keys: validación, opciones y valores por defecto
+27.29 NewDocumentCommand y separación API/implementación
+27.30 Mensajes de error, trazas y depuración de expl3
+27.31 Pruebas de interfaces públicas y estabilidad de API
+27.32 Laboratorio: paquete de configuración con expl3 y l3keys
 
 Bloque 28 — TeX interno
 28.1 De LaTeX a TeX
@@ -533,6 +629,17 @@ Bloque 28 — TeX interno
 28.22 TeX mouth, stomach y procesamiento
 28.23 Comprender errores desde el modelo interno
 
+28.24 TeX: tokenización de caracteres y catcodes activos
+28.25 Orden de expansión y control con noexpand
+28.26 Primitivas de expansión disponibles según motor
+28.27 Asignaciones locales, globales y prefijos
+28.28 Construcción de párrafos y algoritmo de saltos de línea
+28.29 Penalties, badness, tolerancias y demerits
+28.30 Page builder y algoritmo de saltos de página
+28.31 Output routine: cajas y ensamblaje de páginas
+28.32 Tracing: tracingmacros, tracingcommands y tracingonline
+28.33 Laboratorio: investigar una macro mediante trazas
+
 Bloque 29 — Creación de paquetes
 29.1 .sty
 29.2 \ProvidesPackage
@@ -551,6 +658,12 @@ Bloque 29 — Creación de paquetes
 29.15 Versionado
 29.16 Distribución
 
+29.17 Gestión de dependencias y versiones de paquetes
+29.18 Diseño de documentación de API y ejemplos
+29.19 Distribución TDS y preparación para CTAN
+29.20 Pruebas de regresión con l3build
+29.21 Política de compatibilidad y migraciones
+
 Bloque 30 — Creación de clases
 30.1 .cls
 30.2 \ProvidesClass
@@ -564,6 +677,11 @@ Bloque 30 — Creación de clases
 30.10 Back matter
 30.11 Configuración extensible
 30.12 Diseño de una clase profesional
+
+30.13 Diseño de interfaces de clase estables
+30.14 Interacción con paquetes y hooks del kernel
+30.15 Compatibilidad entre motores y opciones de clase
+30.16 Pruebas de una clase en proyectos reales
 
 Bloque 31 — LuaLaTeX y extensibilidad
 31.1 Arquitectura LuaTeX
@@ -579,6 +697,17 @@ Bloque 31 — LuaLaTeX y extensibilidad
 31.11 Procesamiento avanzado
 31.12 Casos donde LuaLaTeX supera a macros TeX
 
+31.13 LuaTeX frente a LuaHBTeX y diferencias de motor
+31.14 APIs tex, token, node, font y callback
+31.15 Listas enlazadas de nodos y recorrido seguro
+31.16 Manipulación y liberación de nodos
+31.17 luatexbase y coordinación de callbacks
+31.18 Comunicación TeX-Lua: escapes y datos seguros
+31.19 Fuentes Unicode y shaping
+31.20 Depuración de Lua embebido y mensajes
+31.21 Rendimiento, memoria y medición de callbacks
+31.22 Laboratorio: extensión LuaTeX con tests
+
 Bloque 32 — Rendimiento y proyectos complejos
 32.1 Tiempo de compilación
 32.2 Identificación de cuellos de botella
@@ -592,6 +721,10 @@ Bloque 32 — Rendimiento y proyectos complejos
 32.10 Modularización
 32.11 Mantenibilidad
 32.12 Reproducibilidad
+
+32.13 Medición de rendimiento con datos comparables
+32.14 Optimización y validación de cachés y externalization
+32.15 Presupuestos de compilación en CI
 
 Bloque 33 — Calidad, testing y mantenimiento
 33.1 Calidad tipográfica
@@ -608,22 +741,50 @@ Bloque 33 — Calidad, testing y mantenimiento
 33.12 Compatibilidad
 33.13 Deprecaciones
 
-Bloque 34 — Proyecto final experto
-34.1 Diseñar un proyecto LaTeX profesional
-34.2 Crear estructura modular
-34.3 Crear clase propia
-34.4 Crear paquete auxiliar
-34.5 Definir API de comandos
-34.6 Integrar expl3
-34.7 Tipografía OpenType
-34.8 Matemáticas avanzadas
-34.9 Bibliografía con biblatex/Biber
-34.10 Índice y glosario
-34.11 Diagramas TikZ
-34.12 Gráficos PGFPlots
-34.13 Automatización con latexmk
-34.14 Testing con l3build
-34.15 CI/CD
-34.16 Documentación del paquete/clase
-34.17 Build reproducible
-34.18 Publicación y distribución
+33.14 Diseño de casos de prueba l3build
+33.15 Pruebas de salida de log frente a pruebas PDF
+33.16 Matrices de motores y versiones
+33.17 Validación automatizada de metadatos y accesibilidad
+33.18 Publicación, changelog y mantenimiento de compatibilidad
+33.19 Laboratorio integrador: paquete expl3 con pruebas l3build y CI
+
+Bloque 34 — Accesibilidad y PDF avanzado
+34.1 PDF como formato de salida: estructura, semántica y límites
+34.2 PDF etiquetado y árbol de estructura
+34.3 PDF/UA: objetivos y requisitos
+34.4 Proyecto LaTeX de etiquetado PDF y estado de compatibilidad
+34.5 DocumentMetadata y gestión moderna de PDF
+34.6 tagpdf y relación con el kernel LaTeX
+34.7 Idioma del documento y metadatos
+34.8 Orden lógico de lectura
+34.9 Texto alternativo para imágenes y gráficos
+34.10 Tablas accesibles: encabezados y asociaciones
+34.11 Matemáticas y accesibilidad: limitaciones y alternativas
+34.12 Enlaces, bookmarks y navegación accesible
+34.13 Fuentes, Unicode y extracción de texto
+34.14 Clases y paquetes: compatibilidad con etiquetado
+34.15 Herramientas de inspección y validación PDF
+34.16 Pruebas manuales con tecnologías de asistencia
+34.17 Diagnóstico de errores de etiquetado
+34.18 Laboratorio: documento accesible con figuras y tablas
+34.19 Proyecto: informe técnico con verificación de accesibilidad
+
+Bloque 35 — Proyecto final experto
+35.1 Diseñar un proyecto LaTeX profesional
+35.2 Crear estructura modular
+35.3 Crear clase propia
+35.4 Crear paquete auxiliar
+35.5 Definir API de comandos
+35.6 Integrar expl3
+35.7 Tipografía OpenType
+35.8 Matemáticas avanzadas
+35.9 Bibliografía con biblatex/Biber
+35.10 Índice y glosario
+35.11 Diagramas TikZ
+35.12 Gráficos PGFPlots
+35.13 Automatización con latexmk
+35.14 Testing con l3build
+35.15 CI/CD
+35.16 Documentación del paquete/clase
+35.17 Build reproducible
+35.18 Publicación y distribución

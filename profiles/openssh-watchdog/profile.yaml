@@ -1,54 +1,65 @@
-name: openssh-watchdog
-title: "OPENSSH + WATCHDOG EN PROFUNDIDAD — FEDORA"
-language: es
-
-platform:
-  primary: Fedora
-  family:
-    - Linux
-
-level:
-  start: beginner
-  target: expert
-
-scope:
-  - openssh
-  - ssh
-  - sshd
-  - ssh_config
-  - sshd_config
-  - ssh_keys
-  - ssh_agent
-  - host_keys
-  - known_hosts
-  - authorized_keys
-  - proxyjump
-  - forwarding
-  - sftp
-  - scp
-  - cryptography
-  - fedora_crypto_policies
-  - systemd
-  - firewalld
-  - selinux
-  - hardening
-  - troubleshooting
-  - iam_consumer
-  - nss
-  - pam
-  - sssd
-  - kerberos
-  - gssapi
-  - freeipa
-  - hbac
-  - linux_kernel
-  - watchdog
-  - softlockup
-  - hardlockup
-  - nmi_watchdog
-  - hardware_watchdog
-  - userspace_watchdog
-  - systemd_watchdog
+---
+course:
+  title: OpenSSH + Watchdog — 0 a Experto en Profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    primary:
+      - Fedora
+    family:
+      - Linux
+  mode: deep
+  scope:
+    - openssh
+    - ssh
+    - sshd
+    - ssh_config
+    - sshd_config
+    - ssh_keys
+    - ssh_agent
+    - host_keys
+    - known_hosts
+    - authorized_keys
+    - proxyjump
+    - forwarding
+    - sftp
+    - scp
+    - cryptography
+    - fedora_crypto_policies
+    - systemd
+    - firewalld
+    - selinux
+    - hardening
+    - troubleshooting
+    - iam_consumer
+    - nss
+    - pam
+    - sssd
+    - kerberos
+    - gssapi
+    - freeipa
+    - hbac
+    - linux_kernel
+    - watchdog
+    - softlockup
+    - hardlockup
+    - nmi_watchdog
+    - hardware_watchdog
+    - userspace_watchdog
+    - systemd_watchdog
+    - ssh_certificates
+    - ssh_ca
+    - ssh_krl
+    - fido2_security_keys
+    - ssh_protocol_internals
+    - ssh_auditing
+    - ssh_automation
+    - watchdog_pretimeout
+    - watchdog_virtualization
+    - watchdog_forensics
+    - watchdog_high_availability
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -57,8 +68,8 @@ files:
 
 pedagogy:
   objective_first: true
-  objective_heading: "🎯 OBJETIVO"
-  required_closing: "🧠 QUÉ DEBES RECORDAR"
+  objective_heading: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
   closing_key_points:
     min: 3
     max: 7
@@ -70,10 +81,9 @@ pedagogy:
   avoid_summary_only: true
 
 optional_sections:
-  - "🧪 Laboratorio / ejemplos"
-  - "⚠️ Errores frecuentes"
-  - "💡 Idea importante"
-
+  - 🧪 Laboratorio / ejemplos
+  - ⚠️ Errores frecuentes
+  - 💡 Idea importante
 lesson_requirements:
   explain_concept: true
   explain_purpose: true
@@ -101,10 +111,10 @@ openssh:
   teach_include: true
   teach_effective_configuration: true
   client_validation:
-    - "ssh -G"
+    - ssh -G
   server_validation:
-    - "sshd -t"
-    - "sshd -T"
+    - sshd -t
+    - sshd -T
   teach_precedence: true
   teach_host_blocks: true
   teach_match_blocks: true
@@ -121,7 +131,12 @@ openssh:
     teach_hbac: true
     avoid_local_user_duplication: true
     avoid_reteaching_identity_provisioning: true
-
+  teach_ssh_ca_and_certificates: true
+  teach_krl_revocation: true
+  teach_fido2_when_supported: true
+  teach_protocol_internals: true
+  teach_auditing_and_automation: true
+  require_expert_project: true
 
 watchdog:
   iam_role: none
@@ -138,6 +153,12 @@ watchdog:
   procfs: true
   sysfs: true
   kernel_command_line: true
+  pretimeout_when_supported: true
+  virtualization_kvm_qemu: true
+  postmortem_pstore_kdump: true
+  exclusive_device_ownership: true
+  ha_fencing_and_split_brain: true
+  require_expert_project: true
 
 labs:
   platform: Fedora
@@ -145,6 +166,10 @@ labs:
   hypothesis_driven: true
   require_verification: true
   explain_expected_observation: true
+  require_prerequisites: true
+  require_expected_results: true
+  require_rollback: true
+  destructive_tests_only_in_isolated_vm: true
 
 safety:
   warn_before_remote_access_changes: true
@@ -155,19 +180,33 @@ safety:
 
 bibliography:
   primary:
-    title: "SSH, The Secure Shell: The Definitive Guide"
+    title: 'SSH, The Secure Shell: The Definitive Guide'
     edition: 2
     authors:
-      - "Daniel J. Barrett"
-      - "Richard E. Silverman"
-      - "Robert G. Byrnes"
-    publisher: "O'Reilly Media"
+      - Daniel J. Barrett
+      - Richard E. Silverman
+      - Robert G. Byrnes
+    publisher: O'Reilly Media
   policy:
     book_role: conceptual_primary
     prefer_current_man_pages_for_behavior: true
     prefer_current_upstream_for_version_specific_details: true
     prefer_fedora_docs_for_distribution_integration: true
     never_recommend_obsolete_crypto_without_context: true
+  complementary:
+    - title: Pro OpenSSH
+      author: Michael Stahnke
+      publisher: Apress
+      role: practical_openssh_administration
+      scopes:
+        - client_server_configuration
+        - public_key_authentication
+        - ssh_agent
+        - forwarding
+        - file_transfer
+        - hardening
+        - troubleshooting
+  historical_version_caveat: true
 
 source_priority:
   - installed_behavior
@@ -183,3 +222,12 @@ format:
   avoid_tree_indentation: true
   code_fences_for_commands: true
   spanish_technical_prose: true
+
+curriculum:
+  blocks: 51
+  preserve_original_lessons: true
+  expert_projects:
+    - 28
+    - 51
+  ssh_blocks: 1-28
+  watchdog_blocks: 29-51

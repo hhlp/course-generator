@@ -1815,3 +1815,37 @@ symptom
 ```
 
 Ese nivel de comprensión define **ZABBIX EN PROFUNDIDAD**.
+
+# 55. Ampliación experta: bloques 82–90
+
+Esta ampliación conserva los bloques 0–81 y añade especialización práctica. Aunque la numeración es posterior, las lecciones se enlazan con sus bloques conceptuales anteriores.
+
+## Monitorización de logs (82)
+Diferenciar la captura de líneas mediante checks activos de la ingestión de logs de un sistema centralizado. Enseñar `log[]`, `logrt[]`, sus variantes de conteo, rotación, filtros, permisos, pérdidas, duplicados y correlación con triggers. No atribuir a Zabbix integración nativa con journald sin verificarla: usar archivos o puentes explícitos en laboratorio. No reproducir íntegramente el PATH independiente de Logging.
+
+## Browser monitoring (83)
+Separar browser items, HTTP agent y web scenarios. Explicar dependencias de ejecución, pollers, navegador, JavaScript, sesiones, fallos, consumo de recursos y límites de versión. Los laboratorios deben usar aplicaciones locales y credenciales ficticias.
+
+## VMware (84)
+Enseñar collectors, caches, discovery, templates, credenciales de solo lectura y dimensionamiento. Verificar compatibilidad de APIs de VMware y Zabbix antes de cualquier ejemplo.
+
+## Agent 2 plugins (85)
+Incluir arquitectura Go, SDK/API compatibles, registro de métricas, manejo de errores, pruebas, seguridad, empaquetado y despliegue. No confundir UserParameter con un plugin externo.
+
+## Calidad de alertas (86)
+Evaluar correlación, dependencias, causa/síntoma, supresión, deduplicación y métricas de calidad de alertas. Explicar los límites de cada mecanismo y diseñar laboratorios con fallos controlados.
+
+## Zabbix como código (87)
+Aplicar Terraform y Ansible en un entorno privado de desarrollo. Distinguir instalación de infraestructura, administración de objetos vía API, estado Terraform, drift, idempotencia, CI/CD, import/export de templates y gestión segura de secretos. Verificar el soporte del provider y las colecciones en cada versión.
+
+## Frontend extensible (88)
+Cubrir módulos PHP y widgets mediante interfaces documentadas de la versión. Incluir controles de acceso, validación, seguridad web, pruebas y mantenimiento.
+
+## Resiliencia (89)
+Medir NVPS, queue, caches, procesos, I/O, backlog y tiempo de recuperación bajo cargas controladas. Nunca ejecutar pruebas disruptivas sobre producción sin autorización. Cada laboratorio debe registrar línea base, hipótesis, métricas, límites, rollback y resultados.
+
+## Continuidad avanzada (90)
+Diseñar backup, restore, PostgreSQL PITR, protección de claves y certificados, reconstrucción y failback. Medir RPO/RTO reales y comprobar integridad de la restauración. Distinguir HA de DR.
+
+## Criterios de aceptación
+Cada bloque nuevo debe tener objetivos, fundamentos, configuración verificable, laboratorio, fallos reproducibles, diagnóstico, evidencia y referencias oficiales específicas. En el proyecto final integrar al menos un resultado verificable de cada bloque nuevo. No eliminar ni simplificar lecciones existentes.

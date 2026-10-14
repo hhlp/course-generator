@@ -372,3 +372,42 @@ Nunca convertir una práctica histórica en recomendación actual sin verificarl
 - Radu Gheorghe, Matthew Lee Hinman, Roy Russo — Elasticsearch in Action.
 - Bharvi Dixit — Mastering Elasticsearch.
 - Michael McCandless, Erik Hatcher, Otis Gospodnetic — Lucene in Action.
+
+## Referencias adicionales por scope — revisión profunda
+
+### Búsqueda vectorial, híbrida y relevancia
+
+- Elastic — documentación oficial de kNN search, dense vector, semantic search y hybrid search.
+- Elastic — documentación oficial de Reciprocal Rank Fusion (RRF), ranking y evaluación de relevancia.
+- Apache Lucene — documentación de vectores, nearest-neighbor search y HNSW.
+
+### ES|QL y Elasticsearch SQL
+
+- Elastic — ES|QL reference y funciones, comandos, limitaciones y optimización.
+- Elastic — Elasticsearch SQL REST API y limitaciones documentadas.
+
+### Identidad y seguridad
+
+- Elastic — Elasticsearch authentication realms (LDAP, Active Directory, PKI, SAML y OIDC).
+- Elastic — role mappings, certificados, keystore y security troubleshooting.
+- Elastic — página oficial de suscripciones y matriz de funcionalidades por licencia, contrastada con la versión utilizada.
+
+### Ingestión fiable y resiliencia
+
+- Elastic — Logstash persistent queues, dead letter queues, monitoring y delivery guarantees.
+- Elastic — snapshot/restore, cluster coordination, shard recovery y disaster recovery.
+
+### APM y OpenTelemetry
+
+- Elastic — Elastic APM, integración OpenTelemetry y guías de ingestión OTLP.
+- OpenTelemetry — Collector configuration, receivers, processors, exporters y semantic conventions.
+
+### IaC, CI/CD y pruebas
+
+- HashiCorp — Terraform documentation.
+- Red Hat / Ansible — Ansible documentation, roles, handlers, collections y validación.
+- Elastic — REST APIs de administración y Elastic Rally.
+
+### Política de actualización de estas referencias
+
+Verificar versión, licencia, modalidad de despliegue y disponibilidad antes de presentar cualquier API, parámetro o funcionalidad como actual. Las referencias anteriores son fuentes temáticas; no constituyen una afirmación de compatibilidad de una versión específica.

@@ -185,6 +185,8 @@
 4.65 Tabla de referencia completa de métodos de str
 4.66 Laboratorio: normalizador de texto e informe formateado
 
+4.67 Regex aplicado: raw strings, escapes de Python y patrones re sin duplicar el PATH Regex
+4.68 Regex aplicado: Unicode, normalización y diferencias entre patrones str y bytes
 5. Colecciones y estructuras anidadas
 5.1 Elegir list, tuple, dict, set o frozenset
 5.2 Listas: índices y slicing
@@ -260,6 +262,8 @@
 5.72 Tabla de referencia: métodos, operaciones y funciones incorporadas
 5.73 Laboratorio: inventario con estructuras mixtas y conjuntos
 
+5.74 Big O aplicado: costes promedio, peor caso y amortizados de list, tuple, dict, set y frozenset
+5.75 Big O aplicado: tablas de operaciones, supuestos de hash y costes de memoria
 6. Control de flujo avanzado
 6.1 Comparaciones encadenadas y pertenencia
 6.2 Desempaquetado extendido
@@ -310,6 +314,8 @@
 6.47 Guardas, OR, as y captura de nombres
 6.48 Laboratorio: transformación, filtrado y clasificación de eventos
 
+6.49 Big O aplicado: bucles anidados, comprensiones y expresiones generadoras
+6.50 Big O aplicado: evaluación lazy, materialización y memoria auxiliar
 7. Funciones en profundidad
 7.1 def: definición y llamada
 7.2 Parámetros frente a argumentos
@@ -348,6 +354,7 @@
 7.35 inspect.signature y enlace de argumentos
 7.36 Laboratorio: biblioteca de funciones
 
+7.37 Big O aplicado: recurrencia de funciones recursivas, pila y alternativa iterativa
 8. Iteradores, generadores e itertools
 8.1 Iterable frente a iterador
 8.2 iter, next y StopIteration
@@ -375,6 +382,7 @@
 8.24 Recetas y límites de consumo
 8.25 Laboratorio: pipeline de registros
 
+8.26 Big O aplicado: iteradores, itertools, materialización y límites de consumo
 9. Excepciones y recursos
 9.1 Jerarquía de excepciones
 9.2 try y except
@@ -572,6 +580,8 @@
 16.41 Migraciones simples
 16.42 Laboratorio: inventario persistente
 
+16.43 Regex aplicado: procesamiento incremental de ficheros y logs con re
+16.44 Regex aplicado: patrones compilados, lectura por bloques y fronteras de coincidencia
 17. Biblioteca estándar aplicada
 17.1 datetime y timedelta
 17.2 Fechas naive y aware
@@ -593,6 +603,10 @@
 17.18 Consultar el índice completo de biblioteca
 17.19 Laboratorio: archivo y análisis de registros
 
+17.20 Regex aplicado: API completa de re.compile, search, match, fullmatch, findall y finditer
+17.21 Regex aplicado: re.split, sub, subn, escape y grupos de sustitución
+17.22 Regex aplicado: Pattern, Match, flags, excepciones, Unicode y bytes
+17.23 Regex aplicado: casos prácticos y remisión explícita al PATH independiente Regex
 18. Automatización y CLI
 18.1 sys.argv y streams estándar
 18.2 argparse: opciones y posicionales
@@ -611,6 +625,7 @@
 18.15 Servicios Python y systemd
 18.16 Laboratorio: herramienta de auditoría
 
+18.17 Regex aplicado: extracción de datos en CLI, logs y automatización segura
 19. Testing y depuración
 19.1 Estrategia de pruebas
 19.2 unittest
@@ -633,6 +648,8 @@
 19.19 Linting y formateo
 19.20 Laboratorio: suite del paquete
 
+19.21 Regex aplicado: tests parametrizados, casos límite y regresiones ReDoS
+19.22 Big O aplicado: contrastar hipótesis asintóticas con mediciones repetibles
 20. Proyectos, entornos, dependencias y distribución
 20.1 Qué problemas resuelven pip, virtualenv y los gestores de proyectos
 20.2 PyPI, índices de paquetes, distribuciones y dependencias
@@ -768,6 +785,7 @@
 21.12 Revisión y decisiones de arquitectura
 21.13 Laboratorio: reorganización de aplicación
 
+21.14 Big O aplicado: selección de algoritmos y estructuras con restricciones reales
 22. Concurrencia, hilos y procesos
 22.1 Concurrencia frente a paralelismo
 22.2 I/O-bound frente a CPU-bound
@@ -858,6 +876,8 @@
 25.20 JIT y diferencias entre builds
 25.21 Laboratorio: optimización con evidencia
 
+25.22 Big O aplicado: complejidad asintótica frente a timeit, pyperf y profiling
+25.23 Big O aplicado: coste temporal, espacial, amortizado y análisis empírico
 26. Descriptores y metaprogramación
 26.1 dir, vars e inspect
 26.2 getattr, setattr, hasattr y delattr
@@ -932,6 +952,7 @@
 29.12 Recuperación e idempotencia
 29.13 Laboratorio: endurecer la CLI
 
+29.14 Regex aplicado: ReDoS, entradas no confiables y límites operativos
 30. Evolución hasta Python 3.15
 30.1 Leer What’s New y PEPs
 30.2 Registrar versión exacta y estado RC o final
@@ -967,3 +988,6 @@
 31.16 Distribución y CI
 31.17 Defensa técnica y rúbrica
 31.18 Puentes a NumPy, pandas, Polars y visualización como PATH separados
+31.19 Proyecto integrador: extracción Regex en el parser sin duplicar teoría del PATH Regex
+31.20 Proyecto integrador: justificar Big O de las estructuras y algoritmos elegidos
+31.21 Proyecto integrador: medir rendimiento y documentar discrepancias con Big O

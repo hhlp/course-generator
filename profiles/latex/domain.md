@@ -151,3 +151,22 @@ Cuando se introduzca un paquete nuevo, la lección debe explicar, según corresp
 La instalación manual en árboles TEXMF debe enseñarse después de la gestión normal mediante TeX Live/distribución y debe explicarse cuándo es apropiada y cuándo conviene evitarla. En Fedora se distinguirán los paquetes del sistema, TeX Live y el árbol TEXMF del usuario.
 
 Esta metodología se aplica transversalmente a paquetes como `amsmath`, `booktabs`, `hyperref`, `cleveref`, `biblatex`, `tikz`, `pgfplots`, `fontspec`, `unicode-math`, `tcolorbox` y los demás paquetes introducidos durante el curso.
+
+
+## Profundidad experta y evaluación
+
+Cada lección debe diferenciar conceptos, mecanismos internos, sintaxis, compatibilidad y casos reales. Incluir ejemplos compilables cuando corresponda, comandos de compilación, resultado esperado, interpretación, errores frecuentes y ejercicios de diagnóstico. No inventar salidas de herramientas ni garantizar compatibilidad sin verificar motor y versión.
+
+Los laboratorios integradores de matemáticas, gráficos, automatización y programación deben producir artefactos verificables y reutilizables. Los proyectos avanzados incorporan tests de regresión, documentación y control de versiones.
+
+## Seguridad de compilación
+
+Explicar riesgos de ejecutar documentos de origen desconocido, shell escape, herramientas externas, lectura/escritura de archivos y entornos de compilación. Usar el mínimo privilegio y aislar builds cuando sea pertinente.
+
+## Accesibilidad y PDF avanzado
+
+El bloque 34 aborda PDF etiquetado, PDF/UA, DocumentMetadata, tagpdf, semántica, idioma, alternativas textuales, orden de lectura, tablas, enlaces y validación. Distinguir objetivos normativos de la compatibilidad real y cambiante del kernel, motor, clase y paquetes; combinar validación automática con revisión manual. El proyecto final experto se desplaza al bloque 35 y debe integrar estas competencias cuando sea viable.
+
+## Gestión avanzada de CTAN y TeX Live
+
+Distinguir paquetes RPM de Fedora de instalaciones TeX Live administradas por tlmgr; evitar mezclar gestores en el mismo árbol. Enseñar TDS, TEXMFHOME, TEXMFLOCAL, mktexlsr/texhash, texdoc -l y diagnóstico de versiones.

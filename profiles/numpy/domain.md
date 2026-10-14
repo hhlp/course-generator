@@ -274,3 +274,24 @@ análisis de sensores. Debe demostrar:
 
 El resultado debe parecer software numérico mantenible, no una colección
 de celdas de notebook.
+
+
+## Criterios adicionales de profundidad experta
+
+En cada lección pertinente se exige distinguir precondiciones, postcondiciones y efectos secundarios; demostrar con ejemplos verificables cuándo una operación devuelve una vista, una copia o un resultado que puede compartir memoria; y razonar sobre shape, dtype, ejes, casting, aliasing y mutabilidad.
+
+La explicación del coste debe distinguir complejidad temporal asintótica, memoria auxiliar, tráfico de memoria y comportamiento medido. Nunca equiparar vectorización con mejora garantizada. Incluir benchmarks repetidos, control del entorno, calentamiento cuando proceda y análisis de variabilidad.
+
+En cálculo numérico separar precisión de representación, condicionamiento del problema, estabilidad del algoritmo y error observado. Introducir ULP, epsilon de máquina, acumulación, tolerancias escaladas y error residual cuando corresponda.
+
+Para funciones reutilizables documentar contratos de entrada y salida, gestión de excepciones, compatibilidad entre versiones, pruebas de casos límite, invariantes, propiedades y pruebas diferenciales. Los laboratorios deben incluir predicción, ejecución, inspección, diagnóstico y prueba automatizada.
+
+En extensiones compiladas explicar ownership, referencias, ABI, manejo de errores, compilación, empaquetado y validación de compatibilidad con NumPy 2.x. No presentar detalles internos como garantías públicas sin respaldo de documentación oficial.
+
+## Compatibilidad y verificación de versiones
+
+Comprobar disponibilidad y firma de cada API en la versión objetivo antes de generar código. En particular, tratar NEP 50, StringDType, funciones recientes de numpy.linalg, Array API, C-API y cambios de compatibilidad binaria como contenidos sujetos a versión. No asumir que una API de SciPy forma parte de NumPy.
+
+## Requisitos del proyecto final ampliado
+
+El proyecto de sensores debe establecer objetivos medibles de precisión, memoria y rendimiento, ofrecer CLI reproducible, pruebas automatizadas, validación de datos, política de persistencia segura, trazabilidad de dependencias, benchmarks y documentación de limitaciones.

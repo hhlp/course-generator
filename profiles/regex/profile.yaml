@@ -1,6 +1,15 @@
-name: regex
-title: REGEX EN PROFUNDIDAD
-platform: Fedora Linux
+---
+course:
+  title: "Regex — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    - Fedora
+    - Linux
+    - RHEL
+  mode: "deep"
 
 files:
   pedagogy: ../../config/pedagogy.md

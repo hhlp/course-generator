@@ -1,14 +1,16 @@
-name: IAM
-title: "Identity & Access Management — 0 a experto en profundidad"
-language: es
-level:
-  start: beginner
-  target: expert
-
-platform:
-  primary:
-    - Fedora Linux
-    - Red Hat Enterprise Linux
+---
+course:
+  title: "Identity & Access Management — 0 a experto en profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+      - Linux
+  mode: "deep"
   technologies:
     - Linux Identity
     - NSS
@@ -25,13 +27,10 @@ platform:
     - Dogtag PKI
     - auditd
 
-audience:
-  - Linux system administrators
-  - RHEL administrators
-  - infrastructure engineers
-  - security engineers
-  - IAM engineers
-  - DevOps engineers
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 goals:
   - "Comprender identidad, autenticación, autorización y accounting."
@@ -41,13 +40,17 @@ goals:
   - "Configurar y diagnosticar SSSD y realmd."
   - "Desplegar y administrar FreeIPA/Red Hat IdM."
   - "Diseñar autenticación y autorización centralizadas."
-  - "Diseñar IAM como proveedor central y servicios como consumidores de identidad."
-  - "Integrar patrones OpenSSH, NFS/Samba, proxy, mail, web y OpenVPN sin duplicar identidades locales."
-  - "Distinguir identidades humanas, service principals, machine identities, keytabs y claves de peers."
+  - "Diseñar IAM como proveedor central y servicios como consumidores
+    de identidad."
+  - "Integrar patrones OpenSSH, NFS/Samba, proxy, mail, web y OpenVPN sin
+    duplicar identidades locales."
+  - "Distinguir identidades humanas, service principals, machine identities,
+    keytabs y claves de peers."
   - "Comprender PAM/PASM, JIT, JEA y privileged sessions."
   - "Administrar service accounts, machine identities y secrets."
   - "Implementar logging, auditing, hardening y troubleshooting IAM."
-  - "Diagnosticar fallos por capas incluyendo Time, DNS, TLS, LDAP, Kerberos, SSSD, NSS y PAM."
+  - "Diagnosticar fallos por capas incluyendo Time, DNS, TLS, LDAP, Kerberos,
+    SSSD, NSS y PAM."
 
 prerequisites:
   recommended:
@@ -135,7 +138,8 @@ final_project:
     - "LDAP/Kerberos"
     - "CA/PKI"
     - "Linux clients"
-    - "Service consumers: OpenSSH, NFSv4, proxy/web and representative application integration"
+    - "Service consumers: OpenSSH, NFSv4, proxy/web and representative
+      application integration"
     - "Provider → Consumer validation with one centralized identity"
     - "SSSD/NSS/PAM"
     - "Centralized users and groups"

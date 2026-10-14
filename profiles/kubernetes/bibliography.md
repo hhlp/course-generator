@@ -578,3 +578,26 @@ Cuando exista discrepancia entre un libro y el comportamiento actual de Kubernet
 5. documentación del proyecto CNCF implicado
 
 Los libros se emplean para explicación, estructura mental y práctica; las fuentes upstream determinan el comportamiento técnico vigente.
+
+## Referencias complementarias — profundización
+
+### Kubernetes Dynamic Resource Allocation
+Documentación upstream y KEPs de DRA; estudiar ResourceClaim, controladores, drivers y estado de la API por versión.
+
+### Kubernetes Dual-stack IPv4/IPv6
+Documentación upstream de dual-stack Services y networking; contrastar soporte del CNI seleccionado.
+
+### Kubernetes API Priority and Fairness
+Documentación upstream para FlowSchema, PriorityLevelConfiguration y métricas del API server.
+
+### Kubernetes Testing / controller-runtime envtest
+Documentación de sigs.k8s.io/controller-runtime y del framework e2e de Kubernetes para pruebas de reconciliación y compatibilidad.
+
+### Helm — documentación versionada
+Consultar guías oficiales de Helm 3 y Helm 4 según la versión objetivo; verificar cambios en CLI, plugins, charts y compatibilidad.
+
+### Kubernetes Production Best Practices y SRE
+Documentación oficial de Kubernetes sobre administración, upgrades, alta disponibilidad y disaster recovery; Google SRE Workbook como referencia complementaria de SLI/SLO, alertas e incidentes.
+
+### Kubernetes Authentication / OIDC
+Documentación oficial sobre autenticación, tokens de ServiceAccount, OIDC y autorización RBAC.

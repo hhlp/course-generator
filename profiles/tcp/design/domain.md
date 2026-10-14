@@ -27,3 +27,27 @@ Cada tema debe combinar teoría, representación binaria/hexadecimal cuando corr
 
 ## Fuera de alcance principal
 El curso no pretende sustituir un PATH completo de routing dinámico, switching, DNS, DHCP, seguridad o análisis de protocolos. Estos temas se introducen únicamente cuando son necesarios para comprender el direccionamiento y su troubleshooting.
+
+
+## Scopes de aprendizaje
+- S01: fundamentos de direccionamiento y representación binaria/hexadecimal.
+- S02: IPv4, máscaras, clases históricas y direcciones especiales.
+- S03: subnetting IPv4, cálculo directo e inverso.
+- S04: CIDR, FLSM y VLSM, planificación y restricciones.
+- S05: supernetting, agregación y sumarización exacta.
+- S06: IPv6, tipos de direcciones y diseño de subredes.
+- S07: diseño empresarial, jerarquías, dual-stack y renumeración.
+- S08: configuración, verificación y troubleshooting Fedora/RHEL.
+- S09: automatización con Python e IPAM.
+- S10: normas RFC y registros IANA (transversal).
+
+## Criterios de profundidad y evaluación
+- En los cálculos: justificar bits, prefijos, fronteras, rangos y excepciones, no solo memorizar tablas.
+- Incluir problemas directos e inversos, soluciones paso a paso, ejercicios de práctica autónoma y comprobación con herramientas.
+- En VLSM: restricciones, reservas de crecimiento, fragmentación, ausencia de solapamientos y uso eficiente del espacio.
+- En IPv6: hexadecimal, límites de prefijos, jerarquía de /48, /56, /60 y /64, y casos /127 y /128.
+- En diseño: documentar supuestos, asignaciones, capacidad, políticas, riesgos, migración y rollback.
+- El proyecto final debe incluir memoria de cálculo, tabla IPAM, validación automatizada y evidencia de troubleshooting.
+
+## Separación respecto al PATH TCP/IP
+Este PATH profundiza en cálculos y diseño de direccionamiento. Protocolos TCP/UDP, análisis exhaustivo de capturas, routing dinámico, DNS y DHCP completos pertenecen a sus PATH independientes; aquí solo se tratan las interfaces imprescindibles para el diseño y diagnóstico.

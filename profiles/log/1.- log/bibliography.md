@@ -454,3 +454,33 @@ El alumno debe aprender a consultar documentación disponible en el propio siste
 - Linux Service Management Made Easy with systemd.
 - IETF RFC 5280. Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List Profile.
 - IETF RFC 8259. The JavaScript Object Notation (JSON) Data Interchange Format.
+
+## Referencias ampliadas por scope — revisión profunda
+
+### Linux Audit (bloque 45)
+- Linux Audit upstream y páginas man instaladas: `auditd(8)`, `auditd.conf(5)`, `auditctl(8)`, `audit.rules(7)`, `ausearch(8)`, `aureport(8)`, `augenrules(8)` y `auditd-plugins(5)` cuando estén disponibles.
+- Documentación Fedora/RHEL de auditoría, usada como contexto operativo y verificada frente a Fedora actual.
+
+### Logging de aplicaciones y Podman (bloque 46)
+- Documentación oficial Podman: `podman-logs(1)`, `podman-run(1)` y configuración de contenedores `containers.conf(5)`.
+- `systemd.exec(5)`, `systemd-cat(1)` y `sd_journal_send(3)` para integración nativa.
+- RFC 8259 para JSON; documentación de los lenguajes y frameworks empleados en laboratorios.
+
+### Seguridad y forense (bloque 47)
+- RFC 5848 — Signed Syslog Messages: referencia conceptual, no asumir implementación universal.
+- NIST SP 800-92 — Guide to Computer Security Log Management (guía histórica; contrastar prácticas actuales).
+- Documentación oficial de SELinux, OpenSSL y systemd journal sealing.
+- RFC 3161 cuando se explique sellado de tiempo externo, sin convertir el PATH en un curso PKI.
+
+### Operación y estadísticas (bloque 48)
+- Documentación rsyslog `impstats` y páginas de queues, actions y troubleshooting.
+- Documentación syslog-ng `syslog-ng-ctl`, estadísticas, persist files y disk-buffer.
+- `journalctl(1)`, `journald.conf(5)`, `ss(8)`, `df(1)` y `stat(1)`.
+
+### Resiliencia y transporte (bloque 49)
+- RFC 5426 — Transmission of Syslog Messages over UDP.
+- RFC 5425 y RFC 6587 para comparar TLS y framing TCP.
+- Documentación upstream de rsyslog, librelp y syslog-ng sobre buffering, reconexión, fiabilidad y límites de entrega.
+
+### Política de bibliografía por lección
+Indicar scope y bloque correspondiente, separar documentación oficial vigente de bibliografía histórica, y comprobar soporte de módulos, flags y configuración en la versión Fedora instalada.

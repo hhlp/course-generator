@@ -1,11 +1,27 @@
+---
 course:
-  title: LaTeX — Learning Path 0 → Experto
+  title: LaTeX — 0 a Experto en Profundidad
   language: es
-  level: cero_a_experto
-  platform: Fedora/Linux
+  level:
+    start: cero
+    end: experto
+  platform:
+    - Fedora
+    - Linux
   primary_distribution: TeX Live
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 pedagogy:
-  style: profundo, práctico, progresivo y orientado a composición y proyectos LaTeX reales
+  style:
+    - profundo
+    - práctico
+    - progresivo
+    - orientado a composición y proyectos LaTeX reales
   lesson_structure:
     objective:
       required: true
@@ -15,20 +31,20 @@ pedagogy:
       required: true
       heading: 📚 LECTURA
       categories:
-      - principal
-      - normativa
-      - motor
-      - profundizacion
-      - consulta
+        - principal
+        - normativa
+        - motor
+        - profundizacion
+        - consulta
       exact_references_only_when_verified: true
     lab:
-      required: false
+      required: true
       heading: 🧪 Laboratorio/ejemplos
     common_errors:
-      required: false
+      required: true
       heading: ⚠️ Errores frecuentes
     important_idea:
-      required: false
+      required: true
       heading: 💡 Idea importante
     remember:
       required: true
@@ -39,6 +55,7 @@ pedagogy:
       avoid_repeating_objective: true
   indentation: false
   numbering: single-level
+
 content:
   prefer_compilable_examples: true
   explain_code_and_output: true
@@ -50,68 +67,125 @@ content:
     required_when_introducing_package: true
     teach_discovery_not_only_usage: true
     steps:
-    - define_problem_or_need
-    - find_package_on_ctan
-    - identify_official_documentation
-    - consult_with_texdoc
-    - check_installation_with_kpsewhich
-    - identify_dependencies_and_relevant_options
-    - load_package_correctly
-    - provide_minimal_working_example
-    - compile_and_interpret_errors_or_warnings
+      - define_problem_or_need
+      - find_package_on_ctan
+      - identify_official_documentation
+      - consult_with_texdoc
+      - check_installation_with_kpsewhich
+      - identify_dependencies_and_relevant_options
+      - load_package_correctly
+      - provide_minimal_working_example
+      - compile_and_interpret_errors_or_warnings
     explain_when_relevant:
-    - ctan_package_name_vs_texlive_package_vs_sty_or_cls_file
-    - package_options
-    - load_order
-    - dependencies
-    - incompatibilities
-    - fedora_texlive_packaging
-    - texmfhome_and_local_installation
+      - ctan_package_name_vs_texlive_package_vs_sty_or_cls_file
+      - package_options
+      - load_order
+      - dependencies
+      - incompatibilities
+      - fedora_texlive_packaging
+      - texmfhome_and_local_installation
     avoid_repeating_full_ctan_theory: true
     cross_reference_ctan_block: true
+  deep_lesson_requirements:
+    - explain_concept_and_internal_mechanism
+    - show_syntax_and_argument_semantics
+    - provide_compilable_example_and_build_command
+    - describe_expected_result_without_inventing_execution
+    - compare_engines_and_versions_when_relevant
+    - include_diagnostic_exercise_and_common_errors
+    - link_prerequisites_and_related_lessons
+  security_topics:
+    - shell_escape
+    - external_tools
+    - untrusted_documents
+    - build_isolation
+  accessibility_topics:
+    - tagged_pdf
+    - pdf_ua
+    - documentmetadata
+    - tagpdf
+    - reading_order
+    - alternative_text
+    - table_semantics
+    - validation
+  integrative_labs_after_blocks:
+    - 7
+    - 17
+    - 24
+    - 33
+  preserve_existing_lessons: true
 environment:
   os_family:
-  - Fedora
-  - Linux
+    - Fedora
+    - Linux
   tex_distribution: TeX Live
   engines:
-  - pdfTeX
-  - XeTeX
-  - LuaTeX
+    - pdfTeX
+    - XeTeX
+    - LuaTeX
   build_tools:
-  - latexmk
-  - Make
-  - arara
+    - latexmk
+    - Make
+    - arara
   version_control: Git
 bibliography:
   principal:
-  - Text and Math Into LaTeX — George Grätzer
-  - LaTeX Beginner's Guide — Stefan Kottwitz
-  - LaTeX Cookbook — Stefan Kottwitz
-  - LaTeX Graphics with TikZ — Stefan Kottwitz
-  - The LaTeX Companion, Third Edition — Part I — Frank Mittelbach et al.
-  - The LaTeX Companion, Third Edition — Part II — Frank Mittelbach et al.
+    - Text and Math Into LaTeX — George Grätzer
+    - LaTeX Beginner's Guide — Stefan Kottwitz
+    - LaTeX Cookbook — Stefan Kottwitz
+    - LaTeX Graphics with TikZ — Stefan Kottwitz
+    - The LaTeX Companion, Third Edition — Part I — Frank Mittelbach et al.
+    - The LaTeX Companion, Third Edition — Part II — Frank Mittelbach et al.
   normative:
-  - LaTeX Project documentation
-  - CTAN package documentation
-  - TeX Live documentation
-  - PGF/TikZ manual
-  - PGFPlots manual
-  - biblatex/Biber documentation
-  - expl3 documentation
-  - l3build documentation
+    - LaTeX Project documentation
+    - CTAN package documentation
+    - TeX Live documentation
+    - PGF/TikZ manual
+    - PGFPlots manual
+    - biblatex/Biber documentation
+    - expl3 documentation
+    - l3build documentation
+    - LaTeX PDF management and latex-lab documentation
+    - tagpdf documentation
+    - LuaTeX and LuaHBTeX manuals
+    - KOMA-Script Guide
+    - TeX Directory Structure documentation
+    - LaTeX2e kernel and source documentation
+    - PDF/UA specification and validation guidance
 progression:
-- fundamentos
-- composicion_tipografica
-- matematicas
-- tablas_figuras_referencias
-- bibliografia
-- tikz_pgfplots
-- documentos_cientificos_y_grandes
-- automatizacion
-- macros
-- expl3
-- tex_internals
-- paquetes_y_clases
-- lualatex
-- testing_y_mantenimiento
+  - fundamentos
+  - composicion_tipografica
+  - matematicas
+  - tablas_figuras_referencias
+  - bibliografia
+  - tikz_pgfplots
+  - documentos_cientificos_y_grandes
+  - automatizacion
+  - macros
+  - expl3
+  - tex_internals
+  - paquetes_y_clases
+  - lualatex
+  - testing_y_mantenimiento
+  - accesibilidad_pdf
+  - proyecto_final_experto
+
+milestones:
+  - id: math-integrator
+    after_block: 7
+    name: Proyecto matemático reproducible
+  - id: graphics-integrator
+    after_block: 17
+    name: Proyecto TikZ y PGFPlots
+  - id: build-integrator
+    after_block: 24
+    name: Build seguro y reproducible
+  - id: programming-integrator
+    after_block: 33
+    name: Paquete expl3 probado con l3build
+  - id: accessible-pdf
+    after_block: 34
+    name: PDF accesible y validado
+  - id: expert-project
+    after_block: 35
+    name: Proyecto final experto LaTeX

@@ -994,3 +994,36 @@ automatización básica
 El objetivo final no es únicamente aprender a escribir playbooks.
 
 El objetivo es comprender, diseñar, desarrollar, operar, depurar, asegurar y escalar plataformas completas de automatización basadas en Ansible.
+
+
+---
+
+# 31. Matriz de fuentes por bloques (ampliación)
+
+Las cuatro obras principales se conservan. La versión instalada de ansible-core, sus collections y las herramientas empresariales se verifican siempre con documentación oficial de la versión estudiada.
+
+| Bloques | Referencia pedagógica | Referencia técnica y de validación |
+|---|---|---|
+| 0–6 | Ansible: Up & Running; Practical Ansible | Ansible Community: instalación, CLI, playbooks y módulos |
+| 7–13 | Ansible: Up & Running; Mastering Ansible (4.ª ed.) | Ansible: variables, Jinja2, roles, collections y Vault |
+| 14–16 | Ansible for Real-Life Automation; Practical Ansible | RHEL, Red Hat System Roles y objetivos oficiales RHCE vigentes |
+| 17–18 | Mastering Ansible (4.ª ed.) | Ansible: ejecución, plugins y estrategias |
+| 19 | Mastering Ansible; Ansible for Real-Life Automation | ansible.netcommon, ansible.utils y collections de fabricantes |
+| 20–21 | Ansible for Real-Life Automation | Podman/Quadlet, containers.podman, kubernetes.core y OpenShift |
+| 22–23 | Ansible for Real-Life Automation; Practical Ansible | Collections cloud, Terraform/OpenTofu y documentación de proveedores |
+| 24–25 | Practical Ansible; Mastering Ansible | ansible-lint, Molecule, ansible-test y CI |
+| 26–29 | Practical Ansible; Ansible for Real-Life Automation | AWX, AAP, ansible-builder, ansible-navigator y ansible-rulebook |
+| 30–32 | Mastering Ansible | Guías de desarrollo y código fuente de ansible-core |
+| 33–37 | Mastering Ansible; Ansible for Real-Life Automation | Ansible/AAP: seguridad, operación, rendimiento y arquitectura |
+| 38 | Las cuatro obras como apoyo | Documentación de cada tecnología integrada y pruebas verificables |
+
+## Referencias editoriales a completar antes de generar lecciones
+
+- **Ansible: Up & Running**: registrar autores, edición y año exactos del ejemplar disponible; no asumir que describe la versión instalada.
+- **Mastering Ansible, 4th Edition**: mantener James Freeman y Jesse Keating como figuran en esta bibliografía y comprobar la ficha editorial antes de citar capítulos.
+- **Ansible for Real-Life Automation**: mantener Gineesh Madapparambath y verificar edición/año del ejemplar.
+- **Practical Ansible, 2nd Edition**: completar autoría y año con el ejemplar realmente utilizado.
+
+## Política de precisión técnica
+
+Para cada lección registrar, cuando corresponda, la versión de ansible-core, de Python, de la collection y de Fedora/RHEL empleada. Distinguir API estable, comportamiento dependiente de versión, funciones obsoletas y características específicas de AAP. Los comandos de instalación y las rutas deben probarse en el laboratorio antes de presentarse como verificados.

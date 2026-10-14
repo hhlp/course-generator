@@ -1,110 +1,60 @@
-# Bibliografía — Jenkins 0 → experto
+# Bibliografía — Jenkins 0 → experto en profundidad
 
-## Principal
+> **Criterio:** la documentación oficial de Jenkins y de cada plugin prevalece para versiones, APIs, compatibilidad y seguridad. Los libros sirven como contexto histórico y conceptual. El path de Groovy es independiente.
 
-### Jenkins: The Definitive Guide — John Ferguson Smart
-Referencia amplia para fundamentos, automatización, jobs, builds, testing e integración continua. Debe complementarse con documentación oficial actual porque Jenkins ha evolucionado significativamente desde su publicación.
+## Scope A — Fundamentos y CI/CD
+- John Ferguson Smart — *Jenkins: The Definitive Guide* (fundamentos históricos).
+- Brent Laster — *Jenkins 2: Up and Running* (Pipeline y arquitectura; contrastar con documentación actual).
+- Jez Humble y David Farley — *Continuous Delivery*.
+- Nicole Forsgren, Jez Humble y Gene Kim — *Accelerate*.
+- Gene Kim et al. — *The DevOps Handbook*.
 
-### Jenkins 2: Up and Running — Brent Laster
-Útil para Jenkins moderno, Pipeline as Code, Jenkinsfile, arquitectura de pipelines y prácticas de automatización. Complementar siempre con la documentación oficial para sintaxis y comportamiento actuales.
+## Scope B — Jenkins Core, instalación y administración
+- Jenkins User Documentation: https://www.jenkins.io/doc/
+- Installing Jenkins: https://www.jenkins.io/doc/book/installing/
+- Managing Jenkins: https://www.jenkins.io/doc/book/managing/
+- Jenkins LTS: https://www.jenkins.io/download/lts/
 
-## Oficial — Jenkins
+## Scope C — Pipeline, Jenkinsfile y SCM
+- Pipeline: https://www.jenkins.io/doc/book/pipeline/
+- Pipeline Syntax: https://www.jenkins.io/doc/book/pipeline/syntax/
+- Pipeline Steps Reference: https://www.jenkins.io/doc/pipeline/steps/
+- Multibranch Pipeline: https://www.jenkins.io/doc/book/pipeline/multibranch/
 
-### Jenkins User Documentation
-Fuente normativa principal del curso para instalación, administración, Pipeline, seguridad, agentes, plugins, credenciales y operación.
+## Scope D — Groovy aplicado, CPS y Shared Libraries
+- Shared Libraries: https://www.jenkins.io/doc/book/pipeline/shared-libraries/
+- CPS Method Mismatches: https://www.jenkins.io/doc/book/pipeline/cps-method-mismatches/
+- Pipeline Best Practices: https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/
+- Groovy documentation (solo consulta puntual): https://groovy-lang.org/documentation.html
 
-Referencia: https://www.jenkins.io/doc/
+## Scope E — Seguridad y software supply chain
+- Jenkins Security: https://www.jenkins.io/doc/book/security/
+- Jenkins Security Advisories: https://www.jenkins.io/security/advisories/
+- OWASP CI/CD Security Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/CI_CD_Security_Cheat_Sheet.html
+- NIST SSDF: https://csrc.nist.gov/Projects/ssdf
+- SLSA: https://slsa.dev/
 
-### Jenkins Pipeline Documentation
-Referencia principal para Jenkinsfile, Declarative Pipeline, Scripted Pipeline y Pipeline Syntax.
+## Scope F — JCasC, Job DSL y automatización
+- Jenkins Configuration as Code: https://www.jenkins.io/projects/jcasc/
+- Jenkins REST API: https://www.jenkins.io/doc/book/using/remote-access-api/
+- Jenkins CLI: https://www.jenkins.io/doc/book/managing/cli/
+- Job DSL Plugin: https://plugins.jenkins.io/job-dsl/
 
-Referencia: https://www.jenkins.io/doc/book/pipeline/
+## Scope G — Testing y desarrollo de plugins
+- Jenkins Developer Documentation: https://www.jenkins.io/doc/developer/
+- Plugin Tutorial: https://www.jenkins.io/doc/developer/tutorial/
+- Jenkins Test Harness: https://www.jenkins.io/doc/developer/testing/
+- JenkinsPipelineUnit: https://github.com/jenkinsci/JenkinsPipelineUnit
 
-### Pipeline Syntax
-Referencia para steps, directives y sintaxis soportada.
+## Scope H — Agentes, contenedores y Kubernetes
+- Distributed Builds: https://www.jenkins.io/doc/book/scaling/architecting-for-scale/
+- Kubernetes Plugin: https://plugins.jenkins.io/kubernetes/
+- Docker Pipeline Plugin: https://plugins.jenkins.io/docker-workflow/
 
-Referencia: https://www.jenkins.io/doc/book/pipeline/syntax/
-
-### Jenkins Shared Libraries
-Referencia principal para vars/, src/, resources/, @Library y reutilización de código Pipeline.
-
-Referencia: https://www.jenkins.io/doc/book/pipeline/shared-libraries/
-
-### Jenkins Pipeline CPS Method Mismatches
-Lectura fundamental para comprender CPS, @NonCPS y diferencias entre Groovy convencional y Jenkins Pipeline.
-
-Referencia: https://www.jenkins.io/doc/book/pipeline/cps-method-mismatches/
-
-### Jenkins Security Documentation
-Referencia para authentication, authorization, credentials, Script Security, hardening y prácticas operativas.
-
-Referencia: https://www.jenkins.io/doc/book/security/
-
-### Jenkins Configuration as Code
-Referencia para configuración reproducible y automatización de Jenkins.
-
-Referencia: https://www.jenkins.io/projects/jcasc/
-
-## Groovy — principal
-
-### Programming Groovy 2 — Venkat Subramaniam
-Base conceptual para aprender Groovy como lenguaje: closures, colecciones, objetos, metaprogramación y estilo idiomático.
-
-### Making Java Groovy — Ken Kousen
-Útil para comprender Groovy sobre la JVM y su relación con Java.
-
-## Groovy — oficial
-
-### Apache Groovy Documentation
-Fuente principal para validar sintaxis y comportamiento actual de Groovy.
-
-Referencia: https://groovy-lang.org/documentation.html
-
-### Groovy Language Specification
-Referencia técnica para semántica del lenguaje.
-
-Referencia: https://groovy-lang.org/semantics.html
-
-### Groovy Closures
-Lectura esencial para Jenkins, DSLs y Shared Libraries.
-
-Referencia: https://groovy-lang.org/closures.html
-
-### Groovy Metaprogramming
-Referencia para MetaClass, ExpandoMetaClass, methodMissing, propertyMissing y metaprogramación.
-
-Referencia: https://groovy-lang.org/metaprogramming.html
-
-## CI/CD y diseño
-
-### Continuous Delivery — Jez Humble, David Farley
-Fundamentos de pipelines de entrega, automatización, despliegue, feedback y diseño de procesos de entrega.
-
-### Accelerate — Nicole Forsgren, Jez Humble, Gene Kim
-Contexto para rendimiento de entrega de software, métricas y prácticas DevOps.
-
-### The DevOps Handbook — Gene Kim, Jez Humble, Patrick Debois, John Willis
-Contexto organizativo y técnico para CI/CD, flujo, feedback y automatización.
-
-## Seguridad y supply chain
-
-### NIST Secure Software Development Framework (SSDF)
-Referencia para prácticas de desarrollo y entrega segura.
-
-### SLSA
-Referencia para provenance y seguridad de la cadena de suministro de software.
-
-### OWASP CI/CD Security Cheat Sheet
-Referencia práctica para amenazas y controles aplicables a pipelines CI/CD.
+## Scope I — Observabilidad, operaciones y recuperación
+- Jenkins Monitoring: https://www.jenkins.io/doc/book/system-administration/monitoring/
+- Jenkins Backup: https://www.jenkins.io/doc/book/system-administration/backing-up/
+- Jenkins Upgrade Guide: https://www.jenkins.io/doc/upgrade-guide/
 
 ## Estrategia de lectura
-
-La documentación oficial de Jenkins es normativa para comportamiento actual de Jenkins y sus plugins.
-
-La documentación oficial de Apache Groovy es normativa para el lenguaje.
-
-Los libros se utilizan para explicación conceptual y progresión pedagógica; cuando exista una diferencia con una versión actual, prevalece la documentación oficial correspondiente.
-
-Para Pipeline avanzado debe seguirse esta secuencia:
-
-Groovy → closures → DSLs → Jenkins Pipeline DSL → CPS → serialización → @NonCPS → Shared Libraries → Jenkins internals.
+Para cada lección seleccionar primero la documentación oficial específica, luego referencias complementarias verificadas. No asignar capítulos, números de página ni versiones no comprobados. Evitar duplicar la bibliografía general de Groovy.

@@ -250,3 +250,41 @@ copiarán mecánicamente:
 
 Cuando un libro y la documentación actual difieran, la lección debe
 explicar la diferencia y enseñar primero la práctica moderna.
+
+
+## Referencias especializadas adicionales por scope
+
+### Scope: promoción, tipos y NumPy 2.x (bloques 4, 20, 26 y 29)
+
+- NumPy Enhancement Proposal 50 (NEP 50): promoción de tipos y precisión de escalares.
+- NEP 52: limpieza de la API de Python para NumPy 2.0.
+- Documentación oficial de NumPy: DTypes, StringDType y migration guide.
+
+### Scope: Array API e interoperabilidad (bloques 25 y 27)
+
+- NEP 47: adopción del estándar Array API en NumPy (contexto histórico y de diseño).
+- Python Array API Standard: especificación vigente y compatibilidad.
+- Documentación de DLPack y protocolos de interoperabilidad NumPy.
+
+### Scope: testing y contratos numéricos (bloques 13 y 22)
+
+- pytest: documentación oficial para fixtures, parametrización y pruebas.
+- Hypothesis: documentación oficial para property-based testing.
+- numpy.testing: referencia oficial de comparaciones y tolerancias.
+
+### Scope: rendimiento y concurrencia (bloques 23 y 24)
+
+- NumPy CPU/SIMD optimizations: documentación oficial.
+- threadpoolctl: documentación para inspección y control de pools de hilos.
+- NumPy Global State y Thread Safety: documentación oficial.
+
+### Scope: internals, extensiones y empaquetado (bloques 26–29)
+
+- NumPy C-API, ufunc API, DType API y guía de migración a NumPy 2.
+- Python/C API: referencias, buffers, manejo de errores y ownership.
+- Python Packaging User Guide: compilación y distribución de extensiones.
+- Cython, Numba y F2PY: documentación oficial de versiones compatibles.
+
+## Política de consulta por lección
+
+Priorizar documentación oficial de la versión objetivo; usar libros para modelos conceptuales y ejemplos. Verificar deprecaciones, disponibilidad de APIs y compatibilidad antes de generar ejercicios. Las fuentes externas de interoperabilidad no amplían el alcance a cursos completos de otras bibliotecas.

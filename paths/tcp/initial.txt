@@ -71,6 +71,11 @@ BLOQUE 1 — Ethernet y capa de enlace
 1.14 Análisis Ethernet con tshark
 1.15 Troubleshooting de capa 2
 
+1.16 Ethernet FCS y validación de tramas
+1.17 Switching L2, aprendizaje MAC y tablas FDB
+1.18 802.1Q: tagged/untagged, VLAN ID y captura
+1.19 Offloads NIC y efecto sobre las capturas
+
 BLOQUE 2 — IPv4 y subnetting
 2.1 IPv4 y estructura de una dirección
 2.2 CIDR y máscaras
@@ -85,6 +90,12 @@ BLOQUE 2 — IPv4 y subnetting
 2.11 Direcciones múltiples
 2.12 ip route e ip route get
 2.13 Troubleshooting IPv4
+
+2.14 IPv4 classful A/B/C/D/E: contexto histórico y límites
+2.15 Operaciones binarias mínimas para interpretar máscaras y prefijos
+2.16 Calcular network/broadcast de una dirección observada
+2.17 CIDR y longest prefix match: lectura de rutas
+2.18 Diferenciar subnetting operativo de diseño VLSM (fuera de alcance)
 
 BLOQUE 3 — ARP y tabla de vecinos
 3.1 IPv4 → MAC
@@ -112,6 +123,13 @@ BLOQUE 4 — IPv6 y Neighbor Discovery
 4.12 ip -6 neigh
 4.13 Captura y análisis IPv6
 4.14 Troubleshooting IPv6
+
+4.15 IPv6: expansión y compresión hexadecimal paso a paso
+4.16 Cálculo operativo del prefijo y host identifier
+4.17 Direcciones temporales y stable privacy en Linux
+4.18 SLAAC vs DHCPv6: mecanismos y observación
+4.19 Dual-stack y selección de direcciones (RFC 6724)
+4.20 IPv6 extension headers: implicaciones de captura y filtrado
 
 BLOQUE 5 — ICMP, ICMPv6 y diagnóstico
 5.1 ICMP e ICMPv6
@@ -146,6 +164,10 @@ BLOQUE 6 — Routing Linux
 6.14 Captura de tráfico routed
 6.15 Troubleshooting de routing
 
+6.16 ECMP y selección de nexthop en Linux
+6.17 Routing IPv6 y forwarding en Linux
+6.18 ip monitor route y observación de cambios
+
 BLOQUE 7 — Puertos, sockets y procesos
 7.1 Qué es un socket
 7.2 IP + protocolo + puerto
@@ -177,6 +199,10 @@ BLOQUE 8 — UDP en profundidad
 8.12 Capturar y filtrar UDP
 8.13 Troubleshooting UDP
 
+8.14 UDP checksum IPv4 vs IPv6 y pseudoheader
+8.15 UDP truncation, buffers y pérdida en recepción
+8.16 UDP segmentation offload y capturas
+
 BLOQUE 9 — TCP: fundamentos y handshake
 9.1 TCP y connection-oriented
 9.2 TCP header
@@ -194,6 +220,9 @@ BLOQUE 9 — TCP: fundamentos y handshake
 9.14 TCP Reset
 9.15 Capturar handshake y teardown
 9.16 Interpretación con tcpdump/tshark
+
+9.17 TCP Fast Open: funcionamiento y límites
+9.18 ECN en TCP: negociación y observación
 
 BLOQUE 10 — TCP State Machine
 10.1 TCP state machine
@@ -231,6 +260,9 @@ BLOQUE 11 — TCP reliability y flow control
 11.14 TCP_NODELAY
 11.15 Diagnóstico de retransmisiones y pérdida
 
+11.16 RACK, TLP y recuperación moderna de pérdidas
+11.17 SACK scoreboard y retransmisión selectiva
+
 BLOQUE 12 — TCP congestion control
 12.1 Congestion vs flow control
 12.2 Congestion Window
@@ -247,6 +279,9 @@ BLOQUE 12 — TCP congestion control
 12.13 ss -i
 12.14 RTT, cwnd y retransmissions
 12.15 Diagnóstico de rendimiento TCP
+
+12.16 Comparación CUBIC/BBR en laboratorio reproducible
+12.17 ECN y señalización de congestión
 
 BLOQUE 13 — ss: básico
 13.1 Qué es ss y relación con iproute2
@@ -524,6 +559,9 @@ BLOQUE 31 — MTU, MSS, fragmentación y PMTUD
 31.14 VPN/túneles y MTU
 31.15 Troubleshooting MTU/MSS
 
+31.16 PLPMTUD: fundamentos y observación
+31.17 PMTUD IPv4/IPv6 en entornos dual-stack
+
 BLOQUE 32 — NAT y connection tracking
 32.1 NAT, SNAT, DNAT y masquerading
 32.2 TCP/UDP y NAT
@@ -574,6 +612,12 @@ BLOQUE 34 — Kernel Linux y stack TCP/IP
 34.19 Kernel counters
 34.20 Diagnóstico del stack
 
+34.21 NAPI y polling del driver de red
+34.22 GRO, GSO, TSO y checksum offload
+34.23 RSS, RPS, RFS y XPS
+34.24 qdisc y tc: inspección básica y efectos en tráfico
+34.25 SoftIRQ, drops y colas RX/TX
+
 BLOQUE 35 — Rendimiento de red
 35.1 Latency vs bandwidth
 35.2 Bandwidth-delay product
@@ -590,6 +634,11 @@ BLOQUE 35 — Rendimiento de red
 35.13 ss -i durante pruebas
 35.14 tcpdump/tshark durante pruebas
 35.15 Identificar cuellos de botella
+
+35.16 Bandwidth-delay product: cálculo e interpretación
+35.17 Bufferbloat y latencia bajo carga
+35.18 tc qdisc: netem para simular delay, jitter y loss
+35.19 Comparar TCP/UDP con iperf3 y PCAP
 
 BLOQUE 36 — Observabilidad y estadísticas TCP/IP
 36.1 ip -s link
@@ -632,6 +681,10 @@ BLOQUE 37 — Troubleshooting TCP/IP sistemático
 37.22 journalctl y logs relacionados
 37.23 Checklist profesional de troubleshooting
 
+37.24 Happy Eyeballs y fallos dual-stack
+37.25 DNS A/AAAA, selección de familia y conectividad
+37.26 Diagnóstico de IPv6 parcialmente funcional
+
 BLOQUE 38 — Laboratorios de fallos
 38.1 Puerto cerrado
 38.2 Puerto filtrado
@@ -653,6 +706,10 @@ BLOQUE 38 — Laboratorios de fallos
 38.18 NAT incorrecto
 38.19 Capturar cada problema
 38.20 Diagnosticar sin conocer previamente la causa
+
+38.21 Caso dual-stack: IPv4 funciona e IPv6 falla
+38.22 Caso de offload: checksum aparente incorrecto en PCAP
+38.23 Caso de bufferbloat y latencia bajo carga
 
 BLOQUE 39 — Proyecto final: TCP/IP Troubleshooting Lab
 39.1 Diseñar topología con namespaces

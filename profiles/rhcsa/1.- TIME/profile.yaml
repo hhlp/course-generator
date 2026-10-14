@@ -1,20 +1,17 @@
-name: time-ntp-chrony-deep
-title: "TIME / NTP / Chrony — 0 a experto en profundidad"
-language: es
-level: "0-a-experto-en-profundidad"
+---
+course:
+  title: "TIME / NTP / Chrony — 0 a experto en profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  mode: "deep"
 
 platforms:
   primary:
     - Fedora
-    - Red Hat Enterprise Linux
-
-audience:
-  - administradores Linux
-  - ingenieros de sistemas
-  - ingenieros de infraestructura
-  - SRE
-  - DevOps
-  - estudiantes RHCSA/RHCE que quieran profundizar
+    - RHEL
+    - Linux
 
 learning_goal: >
   Administrar y diseñar infraestructura temporal y comprender los internals

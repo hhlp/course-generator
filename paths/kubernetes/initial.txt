@@ -229,6 +229,15 @@
 3.93 troubleshooting de autorización con auth can-i
 3.94 laboratorio: operar y diagnosticar recursos exclusivamente con kubectl
 
+3.95 kubectl apply --server-side: field ownership y conflictos
+3.96 kubectl auth reconcile y revisión de permisos
+3.97 kubectl config view --minify y gestión segura de contextos
+3.98 kubectl get --watch y --watch-only
+3.99 kubectl api-resources --verbs y --namespaced
+3.100 kubectl wait con condiciones y timeouts
+3.101 kubectl debug node y perfiles de depuración
+3.102 kubectl logs --since, --tail, --timestamps y --prefix
+
 4. Workloads fundamentales
 4.1 Pod
 4.2 ciclo de vida del Pod
@@ -414,6 +423,10 @@
 9.24 device plugins
 9.25 extended resources
 9.26 laboratorio: políticas de placement
+
+9.27 Dynamic Resource Allocation (DRA): ResourceClaim y ResourceClaimTemplate
+9.28 Scheduling de GPU y recursos especializados: límites y plugins
+9.29 Scheduling con múltiples perfiles y diagnóstico de Pods no asignados
 
 10. Escalado y recursos
 10.1 requests y limits
@@ -614,6 +627,13 @@
 18.26 uncordon
 18.27 laboratorio: construir cluster con kubeadm
 
+18.28 Laboratorio Fedora/RHEL: repositorios, paquetes y dependencias
+18.29 Laboratorio Fedora/RHEL: SELinux y firewalld para kubeadm
+18.30 Laboratorio: containerd, cgroup v2, SystemdCgroup y CRI
+18.31 Validación de sysctl, módulos del kernel y swap según versión
+18.32 Preflight checks y recuperación de kubeadm init/join fallidos
+18.33 systemctl y journalctl para kubelet y containerd
+
 19. Administración del control plane
 19.1 static Pods del control plane
 19.2 manifests del control plane
@@ -686,6 +706,11 @@
 21.27 CoreDNS internals
 21.28 NetworkPolicy internals
 21.29 laboratorio: seguir un paquete extremo a extremo
+
+21.30 Dual-stack IPv4/IPv6: PodCIDR, ServiceCIDR y requisitos
+21.31 MTU, encapsulación y fragmentación: diagnóstico
+21.32 SNAT/DNAT y trazado de paquetes entre nodos
+21.33 Capturas tcpdump y seguimiento de conntrack por salto
 
 22. Storage de cluster
 22.1 storage architecture
@@ -931,6 +956,11 @@
 33.26 admission chain
 33.27 laboratorio: manipular la API directamente
 
+33.28 List y watch: continue tokens, bookmarks y expiración
+33.29 Server-Side Apply: field ownership, force conflicts y managedFields
+33.30 API Priority and Fairness: flow schemas y priority levels
+33.31 Auditoría de impersonation y autorización de peticiones
+
 34. Extensibilidad: CRDs
 34.1 CustomResourceDefinition
 34.2 custom resources
@@ -971,6 +1001,11 @@
 35.17 Operator SDK
 35.18 operator maturity model
 35.19 laboratorio: construir un controller
+
+35.20 Testing de reconciliación con envtest
+35.21 Errores transitorios, requeues, backoff y observabilidad de controllers
+35.22 Versionado, migración y compatibilidad de CRDs
+35.23 Conversion webhooks: despliegue, certificados y fallos
 
 36. Admission control avanzado
 36.1 admission phases
@@ -1164,6 +1199,10 @@
 44.18 chaos engineering
 44.19 laboratorio: simular fallos
 
+44.20 SLO de control plane y error budgets
+44.21 Runbooks de incidentes y escalado
+44.22 Pruebas de recuperación con criterios RPO/RTO medibles
+
 45. Upgrades y lifecycle management
 45.1 Kubernetes release cycle
 45.2 version skew
@@ -1181,6 +1220,10 @@
 45.14 rollback strategy
 45.15 backup pre-upgrade
 45.16 laboratorio: upgrade completo
+
+45.17 Pruebas de compatibilidad previas a upgrades
+45.18 Rollback: limitaciones de versiones, API y etcd
+45.19 Validación post-upgrade y pruebas de regresión
 
 46. Observabilidad de Kubernetes
 46.1 golden signals
@@ -1204,6 +1247,10 @@
 46.19 SLI
 46.20 SLO
 46.21 laboratorio: observabilidad completa
+
+46.22 Alertas accionables: severidad, ruido y runbooks
+46.23 SLOs de API, DNS, scheduling y workloads
+46.24 Correlación de logs, métricas, trazas y eventos
 
 47. Troubleshooting experto
 47.1 troubleshooting por capas
@@ -1337,6 +1384,11 @@
 52.17 multi-cluster GitOps
 52.18 laboratorio: plataforma GitOps
 
+52.19 Bootstrap GitOps y recuperación tras desastre
+52.20 Promotion entre entornos y controles de aprobación
+52.21 Gestión de dependencias y orden de sincronización
+52.22 Detección de drift y rollback seguro
+
 53. Helm
 53.1 qué es Helm y qué problemas resuelve
 53.2 arquitectura de Helm 3
@@ -1403,6 +1455,11 @@
 53.63 buenas prácticas para charts de producción
 53.64 versionado y compatibilidad de charts
 53.65 laboratorio: crear, empaquetar, instalar, actualizar, probar, hacer rollback y publicar un chart de producción
+
+53.66 Compatibilidad y diferencias de Helm 3 y Helm 4 según versión
+53.67 Pruebas automatizadas de charts y compatibilidad
+53.68 Seguridad de plugins, dependencias y registries OCI
+53.69 Gestión de valores sensibles y filtraciones en historial
 
 54. Kustomize
 54.1 bases
@@ -1479,6 +1536,10 @@
 57.13 secretless patterns
 57.14 cloud workload identity
 57.15 laboratorio: identidad sin credenciales estáticas
+
+57.16 OIDC: claims, grupos y RBAC
+57.17 Integración con proveedores IAM y rotación de credenciales
+57.18 Identidades humanas frente a identidades de workloads
 
 58. Secrets management avanzado
 58.1 amenazas sobre Secrets
@@ -1582,6 +1643,10 @@
 63.13 RTO
 63.14 DR testing
 63.15 laboratorio: recuperación completa
+
+63.16 Backups consistentes de aplicaciones con bases de datos
+63.17 Restauración ensayada y validación de integridad
+63.18 Protección y restauración de claves de cifrado de Secrets
 
 64. Seguridad del host para Kubernetes
 64.1 host attack surface
@@ -1758,6 +1823,10 @@
 73.12 load testing
 73.13 laboratory: diseñar una suite de validación
 
+73.14 envtest y tests de controllers
+73.15 Pruebas de compatibilidad API y CRD
+73.16 Pruebas automatizadas de recuperación y upgrades
+
 74. Kubernetes conformance y distribución
 74.1 qué significa conformant
 74.2 CNCF Certified Kubernetes
@@ -1790,6 +1859,10 @@
 75.16 upgrade strategy
 75.17 platform SLOs
 75.18 laboratorio: diseñar una plataforma Kubernetes
+
+75.19 ADRs y decisiones arquitectónicas auditables
+75.20 SLO, runbooks y ownership operacional
+75.21 Modelo de amenazas y controles de aislamiento multi-tenant
 
 76. Proyecto final experto
 76.1 definir requisitos
@@ -1833,3 +1906,6 @@
 76.39 documentar arquitectura
 76.40 presentar decisiones y trade-offs
 76.41 proyecto final: mini Kubernetes platform lab de nivel experto
+76.42 Entregable: runbooks de incidentes y restauración comprobada
+76.43 Entregable: matriz de controles de seguridad y evidencias
+76.44 Entregable: ADRs, SLOs y pruebas de resiliencia automatizadas

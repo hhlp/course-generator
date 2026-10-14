@@ -1,0 +1,76 @@
+---
+course:
+  title: Git — 0 a experto en profundidad
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    - Fedora
+    - Linux
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+pedagogy:
+  theory: in-depth
+  command_reference: full syntax, flags, behavior and pitfalls
+  labs: reproducible and progressive
+  troubleshooting: true
+  recovery_exercises: true
+  assessments: true
+
+scope:
+  blocks: 66
+  first_block: 0
+  last_block: 65
+  git_directory:
+    dedicated_block: 3
+    coverage:
+      - creation
+      - mutation
+      - inspection
+      - deletion
+      - storage formats
+      - recovery
+      - plumbing vs porcelain
+    require_command_to_artifact_mapping: true
+    differentiate_optional_and_transient_files: true
+  include:
+    - porcelain
+    - plumbing
+    - internals
+    - collaboration
+    - security
+    - automation
+    - performance
+    - forensics
+  revision_navigation:
+    linear_first_parent: true
+    merge_parent_selection: true
+    dag_traversal: true
+    revision_sets_and_ranges: true
+    hands_on_labs: true
+
+milestones:
+  - id: git-foundations
+    after_block: 11
+    name: Git Foundations — Laboratorio
+  - id: git-collaboration
+    after_block: 21
+    name: Git Collaboration — Laboratorio
+  - id: git-advanced
+    after_block: 33
+    name: Git Advanced — Laboratorio
+  - id: git-internals
+    after_block: 45
+    name: Git Internals — Laboratorio
+  - id: git-security
+    after_block: 55
+    name: Git Security & Automation — Laboratorio
+  - id: git-expert-project
+    after_block: 65
+    name: Git Expert Engineering — Proyecto final

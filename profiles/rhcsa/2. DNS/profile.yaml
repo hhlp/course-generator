@@ -1,13 +1,22 @@
-name: DNS
-title: "DNS + BIND 9 — 0 a Experto en Profundidad"
-language: es
-audience: "Administradores Linux, ingenieros de sistemas, DevOps/SRE y estudiantes que quieran dominar DNS en Fedora/RHEL"
-level: "0-a-experto-en-profundidad"
+---
+course:
+  title: "DNS + BIND 9 — 0 a Experto en Profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  mode: "deep"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 platform:
   primary:
     - Fedora
-    - Red Hat Enterprise Linux
+    - RHEL
+    - Linux
   dns_server:
     - BIND 9
   components:
@@ -18,18 +27,24 @@ platform:
     - SELinux
 
 goals:
-  - "Comprender DNS como protocolo jerárquico y distribuido, no solo como configuración de BIND."
-  - "Administrar BIND 9 como servidor authoritative, recursive, caching y forwarding."
+  - "Comprender DNS como protocolo jerárquico y distribuido, no solo
+    como configuración de BIND."
+  - "Administrar BIND 9 como servidor authoritative, recursive, caching
+    y forwarding."
   - "Diseñar y operar zonas forward y reverse para IPv4 e IPv6."
   - "Dominar delegaciones, primary/secondary, AXFR, IXFR y NOTIFY."
   - "Aplicar ACL, TSIG, DNSSEC, DDNS, RPZ y hardening."
   - "Integrar BIND con Kea, FreeIPA y Kerberos."
-  - "Distinguir DNS independiente de IAM de DNS como infraestructura/dependencia de IAM."
-  - "Comprender que BIND no es normalmente un consumidor de identidades humanas, aunque DNS sea crítico para service discovery de Kerberos/LDAP/FreeIPA."
+  - "Distinguir DNS independiente de IAM de DNS como
+    infraestructura/dependencia de IAM."
+  - "Comprender que BIND no es normalmente un consumidor de identidades
+    humanas, aunque DNS sea crítico para service discovery de
+    Kerberos/LDAP/FreeIPA."
   - "Diagnosticar DNS desde el cliente hasta el servidor authoritative."
   - "Usar journald y logging propio de BIND para troubleshooting."
   - "Automatizar validación y despliegue con Git, CI y Ansible."
-  - "Llegar a diseñar una infraestructura DNS empresarial resiliente y observable."
+  - "Llegar a diseñar una infraestructura DNS empresarial resiliente
+    y observable."
 
 lesson_format:
   start: "🎯 OBJETIVO"
@@ -105,11 +120,18 @@ logging:
   cover_bind_logging: true
   journald_command: "journalctl -u named"
   dedicated_log_design: "/var/log/named/"
-  warning: "No asumir que /var/log/named contiene logs por defecto; enseñar configuración, permisos, SELinux y rotación."
+  warning: "No asumir que /var/log/named contiene logs por defecto; enseñar
+    configuración, permisos, SELinux y rotación."
 
 troubleshooting:
   priority: high
-  methodology: "cliente -> NSS/resolver local -> recursive resolver -> delegación -> authoritative -> respuesta"
+  methodology:
+    - cliente
+    - NSS/resolver local
+    - recursive resolver
+    - delegación
+    - authoritative
+    - respuesta
   tools:
     - dig
     - delv
@@ -141,7 +163,8 @@ security:
     - DDNS authorization
 
 iam_relationship:
-  role: "infraestructura/dependencia de IAM; no consumidor normal de identidades humanas"
+  role: "infraestructura/dependencia de IAM; no consumidor normal de
+    identidades humanas"
   teach_both_modes: true
   standalone_dns:
     - "authoritative"
@@ -190,4 +213,5 @@ constraints:
   - "Advertir cuando una opción o comportamiento dependa de la versión de BIND."
   - "No desactivar SELinux como solución de troubleshooting."
   - "No enseñar un open resolver como configuración válida de producción."
-  - "Validar named.conf y las zonas antes de reload/restart siempre que sea posible."
+  - "Validar named.conf y las zonas antes de reload/restart siempre
+    que sea posible."

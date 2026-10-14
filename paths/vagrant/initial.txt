@@ -10,6 +10,11 @@
 0.9 Ciclo de vida de una máquina
 0.10 Laboratorio: preparar Fedora como host
 
+0.11 Requisitos de hardware y comprobación de virtualización con lscpu y /dev/kvm
+0.12 Matriz de compatibilidad: Fedora, Vagrant, vagrant-libvirt, libvirt y QEMU
+0.13 Diferencias entre reproducibilidad, portabilidad e idempotencia
+0.14 Laboratorio: diagnóstico de prerrequisitos y registro de versiones
+
 [1] KVM/QEMU y libvirt en Fedora
 1.1 Arquitectura KVM
 1.2 QEMU y aceleración KVM
@@ -28,6 +33,13 @@
 1.15 Diagnóstico del stack
 1.16 Laboratorio: crear una VM Fedora directamente con libvirt
 
+1.17 URI qemu:///system frente a qemu:///session y consecuencias operativas
+1.18 Sockets y daemons modulares: virtqemud, virtnetworkd y virtstoraged
+1.19 Autorización mediante polkit, permisos de sockets y grupos
+1.20 cgroups, namespaces y aislamiento de procesos QEMU
+1.21 Inspección de capabilities y domcapabilities con virsh
+1.22 Laboratorio: fallos de permisos, sockets y SELinux con evidencias
+
 [2] Instalación y configuración de Vagrant
 2.1 Instalación en Fedora
 2.2 Estructura de Vagrant
@@ -45,6 +57,13 @@
 2.14 vagrant halt
 2.15 vagrant destroy
 
+2.16 Paquetes RPM y dependencias Ruby del plugin en Fedora
+2.17 Diferencias entre instalación por DNF y distribuciones oficiales de Vagrant
+2.18 Compatibilidad de ABI, gemas y bibliotecas libvirt
+2.19 VAGRANT_DEFAULT_PROVIDER, VAGRANT_HOME y rutas de configuración
+2.20 vagrant plugin repair y diagnóstico de instalaciones fallidas
+2.21 Laboratorio: instalación reproducible y matriz de compatibilidad
+
 [3] Boxes
 3.1 Qué es una box
 3.2 Formato y metadata
@@ -60,6 +79,13 @@
 3.12 Caché local
 3.13 Seguridad, procedencia y confianza
 3.14 Laboratorio: administrar varias versiones
+
+3.15 metadata.json de una box y relación con el provider
+3.16 Catálogos versionados, URLs de descarga y checksums
+3.17 Arquitectura x86_64/aarch64 y compatibilidad de imágenes
+3.18 Pinning de versiones y actualización controlada
+3.19 Pruebas de integridad y confianza de imágenes de terceros
+3.20 Laboratorio: auditoría de una box antes de usarla
 
 [4] Vagrantfile desde cero
 4.1 Ruby DSL
@@ -78,6 +104,13 @@
 4.14 Buenas prácticas
 4.15 Laboratorio: Vagrantfile Fedora parametrizable
 
+4.16 Orden y precedencia de configuración de Vagrant
+4.17 Ámbitos global, máquina y provider en Vagrantfile
+4.18 Validación con vagrant validate y revisión de valores efectivos
+4.19 Opciones libvirt condicionadas por versión y soporte real
+4.20 Organización modular sin efectos secundarios inesperados
+4.21 Laboratorio: Vagrantfile de tres nodos con validación
+
 [5] Ciclo de vida y CLI
 5.1 init
 5.2 up
@@ -95,6 +128,13 @@
 5.14 Estados internos
 5.15 Directorio .vagrant
 5.16 Laboratorio: operar y recuperar una máquina
+
+5.17 vagrant validate y verificación previa a up
+5.18 vagrant global-status --prune y machine index
+5.19 vagrant ssh-config para herramientas externas
+5.20 vagrant reload --provision y cambios que requieren recreación
+5.21 Estados divergentes entre .vagrant y libvirt
+5.22 Laboratorio: recuperación segura de estado inconsistente
 
 [6] Networking con libvirt
 6.1 Modelo de red Vagrant/libvirt
@@ -115,6 +155,16 @@
 6.16 Troubleshooting
 6.17 Laboratorio: red privada multi-VM
 
+6.18 Interfaces TAP y bridges: recorrido de paquetes guest-host
+6.19 dnsmasq en redes libvirt: leases, DNS y DHCP
+6.20 qemu:///system y redes NAT: implicaciones de aislamiento
+6.21 Rutas, gateway y resolución DNS en guest y host
+6.22 IPv6: direccionamiento, RA, DHCPv6 y limitaciones del provider
+6.23 MTU, fragmentación y conectividad entre redes
+6.24 Capturas con tcpdump en guest, TAP y bridge
+6.25 Diagnóstico con ip, bridge, virsh net-dumpxml y nft
+6.26 Laboratorio: fallos inducidos de NAT, DNS, firewall y rutas
+
 [7] Storage
 7.1 Discos virtuales
 7.2 qcow2
@@ -131,6 +181,15 @@
 7.13 Troubleshooting
 7.14 Laboratorio
 
+7.15 qemu-img info, check, map y convert: riesgos y usos
+7.16 Backing chains qcow2 e inspección de dependencias
+7.17 virtio-blk frente a virtio-scsi y controladores
+7.18 TRIM/discard y aprovisionamiento fino
+7.19 Expansión offline/online de disco, partición y filesystem
+7.20 Políticas de caché, I/O y consistencia
+7.21 Espacio disponible real y detección de sobreasignación
+7.22 Laboratorio: ampliar y recuperar un volumen sin pérdida de datos
+
 [8] Synced folders
 8.1 Concepto de synced folder
 8.2 /vagrant
@@ -143,6 +202,13 @@
 8.9 Seguridad
 8.10 Cuándo evitar carpetas compartidas
 8.11 Laboratorio comparativo
+
+8.12 rsync-auto: sincronización, exclusiones y detección de cambios
+8.13 NFS exports, permisos, firewall y diferencias de versiones
+8.14 virtiofs: disponibilidad y soporte condicionado al provider
+8.15 Mapeo UID/GID y semántica de permisos host/guest
+8.16 Etiquetado SELinux y riesgos de directorios compartidos
+8.17 Laboratorio: benchmark reproducible rsync frente a NFS
 
 [9] Provisioning
 9.1 Qué es provisioning
@@ -160,6 +226,13 @@
 9.13 Gestión de errores
 9.14 Laboratorio
 
+9.15 Provisioners run once, always y ejecución manual
+9.16 Triggers before/after: alcance y limitaciones
+9.17 Fallo parcial, recuperación y ejecución idempotente
+9.18 Gestión de logs, salida y códigos de retorno
+9.19 Separación entre bootstrap de imagen y configuración del guest
+9.20 Laboratorio: inyectar fallo y recuperar sin duplicar cambios
+
 [10] Vagrant + Ansible
 10.1 Separación de responsabilidades
 10.2 Provisioner ansible
@@ -176,6 +249,13 @@
 10.13 Reutilización de roles
 10.14 Laboratorio: Vagrant + Ansible sobre Fedora
 
+10.15 Inventario generado y rutas en entornos multi-machine
+10.16 SSH config, claves y usuario remoto por nodo
+10.17 Diferencias de ejecución ansible y ansible_local
+10.18 Roles reutilizables y variables por grupo y host
+10.19 Validación de idempotencia y pruebas de convergencia
+10.20 Laboratorio: aprovisionar y reaprovisionar tres nodos
+
 [11] Entornos multi-machine
 11.1 config.vm.define
 11.2 Múltiples VMs
@@ -189,6 +269,13 @@
 11.10 Clusters reproducibles
 11.11 Diseño de topologías
 11.12 Laboratorio de tres nodos
+
+11.13 Orden de arranque frente a dependencias reales de servicios
+11.14 Nombres, redes y direccionamiento deterministas
+11.15 Límites de recursos y dimensionamiento del host
+11.16 Diseño de topologías con múltiples redes
+11.17 Estrategias de health checks y espera por servicios
+11.18 Laboratorio: clúster de tres nodos y reconstrucción completa
 
 [12] vagrant-libvirt avanzado
 12.1 Configuración específica del provider
@@ -209,6 +296,17 @@
 12.16 virsh dumpxml
 12.17 Laboratorio avanzado
 
+12.18 Inspección del XML generado frente al Vagrantfile
+12.19 virsh capabilities y domcapabilities para opciones soportadas
+12.20 CPU mode, topology, pinning y afinidad: límites del provider
+12.21 NUMA, hugepages y memoria: requisitos y riesgos
+12.22 UEFI/OVMF y Secure Boot: requisitos del firmware y guest
+12.23 Controladores virtio, buses y dispositivos adicionales
+12.24 Consola serie y depuración del arranque
+12.25 Redes y storage externos administrados por libvirt
+12.26 Cambios manuales en XML y pérdida de reproducibilidad
+12.27 Laboratorio: validar capacidades y comparar XML antes/después
+
 [13] Snapshots
 13.1 Conceptos
 13.2 vagrant snapshot
@@ -221,6 +319,13 @@
 13.9 Limitaciones
 13.10 Snapshot vs backup
 13.11 Laboratorios destructivos reproducibles
+
+13.12 Snapshots internos y externos: diferencias y soporte efectivo
+13.13 Consistencia crash-consistent frente a application-consistent
+13.14 Cadenas qcow2 y dependencias entre snapshots
+13.15 Revert, eliminación y espacio: riesgos operativos
+13.16 Limitaciones de snapshots en Vagrant y vagrant-libvirt
+13.17 Laboratorio: restauración y verificación de integridad
 
 [14] Creación de boxes
 14.1 Anatomía de una box
@@ -239,6 +344,15 @@
 14.14 Testing
 14.15 Laboratorio
 
+14.16 Diseño de una imagen Fedora mínima y actualizable
+14.17 cloud-init y preparación de guests: integración y límites
+14.18 Claves SSH, sudo y hardening sin credenciales permanentes
+14.19 Limpieza de machine-id, logs y estado de red
+14.20 Empaquetado específico de libvirt y metadata.json
+14.21 Pruebas automatizadas de arranque, SSH y provisioning
+14.22 Firma/checksum, procedencia y publicación controlada
+14.23 Laboratorio: construir, probar y versionar una box propia
+
 [15] Packer + Vagrant
 15.1 Image as Code
 15.2 Introducción a Packer
@@ -255,6 +369,14 @@
 15.13 Pipeline Packer → QEMU/KVM → box → Vagrant
 15.14 Laboratorio
 
+15.15 Packer HCL: validación, variables y plugins necesarios
+15.16 Builder QEMU: aceleración KVM y conectividad de instalación
+15.17 Kickstart automatizado y fuentes Fedora
+15.18 Generación de imagen y empaquetado para vagrant-libvirt
+15.19 Pipeline de validación de imagen, box y primer arranque
+15.20 Control de versiones y checksums del artefacto
+15.21 Laboratorio: reconstrucción determinista de box
+
 [16] Plugins
 16.1 Arquitectura
 16.2 vagrant plugin
@@ -264,6 +386,12 @@
 16.6 Compatibilidad
 16.7 Debugging
 16.8 Introducción al desarrollo de plugins
+
+16.9 Estructura de un plugin y API pública de Vagrant
+16.10 Versiones de gemas y dependencias transitivas
+16.11 Diagnóstico de carga de plugins y compatibilidad
+16.12 Introducción a providers, commands y provisioners como extensiones
+16.13 Laboratorio: inspección de un plugin sin modificar su código
 
 [17] Ruby práctico para Vagrant
 17.1 Sintaxis mínima
@@ -279,6 +407,12 @@
 17.11 Ruby DSL
 17.12 Generación dinámica de máquinas
 17.13 Laboratorio
+
+17.14 Contexto de evaluación y carga del Vagrantfile
+17.15 Closures, bloques y alcance de variables en DSL
+17.16 Funciones auxiliares y reutilización controlada
+17.17 Efectos secundarios y determinismo de la configuración
+17.18 Laboratorio: generación de nodos con parámetros validados
 
 [18] Seguridad
 18.1 Modelo de amenazas
@@ -296,6 +430,14 @@
 18.13 Confianza y supply chain de boxes
 18.14 Ansible Vault
 18.15 Hardening de laboratorios
+
+18.16 Polkit y superficies de privilegio de libvirt system/session
+18.17 Modelo de confianza de boxes, plugins y provisioners
+18.18 Protección de secretos: no almacenarlos en Vagrantfile ni Git
+18.19 Exposición de puertos, bridges y aislamiento entre guests
+18.20 Seguridad de NFS/rsync y permisos del host
+18.21 Análisis de AVC y cambios SELinux mínimos
+18.22 Laboratorio: threat modeling y hardening verificable
 
 [19] Troubleshooting
 19.1 Metodología sistemática
@@ -318,6 +460,16 @@
 19.18 XML
 19.19 Laboratorio de fallos
 
+19.20 Árbol de decisión por capas: Vagrant, plugin, libvirt, QEMU y guest
+19.21 Logs de virtqemud, virtnetworkd y virtstoraged cuando proceda
+19.22 virsh dominfo, domstate, dumpxml y console
+19.23 Diagnóstico de sockets y polkit con journalctl
+19.24 Capturas de red y correlación DHCP/DNS/SSH
+19.25 qemu-img y errores de backing files y storage pools
+19.26 Análisis de AVC con ausearch y audit2why
+19.27 Inyección de fallos: provider, red, disco, SSH y provisioning
+19.28 Registro de hipótesis, evidencia, corrección y prueba de regresión
+
 [20] Rendimiento
 20.1 CPU
 20.2 Memoria
@@ -333,6 +485,14 @@
 20.12 Optimización de boxes
 20.13 Medición antes de optimizar
 
+20.14 Medición reproducible de CPU, RAM, I/O y arranque
+20.15 CPU steal, sobreasignación y contención del host
+20.16 Ballooning, swap y presión de memoria
+20.17 virtio y colas multiqueue cuando sea compatible
+20.18 fio, iostat y métricas del host y guest
+20.19 Comparativa qcow2/raw bajo cargas equivalentes
+20.20 Laboratorio: benchmark antes y después con metodología
+
 [21] Trabajo en equipo
 21.1 Vagrantfile en Git
 21.2 .gitignore
@@ -345,6 +505,12 @@
 21.9 Onboarding
 21.10 Actualización de entornos
 21.11 Compatibilidad de versiones
+
+21.12 Política de versiones de Vagrant, plugins y boxes
+21.13 Separación entre configuración compartida y local
+21.14 Revisión de Vagrantfile y control de secretos en Git
+21.15 Guía de onboarding y verificación del entorno
+21.16 Laboratorio: reproducir un proyecto desde un clon limpio
 
 [22] CI/CD y testing
 22.1 Vagrant en pipelines
@@ -359,6 +525,13 @@
 22.10 Nested virtualization en CI
 22.11 Limitaciones y alternativas
 
+22.12 Requisitos de /dev/kvm y runners con virtualización habilitada
+22.13 CI sin KVM: limitaciones y alternativas de test
+22.14 Test de boxes: arranque, SSH, provision y destrucción
+22.15 Aislamiento, limpieza y recuperación tras fallos de pipeline
+22.16 Pruebas de regresión de versiones de provider y Fedora
+22.17 Laboratorio: pipeline de integración con evidencias
+
 [23] Vagrant, Packer, Ansible y Terraform/OpenTofu
 23.1 Development Environment as Code
 23.2 Image as Code
@@ -371,6 +544,12 @@
 23.9 Flujo Packer → Vagrant → Ansible
 23.10 Relación con Terraform/OpenTofu
 23.11 Laboratorio integrador
+
+23.12 Contrato de artefactos Packer → box → Vagrant
+23.13 Contrato de inventario Vagrant → Ansible
+23.14 Versionado de imágenes y configuración sin drift
+23.15 Diferencias entre entornos efímeros y gestión declarativa persistente
+23.16 Laboratorio: trazabilidad completa de un cambio
 
 [24] Internals de Vagrant
 24.1 Arquitectura interna
@@ -390,6 +569,15 @@
 24.15 Debugging interno
 24.16 Lectura guiada de arquitectura
 
+24.17 Environment, machine y machine index: responsabilidades
+24.18 Action middleware y ejecución de cadenas de acciones
+24.19 Provider API, guest capabilities y host capabilities
+24.20 Communicators y flujo de conexión SSH
+24.21 Carga y resolución de plugins y provisioners
+24.22 State y persistencia de información local
+24.23 Lectura guiada de código y seguimiento de una orden up
+24.24 Laboratorio: rastrear un fallo desde CLI hasta provider
+
 [25] Proyecto final experto
 25.1 Diseñar el laboratorio
 25.2 Fedora host + KVM/QEMU + libvirt
@@ -407,3 +595,11 @@
 25.14 Reproducibilidad desde cero
 25.15 Destrucción y reconstrucción completa
 25.16 Revisión arquitectónica final
+25.17 Matriz de requisitos y criterios de aceptación
+25.18 Arquitectura de red y almacenamiento documentada
+25.19 Validación de versiones, integridad de boxes y prerequisitos
+25.20 Tests de conectividad, DNS, SSH e idempotencia
+25.21 Escenarios de fallo y recuperación documentada
+25.22 Medición de consumo y rendimiento del laboratorio
+25.23 Recreación desde Git en host limpio compatible
+25.24 Entrega: runbook, diagramas, resultados y limitaciones

@@ -494,3 +494,37 @@ Al completar el PATH, el alumno debe poder:
 - automatizar operaciones;
 - explicar los principales internals;
 - diseñar y operar una arquitectura de producción completa.
+
+## 27. Extensiones expertas de la revisión profunda
+
+### Búsqueda vectorial y semántica
+
+Estudiar `dense_vector`, kNN exacto y aproximado, HNSW, filtrado, búsqueda híbrida, RRF y evaluación de relevancia. Separar las capacidades garantizadas por la versión estudiada de las dependientes de licencia, servicio o distribución. Relacionar recall, latencia, memoria, tamaño de índices y coste de mantenimiento. No confundir vector search con un sistema RAG completo.
+
+### Identidad federada y seguridad avanzada
+
+Añadir realms LDAP/Active Directory, PKI, SAML y OIDC, además de Kerberos cuando corresponda al mecanismo documentado. Explicar autenticación frente a autorización, orden de realms, mapeo de roles, gestión de certificados y fallos de identidad. Contrastar requisitos de licencia. No almacenar contraseñas ni tokens en repositorios.
+
+### Fiabilidad de extremo a extremo
+
+Estudiar garantías de entrega, at-least-once, duplicados, idempotencia, replay, backpressure, persistencia, dead letter queues y fallos parciales. Distinguir garantías del productor, transporte, Logstash, Elastic Agent y Elasticsearch; no prometer exactly-once sin pruebas.
+
+### Resiliencia y disaster recovery
+
+Diseñar pruebas reproducibles de caída de nodos, pérdida de quorum, fallo de disco, pérdida de agentes y restauración. Definir RPO/RTO medibles. Aclarar que replicas, CCR, ILM y snapshots cumplen funciones distintas. Probar restores antes de considerar válido un backup.
+
+### Automatización e infraestructura como código
+
+Aplicar Terraform y Ansible a laboratorios Fedora, junto con Git, revisión de cambios, validación CI/CD, secretos fuera del repositorio y rollback. La automatización debe ser idempotente, verificable y apta para recrear un laboratorio sin depender de servicios cloud de pago.
+
+### OpenTelemetry y APM
+
+Implementar al menos un flujo completo de instrumentación, Collector, OTLP y correlación de logs, métricas y trazas en Elastic. Profundizar en la integración, sin duplicar la teoría del PATH independiente de OpenTelemetry.
+
+### Compatibilidad y licencias
+
+Al comienzo de cada laboratorio identificar versiones de Elasticsearch, Kibana, Logstash, Elastic Agent y dependencias, y comprobar la compatibilidad de funcionalidades, APIs, paquetes y licencias. Documentar las limitaciones cuando un ejemplo no pueda ejecutarse en una instalación gratuita. No asumir que todas las funcionalidades existen en todas las distribuciones.
+
+### Validación reforzada de laboratorios
+
+Cada laboratorio avanzado incluirá prerrequisitos, recursos, procedimiento, resultados verificables, pruebas de fallo seguras, troubleshooting, limpieza y criterios de aceptación. Los experimentos destructivos usarán exclusivamente datos y nodos de laboratorio.

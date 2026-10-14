@@ -94,3 +94,27 @@ En este PATH la documentación oficial es la fuente principal. Firewalld, Fedora
 ## Regla para generación de lecciones
 
 La bibliografía sirve como mapa de fuentes, no como límite del contenido. Cada lección debe integrar varias fuentes cuando sea necesario, priorizar documentación primaria y actual, diferenciar conceptos vigentes de mecanismos históricos y evitar afirmar que un comportamiento dependiente de versión es universal.
+
+## Referencias complementarias por scope experto
+
+### IP sets, rich rules y policies
+- Documentación oficial y páginas de manual de la versión instalada: `firewall-cmd(1)`, `firewalld.richlanguage(5)`, `firewalld.ipset(5)` y `firewalld.policy(5)`. Consultar ejemplos y opciones compatibles con la versión de Fedora utilizada.
+
+### D-Bus y Python
+- API D-Bus oficial de firewalld y documentación de la biblioteca Python distribuida con el paquete; introspección de la interfaz instalada como fuente de verdad.
+
+### Netfilter y tracing
+- `nft(8)`, documentación del proyecto nftables sobre monitor, trace, counters y hooks; `conntrack(8)` y documentación de conntrack-tools.
+
+### Automatización
+- Documentación oficial de la colección `ansible.posix` y del módulo `ansible.posix.firewalld`; verificar versión, opciones admitidas y requisitos de Python/firewalld.
+- Documentación de Molecule para pruebas de roles y entornos reproducibles.
+
+### Virtualización y contenedores
+- Documentación oficial de Podman/Netavark, Docker Engine y libvirt para integración de redes y firewall, con advertencias explícitas sobre diferencias por versión.
+
+### Seguridad, operación y pruebas
+- Manuales `firewalld.conf(5)`, `journalctl(1)`, `tcpdump(8)`, `ip(8)`, `ss(8)` y documentación del kernel sobre `rp_filter`, forwarding y namespaces.
+- Documentación de Fedora sobre SELinux, NetworkManager y systemd.
+
+**Criterio de vigencia:** comprobar expresamente disponibilidad de `firewallctl`, direct rules, lockdown y demás mecanismos históricos o dependientes de versión; no tratarlos como interfaces universales.

@@ -123,3 +123,22 @@ No se inventarán capítulos, secciones ni páginas. Las referencias
 exactas solo se proporcionarán cuando estén verificadas. Para
 comportamiento que pueda haber cambiado desde la publicación de un
 libro, la documentación oficial actual tiene prioridad.
+
+
+## Documentación complementaria por especialidad
+
+- **LaTeX PDF management y latex-lab** — Interfaces y evolución del soporte PDF, etiquetado y metadatos. Prioridad: bloque 34 y proyecto final.
+- **tagpdf** — Manual del paquete y compatibilidad con el etiquetado PDF. Prioridad: bloque 34.
+- **LuaTeX / LuaHBTeX manuals** — APIs Lua, nodos, callbacks y motores. Prioridad: bloques 18 y 31.
+- **KOMA-Script Guide** — Opciones, clases y tipografía documental. Prioridad: bloque 20.
+- **TeX Directory Structure (TDS)** — Organización de árboles TEXMF y distribución. Prioridad: bloques 1 y 29.
+- **LaTeX2e source documentation y interfaces del kernel** — Hooks, programación y diagnóstico. Prioridad: bloques 26–30.
+- **PDF Association y especificaciones PDF/UA** — Referencia normativa de accesibilidad; verificar la versión aplicable y los derechos de acceso al documento. Prioridad: bloque 34.
+
+## Uso por bloques ampliados
+
+- **1:** CTAN, texdoc, kpathsea, TeX Live y TDS; Fedora RPM frente a tlmgr.
+- **27–30:** documentación expl3, interfaces de comandos, kernel, docstrip y l3build.
+- **31:** manuales LuaTeX y LuaHBTeX, documentación de luatexbase.
+- **33–34:** l3build, latex-lab, tagpdf y documentación de validación PDF.
+- **35:** bibliografía transversal y documentación oficial específica de cada dependencia.

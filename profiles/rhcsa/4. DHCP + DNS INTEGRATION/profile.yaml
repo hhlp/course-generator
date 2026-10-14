@@ -1,13 +1,16 @@
-name: dhcp-dns-integration
-title: "DHCP + DNS Integration — 0 a experto en profundidad"
-language: es
-level: "beginner-to-expert"
-
-platform:
-  primary:
-    - Fedora
-    - RHEL
-  family: "Red Hat Linux"
+---
+course:
+  title: "DHCP + DNS Integration — 0 a experto en profundidad"
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  mode: "deep"
+  platform:
+    primary:
+      - Fedora
+      - RHEL
+      - Linux
 
 scope:
   include:

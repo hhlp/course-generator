@@ -808,3 +808,37 @@ Fuentes principales:
 6. código fuente upstream de systemd para internals.
 
 Ante conflicto, prevalece la documentación oficial correspondiente a la versión instalada.
+
+---
+
+## Ampliación experta — requisitos transversales de la revisión
+
+El índice `initial.txt` es la fuente canónica de bloques y lecciones. Mantener todas las lecciones preexistentes, ampliar la cobertura sin resumir y mantener la numeración estable. Los bloques 31–36 desarrollan subsistemas y APIs; el bloque 37 contiene el proyecto final reubicado.
+
+### Contrato obligatorio por lección técnica
+
+Explicar definición, motivación, modelo mental, semántica precisa, rutas y ficheros de Fedora, configuración completa cuando aplique, interacción con otros componentes, estados y transiciones, comandos de inspección, versión mínima o verificación de compatibilidad, seguridad, observabilidad, errores reproducibles, diagnóstico guiado y reversión del laboratorio. No convertir este contrato en encabezados vacíos cuando un punto no aplique.
+
+### Servicios y ciclo de vida
+
+Distinguir claramente Type=, readiness, exit status, Restart=, límites de arranque, procesos MainPID/ControlPID, ExecCondition=, prefijos de ejecución, NotifyAccess=, WatchdogSec=, sd_notify, KillMode=, señales y limpieza de directorios. Ilustrar con servicios de prueba que no alteren unidades críticas.
+
+### Dependencias y transacciones
+
+Explicar diferencias entre requerimiento, orden, propagación, conflictos y activación; modelar jobs y transacciones con ejemplos de Requires/Wants/Requisite/BindsTo/PartOf/Upholds/OnFailure, dependencias implícitas y DefaultDependencies. Incluir ciclos y estrategias de diagnóstico.
+
+### Observabilidad, cgroups y OOM
+
+En journald incluir almacenamiento, índices/campos, namespaces, cursores, sealing, forwarding y recuperación. En cgroups v2 incluir controladores CPU, memory, IO, pids, delegation, accounting y PSI. Relacionar systemd-oomd con el OOM killer del kernel sin confundirlos.
+
+### Fedora y servicios opcionales
+
+NetworkManager debe seguir siendo el gestor de red de referencia cuando Fedora lo use; networkd/resolved se estudian de forma opcional y aislada, sin activar servicios incompatibles en el host. systemd-boot/UKI y portable services son componentes del ecosistema, no presuposiciones sobre todas las instalaciones de Fedora. Explicar SELinux, RPM macros, presets y dracut según la configuración instalada.
+
+### Internals y API
+
+Introducir sd-event, sd-bus, interfaces org.freedesktop.systemd1, job engine, serialización, daemon-reexec y código fuente por capas: modelo conceptual → observación → experimento → implementación. Incluir ejemplos mínimos y pruebas reproducibles.
+
+### Laboratorios y proyecto final
+
+Cada laboratorio debe contener requisitos, entorno, pasos, observaciones esperadas, fallo provocado, diagnóstico, comprobación y limpieza. Para rescue/emergency, redes y boot usar VM/snapshot. El proyecto `mini-systemd-debugger` debe producir una CLI de solo lectura por defecto, informe estructurado, pruebas y documentación; las acciones de modificación deben ser explícitas y seguras.

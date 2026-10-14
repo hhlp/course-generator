@@ -1,7 +1,6 @@
-PANDAS 3 — LEARNING PATH 0 → EXPERTO
+PANDAS 3 — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
 
 Bloque 0 — Fundamentos y entorno
-
 0.1 Qué es pandas y qué problemas resuelve
 0.2 Pandas dentro del ecosistema científico de Python
 0.3 Instalación de Python y pandas 3
@@ -14,9 +13,15 @@ Bloque 0 — Fundamentos y entorno
 0.10 Primer Series
 0.11 Primer DataFrame
 0.12 Inspección inicial de un dataset
+0.13 Compatibilidad de pandas 3 con Python y dependencias opcionales
+0.14 Gestión reproducible de proyectos con uv y lockfiles
+0.15 Datasets reproducibles, rutas y estructura de proyecto
+0.16 Configuración de opciones de visualización y advertencias
+0.17 Documentación oficial, notas de versión y búsqueda de APIs
+0.18 Primer laboratorio de ingestión, inspección y validación
+0.19 Checkpoint: entorno y diagnóstico de errores
 
 Bloque 1 — Series y DataFrame
-
 1.1 Series: estructura y componentes
 1.2 Crear Series desde listas, diccionarios y escalares
 1.3 Índice de una Series
@@ -29,9 +34,15 @@ Bloque 1 — Series y DataFrame
 1.10 head, tail y sample
 1.11 info y describe
 1.12 Conversión entre Series y DataFrame
+1.13 Constructores desde arrays y estructuras anidadas
+1.14 Diferencia entre etiquetas, posiciones y valores
+1.15 to_numpy y conversión a arrays: costes y tipos
+1.16 Representaciones tabulares y formato de salida
+1.17 Comparación entre objetos, equals y compare
+1.18 Metadatos, nombres y copias de objetos
+1.19 Laboratorio: modelar un dataset heterogéneo
 
 Bloque 2 — Selección, indexación y filtrado
-
 2.1 Selección de columnas
 2.2 Selección de múltiples columnas
 2.3 Indexación con loc
@@ -44,9 +55,15 @@ Bloque 2 — Selección, indexación y filtrado
 2.10 isin, between y comparaciones compuestas
 2.11 query y expresiones de filtrado
 2.12 Buenas prácticas de selección en pandas 3
+2.13 Acceso escalar con at e iat
+2.14 take y selección posicional avanzada
+2.15 xs y selección transversal
+2.16 Asignación condicional de celdas y columnas
+2.17 Errores de máscaras desalineadas y NA booleanos
+2.18 Indexación con etiquetas duplicadas y slices
+2.19 Laboratorio: selección segura y pruebas de asignación
 
 Bloque 3 — Índices y alineación
-
 3.1 El índice como parte del modelo de datos
 3.2 Index por defecto y RangeIndex
 3.3 set_index y reset_index
@@ -59,9 +76,15 @@ Bloque 3 — Índices y alineación
 3.10 Índices jerárquicos: introducción
 3.11 MultiIndex básico
 3.12 Diseño de índices y errores frecuentes
+3.13 Operaciones de conjuntos sobre Index
+3.14 get_indexer y búsqueda de posiciones
+3.15 Verificación de unicidad y claves duplicadas
+3.16 align con join y fill_value
+3.17 Aritmética flexible add, sub, mul y div
+3.18 Nombres de ejes y rename_axis
+3.19 Laboratorio: reconciliación de índices
 
 Bloque 4 — Tipos de datos y valores ausentes
-
 4.1 dtypes y sistema de tipos de pandas
 4.2 Conversión con astype
 4.3 Conversión segura con to_numeric
@@ -74,9 +97,15 @@ Bloque 4 — Tipos de datos y valores ausentes
 4.10 dropna
 4.11 fillna
 4.12 Inferencia y conversión de tipos
+4.13 convert_dtypes y backend de tipos
+4.14 select_dtypes y auditoría de columnas
+4.15 Semántica de lógica ternaria con pd.NA
+4.16 Valores ausentes en comparaciones, GroupBy y joins
+4.17 Dtypes respaldados por PyArrow: introducción
+4.18 Categorical, datetime y tipos extension
+4.19 Laboratorio: contratos de tipos y nulos
 
 Bloque 5 — Copy-on-Write y modelo de memoria de Pandas 3
-
 5.1 Modelo de memoria de pandas
 5.2 Qué es Copy-on-Write
 5.3 Copy-on-Write en pandas 3
@@ -89,9 +118,15 @@ Bloque 5 — Copy-on-Write y modelo de memoria de Pandas 3
 5.10 Memoria compartida y materialización
 5.11 Medición básica de memoria
 5.12 Migrar código antiguo al modelo pandas 3
+5.13 Referencias compartidas y copias diferidas
+5.14 Interacción de Copy-on-Write con arrays NumPy
+5.15 Arrays de solo lectura y límites de mutabilidad
+5.16 Actualización de columnas y slices derivados
+5.17 Costes de copia en asignaciones repetidas
+5.18 Depuración de advertencias y código legado
+5.19 Laboratorio: demostrar aislamiento y consumo de memoria
 
 Bloque 6 — Entrada y salida de datos
-
 6.1 read_csv
 6.2 Opciones esenciales de CSV
 6.3 Tipos y fechas al importar CSV
@@ -104,9 +139,15 @@ Bloque 6 — Entrada y salida de datos
 6.10 SQL: lectura de consultas
 6.11 SQL: escritura de DataFrames
 6.12 Diseño de pipelines de entrada y salida
+6.13 Lectura incremental con chunksize e iteradores
+6.14 CSV: encoding, separadores, comillas y datos corruptos
+6.15 Compresión y acceso a almacenamiento remoto
+6.16 Parquet particionado y filtros de lectura
+6.17 Arrow y backends de tipos durante ingestión
+6.18 Consultas SQL parametrizadas y transacciones
+6.19 Laboratorio: pipeline de ingestión grande
 
 Bloque 7 — Limpieza y preparación de datos
-
 7.1 Perfilado inicial de datos
 7.2 Detección de duplicados
 7.3 drop_duplicates
@@ -119,9 +160,15 @@ Bloque 7 — Limpieza y preparación de datos
 7.10 Validación de rangos y dominios
 7.11 Conversión y normalización de tipos
 7.12 Pipeline reproducible de limpieza
+7.13 Normalización de espacios, Unicode y codificación
+7.14 Reglas de integridad referencial y claves
+7.15 Detección de errores por columna y fila
+7.16 Tratamiento documentado de outliers
+7.17 Control de calidad antes y después de limpieza
+7.18 Idempotencia y trazabilidad de transformaciones
+7.19 Laboratorio: limpiar dataset con casos adversos
 
 Bloque 8 — Transformación de datos
-
 8.1 Operaciones vectorizadas
 8.2 Aritmética entre columnas
 8.3 assign
@@ -134,9 +181,15 @@ Bloque 8 — Transformación de datos
 8.10 clip
 8.11 pipe y method chaining
 8.12 Patrones idiomáticos frente a bucles Python
+8.13 Broadcasting y alineación en operaciones vectorizadas
+8.14 eval y query: motores, seguridad y límites
+8.15 Operaciones por eje y axis
+8.16 Reducciones y propagación de NA
+8.17 assign con dependencias entre columnas
+8.18 Diseño de funciones pequeñas reutilizables
+8.19 Laboratorio: comparar bucles, apply y vectorización
 
 Bloque 9 — GroupBy, agregación y ventanas
-
 9.1 Split-Apply-Combine
 9.2 groupby básico
 9.3 Seleccionar columnas tras groupby
@@ -149,9 +202,15 @@ Bloque 9 — GroupBy, agregación y ventanas
 9.10 rolling
 9.11 expanding
 9.12 Patrones eficientes de agregación
+9.13 Grouper y agrupación por periodos temporales
+9.14 dropna, observed y sort en GroupBy
+9.15 rolling y expanding dentro de grupos
+9.16 ewm y ventanas ponderadas
+9.17 shift, diff, rank y pct_change por grupo
+9.18 Índices y formas de salida con as_index
+9.19 Laboratorio: indicadores segmentados y temporales
 
 Bloque 10 — Merge, join y concatenación
-
 10.1 Modelo relacional aplicado a pandas
 10.2 merge básico
 10.3 Tipos de join
@@ -164,9 +223,15 @@ Bloque 10 — Merge, join y concatenación
 10.10 concat por columnas
 10.11 combine_first y actualización de datos
 10.12 Diagnóstico de joins incorrectos
+10.13 merge_asof y condiciones de ordenación
+10.14 merge_ordered y series ordenadas
+10.15 Nulos en claves: semántica y riesgos
+10.16 Joins muchos a muchos y explosión de filas
+10.17 Claves duplicadas y validación previa
+10.18 Sufijos, columnas solapadas y conflictos
+10.19 Laboratorio: auditoría de cardinalidad y cobertura
 
 Bloque 11 — Reshape, pivot y MultiIndex
-
 11.1 Datos wide y long
 11.2 melt
 11.3 pivot
@@ -179,9 +244,15 @@ Bloque 11 — Reshape, pivot y MultiIndex
 11.10 Selección sobre MultiIndex
 11.11 Reorganización de niveles
 11.12 Diseño tidy para análisis
+11.13 wide_to_long y nombres de variables
+11.14 Reshape con claves repetidas y agregación
+11.15 pivot_table con márgenes y valores ausentes
+11.16 Stack y unstack con opciones de ordenación
+11.17 MultiIndex: swaplevel y reorder_levels
+11.18 Columnas jerárquicas y flattening controlado
+11.19 Laboratorio: ida y vuelta wide-long
 
 Bloque 12 — Texto, strings y datos categóricos
-
 12.1 Accessor str
 12.2 Normalización de texto
 12.3 Búsqueda y contains
@@ -194,9 +265,15 @@ Bloque 12 — Texto, strings y datos categóricos
 12.10 Categorías ordenadas
 12.11 Rendimiento y memoria con categorías
 12.12 Pipeline de preparación de variables categóricas
+12.13 StringDtype moderno y almacenamiento PyArrow
+12.14 Semántica de nulos en métodos str
+12.15 Normalización Unicode y comparación textual
+12.16 Regex: compilación, flags y captura aplicada
+12.17 Categorías observadas y no observadas
+12.18 Categorías: añadir, quitar y renombrar niveles
+12.19 Laboratorio: limpieza de texto multilingüe
 
 Bloque 13 — Fechas, tiempo y series temporales
-
 13.1 Timestamp y DatetimeIndex
 13.2 to_datetime
 13.3 Parseo y errores de fechas
@@ -209,9 +286,15 @@ Bloque 13 — Fechas, tiempo y series temporales
 13.10 Frecuencias y desplazamientos
 13.11 Rolling temporal
 13.12 Pipeline de series temporales
+13.13 tz_localize frente a tz_convert
+13.14 DST: tiempos ambiguos e inexistentes
+13.15 DateOffset y calendarios de negocio
+13.16 Offsets personalizados y frecuencias ancladas
+13.17 asfreq frente a resample
+13.18 merge_asof en datos temporales
+13.19 Laboratorio: datos con zonas horarias y DST
 
 Bloque 14 — Análisis exploratorio de datos
-
 14.1 Flujo de trabajo EDA
 14.2 describe en profundidad
 14.3 value_counts
@@ -224,9 +307,15 @@ Bloque 14 — Análisis exploratorio de datos
 14.10 Muestreo
 14.11 Comparación de subconjuntos
 14.12 Caso práctico completo de EDA
+14.13 Distribuciones, cuantiles y asimetría
+14.14 Detección de sesgos y datos faltantes por segmento
+14.15 Muestreo estratificado reproducible
+14.16 Tablas cruzadas y relaciones multivariadas
+14.17 Identificación de anomalías con reglas auditables
+14.18 EDA sin fuga de información en particiones
+14.19 Laboratorio: informe EDA reproducible
 
 Bloque 15 — Rendimiento, optimización y Pandas idiomático
-
 15.1 Medir antes de optimizar
 15.2 Vectorización frente a iteración
 15.3 Por qué evitar iterrows cuando sea posible
@@ -239,9 +328,15 @@ Bloque 15 — Rendimiento, optimización y Pandas idiomático
 15.10 Method chaining como patrón de diseño
 15.11 Patrones y antipatterns de Effective Pandas
 15.12 Perfilado de memoria y tiempo
+15.13 timeit, perf_counter y diseño de benchmarks
+15.14 Profiling con cProfile y herramientas de memoria
+15.15 numexpr y motores de expresiones
+15.16 Numba: casos compatibles y limitaciones
+15.17 Escalabilidad: chunking y algoritmos incrementales
+15.18 Trade-offs de memoria y velocidad con Arrow
+15.19 Laboratorio: optimizar con mediciones reproducibles
 
 Bloque 16 — Pipelines, calidad, testing y producción
-
 16.1 Del notebook al pipeline reproducible
 16.2 Funciones puras para transformaciones
 16.3 pipe en pipelines
@@ -254,18 +349,111 @@ Bloque 16 — Pipelines, calidad, testing y producción
 16.10 Logging y observabilidad básica
 16.11 Persistencia eficiente de resultados
 16.12 Proyecto de pipeline de datos mantenible
+16.13 pytest y fixtures de datasets
+16.14 Pruebas parametrizadas y casos límite
+16.15 Property-based testing con Hypothesis
+16.16 Invariantes, idempotencia y contratos de esquema
+16.17 Versionado de datasets y reproducibilidad
+16.18 CI, lint, type checking y calidad de código
+16.19 Laboratorio: pipeline probado y observable
 
-Bloque 17 — Pandas 3, migración y proyecto final
+Bloque 17 — Arquitectura interna y modelo de ejecución
+17.1 Arquitectura de Series, DataFrame, Index y arrays
+17.2 Separación entre API pública y detalles internos
+17.3 Gestión interna de bloques y arrays: visión conceptual
+17.4 ExtensionArray y ExtensionDtype
+17.5 Memoria de objetos Python frente a buffers numéricos
+17.6 Representación de columnas heterogéneas
+17.7 Alineación y construcción de resultados
+17.8 Semántica de referencias y Copy-on-Write
+17.9 Ciclo de vida de temporales y asignaciones
+17.10 Coste de indexación y materialización
+17.11 Bloques de memoria, consolidación y límites de estabilidad
+17.12 Algoritmos hash, ordenación y agrupación: visión conceptual
+17.13 Operaciones con índices duplicados
+17.14 Diagnóstico de copias y uso de memoria
+17.15 Riesgos de depender de APIs privadas
+17.16 Microbenchmarks de operaciones internas
+17.17 Laboratorio: inspección sin acoplamiento a internals
+17.18 Checkpoint: explicar costes de una transformación
 
-17.1 Cambios conceptuales de pandas 3
-17.2 Revisión de Copy-on-Write
-17.3 Revisión del sistema de tipos moderno
-17.4 APIs obsoletas y deprecaciones
-17.5 Auditar código heredado
-17.6 Migración incremental a pandas 3
-17.7 Validación después de una migración
-17.8 Diseño del proyecto final
-17.9 Ingestión y validación del dataset
-17.10 Limpieza y transformación del proyecto
-17.11 Análisis, agregación y presentación de resultados
-17.12 Proyecto final: pipeline Pandas 3 de extremo a extremo
+Bloque 18 — Apache Arrow, dtypes modernos e interoperabilidad
+18.1 Qué es Apache Arrow y formato columnar
+18.2 Buffers, arrays, tablas y validez de nulos
+18.3 Instalación y compatibilidad de PyArrow
+18.4 StringDtype y almacenamiento Arrow
+18.5 ArrowDtype y familias de tipos
+18.6 dtype_backend pyarrow en lectura de datos
+18.7 convert_dtypes con backend pyarrow
+18.8 Conversión entre pandas y tablas Arrow
+18.9 Costes de conversión y copias de memoria
+18.10 Null semantics entre pandas, NumPy y Arrow
+18.11 Parquet: esquema, metadatos y row groups
+18.12 Parquet particionado: escritura y lectura
+18.13 Pushdown de columnas y filtros cuando esté disponible
+18.14 Feather e intercambio eficiente
+18.15 Compatibilidad con timestamps y zonas horarias
+18.16 Limitaciones de métodos y kernels Arrow
+18.17 Benchmark de memoria, I/O y conversiones
+18.18 Laboratorio: interoperabilidad sin pérdida de esquema
+
+Bloque 19 — Rendimiento experto y escalabilidad
+19.1 Metodología de profiling reproducible
+19.2 Construcción de baselines y presupuestos de memoria
+19.3 Medición de tiempo de CPU y tiempo real
+19.4 Elección de dtypes para cargas grandes
+19.5 Coste de objetos y strings
+19.6 Optimización de filtrado y proyección
+19.7 Joins grandes: cardinalidad y consumo de memoria
+19.8 GroupBy grande: agregaciones eficientes
+19.9 Vectorización real frente a wrappers Python
+19.10 Cuándo apply es apropiado
+19.11 Numba para funciones numéricas compatibles
+19.12 Motores de evaluación de expresiones
+19.13 Procesamiento incremental por chunks
+19.14 Algoritmos online y agregación parcial
+19.15 Parquet particionado y reducción de I/O
+19.16 Copy-on-Write bajo presión de memoria
+19.17 Límites de pandas en memoria y alternativas
+19.18 Laboratorio: optimización basada en evidencias
+
+Bloque 20 — Testing avanzado y arquitectura de pipelines
+20.1 Arquitectura de paquetes de transformación
+20.2 Separación de ingestión, validación y transformación
+20.3 Diseño funcional y ausencia de efectos laterales
+20.4 Contratos de datos y esquemas
+20.5 Validación de tipos, rangos y unicidad
+20.6 Pruebas unitarias de Series y DataFrame
+20.7 assert_frame_equal y assert_series_equal
+20.8 Fixtures pequeñas y casos representativos
+20.9 Parametrización de escenarios adversos
+20.10 Pruebas basadas en propiedades
+20.11 Invariantes y metamorphic testing
+20.12 Idempotencia y determinismo
+20.13 Gestión de nulos y zonas horarias en pruebas
+20.14 Errores recuperables y políticas de fallo
+20.15 Logging estructurado y métricas básicas
+20.16 CI y matrices de compatibilidad
+20.17 Versionado y trazabilidad de datasets
+20.18 Laboratorio: pipeline listo para mantenimiento
+
+Bloque 21 — Pandas 3, migración y proyecto final
+21.1 Cambios conceptuales de pandas 3
+21.2 Revisión de Copy-on-Write
+21.3 Revisión del sistema de tipos moderno
+21.4 APIs obsoletas y deprecaciones
+21.5 Auditar código heredado
+21.6 Migración incremental a pandas 3
+21.7 Validación después de una migración
+21.8 Diseño del proyecto final
+21.9 Ingestión y validación del dataset
+21.10 Limpieza y transformación del proyecto
+21.11 Análisis, agregación y presentación de resultados
+21.12 Proyecto final: pipeline Pandas 3 de extremo a extremo
+21.13 Matriz de cambios y compatibilidad pandas 2 → 3
+21.14 Auditoría de asignaciones encadenadas y Copy-on-Write
+21.15 Migración de strings, tipos y valores ausentes
+21.16 Revisión de frecuencias y APIs obsoletas
+21.17 Comparación de resultados antes y después
+21.18 Pruebas de regresión y benchmarks de migración
+21.19 Entrega final: documentación, tests y reproducibilidad

@@ -94,7 +94,6 @@ Páginas de manual especialmente relevantes:
 - `systemd.slice(5)`
 - `systemd.scope(5)`
 - `systemd.generator(7)`
-- `systemd.generator(7)`
 - `systemd-run(1)`
 - `systemd-analyze(1)`
 - `systemd-cgls(1)`
@@ -107,7 +106,6 @@ Páginas de manual especialmente relevantes:
 - `systemd-sysusers(8)`
 - `sysusers.d(5)`
 - `systemd-creds(1)`
-- `systemd.exec(5)`
 - `systemd.security(7)`
 - `systemd.preset(5)`
 - `systemd.preset-all(1)`
@@ -243,3 +241,25 @@ Toda lección debe responder a tres preguntas:
 3. ¿Cómo se diagnostica cuando falla?
 
 El objetivo final no es memorizar comandos, sino comprender systemd como gestor de servicios, unidades, dependencias, procesos, recursos, eventos y estado del sistema.
+
+
+---
+
+## 9. Referencias oficiales por ámbito avanzado
+
+Estas referencias complementan los dos libros sin sustituirlos; verificar disponibilidad y versión en Fedora.
+
+| Ámbito | Manuales y referencias |
+|---|---|
+| Units y dependencias | `systemd.unit(5)`, `systemd.special(7)`, `systemd.directives(7)` |
+| Services y notificación | `systemd.service(5)`, `systemd.exec(5)`, `sd_notify(3)`, `sd_listen_fds(3)`, `sd_watchdog_enabled(3)` |
+| Journal | `journald.conf(5)`, `journalctl(1)`, `systemd.journal-fields(7)`, `journal-remote.conf(5)` cuando aplique |
+| Cgroups y OOM | `systemd.resource-control(5)`, `systemd.slice(5)`, `systemd-oomd.service(8)`, `oomd.conf(5)`, `oomctl(1)` |
+| Sesiones | `systemd-logind.service(8)`, `logind.conf(5)`, `loginctl(1)`, `pam_systemd(8)` |
+| Red opcional | `systemd.network(5)`, `systemd.netdev(5)`, `systemd.link(5)`, `resolved.conf(5)`, `networkctl(1)`, `resolvectl(1)` |
+| Portable y extensiones | `portablectl(1)`, `systemd-sysext(8)`, `systemd-confext(8)` |
+| Boot | `bootup(7)`, `systemd-boot(7)`, `kernel-install(8)`, `systemd-stub(7)` |
+| APIs e internals | `org.freedesktop.systemd1(5)`, `sd-bus(3)`, `sd-event(3)`, repositorio upstream de systemd |
+| Packaging | Fedora Packaging Guidelines, Systemd packaging, RPM macros de Fedora |
+
+**Regla de compatibilidad:** no dar por disponible una directiva o utilidad por aparecer en esta lista. Comprobar `systemd --version`, `man`, `systemd-analyze verify` y las unidades/paquetes instalados.
