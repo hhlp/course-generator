@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from .artifacts import project_context
-from .config_loader import load_profile, load_profile_context, load_prompt
+from .config_loader import ConfigError, load_profile, load_profile_context, load_prompt
 from .inspection import inspection_data, render_inspection, render_prompt
 from .openai_client import OpenAIRequestError
 from .output import write_index, write_manifest, zip_block
@@ -261,7 +261,7 @@ def _main() -> None:
 def main() -> None:
     try:
         _main()
-    except (PathParseError, OpenAIRequestError) as exc:
+    except (ConfigError, PathParseError, OpenAIRequestError) as exc:
         raise SystemExit(f"ERROR: {exc}") from None
 
 
