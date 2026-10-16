@@ -131,7 +131,7 @@ class CourseOpenAI:
 
         self.client = OpenAI(api_key=api_key)
 
-        self.model = os.getenv("OPENAI_MODEL", "gpt-6-astra").strip()
+        self.model = os.getenv("OPENAI_MODEL", "").strip() or "gpt-6-astra"
         raw_effort = os.getenv("OPENAI_REASONING_EFFORT", "high").strip().lower()
         self.max_output_tokens = _env_int("OPENAI_MAX_OUTPUT_TOKENS", 50_000)
         self.store = _env_bool("OPENAI_STORE_RESPONSES", False)

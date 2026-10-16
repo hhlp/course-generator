@@ -111,7 +111,7 @@ def inspection_data(
         "context_checks": context_checks(profile, templates),
         "context_sizes": {key: len(value) for key, value in prompt_context.items()},
         "openai": {
-            "model": os.getenv("OPENAI_MODEL", "gpt-6-astra"),
+            "model": os.getenv("OPENAI_MODEL", "").strip() or "gpt-6-astra",
             "reasoning_effort": os.getenv("OPENAI_REASONING_EFFORT", "high"),
             "max_output_tokens": os.getenv("OPENAI_MAX_OUTPUT_TOKENS", "50000"),
             "store": os.getenv("OPENAI_STORE_RESPONSES", "false"),

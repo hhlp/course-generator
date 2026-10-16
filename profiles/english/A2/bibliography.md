@@ -37,12 +37,12 @@ Supporting references must not be used to import advanced structures into A2.
 
 ## Progression references for later levels
 
-### Raymond Murphy — *English Grammar in Use*
+### Raymond Murphy — *English Grammar in Use*, Fifth Edition
 
 Primary reference planned for B1–B2. Use later to consolidate and extend structures already
 introduced at A2 rather than duplicating the A2 lessons.
 
-### Martin Hewings — *Advanced Grammar in Use*
+### Martin Hewings — *Advanced Grammar in Use*, Fourth Edition
 
 Primary reference planned for C1–C2. Use later for advanced structures, alternatives,
 constraints, exceptions, nuance and advanced grammatical analysis.
