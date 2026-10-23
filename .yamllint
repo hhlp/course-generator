@@ -1,0 +1,11 @@
+extends: default
+
+rules:
+  line-length:
+    max: 80
+    level: error
+  trailing-spaces: enable
+  indentation:
+    spaces: 2
+    indent-sequences: true
+  document-start: disable
