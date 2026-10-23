@@ -1,0 +1,1293 @@
+---
+course:
+  title: OpenTelemetry con C++ en profundidad
+  language: es
+  level:
+    start: cero en OpenTelemetry C++
+    end: experto
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+pedagogy:
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
+  remember_points: 3-7
+  optional_sections:
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+  depth: deep
+  progressive: true
+  didactic: true
+  summary_only: false
+focus:
+  vendor_neutral: true
+  upstream_first: true
+  production: true
+  troubleshooting: true
+  internals: true
+  reproducible_labs: true
+  validate_results: true
+  cpp_lifetimes: true
+  concurrency: true
+  abi_and_linking: true
+prerequisites:
+  required:
+    - C++ básico y gestión de recursos
+    - fundamentos de OpenTelemetry general
+    - Linux y compilación básica
+  bridge_block: 1
+  not_required:
+    - otros lenguajes instrumentados
+    - Kubernetes
+scope:
+  independent_specialization: true
+  general_course: OpenTelemetry en profundidad
+  programming_language: C++
+  do_not_require_other_language_tracks: true
+  do_not_duplicate_full_cpp_course: true
+  kubernetes_optional_block: 29
+  package_contains_executable_labs: false
+version_policy:
+  pin_before_first_executable_lab: true
+  record:
+    - sdk_tag_and_commit
+    - collector_image_digest
+    - backend_versions
+    - compiler_and_stdlib
+    - cpp_standard
+    - cmake_version
+    - dependency_versions
+    - cmake_cache_options
+    - semantic_conventions_version
+  authority: release documentation and source
+  do_not_assume_main_matches_release: true
+  never_claim_execution_without_running: true
+capability_gates:
+  verify_per_release:
+    - OTEL environment variables and precedence
+    - exporter transports and TLS options
+    - metric views and cardinality limits
+    - exponential histograms
+    - exemplars end-to-end
+    - observable callback removal
+    - logging bridges
+    - resource detectors
+    - framework integrations
+    - ABI options
+  unsupported_action: document limitation and implement a tested supported
+    alternative
+  no_zero_code_cpp_assumption: true
+  profiling_not_assumed_sdk_signal: true
+lab_contract:
+  environment: local, synthetic data, no public exposure
+  primary_build_system: CMake
+  alternative_build_system: Bazel
+  primary_cpp_standard: C++17 when compatible with pinned SDK
+  advanced_cpp_standard: C++20 for coroutine exercises with supported
+    toolchain
+  container_engines:
+    - Podman
+    - Docker
+  must_include:
+    - complete source files
+    - CMakeLists.txt and presets when needed
+    - pinned dependency manifest
+    - complete Collector and backend configuration
+    - build run validate cleanup commands
+    - expected telemetry and negative case
+    - thread and object lifetime explanation
+    - timeouts and shutdown order
+    - observed evidence distinguished from expected output
+  validation:
+    - signal content and resource
+    - trace topology and propagation
+    - metric units and bounded cardinality
+    - log correlation and redaction
+    - failure isolation
+    - latency and memory overhead
+  no_placeholder_commands: true
+evaluation:
+  checkpoints:
+    - 4
+    - 8
+    - 13
+    - 18
+    - 23
+    - 28
+    - 31
+    - 33
+  final_project_block: 33
+  criteria:
+    - build reproducibility
+    - correct ownership and context
+    - three signals validated
+    - failure matrix and diagnosis
+    - overhead measured against baseline
+    - shutdown within declared budget
+    - no secret leakage
+    - limitations documented
+  performance_threshold: declare numeric budget before measurement;
+    justify against workload
+curriculum:
+  block_count: 34
+  lesson_count: 340
+  numbering: block.lesson; lesson numbers 1 through 10
+  blocks:
+    - id: 0
+      title: Orientación y contrato de la especialización
+      optional: false
+      lessons:
+        - id: '0.1'
+          title: Identificar las preguntas operativas que debe responder
+            una aplicación C++ instrumentada
+        - id: '0.2'
+          title: Relacionar este path con OpenTelemetry general y el
+            path independiente de C++
+        - id: '0.3'
+          title: Distinguir API, SDK, exportador, Collector y backend
+            dentro del proceso y fuera de él
+        - id: '0.4'
+          title: Delimitar trazas, métricas y logs frente a profiling
+            y diagnóstico del sistema operativo
+        - id: '0.5'
+          title: Diseñar un laboratorio local sin exposición pública
+            y con datos sintéticos
+        - id: '0.6'
+          title: Definir evidencias por señal, presupuesto de overhead
+            y criterios de éxito
+        - id: '0.7'
+          title: Preparar un manifiesto de versiones, fuentes, compilador
+            y opciones de construcción
+        - id: '0.8'
+          title: Leer la matriz de soporte del SDK seleccionado sin
+            extrapolar desde otros lenguajes
+        - id: '0.9'
+          title: 'Laboratorio: Esquematizar dos servicios C++, un Collector
+            y un backend por señal; justificar cada enlace'
+        - id: '0.10'
+          title: 'Laboratorio de fallos: Detectar una capacidad inexistente
+            en una propuesta y sustituirla por una alternativa documentada'
+    - id: 1
+      title: C++ imprescindible para instrumentar
+      optional: false
+      lessons:
+        - id: '1.1'
+          title: Revisar namespaces, headers, unidades de traducción
+            y separación de interfaces
+        - id: '1.2'
+          title: Aplicar RAII y distinguir duración de ámbito de duración
+            de una operación
+        - id: '1.3'
+          title: Diferenciar unique_ptr, shared_ptr, referencias y
+            vistas no propietarias
+        - id: '1.4'
+          title: Razonar sobre move semantics y transferencia de propiedad
+            hacia factories
+        - id: '1.5'
+          title: Evitar referencias colgantes en atributos, strings,
+            spans y callbacks
+        - id: '1.6'
+          title: Modelar excepciones, retornos tempranos y destructores
+            sin fallos secundarios
+        - id: '1.7'
+          title: Usar chrono y separar reloj monotónico de marcas temporales
+            de calendario
+        - id: '1.8'
+          title: Comprender mutex, atomics, data races y sincronización
+            antes de añadir telemetría
+        - id: '1.9'
+          title: 'Laboratorio: Construir una operación con RAII y retornos
+            tempranos; demostrar la liberación de recursos'
+        - id: '1.10'
+          title: 'Laboratorio de fallos: Reproducir una referencia
+            colgante en un ejemplo aislado y localizarla con un sanitizer'
+    - id: 2
+      title: Toolchain y entorno Linux reproducible
+      optional: false
+      lessons:
+        - id: '2.1'
+          title: Instalar y verificar compilador, CMake, generador,
+            Git y herramientas de diagnóstico en Fedora o RHEL
+        - id: '2.2'
+          title: Comparar GCC y Clang y registrar versión de biblioteca
+            estándar y arquitectura
+        - id: '2.3'
+          title: Compilar perfiles Debug, Release y RelWithDebInfo
+            con símbolos útiles
+        - id: '2.4'
+          title: Gestionar prefijos de instalación locales sin modificar
+            bibliotecas del sistema
+        - id: '2.5'
+          title: 'Diferenciar dependencias de compilación y ejecución:
+            TLS, protobuf, gRPC y HTTP'
+        - id: '2.6'
+          title: Leer errores de includes, configuración CMake y dependencias
+            transitivas
+        - id: '2.7'
+          title: Preparar presets y cachés aisladas por compilador
+            y configuración
+        - id: '2.8'
+          title: Documentar requisitos mínimos de la release elegida
+            en vez de asumir los de main
+        - id: '2.9'
+          title: 'Laboratorio: Compilar un programa mínimo desde un
+            checkout limpio y guardar el manifiesto del entorno'
+        - id: '2.10'
+          title: 'Laboratorio de fallos: Romper una ruta de dependencias,
+            diagnosticar la fase fallida y reconstruir con caché limpia'
+    - id: 3
+      title: Construcción e instalación de opentelemetry-cpp
+      optional: false
+      lessons:
+        - id: '3.1'
+          title: Seleccionar una release oficial, fijar su tag o commit
+            y consultar sus instrucciones INSTALL
+        - id: '3.2'
+          title: Construir API y SDK y entender las opciones que habilitan
+            exportadores y pruebas
+        - id: '3.3'
+          title: Habilitar OTLP HTTP y gRPC según requisitos de dependencias
+            documentados
+        - id: '3.4'
+          title: Comparar bibliotecas estáticas y compartidas y sus
+            implicaciones de distribución
+        - id: '3.5'
+          title: Instalar y consumir el paquete con find_package y
+            targets exportados comprobados
+        - id: '3.6'
+          title: Comparar CMake con Bazel como sistemas oficiales sin
+            imponer el segundo al itinerario principal
+        - id: '3.7'
+          title: Evaluar vcpkg o Conan como rutas alternativas verificando
+            revisión y opciones del paquete
+        - id: '3.8'
+          title: Construir un inventario de capacidades a partir de
+            headers, ejemplos y pruebas de la release
+        - id: '3.9'
+          title: 'Laboratorio: Construir SDK y ejemplo con un exportador
+            a consola y otro OTLP; registrar opciones exactas'
+        - id: '3.10'
+          title: 'Laboratorio de fallos: Desactivar un exportador requerido
+            y explicar el error de configuración o enlace resultante'
+    - id: 4
+      title: Arquitectura API y SDK en una aplicación
+      optional: false
+      lessons:
+        - id: '4.1'
+          title: Instrumentar una biblioteca contra la API y dejar
+            la elección del SDK a la aplicación
+        - id: '4.2'
+          title: Entender providers globales, proveedores explícitos
+            y comportamiento no-op
+        - id: '4.3'
+          title: Distinguir Resource, instrumentation scope y atributos
+            de cada señal
+        - id: '4.4'
+          title: Inicializar la telemetría antes de aceptar tráfico
+            y controlar su propiedad
+        - id: '4.5'
+          title: Diseñar una fachada pequeña sin ocultar semántica,
+            contexto ni errores
+        - id: '4.6'
+          title: Evitar inicialización estática dependiente del orden
+            entre unidades de traducción
+        - id: '4.7'
+          title: Configurar pruebas con providers aislados y prevenir
+            contaminación entre casos
+        - id: '4.8'
+          title: Definir orden de destrucción entre aplicación, workers,
+            providers y exportadores
+        - id: '4.9'
+          title: 'Laboratorio: Ejecutar la misma biblioteca con API
+            no-op y con SDK; comparar sus emisiones'
+        - id: '4.10'
+          title: 'Laboratorio de fallos: Provocar una inicialización
+            tardía y demostrar qué operaciones quedan sin telemetría'
+    - id: 5
+      title: Primera traza y modelo de spans
+      optional: false
+      lessons:
+        - id: '5.1'
+          title: Obtener TracerProvider y Tracer con nombre y versión
+            del scope
+        - id: '5.2'
+          title: Crear spans con nombres estables y distinguir span
+            activo de span existente
+        - id: '5.3'
+          title: Establecer padres explícitos y verificar relaciones
+            mediante identificadores
+        - id: '5.4'
+          title: Aplicar SpanKind a operaciones internas, clientes
+            y servidores
+        - id: '5.5'
+          title: Añadir atributos tipados y controlar cardinalidad
+            y tamaño
+        - id: '5.6'
+          title: Agregar eventos temporales y links sin confundirlos
+            con hijos
+        - id: '5.7'
+          title: Marcar estado de error y registrar excepciones sin
+            asumir automatismos
+        - id: '5.8'
+          title: Finalizar spans explícitamente y verificar los límites
+            del objeto o guard usado
+        - id: '5.9'
+          title: 'Laboratorio: Emitir una traza raíz con dos hijos,
+            evento y error sintético; comprobar su estructura'
+        - id: '5.10'
+          title: 'Laboratorio de fallos: Dejar un span sin finalizar
+            y demostrar su ausencia o comportamiento en el exportador
+            elegido'
+    - id: 6
+      title: RAII y ciclo de vida de spans
+      optional: false
+      lessons:
+        - id: '6.1'
+          title: Diferenciar Scope de activación de contexto y finalización
+            del span
+        - id: '6.2'
+          title: Diseñar un guard de finalización idempotente con propiedad
+            inequívoca
+        - id: '6.3'
+          title: Evitar dobles End y uso del span después de finalizarlo
+        - id: '6.4'
+          title: Conservar el contexto al separar operación lógica
+            y ámbito léxico
+        - id: '6.5'
+          title: Gestionar operaciones que sobreviven al stack frame
+            que las inicia
+        - id: '6.6'
+          title: Aplicar atributos condicionales con IsRecording cuando
+            el coste lo justifique
+        - id: '6.7'
+          title: Tratar excepciones y cancelaciones con semántica de
+            negocio explícita
+        - id: '6.8'
+          title: Verificar destructores noexcept y evitar exportaciones
+            bloqueantes desde destructores arbitrarios
+        - id: '6.9'
+          title: 'Laboratorio: Probar éxito, excepción y retorno temprano;
+            exigir exactamente un cierre por operación'
+        - id: '6.10'
+          title: 'Laboratorio de fallos: Sacar una tarea del ámbito
+            inicial y corregir el cierre prematuro de su span'
+    - id: 7
+      title: Contexto local y propagadores
+      optional: false
+      lessons:
+        - id: '7.1'
+          title: Inspeccionar Context, RuntimeContext, tokens y restauración
+            del contexto anterior
+        - id: '7.2'
+          title: Entender el almacenamiento asociado al hilo y sus
+            límites en ejecución asíncrona
+        - id: '7.3'
+          title: Extraer e inyectar W3C Trace Context con carriers
+            adaptados al transporte
+        - id: '7.4'
+          title: Tratar traceparent inválido y tracestate conforme
+            al contrato del propagador
+        - id: '7.5'
+          title: Configurar propagadores explícitamente y comprobar
+            qué configuración admite la release
+        - id: '7.6'
+          title: Introducir baggage con límites y política de datos
+            permitidos
+        - id: '7.7'
+          title: Distinguir atributos del span, Resource y baggage
+            propagado
+        - id: '7.8'
+          title: Probar reentrada y restauración para evitar contaminación
+            entre solicitudes
+        - id: '7.9'
+          title: 'Laboratorio: Implementar un carrier de cabeceras
+            y verificar un round-trip con contexto válido e inválido'
+        - id: '7.10'
+          title: 'Laboratorio de fallos: Compartir un worker entre
+            dos solicitudes y demostrar que no heredan contexto entre
+            sí'
+    - id: 8
+      title: Hilos, pools y ejecución diferida
+      optional: false
+      lessons:
+        - id: '8.1'
+          title: Capturar Context por valor antes de enviar trabajo
+            a std::thread
+        - id: '8.2'
+          title: Activar y restaurar contexto dentro del worker que
+            ejecuta la tarea
+        - id: '8.3'
+          title: Propagar contexto por std::async, futures y colas
+            de trabajo explícitas
+        - id: '8.4'
+          title: Diseñar tareas que no dependan de referencias al stack
+            del productor
+        - id: '8.5'
+          title: Representar fan-out y fan-in con padres o links según
+            causalidad
+        - id: '8.6'
+          title: Gestionar cancelación, deadlines y tareas abandonadas
+            sin spans eternos
+        - id: '8.7'
+          title: Evitar deadlocks y carreras entre instrumentación
+            y cierre del SDK
+        - id: '8.8'
+          title: Verificar reuso de threads y aislamiento de solicitudes
+            con pruebas concurrentes
+        - id: '8.9'
+          title: 'Laboratorio: Instrumentar un pool con varias solicitudes
+            concurrentes y verificar la ascendencia de cada tarea'
+        - id: '8.10'
+          title: 'Laboratorio de fallos: Omitir captura o restauración
+            del contexto y localizar spans huérfanos o mezclados'
+    - id: 9
+      title: Coroutines, event loops y callbacks
+      optional: false
+      lessons:
+        - id: '9.1'
+          title: Distinguir identidad de coroutine, thread y operación
+            de negocio
+        - id: '9.2'
+          title: Capturar contexto al registrar callbacks y activarlo
+            al ejecutarlos
+        - id: '9.3'
+          title: Diseñar propagación alrededor de suspend y resume
+            sin mantener Scope en otro hilo
+        - id: '9.4'
+          title: Integrar contexto en un executor o scheduler en vez
+            de usar estado global mutable
+        - id: '9.5'
+          title: Evaluar Boost.Asio u otro event loop mediante su contrato
+            real de ejecución
+        - id: '9.6'
+          title: Tratar lifetimes de sockets, buffers y contexto en
+            handlers asíncronos
+        - id: '9.7'
+          title: Controlar cancelación y rutas de error que impiden
+            ejecutar callbacks esperados
+        - id: '9.8'
+          title: Comparar propagación manual y adaptadores con pruebas
+            de migración entre threads
+        - id: '9.9'
+          title: 'Laboratorio: Implementar una operación asíncrona
+            de dos etapas con contexto correcto tras reanudación'
+        - id: '9.10'
+          title: 'Laboratorio de fallos: Forzar suspensión y cambio
+            de worker y corregir un padre erróneo sin depender de thread_local'
+    - id: 10
+      title: Instrumentación HTTP cliente y servidor
+      optional: false
+      lessons:
+        - id: '10.1'
+          title: Extraer contexto antes de iniciar el span servidor
+            y activarlo durante la petición
+        - id: '10.2'
+          title: Inyectar contexto desde el span cliente antes del
+            envío
+        - id: '10.3'
+          title: Usar rutas normalizadas en lugar de URLs o identificadores
+            dinámicos como nombres
+        - id: '10.4'
+          title: Aplicar convenciones HTTP y atributos de red de la
+            versión fijada
+        - id: '10.5'
+          title: Distinguir transporte fallido, respuesta HTTP y error
+            de negocio
+        - id: '10.6'
+          title: Medir duración y concurrencia con límites de instrumentación
+            definidos
+        - id: '10.7'
+          title: Evitar captura de tokens, cookies y cuerpos sensibles
+        - id: '10.8'
+          title: Crear adaptadores para un framework elegido y comprobar
+            cobertura de dependencias
+        - id: '10.9'
+          title: 'Laboratorio: Conectar dos servicios HTTP C++ y verificar
+            continuidad de trace_id y roles cliente-servidor'
+        - id: '10.10'
+          title: 'Laboratorio de fallos: Eliminar una cabecera propagada
+            y diagnosticar dónde se rompe la traza distribuida'
+    - id: 11
+      title: Instrumentación gRPC y streaming
+      optional: false
+      lessons:
+        - id: '11.1'
+          title: Representar RPC cliente y servidor con convenciones
+            de servicio y método
+        - id: '11.2'
+          title: Adaptar metadata gRPC como carrier de extracción e
+            inyección
+        - id: '11.3'
+          title: Comparar interceptors disponibles y wrapping explícito
+            según la biblioteca seleccionada
+        - id: '11.4'
+          title: Propagar contexto en APIs gRPC síncronas y asíncronas
+        - id: '11.5'
+          title: Diseñar duración de span para unary y streaming sin
+            crear un span por byte
+        - id: '11.6'
+          title: Tratar códigos de estado, deadlines y cancelaciones
+        - id: '11.7'
+          title: Diferenciar reintentos lógicos de intentos físicos
+            y evitar duplicación
+        - id: '11.8'
+          title: Verificar lifetimes de objetos asociados a completion
+            queues
+        - id: '11.9'
+          title: 'Laboratorio: Ejecutar RPC unary y streaming con propagación
+            y cierre verificable'
+        - id: '11.10'
+          title: 'Laboratorio de fallos: Provocar deadline exceeded
+            y demostrar el estado final y la liberación de recursos'
+    - id: 12
+      title: Datos, mensajería y tareas de fondo
+      optional: false
+      lessons:
+        - id: '12.1'
+          title: Instrumentar acceso SQL o NoSQL con wrappers cuando
+            el driver carece de integración
+        - id: '12.2'
+          title: Registrar operaciones y latencia sin exportar consultas
+            con datos sensibles
+        - id: '12.3'
+          title: Separar adquisición de conexión, espera en pool y
+            operación remota
+        - id: '12.4'
+          title: Propagar contexto en metadatos de mensajes sin alterar
+            su payload contractual
+        - id: '12.5'
+          title: Representar productor, entrega, consumidor y procesamiento
+            por lotes
+        - id: '12.6'
+          title: Usar links ante múltiples mensajes y razonar sobre
+            redelivery y causalidad
+        - id: '12.7'
+          title: Instrumentar jobs periódicos con raíz propia o contexto
+            de origen explícito
+        - id: '12.8'
+          title: Documentar soporte real del driver o broker elegido
+            y su alternativa manual
+        - id: '12.9'
+          title: 'Laboratorio: Crear un productor-consumidor local
+            y correlacionar publicación, entrega y procesamiento'
+        - id: '12.10'
+          title: 'Laboratorio de fallos: Reentregar un mensaje y distinguir
+            un nuevo intento del procesamiento original'
+    - id: 13
+      title: Sampling y procesamiento de trazas
+      optional: false
+      lessons:
+        - id: '13.1'
+          title: Comparar AlwaysOn, AlwaysOff, TraceIdRatioBased y
+            ParentBased según API disponible
+        - id: '13.2'
+          title: Interpretar recording y sampled y sus efectos sobre
+            el trabajo de instrumentación
+        - id: '13.3'
+          title: Evitar sesgos al medir errores a partir de trazas
+            muestreadas
+        - id: '13.4'
+          title: Entender SimpleSpanProcessor y BatchSpanProcessor
+            y el coste de sus caminos
+        - id: '13.5'
+          title: Ajustar tamaño de cola, lotes, intervalos y plazos
+            con unidades explícitas
+        - id: '13.6'
+          title: Explicar pérdida por saturación y el equilibrio entre
+            memoria y throughput
+        - id: '13.7'
+          title: Diferenciar head sampling del SDK y tail sampling
+            del Collector
+        - id: '13.8'
+          title: Diseñar afinidad de trazas para tail sampling y evaluar
+            las trazas incompletas
+        - id: '13.9'
+          title: 'Laboratorio: Comparar tres políticas de sampling
+            con una carga y tasa de error conocidas'
+        - id: '13.10'
+          title: 'Laboratorio de fallos: Saturar una cola de trazas
+            y medir pérdida, latencia y memoria sin bloquear el servicio'
+    - id: 14
+      title: 'Métricas: API e instrumentos'
+      optional: false
+      lessons:
+        - id: '14.1'
+          title: Crear MeterProvider y Meter con scope identificable
+        - id: '14.2'
+          title: Elegir Counter para acumulaciones monotónicas y UpDownCounter
+            para cantidades variables
+        - id: '14.3'
+          title: Elegir Histogram para distribuciones y definir unidad
+            y descripción
+        - id: '14.4'
+          title: Usar instrumentos observables según soporte del SDK
+            fijado
+        - id: '14.5'
+          title: Definir atributos acotados y evitar IDs de usuario
+            o petición como dimensiones
+        - id: '14.6'
+          title: Distinguir datos medidos, agregación y exportación
+            periódica
+        - id: '14.7'
+          title: Aplicar contexto al registrar medidas cuando la API
+            lo permita
+        - id: '14.8'
+          title: Verificar comportamiento concurrente sin añadir locks
+            innecesarios
+        - id: '14.9'
+          title: 'Laboratorio: Medir peticiones, errores, trabajos
+            en curso y duración con instrumentos apropiados'
+        - id: '14.10'
+          title: 'Laboratorio de fallos: Introducir una etiqueta de
+            alta cardinalidad y cuantificar el crecimiento de series'
+    - id: 15
+      title: 'Métricas: views, readers y agregación'
+      optional: false
+      lessons:
+        - id: '15.1'
+          title: Configurar MetricReader y exportador con intervalos
+            y deadlines
+        - id: '15.2'
+          title: Aplicar Views para filtrar atributos y seleccionar
+            agregaciones disponibles
+        - id: '15.3'
+          title: Definir límites de histogramas explícitos adecuados
+            al SLO
+        - id: '15.4'
+          title: Comprobar soporte de histogramas exponenciales y exemplars
+            antes de usarlos
+        - id: '15.5'
+          title: Comprender temporalidad delta y cumulative y compatibilidad
+            del destino
+        - id: '15.6'
+          title: Analizar resets de proceso y diferencias entre contador
+            y rate consultada
+        - id: '15.7'
+          title: Evaluar límites de cardinalidad y comportamiento overflow
+            de la release
+        - id: '15.8'
+          title: Validar nombres, unidades y dimensiones después de
+            transformaciones de exportación
+        - id: '15.9'
+          title: 'Laboratorio: Diseñar histograma de latencia y verificar
+            buckets y series en el destino'
+        - id: '15.10'
+          title: 'Laboratorio de fallos: Cambiar temporalidad o reiniciar
+            el proceso y explicar la consulta que deja de ser válida'
+    - id: 16
+      title: Callbacks y seguridad de métricas observables
+      optional: false
+      lessons:
+        - id: '16.1'
+          title: Registrar callbacks con datos cuya vida útil supere
+            el registro
+        - id: '16.2'
+          title: Dar de baja callbacks antes de destruir el estado
+            que consultan
+        - id: '16.3'
+          title: Leer snapshots coherentes con atomics o sincronización
+            de bajo coste
+        - id: '16.4'
+          title: Evitar I/O lento, locks anidados y excepciones en
+            callbacks de recolección
+        - id: '16.5'
+          title: Prevenir contadores decrecientes y unidades inconsistentes
+        - id: '16.6'
+          title: Definir qué representa cada observación durante carga
+            y reposo
+        - id: '16.7'
+          title: Controlar shutdown concurrente con la recolección
+            periódica
+        - id: '16.8'
+          title: Probar bloqueos y carreras con timeouts y ThreadSanitizer
+            cuando sea compatible
+        - id: '16.9'
+          title: 'Laboratorio: Exponer tamaño de cola y memoria controlada
+            con callbacks seguros'
+        - id: '16.10'
+          title: 'Laboratorio de fallos: Destruir el estado antes de
+            desregistrar un callback en un caso aislado y corregir
+            el lifetime'
+    - id: 17
+      title: Logs estructurados y correlación
+      optional: false
+      lessons:
+        - id: '17.1'
+          title: Inicializar LoggerProvider, Logger y procesamiento
+            de logs según la release
+        - id: '17.2'
+          title: Distinguir timestamp, observed timestamp, severity,
+            body y atributos
+        - id: '17.3'
+          title: Emitir logs bajo contexto activo y comprobar trace_id
+            y span_id
+        - id: '17.4'
+          title: Registrar eventos sin volcar objetos ni secretos completos
+        - id: '17.5'
+          title: Comparar exportación OTLP directa y recolección de
+            archivos o stdout
+        - id: '17.6'
+          title: Diseñar adaptación para spdlog u otra biblioteca sin
+            asumir un bridge oficial universal
+        - id: '17.7'
+          title: Evitar duplicados entre handlers locales, bridges
+            y Collector
+        - id: '17.8'
+          title: Entender que SIGKILL o un crash pueden perder los
+            registros en buffers
+        - id: '17.9'
+          title: 'Laboratorio: Correlacionar un log de error con su
+            span y comparar emisión dentro y fuera del contexto'
+        - id: '17.10'
+          title: 'Laboratorio de fallos: Duplicar una ruta de ingestión
+            y eliminar el doble conteo con evidencias'
+    - id: 18
+      title: OTLP y configuración efectiva
+      optional: false
+      lessons:
+        - id: '18.1'
+          title: Comparar OTLP gRPC y HTTP/protobuf y las dependencias
+            de cada transporte
+        - id: '18.2'
+          title: Distinguir endpoint base y ruta por señal según constructor
+            y configuración usados
+        - id: '18.3'
+          title: Configurar headers, timeouts, compresión y certificados
+            según soporte efectivo
+        - id: '18.4'
+          title: Comprobar variables OTEL_* una a una frente a la versión,
+            señal y factory seleccionadas
+        - id: '18.5'
+          title: Definir precedencia entre código y entorno con pruebas
+            pequeñas
+        - id: '18.6'
+          title: Explicar reintentos y pérdidas sin prometer entrega
+            exactamente una vez
+        - id: '18.7'
+          title: Separar errores DNS, TCP, TLS, protocolo, autenticación
+            y respuesta remota
+        - id: '18.8'
+          title: Evitar confundir aceptación del SDK, recepción del
+            Collector e indexación en backend
+        - id: '18.9'
+          title: 'Laboratorio: Exportar las tres señales por OTLP y
+            documentar configuración efectiva y destinos'
+        - id: '18.10'
+          title: 'Laboratorio de fallos: Intercambiar transporte y
+            puerto para diagnosticar el fallo usando logs y tráfico
+            local'
+    - id: 19
+      title: Collector local y backends del laboratorio
+      optional: false
+      lessons:
+        - id: '19.1'
+          title: Configurar receivers OTLP y pipelines separados de
+            trazas, métricas y logs
+        - id: '19.2'
+          title: Usar debug exporter en un perfil de diagnóstico con
+            payloads sintéticos
+        - id: '19.3'
+          title: Introducir batch y memory_limiter con orden justificado
+        - id: '19.4'
+          title: Enviar trazas a un backend elegido y métricas a Prometheus
+            por una ruta compatible
+        - id: '19.5'
+          title: Enviar logs a un backend compatible con la distribución
+            y versiones seleccionadas
+        - id: '19.6'
+          title: Comparar exportación directa y arquitectura con Collector
+            intermedio
+        - id: '19.7'
+          title: Configurar límites locales, volúmenes, puertos y health
+            checks en Compose
+        - id: '19.8'
+          title: Usar Podman o Docker y diagnosticar redes, DNS y nombres
+            de servicios
+        - id: '19.9'
+          title: 'Laboratorio: Definir y ejecutar Compose con servicio
+            C++, Collector y destinos; validar cada pipeline'
+        - id: '19.10'
+          title: 'Laboratorio de fallos: Desactivar un pipeline y localizar
+            la señal perdida sin atribuirlo al SDK incorrectamente'
+    - id: 20
+      title: Convenciones semánticas y diseño de esquema
+      optional: false
+      lessons:
+        - id: '20.1'
+          title: Diferenciar estabilidad del SDK y estabilidad de convenciones
+            semánticas
+        - id: '20.2'
+          title: Fijar versión de convenciones y registrar schema URL
+            cuando corresponda
+        - id: '20.3'
+          title: Definir service.name, namespace, instance y entorno
+            sin cardinalidad accidental
+        - id: '20.4'
+          title: Separar atributos de proceso, host, contenedor y operación
+        - id: '20.5'
+          title: Usar nombres estables y políticas de atributos para
+            equipos y bibliotecas
+        - id: '20.6'
+          title: Migrar atributos HTTP o de datos con cambios explícitos
+            de dashboards
+        - id: '20.7'
+          title: Verificar detectores de recursos disponibles sin asumir
+            detección automática completa
+        - id: '20.8'
+          title: Crear un contrato de telemetría compatible con servicios
+            de otros lenguajes
+        - id: '20.9'
+          title: 'Laboratorio: Documentar el esquema de un servicio
+            y comprobarlo contra sus emisiones'
+        - id: '20.10'
+          title: 'Laboratorio de fallos: Introducir una migración de
+            atributo y adaptar consultas manteniendo comparación temporal'
+    - id: 21
+      title: Bibliotecas reutilizables e integraciones
+      optional: false
+      lessons:
+        - id: '21.1'
+          title: Diseñar una biblioteca instrumentada sin dependencia
+            obligatoria de SDK o backend
+        - id: '21.2'
+          title: Evitar instalación de providers globales desde código
+            de terceros
+        - id: '21.3'
+          title: Exponer opciones de instrumentación manteniendo una
+            API pública pequeña
+        - id: '21.4'
+          title: Definir ownership de tracer, meter, logger y contexto
+            recibido
+        - id: '21.5'
+          title: Evaluar opentelemetry-cpp-contrib y el registro por
+            compatibilidad, pruebas y mantenimiento
+        - id: '21.6'
+          title: Detectar doble instrumentación de una misma operación
+        - id: '21.7'
+          title: Documentar puntos de extensión para frameworks sin
+            soporte nativo
+        - id: '21.8'
+          title: Validar modo no-op y coste de dependencias para consumidores
+            que no usan telemetría
+        - id: '21.9'
+          title: 'Laboratorio: Empaquetar una biblioteca API-only e
+            integrarla en dos ejecutables con SDK distinto'
+        - id: '21.10'
+          title: 'Laboratorio de fallos: Combinar wrapper e instrumentación
+            nativa y eliminar spans duplicados'
+    - id: 22
+      title: Pruebas unitarias y contratos de telemetría
+      optional: false
+      lessons:
+        - id: '22.1'
+          title: Usar exporters en memoria o doubles de prueba disponibles
+            en la release
+        - id: '22.2'
+          title: Verificar padres, links, SpanKind, estado y atributos
+            sin depender de orden global
+        - id: '22.3'
+          title: Forzar flush y esperar condiciones con límites en
+            lugar de sleeps arbitrarios
+        - id: '22.4'
+          title: Probar contexto inválido, ausente, concurrente y restaurado
+        - id: '22.5'
+          title: Validar medidas y logs por contenido y semántica evitando
+            snapshots frágiles
+        - id: '22.6'
+          title: Aislar providers globales entre casos y procesos de
+            pruebas
+        - id: '22.7'
+          title: Probar caminos no muestreados y SDK deshabilitado
+        - id: '22.8'
+          title: Convertir límites de cardinalidad y privacidad en
+            contratos verificables
+        - id: '22.9'
+          title: 'Laboratorio: Crear una suite de contrato para una
+            operación correcta, un error y una tarea asíncrona'
+        - id: '22.10'
+          title: 'Laboratorio de fallos: Mutar la propagación y exigir
+            que una prueba detecte el padre incorrecto'
+    - id: 23
+      title: Pruebas de integración y resiliencia
+      optional: false
+      lessons:
+        - id: '23.1'
+          title: Validar recepción OTLP con Collector y exportadores
+            de diagnóstico
+        - id: '23.2'
+          title: Generar carga determinista y comparar operaciones
+            esperadas con emisiones
+        - id: '23.3'
+          title: Inyectar latencia, desconexión y rechazo remoto de
+            exportación
+        - id: '23.4'
+          title: Reiniciar Collector y backend distinguiendo disponibilidad
+            de cada capa
+        - id: '23.5'
+          title: Evaluar límites de retry y buffers dentro y fuera
+            del proceso
+        - id: '23.6'
+          title: Probar terminación normal, SIGTERM y terminación forzada
+        - id: '23.7'
+          title: Identificar fallos parciales donde una señal funciona
+            y otra falla
+        - id: '23.8'
+          title: Guardar evidencias estructuradas y criterios de tolerancia
+            por escenario
+        - id: '23.9'
+          title: 'Laboratorio: Ejecutar una matriz de fallos con resultados
+            esperados, observados y pérdidas estimadas'
+        - id: '23.10'
+          title: 'Laboratorio de fallos: Interrumpir exportación durante
+            carga y demostrar que la aplicación sigue atendiendo dentro
+            del presupuesto'
+    - id: 24
+      title: Rendimiento, memoria y bajo overhead
+      optional: false
+      lessons:
+        - id: '24.1'
+          title: Medir baseline sin SDK, con no-op y con instrumentación
+            activa
+        - id: '24.2'
+          title: Comparar spans descartados, muestreados y exportados
+            en el benchmark
+        - id: '24.3'
+          title: Medir CPU, RSS, allocations, throughput y percentiles
+            de latencia
+        - id: '24.4'
+          title: Evitar construcciones de strings y atributos caros
+            cuando no se registran
+        - id: '24.5'
+          title: Analizar contención y colas bajo concurrencia creciente
+        - id: '24.6'
+          title: Ajustar batches y readers con carga representativa
+            y métricas del propio SDK disponibles
+        - id: '24.7'
+          title: Usar perf y herramientas de profiling como complemento
+            al SDK
+        - id: '24.8'
+          title: Documentar hardware, calentamiento, repeticiones y
+            variabilidad del experimento
+        - id: '24.9'
+          title: 'Laboratorio: Publicar una tabla de overhead con carga
+            fija y justificación de tuning'
+        - id: '24.10'
+          title: 'Laboratorio de fallos: Introducir una asignación
+            cara por petición y localizar la regresión con perfil y
+            comparación'
+    - id: 25
+      title: Enlace, ABI, plugins y distribución binaria
+      optional: false
+      lessons:
+        - id: '25.1'
+          title: Distinguir compatibilidad de API y ABI al actualizar
+            opentelemetry-cpp
+        - id: '25.2'
+          title: Verificar namespaces ABI y opciones del SDK contra
+            la release seleccionada
+        - id: '25.3'
+          title: Investigar símbolos indefinidos, ODR y versiones incompatibles
+            de dependencias
+        - id: '25.4'
+          title: Analizar duplicación de singletons al enlazar estáticamente
+            dentro de varios plugins
+        - id: '25.5'
+          title: Diseñar un contrato de contexto entre host y plugins
+            sin cruzar ABI insegura
+        - id: '25.6'
+          title: Controlar RPATH, RUNPATH y resolución de bibliotecas
+            compartidas
+        - id: '25.7'
+          title: Inspeccionar artefactos con readelf, nm y ldd en binarios
+            propios
+        - id: '25.8'
+          title: Fijar matriz de compilador, biblioteca estándar, arquitectura
+            y opciones de enlace
+        - id: '25.9'
+          title: 'Laboratorio: Cargar un plugin instrumentado y comprobar
+            providers y contexto compartidos con el host'
+        - id: '25.10'
+          title: 'Laboratorio de fallos: Provocar una incompatibilidad
+            de enlace controlada y resolverla sin mezclar bibliotecas
+            arbitrarias'
+    - id: 26
+      title: Cierre, señales y procesos
+      optional: false
+      lessons:
+        - id: '26.1'
+          title: Ordenar parada de entrada, drenaje de tareas, flush
+            y shutdown
+        - id: '26.2'
+          title: Distinguir ForceFlush y Shutdown según interfaz y
+            señal
+        - id: '26.3'
+          title: Asignar plazos de salida sin bloquear indefinidamente
+            un servicio
+        - id: '26.4'
+          title: Coordinar callbacks de métricas y workers de exportación
+            durante el cierre
+        - id: '26.5'
+          title: Gestionar SIGTERM fuera del signal handler mediante
+            mecanismos seguros
+        - id: '26.6'
+          title: Evitar invocar SDK, locks o asignaciones desde handlers
+            de señal asíncronos
+        - id: '26.7'
+          title: Analizar fork con threads y preferir inicialización
+            tras fork o fork-exec según el proceso
+        - id: '26.8'
+          title: Distinguir garantías de salida ordenada y pérdidas
+            inevitables en crash o SIGKILL
+        - id: '26.9'
+          title: 'Laboratorio: Implementar apagado coordinado con peticiones
+            en curso y comprobar la última emisión'
+        - id: '26.10'
+          title: 'Laboratorio de fallos: Reducir el plazo de salida
+            y cuantificar la telemetría que queda sin exportar'
+    - id: 27
+      title: Seguridad, TLS y datos sensibles
+      optional: false
+      lessons:
+        - id: '27.1'
+          title: Configurar confianza TLS y verificar nombres del servidor
+        - id: '27.2'
+          title: Evaluar mTLS y rotación de certificados en el transporte
+            y versión elegidos
+        - id: '27.3'
+          title: Suministrar credenciales sin compilarlas en el binario
+            ni registrarlas
+        - id: '27.4'
+          title: Aplicar allowlists para atributos, headers y baggage
+            desde el origen
+        - id: '27.5'
+          title: Validar entradas de propagación no confiables y límites
+            de tamaño
+        - id: '27.6'
+          title: Controlar cardinalidad maliciosa y saturación inducida
+            por tráfico externo
+        - id: '27.7'
+          title: Definir límites de confianza entre tenants y no usar
+            baggage para autorizar
+        - id: '27.8'
+          title: Revisar dependencias, SBOM y actualizaciones del SDK
+            y sus transportes
+        - id: '27.9'
+          title: 'Laboratorio: Conectar servicio y Collector con TLS
+            y comprobar el rechazo de una CA no confiable'
+        - id: '27.10'
+          title: 'Laboratorio de fallos: Inyectar un secreto sintético
+            y asegurar que las tres señales cumplen la política de
+            exclusión'
+    - id: 28
+      title: Operación en systemd y contenedores
+      optional: false
+      lessons:
+        - id: '28.1'
+          title: Ejecutar el binario mediante systemd con configuración
+            externa y permisos mínimos
+        - id: '28.2'
+          title: Coordinar TimeoutStopSec con el drenaje y los plazos
+            del SDK
+        - id: '28.3'
+          title: Consultar logs en journald y localizar fuentes en
+            archivo cuando se configuren
+        - id: '28.4'
+          title: Diagnosticar DNS, TLS y conectividad con firewalld
+            y SELinux en Fedora o RHEL
+        - id: '28.5'
+          title: Construir imágenes multietapa y verificar dependencias
+            de ejecución
+        - id: '28.6'
+          title: Validar CA bundles, símbolos de depuración y compatibilidad
+            glibc de la imagen
+        - id: '28.7'
+          title: Medir impacto de límites CPU y memoria sobre workers
+            y exportadores
+        - id: '28.8'
+          title: Configurar health checks de aplicación sin convertir
+            el backend de telemetría en requisito de servicio
+        - id: '28.9'
+          title: 'Laboratorio: Operar el mismo servicio nativo y en
+            contenedor con identidad de recurso verificable'
+        - id: '28.10'
+          title: 'Laboratorio de fallos: Provocar denegación de red
+            o permisos y diagnosticarla sin deshabilitar globalmente
+            controles'
+    - id: 29
+      title: Kubernetes como despliegue opcional
+      optional: true
+      lessons:
+        - id: '29.1'
+          title: Declarar imagen, recursos y configuración OTLP de
+            un servicio C++
+        - id: '29.2'
+          title: Comparar Collector sidecar, agente y gateway para
+            este servicio
+        - id: '29.3'
+          title: Enriquecer recursos con contexto Kubernetes por rutas
+            disponibles y verificadas
+        - id: '29.4'
+          title: Configurar probes y terminación con tiempo de drenaje
+            suficiente
+        - id: '29.5'
+          title: Tratar límites de red, secretos y CA con recursos
+            del clúster
+        - id: '29.6'
+          title: No asumir inyección zero-code C++ por analogía con
+            otros lenguajes
+        - id: '29.7'
+          title: Validar continuidad de trazas a través de balanceo
+            y escalado
+        - id: '29.8'
+          title: Remitir administración avanzada del Operator y Collector
+            al curso general
+        - id: '29.9'
+          title: 'Laboratorio: Desplegar opcionalmente el servicio
+            y verificar recurso, propagación y cierre durante rollout'
+        - id: '29.10'
+          title: 'Laboratorio de fallos: Bloquear OTLP con una política
+            de red y separar salud de servicio y salud de telemetría'
+    - id: 30
+      title: Troubleshooting por capas
+      optional: false
+      lessons:
+        - id: '30.1'
+          title: Diagnosticar ausencia de señal por provider no-op
+            o inicialización incorrecta
+        - id: '30.2'
+          title: Rastrear spans ausentes por sampling, finalización
+            o saturación de cola
+        - id: '30.3'
+          title: Explicar trazas fragmentadas por carriers y fronteras
+            de ejecución
+        - id: '30.4'
+          title: Diagnosticar métricas vacías por reader, callback,
+            temporalidad o consulta
+        - id: '30.5'
+          title: Diagnosticar logs sin correlación por contexto o bridge
+            de integración
+        - id: '30.6'
+          title: Separar errores de compilación, enlace, carga dinámica
+            y ejecución
+        - id: '30.7'
+          title: Correlacionar errores SDK, Collector y backend con
+            tiempos y contadores
+        - id: '30.8'
+          title: Preparar un caso mínimo upstream sin datos sensibles
+            ni dependencias irrelevantes
+        - id: '30.9'
+          title: 'Laboratorio: Resolver seis incidentes sembrados usando
+            hipótesis y pruebas por capa'
+        - id: '30.10'
+          title: 'Laboratorio de fallos: Demostrar con evidencia que
+            la recepción OTLP no implica que una consulta del backend
+            esté bien formulada'
+    - id: 31
+      title: CI, compatibilidad y evolución
+      optional: false
+      lessons:
+        - id: '31.1'
+          title: Fijar versiones del SDK, Collector, convenciones y
+            dependencias con actualización deliberada
+        - id: '31.2'
+          title: Construir matrices GCC y Clang y perfiles de enlace
+            relevantes
+        - id: '31.3'
+          title: Ejecutar sanitizers en combinaciones compatibles y
+            clasificar falsos positivos documentados
+        - id: '31.4'
+          title: Validar contratos de telemetría e integración en CI
+            con recursos limitados
+        - id: '31.5'
+          title: Revisar changelog, deprecaciones y cambios de configuración
+            antes de actualizar
+        - id: '31.6'
+          title: Actualizar consultas y esquemas sin pérdida silenciosa
+            de cobertura
+        - id: '31.7'
+          title: Definir pruebas de capacidad para funciones opcionales
+            o experimentales
+        - id: '31.8'
+          title: Preparar rollback de binario y configuración con compatibilidad
+            de datos conocida
+        - id: '31.9'
+          title: 'Laboratorio: Actualizar una versión fijada en rama
+            aislada y documentar cambios y regresiones'
+        - id: '31.10'
+          title: 'Laboratorio de fallos: Detectar una opción retirada
+            en CI y sustituirla usando la documentación de esa release'
+    - id: 32
+      title: Interoperabilidad y observabilidad de extremo a extremo
+      optional: false
+      lessons:
+        - id: '32.1'
+          title: Integrar C++ con un servicio ya instrumentado en otro
+            lenguaje sin exigir aprenderlo
+        - id: '32.2'
+          title: Verificar traceparent, tracestate y baggage en cada
+            frontera
+        - id: '32.3'
+          title: Alinear nombres de servicios, unidades y convenciones
+            entre equipos
+        - id: '32.4'
+          title: Detectar sampling incoherente y trazas incompletas
+            entre procesos
+        - id: '32.5'
+          title: Correlacionar métricas y trazas con exemplars solo
+            donde toda la cadena los soporte
+        - id: '32.6'
+          title: Definir consultas para disponibilidad, tasa de error
+            y latencia del servicio
+        - id: '32.7'
+          title: Construir paneles y alertas basados en métricas con
+            enlaces a trazas y logs
+        - id: '32.8'
+          title: Distinguir avería de aplicación, dependencia y pérdida
+            de observabilidad
+        - id: '32.9'
+          title: 'Laboratorio: Investigar una petición lenta usando
+            las tres señales y reconstruir su causa'
+        - id: '32.10'
+          title: 'Laboratorio de fallos: Eliminar una frontera de propagación
+            y demostrar el límite de la correlación restante'
+    - id: 33
+      title: Proyecto experto y evaluación final
+      optional: false
+      lessons:
+        - id: '33.1'
+          title: Diseñar dos servicios C++ y un worker con HTTP o gRPC
+            y cola de trabajos
+        - id: '33.2'
+          title: Implementar trazas, métricas y logs con convenciones
+            y política de datos
+        - id: '33.3'
+          title: Propagar contexto por red, pool y una operación asíncrona
+        - id: '33.4'
+          title: Entregar fuentes completas, CMake, manifiesto de versiones
+            y configuración de Collector
+        - id: '33.5'
+          title: Entregar scripts de construcción, ejecución, pruebas
+            y limpieza con alcance local
+        - id: '33.6'
+          title: Aportar matriz de fallos, evidencias por señal y runbooks
+            operativos
+        - id: '33.7'
+          title: Justificar presupuesto de overhead, capacidad de colas
+            y plazos de apagado
+        - id: '33.8'
+          title: Revisar ABI, lifetimes, privacidad y límites funcionales
+            de la solución
+        - id: '33.9'
+          title: 'Laboratorio: Reproducir el proyecto desde un entorno
+            limpio siguiendo únicamente su README'
+        - id: '33.10'
+          title: 'Laboratorio de fallos: Superar revisión con fallo
+            remoto, concurrencia y SIGTERM sin pérdida de contexto
+            ni fugas detectadas'

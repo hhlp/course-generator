@@ -9,7 +9,7 @@ El objetivo no es memorizar APIs: cada lección debe explicar el modelo mental, 
 ## Plataforma
 
 - Plataforma principal: Fedora/Linux.
-- Usar una versión estable y moderna de Go instalada en el sistema.
+- Base mínima de esta revisión: Go 1.26.0. Fijar una versión estable exacta del toolchain en cada laboratorio y CI; verificar sus notas de versión y actualizaciones de seguridad. No interpretar esta base como afirmación de cuál es la última versión disponible.
 - El contenido debe ser version-aware: cuando una característica dependa de una versión concreta, indicarlo.
 - La especificación y documentación oficial de Go prevalecen ante diferencias con libros más antiguos.
 - No asumir GOPATH como modelo moderno de gestión de proyectos: enseñar módulos y workspaces como enfoque actual, explicando GOPATH por contexto histórico y por su papel residual en el entorno.
@@ -155,3 +155,73 @@ Orden de prioridad ante discrepancias:
 8. Go Cookbook.
 
 Los libros son referencias pedagógicas; no deben congelar el curso en una versión antigua del lenguaje.
+
+
+## Progresión y prerrequisitos obligatorios
+
+Conservar los 45 bloques (0–44) y todos los títulos de lecciones originales.
+Las ampliaciones se integran con numeración correlativa dentro de cada bloque.
+El número de lecciones de esta revisión queda registrado en el resumen de validación.
+
+- Bloque 0: crear un módulo mínimo antes del primer programa; el bloque 14 desarrolla módulos en profundidad.
+- Bloque 3: type switch es un anticipo ilustrativo con una explicación mínima de interfaces; su dominio se exige después del bloque 10.
+- Bloque 7: explicar punteros a structs antes de utilizarlos. Los tags se presentan como metadatos; reflection avanzada se reserva para el bloque 31.
+- Bloque 8: explicar escape analysis, stack y heap conceptualmente; las herramientas de medición se desarrollan después.
+- Bloque 14: enseñar pruebas mínimas, tablas de casos, benchmarks con B.Loop y un fuzz target antes del bloque 16. Incluir comandos y lectura de resultados.
+- Bloque 16: utilizar ese anticipo para probar regexp. El profiling se introduce mediante una captura guiada mínima; el análisis avanzado pertenece al bloque 36.
+- Bloque 18: desarrollar primero costes secuenciales. Las lecciones de complejidad de goroutines, channels, worker pools y span se realizan en una segunda pasada tras los bloques 19–23; se integran con evidencia en el bloque 40.
+- Bloque 19: presentar WaitGroup de forma mínima antes de laboratorios de coordinación; profundizar en el bloque 21.
+- Bloques 25–26: proporcionar las herramientas de prueba mínimas requeridas por HTTP y SQL sin esperar al desarrollo completo del bloque 27.
+
+Mantener títulos originales no obliga a repetir contenido: los anticipos y revisitas
+señalan alcance, conocimientos previos y objetivo nuevo. No exigir una herramienta
+que no se haya explicado o acompañado de una guía ejecutable.
+
+## Versión y precisión técnica
+
+Base mínima Go 1.26.0; registrar go version, GOOS, GOARCH y directivas go/toolchain.
+Etiquetar APIs por su versión de incorporación y contrastar cualquier evolución
+posterior con la documentación del toolchain fijado. Las características
+experimentales deben separarse de las garantías estables y ser optativas.
+
+Cubrir iteradores y range sobre funciones (Go 1.23), alias genéricos, os.Root,
+B.Loop y tool en go.mod (Go 1.24), WaitGroup.Go y testing/synctest (Go 1.25),
+y new con expresión, constraints autorreferentes y errors.AsType (Go 1.26).
+Para métodos genéricos distinguir métodos de tipos genéricos de métodos con
+parámetros de tipo propios; verificar su soporte exacto antes de mostrar código.
+No deducir soporte de una propuesta o de una versión de desarrollo.
+
+Distinguir garantías de la especificación de decisiones del compilador/runtime.
+No fijar como contrato factores de crecimiento de slices, complejidad de maps,
+representación de interfaces, elección stack/heap ni algoritmos internos del GC.
+Presentar estos últimos como implementaciones de la versión inspeccionada.
+Go pasa todos los argumentos por valor; explicar el aliasing de datos subyacentes.
+Los strings pueden contener bytes que no formen UTF-8 válido; rune no equivale
+a grafema. Aclarar estos límites en regex, índices y procesamiento de texto.
+
+## Contratos de recursos y corrección
+
+- I/O: procesar n > 0 antes del error; distinguir EOF de lectura incompleta; tratar escrituras y errores de cierre; limitar tokens, buffers y volumen de entrada.
+- Concurrencia: asignar propietario, política de cancelación y espera de terminación a cada tarea. Cancelar no equivale a hacer join. No copiar sincronizadores tras utilizarlos.
+- HTTP: cerrar cuerpos de respuestas, explicar cuándo se reutilizan conexiones, limitar solicitudes y aplicar timeouts con su alcance correcto.
+- SQL: cerrar filas, comprobar Rows.Err, gestionar rollback/commit y medir saturación del pool. Usar un driver explícito y una base de pruebas aislada.
+- Procesos: preferir os/exec con argumentos separados; documentar streams, ExitError, señales y límites de la cancelación del proceso y sus descendientes.
+- Seguridad: contrastar math/rand y crypto/rand, restringir destinos de red y rutas, y proteger endpoints de profiling.
+
+## Laboratorios y evaluación final
+
+Cada laboratorio entrega código, comandos reproducibles, versión de herramientas,
+resultados esperados y criterios de aceptación. Las pruebas deben demostrar
+contratos observables y fallos relevantes. No sustituir pruebas de corrección
+por benchmarks, ni interpretar cobertura o race detector como prueba exhaustiva.
+
+El bloque 44 requiere además de los componentes originales:
+
+1. Un subcomando que extraiga logs mediante regexp con procesamiento incremental y límites explícitos de memoria/entrada.
+2. Tests de coincidencias, UTF-8 inválido, entradas vacías, límites y errores de I/O; fuzzing y benchmarks reproducibles.
+3. Un documento con tiempo y espacio por operación, tamaño de entrada, tamaño de patrón, supuestos y contraste con mediciones.
+4. Ensayos de cancelación, fallo de persistencia y apagado con productores bloqueados, verificando liberación de recursos.
+5. SLO del laboratorio y presupuesto de recursos definidos por el alumno, junto con evidencia de aceptación y limitaciones.
+
+Los contenidos de Big O y Regex generales son prerrequisitos de referencia.
+Aquí se aplica esa teoría a Go; los repasos mínimos enlazan al PATH independiente.

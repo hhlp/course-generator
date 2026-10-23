@@ -80,9 +80,9 @@ ZABBIX EN PROFUNDIDAD
 2. Instalación y laboratorio
 2.1 requisitos de Zabbix
 2.2 elección de versión
-2.3 paquetes oficiales
-2.4 repositorios Zabbix
-2.5 paquetes disponibles
+2.3 paquetes de Fedora frente a paquetes oficiales del proveedor: origen y soporte
+2.4 repositorios compatibles con la distribución y versión; evitar mezclar paquetes Fedora y RHEL
+2.5 verificar paquetes, versiones, rutas y unidades con dnf y rpm
 2.6 Zabbix Server package
 2.7 frontend package
 2.8 Agent package
@@ -315,7 +315,7 @@ ZABBIX EN PROFUNDIDAD
 9.25 failover
 9.26 dimensionamiento
 9.27 diagnóstico
-9.28 laboratorio: desplegar monitorización mediante Proxy
+9.28 laboratorio: desplegar Proxy con template e item mínimo; profundización en bloques 10–16
 
 10. Items
 10.1 qué es un item
@@ -1006,7 +1006,7 @@ ZABBIX EN PROFUNDIDAD
 47.18 history.get
 47.19 trend.get
 47.20 discoveryrule.get
-47.21 pagination
+47.21 extracción por lotes: limit, ordenación y filtros admitidos por cada método; límites sin offset genérico
 47.22 filtering
 47.23 output
 47.24 select*
@@ -1293,7 +1293,7 @@ ZABBIX EN PROFUNDIDAD
 63.2 internal items
 63.3 zabbix[process]
 63.4 zabbix[queue]
-63.5 zabbix[cache]
+63.5 claves de caches: zabbix[rcache,...], zabbix[wcache,...] y zabbix[vcache,...]
 63.6 zabbix[requiredperformance]
 63.7 process busy
 63.8 cache utilization
@@ -1679,7 +1679,7 @@ ZABBIX EN PROFUNDIDAD
 80.20 postmortems
 80.21 laboratorio: construir un runbook de operación
 
-81. Proyecto final experto
+81. Proyecto final experto (completar después de los bloques 82–90)
 81.1 definir requisitos de la plataforma
 81.2 diseñar arquitectura
 81.3 diseñar segmentación de red
@@ -1761,6 +1761,15 @@ ZABBIX EN PROFUNDIDAD
 81.79 construir mapa completo de flujos internos
 81.80 proyecto final: operar y diagnosticar una plataforma Zabbix de producción
 
+81.81 incorporar monitorización de logs y rotación
+81.82 incorporar prueba sintética de navegador
+81.83 monitorizar VMware o simular un escenario documentado
+81.84 desplegar y verificar plugin externo de Agent 2
+81.85 medir y reducir ruido de alertas
+81.86 provisionar configuración con Ansible y Terraform
+81.87 desplegar widget frontend personalizado
+81.88 ejecutar prueba de carga y resiliencia controlada
+81.89 probar PITR y continuidad con RPO/RTO medidos
 
 # AMPLIACIÓN DE LA REVISIÓN PROFUNDA — BLOQUES 82–90
 
@@ -1945,15 +1954,3 @@ ZABBIX EN PROFUNDIDAD
 90.17 laboratorio: restauración a punto en el tiempo
 90.18 laboratorio: reconstrucción desde backups
 90.19 proyecto: plan DR probado y auditado
-
-
-# AMPLIACIÓN DEL PROYECTO FINAL (bloque 81; ejecutar al concluir los bloques 82–90)
-81.81 incorporar monitorización de logs y rotación
-81.82 incorporar prueba sintética de navegador
-81.83 monitorizar VMware o simular un escenario documentado
-81.84 desplegar y verificar plugin externo de Agent 2
-81.85 medir y reducir ruido de alertas
-81.86 provisionar configuración con Ansible y Terraform
-81.87 desplegar widget frontend personalizado
-81.88 ejecutar prueba de carga y resiliencia controlada
-81.89 probar PITR y continuidad con RPO/RTO medidos

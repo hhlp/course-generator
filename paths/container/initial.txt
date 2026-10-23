@@ -96,6 +96,10 @@
 3.17 configuración instalada
 3.18 archivos proporcionados por los RPM
 3.19 laboratorio: inventario completo del stack de contenedores
+3.20 Docker CE y Moby en Fedora: repositorios, paquetes y elección documentada
+3.21 Docker CE: CLI, containerd y plugins Buildx/Compose; verificar paquetes instalados
+3.22 coexistencia Podman/Docker: podman-docker, sockets y resolución de conflictos
+3.23 laboratorio: instalación reproducible e inventario de versiones y procedencia
 
 4. Anatomía de una imagen
 4.1 qué contiene una imagen
@@ -331,6 +335,11 @@
 12.17 ventajas de seguridad
 12.18 limitaciones
 12.19 laboratorio: mapear UID host ↔ contenedor
+12.20 Docker rootless: requisitos y dockerd-rootless-setuptool.sh
+12.21 Docker rootless: contexto, DOCKER_HOST y socket de usuario
+12.22 Docker rootless: systemctl --user, linger y diagnóstico del daemon
+12.23 Docker rootless frente a userns-remap: privilegios y mapeos UID/GID
+12.24 laboratorio: comparar Podman rootless y Docker rootless con datos persistentes
 
 13. Pods con Podman
 13.1 concepto de pod
@@ -592,6 +601,8 @@
 25.12 proxies
 25.13 daemon troubleshooting
 25.14 laboratorio: inspeccionar completamente Docker Engine
+25.15 Docker contexts: endpoint activo, variables de entorno y selección segura
+25.16 laboratorio: distinguir daemon rootful/rootless y evitar operar sobre otro contexto
 
 26. Logging y observabilidad
 26.1 stdout
@@ -901,6 +912,7 @@
 39.35 modo verbose
 39.36 modo diagnóstico
 39.37 proyecto final: implementar container-debugger
+39.38 hito base: contrato JSON, redacción de secretos y criterios de aceptación
 
 40. Linux Container Internals y OCI Runtime
 40.1 clone, clone3, unshare y setns: propósito y diferencias
@@ -1198,6 +1210,7 @@
 52.20 informe humano y JSON con evidencias
 52.21 laboratorio final: build, registry, deploy, incidente y recuperación
 52.22 entrega final: container-debugger con documentación y runbook
+52.23 hito experto: evidencias reproducibles, restauración y criterios de aceptación
 
 
 53. Docker Swarm — fundamentos y arquitectura
@@ -1288,6 +1301,8 @@
 57.13 Backups de datos de aplicación
 57.14 Despliegue de proxy, app y base de datos
 57.15 Laboratorio: stack multinodo con secrets y persistencia
+57.16 stack deploy y formato heredado Compose v3 frente a Compose Specification
+57.17 laboratorio: validar stack, construir/publicar antes del deploy y revisar opciones ignoradas
 
 
 58. Docker Swarm — seguridad, HA y recuperación
@@ -1361,3 +1376,4 @@
 61.14 Pruebas unitarias, integración y fallos simulados
 61.15 Laboratorio final: build, deploy, incidente, rollback y restore
 61.16 Entrega: container-debugger ampliado, documentación y runbook
+61.17 aceptación final: fallos reproducibles, redacción de secretos y evidencias por nodo

@@ -37,6 +37,9 @@ BLOQUE 0 — Fundamentos de DNS
 0.34 systemd-resolved: conceptos y diferencias
 0.35 NetworkManager y configuración DNS
 0.36 Laboratorio: seguir una resolución completa
+0.37 Orden de aprendizaje y despliegue: RHCSA, TIME, DNS operativo e IAM
+0.38 DNS independiente y DNS como infraestructura de IAM: mapa de dependencias
+0.39 Laboratorio aislado: topología, direccionamiento y resultados verificables
 
 BLOQUE 1 — Herramientas DNS en Linux
 1.1 dig
@@ -95,6 +98,10 @@ BLOQUE 2 — Instalación de BIND 9 en Fedora/RHEL
 2.21 named-checkzone
 2.22 named -g para debugging
 2.23 Laboratorio: primer servidor BIND
+2.24 Registrar versión de named, opciones de compilación y versiones RPM
+2.25 Preflight: hostname, resolución local, reloj y conectividad UDP/TCP
+2.26 Arranque con fuentes NTP por nombre: evitar dependencias circulares DNS/TIME
+2.27 Laboratorio: reinicio en frío y recuperación de TIME y DNS
 
 BLOQUE 3 — named.conf en profundidad
 3.1 Sintaxis de named.conf
@@ -185,6 +192,8 @@ BLOQUE 5 — Zonas DNS
 5.23 Validación con named-checkzone
 5.24 Errores frecuentes de sintaxis
 5.25 Laboratorio: construir una zona desde cero
+5.26 Aritmética de serial de 32 bits: RFC 1982, wraparound y comparaciones
+5.27 Laboratorio: corregir serial regresivo y verificar convergencia de secundarios
 
 BLOQUE 6 — Authoritative DNS
 6.1 Arquitectura authoritative-only
@@ -363,6 +372,10 @@ BLOQUE 14 — TSIG
 14.12 Permisos de claves
 14.13 Troubleshooting
 14.14 Laboratorio TSIG
+14.15 Tiempo de sistema y ventana de aceptación de TSIG
+14.16 Distinguir BADSIG, BADKEY y BADTIME mediante logs y captura
+14.17 RFC 8945 y elección de HMAC-SHA256 para nuevas claves
+14.18 Laboratorio: provocar BADTIME en máquinas desechables y recuperar DDNS/AXFR
 
 BLOQUE 15 — DDNS
 15.1 Dynamic DNS
@@ -440,6 +453,12 @@ BLOQUE 17 — DNSSEC con BIND en profundidad
 17.24 Emergency rollover
 17.25 Laboratorio: zona firmada
 17.26 Laboratorio: cadena de confianza
+17.27 Preflight temporal con chronyc tracking, sources y timedatectl
+17.28 RRSIG: inception, expiration y diferencias frente a TTL
+17.29 Planificar rollover con TTL, propagación y estado del DS en el padre
+17.30 Validar rollover ZSK/KSK desde un resolver independiente
+17.31 Recuperar DS incorrecto o clave perdida con cronología y evidencia
+17.32 Laboratorio: firma aún no válida y firma expirada por reloj incorrecto
 
 BLOQUE 18 — Views / Split DNS
 18.1 Qué son las views
@@ -487,6 +506,9 @@ BLOQUE 19 — Logging de BIND
 19.28 Activar/desactivar query logging con rndc
 19.29 Evitar logging excesivo
 19.30 Laboratorio de observabilidad DNS
+19.31 dnstap: finalidad, eventos y diferencias frente a query logging
+19.32 Comprobar soporte de compilación y herramientas de lectura de dnstap
+19.33 Laboratorio: correlacionar dnstap, journal y captura sin exponer secretos
 
 BLOQUE 20 — SELinux + BIND
 20.1 Modelo SELinux de named
@@ -578,6 +600,10 @@ BLOQUE 24 — DNS moderno y privacidad
 24.11 Políticas de red
 24.12 Limitaciones operacionales
 24.13 Arquitecturas modernas
+24.14 Matriz por versión y rol: recepción, consultas salientes y herramientas DoT/DoH/DoQ
+24.15 TLS: nombre del servidor, confianza de certificados y validez temporal
+24.16 Laboratorio DoT/DoH según soporte real del paquete instalado
+24.17 DoQ: práctica con implementación compatible cuando no esté disponible en BIND
 
 BLOQUE 25 — IPv6 + DNS
 25.1 AAAA
@@ -637,6 +663,9 @@ BLOQUE 27 — Monitoring y observabilidad
 27.18 Synthetic DNS queries
 27.19 Health checks
 27.20 Laboratorio de observabilidad
+27.21 Proteger statistics-channels: escucha interna, ACL y acceso del exporter
+27.22 Consultas sintéticas diferenciadas: authoritative, recursión, DNSSEC y SRV
+27.23 Alertas de reloj, validez de firmas y convergencia primary/secondary
 
 BLOQUE 28 — Troubleshooting DNS en profundidad
 28.1 Metodología de diagnóstico
@@ -684,6 +713,10 @@ BLOQUE 28 — Troubleshooting DNS en profundidad
 28.43 Wireshark
 28.44 strace como último recurso
 28.45 Laboratorios de incidentes reales
+28.46 EDE según RFC 8914: interpretar información adicional sin sustituir RCODE
+28.47 Distinguir SERVFAIL por DNSSEC, reloj, conectividad y políticas
+28.48 Diagnóstico TSIG: BADTIME, BADSIG y BADKEY
+28.49 Laboratorio: evidencia antes/después y recuperación sin desactivar DNSSEC
 
 BLOQUE 29 — Administración operacional
 29.1 rndc en profundidad
@@ -710,6 +743,9 @@ BLOQUE 29 — Administración operacional
 29.22 Disaster recovery
 29.23 Upgrade de BIND
 29.24 Validación previa y posterior al upgrade
+29.25 Backup coherente de zonas dinámicas, journals y estado de claves DNSSEC
+29.26 Restore aislado: permisos, SELinux, secretos y verificación desde cliente
+29.27 Actualizar matriz de capacidades y revisar release notes antes de migrar
 
 BLOQUE 30 — Automatización DNS
 30.1 Automatización vs edición manual
@@ -804,6 +840,9 @@ BLOQUE 33 — DNS respecto a IAM: independiente vs integrado
 33.23 Laboratorio A: BIND completamente independiente de IAM
 33.24 Laboratorio B: DNS proporcionando service discovery a IAM
 33.25 Laboratorio C: comparar FreeIPA con DNS integrado y DNS externo
+33.26 Separar orden de revisión curricular de orden de despliegue de servicios
+33.27 Checklist de arquitectura: DNS externo o integrado y propietario de cada zona
+33.28 Dependencias temporales de DNSSEC, TSIG y Kerberos en cada escenario
 
 BLOQUE 34 — DNS + FreeIPA / Kerberos
 34.1 DNS como fundamento de IAM
@@ -817,6 +856,14 @@ BLOQUE 34 — DNS + FreeIPA / Kerberos
 34.9 DNSSEC considerations
 34.10 Troubleshooting de SRV
 34.11 Laboratorio
+34.12 Preflight IdM: FQDN, A/AAAA, PTR y SRV requeridos por la documentación
+34.13 Verificar registros generados por FreeIPA y publicarlos en DNS externo
+34.14 GSS-TSIG: principal DNS, credenciales y keytab gestionados por la plataforma
+34.15 nsupdate -g: adquisición de ticket y actualización autorizada
+34.16 update-policy y mínimo privilegio para operaciones GSS-TSIG
+34.17 Laboratorio: alta de host desde IAM y verificación de A/AAAA/PTR
+34.18 Laboratorio: denegar una actualización fuera de la política
+34.19 Diagnóstico: resolución, hora, ticket, principal, keytab y autorización
 
 BLOQUE 35 — DNS internals
 35.1 RFC 1034
@@ -839,6 +886,8 @@ BLOQUE 35 — DNS internals
 35.18 Bailiwick rules
 35.19 QNAME minimization
 35.20 Leer capturas DNS a nivel de paquete
+35.21 EDE en OPT: lectura de capturas y límites de confianza
+35.22 TSIG según RFC 8945 y GSS-TSIG según RFC 3645
 
 BLOQUE 36 — Laboratorio final
 36.1 Diseñar una infraestructura DNS desde cero
@@ -871,6 +920,11 @@ BLOQUE 36 — Laboratorio final
 36.28 Diagnosticar con tcpdump
 36.29 Diagnosticar logs
 36.30 Recuperación completa
+36.31 Perfil A: infraestructura DNS completa independiente de IAM
+36.32 Perfil B: extensión integrada con IAM ya desplegado
+36.33 Prueba de reinicio en frío sin dependencia circular TIME/DNS
+36.34 Rollover DNSSEC y prueba de BADTIME con recuperación
+36.35 Informe final con consultas, logs, métricas y criterios de aceptación
 
 BLOQUE 37 — Nivel experto
 37.1 Diseñar DNS authoritative a escala
@@ -894,3 +948,5 @@ BLOQUE 37 — Nivel experto
 37.19 Análisis de paquetes avanzado
 37.20 Lectura e interpretación de RFC
 37.21 Proyecto final: diseñar, desplegar, asegurar, automatizar, monitorizar y diagnosticar una infraestructura DNS empresarial completa
+37.22 Evaluación: continuidad de resolución durante rollover y migración
+37.23 Evaluación: reconstrucción desde backup y objetivos RPO/RTO documentados

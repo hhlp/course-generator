@@ -1,20 +1,18 @@
 ---
 course:
-  title: "MAIL — De 0 a Experto en Profundidad"
-  language: "es"
+  title: MAIL — De 0 a Experto en Profundidad
+  language: es
   level:
     start: "cero"
     end: "experto"
-  description: >-
-    Administración completa de infraestructura de correo electrónico en
-    Fedora/RHEL: arquitectura, SMTP, Postfix, IMAP, Dovecot, SASL, TLS,
-    SPF, DKIM, DMARC, seguridad, logging, observabilidad, alta disponibilidad
-    y troubleshooting.
-  goal: >-
-    Comprender y administrar un sistema de correo completo, desde DNS y
+  description: 'Administración completa de infraestructura de correo electrónico
+    en Fedora/RHEL: arquitectura, SMTP, Postfix, IMAP, Dovecot, SASL, TLS, SPF,
+    DKIM, DMARC, seguridad, logging, observabilidad, alta disponibilidad y
+    troubleshooting.'
+  goal: Comprender y administrar un sistema de correo completo, desde DNS y
     SMTP hasta almacenamiento IMAP, autenticación del dominio, seguridad,
     observabilidad y diagnóstico end-to-end.
-  mode: "deep"
+  mode: deep
   platform:
     primary:
       - Fedora
@@ -28,6 +26,11 @@ course:
       - firewalld
       - SELinux
 
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 stack:
   protocols:
     - SMTP
@@ -40,6 +43,9 @@ stack:
   services:
     - Postfix
     - Dovecot
+    - Pigeonhole/Sieve
+    - ManageSieve
+    - Rspamd
   identity_integration:
     role: consumer
     standalone_modes:
@@ -53,9 +59,33 @@ stack:
       - SASL
       - SSSD
       - PAM
-    principle: "Mail puede operar sin IAM centralizado; cuando existe IAM,
-      Postfix/Dovecot consumen identidad/autenticación y no se convierten
-      en el proveedor central."
+    principle: Mail puede operar sin IAM centralizado; cuando existe IAM,
+      Postfix/Dovecot consumen identidad/autenticación y no se convierten en
+      el proveedor central.
+    contract:
+      - login
+      - primary-address
+      - aliases
+      - mail-enabled
+      - groups
+      - UID/GID
+      - mail-home
+      - mail-path
+      - quota
+    required_distinctions:
+      - autenticación frente a habilitación Mail
+      - MAIL FROM frente a From visible
+      - GSSAPI requiere userdb
+      - PAM no sustituye userdb
+      - caché SSSD frente a caché Dovecot
+      - cuenta técnica vmail frente a identidad humana
+    lifecycle:
+      - alta centralizada
+      - aprovisionamiento de buzón sin duplicar contraseñas
+      - cambio de dirección y aliases
+      - baja y revocación
+      - sesiones abiertas y expiración de caché
+      - retención y recuperación
   domain_authentication:
     - SPF
     - DKIM
@@ -76,15 +106,14 @@ stack:
     - high-availability
     - troubleshooting
     - IAM-integration
-
 lesson_style:
-  start_with: "🎯 OBJETIVO"
-  end_with: "🧠 QUÉ DEBES RECORDAR"
+  start_with: 🎯 OBJETIVO
+  end_with: 🧠 QUÉ DEBES RECORDAR
   sections_when_useful:
-    - "🧪 Laboratorio"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-    - "📚 LECTURA"
+    - 🧪 Laboratorio
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+    - 📚 LECTURA
   characteristics:
     - teoría profunda pero orientada a administración real
     - comandos reproducibles
@@ -95,10 +124,9 @@ lesson_style:
     - enseñar lectura de logs
     - incluir troubleshooting sistemático
     - evitar configuraciones opacas tipo copiar-y-pegar
-
 labs:
   enabled: true
-  philosophy: "build-break-fix"
+  philosophy: build-break-fix
   include:
     - objetivo
     - topología
@@ -112,7 +140,29 @@ labs:
     - troubleshooting
     - IAM-integration
     - criterios de éxito
-
+    - archivos completos con rutas
+    - comandos por host
+    - versiones
+    - pruebas positivas y negativas
+    - limpieza
+    - reversión
+  topology:
+    - DNS interno
+    - Postfix/Dovecot
+    - cliente
+    - segundo MTA
+    - IAM separado en variante centralizada
+  domains:
+    - mail.test
+    - peer.test
+  network: privada sin publicación obligatoria
+  tls: CA interna y confianza instalada en clientes
+  variants:
+    - autónoma local/virtual
+    - consumidora de IAM
+    - pública opcional con requisitos externos
+  scope_note: Estos archivos definen el curso; las lecciones generadas deben
+    aportar configuración y comandos ejecutables.
 troubleshooting:
   priority: high
   method:
@@ -148,7 +198,6 @@ troubleshooting:
     - postcat
     - doveconf
     - doveadm
-
 security:
   perspective: defensive
   topics:
@@ -165,7 +214,6 @@ security:
     - DKIM
     - DMARC
     - key-management
-
 logging:
   teach_discovery: true
   sources:
@@ -174,10 +222,9 @@ logging:
     - Dovecot
     - rsyslog
   notes:
-    - "No asumir que /var/log/maillog existe en todas las instalaciones."
-    - "Enseñar cómo descubrir el destino real de los logs y cómo configurarlo."
-    - "Correlacionar Queue ID, Message-ID, sesiones SMTP y autenticación."
-
+    - No asumir que /var/log/maillog existe en todas las instalaciones.
+    - Enseñar cómo descubrir el destino real de los logs y cómo configurarlo.
+    - Correlacionar Queue ID, Message-ID, sesiones SMTP y autenticación.
 references:
   prefer:
     - RFC
@@ -186,9 +233,8 @@ references:
     - documentación Fedora/RHEL
     - man pages
   books_as_support: true
-
 final_project:
-  title: "Servidor Mail de Producción"
+  title: Servidor Mail de Producción
   requires:
     - architecture-design
     - DNS
@@ -215,3 +261,59 @@ final_project:
     - architecture-documentation
     - identity-model-documentation
     - centralized-IAM-integration-when-applicable
+    - version-compatibility-matrix
+    - Sieve-and-ManageSieve
+    - shared-mailbox-ACL
+    - sender-authorization
+    - identity-lifecycle
+    - IAM-outage-tests
+    - migration-and-rollback-plan
+curriculum:
+  preserve_existing_coverage: true
+  numbering: Bloques y lecciones consecutivos; IAM después de integración y
+    Sieve
+  block_count: 36
+  sequence:
+    - fundamentos y DNS
+    - SMTP y Postfix
+    - SASL y TLS
+    - IMAP y Dovecot
+    - almacenamiento y LMTP
+    - Sieve y buzones compartidos
+    - IAM consumidor
+    - SPF, DKIM y DMARC
+    - seguridad y operación
+    - versiones y migración
+    - laboratorios y proyecto
+compatibility:
+  discover_installed_versions: true
+  dovecot_branches:
+    - '2.3'
+    - '2.4'
+  dovecot_24_notes:
+    - mail_location se divide en mail_driver/mail_path y ajustes asociados
+    - Validar dovecot_config_version y dovecot_storage_version
+    - replicator y Director retirados; rediseñar HA según arquitectura soportada
+  migration_requires:
+    - ensayo aislado
+    - validación de datos y metadatos
+    - plan de reversión
+  dmarc_current_rfcs:
+    - 9989
+    - 9990
+    - 9991
+  dmarc_legacy_rfcs:
+    - 7489
+  historic_tags:
+    - pct
+acceptance_criteria:
+  - relay anónimo externo bloqueado
+  - destinatario inexistente rechazado durante SMTP
+  - remitente autenticado sin permiso denegado
+  - baja IAM y cachés verificadas
+  - userdb y passdb probadas por separado
+  - Sieve ejecutado durante entrega
+  - ACL de buzón compartido comprobada
+  - caída IAM y filtro con recuperación
+  - restore de mensajes y metadatos
+  - mensaje aceptado recuperable tras caída de nodo

@@ -53,5 +53,18 @@ scope:
     - data
     - calculation
     - construction
+    - update
     - interpretation
+    - anomalies
     - limitations
+    - decisions
+  normative_nexus_source: "The Nexus Guide"
+  preserve_block_and_lesson_identifiers: true
+  chart_construction_block: 8
+  scrum_flow_application_block: 19
+  reuse_chart_datasets_across_blocks: true
+  introduce_sle_before_aging_wip_lab: true
+  little_law_requires_consistent_averages_and_units: true
+  distinguish_sprint_goal_risk_from_obsolescence: true
+  include_project_variant_without_story_points: true
+  nexus_project_scenario_teams: 3

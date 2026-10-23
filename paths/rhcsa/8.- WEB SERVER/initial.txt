@@ -18,6 +18,9 @@ BLOQUE 0 — FUNDAMENTOS WEB
 0.13 Contenido estático vs dinámico
 0.14 Web server vs application server vs reverse proxy vs load balancer
 0.15 Laboratorio: inspeccionar HTTP con curl
+0.16 Laboratorio aislado: topología, direccionamiento, FQDN y puertos por componente
+0.17 Versiones instaladas y capacidades: httpd -v/-M, nginx -V, haproxy -vv y curl -V
+0.18 Dependencias: DNS y TIME antes de IAM; IAM previo solo para las prácticas consumidoras
 
 BLOQUE 1 — APACHE: INSTALACIÓN Y BASE
 1.1 Arquitectura de Apache HTTP Server
@@ -115,6 +118,8 @@ BLOQUE 6 — APACHE REVERSE PROXY
 6.12 connection reuse
 6.13 backend failures
 6.14 Laboratorio Apache → aplicación backend
+6.15 TLS al backend: SSLProxyEngine, CA de confianza y verificación del nombre
+6.16 Impedir un forward proxy abierto: ProxyRequests Off y pruebas negativas
 
 BLOQUE 7 — APACHE TLS / HTTPS
 7.1 Repaso PKI aplicado a HTTPS
@@ -128,13 +133,16 @@ BLOQUE 7 — APACHE TLS / HTTPS
 7.9 SNI
 7.10 HTTP → HTTPS
 7.11 HSTS
-7.12 OCSP stapling: concepto y operación
+7.12 OCSP stapling: concepto, operación y aplicabilidad según la CA
 7.13 certificados internos
 7.14 ACME / Let's Encrypt
 7.15 renovación automática
 7.16 openssl s_client
 7.17 curl y TLS
 7.18 troubleshooting de cadena, hostname y expiración
+7.19 Revocación: CRL, OCSP y alcance real de la validación por clientes
+7.20 Let’s Encrypt sin OCSP desde agosto de 2025: no exigir stapling a certificados sin responder
+7.21 ACME en laboratorio privado: CA interna y diferencia entre HTTP-01 y DNS-01
 
 BLOQUE 8 — APACHE SEGURIDAD, LOGS Y TROUBLESHOOTING
 8.1 Principio de mínimo privilegio
@@ -157,6 +165,8 @@ BLOQUE 8 — APACHE SEGURIDAD, LOGS Y TROUBLESHOOTING
 8.18 ausearch/sealert para AVC
 8.19 tcpdump
 8.20 diagnóstico sistemático
+8.21 Autenticación Basic solo sobre HTTPS; grupos locales con archivo de grupos
+8.22 Protección de logs: excluir contraseñas, Authorization, cookies y secretos
 
 BLOQUE 9 — NGINX: INSTALACIÓN Y BASE
 9.1 Arquitectura event-driven
@@ -206,6 +216,8 @@ BLOQUE 11 — NGINX PHP-FPM
 11.10 tuning
 11.11 troubleshooting 404/502/504
 11.12 Laboratorio Nginx + PHP-FPM
+11.13 Prevenir ejecución de archivos PHP inexistentes y exposición del código fuente
+11.14 Diagnosticar saturación: pm.max_children, slowlog y duración de peticiones
 
 BLOQUE 12 — NGINX REVERSE PROXY
 12.1 proxy_pass
@@ -222,6 +234,9 @@ BLOQUE 12 — NGINX REVERSE PROXY
 12.12 HTTP/HTTPS backends
 12.13 backend failures
 12.14 Laboratorio reverse proxy
+12.15 TLS al upstream: proxy_ssl_verify on y proxy_ssl_trusted_certificate
+12.16 SNI y hostname del backend: proxy_ssl_server_name y proxy_ssl_name
+12.17 Laboratorio: CA desconocida, nombre incorrecto y backend sin SNI esperado
 
 BLOQUE 13 — NGINX LOAD BALANCING
 13.1 upstream
@@ -234,6 +249,7 @@ BLOQUE 13 — NGINX LOAD BALANCING
 13.8 keepalive upstream
 13.9 persistencia: conceptos y límites
 13.10 laboratorio con varios backends
+13.11 Distinguir capacidades de Nginx Open Source, módulos disponibles y funciones comerciales
 
 BLOQUE 14 — NGINX TLS / HTTPS
 14.1 certificados y claves
@@ -244,12 +260,15 @@ BLOQUE 14 — NGINX TLS / HTTPS
 14.6 SNI
 14.7 session reuse/cache
 14.8 HSTS
-14.9 OCSP stapling
+14.9 OCSP stapling y límites según la CA emisora
 14.10 HTTP/2
 14.11 HTTP/3: soporte y conceptos operativos
 14.12 ACME
 14.13 renovación
 14.14 troubleshooting TLS
+14.15 HTTP/3 condicionado a versión, compilación, cliente y UDP/443; alternativa HTTP/2
+14.16 Renovación con validación previa, reload y prueba del certificado servido
+14.17 Revocación con CRL y OCSP según CA; Let’s Encrypt no ofrece OCSP desde 2025
 
 BLOQUE 15 — NGINX CACHE, RENDIMIENTO Y SEGURIDAD
 15.1 browser caching
@@ -270,6 +289,8 @@ BLOQUE 15 — NGINX CACHE, RENDIMIENTO Y SEGURIDAD
 15.16 security headers
 15.17 hardening
 15.18 benchmarking y tuning
+15.19 Caché y autenticación: Authorization, Cookie, Set-Cookie y riesgo de compartir contenido privado
+15.20 Vary, claves de caché y pruebas de aislamiento entre usuarios
 
 BLOQUE 16 — NGINX LOGS Y TROUBLESHOOTING
 16.1 /var/log/nginx/access.log
@@ -303,6 +324,10 @@ BLOQUE 17 — REVERSE PROXY EN PROFUNDIDAD
 17.13 failover
 17.14 sticky sessions
 17.15 aplicaciones stateless
+17.16 Límite de confianza: descartar cabeceras de identidad recibidas de clientes no confiables
+17.17 Real IP y proxies conocidos: mod_remoteip y ngx_http_realip_module
+17.18 Restringir el acceso directo a backends y probar intentos de eludir autenticación
+17.19 Normalización de Host, URI y encuadre HTTP: introducción a request smuggling
 
 BLOQUE 18 — HAPROXY: INSTALACIÓN Y FUNDAMENTOS
 18.1 Qué problema resuelve HAProxy
@@ -367,6 +392,7 @@ BLOQUE 21 — HAPROXY TLS
 21.10 protocolos y cifrados
 21.11 rotación/renovación de certificados
 21.12 troubleshooting TLS
+21.13 Laboratorio: rechazar certificado backend no confiable, caducado o con nombre incorrecto
 
 BLOQUE 22 — HAPROXY OBSERVABILIDAD Y RUNTIME
 22.1 logs
@@ -379,6 +405,7 @@ BLOQUE 22 — HAPROXY OBSERVABILIDAD Y RUNTIME
 22.8 Prometheus: integración conceptual
 22.9 troubleshooting de disponibilidad
 22.10 operación sin reinicios innecesarios
+22.11 Correlación con identificador de petición y métricas de latencia/errores sin secretos
 
 BLOQUE 23 — APACHE VS NGINX VS HAPROXY
 23.1 objetivos de cada producto
@@ -492,6 +519,35 @@ BLOQUE 27 — WEB SERVERS E IAM: AUTÓNOMO VS CONSUMIDOR
 27.40 laboratorio Apache + Kerberos/SPNEGO/FreeIPA
 27.41 comparar arquitectura autónoma vs consumidora de IAM
 27.42 checkpoint: integrar un servicio web con IAM sin administrar identidades localmente
+27.43 Contrato con IAM: consumir usuarios y grupos ya existentes; no crear cuentas de alumnos en cada web server
+27.44 Preflight del consumidor: FQDN, DNS, Chrony, CA, realm, conectividad y permisos delegados
+27.45 Instalar y comprobar mod_auth_gssapi según repositorios y versión de Fedora/RHEL
+27.46 Configurar AuthType GSSAPI, GssapiCredStore y Require para un recurso protegido
+27.47 Nombre público, aliases y balanceadores: seleccionar el principal HTTP correcto
+27.48 Keytab dedicado: propietario, permisos, contexto SELinux y acceso mínimo del servicio
+27.49 Rotación de keytab y KVNO: coordinación con IAM y riesgo de invalidar otros consumidores
+27.50 Cliente SPNEGO: TGT, navegador autorizado y soporte GSSAPI de curl
+27.51 Prueba reproducible: kinit, klist, kvno HTTP/FQDN y curl --negotiate -u :
+27.52 Autenticación Kerberos y autorización por grupos: decisiones distintas y fuente de atributos explícita
+27.53 Apache LDAP: mod_ldap/mod_authnz_ldap, búsqueda y bind, filtros y Require ldap-group
+27.54 LDAP protegido: StartTLS o LDAPS con CA y verificación; cuenta de consulta de mínimo privilegio
+27.55 Caché LDAP: caducidad, cambios de grupos y demoras en revocación de permisos
+27.56 Laboratorio de autorización: usuario permitido, denegado y cambio de grupo central
+27.57 SSSD/PAM del host: no convierte automáticamente cada petición HTTP en autenticación central
+27.58 Nginx auth_request: comprobar módulo con nginx -V antes de configurar
+27.59 Desplegar un servicio de autenticación ya integrado con IAM: Apache/SPNEGO como opción de laboratorio
+27.60 Configurar location interna de autorización y subpetición sin cuerpo
+27.61 Respuestas auth_request: 2xx permite, 401/403 deniega y otros estados provocan error
+27.62 Transmitir WWW-Authenticate y probar Negotiate a través del proxy con el FQDN público
+27.63 Identidad al backend: contrato de cabeceras, limpieza de entrada y canal de confianza
+27.64 Laboratorio Nginx + auth_request + Apache/SPNEGO + backend protegido
+27.65 Distinguir subpetición de autorización, autenticación de la aplicación y sesión del navegador
+27.66 Pruebas de bypass: cabeceras falsificadas, acceso directo y ruta interna invocable externamente
+27.67 Fallo del servicio de autenticación: denegar acceso protegido y conservar recursos públicos previstos
+27.68 Fallos de IAM: nuevos accesos, tickets vigentes y cachés pueden comportarse de forma diferente
+27.69 Diagnóstico: desfase horario, SPN ausente, KVNO incorrecto, keytab ilegible y CA no confiable
+27.70 Matriz de pruebas: anónimo, autorizado, no autorizado, IAM caído y auth service caído
+27.71 HAProxy frontal: balancear servicios autenticados sin asumir funciones de proveedor de identidades
 
 BLOQUE 28 — SEGURIDAD WEB SERVER
 28.1 threat model de infraestructura web
@@ -512,6 +568,9 @@ BLOQUE 28 — SEGURIDAD WEB SERVER
 28.16 secretos y claves privadas
 28.17 actualizaciones
 28.18 auditoría de configuración
+28.19 Pruebas de seguridad: traversal, exposición de dotfiles y métodos HTTP no permitidos
+28.20 mTLS: confianza, autenticación de servicio y diferencia respecto a identidades humanas
+28.21 Cabeceras de seguridad según aplicación: comprobar CSP/HSTS sin romper el servicio
 
 BLOQUE 29 — ALTA DISPONIBILIDAD WEB
 29.1 SPOF
@@ -526,6 +585,7 @@ BLOQUE 29 — ALTA DISPONIBILIDAD WEB
 29.10 graceful draining
 29.11 Keepalived/VRRP: introducción
 29.12 límites del bloque: HA profunda como PATH independiente
+29.13 Laboratorio de drenaje: retirar un backend y verificar peticiones y conexiones activas
 
 BLOQUE 30 — ARQUITECTURAS REALES
 30.1 Internet → Apache
@@ -540,6 +600,9 @@ BLOQUE 30 — ARQUITECTURAS REALES
 30.10 múltiples dominios y backends
 30.11 diseño de logs y observabilidad
 30.12 análisis de trade-offs
+30.13 Arquitectura interna autónoma sin IAM: sitio público o credenciales locales de laboratorio
+30.14 Arquitectura interna con IAM: HAProxy → Nginx/auth_request → backend; Apache/SPNEGO como autenticador
+30.15 FQDN, TLS y principal HTTP en cada punto de terminación de autenticación
 
 BLOQUE 31 — AUTOMATIZACIÓN Y OPERACIÓN
 31.1 configuración reproducible
@@ -556,6 +619,9 @@ BLOQUE 31 — AUTOMATIZACIÓN Y OPERACIÓN
 31.12 handlers y config validation
 31.13 rollback
 31.14 pruebas post-deploy
+31.15 Prevalidación Ansible: apachectl configtest, nginx -t y haproxy -c antes del handler
+31.16 Distribuir secretos sin registrarlos: no_log, permisos, SELinux y rotación coordinada
+31.17 Pruebas automáticas positivas/negativas de HTTP, TLS y autorización tras despliegue
 
 BLOQUE 32 — TROUBLESHOOTING AVANZADO
 32.1 fallo DNS
@@ -576,6 +642,9 @@ BLOQUE 32 — TROUBLESHOOTING AVANZADO
 32.16 packet capture
 32.17 correlación temporal de logs
 32.18 postmortem y prevención
+32.19 Diagnóstico de autenticación: 401 repetido, 403 y error de dependencia de autorización
+32.20 Incidente: acceso directo al backend evita el control IAM
+32.21 Incidente: caché entrega contenido de otro usuario y medidas de contención
 
 BLOQUE 33 — PROYECTO FINAL: WEB INFRASTRUCTURE
 33.1 Diseñar topología
@@ -603,3 +672,13 @@ BLOQUE 33 — PROYECTO FINAL: WEB INFRASTRUCTURE
 33.23 documentación de arquitectura
 33.24 runbook de operación/troubleshooting
 33.25 checkpoint final: administrar, asegurar y diagnosticar la plataforma sin guía
+33.26 Implementar variante autónoma: acceso público y recurso local protegido por HTTPS
+33.27 Implementar variante consumidora Apache + mod_auth_gssapi con IAM ya disponible
+33.28 Implementar Nginx + auth_request y autenticador centralizado con backend aislado
+33.29 Documentar DNS, TIME, CA, FQDN público, principal HTTP y ciclo de vida del keytab
+33.30 Evaluar usuarios centrales existentes: permitido, denegado y cambio de grupo
+33.31 Probar suplantación de cabeceras y acceso directo al backend: ambos deben fallar
+33.32 Simular fallos de IAM/autenticador y registrar efecto sobre tickets, cachés y nuevas peticiones
+33.33 Verificar TLS backend: CA, hostname y SNI; rechazar certificados inválidos
+33.34 Verificar que cachés y logs no filtran contenido privado ni credenciales
+33.35 Entregar evidencias, matriz comparativa autónomo/consumidor y runbook de recuperación IAM

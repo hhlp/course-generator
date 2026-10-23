@@ -24,9 +24,9 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 0.19 cambio evolutivo
 0.20 laboratorio: modelar un sistema
 
-0.21 Ley de Little: intuición y condiciones de estabilidad
-0.22 Ley de Kingman: utilización, variabilidad y tiempo de espera
-0.23 Simulación de colas con llegadas y servicios variables
+0.21 Tasas, unidades y promedios: introducción a Little y estabilidad del flujo
+0.22 Aproximación de Kingman: utilización, variabilidad, supuestos y espera
+0.23 Simulación guiada de colas: llegadas, servicios variables y unidades
 0.24 Laboratorio: comparar optimización local y global con datos
 
 1. Fundamentos de Kanban
@@ -104,7 +104,7 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 3.18 balance demanda-capacidad
 3.19 laboratorio WIP
 
-3.20 Cálculo inicial de límites WIP a partir de throughput y SLE
+3.20 WIP medio mediante Little y elección experimental de límites WIP
 3.21 Calibración experimental de WIP y efectos sobre colas
 3.22 Gestión de capacidad compartida y variabilidad de disponibilidad
 3.23 Laboratorio cuantitativo: escenarios WIP, capacidad y aging
@@ -165,8 +165,8 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 5.27 Definiciones operativas: inicio, fin, unidades y fuentes de datos
 5.28 Calidad de datos: censura, duplicados, outliers y elementos abiertos
 5.29 Segmentación de métricas sin ocultar variabilidad
-5.30 Little’s Law: conservación del flujo, hipótesis y casos inválidos
-5.31 Kingman: aproximación de colas y límites de aplicabilidad
+5.30 Little: promedios, conservación del flujo y distinción entre WIP medio y límite
+5.31 Aproximación de Kingman: cálculo, supuestos y límites de aplicabilidad
 5.32 Ejercicio: interpretar CFD, scatterplot y aging con un dataset
 
 6. Predictibilidad y forecasting
@@ -223,7 +223,7 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 7.18 laboratorio
 
 7.19 Ficha de cadencia: propósito, participantes, datos, decisiones y seguimiento
-7.20 Trazabilidad de acciones y decisiones entre cadencias
+7.20 Service Request Review: decisiones y relación con replenishment y Risk Review
 7.21 Simulación de Service Delivery Review y Operations Review
 
 8. STATIK y diseño de sistemas Kanban
@@ -353,7 +353,7 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 
 12.21 Mapear puntos de decisión, compromiso y descarte
 12.22 Coste de mantener opciones abiertas y caducidad
-12.23 Políticas de entrada y salida para sistemas upstream
+12.23 Políticas upstream y Service Request Review: entrada, salida y descarte
 
 13. Demand Management
 13.1 demanda
@@ -435,13 +435,13 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 15.17 reservas
 15.18 fixed date
 15.19 expedites
-15.20 commitment meetings
+15.20 reuniones de compromiso y distinción respecto a Service Request Review
 15.21 descarte
 15.22 reversibilidad
 15.23 feedback upstream-downstream
 15.24 laboratorio
 
-15.25 Cost of Delay y perfiles temporales de coste
+15.25 Cost of Delay: aplicación de perfiles temporales a la selección
 15.26 CD3: coste del retraso dividido por duración y sus límites
 15.27 Selección con capacidad restringida y dependencias
 15.28 Decisiones reversibles e irreversibles y coste de espera
@@ -630,8 +630,8 @@ F4P = propósito/cliente; Upstream = demanda antes del compromiso; Kanban = fluj
 19.21 incertidumbre
 19.22 laboratorio
 
-19.23 Cost of Delay: perfiles, unidades, supuestos y sensibilidad
-19.24 CD3 y coste de oportunidad: decisiones comparadas
+19.23 Cost of Delay: diagnóstico de supuestos y sensibilidad económica
+19.24 CD3 y coste de oportunidad: fallos de la heurística y decisiones comparadas
 19.25 Riesgos correlacionados y dependencias de entrega
 19.26 Ejercicio económico: seleccionar entre opciones con restricciones
 

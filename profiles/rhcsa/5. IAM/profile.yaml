@@ -176,3 +176,48 @@ scope:
     - vendor_specific_commercial_pam_products
     - cloud_iam_platforms
     - windows_only_administration
+
+revision_contract:
+  scope: linux_enterprise_infrastructure_iam
+  preserve_existing_blocks_and_lesson_ids: true
+  distinguish_identity_authentication_authorization: true
+  avoid_universal_linear_authentication_flow: true
+  central_identity_with_explicit_consumer_integration: true
+  hbac_requires_policy_evaluation_integration: true
+  certificate_is_public_private_key_is_secret: true
+  replication_is_not_backup: true
+  versions_and_support_matrix_required: true
+  federation_concepts_only:
+    - OIDC
+    - OAuth_2_0
+    - SAML
+    - SCIM
+
+lab_environments:
+  isolated_network: true
+  public_exposure_required: false
+  separate_standalone_labs:
+    - openldap_directory
+    - mit_kerberos_realm
+  final_environment:
+    - two_freeipa_idm_servers
+    - linux_client
+    - consumer_service_hosts
+  freeipa_uses_integrated_directory_and_kdc: true
+  document_resources_fqdn_ip_dns_time_versions: true
+  snapshots_do_not_replace_backups: true
+
+acceptance_checks:
+  - identity_resolution_and_uid_gid_consistency
+  - authentication_success_and_failure_by_method
+  - authorization_denial_after_successful_authentication
+  - hbac_test_and_controlled_allow_all_removal
+  - mfa_enrollment_factor_loss_and_recovery
+  - keytab_rotation_kvno_and_new_service_ticket_validation
+  - account_disable_new_authentication_vs_existing_tickets
+  - account_disable_open_sessions_and_offline_credentials
+  - consumer_specific_revocation_windows
+  - client_discovery_and_failover_after_replica_loss
+  - isolated_restore_and_measured_rpo_rto
+  - actual_log_locations_and_event_correlation
+  - local_identity_migration_preserves_resource_ownership

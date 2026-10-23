@@ -77,6 +77,11 @@
 2.23 flag I
 2.24 flag w
 2.25 laboratorio: construir transformaciones con s
+2.26 combinación de número y g: sustituir desde la N-ésima coincidencia en GNU sed
+2.27 coincidencias de longitud cero y avance tras una coincidencia
+2.28 conversión de mayúsculas y minúsculas GNU: \L, \U, \l, \u y \E
+2.29 alcance de las conversiones de caso y reinicio entre coincidencias con g
+2.30 laboratorio: reemplazos con capturas, coincidencias vacías y conversión de caso
 
 3. Expresiones regulares en sed
 
@@ -112,6 +117,9 @@
 3.30 patrones ambiguos
 3.31 locale y regex
 3.32 laboratorio: regex aplicadas a datos reales
+3.33 criterio POSIX leftmost-longest frente a motores con otras prioridades
+3.34 regex vacía: reutilización de la última expresión regular
+3.35 extensiones GNU en BRE frente a sintaxis BRE portable
 
 4. Direccionamiento
 
@@ -173,6 +181,11 @@
 6.14 comando F
 6.15 comando z
 6.16 laboratorio: lectura, escritura y diagnóstico
+6.17 comando y: transliteración carácter a carácter
+6.18 y frente a s y tr: correspondencias, longitudes y multibyte
+6.19 comando GNU e: ejecutar una orden y distinguir salida directa de sustitución del pattern space
+6.20 códigos de salida: errores de sintaxis, apertura y entrada/salida; q y Q con estado explícito
+6.21 laboratorio: transliteración y ejecución controlada con datos locales de confianza
 
 7. Pattern space
 
@@ -230,6 +243,9 @@
 9.16 párrafos
 9.17 bloques de texto
 9.18 laboratorio: transformar estructuras multilínea
+9.19 modificadores GNU m/M y efecto sobre ^, $ y punto en pattern spaces multilínea
+9.20 diferencia entre acumular líneas con N y activar coincidencia multilínea
+9.21 comparar n y N al alcanzar EOF con y sin impresión automática
 
 10. Flujo de control
 
@@ -250,6 +266,9 @@
 10.15 implementar bucles
 10.16 evitar bucles infinitos
 10.17 laboratorio: construir un programa sed con control de flujo
+10.18 estado de sustitución: reinicio tras leer entrada o ejecutar t/T
+10.19 b sin etiqueta frente a salto a etiqueta: fin de programa y nuevo ciclo
+10.20 por qué un salto a una etiqueta no implica leer entrada ni imprimir
 
 11. Shell quoting
 
@@ -287,6 +306,9 @@
 12.14 GNU frente a BSD sed -i
 12.15 estrategia segura temporal + validación + reemplazo
 12.16 laboratorio: edición segura de configuraciones
+12.17 riesgo de combinar -n e -i sin impresión explícita
+12.18 hard links, sustitución del inode y límites de preservación de metadatos
+12.19 atomicidad de un reemplazo individual frente a transacción de varios archivos
 
 13. Scripts sed
 
@@ -307,11 +329,13 @@
 13.15 salida esperada
 13.16 scripts idempotentes
 13.17 laboratorio: crear una herramienta .sed
+13.18 comentario inicial #n y activación implícita de -n
+13.19 orden efectivo de evaluación de fragmentos -e y archivos -f
 
 14. GNU sed en profundidad
 
-14.1 GNU extensions
-14.2 -E
+14.1 clasificación: extensiones GNU y opciones compartidas con POSIX
+14.2 -E: opción estándar en POSIX.1-2024 y disponibilidad en sistemas anteriores
 14.3 -i
 14.4 -z
 14.5 --sandbox
@@ -331,6 +355,10 @@
 14.19 direcciones GNU
 14.20 extensiones de sustitución
 14.21 laboratorio: identificar qué partes de un script dependen de GNU sed
+14.22 flag GNU s///e: ejecutar el resultado de la sustitución
+14.23 orden de flags ep y pe: salida antes y después de evaluación
+14.24 --sandbox: rechazo de e, r y w y alcance real de la restricción
+14.25 versión instalada, funcionalidades disponibles y documentación correspondiente
 
 15. Procesamiento NUL
 
@@ -361,6 +389,8 @@
 16.12 xargs
 16.13 problemas con whitespace
 16.14 laboratorio: transformación masiva
+16.15 -i implica procesamiento separado por archivo: numeración y direcciones
+16.16 matriz de pruebas para estado y rangos con flujo continuo, -s e -i
 
 17. Texto estructurado
 
@@ -507,16 +537,21 @@
 24.4 extensiones GNU
 24.5 BRE portable
 24.6 ERE y portabilidad
-24.7 opción -E
+24.7 opción -E: POSIX.1-2024 frente a POSIX.1-2017
 24.8 -i no portable
 24.9 escapes no portables
 24.10 comandos GNU no portables
 24.11 direcciones GNU no portables
 24.12 escribir scripts estrictamente POSIX
-24.13 probar con --posix
+24.13 --posix como comprobación parcial, no como prueba entre implementaciones
 24.14 cuándo priorizar portabilidad
 24.15 cuándo aprovechar GNU sed
 24.16 laboratorio: convertir un script GNU sed a POSIX sed
+24.17 baseline explícito: POSIX.1-2017 o POSIX.1-2024 según los destinos
+24.18 probar con otra implementación disponible y registrar versión y diferencias
+24.19 POSIXLY_CORRECT frente a --posix: alcance distinto
+24.20 límites de portabilidad de backreferences en ERE y escapes GNU
+24.21 laboratorio: matriz de capacidades sin confundir modo POSIX con otra implementación
 
 25. Rendimiento
 
@@ -555,6 +590,9 @@
 26.15 ejecución desde scripts privilegiados
 26.16 principio de mínimo privilegio
 26.17 laboratorio: endurecer un script sed
+26.18 comando e y flag s///e como superficies de ejecución de código
+26.19 --sandbox no sustituye la validación de rutas ni protege de toda edición destructiva
+26.20 salidas de pipelines: pipefail, SIGPIPE y consumidor que termina antes
 
 27. Diseño de soluciones con sed
 
@@ -616,9 +654,11 @@
 29.18 integración en Git
 29.19 CI para transformaciones de texto
 29.20 laboratorio: proyecto sed mantenible
+29.21 comparación byte a byte de fixtures para detectar newline final y NUL
+29.22 pruebas de fallos: permisos, entrada ausente y salida no escribible
 
 
-30. Semántica precisa de los comandos sed
+30. Semántica precisa de los comandos sed — síntesis y predicción
 
 30.1 clasificación de comandos
 30.2 comandos que modifican pattern space
@@ -651,6 +691,9 @@
 30.29 semántica precisa de z
 30.30 tabla mental completa de efectos sobre estado, entrada y salida
 30.31 laboratorio: predecir la salida de programas sed sin ejecutarlos
+30.32 semántica precisa de y y su efecto sobre el estado de sustitución
+30.33 semántica precisa de e y s///e y sus canales de salida
+30.34 cola de salida diferida de a y r frente a salida inmediata de i
 
 
 31. Casos límite y comportamiento difícil
@@ -684,7 +727,7 @@
 31.27 laboratorio: construir una suite de edge cases
 
 
-32. Algoritmos clásicos con sed
+32. Algoritmos clásicos con sed — reconstrucción y complejidad
 
 32.1 sed como máquina de transformación
 32.2 ciclos de sustitución
@@ -713,7 +756,7 @@
 32.25 laboratorio: reconstruir algoritmos sed clásicos
 
 
-33. Instrumentación y depuración profunda
+33. Instrumentación y depuración profunda — trazas de estado y regresiones
 
 33.1 modelo de debugging de sed
 33.2 entrada mínima reproducible
@@ -830,6 +873,8 @@
 36.26 reconstruir un script sed desconocido
 36.27 simplificar un one-liner deliberadamente críptico
 36.28 migrar una solución excesivamente compleja de sed a awk
+36.29 comparar y, s y tr sobre fixtures ASCII y multibyte
+36.30 auditar y eliminar ejecución externa innecesaria de una transformación
 
 37. Proyecto final — sed-toolkit
 
@@ -868,7 +913,7 @@
 37.33 manual de ejemplos
 37.34 empaquetado como proyecto
 37.35 integración con Git
-37.36 proyecto final: procesar un árbol de configuraciones Fedora simulado de forma segura
+37.36 hito intermedio: procesar un árbol de configuraciones Fedora simulado de forma segura
 
 37.37 arquitectura por módulos
 37.38 motor de selección de transformaciones
@@ -889,7 +934,7 @@
 37.53 documentación técnica
 37.54 manual de usuario
 37.55 integración opcional con empaquetado RPM
-37.56 proyecto final: sed-toolkit completo
+37.56 entrega final: sed-toolkit completo con validación de todos los hitos
 
 38. Dominio experto
 
@@ -934,3 +979,5 @@
 38.39 depurarlo sistemáticamente
 38.40 auditarlo para producción
 38.41 proyecto de dominio: recibir únicamente requisitos, entrada y salida esperada y diseñar, implementar, probar, depurar y justificar una solución sed completa
+38.42 distinguir semántica documentada, observación experimental y detalle de implementación
+38.43 justificar resultados con una matriz de entradas, versiones, locales y dialectos

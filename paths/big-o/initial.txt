@@ -1,185 +1,483 @@
 ALGORITHMIC COMPLEXITY & BIG O — LEARNING PATH 0 → EXPERTO
 
-Bloque 0 — Fundamentos del análisis de algoritmos 0.1 Qué es un
-algoritmo 0.2 Qué significa analizar un algoritmo 0.3 Tamaño de entrada:
-n 0.4 Operación elemental y modelo de coste 0.5 Tiempo real vs número de
-operaciones 0.6 Independencia del hardware y del lenguaje 0.7 Funciones
-de crecimiento 0.8 Constantes y términos dominantes 0.9 Análisis
-asintótico 0.10 Introducción a la complejidad temporal 0.11 Introducción
-a la complejidad espacial 0.12 Primer análisis manual de un algoritmo
-0.13 Del problema al modelo de coste 0.14 Laboratorio: contar
-operaciones
+Bloque 0 — Fundamentos del análisis de algoritmos
+0.1 Qué es un algoritmo
+0.2 Qué significa analizar un algoritmo
+0.3 Tamaño de entrada: n
+0.4 Operación elemental y modelo de coste
+0.5 Tiempo real vs número de operaciones
+0.6 Independencia del hardware y del lenguaje
+0.7 Funciones de crecimiento
+0.8 Constantes y términos dominantes
+0.9 Análisis asintótico
+0.10 Introducción a la complejidad temporal
+0.11 Introducción a la complejidad espacial
+0.12 Primer análisis manual de un algoritmo
+0.13 Del problema al modelo de coste
+0.14 Laboratorio: contar operaciones
+0.15 Corrección del algoritmo, precondiciones y postcondiciones
+0.16 Terminación y papel de los invariantes de bucle
+0.17 Tamaño en elementos frente a tamaño en bits
+0.18 Modelos RAM y Word-RAM: operaciones permitidas y tamaño de palabra
+0.19 Coste de leer la entrada y producir la salida; acceso aleatorio y sublinealidad
+0.20 Laboratorio: formular supuestos y justificar un algoritmo sencillo
 
-Bloque 1 — Big O desde cero 1.1 Qué significa O(g(n)) 1.2 O(1):
-complejidad constante 1.3 O(log n): complejidad logarítmica 1.4 O(√n):
-crecimiento sublineal 1.5 O(n): complejidad lineal 1.6 O(n log n):
-complejidad lineal-logarítmica 1.7 O(n²): complejidad cuadrática 1.8
-O(n³): complejidad cúbica 1.9 O(n^k): complejidad polinómica 1.10
-O(c^n): complejidad exponencial 1.11 O(2^n): caso exponencial clásico
-1.12 O(n!): complejidad factorial 1.13 Comparación de funciones de
-crecimiento 1.14 Qué ocurre cuando n se hace grande 1.15 Clasificar
-algoritmos por orden de crecimiento 1.16 Laboratorio: reconocer órdenes
-de crecimiento
+Bloque 1 — Big O desde cero
+1.1 Qué significa O(g(n))
+1.2 O(1): complejidad constante
+1.3 O(log n): complejidad logarítmica
+1.4 O(√n): crecimiento sublineal
+1.5 O(n): complejidad lineal
+1.6 O(n log n): complejidad lineal-logarítmica
+1.7 O(n²): complejidad cuadrática
+1.8 O(n³): complejidad cúbica
+1.9 O(n^k): complejidad polinómica
+1.10 O(c^n): complejidad exponencial
+1.11 O(2^n): caso exponencial clásico
+1.12 O(n!): complejidad factorial
+1.13 Comparación de funciones de crecimiento
+1.14 Qué ocurre cuando n se hace grande
+1.15 Clasificar algoritmos por orden de crecimiento
+1.16 Laboratorio: reconocer órdenes de crecimiento
+1.17 O(log log n) y funciones polilogarítmicas O((log n)^k)
+1.18 Familias O(n^α): exponentes constantes y crecimiento sublineal
+1.19 Constantes k y c: distinguir n^k, c^n y n^n; exigir c > 1 para crecimiento exponencial
+1.20 Crecimiento cuasipolinómico y subexponencial: definiciones y ejemplos
+1.21 Laboratorio: ordenar funciones y encontrar puntos de cruce
 
-Bloque 2 — Reglas prácticas para calcular complejidad 2.1 Operaciones
-O(1) 2.2 Secuencias de operaciones 2.3 Regla de la suma 2.4 Eliminación
-de constantes 2.5 Eliminación de términos de menor orden 2.6 Regla del
-término dominante 2.7 Un bucle 2.8 Bucles consecutivos 2.9 Bucles
-anidados 2.10 Bucles dependientes 2.11 Bucles triangulares 2.12 Bucles
-que duplican o dividen variables 2.13 Condicionales 2.14 Funciones que
-llaman a otras funciones 2.15 Early return, break y continue 2.16
-Entradas independientes n y m 2.17 O(n + m) 2.18 O(n × m) 2.19 Más de
-dos dimensiones: n, m, k 2.20 Laboratorio: derivar T(n) y simplificarla
+Bloque 2 — Reglas prácticas para calcular complejidad
+2.1 Operaciones O(1)
+2.2 Secuencias de operaciones
+2.3 Regla de la suma
+2.4 Eliminación de constantes
+2.5 Eliminación de términos de menor orden
+2.6 Regla del término dominante
+2.7 Un bucle
+2.8 Bucles consecutivos
+2.9 Bucles anidados
+2.10 Bucles dependientes
+2.11 Bucles triangulares
+2.12 Bucles que duplican o dividen variables
+2.13 Condicionales
+2.14 Funciones que llaman a otras funciones
+2.15 Early return, break y continue
+2.16 Entradas independientes n y m
+2.17 O(n + m)
+2.18 O(n × m)
+2.19 Más de dos dimensiones: n, m, k
+2.20 Laboratorio: derivar T(n) y simplificarla
+2.21 Bucles con contadores que avanzan de forma irregular
+2.22 Bucles anidados cuyo número total de iteraciones es lineal
+2.23 Sumas armónicas en bucles: n/1 + n/2 + … + n/n
+2.24 Condicionales: costes alcanzables y dependencia de la entrada
+2.25 Laboratorio: contraejemplos a contar únicamente la profundidad de bucles
 
-Bloque 3 — Notaciones asintóticas formalmente 3.1 Big O no significa
-simplemente worst case 3.2 Cotas asintóticas 3.3 Big O — cota superior
-asintótica 3.4 Big Ω — cota inferior asintótica 3.5 Big Θ — cota
-ajustada asintótica 3.6 Definición matemática de O(g(n)) 3.7 Definición
-matemática de Ω(g(n)) 3.8 Definición matemática de Θ(g(n)) 3.9
-Constantes c y n₀ 3.10 Demostraciones con O 3.11 Demostraciones con Ω
-3.12 Demostraciones con Θ 3.13 little-o: o(g(n)) 3.14 little-omega:
-ω(g(n)) 3.15 Relaciones entre O, Ω, Θ, o y ω 3.16 Propiedades
-algebraicas de las notaciones 3.17 Laboratorio de demostraciones
-asintóticas
+Bloque 3 — Notaciones asintóticas formalmente
+3.1 Big O no significa simplemente worst case
+3.2 Cotas asintóticas
+3.3 Big O — cota superior asintótica
+3.4 Big Ω — cota inferior asintótica
+3.5 Big Θ — cota ajustada asintótica
+3.6 Definición matemática de O(g(n))
+3.7 Definición matemática de Ω(g(n))
+3.8 Definición matemática de Θ(g(n))
+3.9 Constantes c y n₀
+3.10 Demostraciones con O
+3.11 Demostraciones con Ω
+3.12 Demostraciones con Θ
+3.13 little-o: o(g(n))
+3.14 little-omega: ω(g(n))
+3.15 Relaciones entre O, Ω, Θ, o y ω
+3.16 Propiedades algebraicas de las notaciones
+3.17 Laboratorio de demostraciones asintóticas
+3.18 Funciones eventualmente no negativas y cuantificadores en las definiciones
+3.19 Cotas válidas pero no ajustadas: Θ(n) también pertenece a O(n²)
+3.20 Comparación por cocientes: límites cero, positivos, infinitos e inexistentes
+3.21 Funciones oscilantes y relaciones asintóticas no comparables
+3.22 Dominio multivariable: región de validez y restricciones entre parámetros
+3.23 Laboratorio: demostrar y refutar cotas mediante testigos y contraejemplos
 
-Bloque 4 — Best, Average y Worst Case 4.1 Qué significa un caso de
-entrada 4.2 Best case 4.3 Average case 4.4 Worst case 4.5 Caso de
-ejecución vs cota asintótica 4.6 Distribuciones de entrada 4.7 Análisis
-de búsqueda lineal 4.8 Best/average/worst en búsqueda 4.9 Casos en
-algoritmos de ordenación 4.10 Expected time: introducción 4.11 Por qué
-siempre hay que declarar qué se analiza 4.12 Laboratorio comparativo
+Bloque 4 — Best, Average y Worst Case
+4.1 Qué significa un caso de entrada
+4.2 Best case
+4.3 Average case
+4.4 Worst case
+4.5 Caso de ejecución vs cota asintótica
+4.6 Distribuciones de entrada
+4.7 Análisis de búsqueda lineal
+4.8 Best/average/worst en búsqueda
+4.9 Casos en algoritmos de ordenación
+4.10 Expected time: introducción
+4.11 Por qué siempre hay que declarar qué se analiza
+4.12 Laboratorio comparativo
+4.13 Espacio probabilístico: distribución de entradas y aleatoriedad interna
+4.14 Tiempo esperado para una entrada fija frente a promedio sobre entradas
+4.15 Peor caso del tiempo esperado y orden de los cuantificadores
+4.16 Laboratorio: separar mejor, peor, promedio, esperado y amortizado
 
-Bloque 5 — Complejidad espacial 5.1 Qué es space complexity 5.2 Memoria
-de entrada 5.3 Auxiliary space 5.4 O(1) espacio adicional 5.5 O(n)
-espacio adicional 5.6 Copias y estructuras temporales 5.7 Recursión y
-call stack 5.8 Profundidad de recursión 5.9 Algoritmos in-place 5.10
-Persistencia e inmutabilidad: impacto conceptual 5.11 Time-space
-trade-off 5.12 Laboratorio: tiempo vs memoria
+Bloque 5 — Complejidad espacial
+5.1 Qué es space complexity
+5.2 Memoria de entrada
+5.3 Auxiliary space
+5.4 O(1) espacio adicional
+5.5 O(n) espacio adicional
+5.6 Copias y estructuras temporales
+5.7 Recursión y call stack
+5.8 Profundidad de recursión
+5.9 Algoritmos in-place
+5.10 Persistencia e inmutabilidad: impacto conceptual
+5.11 Time-space trade-off
+5.12 Laboratorio: tiempo vs memoria
+5.13 Espacio máximo simultáneo frente a volumen acumulado de asignaciones
+5.14 Memoria de salida: cuándo se incluye y cuándo se excluye
+5.15 Vida útil, liberación, aliasing y estructuras compartidas
+5.16 Memoria por palabras frente a memoria por bits
+5.17 Generación incremental frente a materialización de resultados
+5.18 Laboratorio: comparar espacio auxiliar, total y de salida
 
-Bloque 6 — Matemáticas para análisis de algoritmos 6.1 Potencias 6.2
-Logaritmos 6.3 Propiedades de logaritmos 6.4 Cambio de base y Big O 6.5
-Sumatorios 6.6 Series aritméticas 6.7 Series geométricas 6.8 Sumatorio
-1 + 2 + … + n 6.9 Sumatorios y bucles 6.10 Productos 6.11 Factorial 6.12
-Permutaciones 6.13 Combinaciones 6.14 Límites e intuición asintótica
-6.15 Jerarquía de funciones de crecimiento 6.16 Laboratorio matemático
+Bloque 6 — Matemáticas para análisis de algoritmos
+6.1 Potencias
+6.2 Logaritmos
+6.3 Propiedades de logaritmos
+6.4 Cambio de base y Big O
+6.5 Sumatorios
+6.6 Series aritméticas
+6.7 Series geométricas
+6.8 Sumatorio 1 + 2 + … + n
+6.9 Sumatorios y bucles
+6.10 Productos
+6.11 Factorial
+6.12 Permutaciones
+6.13 Combinaciones
+6.14 Límites e intuición asintótica
+6.15 Jerarquía de funciones de crecimiento
+6.16 Laboratorio matemático
+6.17 Inducción matemática: base e hipótesis inductiva
+6.18 Inducción fuerte para recurrencias
+6.19 Serie armónica H_n y cotas mediante comparación e integrales sencillas
+6.20 Suelos y techos: redondeos en tamaños y recurrencias
+6.21 Probabilidad elemental, eventos y distribuciones discretas
+6.22 Variables aleatorias, esperanza y variables indicadoras
+6.23 Linealidad de la esperanza sin exigir independencia
+6.24 Probabilidad condicional e independencia: supuestos y contraejemplos
+6.25 Laboratorio: demostrar una suma y calcular un coste esperado
 
-Bloque 7 — Búsqueda y análisis 7.1 Problema de búsqueda 7.2 Linear
-Search 7.3 Análisis Θ(n) 7.4 Binary Search 7.5 Por qué Binary Search es
-Θ(log n) 7.6 Requisito de datos ordenados 7.7 Coste de ordenar antes de
-buscar 7.8 Búsqueda mediante hashing: modelo conceptual 7.9 Linear vs
-binary vs hash lookup 7.10 Preprocesamiento vs coste por consulta 7.11
-Laboratorio
+Bloque 7 — Búsqueda y análisis
+7.1 Problema de búsqueda
+7.2 Linear Search
+7.3 Análisis Θ(n) — peor caso de búsqueda lineal
+7.4 Binary Search
+7.5 Por qué Binary Search es Θ(log n) — peor caso con acceso aleatorio de coste constante
+7.6 Requisito de datos ordenados
+7.7 Coste de ordenar antes de buscar
+7.8 Búsqueda mediante hashing: modelo conceptual
+7.9 Linear vs binary vs hash lookup
+7.10 Preprocesamiento vs coste por consulta
+7.11 Laboratorio
+7.12 Búsqueda binaria: mejor caso, peor caso y número de comparaciones
+7.13 Acceso aleatorio frente a recorrido secuencial en búsqueda binaria
+7.14 Consultas repetidas: coste total de preprocesamiento más q consultas
+7.15 Laboratorio: elegir estrategia según n, q y coste de las operaciones
 
-Bloque 8 — Ordenación y límites 8.1 Qué significa ordenar 8.2
-Comparaciones y movimientos 8.3 Bubble Sort 8.4 Selection Sort 8.5
-Insertion Sort 8.6 Merge Sort 8.7 Quick Sort 8.8 Heap Sort 8.9 O(n²) vs
-O(n log n) 8.10 Best/average/worst case 8.11 Estabilidad 8.12 Ordenación
-in-place 8.13 Árbol de decisión para ordenación 8.14 Lower bound Ω(n log
-n) por comparaciones 8.15 Ordenaciones no basadas exclusivamente en
-comparaciones 8.16 Laboratorio comparativo
+Bloque 8 — Ordenación y límites
+8.1 Qué significa ordenar
+8.2 Comparaciones y movimientos
+8.3 Bubble Sort
+8.4 Selection Sort
+8.5 Insertion Sort
+8.6 Merge Sort
+8.7 Quick Sort
+8.8 Heap Sort
+8.9 O(n²) vs O(n log n)
+8.10 Best/average/worst case
+8.11 Estabilidad
+8.12 Ordenación in-place
+8.13 Árbol de decisión para ordenación
+8.14 Lower bound Ω(n log n) por comparaciones — modelo de comparaciones y supuestos sobre las claves
+8.15 Ordenaciones no basadas exclusivamente en comparaciones
+8.16 Laboratorio comparativo
+8.17 Counting Sort: Θ(n + k) y rango de claves
+8.18 Radix Sort: dígitos, base y coste de la ordenación estable auxiliar
+8.19 Bucket Sort: distribución, esperanza y peor caso
+8.20 Ordenación adaptativa: relación entre entrada, inversiones y coste
+8.21 Límites por comparaciones: claves distintas, peor caso y casos promedio
+8.22 Laboratorio: comparar algoritmos según n, rango y longitud de clave
 
-Bloque 9 — Recursividad y recurrencias 9.1 Complejidad de funciones
-recursivas 9.2 Árbol de recursión 9.3 Construcción de T(n) 9.4
-Recurrencias básicas 9.5 T(n) = T(n-1) + Θ(1) 9.6 T(n) = T(n/2) + Θ(1)
-9.7 T(n) = 2T(n/2) + Θ(n) 9.8 Fibonacci ingenuo 9.9 Recursividad
-exponencial 9.10 Memoization 9.11 Dynamic Programming como
-transformación algorítmica 9.12 Método de sustitución 9.13 Método del
-árbol de recursión 9.14 Laboratorio de recurrencias
+Bloque 9 — Recursividad y recurrencias
+9.1 Complejidad de funciones recursivas
+9.2 Árbol de recursión
+9.3 Construcción de T(n)
+9.4 Recurrencias básicas
+9.5 T(n) = T(n-1) + Θ(1)
+9.6 T(n) = T(n/2) + Θ(1)
+9.7 T(n) = 2T(n/2) + Θ(n)
+9.8 Fibonacci ingenuo
+9.9 Recursividad exponencial
+9.10 Memoization
+9.11 Dynamic Programming como transformación algorítmica
+9.12 Método de sustitución
+9.13 Método del árbol de recursión
+9.14 Laboratorio de recurrencias
+9.15 Casos base y dominio de definición de una recurrencia
+9.16 Profundidad de la pila frente a número total de llamadas
+9.17 Sustitución con hipótesis fortalecida y constantes explícitas
+9.18 Fibonacci ingenuo: cota O(2^n) frente a cota ajustada Θ(φ^n) en operaciones unitarias
+9.19 Laboratorio: separar coste aritmético unitario y crecimiento de los operandos
 
-Bloque 10 — Divide and Conquer y Master Theorem 10.1 Divide and Conquer
-10.2 Divide 10.3 Conquer 10.4 Combine 10.5 Recurrencia T(n) = aT(n/b) +
-f(n) 10.6 Significado de a, b y f(n) 10.7 Master Theorem: condiciones de
-aplicación 10.8 Caso 1 10.9 Caso 2 10.10 Caso 3 10.11 Merge Sort
-mediante Master Theorem 10.12 Binary Search mediante recurrencias 10.13
-Casos donde Master Theorem no aplica 10.14 Akra–Bazzi: introducción y
-motivación 10.15 Laboratorio
+Bloque 10 — Divide and Conquer y Master Theorem
+10.1 Divide and Conquer
+10.2 Divide
+10.3 Conquer
+10.4 Combine
+10.5 Recurrencia T(n) = aT(n/b) + f(n)
+10.6 Significado de a, b y f(n)
+10.7 Master Theorem: condiciones de aplicación
+10.8 Caso 1
+10.9 Caso 2
+10.10 Caso 3
+10.11 Merge Sort mediante Master Theorem
+10.12 Binary Search mediante recurrencias
+10.13 Casos donde Master Theorem no aplica
+10.14 Akra–Bazzi: introducción y motivación
+10.15 Laboratorio
+10.16 Master Theorem: separación polinómica y condición de regularidad
+10.17 Versión básica y extensiones del caso con factores logarítmicos
+10.18 Recurrencias desbalanceadas: T(n/3) + T(2n/3) + Θ(n)
+10.19 Akra–Bazzi: hipótesis y resolución guiada de un ejemplo
+10.20 Redondeos, tamaños enteros y justificación de su tratamiento
+10.21 Laboratorio: decidir qué método aplica y justificar la solución
 
-Bloque 11 — Análisis amortizado 11.1 Qué significa amortized analysis
-11.2 Average case vs amortized analysis 11.3 Secuencias de operaciones
-11.4 Aggregate method 11.5 Accounting method 11.6 Potential method 11.7
-Dynamic arrays 11.8 Redimensionamiento geométrico 11.9 Por qué append
-puede ser O(1) amortizado 11.10 Tablas hash y resizing 11.11 Contadores
-binarios como ejemplo clásico 11.12 Laboratorio
+Bloque 11 — Análisis amortizado
+11.1 Qué significa amortized analysis
+11.2 Average case vs amortized analysis
+11.3 Secuencias de operaciones
+11.4 Aggregate method
+11.5 Accounting method
+11.6 Potential method
+11.7 Dynamic arrays
+11.8 Redimensionamiento geométrico
+11.9 Por qué append puede ser O(1) amortizado
+11.10 Tablas hash y resizing — separar amortización del resizing y esperanza por colisiones
+11.11 Contadores binarios como ejemplo clásico
+11.12 Laboratorio
+11.13 Arrays dinámicos: contracción y umbrales de histéresis
+11.14 Redimensionamiento por incremento fijo frente a crecimiento geométrico
+11.15 Cola implementada mediante dos pilas
+11.16 Método potencial: condiciones sobre el potencial inicial y final
+11.17 Hashing: garantías esperadas amortizadas y supuestos diferenciados
+11.18 Laboratorio: obtener una cota para una secuencia completa de operaciones
 
-Bloque 12 — Estructuras de datos y complejidad 12.1 Arrays 12.2 Dynamic
-arrays 12.3 Linked lists 12.4 Stacks 12.5 Queues 12.6 Deques 12.7 Hash
-tables 12.8 Colisiones y load factor 12.9 Heaps 12.10 Binary Search
-Trees 12.11 Balanced Search Trees 12.12 AVL Trees 12.13 Red-Black Trees
-12.14 Tries 12.15 Disjoint Sets / Union-Find 12.16 Representaciones de
-grafos 12.17 Elegir estructura según operaciones y garantías 12.18
-Laboratorio comparativo
+Bloque 12 — Estructuras de datos y complejidad
+12.1 Arrays
+12.2 Dynamic arrays
+12.3 Linked lists
+12.4 Stacks
+12.5 Queues
+12.6 Deques
+12.7 Hash tables
+12.8 Colisiones y load factor
+12.9 Heaps
+12.10 Binary Search Trees
+12.11 Balanced Search Trees
+12.12 AVL Trees
+12.13 Red-Black Trees
+12.14 Tries
+12.15 Disjoint Sets / Union-Find
+12.16 Representaciones de grafos
+12.17 Elegir estructura según operaciones y garantías
+12.18 Laboratorio comparativo
+12.19 Matriz de operaciones: acceso, búsqueda, inserción, borrado e iteración
+12.20 Construcción bottom-up de un heap en Θ(n)
+12.21 Hashing y comparación: dependencia de la longitud de las claves
+12.22 Tries: longitud de clave, alfabeto y representación de los nodos
+12.23 Union-Find: unión por rango o tamaño y compresión de caminos
+12.24 Union-Find: función inversa de Ackermann y garantías amortizadas
+12.25 Laboratorio: comparar garantías bajo un mismo modelo de coste
 
-Bloque 13 — Árboles y grafos 13.1 Tamaños n, V y E 13.2 Recorridos de
-árboles 13.3 DFS 13.4 BFS 13.5 Por qué BFS/DFS pueden ser Θ(V + E) 13.6
-Matriz de adyacencia 13.7 Lista de adyacencia 13.8 Topological Sort 13.9
-Dijkstra 13.10 Bellman-Ford 13.11 Floyd-Warshall 13.12 Minimum Spanning
-Tree 13.13 Kruskal 13.14 Prim 13.15 Union-Find y análisis amortizado
+Bloque 13 — Árboles y grafos
+13.1 Tamaños n, V y E
+13.2 Recorridos de árboles
+13.3 DFS
+13.4 BFS
+13.5 Por qué BFS/DFS pueden ser Θ(V + E) — recorrido completo con listas de adyacencia
+13.6 Matriz de adyacencia
+13.7 Lista de adyacencia
+13.8 Topological Sort
+13.9 Dijkstra — pesos no negativos y cola de prioridad declarada
+13.10 Bellman-Ford
+13.11 Floyd-Warshall
+13.12 Minimum Spanning Tree
+13.13 Kruskal
+13.14 Prim
+13.15 Union-Find y análisis amortizado — especificar heurísticas y garantía amortizada
 13.16 Laboratorio
+13.17 BFS y DFS: componente alcanzable frente a recorrido completo
+13.18 Dijkstra: array, heap binario y distintas cotas según implementación
+13.19 Bellman-Ford y Floyd-Warshall: recorridos, almacenamiento y pesos
+13.20 Prim y Kruskal: dependencias de representación, heap y Union-Find
+13.21 Grafos dispersos y densos: traducir expresiones sin eliminar parámetros independientes
+13.22 Laboratorio: justificar tiempo y memoria con V, E y representación
 
-Bloque 14 — Técnicas de optimización algorítmica 14.1 Detectar cuellos
-de botella algorítmicos 14.2 Transformar O(n²) en O(n) 14.3 Hashing para
-evitar búsquedas repetidas 14.4 Precomputation 14.5 Caching 14.6
-Memoization 14.7 Two Pointers 14.8 Sliding Window 14.9 Prefix Sums 14.10
-Binary Search como técnica 14.11 Divide and Conquer 14.12 Dynamic
-Programming 14.13 Greedy Algorithms 14.14 Branch and Bound: introducción
-14.15 Time-space trade-offs 14.16 Laboratorio de refactorización
+Bloque 14 — Técnicas de optimización algorítmica
+14.1 Detectar cuellos de botella algorítmicos
+14.2 Transformar O(n²) en O(n)
+14.3 Hashing para evitar búsquedas repetidas
+14.4 Precomputation
+14.5 Caching
+14.6 Memoization
+14.7 Two Pointers
+14.8 Sliding Window
+14.9 Prefix Sums
+14.10 Binary Search como técnica
+14.11 Divide and Conquer
+14.12 Dynamic Programming
+14.13 Greedy Algorithms
+14.14 Branch and Bound: introducción
+14.15 Time-space trade-offs
+14.16 Laboratorio de refactorización
+14.17 Dynamic Programming: número de estados por coste de transición
+14.18 Dynamic Programming: reconstrucción de soluciones y reducción de memoria
+14.19 Two Pointers y Sliding Window: invariantes, monotonía y límites de aplicación
+14.20 Greedy: argumento de intercambio y necesidad de demostrar corrección
+14.21 Branch and Bound: poda empírica y peor caso exponencial
+14.22 Laboratorio: verificar equivalencia antes y después de optimizar
 
-Bloque 15 — Análisis empírico y benchmarking 15.1 Análisis teórico vs
-experimental 15.2 Por qué Big O no mide segundos 15.3 Diseño correcto de
-benchmarks 15.4 Repeticiones y warm-up 15.5 Ruido experimental 15.6
-Tamaños de entrada representativos 15.7 Medición de memoria 15.8
-Profiling 15.9 Visualizar curvas de crecimiento 15.10 Inferir tendencias
-sin confundirlas con demostraciones 15.11 Constantes ocultas y crossover
-points 15.12 Localidad de memoria y caché: introducción 15.13 Medir no
-sustituye analizar 15.14 Laboratorio experimental
+Bloque 15 — Análisis empírico y benchmarking
+15.1 Análisis teórico vs experimental
+15.2 Por qué Big O no mide segundos
+15.3 Diseño correcto de benchmarks
+15.4 Repeticiones y warm-up
+15.5 Ruido experimental
+15.6 Tamaños de entrada representativos
+15.7 Medición de memoria
+15.8 Profiling
+15.9 Visualizar curvas de crecimiento
+15.10 Inferir tendencias sin confundirlas con demostraciones
+15.11 Constantes ocultas y crossover points
+15.12 Localidad de memoria y caché: introducción
+15.13 Medir no sustituye analizar
+15.14 Laboratorio experimental
+15.15 Controles experimentales: entradas equivalentes, semillas y entorno
+15.16 Mediana, dispersión y valores atípicos en tiempos medidos
+15.17 Método de duplicación y cocientes normalizados por funciones candidatas
+15.18 Coste de preparar entradas y consumo de resultados fuera de la región medida
+15.19 Laboratorio: informe reproducible con incertidumbre y limitaciones
 
-Bloque 16 — Errores frecuentes y límites de Big O 16.1 Big O no es
-tiempo de ejecución 16.2 O(1) no significa una instrucción 16.3 O(n)
-puede vencer a O(1) para ciertos tamaños y constantes 16.4 Cuándo tiene
-sentido ignorar constantes 16.5 Average vs amortized 16.6 Big O vs worst
-case 16.7 Complejidad de operaciones internas 16.8 Ocultar O(n) detrás
-de una función 16.9 Coste de copiar y materializar 16.10 Coste de
-hashing 16.11 Complejidad esperada vs garantizada 16.12 Modelos de coste
-y sus límites 16.13 Optimización prematura 16.14 Laboratorio de errores
-de análisis
+Bloque 16 — Errores frecuentes y límites de Big O
+16.1 Big O no es tiempo de ejecución
+16.2 O(1) no significa una instrucción
+16.3 O(n) puede vencer a O(1) para ciertos tamaños y constantes
+16.4 Cuándo tiene sentido ignorar constantes
+16.5 Average vs amortized
+16.6 Big O vs worst case
+16.7 Complejidad de operaciones internas
+16.8 Ocultar O(n) detrás de una función
+16.9 Coste de copiar y materializar
+16.10 Coste de hashing
+16.11 Complejidad esperada vs garantizada
+16.12 Modelos de coste y sus límites
+16.13 Optimización prematura
+16.14 Laboratorio de errores de análisis
+16.15 Comparaciones y hashes de cadenas no son siempre O(1)
+16.16 Enteros arbitrariamente grandes: operaciones y tamaño en bits
+16.17 Confundir el valor numérico de la entrada con su longitud codificada
+16.18 Confundir memoria acumulada con espacio máximo simultáneo
+16.19 Laboratorio: auditar afirmaciones incompletas y corregir sus supuestos
 
-Bloque 17 — Análisis avanzado 17.1 Algoritmos pseudopolinómicos 17.2
-Output-sensitive complexity 17.3 Expected complexity 17.4 Randomized
-algorithms 17.5 Probabilistic analysis 17.6 Lower bounds 17.7 Decision
-trees 17.8 Adversary arguments 17.9 Space-time trade-offs 17.10
-Cache-aware y cache-oblivious: introducción 17.11 External-memory
-algorithms: introducción 17.12 I/O complexity: introducción 17.13
-Parallel complexity 17.14 Work y span 17.15 Work-efficient algorithms
+Bloque 17 — Análisis avanzado
+17.1 Algoritmos pseudopolinómicos
+17.2 Output-sensitive complexity
+17.3 Expected complexity
+17.4 Randomized algorithms
+17.5 Probabilistic analysis
+17.6 Lower bounds
+17.7 Decision trees
+17.8 Adversary arguments
+17.9 Space-time trade-offs
+17.10 Cache-aware y cache-oblivious: introducción
+17.11 External-memory algorithms: introducción
+17.12 I/O complexity: introducción
+17.13 Parallel complexity
+17.14 Work y span
+17.15 Work-efficient algorithms
 17.16 Laboratorio avanzado
+17.17 Algoritmos Las Vegas y Monte Carlo: tiempo y probabilidad de error
+17.18 Esperanza frente a garantías con alta probabilidad
+17.19 Desigualdad de Markov y límites de lo que permite concluir
+17.20 Quicksort aleatorizado: análisis esperado mediante variables indicadoras
+17.21 Quickselect: tiempo esperado y peor caso
+17.22 Modelo de memoria externa: parámetros M y B; coste de un recorrido
+17.23 Work y span: límites de aceleración según el número de procesadores
+17.24 Complejidad parametrizada: FPT frente a XP como introducción
+17.25 Laboratorio: derivar una garantía avanzada declarando todos sus parámetros
 
-Bloque 18 — Introducción a complejidad computacional 18.1 Análisis de
-algoritmos vs teoría de complejidad 18.2 Problemas vs algoritmos 18.3
-Problemas de decisión 18.4 Tamaño de representación de la entrada 18.5
-Tiempo polinómico 18.6 Clase P 18.7 Clase NP 18.8 Certificados y
-verificación polinómica 18.9 Reducciones polinómicas 18.10 NP-hard 18.11
-NP-complete 18.12 P vs NP: significado correcto 18.13 Por qué O(2^n) no
-implica NP-complete 18.14 Tractabilidad e intratabilidad 18.15 Problemas
-pseudopolinómicos y codificación de entrada 18.16 Aproximación:
-introducción 18.17 Heurísticas: introducción
+Bloque 18 — Introducción a complejidad computacional
+18.1 Análisis de algoritmos vs teoría de complejidad
+18.2 Problemas vs algoritmos
+18.3 Problemas de decisión
+18.4 Tamaño de representación de la entrada
+18.5 Tiempo polinómico
+18.6 Clase P
+18.7 Clase NP
+18.8 Certificados y verificación polinómica
+18.9 Reducciones polinómicas
+18.10 NP-hard
+18.11 NP-complete
+18.12 P vs NP: significado correcto
+18.13 Por qué O(2^n) no implica NP-complete
+18.14 Tractabilidad e intratabilidad
+18.15 Problemas pseudopolinómicos y codificación de entrada
+18.16 Aproximación: introducción
+18.17 Heurísticas: introducción
+18.18 Reducciones: dirección correcta para demostrar dificultad
+18.19 Knapsack o Subset Sum: pseudopolinomialidad según codificación binaria
+18.20 Algoritmo exponencial conocido frente a dificultad demostrada del problema
+18.21 Aproximación: razón de aproximación y supuestos sobre el objetivo
+18.22 Heurísticas: calidad empírica frente a garantías formales
+18.23 Laboratorio: clasificar afirmaciones sobre P, NP y reducciones
 
-Bloque 19 — Diseño de análisis independientes del lenguaje 19.1 Separar
-algoritmo de implementación 19.2 Pseudocódigo como herramienta de
-análisis 19.3 Modelo RAM 19.4 Operaciones primitivas y supuestos 19.5
-Garantía teórica vs comportamiento de implementación 19.6 Worst-case
-guarantees 19.7 Expected guarantees 19.8 Amortized guarantees 19.9
-Dependencia de la representación 19.10 Dependencia de la estructura de
-datos 19.11 Cómo trasladar un análisis entre lenguajes 19.12 Qué debe
-dejarse para un PATH específico del lenguaje 19.13 Caso de estudio
-comparativo sin depender de un lenguaje
+Bloque 19 — Diseño de análisis independientes del lenguaje
+19.1 Separar algoritmo de implementación
+19.2 Pseudocódigo como herramienta de análisis
+19.3 Modelo RAM
+19.4 Operaciones primitivas y supuestos
+19.5 Garantía teórica vs comportamiento de implementación
+19.6 Worst-case guarantees
+19.7 Expected guarantees
+19.8 Amortized guarantees
+19.9 Dependencia de la representación
+19.10 Dependencia de la estructura de datos
+19.11 Cómo trasladar un análisis entre lenguajes
+19.12 Qué debe dejarse para un PATH específico del lenguaje
+19.13 Caso de estudio comparativo sin depender de un lenguaje
+19.14 Portabilidad del razonamiento: garantías contractuales y detalles de implementación
+19.15 Coste de operaciones con claves, valores y representaciones variables
+19.16 Ficha de análisis: entrada, modelo, caso, cota, prueba y límites
+19.17 Laboratorio: expresar el mismo análisis bajo dos modelos de coste
 
-Bloque 20 — Proyecto final: Algorithm Complexity Analyzer 20.1 Definir
-alcance y modelo de coste 20.2 Identificar tamaño o tamaños de entrada
-20.3 Detectar secuencias 20.4 Detectar bucles 20.5 Detectar bucles
-anidados y dependientes 20.6 Analizar condicionales 20.7 Analizar
-llamadas a funciones 20.8 Reconocer recurrencias sencillas 20.9
-Construir T(n) 20.10 Simplificar T(n) 20.11 Determinar O, Ω y Θ cuando
-sea posible 20.12 Estimar complejidad espacial 20.13 Distinguir worst,
-average, expected y amortized 20.14 Comparar análisis con benchmarks
-20.15 Visualizar curvas de crecimiento 20.16 Documentar supuestos y
-limitaciones 20.17 Analizar varios algoritmos equivalentes 20.18
-Proyecto final completo
+Bloque 20 — Proyecto final: Algorithm Complexity Analyzer
+20.1 Definir alcance y modelo de coste
+20.2 Identificar tamaño o tamaños de entrada
+20.3 Detectar secuencias
+20.4 Detectar bucles
+20.5 Detectar bucles anidados y dependientes
+20.6 Analizar condicionales
+20.7 Analizar llamadas a funciones
+20.8 Reconocer recurrencias sencillas
+20.9 Construir T(n)
+20.10 Simplificar T(n)
+20.11 Determinar O, Ω y Θ cuando sea posible
+20.12 Estimar complejidad espacial
+20.13 Distinguir worst, average, expected y amortized
+20.14 Comparar análisis con benchmarks
+20.15 Visualizar curvas de crecimiento
+20.16 Documentar supuestos y limitaciones
+20.17 Analizar varios algoritmos equivalentes
+20.18 Proyecto final completo
+20.19 Gramática admitida y subconjunto de pseudocódigo analizable
+20.20 Contrato de entrada: anotaciones, parámetros y costes de funciones externas
+20.21 Resultados: cota demostrada, estimación o no determinado
+20.22 Límites del análisis automático general y manejo conservador de casos desconocidos
+20.23 Pruebas del analizador: casos aceptados, rechazados y ambiguos
+20.24 Informe final: justificación, espacio, benchmarks y limitaciones reproducibles
+20.25 Defensa final: análisis manual contrastado con la herramienta

@@ -1,0 +1,355 @@
+MongoDB — Consultas y búsquedas de 0 a experto, en profundidad
+27 bloques · 270 lecciones · 27 laboratorios integradores
+Entorno: MongoDB Atlas y datasets oficiales. Herramientas cliente: mongosh, Compass y PyMongo.
+Este archivo define el temario; las lecciones completas se desarrollarán a partir de él.
+
+BLOQUE 0 — Fundamentos de bases de datos documentales
+0.1 Datos, información y persistencia
+0.2 Relacional y documental: decisiones por patrón de acceso
+0.3 Documento, colección, base de datos y namespace
+0.4 Arquitectura cliente, driver, mongos y mongod
+0.5 JSON frente a BSON y Extended JSON
+0.6 CRUD, agregación y búsqueda: mapa de capacidades
+0.7 Consistencia, disponibilidad y particiones sin simplificar CAP
+0.8 OLTP y analítica operacional: límites
+0.9 Atlas, Community y Enterprise: responsabilidades
+0.10 Lectura de documentación y matriz de versiones
+Laboratorio integrador 0: Dibujar la arquitectura de una aplicación de catálogo y justificar el modelo documental.
+
+BLOQUE 1 — Atlas y preparación del entorno
+1.1 Organización, proyecto, clúster y regiones
+1.2 Elegir un despliegue según capacidades y presupuesto
+1.3 Usuarios de Atlas frente a usuarios de base de datos
+1.4 Acceso de red, DNS SRV y TLS
+1.5 Instalar mongosh y MongoDB Compass
+1.6 URI, opciones, secretos y variables de entorno
+1.7 Cargar sample_mflix desde Atlas
+1.8 Inventariar colecciones, índices y tipos reales
+1.9 Cargar datasets adicionales de forma selectiva
+1.10 Crear bitácora reproducible de versiones y capacidades
+Laboratorio integrador 1: Conectar mongosh y Compass, inventariar sample_mflix y registrar permisos y capacidades sin exponer secretos.
+
+BLOQUE 2 — BSON y semántica del documento
+2.1 ObjectId: estructura, generación y límites de orden temporal
+2.2 String, boolean, null y campo ausente
+2.3 Int32, Int64, double y Decimal128
+2.4 Fechas UTC, zonas horarias y timestamps
+2.5 Documentos anidados y rutas con punto
+2.6 Arrays homogéneos y heterogéneos
+2.7 BinData, UUID y subtipos
+2.8 Extended JSON canónico y relajado
+2.9 Límites del documento, profundidad y tamaño
+2.10 Comparaciones por tipo y calidad de datos
+Laboratorio integrador 2: Auditar tipos de movies y sales, detectar campos ausentes y diseñar conversiones sin pérdida.
+
+BLOQUE 3 — CRUD I: lectura desde cero
+3.1 findOne, find y cursores
+3.2 Filtros de igualdad y proyecciones
+3.3 Comparación: $eq, $ne, $gt, $gte, $lt y $lte
+3.4 $in y $nin: selectividad y semántica
+3.5 $and, $or, $nor y $not
+3.6 Ordenación estable y desempate por _id
+3.7 limit y skip: comportamiento y coste
+3.8 countDocuments, estimatedDocumentCount y distinct
+3.9 null frente a missing con $exists y $type
+3.10 Consultas con fechas, números y ObjectId
+Laboratorio integrador 3: Resolver veinte preguntas del catálogo con filtros y proyecciones; explicar null frente a missing.
+
+BLOQUE 4 — CRUD II: arrays y consultas avanzadas
+4.1 Dot notation sobre objetos anidados
+4.2 Igualdad de array frente a pertenencia
+4.3 $all y $size
+4.4 $elemMatch y coincidencia dentro del mismo elemento
+4.5 Arrays de documentos y predicados cruzados
+4.6 Proyecciones con $slice y $elemMatch
+4.7 $expr y expresiones en consultas
+4.8 Regex: anclaje, opciones y coste
+4.9 Collation y comparación lingüística
+4.10 Paginación por rango y cursores compuestos
+Laboratorio integrador 4: Comparar filtros con y sin $elemMatch en listingsAndReviews y construir paginación sin duplicados.
+
+BLOQUE 5 — CRUD III: inserción y actualización
+5.1 insertOne e insertMany
+5.2 replaceOne frente a updateOne
+5.3 $set, $unset y $rename
+5.4 $inc, $mul, $min, $max y $currentDate
+5.5 updateMany y escrituras acotadas
+5.6 upsert y $setOnInsert
+5.7 findOneAndUpdate y documento devuelto
+5.8 matchedCount, modifiedCount y upsertedId
+5.9 Índices únicos e idempotencia
+5.10 deleteOne y deleteMany con control de alcance
+Laboratorio integrador 5: Crear lab_mongodb con copias pequeñas; ejecutar upserts idempotentes y comprobar resultados de escritura.
+
+BLOQUE 6 — CRUD IV: arrays y escrituras masivas
+6.1 $push con $each, $sort y $slice
+6.2 $addToSet y deduplicación
+6.3 $pull, $pullAll y $pop
+6.4 Operador posicional $
+6.5 Todos los elementos con $[]
+6.6 arrayFilters y $[identificador]
+6.7 Actualización mediante pipeline
+6.8 Expresiones y $literal en datos de usuario
+6.9 bulkWrite ordenado y no ordenado
+6.10 Errores parciales, lotes y reanudación
+Laboratorio integrador 6: Actualizar carritos y reseñas en una colección derivada, provocar un error parcial y recuperar el lote.
+
+BLOQUE 7 — Modelado documental I
+7.1 Partir de casos de uso y consultas
+7.2 Cardinalidad uno a uno, uno a muchos y muchos a muchos
+7.3 Embedding y referencias
+7.4 Agregados e invariantes de negocio
+7.5 Crecimiento del documento y arrays sin límite
+7.6 Duplicación intencionada y consistencia
+7.7 Referencias manuales y resolución
+7.8 Dinero con Decimal128
+7.9 Fechas de negocio y auditoría
+7.10 ADR y evaluación del modelo
+Laboratorio integrador 7: Diseñar catálogo, usuarios y reseñas derivados de mflix y justificar cada embedding o referencia.
+
+BLOQUE 8 — Validación y evolución del esquema
+8.1 Esquema flexible y contrato explícito
+8.2 $jsonSchema y bsonType
+8.3 required, enum y rangos
+8.4 Validación de objetos y arrays
+8.5 validationLevel y validationAction
+8.6 collMod y despliegue gradual
+8.7 Versionado de documentos
+8.8 Migraciones expand-contract
+8.9 Backfill idempotente y lotes
+8.10 Inventario de documentos inválidos
+Laboratorio integrador 8: Añadir validación a una colección de laboratorio, migrar dos versiones y documentar rollback.
+
+BLOQUE 9 — Patrones de modelado avanzados
+9.1 Subset pattern
+9.2 Computed pattern
+9.3 Bucket pattern
+9.4 Outlier pattern
+9.5 Attribute pattern
+9.6 Extended reference pattern
+9.7 Polimorfismo controlado
+9.8 Relaciones jerárquicas y árboles
+9.9 Multitenancy y aislamiento
+9.10 Antipatrones: joins excesivos, arrays enormes y duplicación incontrolada
+Laboratorio integrador 9: Comparar tres modelos del mismo catálogo mediante tamaño, consultas, escrituras y complejidad.
+
+BLOQUE 10 — Aggregation Pipeline I
+10.1 Documento de entrada y salida de cada etapa
+10.2 aggregate, cursor y opciones
+10.3 $match y reducción temprana
+10.4 $project, $set, $addFields y $unset
+10.5 $sort, $skip y $limit
+10.6 $count y acumuladores elementales
+10.7 $group y claves compuestas
+10.8 $sum, $avg, $min, $max y $push
+10.9 $unwind y preserveNullAndEmptyArrays
+10.10 Explicar cardinalidad y orden en el pipeline
+Laboratorio integrador 10: Obtener rankings por década y género, contrastando conteos antes y después de $unwind.
+
+BLOQUE 11 — Aggregation Pipeline II: expresiones
+11.1 Expresiones frente a etapas y acumuladores
+11.2 $cond, $switch y $ifNull
+11.3 $convert frente a $toInt y errores de conversión
+11.4 Operaciones de strings y normalización
+11.5 Operaciones de fecha y zona horaria
+11.6 $map, $filter y $reduce
+11.7 $let, variables y $$ROOT
+11.8 Operaciones de conjuntos sobre arrays
+11.9 $objectToArray, $arrayToObject y campos dinámicos
+11.10 Separar calidad de datos y lógica de negocio
+Laboratorio integrador 11: Normalizar ratings y fechas heterogéneas sin abortar; conservar registros rechazados con su causa.
+
+BLOQUE 12 — Aggregation Pipeline III: relaciones y composición
+12.1 $lookup de igualdad
+12.2 Índices y tipos en claves de unión
+12.3 $lookup con let, pipeline y $expr
+12.4 Desanidar joins sin duplicar métricas
+12.5 $graphLookup y límites de recorrido
+12.6 $unionWith y esquemas compatibles
+12.7 $facet y subpipelines
+12.8 $bucket y $bucketAuto
+12.9 $replaceRoot y $replaceWith
+12.10 Vistas y composición reutilizable
+Laboratorio integrador 12: Unir movies y comments, producir facetas y comprobar que las películas sin comentarios siguen presentes.
+
+BLOQUE 13 — Aggregation Pipeline IV: analítica avanzada
+13.1 $setWindowFields y particionado
+13.2 $documentNumber, $rank y $denseRank
+13.3 $shift y variación entre filas
+13.4 Ventanas por documentos y por rango
+13.5 Acumulados y medias móviles
+13.6 $dateTrunc, $dateDiff y $dateAdd
+13.7 $densify y huecos temporales
+13.8 $fill, interpolación y supuestos
+13.9 $topN, $bottomN y estadística según versión
+13.10 $percentile y $median según versión y exactitud
+Laboratorio integrador 13: Construir un análisis temporal con ventas o datos meteorológicos y justificar ventanas y tratamiento de huecos.
+
+BLOQUE 14 — Aggregation Pipeline V: producción
+14.1 $merge, claves de coincidencia y política de actualización
+14.2 $out y sustitución de colecciones
+14.3 Agregados materializados e incrementales
+14.4 Idempotencia de transformaciones
+14.5 Explain de pipelines
+14.6 Pushdown de filtros y ordenaciones
+14.7 Memoria, spill y allowDiskUse según entorno
+14.8 Costes de $lookup, $facet y arrays intermedios
+14.9 Pruebas con conjuntos pequeños y resultados esperados
+14.10 Diseño de un pipeline mantenible
+Laboratorio integrador 14: Materializar métricas, repetir el proceso sin duplicados y medir un cuello de botella con explain.
+
+BLOQUE 15 — Índices I: fundamentos y diseño
+15.1 B-tree y coste de lectura/escritura
+15.2 createIndex, getIndexes y dropIndex
+15.3 Índices simples y compuestos
+15.4 Prefijos de índices compuestos
+15.5 Regla ESR como heurística y sus excepciones
+15.6 Sort cubierto por índice
+15.7 Consultas cubiertas y proyecciones
+15.8 Selectividad y cardinalidad
+15.9 Índice único y datos existentes
+15.10 Redundancia y presupuesto de índices
+Laboratorio integrador 15: Diseñar y medir índices para cinco consultas de movies; justificar cada índice con un plan.
+
+BLOQUE 16 — Índices II: especialización y planes
+16.1 Índices multikey y límites de arrays
+16.2 Índices parciales
+16.3 Índices sparse y semántica de campos ausentes
+16.4 TTL y expiración asíncrona
+16.5 Collation e índices
+16.6 Índices wildcard y su coste
+16.7 Índices hashed y restricciones
+16.8 Índices ocultos según disponibilidad
+16.9 explain: queryPlanner y executionStats
+16.10 COLLSCAN, IXSCAN, FETCH, SORT y métricas examinadas
+Laboratorio integrador 16: Comparar planes antes/después, eliminar un índice redundante y demostrar los efectos en lectura y escritura.
+
+BLOQUE 17 — Consultas y búsquedas desde PyMongo
+17.1 Conexión a Atlas y configuración externa
+17.2 MongoClient y reutilización del cliente
+17.3 ObjectId, Decimal128 y datetime en filtros
+17.4 Filtros, proyecciones, orden y paginación
+17.5 Cursores, lotes y consumo de resultados
+17.6 Ejecutar pipelines desde Python
+17.7 Crear y comprobar índices de búsqueda según API soportada
+17.8 Ejecutar Search y Vector Search desde Python
+17.9 Timeouts, cancelación y diagnóstico de consultas
+17.10 Pruebas reproducibles de resultados y relevancia
+Laboratorio integrador 17: Implementar un cliente de búsqueda Mflix con filtros, paginación, pipeline y tratamiento de errores; validar resultados con consultas equivalentes en mongosh.
+
+BLOQUE 18 — MongoDB Search I: búsqueda textual
+18.1 find, regex, $text y Search: diferencias
+18.2 Índices Search frente a índices de base de datos
+18.3 Mappings dinámicos y estáticos
+18.4 Analizadores, tokenización e idioma
+18.5 Crear un índice sobre movies
+18.6 $search y posición de la etapa
+18.7 Operador text y múltiples campos
+18.8 compound: must, should, filter y mustNot
+18.9 Score y metadatos de relevancia
+18.10 Consistencia eventual e indexación
+Laboratorio integrador 18: Crear un buscador textual de películas con filtros de género y año; explicar el índice y el ranking.
+
+BLOQUE 19 — MongoDB Search II: relevancia y experiencia
+19.1 phrase y proximidad
+19.2 autocomplete y estrategia de campos
+19.3 Fuzzy search y tolerancia a errores
+19.4 Sinónimos y mantenimiento
+19.5 Boost y funciones de score
+19.6 Highlight y presentación
+19.7 Facetas y $searchMeta
+19.8 Paginación de búsqueda según versión
+19.9 Explain y rendimiento de Search
+19.10 Evaluación de relevancia con juicios humanos
+Laboratorio integrador 19: Añadir autocompletado, facetas y resaltado; evaluar diez consultas y documentar fallos del ranking.
+
+BLOQUE 20 — Vectores y embeddings: fundamentos
+20.1 Vector y representación semántica
+20.2 Embeddings de texto, imagen y modalidades
+20.3 Modelo, dimensión y espacio vectorial
+20.4 Coseno, producto escalar y distancia euclídea
+20.5 Normalización y significado de la similitud
+20.6 Chunking, solapamiento y metadatos
+20.7 ANN frente a ENN
+20.8 Recall, latencia, memoria y coste
+20.9 Inspección de embedded_movies y BinData
+20.10 Versionado de embeddings y migración de modelo
+Laboratorio integrador 20: Inventariar campos vectoriales reales, seleccionar uno y documentar modelo, dimensión, formato y métrica compatibles.
+
+BLOQUE 21 — MongoDB Vector Search I: indexación y consultas
+21.1 Separar índice vectorial, Search y B-tree
+21.2 Definición del campo vector y dimensiones
+21.3 Campos filter en el índice vectorial
+21.4 Creación, estado y disponibilidad del índice
+21.5 Generar queryVector con el mismo modelo
+21.6 $vectorSearch y restricciones de posición
+21.7 path, index, limit y numCandidates
+21.8 exact y ENN según compatibilidad
+21.9 vectorSearchScore y proyección
+21.10 Diagnóstico de dimensión, tipo y modelo incorrectos
+Laboratorio integrador 21: Ejecutar búsquedas ANN y ENN sobre embedded_movies y explicar sus diferencias sin mezclar modelos de embeddings.
+
+BLOQUE 22 — MongoDB Vector Search II: evaluación y rendimiento
+22.1 Prefiltros y posfiltros: efecto sobre resultados
+22.2 Filtros por metadatos y restricciones del índice
+22.3 Barrido experimental de numCandidates
+22.4 Recall@k frente a referencia ENN
+22.5 Latencia p50, p95 y p99
+22.6 Cuantización y su disponibilidad
+22.7 Memoria, dimensiones y tamaño del índice
+22.8 Reindexación y transición entre modelos
+22.9 Multitenancy y filtros de autorización
+22.10 Coste de embeddings, búsqueda y mantenimiento
+Laboratorio integrador 22: Crear un benchmark reproducible de al menos veinte consultas y comparar recall, latencia y filtros.
+
+BLOQUE 23 — Búsqueda híbrida, reranking y RAG
+23.1 Recuperación lexical frente a semántica
+23.2 Fusionar rankings mediante RRF
+23.3 $rankFusion y compatibilidad
+23.4 $scoreFusion, normalización y compatibilidad
+23.5 Fusión en aplicación como alternativa portable
+23.6 Reranking y selección de candidatos
+23.7 RAG: recuperar, contextualizar y generar (ampliación opcional RAG)
+23.8 Citas verificables y abstención (ampliación opcional RAG)
+23.9 Prompt injection en documentos recuperados (ampliación opcional RAG)
+23.10 Evaluación separada de retrieval y generación
+Laboratorio integrador 23: Construir un buscador híbrido y medir calidad frente a búsqueda textual y vectorial. Como ampliación opcional, crear un RAG con citas y abstención ante falta de evidencia.
+
+BLOQUE 24 — Búsquedas geoespaciales en Atlas
+24.1 GeoJSON y orden longitud-latitud
+24.2 Inspección de sample_mflix.theaters
+24.3 Puntos, líneas y polígonos
+24.4 Índices 2dsphere
+24.5 Búsqueda de proximidad con $near
+24.6 Áreas con $geoWithin
+24.7 Intersecciones con $geoIntersects
+24.8 Distancias y agregación con $geoNear
+24.9 Filtros combinados e índices geoespaciales
+24.10 Validación de coordenadas y evaluación de resultados
+Laboratorio integrador 24: Buscar cines por proximidad y dentro de una zona; contrastar coordenadas, distancias y planes de consulta.
+
+BLOQUE 25 — Optimización y evaluación integral de consultas
+25.1 Catálogo de consultas y objetivos medibles
+25.2 Diseño de datos para los patrones de búsqueda
+25.3 Presupuesto de índices y coste de actualización
+25.4 Explain y documentos/claves examinados
+25.5 Diagnóstico de pipelines lentos
+25.6 Latencia, paginación y tamaño de respuestas
+25.7 Evaluación de relevancia y juicios humanos
+25.8 Comparar texto, vectores e híbrida con filtros idénticos
+25.9 Regresiones, reproducibilidad y control de costes
+25.10 Runbook de consultas sin resultados, lentas o irrelevantes
+Laboratorio integrador 25: Construir un informe reproducible con al menos cinco consultas estructuradas y veinte consultas de búsqueda; presentar planes, latencias, relevancia y decisiones de mejora.
+
+BLOQUE 26 — Proyecto experto: buscador de películas en Atlas
+26.1 Requisitos, consultas e intenciones de búsqueda
+26.2 Inventario y preparación de sample_mflix
+26.3 Filtros, arrays y paginación estable
+26.4 Pipelines de análisis y facetas
+26.5 Índices de consultas y búsqueda textual
+26.6 Embeddings e índice vectorial compatible
+26.7 Comparación ANN y ENN
+26.8 Búsqueda híbrida y reranking
+26.9 Interfaz de consulta Python y RAG opcional
+26.10 Evaluación final y defensa de decisiones
+Laboratorio integrador 26: Entregar un buscador Mflix reproducible en Atlas con CRUD acotado, filtros, pipelines, Search, Vector Search, búsqueda híbrida y benchmark; RAG como ampliación opcional.

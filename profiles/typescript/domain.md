@@ -83,4 +83,76 @@ Analizar complejidad temporal, espacial, amortizada y de casos de algoritmos y c
 
 ## Integración pedagógica transversal
 
-Conectar Regex con los bloques 2, 24, 25, 30 y 36, y Big O con los bloques 17, 21, 27, 28, 29, 34 y 35. El proyecto final debe incorporar extracción de texto segura, pruebas de casos límite, análisis asintótico, benchmarks reproducibles y evaluación de memoria. Mantener intactos los contenidos existentes y la separación compile time/runtime.
+Conectar Regex con los bloques 2, 24, 25, 30 y 36, y Big O con los bloques 17, 21, 27, 28, 29, 34 y 35. El proyecto final debe incorporar extracción de texto segura, pruebas de casos límite, análisis asintótico, benchmarks reproducibles y evaluación de memoria. Conservar la cobertura y los identificadores existentes; aclarar títulos repetidos y añadir prerrequisitos. Mantener la separación compile time/runtime.
+
+
+## Progresión revisada y prerrequisitos
+
+El nivel inicial es cero en TypeScript. El bloque 0 contiene un puente práctico
+JavaScript para quien todavía no domina variables, control de flujo, funciones,
+objetos, scope, closures, prototipos y this. El PATH de JavaScript permite ampliar
+estos conocimientos, pero el alumno no debe esperar al bloque 23 para usarlos.
+El bloque 23 profundiza en interoperabilidad, migración y análisis del emit.
+
+Se conservan los bloques 0–45 y sus identificadores. El bloque 43 es el proyecto
+progresivo. Los bloques 44 y 45 aportan especialización aplicada, y el bloque 46
+contiene la entrega final. No presentar el bloque 43 como evaluación definitiva.
+
+Las repeticiones deben cambiar de objetivo: introducción, aplicación, diagnóstico
+o decisión de arquitectura. No generar dos explicaciones equivalentes de
+sobrecargas, Awaited, project references o branded types.
+
+## Ampliaciones del lenguaje
+
+Estudiar varianza, límites de soundness, inferencia contextual, parámetros
+const, NoInfer, ThisType, declaration merging y diferencias entre propiedades
+opcionales y undefined. Mostrar con pruebas qué acepta y rechaza el compilador.
+Distinguir readonly de inmutabilidad real y un branded type de una validación.
+
+Incluir decoradores modernos y heredados como modelos distintos. Relacionar
+using y await using con liberación de recursos, excepciones y cancelación;
+no equiparar limpieza determinista con garbage collection.
+
+## Compilación, resolución y ejecución
+
+Comparar tsc, comprobación con noEmit y ejecución directa mediante eliminación
+de tipos cuando la versión fijada de Node.js la soporte. La ejecución no sustituye
+la comprobación estática. Registrar versiones exactas y verificar las restricciones
+de sintaxis, extensiones, módulos y opciones en documentación oficial.
+
+Elegir module y moduleResolution según el host. paths no reescribe por sí mismo
+los imports emitidos. Comprobar paquetes desde consumidores ESM y CommonJS;
+incluir declaraciones por formato y diagnóstico con traceResolution.
+
+## Alcance aplicado de Regex y Big O
+
+Cada lección del bloque 45 debe partir de código TypeScript o JavaScript emitido.
+Los fundamentos generales se remiten al PATH de Big O. Árboles, heaps, grafos,
+recurrencias y ordenación se conservan como aplicaciones, sin repetir cursos
+teóricos. Explicitar tamaño de entrada, supuestos del motor, coste de callbacks,
+trabajo total, latencia, memoria y comunicación entre workers.
+
+En Regex comprobar capturas en runtime, estado de lastIndex, Unicode y límites
+de entrada. En streams estudiar patrones que atraviesan chunks y decodificación.
+No prometer que un temporizador interrumpe una regex síncrona en el mismo hilo.
+
+## Evaluación y evidencia
+
+Realizar checkpoints después de los bloques 6, 13, 16, 24, 30, 33, 39 y 45.
+Cada checkpoint debe incluir un caso resuelto, un fallo diagnosticado y una
+justificación. Usar pruebas positivas y negativas de tipos, tests runtime,
+consumidores reales para paquetes y mediciones reproducibles para rendimiento.
+La entrega final reúne las evidencias de los bloques 43–46.
+
+## Convenciones de integración con course-generator
+
+Ubicación prevista: paths/TypeScript/initial.txt y profiles/typescript/ para
+profile.yaml, domain.md y bibliography.md. Desde profiles/typescript/,
+../../config/pedagogy.md apunta a config/pedagogy.md en la raíz del repositorio.
+Este archivo global es una dependencia existente y no se sustituye en este paquete.
+Si se usa otra estructura, ajustar la ruta antes de generar.
+
+La numeración del temario es bloque.lección, por ejemplo 7.13. Las claves
+pedagógicas del perfil expresan requisitos de contenido; su carga como YAML no
+prueba que el generador implemente cada clave. Verificar esa integración en el
+repositorio de destino. No atribuir una ejecución del generador a esta revisión.

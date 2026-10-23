@@ -302,3 +302,62 @@ precisión técnica + prácticas actuales + profundidad + comprensión interna +
 - Documentación oficial de SPDX: expresión de licencias y metadatos.
 
 **Nota de vigencia:** las opciones, macros y políticas cambian entre versiones. Consultar documentación correspondiente a la versión de Fedora y RPM usada en cada laboratorio.
+
+
+## 23. Enlaces oficiales y correspondencia con el PATH
+
+Este índice concreta las fuentes citadas en las secciones anteriores.
+Seleccionar la rama documental correspondiente a la versión del laboratorio;
+una documentación de RPM 6 no demuestra disponibilidad en RPM 4.
+
+| Bloques | Fuente oficial | Secciones o uso |
+|---|---|---|
+| 0–3 | [RPM Documentation](https://rpm.org/documentation.html) | Elegir versión; formato, macros, dependencias y transacciones |
+| 1–2 | [RPM SPEC, rama 4.20](https://rpm.org/docs/4.20.x/manual/spec.html) | Tags, fases, intérpretes, %files y scriptlets; referencia versionada |
+| 0–3 | [Manuales RPM, rama 6.0](https://rpm.org/docs/6.0.x/man/) | Consultas, rpmkeys, rpmsign, rpmlua y extracción; contrastar versión |
+| 2–3 | [rpmdeps](https://rpm.org/docs/6.0.x/man/rpmdeps.1) | Generación de dependencias a partir de archivos; ubicación y límites |
+| 3 | [rpmgraph](https://rpm.org/docs/6.0.x/man/rpmgraph.1) | Grafo de ordenación en DOT; alcance distinto de un solver de repositorios |
+| 1, 5–7 | [Fedora Packaging Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/) | SPEC, configuración, ownership y política Fedora |
+| 2, 5 | [Fedora Scriptlets](https://docs.fedoraproject.org/en-US/packaging-guidelines/Scriptlets/) | Scriptlets, macros y mecanismos de integración |
+| 1, 7 | [rpmautospec](https://docs.pagure.org/fedora-infra.rpmautospec/) | %autorelease, %autochangelog y relación con Git |
+| 1, 6–8 | [Mock](https://rpm-software-management.github.io/mock/) | Configuración, chroots, logs, aislamiento y límites |
+| 2, 4, 8–9 | [libsolv upstream](https://github.com/openSUSE/libsolv) | doc/, examples/ y test/: API C, testsolv, reglas y transacciones |
+| 4, 8 | [DNF5](https://dnf5.readthedocs.io/en/stable/) | CLI, configuración y diferencias frente a DNF4 |
+| 4, 8 | [Historial DNF5](https://dnf5.readthedocs.io/en/stable/commands/history.8.html) | Operaciones disponibles y semántica del historial |
+| 4 | [libdnf5](https://dnf5.readthedocs.io/en/stable/) | API, repositorios, consultas y resolución; secciones Library y Tutorials |
+| 4 | [createrepo_c](https://github.com/rpm-software-management/createrepo_c) | repodata, compresión y actualización de metadata |
+| 6, 8 | [rpmlint](https://github.com/rpm-software-management/rpmlint) | Diagnósticos, configuración y checks |
+| 6, 8 | [rpminspect](https://github.com/rpminspect/rpminspect) | Inspección y comparación de builds |
+| 6 | [Reproducible Builds](https://reproducible-builds.org/docs/) | Entradas, SOURCE_DATE_EPOCH y causas de no determinismo |
+| 6 | [SPDX Specifications](https://spdx.dev/use/specifications/) | Expresiones de licencia y SBOM; seleccionar versión |
+| 7 | [Fedora Package Maintainers](https://docs.fedoraproject.org/en-US/package-maintainers/) | fedpkg, dist-git, revisión y mantenimiento |
+| 7 | [Proceso para nuevos contribuidores](https://docs.fedoraproject.org/en-US/package-maintainers/New_Package_Process_for_New_Contributors/) | Acceso, review y requisitos del itinerario oficial |
+| 7 | [COPR](https://docs.pagure.org/copr.copr/) | Proyectos, builds, chroots y repositorios propios |
+| 7 | [Koji](https://docs.pagure.org/koji/) | Tags, targets, tareas, builds y logs |
+| 7 | [Bodhi](https://bodhi.readthedocs.io/en/stable/) | Ciclo de actualizaciones e interacción con Koji |
+| 7 | [Packit](https://packit.dev/docs/) | Configuración, trabajos y automatización de pruebas/builds |
+
+### Fuentes para las lagunas cubiertas en esta revisión
+
+- 1.86–1.89: manual SPEC de RPM y Guidelines de Fedora para %ghost,
+  %verify, restricciones de arquitectura y dependencias ISA.
+- 1.90–1.92 y 6.16: documentación RPM de archivos de configuración y
+  Guidelines Fedora; confirmar con la matriz de pruebas del laboratorio.
+- 1.93–1.95 y 7.15: documentación rpmautospec; inspeccionar el SRPM generado.
+- 1.96–1.97: manual SPEC, macros RPM y Scriptlets Fedora para intérpretes y
+  momentos de expansión.
+- 2.113 y S1–S5: documentación y ejemplos de la API C de libsolv;
+  comprobar firmas y disponibilidad contra la versión instalada.
+- 6.15: documentación Mock y Reproducible Builds; no inferir reproducibilidad
+  únicamente porque el build se ejecuta dentro de un chroot.
+
+### Registro de consulta y límites
+
+Revisión: 2026-10-21. Se contrastaron específicamente el manual SPEC RPM,
+los manuales upstream rpmdeps/rpmgraph, la documentación Mock y las
+referencias de Fedora sobre rpmautospec. El sitio Fedora Docs devolvió una
+barrera de acceso automatizado en la comprobación directa de Guidelines y
+Scriptlets; se conservan sus URL canónicas, sin afirmar una verificación
+completa de cada política actual. El resto de enlaces es un índice de
+referencias oficiales para consultar por versión, no una certificación de
+que todos sus contenidos se hayan auditado en esta revisión.

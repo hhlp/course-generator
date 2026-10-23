@@ -12,6 +12,7 @@ course:
   primary_reference: Basic Grammar in Use — Raymond Murphy — Fourth Edition
   independent_course: true
   block_start: 0
+  english_variety: American English; labelled British alternatives accepted
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -19,11 +20,13 @@ files:
   bibliography: bibliography.md
 
 objective:
-  primary: Dominar la gramática inglesa A2 dentro de los límites CEFR del nivel
-    mediante fundamentos gramaticales, forma, significado, uso, restricciones,
-    contrastes, análisis estructural, transformaciones, diagnóstico de errores,
-    práctica controlada y consolidación acumulativa, preparando la transición
-    posterior hacia B1 sin introducir contenidos avanzados antes de tiempo.
+  primary: Dominar la gramática inglesa A2 dentro de los límites CEFR del
+    nivel mediante fundamentos gramaticales, forma, significado, uso,
+    restricciones, contrastes, análisis estructural, transformaciones,
+    diagnóstico de errores, práctica controlada y consolidación acumulativa,
+    preparando la transición posterior hacia B1 sin introducir contenidos
+    avanzados antes de tiempo.
+
 curriculum:
   grammar_required: true
   deep_path: true
@@ -40,6 +43,7 @@ curriculum:
   incidental_context_rule: El vocabulario y las oraciones contextuales pueden
     utilizarse para demostrar gramática, pero nunca deben convertirse en
     objetivos independientes.
+
 level_model:
   type: single-level-deep
   progression:
@@ -66,14 +70,15 @@ level_model:
     C2: mastery, nuance and grammatical analysis
   avoid_repetition_without_new_depth: true
   never_use_higher_level_content_to_fake_depth: true
+
 pedagogy:
   style: profundo, práctico, progresivo, contrastivo, analítico y centrado
-      exclusivamente en gramática
+    exclusivamente en gramática
   explanation_language: Spanish
   grammar_terminology: English
   examples_language: English
   indentation: false
-  numbering: single-level
+  numbering: block.lesson; flat lines without indentation
   explain_terminology: true
   contrastive_examples: true
   positive_and_negative_examples: true
@@ -87,6 +92,7 @@ pedagogy:
   require_natural_examples: true
   require_original_exercises: true
   avoid_unnecessary_repetition: true
+
 depth_model:
   apply_when_relevant:
     - prerequisite concepts
@@ -107,6 +113,7 @@ depth_model:
     - controlled practice
     - cumulative review
   do_not_pad_lessons: true
+
 lesson_structure:
   objective:
     required: true
@@ -115,8 +122,8 @@ lesson_structure:
   reading:
     required: true
     heading: 📚 LECTURA
-    purpose: referencia bibliográfica gramatical; no actividad de
-        comprensión lectora
+    purpose: referencia bibliográfica gramatical; no actividad de comprensión
+      lectora
     categories:
       - principal
       - normativa
@@ -186,6 +193,9 @@ lesson_structure:
       - error_correction
       - error_diagnosis
       - mixed_controlled_practice
+    answer_key_required: true
+    explain_diagnostic_answers: true
+    accept_contextually_valid_alternatives: true
   remember:
     required: true
     position: last
@@ -193,6 +203,7 @@ lesson_structure:
     min_items: 3
     max_items: 7
     avoid_repeating_objective: true
+
 examples:
   target_language: English
   explanation_language: Spanish
@@ -202,6 +213,7 @@ examples:
   mark_ungrammatical_examples: true
   ungrammatical_marker: '*'
   explain_acceptability: true
+
 content_rules:
   grammar_only: true
   no_independent_vocabulary_lessons: true
@@ -220,6 +232,7 @@ content_rules:
   include_checkpoints: true
   include_final_integration: true
   preserve_english_examples: true
+
 references:
   principal:
     - author: Raymond Murphy
@@ -239,6 +252,21 @@ references:
     never_invent_unit_numbers: true
     paraphrase_sources: true
     do_not_copy_source_exercises: true
+  supporting:
+    - organization: Cambridge University Press & Assessment
+      title: English Grammar Today
+      url: https://dictionary.cambridge.org/grammar/british-grammar/
+      role: descriptive consultation; select A2 patterns; label British variants
+    - organization: British Council
+      title: LearnEnglish Grammar
+      url: https://learnenglish.britishcouncil.org/free-resources/grammar
+      role: controlled grammar practice and boundary comparison
+    - organization: Council of Europe
+      title: CEFR Reference Level Descriptions
+      url: "https://www.coe.int/en/web/common-european-framework-\
+        reference-languages/reference-level-descriptions"
+      role: framework interpretation; not a universal grammar checklist
+
 generation:
   lesson_depth: high
   deep_path_standard: true
@@ -252,6 +280,38 @@ generation:
     - A2 Nominal System, Modification and Clauses
     - Final A2 Grammar Integration
     - A2 → B1 boundary
+  assessment_policy:
+    required_targets: previously taught core grammar only
+    optional_preview_lessons: short recognition/boundary notes; no required
+      productive mastery
+    optional_review_separate: true
+    no_new_required_grammar_at_checkpoints: true
+    no_overall_CEFR_certification_claim: true
+    core_exclusions:
+      - future/modal/continuous passive
+      - backshift transformations
+      - reported-question conversions
+      - formal whom
+      - advanced adjective/adverb terminology
+    error_followup: correct, explain the rule, retry a parallel example
+  prerequisite_order:
+    - 0 foundations and subject/object pronouns
+    - 1 verb forms
+    - 2 present
+    - 3 past
+    - 4 present perfect
+    - 5 future
+    - 6 modals and imperative
+    - 7 passive
+    - 8 checkpoint I
+    - 9 there/it
+    - 10 auxiliaries
+    - 11 questions
+    - 12 -ing/to
+    - 13 reporting
+    - 14 common verb patterns
+    - 15 checkpoint II
+
 quality_checks:
   require_objective_first: true
   require_remember_last: true
@@ -268,6 +328,13 @@ quality_checks:
   verify_no_B1_B2_content_used_as_A2_depth: true
   verify_adjective_order_as_tendency_not_absolute: true
   verify_adverbial_order_as_tendency_not_absolute: true
+  verify_answer_keys: true
+  verify_optional_content_not_required_for_core_assessment: true
+  verify_prerequisites_before_use: true
+  verify_transitivity_before_passivization: true
+  verify_reporting_changes_are_context_dependent: true
+  accept_labelled_British_variants: true
+
 level_specific:
   foundations:
     include:
@@ -286,18 +353,20 @@ level_specific:
   boundaries:
     reported_speech:
       include:
-        - basic reported statements
+        - present reporting verbs + basic statements
         - say vs tell
-        - basic tense changes
-        - pronoun and time-expression changes
+        - context-appropriate pronoun changes
+        - controlled tell/ask + object + to after Block 12
+      optional_recognition_only:
+        - present-to-past backshift using taught forms
+        - context-dependent time changes
         - reported questions
-        - reported commands
-        - basic backshift
       defer:
         B1_B2:
-          - full systematic backshift
-          - advanced reporting verbs
-          - advanced reporting patterns
+          - systematic backshift
+          - Past Perfect in reporting
+          - full reported-question system
+          - advanced reporting verbs and patterns
     conditionals:
       include:
         - Zero Conditional
@@ -311,16 +380,16 @@ level_specific:
           - Mixed Conditionals
     passive:
       include:
-        - Active vs Passive
+        - active vs passive
         - be + past participle
-        - Present Simple Passive
-        - Past Simple Passive
-        - Future Passive
-        - Passive with basic modal verbs
-        - Present Continuous Passive as introduction
-        - by + agent
-        - agent omission
-        - basic Active → Passive transformations
+        - controlled present/past simple passive
+        - by + agent and agent omission
+        - transitive-verb restrictions
+        - basic active-to-passive transformations
+      optional_recognition_only:
+        - future passive
+        - passive with modals
+        - present continuous passive
   required_topics:
     existential_there:
       required_sequence:
@@ -330,6 +399,7 @@ level_specific:
         - there will be
         - there + modal + be
       require_there_will_be_explicitly: true
+      include_permitted_negative_forms: true
     auxiliary_verbs:
       distinguish_main_vs_auxiliary:
         - be
@@ -363,12 +433,14 @@ level_specific:
         - verb + indirect object + direct object
         - verb + direct object + to + indirect object
         - pronoun-sensitive patterns such as Give it to me
+        - verb + direct object + for + beneficiary
+        - lexical restrictions on double-object alternation
     would_rather:
       include:
         - would rather + base form
       advanced_hypothetical_patterns_deferred: true
     adjectives_adverbs:
-      depth: A2 in-depth, with advanced categories introduced only
+      depth: A2 core; advanced terminology is optional recognition only
       adjectives:
         - descriptive and evaluative categories
         - opinion, size, age, shape, colour, origin, material and purpose
@@ -378,8 +450,8 @@ level_specific:
         - 'gradable vs non-gradable: introduction'
         - comparatives, superlatives and -ed/-ing adjectives
       adverbs:
-        - manner, place, time, frequency, degree, probability, focus and
-            sequence
+        - manner, place, time, frequency, degree, probability, focus
+          and sequence
         - -ly formation, spelling and common exceptions
         - adverbs modifying verbs, adjectives and adverbs
         - comparison of adverbs
@@ -389,3 +461,19 @@ level_specific:
         - 'only, also, even: introductory meaning and placement'
       checkpoint_and_final_integration: true
       defer_advanced_scope_and_discourse_uses: true
+      optional_recognition_only:
+        - coordinate/cumulative terminology
+        - gradable/non-gradable terminology
+        - even and detailed focusing scope
+        - hardly/lately contrasts
+    additional_contrasts:
+      - be vs do in questions
+      - mustn't vs don't have to
+      - few vs a few
+      - little vs a little
+      - indefinite-pronoun agreement
+      - no vs not any in standard English
+      - its vs it's
+      - to vs for in permitted object alternations
+      - relative subject vs object
+      - present forms in future time and if clauses

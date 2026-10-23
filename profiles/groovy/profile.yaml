@@ -7,7 +7,7 @@ course:
     end: experto
   description: 'Curso de Groovy desde cero a experto en profundidad:
     semántica, JVM, closures, POO, DSL, MOP, AST, testing, rendimiento,
-    seguridad, APIs y especialización avanzada en Jenkins CPS y Shared
+    seguridad, APIs y especialización opcional en Jenkins CPS y Shared
     Libraries.'
   mode: deep
 
@@ -99,9 +99,18 @@ technical_policy:
   prefer_version_pinned_reproducible_examples: true
   include_debugging_and_troubleshooting: true
   do_not_repeat_general_regex_theory: true
+  do_not_duplicate_jenkins_administration_path: true
+  distinguish_local_and_jenkins_groovy_versions: true
+  distinguish_workspace_steps_from_controller_io: true
+  explain_trusted_library_scm_permissions: true
 curriculum:
   blocks: 35
   block_range: 0-34
-  preserve_existing_lessons: true
-  specialization: Jenkins CPS y Shared Libraries
+  preserve_existing_lessons: false
+  specialization: Jenkins CPS y Shared Libraries (opcional)
   final_project_block: 34
+  core_blocks: 0-25, 29-31, 34
+  optional_specialization_blocks: 26-28, 32-33
+  numbered_block_checkpoints: true
+  core_final_project_independent_of_jenkins: true
+  existing_lesson_changes: ajustes de alcance y secuencia autorizados

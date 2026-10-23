@@ -1,6 +1,23 @@
-PYTHON NETWORK AUTOMATION / NETWORK PROGRAMMABILITY — 0 → EXPERTO EN PROFUNDIDAD Especialización: Cisco Routers & Switches
+PYTHON NETWORK AUTOMATION / NETWORK PROGRAMMABILITY
+0 EN AUTOMATIZACIÓN DE REDES → EXPERTO EN PROFUNDIDAD
+Especialización: Cisco Routers & Switches
 
-PRINCIPIO DEL PATH Este PATH NO enseña Python general desde cero. Presupone el PATH general de Python. Python, Regex, Git, redes y protocolos se introducen aquí solo en la medida necesaria para aplicarlos a automatización, configuración, validación, observabilidad y troubleshooting de infraestructura de red. Referencia de partida: Python for Network Automation / Python for Network Engineer (Syed Asif), ampliada a un itinerario profesional y profundo.
+PRINCIPIO DEL PATH
+Se presupone Python general; no se reenseña el lenguaje. También se requieren
+Linux/terminal, Git y redes: Ethernet, VLAN, IPv4/IPv6, routing y SSH básicos.
+OSPF/BGP y switching avanzado se estudian previamente o justo antes de sus labs.
+El PATH general de Ansible se requiere al llegar al BLOQUE 28, no para comenzar.
+Regex se consume del PATH específico cuando se necesite parsing de texto.
+Referencia inicial: Python for Network Automation, de Syed Asif, ampliada
+con documentación oficial y prácticas de ingeniería de automatización.
+
+LECTURA Y EVALUACIÓN
+Cada entrada N.M es una lección; sus líneas «Alcance» son subtemas, no lecciones.
+La profundidad depende de teoría, implementación, fallos y evidencia práctica.
+Los checkpoints requieren evidencias reproducibles y criterios PASS/FAIL.
+Las configuraciones y scripts se implementan durante las lecciones: estos
+cuatro archivos definen el currículo y no contienen un laboratorio ejecutable.
+No se presupone una imagen Cisco que soporte todos los protocolos.
 
 BLOQUE 0 — ORIENTACIÓN, ARQUITECTURA Y LABORATORIO
 
@@ -28,6 +45,20 @@ BLOQUE 0 — ORIENTACIÓN, ARQUITECTURA Y LABORATORIO
 0.22 Estructura del repositorio de laboratorio
 0.23 Convenciones de hostname e inventario
 0.24 Checkpoint: laboratorio reproducible y accesible
+0.25 Prerrequisitos y diagnóstico de entrada: Python, Linux, Git y redes
+0.26 Recursos de host: CPU, RAM, disco y virtualización según imágenes elegidas
+0.27 Manifiesto del lab: versiones, imágenes obtenidas legítimamente y capacidades
+0.28 Plan dual stack y tabla de interfaces, enlaces, management y acceso de consola
+0.29 Bootstrap por plataforma: AAA, SSH, host keys y activación de APIs soportadas
+0.30 Matriz plataforma/release/imagen/protocolo/operación y alternativa de práctica
+0.31 Primer acceso a Cisco DevNet: reserva, conectividad, restricciones y limpieza
+0.32 Procedimiento mínimo de cambio: alcance, backup, pre-check, diff y recuperación
+0.33 Validación funcional mínima: conectividad de management y tráfico entre extremos
+0.34 Reset del laboratorio y repetición desde configuración inicial conocida
+0.35 Checkpoint evaluable y entrega del bloque
+  Entregables: lab/README.md, manifiesto de imágenes/versiones, topología, tabla IP, configs iniciales y reset.
+  Aprobación: Reconstruir el lab; verificar SSH y capacidades; recuperar por consola/OOB.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 1 — TOOLCHAIN PYTHON APLICADO A NETWORK AUTOMATION
 
@@ -62,6 +93,12 @@ BLOQUE 1 — TOOLCHAIN PYTHON APLICADO A NETWORK AUTOMATION
 1.29 secrets separados del inventario
 1.30 troubleshooting del entorno Python
 1.31 Lab: bootstrap reproducible del proyecto
+1.32 Matriz Python/OS/dependencias: aislar herramientas con requisitos incompatibles
+1.33 Validación de entrada: safe_load YAML y XML no confiable con límites de recursos
+1.34 Checkpoint evaluable y entrega del bloque
+  Entregables: pyproject.toml, lockfiles por entorno y comando de bootstrap documentado.
+  Aprobación: Crear el entorno desde cero y ejecutar un collector mínimo sin secretos incrustados.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 2 — INVENTARIO, DATOS Y SOURCE OF TRUTH
 
@@ -87,6 +124,14 @@ BLOQUE 2 — INVENTARIO, DATOS Y SOURCE OF TRUTH
 2.20 generación de inventario desde NetBox
 2.21 detección de inconsistencias
 2.22 Lab: inventario Cisco validado
+2.23 Inventario dual stack, link-local IPv6 con scope y validación de direcciones
+2.24 Contrato de SoT: autoridad por campo, datos observados y aprobación de reconciliación
+2.25 Instalación de NetBox en lab o servicio existente: token, TLS y dataset mínimo
+2.26 Paginación, permisos, límites y fallos de API en pynetbox
+2.27 Checkpoint evaluable y entrega del bloque
+  Entregables: inventario validado, esquema, export de SoT y fixtures dual stack.
+  Aprobación: Rechazar datos inválidos, resolver precedencias y generar inventario sin secretos.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 3 — SSH EN PROFUNDIDAD PARA AUTOMATIZACIÓN
 
@@ -122,6 +167,10 @@ BLOQUE 3 — SSH EN PROFUNDIDAD PARA AUTOMATIZACIÓN
 3.30 packet capture de una sesión SSH
 3.31 logging seguro sin exponer secretos
 3.32 Lab: matriz de fallos SSH y diagnóstico
+3.33 Checkpoint evaluable y entrega del bloque
+  Entregables: matriz de fallos SSH, known_hosts de lab y evidencias redactadas.
+  Aprobación: Diagnosticar host key incorrecta, autenticación fallida y timeout sin relajar trust.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 4 — PARAMIKO: SSH DE BAJO NIVEL
 
@@ -158,6 +207,12 @@ BLOQUE 4 — PARAMIKO: SSH DE BAJO NIVEL
 4.31 limitaciones del mini-driver
 4.32 Cuándo dejar Paramiko y usar Netmiko
 4.33 Lab: collector SSH robusto
+4.34 Lab de cambios acotados: aplicar el procedimiento mínimo del BLOQUE 0
+4.35 Fallo tras enviar un comando: resultado incierto y lectura antes de reintentar
+4.36 Checkpoint evaluable y entrega del bloque
+  Entregables: collector Paramiko, pruebas y recuperación de un cambio mínimo.
+  Aprobación: Cerrar sesiones, distinguir errores y comprobar estado tras timeout ambiguo.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 5 — NETMIKO: CLI AUTOMATION PROFESIONAL
 
@@ -203,6 +258,11 @@ BLOQUE 5 — NETMIKO: CLI AUTOMATION PROFESIONAL
 5.40 rollback strategy alrededor de CLI
 5.41 troubleshooting mediante session_log
 5.42 Lab: administrar topología Cisco completa
+5.43 Reintentos de lectura vs cambios: comprobar estado tras timeout antes de repetir
+5.44 Checkpoint evaluable y entrega del bloque
+  Entregables: workflow Netmiko con backup, diff, validación y logs redactados.
+  Aprobación: Ejecutar lectura y cambio acotado; demostrar error y recuperación.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 6 — SCRAPLI Y TRANSPORTES MODERNOS
 
@@ -225,6 +285,10 @@ BLOQUE 6 — SCRAPLI Y TRANSPORTES MODERNOS
 6.17 comparación Paramiko vs Netmiko vs Scrapli
 6.18 criterios de selección
 6.19 Lab: mismo workflow con Netmiko y Scrapli
+6.20 Checkpoint evaluable y entrega del bloque
+  Entregables: workflow equivalente Scrapli y tabla de selección de transporte.
+  Aprobación: Verificar host keys y comparar resultados con el collector previo.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 7 — PARSING Y NORMALIZACIÓN DE CLI
 
@@ -258,6 +322,10 @@ BLOQUE 7 — PARSING Y NORMALIZACIÓN DE CLI
 7.28 tests de parsers
 7.29 fixtures de output real
 7.30 Lab: collector normalizado de estado Cisco
+7.31 Checkpoint evaluable y entrega del bloque
+  Entregables: parsers, fixtures representativas por plataforma y tests.
+  Aprobación: Rechazar salida no parseable sin convertirla silenciosamente en datos válidos.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 8 — NAPALM: ABSTRACCIÓN MULTIVENDOR
 
@@ -294,6 +362,12 @@ BLOQUE 8 — NAPALM: ABSTRACCIÓN MULTIVENDOR
 8.31 vendor abstraction vs vendor-specific features
 8.32 cuándo usar NAPALM y cuándo no
 8.33 Lab: cambio seguro con diff + validation + rollback
+8.34 Matriz de getters, merge/replace, persistencia y rollback por driver/release
+8.35 Prueba de soporte real y alternativa cuando falta una operación
+8.36 Checkpoint evaluable y entrega del bloque
+  Entregables: matriz de soporte NAPALM y workflow por driver disponible.
+  Aprobación: Verificar operaciones soportadas y recuperar un cambio fallido sin asumir portabilidad.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 9 — NORNIR: ORQUESTACIÓN PYTHON-NATIVE
 
@@ -329,6 +403,10 @@ BLOQUE 9 — NORNIR: ORQUESTACIÓN PYTHON-NATIVE
 9.30 rollback orchestration
 9.31 cientos de dispositivos: diseño
 9.32 Lab: workflow Nornir multi-site
+9.33 Checkpoint evaluable y entrega del bloque
+  Entregables: tasks Nornir, inventario y reporte por host.
+  Aprobación: Aislar hosts fallidos y limitar workers manteniendo trazabilidad.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 10 — JINJA2 Y GENERACIÓN DE CONFIGURACIÓN
 
@@ -360,6 +438,10 @@ BLOQUE 10 — JINJA2 Y GENERACIÓN DE CONFIGURACIÓN
 10.26 intended configuration
 10.27 diff antes del deployment
 10.28 Lab: data → Jinja2 → candidate → diff → deploy
+10.29 Checkpoint evaluable y entrega del bloque
+  Entregables: datos, templates y pruebas de render con StrictUndefined.
+  Aprobación: Fallar ante variables ausentes y producir candidate/diff reproducibles.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 11 — CONFIGURATION MANAGEMENT CISCO
 
@@ -397,66 +479,91 @@ BLOQUE 11 — CONFIGURATION MANAGEMENT CISCO
 11.32 canary deployment
 11.33 staged rollout
 11.34 Lab: cambio multi-dispositivo con controles de seguridad
+11.35 IPv6: interfaces, rutas, ND y routing dual stack según plataforma
+11.36 Pruebas de tráfico entre extremos y recuperación del acceso de management
+11.37 Cambios concurrentes: bloqueo por dispositivo y revalidación de baseline
+11.38 Checkpoint evaluable y entrega del bloque
+  Entregables: plan de cambio, baseline y pruebas de flujos dual stack.
+  Aprobación: Repetir el cambio sin drift inesperado y recuperar management tras fallo inyectado.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
-BLOQUE 12 — XML Y NETCONF CON ncclient
+BLOQUE 12 — YANG, OPENCONFIG Y MODELOS CISCO
 
-12.1 model-driven management
-12.2 NETCONF architecture
-12.3 SSH port 830
-12.4 hello y capabilities
-12.5 RPC/RPC-reply
-12.6 datastores
-12.7 running
-12.8 candidate
-12.9 startup
-12.10 get
-12.11 get-config
-12.12 edit-config
-12.13 copy-config
-12.14 delete-config
-12.15 commit
-12.16 confirmed commit
-12.17 discard-changes
-12.18 lock/unlock
-12.19 subtree filters
-12.20 XPath filters
-12.21 XML namespaces
-12.22 ncclient manager.connect()
-12.23 device handlers
-12.24 IOS XE NETCONF
-12.25 errores rpc-error
-12.26 capabilities mismatch
-12.27 troubleshooting con ncclient logging
-12.28 packet/session inspection
-12.29 Lab: lectura y cambio model-driven
+12.1 por qué YANG
+12.2 módulos y submódulos
+12.3 namespace
+12.4 container
+12.5 list
+12.6 leaf
+12.7 leaf-list
+12.8 types
+12.9 typedef
+12.10 grouping
+12.11 augment
+12.12 choice/case
+12.13 config true/false
+12.14 operational state
+12.15 constraints
+12.16 Cisco native YANG
+12.17 OpenConfig
+12.18 IETF models
+12.19 descubrir modelos soportados
+12.20 pyang
+12.21 YANG Suite
+12.22 construir paths desde modelos
+12.23 traducir modelo → payload
+12.24 troubleshooting de schema/model mismatch
+12.25 Lab: explorar y consumir un modelo IOS XE
+12.26 XML aplicado: namespaces, elementos, atributos y serialización segura
+12.27 YANG Library: módulos, revisiones, features y deviations del dispositivo
+12.28 NMDA: intended y operational; configuración aceptada vs estado aplicado
+12.29 Validación con pyang: imports, revisiones y restricciones de esquema
+12.30 Checkpoint evaluable y entrega del bloque
+  Entregables: árbol YANG, revisión de modelos y payload validado.
+  Aprobación: Justificar namespace, path y separación entre configuración y estado operacional.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
-BLOQUE 13 — YANG, OPENCONFIG Y MODELOS CISCO
+BLOQUE 13 — XML Y NETCONF CON ncclient
 
-13.1 por qué YANG
-13.2 módulos y submódulos
-13.3 namespace
-13.4 container
-13.5 list
-13.6 leaf
-13.7 leaf-list
-13.8 types
-13.9 typedef
-13.10 grouping
-13.11 augment
-13.12 choice/case
-13.13 config true/false
-13.14 operational state
-13.15 constraints
-13.16 Cisco native YANG
-13.17 OpenConfig
-13.18 IETF models
-13.19 descubrir modelos soportados
-13.20 pyang
-13.21 YANG Suite
-13.22 construir paths desde modelos
-13.23 traducir modelo → payload
-13.24 troubleshooting de schema/model mismatch
-13.25 Lab: explorar y consumir un modelo IOS XE
+13.1 model-driven management
+13.2 NETCONF architecture
+13.3 SSH port 830
+13.4 hello y capabilities
+13.5 RPC/RPC-reply
+13.6 datastores
+13.7 running
+13.8 candidate
+13.9 startup
+13.10 get
+13.11 get-config
+13.12 edit-config
+13.13 copy-config
+13.14 delete-config
+13.15 commit
+13.16 confirmed commit
+13.17 discard-changes
+13.18 lock/unlock
+13.19 subtree filters
+13.20 XPath filters
+13.21 XML namespaces
+13.22 ncclient manager.connect()
+13.23 device handlers
+13.24 IOS XE NETCONF
+13.25 errores rpc-error
+13.26 capabilities mismatch
+13.27 troubleshooting con ncclient logging
+13.28 packet/session inspection
+13.29 Lab: lectura y cambio model-driven
+13.30 validate y capability correspondiente antes de commit cuando se soporte
+13.31 edit-config: default-operation, test-option y error-option según capabilities
+13.32 Confirmed commit: confirmar, cancelar y recuperar tras pérdida de sesión
+13.33 Locks y concurrencia: adquisición, liberación y errores de otra sesión
+13.34 Fallo parcial: rollback-on-error donde exista y compensación documentada
+13.35 Framing NETCONF 1.0/1.1, message-id y timeout con resultado incierto
+13.36 Checkpoint evaluable y entrega del bloque
+  Entregables: cliente NETCONF, capabilities, RPCs redactados y recuperación.
+  Aprobación: Aplicar únicamente operaciones anunciadas; manejar locks y error RPC.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 14 — RESTCONF Y APIs HTTP
 
@@ -487,6 +594,13 @@ BLOQUE 14 — RESTCONF Y APIs HTTP
 14.25 RESTCONF errors
 14.26 troubleshooting TLS/HTTP/YANG
 14.27 Lab: CRUD controlado sobre IOS XE
+14.28 PATCH RESTCONF vs YANG Patch: soporte, media types y semántica de cambios
+14.29 Reintentos por método y operación: evitar duplicación de cambios tras timeout
+14.30 Control de concurrencia condicional con ETag/If-Match cuando se soporte
+14.31 Checkpoint evaluable y entrega del bloque
+  Entregables: cliente RESTCONF con CA, payloads y fixtures de errores.
+  Aprobación: Validar TLS y tratar errores/timeouts sin duplicar cambios.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 15 — CISCO NX-API Y APIs DE PLATAFORMA
 
@@ -503,6 +617,10 @@ BLOQUE 15 — CISCO NX-API Y APIs DE PLATAFORMA
 15.11 diferencias con RESTCONF
 15.12 vendor-specific APIs vs standard APIs
 15.13 Lab: automatización de switch NX-OS
+15.14 Checkpoint evaluable y entrega del bloque
+  Entregables: cliente NX-API y matriz de respuestas por operación.
+  Aprobación: Validar respuestas y detectar error de comando aunque el transporte tenga éxito.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 16 — gNMI, gRPC Y OPENCONFIG
 
@@ -525,6 +643,16 @@ BLOQUE 16 — gNMI, gRPC Y OPENCONFIG
 16.17 telemetry subscriptions
 16.18 model/path troubleshooting
 16.19 Lab: obtener estado y telemetría model-driven
+16.20 Capabilities y selección de versiones, modelos y encodings soportados
+16.21 Set: delete/replace/update y atomicidad de una petición en un target
+16.22 Distinguir transacción local de cambio coordinado entre varios dispositivos
+16.23 Subscribe: sync_response, timestamps, reconexión y resuscripción
+16.24 Ventanas sin muestras, datos obsoletos, buffers y backpressure
+16.25 Lab: Set acotado y fallo de stream con recuperación observable
+16.26 Checkpoint evaluable y entrega del bloque
+  Entregables: cliente gNMI, capacidades y registro de reconexión.
+  Aprobación: Validar Set en un target y detectar intervalos sin muestras al reiniciar el stream.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 17 — CISCO pyATS Y GENIE
 
@@ -565,6 +693,10 @@ BLOQUE 17 — CISCO pyATS Y GENIE
 17.35 troubleshooting Unicon
 17.36 troubleshooting parsers
 17.37 Lab: cambio + pyATS validation + rollback decision
+17.38 Checkpoint evaluable y entrega del bloque
+  Entregables: testbed sin secretos, suite AEtest y snapshots.
+  Aprobación: Producir PASS/FAIL por invariantes funcionales con limpieza incluso tras fallo.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 18 — SNMP DESDE PYTHON
 
@@ -585,6 +717,13 @@ BLOQUE 18 — SNMP DESDE PYTHON
 18.15 timeouts/retries
 18.16 troubleshooting
 18.17 Lab: inventario/health mediante SNMP
+18.18 Seleccionar y fijar una biblioteca SNMP mantenida y compatible con Python
+18.19 Contadores de 64 bits, wrap/reset, discontinuidades y cálculo de tasas
+18.20 SNMPv3: algoritmos y permisos según soporte del agente y del cliente
+18.21 Checkpoint evaluable y entrega del bloque
+  Entregables: collector SNMPv3 y cálculo de tasas con fixtures.
+  Aprobación: Manejar timeout, reset/wrap y permisos insuficientes sin inventar métricas.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 19 — ASYNCIO, CONCURRENCIA Y ESCALA
 
@@ -610,6 +749,13 @@ BLOQUE 19 — ASYNCIO, CONCURRENCIA Y ESCALA
 19.20 medición de throughput
 19.21 protección del control plane
 19.22 Lab: 10 → 100 → N dispositivos simulados
+19.23 Aislamiento de sesiones: no compartir conexiones no seguras entre workers
+19.24 Retries seguros, resultado incierto y exclusión mutua por dispositivo
+19.25 Pruebas simuladas de escala separadas de pruebas de capacidad en equipos reales
+19.26 Checkpoint evaluable y entrega del bloque
+  Entregables: benchmark simulado, límites de concurrencia y resultados por host.
+  Aprobación: Mostrar límites respetados, cancelación y ausencia de escrituras simultáneas por dispositivo.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 20 — BACKUP, RESTORE Y CONFIGURATION ARCHIVE
 
@@ -630,6 +776,12 @@ BLOQUE 20 — BACKUP, RESTORE Y CONFIGURATION ARCHIVE
 20.15 retention
 20.16 failure reporting
 20.17 Lab: backup versionado de toda la topología
+20.18 Backups íntegros cifrados vs copias redactadas para diff y Git
+20.19 Restore drill: restauración comprobada y recuperación por consola/OOB
+20.20 Checkpoint evaluable y entrega del bloque
+  Entregables: archivo cifrado, política de retención y acta de restore drill.
+  Aprobación: Recuperar configuración y conectividad; mantener copias redactadas separadas del backup íntegro.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 21 — COMPLIANCE, DRIFT Y DESIRED STATE
 
@@ -652,6 +804,10 @@ BLOQUE 21 — COMPLIANCE, DRIFT Y DESIRED STATE
 21.17 remediation
 21.18 auto-remediation y riesgos
 21.19 Lab: detectar y corregir drift controladamente
+21.20 Checkpoint evaluable y entrega del bloque
+  Entregables: políticas, reporte de drift y propuesta de remediación.
+  Aprobación: Detectar incumplimiento y validar remediación sin sobrescribir intent desde observaciones.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 22 — TROUBLESHOOTING AUTOMATIZADO
 
@@ -680,6 +836,12 @@ BLOQUE 22 — TROUBLESHOOTING AUTOMATIZADO
 22.23 diagnóstico reproducible
 22.24 evitar conclusiones automáticas peligrosas
 22.25 Lab: troubleshooting de fallos inyectados
+22.26 IPv6: ND, rutas, ACLs y conectividad dual stack
+22.27 Validación de data plane: pruebas de tráfico y criterios esperados por flujo
+22.28 Checkpoint evaluable y entrega del bloque
+  Entregables: evidence bundle, timeline e hipótesis contrastadas.
+  Aprobación: Localizar un fallo de routing/switching o IPv6 mediante evidencias y prueba funcional.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 23 — LOGGING, AUDITORÍA Y OBSERVABILIDAD
 
@@ -703,6 +865,11 @@ BLOQUE 23 — LOGGING, AUDITORÍA Y OBSERVABILIDAD
 23.18 alertas
 23.19 troubleshooting de la propia plataforma
 23.20 Lab: job completamente observable
+23.21 Telemetría de red vs métricas del job: contrato, timestamps y retención
+23.22 Checkpoint evaluable y entrega del bloque
+  Entregables: logs estructurados, métricas y consulta por job ID.
+  Aprobación: Reconstruir un job y verificar redacción de secretos y tiempos coherentes.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 24 — SEGURIDAD Y GESTIÓN DE SECRETOS
 
@@ -727,6 +894,10 @@ BLOQUE 24 — SEGURIDAD Y GESTIÓN DE SECRETOS
 24.19 supply-chain de dependencias
 24.20 dependency scanning
 24.21 Lab: eliminar secretos del repositorio
+24.22 Checkpoint evaluable y entrega del bloque
+  Entregables: integración de secretos, permisos y plan de rotación.
+  Aprobación: Denegar acceso no autorizado y rotar credenciales sin exposición en logs.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 25 — TESTING DE NETWORK AUTOMATION
 
@@ -750,6 +921,12 @@ BLOQUE 25 — TESTING DE NETWORK AUTOMATION
 25.18 regression suites
 25.19 failure injection
 25.20 Lab: suite de tests del proyecto
+25.21 Pruebas de timeout tras cambio, baseline obsoleto y cambios concurrentes
+25.22 Pruebas de reconexión de streams y recuperación tras caída de un worker
+25.23 Checkpoint evaluable y entrega del bloque
+  Entregables: suite pytest, contratos y escenarios de fallo.
+  Aprobación: Detectar regresión de parser/template y fallo parcial o baseline obsoleto.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 26 — GIT Y CI/CD PARA NETWORK AUTOMATION
 
@@ -775,6 +952,10 @@ BLOQUE 26 — GIT Y CI/CD PARA NETWORK AUTOMATION
 26.20 canary
 26.21 GitHub Actions como ejemplo
 26.22 Lab: pipeline de cambio Cisco
+26.23 Checkpoint evaluable y entrega del bloque
+  Entregables: pipeline, diff revisable y artifacts redactados.
+  Aprobación: Bloquear deployment ante validación fallida y producir evidencia del resultado.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 27 — CISCO DEVNET Y SANDBOXES
 
@@ -789,358 +970,179 @@ BLOQUE 27 — CISCO DEVNET Y SANDBOXES
 27.9 Postman/curl como herramientas de diagnóstico previo
 27.10 trasladar prueba manual a Python
 27.11 Lab: consumir un sandbox Cisco cuando esté disponible
+27.12 Checkpoint evaluable y entrega del bloque
+  Entregables: ficha de sandbox, límites, fixture equivalente y procedimiento de limpieza.
+  Aprobación: Repetir la práctica o usar alternativa local documentada sin depender de disponibilidad externa.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
-BLOQUE 28 — ANSIBLE APLICADO A NETWORK AUTOMATION Y CISCO (No es un PATH de Ansible: se presupone el PATH general de Ansible)
+BLOQUE 28 — ANSIBLE APLICADO A NETWORK AUTOMATION Y CISCO
 
-28.1 Papel de Ansible dentro del ecosistema de Network Automation
-28.2 Qué conocimientos se presuponen del PATH general de Ansible
-28.3 Qué NO se repetirá aquí del PATH general de Ansible
-28.4 Python vs Ansible para automatización de red
-28.5 Nornir vs Ansible
-28.6 Netmiko/Scrapli vs Ansible
-28.7 NAPALM vs Ansible
-28.8 pyATS vs Ansible
-28.9 Cuándo combinar las herramientas
-28.10 Arquitectura Python + Ansible + Cisco
-28.11 Ansible para dispositivos de red vs servidores Linux
-28.12 Network Resource Modules
-28.13 Collections de networking
-28.14 ansible.netcommon
-28.15 cisco.ios
-28.16 cisco.iosxr
-28.17 cisco.nxos
-28.18 Versionado y compatibilidad de collections
-28.19 ansible-doc aplicado a módulos de red
-28.20 Verificación de módulos y plugins disponibles
+Prerrequisito: PATH general de Ansible; aplicar los protocolos de los bloques previos.
 
-28.21 Inventario Cisco
-28.22 ansible_host
-28.23 ansible_user
-28.24 ansible_password y por qué no hardcodearlo
-28.25 ansible_network_os
-28.26 ansible_connection
-28.27 group_vars
-28.28 host_vars
-28.29 agrupación por plataforma
-28.30 agrupación por site
-28.31 agrupación por role
-28.32 variables específicas de dispositivo
-28.33 inventario estático
-28.34 inventario dinámico
-28.35 integración del inventario con Source of Truth
-28.36 NetBox inventory
-28.37 compartir Source of Truth entre Python, Nornir y Ansible
+28.1 Arquitectura y selección de herramientas para networking
+  Alcance: Papel de Ansible dentro del ecosistema de Network Automation; Qué conocimientos se
+  presuponen del PATH general de Ansible; Qué NO se repetirá aquí del PATH general de Ansible;
+  Python vs Ansible para automatización de red; Nornir vs Ansible; Netmiko/Scrapli vs Ansible;
+  NAPALM vs Ansible; pyATS vs Ansible; Cuándo combinar las herramientas; Arquitectura Python +
+  Ansible + Cisco
 
-28.38 Credenciales y secretos
-28.39 No almacenar passwords en inventarios
-28.40 Ansible Vault aplicado a networking
-28.41 variables de entorno
-28.42 SSH keys
-28.43 secret managers externos
-28.44 credenciales de automatización
-28.45 privilege escalation en dispositivos Cisco
-28.46 enable secrets
-28.47 logging sin exposición de secretos
+28.2 Collections, Resource Modules y compatibilidad
+  Alcance: Ansible para dispositivos de red vs servidores Linux; Network Resource Modules;
+  Collections de networking; ansible.netcommon; cisco.ios; cisco.iosxr; cisco.nxos; Versionado y
+  compatibilidad de collections; ansible-doc aplicado a módulos de red; Verificación de módulos y
+  plugins disponibles
 
-28.48 Plugins de conexión para networking
-28.49 network_cli
-28.50 netconf
-28.51 httpapi
-28.52 local: contexto y legado
-28.53 persistent connections
-28.54 conexión SSH a IOS/IOS XE
-28.55 conexión a IOS XR
-28.56 conexión a NX-OS
-28.57 conexión NETCONF
-28.58 conexión mediante HTTP API
-28.59 selección del transporte correcto
-28.60 troubleshooting de connection plugins
+28.3 Inventario Cisco y Source of Truth compartida
+  Alcance: Inventario Cisco; ansible_host; ansible_user; ansible_password y por qué no hardcodearlo;
+  ansible_network_os; ansible_connection; group_vars; host_vars; agrupación por plataforma;
+  agrupación por site; agrupación por role; variables específicas de dispositivo; inventario
+  estático; inventario dinámico; integración del inventario con Source of Truth; NetBox inventory;
+  compartir Source of Truth entre Python, Nornir y Ansible
 
-28.61 Comandos operacionales Cisco desde Ansible
-28.62 cisco.ios.ios_command
-28.63 ejecución de show commands
-28.64 múltiples comandos
-28.65 wait_for
-28.66 conditions
-28.67 retries
-28.68 interval
-28.69 comprobar estado operacional
-28.70 registrar resultados
-28.71 structured data cuando esté disponible
-28.72 parsing posterior desde Python
-28.73 Lab: recopilar estado de todos los routers/switches
+28.4 Secretos, privilegios y auditoría de conexiones
+  Alcance: Credenciales y secretos; No almacenar passwords en inventarios; Ansible Vault aplicado a
+  networking; variables de entorno; SSH keys; secret managers externos; credenciales de
+  automatización; privilege escalation en dispositivos Cisco; enable secrets; logging sin exposición
+  de secretos
 
-28.74 Configuración Cisco desde Ansible
-28.75 cisco.ios.ios_config
-28.76 lines
-28.77 parents
-28.78 before
-28.79 after
-28.80 match
-28.81 replace
-28.82 defaults
-28.83 backup
-28.84 save_when
-28.85 diff
-28.86 intended configuration
-28.87 running configuration
-28.88 configuración idempotente
-28.89 detectar cambios
-28.90 changed vs ok
-28.91 configuración condicional
-28.92 handlers aplicados a networking
-28.93 Lab: cambio controlado sobre IOS/IOS XE
+28.5 Transportes y conexiones persistentes por plataforma
+  Alcance: Plugins de conexión para networking; network_cli; netconf; httpapi; local: contexto y
+  legado; persistent connections; conexión SSH a IOS/IOS XE; conexión a IOS XR; conexión a NX-OS;
+  conexión NETCONF; conexión mediante HTTP API; selección del transporte correcto; troubleshooting
+  de connection plugins
 
-28.94 Network Resource Modules
-28.95 por qué preferir modelos estructurados cuando existan
-28.96 gathered
-28.97 parsed
-28.98 rendered
-28.99 merged
-28.100 replaced
-28.101 overridden
-28.102 deleted
-28.103 interfaces
-28.104 L2 interfaces
-28.105 L3 interfaces
-28.106 VLANs
-28.107 trunking
-28.108 static routes
-28.109 OSPF
-28.110 BGP
-28.111 ACLs
-28.112 hostname
-28.113 logging
-28.114 NTP
-28.115 SNMP cuando corresponda
-28.116 Lab: desired state con Resource Modules
+28.6 Recopilación y validación del estado operacional
+  Alcance: Comandos operacionales Cisco desde Ansible; cisco.ios.ios_command; ejecución de show
+  commands; múltiples comandos; wait_for; conditions; retries; interval; comprobar estado
+  operacional; registrar resultados; structured data cuando esté disponible; parsing posterior desde
+  Python; Lab: recopilar estado de todos los routers/switches
 
-28.117 Gathered State
-28.118 obtener estado estructurado del dispositivo
-28.119 normalizar estado
-28.120 guardar snapshots
-28.121 comparar estados
-28.122 desired state vs actual state
-28.123 configuration drift
-28.124 compliance
-28.125 generación de reportes
-28.126 Lab: detectar drift con Ansible
+28.7 Configuración IOS/IOS XE: jerarquía, diff, backup y persistencia
+  Alcance: Configuración Cisco desde Ansible; cisco.ios.ios_config; lines; parents; before; after;
+  match; replace; defaults; backup; save_when; diff; intended configuration; running configuration
 
-28.127 Backups con Ansible
-28.128 running-config
-28.129 organización por hostname
-28.130 timestamps
-28.131 metadata
-28.132 almacenamiento de backups
-28.133 integración con Git
-28.134 diff entre versiones
-28.135 restauración
-28.136 validación posterior
-28.137 Lab: backup completo de topología Cisco
+28.8 Idempotencia y cambios condicionales: laboratorio controlado
+  Alcance: configuración idempotente; detectar cambios; changed vs ok; configuración condicional;
+  handlers aplicados a networking; Lab: cambio controlado sobre IOS/IOS XE
 
-28.138 Jinja2 + Ansible aplicado a configuración de red
-28.139 Qué Jinja2 ya se presupone del BLOQUE 10
-28.140 template y generación de configuración
-28.141 datos → template → configuración
-28.142 templates por plataforma
-28.143 IOS vs IOS XE vs NX-OS
-28.144 StrictUndefined
-28.145 validación previa de variables
-28.146 render offline
-28.147 revisión del resultado antes del deployment
-28.148 Lab: generar configuración Cisco desde datos
+28.9 Semántica de los estados de Network Resource Modules
+  Alcance: Network Resource Modules; por qué preferir modelos estructurados cuando existan;
+  gathered; parsed; rendered; merged; replaced; overridden; deleted
 
-28.149 NETCONF mediante Ansible
-28.150 ansible.netcommon.netconf_get
-28.151 ansible.netcommon.netconf_config
-28.152 XML
-28.153 filtros
-28.154 datastores
-28.155 candidate
-28.156 commit
-28.157 capabilities
-28.158 integración con modelos YANG
-28.159 cuándo usar ncclient directamente
-28.160 cuándo usar Ansible NETCONF
-28.161 Lab: cambio model-driven
+28.10 Recursos de routing, switching y management: soporte por módulo
+  Alcance: interfaces; L2 interfaces; L3 interfaces; VLANs; trunking; static routes; OSPF; BGP;
+  ACLs; hostname; logging; NTP; SNMP cuando corresponda; Lab: desired state con Resource Modules
 
-28.162 RESTCONF / HTTP APIs desde Ansible
-28.163 httpapi
-28.164 URI/API modules cuando corresponda
-28.165 autenticación
-28.166 TLS
-28.167 JSON
-28.168 payloads
-28.169 status codes
-28.170 manejo de errores
-28.171 cuándo utilizar requests/httpx desde Python
-28.172 cuándo utilizar Ansible
-28.173 Lab: consultar API Cisco
+28.11 Snapshots de configuración, drift y compliance
+  Alcance: Gathered State; obtener estado estructurado del dispositivo; normalizar estado; guardar
+  snapshots; comparar estados; desired state vs actual state; configuration drift; compliance;
+  generación de reportes; Lab: detectar drift con Ansible
 
-28.174 Pre-checks con Ansible
-28.175 captura del baseline
-28.176 assert
-28.177 failed_when
-28.178 changed_when
-28.179 condiciones de seguridad
-28.180 abortar deployment
-28.181 comprobar reachability
-28.182 comprobar vecinos
-28.183 comprobar interfaces
-28.184 comprobar routing
-28.185 comprobar redundancia
-28.186 Lab: bloquear automáticamente un cambio inseguro
+28.12 Backup, archivo y restauración probada
+  Alcance: Backups con Ansible; running-config; organización por hostname; timestamps; metadata;
+  almacenamiento de backups; integración con Git; diff entre versiones; restauración; validación
+  posterior; Lab: backup completo de topología Cisco
 
-28.187 Deployment controlado
-28.188 serial
-28.189 batches
-28.190 canary deployment
-28.191 max_fail_percentage
-28.192 any_errors_fatal
-28.193 strategy
-28.194 throttle
-28.195 control del blast radius
-28.196 routers críticos
-28.197 switches críticos
-28.198 maintenance windows
-28.199 Lab: despliegue escalonado
+28.13 Jinja2 y render offline con validación de datos
+  Alcance: Jinja2 + Ansible aplicado a configuración de red; Qué Jinja2 ya se presupone del BLOQUE
+  10; template y generación de configuración; datos → template → configuración; templates por
+  plataforma; IOS vs IOS XE vs NX-OS; StrictUndefined; validación previa de variables; render
+  offline; revisión del resultado antes del deployment; Lab: generar configuración Cisco desde datos
 
-28.200 Post-checks
-28.201 validación posterior
-28.202 comprobar interfaces
-28.203 comprobar VLAN/trunks
-28.204 comprobar STP
-28.205 comprobar EtherChannel
-28.206 comprobar OSPF
-28.207 comprobar BGP
-28.208 comparar baseline
-28.209 determinar éxito funcional
-28.210 configuración correcta ≠ red correcta
+28.14 NETCONF con Ansible: capabilities y cambio validado
+  Alcance: NETCONF mediante Ansible; ansible.netcommon.netconf_get;
+  ansible.netcommon.netconf_config; XML; filtros; datastores; candidate; commit; capabilities;
+  integración con modelos YANG; cuándo usar ncclient directamente; cuándo usar Ansible NETCONF; Lab:
+  cambio model-driven
 
-28.211 Rollback
-28.212 diseñar rollback antes del cambio
-28.213 backups como mecanismo de recuperación
-28.214 rollback específico de plataforma
-28.215 errores parciales
-28.216 dispositivos unreachable durante deployment
-28.217 recuperación manual controlada
-28.218 Lab: fallo intencionado + rollback
+28.15 RESTCONF y APIs: transporte, autenticación y errores
+  Alcance: RESTCONF / HTTP APIs desde Ansible; httpapi; URI/API modules cuando corresponda;
+  autenticación; TLS; JSON; payloads; status codes; manejo de errores; cuándo utilizar
+  requests/httpx desde Python; cuándo utilizar Ansible; Lab: consultar API Cisco
 
-28.219 Ansible + pyATS/Genie
-28.220 Ansible realiza el cambio
-28.221 pyATS valida el estado
-28.222 snapshot pre-change
-28.223 ejecutar playbook
-28.224 snapshot post-change
-28.225 Genie Diff
-28.226 criterios PASS/FAIL
-28.227 rollback basado en validación
-28.228 Lab: Ansible → pyATS → decisión
+28.16 Pre-checks y condiciones de aborto
+  Alcance: Pre-checks con Ansible; captura del baseline; assert; failed_when; changed_when;
+  condiciones de seguridad; abortar deployment; comprobar reachability; comprobar vecinos; comprobar
+  interfaces; comprobar routing; comprobar redundancia; Lab: bloquear automáticamente un cambio
+  inseguro
 
-28.229 Ansible + Python
-28.230 ejecutar Python alrededor del workflow
-28.231 Python como preprocessor de datos
-28.232 Python como postprocessor
-28.233 generar inventarios
-28.234 validar datos
-28.235 consumir APIs externas
-28.236 producir reportes
-28.237 pasar datos Python → Ansible
-28.238 recuperar resultados Ansible → Python
-28.239 ansible-runner
-28.240 ejecución programática
-28.241 eventos
-28.242 artifacts
-28.243 status
-28.244 rc
-28.245 integración en una plataforma Python
+28.17 Canary, batches y control del blast radius
+  Alcance: Deployment controlado; serial; batches; canary deployment; max_fail_percentage;
+  any_errors_fatal; strategy; throttle; control del blast radius; routers críticos; switches
+  críticos; maintenance windows; Lab: despliegue escalonado
 
-28.246 Ansible + Nornir
-28.247 responsabilidades distintas
-28.248 evitar duplicar orchestration
-28.249 Nornir para workflows Python-native
-28.250 Ansible para automatización declarativa/resource modules
-28.251 compartir inventario/SoT
-28.252 compartir validadores
-28.253 seleccionar herramienta por workflow
+28.18 Post-checks y éxito funcional de la red
+  Alcance: Post-checks; validación posterior; comprobar interfaces; comprobar VLAN/trunks; comprobar
+  STP; comprobar EtherChannel; comprobar OSPF; comprobar BGP; comparar baseline; determinar éxito
+  funcional; configuración correcta ≠ red correcta
 
-28.254 Ansible + NetBox
-28.255 NetBox como Source of Truth
-28.256 inventory plugin
-28.257 dispositivos
-28.258 interfaces
-28.259 IP addresses
-28.260 VLANs
-28.261 prefixes
-28.262 generar desired state
-28.263 SoT → Ansible → Cisco
-28.264 Cisco → validation → SoT reconciliation
+28.19 Rollback y recuperación tras fallos parciales
+  Alcance: Rollback; diseñar rollback antes del cambio; backups como mecanismo de recuperación;
+  rollback específico de plataforma; errores parciales; dispositivos unreachable durante deployment;
+  recuperación manual controlada; Lab: fallo intencionado + rollback
 
-28.265 Troubleshooting de Ansible Network Automation
-28.266 -v / -vv / -vvv / -vvvv
-28.267 inventory errors
-28.268 ansible_network_os incorrecto
-28.269 connection plugin incorrecto
-28.270 SSH failures
-28.271 enable/privilege failures
-28.272 timeout
-28.273 prompt mismatch
-28.274 module not found
-28.275 collection/version mismatch
-28.276 Python dependency errors
-28.277 NETCONF capability errors
-28.278 HTTP API errors
-28.279 TLS errors
-28.280 idempotency failures
-28.281 unexpected changed state
-28.282 partial deployment
-28.283 recopilación de evidencias
-28.284 reproducción del fallo
-28.285 Lab: troubleshooting challenge
+28.20 Integración Ansible y pyATS/Genie
+  Alcance: Ansible + pyATS/Genie; Ansible realiza el cambio; pyATS valida el estado; snapshot
+  pre-change; ejecutar playbook; snapshot post-change; Genie Diff; criterios PASS/FAIL; rollback
+  basado en validación; Lab: Ansible → pyATS → decisión
 
-28.286 Testing de automatización Ansible
-28.287 syntax-check
-28.288 lint
-28.289 check mode y sus límites en networking
-28.290 diff mode
-28.291 tests de templates
-28.292 tests de variables
-28.293 lab validation
-28.294 pyATS post-validation
-28.295 CI pipeline
-28.296 impedir deployment si falla validation
+28.21 Python como productor y consumidor de datos del workflow
+  Alcance: Ansible + Python; ejecutar Python alrededor del workflow; Python como preprocessor de
+  datos; Python como postprocessor; generar inventarios; validar datos; consumir APIs externas;
+  producir reportes; pasar datos Python → Ansible; recuperar resultados Ansible → Python
 
-28.297 Arquitectura final
-28.298 NetBox / Source of Truth
-28.299 Python
-28.300 Nornir
-28.301 Ansible
-28.302 Netmiko / Scrapli
-28.303 NAPALM
-28.304 NETCONF / RESTCONF
-28.305 Cisco routers/switches
-28.306 pyATS / Genie
-28.307 observabilidad
-28.308 Git / CI/CD
-28.309 decidir qué capa hace qué
-28.310 evitar solapamientos innecesarios
+28.22 ansible-runner: ejecución, eventos, artifacts y resultados
+  Alcance: ansible-runner; ejecución programática; eventos; artifacts; status; rc; integración en
+  una plataforma Python
 
-28.311 PROYECTO — AUTOMATIZACIÓN CISCO CON ANSIBLE + PYTHON
-28.312 descubrir inventario desde Source of Truth
-28.313 validar datos mediante Python
-28.314 generar intended state
-28.315 pre-check mediante Ansible
-28.316 backup
-28.317 generar diff
-28.318 canary deployment
-28.319 deployment por batches
-28.320 validar mediante pyATS/Genie
-28.321 detectar drift
-28.322 rollback ante fallo
-28.323 generar reporte
-28.324 conservar artifacts
-28.325 registrar auditoría
-28.326 demostrar troubleshooting de un fallo real
+28.23 Nornir y Ansible: responsabilidades y validadores compartidos
+  Alcance: Ansible + Nornir; responsabilidades distintas; evitar duplicar orchestration; Nornir para
+  workflows Python-native; Ansible para automatización declarativa/resource modules; compartir
+  inventario/SoT; compartir validadores; seleccionar herramienta por workflow
+
+28.24 NetBox: generación de intent y reconciliación controlada
+  Alcance: Ansible + NetBox; NetBox como Source of Truth; inventory plugin; dispositivos;
+  interfaces; IP addresses; VLANs; prefixes; generar desired state; SoT → Ansible → Cisco; Cisco →
+  validation → SoT reconciliation
+
+28.25 Troubleshooting: inventario, conexión, privilegios y collections
+  Alcance: Troubleshooting de Ansible Network Automation; -v / -vv / -vvv / -vvvv; inventory errors;
+  ansible_network_os incorrecto; connection plugin incorrecto; SSH failures; enable/privilege
+  failures; timeout; prompt mismatch; module not found; collection/version mismatch
+
+28.26 Troubleshooting: dependencias, protocolos y cambios parciales
+  Alcance: Python dependency errors; NETCONF capability errors; HTTP API errors; TLS errors;
+  idempotency failures; unexpected changed state; partial deployment; recopilación de evidencias;
+  reproducción del fallo; Lab: troubleshooting challenge
+
+28.27 Testing y pipeline de Ansible aplicado a redes
+  Alcance: Testing de automatización Ansible; syntax-check; lint; check mode y sus límites en
+  networking; diff mode; tests de templates; tests de variables; lab validation; pyATS
+  post-validation; CI pipeline; impedir deployment si falla validation
+
+28.28 Arquitectura integrada y contratos entre capas
+  Alcance: Arquitectura final; NetBox / Source of Truth; Python; Nornir; Ansible; Netmiko / Scrapli;
+  NAPALM; NETCONF / RESTCONF; Cisco routers/switches; pyATS / Genie; observabilidad; Git / CI/CD;
+  decidir qué capa hace qué; evitar solapamientos innecesarios
+
+28.29 Proyecto integrado: inventario, intent, pre-check y canary
+  Alcance: PROYECTO — AUTOMATIZACIÓN CISCO CON ANSIBLE + PYTHON; descubrir inventario desde Source
+  of Truth; validar datos mediante Python; generar intended state; pre-check mediante Ansible;
+  backup; generar diff; canary deployment
+
+28.30 Proyecto integrado: validación, recuperación y evidencias
+  Alcance: deployment por batches; validar mediante pyATS/Genie; detectar drift; rollback ante
+  fallo; generar reporte; conservar artifacts; registrar auditoría; demostrar troubleshooting de un
+  fallo real
+28.31 Configuración gathered vs estado operacional: comprobar ambos por separado
+28.32 Matriz módulo/collection/plataforma: estados disponibles y límites check/diff
+28.33 RESTCONF con ansible.builtin.uri; httpapi solo con plugin de plataforma apropiado
+28.34 Reconciliación con NetBox: propuestas auditadas sin sobrescribir intent automáticamente
+28.35 Lab dual stack: cambio, tráfico funcional y rollback con acceso preservado
+28.36 Checkpoint evaluable y entrega del bloque
+  Entregables: playbooks, requirements de collections, runner y reporte pyATS.
+  Aprobación: Desplegar por lotes; comprobar configuración y data plane; recuperar un fallo parcial.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 29 — DISEÑO DE UNA PLATAFORMA DE AUTOMATIZACIÓN
 
@@ -1168,6 +1170,14 @@ BLOQUE 29 — DISEÑO DE UNA PLATAFORMA DE AUTOMATIZACIÓN
 29.22 high availability: conceptos
 29.23 failure domains
 29.24 Lab: arquitectura de referencia
+29.25 Bloqueo por dispositivo y control de cambios externos durante un job
+29.26 Máquina de estados del job: pendiente, ejecutando, incierto, validado y recuperado
+29.27 Persistencia de checkpoints, leases y recuperación tras caída de worker
+29.28 Reanudación y compensación: no prometer exactly-once entre dispositivos
+29.29 Checkpoint evaluable y entrega del bloque
+  Entregables: diseño de capas, estados del job y prototipo de persistencia/locks.
+  Aprobación: Reanudar tras caída de worker y evitar cambios concurrentes en un dispositivo.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 30 — TROUBLESHOOTING DEL STACK DE AUTOMATIZACIÓN
 
@@ -1196,6 +1206,12 @@ BLOQUE 30 — TROUBLESHOOTING DEL STACK DE AUTOMATIZACIÓN
 30.23 collecting evidence safely
 30.24 reproducible incident report
 30.25 Lab: troubleshooting challenge end-to-end
+30.26 Resultado incierto tras timeout: observar estado antes de repetir o compensar
+30.27 Conflictos de locks, baseline obsoleto y reanudación tras caída del controlador
+30.28 Checkpoint evaluable y entrega del bloque
+  Entregables: runbook, incidentes reproducibles y evidencias redactadas.
+  Aprobación: Resolver fallos de transporte, modelo y orquestación con verificación posterior.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 BLOQUE 31 — PROYECTO FINAL: CISCO NETWORK AUTOMATION PLATFORM
 
@@ -1232,6 +1248,15 @@ BLOQUE 31 — PROYECTO FINAL: CISCO NETWORK AUTOMATION PLATFORM
 31.31 threat model
 31.32 demo de fallo y recuperación
 31.33 evaluación final: operar, cambiar, validar y diagnosticar la red sin perder control
+31.34 Workflow Ansible obligatorio: Resource Module o NETCONF y ejecución con ansible-runner
+31.35 Validación pyATS antes/después del workflow Ansible y recuperación documentada
+31.36 Matriz de capacidades y prueba dual stack con tráfico entre extremos
+31.37 Demostración de timeout ambiguo y conflicto entre dos jobs
+31.38 Reconstrucción del lab desde manifiesto, bootstrap y configuraciones iniciales
+31.39 Checkpoint evaluable y entrega del bloque
+  Entregables: repositorio integrado, lab reproducible, pipeline y runbook.
+  Aprobación: Ejecutar cambio con Ansible y Python, validar, inyectar fallo, recuperar y justificar decisiones.
+  Evidencia: comandos de reproducción, resultado esperado/real y fallo diagnosticado.
 
 CAPSTONE EXPERTO — CRITERIOS
 
@@ -1247,3 +1272,10 @@ E.9 Mantener auditabilidad
 E.10 Diagnosticar fallos de extremo a extremo
 E.11 Justificar cuándo usar Paramiko, Netmiko, Scrapli, NAPALM, Nornir o pyATS
 E.12 Poder extender la arquitectura de Cisco a multivendor sin reescribir el sistema completo
+
+E.13 Ejecutar un workflow Ansible integrado con Python y validado por pyATS
+E.14 Demostrar capabilities reales y alternativa ante operaciones no soportadas
+E.15 Validar IPv4/IPv6 y tráfico entre extremos según la topología elegida
+E.16 Resolver timeout con resultado incierto sin reintentos de escritura ciegos
+E.17 Evitar cambios simultáneos por dispositivo y recuperar un job interrumpido
+E.18 Reconstruir el laboratorio y aportar evidencias de fallo y recuperación

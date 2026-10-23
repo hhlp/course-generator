@@ -1,11 +1,17 @@
 ---
 course:
-  title: "TIME / NTP / Chrony — 0 a experto en profundidad"
+  title: TIME / NTP / Chrony — 0 a experto en profundidad
   language: "es"
   level:
     start: "cero"
     end: "experto"
+  domain: "TIME / NTP / Chrony"
   mode: "deep"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 platforms:
   primary:
@@ -13,19 +19,18 @@ platforms:
     - RHEL
     - Linux
 
-learning_goal: >
-  Administrar y diseñar infraestructura temporal y comprender los internals
-  de Linux timekeeping, NTPv4, Chrony, NTS, PPS, PHC y PTP.
+learning_goal: 'Administrar y diseñar infraestructura temporal y comprender
+  los internals de Linux timekeeping, NTPv4, Chrony, NTS, PPS, PHC y PTP.
 
+  '
 lesson_style:
-  start: "🎯 OBJETIVO"
-  end: "🧠 QUÉ DEBES RECORDAR"
+  start: 🎯 OBJETIVO
+  end: 🧠 QUÉ DEBES RECORDAR
   include_when_useful:
-    - "🧪 Laboratorio"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-    - "📚 LECTURA"
-
+    - 🧪 Laboratorio
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+    - 📚 LECTURA
 depth:
   installation: deep
   configuration: deep
@@ -38,15 +43,14 @@ depth:
   nts_internals: true
   pps_phc_hardware_timestamping: true
   ptp_internals: true
-
 logging:
   primary_service_log: systemd-journald
   commands:
-    - "journalctl -u chronyd"
-    - "journalctl -u chronyd -b"
-    - "journalctl -f -u chronyd"
+    - journalctl -u chronyd
+    - journalctl -u chronyd -b
+    - journalctl -f -u chronyd
   chrony_file_logs:
-    typical_directory: "/var/log/chrony/"
+    typical_directory: /var/log/chrony/
     directives:
       - log
       - logdir
@@ -56,23 +60,36 @@ logging:
       - tracking.log
       - rtc.log
       - tempcomp.log
-    note: >
-      Los archivos dependen de las categorías habilitadas; comprobar siempre
-      la configuración efectiva y los archivos realmente existentes.
+    note: 'Los archivos dependen de las categorías habilitadas; comprobar
+      siempre la configuración efectiva y los archivos realmente existentes.
 
+      '
 labs:
   required: true
   packet_capture: true
   statistics: true
   failure_injection: true
   root_cause_analysis: true
-
+  topology: Un servidor y dos clientes en VM con red privada.
+  selection_extension: Tres o cuatro fuentes controladas y un cliente.
+  nts: Cliente y servidor con CA de laboratorio y hora inicial fiable.
+  iam_integration: Opcional; reutilizar un realm existente del PATH IAM.
+  hardware_extension: PPS/GNSS/PHC según hardware; PTP por software sin
+    promesa de precisión.
+  required_sections:
+    - prerequisites
+    - initial_state
+    - procedure
+    - expected_result
+    - acceptance
+    - evidence
+    - rollback
+  clock_changes_in_disposable_vms: true
 final_project:
   required: true
   include:
     - redundant_chrony_servers
     - fedora_rhel_clients
-    - nts
     - firewalld
     - selinux
     - journald
@@ -84,3 +101,40 @@ final_project:
     - forensic_troubleshooting
     - rca
     - ntp_vs_ptp_architecture
+    - nts_controlled_lab
+  nts_deployment: Justificar aplicabilidad y política en el diseño real.
+  hardware: Extensión condicionada a disponibilidad.
+infrastructure_relationships:
+  time_depends_on_iam: false
+  iam_depends_on_time: true
+  consumes_user_identities: false
+  identity_provisioning: PATH IAM
+  dns_bootstrap: Resolución inicial disponible sin dependencia circular
+    de IAM.
+compatibility:
+  record_installed_versions: true
+  check_man_pages: true
+  optional_commands:
+    - selectdata
+    - authdata
+  sample_controls:
+    - minsamples
+    - maxsamples
+security:
+  ntp_udp_port: 123
+  nts_ke_tcp_port: 4460
+  chronyc_udp_port: 323
+  prefer_local_admin_socket: true
+  silent_nts_fallback: false
+  one_discipliner_per_clock: true
+acceptance:
+  bounded_waitsync: true
+  scenario_specific_error_budget: true
+  service_active_is_not_synchronised: true
+  absolute_accuracy_requires_independent_reference: true
+  failure_recovery_evidence: true
+curriculum_integrity:
+  preserve_existing_blocks: true
+  preserve_existing_lessons: true
+  progression: Operación, internals y aplicación forense.
+  deliverable_scope: Especificación curricular en cuatro archivos.

@@ -147,7 +147,7 @@ Este PATH puede apoyarse en itinerarios independientes de systemd, SELinux, fire
 
 Al finalizar, el estudiante debe ser capaz de diseñar, desplegar, asegurar, automatizar, observar, diagnosticar y mantener arquitecturas OpenVPN y WireGuard desde escenarios de acceso remoto sencillos hasta redes site-to-site, multi-site y de alta disponibilidad.
 
-## Ampliación de alcance experto (revisión profunda)
+## Alcance experto consolidado
 
 ### IAM para OpenVPN
 Estudiar autenticación y autorización diferenciadas: PAM, SSSD, FreeIPA, RADIUS y MFA mediante componentes compatibles. Explicar el papel de LDAP/Kerberos como servicios de identidad subyacentes, no como autenticación integrada automática de OpenVPN. Correlacionar logs de OpenVPN, PAM, SSSD, proveedores IAM y SELinux.
@@ -169,3 +169,54 @@ Los laboratorios deben tener topología explícita, prerrequisitos, comandos de 
 
 ### Estructura revisada
 Se conservan los bloques 0–33 y se profundizan; se añaden 34 OpenVPN + IAM, 35 Gestión de identidad y peers WireGuard, 36 Ingeniería de protocolos VPN y 37 Operación VPN en producción y resiliencia. Los laboratorios expertos pasan a 38 y el proyecto final a 39.
+
+## Contrato de progresión y eliminación de repeticiones
+
+Se mantienen 40 bloques. Los temas recurrentes deben evolucionar mediante prerrequisitos, referencias a lecciones anteriores y nuevas evidencias; no repetir explicaciones completas.
+
+| Bloques | Responsabilidad pedagógica |
+| --- | --- |
+| 0–1 | Preparar VMs, acceso de rescate, snapshots, topología y baseline; adquirir fundamentos. |
+| 2–4 | En 2.19 se observa una demostración TLS con PKI desechable preparada por el instructor. El estudiante construye su propia PKI en 3 y reconstruye el despliegue en 4. No usar modo static-key como atajo. |
+| 9 → 34 | En 9: mecanismos locales y visión general de integración. En 34: desplegar y diagnosticar IAM externo, autorización, MFA y baja efectiva. |
+| 26 → 30 → 37 | En 26: instrumentación y alertas. En 30: redundancia y medición de failover. En 37: operar esos componentes conjuntamente con cambios, incidentes y restauración. |
+| 32–33 → 36 | En 32/33: arquitectura y código de cada tecnología. En 36: investigación comparativa, trazas y regresiones sobre evidencias previas. |
+| 38 → 39 | En 38: escenarios integradores con fallos. En 39: decisiones independientes, implementación y defensa mediante evidencias. |
+
+## Precisiones técnicas obligatorias
+
+- Registrar versión de distribución, kernel, OpenVPN, OpenSSL, wireguard-tools y gestores de red. Consultar el manual de la versión instalada; la presencia de un manual más reciente no garantiza disponibilidad de paquetes ni de DCO.
+- Distinguir `auth` del HMAC y `auth-user-pass` de usuarios; explicar el comportamiento de AEAD y el contexto de control de acuerdo con la versión. No presentar `auth` como verificación de contraseña.
+- Tratar la compresión como superficie de riesgo y compatibilidad histórica. Usar configuraciones sin compresión y comprobar qué opciones acepta la versión del laboratorio.
+- Bloquear una cuenta o publicar una CRL no demuestra por sí mismo que una sesión ya abierta terminó. Probar rechazo de nuevas conexiones, reautenticación y terminación explícita de sesiones; considerar tokens y caché SSSD.
+- WireGuard mantiene estado criptográfico y temporizadores. Un handshake antiguo en un peer ocioso no basta para declarar una caída; correlacionar tráfico esperado y sondas activas.
+- `AllowedIPs` selecciona peers de salida y valida orígenes de entrada; la FIB de Linux decide la ruta hacia la interfaz. `wg` no instala por sí solo las rutas que añade `wg-quick` u otro gestor.
+- `wg show ... dump` puede incluir claves privadas y PSK. No adjuntar su salida cruda a métricas, CI, incidencias ni evidencias. Preferir consultas específicas y redacción comprobada.
+- `SaveConfig = true` puede sobrescribir cambios de archivo al bajar la interfaz. Elegir fuente de verdad. `wg syncconf` no sustituye la gestión de direcciones, rutas, DNS ni hooks.
+- Un hostname en `Endpoint` requiere distinguir resolución inicial de actualización posterior. El cambio de IP de un registro DNS debe probarse con el gestor o automatización elegidos.
+- En HA, replicar configuración no replica automáticamente sesiones criptográficas. Medir reconexión; no prometer continuidad por disponer de VRRP o conntrack.
+- Probar ICMP/ICMPv6 necesario para PMTUD y el efecto de forwarding sobre Router Advertisements. Ajustar `accept_ra` solo cuando lo justifique la topología.
+- Separar el propietario de reglas firewalld de tablas nftables propias. No ejecutar limpiezas globales del ruleset en un host administrado por firewalld.
+
+## Rutas y evidencias de logging
+
+El material debe descubrir el destino efectivo mediante la configuración y `systemctl cat`, en vez de asumir nombres de unidad o rutas idénticos en todas las versiones.
+
+| Evidencia | Ubicación o herramienta | Condición |
+| --- | --- | --- |
+| Journal persistente | `/var/log/journal/`; consultar con `journalctl` | Según `Storage=` y estado efectivo de journald. |
+| Journal volátil | `/run/log/journal/`; consultar con `journalctl` | Cuando el journal se almacena en memoria; se pierde tras reiniciar. |
+| OpenVPN | Journal de su unidad o ruta de `log`/`log-append` | No existe un `/var/log/openvpn.log` universal. |
+| Estado OpenVPN | Ruta de `status` | Es una instantánea de estado, no un histórico completo de eventos. |
+| NetworkManager | `journalctl -u NetworkManager` | Filtrar por interfaz, perfil y ventana temporal. |
+| WireGuard | `wg show`, journal de su gestor y `journalctl -k` | El protocolo no genera un log de sesiones equivalente a OpenVPN; debug del kernel es opcional. |
+| Auditoría SELinux | `ausearch`; `/var/log/audit/audit.log` | Si auditd está instalado y configurado para ese destino; comprobar configuración. |
+| Firewall | Journal/kernel o destino de logging configurado | Requiere reglas de logging; aplicar límites de tasa. |
+
+Incluir `journalctl --list-boots`, filtrado temporal y por unidad, conservación, permisos y pruebas de rotación. La correlación entre máquinas exige relojes sincronizados. Las pruebas de fugas deben observar IPv4/IPv6 y el comportamiento real del resolver y las aplicaciones, incluyendo DNS cifrado cuando esté en alcance.
+
+## Integración con course-generator
+
+El archivo `profile.yaml` conserva las claves originales. Su sintaxis YAML y la coherencia con el temario pueden verificarse aquí; la aceptación semántica depende del cargador de la versión de course-generator utilizada. Las reglas esenciales también se expresan en este dominio para no depender exclusivamente de claves declarativas adicionales.
+
+`files.pedagogy: ../../config/pedagogy.md` se conserva como dependencia externa. Antes de generar, resolver esa ruta según el cargador del proyecto y comprobar que existe, junto con `domain.md` y `bibliography.md`. Este paquete no incluye el repositorio ni permite certificar esa resolución. Ejecutar el modo `--dry-run` del generador en el checkout antes de producir lecciones.

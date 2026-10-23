@@ -40,6 +40,10 @@ BLOQUE 0 — Fundamentos de VPN y redes
 0.34 Reverse path filtering (rp_filter)
 0.35 Overlapping CIDR y conflictos de direccionamiento
 0.36 Plan de pruebas de conectividad y fugas
+0.37 Preparación del laboratorio: hipervisor, VMs, snapshots y acceso de rescate
+0.38 Topología base: gateway, cliente y LAN; direccionamiento reservado de laboratorio
+0.39 Inventario de versiones, paquetes y unidades systemd; diferencias Fedora/RHEL
+0.40 Baseline sin VPN: rutas, DNS, firewall y conectividad entre nodos
 
 BLOQUE 1 — Criptografía aplicada a VPN
 1.1 Confidencialidad, integridad y autenticación
@@ -89,7 +93,7 @@ BLOQUE 2 — Introducción a OpenVPN
 2.16 Instalación en Fedora/RHEL
 2.17 Paquetes RPM
 2.18 systemd y OpenVPN
-2.19 Primer túnel OpenVPN
+2.19 Demostración guiada de túnel TLS con PKI de laboratorio preparada
 
 2.20 Compatibilidad entre versiones y capacidades OpenVPN
 2.21 OpenVPN Data Channel Offload (DCO): introducción
@@ -118,6 +122,7 @@ BLOQUE 3 — PKI para OpenVPN
 3.20 Perfiles de certificado, SAN y EKU
 3.21 Validación de cadena y políticas de confianza
 3.22 Procedimientos de compromiso de CA y recuperación
+3.23 Hora del sistema y validez X.509: dependencia de sincronización horaria
 
 BLOQUE 4 — Configuración básica OpenVPN
 4.1 server.conf
@@ -134,7 +139,7 @@ BLOQUE 4 — Configuración básica OpenVPN
 4.12 dh
 4.13 tls-version-min
 4.14 data-ciphers
-4.15 auth
+4.15 auth: HMAC del canal de datos, AEAD y diferencia con auth-user-pass
 4.16 keepalive
 4.17 persist-key
 4.18 persist-tun
@@ -148,6 +153,7 @@ BLOQUE 4 — Configuración básica OpenVPN
 4.25 Validación de configuración y pruebas antes del despliegue
 4.26 Diferencias entre directivas legacy y modernas
 4.27 DCO: compatibilidad de opciones y requisitos
+4.28 Reconstruir desde cero el túnel TLS de 2.19 con PKI propia del bloque 3
 
 BLOQUE 5 — TLS y seguridad OpenVPN
 5.1 TLS en OpenVPN
@@ -175,6 +181,9 @@ BLOQUE 5 — TLS y seguridad OpenVPN
 5.22 Protección antirreplay y ventanas de paquetes
 5.23 DCO: límites de cifrados y diagnóstico
 5.24 Pruebas negativas de certificados y autenticación
+5.25 Compresión: riesgos, directivas obsoletas y rechazo según versión
+5.26 auth, AEAD y auth-user-pass: tres conceptos que no deben confundirse
+5.27 Políticas criptográficas Fedora/RHEL, proveedores OpenSSL y restricciones FIPS
 
 BLOQUE 6 — Routing con OpenVPN
 6.1 Red virtual VPN
@@ -249,7 +258,7 @@ BLOQUE 8 — Clientes OpenVPN
 8.15 Laboratorio clientes Linux
 
 8.16 Secretos de cliente y permisos de perfiles
-8.17 Renovación de credenciales sin interrupciones
+8.17 Renovación de credenciales: reconexión y límites de continuidad
 8.18 Interacción con systemd-resolved y prioridades DNS
 
 BLOQUE 9 — Autenticación avanzada OpenVPN
@@ -268,13 +277,14 @@ BLOQUE 9 — Autenticación avanzada OpenVPN
 9.13 Seguridad de credenciales
 9.14 Laboratorio autenticación
 
-9.15 PAM y SSSD: arquitectura y límites
+9.15 PAM y SSSD: introducción; integración completa en bloque 34
 9.16 FreeIPA como proveedor de identidad
 9.17 LDAP/Kerberos mediante PAM/SSSD: alcance real
 9.18 RADIUS y MFA mediante componentes externos
 9.19 Autenticación vs autorización por grupos
 9.20 Deshabilitación de usuario frente a revocación X.509
 9.21 Diagnóstico de sssd, PAM y servicios de identidad
+9.22 auth-nocache, auth-gen-token y reautenticación: efectos sobre MFA
 
 BLOQUE 10 — Operación OpenVPN
 10.1 systemd units
@@ -297,9 +307,10 @@ BLOQUE 10 — Operación OpenVPN
 10.18 Operación de producción
 
 10.19 Inventario de certificados, sesiones y propietarios
-10.20 Mantenimiento sin interrupción y rollback
+10.20 Mantenimiento planificado, reconexión y rollback
 10.21 Protección y exposición de la management interface
 10.22 Comprobaciones de salud y umbrales operativos
+10.23 Mapa de configuración y logs: descubrir rutas mediante RPM y systemctl cat
 
 BLOQUE 11 — Troubleshooting OpenVPN
 11.1 Metodología de diagnóstico
@@ -355,6 +366,10 @@ BLOQUE 11 — Troubleshooting OpenVPN
 11.51 Errores de autenticación PAM/SSSD/RADIUS
 11.52 Conntrack y rp_filter en fallos asimétricos
 11.53 Diagnóstico de IPv6 y fugas DNS con pruebas negativas
+11.54 Journal persistente /var/log/journal y volátil /run/log/journal
+11.55 Archivos de log configurados: permisos, SELinux y logrotate; sin ruta universal
+11.56 Auditoría en /var/log/audit/audit.log cuando auditd esté configurado
+11.57 Desfase horario: correlación entre nodos y errores de certificados
 
 BLOQUE 12 — Introducción a WireGuard
 12.1 Qué es WireGuard
@@ -368,7 +383,7 @@ BLOQUE 12 — Introducción a WireGuard
 12.9 Cryptokey routing
 12.10 UDP
 12.11 Roaming
-12.12 Stateless vs stateful concepts
+12.12 Estado de peers, sesiones y handshakes frente a una conexión TCP
 12.13 Instalación Fedora/RHEL
 12.14 wireguard-tools
 12.15 Primer túnel WireGuard
@@ -419,9 +434,11 @@ BLOQUE 14 — Herramientas WireGuard
 14.15 Permisos de claves
 14.16 Laboratorio CLI
 
-14.17 wg show dump para automatización segura
+14.17 wg show dump: salida con secretos y extracción segura de métricas
 14.18 Netlink y persistencia: configuración runtime vs archivo
 14.19 Tratamiento seguro de claves en stdout y shell history
+14.20 wg-quick strip y aplicación de configuración con wg syncconf
+14.21 SaveConfig y wg-quick save: sobrescritura de cambios y fuente de verdad
 
 BLOQUE 15 — Configuración WireGuard
 15.1 [Interface]
@@ -448,10 +465,11 @@ BLOQUE 15 — Configuración WireGuard
 15.21 Diferenciar parámetros wg de extensiones wg-quick
 15.22 Aplicación de cambios sin cortar túneles innecesariamente
 15.23 Protección de scripts PostUp/PreDown
+15.24 Laboratorio: cambios de peers en caliente y verificación de rutas/DNS por separado
 
 BLOQUE 16 — Cryptokey Routing y AllowedIPs
 16.1 Qué es Cryptokey Routing
-16.2 AllowedIPs como routing
+16.2 AllowedIPs como selección criptográfica de peer de salida
 16.3 AllowedIPs como control de origen
 16.4 Selección de peer
 16.5 Longest-prefix matching
@@ -559,6 +577,7 @@ BLOQUE 20 — WireGuard avanzado
 20.19 Endpoint discovery y coordinación fuera del protocolo
 20.20 Reconexión multi-WAN y persistencia de rutas
 20.21 WireGuard en namespaces: namespace de creación del socket
+20.22 Resolución del hostname Endpoint y actualización de IP: automatización externa
 
 BLOQUE 21 — Troubleshooting WireGuard
 21.1 Metodología de diagnóstico
@@ -570,7 +589,7 @@ BLOQUE 21 — Troubleshooting WireGuard
 21.7 Endpoint
 21.8 AllowedIPs
 21.9 PersistentKeepalive
-21.10 Interpretar latest handshake
+21.10 Latest handshake: antigüedad, peers ociosos y pruebas activas
 21.11 Handshake correcto pero sin tráfico
 21.12 Handshake inexistente
 21.13 RX sin TX / TX sin RX
@@ -634,6 +653,8 @@ BLOQUE 22 — DNS para VPN
 22.15 Routing de DNS por dominio y prioridades de resolvers
 22.16 Pruebas de fugas DNS IPv4/IPv6
 22.17 DNSSEC y dominios internos: escenarios de validación
+22.18 DNS de aplicaciones, DoH/DoT y límites de las pruebas de fugas
+22.19 DNS en wg-quick: resolvconf e integración alternativa con el resolver instalado
 
 BLOQUE 23 — MTU, MSS y rendimiento
 23.1 Ethernet MTU
@@ -692,6 +713,8 @@ BLOQUE 24 — Seguridad y hardening
 24.24 Proceso de respuesta a compromiso de claves
 24.25 Auditoría de autorizaciones y accesos
 24.26 Pruebas automatizadas de ausencia de fugas
+24.27 Forwarding IPv6 y Router Advertisements: accept_ra en gateways de laboratorio
+24.28 Compresión y compatibilidad legacy: revisión explícita del perfil OpenVPN
 
 BLOQUE 25 — SELinux
 25.1 VPN y SELinux
@@ -733,7 +756,7 @@ BLOQUE 26 — Observabilidad
 26.18 Capacity planning
 
 26.19 SLI y SLO de disponibilidad y conectividad
-26.20 Alertas de expiración de certificados y peers obsoletos
+26.20 Alertas de certificados y peers: contexto de tráfico y sondas activas
 26.21 Cardinalidad y exposición de métricas sensibles
 26.22 Synthetic probes desde ambos extremos
 26.23 Runbooks asociados a alertas
@@ -834,9 +857,10 @@ BLOQUE 30 — Alta disponibilidad
 
 30.15 Diferenciar failover de gateway y continuidad de sesiones
 30.16 VRRP y requisitos de red L2
-30.17 Sincronización de configuración, claves y estado
+30.17 Replicación de configuración y claves; límites del estado criptográfico
 30.18 Pruebas de RTO/RPO y reconexión
 30.19 Runbook de failback y recuperación
+30.20 Laboratorio de failover: medir reconexión y separar estado VPN de conntrack
 
 BLOQUE 31 — OpenVPN vs WireGuard
 31.1 Diferencias arquitectónicas
@@ -926,6 +950,8 @@ BLOQUE 34 — OpenVPN + IAM e identidad centralizada
 34.14 Hardening de plugins y secretos
 34.15 Laboratorio OpenVPN + SSSD/FreeIPA
 34.16 Laboratorio MFA y pruebas negativas
+34.17 Laboratorio de baja inmediata: bloqueo IAM, CRL y desconexión de sesiones activas
+34.18 Caché SSSD, tokens y reautenticación: probar acceso durante caída del proveedor
 
 BLOQUE 35 — WireGuard — Gestión de identidad y peers
 35.1 Identidad por clave pública y sus límites
@@ -960,6 +986,7 @@ BLOQUE 36 — Ingeniería de protocolos VPN
 36.12 Comparativa de rutas de paquetes y costes
 36.13 Pruebas de regresión y compatibilidad
 36.14 Laboratorio de tracing y análisis de paquetes
+36.15 Laboratorio integrador: reutilizar capturas de 32/33 y explicar una regresión
 
 BLOQUE 37 — Operación VPN en producción y resiliencia
 37.1 Diseño de SLI/SLO y monitorización sintética
@@ -978,6 +1005,7 @@ BLOQUE 37 — Operación VPN en producción y resiliencia
 37.14 Runbooks de operación y escalado
 37.15 Laboratorio de disaster recovery
 37.16 Evaluación integral de producción
+37.17 Simulacro integrador: combinar alertas del 26, failover del 30 y restauración
 
 BLOQUE 38 — Laboratorios expertos
 38.1 OpenVPN remote-access desde cero
@@ -1002,7 +1030,8 @@ BLOQUE 38 — Laboratorios expertos
 38.20 Ansible deployment
 38.21 Rotación de claves
 38.22 Incident troubleshooting
-
+38.23 Prueba integral de revocación: sesiones abiertas y nuevas conexiones
+38.24 Restauración desde backup y validación de identidad, rutas y secretos
 
 BLOQUE 39 — Proyecto final
 39.1 Analizar requisitos
@@ -1028,3 +1057,5 @@ BLOQUE 39 — Proyecto final
 39.21 Documentación
 39.22 Runbook operacional
 39.23 Arquitectura final de producción
+39.24 Matriz de versiones, evidencias de compatibilidad y límites conocidos
+39.25 Evaluación final: objetivos verificables y defensa de decisiones arquitectónicas

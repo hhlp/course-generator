@@ -438,3 +438,119 @@ Al finalizar, el estudiante debe ser capaz de:
 12. Diseñar una infraestructura DNS empresarial resiliente.
 13. Analizar tráfico DNS y comprender internals del protocolo.
 14. Ejecutar backup, restore, incident response y disaster recovery.
+
+
+## Revisión de dependencias, progresión y operación
+
+### Orden de aprendizaje y orden de despliegue
+
+Mantener todos los bloques 0–37. El orden de revisión de los paths no establece
+el orden de arranque ni obliga a completar el curso entero antes de instalar IAM.
+La progresión práctica es base RHCSA → TIME y DNS básico → DNS operativo → IAM
+→ integraciones DNS/IAM. Los bloques avanzados se completan progresivamente.
+DNS autoritativo/recursivo independiente funciona sin directorio de usuarios.
+DNSSEC necesita una hora suficientemente correcta para validar firmas; TSIG
+comprueba marcas temporales; Kerberos agrega sus propias condiciones de tiempo.
+No equiparar estos requisitos a una dependencia obligatoria de DNS respecto a IAM.
+
+### Evitar el ciclo TIME/DNS
+
+Chrony puede necesitar DNS para resolver nombres de fuentes NTP. Un reloj muy
+incorrecto puede impedir validar DNSSEC, resolver esas fuentes y recuperar la hora.
+El laboratorio debe documentar una ruta de arranque: reloj inicial razonable y una
+fuente temporal interna accesible sin depender del resolver que se está reparando,
+por ejemplo una dirección estable administrada y validada para ese laboratorio.
+No fijar direcciones arbitrarias de pools públicos ni desactivar permanentemente
+la validación. Un bootstrap por IP no sustituye la autenticación ni los requisitos
+de certificados de NTS. Verificar resolución y sincronización después de reiniciar.
+`After=` de systemd solo establece orden; no demuestra que el reloj esté sincronizado.
+Consultar la salida de `chronyc tracking`, `chronyc sources -v` y `timedatectl`;
+no usar el estado activo de un servicio como única evidencia.
+
+### Delimitación de IAM
+
+El bloque 33 compara arquitecturas, dependencias y responsabilidades. El bloque 34
+implementa y diagnostica la integración. Conservar sus lecciones existentes como
+puntos de enlace, sin repetir explicaciones completas. IAM es el origen central de
+usuarios, hosts y credenciales. No crear directorios de usuarios paralelos en BIND.
+En FreeIPA integrado, utilizar sus herramientas y políticas para administrar DNS;
+no sobrescribir su configuración generada con un rol BIND independiente.
+En DNS externo, comprobar y publicar los registros que indique la versión de IdM.
+No asumir que toda aplicación LDAP busca SRV ni que PTR es un requisito universal
+de Kerberos: distinguir requisitos de instalación IdM, descubrimiento y canonicalización.
+Para GSS-TSIG, explicar el principal de servicio DNS y el keytab gestionado por la
+plataforma, las credenciales del actualizador, `kinit`, `klist`, `nsupdate -g` y la
+política de autorización. No copiar keytabs entre equipos como práctica genérica.
+
+### Operación avanzada verificable
+
+- Serial: aplicar RFC 1982 a un contador de 32 bits; no tratarlo como fecha obligatoria.
+- TSIG: usar RFC 8945 como referencia actual; distinguir BADTIME, BADKEY y BADSIG.
+  TSIG autentica transacciones y no cifra por sí mismo los datos.
+- DNSSEC: distinguir TTL de inception/expiration de RRSIG. Planificar rollover según
+  TTL, propagación, estado de claves y publicación del DS, sin cronogramas universales.
+- Para una zona privada, construir una cadena de confianza local o un trust anchor
+  explícito en el resolver del laboratorio. No intentar publicar DS en un padre público
+  de un dominio que no se controla. En producción, el DS requiere coordinación con el padre.
+- EDE: interpretar RFC 8914 y las capacidades de servidor/cliente. Complementa RCODE;
+  no garantiza presencia, autenticidad ni una causa definitiva del fallo.
+- dnstap: comprobar compilación, dependencias y herramientas del paquete instalado.
+  Definir retención y acceso; no capturar tráfico de otros entornos para las prácticas.
+- Backup: definir un punto coherente de zonas dinámicas y journals; incluir claves,
+  metadatos y estado de DNSSEC. Restaurar en aislamiento y probar consultas reales.
+- DoT/DoH/DoQ: documentar por versión y rol el soporte entrante, saliente y de las
+  herramientas. No deducir soporte DoQ del soporte de DoT/DoH. Si se usa otra
+  implementación, identificarla y mantener BIND como núcleo del curso.
+
+## Contrato común de los laboratorios
+
+El contenido generado para cada práctica debe incluir archivos de configuración
+completos del escenario, comandos, resultados esperados y restauración. Estos cuatro
+archivos definen el currículo; no constituyen un despliegue ya ejecutado del laboratorio.
+La automatización se incorpora progresivamente después del montaje y diagnóstico manual.
+
+### Topología de referencia aislada
+
+| Nodo | IPv4 | Función |
+|---|---|---|
+| ns1.lab.example.test | 192.168.56.10 | Primary authoritative |
+| ns2.lab.example.test | 192.168.56.11 | Secondary authoritative |
+| resolver.lab.example.test | 192.168.56.12 | Resolver separado |
+| client.lab.example.test | 192.168.56.20 | Cliente de pruebas |
+| time.lab.example.test | 192.168.56.30 | Fuente temporal del laboratorio |
+| ipa.lab.example.test | 192.168.56.40 | IAM, solo escenario integrado |
+| kea.lab.example.test | 192.168.56.50 | DHCP/D2, bloques integrados |
+
+Usar una red privada sin puente a la LAN; adaptar el rango si existe conflicto.
+Para IPv6, generar un prefijo ULA propio y documentar subred, direcciones y reversa.
+`lab.example.test` es el dominio de referencia; conservar `example.internal` de 7.2
+como comparación de diseño. Nunca usar `.local` para este laboratorio DNS unicast.
+Las pruebas iterativas y DNSSEC usarán una jerarquía privada de padre/hijo para `.test`;
+`dig +trace` contra la raíz pública no resolverá las zonas privadas del laboratorio.
+La salida a Internet solo se necesita para paquetes y ejercicios públicos seleccionados.
+DHCP se limitará a la red del laboratorio. No exponer recursión, RNDC ni estadísticas.
+La fuente TIME debe ser una fuente válida según el path TIME; no declarar un servidor
+sincronizado solo porque responde NTP ni usar `local` de Chrony como equivalente a UTC.
+
+### Entregables y aceptación por práctica
+
+1. Objetivo, prerrequisitos y versión de sistema/BIND/paquetes.
+2. Diagrama o tabla de nodos, red, zonas, puertos y credenciales técnicas necesarias.
+3. Configuración comentada, permisos, SELinux, firewalld y validación previa aplicable.
+4. Consultas desde cliente y servidor, por UDP/TCP y por IPv4/IPv6 cuando corresponda.
+5. Resultado esperado: AA/RA/AD según rol, RCODE, RRsets y ausencia de acceso no autorizado.
+6. Fallo introducido, evidencia de causa y recuperación con las mismas comprobaciones.
+7. Restauración del estado inicial y registro de cambios, sin secretos en el informe.
+
+### Pruebas finales obligatorias
+
+- Perfil A sin IAM: primary/secondary, resolver, TSIG, DNSSEC y Kea según bloque 36.
+- Perfil B con IAM: extender A con DNS externo para IdM o usar un subdominio delegado
+  para DNS integrado; no ejecutar dos servicios distintos sobre la misma IP/puerto.
+- Modificar un RR y demostrar convergencia del secundario; después simular fallo del primary.
+- Probar respuesta a clientes permitidos y rechazo de recursión/transferencia no autorizada.
+- Completar rollover sin pérdida de validación y recuperar una firma/DS deliberadamente roto.
+- Simular BADTIME y clock skew solo en VMs desechables con snapshot y fuera del host.
+- Reiniciar el conjunto y demostrar recuperación de TIME, DNS y luego IAM.
+- Restaurar backup en aislamiento, medir tiempo de recuperación y documentar RPO/RTO.
+- Aportar consultas y logs antes/después, capturas relevantes y métricas; no basta con `active`.

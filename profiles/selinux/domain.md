@@ -145,7 +145,7 @@ El estudiante debe aprender a responder preguntas como:
 
 ¿Qué regla permite este acceso?
 
-¿Qué regla impide este acceso?
+¿Qué permiso falta o qué restricción explica la denegación?
 
 ¿Qué transición ocurre?
 
@@ -347,3 +347,43 @@ No asumir rutas internas inmutables del policy store ni disponibilidad de paquet
 ## Proyecto final ampliado
 
 El selinux-debugger debe producir explicaciones trazables, distinguir hechos de hipótesis, incorporar pruebas automatizadas, mostrar relaciones en DOT/JSON y permitir comparar estado runtime, personalizaciones locales y política instalada.
+
+## Unidades de enseñanza y subapartados
+
+Los identificadores x.y definen unidades del temario. Si una entrada enumera
+únicamente un campo, una opción o una variante del mismo comando, desarrollarla
+como subapartado de la unidad conceptual correspondiente, sin fabricar una
+lección independiente. Las entradas x.y.z son subapartados de x.y. Conservar
+la cobertura y profundidad; indicar los identificadores cubiertos por cada
+lección y enlazar los prerrequisitos. El bloque 14 agrupa los campos AVC como
+subapartados de su interpretación.
+
+## Preparación temprana y progresión
+
+Preparar VM, snapshot, consola de recuperación, paquetes y versiones en el
+bloque 1. El bloque 26 reutiliza esa base y formaliza requisitos, evidencias
+y pruebas del proyecto experto. Cada bloque avanzado añade mecanismos,
+consultas o experimentos nuevos sobre los conocimientos anteriores.
+
+## Límites técnicos obligatorios
+
+- neverallow es una aserción de compilación; estudiarla en fuentes/CIL.
+  No prometer recuperarla mediante sesearch desde la política binaria cargada.
+- Diferenciar sintaxis TE de CIL, incluyendo type_transition frente a
+  typetransition, type_change frente a typechange y type_member frente a
+  typemember.
+- Descubrir store-root en semanage.conf; /var/lib/selinux es el valor
+  predeterminado documentado. No editar manualmente el almacén como flujo normal.
+- Correlacionar una regla con módulos de origen requiere evidencia adicional,
+  como fuentes o CIL; admitir orígenes múltiples o no determinados.
+- Una consulta allow aislada no demuestra que una operación real tendrá éxito.
+  Registrar política, contextos, condiciones y límites del análisis.
+
+## Contrato de resultados del proyecto final
+
+El debugger debe distinguir confirmado, inferido e inconcluso. Cada conclusión
+incluye evidencia, procedencia, versiones y estado consultado. Cuando no pueda
+determinar la causa, debe explicar qué información falta y qué comprobación
+permitiría avanzar. La ausencia de una regla encontrada o de un AVC no basta
+para declarar política faltante. Separar decisiones SELinux de otros controles
+que puedan impedir la operación y verificar las hipótesis con pruebas reales.

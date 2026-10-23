@@ -1,79 +1,233 @@
 ---
 course:
-  title: "Sed — 0 a Experto en Profundidad"
-  language: "es"
+  title: LaTeX — 0 a Experto en Profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   platform:
-    primary:
-      - Fedora
-      - RHEL
-      - Linux
-    implementation: GNU sed
-    shell: Bash/Zsh
-  description: >
-    Curso progresivo y profundo de GNU sed, desde los fundamentos del
-    procesamiento de streams hasta pattern space, hold space,
-    procesamiento multilínea, branching, portabilidad POSIX, seguridad,
-    rendimiento e internals.
-  mode: "deep"
+    - Fedora
+    - Linux
+  primary_distribution: TeX Live
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 
-objectives:
-  - Dominar sed como editor de streams y no solo como colección de one-liners.
-  - Comprender el ciclo interno de ejecución, pattern space y hold space.
-  - Aplicar BRE y ERE correctamente en selección y transformación de texto.
-  - Construir scripts sed mantenibles, robustos, seguros e idempotentes.
-  - Dominar procesamiento multilínea, labels, branching y loops.
-  - Diferenciar GNU sed, POSIX sed y aspectos relevantes de portabilidad.
-  - Integrar sed con grep, awk, find, xargs, shell y herramientas Fedora.
-  - Comparar sed y awk y reconocer cuándo migrar una transformación al
-      modelo de registros y campos de awk.
-  - Saber cuándo sed no es la herramienta apropiada.
+pedagogy:
+  style:
+    - profundo
+    - práctico
+    - progresivo
+    - orientado a composición y proyectos LaTeX reales
+  lesson_structure:
+    objective:
+      required: true
+      position: first
+      heading: 🎯 OBJETIVO
+    reading:
+      required: true
+      heading: 📚 LECTURA
+      categories:
+        - principal
+        - normativa
+        - motor
+        - profundizacion
+        - consulta
+      exact_references_only_when_verified: true
+    lab:
+      required: true
+      heading: 🧪 Laboratorio/ejemplos
+    common_errors:
+      required: true
+      heading: ⚠️ Errores frecuentes
+    important_idea:
+      required: true
+      heading: 💡 Idea importante
+    remember:
+      required: true
+      position: last
+      heading: 🧠 QUÉ DEBES RECORDAR
+      min_items: 3
+      max_items: 7
+      avoid_repeating_objective: true
+  indentation: false
+  # Listas internas de las lecciones; los IDs del path usan bloque.lección.
+  numbering: single-level
 
-lesson_structure:
-  start: "🎯 OBJETIVO"
-  sections:
-    - "Explicación conceptual"
-    - "Sintaxis"
-    - "Ejemplos progresivos"
-    - "🧪 Laboratorio"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-  end: "🧠 QUÉ DEBES RECORDAR"
+content:
+  prefer_compilable_examples: true
+  explain_code_and_output: true
+  use_minimal_working_examples_for_debugging: true
+  distinguish_latex_engine_package_and_tool_behavior: true
+  avoid_unverified_page_or_section_references: true
+  official_docs_override_stale_behavior: true
+  ctan_package_workflow:
+    required_when_introducing_package: true
+    teach_discovery_not_only_usage: true
+    steps:
+      - define_problem_or_need
+      - find_package_on_ctan
+      - identify_official_documentation
+      - consult_with_texdoc
+      - check_installation_with_kpsewhich
+      - identify_dependencies_and_relevant_options
+      - load_package_correctly
+      - provide_minimal_working_example
+      - compile_and_interpret_errors_or_warnings
+    explain_when_relevant:
+      - ctan_package_name_vs_texlive_package_vs_sty_or_cls_file
+      - package_options
+      - load_order
+      - dependencies
+      - incompatibilities
+      - fedora_texlive_packaging
+      - texmfhome_and_local_installation
+    avoid_repeating_full_ctan_theory: true
+    cross_reference_ctan_block: true
+  deep_lesson_requirements:
+    - explain_concept_and_internal_mechanism
+    - show_syntax_and_argument_semantics
+    - provide_compilable_example_and_build_command
+    - describe_expected_result_without_inventing_execution
+    - compare_engines_and_versions_when_relevant
+    - include_diagnostic_exercise_and_common_errors
+    - link_prerequisites_and_related_lessons
+  security_topics:
+    - shell_escape
+    - external_tools
+    - untrusted_documents
+    - build_isolation
+  accessibility_topics:
+    - tagged_pdf
+    - pdf_ua
+    - documentmetadata
+    - tagpdf
+    - reading_order
+    - alternative_text
+    - table_semantics
+    - validation
+  integrative_labs_after_blocks:
+    - 7
+    - 17
+    - 24
+    - 33
+  preserve_existing_lessons: true
+  preserve_existing_lesson_ids: true
+  prerequisite_policy:
+    spanish_minimal_document: "0.24"
+    before_math_integrator:
+      - "6.21"
+      - "6.22"
+    before_expl3:
+      - "26.16"
+      - "26.17"
+      - "26.18"
+    expand_cross_references_in_block: 10
+    deepen_tex_internals_in_block: 28
+  modern_interfaces:
+    prefer_kernel_document_commands: true
+    xparse_role: historical_and_legacy_compatibility
+    avoid_unnecessary_xparse_loading: true
+    distinguish_package_class_and_tikz_library_loading: true
+  version_sensitive_examples:
+    record_engine_format_and_package_versions: true
+    compare_local_manual_with_online_documentation: true
+    minted:
+      distinguish_package_latexminted_and_pygments: true
+      verify_actual_execution_requirements: true
+      avoid_assuming_full_shell_escape: true
+    tagged_pdf:
+      declare_target_standard_and_version: true
+      check_engine_class_and_package_compatibility: true
+      documentmetadata_before_documentclass: true
+      combine_automatic_and_manual_validation: true
+      avoid_unverified_conformance_claims: true
+  final_project_evidence:
+    - modular_sources_and_resources
+    - documented_class_and_package
+    - build_instructions_and_environment_versions
+    - regression_tests_and_results
+    - typographic_and_functional_review
+    - accessibility_report_and_known_limitations
+environment:
+  os_family:
+    - Fedora
+    - Linux
+  tex_distribution: TeX Live
+  engines:
+    - pdfTeX
+    - XeTeX
+    - LuaTeX
+  build_tools:
+    - latexmk
+    - Make
+    - arara
+  version_control: Git
+bibliography:
+  principal:
+    - Text and Math Into LaTeX — George Grätzer
+    - LaTeX Beginner's Guide — Stefan Kottwitz
+    - LaTeX Cookbook — Stefan Kottwitz
+    - LaTeX Graphics with TikZ — Stefan Kottwitz
+    - The LaTeX Companion, Third Edition — Part I — Frank Mittelbach et al.
+    - The LaTeX Companion, Third Edition — Part II — Frank Mittelbach et al.
+  normative:
+    - LaTeX Project documentation
+    - CTAN package documentation
+    - TeX Live documentation
+    - PGF/TikZ manual
+    - PGFPlots manual
+    - biblatex/Biber documentation
+    - expl3 documentation
+    - l3build documentation
+    - LaTeX PDF management and latex-lab documentation
+    - tagpdf documentation
+    - LuaTeX and LuaHBTeX manuals
+    - KOMA-Script Guide
+    - TeX Directory Structure documentation
+    - LaTeX2e kernel and source documentation
+    - PDF/UA specification and validation guidance
+    - LaTeX author and class/package writer guides
+    - mathtools documentation
+    - Beamer user guide
+    - minted documentation and latexminted requirements
+progression:
+  - fundamentos
+  - composicion_tipografica
+  - matematicas
+  - tablas_figuras_referencias
+  - bibliografia
+  - tikz_pgfplots
+  - documentos_cientificos_y_grandes
+  - automatizacion
+  - macros
+  - expl3
+  - tex_internals
+  - paquetes_y_clases
+  - lualatex
+  - testing_y_mantenimiento
+  - accesibilidad_pdf
+  - proyecto_final_experto
 
-content_requirements:
-  examples: true
-  exercises: true
-  labs: true
-  troubleshooting: true
-  internals: true
-  fedora_examples: true
-  posix_portability: true
-  security: true
-  performance: true
-  references_per_lesson: true
-
-reference_policy:
-  primary_books:
-    - title: "Definitive Guide to sed: Tutorial and Reference"
-      author: "Daniel A. Goldman"
-      role: "Referencia principal específica de sed"
-    - title: "sed & awk"
-      authors:
-        - "Dale Dougherty"
-        - "Arnold Robbins"
-      role: "Segunda referencia principal para filosofía Unix, diseño
-          de scripts e integración sed/awk"
-  primary_documentation:
-    - "GNU sed manual"
-    - "POSIX sed specification"
-  rule: >
-    Los libros sirven como referencias pedagógicas principales.
-    La documentación oficial de GNU sed y POSIX se utiliza para
-    validar sintaxis, comportamiento, extensiones y portabilidad.
+milestones:
+  - id: math-integrator
+    after_block: 7
+    name: Proyecto matemático reproducible
+  - id: graphics-integrator
+    after_block: 17
+    name: Proyecto TikZ y PGFPlots
+  - id: build-integrator
+    after_block: 24
+    name: Build seguro y reproducible
+  - id: programming-integrator
+    after_block: 33
+    name: Paquete expl3 probado con l3build
+  - id: accessible-pdf
+    after_block: 34
+    name: PDF accesible y validado
+  - id: expert-project
+    after_block: 35
+    name: Proyecto final experto LaTeX

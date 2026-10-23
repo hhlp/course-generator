@@ -76,6 +76,9 @@
 4.11 Innovación y experimentación
 4.12 Estrategia basada en evidencia
 4.13 De estrategia a Product Goals
+4.14 Lanzamiento del producto: segmentos, propuesta de valor, canales y criterios de éxito
+4.15 Adopción y ciclo de vida: onboarding, soporte, evolución y señales de retirada
+4.16 Retirada del producto: comunicación, migración de usuarios y tratamiento de datos
 
 5. PRODUCT GOAL
 5.1 Qué es el Product Goal
@@ -124,7 +127,7 @@
 
 8. USER STORIES Y PBIs
 8.1 Qué es una User Story
-8.2 User Story no es requisito
+8.2 User Story como conversación sobre una necesidad y relación con los requisitos
 8.3 Card — Conversation — Confirmation
 8.4 As a / I want / So that
 8.5 Cuándo usar y cuándo no usar User Stories
@@ -205,8 +208,11 @@
 11.15 Decisión final del Product Owner
 11.16 Laboratorio de ordering
 
-11.17 Caso PSPO I: justificar el orden del backlog ante valor, riesgo y dependencias
-11.18 Checkpoint PSPO I: preguntas situacionales, evidencia y retroalimentación
+11.17 Puente previo a PSPO I: empirismo, valores, accountabilities, eventos y compromisos de Scrum
+11.18 Puente previo a PSPO I: Sprint Goal, autogestión, Done y entrega de valor
+11.19 Puente previo a PSPO I: release, Sprint Review y forecast sin promesas de fecha
+11.20 Caso PSPO I: justificar el orden del backlog ante valor, riesgo y dependencias
+11.21 Checkpoint PSPO I: preguntas situacionales, evidencia y retroalimentación
 
 12. PRODUCT DISCOVERY
 12.1 Discovery vs Delivery
@@ -224,6 +230,10 @@
 12.13 Proof of Concept vs Prototype vs MVP
 12.14 Validated Learning
 12.15 Discovery → Product Backlog
+12.16 Diseñar experimentos: hipótesis falsables, métricas, muestra y reglas de decisión
+12.17 Interpretar experimentos: sesgos, incertidumbre, causalidad y límites del A/B testing
+12.18 Métricas de protección: experiencia, calidad, privacidad y efectos no deseados
+12.19 Laboratorio de experimentación: evidencia insuficiente, resultado negativo y decisión de producto
 
 13. STAKEHOLDER MANAGEMENT
 13.1 Qué es un stakeholder
@@ -308,6 +318,10 @@
 18.10 Sprint Retrospective
 18.11 Increment y Definition of Done
 18.12 Release del producto
+18.13 Bugs y hotfix urgentes: impacto, severidad, valor y coste de demora
+18.14 Del Product Backlog al Sprint Backlog: negociación de alcance con Developers y protección del Sprint Goal
+18.15 Incidencias durante el Sprint: adaptación del plan, calidad y cancelación si el Sprint Goal queda obsoleto
+18.16 Laboratorio: decidir sobre un hotfix urgente, renegociar alcance y registrar el efecto sobre el forecast
 
 19. FLOW, CHARTS Y FORECASTING PARA PRODUCT OWNERS
 19.1 Por qué el Product Owner necesita comprender el flujo
@@ -349,6 +363,8 @@
 19.37 Flow metrics para mejorar el sistema, no para evaluar personas
 19.38 Anti-patrones de métricas para Product Owners
 19.39 Laboratorio: Sprint Backlog → datos → charts → forecast → decisión de producto
+19.40 Little’s Law aplicada: límites del sistema, promedios, unidades y estabilidad del flujo
+19.41 Laboratorio de interpretación: por qué un promedio no garantiza el plazo de un PBI
 
 20. PRODUCT OWNERSHIP A ESCALA
 20.1 Un producto con múltiples equipos
@@ -449,3 +465,6 @@
 24.27 Entregables finales: dossier de producto y trazabilidad de decisiones
 24.28 Defensa del proyecto: hipótesis, evidencia, riesgos y trade-offs
 24.29 Rúbrica de evaluación experta y plan de mejora
+24.30 Plan de lanzamiento, adopción y retirada con migración de usuarios
+24.31 Informe de experimento: muestra, sesgos, incertidumbre y métricas de protección
+24.32 Caso de hotfix: decisión, negociación de alcance y actualización del forecast

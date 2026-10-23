@@ -21,6 +21,7 @@ pedagogy:
   show_intermediate_steps: true
   name_law_on_each_transformation: true
   truth_tables_required: true
+  truth_tables_scope: "Ejemplos pequeños; verificación simbólica a escala"
   proofs_required: true
   counterexamples_when_useful: true
   calculations_required: true
@@ -168,6 +169,7 @@ digital_logic_boundary:
 programming:
   languages:
     - "Python"
+    - "C"
     - "C++"
     - "Rust"
     - "Go"
@@ -231,7 +233,7 @@ final_project:
     - "NAND-only implementation"
     - "NOR-only implementation"
     - "software implementation"
-    - "exhaustive validation"
+    - "exhaustive validation for the small case"
     - "trade-off justification"
 
 quality_rules:
@@ -243,3 +245,107 @@ quality_rules:
   distinguish_boolean_from_bitwise: true
   distinguish_classical_boolean_from_sql_three_valued_logic: true
   always_validate_nontrivial_transformations: true
+
+# Requisitos descriptivos: confirmar soporte en el cargador del generador.
+revision:
+  date: "2026-10-16"
+  preserve_original_lesson_ids: true
+  roman_blocks: 15
+  main_topics: 92
+  topic_range: "0-91"
+  lesson_id_pattern: "topic.sublesson"
+
+advanced_requirements:
+  semantic_consequence: true
+  necessary_and_sufficient_conditions: true
+  support_and_essential_variables: true
+  partial_functions_on_off_dc: true
+  finite_boolean_algebras_and_atoms: true
+  boolean_rings: true
+  algebraic_normal_form:
+    enabled: true
+    field: "GF(2)"
+    multilinear_polynomials: true
+    mobius_transform: true
+    uniqueness_and_degree: true
+    affine_functions: true
+  post_completeness_criterion: true
+  boolean_quantification: true
+  robdd_algorithms:
+    unique_table: true
+    mk: true
+    apply: true
+    memoization: true
+    restriction: true
+    quantification: true
+    model_counting_with_skipped_levels: true
+  sat_practice:
+    tseitin_with_asserted_root: true
+    equivalence_vs_equisatisfiability: true
+    dimacs: true
+    cardinality_constraints: true
+    two_sat_implication_graph: true
+    dpll_trace: true
+    cdcl_guided_example: true
+    resolution_and_first_uip: true
+    watched_literals_intro: true
+    model_verification: true
+    unsat_certificates_intro: true
+    unknown_is_not_unsat: true
+  miter_equivalence: true
+  aig_intro: true
+
+semantic_precision:
+  count_assignments: "2^n"
+  count_total_functions: "2^(2^n)"
+  distinguish_two_element_from_general_algebra: true
+  distinguish_connective_from_semantic_relation: true
+  sop_corresponds_to_dnf: true
+  pos_corresponds_to_cnf: true
+  distinguish_general_from_canonical: true
+  declare_variable_order_and_indices: true
+  avoid_circular_proofs: true
+  minimum_requires_explicit_cost: true
+  distinguish_irredundant_from_optimal: true
+  equivalence_on_care_set: true
+  negative_cofactor_is_substitution_at_zero: true
+  robdd_canonicity_requires_fixed_order: true
+  preserve_effects_when_rewriting_programs: true
+
+checkpoint_topics:
+  - 22
+  - 32
+  - 40
+  - 45
+  - 55
+  - 58
+  - 81
+
+project_validation:
+  small_case:
+    suggested_inputs: "3-4"
+    all_original_methods: true
+    anf: true
+    exhaustive_validation: true
+  scalable_case:
+    symbolic_verification: "SAT or BDD"
+    exhaustive_truth_table_required: false
+    document_care_set: true
+    preserve_counterexamples: true
+  reproducibility:
+    record_tool_versions: true
+    record_variable_order: true
+    record_cost_metric: true
+    record_resource_limits: true
+    include_inputs_outputs_and_commands: true
+  rubric_percent:
+    mathematical_correctness: 40
+    reasoning_and_method_selection: 25
+    verification_and_reproducibility: 25
+    clarity_and_limits: 10
+
+integration_notes:
+  custom_keys_are_descriptive_requirements: true
+  generator_schema_compatibility_checked: false
+  pedagogy_path_resolution_checked: false
+  preserve_original_pedagogy_path: true

@@ -78,6 +78,10 @@
 1.27 localizar /var/log
 1.28 localizar /var/log/journal
 1.29 laboratorio: inventariar toda la infraestructura de logging instalada
+1.30 Instalación explícita de rsyslog, syslog-ng y módulos opcionales mediante DNF
+1.31 Inventario de versiones, paquetes y funciones disponibles por host
+1.32 Topología aislada de cliente, relay y collector; snapshots y sincronización horaria
+1.33 Rutas /var/log/messages y /var/log/secure: dependen de las reglas y paquetes instalados
 
 
 2. Arquitectura de systemd-journald
@@ -106,6 +110,8 @@
 2.23 journald como concentrador local
 2.24 journald frente a syslog tradicional
 2.25 laboratorio: seguir un mensaje desde el productor hasta journald
+2.26 Rutas alternativas: recepción de red y lectura de archivos sin pasar por journald
+2.27 Streams de stdout y stderr: delimitación de registros, buffering y cierre
 
 
 3. El formato Journal
@@ -146,6 +152,8 @@
 3.35 búsqueda mediante campos
 3.36 journal como base de datos estructurada de eventos
 3.37 laboratorio: inspeccionar todos los campos de diferentes eventos
+3.38 Campos trusted: atribución local frente a confianza en mensajes reenviados
+3.39 Timestamps monotónicos: interpretación conjunta con _BOOT_ID
 
 
 4. journalctl — fundamentos
@@ -212,6 +220,9 @@
 5.30 exportar datos del journal
 5.31 procesar JSON del journal
 5.32 laboratorio: construir consultas forenses sobre el journal
+5.33 --cursor-file y reanudación incremental según versión instalada
+5.34 AND entre campos distintos, OR sobre un mismo campo y disyunción explícita con +
+5.35 Exportación JSON: campos repetidos, binarios y selección de campos
 
 
 6. Persistencia y almacenamiento del Journal
@@ -247,6 +258,8 @@
 6.30 almacenamiento disponible
 6.31 comportamiento ante filesystem lleno
 6.32 laboratorio: diseñar una política de almacenamiento y retención
+6.33 Vacuum elimina archivos archivados: distinguir uso activo y archivado
+6.34 Backup y restauración offline del journal; sincronización y verificación de copias
 
 
 7. Configuración de journald
@@ -280,6 +293,8 @@
 7.28 reiniciar journald correctamente
 7.29 validar cambios
 7.30 laboratorio: construir una configuración modular de journald
+7.31 LineMax y SyncIntervalSec: límites de registros y compromiso de durabilidad
+7.32 cat-config muestra configuración combinada; comprobar también advertencias y efecto real
 
 
 8. Rate limiting y control de volumen
@@ -317,6 +332,7 @@
 9.14 impacto sobre almacenamiento
 9.15 troubleshooting de namespaces
 9.16 laboratorio: crear un namespace independiente para un servicio
+9.17 LogsDirectory y persistencia de instancias: verificar comportamiento específico de namespaces
 
 
 10. Seguridad e integridad del Journal
@@ -357,6 +373,10 @@
 11.14 structured journal frente a Syslog
 11.15 troubleshooting del forwarding
 11.16 laboratorio: seguir journald → rsyslog → archivo
+11.17 ForwardToSyslog controla forwarding por socket, no la lectura independiente con imjournal
+11.18 Estado y cursor de imjournal: recuperación, permisos y límites de retención
+11.19 systemd-journal-upload y systemd-journal-remote como alternativa HTTP/HTTPS al forwarding Syslog
+11.20 Laboratorio alternativo: preservar campos del journal mediante upload/remote con TLS y soporte comprobado
 
 
 12. Fundamentos del protocolo Syslog
@@ -413,6 +433,7 @@
 13.19 RFC 5424 frente a RFC 3164
 13.20 compatibilidad
 13.21 laboratorio: comparar mensajes RFC 3164 y RFC 5424
+13.22 Límites de longitud, escape de structured data y manejo de entradas no conformes
 
 
 14. Transporte Syslog
@@ -437,6 +458,9 @@
 14.19 UDP frente a TCP
 14.20 TCP frente a TLS
 14.21 laboratorio: capturar y analizar tráfico Syslog
+14.22 RFC 5426: mapeo de Syslog sobre UDP
+14.23 Captura TCP: reensamblado de mensajes y fragmentación frente a framing
+14.24 Prueba con IDs: comparar recepción UDP y TCP bajo congestión
 
 
 15. Arquitectura de rsyslog
@@ -461,6 +485,8 @@
 15.19 rsyslogd -v
 15.20 documentación instalada
 15.21 laboratorio: construir el mapa interno de rsyslog
+15.22 -N1 como validación de referencia; comprobar significado de otros niveles en la versión instalada
+15.23 Validación de sintaxis frente a permisos, conectividad y comportamiento en ejecución
 
 
 16. Inputs de rsyslog
@@ -480,6 +506,10 @@
 16.14 rate limiting en inputs
 16.15 metadata de inputs
 16.16 laboratorio: recibir mensajes desde múltiples fuentes
+16.17 imfile: seguimiento de archivos, identidad, rotación y truncamiento
+16.18 imfile: archivos de estado, directorio de trabajo y PersistStateInterval
+16.19 imfile: mensajes multilínea, límites y recuperación tras interrupción
+16.20 Laboratorio: rotar archivos y reiniciar la lectura midiendo duplicados y pérdidas
 
 
 17. Filtrado y propiedades en rsyslog
@@ -532,6 +562,9 @@
 18.21 dynamic file
 18.22 normalización de salida
 18.23 laboratorio: construir un pipeline con RainerScript
+18.24 Variables de mensaje $!, variables locales $. y propiedades: alcance real según versión
+18.25 JSON seguro mediante templates; evitar concatenación manual de datos sin escape
+18.26 Rutas dinámicas: sanitización, cardinalidad y prevención de traversal
 
 
 19. Actions y outputs de rsyslog
@@ -580,6 +613,10 @@
 20.24 pérdida de mensajes
 20.25 dimensionamiento de queues
 20.26 laboratorio: simular la caída del servidor remoto sin perder mensajes
+20.27 queue.checkpointInterval y queue.syncQueueFiles: durabilidad y coste de E/S según tipo de cola
+20.28 Disk-assisted no implica que todos los eventos en memoria sobrevivan a un fallo abrupto
+20.29 saveonshutdown distingue cierre ordenado de terminación abrupta
+20.30 Laboratorio: comparar reinicio limpio y terminación abrupta con secuencias verificables
 
 
 21. Parsing en rsyslog
@@ -666,6 +703,7 @@
 24.15 duplicación posible
 24.16 semánticas de entrega
 24.17 laboratorio: construir un canal rsyslog RELP + TLS
+24.18 ACK de RELP frente a persistencia final: identificar qué confirma cada salto
 
 
 25. Arquitectura de syslog-ng
@@ -687,6 +725,7 @@
 25.16 syslog-ng -V
 25.17 módulos
 25.18 laboratorio: construir el mapa interno de syslog-ng
+25.19 syslog-ng OSE y AxoSyslog: distinguir proyecto, versión y documentación aplicable
 
 
 26. Sources y destinations de syslog-ng
@@ -706,6 +745,8 @@
 26.14 macros
 26.15 templates
 26.16 laboratorio: construir múltiples fuentes y destinos
+26.17 system() y systemd-journal(): inspeccionar fuentes efectivas para evitar doble captura
+26.18 Estado persistente de fuentes file y journal: cursores, permisos y reinicio
 
 
 27. Filters, parsers y rewrites de syslog-ng
@@ -764,6 +805,11 @@
 29.13 rendimiento
 29.14 dimensionamiento
 29.15 laboratorio: simular una interrupción prolongada del collector
+29.16 Nombres de opciones según versión: mem-buf-size y flow-control-window-bytes
+29.17 Nombres de opciones según versión: disk-buf-size y capacity-bytes
+29.18 mem-buf-length y flow-control-window-size: mensajes frente a bytes
+29.19 Persist file y asociación con disk-buffer: conservar identidad durante mantenimiento
+29.20 Laboratorio: verificar recuperación de buffers y medir pérdidas tras terminación abrupta
 
 
 30. Logging remoto con syslog-ng
@@ -783,6 +829,8 @@
 30.14 routing por programa
 30.15 almacenamiento central
 30.16 laboratorio: construir infraestructura centralizada con syslog-ng
+30.17 Validación de CA, identidad del peer y permisos de claves en configuración syslog-ng
+30.18 Laboratorio: rechazar emisor no autorizado y recuperar conectividad tras renovar certificados
 
 
 31. Diseño de logging centralizado
@@ -834,6 +882,8 @@
 32.18 compatibilidad
 32.19 evolución del schema
 32.20 laboratorio: diseñar un formato estructurado de logging
+32.21 Tiempo de emisión, recepción e ingestión: diferencias y desviación de relojes
+32.22 trace_id y span_id como campos de correlación, sin ampliar al PATH OpenTelemetry
 
 
 33. Parsing y normalización
@@ -914,6 +964,9 @@
 35.32 ownership
 35.33 SELinux
 35.34 laboratorio: crear una política completa de rotación
+35.35 Frecuencia del timer: size y maxsize se evalúan cuando logrotate se ejecuta
+35.36 Bloqueo del archivo de estado y ejecución concurrente de rotaciones
+35.37 Laboratorio: verificar permisos su/create y frecuencia efectiva de ejecución
 
 
 36. Rotación correcta de servicios
@@ -963,6 +1016,8 @@
 37.21 stdout de procesos
 37.22 stderr de procesos
 37.23 laboratorio: diseñar el logging de un servicio systemd
+37.24 systemctl daemon-reload frente a recarga del daemon de logging
+37.25 No asumir soporte de reload; inspeccionar ExecReload y documentación del servicio
 
 
 38. Kernel logging
@@ -1040,6 +1095,8 @@
 40.23 límites
 40.24 monitorización del pipeline
 40.25 laboratorio: dimensionar un servidor central de logging
+40.26 Fórmulas de capacidad: EPS por bytes/evento por tiempo, con sobrecarga y margen
+40.27 Drenaje de backlog: capacidad de salida menos tasa de entrada; condición para recuperarse
 
 
 41. Alta disponibilidad y fiabilidad
@@ -1069,6 +1126,8 @@
 41.24 RPO conceptual aplicado a logs
 41.25 RTO conceptual aplicado a logging
 41.26 laboratorio: diseñar un pipeline tolerante a fallos
+41.27 Load balancing no replica datos: criterios de continuidad y acceso a logs ya almacenados
+41.28 Respaldo de configuración, CA, estados y buffers: procedimientos de restauración compatibles
 
 
 42. Herramientas de diagnóstico
@@ -1199,6 +1258,9 @@
 45.20 Protección y retención de registros audit
 45.21 Troubleshooting del pipeline audit
 45.22 Laboratorio: auditar cambios en archivos y correlacionar eventos
+45.23 Correlación de registros audit por identificador de evento, no como líneas independientes
+45.24 Rotación de auditd y acciones ante disco lleno: separar de políticas genéricas de logrotate
+
 
 46. Logging de aplicaciones y contenedores
 46.1 Diseño de eventos desde la aplicación
@@ -1225,6 +1287,7 @@
 46.22 Troubleshooting de logs ausentes o truncados
 46.23 Laboratorio: aplicación y contenedor con logs estructurados
 
+
 47. Seguridad avanzada y conservación forense
 47.1 Modelo de amenazas del pipeline de logging
 47.2 Confidencialidad, integridad y disponibilidad
@@ -1248,6 +1311,7 @@
 47.20 Borrado y caducidad: implicaciones operativas
 47.21 Runbook de respuesta a manipulación
 47.22 Laboratorio: preservar y verificar un conjunto de logs
+
 
 48. Operación y métricas internas del pipeline
 48.1 Objetivos operativos y SLO de logging
@@ -1273,6 +1337,7 @@
 48.21 Checklist de operación diaria y mantenimiento
 48.22 Laboratorio: diagnosticar degradación con estadísticas internas
 
+
 49. Pruebas de resiliencia, rendimiento y recuperación
 49.1 Plan de pruebas y criterios de aceptación
 49.2 Topología reproducible de varios hosts Fedora
@@ -1297,6 +1362,10 @@
 49.21 Registro de evidencias y resultados reproducibles
 49.22 Rollback y restauración de laboratorio
 49.23 Laboratorio: campaña completa de resiliencia con informe
+49.24 Fallos de disco e inodos únicamente en filesystem desechable y acotado
+49.25 Pruebas de salto horario y comparación de latencia con relojes sincronizados
+49.26 Criterios por transporte: pérdida admisible, duplicados, latencia y recuperación
+
 
 50. Laboratorio de integración
 50.1 preparar varios hosts Fedora
@@ -1339,6 +1408,8 @@
 50.38 medir almacenamiento
 50.39 documentar arquitectura
 50.40 reconstruir el recorrido completo de un evento
+50.41 Ruta alternativa: collector recibe Syslog de red sin journald intermedio
+50.42 Repetir caso representativo con syslog-ng y comparar resultados con rsyslog
 
 
 51. Proyecto final — plataforma de logging Fedora
@@ -1394,3 +1465,5 @@
 51.50 crear checklist de recuperación
 51.51 auditoría completa del sistema
 51.52 proyecto final: plataforma centralizada, segura, persistente y tolerante a fallos de logging sobre Fedora
+51.53 Entregar configuraciones, inventario de versiones, comandos reproducibles y rollback
+51.54 Entregar matriz de pruebas con eventos emitidos, recibidos, únicos, duplicados y perdidos

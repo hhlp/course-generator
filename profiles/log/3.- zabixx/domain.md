@@ -879,7 +879,7 @@ Cubrir:
 - filtering;
 - output;
 - select*;
-- pagination;
+- extracción por lotes con parámetros documentados para cada método;
 - errores;
 - permisos.
 
@@ -1700,7 +1700,8 @@ La profundidad debe estar en el desarrollo técnico, no en multiplicar artificia
 
 # 52. Diagramas
 
-Utilizar diagramas ASCII cuando faciliten la comprensión.
+Preferir diagramas Mermaid cuando faciliten la comprensión. Los esquemas de
+texto siguientes son referencias conceptuales, no una obligación de formato.
 
 Ejemplos:
 
@@ -1849,3 +1850,62 @@ Diseñar backup, restore, PostgreSQL PITR, protección de claves y certificados,
 
 ## Criterios de aceptación
 Cada bloque nuevo debe tener objetivos, fundamentos, configuración verificable, laboratorio, fallos reproducibles, diagnóstico, evidencia y referencias oficiales específicas. En el proyecto final integrar al menos un resultado verificable de cada bloque nuevo. No eliminar ni simplificar lecciones existentes.
+
+
+# 56. Reglas de coherencia de la revisión estructural
+
+## Orden y prerrequisitos
+Conservar los bloques 0–90 y todos los identificadores de lección. El bloque 81
+agrupa 81.1–81.89 en un único tramo. Su posición numérica permite conservar
+referencias previas; el orden de ejecución recomendado es 0–80, 82–90 y 81.
+El proyecto puede iniciarse como trabajo acumulativo antes de la especialización,
+pero su aceptación final requiere completar 82–90.
+
+En el laboratorio temprano del bloque 9 usar un template oficial y un item
+mínimo ya preparado. Explicar sólo host, interfaz, tipo, key, intervalo y valor
+necesarios para comprobar el Proxy. Los bloques 10–16 desarrollan su semántica.
+
+## Separación de niveles
+- 57–62: medición y ajuste operativo; 69–75: mecanismos internos; 89: carga y
+  resiliencia con criterios cuantitativos. Referenciar fundamentos previos.
+- 64–68: metodología y diagnóstico por componente; 69–75: explicación interna
+  que sustenta ese diagnóstico, sin repetir procedimientos completos.
+- 78: backup y restauración básicos de toda la plataforma; 90: PITR, failback,
+  coordinación de recuperación y medición de RPO/RTO.
+- 82: adquisición y alertas sobre logs; 65: logs de los componentes de Zabbix.
+- 86: calidad de alertas con métricas; 15–22: construcción de sus mecanismos.
+
+## Precisión de claves y API
+No existe una clave genérica `zabbix[cache]` en el catálogo de referencia 7.4.
+Usar las claves de cache según el recurso y el componente, por ejemplo:
+`zabbix[rcache,buffer,pused]`, `zabbix[wcache,history,pused]` y
+`zabbix[vcache,buffer,pused]`. La value cache corresponde al Server; no atribuir
+su clave al Proxy. Consultar siempre parámetros y disponibilidad por versión.
+
+La API no tiene un contrato universal de paginación por page/offset. En 47.21
+enseñar limit, sortfield, sortorder y filtros únicamente si el método los admite.
+Una ordenación junto con limit no basta para recuperar todos los registros:
+diseñar lotes por identificadores, rangos o ventanas sólo cuando el método
+soporte esos filtros; explicar duplicados, cambios concurrentes y límites.
+
+## Instalación reproducible en Fedora
+Registrar edición de Fedora, arquitectura, versión exacta de Zabbix y origen
+repositorio de cada paquete. Diferenciar empaquetado Fedora y del proveedor.
+No reutilizar un repositorio RHEL en Fedora como receta general. Verificar con
+`dnf info`, `rpm -ql` y `systemctl cat` nombres, rutas y unidades reales.
+Si el paquete requerido no existe, documentar una alternativa compatible con
+contenedores oficiales o una VM RHEL compatible; explicitar el cambio de entorno.
+Verificar PHP, PostgreSQL, extensiones y TimescaleDB contra la matriz elegida.
+
+## Validación y alcance
+El paquete incluye `validar_path.py`, ejecutable con Python 3 y PyYAML mediante
+`python3 validar_path.py`. Comprueba estructura, conteos, conservación de IDs,
+orden del temario, YAML sin claves duplicadas y consistencia de esta revisión.
+No realiza despliegues ni sustituye pruebas de laboratorio.
+
+La sección validation del perfil conserva enabled: false y commands: [] porque
+no se ha verificado el contrato de ejecución del generador. El control de calidad
+previo a guardado sigue habilitado en quality. No afirmar compatibilidad con el
+esquema de course-generator sin comprobarla contra su código y configuración.
+El archivo de pedagogía ../../config/pedagogy.md es una dependencia externa del
+repositorio del usuario; no está incluido ni fue validado en este paquete.

@@ -290,7 +290,7 @@ Usar como profundización para:
 - user/group IDs;
 - portability.
 
-### The Linux Command Line 3Ed - William Shotts
+### The Linux Command Line — William Shotts
 
 Referencia didáctica complementaria para fundamentos de:
 
@@ -451,8 +451,8 @@ Cuando no se haya verificado una referencia exacta, citar la obra o manual y el 
 
 Para comportamiento de una versión concreta instalada:
 
-1. comportamiento observado de esa versión;
-2. documentación de esa misma versión;
+1. documentación de esa misma versión como contrato esperado;
+2. comportamiento observado en pruebas reproducibles de esa versión;
 3. documentación upstream compatible;
 4. especificación POSIX cuando sea aplicable;
 5. bibliografía secundaria.
@@ -469,3 +469,41 @@ Para internals:
 2. tests upstream;
 3. documentación del proyecto;
 4. bibliografía explicativa.
+
+
+## Acceso a fuentes y control de versiones
+
+Estos enlaces son puntos de entrada oficiales. La documentación web puede
+corresponder a una versión distinta de la instalada. Registrar versión, fecha
+de consulta y edición; preferir manual local cuando exista una discrepancia.
+No fijar una versión upstream como requisito universal de Fedora o RHEL.
+
+| Fuente | Acceso | Uso |
+| --- | --- | --- |
+| GNU Coreutils | https://www.gnu.org/software/coreutils/manual/coreutils.html | Semántica, inventario y opciones |
+| Coreutils upstream | https://github.com/coreutils/coreutils | Código y tests; fijar tag o commit |
+| GNU Findutils | https://www.gnu.org/software/findutils/manual/ | find, xargs, seguridad y recorrido |
+| GNU bc | https://www.gnu.org/software/bc/manual/bc.html | Lenguaje; comprobar implementación local |
+| rsync | https://rsync.samba.org/documentation.html | Manuales y algoritmo |
+| rsync(1) | https://download.samba.org/pub/rsync/rsync.1 | Transferencias, filtros, opciones y errores |
+| rsyncd.conf(5) | https://download.samba.org/pub/rsync/rsyncd.conf.5 | Configuración del daemon |
+| POSIX | https://pubs.opengroup.org/onlinepubs/9799919799/ | POSIX.1-2024; indicar edición al comparar |
+| Linux man-pages | https://www.kernel.org/doc/man-pages/ | Contratos de interfaces del kernel y libc |
+| Fedora Packaging Guidelines | https://docs.fedoraproject.org/en-US/packaging-guidelines/ | Proyecto RPM |
+| Fedora Packages | https://packages.fedoraproject.org/ | Proveedores y versiones por distribución |
+| systemd | https://www.freedesktop.org/software/systemd/man/latest/ | Units, timers y dependencia de montajes |
+| The Linux Command Line | https://linuxcommand.org/tlcl.php | Referencia didáctica; comprobar edición |
+
+### Evidencia y discrepancias
+
+Una prueba observada no se convierte automáticamente en garantía de interfaz:
+puede depender del entorno, de la configuración o de un defecto. Registrar
+comando, versión, filesystem, locale, privilegios y resultado antes de concluir.
+Separar comportamiento documentado, comportamiento observado y conformidad
+POSIX. Si difieren, explicar la discrepancia sin redefinir la especificación.
+
+Las ediciones de los libros se identificarán desde la copia realmente utilizada.
+No deducir número de edición o capítulo del título bibliográfico. Para TLPI y
+APUE, la lectura de C es profundización opcional, no prerrequisito del recorrido.
+Los snippets de buscadores sirven para localizar fuentes, no sustituyen la
+verificación de una opción contra el manual de la versión que usa el laboratorio.

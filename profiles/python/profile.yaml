@@ -10,6 +10,7 @@ course:
       - Linux
   mode: deep
 
+# Archivos canónicos dentro de paths/python/.
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
@@ -62,6 +63,8 @@ artifacts:
     diagnostic_projects: auto
     require_project_for_every_block: false
 
+# YAML comprobado; compatibilidad del esquema y ejecución pendientes
+# de verificar con el cargador real de course-generator.
 validation:
   enabled: false
   commands: []

@@ -74,3 +74,37 @@ milestones:
   - id: git-expert-project
     after_block: 65
     name: Git Expert Engineering — Proyecto final
+
+progression:
+  git_directory_first_pass: observe init add commit and minimal layout
+  defer_advanced_metadata_labs_until_prerequisites: true
+  corruption_lab_after_blocks: [44, 60]
+  preserve_blocks_and_original_topics: true
+  sublessons_expand_parent_lesson: true
+
+required_distinctions:
+  - HEAD~2 versus HEAD^2
+  - HEAD@{1} versus HEAD~1 versus '@{-1}'
+  - commit selection versus traversal versus display order
+  - log ranges versus diff endpoints and merge-base comparison
+  - DAG versus tree and branch visualization
+  - sparse checkout versus sparse index
+  - partial clone versus shallow clone
+  - valid signature versus trusted identity
+  - retention and reflog versus verified independent backup
+
+lab_contract:
+  record_version_and_capabilities: true
+  explicit_prerequisites: true
+  initial_state_and_expected_relationships: true
+  predict_before_execute: true
+  verify_content_refs_and_integrity: true
+  disposable_repositories_for_destructive_exercises: true
+  independent_restore_test: true
+  stable_script_output_and_nul_delimiters: true
+
+integration_validation:
+  schema_compatibility: requires project validation
+  pedagogy_path: verify relative resolution in target repository
+  sublesson_parser: verify X.Y.Z handling before generation
+  generator_execution: not performed in this revision

@@ -74,3 +74,17 @@ depth_requirements:
     - no tratar SLE como garantía
     - distinguir contenido de fuentes y ampliaciones propias
     - no introducir matemáticas donde no aportan valor
+
+# Requisitos editoriales; su ejecución depende del cargador del generador.
+editorial_validation:
+  expected_blocks: 23
+  expected_lessons: 672
+  preserve_lesson_identifiers: true
+  quantitative_prerequisites_in_block_zero: true
+  distinguish_average_wip_from_wip_limit: true
+  forbid_sle_percentile_as_little_mean: true
+  kingman_as_approximation: true
+  upstream_service_request_review: true
+  checkpoint_deliverables: domain.md
+  generator_schema_verified: false
+  pedagogy_path_verified_in_repository: false

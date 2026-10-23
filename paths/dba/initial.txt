@@ -31,7 +31,8 @@
 0.30 minor releases
 0.31 compatibilidad
 0.32 documentación oficial
-0.33 laboratorio: construir el mapa conceptual de PostgreSQL
+0.33 Mapa de prerrequisitos y niveles: conceptos, operación, diagnóstico e internals
+0.34 laboratorio: construir el mapa conceptual de PostgreSQL
 
 
 1. Instalación de PostgreSQL
@@ -99,11 +100,11 @@
 2.25 pg_stat_tmp/
 2.26 pg_replslot/
 2.27 pg_logical/
-2.28 laboratorio: inicializar y diseccionar un cluster
+2.28 Diferencias históricas de directorios de estadísticas: pg_stat_tmp y versiones modernas
+2.29 Validación de layout real con SHOW data_directory y catálogos
+2.30 Checksums por defecto en PostgreSQL 18 y compatibilidad con clusters 16/17
+2.31 laboratorio: inicializar y diseccionar un cluster
 
-
-2.29 Diferencias históricas de directorios de estadísticas: pg_stat_tmp y versiones modernas
-2.30 Validación de layout real con SHOW data_directory y catálogos
 
 3. Arquitectura del servidor PostgreSQL
 3.1 arquitectura multiproceso
@@ -271,7 +272,13 @@
 8.21 ejecución no interactiva
 8.22 ON_ERROR_STOP
 8.23 exit status
-8.24 laboratorio: consola administrativa PostgreSQL
+8.24 SQL administrativo mínimo: SELECT, alias, WHERE y ORDER BY sobre catálogos
+8.25 NULL, IS NULL, COALESCE y filtros seguros de sesiones
+8.26 JOIN y LEFT JOIN: relacionar pg_database, pg_namespace y pg_class
+8.27 COUNT, SUM, GROUP BY y HAVING para inventario administrativo
+8.28 CTE y subconsultas para construir consultas de diagnóstico legibles
+8.29 laboratorio: consola administrativa PostgreSQL
+8.30 laboratorio: inventario SQL de databases, schemas, relaciones y tamaños
 
 
 9. Bases de datos y schemas
@@ -320,7 +327,8 @@
 10.24 pg_stat_scan_tables
 10.25 pg_signal_backend
 10.26 principio de mínimo privilegio
-10.27 laboratorio: diseñar una jerarquía de roles
+10.27 pg_maintain: delegación de mantenimiento y alcance de privilegios desde PostgreSQL 17
+10.28 laboratorio: diseñar una jerarquía de roles
 
 
 11. Autenticación
@@ -349,12 +357,13 @@
 11.23 SSPI/GSSAPI cuando corresponda
 11.24 pg_hba_file_rules
 11.25 diagnóstico de autenticación
-11.26 laboratorio: construir una política pg_hba.conf segura
+11.26 Autenticación MD5 heredada: compatibilidad, retirada y migración a SCRAM según versión
+11.27 GSSAPI/Kerberos: principals, keytabs, pg_hba.conf y diagnóstico
+11.28 Rotación de credenciales sin interrupción y validación de clientes
+11.29 OAuth en PostgreSQL 18: arquitectura, requisitos de cliente y servidor, validación e identidad
+11.30 OAuth: configuración de laboratorio y diagnóstico frente a SCRAM y GSSAPI
+11.31 laboratorio: construir una política pg_hba.conf segura
 
-
-11.27 Autenticación MD5 heredada: compatibilidad, retirada y migración a SCRAM según versión
-11.28 GSSAPI/Kerberos: principals, keytabs, pg_hba.conf y diagnóstico
-11.29 Rotación de credenciales sin interrupción y validación de clientes
 
 12. TLS
 12.1 SSL/TLS
@@ -376,11 +385,10 @@
 12.17 verify-full
 12.18 pg_stat_ssl
 12.19 renovación de certificados
-12.20 laboratorio: desplegar PostgreSQL con TLS
+12.20 Certificados SAN, hostname verification y cadenas de confianza
+12.21 Renovación y revocación: despliegue sin indisponibilidad y pruebas
+12.22 laboratorio: desplegar PostgreSQL con TLS
 
-
-12.21 Certificados SAN, hostname verification y cadenas de confianza
-12.22 Renovación y revocación: despliegue sin indisponibilidad y pruebas
 
 13. Privilegios y seguridad
 13.1 ownership
@@ -404,7 +412,8 @@
 13.19 mínimo privilegio
 13.20 separación DBA/aplicación
 13.21 auditoría conceptual
-13.22 laboratorio: hardening de privilegios
+13.22 Privilegio MAINTAIN desde PostgreSQL 17: GRANT, límites y validación
+13.23 laboratorio: hardening de privilegios
 
 
 14. Administración mediante SQL y catálogos PostgreSQL
@@ -462,14 +471,13 @@
 14.52 descubrir objetos sin memorizar catálogos
 14.53 construir consultas administrativas reutilizables
 14.54 seguridad al consultar catálogos
-14.55 laboratorio: construir una DBA toolbox exclusivamente con SQL
+14.55 pg_depend y dependencias entre objetos
+14.56 pg_extension y metadatos de extensiones
+14.57 pg_statistic y pg_statistic_ext: privilegios y lectura
+14.58 pg_stat_subscription y pg_stat_subscription_stats
+14.59 pg_stat_gssapi y pg_backend_memory_contexts según versión
+14.60 laboratorio: construir una DBA toolbox exclusivamente con SQL
 
-
-14.56 pg_depend y dependencias entre objetos
-14.57 pg_extension y metadatos de extensiones
-14.58 pg_statistic y pg_statistic_ext: privilegios y lectura
-14.59 pg_stat_subscription y pg_stat_subscription_stats
-14.60 pg_stat_gssapi y pg_backend_memory_contexts según versión
 
 15. Estadísticas y vistas administrativas
 15.1 cumulative statistics system
@@ -490,13 +498,16 @@
 15.16 pg_stat_progress_*
 15.17 reset de estadísticas
 15.18 stats_fetch_consistency
-15.19 laboratorio: construir un dashboard SQL de diagnóstico
+15.19 Diferencia entre estadísticas acumulativas y actividad instantánea
+15.20 Snapshots de estadísticas, caché de lectura y visibilidad por transacción
+15.21 Permisos pg_monitor, pg_read_all_stats y restricciones de visibilidad
+15.22 Comparación de vistas de estadísticas entre versiones
+15.23 pg_replication_slots frente a pg_stat_replication_slots: estado y estadísticas de slots lógicos
+15.24 pg_stat_database_conflicts: identificar conflictos de consultas en standby
+15.25 track_io_timing y track_wal_io_timing: instrumentación, coste y lectura de métricas
+15.26 pg_stat_slru y pg_stat_recovery_prefetch: casos de diagnóstico
+15.27 laboratorio: construir un dashboard SQL de diagnóstico
 
-
-15.20 Diferencia entre estadísticas acumulativas y actividad instantánea
-15.21 Snapshots de estadísticas, caché de lectura y visibilidad por transacción
-15.22 Permisos pg_monitor, pg_read_all_stats y restricciones de visibilidad
-15.23 Comparación de vistas de estadísticas entre versiones
 
 16. Transacciones
 16.1 BEGIN
@@ -628,7 +639,8 @@
 21.22 FOR KEY SHARE
 21.23 SKIP LOCKED
 21.24 NOWAIT
-21.25 laboratorio: construir un detector de bloqueos
+21.25 transaction_timeout desde PostgreSQL 17 y relación con los demás timeouts
+21.26 laboratorio: construir un detector de bloqueos
 
 
 22. WAL
@@ -716,7 +728,11 @@
 25.20 latency
 25.21 throughput
 25.22 pg_stat_io
-25.23 laboratorio: correlacionar PostgreSQL con I/O del sistema
+25.23 I/O asíncrona en PostgreSQL 18: arquitectura y operaciones beneficiadas
+25.24 io_method: selección del método, requisitos de plataforma y configuración
+25.25 pg_aios y pg_stat_io: observación de I/O asíncrona
+25.26 laboratorio: correlacionar PostgreSQL con I/O del sistema
+25.27 laboratorio: comparar métodos de I/O con workload reproducible
 
 
 26. Tablespaces
@@ -757,7 +773,9 @@
 27.17 pg_stat_user_indexes
 27.18 pgstattuple
 27.19 pageinspect
-27.20 laboratorio: auditoría completa de índices
+27.20 Índices B-tree multicolumna: orden de columnas y skip scan en PostgreSQL 18
+27.21 Índices parciales, de expresión e INCLUDE: diagnóstico y costes de mantenimiento
+27.22 laboratorio: auditoría completa de índices
 
 
 28. Planner y executor
@@ -801,12 +819,11 @@
 29.15 planning time
 29.16 execution time
 29.17 detectar problemas
-29.18 laboratorio: análisis sistemático de planes
+29.18 EXPLAIN y efectos secundarios de ANALYZE en escrituras
+29.19 Planes genéricos y personalizados: plan_cache_mode y PREPARE
+29.20 Regresiones de planes y comparación de estimaciones
+29.21 laboratorio: análisis sistemático de planes
 
-
-29.19 EXPLAIN y efectos secundarios de ANALYZE en escrituras
-29.20 Planes genéricos y personalizados: plan_cache_mode y PREPARE
-29.21 Regresiones de planes y comparación de estimaciones
 
 30. Query performance
 30.1 metodología de tuning
@@ -928,11 +945,10 @@
 34.19 privileges
 34.20 consistencia
 34.21 verificación
-34.22 laboratorio: backup y restore completo
+34.22 Copia de roles, objetos globales y restauración selectiva verificable
+34.23 Restauración a entorno aislado y criterios de aceptación
+34.24 laboratorio: backup y restore completo
 
-
-34.23 Copia de roles, objetos globales y restauración selectiva verificable
-34.24 Restauración a entorno aislado y criterios de aceptación
 
 35. Backup físico
 35.1 physical backup
@@ -948,15 +964,15 @@
 35.11 backup desde standby
 35.12 backup consistency
 35.13 estrategia de retención
-35.14 laboratorio: recuperar un servidor desde backup físico
+35.14 Backup incremental nativo desde PostgreSQL 17: arquitectura y requisitos
+35.15 summarize_wal, WAL summaries y retención necesaria para incrementales
+35.16 pg_basebackup --incremental y backup_manifest de referencia
+35.17 Cadenas de backups: dependencias, caducidad y fallos por copias ausentes
+35.18 pg_combinebackup: reconstrucción de backup completo sintético
+35.19 Validación de la copia reconstruida y límites al cambiar checksums
+35.20 laboratorio: recuperar un servidor desde backup físico
+35.21 laboratorio: full más incrementales, reconstrucción y restauración verificable
 
-
-35.15 pgBackRest: arquitectura, instalación y repositorios
-35.16 pgBackRest: configuración, full/differential/incremental y WAL archive
-35.17 pgBackRest: retención, cifrado, restauración y validación
-35.18 Barman: arquitectura, instalación y configuración
-35.19 Barman: políticas de retención, recuperación y pruebas
-35.20 Comparativa operativa pg_basebackup, pgBackRest y Barman
 
 36. Archivado WAL
 36.1 continuous archiving
@@ -992,7 +1008,8 @@
 37.14 history files
 37.15 promoción
 37.16 validación
-37.17 laboratorio: recuperar una base al segundo anterior a un DROP TABLE
+37.17 PITR recupera el cluster físico: extracción selectiva desde una restauración auxiliar
+37.18 laboratorio: recuperar una base al segundo anterior a un DROP TABLE
 
 
 38. Disaster Recovery
@@ -1012,11 +1029,19 @@
 38.14 pérdida del datacenter
 38.15 pérdida accidental de datos
 38.16 ransomware
-38.17 laboratorio: simulacro completo de desastre
+38.17 Pruebas periódicas de RPO/RTO medidos y evidencias
+38.18 Restauración de backups cifrados con gestión segura de claves
+38.19 pgBackRest: arquitectura, instalación y repositorios
+38.20 pgBackRest: configuración, full/differential/incremental y WAL archive
+38.21 pgBackRest: retención, cifrado, restauración y validación
+38.22 Barman: arquitectura, instalación y configuración
+38.23 Barman: políticas de retención, recuperación y pruebas
+38.24 Comparativa operativa pg_basebackup, pgBackRest y Barman
+38.25 pgBackRest: PITR en host aislado y prueba de pérdida de repositorio
+38.26 Barman: PITR en host aislado y recuperación documentada
+38.27 laboratorio: simulacro completo de desastre
+38.28 laboratorio: comparar restauración nativa, pgBackRest y Barman con RPO/RTO medidos
 
-
-38.18 Pruebas periódicas de RPO/RTO medidos y evidencias
-38.19 Restauración de backups cifrados con gestión segura de claves
 
 39. Replicación física
 39.1 streaming replication
@@ -1039,11 +1064,10 @@
 39.18 write LSN
 39.19 flush LSN
 39.20 replay LSN
-39.21 laboratorio: construir primary + standby
+39.21 Conflictos de consultas en hot standby y hot_standby_feedback
+39.22 Retención de WAL, replay delay y cancelación de consultas
+39.23 laboratorio: construir primary + standby
 
-
-39.22 Conflictos de consultas en hot standby y hot_standby_feedback
-39.23 Retención de WAL, replay delay y cancelación de consultas
 
 40. Replicación síncrona
 40.1 asynchronous replication
@@ -1077,11 +1101,11 @@
 41.11 failover slots
 41.12 riesgos de disco
 41.13 monitoring
-41.14 laboratorio: provocar retención de WAL mediante un slot
+41.14 Slots sincronizados para failover: prerrequisitos y validación por versión
+41.15 Procedimientos de recuperación ante slots inválidos o perdidos
+41.16 idle_replication_slot_timeout en PostgreSQL 18 y alertas antes de invalidación
+41.17 laboratorio: provocar retención de WAL mediante un slot
 
-
-41.15 Slots sincronizados para failover: prerrequisitos y validación por versión
-41.16 Procedimientos de recuperación ante slots inválidos o perdidos
 
 42. Cascading replication
 42.1 cascading standby
@@ -1112,11 +1136,10 @@
 43.13 prerequisites pg_rewind
 43.14 recovery
 43.15 client redirection
-43.16 laboratorio: failover manual completo
+43.16 Failover con partición de red: aislamiento del primary anterior
+43.17 Validación de integridad y routing tras reintegración
+43.18 laboratorio: failover manual completo
 
-
-43.17 Failover con partición de red: aislamiento del primary anterior
-43.18 Validación de integridad y routing tras reintegración
 
 44. Alta disponibilidad
 44.1 HA
@@ -1139,16 +1162,15 @@
 44.18 split brain prevention
 44.19 synchronous replication
 44.20 HA architecture
-44.21 laboratorio: cluster PostgreSQL HA
+44.21 Patroni: instalación y configuración por nodo
+44.22 etcd: despliegue, TLS, quorum y pérdida de mayoría
+44.23 Patroni: bootstrap, DCS, REST API y operación
+44.24 HAProxy: health checks y rutas primary/replica
+44.25 Prueba de switchover, failover y fencing con Patroni
+44.26 Particiones de red, pérdida de quorum y recuperación segura
+44.27 Rejoin con pg_rewind y verificación de timelines
+44.28 laboratorio: cluster PostgreSQL HA
 
-
-44.22 Patroni: instalación y configuración por nodo
-44.23 etcd: despliegue, TLS, quorum y pérdida de mayoría
-44.24 Patroni: bootstrap, DCS, REST API y operación
-44.25 HAProxy: health checks y rutas primary/replica
-44.26 Prueba de switchover, failover y fencing con Patroni
-44.27 Particiones de red, pérdida de quorum y recuperación segura
-44.28 Rejoin con pg_rewind y verificación de timelines
 
 45. Replicación lógica
 45.1 logical decoding
@@ -1171,11 +1193,11 @@
 45.18 column lists
 45.19 binary transfer
 45.20 bidirectional considerations
-45.21 laboratorio: replicación selectiva entre clusters
+45.21 Replication origins: seguimiento y diagnóstico
+45.22 Resolución de conflictos y re-sincronización selectiva
+45.23 pg_createsubscriber desde PostgreSQL 17: uso, requisitos y validación
+45.24 laboratorio: replicación selectiva entre clusters
 
-
-45.22 Replication origins: seguimiento y diagnóstico
-45.23 Resolución de conflictos y re-sincronización selectiva
 
 46. Logical decoding
 46.1 WAL decoding
@@ -1357,11 +1379,10 @@
 55.17 patching
 55.18 CVEs
 55.19 minimum privilege
-55.20 laboratorio: hardening completo del servidor
+55.20 GSSAPI/Kerberos con identidad central: límites de integración
+55.21 Auditoría pgaudit: instalación, configuración y validación
+55.22 laboratorio: hardening completo del servidor
 
-
-55.21 GSSAPI/Kerberos con identidad central: límites de integración
-55.22 Auditoría pgaudit: instalación, configuración y validación
 
 56. Capacity planning
 56.1 workload characterization
@@ -1477,11 +1498,12 @@
 60.16 rollback plan
 60.17 backups
 60.18 testing
-60.19 laboratorio: major upgrade completo
+60.19 Compatibilidad de collations ICU/libc y riesgos tras upgrades
+60.20 Inventario de extensiones y matrices de compatibilidad
+60.21 PostgreSQL 18: conservación de estadísticas del optimizador y límites según versión de origen
+60.22 Compatibilidad de checksums entre cluster de origen y destino en pg_upgrade
+60.23 laboratorio: major upgrade completo
 
-
-60.20 Compatibilidad de collations ICU/libc y riesgos tras upgrades
-60.21 Inventario de extensiones y matrices de compatibilidad
 
 61. pg_upgrade en profundidad
 61.1 arquitectura
@@ -1498,11 +1520,11 @@
 61.12 statistics
 61.13 optimizer statistics
 61.14 rollback
-61.15 laboratorio: upgrade con mínimo downtime
+61.15 Estrategia de rollback y límites del modo link
+61.16 Validación post-upgrade: collation, índices y estadísticas
+61.17 Validar estadísticas conservadas y ejecutar ANALYZE selectivo cuando sea necesario
+61.18 laboratorio: upgrade con mínimo downtime
 
-
-61.16 Estrategia de rollback y límites del modo link
-61.17 Validación post-upgrade: collation, índices y estadísticas
 
 62. Migraciones
 62.1 migration strategies
@@ -1522,12 +1544,11 @@
 62.15 validation
 62.16 cutover
 62.17 rollback
-62.18 laboratorio: diseñar una migración de producción
+62.18 Cutover: checklist, congelación de escrituras y verificación
+62.19 Rollback: criterios de decisión y pérdida de datos potencial
+62.20 Validación de consistencia, secuencias, permisos y collations
+62.21 laboratorio: diseñar una migración de producción
 
-
-62.19 Cutover: checklist, congelación de escrituras y verificación
-62.20 Rollback: criterios de decisión y pérdida de datos potencial
-62.21 Validación de consistencia, secuencias, permisos y collations
 
 63. Automatización administrativa
 63.1 scripting
@@ -1546,11 +1567,10 @@
 63.14 cron
 63.15 logging
 63.16 alerting
-63.17 laboratorio: toolkit administrativo automatizado
+63.17 Ansible: inventario, roles, plantillas y secretos con mínimo privilegio
+63.18 Validación idempotente, check mode y rollback de cambios
+63.19 laboratorio: toolkit administrativo automatizado
 
-
-63.18 Ansible: inventario, roles, plantillas y secretos con mínimo privilegio
-63.19 Validación idempotente, check mode y rollback de cambios
 
 64. Observabilidad avanzada
 64.1 metrics
@@ -1570,11 +1590,10 @@
 64.15 saturation
 64.16 anomaly detection
 64.17 baselines
-64.18 laboratorio: stack de observabilidad PostgreSQL
+64.18 Alertas accionables: síntomas, umbrales y reducción de ruido
+64.19 Runbooks vinculados a alertas y evidencias de resolución
+64.20 laboratorio: stack de observabilidad PostgreSQL
 
-
-64.19 Alertas accionables: síntomas, umbrales y reducción de ruido
-64.20 Runbooks vinculados a alertas y evidencias de resolución
 
 65. Performance tuning del servidor
 65.1 tuning methodology
@@ -1598,11 +1617,10 @@
 65.19 storage
 65.20 OS
 65.21 measurement before/after
-65.22 laboratorio: tuning integral basado en evidencias
+65.22 Prepared statements, plan cache y regresiones del planner
+65.23 Medición de impacto por consulta y workload real
+65.24 laboratorio: tuning integral basado en evidencias
 
-
-65.23 Prepared statements, plan cache y regresiones del planner
-65.24 Medición de impacto por consulta y workload real
 
 66. Performance troubleshooting avanzado
 66.1 metodología top-down
@@ -1623,11 +1641,10 @@
 66.16 checkpoint storms
 66.17 vacuum storms
 66.18 temporary file explosion
-66.19 laboratorio: diagnóstico de una degradación compleja
+66.19 Diagnóstico de planes genéricos frente a personalizados
+66.20 Correlación de wait events, Linux y SQL con línea temporal
+66.21 laboratorio: diagnóstico de una degradación compleja
 
-
-66.20 Diagnóstico de planes genéricos frente a personalizados
-66.21 Correlación de wait events, Linux y SQL con línea temporal
 
 67. Internals — almacenamiento
 67.1 storage manager
@@ -1648,11 +1665,10 @@
 67.16 buffer replacement
 67.17 clock sweep
 67.18 dirty buffers
-67.19 laboratorio: inspeccionar páginas con pageinspect
+67.19 Buffer pins, eviction y contención observable
+67.20 Inspección segura de páginas y límites de pageinspect
+67.21 laboratorio: inspeccionar páginas con pageinspect
 
-
-67.20 Buffer pins, eviction y contención observable
-67.21 Inspección segura de páginas y límites de pageinspect
 
 68. Internals — transacciones
 68.1 transaction manager
@@ -1717,11 +1733,10 @@
 71.11 executor nodes
 71.12 memory contexts
 71.13 resource owners
-71.14 laboratorio: seguir una consulta de SQL a ejecución
+71.14 Plan cache, invalidación y sentencias preparadas
+71.15 Resource owners y memory contexts durante ejecución
+71.16 laboratorio: seguir una consulta de SQL a ejecución
 
-
-71.15 Plan cache, invalidación y sentencias preparadas
-71.16 Resource owners y memory contexts durante ejecución
 
 72. PostgreSQL source code para DBA
 72.1 obtener el código fuente
@@ -1763,11 +1778,10 @@
 73.15 correlación PID ↔ sesión
 73.16 logs ↔ PID
 73.17 SQL ↔ OS
-73.18 laboratorio: diagnosticar PostgreSQL desde SQL hasta kernel
+73.18 Depuración de memory contexts y leaks en entorno de laboratorio
+73.19 Stack traces de backend y correlación con eventos de espera
+73.20 laboratorio: diagnosticar PostgreSQL desde SQL hasta kernel
 
-
-73.19 Depuración de memory contexts y leaks en entorno de laboratorio
-73.20 Stack traces de backend y correlación con eventos de espera
 
 74. Arquitecturas de producción
 74.1 single node
@@ -1806,11 +1820,10 @@
 75.14 incident response
 75.15 postmortems
 75.16 change management
-75.17 laboratorio: operar un cluster durante un ciclo completo
+75.17 Cambios DDL online: locks, timeouts y despliegue por fases
+75.18 Gestión de cambios de schema con rollback y validación
+75.19 laboratorio: operar un cluster durante un ciclo completo
 
-
-75.18 Cambios DDL online: locks, timeouts y despliegue por fases
-75.19 Gestión de cambios de schema con rollback y validación
 
 76. Seguridad avanzada
 76.1 threat model
@@ -1833,11 +1846,10 @@
 76.18 backup encryption
 76.19 secrets management
 76.20 incident response
-76.21 laboratorio: auditoría ofensiva/defensiva controlada
+76.21 Integración Kerberos/GSSAPI y límites de IAM centralizado
+76.22 Ciclo de vida de claves, secretos y certificados
+76.23 laboratorio: auditoría ofensiva/defensiva controlada
 
-
-76.22 Integración Kerberos/GSSAPI y límites de IAM centralizado
-76.23 Ciclo de vida de claves, secretos y certificados
 
 77. Administración multi-cluster
 77.1 múltiples instancias
@@ -2018,10 +2030,18 @@
 81.94 auditoría de backups
 81.95 auditoría de capacidad
 81.96 producir informe final
-81.97 proyecto final: PostgreSQL Production Platform completamente operativa
-81.98 Validar restauración integral con pgBackRest y Barman
-81.99 Desplegar y probar Patroni con etcd y HAProxy
-81.100 Simular pérdida de quorum y partición de red
-81.101 Validar migración de MD5 heredado a SCRAM cuando proceda
-81.102 Ejecutar cutover y rollback de cambio de esquema
-81.103 Medir RPO y RTO de las herramientas de backup externas
+81.97 Validar restauración integral con pgBackRest y Barman
+81.98 Desplegar y probar Patroni con etcd y HAProxy
+81.99 Simular pérdida de quorum y partición de red
+81.100 Validar migración de MD5 heredado a SCRAM cuando proceda
+81.101 Ejecutar cutover y rollback de cambio de esquema
+81.102 Medir RPO y RTO de las herramientas de backup externas
+81.103 Hito 1: entregar inventario, instalación reproducible y configuración validada
+81.104 Hito 2: demostrar mínimo privilegio, SCRAM/TLS e integración GSSAPI
+81.105 Hito 3: restaurar backup nativo full/incremental y ejecutar PITR medido
+81.106 Hito 4: validar recuperación con pgBackRest y Barman y custodiar claves
+81.107 Hito 5: demostrar replicación, failover, fencing y reintegración
+81.108 Hito 6: presentar baseline, diagnóstico y medición de rendimiento antes/después
+81.109 Hito 7: entregar automatización, alertas, runbooks y evidencias del game day
+81.110 Aceptación final: reconstrucción en entorno limpio, RPO/RTO medidos e informe de limitaciones
+81.111 proyecto final: PostgreSQL Production Platform completamente operativa

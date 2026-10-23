@@ -69,7 +69,7 @@
 3.7 math.isclose y comparación numérica
 3.8 NaN, infinitos y límites
 3.9 Redondeo: nearest, truncation, floor y ceiling
-3.10 round(): ndigits y ROUND_HALF_EVEN
+3.10 round(): ndigits y desempate hacia el par; representación aproximada de float
 3.11 math.floor(), math.ceil() y math.trunc()
 3.12 Diferencias entre truncar, floor, ceiling y redondear
 3.13 Métodos públicos de int: bit_length, bit_count, to_bytes, from_bytes y restantes documentados
@@ -110,11 +110,11 @@
 3.48 math y cmath
 3.49 random, semillas y diferencia con secrets
 3.50 statistics
-3.51 Puente: redondeo vectorizado con NumPy
-3.52 np.ceil(), np.floor(), np.trunc() y np.rint()
-3.53 np.round() y redondeo de arrays
-3.54 Puente: Series.round() y DataFrame.round() de pandas
-3.55 Diferencia entre DataFrame.round() y DataFrame.truncate()
+3.51 Ampliación opcional, PATH científicos: Puente: redondeo vectorizado con NumPy
+3.52 Ampliación opcional, PATH científicos: np.ceil(), np.floor(), np.trunc() y np.rint()
+3.53 Ampliación opcional, PATH científicos: np.round() y redondeo de arrays
+3.54 Ampliación opcional, PATH científicos: Puente: Series.round() y DataFrame.round() de pandas
+3.55 Ampliación opcional, PATH científicos: Diferencia entre DataFrame.round() y DataFrame.truncate()
 3.56 Laboratorio: precisión, fracciones, cálculo monetario y redondeo
 
 4. Texto, formatos y datos binarios
@@ -183,10 +183,10 @@
 4.63 str.upper: firma, retorno, ejemplos, casos límite y errores
 4.64 str.zfill: firma, retorno, ejemplos, casos límite y errores
 4.65 Tabla de referencia completa de métodos de str
-4.66 Laboratorio: normalizador de texto e informe formateado
+4.66 Regex aplicado: raw strings, escapes de Python y patrones re sin duplicar el PATH Regex
+4.67 Regex aplicado: Unicode, normalización y diferencias entre patrones str y bytes
+4.68 Laboratorio: normalizador de texto e informe formateado
 
-4.67 Regex aplicado: raw strings, escapes de Python y patrones re sin duplicar el PATH Regex
-4.68 Regex aplicado: Unicode, normalización y diferencias entre patrones str y bytes
 5. Colecciones y estructuras anidadas
 5.1 Elegir list, tuple, dict, set o frozenset
 5.2 Listas: índices y slicing
@@ -260,10 +260,17 @@
 5.70 tuple.count: firma, retorno, ejemplos, casos límite y errores
 5.71 tuple.index: firma, retorno, ejemplos, casos límite y errores
 5.72 Tabla de referencia: métodos, operaciones y funciones incorporadas
-5.73 Laboratorio: inventario con estructuras mixtas y conjuntos
+5.73 Big O aplicado: costes promedio, peor caso y amortizados de list, tuple, dict, set y frozenset
+5.74 Big O aplicado: tablas de operaciones, supuestos de hash y costes de memoria
+5.75 frozendict.copy: firma, retorno, ejemplos, casos límite y errores
+5.76 frozendict.fromkeys: firma, retorno, ejemplos, casos límite y errores
+5.77 frozendict.get: firma, retorno, ejemplos, casos límite y errores
+5.78 frozendict.items: firma, retorno, ejemplos, casos límite y errores
+5.79 frozendict.keys: firma, retorno, ejemplos, casos límite y errores
+5.80 frozendict.values: firma, retorno, ejemplos, casos límite y errores
+5.81 frozendict: igualdad, unión, hashabilidad, valores mutables y comparación con MappingProxyType
+5.82 Laboratorio: inventario con estructuras mixtas y conjuntos
 
-5.74 Big O aplicado: costes promedio, peor caso y amortizados de list, tuple, dict, set y frozenset
-5.75 Big O aplicado: tablas de operaciones, supuestos de hash y costes de memoria
 6. Control de flujo avanzado
 6.1 Comparaciones encadenadas y pertenencia
 6.2 Desempaquetado extendido
@@ -287,10 +294,10 @@
 6.20 Python 3.15 — PEP 798: unpacking con * en generator expressions
 6.21 Unpacking comprehensions frente a múltiples for, flattening e itertools.chain
 6.22 map: transformación funcional de iterables
-6.23 map con funciones, lambda y múltiples iterables
+6.23 map con funciones incorporadas y múltiples iterables; lambda se retoma tras 7.24
 6.24 map frente a comprensiones
 6.25 filter: filtrado funcional de iterables
-6.26 filter con funciones y lambda
+6.26 filter con predicados incorporados; funciones propias y lambda tras el bloque 7
 6.27 filter(None, iterable): truthiness y eliminación de valores falsy
 6.28 filter frente a comprensiones
 6.29 map + filter frente a comprensiones
@@ -310,12 +317,12 @@
 6.43 match y case
 6.44 Patrones de secuencia
 6.45 Patrones de mappings
-6.46 Patrones de clases
+6.46 Patrones de clases: segunda pasada tras el bloque 11
 6.47 Guardas, OR, as y captura de nombres
-6.48 Laboratorio: transformación, filtrado y clasificación de eventos
+6.48 Big O aplicado: bucles anidados, comprensiones y expresiones generadoras
+6.49 Big O aplicado: evaluación lazy, materialización y memoria auxiliar
+6.50 Laboratorio: transformación, filtrado y clasificación de eventos
 
-6.49 Big O aplicado: bucles anidados, comprensiones y expresiones generadoras
-6.50 Big O aplicado: evaluación lazy, materialización y memoria auxiliar
 7. Funciones en profundidad
 7.1 def: definición y llamada
 7.2 Parámetros frente a argumentos
@@ -352,9 +359,10 @@
 7.33 sentinel y anotaciones de tipos
 7.34 Copia, deepcopy y pickle de sentinels
 7.35 inspect.signature y enlace de argumentos
-7.36 Laboratorio: biblioteca de funciones
+7.36 Big O aplicado: recurrencia de funciones recursivas, pila y alternativa iterativa
+7.37 Hito de fundamentos: inventario con funciones, validación y casos límite; rúbrica del bloque 31
+7.38 Laboratorio: biblioteca de funciones
 
-7.37 Big O aplicado: recurrencia de funciones recursivas, pila y alternativa iterativa
 8. Iteradores, generadores e itertools
 8.1 Iterable frente a iterador
 8.2 iter, next y StopIteration
@@ -380,9 +388,9 @@
 8.22 itertools.permutations
 8.23 itertools.combinations y combinations_with_replacement
 8.24 Recetas y límites de consumo
-8.25 Laboratorio: pipeline de registros
+8.25 Big O aplicado: iteradores, itertools, materialización y límites de consumo
+8.26 Laboratorio: pipeline de registros
 
-8.26 Big O aplicado: iteradores, itertools, materialización y límites de consumo
 9. Excepciones y recursos
 9.1 Jerarquía de excepciones
 9.2 try y except
@@ -481,8 +489,8 @@
 13.7 Decoradores con estado
 13.8 Decoradores de métodos
 13.9 Decoradores de clases
-13.10 Decoradores asíncronos
-13.11 partial y partialmethod
+13.10 Decoradores asíncronos: segunda pasada tras el bloque 23
+13.11 partial, partialmethod y functools.Placeholder (desde Python 3.14)
 13.12 cache y lru_cache
 13.13 cached_property
 13.14 singledispatch y singledispatchmethod
@@ -534,7 +542,8 @@
 15.10 Flag e IntFlag
 15.11 Validación de fronteras
 15.12 Entidades, valores e invariantes
-15.13 Laboratorio: pedidos y estados
+15.13 Hito de lenguaje: biblioteca con protocolos, generadores y contratos; rúbrica del bloque 31
+15.14 Laboratorio: pedidos y estados
 
 16. Archivos y persistencia
 16.1 pathlib: rutas y operaciones
@@ -578,10 +587,11 @@
 16.39 SQL parametrizado
 16.40 Transacciones y rollback
 16.41 Migraciones simples
-16.42 Laboratorio: inventario persistente
-
+16.42 Introducción operativa a re: import, compile, finditer, Match y grupos; profundización en bloque 17
 16.43 Regex aplicado: procesamiento incremental de ficheros y logs con re
 16.44 Regex aplicado: patrones compilados, lectura por bloques y fronteras de coincidencia
+16.45 Laboratorio: inventario persistente
+
 17. Biblioteca estándar aplicada
 17.1 datetime y timedelta
 17.2 Fechas naive y aware
@@ -601,12 +611,12 @@
 17.16 uuid
 17.17 graphlib
 17.18 Consultar el índice completo de biblioteca
-17.19 Laboratorio: archivo y análisis de registros
+17.19 Regex aplicado: API completa de re.compile, search, match, fullmatch, findall y finditer
+17.20 Regex aplicado: re.split, sub, subn, escape y grupos de sustitución
+17.21 Regex aplicado: Pattern, Match, flags, excepciones, Unicode y bytes
+17.22 Regex aplicado: casos prácticos y remisión explícita al PATH independiente Regex
+17.23 Laboratorio: archivo y análisis de registros
 
-17.20 Regex aplicado: API completa de re.compile, search, match, fullmatch, findall y finditer
-17.21 Regex aplicado: re.split, sub, subn, escape y grupos de sustitución
-17.22 Regex aplicado: Pattern, Match, flags, excepciones, Unicode y bytes
-17.23 Regex aplicado: casos prácticos y remisión explícita al PATH independiente Regex
 18. Automatización y CLI
 18.1 sys.argv y streams estándar
 18.2 argparse: opciones y posicionales
@@ -623,9 +633,9 @@
 18.13 Rotación y configuración
 18.14 Dry-run, idempotencia y reanudación
 18.15 Servicios Python y systemd
-18.16 Laboratorio: herramienta de auditoría
+18.16 Regex aplicado: extracción de datos en CLI, logs y automatización segura
+18.17 Laboratorio: herramienta de auditoría
 
-18.17 Regex aplicado: extracción de datos en CLI, logs y automatización segura
 19. Testing y depuración
 19.1 Estrategia de pruebas
 19.2 unittest
@@ -638,7 +648,7 @@
 19.9 patch en el namespace correcto
 19.10 Pruebas de integración
 19.11 Pruebas basadas en propiedades
-19.12 Pruebas asíncronas
+19.12 Pruebas asíncronas: segunda pasada tras el bloque 23
 19.13 Cobertura y sus límites
 19.14 Regresión y CLI
 19.15 breakpoint y pdb
@@ -646,10 +656,10 @@
 19.17 warnings
 19.18 faulthandler
 19.19 Linting y formateo
-19.20 Laboratorio: suite del paquete
+19.20 Regex aplicado: tests parametrizados, casos límite y regresiones ReDoS
+19.21 Big O aplicado: contrastar hipótesis asintóticas con mediciones repetibles
+19.22 Laboratorio: suite del paquete
 
-19.21 Regex aplicado: tests parametrizados, casos límite y regresiones ReDoS
-19.22 Big O aplicado: contrastar hipótesis asintóticas con mediciones repetibles
 20. Proyectos, entornos, dependencias y distribución
 20.1 Qué problemas resuelven pip, virtualenv y los gestores de proyectos
 20.2 PyPI, índices de paquetes, distribuciones y dependencias
@@ -769,6 +779,7 @@
 20.116 Conda/Mamba frente a pip/virtualenv/Poetry/uv/Pipenv
 20.117 Cuándo tiene sentido el ecosistema Conda en ciencia de datos
 20.118 Laboratorio: entorno científico reproducible con Conda/Mamba
+20.119 Hito profesional: paquete tipado, probado, documentado y construido; rúbrica del bloque 31
 
 21. Diseño y arquitectura
 21.1 Cohesión y acoplamiento
@@ -783,9 +794,9 @@
 21.10 Refactoring con pruebas
 21.11 Compatibilidad de APIs
 21.12 Revisión y decisiones de arquitectura
-21.13 Laboratorio: reorganización de aplicación
+21.13 Big O aplicado: selección de algoritmos y estructuras con restricciones reales
+21.14 Laboratorio: reorganización de aplicación
 
-21.14 Big O aplicado: selección de algoritmos y estructuras con restricciones reales
 22. Concurrencia, hilos y procesos
 22.1 Concurrencia frente a paralelismo
 22.2 I/O-bound frente a CPU-bound
@@ -835,7 +846,9 @@
 23.24 Límites de concurrencia y rate limiting
 23.25 Reintentos y backoff
 23.26 Diagnóstico de tareas bloqueadas
-23.27 Laboratorio: cliente concurrente robusto
+23.27 Segunda pasada: decoradores asíncronos del bloque 13 y pruebas asíncronas del bloque 19
+23.28 Hito avanzado: cliente asíncrono con límites, cancelación y cierre; rúbrica del bloque 31
+23.29 Laboratorio: cliente concurrente robusto
 
 24. Redes y servicios
 24.1 TCP, UDP y HTTP
@@ -874,10 +887,10 @@
 25.18 Optimizar texto e I/O
 25.19 Medir concurrencia
 25.20 JIT y diferencias entre builds
-25.21 Laboratorio: optimización con evidencia
+25.21 Big O aplicado: complejidad asintótica frente a timeit, pyperf y profiling
+25.22 Big O aplicado: coste temporal, espacial, amortizado y análisis empírico
+25.23 Laboratorio: optimización con evidencia
 
-25.22 Big O aplicado: complejidad asintótica frente a timeit, pyperf y profiling
-25.23 Big O aplicado: coste temporal, espacial, amortizado y análisis empírico
 26. Descriptores y metaprogramación
 26.1 dir, vars e inspect
 26.2 getattr, setattr, hasattr y delattr
@@ -950,9 +963,9 @@
 29.10 Logs sin datos sensibles
 29.11 Errores de usuario frente a internos
 29.12 Recuperación e idempotencia
-29.13 Laboratorio: endurecer la CLI
+29.13 Regex aplicado: ReDoS, entradas no confiables y límites operativos
+29.14 Laboratorio: endurecer la CLI
 
-29.14 Regex aplicado: ReDoS, entradas no confiables y límites operativos
 30. Evolución hasta Python 3.15
 30.1 Leer What’s New y PEPs
 30.2 Registrar versión exacta y estado RC o final

@@ -66,16 +66,22 @@ Phrasal verbs, prepositional verbs y phrasal-prepositional verbs.
 ## Progresión
 
 Bloques 0–25:
+El bloque 0 introduce también los fundamentos de categoría, función, phrase,
+clause, head, complement, modifier, adjunct y finite/non-finite. Cada concepto
+se recupera con ejemplos sencillos antes de utilizarlo en bloques posteriores.
 Cobertura sistemática del núcleo B1/B1+ y de las Units 1–145 de Murphy reorganizadas por conceptos.
 
 Bloque 26:
-Integración y checkpoint B1.
+Integración y checkpoint del núcleo B1. Las ampliaciones estudiadas antes
+se revisan por separado y no son requisitos automáticos para superar B1.
+El docente debe identificar los objetivos evaluables y distinguirlos de las
+extensiones; la posición de un tema no constituye por sí sola una etiqueta CEFR.
 
 Bloques 27–39:
 Profundización B2 mediante contraste, restricciones, significado, transformaciones y combinación de construcciones.
 
 Bloque 40:
-Integración estructural explícita: word → phrase → clause → sentence, funciones gramaticales, complementation/modification, finite/non-finite clauses, embedding y análisis de oraciones.
+Síntesis de conceptos introducidos progresivamente, con integración estructural explícita: word → phrase → clause → sentence, funciones gramaticales, complementation/modification, finite/non-finite clauses, embedding y análisis de oraciones.
 
 Bloque 41:
 Integración final y diagnóstico B2.
@@ -114,3 +120,33 @@ Al finalizar, el estudiante debe disponer de una base gramatical B2 sólida, pod
 ## Frontera B2 → C1/C2
 
 B2 puede introducir para reconocimiento y transición estructuras como conditional inversion, negative inversion, fronting, clefts, extraposition y structural ambiguity, pero su dominio exhaustivo, usos marcados, excepciones avanzadas, nominalisation densa, advanced information packaging y discourse grammar pertenecen al path C1–C2.
+
+## Reglas de secuenciación y análisis
+
+El bloque 40 no es el primer contacto con la estructura gramatical. Los
+fundamentos aparecen en el bloque 0 y se reactivan antes de cada aplicación.
+Los bloques 32–39 deben recordar brevemente la terminología que utilizan.
+
+Distinguir categoría y función: NP o PP designan categorías; subject,
+complement y adjunct designan funciones. Explicitar la convención de VP
+utilizada y mantenerla durante el curso, sin exigir una teoría sintáctica avanzada.
+
+Los esquemas SVA y SVOA deben incluir complementos adverbiales exigidos por
+el verbo. Por ejemplo, en “She put the keys on the table”, la PP completa el
+patrón de put; A no debe presentarse siempre como un adjunto opcional.
+
+Las lecciones repetidas deben aportar un objetivo distinto: formación inicial,
+contraste, restricción, transformación o integración. Las series sobre up
+separan movimiento literal, completitud/cambio de estado y comportamiento
+sintáctico; el vocabulario sigue siendo un vehículo para la gramática.
+
+Los errores frecuentes tendrán una sección obligatoria, con ejemplos originales
+y correcciones explicadas. En checkpoints se utilizarán errores representativos
+de los objetivos evaluados.
+
+## Dependencia externa de pedagogía
+
+El perfil conserva `../../config/pedagogy.md`. Su validez depende del directorio
+real del perfil y de cómo resuelva rutas el cargador de course-generator.
+Antes de ejecutar, comprobar la resolución con el repositorio real; estos cuatro
+archivos no incluyen el cargador ni config/pedagogy.md para verificarla.

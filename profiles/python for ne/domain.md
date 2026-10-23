@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Ruta especializada de **0 → experto en profundidad** para aplicar Python
+Ruta especializada de **0 en automatización de redes → experto en profundidad** para aplicar Python
 a la administración, automatización, configuración, validación,
 observabilidad y troubleshooting de redes, con foco práctico inicial en
 **routers y switches Cisco**.
@@ -59,8 +59,13 @@ troubleshooting avanzado.
 
 ## Plataforma objetivo
 
-Foco primario: - Cisco IOS - Cisco IOS XE - Cisco IOS XR - Cisco NX-OS -
-routers Cisco - switches Cisco
+Foco primario:
+
+- Cisco IOS.
+- Cisco IOS XE.
+- Cisco IOS XR.
+- Cisco NX-OS.
+- Routers y switches Cisco.
 
 La arquitectura se diseña para poder evolucionar a multivendor.
 
@@ -123,11 +128,14 @@ multi-router/multi-switch y escenarios de fallo.
 
 ## Seguridad
 
-Nunca se normaliza: - passwords hardcodeados; - desactivar
-permanentemente validación TLS; - aceptar host keys indiscriminadamente
-en producción; - registrar secretos; - ejecutar cambios masivos sin
-control de blast radius; - asumir que un comando enviado equivale a un
-cambio correcto.
+Nunca se normaliza:
+
+- Passwords hardcodeados.
+- Desactivar permanentemente validación TLS.
+- Aceptar host keys indiscriminadamente en producción.
+- Registrar secretos.
+- Ejecutar cambios masivos sin control de blast radius.
+- Asumir que enviar un comando equivale a un cambio correcto.
 
 Se enseñan secrets externos, SSH host-key verification, TLS, least
 privilege, cuentas de automatización, auditoría, staged rollout y
@@ -146,10 +154,12 @@ configuración textual exista.
 
 ## Troubleshooting
 
-Troubleshooting es transversal. Cada bloque debe incluir: - síntomas; -
-evidencias; - logs; - comandos/herramientas de diagnóstico; - errores
-típicos; - hipótesis; - aislamiento por capas; - corrección; -
-verificación posterior.
+Troubleshooting es transversal. Cada bloque debe incluir:
+
+- Síntomas y errores típicos.
+- Evidencias, logs y comandos de diagnóstico.
+- Hipótesis y aislamiento por capas.
+- Corrección y verificación posterior.
 
 ## Resultado final
 
@@ -159,3 +169,65 @@ despliegue cambios controlados, valide semánticamente la red, detecte
 drift, produzca backups, registre auditoría, escale de forma segura y
 diagnostique fallos del dispositivo o del propio stack de
 automatización.
+
+
+## Prerrequisitos y progresión revisada
+
+«Cero» significa cero en automatización de redes. Se requieren Python general,
+Linux/terminal, Git, Ethernet, VLAN, IPv4/IPv6, routing y SSH básicos.
+OSPF/BGP y switching avanzado se revisan antes de las prácticas que los usan.
+El PATH general de Ansible solo es prerrequisito al entrar en el bloque 28.
+
+Antes del primer cambio se exige un protocolo mínimo: alcance de un dispositivo,
+baseline, backup íntegro protegido, pre-check, candidate/diff, validación funcional
+y recuperación por consola/OOB. Los bloques posteriores profundizan ese flujo.
+Los fundamentos YANG están en el bloque 12 y NETCONF en el 13. DevNet se presenta
+en el bloque 0; el bloque 27 desarrolla sus escenarios y alternativas.
+
+## Contrato del laboratorio
+
+Estos archivos son una especificación curricular. Las lecciones deben producir
+configuraciones y scripts ejecutables; no se afirma que ya estén adjuntos.
+
+- Registrar recursos CPU/RAM/disco y virtualización según las imágenes elegidas.
+- Documentar imágenes obtenidas legítimamente, versiones y dependencias.
+- Mantener topología, enlaces y plan de direccionamiento dual stack sin colisiones.
+- Entregar configuración inicial por nodo y bootstrap de AAA/SSH y APIs soportadas.
+- Fijar dependencias compatibles por herramienta; permitir entornos separados.
+- Proporcionar comandos de arranque, verificación, reset y recuperación por consola.
+- Validar acceso de management y tráfico de datos entre extremos.
+- Conservar fixtures y alternativa local para prácticas dependientes de sandboxes.
+
+La matriz de capacidades debe registrar plataforma, release, imagen, protocolo,
+operación, soporte observado, fuente oficial, fecha y alternativa de práctica.
+No se presupone que IOS, IOS XE, IOS XR y NX-OS tengan las mismas interfaces,
+modelos, datastores, getters ni mecanismos de rollback. Las pruebas de escala
+simuladas no acreditan capacidad real de los dispositivos.
+
+## Estado, concurrencia y recuperación
+
+Separar intent, configuración observada y estado operacional. La configuración
+recopilada con Resource Modules no demuestra conectividad ni convergencia.
+Separar backups íntegros cifrados de copias redactadas para diff/Git.
+La SoT conserva autoridad por campo; descubrir estado no autoriza a sobrescribir
+automáticamente el estado deseado. Toda reconciliación debe ser auditable.
+
+Evitar cambios concurrentes mediante locks por dispositivo y revalidar el baseline
+antes de escribir. Un timeout puede dejar resultado incierto: leer y reconciliar
+antes de repetir la operación. Persistir estados/checkpoints de jobs y demostrar
+recuperación tras caída de worker. No prometer atomicidad entre dispositivos ni
+ejecución exactamente una vez sobre transportes heterogéneos.
+
+## Entregables y evaluación
+
+Cada bloque termina con un checkpoint que indica entregables, aprobación y
+evidencias. Cada práctica debe especificar prerequisitos, versiones/capabilities,
+comandos de reproducción, resultado esperado, fallo inyectado, diagnóstico,
+limpieza y recuperación. Distinguir pruebas offline de validación en equipo real.
+Un PASS exige evidencia funcional; un comando sin error no basta.
+
+Ansible se organiza en unidades con subtemas: no se eliminan los temas originales
+al agrupar las 326 entradas. El proyecto final exige un workflow Ansible ejecutado
+desde Python con ansible-runner, validado mediante pyATS y con recuperación.
+Nornir y Ansible deben tener responsabilidades distintas y compartir contratos
+de inventario/resultados, sin duplicar la aplicación del mismo cambio.

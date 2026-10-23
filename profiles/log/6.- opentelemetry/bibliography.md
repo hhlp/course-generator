@@ -66,7 +66,7 @@ Para aspectos sujetos a evolución —estabilidad de señales, APIs, semantic co
 
 Para Operator, CRDs, Target Allocator y componentes Kubernetes prevalece siempre la documentación upstream actual sobre material impreso cuando existan diferencias de versión.
 
-## Scopes de consulta — revisión profunda 6
+## Scopes de consulta — revisión profunda 7
 ### Fundamentos, modelo de datos y normas
 - Learning OpenTelemetry (Young y Parker): hilo pedagógico; contrastar con upstream.
 - OpenTelemetry Specification: Trace, Metrics, Logs, Context, Baggage, Resource y SDK.
@@ -89,3 +89,51 @@ Para Operator, CRDs, Target Allocator y componentes Kubernetes prevalece siempre
 - Documentación upstream Prometheus, Grafana, Loki, Tempo, Elastic, OpenSearch, Jaeger y Zipkin.
 
 **Regla de actualidad:** fijar versiones concretas de SDK/Collector/componentes en cada laboratorio y verificar nombres, estado de estabilidad y compatibilidad contra documentación upstream vigente.
+
+## Referencias enlazadas y finalidad — revisión 7
+
+Consulta de referencias principales: 22 de octubre de 2026. La consulta no
+certifica todas las combinaciones de SDK, componente y backend; fijar versiones
+y verificar compatibilidad al desarrollar cada laboratorio.
+
+| Fuente | Uso en el PATH |
+| --- | --- |
+| [Documentación OpenTelemetry](https://opentelemetry.io/docs/) | Arquitectura y guías prácticas |
+| [Especificación](https://opentelemetry.io/docs/specs/otel/) | Contratos normativos |
+| [Context](https://opentelemetry.io/docs/specs/otel/context/) | Contexto y ciclo de scopes |
+| [Propagadores](https://opentelemetry.io/docs/specs/otel/context/api-propagators/) | Carriers, extracción e inyección |
+| [W3C Trace Context](https://www.w3.org/TR/trace-context/) | traceparent y tracestate |
+| [W3C Baggage](https://www.w3.org/TR/baggage/) | Propagación de baggage |
+| [Modelo de métricas](https://opentelemetry.io/docs/specs/otel/metrics/data-model/) | Streams, temporality y escritor único |
+| [API de métricas](https://opentelemetry.io/docs/specs/otel/metrics/api/) | Instrumentos y callbacks |
+| [SDK de métricas](https://opentelemetry.io/docs/specs/otel/metrics/sdk/) | Views, readers y agregaciones |
+| [OTLP](https://opentelemetry.io/docs/specs/otlp/) | Transporte, formato y aceptación parcial |
+| [Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/) | Atributos, nombres y estabilidad |
+| [Estado de especificaciones](https://opentelemetry.io/docs/specs/status/) | Madurez por señal y componente |
+| [Profiles](https://opentelemetry.io/docs/concepts/signals/profiles/) | Introducción y relación con otras señales |
+| [Collector](https://opentelemetry.io/docs/collector/) | Configuración y operación |
+| [Collector Core](https://github.com/open-telemetry/opentelemetry-collector) | Interfaces, pdata, lifecycle y código |
+| [Collector Contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib) | Componentes, OTTL y changelogs |
+| [Tail sampling](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor) | Estado, afinidad y decisiones |
+| [Kubernetes](https://opentelemetry.io/docs/platforms/kubernetes/) | Recolección y despliegue |
+| [Operator](https://github.com/open-telemetry/opentelemetry-operator) | Reconciliación, CRDs y autoinstrumentación |
+| [Helm Charts](https://github.com/open-telemetry/opentelemetry-helm-charts) | Despliegue versionado |
+| [Datasources de Grafana](https://grafana.com/docs/grafana/latest/datasources/) | Consulta y visualización sobre backends |
+
+### OpenTelemetry {Python, C++, Go, JavaScript, Java}
+
+Estas referencias documentan variantes de instrumentación de los conceptos
+comunes. El estudiante elige el lenguaje de sus ejemplos; no debe completar
+cinco itinerarios ni repetir todos los laboratorios. Ninguno es obligatorio
+como lenguaje principal. Comprobar API, SDK, instrumentación automática,
+configuración y madurez por señal en la versión seleccionada.
+
+- [Python](https://opentelemetry.io/docs/languages/python/).
+- [C++](https://opentelemetry.io/docs/languages/cpp/).
+- [Go](https://opentelemetry.io/docs/languages/go/).
+- [JavaScript](https://opentelemetry.io/docs/languages/js/).
+- [Java](https://opentelemetry.io/docs/languages/java/).
+
+El desarrollo de componentes del Collector usa Go y pertenece a la etapa
+experta; no convierte Go en requisito para instrumentar una aplicación.
+Learning OpenTelemetry continúa como libro principal y guía pedagógica.

@@ -1,5 +1,11 @@
 OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 
+Revisión 7 — cobertura original conservada y objetivos técnicos ampliados.
+Lenguajes: OpenTelemetry {Python, C++, Go, JavaScript, Java}; elegir el lenguaje de los ejemplos.
+No se exigen prácticas en los cinco lenguajes. Véanse domain.md y profile.yaml.
+Las ampliaciones de cada bloque concretan los mecanismos de sus lecciones generales.
+Orden de estudio recomendado y prerrequisitos: README.md y domain.md.
+
 0. Fundamentos de observabilidad
 
 0.1 qué es Fundamentos de observabilidad
@@ -31,6 +37,11 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 0.27 Definir preguntas operativas, SLIs, SLOs y presupuesto de error
 0.28 Comparar métricas, trazas y logs para diagnosticar una petición fallida
 0.29 Evaluar coste, calidad y cobertura de instrumentación
+0.30 Reconstruir un incidente con síntomas, hipótesis y evidencias de las tres señales
+0.31 Distinguir disponibilidad del servicio, cobertura de instrumentación y salud del transporte de telemetría
+0.32 Preparar laboratorio local sin exposición pública: puertos, directorios, versiones y criterios de limpieza
+0.33 Generar un payload sintético y observar su paso por un Collector antes de instrumentar código
+0.34 Aplicar un contrato de laboratorio con configuración completa, resultado esperado y prueba negativa
 
 1. Arquitectura de OpenTelemetry
 
@@ -63,6 +74,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 1.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Arquitectura de OpenTelemetry
 1.28 Examinar limitaciones, estabilidad y compatibilidad de Arquitectura de OpenTelemetry
 1.29 Comparar alternativas y diagnosticar fallos reales de Arquitectura de OpenTelemetry
+1.30 Delimitar responsabilidades de API, SDK, propagador, Collector y backend siguiendo una petición
+1.31 Montar un primer circuito local OTLP y verificar cada salto antes de introducir alta disponibilidad
 
 2. Señales y modelo de telemetría
 
@@ -95,6 +108,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 2.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Señales y modelo de telemetría
 2.28 Examinar limitaciones, estabilidad y compatibilidad de Señales y modelo de telemetría
 2.29 Comparar alternativas y diagnosticar fallos reales de Señales y modelo de telemetría
+2.30 Recorrer Resource, InstrumentationScope y registros de cada señal en un payload OTLP
+2.31 Introducir profiles y su relación con traces, métricas y logs indicando soporte y estabilidad por versión
+2.32 Distinguir perfiles de CPU y memoria, stack samples y flame graphs sin asumir madurez idéntica entre señales
+2.33 Documentar compatibilidad de profiles entre productor, formato, Collector y backend en la versión elegida
 
 3. Resources
 
@@ -127,6 +144,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 3.27 service.name, service.namespace, service.instance.id y resource detectors
 3.28 Conflictos y precedencia de atributos de Resource
 3.29 Agrupación de series y trazas por identidad de servicio
+3.30 Diferenciar identidad de servicio, instancia efímera, host y contenedor al reiniciar una aplicación
+3.31 Comprobar fusiones de Resources y precedencia entre configuración explícita y detección automática
 
 4. Attributes
 
@@ -159,6 +178,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 4.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Attributes
 4.28 Examinar limitaciones, estabilidad y compatibilidad de Attributes
 4.29 Comparar alternativas y diagnosticar fallos reales de Attributes
+4.30 Elegir tipos de atributos, límites y claves con semántica consistente en las tres señales
+4.31 Comparar atributos del recurso, scope y registro para evitar duplicación y cardinalidad innecesaria
 
 5. Semantic Conventions
 
@@ -191,6 +212,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 5.27 Migración y versionado de semantic conventions con schema_url
 5.28 Opt-in de convenciones HTTP/DB según instrumentación y versión
 5.29 Verificar nombres y unidades contra upstream
+5.30 Mantener una matriz de convenciones estables y experimentales por instrumentación
+5.31 Migrar atributos con pruebas de consultas y paneles antes de retirar nombres anteriores
 
 6. Context
 
@@ -223,6 +246,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 6.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Context
 6.28 Examinar limitaciones, estabilidad y compatibilidad de Context
 6.29 Comparar alternativas y diagnosticar fallos reales de Context
+6.30 Aplicar attach y detach equilibrados para evitar fugas de contexto entre peticiones
+6.31 Distinguir contexto local, SpanContext y estado remoto en concurrencia y callbacks
+6.32 Distinguir contexto inmutable y variables compartidas mutables al pasar información entre tareas
+6.33 Probar restauración del contexto anterior mediante scope o bloque de cierre incluso cuando hay excepción
 
 7. Context propagation
 
@@ -255,6 +282,12 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 7.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Context propagation
 7.28 Examinar limitaciones, estabilidad y compatibilidad de Context propagation
 7.29 Comparar alternativas y diagnosticar fallos reales de Context propagation
+7.30 Extraer e inyectar traceparent y tracestate con propagadores W3C
+7.31 Transportar contexto mediante cabeceras HTTP y propiedades de mensajes sin mezclar solicitudes concurrentes
+7.32 Inspeccionar formato, versión, flags y validación de traceparent con carriers válidos e inválidos
+7.33 Conservar tracestate entre participantes y documentar límites y orden de entradas
+7.34 Distinguir propagación W3C y formatos alternativos solo cuando una integración los necesite
+7.35 Probar propagación entre dos procesos y un consumidor asíncrono en el lenguaje seleccionado
 
 8. Baggage
 
@@ -287,6 +320,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 8.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Baggage
 8.28 Examinar limitaciones, estabilidad y compatibilidad de Baggage
 8.29 Comparar alternativas y diagnosticar fallos reales de Baggage
+8.30 Propagar baggage mediante carriers y distinguirlo de atributos exportados
+8.31 Limitar claves, tamaño y fronteras de confianza para impedir filtraciones de datos personales
+8.32 Demostrar que baggage no se convierte automáticamente en atributo de todos los spans
+8.33 Probar eliminación de baggage al atravesar fronteras externas o tenants diferentes
 
 9. Traces
 
@@ -319,6 +356,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 9.27 SpanKind CLIENT/SERVER/PRODUCER/CONSUMER/INTERNAL
 9.28 Trazas asíncronas, fan-out y operaciones de mensajería
 9.29 Rastreo de latencia crítica y spans incompletos
+9.30 Reconstruir el camino crítico de una trace con relojes de hosts diferentes
+9.31 Distinguir ausencia de spans por sampling, instrumentación incompleta y pérdida durante exportación
 
 10. Spans
 
@@ -351,6 +390,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 10.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Spans
 10.28 Examinar limitaciones, estabilidad y compatibilidad de Spans
 10.29 Comparar alternativas y diagnosticar fallos reales de Spans
+10.30 Separar estado recording, sampled flag y validez del SpanContext
+10.31 Cerrar spans de forma determinista en errores, cancelaciones y tareas asíncronas
 
 11. Span relationships y links
 
@@ -383,6 +424,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 11.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Span relationships y links
 11.28 Examinar limitaciones, estabilidad y compatibilidad de Span relationships y links
 11.29 Comparar alternativas y diagnosticar fallos reales de Span relationships y links
+11.30 Modelar fan-out, fan-in y procesamiento por lotes mediante padres y links
+11.31 Relacionar reintentos y mensajes redeliverados sin inventar una jerarquía temporal falsa
 
 12. Events y status
 
@@ -415,6 +458,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 12.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Events y status
 12.28 Examinar limitaciones, estabilidad y compatibilidad de Events y status
 12.29 Comparar alternativas y diagnosticar fallos reales de Events y status
+12.30 Distinguir span event, excepción registrada y estado ERROR
+12.31 Definir políticas de estado para errores recuperados y respuestas de negocio esperadas
 
 13. Metrics
 
@@ -447,6 +492,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 13.27 Delta versus cumulative: conversión, resets y compatibilidad
 13.28 Histogramas explícitos, exponenciales y exemplars
 13.29 Cardinalidad y pérdida de fidelidad por agregación
+13.30 Aplicar el principio de escritor único por stream métrico al escalar Collectors
+13.31 Interpretar start time, resets, gaps y puntos fuera de orden en series delta y cumulative
 
 14. Instrumentos métricos
 
@@ -479,6 +526,11 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 14.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Instrumentos métricos
 14.28 Examinar limitaciones, estabilidad y compatibilidad de Instrumentos métricos
 14.29 Comparar alternativas y diagnosticar fallos reales de Instrumentos métricos
+14.30 Elegir Counter, UpDownCounter e Histogram según monotonicidad y agregación
+14.31 Comparar instrumentos síncronos y observables con callbacks que no bloqueen la aplicación
+14.32 Modelar solicitudes acumuladas con Counter y conexiones activas con UpDownCounter
+14.33 Distinguir observación de estado instantáneo y suma de cambios al elegir instrumentos
+14.34 Consultar matriz de instrumentos y estabilidad del SDK del lenguaje elegido
 
 15. Aggregations
 
@@ -511,6 +563,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 15.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Aggregations
 15.28 Examinar limitaciones, estabilidad y compatibilidad de Aggregations
 15.29 Comparar alternativas y diagnosticar fallos reales de Aggregations
+15.30 Diseñar Views que seleccionen atributos, agregación y streams por instrumento
+15.31 Detectar conflictos de identidad de métricas y pérdida de dimensiones tras una agregación
+15.32 Comprobar efectos de filtrar atributos en Views sobre cardinalidad y significado de una serie
+15.33 Probar más de un reader o exportador y documentar agregación y temporality de cada salida
 
 16. Histograms y Exponential Histograms
 
@@ -543,6 +599,11 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 16.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Histograms y Exponential Histograms
 16.28 Examinar limitaciones, estabilidad y compatibilidad de Histograms y Exponential Histograms
 16.29 Comparar alternativas y diagnosticar fallos reales de Histograms y Exponential Histograms
+16.30 Elegir límites explícitos de buckets a partir de objetivos de latencia
+16.31 Relacionar scale, buckets positivos y negativos y zero count en ExponentialHistogram
+16.32 Comparar histogramas clásicos, exponenciales y representaciones del backend con los mismos datos
+16.33 Medir memoria, precisión y sesgo al elegir buckets alrededor de un SLO
+16.34 Verificar count, sum, límites y buckets vacíos en un payload conocido
 
 17. Logs
 
@@ -575,6 +636,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 17.27 Contexto de trace_id/span_id en registros
 17.28 Ingesta estructurada, multiline y normalización
 17.29 Prevención de duplicados, secretos y pérdida de registros
+17.30 Separar emisión mediante SDK, bridges de logging y recolección de archivos
+17.31 Detectar doble ingestión cuando conviven exportación OTLP y lectura de stdout
 
 18. LogRecord
 
@@ -607,6 +670,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 18.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de LogRecord
 18.28 Examinar limitaciones, estabilidad y compatibilidad de LogRecord
 18.29 Comparar alternativas y diagnosticar fallos reales de LogRecord
+18.30 Distinguir Timestamp y ObservedTimestamp al ingerir registros retrasados
+18.31 Normalizar Body, SeverityNumber, SeverityText, Resource y Scope sin descartar el original
 
 19. correlación logs-traces-metrics
 
@@ -639,6 +704,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 19.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de correlación logs-traces-metrics
 19.28 Examinar limitaciones, estabilidad y compatibilidad de correlación logs-traces-metrics
 19.29 Comparar alternativas y diagnosticar fallos reales de correlación logs-traces-metrics
+19.30 Unir registros por TraceId y SpanId y recursos por identidad de servicio
+19.31 Comprobar correlación cuando faltan spans muestreados y cuando los relojes divergen
 
 20. OpenTelemetry Protocol — OTLP
 
@@ -671,6 +738,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 20.27 Comparar OTLP/gRPC y OTLP/HTTP con trazas de red
 20.28 Negotiation de TLS, compresión, tamaño de mensaje y límites
 20.29 Retries seguros, códigos de error y exportación parcial
+20.30 Distinguir aceptación del receptor, exportación parcial y persistencia en el backend
+20.31 Calcular límites de tamaño por solicitud y comportamiento de errores recuperables
+20.32 Simular aceptación parcial y comprobar que no se reenvía automáticamente el lote completo
+20.33 Diferenciar límites, compresión y negociación de formato según OTLP/gRPC y OTLP/HTTP
 
 21. OTLP/gRPC
 
@@ -703,6 +774,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 21.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de OTLP/gRPC
 21.28 Examinar limitaciones, estabilidad y compatibilidad de OTLP/gRPC
 21.29 Comparar alternativas y diagnosticar fallos reales de OTLP/gRPC
+21.30 Inspeccionar servicios Export gRPC y distinguir errores de aplicación y transporte
+21.31 Diagnosticar HTTP/2, proxies intermedios, deadlines y conexiones persistentes
 
 22. OTLP/HTTP
 
@@ -735,6 +808,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 22.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de OTLP/HTTP
 22.28 Examinar limitaciones, estabilidad y compatibilidad de OTLP/HTTP
 22.29 Comparar alternativas y diagnosticar fallos reales de OTLP/HTTP
+22.30 Construir rutas de señal v1/traces, v1/metrics y v1/logs con el endpoint correcto
+22.31 Comparar Protobuf binario y JSON OTLP, Content-Type y respuestas HTTP
 
 23. Protobuf y modelo OTLP
 
@@ -767,6 +842,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 23.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Protobuf y modelo OTLP
 23.28 Examinar limitaciones, estabilidad y compatibilidad de Protobuf y modelo OTLP
 23.29 Comparar alternativas y diagnosticar fallos reales de Protobuf y modelo OTLP
+23.30 Recorrer ResourceSpans y ScopeSpans y sus equivalentes para métricas y logs
+23.31 Interpretar AnyValue, identificadores binarios y timestamps sin confundirlos con su representación JSON
 
 24. OpenTelemetry API
 
@@ -797,8 +874,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 24.25 laboratorio: integrar OpenTelemetry API end-to-end
 24.26 Identificar interfaces, valores por defecto y estabilidad de OpenTelemetry API
 24.27 Construir ejemplo funcional mínimo de OpenTelemetry API
-24.28 Validar ciclo de vida, propagación de errores y shutdown de OpenTelemetry API
+24.28 Distinguir contrato de la API y ciclo de vida del SDK; propagación de errores y shutdown corresponden a la implementación elegida
 24.29 Contrastar configuración de desarrollo y producción de OpenTelemetry API
+24.30 Instrumentar una biblioteca contra la API sin imponer SDK ni exportador al consumidor
+24.31 Verificar comportamiento no-op antes de registrar un provider
 
 25. OpenTelemetry SDK
 
@@ -830,7 +909,11 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 25.26 TracerProvider, MeterProvider y LoggerProvider por SDK
 25.27 Procesadores, readers, temporality y exporters
 25.28 BatchSpanProcessor, force_flush y shutdown
-25.29 Configuración declarativa y variables OTEL_* con precedencia
+25.29 Configuración declarativa y variables OTEL_*: soporte y precedencia según SDK, mecanismo y versión
+25.30 Separar configuración del SDK de la configuración YAML del Collector
+25.31 Verificar flush y shutdown de SDK y exporters durante terminación por SIGTERM
+25.32 Comprobar soporte de configuración declarativa antes de atribuir precedencia universal a OTEL_*
+25.33 Separar variables generales, por señal y opciones explícitas según las reglas del SDK elegido
 
 26. Providers
 
@@ -863,6 +946,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 26.27 Construir ejemplo funcional mínimo de Providers
 26.28 Validar ciclo de vida, propagación de errores y shutdown de Providers
 26.29 Contrastar configuración de desarrollo y producción de Providers
+26.30 Gestionar providers globales y explícitos sin duplicar inicialización
+26.31 Asignar Resource e InstrumentationScope al crear tracer, meter y logger
 
 27. Instrumentation libraries
 
@@ -895,6 +980,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 27.27 Construir ejemplo funcional mínimo de Instrumentation libraries
 27.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentation libraries
 27.29 Contrastar configuración de desarrollo y producción de Instrumentation libraries
+27.30 Publicar nombre y versión de InstrumentationScope para identificar la biblioteca emisora
+27.31 Evitar spans duplicados al combinar instrumentación de biblioteca y de framework
 
 28. Instrumentación automática
 
@@ -927,6 +1014,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 28.27 Construir ejemplo funcional mínimo de Instrumentación automática
 28.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentación automática
 28.29 Contrastar configuración de desarrollo y producción de Instrumentación automática
+28.30 Identificar el mecanismo de carga de agentes, hooks o inyección según el lenguaje elegido
+28.31 Desactivar selectivamente instrumentaciones conflictivas y comprobar spans duplicados
+28.32 Comparar instrumentación sin cambios de código y manual con el mismo contrato de telemetría
+28.33 Consultar soporte de runtime y versiones sin exigir que los cinco lenguajes dispongan del mismo mecanismo
 
 29. Instrumentación manual
 
@@ -959,6 +1050,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 29.27 Construir ejemplo funcional mínimo de Instrumentación manual
 29.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentación manual
 29.29 Contrastar configuración de desarrollo y producción de Instrumentación manual
+29.30 Elegir límites de span y atributos de negocio sin capturar secretos
+29.31 Propagar contexto en trabajo concurrente y medir overhead de instrumentación manual
 
 30. Instrumentación de aplicaciones
 
@@ -991,6 +1084,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 30.27 Construir ejemplo funcional mínimo de Instrumentación de aplicaciones
 30.28 Validar ciclo de vida, propagación de errores y shutdown de Instrumentación de aplicaciones
 30.29 Contrastar configuración de desarrollo y producción de Instrumentación de aplicaciones
+30.30 Trazar una transacción HTTP que consulta una base de datos y publica un mensaje
+30.31 Validar recursos, scopes, métricas y logs de una misma aplicación con contratos de telemetría
 
 31. OpenTelemetry Collector
 
@@ -1023,6 +1118,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 31.27 Validación de configuración y componentes compilados
 31.28 Orden de procesadores, fan-out y aislamiento de fallos
 31.29 Versionado, upgrades y pruebas de regresión
+31.30 Inventariar componentes compilados y señales admitidas en la distribución elegida
+31.31 Levantar un Collector local mínimo con receptor OTLP y exporter de diagnóstico
+31.32 Verificar el conjunto de componentes del binario antes de copiar configuración de otra distribución
+31.33 Registrar checksum, versión, configuración efectiva y señal de prueba del despliegue local
 
 32. Arquitectura interna del Collector
 
@@ -1055,6 +1154,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 32.27 Pipeline fan-out y mutabilidad de pdata
 32.28 Component lifecycle, start/shutdown y errores
 32.29 Diagnóstico con telemetría interna y perfiles
+32.30 Seguir la construcción del grafo de componentes desde service.pipelines
+32.31 Distinguir arquitectura de ejecución de un binario y topología de varios Collectors
 
 33. Configuración del Collector
 
@@ -1087,6 +1188,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 33.27 Construir ejemplo funcional mínimo de Configuración del Collector
 33.28 Validar ciclo de vida, propagación de errores y shutdown de Configuración del Collector
 33.29 Contrastar configuración de desarrollo y producción de Configuración del Collector
+33.30 Resolver identificadores tipo/nombre y referencias entre componentes y pipelines
+33.31 Validar interpolación de configuración, secretos y valores efectivos antes del arranque
+33.32 Rechazar configuración con componente inexistente y distinguir parseo YAML de validación del Collector
+33.33 Comprobar cambios de nombres, aliases y feature gates en notas de versión antes de actualizar
 
 34. Receivers
 
@@ -1119,6 +1224,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 34.27 Construir ejemplo funcional mínimo de Receivers
 34.28 Validar ciclo de vida, propagación de errores y shutdown de Receivers
 34.29 Contrastar configuración de desarrollo y producción de Receivers
+34.30 Separar receivers push, pull y lectores de archivos mediante casos de entrada
+34.31 Validar bind address y permisos antes de atribuir fallos de recepción al SDK
 
 35. Processors
 
@@ -1151,6 +1258,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 35.27 Construir ejemplo funcional mínimo de Processors
 35.28 Validar ciclo de vida, propagación de errores y shutdown de Processors
 35.29 Contrastar configuración de desarrollo y producción de Processors
+35.30 Analizar cómo el orden de processors altera datos descartados y consumo de memoria
+35.31 Medir errores propagados al receptor cuando un processor rechaza un lote
 
 36. Exporters
 
@@ -1183,6 +1292,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 36.27 Construir ejemplo funcional mínimo de Exporters
 36.28 Validar ciclo de vida, propagación de errores y shutdown de Exporters
 36.29 Contrastar configuración de desarrollo y producción de Exporters
+36.30 Distinguir transformación al formato del backend y transporte OTLP sin conversión
+36.31 Separar fallos de autenticación, límites de ingestión y errores permanentes de payload
 
 37. Connectors
 
@@ -1215,6 +1326,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 37.27 Construir ejemplo funcional mínimo de Connectors
 37.28 Validar ciclo de vida, propagación de errores y shutdown de Connectors
 37.29 Contrastar configuración de desarrollo y producción de Connectors
+37.30 Conectar salida y entrada de pipelines mediante un connector sin crear ciclos
+37.31 Generar métricas desde traces y verificar el efecto de sampling sobre sus valores
 
 38. Extensions
 
@@ -1247,6 +1360,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 38.27 Construir ejemplo funcional mínimo de Extensions
 38.28 Validar ciclo de vida, propagación de errores y shutdown de Extensions
 38.29 Contrastar configuración de desarrollo y producción de Extensions
+38.30 Distinguir extensiones de servicio y componentes que transportan telemetría
+38.31 Habilitar explícitamente extensiones necesarias y limitar sus listeners de diagnóstico
 
 39. Pipelines
 
@@ -1279,6 +1394,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 39.27 Construir ejemplo funcional mínimo de Pipelines
 39.28 Validar ciclo de vida, propagación de errores y shutdown de Pipelines
 39.29 Contrastar configuración de desarrollo y producción de Pipelines
+39.30 Seguir un lote desde receiver hasta cada exporter y detectar fan-out
+39.31 Comparar aislamiento lógico de pipelines y recursos de proceso compartidos
 
 40. Collector Agent
 
@@ -1311,6 +1428,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 40.27 Configurar parámetros, límites y condiciones de error de Collector Agent
 40.28 Medir throughput, memoria y pérdida de telemetría en Collector Agent
 40.29 Comparar patrones correctos y antipatrones de Collector Agent
+40.30 Elegir fuentes locales, sockets y permisos para un Collector por host
+40.31 Limitar almacenamiento local y exposición de puertos en el patrón agent
 
 41. Collector Gateway
 
@@ -1343,6 +1462,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 41.27 Configurar parámetros, límites y condiciones de error de Collector Gateway
 41.28 Medir throughput, memoria y pérdida de telemetría en Collector Gateway
 41.29 Comparar patrones correctos y antipatrones de Collector Gateway
+41.30 Separar terminación TLS, procesamiento central y exportación en un gateway
+41.31 Diseñar admission control ante agentes que envían más tráfico del previsto
 
 42. topologías de despliegue
 
@@ -1375,6 +1496,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 42.27 Configurar parámetros, límites y condiciones de error de topologías de despliegue
 42.28 Medir throughput, memoria y pérdida de telemetría en topologías de despliegue
 42.29 Comparar patrones correctos y antipatrones de topologías de despliegue
+42.30 Comparar agent, gateway y sidecar según ownership, señal y coste operativo
+42.31 Dibujar dominios de fallo y confianza para cada salto de la topología
 
 43. load balancing
 
@@ -1407,6 +1530,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 43.27 Load balancing por DNS, endpoints y descubrimiento
 43.28 Rebalanceos, cambios de topología y trazas incompletas
 43.29 Verificar distribución y continuidad de traces
+43.30 Distinguir balanceo L4 por conexión y reparto consciente de TraceId o stream
+43.31 Probar rebalanceo cuando cambia el conjunto de gateways y se rompen afinidades
+43.32 Comparar routing por TraceId, servicio y stream según operación stateful realizada aguas abajo
+43.33 Medir trazas partidas y redistribución de estado durante altas y bajas de gateways
 
 44. batching
 
@@ -1439,6 +1566,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 44.27 Configurar parámetros, límites y condiciones de error de batching
 44.28 Medir throughput, memoria y pérdida de telemetría en batching
 44.29 Comparar patrones correctos y antipatrones de batching
+44.30 Distinguir batching del processor y batching de la cola de exportación cuando exista
+44.31 Medir latencia y tamaño real de solicitudes con límites por bytes y registros
 
 45. memory management
 
@@ -1471,6 +1600,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 45.27 OOMKilled versus throttling versus caída por backpressure
 45.28 Presupuesto de memoria de batch, colas y pipelines
 45.29 Laboratorio con carga y medición RSS/heap
+45.30 Distinguir heap, RSS, límites del contenedor y memoria retenida por colas
+45.31 Situar memory_limiter y verificar rechazo de datos sin prometer ausencia de OOM
 
 46. queues
 
@@ -1503,6 +1634,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 46.27 Tamaño, consumidores y comportamiento ante saturación
 46.28 At-least-once, duplicados y límites de durabilidad
 46.29 Simular backend inaccesible y recuperación
+46.30 Distinguir encolado, persistencia, confirmación y retirada de solicitudes
+46.31 Verificar recuperación de almacenamiento persistente después de SIGKILL y disco lleno
+46.32 Comprobar afinidad y durabilidad de volumen al reiniciar o reprogramar un Collector
+46.33 Distinguir número de elementos de cola, solicitudes, registros y bytes según configuración y versión
 
 47. retries
 
@@ -1535,6 +1670,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 47.27 Configurar parámetros, límites y condiciones de error de retries
 47.28 Medir throughput, memoria y pérdida de telemetría en retries
 47.29 Comparar patrones correctos y antipatrones de retries
+47.30 Clasificar errores reintentables y permanentes según transporte y exporter
+47.31 Combinar backoff, jitter y tiempo máximo de reintento sin multiplicar tormentas de tráfico
 
 48. backpressure
 
@@ -1567,6 +1704,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 48.27 Configurar parámetros, límites y condiciones de error de backpressure
 48.28 Medir throughput, memoria y pérdida de telemetría en backpressure
 48.29 Comparar patrones correctos y antipatrones de backpressure
+48.30 Seguir propagación de presión desde backend lento hasta el SDK
+48.31 Comparar rechazo temprano, bloqueo y descarte cuando se saturan buffers y colas
 
 49. resiliencia y pérdida de telemetría
 
@@ -1599,6 +1738,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 49.27 Configurar parámetros, límites y condiciones de error de resiliencia y pérdida de telemetría
 49.28 Medir throughput, memoria y pérdida de telemetría en resiliencia y pérdida de telemetría
 49.29 Comparar patrones correctos y antipatrones de resiliencia y pérdida de telemetría
+49.30 Construir un presupuesto de pérdida por SDK, red, Collector y backend
+49.31 Medir duplicados tras reintentos y diferenciar durabilidad local de garantía extremo a extremo
+49.32 Documentar condiciones concretas de at-least-once y las ventanas donde todavía pueden perderse datos
+49.33 Medir pérdida y duplicación mediante identificadores sintéticos y conteo en cada frontera
 
 50. tail sampling
 
@@ -1631,6 +1774,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 50.27 Ventana de decisión, memoria y trazas incompletas
 50.28 Consistencia de routing por trace_id entre instancias
 50.29 Evaluar sesgos y coste de decisiones de sampling
+50.30 Dimensionar ventanas y cachés de decisión para spans tardíos
+50.31 Mantener afinidad por TraceId y evaluar decisiones inconsistentes durante cambios de topología
+50.32 Comparar sampled y not-sampled decision caches y el tratamiento de spans tardíos cuando esté soportado
+50.33 Cuantificar memoria por trace pendiente y efecto de decision_wait bajo ráfagas
 
 51. head sampling
 
@@ -1663,6 +1810,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 51.27 Configurar parámetros, límites y condiciones de error de head sampling
 51.28 Medir throughput, memoria y pérdida de telemetría en head sampling
 51.29 Comparar patrones correctos y antipatrones de head sampling
+51.30 Aplicar ParentBased y TraceIdRatioBased desde el SDK seleccionado
+51.31 Distinguir sampled flag, recording y selección temprana antes de exportar datos
+51.32 Medir exportación con AlwaysOn, AlwaysOff y ParentBased en una cadena de servicios
+51.33 Verificar que un cambio de política head no puede recuperar spans que nunca se registraron
 
 52. probabilistic sampling
 
@@ -1695,6 +1846,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 52.27 Configurar parámetros, límites y condiciones de error de probabilistic sampling
 52.28 Medir throughput, memoria y pérdida de telemetría en probabilistic sampling
 52.29 Comparar patrones correctos y antipatrones de probabilistic sampling
+52.30 Comparar decisiones probabilísticas independientes y consistentes a lo largo de una trace
+52.31 Medir varianza y sesgo al estimar tasas y latencias desde traces muestreadas
 
 53. sampling avanzado
 
@@ -1727,6 +1880,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 53.27 Configurar parámetros, límites y condiciones de error de sampling avanzado
 53.28 Medir throughput, memoria y pérdida de telemetría en sampling avanzado
 53.29 Comparar patrones correctos y antipatrones de sampling avanzado
+53.30 Combinar políticas head y tail sin confundir probabilidades ni recuperar spans descartados
+53.31 Verificar que una política de sampling conserva incidencias sin exceder memoria presupuestada
 
 54. filtering
 
@@ -1759,6 +1914,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 54.27 Configurar parámetros, límites y condiciones de error de filtering
 54.28 Medir throughput, memoria y pérdida de telemetría en filtering
 54.29 Comparar patrones correctos y antipatrones de filtering
+54.30 Filtrar recursos, registros y datapoints sin romper identidad métrica
+54.31 Validar el resultado con fixtures que incluyen atributos ausentes y tipos inesperados
 
 55. transformations
 
@@ -1791,6 +1948,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 55.27 Configurar parámetros, límites y condiciones de error de transformations
 55.28 Medir throughput, memoria y pérdida de telemetría en transformations
 55.29 Comparar patrones correctos y antipatrones de transformations
+55.30 Transformar nombres, tipos, unidades y atributos mediante operaciones ordenadas
+55.31 Detectar transformaciones que mezclan series o invalidan convenciones semánticas
 
 56. enrichment
 
@@ -1823,6 +1982,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 56.27 Configurar parámetros, límites y condiciones de error de enrichment
 56.28 Medir throughput, memoria y pérdida de telemetría en enrichment
 56.29 Comparar patrones correctos y antipatrones de enrichment
+56.30 Enriquecer identidad de host, servicio y workload indicando procedencia de atributos
+56.31 Evitar sobrescribir atributos fiables con metadatos controlados por el emisor
 
 57. redaction
 
@@ -1855,6 +2016,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 57.27 Configurar parámetros, límites y condiciones de error de redaction
 57.28 Medir throughput, memoria y pérdida de telemetría en redaction
 57.29 Comparar patrones correctos y antipatrones de redaction
+57.30 Comparar eliminación, allowlist, enmascarado y hashing de datos sensibles
+57.31 Verificar que cuerpos de logs, URLs y mensajes de excepción no eluden la redacción
 
 58. routing
 
@@ -1887,6 +2050,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 58.27 Configurar parámetros, límites y condiciones de error de routing
 58.28 Medir throughput, memoria y pérdida de telemetría en routing
 58.29 Comparar patrones correctos y antipatrones de routing
+58.30 Enrutar por identidad autenticada y recurso sin confiar solo en atributos del cliente
+58.31 Configurar rutas de fallback y probar datos sin tenant o con tenant desconocido
 
 59. OpenTelemetry Transformation Language — OTTL
 
@@ -1919,6 +2084,11 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 59.27 Funciones, conversión de tipos y tratamiento de errores
 59.28 Diferencias entre transform, filter y redaction
 59.29 Pruebas de OTTL con casos de datos reales y edge cases
+59.30 Elegir contexto OTTL de resource, scope, span, log y datapoint según el componente
+59.31 Probar error_mode con conversiones fallidas y conservar evidencia de datos descartados
+59.32 Usar fixtures de tipos, claves ausentes y estructuras anidadas para transformaciones OTTL
+59.33 Separar sintaxis común OTTL y funciones disponibles en cada componente y versión
+59.34 Probar redacción de datos antes de fan-out hacia destinos con diferentes permisos
 
 60. OpenTelemetry Collector Contrib
 
@@ -1951,6 +2121,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 60.27 Configurar parámetros, límites y condiciones de error de OpenTelemetry Collector Contrib
 60.28 Medir throughput, memoria y pérdida de telemetría en OpenTelemetry Collector Contrib
 60.29 Comparar patrones correctos y antipatrones de OpenTelemetry Collector Contrib
+60.30 Comprobar nivel de estabilidad y mantenedores del componente Contrib seleccionado
+60.31 Reducir superficie de ataque utilizando únicamente componentes necesarios en una distribución
 
 61. receivers del ecosistema
 
@@ -1983,6 +2155,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 61.27 Configurar parámetros, límites y condiciones de error de receivers del ecosistema
 61.28 Medir throughput, memoria y pérdida de telemetría en receivers del ecosistema
 61.29 Comparar patrones correctos y antipatrones de receivers del ecosistema
+61.30 Comparar hostmetrics, prometheus, filelog, syslog y journald por modelo de entrada
+61.31 Inventariar dependencias de sistema y permisos particulares de cada receiver
 
 62. processors del ecosistema
 
@@ -2015,6 +2189,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 62.27 Configurar parámetros, límites y condiciones de error de processors del ecosistema
 62.28 Medir throughput, memoria y pérdida de telemetría en processors del ecosistema
 62.29 Comparar patrones correctos y antipatrones de processors del ecosistema
+62.30 Comparar transform, filter, attributes, resource y batch por responsabilidad
+62.31 Decidir dónde validar, enriquecer y redactar para no procesar datos que serán descartados
 
 63. exporters del ecosistema
 
@@ -2047,6 +2223,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 63.27 Configurar parámetros, límites y condiciones de error de exporters del ecosistema
 63.28 Medir throughput, memoria y pérdida de telemetría en exporters del ecosistema
 63.29 Comparar patrones correctos y antipatrones de exporters del ecosistema
+63.30 Construir una matriz señal/protocolo/backend para los exporters seleccionados
+63.31 Migrar exporters retirados hacia rutas soportadas sin perder atributos ni tipos
 
 64. connectors del ecosistema
 
@@ -2079,6 +2257,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 64.27 Configurar parámetros, límites y condiciones de error de connectors del ecosistema
 64.28 Medir throughput, memoria y pérdida de telemetría en connectors del ecosistema
 64.29 Comparar patrones correctos y antipatrones de connectors del ecosistema
+64.30 Comparar spanmetrics y servicegraph según datos derivados y afinidad requerida
+64.31 Distinguir conectores de derivación de métricas y conectores de routing entre pipelines
 
 65. distribución personalizada del Collector
 
@@ -2111,6 +2291,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 65.27 Minimización de superficie de ataque y SBOM
 65.28 Compilación reproducible, firmas y actualización
 65.29 Pruebas de compatibilidad de componentes Contrib
+65.30 Seleccionar componentes, licencias y versiones para un binario de uso interno
+65.31 Publicar un inventario verificable del binario construido y su configuración de referencia
 
 66. OpenTelemetry Collector Builder
 
@@ -2143,6 +2325,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 66.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de OpenTelemetry Collector Builder
 66.28 Examinar limitaciones, estabilidad y compatibilidad de OpenTelemetry Collector Builder
 66.29 Comparar alternativas y diagnosticar fallos reales de OpenTelemetry Collector Builder
+66.30 Crear manifest de Builder con módulos y versiones compatibles
+66.31 Construir y arrancar una distribución mínima con los componentes declarados
 
 67. Prometheus Receiver
 
@@ -2175,6 +2359,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 67.27 Configurar un pipeline mínimo verificable de Prometheus Receiver
 67.28 Comparar push/pull, temporality y mapeo de atributos en Prometheus Receiver
 67.29 Diagnosticar fallos de exportación, duplicación y pérdida en Prometheus Receiver
+67.30 Interpretar scrape_configs, relabeling y descubrimiento de targets
+67.31 Evitar scraping duplicado del mismo target por varias réplicas de Collector
+67.32 Asignar targets a un solo scraper mediante particionado o Target Allocator cuando corresponda
+67.33 Comparar timestamps de scrape, staleness y resets al trasladar un target entre réplicas
 
 68. Prometheus Exporter
 
@@ -2207,6 +2395,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 68.27 Configurar un pipeline mínimo verificable de Prometheus Exporter
 68.28 Comparar push/pull, temporality y mapeo de atributos en Prometheus Exporter
 68.29 Diagnosticar fallos de exportación, duplicación y pérdida en Prometheus Exporter
+68.30 Exponer un endpoint de scrape y validar nombres, unidades y etiquetas resultantes
+68.31 Distinguir métricas de aplicaciones exportadas y métricas internas del Collector
 
 69. integración con Prometheus
 
@@ -2239,6 +2429,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 69.27 Configurar un pipeline mínimo verificable de integración con Prometheus
 69.28 Comparar push/pull, temporality y mapeo de atributos en integración con Prometheus
 69.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración con Prometheus
+69.30 Comparar scraping Prometheus, remote write y recepción OTLP cuando esté soportada
+69.31 Documentar traducción de resource attributes y conflictos entre etiquetas y nombres
 
 70. Remote Write
 
@@ -2271,6 +2463,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 70.27 Configurar un pipeline mínimo verificable de Remote Write
 70.28 Comparar push/pull, temporality y mapeo de atributos en Remote Write
 70.29 Diagnosticar fallos de exportación, duplicación y pérdida en Remote Write
+70.30 Validar autenticación, orden temporal y escritor único al enviar Remote Write
+70.31 Comprobar soporte de histogramas y exemplars en exporter y receptor concretos
+70.32 Detectar escrituras fuera de orden y series duplicadas después de un failover
+70.33 Registrar compatibilidad de Remote Write, tipos de histogramas y metadata según las versiones elegidas
 
 71. integración Grafana
 
@@ -2303,6 +2499,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 71.27 Configurar un pipeline mínimo verificable de integración Grafana
 71.28 Comparar push/pull, temporality y mapeo de atributos en integración Grafana
 71.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Grafana
+71.30 Configurar datasources de Grafana que consulten Prometheus, Loki y Tempo
+71.31 Distinguir Grafana OSS de los endpoints de ingestión y credenciales de Grafana Cloud
+71.32 Provisionar enlaces logs-traces y metrics-traces indicando datasource y nombres de campos
+71.33 Revisar privilegios de consulta en Grafana y credenciales de ingestión como responsabilidades distintas
 
 72. integración Loki
 
@@ -2335,6 +2535,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 72.27 Configurar un pipeline mínimo verificable de integración Loki
 72.28 Comparar push/pull, temporality y mapeo de atributos en integración Loki
 72.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Loki
+72.30 Configurar ingestión de logs por la ruta OTLP soportada por la versión de Loki
+72.31 Separar etiquetas indexadas y metadata estructurada para controlar cardinalidad
 
 73. integración Tempo
 
@@ -2367,6 +2569,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 73.27 Configurar un pipeline mínimo verificable de integración Tempo
 73.28 Comparar push/pull, temporality y mapeo de atributos en integración Tempo
 73.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Tempo
+73.30 Enviar traces a Tempo e inspeccionar búsqueda por servicio y TraceId
+73.31 Verificar enlaces a logs, métricas y exemplars con atributos consistentes
 
 74. integración Grafana Stack
 
@@ -2399,6 +2603,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 74.27 Configurar un pipeline mínimo verificable de integración Grafana Stack
 74.28 Comparar push/pull, temporality y mapeo de atributos en integración Grafana Stack
 74.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Grafana Stack
+74.30 Separar almacenamiento Prometheus/Loki/Tempo y visualización en Grafana
+74.31 Provisionar datasources y enlaces entre señales para una aplicación de prueba
 
 75. integración Elasticsearch
 
@@ -2431,6 +2637,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 75.27 Configurar un pipeline mínimo verificable de integración Elasticsearch
 75.28 Comparar push/pull, temporality y mapeo de atributos en integración Elasticsearch
 75.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Elasticsearch
+75.30 Elegir una ruta de ingestión Elasticsearch documentada para versión y señal
+75.31 Verificar mappings, recursos y retención sin asumir equivalencia entre OTLP y documentos arbitrarios
 
 76. integración Elastic Stack
 
@@ -2463,6 +2671,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 76.27 Configurar un pipeline mínimo verificable de integración Elastic Stack
 76.28 Comparar push/pull, temporality y mapeo de atributos en integración Elastic Stack
 76.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Elastic Stack
+76.30 Delimitar Collector, componentes de ingestión y servicios de Elastic Observability
+76.31 Comprobar cambios de esquema y autenticación al actualizar la integración
 
 77. integración OpenSearch
 
@@ -2495,6 +2705,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 77.27 Configurar un pipeline mínimo verificable de integración OpenSearch
 77.28 Comparar push/pull, temporality y mapeo de atributos en integración OpenSearch
 77.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración OpenSearch
+77.30 Distinguir OpenSearch, Data Prepper y Collector en el flujo de ingestión
+77.31 Validar índices y pipelines por señal sin asumir un exporter universal
 
 78. integración Jaeger
 
@@ -2527,6 +2739,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 78.27 Configurar un pipeline mínimo verificable de integración Jaeger
 78.28 Comparar push/pull, temporality y mapeo de atributos en integración Jaeger
 78.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Jaeger
+78.30 Usar la recepción OTLP soportada por la versión elegida de Jaeger
+78.31 Buscar traces por servicio y detectar spans huérfanos o incompletos
 
 79. integración Zipkin
 
@@ -2559,6 +2773,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 79.27 Configurar un pipeline mínimo verificable de integración Zipkin
 79.28 Comparar push/pull, temporality y mapeo de atributos en integración Zipkin
 79.29 Diagnosticar fallos de exportación, duplicación y pérdida en integración Zipkin
+79.30 Examinar conversión de spans OTel al modelo de Zipkin
+79.31 Documentar pérdida de semántica y disponibilidad del exporter elegido
 
 80. instrumentación HTTP
 
@@ -2591,6 +2807,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 80.27 Atributos HTTP estables, códigos y rutas parametrizadas
 80.28 Evitar alta cardinalidad en URL, headers y query strings
 80.29 Laboratorio cliente-servidor con fallo inducido
+80.30 Distinguir spans cliente y servidor, rutas parametrizadas y códigos de respuesta
+80.31 Excluir query strings sensibles y evitar etiquetas con URLs de cardinalidad ilimitada
 
 81. instrumentación gRPC
 
@@ -2623,6 +2841,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 81.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación gRPC
 81.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación gRPC
 81.29 Comparar alternativas y diagnosticar fallos reales de instrumentación gRPC
+81.30 Propagar contexto en metadata gRPC y modelar streaming y cancelación
+81.31 Separar status de RPC, excepciones de cliente y fallos de conectividad
 
 82. instrumentación bases de datos
 
@@ -2655,6 +2875,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 82.27 Connection pools, transacciones y spans de consulta
 82.28 Diferenciar métricas de pool y spans de operaciones
 82.29 Diagnosticar N+1 y latencia sin registrar secretos
+82.30 Distinguir nombre lógico de operación, destino y atributos de consulta
+82.31 Instrumentar pooling y transacciones sin registrar parámetros ni credenciales sensibles
 
 83. instrumentación mensajería
 
@@ -2687,6 +2909,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 83.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación mensajería
 83.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación mensajería
 83.29 Comparar alternativas y diagnosticar fallos reales de instrumentación mensajería
+83.30 Relacionar publicación, entrega y procesamiento con contexto y links
+83.31 Trazar lotes, reintentos y mensajes duplicados manteniendo identidad y causalidad
 
 84. instrumentación servicios distribuidos
 
@@ -2719,6 +2943,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 84.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación servicios distribuidos
 84.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación servicios distribuidos
 84.29 Comparar alternativas y diagnosticar fallos reales de instrumentación servicios distribuidos
+84.30 Trazar fronteras de servicio y llamadas asíncronas con recursos consistentes
+84.31 Diagnosticar divergencia de TraceId a través de proxies y pasarelas
 
 85. instrumentación Linux
 
@@ -2751,6 +2977,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 85.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de instrumentación Linux
 85.28 Examinar limitaciones, estabilidad y compatibilidad de instrumentación Linux
 85.29 Comparar alternativas y diagnosticar fallos reales de instrumentación Linux
+85.30 Distinguir telemetría de host e instrumentación de procesos Linux
+85.31 Introducir instrumentación basada en eBPF y sus límites y permisos según la solución elegida
+85.32 Evaluar eBPF/OBI solo si su plataforma y versión permiten el laboratorio y documentar alternativa instrumentada
+85.33 Distinguir visibilidad de red y proceso de la semántica de negocio que requiere instrumentación explícita
 
 86. host metrics
 
@@ -2783,6 +3013,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 86.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de host metrics
 86.28 Examinar limitaciones, estabilidad y compatibilidad de host metrics
 86.29 Comparar alternativas y diagnosticar fallos reales de host metrics
+86.30 Seleccionar scrapers de CPU, memoria, disco, filesystem, red y procesos
+86.31 Interpretar métricas de host frente a namespaces y límites de contenedor
 
 87. file logs
 
@@ -2815,6 +3047,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 87.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de file logs
 87.28 Examinar limitaciones, estabilidad y compatibilidad de file logs
 87.29 Comparar alternativas y diagnosticar fallos reales de file logs
+87.30 Configurar offsets, fingerprints, multiline y seguimiento de rotación de archivos
+87.31 Probar copytruncate, rename, reinicio y checkpoints persistentes del lector
 
 88. syslog y OpenTelemetry
 
@@ -2847,6 +3081,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 88.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de syslog y OpenTelemetry
 88.28 Examinar limitaciones, estabilidad y compatibilidad de syslog y OpenTelemetry
 88.29 Comparar alternativas y diagnosticar fallos reales de syslog y OpenTelemetry
+88.30 Comparar RFC 3164 y RFC 5424, framing y transporte TCP/UDP
+88.31 Preservar timestamp, host y severidad y medir pérdida de mensajes UDP
 
 89. journald y OpenTelemetry
 
@@ -2879,6 +3115,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 89.27 Campos journald y mapeo a Resource/LogRecord
 89.28 Diferencias entre journald, syslog y filelog
 89.29 Validar recuperación después de reinicio y rotación
+89.30 Elegir lectura de journal o exportación intermedia según receiver y distribución
+89.31 Conservar campos de journald, cursores y permisos de acceso tras reinicios
 
 90. contenedores
 
@@ -2911,6 +3149,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 90.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de contenedores
 90.28 Examinar limitaciones, estabilidad y compatibilidad de contenedores
 90.29 Comparar alternativas y diagnosticar fallos reales de contenedores
+90.30 Recopilar logs de stdout y metadatos sin duplicar lectura desde host y sidecar
+90.31 Distinguir métricas del host, runtime y cgroups del contenedor
 
 91. Podman
 
@@ -2943,6 +3183,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 91.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Podman
 91.28 Examinar limitaciones, estabilidad y compatibilidad de Podman
 91.29 Comparar alternativas y diagnosticar fallos reales de Podman
+91.30 Montar configuración y datos del Collector con etiquetas SELinux adecuadas
+91.31 Comprobar UID, red y volúmenes en Podman rootless y rootful
 
 92. Docker
 
@@ -2975,6 +3217,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 92.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de Docker
 92.28 Examinar limitaciones, estabilidad y compatibilidad de Docker
 92.29 Comparar alternativas y diagnosticar fallos reales de Docker
+92.30 Gestionar configuración, red y volúmenes de un laboratorio Compose
+92.31 Verificar graceful shutdown y límites de recursos de los servicios de observabilidad
 
 93. Kubernetes
 
@@ -3003,7 +3247,6 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 93.23 laboratorio: validar Kubernetes
 93.24 laboratorio: provocar y diagnosticar fallos en Kubernetes
 93.25 laboratorio: integrar Kubernetes end-to-end
-
 93.26 arquitectura de observabilidad OpenTelemetry en Kubernetes
 93.27 fuentes de telemetría del cluster
 93.28 telemetría de nodes
@@ -3087,7 +3330,7 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 93.106 integración Kubernetes → OpenTelemetry → Prometheus
 93.107 integración Kubernetes → OpenTelemetry → Loki
 93.108 integración Kubernetes → OpenTelemetry → Tempo
-93.109 integración Kubernetes → OpenTelemetry → Grafana
+93.109 integración Kubernetes → OpenTelemetry → backend de métricas/logs/traces → consulta y visualización en Grafana
 93.110 integración Kubernetes → OpenTelemetry → Elastic
 93.111 integración Kubernetes → OpenTelemetry → OpenSearch
 93.112 correlación logs-metrics-traces de workloads Kubernetes
@@ -3113,6 +3356,12 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 93.132 Operator, Instrumentation CRD y Target Allocator
 93.133 RBAC mínimo, NetworkPolicies, mTLS y secretos
 93.134 Escalado con afinidad de trazas y pruebas de fallos
+93.135 Evitar scraping y recolección de objetos de cluster duplicados entre réplicas
+93.136 Probar permisos de kubelet y API server y diferenciar identidad de pod y proceso
+93.137 Diferenciar permisos y alcance de kubeletstats, k8s_cluster y k8sattributes
+93.138 Asignar un único recolector lógico a métricas de cluster cuando la fuente no sea particionable
+93.139 Probar coexistencia de despliegue manual y Operator sin duplicar recolección
+93.140 Separar CRDs instaladas, Custom Resources creados y reconciliación del Operator
 
 94. Kubernetes Collector patterns
 
@@ -3145,6 +3394,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 94.27 Mapear atributos obligatorios, recomendados y condicionales de Kubernetes Collector patterns
 94.28 Crear pruebas de migración y compatibilidad de Kubernetes Collector patterns
 94.29 Validar cardinalidad y privacidad en Kubernetes Collector patterns
+94.30 Distribuir tareas por nodo y por cluster entre DaemonSet y Deployment
+94.31 Documentar tolerations, affinity y rolling updates con presupuesto de pérdida
 
 95. Kubernetes Attributes Processor
 
@@ -3177,6 +3428,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 95.27 Mapear atributos obligatorios, recomendados y condicionales de Kubernetes Attributes Processor
 95.28 Crear pruebas de migración y compatibilidad de Kubernetes Attributes Processor
 95.29 Validar cardinalidad y privacidad en Kubernetes Attributes Processor
+95.30 Asociar telemetría a pods por conexión e identificadores disponibles
+95.31 Diagnosticar asociación fallida detrás de proxies, NAT y gateways intermedios
 
 96. service discovery
 
@@ -3209,6 +3462,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 96.27 Mapear atributos obligatorios, recomendados y condicionales de service discovery
 96.28 Crear pruebas de migración y compatibilidad de service discovery
 96.29 Validar cardinalidad y privacidad en service discovery
+96.30 Seguir ciclo de alta, actualización y baja de targets descubiertos
+96.31 Probar staleness y targets duplicados durante cambios de endpoints
 
 97. Resource Detection
 
@@ -3241,6 +3496,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 97.27 Mapear atributos obligatorios, recomendados y condicionales de Resource Detection
 97.28 Crear pruebas de migración y compatibilidad de Resource Detection
 97.29 Validar cardinalidad y privacidad en Resource Detection
+97.30 Ordenar detectores y atributos explícitos para fijar identidad del recurso
+97.31 Validar permisos y timeouts de detección evitando llamadas innecesarias a metadata externa
 
 98. Semantic Conventions para infraestructura
 
@@ -3273,6 +3530,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 98.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para infraestructura
 98.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para infraestructura
 98.29 Validar cardinalidad y privacidad en Semantic Conventions para infraestructura
+98.30 Relacionar host, container y k8s resource attributes sin mezclar entidades
+98.31 Detectar churn de series por identificadores efímeros de infraestructura
 
 99. Semantic Conventions para HTTP
 
@@ -3305,6 +3564,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 99.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para HTTP
 99.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para HTTP
 99.29 Validar cardinalidad y privacidad en Semantic Conventions para HTTP
+99.30 Aplicar convenciones HTTP para rutas, método, estado y destino según versión
+99.31 Migrar atributos antiguos y comprobar consultas y paneles de latencia
 
 100. Semantic Conventions para bases de datos
 
@@ -3337,6 +3598,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 100.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para bases de datos
 100.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para bases de datos
 100.29 Validar cardinalidad y privacidad en Semantic Conventions para bases de datos
+100.30 Separar atributos de sistema de base de datos, operación y namespace
+100.31 Validar política de captura de sentencias y redacción antes de exportar
 
 101. Semantic Conventions para messaging
 
@@ -3369,6 +3632,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 101.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para messaging
 101.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para messaging
 101.29 Validar cardinalidad y privacidad en Semantic Conventions para messaging
+101.30 Representar destino, operación y sistema de mensajería según convenciones vigentes
+101.31 Modelar atributos por mensaje y por lote sin inventar identidades de consumidor
 
 102. Semantic Conventions para RPC
 
@@ -3401,6 +3666,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 102.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para RPC
 102.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para RPC
 102.29 Validar cardinalidad y privacidad en Semantic Conventions para RPC
+102.30 Distinguir servicio, método, sistema y status de RPC
+102.31 Contrastar convenciones RPC genéricas y específicas de gRPC
 
 103. Semantic Conventions para logs
 
@@ -3433,6 +3700,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 103.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para logs
 103.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para logs
 103.29 Validar cardinalidad y privacidad en Semantic Conventions para logs
+103.30 Normalizar severity y campos de log mediante convenciones del emisor
+103.31 Conservar semántica al convertir registros estructurados y texto libre
 
 104. Semantic Conventions para métricas
 
@@ -3465,6 +3734,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 104.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para métricas
 104.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para métricas
 104.29 Validar cardinalidad y privacidad en Semantic Conventions para métricas
+104.30 Validar unidades UCUM y elección de nombres de instrumentos
+104.31 Documentar cambios de nombres y dimensiones de métricas semánticas entre versiones
 
 105. Semantic Conventions para traces
 
@@ -3497,6 +3768,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 105.27 Mapear atributos obligatorios, recomendados y condicionales de Semantic Conventions para traces
 105.28 Crear pruebas de migración y compatibilidad de Semantic Conventions para traces
 105.29 Validar cardinalidad y privacidad en Semantic Conventions para traces
+105.30 Separar SpanKind, atributos de operación y convenciones del protocolo
+105.31 Comprobar consistencia entre spans cliente y servidor de una misma operación
 
 106. cardinalidad
 
@@ -3529,6 +3802,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 106.27 Atributos de alta cardinalidad: user_id, request_id y paths
 106.28 Limitar vistas métricas y filtrar atributos sin romper correlación
 106.29 Medir impacto de cardinalidad en RAM y coste
+106.30 Estimar series a partir de combinaciones reales de atributos
+106.31 Comparar reducción de dimensiones, límites del SDK y descarte en Collector
 
 107. gestión de atributos
 
@@ -3561,6 +3836,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 107.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de gestión de atributos
 107.28 Examinar limitaciones, estabilidad y compatibilidad de gestión de atributos
 107.29 Comparar alternativas y diagnosticar fallos reales de gestión de atributos
+107.30 Definir allowlists y límites para atributos por señal y nivel
+107.31 Evitar que una limpieza de atributos fusione streams que deben permanecer distintos
 
 108. costes de observabilidad
 
@@ -3593,6 +3870,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 108.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de costes de observabilidad
 108.28 Examinar limitaciones, estabilidad y compatibilidad de costes de observabilidad
 108.29 Comparar alternativas y diagnosticar fallos reales de costes de observabilidad
+108.30 Separar costes de ingestión, procesamiento, almacenamiento y consultas
+108.31 Comparar ahorro de sampling, filtrado y agregación junto a pérdida de capacidad diagnóstica
 
 109. diseño de pipelines
 
@@ -3625,6 +3904,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 109.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño de pipelines
 109.28 Examinar limitaciones, estabilidad y compatibilidad de diseño de pipelines
 109.29 Comparar alternativas y diagnosticar fallos reales de diseño de pipelines
+109.30 Elegir el orden de limitación, enrichment, redacción, batch y exportación
+109.31 Definir contratos de entrada y salida y pruebas por etapa del pipeline
 
 110. diseño multi-pipeline
 
@@ -3657,6 +3938,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 110.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño multi-pipeline
 110.28 Examinar limitaciones, estabilidad y compatibilidad de diseño multi-pipeline
 110.29 Comparar alternativas y diagnosticar fallos reales de diseño multi-pipeline
+110.30 Aislar workloads y señales sin asumir aislamiento de memoria entre pipelines
+110.31 Analizar componentes compartidos y efectos de fan-out sobre fallos y consumo
 
 111. diseño multi-backend
 
@@ -3689,6 +3972,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 111.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño multi-backend
 111.28 Examinar limitaciones, estabilidad y compatibilidad de diseño multi-backend
 111.29 Comparar alternativas y diagnosticar fallos reales de diseño multi-backend
+111.30 Comparar duplicación deliberada de telemetría y rutas exclusivas por backend
+111.31 Definir qué ocurre si un destino falla y otro sigue aceptando solicitudes
 
 112. multi-tenancy
 
@@ -3721,6 +4006,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 112.27 Configurar mínimos privilegios y secretos en multi-tenancy
 112.28 Probar fallos de autenticación, acceso y exposición en multi-tenancy
 112.29 Auditar controles y procedimientos de recuperación de multi-tenancy
+112.30 Vincular tenant a identidad autenticada y credenciales de salida
+112.31 Verificar aislamiento, límites y rutas de error con pruebas de suplantación
+112.32 Impedir selección de tenant arbitrario mediante atributos o headers enviados por clientes no fiables
+112.33 Probar aislamiento de credenciales, cuotas y backends cuando un tenant satura el gateway
 
 113. seguridad
 
@@ -3753,6 +4042,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 113.27 Separar identidad de workload, Collector y backend
 113.28 Cifrado en tránsito, autorización y segmentación de red
 113.29 Auditar configuración y pruebas de filtrado de secretos
+113.30 Modelar amenazas de emisores, Collectors, operadores y backends
+113.31 Aplicar controles en fronteras de confianza y revisar endpoints de diagnóstico
 
 114. TLS
 
@@ -3785,6 +4076,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 114.27 Configurar mínimos privilegios y secretos en TLS
 114.28 Probar fallos de autenticación, acceso y exposición en TLS
 114.29 Auditar controles y procedimientos de recuperación de TLS
+114.30 Validar CA, hostname, cadena y caducidad de certificados TLS
+114.31 Rotar certificados y comprobar conexiones nuevas sin desactivar verificación
 
 115. mTLS
 
@@ -3817,6 +4110,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 115.27 Configurar mínimos privilegios y secretos en mTLS
 115.28 Probar fallos de autenticación, acceso y exposición en mTLS
 115.29 Auditar controles y procedimientos de recuperación de mTLS
+115.30 Autenticar clientes por certificado y documentar identidad y permisos
+115.31 Probar certificados revocados o caducados y límites del mecanismo de revocación elegido
 
 116. autenticación
 
@@ -3849,6 +4144,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 116.27 Configurar mínimos privilegios y secretos en autenticación
 116.28 Probar fallos de autenticación, acceso y exposición en autenticación
 116.29 Auditar controles y procedimientos de recuperación de autenticación
+116.30 Comparar autenticación entrante y saliente mediante extensiones disponibles
+116.31 Verificar tokens ausentes, expirados y credenciales incorrectas sin imprimir secretos
 
 117. autorización
 
@@ -3881,6 +4178,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 117.27 Configurar mínimos privilegios y secretos en autorización
 117.28 Probar fallos de autenticación, acceso y exposición en autorización
 117.29 Auditar controles y procedimientos de recuperación de autorización
+117.30 Separar validación de identidad y decisión de acceso por tenant y ruta
+117.31 Aplicar autorización en el componente o proxy que realmente la soporte
 
 118. secretos
 
@@ -3913,6 +4212,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 118.27 Configurar mínimos privilegios y secretos en secretos
 118.28 Probar fallos de autenticación, acceso y exposición en secretos
 118.29 Auditar controles y procedimientos de recuperación de secretos
+118.30 Inyectar secretos con permisos mínimos y plan de rotación
+118.31 Evitar credenciales en logs, repositorio, argumentos de proceso y dumps
 
 119. protección de datos sensibles
 
@@ -3945,6 +4246,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 119.27 Configurar mínimos privilegios y secretos en protección de datos sensibles
 119.28 Probar fallos de autenticación, acceso y exposición en protección de datos sensibles
 119.29 Auditar controles y procedimientos de recuperación de protección de datos sensibles
+119.30 Inventariar datos sensibles en atributos, cuerpos y contexto propagado
+119.31 Definir retención, acceso y minimización en todas las etapas del flujo
 
 120. PII y redaction
 
@@ -3977,6 +4280,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 120.27 Configurar mínimos privilegios y secretos en PII y redaction
 120.28 Probar fallos de autenticación, acceso y exposición en PII y redaction
 120.29 Auditar controles y procedimientos de recuperación de PII y redaction
+120.30 Construir fixtures con PII en campos anidados y formatos inesperados
+120.31 Verificar redacción antes del envío y revisar también fallos y logs internos
 
 121. hardening del Collector
 
@@ -4009,6 +4314,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 121.27 Configurar mínimos privilegios y secretos en hardening del Collector
 121.28 Probar fallos de autenticación, acceso y exposición en hardening del Collector
 121.29 Auditar controles y procedimientos de recuperación de hardening del Collector
+121.30 Reducir componentes, privilegios, superficie de red y filesystem escribible
+121.31 Revisar seguridad de cadena de suministro y procedencia del binario utilizado
 
 122. Collector como servicio systemd
 
@@ -4041,6 +4348,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 122.27 ExecStart, ExecReload, restart policy y watchdog si aplica
 122.28 Hardening con ProtectSystem, NoNewPrivileges y capabilities
 122.29 journalctl, systemd-analyze security y rollback
+122.30 Configurar usuario, directorios, límites y reinicio de la unidad systemd
+122.31 Verificar tiempo de parada y drenaje de colas con SIGTERM y timeout
+122.32 Probar restart, caída y actualización sin depender de una sesión de terminal interactiva
+122.33 Comprobar compatibilidad del sandbox systemd con acceso a journal, certificados y colas persistentes
 
 123. despliegue en Fedora
 
@@ -4073,6 +4384,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 123.27 Configurar mínimos privilegios y secretos en despliegue en Fedora
 123.28 Probar fallos de autenticación, acceso y exposición en despliegue en Fedora
 123.29 Auditar controles y procedimientos de recuperación de despliegue en Fedora
+123.30 Instalar una versión verificable en Fedora y registrar procedencia del binario
+123.31 Planificar actualización y rollback de binario, configuración y almacenamiento persistente
 
 124. configuración y filesystem
 
@@ -4105,6 +4418,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 124.27 Configurar mínimos privilegios y secretos en configuración y filesystem
 124.28 Probar fallos de autenticación, acceso y exposición en configuración y filesystem
 124.29 Auditar controles y procedimientos de recuperación de configuración y filesystem
+124.30 Separar binarios, configuración, estado, caché y logs con rutas coherentes
+124.31 Aplicar ownership y permisos persistentes en directorios gestionados por systemd
 
 125. permisos y usuario de servicio
 
@@ -4137,6 +4452,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 125.27 Configurar mínimos privilegios y secretos en permisos y usuario de servicio
 125.28 Probar fallos de autenticación, acceso y exposición en permisos y usuario de servicio
 125.29 Auditar controles y procedimientos de recuperación de permisos y usuario de servicio
+125.30 Determinar grupos y capacidades mínimas para journal, archivos y sockets
+125.31 Diagnosticar permisos DAC antes de cambiar políticas SELinux
 
 126. SELinux
 
@@ -4169,6 +4486,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 126.27 Diagnóstico AVC con ausearch y audit2why
 126.28 Permisos de red y políticas locales mínimas
 126.29 Evitar desactivar SELinux como solución
+126.30 Distinguir fallos DAC y AVC de SELinux al acceder a fuentes y almacenamiento
+126.31 Aplicar etiquetas persistentes y validar una política local mínima sin desactivar enforcing
 
 127. firewalld
 
@@ -4201,6 +4520,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 127.27 Configurar mínimos privilegios y secretos en firewalld
 127.28 Probar fallos de autenticación, acceso y exposición en firewalld
 127.29 Auditar controles y procedimientos de recuperación de firewalld
+127.30 Separar puertos de ingestión, scraping y administración por zona y origen
+127.31 Comprobar reglas runtime y permanent con conexiones permitidas y denegadas
 
 128. monitorización del propio Collector
 
@@ -4233,6 +4554,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 128.27 Alertas sobre colas, memoria, errores y saturación
 128.28 Telemetría interna y límites de autoobservabilidad
 128.29 Pruebas de fallo y verificación de alarmas
+128.30 Definir SLOs de recepción, rechazo, exportación y antigüedad de la cola
+128.31 Alertar sobre pérdida de telemetría incluso cuando el Collector sigue vivo
 
 129. internal telemetry
 
@@ -4265,6 +4588,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 129.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de internal telemetry
 129.28 Examinar limitaciones, estabilidad y compatibilidad de internal telemetry
 129.29 Comparar alternativas y diagnosticar fallos reales de internal telemetry
+129.30 Separar observabilidad del proceso y telemetría que atraviesa pipelines
+129.31 Diseñar salida independiente de diagnóstico para evitar puntos ciegos recursivos
 
 130. métricas internas
 
@@ -4297,6 +4622,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 130.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de métricas internas
 130.28 Examinar limitaciones, estabilidad y compatibilidad de métricas internas
 130.29 Comparar alternativas y diagnosticar fallos reales de métricas internas
+130.30 Construir indicadores por receiver, processor y exporter con sus unidades
+130.31 Adaptar consultas al esquema de métricas internas de la versión desplegada
 
 131. logs internos
 
@@ -4329,6 +4656,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 131.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de logs internos
 131.28 Examinar limitaciones, estabilidad y compatibilidad de logs internos
 131.29 Comparar alternativas y diagnosticar fallos reales de logs internos
+131.30 Distinguir errores transitorios, rechazos permanentes y logs de debug
+131.31 Limitar volumen y exposición de datos al habilitar logging detallado
 
 132. zPages y diagnóstico
 
@@ -4361,6 +4690,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 132.27 pprof y perfiles de heap/CPU con control de acceso
 132.28 Correlación de diagnósticos con métricas internas
 132.29 Procedimiento de incident response del Collector
+132.30 Restringir zPages y pprof a interfaces y operadores autorizados
+132.31 Capturar un perfil de diagnóstico sin confundirlo con transporte de la señal profiles
 
 133. health checks
 
@@ -4393,6 +4724,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 133.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de health checks
 133.28 Examinar limitaciones, estabilidad y compatibilidad de health checks
 133.29 Comparar alternativas y diagnosticar fallos reales de health checks
+133.30 Distinguir proceso vivo, listo para recibir y backend accesible
+133.31 Diseñar probes que no causen reinicios en cascada durante un fallo externo
 
 134. troubleshooting OTLP
 
@@ -4425,6 +4758,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 134.27 Localizar la etapa de pérdida de datos en troubleshooting OTLP
 134.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting OTLP
 134.29 Documentar corrección, prueba de regresión y runbook de troubleshooting OTLP
+134.30 Reproducir endpoint incorrecto, Content-Type incompatible y certificado no válido
+134.31 Separar rechazos parciales y fallos de transporte mediante solicitudes controladas
 
 135. troubleshooting receivers
 
@@ -4457,6 +4792,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 135.27 Localizar la etapa de pérdida de datos en troubleshooting receivers
 135.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting receivers
 135.29 Documentar corrección, prueba de regresión y runbook de troubleshooting receivers
+135.30 Diagnosticar listener no enlazado, puerto ocupado y permisos sobre la fuente
+135.31 Comparar cero datos recibidos y datos rechazados por parseo o formato
 
 136. troubleshooting processors
 
@@ -4489,6 +4826,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 136.27 Localizar la etapa de pérdida de datos en troubleshooting processors
 136.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting processors
 136.29 Documentar corrección, prueba de regresión y runbook de troubleshooting processors
+136.30 Localizar descarte por filtros, conversión OTTL fallida y presión de memoria
+136.31 Aislar temporalmente una etapa mediante fixtures sin eliminar controles en producción
 
 137. troubleshooting exporters
 
@@ -4521,6 +4860,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 137.27 Localizar la etapa de pérdida de datos en troubleshooting exporters
 137.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting exporters
 137.29 Documentar corrección, prueba de regresión y runbook de troubleshooting exporters
+137.30 Diagnosticar 401/403, rate limits, DNS y mensajes demasiado grandes
+137.31 Determinar qué solicitudes se reintentan y cuáles se descartan permanentemente
 
 138. troubleshooting pipelines
 
@@ -4553,6 +4894,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 138.27 Localizar la etapa de pérdida de datos en troubleshooting pipelines
 138.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting pipelines
 138.29 Documentar corrección, prueba de regresión y runbook de troubleshooting pipelines
+138.30 Detectar referencias inválidas, pipelines ausentes y componentes no habilitados
+138.31 Comparar payload recibido y emitido para localizar transformación o pérdida
 
 139. troubleshooting context propagation
 
@@ -4585,6 +4928,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 139.27 Localizar la etapa de pérdida de datos en troubleshooting context propagation
 139.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting context propagation
 139.29 Documentar corrección, prueba de regresión y runbook de troubleshooting context propagation
+139.30 Reproducir contexto roto en executor, callback y consumidor de mensajes
+139.31 Inspeccionar carriers y ciclos attach/detach para evitar contaminación entre solicitudes
 
 140. troubleshooting missing spans
 
@@ -4617,6 +4962,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 140.27 Localizar la etapa de pérdida de datos en troubleshooting missing spans
 140.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting missing spans
 140.29 Documentar corrección, prueba de regresión y runbook de troubleshooting missing spans
+140.30 Separar descarte por sampler y spans no finalizados o no exportados
+140.31 Reconstruir una trace parcial y buscar la frontera donde cambió el TraceId
 
 141. troubleshooting missing metrics
 
@@ -4649,6 +4996,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 141.27 Localizar la etapa de pérdida de datos en troubleshooting missing metrics
 141.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting missing metrics
 141.29 Documentar corrección, prueba de regresión y runbook de troubleshooting missing metrics
+141.30 Distinguir falta de mediciones, callbacks fallidos y ausencia de colección
+141.31 Inspeccionar temporality, resets y colisiones de identidad de streams
 
 142. troubleshooting missing logs
 
@@ -4681,6 +5030,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 142.27 Localizar la etapa de pérdida de datos en troubleshooting missing logs
 142.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting missing logs
 142.29 Documentar corrección, prueba de regresión y runbook de troubleshooting missing logs
+142.30 Reproducir pérdida por multiline, rotación, permisos y offsets
+142.31 Distinguir logs no emitidos, leídos, descartados y aceptados sin indexación
 
 143. troubleshooting cardinalidad
 
@@ -4713,6 +5064,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 143.27 Localizar la etapa de pérdida de datos en troubleshooting cardinalidad
 143.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting cardinalidad
 143.29 Documentar corrección, prueba de regresión y runbook de troubleshooting cardinalidad
+143.30 Identificar claves de mayor expansión y estimar su contribución a series
+143.31 Detectar cambios de cardinalidad por rollout y metadatos de instancias efímeras
 
 144. troubleshooting rendimiento
 
@@ -4745,6 +5098,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 144.27 Localizar la etapa de pérdida de datos en troubleshooting rendimiento
 144.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting rendimiento
 144.29 Documentar corrección, prueba de regresión y runbook de troubleshooting rendimiento
+144.30 Aislar cuello de botella en CPU, red, backend y procesamiento OTTL
+144.31 Comparar throughput y latencia bajo carga constante y ráfagas reproducibles
 
 145. troubleshooting memoria
 
@@ -4777,6 +5132,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 145.27 Localizar la etapa de pérdida de datos en troubleshooting memoria
 145.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting memoria
 145.29 Documentar corrección, prueba de regresión y runbook de troubleshooting memoria
+145.30 Relacionar heap, RSS, límites de cola y retención de traces en tail sampling
+145.31 Probar límites de memoria y documentar rechazo, caída y recuperación
 
 146. troubleshooting queues y backpressure
 
@@ -4809,6 +5166,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 146.27 Localizar la etapa de pérdida de datos en troubleshooting queues y backpressure
 146.28 Inspeccionar métricas internas, logs y códigos de error de troubleshooting queues y backpressure
 146.29 Documentar corrección, prueba de regresión y runbook de troubleshooting queues y backpressure
+146.30 Reproducir saturación con backend lento y medir crecimiento y drenaje de colas
+146.31 Estimar tiempo de recuperación y pérdida con presupuesto de almacenamiento finito
 
 147. debugging end-to-end
 
@@ -4841,6 +5200,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 147.27 Localizar la etapa de pérdida de datos en debugging end-to-end
 147.28 Inspeccionar métricas internas, logs y códigos de error de debugging end-to-end
 147.29 Documentar corrección, prueba de regresión y runbook de debugging end-to-end
+147.30 Seguir identificadores conocidos desde emisor hasta consulta final del backend
+147.31 Construir una línea temporal de recepción, procesamiento, exportación e indexación
 
 148. testing de pipelines
 
@@ -4873,6 +5234,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 148.27 Pruebas golden con payloads OTLP y assertions
 148.28 Pruebas de carga, fallos, duplicados y recuperación
 148.29 CI de configuraciones y regresión entre versiones
+148.30 Mantener fixtures positivos y negativos por contrato de señal y pipeline
+148.31 Ejecutar regresión de configuración y payloads al actualizar componentes
+148.32 Separar tests estáticos de configuración y pruebas de ejecución con datos reales
+148.33 Guardar fixtures, versiones y hashes de resultados evitando secretos y datos de producción
 
 149. generación de telemetría de prueba
 
@@ -4905,6 +5270,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 149.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de generación de telemetría de prueba
 149.28 Examinar limitaciones, estabilidad y compatibilidad de generación de telemetría de prueba
 149.29 Comparar alternativas y diagnosticar fallos reales de generación de telemetría de prueba
+149.30 Generar telemetría sintética con tasas, tamaños e identificadores controlados
+149.31 Separar prueba de conectividad y prueba de fidelidad semántica de las señales
 
 150. observabilidad distribuida
 
@@ -4937,6 +5304,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 150.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de observabilidad distribuida
 150.28 Examinar limitaciones, estabilidad y compatibilidad de observabilidad distribuida
 150.29 Comparar alternativas y diagnosticar fallos reales de observabilidad distribuida
+150.30 Distinguir causalidad, orden temporal y sincronización de relojes distribuidos
+150.31 Investigar incidentes con datos parciales sin atribuir ausencia de evidencia a servicio sano
 
 151. service graphs
 
@@ -4969,6 +5338,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 151.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de service graphs
 151.28 Examinar limitaciones, estabilidad y compatibilidad de service graphs
 151.29 Comparar alternativas y diagnosticar fallos reales de service graphs
+151.30 Construir relaciones de servicio desde spans y documentar spans requeridos
+151.31 Evaluar efecto de sampling, spans faltantes y afinidad en métricas del grafo
 
 152. trace-to-logs
 
@@ -5001,6 +5372,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 152.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de trace-to-logs
 152.28 Examinar limitaciones, estabilidad y compatibilidad de trace-to-logs
 152.29 Comparar alternativas y diagnosticar fallos reales de trace-to-logs
+152.30 Configurar enlaces trace-to-logs con TraceId, ventana temporal y datasource
+152.31 Diagnosticar enlaces vacíos por campos, formato del identificador y retención desigual
 
 153. trace-to-metrics
 
@@ -5033,6 +5406,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 153.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de trace-to-metrics
 153.28 Examinar limitaciones, estabilidad y compatibilidad de trace-to-metrics
 153.29 Comparar alternativas y diagnosticar fallos reales de trace-to-metrics
+153.30 Derivar métricas de spans y compararlas con métricas registradas directamente
+153.31 Evitar colisiones de escritor y documentar sesgo causado por sampling
 
 154. exemplars
 
@@ -5065,6 +5440,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 154.27 Reservoirs, sampling y visibilidad de exemplars
 154.28 Compatibilidad de backend y formatos de exportación
 154.29 Laboratorio salto de métrica a trace
+154.30 Propagar referencias de traces mediante exemplars sin convertir TraceId en etiqueta métrica
+154.31 Verificar retención y navegación cuando el exemplar apunta a una trace descartada
 
 155. correlación entre señales
 
@@ -5097,6 +5474,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 155.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de correlación entre señales
 155.28 Examinar limitaciones, estabilidad y compatibilidad de correlación entre señales
 155.29 Comparar alternativas y diagnosticar fallos reales de correlación entre señales
+155.30 Relacionar traces, logs, métricas y profiles mediante recursos e identificadores compatibles
+155.31 Definir degradación de la investigación cuando una señal está ausente o retrasada
+155.32 Relacionar perfiles y traces solo cuando exista soporte verificable en productor y backend
+155.33 Evitar usar atributos de alta cardinalidad como etiquetas para conseguir enlaces entre señales
 
 156. diseño de una plataforma de observabilidad
 
@@ -5129,6 +5510,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 156.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de diseño de una plataforma de observabilidad
 156.28 Examinar limitaciones, estabilidad y compatibilidad de diseño de una plataforma de observabilidad
 156.29 Comparar alternativas y diagnosticar fallos reales de diseño de una plataforma de observabilidad
+156.30 Separar contratos de ingestión, procesamiento, almacenamiento y consulta
+156.31 Definir ownership, SLOs, retención y ADRs de una plataforma con múltiples equipos
 
 157. alta disponibilidad del Collector
 
@@ -5159,8 +5542,12 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 157.25 laboratorio: integrar alta disponibilidad del Collector end-to-end
 157.26 HA por señal y análisis de componentes stateful
 157.27 Distribución de carga, afinidad y failover
-157.28 Evitar pérdida y duplicados durante rolling upgrades
+157.28 Medir y minimizar pérdida y duplicados durante rolling upgrades, documentando los límites observados
 157.29 Simulación de fallo de nodo y backend
+157.30 Clasificar receivers y processors con estado antes de replicar gateways
+157.31 Evitar escritores métricos concurrentes y documentar límites de failover
+157.32 Ejecutar rolling upgrade con colas pendientes y medir continuidad por señal
+157.33 Documentar estado no replicado y límites de recuperación automática después de perder una instancia
 
 158. escalabilidad horizontal
 
@@ -5193,6 +5580,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 158.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de escalabilidad horizontal
 158.28 Examinar limitaciones, estabilidad y compatibilidad de escalabilidad horizontal
 158.29 Comparar alternativas y diagnosticar fallos reales de escalabilidad horizontal
+158.30 Elegir señales de escalado sin reaccionar solo a CPU del Collector
+158.31 Medir impacto de scale-out y scale-in sobre estado, afinidad y colas
 
 159. balanceo de collectors
 
@@ -5225,6 +5614,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 159.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de balanceo de collectors
 159.28 Examinar limitaciones, estabilidad y compatibilidad de balanceo de collectors
 159.29 Comparar alternativas y diagnosticar fallos reales de balanceo de collectors
+159.30 Probar conexiones gRPC largas a través de un balanceador L4
+159.31 Diseñar reparto consciente de datos para traces y streams métricos con estado
 
 160. capacity planning
 
@@ -5257,6 +5648,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 160.27 Pruebas de carga con percentiles y factor de crecimiento
 160.28 Presupuesto de CPU, RAM, red y almacenamiento
 160.29 Documento de dimensionamiento y criterios de escalado
+160.30 Modelar capacidad sostenida, ráfagas y caída temporal del backend
+160.31 Dimensionar almacenamiento de cola con bytes reales y duración tolerada de interrupción
 
 161. performance tuning
 
@@ -5289,6 +5682,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 161.27 Diseñar un ejemplo reproducible con entradas y salidas verificables de performance tuning
 161.28 Examinar limitaciones, estabilidad y compatibilidad de performance tuning
 161.29 Comparar alternativas y diagnosticar fallos reales de performance tuning
+161.30 Comparar coste de regex, transformaciones, compresión y batch con perfiles de CPU
+161.31 Optimizar sin cambiar contratos de datos ni ocultar pérdida de registros
 
 162. Collector internals
 
@@ -5321,6 +5716,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 162.27 Seguir el flujo de pdata y la propagación de errores en Collector internals
 162.28 Implementar pruebas unitarias, de integración y benchmarks para Collector internals
 162.29 Evaluar compatibilidad, concurrencia y evolución upstream de Collector internals
+162.30 Recorrer bootstrap, configuración, factories y ensamblado del grafo del Collector
+162.31 Separar contratos públicos, módulos internos y APIs sujetos a cambio
 
 163. component lifecycle
 
@@ -5353,6 +5750,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 163.27 Seguir el flujo de pdata y la propagación de errores en component lifecycle
 163.28 Implementar pruebas unitarias, de integración y benchmarks para component lifecycle
 163.29 Evaluar compatibilidad, concurrencia y evolución upstream de component lifecycle
+163.30 Gestionar Validate, Start y Shutdown según las interfaces de la versión elegida
+163.31 Probar arranque parcial, liberación de recursos y cancelación de goroutines
 
 164. consumer model
 
@@ -5385,6 +5784,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 164.27 Seguir el flujo de pdata y la propagación de errores en consumer model
 164.28 Implementar pruebas unitarias, de integración y benchmarks para consumer model
 164.29 Evaluar compatibilidad, concurrencia y evolución upstream de consumer model
+164.30 Interpretar capacidades de consumidor y mutabilidad de datos en fan-out
+164.31 Seguir propagación de errores permanentes y recuperables entre componentes
 
 165. pdata
 
@@ -5417,6 +5818,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 165.27 Mutabilidad, copias, reference semantics y fan-out
 165.28 Recorrido de ResourceSpans y ScopeSpans
 165.29 Benchmark y pruebas unitarias con pdata
+165.30 Crear y recorrer pdata sin reutilizar estructuras fuera de su ownership
+165.31 Medir coste de copias y mutaciones en pipelines con varios consumidores
 
 166. receiver internals
 
@@ -5449,6 +5852,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 166.27 Seguir el flujo de pdata y la propagación de errores en receiver internals
 166.28 Implementar pruebas unitarias, de integración y benchmarks para receiver internals
 166.29 Evaluar compatibilidad, concurrencia y evolución upstream de receiver internals
+166.30 Seguir aceptación de solicitudes y entrega a consumidores del receiver OTLP
+166.31 Relacionar errores downstream con respuestas al cliente y retry del emisor
 
 167. processor internals
 
@@ -5481,6 +5886,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 167.27 Seguir el flujo de pdata y la propagación de errores en processor internals
 167.28 Implementar pruebas unitarias, de integración y benchmarks para processor internals
 167.29 Evaluar compatibilidad, concurrencia y evolución upstream de processor internals
+167.30 Implementar procesamiento síncrono respetando cancelación y mutabilidad
+167.31 Analizar retención de estado y concurrencia de processors que agrupan datos
 
 168. exporter internals
 
@@ -5513,6 +5920,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 168.27 Seguir el flujo de pdata y la propagación de errores en exporter internals
 168.28 Implementar pruebas unitarias, de integración y benchmarks para exporter internals
 168.29 Evaluar compatibilidad, concurrencia y evolución upstream de exporter internals
+168.30 Seguir serialización, colas y clasificación de errores de un exporter
+168.31 Verificar que el contrato de exportación no implica persistencia definitiva en el backend
 
 169. connector internals
 
@@ -5545,6 +5954,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 169.27 Seguir el flujo de pdata y la propagación de errores en connector internals
 169.28 Implementar pruebas unitarias, de integración y benchmarks para connector internals
 169.29 Evaluar compatibilidad, concurrencia y evolución upstream de connector internals
+169.30 Rastrear conversión entre tipos de señal y construcción de consumidores
+169.31 Verificar métricas derivadas y eliminación de estado al cerrar un connector
 
 170. pipeline internals
 
@@ -5577,6 +5988,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 170.27 Seguir el flujo de pdata y la propagación de errores en pipeline internals
 170.28 Implementar pruebas unitarias, de integración y benchmarks para pipeline internals
 170.29 Evaluar compatibilidad, concurrencia y evolución upstream de pipeline internals
+170.30 Reconstruir fan-out y componentes compartidos desde la configuración
+170.31 Identificar dónde se realizan copias y cómo se propaga un fallo entre ramas
 
 171. queue internals
 
@@ -5609,6 +6022,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 171.27 Seguir el flujo de pdata y la propagación de errores en queue internals
 171.28 Implementar pruebas unitarias, de integración y benchmarks para queue internals
 171.29 Evaluar compatibilidad, concurrencia y evolución upstream de queue internals
+171.30 Analizar inserción, consumo, persistencia y confirmación en la cola elegida
+171.31 Probar recuperación y duplicados ante fallo entre envío y confirmación
 
 172. OTLP internals
 
@@ -5641,6 +6056,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 172.27 Seguir el flujo de pdata y la propagación de errores en OTLP internals
 172.28 Implementar pruebas unitarias, de integración y benchmarks para OTLP internals
 172.29 Evaluar compatibilidad, concurrencia y evolución upstream de OTLP internals
+172.30 Seguir decode Protobuf, conversión pdata y encode de la respuesta OTLP
+172.31 Interpretar partial_success y límites de transporte desde las implementaciones
 
 173. desarrollo de componentes personalizados
 
@@ -5673,6 +6090,10 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 173.27 Config validation, lifecycle y consumer contracts
 173.28 Telemetría interna, testing y documentación
 173.29 Distribución custom con Builder y CI
+173.30 Definir contrato de configuración y señales soportadas de un componente
+173.31 Separar extensión del Collector en Go e instrumentación de aplicaciones en el lenguaje elegido
+173.32 Explicar que el código de componentes del Collector requiere Go aunque la aplicación use otro lenguaje
+173.33 Mantener desarrollo de componentes como etapa experta con prerrequisitos explícitos
 
 174. desarrollo de receivers
 
@@ -5705,6 +6126,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 174.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de receivers
 174.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de receivers
 174.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de receivers
+174.30 Implementar un receiver mínimo con lifecycle y consumidor de prueba
+174.31 Probar entrada inválida, cancelación y errores del consumidor sin perder recursos
 
 175. desarrollo de processors
 
@@ -5737,6 +6160,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 175.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de processors
 175.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de processors
 175.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de processors
+175.30 Implementar un processor que transforme atributos con fixtures conocidos
+175.31 Probar no mutación accidental y propagación correcta de errores
 
 176. desarrollo de exporters
 
@@ -5769,6 +6194,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 176.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de exporters
 176.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de exporters
 176.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de exporters
+176.30 Implementar un exporter de prueba con endpoint y timeouts configurables
+176.31 Probar rechazo permanente, fallo transitorio y parada durante envío
 
 177. desarrollo de connectors
 
@@ -5801,6 +6228,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 177.27 Seguir el flujo de pdata y la propagación de errores en desarrollo de connectors
 177.28 Implementar pruebas unitarias, de integración y benchmarks para desarrollo de connectors
 177.29 Evaluar compatibilidad, concurrencia y evolución upstream de desarrollo de connectors
+177.30 Implementar un connector mínimo entre señales sin ciclos de pipeline
+177.31 Verificar conteos derivados y estabilidad de dimensiones bajo concurrencia
 
 178. testing de componentes
 
@@ -5833,6 +6262,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 178.27 Seguir el flujo de pdata y la propagación de errores en testing de componentes
 178.28 Implementar pruebas unitarias, de integración y benchmarks para testing de componentes
 178.29 Evaluar compatibilidad, concurrencia y evolución upstream de testing de componentes
+178.30 Combinar tests de configuración, lifecycle y contratos de consumidor
+178.31 Ejecutar race detector, benchmarks y pruebas de integración con payloads reales
 
 179. Collector Builder avanzado
 
@@ -5865,6 +6296,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 179.27 Seguir el flujo de pdata y la propagación de errores en Collector Builder avanzado
 179.28 Implementar pruebas unitarias, de integración y benchmarks para Collector Builder avanzado
 179.29 Evaluar compatibilidad, concurrencia y evolución upstream de Collector Builder avanzado
+179.30 Fijar módulos de componentes y construir una distribución reproducible
+179.31 Gestionar incompatibilidades de dependencias y publicar inventario del binario
 
 180. contribución al ecosistema OpenTelemetry
 
@@ -5897,13 +6330,15 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 180.27 Tests, linters y compatibilidad con especificación
 180.28 Documentar estabilidad, seguridad y mantenimiento
 180.29 Crear PR mínimo y reproducible con changelog
+180.30 Preparar un cambio mínimo con reproducción, tests y justificación técnica
+180.31 Seguir políticas del repositorio para estabilidad, seguridad y mantenimiento de componentes
 
 181. Arquitecturas reales
 
 181.1 aplicación → Collector → Prometheus
 181.2 aplicación → Collector → Loki
 181.3 aplicación → Collector → Tempo
-181.4 aplicación → Collector → Grafana
+181.4 aplicación → Collector → Prometheus/Loki/Tempo → consulta y visualización en Grafana; alternativa Grafana Cloud con endpoint de ingestión explícito
 181.5 aplicación → Collector → Elastic
 181.6 aplicación → Collector → OpenSearch
 181.7 aplicación → Collector → múltiples backends
@@ -5916,6 +6351,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 181.14 Matriz de compatibilidad de señal/protocolo/backend
 181.15 Análisis de fallo de cada salto y rutas alternativas
 181.16 Decisiones ADR y pruebas de aceptación de arquitectura
+181.17 Comparar arquitectura local, Kubernetes e híbrida mediante los mismos contratos por señal
+181.18 Documentar ruta de ingestión real y consultas para cada backend seleccionado
 
 182. Laboratorios integradores
 
@@ -5946,6 +6383,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 182.25 Matriz de pruebas por señal, versión y backend
 182.26 Fault injection: latencia, corte de red y reinicios
 182.27 Informe de rendimiento y evidencias reproducibles
+182.28 Ejecutar escenarios controlados de fallo y contabilizar aceptados, descartados y duplicados
+182.29 Validar limpieza, reinicio del entorno y repetibilidad de evidencias
 
 183. PROYECTO FINAL EXPERTO
 
@@ -5983,3 +6422,8 @@ OPENTELEMETRY EN PROFUNDIDAD — 0 A EXPERTO
 183.32 Entregar configuración versionada, tests y runbooks
 183.33 Ejecutar simulacro de incidentes y recuperación
 183.34 Defender trade-offs de coste, seguridad y resiliencia
+183.35 Entregar una matriz de cobertura que vincule requisitos, configuración y pruebas
+183.36 Justificar límites de durabilidad, afinidad, rendimiento y privacidad con evidencias del proyecto
+183.37 Aceptar una sola implementación de aplicación en Python, C++, Go, JavaScript o Java a elección del estudiante
+183.38 Verificar caminos de fallo, revocación de acceso, rotación de credenciales y recuperación del servicio
+183.39 Entregar matriz de versiones y compatibilidad junto a evidencias de carga, pérdida y duplicados

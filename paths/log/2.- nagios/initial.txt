@@ -125,6 +125,8 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 3.23 nagios -v
 3.24 acceso a la interfaz web
 3.25 laboratorio: instalación completa de Nagios Core
+3.26 Laboratorio guiado: OK/CRITICAL, reintentos y estado HARD
+3.27 Introducción a macros: $HOSTADDRESS$, $ARG1$ y $USER1$
 
 
 4. Arquitectura de Nagios Core
@@ -151,6 +153,8 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 4.20 flujo interno de service check
 4.21 flujo interno de notification
 4.22 laboratorio: seguir un check desde scheduling hasta notification
+4.23 Laboratorio guiado: transición SOFT/HARD con línea temporal
+4.24 Reconocer macros de estado sin adelantar su catálogo completo
 
 
 5. Configuración de Nagios
@@ -269,7 +273,7 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 9.15 check_freshness
 9.16 freshness_threshold
 9.17 event_handler
-9.18 flap_detection
+9.18 flap_detection_enabled
 9.19 process_perf_data
 9.20 retain_status_information
 9.21 notification_interval
@@ -345,6 +349,8 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 12.27 Nagios Exchange
 12.28 seguridad de plugins
 12.29 laboratorio: probar y diagnosticar plugins
+12.30 Nagios Plugins y Monitoring Plugins: proyectos y paquetes distintos
+12.31 Identificar proveedor, versión, compilación y opciones con --help
 
 
 13. Plugin API
@@ -356,7 +362,7 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 13.5 código 0
 13.6 código 1
 13.7 código 2
-13.8 código 3
+13.8 código 3 y diferencia entre resultados de hosts y servicios
 13.9 OK
 13.10 WARNING
 13.11 CRITICAL
@@ -420,6 +426,9 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 15.18 service state logic
 15.19 impacto en notifications
 15.20 laboratorio: provocar y analizar transiciones de estado
+15.21 Estados pasivos de hosts y passive_host_checks_are_soft
+15.22 translate_passive_host_checks y topología del receptor
+15.23 Laboratorio: comparar resultados activos y pasivos de hosts
 
 
 16. Scheduling
@@ -682,6 +691,9 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 29.19 TLS
 29.20 troubleshooting
 29.21 laboratorio: monitorizar Fedora mediante NCPA
+29.22 check_ncpa.py: API activa, argumentos y permisos
+29.23 NCPA pasivo: receptor NRDP y configuración según versión
+29.24 Laboratorio: NCPA → NRDP → Nagios Core con HTTPS
 
 
 30. Monitorización mediante SSH
@@ -738,6 +750,13 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 32.12 distributed monitoring
 32.13 seguridad
 32.14 laboratorio: enviar resultados pasivos
+32.15 NRDP: receptor, cliente y entrega a Nagios Core
+32.16 HTTPS, validación del certificado, tokens y permisos del receptor
+32.17 Correspondencia exacta de host_name y service_description
+32.18 Timestamps, desfase horario y antigüedad del resultado recibido
+32.19 Buffer, reintentos y duplicados en el emisor: diseño externo
+32.20 NSCA como alternativa: evaluar seguridad y compatibilidad
+32.21 Laboratorio: interrupción del transporte y detección por freshness
 
 
 33. External commands
@@ -943,6 +962,8 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 43.12 redundancia
 43.13 seguridad
 43.14 laboratorio: diseñar monitorización distribuida
+43.15 Laboratorio: emisor remoto y receptor NRDP en red aislada
+43.16 Responsabilidad por notificaciones entre nodo central y remoto
 
 
 44. Alta disponibilidad
@@ -1114,7 +1135,7 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 50.2 Checks de extremo a extremo frente a checks de componentes
 50.3 HTTP: códigos de estado, cabeceras, redirecciones y contenido
 50.4 HTTPS: cadena de confianza, hostname, caducidad y renovación
-50.5 check_http y check_curl: selección y compatibilidad por versión
+50.5 check_http/check_curl: proyecto proveedor, versión y compatibilidad
 50.6 APIs REST: autenticación, métodos, tiempos de respuesta y JSON
 50.7 Validación semántica de respuestas y falsos positivos
 50.8 DNS: consultas A, AAAA, MX, TXT, PTR y resolución autoritativa
@@ -1334,31 +1355,31 @@ NAGIOS EN PROFUNDIDAD — FEDORA/RHEL
 56.49 realizar auditoría final de monitorización
 56.50 proyecto final: operar y diagnosticar una plataforma Nagios de producción
 
-56.51 Definir requisitos, alcance y criterios de aceptación
-56.52 Diseñar topología Fedora/RHEL con redes aisladas
-56.53 Instalar Nagios Core con procedimiento reproducible
-56.54 Desplegar Apache/CGI con TLS y autenticación
-56.55 Aplicar SELinux enforcing y firewalld mínimo
-56.56 Crear configuración modular y templates reutilizables
-56.57 Registrar hosts, servicios y dependencias
-56.58 Configurar plugins locales y remotos
-56.59 Monitorizar Linux por SSH, NRPE y NCPA
-56.60 Integrar SNMPv3 y resultados pasivos
-56.61 Monitorizar HTTP, APIs, TLS, DNS y bases de datos
-56.62 Implementar thresholds, freshness y flapping
-56.63 Configurar contacts, notificaciones y escalaciones
-56.64 Diseñar ventanas de mantenimiento y acknowledgements
-56.65 Crear event handlers con límites de seguridad
-56.66 Procesar performance data y visualizar tendencias
-56.67 Configurar logging y state retention
-56.68 Construir rol Ansible y pipeline de validación
-56.69 Probar despliegue, rollback y recuperación
-56.70 Diseñar monitorización distribuida y HA
-56.71 Realizar simulacros de failover y desastre
-56.72 Medir latencia del scheduler y carga
-56.73 Aplicar auditoría de seguridad y revisión de secretos
-56.74 Diagnosticar fallos deliberados de plugins, agentes y red
-56.75 Investigar un flujo interno del engine con herramientas de depuración
-56.76 Entregar diagramas, runbooks y matriz de checks
-56.77 Demostrar cobertura, precisión y trazabilidad de alertas
-56.78 Presentar auditoría final y defensa técnica del diseño
+56.51 Entregable: matriz requisito → check → evidencia → criterio de aceptación
+56.52 Entregable: topología, direccionamiento y manifiesto de versiones
+56.53 Prueba de aceptación: reconstrucción desde inventario en un nodo limpio
+56.54 Prueba de aceptación: acceso web TLS y denegación a usuario no autorizado
+56.55 Evidencia: SELinux enforcing y comunicaciones limitadas por origen
+56.56 Entregable: catálogo de templates y validación de herencia de objetos
+56.57 Prueba de aceptación: referencias válidas y dependencias sin ciclos
+56.58 Prueba de contrato: plugins con salidas 0/1/2/3 y timeout controlado
+56.59 Prueba comparativa: SSH, NRPE y NCPA ante el mismo fallo remoto
+56.60 Prueba de aceptación: SNMPv3 y NCPA → NRDP con HTTPS autenticado
+56.61 Evidencia: fallo funcional detectado con proceso y puerto aún disponibles
+56.62 Prueba de límites: thresholds, freshness y entrada/salida de flapping
+56.63 Prueba de aceptación: destinatarios, escalaciones y recuperación correctos
+56.64 Prueba de aceptación: acknowledgement y downtime con supresión explicada
+56.65 Prueba de seguridad: remediación acotada sin bucles ni privilegios globales
+56.66 Evidencia: perfdata trazable hasta el gráfico y detección de muestras perdidas
+56.67 Prueba de aceptación: retención tras reinicio y cronología de logs
+56.68 Prueba de CI: rechazar configuración inválida antes de activar cambios
+56.69 Prueba de aceptación: rollback y restauración con integridad comprobada
+56.70 Entregable: decisiones de distribución y HA con riesgos justificados
+56.71 Evidencia: failover sin notificaciones duplicadas y RPO/RTO medidos
+56.72 Informe: latencia, execution time y capacidad bajo carga documentada
+56.73 Evidencia: permisos y secretos revisados sin credenciales en entregables
+56.74 Prueba ciega: diagnóstico de fallos de plugin, agente, red y transporte
+56.75 Informe: recorrido de un check por el código con tag/commit identificado
+56.76 Entregable: diagramas y runbooks reproducibles para otro operador
+56.77 Informe: cobertura, falsos positivos y tiempo de detección de la campaña
+56.78 Defensa técnica: evaluación de evidencias y decisiones de arquitectura

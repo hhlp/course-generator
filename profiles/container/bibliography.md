@@ -94,10 +94,12 @@ comprender decisiones de diseño y seguridad.
 ### 1.3 The Ultimate Docker Container Book
 
 **Gabriel N. Schenker.**
-*The Ultimate Docker Container Book.*
+*The Ultimate Docker Container Book: Build, test, ship, and run containers
+with Docker and Kubernetes.*
+Third Edition. Packt Publishing, 2023. ISBN-13: 9781804613986.
 
-Usar la edición disponible en la biblioteca del proyecto. Para referencias
-actuales puede utilizarse la edición más reciente disponible.
+Esta es la edición pedagógica de referencia; validar comandos y opciones
+contra la versión instalada y la documentación oficial correspondiente.
 
 ### Papel dentro del PATH
 
@@ -546,3 +548,33 @@ Los scopes indican dónde consultar; no implican que cada fuente cubra todas las
 | Automatización y capstone | 60–61 | Los tres libros como apoyo conceptual | Docker Engine API, Docker Swarm CLI, OCI y manuales de Ansible |
 
 Documentación principal: https://docs.docker.com/engine/swarm/ y https://docs.docker.com/reference/cli/docker/ . La cobertura de Swarm en cada libro no se presupone: para comportamiento actual y opciones concretas prevalece la documentación oficial.
+
+
+## 16. Enlaces de referencia y reglas de aplicación
+
+- [Podman: manuales oficiales](https://docs.podman.io/)
+- [Buildah: código y manuales upstream](https://github.com/containers/buildah)
+- [Skopeo: código y manuales upstream](https://github.com/containers/skopeo)
+- [OCI: especificaciones](https://opencontainers.org/)
+- [Docker Engine en Fedora](https://docs.docker.com/engine/install/fedora/)
+- [Docker rootless](https://docs.docker.com/engine/security/rootless/)
+- [Stacks en Swarm](https://docs.docker.com/engine/swarm/stack-deploy/)
+- [Docker Swarm](https://docs.docker.com/engine/swarm/)
+- [Compose Specification](https://compose-spec.io/)
+- [Docker, edición de referencia de Packt](https://www.packtpub.com/en-us/product/the-ultimate-docker-container-book-9781804613986)
+- [Podman for DevOps, segunda edición](https://www.packtpub.com/en-us/product/podman-for-devops-9781835886625)
+
+Aplicar las especificaciones al contrato que realmente corresponda. En
+particular, stack deploy utiliza el formato heredado Compose v3; contrastar sus
+campos con Docker Docs en lugar de extrapolar toda la Compose Specification.
+
+Para Docker rootless, usar la guía específica y distinguirlo de userns-remap.
+Para instalación Fedora, documentar la alternativa elegida (Docker CE o Moby),
+el repositorio y las versiones. Los enlaces son puntos de entrada: cada lección
+debe identificar la versión aplicable y no trasladar comandos obsoletos de libros.
+
+Los proyectos 39, 52 y 61 comparten contrato y acumulan capacidades. Las fuentes
+del proyecto final incluyen las del diagnóstico local y la documentación
+CLI/API de Swarm; cualquier afirmación de salud debe indicar evidencias y límites
+de acceso. La jerarquía unificada de la sección 14 prevalece sobre resúmenes
+anteriores cuando puedan interpretarse de forma diferente.

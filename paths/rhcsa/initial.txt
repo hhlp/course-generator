@@ -25,6 +25,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 
 0.21 Arquitectura Linux moderna: kernel, espacio de usuario y llamadas al sistema [CORE]
 0.22 Diferenciar componentes upstream, Fedora y RHEL 10 [RHEL]
+0.23 Mapa de competencias EX200: objetivo oficial, lección, laboratorio y evidencia [EX200]
 
 1. Laboratorio, instalación y Anaconda
 1.1 requisitos de laboratorio
@@ -71,6 +72,11 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 
 1.42 Kickstart: diagnóstico de instalación desatendida y validación postinstalación [RHEL+]
 1.43 Laboratorio: instalación reproducible y recuperación de errores de Anaconda [RHEL+]
+1.44 Topología mínima: dos máquinas RHEL 10, red privada, consola y discos de prácticas [RHEL]
+1.45 Puesta en marcha guiada: identificar IP y comprobar conectividad con nmcli, ip y ping [CORE]
+1.46 Primer acceso SSH al laboratorio: comprobar huella, iniciar sesión y transferir un archivo de prueba [EX200]
+1.47 Snapshots y reinicio del laboratorio: diferenciar reversión de VM y restauración de backup [RHEL]
+1.48 Inventario de versiones: /etc/os-release, kernel, paquetes y repositorios disponibles [RHEL]
 
 2. Shell, terminal y entorno
 2.1 shell
@@ -431,6 +437,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 9.52 laboratorio: ciclo de vida completo de identidades
 
 9.53 Identidad local frente a identidad central: límites del PATH e integración con IAM [RHEL+]
+9.54 Laboratorio: distinguir bloqueo de contraseña, expiración de cuenta y acceso por clave SSH [RHEL+]
 
 10. Login, sesiones, PAM, faillock y auditoría de acceso
 10.1 proceso conceptual de login
@@ -621,6 +628,8 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 13.58 laboratorio: administrar un servicio con Cockpit [RHEL+]
 
 13.59 cgroups v2 en systemd: slices, scopes y límites de recursos [RHEL+]
+13.60 Reinicio, apagado y detención: systemctl reboot, poweroff y halt y sus diferencias [EX200]
+13.61 Laboratorio: comprobar sesiones, tareas y servicios antes de apagar o reiniciar [EX200]
 
 14. Boot, GRUB2, initramfs, dracut y recuperación
 14.1 secuencia de boot
@@ -661,6 +670,8 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 14.36 laboratorio: reparar un boot roto
 
 14.37 Laboratorio: recopilar evidencias y recuperar un sistema con fallo de arranque [RHEL+]
+14.38 Cambios de bootloader: BLS, grubby y rutas BIOS/UEFI verificadas para la instalación [EX200]
+14.39 Laboratorio: modificar un parámetro de arranque, verificar /proc/cmdline y revertir [EX200]
 
 15. Journald, rsyslog, logs y rotación
 15.1 logging en Linux
@@ -763,23 +774,24 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 16.53 extraer contenido de un RPM sin instalarlo con rpm2cpio [RHEL+]
 
 16.54 Operaciones seguras de actualización: inventario, ventana, validación y rollback [RHEL+]
+16.55 Laboratorio: instalar y actualizar desde CDN, repositorio remoto y RPM local; verificar procedencia [EX200]
 
-17. Flatpak [FEDORA][LINUX+]
+17. Flatpak en RHEL: núcleo EX200 y ampliaciones de escritorio
 17.1 qué es Flatpak
 17.2 Flatpak frente a RPM
 17.3 sandbox
 17.4 runtimes
 17.5 applications
-17.6 remotes
-17.7 per-user vs system
-17.8 flatpak remotes
-17.9 flatpak search
-17.10 flatpak install
-17.11 flatpak list
+17.6 remotes [EX200]
+17.7 per-user vs system [EX200]
+17.8 flatpak remotes [EX200]
+17.9 flatpak search [EX200]
+17.10 flatpak install [EX200]
+17.11 flatpak list [EX200]
 17.12 flatpak info
 17.13 flatpak run
-17.14 flatpak update
-17.15 flatpak uninstall
+17.14 flatpak update [EX200]
+17.15 flatpak uninstall [EX200]
 17.16 Flathub conceptual
 17.17 permissions
 17.18 portals
@@ -787,12 +799,19 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 17.20 flatpak override
 17.21 flatpak repair
 17.22 troubleshooting
-17.23 laboratorio: gestionar aplicación Flatpak
+17.23 laboratorio: gestionar aplicación Flatpak [EX200]
 17.24 OSTree: objetos, deduplicación y relación con Flatpak [FEDORA][LINUX+]
 17.25 remotos Flatpak del sistema y del usuario [FEDORA][LINUX+]
 17.26 permisos: inspección y cambio con flatpak permission-show/override según versión [FEDORA][LINUX+]
 17.27 portales y acceso controlado a recursos del escritorio [FEDORA][LINUX+]
 17.28 laboratorio: evaluar y ajustar permisos de una aplicación [FEDORA][LINUX+]
+17.29 Instalar Flatpak en el nodo RHEL y comprobar versión y remotos disponibles [EX200]
+17.30 flatpak remote-add --if-not-exists y remote-info: configurar e inspeccionar una fuente [EX200]
+17.31 flatpak remote-delete: retirar una fuente y explicar el efecto sobre aplicaciones instaladas [EX200]
+17.32 Diferenciar --user y --system al configurar remotos y gestionar aplicaciones [EX200]
+17.33 Remoto Red Hat y Flathub: acceso, autenticación cuando aplique y política del laboratorio [RHEL]
+17.34 Laboratorio RHEL: añadir remoto, instalar, listar, desinstalar y retirar remoto con evidencias [EX200]
+17.35 Laboratorio: diagnosticar remoto inaccesible, ámbito incorrecto y referencias ausentes [RHEL+]
 
 18. Discos, particiones y device discovery
 18.1 block devices
@@ -824,6 +843,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 18.27 laboratorio: preparar discos desde cero
 
 18.28 Diagnóstico de discos: errores de I/O, firmas y particiones sin destruir datos [RHEL+]
+18.29 Laboratorio: añadir partición en disco de prácticas sin modificar datos existentes [EX200]
 
 19. VFS, XFS, ext4, mount y fstab
 19.1 VFS
@@ -873,6 +893,15 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 19.45 laboratorio: reparar configuración fstab
 
 19.46 Verificar coherencia de fstab y montaje tras reinicio [RHEL+]
+19.47 VFAT: usos, ausencia de permisos Unix nativos y relación con la partición EFI [EX200]
+19.48 dosfstools, mkfs.vfat y comprobación del tipo de filesystem [EX200]
+19.49 Montar, desmontar y usar VFAT; opciones uid, gid y umask según el caso [EX200]
+19.50 Laboratorio: crear VFAT en un disco desechable y verificar archivos y montaje [EX200]
+19.51 Validar fstab con findmnt --verify y mount -a; explicar los límites de cada comprobación [RHEL]
+19.52 Redimensionado: distinguir tamaño de dispositivo, partición, PV, LV y filesystem [RHEL]
+19.53 XFS: crecimiento montado y ausencia de procedimiento de reducción soportado en RHEL 10 [RHEL]
+19.54 ext4: crecimiento y condiciones de reducción fuera de línea; copia y comprobaciones previas [RHEL+]
+19.55 Laboratorio: detectar diferencia entre capacidad del dispositivo y capacidad del filesystem [RHEL]
 
 20. Swap
 20.1 memoria virtual y swap
@@ -937,6 +966,10 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 21.45 laboratorio: mover extents y retirar PV
 
 21.46 Planificar expansión LVM: capacidad, extents y filesystem antes de modificar [RHEL+]
+21.47 pvresize: reconocer espacio añadido al dispositivo que contiene un PV [RHEL+]
+21.48 Laboratorio: ampliar disco de VM, partición cuando exista, PV, LV y filesystem con validación por capa [RHEL+]
+21.49 Ampliación no destructiva: verificar datos, extents, montajes y persistencia [EX200]
+21.50 Reducción de LV: riesgo de truncar el filesystem y necesidad de un procedimiento compatible [RHEL+]
 
 22. Stratis [RHEL+]
 22.1 objetivo de Stratis
@@ -1135,6 +1168,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 25.33 laboratorio: autenticación por clave y hardening básico
 
 25.34 Troubleshooting SSH: autenticación, permisos, journal y políticas SELinux [RHEL+]
+25.35 Laboratorio inicial y bloque completo: revisar huellas, claves y copia segura con evidencias [EX200]
 
 26. firewalld y filtrado de red
 26.1 firewall stateful
@@ -1232,15 +1266,22 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 28.13 atd
 28.14 atq
 28.15 atrm
-28.16 systemd timers [RHEL+]
-28.17 timer units
-28.18 OnCalendar
-28.19 Persistent=true
-28.20 systemctl list-timers
-28.21 cron vs systemd timer
-28.22 laboratorio: tarea periódica y tarea one-shot
+28.16 systemd timers [EX200]
+28.17 timer units [EX200]
+28.18 OnCalendar [EX200]
+28.19 Persistent=true [EX200]
+28.20 systemctl list-timers [EX200]
+28.21 cron vs systemd timer [EX200]
+28.22 laboratorio: tarea periódica y tarea one-shot [EX200]
 
 28.23 Comparar cron y timers mediante persistencia, logging y ejecución fallida [RHEL+]
+28.24 Crear una pareja .service/.timer con Type=oneshot y OnCalendar [EX200]
+28.25 Habilitar e iniciar el timer; verificar list-timers y el journal del servicio ejecutado [EX200]
+28.26 Validar calendarios con systemd-analyze calendar y distinguir hora local y UTC [RHEL]
+28.27 Persistent=true: recuperar activaciones de calendario perdidas y explicar sus límites [RHEL]
+28.28 Laboratorio: tarea mediante at, cron y timer; evidencias de ejecución y persistencia [EX200]
+28.29 Laboratorio: diagnosticar timer activo cuyo servicio falla y corregir el entorno de ejecución [RHEL]
+28.30 systemd-tmpfiles: inspeccionar reglas y limpieza de temporales sin borrar datos ajenos [RHEL+]
 
 29. Hora, locale e internacionalización
 29.1 system clock
@@ -1264,8 +1305,9 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 29.19 keyboard layout
 29.20 /etc/locale.conf
 29.21 laboratorio: tiempo y locale persistentes
-29.22 configurar un cliente Chrony y seleccionar fuentes [RHEL+]
-29.23 validar sincronización y diagnosticar pérdida de fuentes [RHEL+]
+29.22 configurar un cliente Chrony y seleccionar fuentes [EX200]
+29.23 validar sincronización y diagnosticar pérdida de fuentes [EX200]
+29.24 Laboratorio: configurar cliente Chrony, comprobar fuentes y validar sincronización tras reinicio [EX200]
 
 30. Archivado, compresión, tar, cpio y rsync
 30.1 archivo vs backup
@@ -1330,7 +1372,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 31.28 NFSv4: permisos, SELinux y firewalld en el servidor [RHEL+]
 31.29 laboratorio de dos nodos: exportar, montar y automatizar con AutoFS [RHEL+]
 
-32. Podman, OCI, rootless y Quadlet
+32. Podman, OCI, rootless y Quadlet [RHEL+]
 32.1 containers vs VMs
 32.2 OCI
 32.3 container image
@@ -1386,6 +1428,7 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 
 32.53 Namespaces, cgroups v2 y capacidades aplicados a contenedores rootless [RHEL+]
 32.54 Laboratorio: investigar límites de recursos y denegaciones de contenedores [RHEL+]
+32.55 Evaluación RHEL+: servicio rootless con Quadlet, volumen persistente y comprobación tras reboot [RHEL+]
 
 33. Servicios de red y administración de puertos [RHEL+]
 33.1 socket listening
@@ -1464,10 +1507,12 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 35.22 journal del OOM
 35.23 nice/renice
 35.24 laboratorio: identificar cuello de botella
-35.25 tuned y tuned-adm: perfiles, estado y recomendaciones [RHEL+]
-35.26 laboratorio: aplicar, verificar y revertir un perfil tuned [RHEL+]
+35.25 tuned y tuned-adm: perfiles, estado y recomendaciones [EX200]
+35.26 laboratorio: aplicar, verificar y revertir un perfil tuned [EX200]
 
 35.27 Diagnóstico USE: métricas, hipótesis y correlación temporal [RHEL+]
+35.28 tuned-adm active, list, recommend y verify: interpretar resultados según perfil y versión [EX200]
+35.29 Laboratorio: seleccionar un perfil tuned, comprobarlo y restaurar el perfil anterior [EX200]
 
 36. Seguridad y hardening de servidor
 36.1 attack surface
@@ -1610,8 +1655,12 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 40.15 SELinux práctica cronometrada
 40.16 firewalld práctica cronometrada
 40.17 software/repos práctica cronometrada
-40.18 containers práctica cronometrada cuando corresponda a objetivos vigentes
+40.18 delimitar Podman/Quadlet como ampliación RHEL+ fuera del simulacro EX200 según los objetivos consultados el 2026-10-22
 40.19 troubleshooting práctica cronometrada
+40.20 Matriz EX200: comprobar todos los objetivos publicados y registrar fecha y URL [EX200]
+40.21 Flatpak: repositorios, instalación y eliminación en práctica cronometrada [EX200]
+40.22 VFAT, ext4 y XFS: creación, montaje y uso en práctica cronometrada [EX200]
+40.23 Timers systemd, clientes de tiempo y perfiles tuned: práctica cronometrada [EX200]
 
 41. Laboratorios integradores y simulacros
 41.1 laboratorio integrador 1: servidor base
@@ -1633,6 +1682,9 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 41.17 repetición espaciada de tareas débiles
 
 41.18 Simulacro de incidente real: recuperar servicio con evidencias y runbook [RHEL+]
+41.19 Rúbrica de simulacro EX200: correspondencia con objetivos, funcionamiento y persistencia [EX200]
+41.20 Rúbrica de administración ampliada: diagnóstico, recuperación, evidencias y runbook [RHEL+]
+41.21 Laboratorio integrador: Flatpak, VFAT, timer y perfil tuned con validación de resultados [EX200]
 
 42. PROYECTO FINAL — Administrar un servidor RHEL 10 de extremo a extremo
 42.1 diseñar requisitos
@@ -1678,3 +1730,8 @@ EX200 ES UN HITO; EL OBJETIVO FINAL ES ADMINISTRAR UN SERVIDOR RHEL 10 REAL.
 42.41 retrospectiva y mapa hacia RHCE/Ansible
 42.42 desplegar un VirtualHost Apache, abrir acceso y conservar SELinux enforcing [RHEL+]
 42.43 Entregar informe de estado, inventario, pruebas de recuperación y plan de mantenimiento [RHEL+]
+42.44 Validar VFAT, ext4 y XFS en dispositivos de prácticas y documentar resultados [EX200]
+42.45 Gestionar un remoto y una aplicación Flatpak en RHEL con evidencia del ámbito utilizado [EX200]
+42.46 Programar un servicio mediante timer y verificar su ejecución después del reinicio [EX200]
+42.47 Seleccionar y verificar un perfil tuned y documentar su reversión [EX200]
+42.48 Entregar matriz objetivo EX200–lección–prueba y separar evidencias de ampliaciones RHEL+ [EX200]

@@ -195,9 +195,9 @@ eliminar registros anteriores
   ↓
 crear registros nuevos
 
-release / expiration / reclamation
+release o expiración seguida de reclamación, según el caso
   ↓
-REMOVE NCR
+si corresponde y el procesamiento tiene éxito: REMOVE NCR
   ↓
 eliminar A / AAAA / PTR
 ```
@@ -509,3 +509,105 @@ Al finalizar, el alumno debe ser capaz de:
 > creación de un lease hasta la creación o eliminación autenticada de sus
 > registros A/AAAA/PTR y pudiendo demostrar el comportamiento mediante
 > configuración, logs, consultas DNS y capturas de red.
+
+
+## 17. Dependencias y relación con IAM
+
+Orden base de práctica: RHCSA → TIME → DNS y DHCP → DHCP + DNS Integration.
+IAM no es prerrequisito del despliegue Kea + D2 + BIND con HMAC-TSIG.
+Esta ruta no administra ni autentica usuarios humanos mediante LDAP/SSSD/PAM.
+La identidad DHCP (client-id/DUID), el ownership DHCID y la identidad que firma
+un UPDATE son conceptos distintos.
+
+En una infraestructura con FreeIPA deben acordarse las zonas, subdominios y
+nombres que administra cada actor. Documentar quién escribe A/AAAA/PTR y qué
+sucede si el cliente también actualiza DNS. Evitar que D2 gestione libremente
+nombres de servidores, registros de infraestructura o nombres administrados
+por otro actor. El laboratorio base usará una zona dinámica dedicada.
+
+GSS-TSIG/Kerberos es una ampliación opcional posterior al PATH IAM. Requiere
+verificar la versión y disponibilidad del hook de D2, configurar principals y
+keytabs de servicio y autorizar únicamente las actualizaciones necesarias.
+No se presupone que disponer de FreeIPA habilite automáticamente D2 para sus
+zonas. En FreeIPA los cambios de política deben realizarse mediante mecanismos
+soportados por la plataforma, sin trasladar ciegamente un named.conf independiente.
+La ruta principal conserva TSIG compartido y puede completarse sin IAM.
+
+## 18. Semántica que toda lección debe respetar
+
+- TTL controla la duración en caché; no borra registros del servidor autoritativo.
+- Expiración del lease, reclamación, generación de REMOVE y eliminación DNS
+  confirmada son momentos diferentes. Registrar timestamps y configuración.
+- Un lease válido no demuestra que DNS se haya actualizado correctamente.
+- Forward y reverse no forman una transacción atómica conjunta. Una operación
+  RFC 2136 se limita a una zona; deben diagnosticarse resultados parciales.
+- TSIG aporta autenticación e integridad de mensajes, no cifrado del tráfico.
+- DHCID protege ownership según las reglas aplicadas; no autentica personas.
+- La cola de solicitudes de D2 es volátil: su contenido pendiente puede perderse
+  al detener el servicio. No prometer replay duradero ni reconciliación automática.
+- HA de DHCP no garantiza HA completa de DDNS. Probar cada componente y el
+  destino real de UPDATE en la topología DNS elegida.
+
+## 19. Identidad y conflictos en dual stack
+
+Estudiar qué datos se usan para construir DHCID en cada protocolo. No asumir
+que compartir hostname, MAC o equipo físico produce automáticamente el mismo
+DHCID entre DHCPv4 y DHCPv6. Introducir client-id, DUID, IAID y RFC 4361 según
+corresponda, contrastando el resultado con la implementación y clientes reales.
+
+Comparar los modos admitidos de `ddns-conflict-resolution-mode`, la comprobación
+de DHCID y las protecciones que se pierden al cambiar de modo. La práctica debe
+incluir nombres estáticos existentes, dos clientes con el mismo FQDN y un host
+dual stack. No resolver un fallo deshabilitando indiscriminadamente salvaguardas.
+
+Para IPv6, distinguir direcciones asignadas mediante DHCPv6 de SLAAC y sus
+extensiones de privacidad. D2 no inventaría automáticamente las direcciones
+SLAAC. Un prefijo delegado tampoco equivale a una dirección AAAA de un host.
+
+## 20. Configuración dependiente de versión
+
+Registrar versiones de Kea y BIND antes de generar configuraciones. Consultar
+la documentación de esa versión para opciones, valores, ámbitos y hooks.
+Incluir `ddns-update-on-renew`, `ddns-conflict-resolution-mode`, controles TTL,
+precedencia global/subred/reserva y flags de Client FQDN. No garantizar que
+una renovación repare todas las divergencias; comprobar requisitos y resultados.
+
+Descubrir también los mecanismos de control disponibles: Control Agent e
+interfaces del daemon según versión. No presentar una arquitectura histórica
+como requisito universal de instalación.
+
+## 21. Laboratorios ampliados y criterios de aceptación
+
+El laboratorio base será local, aislado y sin exposición pública, con clientes
+compatibles y sin otro DHCP que interfiera. Debe entregar configuraciones
+completas y comandos reproducibles al desarrollar las lecciones; estos cuatro
+archivos definen el currículo y no son un despliegue ejecutable del laboratorio.
+
+| Caso | Evidencia mínima de aceptación |
+|---|---|
+| ADD IPv4/IPv6 | Lease, FQDN, NCR y A/AAAA/PTR consultados al autoritativo |
+| Renovación | Comparación antes/después y explicación de la política efectiva |
+| Release/reclamación | Tiempos de transición, REMOVE y resultado DNS verificado |
+| Conflicto de nombre | Rechazo o acción esperada y conservación de registros ajenos |
+| Dual stack | Identidades/DHCID explicados y A/AAAA/PTR coherentes |
+| Fallo TSIG | Respuesta/log de fallo y recuperación sin ampliar privilegios |
+| Caída D2/DNS | Divergencia identificada, inventario afectado y reparación probada |
+| Caché | Contraste entre autoritativo, caché positiva y caché negativa |
+| Recuperación | Leases y zonas restaurados, ownership verificado y consultas finales |
+| GSS-TSIG opcional | Identidad de servicio y permisos probados tras completar IAM |
+
+La reconciliación comienza con inventario de leases y registros, propuesta de
+cambios y verificación de ownership. Usar comandos de reenvío DDNS únicamente
+si la versión y hooks los soportan. Una reparación manual debe conservar otras
+direcciones y RRsets válidos; nunca eliminar en bloque una zona para ocultar
+inconsistencias. Documentar RPO/RTO y guardar evidencias antes y después.
+
+## 22. Referencias técnicas de esta revisión
+
+- Kea ARM, DHCP-DDNS: https://kea.readthedocs.io/en/stable/arm/ddns.html
+- Kea ARM, hooks: https://kea.readthedocs.io/en/stable/arm/hooks.html
+- Kea ARM, DHCPv4: https://kea.readthedocs.io/en/stable/arm/dhcp4-srv.html
+- TSIG vigente: https://www.rfc-editor.org/info/rfc8945/
+
+Los enlaces stable sirven para localizar documentación; el laboratorio debe
+usar la edición que corresponda a las versiones instaladas.

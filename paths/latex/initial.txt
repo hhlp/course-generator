@@ -25,6 +25,8 @@ Bloque 0 — Fundamentos y entorno LaTeX
 0.21 Diferencia entre formato LaTeX, motor y distribución
 0.22 Herramientas de diagnóstico: kpsewhich, texdoc y kpathsea
 0.23 Primer laboratorio reproducible: fuente, compilación, PDF y log
+0.24 Primer documento en español: Unicode, babel, acentos y guionado
+0.25 Elegir y registrar motor, formato LaTeX y versiones del entorno
 
 Bloque 1 — Sintaxis y estructura básica
 1.1 Comandos
@@ -105,7 +107,6 @@ Bloque 2 — Estructura de documentos
 2.21 \includeonly
 2.22 Organización de proyectos
 
-
 Bloque 3 — Texto y composición tipográfica
 3.1 Familias tipográficas
 3.2 Serif, sans serif y monoespaciada
@@ -149,7 +150,6 @@ Bloque 4 — Listas, cajas y contenido estructurado
 4.14 Reglas
 4.15 Cajas y dimensiones
 
-
 Bloque 5 — Diseño de página
 5.1 Modelo de página de TeX
 5.2 Márgenes
@@ -166,7 +166,6 @@ Bloque 5 — Diseño de página
 5.13 Saltos de página
 5.14 Float pages
 5.15 Diseño profesional de documentos
-
 
 Bloque 6 — Matemáticas I: fundamentos
 6.1 Modo matemático
@@ -190,6 +189,8 @@ Bloque 6 — Matemáticas I: fundamentos
 6.18 Diferencias entre estilos matemáticos display, text, script y scriptscript
 6.19 Delimitadores de tamaño manual frente a automáticos
 6.20 Diagnóstico de errores de espaciado y numeración matemática
+6.21 Referencias mínimas: \label, \ref y \eqref antes del laboratorio AMS
+6.22 Texto en fórmulas con \text y elección del entorno matemático
 
 Bloque 7 — Matemáticas II: composición avanzada
 7.1 align
@@ -220,6 +221,9 @@ Bloque 7 — Matemáticas II: composición avanzada
 7.25 Matemáticas extensas: saltos de página y ecuaciones partidas
 7.26 Diseño de entornos de teoremas y referencias consistentes
 7.27 Laboratorio integrador: documento matemático con teoremas y referencias
+7.28 mathtools: propósito, documentación, carga y relación con amsmath
+7.29 \intertext y \shortintertext en alineaciones matemáticas
+7.30 Diagnóstico comparado: equation, align, aligned, split y multline
 
 Bloque 8 — Tablas
 8.1 tabular
@@ -259,7 +263,6 @@ Bloque 9 — Imágenes y floats
 9.13 Float placement avanzado
 9.14 Gestión profesional de figuras
 
-
 Bloque 10 — Referencias cruzadas
 10.1 \label
 10.2 \ref
@@ -274,7 +277,6 @@ Bloque 10 — Referencias cruzadas
 10.11 Referencias automáticas
 10.12 PDF metadata
 10.13 Bookmarks
-
 
 Bloque 11 — Bibliografía y citas
 11.1 Bibliografías en LaTeX
@@ -311,7 +313,6 @@ Bloque 12 — Índices, glosarios y nomenclatura
 12.9 Automatización de índices
 12.10 Integración con latexmk
 
-
 Bloque 13 — Color y diseño visual
 13.1 xcolor
 13.2 Modelos de color
@@ -325,7 +326,6 @@ Bloque 13 — Color y diseño visual
 13.10 Callouts
 13.11 Diseño consistente
 13.12 Creación de identidad visual
-
 
 Bloque 14 — TikZ I: fundamentos
 14.1 PGF y TikZ
@@ -346,6 +346,7 @@ Bloque 14 — TikZ I: fundamentos
 
 14.16 PGF keys y reutilización de estilos
 14.17 Coordenadas relativas, calculadas y sistemas de referencia
+14.18 \usetikzlibrary: cargar bibliotecas y distinguirlas de paquetes
 
 Bloque 15 — TikZ II: diagramas
 15.1 Posicionamiento
@@ -440,7 +441,6 @@ Bloque 19 — Internacionalización
 19.9 Unicode
 19.10 Escrituras y sistemas complejos
 
-
 Bloque 20 — Clases de documentos avanzadas
 20.1 KOMA-Script
 20.2 scrartcl
@@ -454,7 +454,6 @@ Bloque 20 — Clases de documentos avanzadas
 20.10 Libros
 20.11 Artículos científicos
 20.12 Presentaciones con Beamer
-
 
 Bloque 21 — Beamer
 21.1 Estructura
@@ -473,7 +472,8 @@ Bloque 21 — Beamer
 21.14 Bibliografía
 21.15 Handouts
 21.16 Presentaciones profesionales
-
+21.17 Frames fragile y contenido verbatim: listings y minted
+21.18 Diagnóstico de overlays: contenido, espacio reservado y numeración
 
 Bloque 22 — Documentos científicos y técnicos
 22.1 Arquitectura de un paper
@@ -490,7 +490,8 @@ Bloque 22 — Documentos científicos y técnicos
 22.12 Apéndices
 22.13 Reproducibilidad
 22.14 Plantillas editoriales
-
+22.15 minted por versión: latexminted, Pygments y requisitos del entorno
+22.16 Ejemplo de código compilable y diagnóstico de herramientas ausentes
 
 Bloque 23 — Documentos grandes
 23.1 Arquitectura de proyecto
@@ -506,7 +507,6 @@ Bloque 23 — Documentos grandes
 23.11 Gestión de dependencias
 23.12 Proyectos de tesis
 23.13 Proyectos de libros
-
 
 Bloque 24 — Automatización y toolchain
 24.1 Ciclo de compilación
@@ -529,6 +529,8 @@ Bloque 24 — Automatización y toolchain
 24.17 Integración segura de minted y herramientas externas
 24.18 Pruebas de compilación para varios motores
 24.19 Laboratorio integrador: pipeline reproducible y seguro de compilación
+24.20 minted: ejecución restringida frente a shell escape completo
+24.21 Registrar versiones y dependencias externas en el pipeline
 
 Bloque 25 — Diagnóstico y debugging
 25.1 Cómo leer errores de TeX
@@ -568,8 +570,11 @@ Bloque 26 — Personalización de LaTeX
 26.13 Interfaces con NewDocumentCommand y validación de argumentos
 26.14 Hooks del kernel: registro, orden y diagnóstico
 26.15 Compatibilidad y deprecación de macros personalizadas
+26.16 Puente a expl3: caracteres, tokens, listas de tokens y alcance
+26.17 Puente a expl3: expansión frente a ejecución y argumentos sin expandir
+26.18 Ejercicio previo a expl3: seguir argumentos y expansión de una macro
 
-Bloque 27 — Programación moderna con xparse/expl3
+Bloque 27 — Programación moderna con expl3 e interfaces del kernel
 27.1 LaTeX2e programming
 27.2 LaTeX3 Project
 27.3 expl3
@@ -603,6 +608,8 @@ Bloque 27 — Programación moderna con xparse/expl3
 27.30 Mensajes de error, trazas y depuración de expl3
 27.31 Pruebas de interfaces públicas y estabilidad de API
 27.32 Laboratorio: paquete de configuración con expl3 y l3keys
+27.33 Interfaces del kernel: \NewDocumentCommand sin cargar xparse
+27.34 xparse como compatibilidad histórica y límites según versión
 
 Bloque 28 — TeX interno
 28.1 De LaTeX a TeX
@@ -663,6 +670,9 @@ Bloque 29 — Creación de paquetes
 29.19 Distribución TDS y preparación para CTAN
 29.20 Pruebas de regresión con l3build
 29.21 Política de compatibilidad y migraciones
+29.22 \NeedsTeXFormat y \RequirePackage: requisitos y dependencias
+29.23 \DeclareOption y \ProcessOptions: compatibilidad con opciones clásicas
+29.24 Opciones modernas del kernel y l3keys: elegir la interfaz adecuada
 
 Bloque 30 — Creación de clases
 30.1 .cls
@@ -682,6 +692,8 @@ Bloque 30 — Creación de clases
 30.14 Interacción con paquetes y hooks del kernel
 30.15 Compatibilidad entre motores y opciones de clase
 30.16 Pruebas de una clase en proyectos reales
+30.17 \LoadClass, \RequirePackage y propagación explícita de opciones
+30.18 Requisitos de formato y versiones mínimas de una clase
 
 Bloque 31 — LuaLaTeX y extensibilidad
 31.1 Arquitectura LuaTeX
@@ -768,6 +780,9 @@ Bloque 34 — Accesibilidad y PDF avanzado
 34.17 Diagnóstico de errores de etiquetado
 34.18 Laboratorio: documento accesible con figuras y tablas
 34.19 Proyecto: informe técnico con verificación de accesibilidad
+34.20 Matriz reproducible de motor, kernel, clase y paquetes para etiquetado
+34.21 \DocumentMetadata antes de \documentclass y sintaxis según versión
+34.22 Evidencias de validación: herramienta, versión, hallazgos y revisión manual
 
 Bloque 35 — Proyecto final experto
 35.1 Diseñar un proyecto LaTeX profesional
@@ -788,3 +803,6 @@ Bloque 35 — Proyecto final experto
 35.16 Documentación del paquete/clase
 35.17 Build reproducible
 35.18 Publicación y distribución
+35.19 Integrar etiquetado, idioma, alternativas textuales y orden de lectura
+35.20 Validar accesibilidad y documentar incompatibilidades y alternativas
+35.21 Rúbrica final: fuentes, compilación, pruebas, documentación y evidencias

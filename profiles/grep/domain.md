@@ -538,3 +538,78 @@ sino también:
 > "¿Qué archivos se están examinando, qué motor interpreta el patrón, qué semántica tiene, qué datos se están excluyendo, qué efecto tienen locale/Unicode, qué coste tiene la búsqueda, qué casos extremos pueden romperla y cómo puedo reproducir y diagnosticar el resultado?"
 
 Ese es el nivel de profundidad esperado en todo el PATH.
+
+
+## 23. Precisiones operativas de la revisión
+
+Se conservan los 48 bloques (0–47) y las lecciones originales; las ampliaciones
+se añaden al final de sus bloques para preservar los identificadores existentes.
+La lección 45.12 corrige su título a «Unicode y autómatas».
+
+### Dialectos y prerrequisitos
+
+El nivel cero corresponde al uso de las herramientas. El PATH de Regex aporta
+la formación general; cada concepto necesario se recuerda de forma breve.
+En BRE debe marcarse la alternancia `\|` como extensión GNU, junto con otras
+extensiones como `\+` y `\?`; no presentar estas formas como BRE portable.
+La teoría de autómatas y complejidad se aplica a resultados e implementaciones
+concretos, remitiendo a los PATH de Regex y Big-O para su desarrollo general.
+
+### Registros, archivos y salida
+
+Distinguir `grep -Z` (terminación NUL de nombres) de `grep -z` (registros NUL).
+No confundir `grep -z` con `rg -z`, dedicado a búsqueda en archivos comprimidos
+según los formatos y descompresores disponibles. Los ejemplos con `grep -z`
+deben comprobar el tamaño del registro: sin NUL puede abarcar el archivo entero.
+Distinguir líneas seleccionadas, coincidencias y archivos encontrados.
+Explicar por separado archivo de patrones vacío y patrón vacío, así como OR
+entre patrones y AND entre condiciones. Probar las interacciones entre opciones.
+Los ejemplos con `-q` deben abordar salida anticipada, errores y SIGPIPE en
+pipelines; no ocultar errores con `|| true` como solución universal.
+
+### Codificación y reproducibilidad
+
+Incluir fixtures UTF-8, UTF-8 inválido, BOM, UTF-16, CRLF y formas NFC/NFD.
+No asumir normalización Unicode automática ni equivalencia entre bytes,
+caracteres y columnas visuales. Documentar la transcodificación de ripgrep.
+Usar `rg --no-config` para aislar configuración personal, y registrar versión,
+locale, directorio de trabajo, ignores y conjunto real de archivos examinados.
+La salida de `--debug`/`--trace` es diagnóstica, sin promesa de esquema estable.
+Antes de medir rendimiento se debe comprobar equivalencia de resultados.
+
+### Integraciones opcionales y validación
+
+Shell, con preferencia por Zsh en automatización, sigue siendo la base práctica.
+Python y Rust se permiten únicamente como integraciones avanzadas opcionales
+en el bloque 46 y para inspeccionar internals cuando proceda. No son cursos de
+programación ni requisitos para completar el recorrido principal de herramientas.
+
+La auditoría pedagógica y la validación ejecutable son controles distintos.
+El perfil habilita la validación, pero `commands: []` no configura ningún
+comando ejecutable: no debe presentarse como una batería de pruebas automática.
+Al generar un artefacto se deben definir comprobaciones reales para ese artefacto:
+`bash -n` o `zsh -n` para sintaxis según shell; para programas opcionales, las
+herramientas de prueba del lenguaje y proyecto concreto. Estas comprobaciones
+no sustituyen pruebas de comportamiento con fixtures y estados esperados.
+No ejecutar búsquedas destructivas ni recorrer dispositivos para validar casos.
+
+Las pruebas funcionales deben cubrir coincidencia, ausencia y error; nombres con
+newline; patrones vacíos; ignores; CRLF; NUL; y diferencias entre motores.
+Registrar comandos, versiones, stdout, stderr y estado de salida esperado.
+La validación de este PATH comprueba estructura y sintaxis de los archivos; la
+compatibilidad exacta con course-generator requiere su esquema/código actual.
+La ruta relativa `files.pedagogy` debe verificarse desde la ubicación definitiva
+del perfil en el repositorio; el archivo pedagógico externo no forma parte del ZIP.
+
+### Contrato del proyecto final
+
+Seleccionar solo combinaciones soportadas: BRE es propio de grep; el motor
+predeterminado de rg no equivale a BRE. Multilínea y PCRE2 dependen de herramienta,
+opciones y compilación. Una opción incompatible debe generar un diagnóstico.
+La detección de patrones caros es heurística y experimental; no garantiza coste
+ni detecta todas las expresiones problemáticas. Aplicar límites de recursos
+cuando se ensayen patrones adversos y separar tiempo de recorrido y matching.
+El inventario de archivos ignorados debe reconocer los límites del diagnóstico;
+no afirmar que la salida JSON de coincidencias enumera todos los descartados.
+En JSON, tratar las variantes `text` y `bytes`, offsets en bytes, lectura
+incremental y errores del proceso. Invocar procesos con argumentos separados.

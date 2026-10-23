@@ -70,6 +70,9 @@ sources:
 
 pandas3:
   copy_on_write: required
+  distinguish_str_string_object_and_arrow: required
+  datetime_units_and_resolution: required
+  anti_joins: required
   modern_dtypes: required
   chained_assignment:
     teach: true
@@ -91,13 +94,19 @@ content_rules:
   use_realistic_datasets: true
   compare_idiomatic_and_non_idiomatic_patterns: true
   avoid_unverified_page_or_chapter_references: true
-  preserve_existing_216_lessons: true
+  preserve_supplied_414_lesson_topics: true
+  allow_lesson_relocation_and_rewording: true
+  historical_216_preservation_verified: false
   expected_blocks: 22
-  expected_lessons: 414
+  expected_lessons: 421
   datasets_reproducible: true
-  labs_include_assertions: true
+  code_labs_include_assertions: true
+  environment_labs_include_verifiable_checks: true
   avoid_private_apis_in_production_examples: true
   separate_pandas_scope_from_numpy_sql_polars: true
+  teach_prerequisites_before_dependent_lessons: true
+  distinguish_introductory_and_expert_outcomes: true
+  pin_lab_versions_in_lockfile: true
 
 milestones:
   - id: foundations

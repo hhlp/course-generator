@@ -13,23 +13,20 @@ course:
   milestones:
     - id: terraform-foundations
       after_block: 5
-      name: Terraform Foundations — CLI, HCL y providers
-    - id: terraform-associate
-      after_block: 13
-      name: Terraform Associate — preparación conceptual y práctica; verificar
-        objetivos vigentes
+      name: 'Fundamentos: CLI inicial, HCL y providers'
+    - id: terraform-operations
+      after_block: 15
+      name: 'Checkpoint operativo: state, módulos, seguridad y CI/CD'
     - id: terraform-advanced
       after_block: 21
-      name: Terraform Advanced — operación, seguridad e internals
+      name: 'Nivel avanzado: operación y comparación de ecosistemas'
     - id: terraform-expert
       after_block: 29
-      name: Terraform Expert — arquitectura, recuperación y on-premises
-
+      name: Defensa experta del itinerario y recuperación demostrada
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 lesson_structure:
   objective:
     required: true
@@ -47,7 +44,6 @@ lesson_structure:
     position: last
     min_items: 3
     max_items: 7
-
 quality:
   forbid_generic_scaffold: true
   require_topic_specific_headings: true
@@ -68,13 +64,11 @@ quality:
   require_core_provider_opentofu_distinction: true
   require_on_premises_examples: true
   preserve_existing_lessons: true
-
 output:
   format: markdown
   zip_block: true
   write_index: true
   write_manifest: true
-
 artifacts:
   enabled: true
   default_strategy: auto
@@ -99,13 +93,8 @@ artifacts:
         - bloque-13
         - bloque-14
         - bloque-15
-        - bloque-16
         - bloque-17
         - bloque-18
-        - bloque-19
-        - bloque-20
-        - bloque-21
-        - bloque-22
         - bloque-23
       artifact_dependencies: []
       required_files:
@@ -118,19 +107,67 @@ artifacts:
         - modules/README.md
         - ansible/README.md
         - .gitignore
+        - tests/README.md
+        - ci/README.md
+        - docs/recovery.md
+        - docs/evidence.md
+      validation_required: true
+      project_type: integrator
+    '29.19':
+      strategy: standalone_project
+      project_id: terraform-onpremises-expert
+      knowledge_dependencies:
+        - bloque-0
+        - bloque-1
+        - bloque-2
+        - bloque-3
+        - bloque-4
+        - bloque-5
+        - bloque-6
+        - bloque-7
+        - bloque-8
+        - bloque-9
+        - bloque-10
+        - bloque-11
+        - bloque-12
+        - bloque-13
+        - bloque-14
+        - bloque-15
+        - bloque-17
+        - bloque-18
+        - bloque-23
+        - bloque-24
+      artifact_dependencies: []
+      required_files:
+        - README.md
+        - versions.tf
+        - providers.tf
+        - variables.tf
+        - main.tf
+        - outputs.tf
+        - modules/README.md
+        - ansible/README.md
+        - .gitignore
+        - tests/README.md
+        - ci/README.md
+        - docs/recovery.md
+        - docs/evidence.md
+        - ansible/site.yml
+        - cloud-init/README.md
       validation_required: true
       project_type: integrator
   project_policy:
     integrator_projects: auto
     diagnostic_projects: auto
     require_project_for_every_block: false
-
 validation:
   enabled: true
   commands:
     - terraform fmt -check -recursive
-    - terraform init -backend=false
+    - terraform init -backend=false -input=false
     - terraform validate
-  notes: terraform validate requiere inicialización y dependencias instaladas;
-    ejecutar tests y plan solo con fixtures/credenciales apropiadas y sin
-    recursos reales no autorizados.
+  notes: Aplicar a root modules .tf y fixtures en su directorio. init
+    puede descargar dependencias; usar código confiable. validate no
+    verifica APIs. Go y Stacks requieren validación propia. Plan y
+    test solo en entornos aislados con credenciales apropiadas. Ver
+    rutas y progresión en domain.md.

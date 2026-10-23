@@ -218,3 +218,103 @@ Una lección de Regex debe:
 - incorporar rendimiento y seguridad cuando el tema lo justifique;
 - preservar la progresión definida por el PATH;
 - no adelantar herramientas especializadas que tendrán su propio curso.
+
+
+## Progresión y alcance de las ampliaciones
+
+Se conservan los bloques 0 a 48 y todos los identificadores originales.
+Las nuevas lecciones se añaden al final del bloque correspondiente. Cuando
+una ampliación introductoria sea un prerrequisito, las lecciones anteriores
+incluyen una explicación mínima y remiten a ella; no se exige al estudiante
+conocimiento de bloques posteriores para entender el concepto inicial.
+
+Antes de 4.12, introducir agrupación mínima siguiendo 0.26. Antes del bloque 5,
+explicar decisiones y retroceso según 4.19. La agrupación detallada permanece
+en el bloque 9 y el backtracking sistemático en el 25.
+La lección 7.10 es un avance guiado; su desarrollo pertenece a 13 a 15.
+Las lecciones 15.27 y 15.28 presentan una comparación conceptual y se retoman
+tras el bloque 18. La primera explicación no presupone dominar atomicidad.
+El bloque 43 es un proyecto integrador intermedio; el cierre experto es el 48.
+
+## Contrato observable de búsqueda
+
+Distinguir búsqueda, coincidencia desde una posición, validación completa,
+extracción, iteración, división y sustitución. Cada laboratorio declara la
+operación, el patrón, el dialecto, el motor y versión cuando haya ejecución,
+los flags, el locale relevante, la entrada y los resultados esperados.
+La primera aparición de una operación incluye la explicación mínima de su
+contrato; el recorrido sistemático se desarrolla en el bloque 23.
+
+Registrar coincidencias mediante intervalos [inicio, fin), con inicio inclusivo
+y fin exclusivo, indicando si las posiciones se miden en bytes, code units o
+code points. Esta es la convención del informe, no una convención universal
+de las herramientas. Distinguir captura vacía, grupo no participante y ausencia
+de coincidencia. Declarar la política de solapamiento y de avance después de
+una coincidencia vacía, incluido el fin de entrada.
+
+## Precisión sobre dialectos y motores
+
+En clases POSIX enseñar [[:alpha:]] como expresión completa; [:alpha:] es la
+clase interior. Explicar efectos de locale y colación antes de generalizar
+rangos como [a-z]. Separar BRE/ERE normativos de extensiones locales.
+La semántica POSIX incluye selección de subcoincidencias; no se reduce a elegir
+la coincidencia completa más larga. Selección de resultados y estrategia de
+ejecución son ejes distintos: no identificar POSIX con DFA ni leftmost-first
+exclusivamente con backtracking.
+
+En 31.10, longitud variable significa soporte acotado y condicionado por la
+versión y la función usada. PCRE2 10.43 y posteriores incorporan determinadas
+longitudes variables en pcre2_match; no inferir soporte de repeticiones sin
+cota. Comparar sus restricciones con pcre2_dfa_match y registrar la versión.
+Las aserciones tradicionales pueden retroceder internamente mientras se
+evalúan y seguir siendo atómicas respecto a un fallo posterior. Las extensiones
+no atómicas requieren identificación expresa del motor y su sintaxis.
+
+En Unicode distinguir codificación UTF, propiedades, equivalencia canónica,
+normalización, grafemas y segmentación de palabras. No asumir normalización
+automática ni equivalencia entre las fronteras de \b y UAX #29. Una transformación
+de la entrada requiere documentar cómo se relacionan sus posiciones con las
+originales. Diferenciar Script de Script_Extensions y UTF de UCP en PCRE2.
+
+## Rendimiento: objetivos diferentes por bloque
+
+- Bloque 26: medir, comparar y mejorar patrones conservando sus resultados.
+- Bloque 27: reconocer exposición a ReDoS y aplicar mitigaciones verificables.
+- Bloque 46: razonar sobre parámetros, complejidad y límites de las garantías.
+
+Separar compilación, búsqueda individual, iteración y producción de salida.
+Declarar tamaño del patrón y de la entrada, corpus, unidades, flags y versión.
+Una garantía lineal respecto a la entrada no elimina la dependencia del patrón.
+No equiparar límites de pasos, profundidad o memoria con timeout de reloj.
+La atomicidad y la posesividad no son refactorizaciones automáticamente
+correctas: comprobar coincidencias y capturas, además del tiempo.
+
+## Proyecto Analyzer compatible con el alcance agnóstico
+
+La entrega obligatoria de 43 y 48 es un dossier reutilizable: especificación,
+fichas de análisis, árboles dibujados o descritos manualmente, corpus con
+resultados esperados y observados e informes de portabilidad y rendimiento.
+Los verbos construir, recibir, ejecutar, mostrar y visualizar se concretan en
+este flujo manual y en herramientas existentes. No exigen crear software.
+La implementación ejecutable queda como ampliación opcional en otro PATH.
+
+El analizador declara un subconjunto de sintaxis y rechaza o marca como no
+soportado lo que no pueda analizar. No promete interpretar todos los dialectos.
+Las alertas ReDoS son heurísticas justificadas; ausencia de alerta no demuestra
+seguridad. Una propuesta de refactorización conserva la operación, los matches
+y las capturas relevantes o documenta expresamente el cambio.
+
+El corpus mínimo incluye éxito, fallo, vacío, coincidencia vacía, fin de entrada,
+Unicode, saltos de línea y crecimiento controlado de entradas. Cada informe
+identifica limitaciones y enlaza sus conclusiones con casos reproducibles.
+
+## Validación del perfil y referencias de archivos
+
+La validación sintáctica de YAML, la auditoría pedagógica, la ejecución de labs
+y las comprobaciones de course-generator son verificaciones diferentes.
+validation.enabled permanece desactivado porque no hay un comando universal
+para todos los dialectos y operaciones; no implica desactivar la auditoría.
+Las políticas adicionales orientan el contenido y no prueban que el generador
+implemente automáticamente cada campo. Verificar su interpretación en el código.
+Resolver files.pedagogy desde la ubicación real del perfil antes de generar;
+se conserva la ruta recibida al no disponer aquí de la estructura del repositorio.

@@ -1,0 +1,1126 @@
+---
+course:
+  title: 'MongoDB administrador: de 0 a experto'
+  language: "es"
+  level:
+    start: "cero"
+    end: "experto"
+  domain: "MongoDB Administrator"
+  mode: "deep"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+scope:
+  - Autogestionado Community
+  - Atlas
+  - Enterprise condicionado a disponibilidad
+
+prerequisites:
+  - Linux y redes se introducen en el bloque 1
+  - Ansible y Terraform antes del bloque 26
+  - Kubernetes antes de la extensión del bloque 29
+  - Kerberos básico para ejecutar el laboratorio Enterprise
+
+environment:
+  host: Fedora/Linux con VMs o contenedores
+  server_os: Distribución compatible con la versión MongoDB elegida
+  network: Privada; instancia inicial en loopback
+  version_policy: Fijar y registrar versiones; revisar compatibilidad oficial
+  replica_set: Tres miembros con datos
+  sharding: Dos shards de tres miembros, CSRS de tres y dos mongos
+  configuration: Estática explícita por nodo en config/
+  datasets:
+    - Datos sintéticos
+    - Sample datasets compatibles de Atlas
+  container_tracks:
+    - Docker con Compose
+    - Podman con proveedor Compose verificado y Quadlet
+  kubernetes_track: Bloques 29–30; operator, edición y CSI compatibles
+
+lesson_format:
+  - 🎯 OBJETIVO
+  - 💡 IDEA
+  - Procedimiento explicado
+  - 🧪 LAB
+  - Logs y diagnóstico
+  - ⚠️ ERRORES
+  - 🧠 RECORDAR
+  - Evaluación y fuentes
+
+assessment:
+  pass_score: 80
+  mandatory:
+    - Restauración verificada
+    - Failover medido
+    - Acceso restringido
+    - Secretos protegidos
+    - Datos persistentes
+
+schema_note: Perfil declarativo; integración con course-generator no ejecutada.
+
+blocks:
+  - id: 0
+    title: Fundamentos del administrador MongoDB
+    lessons:
+      - id: '0.1'
+        title: Funciones del DBA y límites con desarrollo y SRE
+      - id: '0.2'
+        title: Documentos BSON, colecciones, bases de datos y namespaces
+      - id: '0.3'
+        title: CRUD mínimo para verificar operaciones administrativas
+      - id: '0.4'
+        title: >-
+          Índices, agregaciones y transacciones: mapa para el administrador
+      - id: '0.5'
+        title: Disponibilidad, durabilidad, consistencia y escalabilidad
+      - id: '0.6'
+        title: RPO, RTO, SLI, SLO y presupuesto de error
+      - id: '0.7'
+        title: 'Community, Enterprise y Atlas: capacidades y responsabilidades'
+      - id: '0.8'
+        title: >-
+          Standalone, replica set y sharded cluster: criterios de elección
+      - id: '0.9'
+        title: Versiones, ciclo de soporte, compatibilidad y documentación
+          versionada
+      - id: '0.10'
+        title: Inventario, glosario, riesgos y plan de aprendizaje
+    lab: Inventariar una instalación ficticia y proponer topología, edición, RPO
+      y RTO con justificación.
+
+  - id: 1
+    title: Linux, redes y laboratorio reproducible
+    lessons:
+      - id: '1.1'
+        title: Terminal, procesos, usuarios de servicio y permisos
+      - id: '1.2'
+        title: Paquetes, repositorios, firmas y versiones fijadas
+      - id: '1.3'
+        title: Discos, particiones, LVM, montajes y espacio disponible
+      - id: '1.4'
+        title: DNS directo e inverso, FQDN, resolución y /etc/hosts
+      - id: '1.5'
+        title: TCP, puertos, rutas y diagnóstico con ss y tcpdump
+      - id: '1.6'
+        title: Chrony y sincronización horaria
+      - id: '1.7'
+        title: systemd, límites de recursos y dependencias
+      - id: '1.8'
+        title: journald, /var/log y rotación de registros
+      - id: '1.9'
+        title: 'SELinux y firewalld: diagnóstico sin desactivarlos'
+      - id: '1.10'
+        title: VMs, redes privadas, inventario y snapshots de laboratorio
+    lab: Crear tres VMs con nombres estables, hora sincronizada y conectividad
+      privada; entregar inventario y pruebas DNS.
+
+  - id: 2
+    title: Arquitectura e internals operativos
+    lessons:
+      - id: '2.1'
+        title: mongod, mongos, mongosh y Database Tools
+      - id: '2.2'
+        title: Ruta de una lectura y de una escritura
+      - id: '2.3'
+        title: WiredTiger, caché interna y caché del sistema operativo
+      - id: '2.4'
+        title: Journal, checkpoints y recuperación tras reinicio
+      - id: '2.5'
+        title: Concurrencia, locks y control de admisión
+      - id: '2.6'
+        title: Sesiones, cursores y operaciones de larga duración
+      - id: '2.7'
+        title: Replicación, oplog y avance del commit point
+      - id: '2.8'
+        title: Catálogo, metadatos, colecciones e índices
+      - id: '2.9'
+        title: 'Motores de ejecución y planes: implicaciones operativas'
+      - id: '2.10'
+        title: Límites y restricciones que afectan al diseño
+    lab: Seguir una escritura desde el cliente hasta su persistencia y explicar
+      qué se pierde en distintos fallos.
+
+  - id: 3
+    title: Instalación y primer despliegue
+    lessons:
+      - id: '3.1'
+        title: Seleccionar versión y sistema operativo oficialmente compatible
+      - id: '3.2'
+        title: Repositorio oficial, firma y paquetes del servidor
+      - id: '3.3'
+        title: Instalar mongosh y Database Tools con su compatibilidad
+      - id: '3.4'
+        title: Instalación reproducible en Linux de la familia RHEL
+      - id: '3.5'
+        title: Alternativa Debian o Ubuntu y diferencias de paquetes
+      - id: '3.6'
+        title: 'Fedora como host: VM compatible o contenedor según soporte'
+      - id: '3.7'
+        title: Directorios de datos, logs, configuración y propietario
+      - id: '3.8'
+        title: 'Servicio mongod: arranque, parada y habilitación'
+      - id: '3.9'
+        title: Primera conexión local y comprobaciones funcionales
+      - id: '3.10'
+        title: Desinstalación controlada, conservación y borrado de datos de
+          laboratorio
+    lab: Instalar una instancia aislada desde cero, verificar servicio y
+      persistencia y documentar paquetes y rutas reales.
+
+  - id: 4
+    title: Configuración operativa y gestión del servicio
+    lessons:
+      - id: '4.1'
+        title: Anatomía de mongod.conf y tipos de datos YAML
+      - id: '4.2'
+        title: storage.dbPath y configuración de almacenamiento
+      - id: '4.3'
+        title: systemLog, destino, formato y verbosity
+      - id: '4.4'
+        title: net.bindIp, puertos y exposición restringida
+      - id: '4.5'
+        title: processManagement y ejecución bajo systemd
+      - id: '4.6'
+        title: 'security y replication: preparación de configuración'
+      - id: '4.7'
+        title: Overrides de systemd y límites efectivos del proceso
+      - id: '4.8'
+        title: Configuración estática por nodo en config/
+      - id: '4.9'
+        title: Validación, revisión de cambios y rollback de configuración
+      - id: '4.10'
+        title: Reinicio ordenado, readiness y comprobación posterior
+    lab: Crear configuraciones independientes por nodo, introducir un error
+      YAML, diagnosticarlo en logs y recuperar el servicio.
+
+  - id: 5
+    title: Administración de datos y tareas cotidianas
+    lessons:
+      - id: '5.1'
+        title: Explorar bases, colecciones, estadísticas y tamaños
+      - id: '5.2'
+        title: Crear colecciones y opciones administrativas
+      - id: '5.3'
+        title: Validación de documentos y cambios de esquema
+      - id: '5.4'
+        title: Índices básicos para diagnóstico y mantenimiento
+      - id: '5.5'
+        title: TTL, caducidad y efecto de borrados masivos
+      - id: '5.6'
+        title: Importación y exportación con mongoimport y mongoexport
+      - id: '5.7'
+        title: Copia lógica inicial con mongodump y restauración aislada
+      - id: '5.8'
+        title: Usuarios de operación y scripts seguros con mongosh
+      - id: '5.9'
+        title: Sesiones, cursores, currentOp y cancelación selectiva
+      - id: '5.10'
+        title: Checklist diaria, inventario y registro de cambios
+    lab: Crear datos sintéticos, aplicar validación y TTL, restaurar una copia
+      inicial y verificar recuentos y contenido.
+
+  - id: 6
+    title: Almacenamiento y durabilidad
+    lessons:
+      - id: '6.1'
+        title: Requisitos de filesystem y Production Notes de la versión
+      - id: '6.2'
+        title: XFS, ext4 y criterios de elección según soporte
+      - id: '6.3'
+        title: IOPS, throughput, latencia y colas de disco
+      - id: '6.4'
+        title: Working set, RAM, swap y presión de memoria
+      - id: '6.5'
+        title: Caché WiredTiger, eviction y páginas sucias
+      - id: '6.6'
+        title: 'Journal, checkpoints y write concern: diferencias'
+      - id: '6.7'
+        title: Compresión de datos e índices y coste de CPU
+      - id: '6.8'
+        title: Espacio lógico, espacio asignado y fragmentación
+      - id: '6.9'
+        title: compact, validate y límites de las herramientas de reparación
+      - id: '6.10'
+        title: Mover dbPath con permisos, SELinux y validación posterior
+    lab: Medir una carga antes y después de cambiar de volumen; distinguir
+      latencia de almacenamiento de presión de caché.
+
+  - id: 7
+    title: Conectividad y clientes desde operaciones
+    lessons:
+      - id: '7.1'
+        title: URI estándar, seed list y credenciales codificadas
+      - id: '7.2'
+        title: mongodb+srv, registros SRV/TXT y resolución DNS
+      - id: '7.3'
+        title: Descubrimiento de topología y selección de servidor
+      - id: '7.4'
+        title: Replica set name, directConnection y uso diagnóstico
+      - id: '7.5'
+        title: Timeouts de conexión, selección y operaciones
+      - id: '7.6'
+        title: Pools, maxPoolSize, colas y tormentas de conexiones
+      - id: '7.7'
+        title: Retryable reads y writes y límites de idempotencia
+      - id: '7.8'
+        title: Firewalls, NAT y nombres anunciados por los miembros
+      - id: '7.9'
+        title: TLS desde el cliente y diagnóstico con OpenSSL
+      - id: '7.10'
+        title: Pruebas con cliente mínimo y trazas de errores
+    lab: Conectar un cliente al replica set futuro, reproducir fallos DNS y de
+      certificados y explicar el error observado.
+
+  - id: 8
+    title: Identidades, usuarios y autorización
+    lessons:
+      - id: '8.1'
+        title: Autenticación frente a autorización y authSource
+      - id: '8.2'
+        title: Excepción localhost y bootstrap del primer administrador
+      - id: '8.3'
+        title: SCRAM y credenciales de cuentas humanas y de servicio
+      - id: '8.4'
+        title: Roles integrados y ámbito de base de datos
+      - id: '8.5'
+        title: Roles personalizados y mínimo privilegio
+      - id: '8.6'
+        title: Separación entre userAdmin, clusterAdmin y tareas de backup
+      - id: '8.7'
+        title: Altas, cambios, bajas y revisión de permisos efectivos
+      - id: '8.8'
+        title: Rotación de contraseñas y almacenamiento de secretos
+      - id: '8.9'
+        title: Usuarios de emergencia y recuperación de acceso documentada
+      - id: '8.10'
+        title: Pruebas positivas y negativas de autorización
+    lab: Crear roles de lectura, aplicación, monitorización y backup; demostrar
+      con pruebas qué puede y qué no puede hacer cada uno.
+
+  - id: 9
+    title: TLS y seguridad de red
+    lessons:
+      - id: '9.1'
+        title: PKI, CA, cadena de confianza, SAN y vigencia
+      - id: '9.2'
+        title: Emitir certificados de laboratorio por hostname
+      - id: '9.3'
+        title: TLS entre cliente y servidor
+      - id: '9.4'
+        title: TLS entre miembros y routers
+      - id: '9.5'
+        title: Autenticación interna con keyfile y permisos
+      - id: '9.6'
+        title: Autenticación X.509 de clientes y miembros
+      - id: '9.7'
+        title: Rotación de keyfile y certificados con continuidad
+      - id: '9.8'
+        title: Red privada, segmentación y reglas mínimas de firewall
+      - id: '9.9'
+        title: Cifrado de volúmenes, copias y secretos
+      - id: '9.10'
+        title: Auditoría de configuración y comprobación de superficie expuesta
+    lab: Proteger un despliegue con TLS y autenticación interna, rotar un
+      certificado y detectar un SAN incorrecto.
+
+  - id: 10
+    title: Enterprise e integración con IAM
+    lessons:
+      - id: '10.1'
+        title: Matriz de capacidades Community, Enterprise y Atlas
+      - id: '10.2'
+        title: 'Kerberos: KDC, realm, principal y ticket'
+      - id: '10.3'
+        title: DNS, hora y principals mongodb/FQDN
+      - id: '10.4'
+        title: Keytabs y permisos del servicio mongod
+      - id: '10.5'
+        title: Usuarios en $external y asignación de roles
+      - id: '10.6'
+        title: Configurar autenticación Kerberos en Enterprise
+      - id: '10.7'
+        title: Diagnosticar GSSAPI, tickets caducados y keytabs
+      - id: '10.8'
+        title: >-
+          SSO de la consola y autenticación de base de datos: ámbitos distintos
+      - id: '10.9'
+        title: 'Auditoría Enterprise y cifrado nativo: requisitos y operación'
+      - id: '10.10'
+        title: Diseño de integración IAM y alternativa Community con SCRAM/X.509
+    lab: Diseñar una integración con MIT Kerberos o FreeIPA y, si hay Enterprise
+      disponible, validar acceso y fallos de reloj.
+
+  - id: 11
+    title: Replica sets desde cero
+    lessons:
+      - id: '11.1'
+        title: Miembros primary y secondary y estados del replica set
+      - id: '11.2'
+        title: Mayoría, votos y prioridad
+      - id: '11.3'
+        title: Topología de tres miembros con datos
+      - id: '11.4'
+        title: DNS, conectividad, keyfile y TLS por nodo
+      - id: '11.5'
+        title: Inicialización y configuración mediante rs.initiate
+      - id: '11.6'
+        title: Inspección con rs.status y rs.conf
+      - id: '11.7'
+        title: Oplog, replicación asíncrona y replication lag
+      - id: '11.8'
+        title: Initial sync y requisitos de disco y red
+      - id: '11.9'
+        title: Conexión de clientes y escritura verificada
+      - id: '11.10'
+        title: Conversión de standalone a replica set
+    lab: Desplegar rs0 con tres miembros con datos, autenticación y TLS;
+      demostrar replicación y acceso mediante URI de topología.
+
+  - id: 12
+    title: Elecciones, fallos y alta disponibilidad
+    lessons:
+      - id: '12.1'
+        title: Heartbeats, términos y condiciones de elección
+      - id: '12.2'
+        title: Prioridad, elegibilidad y ubicación de miembros
+      - id: '12.3'
+        title: Mayoría y comportamiento ante pérdida de quórum
+      - id: '12.4'
+        title: Stepdown planificado y elecciones observadas
+      - id: '12.5'
+        title: Caída del primary y reconexión del cliente
+      - id: '12.6'
+        title: Particiones de red y evitación de dos primaries efectivos
+      - id: '12.7'
+        title: 'Arbiters: límites de durabilidad y criterios para evitarlos'
+      - id: '12.8'
+        title: 'Dominios de fallo: proceso, host, zona y región'
+      - id: '12.9'
+        title: Distribución geográfica y latencia de mayoría
+      - id: '12.10'
+        title: Medir disponibilidad real y validar objetivos de recuperación
+    lab: Detener un primary y aislar un miembro en laboratorio; medir
+      interrupción del cliente, elección y escrituras confirmadas.
+
+  - id: 13
+    title: Consistencia, durabilidad y transacciones
+    lessons:
+      - id: '13.1'
+        title: Write concern y acknowledgement
+      - id: '13.2'
+        title: majority, journaling y defaults efectivos
+      - id: '13.3'
+        title: Read preference y posibles lecturas atrasadas
+      - id: '13.4'
+        title: Read concern local, majority y snapshot
+      - id: '13.5'
+        title: Sesiones y consistencia causal
+      - id: '13.6'
+        title: Transacciones multidocumento y costes operativos
+      - id: '13.7'
+        title: Reintentos de transacciones y resultados inciertos
+      - id: '13.8'
+        title: Rollback de escrituras y análisis de consecuencias
+      - id: '13.9'
+        title: maxTimeMS, timeouts y problemas de semántica
+      - id: '13.10'
+        title: Matriz de garantías por topología y configuración
+    lab: Comparar lecturas y escrituras con diferentes concerns durante un
+      failover y registrar resultados confirmados e inciertos.
+
+  - id: 14
+    title: Operación y mantenimiento de replica sets
+    lessons:
+      - id: '14.1'
+        title: Añadir, sustituir y retirar miembros
+      - id: '14.2'
+        title: Cambiar votos y prioridades con control de riesgo
+      - id: '14.3'
+        title: 'Miembros hidden y delayed: aplicaciones y límites'
+      - id: '14.4'
+        title: Planificar y redimensionar la ventana del oplog
+      - id: '14.5'
+        title: Diagnosticar lag y seleccionar fuente de sincronización
+      - id: '14.6'
+        title: Resync de miembro y coste de initial sync
+      - id: '14.7'
+        title: Mantenimiento rolling y reinicios controlados
+      - id: '14.8'
+        title: Reemplazar disco o VM sin perder mayoría
+      - id: '14.9'
+        title: Recuperación de miembro atrasado fuera del oplog
+      - id: '14.10'
+        title: 'Reconfiguración forzada: último recurso y riesgo de rollback'
+    lab: Sustituir un secondary, provocar retraso controlado y recuperarlo
+      conservando un servicio utilizable y evidencias del estado.
+
+  - id: 15
+    title: Monitorización, logs y alertas
+    lessons:
+      - id: '15.1'
+        title: Baseline y señales de salud por componente
+      - id: '15.2'
+        title: serverStatus, dbStats y collStats
+      - id: '15.3'
+        title: mongostat y mongotop en diagnóstico
+      - id: '15.4'
+        title: Logs estructurados, niveles y correlación temporal
+      - id: '15.5'
+        title: Rotación de logs y permisos de /var/log
+      - id: '15.6'
+        title: FTDC y recopilación de evidencias
+      - id: '15.7'
+        title: Monitorizar latencia, errores, conexiones y colas
+      - id: '15.8'
+        title: Métricas de caché, disco, replicación y sharding
+      - id: '15.9'
+        title: Prometheus, exporter compatible y Grafana como integración
+          opcional
+      - id: '15.10'
+        title: Alertas accionables, umbrales y runbooks
+    lab: Crear un panel y tres alertas con runbook; provocar lag, disco próximo
+      al límite y errores de autenticación en laboratorio.
+
+  - id: 16
+    title: Rendimiento y gestión de índices
+    lessons:
+      - id: '16.1'
+        title: Definir workload y objetivos p50, p95 y p99
+      - id: '16.2'
+        title: explain y claves/documentos examinados
+      - id: '16.3'
+        title: Índices compuestos, multikey, parciales y cubiertos
+      - id: '16.4'
+        title: Selectividad, orden de campos y coste de escritura
+      - id: '16.5'
+        title: Sort, agregaciones, memoria y spill a disco
+      - id: '16.6'
+        title: 'Profiler y slow query logs: coste y datos sensibles'
+      - id: '16.7'
+        title: Plan cache y cambios de plan según versión
+      - id: '16.8'
+        title: Construcción de índices y commit quorum
+      - id: '16.9'
+        title: Índices hidden, detección de no usados y retirada controlada
+      - id: '16.10'
+        title: Comparación reproducible antes/después y prevención de
+          regresiones
+    lab: Diagnosticar tres cargas lentas y justificar cada índice con explain,
+      latencia y coste de escritura medidos.
+
+  - id: 17
+    title: Capacidad y escalado vertical
+    lessons:
+      - id: '17.1'
+        title: Dimensionar documentos, índices y crecimiento
+      - id: '17.2'
+        title: Working set y presupuesto de RAM
+      - id: '17.3'
+        title: CPU, concurrencia y saturación
+      - id: '17.4'
+        title: Disco, IOPS y espacio de margen
+      - id: '17.5'
+        title: Conexiones y límites efectivos
+      - id: '17.6'
+        title: Coste de backups, initial sync y mantenimiento
+      - id: '17.7'
+        title: Pruebas de carga representativas y límites del generador
+      - id: '17.8'
+        title: Escalado vertical y sustitución rolling de hosts
+      - id: '17.9'
+        title: Compresión, retención y archivado de datos
+      - id: '17.10'
+        title: Informe de capacidad, coste y previsión de saturación
+    lab: Construir una previsión de seis meses y decidir si ampliar recursos,
+      reducir retención o considerar sharding.
+
+  - id: 18
+    title: Backups y restauración verificable
+    lessons:
+      - id: '18.1'
+        title: Amenazas, RPO/RTO y política de retención
+      - id: '18.2'
+        title: Replicación frente a backup y snapshots de VM
+      - id: '18.3'
+        title: 'mongodump y mongorestore: opciones y compatibilidad'
+      - id: '18.4'
+        title: Consistencia de dumps, oplog y restricciones
+      - id: '18.5'
+        title: Restaurar bases y namespaces a destino aislado
+      - id: '18.6'
+        title: Snapshots de filesystem y requisitos de consistencia
+      - id: '18.7'
+        title: Backup coordinado de sharded clusters
+      - id: '18.8'
+        title: Cifrado, inmutabilidad, separación de credenciales y catálogo
+      - id: '18.9'
+        title: 'Ops Manager y Atlas: métodos gestionados y requisitos'
+      - id: '18.10'
+        title: Pruebas periódicas de restore y medición de RPO/RTO
+    lab: Restaurar un backup a infraestructura limpia, validar datos e índices y
+      medir la pérdida temporal y el tiempo total de recuperación.
+
+  - id: 19
+    title: Recuperación ante desastres
+    lessons:
+      - id: '19.1'
+        title: Inventario de dependencias y escenarios de desastre
+      - id: '19.2'
+        title: Borrado accidental y corrupción lógica
+      - id: '19.3'
+        title: Pérdida de un miembro, mayoría y sitio completo
+      - id: '19.4'
+        title: Seleccionar fuente de recuperación y preservar evidencias
+      - id: '19.5'
+        title: 'PITR: requisitos, herramientas y disponibilidad'
+      - id: '19.6'
+        title: Restaurar identidades, certificados y configuración
+      - id: '19.7'
+        title: Recuperación de replica set y reconexión de aplicaciones
+      - id: '19.8'
+        title: Recuperación coordinada de clúster sharded
+      - id: '19.9'
+        title: Failback, validación funcional y reconciliación
+      - id: '19.10'
+        title: Simulacro y retrospectiva con acciones correctivas
+    lab: Simular pérdida del sitio de laboratorio y reconstruir desde backup sin
+      reutilizar los volúmenes originales.
+
+  - id: 20
+    title: Arquitectura y despliegue de sharding
+    lessons:
+      - id: '20.1'
+        title: Cuándo sharding resuelve un problema y cuándo añade coste
+      - id: '20.2'
+        title: Shards como replica sets y papel de mongos
+      - id: '20.3'
+        title: Config server replica set y metadatos
+      - id: '20.4'
+        title: Topología de dos shards, tres config servers y dos routers
+      - id: '20.5'
+        title: TLS, autenticación y red de todos los componentes
+      - id: '20.6'
+        title: 'Shard key: cardinalidad, frecuencia y monotonicidad'
+      - id: '20.7'
+        title: Range frente a hashed sharding
+      - id: '20.8'
+        title: Routing dirigido y scatter-gather
+      - id: '20.9'
+        title: Colecciones sharded y unsharded y bases de datos
+      - id: '20.10'
+        title: Desplegar y verificar distribución de una colección
+    lab: Desplegar dos shards de tres miembros, tres config servers y dos
+      mongos; verificar rutas y distribución de datos.
+
+  - id: 21
+    title: Operación avanzada de sharding
+    lessons:
+      - id: '21.1'
+        title: Distribución de rangos y comportamiento del balancer
+      - id: '21.2'
+        title: Migraciones de rangos y coste operativo
+      - id: '21.3'
+        title: Chunks, límites y comportamiento dependiente de versión
+      - id: '21.4'
+        title: Hotspots y claves de shard problemáticas
+      - id: '21.5'
+        title: Zones y colocación controlada de datos
+      - id: '21.6'
+        title: Añadir shards y observar redistribución
+      - id: '21.7'
+        title: Retirar shards y verificar drenaje completo
+      - id: '21.8'
+        title: Refinar shard key frente a resharding
+      - id: '21.9'
+        title: Monitorizar config servers, routers y shards
+      - id: '21.10'
+        title: Incidentes de balanceo, metadatos y operaciones distribuidas
+    lab: Generar un hotspot, justificar una nueva distribución y ejecutar
+      resharding o una alternativa compatible con la versión elegida.
+
+  - id: 22
+    title: Actualizaciones y ciclo de vida
+    lessons:
+      - id: '22.1'
+        title: Inventario de versiones de servidor, drivers y herramientas
+      - id: '22.2'
+        title: Leer release notes y cambios incompatibles
+      - id: '22.3'
+        title: Parche frente a actualización de versión
+      - id: '22.4'
+        title: FCV y separación entre binarios y funcionalidades
+      - id: '22.5'
+        title: Ensayo de upgrade sobre copia restaurada
+      - id: '22.6'
+        title: Actualización rolling de replica sets
+      - id: '22.7'
+        title: Secuencia documentada de upgrade para sharded clusters
+      - id: '22.8'
+        title: Compatibilidad y validación de clientes
+      - id: '22.9'
+        title: 'Rollback y downgrade: restricciones y puntos de no retorno'
+      - id: '22.10'
+        title: Retirada de versiones y plan de soporte
+    lab: Ensayar un upgrade permitido por la documentación de las versiones
+      origen y destino; comprobar datos, clientes y FCV.
+
+  - id: 23
+    title: 'Atlas: implementación y gobierno'
+    lessons:
+      - id: '23.1'
+        title: Responsabilidad compartida y decisiones de arquitectura
+      - id: '23.2'
+        title: Organizaciones, proyectos, equipos y roles
+      - id: '23.3'
+        title: Usuarios de plataforma frente a usuarios de base de datos
+      - id: '23.4'
+        title: Seleccionar proveedor, región y tipo de despliegue
+      - id: '23.5'
+        title: Crear y etiquetar clusters con presupuesto
+      - id: '23.6'
+        title: IP access lists y conectividad privada disponible
+      - id: '23.7'
+        title: Cargar sample datasets y crear una carga de control
+      - id: '23.8'
+        title: Atlas CLI y API de administración
+      - id: '23.9'
+        title: Service accounts o credenciales API con mínimo privilegio
+      - id: '23.10'
+        title: Límites por plan y matriz de prácticas ejecutables
+    lab: Crear o diseñar un proyecto Atlas con inventario de permisos,
+      conectividad y presupuesto; verificar una conexión sin exposición general.
+
+  - id: 24
+    title: 'Atlas: operación, seguridad y continuidad'
+    lessons:
+      - id: '24.1'
+        title: Métricas, logs y Performance Advisor según plan
+      - id: '24.2'
+        title: Alertas, contactos operativos y actividad del proyecto
+      - id: '24.3'
+        title: Escalado manual y autoscaling con límites de gasto
+      - id: '24.4'
+        title: Backups, retención y restores según plan
+      - id: '24.5'
+        title: PITR y recuperación cruzada según disponibilidad
+      - id: '24.6'
+        title: Regiones, zonas y pruebas de resiliencia permitidas
+      - id: '24.7'
+        title: Mantenimiento, cambios de versión y ventanas
+      - id: '24.8'
+        title: Private endpoints, claves gestionadas y requisitos
+      - id: '24.9'
+        title: Auditoría, acceso federado y controles de organización
+      - id: '24.10'
+        title: Costes, facturación y revisión de consumo
+    lab: Restaurar en Atlas si el plan lo permite; en otro caso ejecutar restore
+      local y documentar qué controles Atlas no se han probado.
+
+  - id: 25
+    title: Migración y movimiento de datos
+    lessons:
+      - id: '25.1'
+        title: Evaluar origen, destino, compatibilidad y downtime
+      - id: '25.2'
+        title: Inventario de datos, usuarios, índices y validadores
+      - id: '25.3'
+        title: Migración offline con dump/restore
+      - id: '25.4'
+        title: Transferencias parciales y selección de namespaces
+      - id: '25.5'
+        title: Sincronización en línea con herramientas oficialmente compatibles
+      - id: '25.6'
+        title: Migración autogestionado a Atlas y trayectoria inversa
+      - id: '25.7'
+        title: Verificación de documentos, índices y opciones
+      - id: '25.8'
+        title: Ensayo, congelación de escrituras y corte de clientes
+      - id: '25.9'
+        title: Plan de reversión y reconciliación de escrituras
+      - id: '25.10'
+        title: Retirada segura del origen y cierre del cambio
+    lab: Migrar entre dos entornos aislados, medir la interrupción y demostrar
+      integridad mediante manifiesto y comprobaciones de contenido.
+
+  - id: 26
+    title: Automatización con Ansible y Terraform
+    lessons:
+      - id: '26.1'
+        title: Separar provisión de infraestructura y configuración del servicio
+      - id: '26.2'
+        title: Inventario Terraform y consumo desde Ansible
+      - id: '26.3'
+        title: Roles Ansible para paquetes, directorios y systemd
+      - id: '26.4'
+        title: Configuración estática explícita por nodo
+      - id: '26.5'
+        title: Gestión de secretos, keyfiles y certificados
+      - id: '26.6'
+        title: Bootstrap idempotente de usuarios y replica sets
+      - id: '26.7'
+        title: Automatizar backup, restore y health checks
+      - id: '26.8'
+        title: Terraform provider de Atlas y permisos del estado
+      - id: '26.9'
+        title: CI, revisión de planes, drift y validaciones
+      - id: '26.10'
+        title: Destrucción controlada y protección de datos persistentes
+    lab: Recrear tres nodos desde inventario, ejecutar Ansible dos veces sin
+      cambios inesperados y restaurar una copia en otro entorno.
+
+  - id: 27
+    title: 'Docker y Podman: standalone local seguro'
+    lessons:
+      - id: '27.1'
+        title: Contenedores frente a VMs y límites del aislamiento
+      - id: '27.2'
+        title: Prerrequisitos de CPU, runtime y almacenamiento
+      - id: '27.3'
+        title: Imágenes oficiales, tags, digest y compatibilidad de entrypoints
+      - id: '27.4'
+        title: 'Docker Engine y Podman: diferencias operativas'
+      - id: '27.5'
+        title: Rootless, rootful, UID/GID y permisos del proceso mongod
+      - id: '27.6'
+        title: Volúmenes nombrados, bind mounts y persistencia
+      - id: '27.7'
+        title: 'SELinux en Fedora: etiquetas de volúmenes y diagnóstico'
+      - id: '27.8'
+        title: Red privada, DNS de contenedores y publicación en loopback
+      - id: '27.9'
+        title: Standalone con configuración mongod.conf montada
+      - id: '27.10'
+        title: Bootstrap de administrador y roles con volumen vacío
+      - id: '27.11'
+        title: Datos existentes e idempotencia de inicialización
+      - id: '27.12'
+        title: CA local y certificados TLS con SAN de servicio
+      - id: '27.13'
+        title: Montaje de secretos, keyfiles y claves privadas con permisos
+          efectivos
+      - id: '27.14'
+        title: Conexión mongosh con SCRAM, CA y TLS obligatorio
+      - id: '27.15'
+        title: Logs, health checks y parada ordenada
+      - id: '27.16'
+        title: Recursos, OOM y límites de almacenamiento
+      - id: '27.17'
+        title: Backup desde contenedor y restore en volumen nuevo
+      - id: '27.18'
+        title: Recreación, limpieza y conservación explícita de datos
+    lab: Desplegar standalone persistente en Docker y repetir en Podman;
+      protegerlo con SCRAM/TLS y restaurar datos en un volumen independiente.
+    practical_labs:
+      - name: 27-A — Standalone persistente
+        task: Crear red y volumen, montar mongod.conf y bootstrap de usuarios
+          según la imagen; escribir datos y recrear el contenedor.
+        verify: Datos y usuarios persisten, URI funciona y el puerto sólo se
+          publica en loopback cuando se necesita acceso del host.
+      - name: 27-B — Standalone con TLS
+        task: Crear CA y certificado con SAN correctos, aplicar requireTLS y
+          montar claves con propietario y permisos adecuados.
+        verify: Cliente con CA y usuario correcto conecta; conexiones sin TLS o
+          con CA/hostname incorrectos fallan sin desactivar validación.
+      - name: 27-C — Backup y restore
+        task: Ejecutar dump autenticado con TLS y restaurar a instancia aislada
+          y volumen nuevo.
+        verify: Comparar contenido, recuentos, índices y validadores; comprobar
+          explícitamente usuarios/roles según el ámbito del backup.
+      - name: 27-D — Variante Podman
+        task: Repetir persistencia y TLS con Podman; diagnosticar UID/GID,
+          rootless y SELinux.
+        verify: Reinicio conserva datos y los problemas se resuelven sin
+          desactivar SELinux ni ampliar permisos indiscriminadamente.
+
+  - id: 28
+    title: 'Docker Compose y Podman: replica set, keyfile y operación'
+    lessons:
+      - id: '28.1'
+        title: Compose Specification y selección de proveedor Compose en Podman
+      - id: '28.2'
+        title: Servicios, redes, volúmenes y configuración explícita por nodo
+      - id: '28.3'
+        title: DNS anunciado por los miembros y resolución desde el cliente
+      - id: '28.4'
+        title: Secrets de Compose y permisos reales de archivos montados
+      - id: '28.5'
+        title: Generación y distribución del keyfile compartido
+      - id: '28.6'
+        title: Certificados por miembro y SAN para sus nombres anunciados
+      - id: '28.7'
+        title: Orden de bootstrap, primer usuario y autenticación interna
+      - id: '28.8'
+        title: Inicialización idempotente del replica set de tres miembros
+      - id: '28.9'
+        title: 'Health checks de proceso, readiness y primary: diferencias'
+      - id: '28.10'
+        title: URI de replica set y cliente en la red de contenedores
+      - id: '28.11'
+        title: >-
+          Cliente en el host: nombres, puertos y límites de directConnection
+      - id: '28.12'
+        title: Conversión del standalone local a replica set conservando datos
+      - id: '28.13'
+        title: Failover, pérdida de miembro y reconexión del cliente
+      - id: '28.14'
+        title: Sustitución de secondary y reconstrucción de volumen
+      - id: '28.15'
+        title: Rotación rolling de keyfile y certificados
+      - id: '28.16'
+        title: Actualización rolling de imágenes y compatibilidad
+      - id: '28.17'
+        title: Podman Quadlet, systemd y persistencia del servicio
+      - id: '28.18'
+        title: Extensión sharded con Compose y límites del host único
+    lab: Crear tres miembros persistentes con Compose, keyfile y TLS; medir
+      failover, sustituir un miembro y demostrar restore y rotación.
+    practical_labs:
+      - name: 28-A — Replica set seguro desde cero
+        task: Preparar config/ por nodo, red, tres volúmenes, keyfile y
+          certificados; inicializar usuarios y rs0 siguiendo el procedimiento
+          validado para la imagen.
+        verify: Un primary, dos secondaries, cliente con replicaSet=rs0,
+          escritura replicada y acceso no autorizado rechazado.
+      - name: 28-B — Conversión de standalone
+        task: Respaldar la instancia del bloque 27, detenerla ordenadamente,
+          activar replicación y autenticación interna y añadir dos miembros.
+        verify: Datos previos y usuarios se conservan; comprobar URI, roles,
+          TLS, replicación e initial sync.
+      - name: 28-C — Fallos y rotación
+        task: Detener primary y sustituir secondary; ensayar rotación de keyfile
+          y certificados con el método de la versión elegida.
+        verify: Medir interrupción, confirmar mayoría y escritura desde el
+          cliente; no reiniciar simultáneamente todos los miembros.
+      - name: 28-D — Restore y servicio Podman
+        task: Restaurar a un entorno aislado y representar el servicio
+          persistente con Quadlet; verificar qué funciones dependen del
+          proveedor Compose.
+        verify: Datos recuperados, arranque ordenado y diferencias Docker/Podman
+          documentadas; no asumir equivalencia automática.
+      - name: 28-E — Sharding en contenedores
+        task: Adaptar la topología del bloque 20 a dos shards replicados, CSRS
+          de tres y dos routers, por fases si faltan recursos.
+        verify: Cliente vía mongos, distribución de datos y recuperación de un
+          proceso; distinguirlo de tolerancia a la pérdida del host.
+
+  - id: 29
+    title: 'Kubernetes: arquitectura y despliegue MongoDB'
+    lessons:
+      - id: '29.1'
+        title: Prerrequisitos de Kubernetes y elección del laboratorio local
+      - id: '29.2'
+        title: 'Kind o Minikube: recursos y límites de dominios de fallo'
+      - id: '29.3'
+        title: Namespaces, RBAC y cuentas de servicio del operador
+      - id: '29.4'
+        title: StatefulSet, identidad estable y reconciliación
+      - id: '29.5'
+        title: Headless Service, DNS y nombres anunciados del replica set
+      - id: '29.6'
+        title: StorageClass, PVC, PV, modo de acceso y reclaimPolicy
+      - id: '29.7'
+        title: ConfigMaps, Secrets y permisos de archivos montados
+      - id: '29.8'
+        title: 'Cifrado y protección de Secrets: base64 no es cifrado'
+      - id: '29.9'
+        title: Requests, limits y diagnóstico de OOMKilled
+      - id: '29.10'
+        title: Startup, readiness y liveness sin provocar reinicios en cascada
+      - id: '29.11'
+        title: Anti-affinity, topology spread y capacidad de scheduling
+      - id: '29.12'
+        title: NetworkPolicy y requisitos del plugin de red
+      - id: '29.13'
+        title: Standalone didáctico con PVC y TLS
+      - id: '29.14'
+        title: 'Replica set manual con StatefulSet: utilidad y límites'
+      - id: '29.15'
+        title: Selección de operator y matriz de versiones y ediciones
+      - id: '29.16'
+        title: Instalar operator con manifiestos o Helm según soporte
+      - id: '29.17'
+        title: Recursos personalizados, bootstrap, keyfile y TLS según operator
+      - id: '29.18'
+        title: Acceso de clientes internos y externos y validación inicial
+    lab: Desplegar standalone didáctico y después replica set gestionado por un
+      operator compatible, con almacenamiento persistente, TLS y acceso
+      limitado.
+    practical_labs:
+      - name: 29-A — Standalone didáctico
+        task: Crear namespace, PVC, configuración, credenciales y certificados;
+          desplegar una instancia sin exponerla públicamente.
+        verify: Validar TLS y permisos desde cliente interno y repetir tras
+          recrear el pod; identificar su ausencia de HA.
+      - name: 29-B — Comprender StatefulSet
+        task: Representar nombres estables y volúmenes de tres miembros y
+          comparar un despliegue manual con el ciclo de reconciliación de un
+          operator.
+        verify: Explicar identidad pod/PVC, orden de bootstrap y por qué
+          réplicas de Kubernetes no inicializan por sí mismas un replica set
+          MongoDB.
+      - name: 29-C — Replica set con operator
+        task: Seleccionar versión compatible Community o Enterprise y usar su
+          CRD, configuración de autenticación interna y TLS documentadas.
+        verify: Operator reconciliado, tres miembros con datos, mayoría
+          disponible y cliente con validación de certificados; no imponer campos
+          de otra CRD.
+      - name: 29-D — Red y scheduling
+        task: Configurar acceso interno, políticas de red y colocación sobre
+          nodos suficientes; ensayar un acceso diagnóstico mediante
+          port-forward.
+        verify: Tráfico permitido funciona y tráfico denegado falla; explicar
+          limitaciones de port-forward para descubrimiento completo de
+          topología.
+
+  - id: 30
+    title: 'Kubernetes: operación, seguridad y recuperación'
+    lessons:
+      - id: '30.1'
+        title: Inventario de CRDs, recursos y estado reconciliado
+      - id: '30.2'
+        title: Mantenimiento con operator y prevención de drift manual
+      - id: '30.3'
+        title: PDB, eviction y límites ante fallos involuntarios
+      - id: '30.4'
+        title: Drain de nodo y preservación de mayoría
+      - id: '30.5'
+        title: 'Fallos de pod, nodo y zona: diferencias de alcance'
+      - id: '30.6'
+        title: PVC Pending, errores de attach y problemas de permisos
+      - id: '30.7'
+        title: Ampliación de volúmenes y soporte del CSI
+      - id: '30.8'
+        title: Rotación de credenciales, keyfile y certificados según operator
+      - id: '30.9'
+        title: Gestión externa de secretos y automatización PKI como extensiones
+      - id: '30.10'
+        title: Upgrade coordinado de MongoDB, operator, CRDs y Kubernetes
+      - id: '30.11'
+        title: Backups con Job o CronJob y herramientas compatibles
+      - id: '30.12'
+        title: Consistencia de VolumeSnapshots y límites del CSI
+      - id: '30.13'
+        title: Restore en namespace o clúster aislado
+      - id: '30.14'
+        title: Pérdida de PVC o clúster y reconstrucción de miembros
+      - id: '30.15'
+        title: Métricas, ServiceMonitor y reglas según stack instalado
+      - id: '30.16'
+        title: Logs, eventos, probes y diagnóstico de reconciliación
+      - id: '30.17'
+        title: Sharding gestionado en Kubernetes si la edición y operator lo
+          permiten
+      - id: '30.18'
+        title: Runbooks, GitOps y revisión de readiness para producción
+    lab: Operar el replica set bajo reconciliación, ejecutar mantenimiento y
+      rotación, recuperar datos fuera del despliegue original y resolver
+      incidentes de almacenamiento.
+    practical_labs:
+      - name: 30-A — Mantenimiento y fallo
+        task: Evictar un pod o drenar un nodo respetando majority y PDB; después
+          introducir un fallo involuntario acotado.
+        verify: Medir disponibilidad del cliente y comprobar que PDB no evita
+          todo tipo de fallo; separar pruebas de un nodo y multinodo.
+      - name: 30-B — Rotación y upgrade
+        task: Aplicar cambios por los recursos admitidos del operator, ensayar
+          rotación y actualización sobre una copia previa.
+        verify: Sin drift persistente, certificados validados, datos íntegros y
+          compatibilidad del operator/servidor/CRD registrada.
+      - name: 30-C — Backup y recuperación
+        task: Programar backup consistente apropiado para la topología y
+          restaurar en namespace aislado con PVC nuevos.
+        verify: Validar contenido, índices y opciones; medir RPO/RTO y demostrar
+          que exportar YAML no respalda los datos MongoDB.
+      - name: 30-D — Incidentes y almacenamiento
+        task: Simular PVC Pending, permiso incorrecto o presión de recursos;
+          diagnosticar eventos, logs y estado MongoDB.
+        verify: Recuperar el servicio sin borrar volúmenes ni forzar
+          reconfiguración como primera medida; entregar línea temporal.
+      - name: 30-E — Sharding condicionado
+        task: Diseñar o ejecutar la topología sharded con los recursos admitidos
+          por el operator y edición seleccionados.
+        verify: Registrar soporte y costes; si no es ejecutable, entregar diseño
+          explícito y ejecutar la variante local del bloque 28 sin atribuirle
+          validación Kubernetes.
+
+  - id: 31
+    title: Troubleshooting por escenarios
+    lessons:
+      - id: '31.1'
+        title: 'Método: síntomas, hipótesis, evidencia y mitigación'
+      - id: '31.2'
+        title: 'mongod no inicia: YAML, permisos y rutas'
+      - id: '31.3'
+        title: Errores SELinux, firewall y DNS
+      - id: '31.4'
+        title: Autenticación, certificados y expiraciones
+      - id: '31.5'
+        title: No primary, pérdida de mayoría y selección de servidor
+      - id: '31.6'
+        title: Lag, initial sync lento y oplog insuficiente
+      - id: '31.7'
+        title: Disco lleno, presión de caché y saturación de I/O
+      - id: '31.8'
+        title: Consultas lentas, pools agotados y tormentas de conexiones
+      - id: '31.9'
+        title: Sharding desequilibrado y fallo de mongos/config servers
+      - id: '31.10'
+        title: Recopilar diagnóstico para escalado y análisis causal
+    lab: Resolver incidentes sorpresa de cinco familias distintas y entregar una
+      línea temporal con causa, mitigación y prevención.
+
+  - id: 32
+    title: SRE, gobierno y operación experta
+    lessons:
+      - id: '32.1'
+        title: SLI/SLO de disponibilidad, latencia y recuperación
+      - id: '32.2'
+        title: Error budgets y decisiones de mantenimiento
+      - id: '32.3'
+        title: Gestión de incidentes y escalado
+      - id: '32.4'
+        title: Runbooks, checklists y revisión por pares
+      - id: '32.5'
+        title: Capacidad, costes y decisiones de arquitectura
+      - id: '32.6'
+        title: Política de datos, retención y evidencias auditables
+      - id: '32.7'
+        title: Gestión de vulnerabilidades y acceso privilegiado
+      - id: '32.8'
+        title: Game days, chaos testing acotado y criterios de parada
+      - id: '32.9'
+        title: Auditoría de readiness para producción
+      - id: '32.10'
+        title: Postmortems sin culpabilización y seguimiento de mejoras
+    lab: Preparar una revisión operativa con SLO, paneles, matriz de acceso,
+      política de backup y evidencias de simulacros.
+
+  - id: 33
+    title: Proyecto experto y defensa de arquitectura
+    lessons:
+      - id: '33.1'
+        title: Recoger requisitos de negocio y workload
+      - id: '33.2'
+        title: Diseñar topología y dominios de fallo
+      - id: '33.3'
+        title: Implementar infraestructura y configuración versionadas
+      - id: '33.4'
+        title: Aplicar IAM, TLS y rotación de secretos
+      - id: '33.5'
+        title: Instrumentar métricas, logs, alertas y SLO
+      - id: '33.6'
+        title: Validar capacidad, índices y crecimiento
+      - id: '33.7'
+        title: Demostrar failover y mantenimiento rolling
+      - id: '33.8'
+        title: Demostrar backup, desastre y recuperación completa
+      - id: '33.9'
+        title: Justificar sharding, Atlas y costes con alternativas
+      - id: '33.10'
+        title: Defender arquitectura, límites y riesgos residuales
+    lab: Entregar un servicio reproducible con tres nodos, TLS, automatización,
+      observabilidad, failover y restore medidos; añadir caso sharded y
+      comparación Atlas.

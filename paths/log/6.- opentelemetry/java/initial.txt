@@ -1,0 +1,423 @@
+OPENTELEMETRY CON JAVA — DE CERO A EXPERTO
+Especialización independiente del tronco común de OpenTelemetry.
+Cero se refiere a instrumentación Java: no sustituye un curso de Java.
+Formato: bloque N; lecciones N.1–N.10, sin reinicios ni saltos.
+Los contenidos son un PATH y especificaciones de lecciones y laboratorios;
+este paquete no incluye todavía aplicaciones ni scripts ejecutables.
+
+
+0. Fundamentos y relación con el tronco común
+
+0.1 Observabilidad aplicada a una petición Java: preguntas, síntomas y evidencias
+0.2 Trazas, métricas y logs: responsabilidades y correlación
+0.3 API, SDK, instrumentación y backend: fronteras de responsabilidad
+0.4 Recorrido aplicación → OTLP → Collector → almacenamiento
+0.5 Tronco común como referencia para OTLP, Collector y semántica
+0.6 Requisitos de Java, HTTP, concurrencia y herramientas de compilación
+0.7 Estabilidad por componente frente a estabilidad de cada integración
+0.8 Lab: reconstruir una petición con tres señales y explicar cada componente
+0.9 Taller guiado: implementar y documentar el caso del bloque «Fundamentos y relación con el tronco común» con configuración completa, comandos y resultado esperado
+0.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+1. Entorno Java y compilaciones reproducibles
+
+1.1 Instalar JDK y herramientas en Fedora/RHEL; comprobar java y JAVA_HOME
+1.2 Elegir JDK base compatible y registrar matriz JDK/framework/agente
+1.3 Maven: wrappers, dependencyManagement y BOM del SDK
+1.4 Gradle: wrappers, platforms y resolución de dependencias
+1.5 Diferenciar BOM de SDK, instrumentation y artefactos alpha
+1.6 Árbol de dependencias, convergencia y conflictos de clases
+1.7 Fijar versiones, checksums, imágenes y repositorios de descarga
+1.8 Lab: compilar una aplicación mínima con Maven y su equivalente Gradle
+1.9 Taller guiado: implementar y documentar el caso del bloque «Entorno Java y compilaciones reproducibles» con configuración completa, comandos y resultado esperado
+1.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+2. Laboratorio local de observabilidad
+
+2.1 Diseñar red privada de laboratorio y publicar interfaces en loopback
+2.2 Collector con receptor OTLP y pipelines de trazas, métricas y logs
+2.3 Empezar con debug exporter antes de añadir backends
+2.4 Jaeger o Tempo para trazas y Prometheus para métricas
+2.5 Grafana y backend de logs como ampliación progresiva
+2.6 Docker Compose como ruta principal y Podman Compose como alternativa validada
+2.7 Persistencia, límites de recursos, reinicio y limpieza de datos
+2.8 Lab: enviar telemetría sintética y localizar una configuración OTLP incorrecta
+2.9 Taller guiado: implementar y documentar el caso del bloque «Laboratorio local de observabilidad» con configuración completa, comandos y resultado esperado
+2.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+3. Primeros pasos con el agente Java
+
+3.1 Descargar y verificar el JAR del agente desde una release fijada
+3.2 Arrancar con -javaagent y comprobar que se ha cargado
+3.3 JAVA_TOOL_OPTIONS: alcance, herencia y riesgos de configuración
+3.4 Identificar instrumentación instalada y bibliotecas realmente soportadas
+3.5 Asignar nombre de servicio y exportar la primera traza
+3.6 Añadir spans de negocio con API sobre el SDK del agente
+3.7 Distinguir operaciones automáticas de lógica de negocio sin instrumentar
+3.8 Lab: comparar la misma petición con agente activado y desactivado
+3.9 Taller guiado: implementar y documentar el caso del bloque «Primeros pasos con el agente Java» con configuración completa, comandos y resultado esperado
+3.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+4. Configuración y recursos
+
+4.1 Variables OTEL_* y propiedades -Dotel.*: precedencia documentada por modo
+4.2 OTEL_SERVICE_NAME y atributos de Resource frente a atributos de span
+4.3 Namespace, versión, instancia y entorno del servicio
+4.4 Configuración por señal: exporters, endpoints, headers y timeouts
+4.5 Autoconfigure frente a inicialización programática del SDK
+4.6 Configuración declarativa: comprobar soporte y estado en la release usada
+4.7 Desactivar instrumentaciones concretas y controlar atributos capturados
+4.8 Lab: provocar un conflicto de configuración y demostrar el valor efectivo
+4.9 Taller guiado: implementar y documentar el caso del bloque «Configuración y recursos» con configuración completa, comandos y resultado esperado
+4.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+5. Instrumentación manual y ciclo de vida
+
+5.1 Obtener OpenTelemetry por inyección o GlobalOpenTelemetry según entorno
+5.2 Tracer e instrumentation scope: nombres y versiones
+5.3 Construir OpenTelemetrySdk sin agente: providers y propagators
+5.4 Inicializar una vez y evitar SDK duplicados
+5.5 Diseñar bibliotecas dependientes de API, con comportamiento no-op
+5.6 AutoConfiguredOpenTelemetrySdk como alternativa al montaje explícito
+5.7 ForceFlush, shutdown y cierre ordenado sin bloquear peticiones
+5.8 Lab: ejecutar el mismo módulo con API no-op, SDK propio y agente
+5.9 Taller guiado: implementar y documentar el caso del bloque «Instrumentación manual y ciclo de vida» con configuración completa, comandos y resultado esperado
+5.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+6. Spans y errores
+
+6.1 SpanBuilder: padre, kind y timestamps
+6.2 Scope y makeCurrent con try-with-resources
+6.3 Finalizar spans en finally y respetar ciclo de vida asíncrono
+6.4 Atributos tipados, eventos y límites de tamaño
+6.5 recordException y StatusCode.ERROR: decisiones independientes
+6.6 Spans raíz, hijos y links para relaciones no jerárquicas
+6.7 Nombres estables, información de negocio y prevención de cardinalidad
+6.8 Lab: verificar árbol, duración y error de una operación fallida
+6.9 Taller guiado: implementar y documentar el caso del bloque «Spans y errores» con configuración completa, comandos y resultado esperado
+6.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+7. Contexto y propagación entre servicios
+
+7.1 Context.current y relación con SpanContext
+7.2 traceparent y tracestate de W3C: validez y extracción
+7.3 TextMapGetter y TextMapSetter en carriers propios
+7.4 Inyectar contexto saliente y extraer contexto entrante
+7.5 Baggage: límites, privacidad y ausencia de copia automática a atributos
+7.6 Contexto remoto, sampling flags y fronteras de confianza
+7.7 Evitar fugas de Scope y contaminación entre peticiones
+7.8 Lab: propagar entre dos procesos Java y romper deliberadamente un header
+7.9 Taller guiado: implementar y documentar el caso del bloque «Contexto y propagación entre servicios» con configuración completa, comandos y resultado esperado
+7.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+8. Concurrencia y tareas asíncronas
+
+8.1 Modelo basado en hilo y por qué se pierde el contexto
+8.2 ExecutorService: capturar contexto al programar y restaurar al ejecutar
+8.3 Context.wrap y wrappers: prevenir envolturas redundantes
+8.4 CompletableFuture: cadenas, callbacks y ejecutores explícitos
+8.5 ScheduledExecutorService y tareas periódicas sin padre obsoleto
+8.6 Cancelación, timeout y finalización correcta de spans
+8.7 Virtual threads: verificar propagación y soporte en la matriz elegida
+8.8 Lab: demostrar aislamiento de dos peticiones concurrentes y ausencia de spans huérfanos
+8.9 Taller guiado: implementar y documentar el caso del bloque «Concurrencia y tareas asíncronas» con configuración completa, comandos y resultado esperado
+8.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+9. HTTP cliente y servidor
+
+9.1 Servidor Servlet y cliente HTTP: spans SERVER y CLIENT
+9.2 Rutas normalizadas frente a URL cruda
+9.3 Método, estado y error según convenciones HTTP vigentes
+9.4 java.net.http.HttpClient y clientes soportados: revisar cobertura por versión
+9.5 Redirecciones, retries, timeout y multiplicidad de spans
+9.6 Captura selectiva de headers y redacción de datos
+9.7 Prevención de instrumentación doble en filtros y wrappers
+9.8 Lab: seguir una llamada entre dos servicios con timeout y reintento
+9.9 Taller guiado: implementar y documentar el caso del bloque «HTTP cliente y servidor» con configuración completa, comandos y resultado esperado
+9.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+10. Spring Boot MVC
+
+10.1 Proyecto REST con controlador, servicio y repositorio
+10.2 Aplicar agente a una aplicación empaquetada como JAR
+10.3 Leer spans HTTP, JDBC y spans de negocio
+10.4 WithSpan y SpanAttribute: requisitos y límites de annotations
+10.5 Inyección de OpenTelemetry y separación de configuración
+10.6 Excepciones gestionadas, filtros y normalización de rutas
+10.7 Distinguir Actuator, observabilidad Spring y OpenTelemetry
+10.8 Lab: instrumentar una API de pedidos y detectar dos spans equivalentes
+10.9 Taller guiado: implementar y documentar el caso del bloque «Spring Boot MVC» con configuración completa, comandos y resultado esperado
+10.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+11. Spring Boot Starter y Micrometer
+
+11.1 Instalar Starter y BOM de instrumentación compatibles
+11.2 Comparar cobertura Starter/agente con la tabla oficial
+11.3 Configuración application.properties/yaml y autoconfigure
+11.4 Elegir un propietario del SDK y revisar coexistencia de starters
+11.5 Micrometer Observation, Tracing y métricas: responsabilidades distintas
+11.6 Puentes Micrometer/OTel y prevención de duplicación de series
+11.7 Comparar integración nativa de Spring Boot para la versión elegida
+11.8 Lab: migrar una aplicación del agente al Starter y medir diferencias de cobertura
+11.9 Taller guiado: implementar y documentar el caso del bloque «Spring Boot Starter y Micrometer» con configuración completa, comandos y resultado esperado
+11.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+12. WebFlux y Reactor
+
+12.1 Contexto de Reactor frente a ThreadLocal de Java
+12.2 Instrumentación de Reactor y propagación en pipelines
+12.3 Mono/Flux: construir, suscribir y finalizar spans en el momento correcto
+12.4 WebClient y servidor reactivo: relación cliente-servidor
+12.5 publishOn y subscribeOn: cambios de ejecución y contexto
+12.6 Error, cancelación y retry en secuencias reactivas
+12.7 MDC en callbacks y prevención de contaminación entre suscriptores
+12.8 Lab: reproducir pérdida de contexto y verificar reparación con pruebas concurrentes
+12.9 Taller guiado: implementar y documentar el caso del bloque «WebFlux y Reactor» con configuración completa, comandos y resultado esperado
+12.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+13. gRPC y protocolos propios
+
+13.1 Metadatos gRPC como carrier de propagación
+13.2 Spans cliente/servidor y convenciones RPC
+13.3 Interceptors manuales frente a instrumentación automática
+13.4 Deadline, cancelación y códigos de estado
+13.5 Unary y streaming: delimitar duración de operación
+13.6 TLS y transporte: separar fallos de aplicación y conexión
+13.7 Protocolos internos: definir propagators sin inventar formato de trace ID
+13.8 Lab: seguir una llamada REST → gRPC y diagnosticar deadline excedido
+13.9 Taller guiado: implementar y documentar el caso del bloque «gRPC y protocolos propios» con configuración completa, comandos y resultado esperado
+13.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+14. JDBC, JPA y pools
+
+14.1 Driver JDBC y límites de instrumentación ORM
+14.2 Spans de consulta frente a transacción de negocio
+14.3 Hibernate/JPA: lazy loading, N+1 y sesiones
+14.4 HikariCP: espera, uso y agotamiento del pool
+14.5 Datos SQL sensibles, parámetros y políticas de captura
+14.6 Batching, transacciones, rollback y errores
+14.7 Conexiones lentas frente a consultas lentas: evidencias diferentes
+14.8 Lab: provocar N+1 y saturación de conexiones y distinguir sus firmas
+14.9 Taller guiado: implementar y documentar el caso del bloque «JDBC, JPA y pools» con configuración completa, comandos y resultado esperado
+14.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+15. Redis y acceso a datos adicional
+
+15.1 Redis: comandos, latencia y operaciones agrupadas
+15.2 Evitar claves, documentos y valores sensibles en atributos
+15.3 Cliente MongoDB: comprobar cobertura y semántica de la versión
+15.4 R2DBC: diferencias frente a JDBC y contexto reactivo
+15.5 Caching: hit/miss y métricas con etiquetas acotadas
+15.6 Timeout, reconexión y retries de clientes
+15.7 Elegir una integración adicional sin exigir todas las bases de datos
+15.8 Lab: introducir un fallo de caché y separar tiempo de backend y aplicación
+15.9 Taller guiado: implementar y documentar el caso del bloque «Redis y acceso a datos adicional» con configuración completa, comandos y resultado esperado
+15.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+16. Kafka y mensajería
+
+16.1 Productor, consumidor y contexto en headers de Kafka
+16.2 Crear, enviar, recibir y procesar: semántica según versión
+16.3 Relación padre-hijo y links en procesamiento por lotes
+16.4 Consumer groups, concurrencia y finalización del procesamiento
+16.5 Reintentos, redelivery, DLQ e idempotencia
+16.6 Distinguir latencia de procesamiento, cola y consumer lag
+16.7 JMS/RabbitMQ como variante con soporte comprobado
+16.8 Lab: seguir pedido → evento → consumidor y justificar relaciones causales
+16.9 Taller guiado: implementar y documentar el caso del bloque «Kafka y mensajería» con configuración completa, comandos y resultado esperado
+16.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+17. Métricas de negocio con API
+
+17.1 Meter e instrumentation scope
+17.2 Counter y UpDownCounter: monotonicidad y usos
+17.3 Histogram para latencias, tamaños y distribuciones
+17.4 Instrumentos observables y callbacks sin operaciones bloqueantes
+17.5 Unidades, descripciones y nombres estables
+17.6 Atributos acotados y estimación de número de series
+17.7 Indicadores de pedidos, errores y trabajo pendiente
+17.8 Lab: instrumentar una cola y validar unidades, conteos y cardinalidad
+17.9 Taller guiado: implementar y documentar el caso del bloque «Métricas de negocio con API» con configuración completa, comandos y resultado esperado
+17.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+18. SDK de métricas y Views
+
+18.1 SdkMeterProvider y ciclo de colección
+18.2 MetricReader periódico y exporter OTLP
+18.3 Views: seleccionar instrumentos y filtrar atributos
+18.4 Histogramas explícitos y exponenciales según soporte
+18.5 Temporalidad delta/cumulative y expectativas del backend
+18.6 Exemplars y condiciones para correlacionar métricas con trazas
+18.7 Conflictos de instrumentos y límites de cardinalidad soportados
+18.8 Lab: reducir series mediante Views y comprobar impacto sobre consultas
+18.9 Taller guiado: implementar y documentar el caso del bloque «SDK de métricas y Views» con configuración completa, comandos y resultado esperado
+18.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+19. JVM, JMX y diagnóstico del runtime
+
+19.1 Métricas de heap, non-heap y memoria por pool
+19.2 GC: pausas, frecuencia y presión de asignación
+19.3 Hilos, CPU, clases y descriptores: qué mide cada fuente
+19.4 Runtime telemetry del agente y convenciones JVM vigentes
+19.5 JMX MBeans y selección del mecanismo de recolección
+19.6 Métricas de pools y prevención de recolección duplicada
+19.7 JFR, thread dumps y profiler como herramientas complementarias
+19.8 Lab: distinguir presión de GC de bloqueo de hilos usando evidencias
+19.9 Taller guiado: implementar y documentar el caso del bloque «JVM, JMX y diagnóstico del runtime» con configuración completa, comandos y resultado esperado
+19.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+20. Logs Java y correlación
+
+20.1 SLF4J como fachada frente a Logback y Log4j2
+20.2 MDC: trace_id, span_id y alcance del contexto
+20.3 Correlación de logs sin exportación OTLP
+20.4 Appenders/bridges OpenTelemetry y SDK de logs
+20.5 Ruta directa OTLP frente a stdout/filelog del Collector
+20.6 Severidad, timestamps, Resource y excepciones multilínea
+20.7 Evitar bucles, duplicados y pérdida de contexto asíncrono
+20.8 Lab: correlacionar log y span y demostrar la diferencia entre inyectar IDs y exportar logs
+20.9 Taller guiado: implementar y documentar el caso del bloque «Logs Java y correlación» con configuración completa, comandos y resultado esperado
+20.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+21. OTLP y resiliencia de exportación
+
+21.1 Elegir explícitamente OTLP/gRPC u OTLP/HTTP-protobuf
+21.2 Endpoints generales y por señal: rutas y puertos
+21.3 TLS: truststore, certificados, nombre de servidor y mTLS
+21.4 Autenticación mediante headers y gestión de secretos
+21.5 BatchSpanProcessor y procesado por lotes de logs
+21.6 Colas, timeout, retry y pérdidas bajo saturación
+21.7 Separar garantías del SDK de persistencia y reintentos del Collector
+21.8 Lab: detener Collector, observar pérdida/recuperación y medir efecto en la aplicación
+21.9 Taller guiado: implementar y documentar el caso del bloque «OTLP y resiliencia de exportación» con configuración completa, comandos y resultado esperado
+21.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+22. Sampling y control de volumen
+
+22.1 AlwaysOn, AlwaysOff y ParentBased
+22.2 TraceIdRatioBased y coherencia de trazas distribuidas
+22.3 isRecording frente a sampled y coste de enriquecimiento
+22.4 Datos disponibles al inicio y límites del head sampling
+22.5 Tail sampling en Collector: ventana, memoria y afinidad de trazas
+22.6 Trazas parciales por head sampling antes de tail sampling
+22.7 Sampling de trazas frente a métricas y logs
+22.8 Lab: medir retención de errores y explicar trazas incompletas sin prometer recuperación
+22.9 Taller guiado: implementar y documentar el caso del bloque «Sampling y control de volumen» con configuración completa, comandos y resultado esperado
+22.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+23. Semántica, privacidad y contratos
+
+23.1 Convenciones de HTTP, RPC, DB, messaging y JVM
+23.2 Estabilidad de API frente a cambios de nombres semánticos
+23.3 Resource frente a atributos de operación y scope
+23.4 Allowlist de atributos y clasificación de datos
+23.5 Eliminar credenciales, tokens, payloads y consultas sensibles
+23.6 No utilizar IDs de usuario/pedido como etiquetas de métricas
+23.7 Versionar contratos de telemetría y cambios de dashboards
+23.8 Lab: auditar una muestra de datos y corregir fuga de secretos y explosión de series
+23.9 Taller guiado: implementar y documentar el caso del bloque «Semántica, privacidad y contratos» con configuración completa, comandos y resultado esperado
+23.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+24. Pruebas automatizadas de instrumentación
+
+24.1 JUnit y SDK de testing con versiones alineadas
+24.2 InMemorySpanExporter y verificación de estructura
+24.3 Comprobar parents, links, kinds y atributos obligatorios
+24.4 Verificar excepciones, estado y cierre de spans
+24.5 MetricReader de pruebas y LogRecordExporter en memoria
+24.6 Reloj controlado, awaits con límites y aislamiento de globales
+24.7 Pruebas negativas de propagación y privacidad
+24.8 Lab: construir una regresión que detecte pérdida de contexto sin depender de un backend
+24.9 Taller guiado: implementar y documentar el caso del bloque «Pruebas automatizadas de instrumentación» con configuración completa, comandos y resultado esperado
+24.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+25. Pruebas de integración y CI
+
+25.1 Testcontainers para servicios dependientes cuando proceda
+25.2 Pruebas reales del agente en un proceso JVM separado
+25.3 Validar transporte OTLP y recepción por el Collector
+25.4 Matriz de JDK, framework y agente con versiones fijadas
+25.5 Asserts semánticos frente a snapshots frágiles
+25.6 Pruebas de cierre, timeout y dependencia caída
+25.7 Publicar evidencias sanitizadas y controlar tiempo total de CI
+25.8 Lab: detectar en CI una actualización que duplica spans o rompe exportación
+25.9 Taller guiado: implementar y documentar el caso del bloque «Pruebas de integración y CI» con configuración completa, comandos y resultado esperado
+25.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+26. Rendimiento y capacidad
+
+26.1 Medir baseline sin telemetría y calentamiento del JIT
+26.2 Comparar agente, manual y Starter bajo carga equivalente
+26.3 Latencias p50/p95/p99, throughput, CPU y memoria
+26.4 Asignaciones, GC y coste de atributos/eventos
+26.5 Callbacks, exporters y processors: evitar trabajo pesado en rutas críticas
+26.6 JMH para microbenchmarks y carga HTTP para efecto de sistema
+26.7 Definir presupuesto y documentar incertidumbre de las mediciones
+26.8 Lab: reducir overhead preservando las preguntas operativas elegidas
+26.9 Taller guiado: implementar y documentar el caso del bloque «Rendimiento y capacidad» con configuración completa, comandos y resultado esperado
+26.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+27. Despliegue Linux y contenedores
+
+27.1 Unidad systemd: entorno, rutas y permisos del agente
+27.2 journald para diagnóstico de arranque y exporter
+27.3 Imagen de aplicación: agente fijado, usuario sin privilegios y mounts
+27.4 Contenedor: localhost frente a DNS del Collector
+27.5 SIGTERM, shutdown hook y tiempo de gracia
+27.6 CA, secretos y límites de CPU/memoria
+27.7 SELinux y firewalld: investigar denegaciones sin desactivar protecciones
+27.8 Lab: desplegar localmente y conservar spans finales durante cierre ordenado
+27.9 Taller guiado: implementar y documentar el caso del bloque «Despliegue Linux y contenedores» con configuración completa, comandos y resultado esperado
+27.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+28. Kubernetes aplicado a Java
+
+28.1 Inyección por Operator e Instrumentation CR según release
+28.2 Agente en imagen frente a init container: elección operativa
+28.3 Comprobar variables, volúmenes y comando efectivo del pod
+28.4 Resource de pod/namespace y enriquecimiento en Collector
+28.5 Exporter OTLP hacia gateway y NetworkPolicy
+28.6 Rolling update, probes y terminationGracePeriodSeconds
+28.7 RBAC mínimo, secretos y rollback de instrumentación
+28.8 Lab: localizar una inyección fallida y verificar una traza entre dos pods
+28.9 Taller guiado: implementar y documentar el caso del bloque «Kubernetes aplicado a Java» con configuración completa, comandos y resultado esperado
+28.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+29. Troubleshooting sistemático
+
+29.1 No hay spans: agente, SDK no-op, librería y sampling
+29.2 Spans duplicados: agente, Starter, filtros y bridges
+29.3 Trazas partidas: headers, executors, callbacks y clocks
+29.4 Métricas ausentes: reader, intervalo, unidad y temporalidad
+29.5 Logs sin correlación: contexto, MDC, patrón y appender
+29.6 OTLP falla: DNS, protocolo, ruta, TLS y autenticación
+29.7 NoClassDefFoundError, linkage y conflictos de classloader
+29.8 Lab: resolver incidentes con hipótesis, evidencia, corrección y prueba de regresión
+29.9 Taller guiado: implementar y documentar el caso del bloque «Troubleshooting sistemático» con configuración completa, comandos y resultado esperado
+29.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+30. Extensiones y casos avanzados
+
+30.1 SPI de autoconfigure y customizers con contratos públicos
+30.2 Sampler y SpanProcessor personalizados con costes acotados
+30.3 Exporter propio: ciclo de vida, fallos y backpressure
+30.4 Extensión del agente y aislamiento de classloaders
+30.5 Instrumentación de bytecode y Byte Buddy: módulo avanzado
+30.6 Verificar compatibilidad y evitar dependencia de APIs internas
+30.7 Quarkus y native image: ruta alternativa, límites y soporte verificado
+30.8 Lab: crear una extensión pequeña y probar carga, desactivación y compatibilidad
+30.9 Taller guiado: implementar y documentar el caso del bloque «Extensiones y casos avanzados» con configuración completa, comandos y resultado esperado
+30.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad
+
+31. Proyecto experto y mantenimiento
+
+31.1 Arquitectura pedidos/pagos/inventario con JDBC y Kafka
+31.2 Definir contrato de trazas, métricas, logs y datos permitidos
+31.3 Instrumentar bordes automáticamente y negocio con API
+31.4 Diagnosticar timeout, N+1, GC, pérdida de contexto y caída del Collector
+31.5 Diseñar SLIs y navegar de métrica a traza y log
+31.6 Medir overhead, cardinalidad y pérdidas con carga documentada
+31.7 Actualizar BOM/agente/semántica con canary y rollback
+31.8 Lab final: entregar repositorio reproducible, runbooks, pruebas y defensa de decisiones
+31.9 Taller guiado: implementar y documentar el caso del bloque «Proyecto experto y mantenimiento» con configuración completa, comandos y resultado esperado
+31.10 Evaluación: introducir un fallo del bloque, reunir evidencias, corregirlo y verificar la recuperación sin perder privacidad

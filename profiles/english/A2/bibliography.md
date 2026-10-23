@@ -4,7 +4,8 @@
 
 ### Raymond Murphy — *Basic Grammar in Use*, Fourth Edition
 
-Primary pedagogical reference and backbone for the A1–A2 grammar stage.
+Primary pedagogical reference and backbone for the selected A2 grammar curriculum. The publisher describes the book as
+American English, A1–B1; select content rather than treating its full contents as A2.
 
 Use it to support:
 - present and past forms;
@@ -86,7 +87,7 @@ The A2 path explicitly covers:
 - grammar foundations and sentence anatomy;
 - main verb vs auxiliary;
 - introductory tense/aspect/voice/modality terminology;
-- indirect questions and their word order;
+- frequent indirect-question patterns and declarative word order;
 - basic `would rather`;
 - two-object patterns such as `Give me the book / Give it to me`;
 - phrasal verbs and particle position;
@@ -103,3 +104,37 @@ The A2 path explicitly covers:
 - Explain grammar independently.
 - Create original examples, transformations, diagnostics and exercises.
 - Bibliographic references guide coverage; they do not replace grammatical reasoning.
+
+
+## Identified supporting sources and selection rules
+
+- Cambridge University Press & Assessment — Basic Grammar in Use, Fourth Edition.
+  Publisher: https://www.cambridge.org/cambridgeenglish/catalog/grammar-vocabulary-and-pronunciation/basic-grammar-use-4th-edition
+  American English, A1–B1. Use selected elementary patterns; do not infer A2 status
+  from inclusion in the book. Do not assume any specific unit contains an expansion
+  in this path without checking that edition.
+- Cambridge University Press & Assessment — English Grammar Today.
+  https://dictionary.cambridge.org/grammar/british-grammar/
+  Descriptive consultation for form, function and constraints. It is not an A2
+  syllabus. Select simple patterns and label British usage where relevant.
+- British Council — LearnEnglish Grammar.
+  https://learnenglish.britishcouncil.org/free-resources/grammar
+  Use original practice inspired by grammatical objectives, never copied exercises.
+  Its B1–B2 treatments of passives and reporting help delimit later development:
+  https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/passives
+  https://learnenglish.britishcouncil.org/free-resources/grammar/b1-b2/reported-speech-statements
+- Council of Europe — CEFR Reference Level Descriptions.
+  https://www.coe.int/en/web/common-european-framework-reference-languages/reference-level-descriptions
+  Framework context: language-specific inventories supplement general descriptors.
+
+## Core vs optional expansion
+
+Optional recognition notes retain existing coverage without claiming productive A2
+mastery of future/modal/continuous passive, reporting backshift and reported-question
+conversions, whom, or advanced modification terminology. Systematic development is
+deferred. Follow domain.md and profile.yaml when a general coverage statement above
+could be read more broadly. No optional topic is a compulsory checkpoint target.
+
+American English is the default; valid labelled British alternatives are accepted.
+Exact edition/unit/page references for later-level books require verification before
+use. Those books are progression references, not required reading for this A2 course.

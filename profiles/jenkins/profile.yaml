@@ -95,11 +95,12 @@ lesson_structure:
     heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
+# Bloque avanzado de Groovy APLICADO a Jenkins; lenguaje en path separado.
 groovy:
   independent_learning_path_exists: true
   repeat_full_language_curriculum: false
   essential_in_pipeline_stage: true
-  advanced_block_required: false
+  advanced_block_required: true
   jenkins_applied_block_required: true
   jenkins_specific_topics:
     - pipeline_dsl
@@ -119,3 +120,46 @@ quality_gates:
   avoid_duplicate_groovy_language_path: true
   include_labs_and_troubleshooting: true
   verify_version_sensitive_details: true
+
+prerequisites:
+  groovy_language:
+    source: independent_path
+    duplicate_curriculum: false
+    required_before_advanced_pipeline: true
+  plugin_development:
+    java_basics: required
+    maven_basics: required
+    bridge_lessons: "21.2.1-21.2.4"
+
+curriculum_rules:
+  preserve_block_count: 28
+  preserve_existing_lessons: true
+  cps_entry_lessons: "3.6.1-3.6.3"
+  require_prerequisite_links: true
+  recurring_topics_must_add_new_outcomes: true
+  distinguish_controller_and_agent_execution: true
+  restrict_core_object_api_to_administration: true
+  identify_step_provider_plugins: true
+  full_groovy_language_is_external: true
+
+assessment:
+  criteria_source: domain.md
+  each_lab_requires:
+    - prerequisites_and_tested_versions
+    - expected_result_and_verification
+    - controlled_failure_and_diagnosis
+    - evidence_and_cleanup
+  final_project_requires:
+    - reproducible_controller_and_agents
+    - versioned_pipeline_and_shared_library
+    - functional_and_negative_security_tests
+    - artifact_identity_and_promotion
+    - agent_failure_and_restart_evidence
+    - isolated_restore_with_measured_rpo_rto
+  distinguish_mock_and_runtime_tests: true
+  never_claim_unexecuted_tests_passed: true
+
+profile_interpretation:
+  pedagogical_requirements_are_declarative: true
+  verify_generator_field_support_before_claiming_automation: true
+  resolve_pedagogy_path_against_actual_repository: true

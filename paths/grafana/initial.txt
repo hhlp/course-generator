@@ -264,6 +264,7 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 9.15 caché
 9.16 rendimiento
 9.17 laboratorio: diagnosticar consultas
+9.18 data frames: campos, tipos, labels y contrato entre query y panel
 
 
 10. Variables y templating
@@ -442,6 +443,9 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 19.15 pending period
 19.16 keep firing
 19.17 laboratorio
+19.18 Recovering y transiciones según versión
+19.19 ausencia de series frente a No Data y Error
+19.20 restricciones de variables y transformaciones en reglas de alerting
 
 
 20. Contact points
@@ -562,6 +566,11 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 28.14 jq
 28.15 automatización
 28.16 laboratorio
+28.17 API vigente /apis: grupos, versiones, namespaces y recursos
+28.18 API legacy /api: deprecación desde Grafana 13 y compatibilidad
+28.19 migración de endpoints y equivalencias disponibles por recurso
+28.20 paginación y control de concurrencia según API
+28.21 laboratorio: automatizar un recurso y comprobar permisos y versión
 
 
 29. Automatización de Grafana
@@ -654,6 +663,9 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 34.9 almacenamiento compartido
 34.10 failure modes
 34.11 laboratorio
+34.12 secretos de cifrado coherentes entre instancias
+34.13 base de datos compartida frente a archivos y plugins desplegados por instancia
+34.14 prueba de failover y deduplicación de notificaciones
 
 
 35. Fundamentos de Loki
@@ -714,7 +726,7 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 38. Modos de despliegue
 38.1 monolithic
 38.2 single binary
-38.3 simple scalable
+38.3 simple scalable: modo deprecado y compatibilidad
 38.4 distributed
 38.5 microservices
 38.6 ventajas
@@ -780,7 +792,7 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 41.16 Prometheus integrations
 41.17 debugging
 41.18 métricas internas
-41.19 migración desde Promtail
+41.19 migración desde Promtail fuera de soporte
 41.20 laboratorio
 
 
@@ -878,6 +890,8 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 48.8 instant queries
 48.9 sintaxis
 48.10 laboratorio
+48.11 rango, step, resolución y límites del resultado
+48.12 dataset de referencia y resultados esperados
 
 
 49. Selectores de streams
@@ -912,6 +926,7 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 51.6 campos extraídos
 51.7 errores
 51.8 laboratorio
+51.9 __error__: detección y filtrado de errores de pipeline
 
 
 52. Pipeline expressions
@@ -935,6 +950,8 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 53.6 range aggregations
 53.7 errores
 53.8 laboratorio
+53.9 ubicación del filtro __error__ después de unwrap
+53.10 valores ausentes y conversiones fallidas
 
 
 54. Agregaciones
@@ -957,6 +974,9 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 54.17 by
 54.18 without
 54.19 laboratorio
+54.20 absent_over_time y detección de ausencia
+54.21 offset y comparación de ventanas temporales
+54.22 cuantiles por consulta frente a agregación de cuantiles
 
 
 55. Metric queries desde logs
@@ -981,6 +1001,10 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 56.6 vector matching conceptual
 56.7 funciones
 56.8 laboratorio
+56.9 on e ignoring: correspondencia de vectores
+56.10 group_left y group_right: cardinalidad y compatibilidad
+56.11 bool y diferencias entre comparación y filtrado
+56.12 laboratorio: operaciones entre series con labels distintos
 
 
 57. LogQL avanzado
@@ -994,6 +1018,9 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 57.8 correlación
 57.9 troubleshooting
 57.10 laboratorio
+57.11 escapes de strings y regex
+57.12 __error__ y restricciones de metric queries
+57.13 laboratorio: consultas con errores, ausencia y resultados verificables
 
 
 58. Optimización de LogQL
@@ -1168,6 +1195,9 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 71.7 almacenamiento
 71.8 seguridad
 71.9 laboratorio
+71.10 gateway: derivar tenant desde identidad autenticada
+71.11 rechazo de X-Scope-OrgID suministrado por clientes no confiables
+71.12 laboratorio: acceso cruzado entre tenants y verificación de aislamiento
 
 
 72. Limits
@@ -1247,7 +1277,7 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 77.9 laboratorio
 
 
-78. Simple scalable deployment
+78. Simple Scalable Deployment: operación existente y migración
 78.1 arquitectura
 78.2 read
 78.3 write
@@ -1256,7 +1286,10 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 78.6 object storage
 78.7 escalado
 78.8 disponibilidad
-78.9 laboratorio
+78.9 laboratorio: inventario SSD y plan de migración
+78.10 restricciones de versión y retirada anunciada en Loki 4.0
+78.11 selección de destino: microservices o monolítico HA
+78.12 laboratorio: ensayo de migración y criterios de recuperación
 
 
 79. Loki distribuido
@@ -1839,6 +1872,11 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 113.14 comportamiento ante caída de Loki
 113.15 validación de no duplicación y pérdidas
 113.16 laboratorio: pipeline con fallos de red y recuperación
+113.17 identificadores de prueba para medir pérdidas y duplicados
+113.18 rotación rename/create frente a copytruncate
+113.19 persistencia de posiciones y alcance de garantías por componente
+113.20 laboratorio: conteo en origen y destino tras reinicio y recuperación
+
 
 114. Diseño experto de dashboards y pruebas
 114.1 preguntas operacionales y usuarios objetivo
@@ -1902,6 +1940,9 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 117.12 migración de esquema y compatibilidad
 117.13 upgrade y rollback seguros
 117.14 laboratorio: restauración y prueba de desastre
+117.15 backup de Grafana: base de datos, configuración y claves de cifrado
+117.16 restauración aislada con verificación de consultas y secretos
+
 
 118. Benchmarks y capacity planning experimental
 118.1 perfil de carga y dataset reproducible
@@ -1949,6 +1990,10 @@ PATH — GRAFANA + LOKI — 0 → EXPERTO
 120.11 pruebas de retención
 120.12 rollback y límites de reversibilidad
 120.13 laboratorio: upgrade ensayado con checklist
+120.14 Promtail: EOL del 2 de marzo de 2026 y migración a Alloy
+120.15 migración de API Grafana /api a /apis según recurso
+120.16 migración desde SSD antes de adoptar Loki 4.0
+
 
 121. Diagnóstico extremo a extremo y evaluación final
 121.1 logs ausentes en el origen

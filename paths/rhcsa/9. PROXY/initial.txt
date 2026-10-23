@@ -16,6 +16,8 @@ BLOQUE 0 — FUNDAMENTOS DE PROXY Y LOAD BALANCING
 0.10 TLS aplicado a proxies y balanceadores
 0.11 L4 vs L7
 0.12 Laboratorio: observar tráfico directo y mediante proxy
+0.13 Mapa de capacidades: versión, edición, módulos, build y paquete instalado
+0.14 Prerrequisitos por itinerario: base Linux/red/TLS; DNS y TIME antes del laboratorio Kerberos
 
 BLOQUE 1 — FORWARD PROXY
 1.1 Arquitectura de forward proxy
@@ -32,6 +34,8 @@ BLOQUE 1 — FORWARD PROXY
 1.12 Caching
 1.13 Seguridad y riesgo de open proxy
 1.14 Laboratorio: diseño de una política de salida web
+1.15 Configuración del cliente: variables http_proxy/https_proxy/no_proxy y diferencias entre herramientas
+1.16 PAC y WPAD: descubrimiento, alcance, seguridad y diagnóstico
 
 BLOQUE 2 — REVERSE PROXY
 2.1 Arquitectura de reverse proxy
@@ -74,6 +78,8 @@ BLOQUE 3 — FUNDAMENTOS DE LOAD BALANCING
 3.17 Failover
 3.18 Graceful shutdown y graceful reload
 3.19 Laboratorio: comparar algoritmos de balanceo
+3.20 Idempotencia, reintentos y riesgo de duplicar operaciones de escritura
+3.21 Presupuesto de latencia: connect/read/send, número de intentos y timeout total
 
 BLOQUE 4 — SQUID: INSTALACIÓN Y OPERACIÓN BASE
 4.1 Arquitectura de Squid
@@ -141,6 +147,14 @@ BLOQUE 6 — SQUID: AUTENTICACIÓN E INTEGRACIÓN CON IAM
 6.26 Laboratorio: Squid consumiendo LDAP central
 6.27 Laboratorio: Squid + Kerberos/SPNEGO + FreeIPA para SSO
 6.28 Comparativa: mismo servicio con y sin IAM
+6.29 Proxy explícito obligatorio para autenticación de proxy: límites de intercept y tproxy
+6.30 HTTP 407/Proxy-Authenticate/Proxy-Authorization frente a 401/WWW-Authenticate/Authorization
+6.31 Basic no cifra credenciales: proteger cliente → proxy y proxy → LDAP por separado
+6.32 LDAPS y StartTLS: validar CA, nombre del servidor y errores del helper
+6.33 external_acl_type y helpers de grupos: caché, TTL, concurrencia y revocación de permisos
+6.34 SPN HTTP/FQDN@REALM, alias DNS y compatibilidad del navegador: validar sin duplicar identidades
+6.35 Fallo del proveedor IAM: denegar acceso protegido, límites de caché y recuperación
+6.36 Laboratorio: usuario permitido, grupo denegado, ticket caducado, keytab inválido y recuperación
 
 BLOQUE 7 — SQUID: CACHE
 7.1 Fundamentos de HTTP caching
@@ -160,6 +174,8 @@ BLOQUE 7 — SQUID: CACHE
 7.15 Rendimiento de caché
 7.16 Métricas de hit ratio
 7.17 Laboratorio: medir y analizar caching
+7.18 Vary, Authorization, cookies y contenido privado: evitar fugas entre usuarios
+7.19 Prueba de revalidación con 304 y análisis de objetos compartidos frente a privados
 
 BLOQUE 8 — SQUID: HTTPS Y TLS
 8.1 CONNECT tunneling
@@ -173,6 +189,8 @@ BLOQUE 8 — SQUID: HTTPS Y TLS
 8.9 HSTS y certificate pinning: implicaciones
 8.10 TLS moderno y limitaciones operativas
 8.11 Laboratorio controlado de CONNECT y diagnóstico TLS
+8.12 CONNECT no cifra el tramo cliente → proxy ni oculta por sí mismo las credenciales de proxy
+8.13 QUIC y ECH: límites de visibilidad y políticas de salida según capacidades verificadas
 
 BLOQUE 9 — SQUID: LOGGING, MONITORIZACIÓN Y TROUBLESHOOTING
 9.1 access.log
@@ -216,6 +234,18 @@ BLOQUE 10 — NGINX COMO REVERSE PROXY
 10.17 Manejo de errores de backend
 10.18 firewalld y SELinux
 10.19 Laboratorio: reverse proxy completo
+10.20 auth_request: autorización delegada mediante subrequest y módulo disponible en nginx -V
+10.21 Servicio externo de autenticación: respuestas 2xx/401/403 y errores inesperados
+10.22 Cabeceras de identidad: eliminar valores aportados por el cliente y aceptar solo resultados del autenticador
+10.23 NGINX no es el proveedor IAM: integración del autenticador con el proveedor central
+10.24 Laboratorio comparativo: ruta pública y ruta protegida mediante autenticación delegada
+10.25 Laboratorio: caída del autenticador, rechazo de acceso y protección contra bypass directo al backend
+10.26 proxy_cache_path, keys_zone y proxy_cache: diseño de caché de reverse proxy
+10.27 proxy_cache_key y Vary: separar representaciones, hosts y contenido personalizado
+10.28 proxy_cache_bypass frente a proxy_no_cache: lectura y escritura de caché
+10.29 Cookies y Authorization: exclusión de contenido privado y pruebas con dos usuarios
+10.30 proxy_cache_lock, revalidación, use_stale y actualización en segundo plano
+10.31 Laboratorio: HIT/MISS/BYPASS, revalidación y backend caído sin filtrar contenido privado
 
 BLOQUE 11 — NGINX: LOAD BALANCING
 11.1 Upstream groups
@@ -232,6 +262,9 @@ BLOQUE 11 — NGINX: LOAD BALANCING
 11.12 Persistencia de sesión: estrategias y límites
 11.13 Backend maintenance/draining: estrategias
 11.14 Laboratorio: pool de backends y simulación de fallos
+11.15 proxy_next_upstream, tries y timeout: política explícita de reintentos
+11.16 Solicitudes no idempotentes y respuestas parcialmente enviadas: límites de recuperación
+11.17 Laboratorio: fallo antes/después de una escritura y detección de operaciones duplicadas
 
 BLOQUE 12 — NGINX: TLS
 12.1 TLS termination
@@ -262,6 +295,9 @@ BLOQUE 13 — NGINX: PROTOCOLOS Y CASOS AVANZADOS
 13.8 SNI routing: fundamentos
 13.9 Proxy Protocol: fundamentos
 13.10 Laboratorio multiprotocolo
+13.11 PROXY protocol v1/v2: habilitación en ambos extremos y emisores de confianza
+13.12 IP real del cliente: real_ip, proxies confiables y prevención de suplantación
+13.13 SSE y respuestas largas: buffering, timeouts y desconexión del cliente
 
 BLOQUE 14 — NGINX: LOGGING Y TROUBLESHOOTING
 14.1 access_log
@@ -284,6 +320,8 @@ BLOQUE 14 — NGINX: LOGGING Y TROUBLESHOOTING
 14.18 DNS/upstream failures
 14.19 SELinux y firewalld
 14.20 Laboratorio de diagnóstico end-to-end
+14.21 Log de caché, request ID e identidad verificada sin registrar secretos
+14.22 Errores del autenticador: separar fallo IAM, denegación y fallo del backend
 
 BLOQUE 15 — HAPROXY: INSTALACIÓN Y FUNDAMENTOS
 15.1 Arquitectura de HAProxy
@@ -355,6 +393,10 @@ BLOQUE 18 — HAPROXY: ALGORITMOS, PERSISTENCIA Y CONTROL DE CARGA
 18.14 Slow start
 18.15 Draining
 18.16 Laboratorio comparativo
+18.17 peers y sincronización de stick tables: alcance y restricciones según versión/topología
+18.18 Preservar tablas durante reload: proceso anterior, nuevo proceso y límites ante restart
+18.19 Rate limiting con stick tables: ventana temporal, contadores y respuesta 429
+18.20 Laboratorio: comparar contadores y afinidad antes/después de reload, restart y failover
 
 BLOQUE 19 — HAPROXY: HEALTH CHECKS
 19.1 Por qué los health checks son parte del balanceo
@@ -373,6 +415,8 @@ BLOQUE 19 — HAPROXY: HEALTH CHECKS
 19.14 Backend recovery
 19.15 Evitar falsos positivos/negativos
 19.16 Laboratorio: fallo y recuperación automática
+19.17 Health check con Host, SNI y validación TLS coherentes con el tráfico real
+19.18 Liveness/readiness y dependencia de servicios: evitar retirar todos los nodos por una dependencia compartida
 
 BLOQUE 20 — HAPROXY: TLS
 20.1 TLS termination
@@ -408,6 +452,9 @@ BLOQUE 21 — HAPROXY: LOGGING, RUNTIME Y OBSERVABILIDAD
 21.16 Latencia
 21.17 Backend health
 21.18 Laboratorio de observabilidad
+21.19 Cambios runtime frente a configuración persistente: reconciliación y rollback
+21.20 Socket administrativo: permisos, alcance y acceso mínimo necesario
+21.21 Prometheus exporter integrado o integración disponible: comprobar build y no exponer administración
 
 BLOQUE 22 — HIGH AVAILABILITY DEL LOAD BALANCER
 22.1 El load balancer como Single Point of Failure
@@ -430,6 +477,12 @@ BLOQUE 22 — HIGH AVAILABILITY DEL LOAD BALANCER
 22.18 HAProxy + Keepalived
 22.19 Persistencia de estado: consideraciones
 22.20 Laboratorio: caída completa de un load balancer
+22.21 VRRP multicast/unicast, protocolo IP 112 y restricciones de la red del laboratorio
+22.22 VIP y binds: diseñar escucha, orden de arranque y uso justificado de ip_nonlocal_bind
+22.23 Failback, preemption y oscilación: prioridades, tracking y pruebas de estabilidad
+22.24 Cambio de VIP no equivale a migración de conexiones TCP: medir reconexión y continuidad
+22.25 Separar sincronización de configuración, certificados, stick tables y sesiones de aplicación
+22.26 Laboratorio: partición de red, doble MASTER, recuperación y validación desde el cliente
 
 BLOQUE 23 — SEGURIDAD DE PROXIES Y BALANCEADORES
 23.1 Threat model
@@ -460,6 +513,9 @@ BLOQUE 23 — SEGURIDAD DE PROXIES Y BALANCEADORES
 23.26 Evitar bases de usuarios duplicadas cuando existe un IAM central
 23.27 Principio de mínimo privilegio aplicado a cuentas/principals de servicio
 23.28 Laboratorio de hardening
+23.29 Interfaces administrativas, stats y métricas: redes de gestión y control de acceso
+23.30 Protección frente a SSRF y destinos internos en políticas de forward proxy
+23.31 Cache poisoning y contaminación por cabeceras: diseño defensivo y pruebas de aislamiento
 
 BLOQUE 24 — RENDIMIENTO Y CAPACIDAD
 24.1 Latencia
@@ -523,6 +579,9 @@ BLOQUE 25 — TROUBLESHOOTING AVANZADO POR CAPAS
 25.31 Correlación proxy ↔ IAM: logs, identidad, autorización y timestamps
 25.32 Distinguir fallo del proxy de fallo del proveedor IAM
 25.33 Laboratorio de incident response
+25.34 Distinguir 401, 403 y 407 y localizar quién produjo la respuesta
+25.35 Capturar evidencias de fallo sin contraseñas, cookies, tokens ni keytabs
+25.36 Validar recuperación: restaurar configuración, repetir pruebas y comprobar ausencia de bypass
 
 BLOQUE 26 — ARQUITECTURA Y DISEÑO DE PRODUCCIÓN
 26.1 Seleccionar Squid, Nginx o HAProxy según función
@@ -557,6 +616,10 @@ BLOQUE 26 — ARQUITECTURA Y DISEÑO DE PRODUCCIÓN
 26.30 Separar identidad humana, identidad de servicio y controles de red
 26.31 Evitar forzar IAM en routing, health checks, TLS termination y balanceo puro
 26.32 Laboratorio: diseñar variantes con IAM y sin IAM
+26.33 Contrato de laboratorio: topología, versiones, configuración, pruebas y evidencias esperadas
+26.34 Gestión de cambios: validación previa, despliegue gradual, backup y rollback
+26.35 Distinguir objetivos de disponibilidad, recuperación y pérdida de estado medibles
+26.36 Relación con WEB SERVER: alojar aplicaciones allí; profundizar aquí en intermediación y balanceo
 
 BLOQUE 27 — PROYECTO FINAL INTEGRADOR
 27.1 Diseñar topología y direccionamiento del laboratorio
@@ -598,3 +661,26 @@ BLOQUE 27 — PROYECTO FINAL INTEGRADOR
 27.37 Justificar qué componentes consumen IAM y cuáles no
 27.38 Checklist de producción
 27.39 Retrospectiva: decisiones, trade-offs y mejoras
+27.40 Demostrar auth_request con autenticador externo y proveedor IAM central cuando aplique
+27.41 Validar aislamiento de caché entre usuarios y rutas públicas/protegidas
+27.42 Demostrar límites de reintentos con una operación de escritura controlada
+27.43 Medir continuidad y reconexión durante caída de nodo con VIP
+27.44 Verificar stick tables y diferencias entre reload, restart y failover
+27.45 Entregar manifiesto de versiones, criterios de aceptación, evidencias y procedimiento de rollback
+
+CRITERIOS TRANSVERSALES DE GENERACIÓN Y EVALUACIÓN
+- Conservar todas las lecciones: cada identificador representa una lección completa.
+- Cada laboratorio especificará objetivo, topología, recursos, versiones/build,
+  prerrequisitos, configuración comentada, comandos explicados, validación desde
+  cliente/proxy/backend y resultados esperados; incluirá fallo inducido, evidencias,
+  limpieza y rollback. No presentar estos archivos de planificación como laboratorios
+  ya desplegados ni como configuraciones ejecutables previamente probadas.
+- Medir aceptación: acceso permitido/denegado, ausencia de bypass y de fugas de caché,
+  TLS verificado, estado de backends, latencia y recuperación tras el fallo.
+- Identidades y grupos se aprovisionan en IAM; aquí solo se consumen. Una cuenta
+  local aislada puede ilustrar autenticación independiente, sin duplicar el directorio.
+- Recorrer primero operación sin IAM; para SSO, disponer del proveedor central,
+  DNS, tiempo y confianza TLS. Nginx autenticado requiere un servicio externo real.
+- Comprobar capacidades de los paquetes instalados antes de enseñar directivas.
+- Explicar rutas de configuración/logs de cada paquete mediante rpm y systemd;
+  no asumir que todos los logs están en /var/log o en journald.

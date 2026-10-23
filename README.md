@@ -145,6 +145,8 @@ El siguiente índice refleja los directorios **comprobados en `paths/` de la ram
 | [Diseño de bases de datos](https://github.com/hhlp/course-generator/tree/main/paths/dd) | `dd` |
 | [SQL](https://github.com/hhlp/course-generator/tree/main/paths/sql) | `sql` |
 | [Administración de bases de datos](https://github.com/hhlp/course-generator/tree/main/paths/dba) | `dba` |
+| [MongoDB Consultas](https://github.com/hhlp/course-generator/tree/main/paths/mongodb/sql) | `sql` |
+| [MongoDB Admimistración](https://github.com/hhlp/course-generator/tree/main/paths/mongodb/dba) | `dba` |
 
 ### Observabilidad y logging
 

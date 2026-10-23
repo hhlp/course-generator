@@ -1,15 +1,14 @@
 ---
 course:
-  title: "Python Network Automation / Network Programmability — 0 → Experto
-      en Profundidad"
+  title: Python Network Automation — 0 en automatización de redes a experto
   specialization: Cisco Routers & Switches
-  language: "es"
+  language: es
   level:
-    start: "cero"
-    end: "experto"
-  mode: "deep"
-  primary_reference: Python for Network Automation / Python for Network
-      Engineer — Syed Asif
+    start: cero en automatización de redes
+    end: experto
+  mode: deep
+  primary_reference: Python for Network Automation / Python for Network Engineer
+    — Syed Asif
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -33,7 +32,15 @@ scope:
     - testing
     - security
     - scale
-  ansible_prerequisite: PATH general de Ansible
+  ansible_prerequisite: PATH general de Ansible antes del bloque 28
+  teach_ansible_from_scratch: false
+  prerequisites:
+    - Python general
+    - Linux y terminal
+    - Git básico
+    - Ethernet y VLAN
+    - IPv4/IPv6 y routing básico
+    - SSH básico
 platforms:
   primary:
     - Cisco IOS
@@ -48,8 +55,30 @@ lab:
     - EVE-NG
     - Cisco DevNet Sandboxes
     - physical devices
-  progression: single-device → multi-device → multi-site → controlled
-      failure scenarios
+  progression: single-device → multi-device → multi-site → controlled failure
+    scenarios
+  required_deliverables:
+    - host_resource_plan
+    - version_and_image_manifest
+    - topology_and_dual_stack_address_plan
+    - per_node_initial_configs
+    - bootstrap_and_reset_procedure
+    - capability_matrix_with_fallbacks
+    - management_and_data_plane_checks
+    - console_or_OOB_recovery
+    - offline_fixtures
+  delivery_scope: Especificación curricular; implementar scripts y configs
+    en las lecciones
+  capability_matrix_fields:
+    - platform
+    - release
+    - image
+    - protocol
+    - operation
+    - observed_support
+    - official_source
+    - verification_date
+    - fallback
 toolchain:
   ssh_low_level:
     - Paramiko
@@ -118,18 +147,25 @@ pedagogy:
     errors: true
     troubleshooting: true
     remember: true
+    expected_results: true
+    failure_injection: true
+    cleanup_and_recovery: true
   markers:
     objective: 🎯 OBJETIVO
     lab: 🧪 Lab
     errors: ⚠️ Errores
     idea: 💡 Idea
     remember: 🧠 Recordar
+  block_checkpoint:
+    deliverables: true
+    pass_fail_criteria: true
+    reproduction_evidence: true
 rules:
   - No convertir el curso en una repetición del PATH general de Python.
   - No reenseñar Regex; aplicarla únicamente donde sea necesaria.
-  - No convertir el bloque de Ansible en una repetición del PATH general
-    de Ansible; enseñar únicamente su aplicación profunda a Network
-    Automation y Cisco.
+  - No convertir el bloque de Ansible en una repetición del PATH general de
+    Ansible; enseñar únicamente su aplicación profunda a Network Automation
+    y Cisco.
   - Explicar por qué se selecciona cada librería, protocolo o framework.
   - Distinguir read-only automation de configuration automation.
   - No asumir que comando enviado significa cambio correcto.
@@ -141,6 +177,20 @@ rules:
   - Preferir interfaces estructuradas/model-driven cuando sean apropiadas.
   - Mantener ejemplos Cisco, pero diseñar capas extensibles a multivendor.
   - Verificar capacidades y sintaxis específicas contra documentación vigente.
+  - Aplicar backup, pre-check, diff y recuperación antes del primer cambio.
+  - Estudiar fundamentos YANG en bloque 12 antes de NETCONF en bloque 13.
+  - Distinguir configuración recopilada de estado operacional y data plane.
+  - No reintentar escrituras con resultado incierto sin consultar el estado.
+  - Impedir cambios simultáneos por dispositivo y revalidar el baseline.
+  - Separar backups íntegros cifrados de copias redactadas para Git.
+  - No sobrescribir intent de la SoT con observaciones sin control explícito.
+  - Conservar subtemas al agrupar entradas Ansible en lecciones coherentes.
+  - Validar capacidades por imagen y release; aportar alternativas
+    reproducibles.
+  - No presentar pruebas simuladas como evidencia de capacidad de equipos
+    reales.
+  - No afirmar que el currículo incluye scripts ejecutables aún no
+    implementados.
 capstone:
   name: Cisco Network Automation Platform
   must_include:
@@ -168,3 +218,10 @@ capstone:
     - Ansible_pre_post_checks
     - Ansible_staged_deployment
     - Ansible_pyATS_integration
+    - ansible_runner_execution
+    - capability_matrix
+    - dual_stack_functional_checks
+    - per_device_change_lock
+    - ambiguous_timeout_reconciliation
+    - worker_failure_recovery
+    - reproducible_lab_bootstrap

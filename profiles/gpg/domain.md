@@ -39,7 +39,9 @@ Los laboratorios emplean Fedora, identidades ficticias Alice/Bob/Carol, claves d
 - No tratar algoritmos obsoletos como opciones recomendadas; estudiar legado solo en laboratorio aislado.
 - No equiparar verificación de firma con identidad autenticada o confianza.
 - No asumir soporte de RFC 9580, claves v6, AEAD, tarjetas o sintaxis sq: registrar versiones y comprobar capacidades.
-- No publicar secretos, passphrases ni plaintext en argumentos, logs, CI o archivos temporales.
+- No exponer secretos, passphrases ni texto descifrado en argumentos, logs o salidas de CI.
+- Permitir archivos de salida y temporales necesarios para los laboratorios con datos ficticios, permisos restrictivos, directorios aislados y limpieza al finalizar. Evitar temporales con secretos o texto descifrado; cuando sean imprescindibles, justificar su uso, limitar su acceso y permanencia y explicar los límites del borrado seguro.
+- Enseñar CRC24 de ASCII Armor como checksum opcional, sin valor de autenticación criptográfica. Según RFC 9580, no rechazar un objeto por CRC24 ausente, malformado o discrepante; explicar las restricciones de generación y los casos de compatibilidad heredada.
 
 ## Evaluación
 

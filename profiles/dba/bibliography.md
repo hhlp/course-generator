@@ -329,9 +329,9 @@ Uso:
 
 ### pgBackRest documentation
 
-Bibliografía adicional recomendada para una futura ampliación del PATH.
+Referencia obligatoria para el bloque 38 y el proyecto final.
 
-Uso potencial:
+Uso obligatorio:
 
 - backup físico
 - WAL archive
@@ -346,7 +346,7 @@ Debe distinguirse siempre qué funcionalidad pertenece al core PostgreSQL y cuá
 
 ### Barman documentation
 
-Bibliografía adicional recomendada para estrategias de backup/DR externas.
+Referencia obligatoria para estrategias de backup/DR externas del bloque 38.
 
 Debe explicarse después de dominar pg_basebackup, WAL archiving y PITR nativos.
 
@@ -483,3 +483,30 @@ La selección debe priorizar comprensión, precisión técnica, observabilidad y
 - **PostgreSQL Source Code** — buffer manager, memory contexts, resource owners y planner. https://git.postgresql.org/gitweb/?p=postgresql.git
 
 **Política:** para versiones 16/17/18 o posteriores, comprobar sintaxis, valores por defecto y disponibilidad de cada función contra la documentación de la versión estudiada.
+
+
+## Referencias de la revisión PostgreSQL 18
+
+Major principal: 18; comparación de compatibilidad: 16 y 17. Consultar páginas
+versionadas y registrar la minor ejecutada. Los libros se conservan como base
+didáctica; sus ejemplos deben contrastarse con estas referencias.
+
+| Tema | Referencia oficial | Bloques |
+| --- | --- | --- |
+| Manual principal | https://www.postgresql.org/docs/18/ | Todos |
+| Cambios PostgreSQL 17 | https://www.postgresql.org/docs/17/release-17.html | 10, 13, 21, 35, 41, 45 |
+| Cambios PostgreSQL 18 | https://www.postgresql.org/docs/18/release-18.html | 2, 11, 25, 27, 60, 61 |
+| Incrementales nativos y PITR | https://www.postgresql.org/docs/18/continuous-archiving.html | 35–38 |
+| pg_basebackup | https://www.postgresql.org/docs/18/app-pgbasebackup.html | 35 |
+| pg_combinebackup | https://www.postgresql.org/docs/18/app-pgcombinebackup.html | 35 |
+| Recursos, memoria e I/O | https://www.postgresql.org/docs/18/runtime-config-resource.html | 24–25 |
+| OAuth | https://www.postgresql.org/docs/18/auth-oauth.html | 11, 76 |
+| Estadísticas e instrumentación | https://www.postgresql.org/docs/18/monitoring-stats.html | 14–15, 33, 64 |
+| Índices multicolumna y skip scan | https://www.postgresql.org/docs/18/indexes-multicolumn.html | 27–29 |
+| Roles predefinidos | https://www.postgresql.org/docs/18/predefined-roles.html | 10, 13 |
+| pg_upgrade | https://www.postgresql.org/docs/18/pgupgrade.html | 60–61 |
+
+pgBackRest y Barman son referencias obligatorias y se estudian después del
+recorrido nativo de archivado WAL y PITR. Ya no se consideran ampliaciones futuras.
+En documentación externa registrar también la versión concreta de la herramienta
+y comprobar su compatibilidad con el servidor y los paquetes del laboratorio.

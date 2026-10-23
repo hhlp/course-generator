@@ -43,7 +43,7 @@ Include:
 - introductory metalanguage for tense vs time, aspect, voice and modality;
 - tense and aspect appropriate to A2;
 - active/passive voice at introductory A2 depth;
-- basic reported speech;
+- controlled reported statements with present reporting verbs; optional later-level previews;
 - modal and auxiliary verbs;
 - existential `there` and dummy `it` appropriate to A2;
 - questions and word order;
@@ -132,8 +132,10 @@ These concepts are taught only to the depth needed to understand A2 grammar.
 
 Every lesson must begin with `🎯 OBJETIVO` and end with `🧠 QUÉ DEBES RECORDAR`.
 
+Every lesson includes `📚 LECTURA` as a grammatical source note, not reading comprehension.
+Use a verified general reference when exact pages/units are unavailable.
+
 Use, when applicable:
-- `📚 LECTURA`
 - `📘 GRAMMAR`
 - `🔬 ANÁLISIS GRAMATICAL`
 - `💬 EXAMPLES`
@@ -179,7 +181,7 @@ Prefer explicit contrast lessons and exercises for:
 - active vs passive;
 - main verb vs auxiliary;
 - say vs tell;
-- direct vs reported speech;
+- direct vs reported statements with present reporting verbs;
 - direct vs indirect question word order;
 - `there` vs `it`;
 - `-ing` vs `to` where appropriate to A2;
@@ -206,18 +208,20 @@ Include:
 - `be + past participle`;
 - Present Simple Passive;
 - Past Simple Passive;
-- Future Passive;
-- passive with basic modals;
-- Present Continuous Passive as an introduction;
+- Future Passive as an optional recognition preview;
+- passive with basic modals as an optional recognition preview;
+- Present Continuous Passive as an optional recognition preview;
 - `by + agent`;
 - agent omission;
 - basic Active → Passive transformations;
 - sentence-role analysis before transformation.
 
 ### Reported Speech
-Keep A2 to direct vs reported speech, say/tell, basic statements, basic tense/pronoun/time
-changes, reported questions, reported commands and basic backshift. Do not expand this into
-the complete reporting system.
+Required reporting work uses present reporting verbs, say/tell, basic statements, appropriate
+pronoun changes and controlled tell/ask + object + to patterns after complementation is taught.
+Tense changes, context-dependent time changes, reported questions and backshift are optional
+previews. Limit backshift previews to present-to-past patterns already taught; never generate
+Past Perfect or a full conversion table. Develop systematic reporting in B1/B2.
 
 ### Questions
 Teach auxiliary selection and word order explicitly. Distinguish subject and object questions.
@@ -255,3 +259,57 @@ diagnosis and controlled mixed practice.
 
 Explanations may be in Spanish for clarity. English grammatical terminology and example
 sentences remain in English. Terminology must be explained rather than assumed.
+
+
+## Operational sequencing and assessment policy — revised
+
+The CEFR supplies competence descriptors, not a universal English grammar checklist.
+This is an A2-focused grammar curriculum with explicitly marked optional previews;
+it does not certify overall CEFR A2 proficiency across language skills.
+
+Block order: 0 foundations; 1 verb forms; 2 present; 3 past; 4 present perfect;
+5 future; 6 modals/imperative; 7 passive; 8 Checkpoint I; 9 there/it;
+10 auxiliaries; 11 questions; 12 -ing/to; 13 reporting; 14 common verb patterns;
+15 Checkpoint II. Blocks 16–30 retain their subject areas.
+Subject/object pronouns are introduced in Block 0 and revisited functionally in Block 16.
+Block 1 names forms and identifies patterns; later blocks teach their full use.
+Do not teach all tense systems merely because their forms are previewed in Block 1.
+
+Any title marked optional/preview, or saying development is deferred, is NOT a required
+A2 mastery target. Preserve its lesson slot as a short recognition/boundary note.
+Do not expand it into a later-level lesson or require productive mastery in checkpoints.
+Core assessments exclude passive future/modal/continuous forms, reporting backshift,
+reported-question conversions, formal whom and advanced adjective/adverb terminology.
+Optional review may be provided separately and cannot lower the core assessment result.
+This explicit policy overrides generic requests for transformations or depth above.
+
+For transformations, preserve meaning and context where possible. Active-to-passive
+work requires transitive verbs. Do not force a passive for intransitive verbs, or invent
+an agent when reversing an agentless passive. Reporting time/person changes depend on
+the reporting situation; they are not automatic substitutions.
+
+## Additional required contrasts and practice
+
+Teach be vs do in questions, mustn't vs don't have to, few vs a few, little vs a little,
+everybody/each agreement, no-forms vs not + any-forms in standard English, and its vs it's.
+Teach two-object alternatives with both to and for only for verbs that permit them;
+use explain something to someone to show restrictions. Relative clauses remain short
+defining clauses: distinguish subject and object before introducing object omission.
+Teach present forms for future reference in if-clauses and basic future time clauses.
+Teach a/an selection by the following sound using familiar examples; pronunciation
+is not an independent course strand. Distinguish British/American article patterns
+only where they affect the grammatical example being taught.
+
+All controlled exercises require an answer key and brief reasons for diagnostic or
+contrast tasks. Accept valid alternatives and explain context-dependent answers.
+Assess recognition, construction, contrast and diagnosis of taught core patterns;
+require correction plus a reason, and a targeted retry after errors. Do not invent a
+CEFR-certified score threshold. Checkpoints introduce no new required structures.
+
+## Variety and reference policy
+
+Use American English as the default, matching Basic Grammar in Use, Fourth Edition.
+British variants are accepted and labelled when relevant; do not mark them incorrect.
+The reference spans A1–B1, so select its content; inclusion in the book does not make
+a construction an obligatory A2 target. Use short natural examples and label British
+usage when contrasting Present Perfect/Past Simple or have got patterns.

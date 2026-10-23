@@ -1,6 +1,6 @@
 ---
 name: openvpn-wireguard
-title: OpenVPN + WireGuard — 0 a experto (revisión profunda, 40 bloques)
+title: OpenVPN + WireGuard — 0 a experto (40 bloques consolidados)
 language: es
 level:
   start: beginner
@@ -12,6 +12,8 @@ platform:
   operating_system: Linux
   shell: bash
 
+# Verificar la ruta pedagogy con el cargador del repositorio antes de generar.
+# Las reglas de profundidad y progresión también se describen en domain.md.
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md

@@ -19,7 +19,7 @@ BLOQUE 0 — Fundamentos del direccionamiento IP
 0.12 Máscara de red
 0.13 CIDR: /8, /16, /24...
 0.14 Network prefix + host portion
-0.15 Cómo determina un host si un destino es local o remoto
+0.15 Destino local o remoto: prefijos, rutas y modelo on-link IPv4/IPv6
 0.16 AND binario aplicado a direcciones IP
 0.17 Laboratorio inicial de direccionamiento
 
@@ -27,6 +27,8 @@ BLOQUE 0 — Fundamentos del direccionamiento IP
 0.19 Operaciones AND, OR y NOT con bits y prefijos
 0.20 Alineación de bloques y fronteras binarias
 0.21 Ejercicios de conversión sin calculadora
+
+0.22 Pertenencia matemática a un prefijo frente a alcance on-link y decisión de ruta
 
 BLOQUE 1 — IPv4 en profundidad
 1.1 Estructura de una dirección IPv4
@@ -281,11 +283,13 @@ BLOQUE 12 — Supernetting y sumarización
 12.10 Longest Prefix Match
 12.11 Laboratorio
 
-12.12 Comprobar contigüidad, mismo tamaño y alineación
+12.12 Fusionar dos bloques hermanos: mismo tamaño, contigüidad y alineación
 12.13 Resumen exacto frente a resumen que incluye redes adicionales
 12.14 Descomposición mínima de un rango en prefijos CIDR
 12.15 Sumarización con excepciones y rutas más específicas
 12.16 Casos en los que sumarizar sería inseguro
+
+12.17 Sumarizar conjuntos de tamaños diferentes mediante fusiones sucesivas sin sobrecobertura
 
 BLOQUE 13 — IPv6 desde cero
 13.1 Por qué IPv6
@@ -325,6 +329,8 @@ BLOQUE 14 — Tipos de direcciones IPv6
 14.15 Direcciones IPv6 reservadas y documentación
 14.16 Consideraciones de ULA y solapamiento entre organizaciones
 
+14.17 ULA: fd00::/8, bit L y generación pseudoaleatoria del Global ID según RFC 4193
+
 BLOQUE 15 — Subnetting IPv6
 15.1 IPv6 subnetting
 15.2 Prefijo global, Subnet ID e Interface ID
@@ -345,6 +351,8 @@ BLOQUE 15 — Subnetting IPv6
 15.16 Evitar trasladar reglas IPv4 de broadcast/hosts a IPv6
 15.17 Ejercicios de inclusión y solapamiento de prefijos IPv6
 
+15.18 Prefijo de dirección frente a prefijo on-link: RA, flags L/A y RFC 5942
+
 BLOQUE 16 — Diseño dual-stack IPv4 + IPv6
 16.1 Qué es dual stack
 16.2 Plan IPv4 y plan IPv6
@@ -362,6 +370,8 @@ BLOQUE 16 — Diseño dual-stack IPv4 + IPv6
 16.13 Riesgos de solapamiento con redes VPN y cloud
 16.14 Validar coherencia entre direccionamiento y DNS sin desarrollar DNS
 
+16.15 SLAAC y DHCPv6: asignación de direcciones frente a aprendizaje del router por RA
+
 BLOQUE 17 — Linux: cálculo e inspección
 17.1 ip addr, ip -4 addr e ip -6 addr
 17.2 ip route e ip -6 route
@@ -375,18 +385,20 @@ BLOQUE 17 — Linux: cálculo e inspección
 17.10 Python ipaddress
 17.11 Laboratorio Fedora/RHEL
 
-17.12 Verificar pertenencia a prefijos con ip route get
+17.12 Consultar la ruta elegida con ip route get y distinguirla de pertenencia a prefijos
 17.13 Distinguir configuración temporal y persistente en NetworkManager
 17.14 Validar direcciones duplicadas y rutas superpuestas
 17.15 Reproducir cálculos manuales con ipcalc
+
+17.16 Validar pertenencia mediante AND o ipaddress y contrastarla con ip route get
 
 BLOQUE 18 — Python para subnetting e IPAM
 18.1 módulo ipaddress
 18.2 IPv4Address, IPv4Network e IPv4Interface
 18.3 IPv6Address, IPv6Network e IPv6Interface
-18.4 network_address y broadcast_address
+18.4 network_address y broadcast_address: límites numéricos y ausencia de broadcast IPv6
 18.5 netmask, hostmask y prefixlen
-18.6 hosts(), subnets() y supernet()
+18.6 hosts(), subnets() y supernet(): semántica IPv4/IPv6 e iteración acotada
 18.7 subnet_of() y supernet_of()
 18.8 overlaps() y address_exclude()
 18.9 Automatizar cálculos VLSM
@@ -394,9 +406,15 @@ BLOQUE 18 — Python para subnetting e IPAM
 
 18.11 Diseñar algoritmo VLSM determinista y reproducible
 18.12 Exportar inventario de subredes a CSV/JSON
-18.13 Detectar solapamientos IPv4/IPv6 con pruebas automatizadas
+18.13 Detectar conflictos IPv4/IPv6 por VRF, familia y dominio con pruebas automatizadas
 18.14 Validar alineación, capacidad, reservas y sumarización
 18.15 Probar casos límite mediante unittest
+
+18.16 strict=True y strict=False: rechazar o normalizar bits de host explícitamente
+18.17 Casos /31, /32, /127 y /128; hosts() y Subnet-Router anycast
+18.18 Procesar IPv6 por prefijos y enteros sin materializar hosts de una /64
+18.19 collapse_addresses() y summarize_address_range(): unión exacta y cobertura mínima
+18.20 Modelo IPAM: contenedores, asignaciones, duplicados y reutilización entre VRF
 
 BLOQUE 19 — Troubleshooting de direccionamiento
 19.1 IP, máscara, gateway o subred incorrectos
@@ -417,6 +435,8 @@ BLOQUE 19 — Troubleshooting de direccionamiento
 19.15 Distinguir error de direccionamiento de error de enrutamiento
 19.16 Laboratorio de rutas más específicas y decisiones inesperadas
 19.17 Checklist de evidencia: comandos, hipótesis y corrección
+
+19.18 Diagnosticar RA, prefijos on-link y router por defecto en IPv6
 
 BLOQUE 20 — Diseño de direccionamiento profesional
 20.1 Recopilar requisitos
@@ -442,6 +462,8 @@ BLOQUE 20 — Diseño de direccionamiento profesional
 20.20 Criterios de aceptación y revisión de arquitectura
 20.21 Plan de migración y rollback de direccionamiento
 
+20.22 Política de conflictos por VRF y familia; contención jerárquica y reutilización controlada
+
 BLOQUE 21 — Laboratorio final experto
 21.1 Diseñar una empresa multisede
 21.2 Obtener requisitos de hosts
@@ -466,7 +488,8 @@ BLOQUE 21 — Laboratorio final experto
 
 21.21 Entregable: memoria de cálculo IPv4 e IPv6 paso a paso
 21.22 Entregable: tabla de capacidad, utilización y crecimiento
-21.23 Entregable: pruebas automáticas de no solapamiento
+21.23 Entregable: pruebas de conflictos por dominio y de contención padre-hijo válida
 21.24 Entregable: análisis de sumarización exacta y excepciones
 21.25 Entregable: propuesta de renumeración y rollback
 21.26 Evaluación final: rúbrica, decisiones y defensa técnica
+21.27 Entregable: casos IPv6 on-link, rutas y validación escalable sin enumerar hosts

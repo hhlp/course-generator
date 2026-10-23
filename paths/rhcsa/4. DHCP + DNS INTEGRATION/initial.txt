@@ -25,6 +25,10 @@ BLOQUE 0 — FUNDAMENTOS DE LA INTEGRACIÓN DHCP ↔ DNS
 0.18 Metodología básica de troubleshooting extremo a extremo
 0.19 Laboratorio: representar el flujo completo DHCP → DNS
 0.20 Checkpoint de fundamentos
+0.21 Prerrequisitos: base RHCSA, TIME, DNS y DHCP; IAM solo para la ampliación Kerberos
+0.22 Distinguir identidad de cliente DHCP, ownership DHCID e identidad de servicio
+0.23 TTL de caché frente a persistencia de registros en el autoritativo
+
 
 BLOQUE 1 — ARQUITECTURA KEA DHCP-DDNS
 
@@ -48,6 +52,10 @@ BLOQUE 1 — ARQUITECTURA KEA DHCP-DDNS
 1.18 Diseño de topologías simples y distribuidas
 1.19 Laboratorio: identificar cada componente y flujo
 1.20 Checkpoint de arquitectura
+1.21 Contrato de transporte NCR: protocolos y formatos realmente soportados por la versión
+1.22 Diferenciar aceptación de lease, encolado NCR y confirmación DNS
+1.23 Delimitar quién administra cada nombre: D2, clientes e infraestructura IAM
+
 
 BLOQUE 2 — INSTALACIÓN Y PREPARACIÓN EN FEDORA / RHEL
 
@@ -78,6 +86,10 @@ BLOQUE 2 — INSTALACIÓN Y PREPARACIÓN EN FEDORA / RHEL
 2.25 Laboratorio: instalar Kea + BIND y validar servicios
 2.26 Troubleshooting de instalación
 2.27 Checkpoint de instalación
+2.28 Fijar versiones de Kea/BIND y registrar capacidades, paquetes y hooks disponibles
+2.29 Laboratorio aislado sin DHCP competidor: máquinas, interfaces y direccionamiento
+2.30 Descubrir API disponible: Control Agent o interfaces del daemon según versión
+
 
 BLOQUE 3 — BIND COMO DNS AUTORITATIVO PARA DDNS
 
@@ -138,6 +150,10 @@ BLOQUE 4 — RFC 2136 Y BIND DYNAMIC UPDATE
 4.29 Laboratorio: actualización manual A/AAAA/PTR
 4.30 Troubleshooting RFC 2136
 4.31 Checkpoint Dynamic Update
+4.32 Atomicidad dentro de una zona frente a fallos entre zonas forward y reverse
+4.33 Prerrequisitos fallidos: YXDOMAIN, YXRRSET, NXDOMAIN y NXRRSET
+4.34 Caché negativa y consultas directas al autoritativo con dig +norecurse
+
 
 BLOQUE 5 — TSIG EN PROFUNDIDAD
 
@@ -170,6 +186,10 @@ BLOQUE 5 — TSIG EN PROFUNDIDAD
 5.27 Laboratorio: proteger updates con TSIG
 5.28 Laboratorio: provocar y diagnosticar BADKEY/BADSIG
 5.29 Checkpoint TSIG
+5.30 RFC 8945 como referencia vigente; RFC 2845 como antecedente
+5.31 HMAC-SHA256 y separación entre autenticación TSIG y cifrado de transporte
+5.32 Laboratorio: BADTIME por desfase horario y recuperación con Chrony
+
 
 BLOQUE 6 — KEA D2 / DHCP-DDNS
 
@@ -202,6 +222,10 @@ BLOQUE 6 — KEA D2 / DHCP-DDNS
 6.27 Laboratorio: D2 enviando una actualización a BIND
 6.28 Troubleshooting D2
 6.29 Checkpoint D2
+6.30 Colas en memoria: pérdida de NCR pendientes al detener D2
+6.31 Saturación, descarte y límites: comprobar resultados sin asumir entrega garantizada
+6.32 Laboratorio: detener D2 con solicitudes pendientes y medir divergencia lease-DNS
+
 
 BLOQUE 7 — KEA DHCPv4 + DDNS
 
@@ -237,6 +261,11 @@ BLOQUE 7 — KEA DHCPv4 + DDNS
 7.30 Laboratorio: release/expiry → eliminación DNS
 7.31 Troubleshooting DHCPv4-DDNS
 7.32 Checkpoint DHCPv4
+7.33 ddns-update-on-renew: actualizaciones en renovación y reparación condicionada
+7.34 ddns-ttl-percent y controles TTL adicionales disponibles en la versión
+7.35 Opciones FQDN: flags S, O y N; precedencia frente a Host Name
+7.36 Configuración global, por subred y reservas: precedencia y nombres efectivos
+
 
 BLOQUE 8 — KEA DHCPv6 + DDNS
 
@@ -262,6 +291,11 @@ BLOQUE 8 — KEA DHCPv6 + DDNS
 8.20 Laboratorio: DHCPv6 lease → AAAA + PTR
 8.21 Troubleshooting DHCPv6-DDNS
 8.22 Checkpoint DHCPv6
+8.23 Límite del modelo: DHCPv6 con dirección frente a SLAAC y privacidad IPv6
+8.24 IA_NA frente a delegación de prefijos: no inferir AAAA de un prefijo delegado
+8.25 DUID, IAID e identidad usada para DHCID: comprobar entradas reales
+8.26 Laboratorio: mismo FQDN dual stack con identidades compatibles e incompatibles
+
 
 BLOQUE 9 — FORWARD DNS: A Y AAAA
 
@@ -286,6 +320,8 @@ BLOQUE 9 — FORWARD DNS: A Y AAAA
 9.19 dig +trace: cuándo ayuda y cuándo no
 9.20 Laboratorio: seguimiento completo de un registro forward
 9.21 Troubleshooting forward DNS
+9.22 Laboratorio: rechazo por colisión con nombres estáticos y política de separación
+
 
 BLOQUE 10 — REVERSE DNS: PTR
 
@@ -309,6 +345,8 @@ BLOQUE 10 — REVERSE DNS: PTR
 10.18 nsupdate de PTR
 10.19 Laboratorio: crear y eliminar PTR mediante D2
 10.20 Troubleshooting reverse DNS
+10.21 Delegación reverse y límites de actualización cuando no se controla la zona
+
 
 BLOQUE 11 — DHCID Y CONFLICT RESOLUTION
 
@@ -327,6 +365,11 @@ BLOQUE 11 — DHCID Y CONFLICT RESOLUTION
 11.13 Laboratorio: provocar conflicto de hostname
 11.14 Laboratorio: diagnosticar DHCID
 11.15 Checkpoint de conflictos
+11.16 ddns-conflict-resolution-mode: modos soportados y protecciones que modifican
+11.17 Comparar DHCID de DHCPv4 y DHCPv6; RFC 4361 cuando corresponda
+11.18 DHCID no autentica al usuario ni sustituye el control de acceso DNS
+11.19 Laboratorio: conflicto de identidad dual stack sin desactivar protecciones como atajo
+
 
 BLOQUE 12 — LEASE ↔ DNS LIFECYCLE
 
@@ -360,6 +403,10 @@ BLOQUE 12 — LEASE ↔ DNS LIFECYCLE
 12.28 reconciliación conceptual DHCP ↔ DNS
 12.29 Laboratorio: observar un lease durante todo su ciclo
 12.30 Checkpoint lifecycle
+12.31 Expiración, reclamación, REMOVE y eliminación confirmada: transiciones distintas
+12.32 Ausencia de transacción distribuida lease-forward-reverse: fallos intermedios
+12.33 Eliminar solo registros y direcciones propios; conservar otros RRsets válidos
+
 
 BLOQUE 13 — LOGGING Y OBSERVABILIDAD
 
@@ -393,6 +440,9 @@ BLOQUE 13 — LOGGING Y OBSERVABILIDAD
 13.28 Wireshark como apoyo de análisis
 13.29 Laboratorio: construir una línea temporal desde logs
 13.30 Checkpoint logging
+13.31 Indicadores: fallos ADD/REMOVE, ocupación de colas y latencia hasta DNS
+13.32 Evidencias esperadas: lease, NCR, respuesta UPDATE y consultas autoritativas
+
 
 BLOQUE 14 — TROUBLESHOOTING METÓDICO
 
@@ -445,6 +495,9 @@ BLOQUE 14 — TROUBLESHOOTING METÓDICO
 14.47 procedimiento reproducible de diagnóstico
 14.48 Laboratorio: escenarios de fallo intencionales
 14.49 Checkpoint troubleshooting
+14.50 Laboratorio: reinicio D2, pérdida de NCR y recuperación de registros stale
+14.51 Laboratorio: actualización correcta en autoritativo con respuesta vieja en caché
+
 
 BLOQUE 15 — SEGURIDAD Y HARDENING
 
@@ -470,6 +523,11 @@ BLOQUE 15 — SEGURIDAD Y HARDENING
 15.20 validación después de upgrades
 15.21 Laboratorio: hardening de la integración
 15.22 Checkpoint seguridad
+15.23 Coexistencia con FreeIPA: zonas delegadas y ownership de nombres documentado
+15.24 GSS-TSIG opcional: hook D2, Kerberos, principals, keytabs y permisos DNS
+15.25 Separar cuentas de servicio de identidades humanas; IAM central conserva los usuarios
+15.26 Comprobar soporte de GSS-TSIG antes del laboratorio; alternativa base TSIG
+
 
 BLOQUE 16 — ALTA DISPONIBILIDAD Y DISEÑO AVANZADO
 
@@ -498,6 +556,10 @@ BLOQUE 16 — ALTA DISPONIBILIDAD Y DISEÑO AVANZADO
 16.23 separación IPv4/IPv6
 16.24 Laboratorio: analizar fallos en una topología HA
 16.25 Checkpoint arquitectura avanzada
+16.26 HA DHCP no implica persistencia de colas D2 ni reparación automática de DNS
+16.27 Reenvío de UPDATE y papel del primario/secundario: verificar la política real
+16.28 Laboratorio: caída y recuperación con medición de registros perdidos o duplicados
+
 
 BLOQUE 17 — OPERACIÓN, MANTENIMIENTO Y RECUPERACIÓN
 
@@ -523,6 +585,11 @@ BLOQUE 17 — OPERACIÓN, MANTENIMIENTO Y RECUPERACIÓN
 17.20 runbooks
 17.21 Laboratorio: backup, fallo y recuperación
 17.22 Checkpoint operación
+17.23 Reconciliar leases activos con A/AAAA/PTR/DHCID mediante inventario previo
+17.24 Planificar reparación, validar ownership, aplicar y comprobar; evitar borrado masivo
+17.25 Reenvío DDNS mediante comandos soportados por la versión y hooks instalados
+17.26 RPO/RTO y restauración coordinada de leases, zonas dinámicas y secretos
+
 
 BLOQUE 18 — LABORATORIO FINAL: DHCP → DNS COMPLETO
 
@@ -566,10 +633,18 @@ BLOQUE 18 — LABORATORIO FINAL: DHCP → DNS COMPLETO
 18.38 documentar arquitectura
 18.39 crear checklist/runbook
 18.40 evaluación final
+18.41 Entregar configuraciones completas, versiones, topología y comandos reproducibles
+18.42 Validar mismo FQDN dual stack y ausencia de sobrescritura de nombres ajenos
+18.43 Validar pérdida de cola, divergencia detectada y reconciliación controlada
+18.44 Comparar autoritativo y caché tras ADD/REMOVE, incluyendo caché negativa
+18.45 Escenario opcional tras IAM: GSS-TSIG con identidad de servicio y zonas autorizadas
+18.46 Entregar matriz de aceptación: caso, resultado esperado, evidencia y recuperación
+
 
 RESULTADO FINAL
 
 Al completar el PATH, el alumno podrá diseñar, instalar, configurar, asegurar,
 observar y diagnosticar una integración DHCP-DNS completa con Kea y BIND;
 comprenderá el recorrido lease → NCR → D2 → TSIG → RFC 2136 → A/AAAA/PTR,
-así como el proceso inverso de eliminación cuando el lease deja de ser válido.
+así como la eliminación condicionada por reclamación y procesamiento DDNS,
+la detección de divergencias y su reparación controlada.

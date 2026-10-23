@@ -51,7 +51,12 @@
 0.50 GitOps: introducción
 0.51 observabilidad: logs, métricas y trazas
 0.52 seguridad de supply chain: introducción
-0.53 laboratorio: preparar entorno Linux para Kubernetes
+0.53 Entorno reproducible: recursos de CPU, RAM y disco; máquinas virtuales y límites de laboratorios en contenedores
+0.54 Matriz de versiones: registrar Kubernetes, kubectl, runtime, CNI, CSI, Helm y Gateway API antes de ejecutar
+0.55 Instalar y validar kubectl y kind; configurar el runtime anfitrión y crear el primer cluster local
+0.56 Validar contexto, nodos Ready, CoreDNS y un workload de prueba; limpiar y recrear el cluster
+0.57 laboratorio: preparar entorno Linux para Kubernetes
+0.58 Laboratorio: crear un cluster kind desde cero y recuperar un fallo de arranque
 
 1. Fundamentos cloud native y CNCF
 1.1 qué significa cloud native
@@ -133,7 +138,7 @@
 2.37 namespaces
 2.38 laboratorio: explorar un cluster
 
-3. kubectl CLI de básico a avanzado
+3. kubectl CLI: fundamentos y primeras operaciones
 3.1 kubectl: propósito, sintaxis y estructura de comandos
 3.2 kubectl version
 3.3 kubectl cluster-info
@@ -170,73 +175,27 @@
 3.34 kubectl rollout undo
 3.35 kubectl rollout restart
 3.36 kubectl rollout pause y resume
-3.37 kubectl logs
-3.38 kubectl logs -f
-3.39 kubectl logs --previous
-3.40 kubectl logs -c
-3.41 kubectl logs con label selectors
-3.42 kubectl exec
-3.43 kubectl exec -it pod -- /bin/sh
-3.44 kubectl attach
-3.45 kubectl cp
-3.46 kubectl debug
-3.47 kubectl port-forward
-3.48 kubectl port-forward pod/nginx 8080:80
-3.49 kubectl wait
-3.50 formatos de salida: wide, yaml, json y name
-3.51 JSONPath con kubectl
-3.52 kubectl get pods -o jsonpath
-3.53 custom-columns
-3.54 label selectors: -l y --selector
-3.55 kubectl get pods -l app=nginx
-3.56 field selectors
-3.57 kubectl get pods --field-selector=status.phase=Running
-3.58 kubectl get --sort-by
-3.59 kubectl auth
-3.60 kubectl auth can-i
-3.61 kubectl auth can-i create pods
-3.62 kubectl auth can-i '*' '*'
-3.63 kubectl auth can-i '*' '*' --as=user1
-3.64 kubectl auth can-i --list
-3.65 kubectl config
-3.66 kubectl config view
-3.67 kubectl config get-contexts
-3.68 kubectl config current-context
-3.69 kubectl config use-context
-3.70 kubectl config set-context
-3.71 kubectl config set-credentials
-3.72 namespaces y cambio de namespace por contexto
-3.73 kubectl cordon
-3.74 kubectl uncordon
-3.75 kubectl drain
-3.76 kubectl taint
-3.77 kubectl label
-3.78 kubectl proxy
-3.79 kubectl get --raw
-3.80 --dry-run=client
-3.81 generación imperativa de YAML con -o yaml
-3.82 kubectl apply -f - y uso de stdin
-3.83 stdout, pipes y composición de comandos
-3.84 kubectl con jq
-3.85 kubectl con xargs
-3.86 scripting Bash con kubectl
-3.87 aliases
-3.88 shell completion
-3.89 kubectl top
-3.90 kubectl events
-3.91 troubleshooting sistemático con get, describe, events y logs
-3.92 troubleshooting con logs --previous, exec y debug
-3.93 troubleshooting de autorización con auth can-i
-3.94 laboratorio: operar y diagnosticar recursos exclusivamente con kubectl
-
-3.95 kubectl apply --server-side: field ownership y conflictos
-3.96 kubectl auth reconcile y revisión de permisos
-3.97 kubectl config view --minify y gestión segura de contextos
-3.98 kubectl get --watch y --watch-only
-3.99 kubectl api-resources --verbs y --namespaced
-3.100 kubectl wait con condiciones y timeouts
-3.101 kubectl debug node y perfiles de depuración
-3.102 kubectl logs --since, --tail, --timestamps y --prefix
+3.37 formatos de salida: wide, yaml, json y name
+3.38 label selectors: -l y --selector
+3.39 kubectl get pods -l app=nginx
+3.40 kubectl get pods --field-selector=status.phase=Running
+3.41 kubectl config
+3.42 kubectl config view
+3.43 kubectl config get-contexts
+3.44 kubectl config current-context
+3.45 kubectl config use-context
+3.46 kubectl config set-context
+3.47 kubectl config set-credentials
+3.48 namespaces y cambio de namespace por contexto
+3.49 kubectl label
+3.50 --dry-run=client
+3.51 generación imperativa de YAML con -o yaml
+3.52 kubectl apply -f - y uso de stdin
+3.53 stdout, pipes y composición de comandos
+3.54 aliases
+3.55 shell completion
+3.56 kubectl config view --minify y gestión segura de contextos
+3.57 laboratorio: operar y diagnosticar recursos exclusivamente con kubectl
 
 4. Workloads fundamentales
 4.1 Pod
@@ -422,11 +381,10 @@
 9.23 runtimeClass
 9.24 device plugins
 9.25 extended resources
-9.26 laboratorio: políticas de placement
-
-9.27 Dynamic Resource Allocation (DRA): ResourceClaim y ResourceClaimTemplate
-9.28 Scheduling de GPU y recursos especializados: límites y plugins
-9.29 Scheduling con múltiples perfiles y diagnóstico de Pods no asignados
+9.26 Dynamic Resource Allocation (DRA): ResourceClaim y ResourceClaimTemplate
+9.27 Scheduling de GPU y recursos especializados: límites y plugins
+9.28 Scheduling con múltiples perfiles y diagnóstico de Pods no asignados
+9.29 laboratorio: políticas de placement
 
 10. Escalado y recursos
 10.1 requests y limits
@@ -474,7 +432,35 @@
 11.20 troubleshooting de Services
 11.21 troubleshooting de DNS
 11.22 troubleshooting de storage
-11.23 laboratorio: diagnosticar una aplicación rota
+11.23 kubectl logs
+11.24 kubectl logs -f
+11.25 kubectl logs --previous
+11.26 kubectl logs -c
+11.27 kubectl logs con label selectors
+11.28 kubectl exec
+11.29 kubectl exec -it pod -- /bin/sh
+11.30 kubectl attach
+11.31 kubectl cp
+11.32 kubectl debug
+11.33 kubectl port-forward
+11.34 kubectl port-forward pod/nginx 8080:80
+11.35 kubectl wait
+11.36 JSONPath con kubectl
+11.37 kubectl get pods -o jsonpath
+11.38 custom-columns
+11.39 field selectors
+11.40 kubectl get --sort-by
+11.41 kubectl con jq
+11.42 kubectl con xargs
+11.43 scripting Bash con kubectl
+11.44 kubectl top
+11.45 kubectl events
+11.46 troubleshooting sistemático con get, describe, events y logs
+11.47 troubleshooting con logs --previous, exec y debug
+11.48 kubectl get --watch y --watch-only
+11.49 kubectl wait con condiciones y timeouts
+11.50 kubectl logs --since, --tail, --timestamps y --prefix
+11.51 laboratorio: diagnosticar una aplicación rota
 
 12. Seguridad fundamental cloud native
 12.1 threat modeling
@@ -536,7 +522,15 @@
 13.30 default deny
 13.31 encryption at rest
 13.32 audit logs
-13.33 laboratorio: baseline de seguridad
+13.33 kubectl auth
+13.34 kubectl auth can-i
+13.35 kubectl auth can-i create pods
+13.36 kubectl auth can-i '*' '*'
+13.37 kubectl auth can-i '*' '*' --as=user1
+13.38 kubectl auth can-i --list
+13.39 troubleshooting de autorización con auth can-i
+13.40 kubectl auth reconcile y revisión de permisos
+13.41 laboratorio: baseline de seguridad
 
 14. HITO KCNA
 14.1 repaso de fundamentos cloud native
@@ -583,7 +577,12 @@
 16.17 kubectl imperative helpers
 16.18 generación rápida de YAML
 16.19 edición eficiente de manifests
-16.20 laboratorio CKAD: aplicación completa
+16.20 Helm operativo: cliente, charts, repositorios y releases; seleccionar documentación de la versión objetivo
+16.21 Helm CLI: install, list, status, get, upgrade, history, rollback y uninstall
+16.22 Values: archivos, precedencia y renderizado; validación y protección de datos sensibles
+16.23 Kustomize operativo: bases, overlays, patches y kubectl kustomize / apply -k
+16.24 laboratorio CKAD: aplicación completa
+16.25 Laboratorio: desplegar y actualizar una aplicación con Helm y adaptar entornos con Kustomize
 
 17. HITO CKAD
 17.1 repaso del dominio de examen CKAD
@@ -625,14 +624,13 @@
 18.24 drain
 18.25 cordon
 18.26 uncordon
-18.27 laboratorio: construir cluster con kubeadm
-
-18.28 Laboratorio Fedora/RHEL: repositorios, paquetes y dependencias
-18.29 Laboratorio Fedora/RHEL: SELinux y firewalld para kubeadm
-18.30 Laboratorio: containerd, cgroup v2, SystemdCgroup y CRI
-18.31 Validación de sysctl, módulos del kernel y swap según versión
-18.32 Preflight checks y recuperación de kubeadm init/join fallidos
-18.33 systemctl y journalctl para kubelet y containerd
+18.27 Validación de sysctl, módulos del kernel y swap según versión
+18.28 Preflight checks y recuperación de kubeadm init/join fallidos
+18.29 systemctl y journalctl para kubelet y containerd
+18.30 laboratorio: construir cluster con kubeadm
+18.31 Laboratorio Fedora/RHEL: repositorios, paquetes y dependencias
+18.32 Laboratorio Fedora/RHEL: SELinux y firewalld para kubeadm
+18.33 Laboratorio: containerd, cgroup v2, SystemdCgroup y CRI
 
 19. Administración del control plane
 19.1 static Pods del control plane
@@ -674,7 +672,10 @@
 20.16 stacked etcd
 20.17 external etcd
 20.18 disaster recovery
-20.19 laboratorio: backup y restore de etcd
+20.19 etcdctl y etcdutl: operaciones online frente a inspección y restauración offline según versión
+20.20 Restauración para Kubernetes: revision bump, mark-compacted e invalidación de watches según la versión de etcd
+20.21 Validación de integridad, quorum y reconciliación después de restaurar etcd
+20.22 laboratorio: backup y restore de etcd
 
 21. Networking de cluster
 21.1 Linux networking aplicado a Kubernetes
@@ -705,12 +706,11 @@
 21.26 EndpointSlice internals
 21.27 CoreDNS internals
 21.28 NetworkPolicy internals
-21.29 laboratorio: seguir un paquete extremo a extremo
-
-21.30 Dual-stack IPv4/IPv6: PodCIDR, ServiceCIDR y requisitos
-21.31 MTU, encapsulación y fragmentación: diagnóstico
-21.32 SNAT/DNAT y trazado de paquetes entre nodos
-21.33 Capturas tcpdump y seguimiento de conntrack por salto
+21.29 Dual-stack IPv4/IPv6: PodCIDR, ServiceCIDR y requisitos
+21.30 MTU, encapsulación y fragmentación: diagnóstico
+21.31 SNAT/DNAT y trazado de paquetes entre nodos
+21.32 Capturas tcpdump y seguimiento de conntrack por salto
+21.33 laboratorio: seguir un paquete extremo a extremo
 
 22. Storage de cluster
 22.1 storage architecture
@@ -759,7 +759,12 @@
 23.21 eviction thresholds
 23.22 image garbage collection
 23.23 container garbage collection
-23.24 laboratorio: recuperar un nodo degradado
+23.24 kubectl cordon
+23.25 kubectl uncordon
+23.26 kubectl drain
+23.27 kubectl taint
+23.28 kubectl debug node y perfiles de depuración
+23.29 laboratorio: recuperar un nodo degradado
 
 24. CKA: troubleshooting de cluster
 24.1 metodología de troubleshooting
@@ -782,7 +787,9 @@
 24.18 Pod Pending
 24.19 Pod CrashLoopBackOff
 24.20 Pod ImagePullBackOff
-24.21 laboratório: cluster deliberadamente roto
+24.21 Diagnóstico de releases Helm: manifests, values, eventos, historial y recuperación
+24.22 Diagnóstico de Kustomize: renderizado, patches y diferencias entre entornos
+24.23 laboratório: cluster deliberadamente roto
 
 25. HITO CKA
 25.1 repaso del dominio de examen CKA
@@ -795,7 +802,8 @@
 25.8 troubleshooting
 25.9 ejercicios cronometrados
 25.10 simulación completa CKA
-25.11 checklist de preparación CKA
+25.11 Validación práctica de Helm y Kustomize según el currículo oficial vigente
+25.12 checklist de preparación CKA
 
 26. Hardening de cluster
 26.1 threat model del cluster
@@ -903,7 +911,7 @@
 30.17 laboratorio: responder a un incidente
 
 31. HITO CKS
-31.1 prerrequisito: CKA activo
+31.1 prerrequisito: haber aprobado CKA; no necesita seguir activo para acceder a CKS
 31.2 repaso del dominio de examen CKS
 31.3 cluster setup
 31.4 cluster hardening
@@ -954,12 +962,15 @@
 33.24 field managers
 33.25 dry-run
 33.26 admission chain
-33.27 laboratorio: manipular la API directamente
-
-33.28 List y watch: continue tokens, bookmarks y expiración
-33.29 Server-Side Apply: field ownership, force conflicts y managedFields
-33.30 API Priority and Fairness: flow schemas y priority levels
-33.31 Auditoría de impersonation y autorización de peticiones
+33.27 List y watch: continue tokens, bookmarks y expiración
+33.28 Server-Side Apply: field ownership, force conflicts y managedFields
+33.29 API Priority and Fairness: flow schemas y priority levels
+33.30 Auditoría de impersonation y autorización de peticiones
+33.31 kubectl proxy
+33.32 kubectl get --raw
+33.33 kubectl apply --server-side: field ownership y conflictos
+33.34 kubectl api-resources --verbs y --namespaced
+33.35 laboratorio: manipular la API directamente
 
 34. Extensibilidad: CRDs
 34.1 CustomResourceDefinition
@@ -979,7 +990,12 @@
 34.15 versions
 34.16 conversion webhooks
 34.17 finalizers
-34.18 laboratorio: crear una API propia
+34.18 Puente Go para controllers: toolchain, go.mod, paquetes, structs y etiquetas JSON
+34.19 Go aplicado: interfaces, errores, punteros, slices y maps
+34.20 Go aplicado: context.Context, cancelación, goroutines y sincronización básica
+34.21 Clientes Kubernetes: kubeconfig, client-go, clientes tipados y dinámicos; lectura y actualización de recursos
+34.22 laboratorio: crear una API propia
+34.23 Laboratorio puente: compilar y probar un cliente Go que consulte y actualice una API propia
 
 35. Controllers y Operators
 35.1 controller pattern
@@ -1000,12 +1016,11 @@
 35.16 Kubebuilder
 35.17 Operator SDK
 35.18 operator maturity model
-35.19 laboratorio: construir un controller
-
-35.20 Testing de reconciliación con envtest
-35.21 Errores transitorios, requeues, backoff y observabilidad de controllers
-35.22 Versionado, migración y compatibilidad de CRDs
-35.23 Conversion webhooks: despliegue, certificados y fallos
+35.19 Testing de reconciliación con envtest
+35.20 Errores transitorios, requeues, backoff y observabilidad de controllers
+35.21 Versionado, migración y compatibilidad de CRDs
+35.22 Conversion webhooks: despliegue, certificados y fallos
+35.23 laboratorio: construir un controller
 
 36. Admission control avanzado
 36.1 admission phases
@@ -1197,11 +1212,10 @@
 44.16 RPO
 44.17 RTO
 44.18 chaos engineering
-44.19 laboratorio: simular fallos
-
-44.20 SLO de control plane y error budgets
-44.21 Runbooks de incidentes y escalado
-44.22 Pruebas de recuperación con criterios RPO/RTO medibles
+44.19 SLO de control plane y error budgets
+44.20 Runbooks de incidentes y escalado
+44.21 Pruebas de recuperación con criterios RPO/RTO medibles
+44.22 laboratorio: simular fallos
 
 45. Upgrades y lifecycle management
 45.1 Kubernetes release cycle
@@ -1219,11 +1233,10 @@
 45.13 admission compatibility
 45.14 rollback strategy
 45.15 backup pre-upgrade
-45.16 laboratorio: upgrade completo
-
-45.17 Pruebas de compatibilidad previas a upgrades
-45.18 Rollback: limitaciones de versiones, API y etcd
-45.19 Validación post-upgrade y pruebas de regresión
+45.16 Pruebas de compatibilidad previas a upgrades
+45.17 Rollback: limitaciones de versiones, API y etcd
+45.18 Validación post-upgrade y pruebas de regresión
+45.19 laboratorio: upgrade completo
 
 46. Observabilidad de Kubernetes
 46.1 golden signals
@@ -1246,11 +1259,10 @@
 46.18 exemplars
 46.19 SLI
 46.20 SLO
-46.21 laboratorio: observabilidad completa
-
-46.22 Alertas accionables: severidad, ruido y runbooks
-46.23 SLOs de API, DNS, scheduling y workloads
-46.24 Correlación de logs, métricas, trazas y eventos
+46.21 Alertas accionables: severidad, ruido y runbooks
+46.22 SLOs de API, DNS, scheduling y workloads
+46.23 Correlación de logs, métricas, trazas y eventos
+46.24 laboratorio: observabilidad completa
 
 47. Troubleshooting experto
 47.1 troubleshooting por capas
@@ -1382,16 +1394,15 @@
 52.15 SOPS
 52.16 policy as code
 52.17 multi-cluster GitOps
-52.18 laboratorio: plataforma GitOps
-
-52.19 Bootstrap GitOps y recuperación tras desastre
-52.20 Promotion entre entornos y controles de aprobación
-52.21 Gestión de dependencias y orden de sincronización
-52.22 Detección de drift y rollback seguro
+52.18 Bootstrap GitOps y recuperación tras desastre
+52.19 Promotion entre entornos y controles de aprobación
+52.20 Gestión de dependencias y orden de sincronización
+52.21 Detección de drift y rollback seguro
+52.22 laboratorio: plataforma GitOps
 
 53. Helm
 53.1 qué es Helm y qué problemas resuelve
-53.2 arquitectura de Helm 3
+53.2 arquitectura de Helm de la versión objetivo y comparación con Helm 3
 53.3 Helm CLI: sintaxis, ayuda y comandos
 53.4 helm version, helm env y helm help
 53.5 charts
@@ -1431,7 +1442,7 @@
 53.39 helm uninstall
 53.40 --namespace y --create-namespace
 53.41 --wait y --timeout
-53.42 --atomic
+53.42 Opciones de recuperación automática según versión: --atomic en Helm 3 y equivalente documentado
 53.43 dependencies
 53.44 helm dependency list
 53.45 helm dependency build
@@ -1454,12 +1465,13 @@
 53.62 Helm con Argo CD y Flux: integración conceptual
 53.63 buenas prácticas para charts de producción
 53.64 versionado y compatibilidad de charts
-53.65 laboratorio: crear, empaquetar, instalar, actualizar, probar, hacer rollback y publicar un chart de producción
-
-53.66 Compatibilidad y diferencias de Helm 3 y Helm 4 según versión
-53.67 Pruebas automatizadas de charts y compatibilidad
-53.68 Seguridad de plugins, dependencias y registries OCI
-53.69 Gestión de valores sensibles y filtraciones en historial
+53.65 Compatibilidad y diferencias de Helm 3 y Helm 4 según versión
+53.66 Pruebas automatizadas de charts y compatibilidad
+53.67 Seguridad de plugins, dependencias y registries OCI
+53.68 Gestión de valores sensibles y filtraciones en historial
+53.69 Learning Helm: lectura guiada sobre Helm 3 y contraste con la documentación de la versión objetivo
+53.70 Helm 4: Server-Side Apply, gestión de conflictos, plugins y cambios de CLI respecto a Helm 3
+53.71 laboratorio: crear, empaquetar, instalar, actualizar, probar, hacer rollback y publicar un chart de producción
 
 54. Kustomize
 54.1 bases
@@ -1535,11 +1547,10 @@
 57.12 certificate-based identity
 57.13 secretless patterns
 57.14 cloud workload identity
-57.15 laboratorio: identidad sin credenciales estáticas
-
-57.16 OIDC: claims, grupos y RBAC
-57.17 Integración con proveedores IAM y rotación de credenciales
-57.18 Identidades humanas frente a identidades de workloads
+57.15 OIDC: claims, grupos y RBAC
+57.16 Integración con proveedores IAM y rotación de credenciales
+57.17 Identidades humanas frente a identidades de workloads
+57.18 laboratorio: identidad sin credenciales estáticas
 
 58. Secrets management avanzado
 58.1 amenazas sobre Secrets
@@ -1642,11 +1653,11 @@
 63.12 RPO
 63.13 RTO
 63.14 DR testing
-63.15 laboratorio: recuperación completa
-
-63.16 Backups consistentes de aplicaciones con bases de datos
-63.17 Restauración ensayada y validación de integridad
-63.18 Protección y restauración de claves de cifrado de Secrets
+63.15 Backups consistentes de aplicaciones con bases de datos
+63.16 Restauración ensayada y validación de integridad
+63.17 Protección y restauración de claves de cifrado de Secrets
+63.18 Restauración de etcd con etcdutl y validación de revisiones, caches y reconciliación según versión
+63.19 laboratorio: recuperación completa
 
 64. Seguridad del host para Kubernetes
 64.1 host attack surface
@@ -1821,11 +1832,10 @@
 73.10 policy testing
 73.11 security testing
 73.12 load testing
-73.13 laboratory: diseñar una suite de validación
-
-73.14 envtest y tests de controllers
-73.15 Pruebas de compatibilidad API y CRD
-73.16 Pruebas automatizadas de recuperación y upgrades
+73.13 envtest y tests de controllers
+73.14 Pruebas de compatibilidad API y CRD
+73.15 Pruebas automatizadas de recuperación y upgrades
+73.16 laboratory: diseñar una suite de validación
 
 74. Kubernetes conformance y distribución
 74.1 qué significa conformant
@@ -1858,11 +1868,10 @@
 75.15 compliance
 75.16 upgrade strategy
 75.17 platform SLOs
-75.18 laboratorio: diseñar una plataforma Kubernetes
-
-75.19 ADRs y decisiones arquitectónicas auditables
-75.20 SLO, runbooks y ownership operacional
-75.21 Modelo de amenazas y controles de aislamiento multi-tenant
+75.18 ADRs y decisiones arquitectónicas auditables
+75.19 SLO, runbooks y ownership operacional
+75.20 Modelo de amenazas y controles de aislamiento multi-tenant
+75.21 laboratorio: diseñar una plataforma Kubernetes
 
 76. Proyecto final experto
 76.1 definir requisitos

@@ -184,6 +184,21 @@
 1.85 laboratorio final: SPEC completo desde cero
 
 
+1.86 %ghost: archivos registrados y archivos presentes en el payload
+1.87 %verify: atributos verificados y exclusiones justificadas
+1.88 Dependencias de subpaquetes con %{?_isa} y EVR exacto
+1.89 ExclusiveArch, ExcludeArch y distinción frente a BuildArch
+1.90 Archivos de configuración: decisiones RPM durante instalación y actualización
+1.91 .rpmnew y .rpmsave: observar diferencias con %config y %config(noreplace)
+1.92 Laboratorio: configuración modificada o intacta con versiones upstream iguales o distintas
+1.93 rpmautospec: Release: %autorelease y %autochangelog
+1.94 Historial Git, SRPM y generación de changelog con rpmautospec
+1.95 Comparar mantenimiento manual y rpmautospec sin mezclar estrategias accidentalmente
+1.96 Shell del alumno frente al intérprete de las fases de build y los scriptlets
+1.97 Macros RPM, comandos shell y escapes: identificar cuándo se expande cada elemento
+1.98 Introducción práctica a Mock: construir el primer SRPM en un entorno limpio
+1.99 Laboratorio: instalar, actualizar y eliminar el primer paquete en una VM de pruebas
+
 1.900 Ampliación avanzada — revisión de profundidad
 1.900.1 %generate_buildrequires y dependencias dinámicas de compilación
 1.900.2 %bcond y variantes de compilación
@@ -260,7 +275,7 @@
 2.55 primary.xml / primary.xml.zst
 2.56 libdnf5
 2.57 libsolv
-2.58 arquitectura interna RPM → DNF → libdnf5 → libsolv
+2.58 Arquitectura: DNF5 → libdnf5 → libsolv para resolver; librpm para ejecutar
 2.59 Pool
 2.60 Repo
 2.61 Solvable
@@ -314,7 +329,7 @@
 2.109 reproducir el problema con testsolv
 2.110 reproducir el problema con libsolv C
 2.111 comparar DNF ↔ testsolv ↔ libsolv
-2.112 Proyecto final: mini-solver-debugger
+2.112 Proyecto incremental mini-solver-debugger — tareas diferidas según los hitos de domain.md
 2.112.1  Crear estructura del proyecto
 2.112.2  Makefile y compilación con libsolv
 2.112.3  Crear y destruir Pool
@@ -483,7 +498,7 @@
 2.112.166 Macros RPM que afectan dependencias
 2.112.167 Condicionales %if / %bcond
 2.112.168 Expansión de macros del SPEC
-2.112.169 Usar rpm --specfile para ayudar al parser
+2.112.169 Usar rpmspec --parse y --query como interfaces al parser RPM
 2.112.170 Evitar reimplementar completamente el parser RPM
 2.112.171 Analizar SRPM
 2.112.172 Leer metadata del .src.rpm
@@ -617,6 +632,15 @@
 2.112.300 mini-solver-debugger v1.0
 
 
+2.113 Prerrequisitos del itinerario C/libsolv — completar antes del hito S1
+2.113.1 Compilar y enlazar un programa C mínimo con libsolv
+2.113.2 Punteros, estructuras y ownership de memoria en APIs C
+2.113.3 Ciclo de vida de Pool, Repo, Solver, Queue y Transaction
+2.113.4 Manejo de errores, limpieza de recursos y compilación con avisos
+2.113.5 Prueba de acceso: crear un universo mínimo y liberar todos los recursos
+2.114 Dependencias cíclicas resolubles frente a ciclos con restricciones incompatibles
+2.115 Orden de transacción frente a selección SAT: responsabilidades distintas
+
 2.900 Ampliación avanzada — revisión de profundidad
 2.900.1 Arquitectura de librpm y fronteras entre librpm, libdnf5 y libsolv
 2.900.2 Generadores automáticos de dependencias y fileattrs
@@ -743,7 +767,7 @@
 3.8.9.1 inspeccionar un SPEC sin construirlo
 3.8.9.2 expansión y análisis de SPEC con rpmspec
 3.8.10 rpmdeps
-3.8.10.1 herramienta histórica de RPM frente a proyectos externos
+3.8.10.1 rpmdeps upstream: generación y diagnóstico de dependencias; localizar con %{_rpmconfigdir}
 3.8.10.2 bogdando/rpmdeps
 3.8.11 generación e inspección de dependencias
 3.8.11.1 rpm -qR
@@ -751,15 +775,15 @@
 3.8.11.3 rpm --whatrequires
 3.8.11.4 rpm --whatprovides
 3.8.11.5 dnf repoquery
-3.8.11.6 bogdando/rpmdeps
+3.8.11.6 bogdando/rpmdeps: proyecto externo opcional, distinto del ejecutable RPM
 3.8.12 rpmgraph
-3.8.12.1 herramienta histórica/no disponible en nuestra instalación
+3.8.12.1 rpmgraph upstream: grafo de ordenación de paquetes y disponibilidad según instalación
 3.8.12.2 alternativa externa: mambelli/rpmdepsgraph
 3.8.13 visualizar relaciones de dependencias
 3.8.13.1 rpmdepsgraph.sh
 3.8.13.2 formato Graphviz DOT
 3.8.13.3 dot
-3.8.13.4 dnf repoquery --tree
+3.8.13.4 Árboles con repoquery: comprobar soporte en DNF4/DNF5 y usar DOT como alternativa
 3.8.13.5 comparación con libsolv / mini-solver-debugger
 3.8.14 arquitectura de las herramientas RPM
 3.8.15 qué ejecutables son frontends especializados
@@ -780,6 +804,14 @@
 3.8.30 laboratorio: analizar un SPEC con rpmspec
 3.8.31 laboratorio final: mapa completo del ecosistema RPM
 
+
+3.9 Herramientas adicionales y alcance de sus resultados
+3.9.1 rpm2archive: extracción alternativa según versión y formato del paquete
+3.9.2 rpmlua y Lua embebido en macros RPM: introducción y diagnóstico
+3.9.3 rpmsign: firma, comprobación e inventario de claves con rpmkeys
+3.9.4 rpmdeps: diferenciar análisis de archivos, consultas RPM y resolución de repositorios
+3.9.5 rpmgraph: interpretar el grafo de ordenación sin asumir que muestra toda relación posible
+3.9.6 Inventario versionado: paquete proveedor, ruta del ejecutable y opciones disponibles
 
 3.900 Ampliación avanzada — revisión de profundidad
 3.900.1 Queryformat avanzado: iteración, etiquetas y condiciones
@@ -915,7 +947,7 @@
 4.900.10 Pruebas de actualización, downgrade y distro-sync
 4.900.11 Laboratorio: publicar un repositorio local firmado
 
-5. Integración con el sistema Fedora systemd
+5. Integración de paquetes con el sistema Fedora
 
 5.1 Integración con systemd
 5.1.1 systemd units
@@ -1083,7 +1115,7 @@
 6.11.5 tests opcionales vs obligatorios
 6.11.6 tests que fallan y por qué no deben ignorarse indiscriminadamente
 
-6.12 Construcción en entorno limpio
+6.12 Construcción en entorno limpio — introducir antes del solver C como práctica básica
 6.12.1 por qué probar un RPM fuera de nuestra máquina
 6.12.2 mock
 6.12.3 configuración de mock
@@ -1108,6 +1140,19 @@
 6.14 Laboratorio final
 6.14.1 Auditoría completa de un RPM antes de enviarlo a Fedora
 
+
+6.15 Entorno limpio, aislamiento, hermeticidad y reproducibilidad
+6.15.1 Entorno limpio: identificar BuildRequires ausentes sin depender del host
+6.15.2 Aislamiento de Mock y límites frente a una máquina virtual
+6.15.3 Hermeticidad: fijar entradas, repositorios, toolchain y acceso de red
+6.15.4 Registrar NEVRA de dependencias, configuración Mock y versiones de herramientas
+6.15.5 Reconstruir dos veces y comparar artefactos antes de afirmar reproducibilidad
+6.15.6 Separar contenido reproducible de variaciones de firma y metadatos
+6.16 Matriz de migración de configuración y persistencia
+6.16.1 Instalar v1, modificar configuración y actualizar a v2 con nuevos valores upstream
+6.16.2 Observar archivo activo, .rpmnew, .rpmsave y rpm -V en cada caso
+6.16.3 Probar eliminación y reinstalación con datos persistentes del servicio
+6.16.4 Historial DNF y límites de undo/rollback frente a snapshots y restauración de datos
 
 6.900 Ampliación avanzada — revisión de profundidad
 6.900.1 ABI/API compatibility, símbolos y soname en upgrades
@@ -1147,7 +1192,7 @@
 7.2.2 configuración de mock
 7.2.3 chroots
 7.2.4 buildroot limpio
-7.2.5 builds reproducibles en entornos limpios
+7.2.5 Entorno limpio como base de repetibilidad: comprobar reproducibilidad por separado
 7.2.6 construir para distintas versiones de Fedora
 7.2.7 mock --rebuild
 7.2.8 SRPM → RPM mediante mock
@@ -1265,7 +1310,7 @@
 7.13.3 ejecutar fedora-review
 7.13.4 construir con mock
 7.13.5 probar varias releases de Fedora
-7.13.6 publicar primero mediante COPR
+7.13.6 Publicar en COPR como itinerario opcional e independiente de Package Review
 7.13.7 simular Package Review
 7.13.8 trabajar con dist-git
 7.13.9 realizar scratch build en Koji
@@ -1275,6 +1320,17 @@
 7.13.13 actualizar upstream y realizar un segundo release
 7.13.14 backport del fix a una rama estable
 
+
+7.14 Dos itinerarios de distribución después de validar el paquete
+7.14.1 COPR: proyecto, chroot, build y repositorio propios
+7.14.2 Fedora oficial: review, permisos, dist-git, Koji y actualizaciones según rama
+7.14.3 COPR como apoyo opcional; no es requisito universal para entrar en Fedora
+7.14.4 Simulación local de pasos que requieren cuentas, patrocinio o permisos
+7.14.5 Evidencias equivalentes: registrar qué se ejecutó y qué quedó simulado
+7.15 Mantenimiento con rpmautospec
+7.15.1 Integrar %autorelease y %autochangelog en el workflow de fedpkg
+7.15.2 Revisar mensajes Git, merges y backports que afectan al historial generado
+7.15.3 Generar SRPM e inspeccionar Release y changelog resultantes
 
 7.900 Ampliación avanzada — revisión de profundidad
 7.900.1 Packit: configuración, builds y pruebas en PR
@@ -1704,7 +1760,15 @@
 9.14.14 repetir con DNF
 9.14.15 comprobar la nueva solución en libsolv
 
-9.15 mini-rpm-solver-debugger
+9.15 Cierre del mismo mini-solver-debugger iniciado en 2.112; integrar sin duplicar su implementación
+
+9.16 Aceptación del proyecto incremental
+9.16.1 Reutilizar el código y los testcases de 2.112 y los repositorios de los bloques 4 y 8
+9.16.2 Demostrar SAT, UNSAT y transacción prevista con universos controlados
+9.16.3 Comparar DNF5 y testsolv bajo la misma política y el mismo universo
+9.16.4 Explicar diferencias sin exigir decisiones internas idénticas entre herramientas
+9.16.5 Entregar código C, documentación CLI, pruebas y limitaciones de análisis SPEC
+9.16.6 Entregar matriz de configuración, evidencias Mock y resultados de reproducibilidad
 
 9.900 Ampliación avanzada — revisión de profundidad
 9.900.1 Validación de regresión para versiones 1, 2 y 3

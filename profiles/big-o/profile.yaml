@@ -1,11 +1,17 @@
 ---
 course:
-  title: "Complejidad Algorítmica y Big O — 0 a Experto en Profundidad"
+  title: Complejidad Algorítmica y Big O — 0 a Experto en Profundidad
   language: "es"
   level:
     start: "cero"
     end: "experto"
+  domain: "Complejidad Algorítmica y Big O"
   mode: "deep"
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 scope:
   language_agnostic: true
@@ -27,11 +33,10 @@ scope:
     - javascript
     - typescript
     - java
-
 pedagogy:
-  style: "profundo, práctico, progresivo, riguroso y orientado al razonamiento"
+  style: profundo, práctico, progresivo, riguroso y orientado al razonamiento
   indentation: false
-  numbering: single-level
+  numbering: block.lesson
   explain_before_memorize: true
   derive_complexity_step_by_step: true
   distinguish_theory_from_benchmarking: true
@@ -39,10 +44,10 @@ pedagogy:
     objective:
       required: true
       position: first
-      heading: "🎯 OBJETIVO"
+      heading: 🎯 OBJETIVO
     reading:
       required: true
-      heading: "📚 LECTURA"
+      heading: 📚 LECTURA
       categories:
         - principal
         - profundizacion
@@ -51,21 +56,22 @@ pedagogy:
       exact_references_only_when_verified: true
     lab:
       required: false
-      heading: "🧪 Laboratorio/ejemplos"
+      heading: 🧪 Laboratorio/ejemplos
+      required_for_named_laboratory_lessons: true
     common_errors:
       required: false
-      heading: "⚠️ Errores frecuentes"
+      heading: ⚠️ Errores frecuentes
     important_idea:
       required: false
-      heading: "💡 Idea importante"
+      heading: 💡 Idea importante
     remember:
       required: true
       position: last
-      heading: "🧠 QUÉ DEBES RECORDAR"
+      heading: 🧠 QUÉ DEBES RECORDAR
       min_items: 3
       max_items: 7
       avoid_repeating_objective: true
-
+  preserve_existing_lesson_ids: true
 analysis_rules:
   require_input_size_definition: true
   require_cost_model_when_relevant: true
@@ -86,7 +92,16 @@ analysis_rules:
   never_equate_big_o_with_runtime_seconds: true
   state_guarantee_type: true
   derive_before_final_notation: true
-
+  distinguish_element_count_from_bit_length: true
+  declare_word_ram_assumptions: true
+  account_for_variable_length_keys: true
+  distinguish_peak_space_from_total_allocations: true
+  state_input_auxiliary_and_output_space: true
+  declare_probability_space: true
+  distinguish_input_distribution_from_internal_randomness: true
+  distinguish_expectation_from_high_probability: true
+  state_graph_representation_and_algorithm_preconditions: true
+  justify_correctness_when_optimizing: true
 examples:
   preferred_representation:
     - pseudocode
@@ -94,7 +109,6 @@ examples:
     - small_executable_experiments
   language_specific_details: avoid
   use_multiple_input_variables_when_needed: true
-
 labs:
   goals:
     - count_operations
@@ -106,38 +120,78 @@ labs:
     - analyze_time_and_space
     - benchmark_without_confusing_measurement_with_proof
     - document_assumptions
+    - prove_correctness_with_invariants
+    - apply_induction
+    - analyze_expected_cost_with_indicator_variables
+    - audit_cost_model_assumptions
   require_reasoning: true
   benchmark_is_not_proof: true
-
+  named_laboratories_required: true
 quality:
   avoid_unverified_complexity_claims: true
   avoid_language_implementation_assumptions: true
   distinguish_guaranteed_expected_and_amortized: true
   include_counterexamples_for_common_misconceptions: true
   mathematical_rigor_increases_progressively: true
-
+  do_not_claim_universal_automatic_analysis: true
+  state_introductory_scope_of_advanced_models: true
 bibliography:
   principal:
-    - "Introduction to Algorithms, 4th Edition — Cormen, Leiserson, Rivest,
-        Stein"
-    - "Algorithm Design — Kleinberg, Tardos"
+    - Introduction to Algorithms, 4th Edition — Cormen, Leiserson, Rivest, Stein
+    - Algorithm Design — Kleinberg, Tardos
   practical:
-    - "The Algorithm Design Manual, 3rd Edition — Skiena"
-    - "Algorithms, 4th Edition — Sedgewick, Wayne"
-    - "Algorithms — Dasgupta, Papadimitriou, Vazirani"
+    - The Algorithm Design Manual, 3rd Edition — Skiena
+    - Algorithms, 4th Edition — Sedgewick, Wayne
+    - Algorithms — Dasgupta, Papadimitriou, Vazirani
   deepening:
-    - "Algorithms Illuminated — Roughgarden"
-    - "Algorithms — Jeffrey Erickson"
-    - "Concrete Mathematics, 2nd Edition — Graham, Knuth, Patashnik"
-    - "Introduction to the Theory of Computation — Sipser"
-
+    - Algorithms Illuminated — Roughgarden
+    - Algorithms — Jeffrey Erickson
+    - Concrete Mathematics, 2nd Edition — Graham, Knuth, Patashnik
+    - Introduction to the Theory of Computation — Sipser
+  mathematics:
+    - Discrete Mathematics and Its Applications — Kenneth H. Rosen
+  consultation:
+    - The Art of Computer Programming — Donald E. Knuth
+  academic_resources:
+    - title: MIT 6.006 — Introduction to Algorithms
+      url: >-
+        https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/
+    - title: Cornell — Amortized Analysis of Hash Tables
+      url: "https://courses.cs.cornell.edu/cs3110/2021sp/textb\
+        ook/eff/amortized_hash.html"
+    - title: Jeffrey Erickson — Algorithms
+      url: https://jeffe.cs.illinois.edu/teaching/algorithms/
 completion:
-  final_project: "Algorithm Complexity Analyzer"
+  final_project: Algorithm Complexity Analyzer
   expected_outcomes:
-    - "Definir correctamente el tamaño de entrada y el modelo de coste."
-    - "Derivar funciones de coste temporal y espacial."
-    - "Usar O, Ω y Θ correctamente."
-    - "Distinguir casos, esperanza y coste amortizado."
-    - "Resolver recurrencias comunes."
-    - "Comparar estructuras y algoritmos mediante garantías justificadas."
-    - "Separar análisis algorítmico de detalles específicos del lenguaje."
+    - Definir correctamente el tamaño de entrada y el modelo de coste.
+    - Derivar funciones de coste temporal y espacial.
+    - Usar O, Ω y Θ correctamente.
+    - Distinguir casos, esperanza y coste amortizado.
+    - Resolver recurrencias comunes.
+    - Comparar estructuras y algoritmos mediante garantías justificadas.
+    - Separar análisis algorítmico de detalles específicos del lenguaje.
+    - Distinguir tamaño en elementos, longitud en bits y memoria de salida.
+    - Justificar corrección y explicitar hipótesis probabilísticas.
+    - Reconocer límites de los modelos y del análisis automático.
+  project_contract:
+    input: explicit_subset_of_pseudocode
+    required_annotations:
+      - input_sizes
+      - primitive_costs
+      - external_function_costs
+    outputs:
+      - proven_bound_under_assumptions
+      - estimate
+      - undetermined
+    recurrences: supported_templates_with_justification
+    deliverables:
+      - grammar
+      - manual_analysis
+      - analyzer
+      - representative_tests
+      - reproducible_report
+    acceptance_criteria:
+      - preserve_semantics
+      - justify_bounds
+      - handle_unknown_cases_conservatively

@@ -66,3 +66,14 @@ Las páginas de integración de Polars, la guía inicial de Matplotlib y la port
 - **pytest:** https://docs.pytest.org/ — fixtures, parametrización y pruebas reproducibles.
 
 Las URLs son puntos de consulta, no certificación de disponibilidad futura. Comprobar clases, parámetros y comportamientos en las versiones efectivamente instaladas.
+
+
+## Referencias específicas de la revisión de progresión
+
+- Polars, uso de la API lazy: https://docs.pola.rs/user-guide/lazy/using/ — scan, lazy y separación entre definición y ejecución.
+- Polars, when: https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.when.html — evaluación de ramas y restricciones de las expresiones.
+- Polars, fuentes y sinks: https://docs.pola.rs/user-guide/lazy/sources_sinks/ — escritura de consultas y límites de materialización.
+- Matplotlib, imágenes con valores enmascarados: https://matplotlib.org/stable/gallery/images_contours_and_fields/image_masked.html — máscara y colores de valores especiales.
+- Matplotlib, orientación y coordenadas de imshow: https://matplotlib.org/stable/users/explain/artists/imshow_extent.html — origin, extent y relación con los ejes.
+
+Estas cinco páginas se consultaron para esta revisión. Su consulta no implica haber ejecutado los ejemplos. Para denominadores, ponderaciones y paradoja de Simpson, desarrollar ejemplos numéricos pequeños verificables; usar Wilke como apoyo para agregación e interpretación visual, sin atribuirle capítulos no comprobados.

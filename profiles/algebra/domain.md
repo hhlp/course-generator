@@ -98,17 +98,22 @@ nombrar la ley aplicada.
 
 Ejemplo:
 
-    A ∧ (A ∨ B)
-    = (A ∧ A) ∨ (A ∧ B)    [distributiva]
-    = A ∨ (A ∧ B)            [idempotencia]
-    = A                      [absorción]
+    A ∨ (A ∧ B)
+    = (A ∧ 1) ∨ (A ∧ B)    [identidad]
+    = A ∧ (1 ∨ B)          [distributiva]
+    = A ∧ 1                [dominación]
+    = A                    [identidad]
+
+Esta derivación prueba la absorción utilizando otras leyes ya establecidas.
+Declarar los axiomas elegidos y evitar usar como paso la identidad que se
+pretende demostrar.
 
 ## Cálculo y práctica
 
 El estudiante debe aprender a calcular, no solo reconocer:
 
 - 2^n filas de una tabla;
-- 2<sup>(2</sup>n) funciones booleanas de n variables;
+- 2^(2^n) funciones booleanas de n variables;
 - tablas de verdad completas;
 - minterms y maxterms;
 - índices binarios y decimales;
@@ -202,7 +207,8 @@ automatización:
 - olvidar precedencia;
 - aplicar incorrectamente De Morgan;
 - confundir minterm con maxterm;
-- confundir SOP/POS con CNF/DNF sin matices;
+- inventar diferencias entre SOP/DNF o POS/CNF bajo iguales definiciones;
+- confundir formas generales con formas canónicas;
 - agrupar incorrectamente mapas de Karnaugh;
 - ignorar wrap-around;
 - seleccionar implicantes no mínimos;
@@ -237,3 +243,149 @@ recorrer de forma justificada:
 
 El nivel experto exige además saber elegir entre álgebra manual, tablas,
 Karnaugh, Quine–McCluskey, Espresso, BDD y SAT según el problema.
+
+
+## Contrato de estructura y conservación
+
+Conservar los 15 bloques y los 92 temas principales numerados de 0 a 91.
+Cada identificador x.y representa una sublección en una línea independiente.
+No eliminar objetivos originales ni renumerar sus identificadores. Las nuevas
+sublecciones amplían cada tema con numeración consecutiva.
+
+Los epígrafes iniciales breves necesitan desarrollo: definición, ejemplo
+resuelto, ejercicio y comprobación cuando corresponda. Enlazar sublecciones
+relacionadas sin repetir literalmente su explicación.
+
+## Precisiones matemáticas obligatorias
+
+- Para n entradas hay 2^n asignaciones y 2^(2^n) funciones totales distintas.
+  Justificar el conteo; para n=0 hay una asignación vacía y dos funciones.
+- Presentar {0,1} como álgebra booleana de dos elementos; no identificarla con
+  toda álgebra booleana. Usar conjuntos potencia para modelos con más elementos.
+- Separar el bicondicional como conectiva de la equivalencia como relación
+  semántica. Distinguir implicación material de consecuencia semántica.
+- Declarar precedencia, orden de variables y convención de índices. No imponer
+  la precedencia matemática como si fuera universal en todos los lenguajes.
+- SOP corresponde a DNF y POS a CNF cuando se utilizan las mismas definiciones.
+  Distinguir forma general de completa/canónica y definir la palabra estándar.
+- La disyunción vacía vale 0 y la conjunción vacía vale 1. En CNF, una cláusula
+  vacía produce insatisfacibilidad; una conjunción sin cláusulas vale 1.
+- Distinguir grupo maximal, cubierta irredundante, mínimo por inclusión y
+  óptimo global respecto a un coste fijado. No inferir optimalidad de una
+  mera simplificación, de grupos grandes aislados ni del resultado heurístico.
+- En minimización parcial, ON, OFF y DC son disjuntos y cubren el dominio.
+  Cubrir ON sin intersectar OFF; DC puede cubrirse o no. Comparar sobre ON/OFF.
+- Un cofactor negativo sustituye x=0; no complementa el cofactor positivo.
+- La canonicidad de ROBDD exige orden fijo; comparar identificadores de raíz
+  solo dentro de un mismo gestor con tabla única coherente.
+- Tseitin introduce auxiliares: distinguir equivalencia en las variables
+  originales, proyección existencial y equisatisfacibilidad. Afirmar la raíz.
+- En un miter, SAT ofrece un contraejemplo; UNSAT establece equivalencia
+  dentro de las restricciones codificadas. Un timeout no establece UNSAT.
+
+## Desarrollo matemático y algorítmico avanzado
+
+Integrar, con ejemplos calculados y ejercicios corregidos:
+
+1. Soporte y variables esenciales; funciones constantes y parcialmente
+   especificadas; conjuntos ON/OFF/DC.
+2. Orden inducido, átomos y representación de álgebras finitas mediante
+   conjuntos de átomos. Presentar ideales y núcleo solo tras homomorfismos.
+3. Anillos booleanos con suma XOR y producto AND. Introducir GF(2), monomios
+   multilineales, ANF, unicidad, grado y funciones afines. Calcular una ANF
+   desde tabla con transformada de Möbius y verificarla exhaustivamente.
+4. Completitud funcional constructiva y criterio de Post. Definir preservación
+   de 0/1, monotonía, autodualidad y afinidad; explicar cierre por composición
+   y las convenciones relativas a constantes. No exigir teoría de clones.
+5. Abstracción existencial/universal desde cofactors; diferencia booleana y
+   soporte. Estos cuantificadores actúan sobre entradas booleanas; no abrir
+   un curso general de lógica de primer orden ni de QBF.
+6. ROBDD operativo: Mk, tabla única, Apply, memoización, restricción,
+   cuantificación y conteo de modelos con variables omitidas. Comparar órdenes
+   usando exactamente la misma función y medir el tamaño obtenido.
+7. SAT práctico: restricciones de cardinalidad pequeñas, Tseitin, DIMACS,
+   grafo de implicaciones de 2-SAT, DPLL trazado y CDCL guiado con resolución,
+   First UIP y backjumping. Distinguir verificación de modelos y certificados
+   de insatisfacibilidad. Herramientas externas requieren nombre y versión.
+8. Minimización exacta y heurística: declarar coste y care set; medir calidad,
+   tiempo y memoria; no afirmar garantías de óptimo para Espresso.
+9. Introducción a AIG y compartición de subexpresiones como puente a síntesis
+   multinivel, sin ampliar el alcance a diseño físico.
+
+El curso mantiene su especialización en álgebra booleana y métodos de funciones
+booleanas; no pretende agotar teoría de modelos, análisis de Fourier,
+criptografía ni diseño de solvers industriales.
+
+## Progresión y comprobación proporcionada al tamaño
+
+Introducir la clasificación elemental de fórmulas en 5.11 y retomarla en 56
+con modelos y SAT. Anticipar la noción de implicante al estudiar Karnaugh y
+formalizarla en 35. El tema de una sublección puede necesitar un anticipo
+breve; enlazarlo y no asumir contenidos que todavía no se han explicado.
+
+Las tablas completas son obligatorias en ejemplos pequeños donde aporten
+evidencia. Para casos grandes usar SAT, BDD u otra justificación adecuada;
+no construir tablas exponenciales por una regla mecánica.
+
+Establecer checkpoints acumulativos al cerrar 22, 32, 40, 45, 55, 58 y 81.
+Cada checkpoint incluye resolución manual, justificación y verificación;
+se exige resolver un caso nuevo y explicar un error deliberado.
+
+## Semántica de las aplicaciones
+
+Las identidades algebraicas describen funciones puras. En programación,
+comprobar además orden de evaluación, efectos, excepciones y tipo devuelto.
+El cortocircuito no autoriza a conmutar expresiones con efectos secundarios.
+Tratar cada lenguaje como aplicación breve y remitir a su path para sintaxis
+y herramientas generales. Evitar siete implementaciones redundantes de todo
+el curso; Python puede servir de lenguaje de referencia para los algoritmos.
+
+Especificar ancho de palabra y signo para máscaras. Explicar precisión
+arbitraria y complemento en Python, promociones en C/C++, operadores de Go,
+evaluación completa de booleanos con &/| en Java y conversión bitwise de
+Number a enteros de 32 bits en JavaScript. Separar Number y BigInt.
+
+SQL requiere tablas con TRUE/FALSE/UNKNOWN. WHERE y HAVING seleccionan TRUE;
+CHECK permite TRUE o UNKNOWN. Incluir NOT IN con NULL y NOT EXISTS. No afirmar
+que dejan de cumplirse todas las leyes clásicas: mostrar con tablas cuáles
+se conservan y cuáles fallan, como el tercero excluido con UNKNOWN.
+
+Los circuitos secuenciales son una frontera introductoria. Separar función de
+salida y próximo estado; no confundir equivalencia combinacional con ausencia
+de hazards o equivalencia temporal.
+
+## Proyecto final y criterios de aceptación
+
+El proyecto tiene dos casos relacionados:
+
+- Caso A: función pequeña, preferentemente 3–4 entradas. Obtener todas las
+  representaciones originales exigidas, ANF, Karnaugh, Quine–McCluskey/Petrick,
+  Shannon y ROBDD; verificar exhaustivamente y justificar cada coste.
+- Caso B: instancia mayor parametrizable. Evitar tabla y formas canónicas
+  completas cuando exploten. Usar SAT o BDD para verificar y explicar qué
+  métodos dejan de ser razonables. Documentar restricciones y care set.
+
+En el caso A, SOP/DNF y POS/CNF pueden compartir un mismo resultado con una
+explicación de la correspondencia; no pedir artefactos duplicados sin propósito.
+La obligación de validación exhaustiva corresponde al caso pequeño. Para el
+caso grande entregar evidencia simbólica y no llamar prueba a un muestreo.
+
+Entregar requisitos, entradas, expresiones/circuitos, código, resultados,
+versiones de herramientas, orden de variables, criterio de coste y comandos
+reproducibles. Una comparación experimental debe registrar límites y tamaños
+de entrada; no deducir superioridad general de un único ejemplo.
+
+Rúbrica: corrección matemática 40 %, justificación y elección del método 25 %,
+reproducibilidad y verificación 25 %, claridad y explicación de límites 10 %.
+Una equivalencia falsa, una codificación incorrecta o una validación ausente
+debe corregirse aunque la puntuación agregada sea suficiente.
+
+## Integración de los archivos
+
+initial.txt es el inventario de temas y sublecciones; domain.md define las
+reglas de contenido; bibliography.md relaciona fuentes y objetivos. Las claves
+descriptivas de profile.yaml expresan requisitos y no garantizan que el
+generador implemente validadores o herramientas para cada una.
+La ruta files.pedagogy se conserva del perfil original; comprobar su resolución
+en el repositorio real antes de generar. La validez sintáctica de YAML no
+equivale a compatibilidad con el esquema o cargador de course-generator.

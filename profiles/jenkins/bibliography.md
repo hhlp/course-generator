@@ -58,3 +58,27 @@
 
 ## Estrategia de lectura
 Para cada lección seleccionar primero la documentación oficial específica, luego referencias complementarias verificadas. No asignar capítulos, números de página ni versiones no comprobados. Evitar duplicar la bibliografía general de Groovy.
+
+## Referencias específicas de la revisión
+- Pipeline: Nodes and Processes (sh, node, ws y dir):
+  https://www.jenkins.io/doc/pipeline/steps/workflow-durable-task-step/
+- Preparing for Plugin Development (puente Java/Maven y herramientas):
+  https://www.jenkins.io/doc/developer/tutorial/prepare/
+- Testing (harness y escenarios con reinicios):
+  https://www.jenkins.io/doc/developer/testing/
+
+## Aplicación a lecciones y criterios
+- 3.6.1–3.6.3 y bloque 15: Pipeline Best Practices y CPS Method Mismatches.
+- Shell, contexto de nodo y workspace: Nodes and Processes y Steps Reference.
+- Bloque 17: Developer Documentation y Pipeline Best Practices; distinguir
+  administración de uso de APIs de core desde Pipeline.
+- 21.2.1–21.2.4: Preparing for Plugin Development; consultar un path Java
+  independiente si faltan bases del lenguaje, sin duplicarlo aquí.
+- Bloques 21 y 23: documentación de testing y JenkinsPipelineUnit; separar
+  pruebas simuladas de pruebas de integración con Jenkins y reinicios.
+- Bloques 13 y 26: Backing-up/Restoring Jenkins y Upgrade Guide.
+
+Referencias concretas consultadas el 2026-10-19: Pipeline Best Practices,
+Backing-up/Restoring Jenkins, Plugin Development, Nodes and Processes,
+Preparing for Plugin Development y Testing. Esto no constituye una auditoría
+de todos los enlaces ni una garantía de compatibilidad entre plugins.

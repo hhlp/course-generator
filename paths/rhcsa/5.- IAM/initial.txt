@@ -19,11 +19,17 @@ BLOQUE 0 — FUNDAMENTOS DE IAM
 0.13 Ciclo de vida de una identidad
 0.14 Provisioning, modificación y deprovisioning
 0.15 Credenciales, secretos, tokens, claves y certificados
-0.16 Authentication flow: aplicación → PAM/SSSD → proveedor de identidad
+0.16 Flujos de autenticación según integración: PAM/SSSD, LDAP o Kerberos/GSSAPI
 0.17 Authorization flow y evaluación de políticas
 0.18 Introducción a logging, auditing y trazabilidad IAM
 0.19 Arquitectura IAM Linux empresarial
 0.20 Laboratorio: dibujar el flujo completo de identidad, autenticación y autorización
+0.21 Alcance: IAM de infraestructura Linux y relación con federación de aplicaciones
+0.22 Flujos independientes de identidad, autenticación y autorización
+0.23 Inventario de dependencias, límites de confianza y puntos de aplicación de políticas
+0.24 Laboratorios separados: directorio OpenLDAP, realm MIT y dominio FreeIPA
+0.25 OIDC, OAuth 2.0, SAML y SCIM: funciones y relación con LDAP/Kerberos
+0.26 Federación de aplicaciones: alcance conceptual y continuación en un PATH específico
 
 BLOQUE 1 — LINUX IDENTITY
 
@@ -59,6 +65,10 @@ BLOQUE 1 — LINUX IDENTITY
 1.30 Laboratorio: administrar usuarios y grupos desde cero
 1.31 Logs relacionados con login y cuentas
 1.32 Troubleshooting de identidad local
+1.33 Planificación de UID/GID y rangos reservados entre sistemas
+1.34 Colisiones entre identidades locales y centrales y orden de resolución
+1.35 Migración de propietarios de archivos y ACL al centralizar identidades
+1.36 Laboratorio: conservar propiedad y acceso tras migrar una cuenta local
 
 BLOQUE 2 — NSS — NAME SERVICE SWITCH
 
@@ -81,6 +91,10 @@ BLOQUE 2 — NSS — NAME SERVICE SWITCH
 2.17 Diagnóstico de resolución de usuarios y grupos
 2.18 Laboratorio NSS
 2.19 Troubleshooting NSS
+2.20 Separar bases NSS de usuarios y hosts: DNS no proporciona cuentas POSIX
+2.21 Nombres cualificados, dominios múltiples y resolución ambigua
+2.22 Grupos anidados, membresía efectiva e initgroups
+2.23 Laboratorio: colisión de nombres y diagnóstico de pertenencia a grupos
 
 BLOQUE 3 — PAM — PLUGGABLE AUTHENTICATION MODULES
 
@@ -118,6 +132,9 @@ BLOQUE 3 — PAM — PLUGGABLE AUTHENTICATION MODULES
 3.32 Laboratorio: analizar un stack PAM real
 3.33 Laboratorio: política de password y bloqueo
 3.34 Troubleshooting PAM sin bloquear el sistema
+3.35 PAM auth frente a account: autenticación externa y evaluación de acceso
+3.36 Consola de recuperación, sesión administrativa abierta y rollback verificable
+3.37 Crear un servicio PAM de laboratorio y trazar sus cuatro tipos de gestión
 
 BLOQUE 4 — SUDO Y DELEGACIÓN DE PRIVILEGIOS
 
@@ -150,6 +167,10 @@ BLOQUE 4 — SUDO Y DELEGACIÓN DE PRIVILEGIOS
 4.27 Errores frecuentes
 4.28 Laboratorio de delegación administrativa
 4.29 Troubleshooting sudo
+4.30 Diferenciar autenticación sudo, autorización de comandos y registro de sesión
+4.31 Reglas centrales, caché y comportamiento sin conexión
+4.32 Validar argumentos, editores, intérpretes y escapes de shell al delegar
+4.33 Laboratorio: comprobar privilegios efectivos y retirar una delegación
 
 BLOQUE 5 — LDAP FUNDAMENTALS
 
@@ -198,6 +219,12 @@ BLOQUE 5 — LDAP FUNDAMENTALS
 5.43 Laboratorio: construir un DIT
 5.44 Laboratorio: consultas LDAP complejas
 5.45 Troubleshooting LDAP
+5.46 Root DSE, supportedControls y descubrimiento de capacidades
+5.47 Schemas POSIX: uidNumber, gidNumber, posixAccount y posixGroup
+5.48 RFC 2307 y RFC2307bis: modelos de membresía y compatibilidad
+5.49 Escapado de DN y filtros: prevención de inyección LDAP
+5.50 Paginación, límites de búsqueda y búsquedas indexadas
+5.51 Laboratorio: certificado no confiable, nombre TLS incorrecto y bind rechazado
 
 BLOQUE 6 — OPENLDAP
 
@@ -241,6 +268,11 @@ BLOQUE 6 — OPENLDAP
 6.38 Laboratorio: TLS
 6.39 Laboratorio: replicación
 6.40 Troubleshooting OpenLDAP
+6.41 Matriz de disponibilidad de slapd por distribución y versión
+6.42 Laboratorio OpenLDAP aislado de los componentes internos de FreeIPA
+6.43 Validación de cn=config, contexto SELinux y permisos del directorio de datos
+6.44 Restauración coherente de configuración, datos, schemas y certificados
+6.45 Laboratorio: restaurar el directorio en una máquina nueva y validar ACL
 
 BLOQUE 7 — KERBEROS FUNDAMENTALS
 
@@ -284,6 +316,11 @@ BLOQUE 7 — KERBEROS FUNDAMENTALS
 7.38 Flujo completo Kerberos paso a paso
 7.39 Ataques conceptuales y defensas
 7.40 Laboratorio conceptual: seguir un ticket desde login hasta servicio
+7.41 Kerberos autentica; autorización del recurso se decide en su punto de control
+7.42 GSSAPI, SASL y SPNEGO: interfaces, negociación y diferencias
+7.43 FAST, PKINIT y authentication indicators: objetivos y requisitos
+7.44 Delegación de credenciales y superficie de exposición
+7.45 Tickets ya emitidos, sesiones y límites de la revocación central
 
 BLOQUE 8 — MIT KERBEROS
 
@@ -324,6 +361,12 @@ BLOQUE 8 — MIT KERBEROS
 8.35 Laboratorio: keytabs y servicio
 8.36 Laboratorio: SSO con SSH
 8.37 Troubleshooting Kerberos
+8.38 KVNO, enctypes y correspondencia entre KDC y keytab de servicio
+8.39 ktadd y cambio de claves: evitar invalidar keytabs inadvertidamente
+8.40 Rotación de keytabs con comprobación de tickets y ventana de transición
+8.41 KCM y otros tipos de caché: permisos, aislamiento y ciclo de vida
+8.42 Replicación del KDC independiente y recuperación de su base de datos
+8.43 Laboratorio: fallo por KVNO y recuperación sin reinstalar el realm
 
 BLOQUE 9 — SSSD
 
@@ -372,6 +415,13 @@ BLOQUE 9 — SSSD
 9.43 Laboratorio: LDAP + Kerberos
 9.44 Laboratorio: autenticación offline
 9.45 Troubleshooting SSSD
+9.46 DNS service discovery, servidores de respaldo y failover
+9.47 Separar caché de identidad, credenciales offline y políticas de acceso
+9.48 Vigencia de cachés y límites de propagación de bajas y cambios de grupo
+9.49 Autenticación offline: política explícita, caducidad y recuperación
+9.50 sssctl config-check, domain-status y user-checks según versión
+9.51 SSSD SSH responder y distribución de claves: no implica CA SSH
+9.52 Laboratorio: caída de proveedor, acceso offline y posterior revocación
 
 BLOQUE 10 — REALMD
 
@@ -395,6 +445,9 @@ BLOQUE 10 — REALMD
 10.18 journalctl
 10.19 Laboratorio de discovery y join
 10.20 Troubleshooting realmd
+10.21 Diferenciar realm join, ipa-client-install y configuración manual
+10.22 Elegir método de enrollment según dominio y soporte de plataforma
+10.23 Reenrollment, objetos de máquina huérfanos y retirada de credenciales
 
 BLOQUE 11 — FREEIPA / RED HAT IDENTITY MANAGEMENT
 
@@ -474,7 +527,24 @@ BLOQUE 11 — FREEIPA / RED HAT IDENTITY MANAGEMENT
 11.74 Laboratorio: sudo centralizado
 11.75 Laboratorio: certificados
 11.76 Troubleshooting FreeIPA
-
+11.77 DNS externo frente a DNS integrado: delegación y service discovery
+11.78 DNS integrado FreeIPA: actualizaciones GSS-TSIG y relación con el PATH DDNS
+11.79 UID/GID, ID ranges, DNA y prevención de colisiones
+11.80 Grupos anidados, automember, usuarios staged y preserved
+11.81 HBAC: evaluar reglas con ipa hbactest antes de retirar allow_all
+11.82 HBAC service frente a Kerberos service principal: objetos diferentes
+11.83 MFA: enrollment, pérdida de factor, recuperación y auditoría
+11.84 Passkeys y smart cards: matriz de versiones, clientes y flujos soportados
+11.85 Authentication indicators y requisitos de autenticación por servicio
+11.86 CA integrada o externa: confianza, renovación y caducidad de cadena
+11.87 CRL, OCSP y límites de revocación según consumidor
+11.88 Topología de réplica LDAP y Kerberos frente a roles CA, KRA y DNS
+11.89 Fallos de replicación, conflictos y pruebas de convergencia
+11.90 Recuperación de CA y roles críticos tras pérdida de un servidor
+11.91 Actualizaciones, compatibilidad de versiones y validación posterior
+11.92 RPO/RTO y restauración aislada: réplica no equivale a backup
+11.93 Laboratorio: pérdida de réplica y failover real de clientes
+11.94 Laboratorio: restauración en entorno aislado con pruebas de identidad y SSO
 
 BLOQUE 12 — IAM COMO PROVIDER CENTRAL E INTEGRACIÓN DE SERVICIOS
 
@@ -493,7 +563,7 @@ BLOQUE 12 — IAM COMO PROVIDER CENTRAL E INTEGRACIÓN DE SERVICIOS
 12.13 Keytabs de servicios
 12.14 Machine identities
 12.15 Service accounts
-12.16 HBAC como autorización central de acceso a servicios
+12.16 HBAC como autorización central en servicios que evalúan sus reglas
 12.17 sudo centralizado como política consumida
 12.18 Certificados de host y servicio
 12.19 DNS como dependencia de IAM y service discovery
@@ -516,13 +586,24 @@ BLOQUE 12 — IAM COMO PROVIDER CENTRAL E INTEGRACIÓN DE SERVICIOS
 12.36 WireGuard: claves de peers no equivalen a IAM de usuarios
 12.37 Separación de responsabilidades IAM ↔ aplicación/servicio
 12.38 Lifecycle de una identidad propagado a servicios consumidores
-12.39 Revocación central y efecto sobre consumidores
+12.39 Revocación central: tickets, cachés, sesiones y efectos por consumidor
 12.40 Troubleshooting Provider → Consumer por capas
 12.41 Laboratorio: usuario FreeIPA accediendo mediante OpenSSH
 12.42 Laboratorio: misma identidad accediendo a NFSv4 Kerberizado
 12.43 Laboratorio: integrar un servicio HTTP/proxy con identidad central
-12.44 Laboratorio: deshabilitar una identidad y validar revocación transversal
+12.44 Laboratorio: deshabilitar una identidad y medir propagación y accesos residuales
 12.45 Diseño: matriz Provider → Consumer para la infraestructura completa
+12.46 Matriz por servicio: identidad, autenticación, autorización, caché y revocación
+12.47 HBAC sólo donde exista integración que evalúe sus políticas
+12.48 NFS: autorización de archivos y ACL además de autenticación Kerberos
+12.49 Samba: SSSD, Winbind, SID y soporte según escenario y versión
+12.50 Mail: consultas de directorio frente a autenticación SMTP/IMAP y permisos
+12.51 HTTP: LDAP, GSSAPI o proveedor externo según capacidades de la aplicación
+12.52 No asumir que MFA o una baja central se aplican a todos los protocolos
+12.53 DNS y TIME como dependencias; DHCP y Kea D2 como servicios de red
+12.54 GSS-TSIG en DNS frente a identidad de usuario: funciones distintas
+12.55 Laboratorio: comparar acceso local y central en un consumidor
+12.56 Laboratorio: ticket vigente, caché offline y sesión abierta tras una baja
 
 BLOQUE 13 — MÉTODOS DE AUTENTICACIÓN
 
@@ -545,6 +626,10 @@ BLOQUE 13 — MÉTODOS DE AUTENTICACIÓN
 13.17 Selección del método según riesgo
 13.18 Authentication assurance
 13.19 Laboratorio comparativo
+13.20 Contraseña más clave pública: distinguir combinación de métodos de MFA verificable
+13.21 Passkeys: registro, autenticación y recuperación según plataforma
+13.22 Authentication indicators: comprobar el método exigido por un servicio
+13.23 Laboratorio: factor perdido y recuperación con trazabilidad
 
 BLOQUE 14 — AUTORIZACIÓN Y CONTROL DE ACCESO
 
@@ -565,6 +650,9 @@ BLOQUE 14 — AUTORIZACIÓN Y CONTROL DE ACCESO
 14.15 Policy design
 14.16 Deny-by-default
 14.17 Laboratorio: diseñar autorización por roles
+14.18 Política central frente a autorización propia de cada recurso
+14.19 Permisos del directorio LDAP, RBAC administrativo y acceso del usuario final
+14.20 Laboratorio: autenticación correcta con autorización denegada
 
 BLOQUE 15 — IDENTITY LIFECYCLE
 
@@ -588,6 +676,10 @@ BLOQUE 15 — IDENTITY LIFECYCLE
 15.18 Audit trail
 15.19 Automatización del lifecycle
 15.20 Laboratorio: lifecycle completo de un empleado
+15.21 Staged, active y preserved: lifecycle específico en FreeIPA
+15.22 Matriz de baja: cuenta, grupos, tickets, sesiones, claves y certificados
+15.23 Ventanas de propagación de cambios y criterios de aceptación por consumidor
+15.24 Laboratorio: offboarding online y offline con tiempos medidos
 
 BLOQUE 16 — PRIVILEGED ACCESS MANAGEMENT — PAM
 
@@ -616,6 +708,9 @@ BLOQUE 16 — PRIVILEGED ACCESS MANAGEMENT — PAM
 16.23 Break-glass integration
 16.24 Arquitectura de una solución PAM empresarial
 16.25 Laboratorio de diseño PAM
+16.26 Diferenciar conceptos PAM de capacidades implementadas por sudo e IdM
+16.27 Diseño de privilegios temporales con expiración, revisión y evidencia
+16.28 Laboratorio: conceder y retirar acceso temporal con procedimiento verificable
 
 BLOQUE 17 — PRIVILEGED ACCOUNT & SESSION MANAGEMENT — PASM
 
@@ -639,6 +734,9 @@ BLOQUE 17 — PRIVILEGED ACCOUNT & SESSION MANAGEMENT — PASM
 17.18 Forensic analysis
 17.19 Retención y protección de registros
 17.20 Laboratorio: auditoría de una sesión privilegiada
+17.21 tlog y SSSD: grabación de terminal según plataforma y límites
+17.22 Registro de terminal frente a auditoría de procesos y canales no interactivos
+17.23 Laboratorio: reproducir una sesión y correlacionarla con sudo y auditd
 
 BLOQUE 18 — SERVICE ACCOUNTS Y MACHINE IDENTITIES
 
@@ -660,6 +758,9 @@ BLOQUE 18 — SERVICE ACCOUNTS Y MACHINE IDENTITIES
 18.16 Lifecycle management
 18.17 Inventario de identidades técnicas
 18.18 Laboratorio: identidad segura para un servicio
+18.19 KVNO, ownership de keytabs y rotación de credenciales de servicio
+18.20 Retirada de host y servicio: distinguir deshabilitar, borrar y reenrolar
+18.21 Laboratorio: rotar una identidad técnica y validar continuidad del servicio
 
 BLOQUE 19 — SECRETS MANAGEMENT
 
@@ -670,7 +771,7 @@ BLOQUE 19 — SECRETS MANAGEMENT
 19.5 Tokens
 19.6 SSH private keys
 19.7 TLS private keys
-19.8 Certificates
+19.8 Certificados públicos y protección de sus claves privadas
 19.9 Kerberos keytabs
 19.10 Storage seguro
 19.11 Encryption at rest
@@ -686,6 +787,10 @@ BLOQUE 19 — SECRETS MANAGEMENT
 19.21 systemd credentials: introducción
 19.22 Audit de acceso a secretos
 19.23 Laboratorio: ciclo de vida de secretos
+19.24 Certificado público frente a clave privada y bundles que contienen secretos
+19.25 systemd LoadCredential y credenciales cifradas según versión
+19.26 Entrega de secretos, permisos, renovación y retirada sin exponer valores
+19.27 Laboratorio: cargar una credencial en un servicio y comprobar su aislamiento
 
 BLOQUE 20 — BREAK-GLASS Y EMERGENCY ACCESS
 
@@ -703,6 +808,9 @@ BLOQUE 20 — BREAK-GLASS Y EMERGENCY ACCESS
 20.12 Testing periódico
 20.13 Incident procedures
 20.14 Laboratorio: diseñar un procedimiento break-glass
+20.15 Prueba de acceso de emergencia con DNS e IAM indisponibles
+20.16 Separar cuentas de emergencia de cuentas de servicio y administración diaria
+20.17 Laboratorio: recuperar acceso y rotar credenciales después del uso
 
 BLOQUE 21 — LOGGING, AUDITING Y FORENSICS IAM
 
@@ -735,6 +843,10 @@ BLOQUE 21 — LOGGING, AUDITING Y FORENSICS IAM
 21.27 Investigación de escalada de privilegios
 21.28 Forensic timeline
 21.29 Laboratorio de investigación IAM
+21.30 Matriz de rutas /var/log, unidades systemd y destinos configurados por versión
+21.31 Logs sensibles: evitar registrar contraseñas, OTP, keytabs y tokens
+21.32 Correlación por usuario, host, servicio, principal y tiempo sincronizado
+21.33 Laboratorio: localizar logs reales antes de activar depuración temporal
 
 BLOQUE 22 — IAM SECURITY & HARDENING
 
@@ -765,6 +877,10 @@ BLOQUE 22 — IAM SECURITY & HARDENING
 22.25 Audit y detection
 22.26 Security baseline IAM
 22.27 Laboratorio de hardening
+22.28 TLS: validación de nombre, cadena de confianza y caducidad sin bypass
+22.29 MFA por flujo: comprobar rutas alternativas de autenticación
+22.30 Protección de backups IAM y claves de CA
+22.31 Laboratorio: comprobar controles ante caché, tickets y credenciales residuales
 
 BLOQUE 23 — TROUBLESHOOTING IAM
 
@@ -808,6 +924,10 @@ BLOQUE 23 — TROUBLESHOOTING IAM
 23.38 Construcción de un troubleshooting decision tree
 23.39 Laboratorio: fallos intencionados
 23.40 Laboratorio: diagnóstico completo sin pistas
+23.41 Elegir rama de diagnóstico según LDAP bind, PAM o GSSAPI
+23.42 Distinguir cuenta deshabilitada, denegación HBAC y permisos de recurso
+23.43 Diagnóstico de failover, replicación y caché divergente
+23.44 Laboratorio: ticket válido con acceso denegado y autenticación fallida con identidad resuelta
 
 BLOQUE 24 — PROYECTO FINAL: ENTERPRISE IAM
 
@@ -816,8 +936,8 @@ BLOQUE 24 — PROYECTO FINAL: ENTERPRISE IAM
 24.3 Preparar Chrony/NTP
 24.4 Preparar DNS
 24.5 Desplegar FreeIPA/IdM
-24.6 Configurar LDAP
-24.7 Configurar Kerberos
+24.6 Administrar el directorio integrado de FreeIPA sin desplegar otro slapd
+24.7 Administrar Kerberos integrado mediante las interfaces de FreeIPA
 24.8 Configurar CA/PKI
 24.9 Enrolar clientes Linux
 24.10 Integrar NSS
@@ -845,7 +965,7 @@ BLOQUE 24 — PROYECTO FINAL: ENTERPRISE IAM
 24.32 Integrar NFSv4 Kerberizado como consumidor de IAM
 24.33 Integrar un servicio proxy/web con identidad central
 24.34 Validar una misma identidad en múltiples servicios
-24.35 Deshabilitar una identidad central y verificar revocación transversal
+24.35 Deshabilitar una identidad y comprobar autenticaciones nuevas y accesos existentes
 24.36 Centralizar logging
 24.37 Configurar auditoría
 24.38 Aplicar hardening
@@ -862,3 +982,13 @@ BLOQUE 24 — PROYECTO FINAL: ENTERPRISE IAM
 24.49 Documentar procedimientos
 24.50 Checklist de producción
 24.51 Evaluación final: explicar el flujo completo sin herramientas
+24.52 Definir topología local aislada, direccionamiento, recursos y snapshots
+24.53 Mantener OpenLDAP y MIT independientes fuera del dominio FreeIPA final
+24.54 Construir matriz de identidad, autenticación y autorización por consumidor
+24.55 Demostrar HBAC con ipa hbactest y retirada segura de allow_all
+24.56 Validar UID/GID y propietarios de recursos compartidos
+24.57 Validar MFA y recuperación de factor en los flujos elegidos
+24.58 Medir efectos de baja sobre tickets, sesiones y caché offline
+24.59 Validar pérdida de réplica y descubrimiento de servidores de respaldo
+24.60 Restaurar backup en un entorno aislado y medir RPO/RTO
+24.61 Entregar evidencias, matriz de versiones, inventario y criterios de aceptación

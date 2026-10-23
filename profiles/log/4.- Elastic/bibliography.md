@@ -46,7 +46,7 @@ Advertencia:
 
 Es una obra valiosa para fundamentos, pero describe generaciones antiguas de Elasticsearch. No copiar APIs, tipos, defaults ni procedimientos sin contrastarlos con documentación oficial actual.
 
-### Radu Gheorghe, Matthew Lee Hinman, Roy Russo — Elasticsearch in Action
+### Radu Gheorghe, Matthew Lee Hinman, Roy Russo — Elasticsearch in Action, 1.ª edición
 
 Uso:
 
@@ -59,7 +59,7 @@ Uso:
 
 Contrastar detalles dependientes de versión con la documentación oficial.
 
-### Bharvi Dixit — Mastering Elasticsearch
+### Bharvi Dixit — Mastering Elasticsearch 5.x, 3.ª edición
 
 Uso:
 
@@ -88,7 +88,7 @@ Uso:
 
 La finalidad es comprender Elasticsearch, no desarrollar una aplicación Lucene completa.
 
-### Michael McCandless, Erik Hatcher, Otis Gospodnetic — Lucene in Action
+### Michael McCandless, Erik Hatcher, Otis Gospodnetic — Lucene in Action, 2.ª edición
 
 Uso:
 
@@ -369,9 +369,9 @@ Nunca convertir una práctica histórica en recomendación actual sin verificarl
 - firewalld — Official Documentation.
 - SELinux Project / Fedora — SELinux Documentation.
 - Clinton Gormley, Zachary Tong — Elasticsearch: The Definitive Guide.
-- Radu Gheorghe, Matthew Lee Hinman, Roy Russo — Elasticsearch in Action.
-- Bharvi Dixit — Mastering Elasticsearch.
-- Michael McCandless, Erik Hatcher, Otis Gospodnetic — Lucene in Action.
+- Radu Gheorghe, Matthew Lee Hinman, Roy Russo — Elasticsearch in Action, 1.ª edición.
+- Bharvi Dixit — Mastering Elasticsearch 5.x, 3.ª edición.
+- Michael McCandless, Erik Hatcher, Otis Gospodnetic — Lucene in Action, 2.ª edición.
 
 ## Referencias adicionales por scope — revisión profunda
 
@@ -411,3 +411,54 @@ Nunca convertir una práctica histórica en recomendación actual sin verificarl
 ### Política de actualización de estas referencias
 
 Verificar versión, licencia, modalidad de despliegue y disponibilidad antes de presentar cualquier API, parámetro o funcionalidad como actual. Las referencias anteriores son fuentes temáticas; no constituyen una afirmación de compatibilidad de una versión específica.
+
+
+## Enlaces verificables y referencia congelada — 22 de octubre de 2026
+
+Referencia del temario: Elastic Stack 9.5.5 self-managed. Las páginas vivas pueden
+cambiar: seleccionar el alcance/versionado aplicable y contrastar release notes.
+No interpretar la consulta de documentación como prueba de ejecución.
+
+| Tema | Fuente oficial |
+| --- | --- |
+| Release notes del Stack | https://www.elastic.co/docs/release-notes |
+| Elasticsearch | https://www.elastic.co/docs/release-notes/elasticsearch |
+| Kibana | https://www.elastic.co/docs/release-notes/kibana |
+| Logstash | https://www.elastic.co/docs/release-notes/logstash |
+| Agent | https://www.elastic.co/docs/release-notes/elastic-agent |
+| Fleet Server | https://www.elastic.co/docs/release-notes/fleet-server |
+| SO, arquitectura y JVM soportados | https://www.elastic.co/support/matrix |
+| Licencias por funcionalidad | https://www.elastic.co/subscriptions |
+| LogsDB | https://www.elastic.co/docs/manage-data/data-store/data-streams/logs-data-stream |
+| Configuración de LogsDB | https://www.elastic.co/docs/manage-data/data-store/data-streams/logs-data-stream-configure |
+| Failure store | https://www.elastic.co/docs/manage-data/data-store/data-streams/failure-store |
+| TSDS | https://www.elastic.co/docs/manage-data/data-store/data-streams/time-series-data-stream-tsds |
+| Downsampling | https://www.elastic.co/docs/manage-data/data-store/data-streams/downsampling-time-series-data-stream |
+| Bootstrap y configuración | https://www.elastic.co/docs/deploy-manage/deploy/self-managed/important-settings-configuration |
+| Actualización | https://www.elastic.co/docs/deploy-manage/upgrade/deployment-or-cluster/elasticsearch |
+
+### Ediciones y precisión bibliográfica
+
+- Gormley y Tong: Elasticsearch: The Definitive Guide, O'Reilly. Referencia
+  histórica de fundamentos; edición web oficial: https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html
+- Gheorghe, Hinman y Russo: Elasticsearch in Action, 1.ª edición, Manning.
+  No atribuirles la segunda edición: https://www.manning.com/books/elasticsearch-in-action
+- Madhusudhan Konda: Elasticsearch in Action, 2.ª edición, Manning. Añadido como
+  apoyo de búsqueda y administración; verificar los ejemplos frente a 9.5.5:
+  https://www.manning.com/books/elasticsearch-in-action-second-edition
+- Bharvi Dixit: Mastering Elasticsearch 5.x, 3.ª edición, Packt. Esta es la obra
+  del autor que se usa aquí; no confundir con ediciones anteriores de título
+  similar. Material histórico, no guía de comandos para 9.5.5:
+  https://www.packtpub.com/en-us/product/mastering-elasticsearch-5x-9781786468871
+- McCandless, Hatcher y Gospodnetic: Lucene in Action, 2.ª edición, Manning.
+  Fundamentos históricos; vincular internals con la versión de Lucene incluida
+  en el Elasticsearch estudiado, no con APIs modernas supuestas.
+
+### Fuentes para la ampliación
+
+Las lecciones de LogsDB y synthetic _source usarán documentación de mappings y
+data streams de Elastic. Las de failure store contrastarán captura, límites,
+retención y reprocesamiento con la versión fijada. Para TSDS/downsampling usar
+la documentación de métricas y lifecycle y comprobar la pérdida de resolución.
+Para Terraform, Ansible y Collector registrar la versión exacta de herramienta,
+provider, collection o distribución seleccionada al preparar el laboratorio.

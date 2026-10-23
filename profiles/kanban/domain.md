@@ -93,3 +93,95 @@ Cada tema técnico debe cubrir, cuando corresponda: definiciones operativas, sup
 ### Progresión de la lección
 
 🎯 OBJETIVO → conceptos y contexto → mecanismo/ejemplo trabajado → 🧪 Laboratorio → ⚠️ Errores frecuentes → 💡 Idea importante → evaluación o preguntas de decisión → 🧠 QUÉ DEBES RECORDAR (3–7 puntos). Mantener la profundidad sin rellenar apartados inaplicables.
+
+## Precisiones cuantitativas obligatorias
+
+Antes de las lecciones 0.21–0.23, introducir dentro de esas lecciones las unidades,
+el intervalo de observación, las tasas por unidad de tiempo, el promedio temporal
+de WIP, la media aritmética de tiempos y la variabilidad. La primera simulación
+será guiada y podrá hacerse en una hoja de cálculo, sin exigir programación.
+
+Little relaciona el WIP medio, el throughput medio y el tiempo medio dentro de
+los mismos límites de sistema, bajo las condiciones pertinentes. No identifica
+el WIP medio con un límite WIP. Un percentil usado para expresar un SLE no debe
+sustituirse por el tiempo medio en esa relación. La elección inicial de límites
+es una hipótesis de política que se calibra experimentalmente, considerando
+bloqueos, capacidad, variabilidad y resultados; no una garantía de cumplimiento.
+
+Kingman se presenta como aproximación para una cola G/G/1 en régimen estable,
+con un servidor, utilización menor que uno, disciplina y supuestos especificados.
+Explicar los coeficientes de variación y los límites de aplicar ese modelo a
+trabajo de conocimiento, servicios en red o capacidad variable. No presentar la
+aproximación como una ley exacta o causalidad demostrada por datos observacionales.
+
+## Service Request Review y decisiones upstream
+
+Enseñar explícitamente Service Request Review (SRR): propósito, participantes,
+opciones revisadas, evidencias, decisiones, políticas y seguimiento. Diferenciar
+la evaluación y evolución de opciones del compromiso de entrega en replenishment.
+Conectar SRR con Risk Review y documentar cuándo un contexto permite combinar
+cadencias sin perder sus propósitos. Las decisiones y acciones deben conservar
+responsable, fecha, evidencia y revisión posterior.
+
+## Progresión sin repetición
+
+- Little: intuición y unidades en 0.21; aplicación al WIP en 3.20; condiciones,
+  medición y contraejemplos en 5.20–5.21 y 5.30; calibración en 22.41.
+- Kingman: modelo mental en 0.22; cálculo y crítica del modelo en 5.31.
+- Cost of Delay y CD3: introducción en 4 y 13; selección aplicada en 15;
+  sensibilidad, hipótesis frágiles y fallos de la heurística en 19.
+- Toda lección que retome un concepto debe remitir al prerrequisito y añadir
+  una decisión, mecanismo, cálculo o diagnóstico que no se haya resuelto antes.
+
+## Checkpoints: entregables verificables por bloque
+
+Cada checkpoint exige un artefacto, interpretación de evidencias y decisiones
+justificadas. Para aprobar, el entregable debe ser coherente con las políticas y
+los límites del servicio definidos y explicar al menos una limitación.
+
+| Bloque | Entregable mínimo y criterio observable |
+|---|---|
+| 0 | Modelo de servicio y simulación guiada con unidades y supuestos coherentes. |
+| 1 | Ficha del servicio que identifique cliente, compromiso, entrega y principios. |
+| 2 | Tablero con esperas, actividad, bloqueos y políticas de transición explícitas. |
+| 3 | Experimento WIP que distinga límite y promedio y compare resultados. |
+| 4 | Políticas versionadas con clases de servicio y excepciones justificadas. |
+| 5 | Diccionario de métricas y análisis CFD, aging y distribuciones consistentes. |
+| 6 | Forecast reproducible, backtesting temporal y explicación de incertidumbre. |
+| 7 | Fichas de cadencias, acta SRR y seguimiento de decisiones entre revisiones. |
+| 8 | Diseño STATIK trazable a demanda, insatisfacciones y capacidad observada. |
+| 9 | Catálogo y acuerdos entre servicios respaldados por una revisión de servicio. |
+| 10 | Segmentos por propósito y criterios de fitness con umbrales verificables. |
+| 11 | Fitness box score, análisis de sesgos y decisión sobre evolución del servicio. |
+| 12 | Mapa upstream con opciones, descarte y puntos de decisión y compromiso. |
+| 13 | Análisis de demanda y política de admisión para un escenario de sobrecarga. |
+| 14 | Registro de experimentos con evidencia y decisión de continuar, pivotar o cerrar. |
+| 15 | Simulación de replenishment con capacidad restringida y selección argumentada. |
+| 16 | Portfolio con WIP, dependencias, capacidad compartida y escenarios explícitos. |
+| 17 | Matriz de evidencias KMM, incertidumbres y selección contextual de prácticas. |
+| 18 | Red de servicios y escenario de interrupción con recuperación evaluable. |
+| 19 | Comparación económica con unidades, hipótesis y sensibilidad de la decisión. |
+| 20 | Informe de mejora que examine confusores y límites de inferencia causal. |
+| 21 | Diagnóstico con hipótesis alternativas y experimento de recuperación del flujo. |
+| 22 | Dossier integrado, defensa de decisiones y plan de medición a 30/60/90 días. |
+
+### Rúbrica del proyecto final
+
+Evaluar seis dimensiones: diseño del servicio, gestión upstream, flujo y políticas,
+calidad del análisis cuantitativo, medición F4P y evolución KMM. Cada dimensión
+recibe 0 (ausente), 1 (incompleta), 2 (coherente y sustentada) o 3 (contrastada con
+alternativas y sensibilidad). Aprobar requiere al menos 2 en cada dimensión,
+datos y supuestos trazables, y ausencia de errores críticos de interpretación.
+La rúbrica es un instrumento pedagógico propio, no una evaluación oficial KMM.
+
+## Integración con course-generator
+
+Los requisitos descritos son editoriales. La sintaxis YAML no acredita que el
+cargador interprete todas las claves del perfil. Verificar en el repositorio
+qué campos consume, cuáles incorpora al prompt y cuáles ignora antes de asumir
+automatismos de validación o evaluación.
+
+La ruta `../../config/pedagogy.md` se conserva del perfil recibido. Debe resolverse
+desde el directorio del perfil definitivo y comprobarse en el repositorio junto
+con `domain.md` y `bibliography.md`. No se ha verificado aquí ese archivo externo
+ni se incluye una copia inventada de su contenido.

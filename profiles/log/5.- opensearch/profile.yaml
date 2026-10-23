@@ -79,6 +79,14 @@ focus:
   - performance
   - troubleshooting
   - internals
+  - data_streams
+  - segment_replication
+  - remote_backed_storage
+  - relevance_evaluation
+  - rag
+  - sre
+  - infrastructure_as_code
+  - migrations
 
 examples:
   shell: bash
@@ -140,3 +148,18 @@ curriculum:
   last_block: 67
   original_blocks_preserved: 62
   new_blocks: 6
+  total_blocks: 68
+  total_lessons: 1637
+
+version_policy:
+  pin_stack_and_plugin_versions_per_lab: true
+  record_official_documentation_version: true
+  record_container_image_digest_when_used: true
+  distinguish_self_managed_from_managed_service: true
+  require_compatibility_matrix: true
+
+validation_policy:
+  continuous_block_and_lesson_numbering: true
+  unique_lesson_ids: true
+  preserve_original_lesson_scope: true
+  distinguish_syntax_validation_from_generator_execution: true

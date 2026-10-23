@@ -13,7 +13,8 @@ Orden general de autoridad:
 5. libros técnicos
 6. fuentes comunitarias de calidad.
 
-Cuando existan diferencias entre una fuente secundaria y la documentación correspondiente a la versión utilizada, prevalece la documentación primaria.
+Cuando existan diferencias entre una fuente secundaria y la documentación
+correspondiente a la versión utilizada, prevalece la documentación primaria.
 
 
 # 2. NAGIOS CORE — FUENTE PRINCIPAL
@@ -91,7 +92,8 @@ Event Broker
 NEB
 CGI.
 
-El código fuente complementa la documentación; no debe sustituir innecesariamente las explicaciones conceptuales.
+El código fuente complementa la documentación; no debe sustituir
+innecesariamente las explicaciones conceptuales.
 
 
 # 4. NAGIOS PLUGINS
@@ -227,7 +229,8 @@ RPM
 DNF
 integración con Fedora.
 
-Las rutas y características proporcionadas por los paquetes Fedora deben verificarse frente al paquete real cuando sea necesario.
+Las rutas y características proporcionadas por los paquetes Fedora deben
+verificarse frente al paquete real cuando sea necesario.
 
 
 # 9. RPM Y DNF
@@ -390,7 +393,8 @@ autenticación
 privacidad
 troubleshooting.
 
-Complementar con los RFC correspondientes cuando sea necesario profundizar en el protocolo.
+Complementar con los RFC correspondientes cuando sea necesario profundizar en el
+protocolo.
 
 
 # 16. RFC Y ESTÁNDARES
@@ -448,7 +452,8 @@ daemon behavior.
 
 Especialmente útil al estudiar internals.
 
-Debe utilizarse únicamente cuando ayude a explicar mecanismos observados en Nagios.
+Debe utilizarse únicamente cuando ayude a explicar mecanismos observados en
+Nagios.
 
 
 # 19. LINUX
@@ -457,7 +462,8 @@ Linux man-pages:
 
 https://man7.org/linux/man-pages/
 
-Utilizar como fuente primaria/complementaria para interfaces Linux empleadas por Nagios y sus herramientas.
+Utilizar como fuente primaria/complementaria para interfaces Linux empleadas por
+Nagios y sus herramientas.
 
 
 # 20. MONITORIZACIÓN Y SRE
@@ -478,7 +484,8 @@ alert fatigue
 reliability
 operational practices.
 
-No trasladar conceptos de Prometheus o SRE a Nagios como si fueran mecanismos nativos de Nagios.
+No trasladar conceptos de Prometheus o SRE a Nagios como si fueran mecanismos
+nativos de Nagios.
 
 
 # 21. PROMETHEUS
@@ -564,7 +571,8 @@ documentación
 → flujo de ejecución
 → comportamiento observable.
 
-No utilizar fragmentos de código aislados sin explicar su posición en la arquitectura.
+No utilizar fragmentos de código aislados sin explicar su posición en la
+arquitectura.
 
 
 # 26. FUENTES HISTÓRICAS
@@ -577,7 +585,8 @@ evolución
 arquitectura histórica
 conceptos que continúan vigentes.
 
-No deben utilizarse automáticamente para afirmar comportamiento de versiones actuales.
+No deben utilizarse automáticamente para afirmar comportamiento de versiones
+actuales.
 
 Debe comprobarse:
 
@@ -589,7 +598,8 @@ vigencia.
 
 # 27. FUENTES COMUNITARIAS
 
-Foros, Stack Overflow, blogs, GitHub issues y discusiones comunitarias pueden utilizarse para:
+Foros, Stack Overflow, blogs, GitHub issues y discusiones comunitarias pueden
+utilizarse para:
 
 casos reales
 errores poco documentados
@@ -677,46 +687,96 @@ debe permitir avanzar desde:
 
 hasta:
 
-"entiendo por qué Nagios programó el check, cómo lo ejecutó, cómo procesó su resultado, por qué produjo ese estado y cómo diagnosticar el flujo cuando falla".
+"entiendo por qué Nagios programó el check, cómo lo ejecutó, cómo procesó su
+resultado, por qué produjo ese estado y cómo diagnosticar el flujo cuando
+falla".
 
 
 # 31. FUENTES ADICIONALES POR SCOPE — AMPLIACIÓN EXPERTA
 
 ## Scope: monitorización de aplicaciones (bloque 50)
-- Nagios Plugins, documentación de `check_http`, `check_curl`, `check_tcp`, `check_dns` y sus opciones según versión: https://www.nagios-plugins.org/doc/
-- Documentación oficial de las aplicaciones monitorizadas (PostgreSQL, MySQL, MongoDB, servidores web). Usar únicamente para diseñar checks específicos, sin convertir el PATH en un curso de esas aplicaciones.
-- RFC Editor: HTTP, TLS y DNS cuando el comportamiento del check dependa del protocolo: https://www.rfc-editor.org/
+- Nagios Plugins, documentación de `check_http`, `check_curl`, `check_tcp`,
+  `check_dns` y sus opciones según versión: https://www.nagios-plugins.org/doc/
+- Documentación oficial de las aplicaciones monitorizadas (PostgreSQL, MySQL,
+  MongoDB, servidores web). Usar únicamente para diseñar checks específicos, sin
+  convertir el PATH en un curso de esas aplicaciones.
+- RFC Editor: HTTP, TLS y DNS cuando el comportamiento del check dependa del
+  protocolo: https://www.rfc-editor.org/
 
 ## Scope: métricas históricas (bloque 51)
 - RRDTool, documentación oficial: https://oss.oetiker.ch/rrdtool/
-- PNP4Nagios, documentación y código de referencia histórica. Verificar estado de mantenimiento y compatibilidad antes de recomendar despliegues: https://github.com/lingej/pnp4nagios
+- PNP4Nagios, documentación y código de referencia histórica. Verificar estado
+  de mantenimiento y compatibilidad antes de recomendar despliegues:
+  https://github.com/lingej/pnp4nagios
 - Grafana, documentación de fuentes de datos: https://grafana.com/docs/
-- Nagios Plugin Development Guidelines para formato perfdata, unidades y rangos: https://www.monitoring-plugins.org/doc/guidelines.html
+- Nagios Plugin Development Guidelines para formato perfdata, unidades y rangos:
+  https://www.monitoring-plugins.org/doc/guidelines.html
 
 ## Scope: alertas y fiabilidad (bloque 52)
 - Google SRE Book y Site Reliability Workbook: https://sre.google/books/
-- Documentación oficial Nagios Core: notificaciones, dependencias, escalaciones, flapping y downtime. Distinguir mecanismos nativos de integración externa.
+- Documentación oficial Nagios Core: notificaciones, dependencias, escalaciones,
+  flapping y downtime. Distinguir mecanismos nativos de integración externa.
 
 ## Scope: IaC y CI/CD (bloque 53)
 - Ansible Documentation: https://docs.ansible.com/
 - Molecule Documentation: https://ansible.readthedocs.io/projects/molecule/
-- Documentación oficial Nagios Core: verificación previa de configuración (`nagios -v`).
+- Documentación oficial Nagios Core: verificación previa de configuración
+  (`nagios -v`).
 - Git Documentation: https://git-scm.com/docs
 
 ## Scope: HA y recuperación (bloque 54)
 - ClusterLabs Pacemaker/Corosync: https://clusterlabs.org/
 - Documentación Red Hat de HA y fencing: https://docs.redhat.com/
-- Documentación Nagios Core de retención, passive checks y distribución. No atribuir HA automática al producto base.
+- Documentación Nagios Core de retención, passive checks y distribución. No
+  atribuir HA automática al producto base.
 
 ## Scope: internals aplicados (bloque 55)
-- Nagios Core fuente oficial, fijando commit/tag: https://github.com/NagiosEnterprises/nagioscore
+- Nagios Core fuente oficial, fijando commit/tag:
+  https://github.com/NagiosEnterprises/nagioscore
 - GNU GDB: https://sourceware.org/gdb/documentation/
 - strace: https://strace.io/
 - Linux perf: https://perf.wiki.kernel.org/
 - GCC instrumentation y sanitizers: https://gcc.gnu.org/onlinedocs/
 
 ## Scope: proyecto final (bloque 56)
-- Reutilizar las fuentes primarias anteriores, documentando versiones exactas, fecha de consulta, compatibilidad y decisiones de arquitectura.
+- Reutilizar las fuentes primarias anteriores, documentando versiones exactas,
+  fecha de consulta, compatibilidad y decisiones de arquitectura.
 
 ## Política de vigencia
-Separar siempre componentes activos, históricos y externos. No asumir compatibilidad entre versiones de Nagios Core, NRPE, NCPA, PNP4Nagios, plugins o paquetes Fedora/RHEL sin comprobarla en el entorno.
+Separar siempre componentes activos, históricos y externos. No asumir
+compatibilidad entre versiones de Nagios Core, NRPE, NCPA, PNP4Nagios, plugins o
+paquetes Fedora/RHEL sin comprobarla en el entorno.
+
+
+# 32. Identidad de plugins y transporte pasivo
+
+## Nagios Plugins — fuente del proyecto principal
+- Documentación: https://www.nagios-plugins.org/doc/
+- Código: https://github.com/nagios-plugins/nagios-plugins
+- Manual de check_http: https://nagios-plugins.org/doc/man/check_http.html
+
+## Monitoring Plugins — proyecto diferente, fuente complementaria
+- Sitio: https://www.monitoring-plugins.org/
+- Guías: https://www.monitoring-plugins.org/doc/guidelines.html
+- check_curl: https://www.monitoring-plugins.org/doc/man/check_curl.html
+
+La referencia anterior a estas guías en el bloque 51 corresponde a Monitoring
+Plugins. Identificar el proyecto antes de aplicar ejemplos o decisiones sobre
+deprecación. Verificar paquete, versión y --help en el laboratorio.
+
+## NRDP y NCPA pasivo
+- NRDP, código y documentación: https://github.com/NagiosEnterprises/nrdp
+- NCPA 3.x, modo pasivo: https://www.nagios.org/ncpa/help/3.x/passive.html
+- NCPA 3.x, configuración:
+  https://www.nagios.org/ncpa/help/3.x/configuration.html
+- Nagios Core 4, checks pasivos:
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/passivechecks.html
+- Nagios Core 4, opciones principales:
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/configmain.html
+- Nagios Core 4, definición de objetos:
+https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/objectdefinitions.html
+
+Consultar las opciones passive_host_checks_are_soft,
+translate_passive_host_checks y flap_detection_enabled en estas fuentes.
+Las referencias 3.x y 4 son ramas documentales: no fijan por sí solas la
+versión exacta de los binarios del laboratorio.

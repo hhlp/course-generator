@@ -234,19 +234,20 @@ El código fuente se utilizará para comprender implementación y no
 solamente comportamiento observable.
 
 
-# Orden de prioridad
+# Orden de prioridad por tema
 
-Para cada lección:
+1. Sintaxis, opciones y comportamiento del laboratorio: páginas man instaladas
+   y documentación Fedora correspondiente a las versiones registradas.
+2. Conceptos y administración: SELinux System Administration, Third Edition,
+   contrastado con las fuentes actuales de plataforma.
+3. Lenguajes, compilación e internals: documentación y código upstream,
+   SELinux Notebook y documentación CIL.
+4. Política distribuida: fuentes Fedora de la versión estudiada; Reference
+   Policy para sus interfaces, abstracciones y diferencias con Fedora.
+5. Integraciones: documentación oficial del proyecto y versión utilizados.
 
-1. SELinux System Administration, Third Edition
-2. documentación Fedora
-3. páginas man del sistema Fedora
-4. SELinux Project
-5. SELinux Notebook
-6. Fedora SELinux Policy
-7. Reference Policy
-8. código fuente cuando corresponda
-
+Resolver divergencias por tema y versión; no aplicar una prioridad global
+que coloque el libro de 2020 por encima del comportamiento actual comprobado.
 
 # Regla de actualidad
 
@@ -319,3 +320,38 @@ La prioridad de fuentes se aplica por tema: para sintaxis y comportamiento actua
 
 ## Regla de trazabilidad
 Cada lección debe indicar qué fuente sustenta la explicación, qué se ha comprobado en Fedora y qué depende de la versión. Evitar atribuir comandos o comportamientos modernos al libro cuando no los documente.
+
+# Enlaces oficiales y fuentes por integración
+
+- Fedora SELinux: https://docs.fedoraproject.org/en-US/quick-docs/selinux-getting-started/
+- Paquetes Fedora: https://packages.fedoraproject.org/
+- SELinux userspace: https://github.com/SELinuxProject/selinux
+- SELinux Notebook: https://github.com/SELinuxProject/selinux-notebook
+- Fedora SELinux Policy: https://github.com/fedora-selinux/selinux-policy
+- Reference Policy: https://github.com/SELinuxProject/refpolicy
+- CIL, guía y sentencias: https://github.com/SELinuxProject/selinux/tree/main/secilc/docs
+- SETools: https://github.com/SELinuxProject/setools
+- Cambios de SETools: https://github.com/SELinuxProject/setools/releases
+- systemd.exec, incluyendo SELinuxContext=:
+  https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html
+- container-selinux: https://github.com/containers/container-selinux
+- Podman: https://docs.podman.io/en/latest/
+- Buildah: https://github.com/containers/buildah
+- Skopeo: https://github.com/containers/skopeo
+- Docker, bind mounts y etiquetas SELinux:
+  https://docs.docker.com/engine/storage/bind-mounts/
+- Ansible, ansible.posix:
+  https://docs.ansible.com/ansible/latest/collections/ansible/posix/
+- Ansible, community.general:
+  https://docs.ansible.com/ansible/latest/collections/community/general/
+
+Los enlaces a ramas main/latest facilitan el descubrimiento. Para evidencias
+reproducibles, registrar etiqueta, commit o versión de documentación junto con
+la versión instalada. La presencia de una herramienta en upstream no garantiza
+que esté instalada o empaquetada en la VM Fedora.
+
+## Cobertura bibliográfica de investigación — bloques 24–26
+
+Usar manuales Fedora y SETools para consultas, SELinux Notebook para interpretar
+resultados y fuentes Fedora/CIL para rastrear definiciones. La metodología de
+evidencias del bloque 26 debe reflejar las limitaciones de cada fuente.

@@ -92,7 +92,7 @@
 4.16 Complementation and changes of meaning
 4.17 Raising vs control
 4.18 Subject-to-subject raising
-4.19 Object-to-subject raising and passive interactions
+4.19 Raising-to-object (ECM), reporting passives and contrasts with ordinary passivisation
 4.20 Subject control and object control
 4.21 Expletive subjects as a diagnostic for raising
 4.22 Complementation, argument structure and syntactic constraints
@@ -141,7 +141,8 @@
 6.18 Stacked premodification and postmodification
 6.19 Scope and attachment inside complex noun phrases
 6.20 Noun phrase structural ambiguity
-6.21 C1→C2 nouns and noun phrases checkpoint
+6.21 Grammatical, notional and proximity agreement: contrasts and constraints
+6.22 C1→C2 nouns and noun phrases checkpoint
 
 7. ARTICLES, DETERMINERS AND QUANTIFIERS
 7.1 a/an, one and zero article
@@ -196,21 +197,24 @@
 8.24 Integrated vs supplementary relative clauses
 8.25 Relative clause attachment and ambiguity
 8.26 Content clauses vs relative clauses
-8.27 C1→C2 clause checkpoint
+8.27 Free and fused relatives: what, whoever and related constructions
+8.28 Absolute constructions: overt subjects, participial predicates and attachment
+8.29 Verbless clauses: interpretation, reduction and subject constraints
+8.30 C1→C2 clause checkpoint
 
 9. PRONOUNS, SUBSTITUTION AND ELLIPSIS
 9.1 Personal pronouns and advanced reference
 9.2 Reflexive and reciprocal pronouns
 9.3 Demonstrative and indefinite pronouns
-9.4 one and ones
-9.5 one as substitute
+9.4 one and ones: number, antecedents and substitution constraints
+9.5 Substitute one vs generic personal one: structure, reference and interpretation
 9.6 so and not as substitutes
 9.7 do so, do it and do that
 9.8 such as substitute
 9.9 Ellipsis: grammatical principles
 9.10 Ellipsis after auxiliaries and modals
-9.11 Ellipsis of infinitival to
-9.12 Comparative ellipsis
+9.11 Infinitival ellipsis: retained to and contexts allowing omission of to
+9.12 Comparative ellipsis: recoverability and substitution contrasts
 9.13 Coordination ellipsis
 9.14 Substitution vs ellipsis
 9.15 C1→C2 pronouns, substitution and ellipsis checkpoint
@@ -247,7 +251,7 @@
 11.6 increasingly and more and more
 11.7 the + comparative..., the + comparative...
 11.8 Comparative clauses
-11.9 Comparative ellipsis
+11.9 Comparative ellipsis: clause structure, interpretation and constraints
 11.10 Superlative constructions
 11.11 C1→C2 comparison checkpoint
 
@@ -394,7 +398,7 @@
 17.28 Grammaticality, acceptability and interpretation
 17.29 C1→C2 clause architecture checkpoint
 
-18. — C1→C2 GRAMMAR MASTERY
+18. C1→C2 GRAMMAR MASTERY
 18.1 Tense and aspect integration
 18.2 Future reference integration
 18.3 Modal system integration

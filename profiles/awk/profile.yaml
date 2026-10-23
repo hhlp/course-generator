@@ -16,16 +16,16 @@ files:
   bibliography: bibliography.md
 
 scope:
-  programming_languages: false
+  programming_languages: true
   windows: false
-  base_language_agnostic: true
+  base_language_agnostic: false
   preferred_environment: Fedora Linux
 
 regex_policy:
   distinguish_dialect_specific_features: true
   distinguish_engine_specific_behavior: true
-  prefer_language_agnostic_examples: true
-  programming_language_examples: false
+  prefer_language_agnostic_examples: false
+  programming_language_examples: true
 
 lesson_structure:
   objective:
@@ -45,11 +45,11 @@ lesson_structure:
     exact_references_only_when_verified: true
 
   lab:
-    required: false
+    required: true
     heading: "🧪 Laboratorio/ejemplos"
 
   common_errors:
-    required: false
+    required: true
     heading: "⚠️ Errores frecuentes"
 
   important_idea:
@@ -100,6 +100,8 @@ artifacts:
     diagnostic_projects: auto
     require_project_for_every_block: false
 
+# La validación del generador exige conocer su contrato de comandos.
+# Las pruebas por lección se especifican en domain.md; no se inventan flags.
 validation:
   enabled: false
   commands: []

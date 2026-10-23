@@ -87,6 +87,8 @@ BLOQUE 3 — MODELO DE DATOS Y PAQUETES OPENPGP
 3.11.1 One-pass signatures y orden de paquetes
 3.11.2 Verificación de firmas con múltiples firmantes
 3.12 ASCII Armor y CRC
+3.12.1 CRC24 según RFC 9580: checksum opcional, sin autenticación criptográfica
+3.12.2 Generación y aceptación de CRC24: reglas normativas y compatibilidad heredada
 3.13 Serialización binaria y longitudes
 3.13.1 Cabeceras antiguas y nuevas
 3.13.2 Longitudes parciales y consumo incremental

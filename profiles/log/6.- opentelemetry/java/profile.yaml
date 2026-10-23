@@ -1,0 +1,193 @@
+---
+course:
+  title: OpenTelemetry con Java
+  language: es
+  level:
+    start: cero en instrumentación Java
+    end: experto
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+pedagogy:
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
+  remember_points: 3-7
+  optional_sections:
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+  depth: deep
+  progressive: true
+  didactic: true
+  summary_only: false
+scope:
+  type: language_specialization
+  language: Java
+  common_path: OpenTelemetry en profundidad
+  other_languages_required: false
+  java_from_zero: false
+  collector_administration: reference_common_path
+  android: out_of_scope
+prerequisites:
+  - 'Java: clases, excepciones y try-with-resources'
+  - Maven o Gradle; HTTP y procesos Linux
+  - Concurrencia Java básica antes del bloque 8
+  - Fundamentos del tronco común o repaso del bloque 0
+focus:
+  upstream_first: true
+  vendor_neutral: true
+  production: true
+  troubleshooting: true
+  internals: true
+  reproducible_labs: true
+  validate_results: true
+instrumentation_modes:
+  java_agent: primary_starting_route
+  manual_api_sdk: required
+  spring_boot_starter: required_comparison
+  single_sdk_owner: true
+  automatic_plus_business_spans: true
+version_policy:
+  pin_all_versions: true
+  avoid_latest_tags: true
+  verify_jdk_framework_compatibility: true
+  align_sdk_and_instrumentation_boms: true
+  label_experimental_artifacts: true
+  explicit_otlp_protocol: true
+  verify_defaults_per_mode: true
+  verify_semantic_conventions: true
+laboratories:
+  environment: local_private
+  primary_runtime: Docker Compose
+  alternative_runtime: Podman Compose after compatibility validation
+  publish_interfaces: 127.0.0.1
+  required_deliverables:
+    - complete source and configuration
+    - Maven commands and Gradle equivalents where relevant
+    - pinned version matrix
+    - expected trace tree and metric/log evidence
+    - negative test and recovery
+    - cleanup commands
+  runnable_sources_in_this_package: false
+assessment:
+  unit_tests:
+    - span relationships
+    - context isolation
+    - metric units and cardinality
+    - log correlation
+    - privacy
+  integration_tests:
+    - agent in separate JVM
+    - OTLP reception
+    - shutdown
+    - dependency failures
+  expert_project: orders-payments-inventory with JDBC and Kafka
+curriculum:
+  block_count: 32
+  lesson_count: 320
+  numbering: 0.1 through 31.10 by block
+  blocks:
+    - id: 0
+      title: Fundamentos y relación con el tronco común
+      lessons: 10
+    - id: 1
+      title: Entorno Java y compilaciones reproducibles
+      lessons: 10
+    - id: 2
+      title: Laboratorio local de observabilidad
+      lessons: 10
+    - id: 3
+      title: Primeros pasos con el agente Java
+      lessons: 10
+    - id: 4
+      title: Configuración y recursos
+      lessons: 10
+    - id: 5
+      title: Instrumentación manual y ciclo de vida
+      lessons: 10
+    - id: 6
+      title: Spans y errores
+      lessons: 10
+    - id: 7
+      title: Contexto y propagación entre servicios
+      lessons: 10
+    - id: 8
+      title: Concurrencia y tareas asíncronas
+      lessons: 10
+    - id: 9
+      title: HTTP cliente y servidor
+      lessons: 10
+    - id: 10
+      title: Spring Boot MVC
+      lessons: 10
+    - id: 11
+      title: Spring Boot Starter y Micrometer
+      lessons: 10
+    - id: 12
+      title: WebFlux y Reactor
+      lessons: 10
+    - id: 13
+      title: gRPC y protocolos propios
+      lessons: 10
+    - id: 14
+      title: JDBC, JPA y pools
+      lessons: 10
+    - id: 15
+      title: Redis y acceso a datos adicional
+      lessons: 10
+    - id: 16
+      title: Kafka y mensajería
+      lessons: 10
+    - id: 17
+      title: Métricas de negocio con API
+      lessons: 10
+    - id: 18
+      title: SDK de métricas y Views
+      lessons: 10
+    - id: 19
+      title: JVM, JMX y diagnóstico del runtime
+      lessons: 10
+    - id: 20
+      title: Logs Java y correlación
+      lessons: 10
+    - id: 21
+      title: OTLP y resiliencia de exportación
+      lessons: 10
+    - id: 22
+      title: Sampling y control de volumen
+      lessons: 10
+    - id: 23
+      title: Semántica, privacidad y contratos
+      lessons: 10
+    - id: 24
+      title: Pruebas automatizadas de instrumentación
+      lessons: 10
+    - id: 25
+      title: Pruebas de integración y CI
+      lessons: 10
+    - id: 26
+      title: Rendimiento y capacidad
+      lessons: 10
+    - id: 27
+      title: Despliegue Linux y contenedores
+      lessons: 10
+    - id: 28
+      title: Kubernetes aplicado a Java
+      lessons: 10
+    - id: 29
+      title: Troubleshooting sistemático
+      lessons: 10
+    - id: 30
+      title: Extensiones y casos avanzados
+      lessons: 10
+    - id: 31
+      title: Proyecto experto y mantenimiento
+      lessons: 10

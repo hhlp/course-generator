@@ -1,21 +1,20 @@
 ---
 course:
-  title: "TypeScript — 0 → Experto en Profundida"
-  language: "es"
+  title: TypeScript — 0 → Experto en Profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   objective: Dominar TypeScript desde la semántica de JavaScript y ECMAScript
     hasta su sistema de tipos, Node.js, asincronía, concurrencia, paralelismo,
-    memoria y runtime, diseño type-safe, compilador, AST, TypeChecker, Compiler
-    API, rendimiento y seguridad, comprendiendo compile time y runtime.
-  mode: "deep"
-
+    memoria y runtime, diseño type-safe, compilador, AST, TypeChecker,
+    Compiler API, rendimiento y seguridad, comprendiendo compile time
+    y runtime.
+  mode: deep
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 scope:
   include:
     - fundamentos de TypeScript
@@ -62,21 +61,26 @@ scope:
     - complejidad temporal y espacial
     - complejidad amortizada de colecciones
     - coste algorítmico vs coste del type checker
+    - varianza y límites de seguridad estática
+    - inferencia contextual y parámetros genéricos const
+    - decoradores modernos y heredados
+    - gestión explícita de recursos
+    - ejecución de TypeScript en Node.js y type stripping
   principles:
     - TypeScript no sustituye la semántica de JavaScript.
     - Separar siempre compile time de runtime.
-    - Inspeccionar el JavaScript emitido cuando sea pedagógicamente relevante.
+    - Inspeccionar el JavaScript emitido cuando sea pedagógicamente
+      relevante.
     - Diferenciar asincronía, concurrencia y paralelismo.
     - Diferenciar performance del type checker de performance del runtime.
     - Type safety no equivale a runtime safety.
     - No duplicar los paths independientes de Regex y Big O.
     - Analizar complejidad sobre código TypeScript y JavaScript emitido;
       distinguir garantías de supuestos de implementación.
-
 pedagogy:
   style: profundo, práctico, progresivo y orientado a ingeniería real
   indentation: false
-  numbering: single-level
+  numbering: block.lesson
   lesson_structure:
     objective:
       required: true
@@ -135,7 +139,32 @@ content_requirements:
     require_time_and_space: true
     compare_asymptotic_with_measured_performance: true
     separate_type_checker_from_runtime: true
-
+    general_theory: Referencia al PATH general; cada lección debe analizar
+      código TypeScript.
+  progression:
+    javascript_bridge_block: 0
+    progressive_project_block: 43
+    final_delivery_block: 46
+    retain_existing_lesson_identifiers: true
+    distinguish_introduction_application_and_diagnostics: true
+    require_prerequisites_before_first_use: true
+  version_policy:
+    record_exact_tool_versions: true
+    verify_runtime_support: true
+    separate_compiler_target_lib_and_runtime: true
+    avoid_unverified_latest_version_claims: true
+  assessment:
+    require_checkpoints_after_blocks:
+      - 6
+      - 13
+      - 16
+      - 24
+      - 30
+      - 33
+      - 39
+      - 45
+    require_positive_and_negative_type_tests: true
+    require_runtime_evidence_for_runtime_claims: true
 bibliography:
   primary:
     - Effective TypeScript — Dan Vanderkam
@@ -158,7 +187,6 @@ bibliography:
     - Introduction to Algorithms — Cormen, Leiserson, Rivest, Stein
     - OWASP — ReDoS
     - V8 Documentation / V8 Blog
-
 final_project:
   required: true
   requirements:
@@ -187,3 +215,7 @@ final_project:
     - ReDoS risk assessment
     - asymptotic time and space analysis
     - reproducible benchmarks
+    - explicit resource cleanup
+    - module resolution and consumer compatibility
+    - validated worker messages
+    - final delivery after blocks 44 and 45

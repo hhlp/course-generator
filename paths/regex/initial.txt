@@ -22,6 +22,10 @@
 0.21 dividir patrones complejos en componentes
 0.22 laboratorio: identificar literales y metacaracteres
 0.23 laboratorio: construir los primeros patrones
+0.24 concatenación: formar una secuencia de componentes
+0.25 átomo y alcance: qué unidad puede repetirse
+0.26 agrupación mínima para comprender cuantificadores; ampliación en el bloque 9
+0.27 contrato de cada ejemplo: dialecto, entrada, operación y resultado esperado
 
 
 1. Caracteres literales y escape
@@ -96,6 +100,10 @@
 3.33 sustracción de clases cuando esté soportada
 3.34 operaciones avanzadas sobre conjuntos
 3.35 laboratorio
+3.36 clase POSIX interior [:alpha:] frente a expresión completa [[:alpha:]]
+3.37 locale, colación y significado de los rangos
+3.38 clases POSIX blank, cntrl y graph
+3.39 elementos de colación y clases de equivalencia POSIX; soporte de implementación
 
 
 4. Cuantificadores
@@ -117,6 +125,7 @@
 4.16 errores frecuentes de alcance
 4.17 cuantificadores anidados
 4.18 laboratorio
+4.19 decisiones y retroceso: introducción mínima antes de greedy, lazy y possessive
 
 
 5. Greedy, lazy y possessive
@@ -141,6 +150,8 @@
 5.19 possessive y backtracking
 5.20 soporte según motor
 5.21 laboratorio comparativo
+5.22 por qué posesividad y atomicidad pueden cambiar el conjunto de coincidencias
+5.23 laboratorio: comparar resultados antes de aceptar una optimización
 
 
 6. Anclas y posiciones
@@ -163,6 +174,8 @@
 6.17 validación completa
 6.18 búsqueda parcial
 6.19 laboratorio
+6.20 final absoluto frente a posición anterior al salto de línea final
+6.21 validación del texto completo frente a búsqueda con anclas; contrato del entorno
 
 
 7. Límites
@@ -177,6 +190,7 @@
 7.9 límites personalizados
 7.10 límites mediante lookaround
 7.11 laboratorio
+7.12 avance: límites personalizados con lookaround; desarrollo en los bloques 13 a 15
 
 
 8. Alternancia
@@ -192,6 +206,8 @@
 8.10 optimización de alternativas
 8.11 factorizar expresiones
 8.12 laboratorio
+8.13 misma posición inicial: a|ab sobre ab bajo distintas políticas de selección
+8.14 alternativa vacía y ramas que pueden coincidir sin consumir
 
 
 9. Agrupación
@@ -229,6 +245,8 @@
 10.11 captura vacía
 10.12 inspección conceptual de capturas
 10.13 laboratorio
+10.14 captura no participante frente a captura vacía en el resultado observable
+10.15 historial de capturas frente a última captura: comportamiento de implementación
 
 
 11. Backreferences
@@ -351,6 +369,9 @@
 15.31 portabilidad
 15.32 rendimiento
 15.33 laboratorio avanzado
+15.34 atomicidad de aserciones tradicionales y reentrada tras un fallo posterior
+15.35 retroceso durante la evaluación frente a retroceso hacia una aserción ya satisfecha
+15.36 aserciones positivas no atómicas como extensión; ampliación después del bloque 18
 
 
 16. Flags y modos
@@ -384,6 +405,7 @@
 17.9 patrones mantenibles
 17.10 cuándo dividir una regex
 17.11 laboratorio: refactorizar una regex compleja
+17.12 espacios y # literales en modo extendido según dialecto y contexto
 
 
 18. Grupos atómicos
@@ -465,6 +487,12 @@
 21.29 case folding
 21.30 Unicode y case insensitive
 21.31 laboratorio
+21.32 equivalencia canónica frente a igualdad de secuencias de code points
+21.33 normalizar antes de buscar: efectos sobre capturas y posiciones originales
+21.34 Script frente a Script_Extensions
+21.35 límite de palabra del motor frente a segmentación Unicode de palabras
+21.36 modo UTF frente a propiedades Unicode: distinción específica de PCRE2
+21.37 offsets en bytes, code units y code points; conversión explícita
 
 
 22. Saltos de línea y texto multilínea
@@ -498,6 +526,13 @@
 23.13 coincidencias vacías durante reemplazo
 23.14 reemplazo global
 23.15 laboratorio
+23.16 primera coincidencia frente a todas las coincidencias
+23.17 recorrido de coincidencias no solapadas y posición de continuación
+23.18 coincidencias solapadas: política explícita y técnicas dependientes del motor
+23.19 progreso después de coincidencias vacías y prevención de bucles
+23.20 división de texto mediante regex: delimitadores, capturas y campos vacíos
+23.21 escape de texto literal en reemplazos frente a escape del patrón
+23.22 sustitución literal frente a transformación calculada: alcance del entorno
 
 
 24. Cómo funciona un motor Regex
@@ -521,6 +556,8 @@
 24.18 semántica leftmost-first en motores de backtracking
 24.19 consecuencias prácticas
 24.20 laboratorio: seguir manualmente la ejecución
+24.21 política de selección de resultados frente a algoritmo de ejecución
+24.22 búsqueda no anclada frente a intento de matching desde una posición
 
 
 25. Backtracking en profundidad
@@ -565,6 +602,9 @@
 26.17 benchmark conceptual
 26.18 comportamiento según motor
 26.19 laboratorio de optimización
+26.20 separar compilación, búsqueda individual e iteración de coincidencias
+26.21 coste de producir resultados y capturas; volumen de salida
+26.22 benchmark: corpus, tamaños, repeticiones, configuración y criterio de parada
 
 
 27. Catastrophic backtracking y ReDoS
@@ -587,6 +627,8 @@
 27.17 regex sobre entrada no confiable
 27.18 auditoría de regex
 27.19 laboratorio defensivo
+27.20 límites de pasos, profundidad y memoria frente a timeout de reloj
+27.21 presupuesto total para compilación y recorrido de resultados
 
 
 28. POSIX BRE
@@ -604,6 +646,8 @@
 28.12 limitaciones
 28.13 diferencias con dialectos modernos extendidos
 28.14 laboratorio
+28.15 desambiguación POSIX de subexpresiones y capturas
+28.16 sintaxis inválida, comportamiento no definido y extensiones de implementación
 
 
 29. POSIX ERE
@@ -620,6 +664,8 @@
 29.11 diferencias con PCRE
 29.12 portabilidad
 29.13 laboratorio
+29.14 backreferences en BRE frente a extensiones no normativas de ERE
+29.15 clases POSIX y locale frente a clases similares de otros dialectos
 
 
 30. Taxonomía de extensiones modernas de Regex
@@ -668,6 +714,10 @@
 31.20 límites del motor
 31.21 seguridad
 31.22 laboratorio
+31.23 lookbehind acotado: PCRE2 10.43 y posteriores en pcre2_match
+31.24 lookbehind ilimitado: no inferir soporte a partir de longitud variable
+31.25 pcre2_match frente a pcre2_dfa_match: algoritmos, resultados y restricciones
+31.26 UTF y UCP como opciones distintas; registrar ambas cuando proceda
 
 
 32. Otros modelos de motores
@@ -708,6 +758,9 @@
 33.18 recursión
 33.19 extensiones más allá de lenguajes regulares
 33.20 laboratorio conceptual
+33.21 cadena vacía y lenguaje vacío: epsilon frente a conjunto vacío
+33.22 propiedades de cierre: unión, concatenación, estrella, intersección y complemento
+33.23 pumping lemma: alcance como condición necesaria y límites para demostrar regularidad
 
 
 34. Diseño sistemático de expresiones
@@ -769,6 +822,10 @@
 36.13 pruebas de rendimiento
 36.14 fuzzing conceptual
 36.15 laboratorio
+36.16 resultados esperados como intervalos de inicio inclusivo y final exclusivo
+36.17 pruebas de recorrido: solapamiento, coincidencias vacías y fin de entrada
+36.18 pruebas diferenciales entre motores dentro de un subconjunto compartido
+36.19 propiedades y pruebas metamórficas sin presuponer equivalencia universal
 
 
 37. Problemas clásicos
@@ -794,6 +851,8 @@
 37.20 exclusiones
 37.21 datos multilínea
 37.22 laboratorio
+37.23 validación sintáctica de fechas frente a validez del calendario
+37.24 identificadores, correos y direcciones: contrato limitado frente a validación completa
 
 
 38. Qué NO resolver con Regex
@@ -832,6 +891,8 @@
 39.16 diseñar regex portables
 39.17 cuándo aceptar dependencia del motor
 39.18 laboratorio
+39.19 tabla reproducible: patrón, operación, motor, versión, flags y locale
+39.20 rechazo de sintaxis frente a interpretación diferente de un patrón aceptado
 
 
 40. Regex en el ecosistema Unix/Linux
@@ -892,7 +953,7 @@
 42.17 laboratorio integral
 
 
-43. Proyecto final — Regex Analyzer
+43. Proyecto integrador — Regex Analyzer
 43.1 definir el proyecto
 43.2 recibir un patrón
 43.3 recibir muestras de entrada
@@ -923,6 +984,9 @@
 43.28 comparar comportamiento entre dialectos cuando sea posible
 43.29 generar informe de análisis
 43.30 proyecto final: construir un Regex Analyzer reutilizable
+43.31 entrega principal: dossier reutilizable con fichas, corpus y análisis manual
+43.32 subconjunto declarado del analizador y comportamiento ante sintaxis no soportada
+43.33 criterios de aceptación: matches, capturas, posiciones y explicaciones verificables
 
 
 44. Extensiones expertas dependientes del motor
@@ -954,6 +1018,7 @@
 44.26 portabilidad de construcciones expertas
 44.27 cuándo no utilizar estas extensiones
 44.28 laboratorio comparativo
+44.29 aserciones no atómicas de PCRE2 y diferencias frente a lookaround tradicional
 
 
 45. Compilación e internals de un motor Regex
@@ -991,6 +1056,8 @@
 45.32 optimizaciones dependientes de implementación
 45.33 por qué dos motores pueden ejecutar el mismo patrón de forma distinta
 45.34 laboratorio: transformar conceptualmente regex → AST → NFA
+45.35 minimización conceptual de DFA y estados equivalentes
+45.36 AST de un subconjunto regular frente a AST de extensiones con capturas y referencias
 
 
 46. Complejidad de Regex en profundidad
@@ -1023,6 +1090,10 @@
 46.27 benchmark reproducible
 46.28 perfilado conceptual
 46.29 laboratorio de complejidad y ReDoS controlado
+46.30 patrón fijo frente a patrón variable: declarar los parámetros de complejidad
+46.31 búsqueda individual frente a iteración completa de resultados
+46.32 coste de compilación y expansión de repeticiones acotadas
+46.33 garantías de tiempo respecto a la entrada y dependencia del tamaño del patrón
 
 
 47. Regex y análisis léxico
@@ -1047,6 +1118,7 @@
 47.19 regex frente a gramática
 47.20 por qué los parsers resuelven estructuras anidadas
 47.21 laboratorio: diseñar conceptualmente un lexer pequeño
+47.22 desempate entre reglas de igual longitud y prioridad declarada del lexer
 
 
 48. Proyecto final experto — Regex Analyzer ampliado
@@ -1083,3 +1155,8 @@
 48.31 producir informe de seguridad/ReDoS
 48.32 documentar limitaciones del analizador
 48.33 proyecto final: Regex Analyzer experto reutilizable
+48.34 entrega principal agnóstica: especificación, AST manual, corpus e informes
+48.35 implementación ejecutable opcional en un PATH posterior de programación
+48.36 hallazgos heurísticos frente a prueba de vulnerabilidad o garantía de seguridad
+48.37 equivalencia de refactorizaciones: preservar matches, capturas y operación
+48.38 trazabilidad: enlazar cada conclusión con casos, configuración y limitaciones

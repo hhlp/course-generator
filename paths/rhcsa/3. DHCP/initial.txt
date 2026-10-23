@@ -1,6 +1,7 @@
 LEARNING PATH — DHCP 0 → EXPERTO EN PROFUNDIDAD
 Plataforma principal: Fedora / RHEL
 Implementación principal: ISC Kea
+Revisión: 2026-10-23. Orden recomendado: 0–10 → 25 → 11–24.
 Enfoque: administración real, instalación, configuración, operación, seguridad, logging, troubleshooting y laboratorios.
 
 BLOQUE 0 — FUNDAMENTOS DE DHCP
@@ -19,6 +20,10 @@ BLOQUE 0 — FUNDAMENTOS DE DHCP
 0.13 Riesgos operativos de una infraestructura DHCP
 0.14 Documentación, RFC y metodología de laboratorio
 0.15 Laboratorio: observar la configuración IP obtenida por un cliente
+0.16 Relación con TIME, DNS e IAM: plano de configuración de red y plano de identidad
+0.17 Prerrequisitos: subnetting, routing, administración Linux y lectura de capturas
+0.18 Inventario de versiones: distribución, paquetes Kea, hooks y manual correspondiente
+0.19 Laboratorio aislado: evitar el DHCP de libvirt y otros servidores del segmento
 
 BLOQUE 1 — DHCPv4 EN PROFUNDIDAD
 1.1 Arquitectura de DHCPv4
@@ -48,6 +53,11 @@ BLOQUE 1 — DHCPv4 EN PROFUNDIDAD
 1.25 Laboratorio: capturar DORA con tcpdump
 1.26 Laboratorio: interpretar DORA en Wireshark
 1.27 Laboratorio: renovación y liberación de una concesión
+1.28 Estados INIT-REBOOT y REBOOTING; reinicio y validación de la dirección anterior
+1.29 Broadcast flag, Server Identifier y Parameter Request List
+1.30 Retransmisiones, backoff y temporización del cliente
+1.31 ARP y DHCPDECLINE: evidencia de conflicto y límites de la detección
+1.32 Laboratorio: reiniciar el cliente y distinguir INIT-REBOOT de DORA
 
 BLOQUE 2 — DHCPv6 EN PROFUNDIDAD
 2.1 Por qué DHCPv6 no es simplemente DHCPv4 para IPv6
@@ -73,7 +83,7 @@ BLOQUE 2 — DHCPv6 EN PROFUNDIDAD
 2.21 IAID
 2.22 Identity Associations
 2.23 IA_NA
-2.24 IA_TA
+2.24 IA_TA: mecanismo histórico obsoleto según RFC 9915
 2.25 IA_PD
 2.26 Prefix Delegation
 2.27 Lifetime preferred y valid
@@ -83,6 +93,16 @@ BLOQUE 2 — DHCPv6 EN PROFUNDIDAD
 2.31 Laboratorio: Stateful DHCPv6
 2.32 Laboratorio: Stateless DHCPv6
 2.33 Laboratorio: Prefix Delegation
+2.34 RFC 9915 como estándar principal; RFC 8415 para documentación histórica
+2.35 CONFIRM y validación de direcciones después de cambiar de enlace
+2.36 Rapid Commit y flujo de dos mensajes; soporte y política de servidor
+2.37 T1/T2 por Identity Association y temporización de retransmisiones
+2.38 Status Codes: NoAddrsAvail, NoPrefixAvail y NotOnLink
+2.39 Gateway mediante RA: DHCPv6 no entrega la ruta por defecto
+2.40 RDNSS/DNSSL mediante RA y DNS mediante DHCPv6: coexistencia
+2.41 Flags M/O como indicación y comportamiento real de cada cliente
+2.42 Delegación y encaminamiento del prefijo: responsabilidades del router solicitante
+2.43 Laboratorio: cliente con dirección IPv6 pero sin ruta por defecto
 
 BLOQUE 3 — KEA: ARQUITECTURA
 3.1 Historia: ISC DHCP y Kea
@@ -90,7 +110,7 @@ BLOQUE 3 — KEA: ARQUITECTURA
 3.3 Arquitectura modular de Kea
 3.4 kea-dhcp4
 3.5 kea-dhcp6
-3.6 Kea Control Agent
+3.6 API directa y control-sockets; Control Agent en versiones anteriores
 3.7 Kea DHCP-DDNS: introducción
 3.8 Hooks
 3.9 Backends
@@ -104,6 +124,10 @@ BLOQUE 3 — KEA: ARQUITECTURA
 3.17 Recarga de configuración
 3.18 Estadísticas internas
 3.19 Laboratorio: reconocer todos los componentes de Kea
+3.20 Matriz Kea 2.x, 3.0 y 3.2: capacidades y migración del plano de control
+3.21 JSON de Kea con comentarios frente a JSON estricto: límites de jq
+3.22 Validación sintáctica, semántica y operativa: qué comprueba cada herramienta
+3.23 Kea 3.0 depreca Control Agent; Kea 3.2 lo retira
 
 BLOQUE 4 — INSTALACIÓN EN FEDORA / RHEL
 4.1 Preparación del laboratorio
@@ -130,6 +154,12 @@ BLOQUE 4 — INSTALACIÓN EN FEDORA / RHEL
 4.22 Laboratorio: instalar y arrancar Kea DHCPv4
 4.23 Laboratorio: instalar y arrancar Kea DHCPv6
 4.24 Laboratorio: provocar un error de configuración y diagnosticarlo
+4.25 Elegir repositorio y versión por distribución; registrar procedencia y soporte
+4.26 Descubrir nombres reales de servicios mediante RPM y systemctl list-unit-files
+4.27 Consultar ExecStart y ExecReload; usar reload solo cuando esté soportado
+4.28 Validar con -t y, cuando esté disponible, -T; comprobar hooks y backend
+4.29 Sockets raw y UDP en DHCPv4: diferencias de observación con ss y firewall
+4.30 Laboratorio: registrar versión, rutas, unidades, hooks y configuración efectiva
 
 BLOQUE 5 — CONFIGURACIÓN DHCPv4 CON KEA
 5.1 Configuración mínima de kea-dhcp4
@@ -149,6 +179,10 @@ BLOQUE 5 — CONFIGURACIÓN DHCPv4 CON KEA
 5.15 Validación y aplicación segura de cambios
 5.16 Laboratorio: servidor DHCPv4 completo
 5.17 Laboratorio: dos subredes y múltiples pools
+5.18 IDs de subnet explícitos y estables: impacto sobre leases y migraciones
+5.19 Seleccionar subred por interfaz, relay y clases: recorrido de decisión
+5.20 Asignadores soportados por la versión: criterios y medición
+5.21 Laboratorio: corregir selección de subnet sin cambiar direcciones a ciegas
 
 BLOQUE 6 — CONFIGURACIÓN DHCPv6 CON KEA
 6.1 Configuración mínima de kea-dhcp6
@@ -167,6 +201,11 @@ BLOQUE 6 — CONFIGURACIÓN DHCPv6 CON KEA
 6.14 Laboratorio: Kea DHCPv6 Stateful
 6.15 Laboratorio: Kea DHCPv6 + RA
 6.16 Laboratorio: Prefix Delegation
+6.17 Separar servicio RA del servidor DHCPv6: router o radvd en el laboratorio
+6.18 Configurar cliente router para solicitar IA_PD y anunciar subredes derivadas
+6.19 Comprobar rutas de ida y vuelta hacia los prefijos delegados
+6.20 Renumeración IPv6 y coexistencia de prefijos durante la transición
+6.21 Laboratorio: retirar RA y demostrar por captura el origen del fallo
 
 BLOQUE 7 — RESERVATIONS
 7.1 Qué es una host reservation
@@ -181,12 +220,16 @@ BLOQUE 7 — RESERVATIONS
 7.10 Opciones específicas por host
 7.11 Reservas dentro de una subnet
 7.12 Reservas globales
-7.13 reservation-mode y comportamiento de asignación
+7.13 reservations-global, reservations-in-subnet y reservations-out-of-pool; migración de reservation-mode
 7.14 Conflictos de reservas
 7.15 Diagnóstico de una reserva que no se aplica
 7.16 Laboratorio: reservas IPv4
 7.17 Laboratorio: reservas IPv6
 7.18 Laboratorio: opciones específicas para un host
+7.19 Identificadores como selección de política: no equivalen a autenticación
+7.20 MAC aleatoria, DUID persistente y client-id cambiante: impacto en reservas
+7.21 Reservas dentro y fuera del pool: validación de conflictos y capacidad
+7.22 Laboratorio: comparar reserva válida, identificador distinto y suplantación controlada
 
 BLOQUE 8 — DHCP OPTIONS EN PROFUNDIDAD
 8.1 Qué son las DHCP options
@@ -214,6 +257,11 @@ BLOQUE 8 — DHCP OPTIONS EN PROFUNDIDAD
 8.23 Laboratorio: DNS, gateway, dominio y NTP
 8.24 Laboratorio: crear una opción personalizada
 8.25 Laboratorio: inspeccionar opciones con tcpdump/Wireshark
+8.26 Parameter Request List y Option Request Option: qué solicita cada cliente
+8.27 Opciones IPv4 e IPv6: códigos, formatos y equivalencias que no existen
+8.28 NTP por DHCPv4 y DHCPv6: opciones diferentes y soporte del cliente
+8.29 PXE BIOS, UEFI y HTTP Boot: clasificación y compatibilidad según cliente
+8.30 Laboratorio: opción configurada, enviada, recibida y aplicada: cuatro comprobaciones
 
 BLOQUE 9 — LEASE MANAGEMENT
 9.1 Qué almacena una lease
@@ -233,6 +281,13 @@ BLOQUE 9 — LEASE MANAGEMENT
 9.15 Backups y consideraciones de estado
 9.16 Laboratorio: seguir una lease desde DORA hasta almacenamiento
 9.17 Laboratorio: simular agotamiento del pool
+9.18 Lease File Cleanup: compactación, ficheros auxiliares y lfc-interval
+9.19 Distinguir almacenamiento en memoria, fichero persistente y limpieza LFC
+9.20 Lectura del CSV y reconstrucción de estado sin editarlo durante el servicio
+9.21 Backup consistente de configuración, leases, hooks y metadatos de versión
+9.22 Recuperar después de fallo de disco y verificar ausencia de doble asignación
+9.23 Laboratorio: ejecutar y observar LFC con una carga pequeña
+9.24 Laboratorio: restaurar leases y comprobar renovación de clientes existentes
 
 BLOQUE 10 — DHCP RELAY
 10.1 Por qué los broadcasts DHCP no atraviesan routers
@@ -255,6 +310,11 @@ BLOQUE 10 — DHCP RELAY
 10.18 Laboratorio: DHCPv4 atravesando un router
 10.19 Laboratorio: DHCPv6 Relay
 10.20 Laboratorio: diagnosticar una VLAN sin servicio DHCP
+10.21 Instalar un relay disponible y mantenido para la plataforma elegida
+10.22 DHCPv6 link-address, peer-address e Interface-ID
+10.23 Relay redundante y duplicación de mensajes: observar efectos
+10.24 Puertos y flujos por salto: cliente-servidor frente a relay-servidor
+10.25 Laboratorio: selección incorrecta por giaddr o link-address
 
 BLOQUE 11 — KEA HIGH AVAILABILITY
 11.1 Por qué DHCP necesita alta disponibilidad
@@ -283,6 +343,14 @@ BLOQUE 11 — KEA HIGH AVAILABILITY
 11.24 Laboratorio: caída del servidor primario
 11.25 Laboratorio: recuperación y resincronización
 11.26 Laboratorio: simular pérdida de comunicación entre peers
+11.27 Dependencias de hooks HA y lease commands según versión y empaquetado
+11.28 Relación entre sincronización de leases y distribución de configuración
+11.29 HA no replica automáticamente toda la configuración ni sustituye backups
+11.30 Reachability de ambos peers desde cada relay y segmento de clientes
+11.31 Temporizadores HA, detección de fallo y criterios de transición automática
+11.32 Recuperación controlada de particiones y prevención de asignaciones divergentes
+11.33 Laboratorio: comparar caída del daemon, caída del host y partición del enlace HA
+11.34 Laboratorio: demostrar equivalencia de configuración antes y después del failover
 
 BLOQUE 12 — LOGGING EN PROFUNDIDAD
 12.1 Por qué los logs son esenciales en DHCP
@@ -317,6 +385,9 @@ BLOQUE 12 — LOGGING EN PROFUNDIDAD
 12.30 Laboratorio: seguir DORA exclusivamente mediante logs
 12.31 Laboratorio: correlacionar journalctl + tcpdump
 12.32 Laboratorio: configurar logging a archivo y rotación
+12.33 Catálogo oficial de mensajes Kea: interpretar identificadores de eventos
+12.34 Sincronización de reloj para correlación entre cliente, relay y peers
+12.35 Datos personales en logs: minimización, retención y acceso operativo
 
 BLOQUE 13 — TROUBLESHOOTING: METODOLOGÍA
 13.1 Troubleshooting por capas
@@ -336,6 +407,7 @@ BLOQUE 13 — TROUBLESHOOTING: METODOLOGÍA
 13.15 Crear una línea temporal del incidente
 13.16 Restaurar configuración conocida
 13.17 Laboratorio: checklist reproducible de diagnóstico
+
 
 BLOQUE 14 — TROUBLESHOOTING DHCPv4
 14.1 Servicio Kea no inicia
@@ -364,6 +436,7 @@ BLOQUE 14 — TROUBLESHOOTING DHCPv4
 14.24 Rogue DHCP
 14.25 Laboratorio: colección de fallos DHCPv4
 
+
 BLOQUE 15 — TROUBLESHOOTING DHCPv6
 15.1 Cliente IPv6 sin configuración
 15.2 Separar problemas RA, SLAAC y DHCPv6
@@ -382,6 +455,10 @@ BLOQUE 15 — TROUBLESHOOTING DHCPv6
 15.15 Lifetime incorrecto
 15.16 tcpdump para DHCPv6
 15.17 Laboratorio: colección de fallos DHCPv6
+15.18 CONFIRM y NotOnLink después de mover un cliente
+15.19 Rapid Commit: reconocer flujo válido sin ADVERTISE
+15.20 Diagnosticar IA_PD con prefijo concedido pero sin conectividad
+15.21 Laboratorio: separar fallo de asignación, RA, DNS y routing
 
 BLOQUE 16 — HERRAMIENTAS DE DIAGNÓSTICO
 16.1 systemctl
@@ -406,6 +483,7 @@ BLOQUE 16 — HERRAMIENTAS DE DIAGNÓSTICO
 16.20 ausearch para SELinux
 16.21 Laboratorio: diagnóstico sin mirar la configuración inicialmente
 
+
 BLOQUE 17 — FIREWALL, SELINUX Y SEGURIDAD
 17.1 Modelo de amenaza DHCP
 17.2 Rogue DHCP server
@@ -422,13 +500,18 @@ BLOQUE 17 — FIREWALL, SELINUX Y SEGURIDAD
 17.13 Contextos
 17.14 AVC denials
 17.15 Permisos de configuración y secretos
-17.16 Protección del Control Agent
+17.16 Protección de sockets de control y API; Control Agent heredado
 17.17 Seguridad de APIs
 17.18 Seguridad de bases de datos backend
 17.19 Hardening de systemd: conceptos aplicables
 17.20 Auditoría
 17.21 Laboratorio: diagnosticar bloqueo por firewall
 17.22 Laboratorio: investigar un AVC de SELinux
+17.23 DHCPv6 Guard y RA Guard: funciones distintas de protección en switches
+17.24 Reservas y Option 82 no son credenciales de identidad
+17.25 Administración del host mediante SSSD o FreeIPA: opción independiente de DHCP
+17.26 TSIG autentica actualizaciones DNS; no autentica al cliente DHCP
+17.27 Laboratorio: acceso administrativo centralizado sin modificar la asignación DHCP
 
 BLOQUE 18 — BACKENDS, HOOKS Y EXTENSIBILIDAD
 18.1 Qué es un backend en Kea
@@ -448,10 +531,24 @@ BLOQUE 18 — BACKENDS, HOOKS Y EXTENSIBILIDAD
 18.15 Versionado y actualizaciones
 18.16 Troubleshooting de hooks
 18.17 Laboratorio: inspeccionar hooks disponibles
+18.18 Instalar PostgreSQL como backend de laboratorio; alternativa MySQL/MariaDB
+18.19 Crear base de datos, usuario de servicio y permisos mínimos
+18.20 kea-admin: inicialización, versión y actualización del esquema
+18.21 Configurar lease-database y probar persistencia después de reinicio
+18.22 Separar lease backend, hosts database y config backend
+18.23 Hooks de backend y disponibilidad según versión, paquete y distribución
+18.24 Timeouts, reintentos y comportamiento ante pérdida del backend
+18.25 TLS al backend y manejo de secretos según capacidades disponibles
+18.26 Migración memfile a SQL y exportación: herramientas soportadas por versión
+18.27 Backup de SQL, restauración aislada y validación de compatibilidad
+18.28 Plan de actualización conjunta de Kea, hooks y esquema; límites del rollback
+18.29 Laboratorio: backend PostgreSQL funcional y persistencia comprobada
+18.30 Laboratorio: fallo del backend, recuperación y evidencia en logs
+18.31 Laboratorio: restaurar una copia y verificar integridad de leases
 
-BLOQUE 19 — CONTROL AGENT, API Y AUTOMATIZACIÓN
-19.1 Kea Control Agent
-19.2 Arquitectura de control
+BLOQUE 19 — API DIRECTA, CONTROL Y AUTOMATIZACIÓN
+19.1 API directa en Kea moderno y arquitectura histórica del Control Agent
+19.2 Arquitectura de control: sockets Unix y listeners HTTP/HTTPS por daemon
 19.3 Comandos de administración
 19.4 Consulta de estado
 19.5 Estadísticas
@@ -467,6 +564,16 @@ BLOQUE 19 — CONTROL AGENT, API Y AUTOMATIZACIÓN
 19.15 Rollback
 19.16 Laboratorio: consultar Kea mediante API
 19.17 Laboratorio: script de health check
+19.18 Listeners directos por daemon y puertos de administración separados
+19.19 control-sockets: Unix, HTTP y HTTPS según versión instalada
+19.20 Autenticación y TLS según versión; exposición solo en red de gestión
+19.21 Comandos soportados: list-commands y requisitos de hooks
+19.22 config-test, config-get, config-set y config-write: alcance y persistencia
+19.23 Respuesta JSON y códigos de resultado: no confundir éxito HTTP con éxito operativo
+19.24 Migrar clientes curl/jq desde Control Agent a endpoints directos
+19.25 Validación con jq solo para JSON estricto; validación Kea como autoridad semántica
+19.26 Automatización Ansible opcional: plantillas, validación, despliegue y rollback
+19.27 Laboratorio: rechazar una modificación inválida y conservar servicio operativo
 
 BLOQUE 20 — OBSERVABILIDAD Y CAPACIDAD
 20.1 Qué observar en un servidor DHCP
@@ -485,6 +592,15 @@ BLOQUE 20 — OBSERVABILIDAD Y CAPACIDAD
 20.14 Tendencias de consumo de direcciones
 20.15 Capacity planning
 20.16 Laboratorio: cuadro operativo de salud DHCP
+20.17 Métricas por subnet y pool: convertir valores en decisiones de capacidad
+20.18 Establecer línea base de CPU, memoria, latencia, tasa de éxito y drops
+20.19 perfdhcp: instalación, lectura del manual y prueba de carga aislada
+20.20 Multithreading, colas y cuello de botella del backend
+20.21 Comparar backends y ajustes con una sola variable por ensayo
+20.22 Tasa ofrecida frente a tasa respondida; percentiles y pérdidas
+20.23 Definir umbrales y margen de capacidad con evidencias reproducibles
+20.24 Laboratorio: prueba de carga DHCPv4 y DHCPv6 con informe de resultados
+20.25 Laboratorio: medir carga durante failover y resincronización
 
 BLOQUE 21 — DISEÑO DE DHCP EN PRODUCCIÓN
 21.1 Requisitos antes de diseñar DHCP
@@ -509,6 +625,11 @@ BLOQUE 21 — DISEÑO DE DHCP EN PRODUCCIÓN
 21.20 Actualización de Kea
 21.21 Compatibilidad y pruebas previas
 21.22 Laboratorio: diseñar DHCP para una organización multisubnet
+21.23 Gestión de configuración como fuente de verdad y revisión de diferencias
+21.24 RPO y RTO: pérdida tolerable de estado y tiempo de recuperación
+21.25 Ensayo de actualización con copia del estado y prueba de compatibilidad
+21.26 Matriz de clientes: NetworkManager y otras implementaciones disponibles
+21.27 Plan de migración desde ISC DHCP: parámetros, reservas, leases y validación
 
 BLOQUE 22 — TROUBLESHOOTING AVANZADO Y CASOS REALES
 22.1 Diagnóstico de fallos intermitentes
@@ -531,6 +652,7 @@ BLOQUE 22 — TROUBLESHOOTING AVANZADO Y CASOS REALES
 22.18 Postmortem
 22.19 Laboratorio: incidente complejo multiservidor
 22.20 Laboratorio: elaborar RCA y acciones correctivas
+
 
 BLOQUE 23 — LABORATORIO FINAL INTEGRADOR
 23.1 Diseñar la topología
@@ -561,6 +683,12 @@ BLOQUE 23 — LABORATORIO FINAL INTEGRADOR
 23.26 Crear runbook de troubleshooting
 23.27 Documentar arquitectura y decisiones
 23.28 Evaluación final: administrar DHCP sin depender de recetas
+23.29 Criterios de aceptación por escenario: asignación, opciones y renovación
+23.30 Evidencias: configuración validada, logs, PCAP y estado de leases
+23.31 Restauración desde backup en un servidor reconstruido
+23.32 Ensayo de capacidad y degradación del backend
+23.33 Comparar servicio con host unido y no unido a IAM
+23.34 Entregar inventario, diagrama, resultados medidos y procedimientos de recuperación
 
 BLOQUE 24 — PUENTE HACIA DHCP + DNS
 24.1 Por qué integrar DHCP y DNS
@@ -575,3 +703,25 @@ BLOQUE 24 — PUENTE HACIA DHCP + DNS
 24.10 Errores típicos de integración
 24.11 Qué se estudiará en el PATH DHCP + DNS
 24.12 Laboratorio conceptual de transición al siguiente bloque
+24.13 Distribuir DNS mediante DHCP frente a modificar registros mediante DDNS
+24.14 DNS independiente, BIND y DNS de FreeIPA: límites y autoridad de zonas
+24.15 Identidad del actualizador TSIG frente a identidad del usuario o equipo
+24.16 Criterio de transición: DHCP estable antes de activar actualizaciones DNS
+
+BLOQUE 25 — CLASIFICACIÓN AVANZADA DE CLIENTES
+25.1 Por qué clasificar clientes: políticas de asignación y opciones
+25.2 client-classes y expresiones soportadas por la versión instalada
+25.3 Clases incorporadas y orden de evaluación
+25.4 KNOWN y UNKNOWN: reconocimiento frente a autenticación
+25.5 Vendor class y user class: inspección de paquetes antes de crear reglas
+25.6 Comparaciones, pertenencia, subcadenas y composición de expresiones
+25.7 Selección de pools y opciones mediante clases
+25.8 Clases con shared networks y host reservations
+25.9 Relaciones entre clases y precedencia de opciones
+25.10 Option 82 como dato de clasificación dentro de un dominio confiable
+25.11 DHCPv6 y clasificación mediante opciones y datos de relay
+25.12 Políticas para PXE BIOS, UEFI y clientes habituales
+25.13 Diagnosticar expresiones inválidas y clases que nunca se aplican
+25.14 Laboratorio: dos tipos de cliente con pools y opciones diferentes
+25.15 Laboratorio: política de dispositivos desconocidos sin confundirla con IAM
+25.16 Evaluación: justificar la decisión de asignación mediante configuración y PCAP

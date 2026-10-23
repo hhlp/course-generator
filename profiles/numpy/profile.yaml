@@ -1,9 +1,11 @@
 ---
+# Validar las claves con el cargador instalado de course-generator.
+# Resolver files.pedagogy desde la base utilizada por dicho cargador.
 course:
   title: NumPy — 0 a Experto en Profundidad
   primary_library: NumPy
-  version_policy: NumPy 2.x estable; verificar APIs y cambios contra la
-    documentación oficial vigente
+  version_policy: Seleccionar y fijar Python y NumPy 2.x para todo el
+    curso; registrar versiones exactas y consultar su documentación
   language: es
   level:
     start: cero

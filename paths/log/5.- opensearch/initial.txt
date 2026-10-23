@@ -210,7 +210,7 @@ OPENSEARCH STACK EN PROFUNDIDAD
 6.18 IP
 6.19 range
 6.20 alias field
-6.21 flattened y tipos equivalentes disponibles
+6.21 flat_object: funcionamiento, limitaciones y diferencias respecto a flattened
 6.22 multi-fields
 6.23 fields
 6.24 dynamic
@@ -309,7 +309,7 @@ OPENSEARCH STACK EN PROFUNDIDAD
 8.41 source filtering
 8.42 stored_fields
 8.43 docvalue_fields
-8.44 runtime_mappings cuando estén soportados
+8.44 derived fields: definición en mapping y búsqueda, restricciones y coste
 8.45 named queries
 8.46 highlighting
 8.47 explain
@@ -618,7 +618,7 @@ OPENSEARCH STACK EN PROFUNDIDAD
 20.5 conexión con OpenSearch
 20.6 TLS
 20.7 autenticación
-20.8 spaces o tenants según configuración
+20.8 tenants y workspaces: propósito, configuración y diferencias
 20.9 interfaz
 20.10 Discover
 20.11 Dashboards
@@ -1557,49 +1557,218 @@ OPENSEARCH STACK EN PROFUNDIDAD
 60.19 observabilidad del plugin
 60.20 laboratorio: construir un plugin mínimo o extensión educativa
 
-61. Proyecto final experto
-61.1 definir requisitos de una plataforma completa
-61.2 diseñar arquitectura de tres capas
-61.3 desplegar cluster OpenSearch multinodo
-61.4 configurar roles y allocation awareness
-61.5 habilitar TLS en transport y REST
-61.6 crear usuarios, roles y RBAC
-61.7 desplegar OpenSearch Dashboards
-61.8 desplegar Data Prepper en alta disponibilidad
-61.9 ingerir logs
-61.10 ingerir métricas
-61.11 ingerir trazas OpenTelemetry
-61.12 normalizar eventos
-61.13 diseñar mappings
-61.14 crear index templates
-61.15 crear aliases
-61.16 configurar ISM
-61.17 configurar snapshots
-61.18 construir Query DSL operativa
-61.19 construir consultas PPL
-61.20 crear agregaciones
-61.21 crear visualizaciones
-61.22 crear dashboards
-61.23 crear alertas
-61.24 configurar Notifications
-61.25 crear detector de anomalías
-61.26 integrar Security Analytics
-61.27 implementar búsqueda vectorial básica
-61.28 monitorizar cluster, JVM y shards
-61.29 habilitar slow logs
-61.30 probar pérdida de un nodo
-61.31 probar shard recovery
-61.32 probar restauración desde snapshot
-61.33 probar fallo de Data Prepper
-61.34 probar expiración o error de certificado en laboratorio
-61.35 realizar tuning de indexación
-61.36 realizar tuning de búsqueda
-61.37 ejecutar prueba de carga
-61.38 documentar RPO y RTO
-61.39 crear runbooks
-61.40 automatizar configuración repetible
-61.41 ejecutar simulacro de desastre
-61.42 auditar seguridad
-61.43 auditar rendimiento
-61.44 documentar arquitectura final
-61.45 laboratorio final: operar OpenSearch Stack como plataforma de producción
+61. Data Streams y datos temporales
+61.1 casos de uso y elección entre índices, aliases y data streams
+61.2 modelo append-only y ciclo de vida de eventos
+61.3 backing indices y write index
+61.4 campo temporal obligatorio y validación del timestamp
+61.5 index templates con configuración de data stream
+61.6 component templates y prioridad de templates
+61.7 crear e inspeccionar un data stream
+61.8 indexación mediante operaciones create y Bulk API
+61.9 consultar datos a través del nombre del stream
+61.10 rollover manual y comprobación del write index
+61.11 ISM aplicado a backing indices
+61.12 políticas de rollover por edad, tamaño y documentos según versión
+61.13 retención y eliminación segura de backing indices
+61.14 event time frente a ingestion time
+61.15 eventos tardíos y desorden temporal
+61.16 duplicados, identificadores e idempotencia de productores
+61.17 actualización y borrado mediante APIs admitidas
+61.18 evolución de mappings y aplicación a nuevos backing indices
+61.19 reindexación y migración desde índices con alias
+61.20 Data Prepper y selección del destino de escritura
+61.21 permisos para productores, lectores y administradores
+61.22 snapshots y restauración de data streams según compatibilidad
+61.23 monitorización de tamaño, shards y retraso de ingestión
+61.24 diagnóstico de rechazos por timestamp, templates e ISM
+61.25 laboratorio: operar un data stream de logs con rollover, retención y recuperación
+
+62. Replicación y almacenamiento avanzado
+62.1 replicación de documentos frente a replicación de segmentos
+62.2 recorrido de escritura y lectura en cada estrategia
+62.3 primarios, réplicas y publicación de segmentos
+62.4 selección de replication.type al crear índices
+62.5 configuración de la estrategia predeterminada del cluster
+62.6 restricciones y compatibilidad de cambios de estrategia
+62.7 segment replication entre nodos
+62.8 remote-backed storage: segmentos y translog remotos
+62.9 repositorios, credenciales y permisos de almacenamiento
+62.10 prerrequisitos y dependencias de plugins por versión
+62.11 configuración de un entorno aislado con almacenamiento de objetos
+62.12 migración planificada hacia remote-backed storage
+62.13 remote cluster state y diferencias respecto a datos remotos
+62.14 recovery desde almacenamiento remoto
+62.15 fallo de nodo y promoción de réplicas
+62.16 fallo, latencia y pérdida de acceso al repositorio
+62.17 replication lag, backpressure y métricas operativas
+62.18 coste de red, almacenamiento y operaciones de objetos
+62.19 consistencia, durabilidad y ventanas de pérdida de datos
+62.20 snapshots frente a réplicas y remote-backed storage
+62.21 separación de cargas de indexación y búsqueda cuando esté soportada
+62.22 search replicas y roles correspondientes según versión
+62.23 searchable snapshots: disponibilidad y restricciones por versión
+62.24 comparación reproducible de throughput y latencia
+62.25 laboratorio: comparar replicación de documentos y segmentos ante carga y fallos
+62.26 laboratorio: recuperar un entorno con almacenamiento remoto y verificar integridad
+
+63. Evaluación de relevancia y RAG
+63.1 objetivos de recuperación y criterios de aceptación
+63.2 corpus versionado, consultas representativas y juicios de relevancia
+63.3 separación de conjuntos de ajuste y evaluación
+63.4 precision@k y recall@k
+63.5 MRR y nDCG@k
+63.6 baseline BM25 y análisis de errores
+63.7 Rank Evaluation API y herramientas de relevancia disponibles
+63.8 comparación de búsqueda léxica, vectorial y dispersa
+63.9 normalización y fusión de resultados híbridos según soporte
+63.10 reranking y evaluación de su coste
+63.11 filtrado de metadatos y permisos en recuperación vectorial
+63.12 recall ANN y ground truth mediante búsqueda exacta
+63.13 latencia p50, p95 y p99 y throughput de consultas
+63.14 cambios de embeddings, dimensiones y versionado de modelos
+63.15 chunking, solapamiento y metadatos de procedencia
+63.16 indexación incremental y eliminación de contenido obsoleto
+63.17 arquitectura RAG y separación entre recuperación y generación
+63.18 conectores y modelos locales o remotos según disponibilidad
+63.19 search pipelines y processor RAG cuando esté soportado
+63.20 construcción del contexto y límites de tokens
+63.21 citas, trazabilidad y respuestas sin evidencia suficiente
+63.22 evaluación de recuperación frente a evaluación de respuesta
+63.23 privacidad, ACL y protección frente a contenido que induce instrucciones
+63.24 caché, timeouts, cuotas y tratamiento de fallos del proveedor
+63.25 coste, latencia y observabilidad end-to-end
+63.26 laboratorio: comparar BM25, vectorial e híbrida con dataset evaluado
+63.27 laboratorio: construir RAG con evidencia y comprobar aislamiento de permisos
+
+64. SRE y operación basada en objetivos
+64.1 servicios ofrecidos y recorridos críticos de usuarios
+64.2 SLI de disponibilidad, latencia y frescura de datos
+64.3 medición de ingestión aceptada frente a datos consultables
+64.4 SLO, ventanas temporales y objetivos realistas
+64.5 presupuesto de error y decisiones operativas
+64.6 alertas por consumo de presupuesto y burn rate
+64.7 separación entre alertas de síntomas y de causas
+64.8 percentiles, histogramas y efectos de agregación
+64.9 paneles de servicio y paneles de infraestructura
+64.10 capacidad de disco, heap, CPU y red
+64.11 previsión de crecimiento y margen de recuperación
+64.12 pruebas de carga sostenida y ráfagas
+64.13 pruebas de saturación con límites de impacto
+64.14 fallos de nodo, de zona y particiones de red en laboratorio
+64.15 backpressure, rechazo de carga y degradación controlada
+64.16 retraso de ingestión, acumulación y drenaje de backlog
+64.17 runbooks con síntomas, comprobaciones y criterios de éxito
+64.18 respuesta a incidentes y registro de decisiones
+64.19 línea temporal y postmortem basado en evidencias
+64.20 RPO y RTO medidos mediante restauración
+64.21 plan de continuidad ante caída de Dashboards o Data Prepper
+64.22 monitorización externa independiente del cluster observado
+64.23 mantenimiento programado y criterios para detener cambios
+64.24 pruebas de rotación de certificados y secretos
+64.25 laboratorio: definir SLO, provocar un incidente y comprobar recuperación
+
+65. IaC, Ansible, Terraform y GitOps
+65.1 inventario de recursos de plataforma y configuración administrada
+65.2 división de responsabilidades entre Terraform, Ansible y APIs
+65.3 selección de providers y colecciones por mantenimiento y compatibilidad
+65.4 versionado del stack, providers, colecciones e imágenes
+65.5 laboratorio local con máquinas virtuales o contenedores aislados
+65.6 Terraform para recursos e inventario de infraestructura
+65.7 plan, apply, state y detección de drift
+65.8 protección del estado y prevención de secretos persistidos
+65.9 Ansible para instalación RPM y configuración del host
+65.10 roles, variables, templates y handlers
+65.11 systemd, límites, SELinux y firewalld mediante configuración declarativa
+65.12 bootstrap inicial frente a incorporación de nodos existentes
+65.13 PKI y distribución de certificados sin secretos en Git
+65.14 configuración de Dashboards y Data Prepper con Ansible
+65.15 mappings, templates e ISM mediante APIs idempotentes
+65.16 roles y permisos como código con credenciales mínimas
+65.17 alertas, pipelines y objetos guardados como código
+65.18 orden de dependencias y comprobaciones de disponibilidad
+65.19 validación de YAML, JSON y configuración antes del cambio
+65.20 segunda ejecución sin cambios como prueba de idempotencia
+65.21 CI con pruebas de integración en entorno efímero
+65.22 promoción de configuración entre laboratorio, staging y producción
+65.23 reconciliación GitOps y control de cambios concurrentes
+65.24 revisión de planes y cambios destructivos
+65.25 rollback de configuración y límites de reversibilidad de datos
+65.26 Kubernetes, Helm y operador como alternativa con matriz de soporte
+65.27 laboratorio: aprovisionar el stack y verificar idempotencia, drift y recuperación
+
+66. Migraciones y transición entre plataformas
+66.1 inventario de datos, versiones, plugins y clientes
+66.2 compatibilidad de origen y destino y matriz de migración
+66.3 OpenSearch autogestionado frente a servicios administrados
+66.4 migración frente a actualización in-place
+66.5 selección entre snapshot restore, reindexación y herramientas de migración
+66.6 restricciones de compatibilidad de índices y snapshots
+66.7 Migration Assistant: alcance, versiones y dependencias de despliegue
+66.8 plan de capacidad temporal y coexistencia de clusters
+66.9 migración de mappings, templates, aliases e ISM
+66.10 conversión de flattened a flat_object y validación semántica
+66.11 sustitución de runtime_mappings por diseños compatibles con derived fields
+66.12 reindexación local y remota según soporte
+66.13 backfill y control de concurrencia
+66.14 captura y reproducción de tráfico cuando esté soportada
+66.15 identificadores de documentos, duplicados y orden de escrituras
+66.16 migración de pipelines y transformaciones de ingestión
+66.17 migración de seguridad, roles y certificados con revisión explícita
+66.18 objetos guardados, tenants y workspaces: compatibilidad y migración
+66.19 migración de embeddings y necesidad de regeneración
+66.20 validación de recuentos, muestras, agregaciones y consultas
+66.21 comparación de relevancia, latencia y errores
+66.22 sincronización final y control de escrituras durante cutover
+66.23 cambio de clientes, endpoints, TLS y resolución de nombres
+66.24 criterios go/no-go y observación posterior al cambio
+66.25 retorno al origen y reconciliación de escrituras posteriores
+66.26 retención temporal del origen y retirada controlada
+66.27 laboratorio: migrar entre dos entornos y ensayar cutover y retorno
+
+67. Proyecto final experto
+67.1 definir requisitos de una plataforma completa
+67.2 diseñar arquitectura de tres capas
+67.3 desplegar cluster OpenSearch multinodo
+67.4 configurar roles y allocation awareness
+67.5 habilitar TLS en transport y REST
+67.6 crear usuarios, roles y RBAC
+67.7 desplegar OpenSearch Dashboards
+67.8 desplegar Data Prepper en alta disponibilidad
+67.9 ingerir logs
+67.10 ingerir métricas
+67.11 ingerir trazas OpenTelemetry
+67.12 normalizar eventos
+67.13 diseñar mappings
+67.14 crear index templates
+67.15 crear aliases
+67.16 configurar ISM
+67.17 configurar snapshots
+67.18 construir Query DSL operativa
+67.19 construir consultas PPL
+67.20 crear agregaciones
+67.21 crear visualizaciones
+67.22 crear dashboards
+67.23 crear alertas
+67.24 configurar Notifications
+67.25 crear detector de anomalías
+67.26 integrar Security Analytics
+67.27 implementar búsqueda vectorial básica
+67.28 monitorizar cluster, JVM y shards
+67.29 habilitar slow logs
+67.30 probar pérdida de un nodo
+67.31 probar shard recovery
+67.32 probar restauración desde snapshot
+67.33 probar fallo de Data Prepper
+67.34 probar expiración o error de certificado en laboratorio
+67.35 realizar tuning de indexación
+67.36 realizar tuning de búsqueda
+67.37 ejecutar prueba de carga
+67.38 documentar RPO y RTO
+67.39 crear runbooks
+67.40 automatizar configuración repetible
+67.41 ejecutar simulacro de desastre
+67.42 auditar seguridad
+67.43 auditar rendimiento
+67.44 documentar arquitectura final
+67.45 laboratorio final: operar OpenSearch Stack como plataforma de producción

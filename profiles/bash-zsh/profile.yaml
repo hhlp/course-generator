@@ -1,14 +1,14 @@
 ---
 course:
-  title: "bash-zsh — 0 a Experto en Profundidad"
-  language: "es"
+  title: bash-zsh — 0 a Experto en Profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   platform:
     - Fedora
     - RHEL
-  mode: "deep"
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -23,7 +23,6 @@ scope:
     - zsh
   portability_reference:
     - posix-sh
-
 shell_policy:
   distinguish_posix_sh: true
   distinguish_bash: true
@@ -34,7 +33,7 @@ shell_policy:
   verify_version_specific_behavior: true
   label_non_posix_examples: true
   explain_portability_implications: true
-
+  distinguish_posix_editions: true
 example_policy:
   prefer_safe_quoting: true
   explain_word_splitting: true
@@ -43,7 +42,8 @@ example_policy:
   avoid_unquoted_expansions: true
   show_exit_status_when_relevant: true
   show_stderr_stdout_when_relevant: true
-
+  quote_according_to_dialect_and_context: true
+  explain_intentional_unquoted_expansions: true
 regex_policy:
   mode: applied_integration
   independent_regex_path_is_authoritative_for_theory: true
@@ -69,16 +69,14 @@ regex_policy:
   address_locale: true
   address_performance: true
   require_positive_negative_edge_tests: true
-
 lesson_structure:
   objective:
     required: true
     position: first
-    heading: "🎯 OBJETIVO"
-
+    heading: 🎯 OBJETIVO
   reading:
     required: true
-    heading: "📚 LECTURA"
+    heading: 📚 LECTURA
     categories:
       - principal
       - normativa
@@ -86,26 +84,21 @@ lesson_structure:
       - profundizacion
       - consulta
     exact_references_only_when_verified: true
-
   lab:
     required: false
-    heading: "🧪 Laboratorio/ejemplos"
-
+    heading: 🧪 Laboratorio/ejemplos
   common_errors:
     required: false
-    heading: "⚠️ Errores frecuentes"
-
+    heading: ⚠️ Errores frecuentes
   important_idea:
     required: false
-    heading: "💡 Idea importante"
-
+    heading: 💡 Idea importante
   remember:
     required: true
     position: last
-    heading: "🧠 QUÉ DEBES RECORDAR"
+    heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
-
 quality:
   forbid_generic_scaffold: true
   require_topic_specific_headings: true
@@ -113,46 +106,70 @@ quality:
   require_self_contained_lesson: true
   audit_before_save: true
   repair_on_fail: true
-
 output:
   format: markdown
   zip_block: true
   write_index: true
   write_manifest: true
-
 artifacts:
   enabled: true
   default_strategy: auto
   overrides: {}
-
   project_policy:
     integrator_projects: auto
     diagnostic_projects: auto
     require_project_for_every_block: false
-
 validation:
   enabled: false
   commands: []
-
-# Referencias de profundización: orientación editorial para la generación.
 reference_focus:
   bash_idioms:
     dialect: bash
-    blocks: [46, 50, 95]
-    focus: [idiomatic_scripting, readability, refactoring, maintainability]
+    blocks:
+      - 46
+      - 50
+      - 102
+    focus:
+      - idiomatic_scripting
+      - readability
+      - refactoring
+      - maintainability
   efficient_linux_cli:
     dialect: cross_shell_with_native_semantics
-    blocks: [30, 57, 86, 95]
-    focus: [command_composition, pipeline_design, productivity, measurement]
-  cybersecurity_ops_bash:
-    dialect: bash
-    blocks: [33, 41, 56]
-    focus: [defensive_auditing, log_analysis, network_inspection,
-            incident_triage, safe_automation]
-    authorized_isolated_labs: true
-  data_science_cli:
-    dialect: bash_with_external_unix_tools
-    blocks: [12, 30, 57, 64]
-    focus: [data_acquisition, cleaning, etl_pipelines, csv_tsv_json,
-            validation, reproducibility]
+    blocks:
+      - 30
+      - 57
+      - 91
+      - 102
+    focus:
+      - command_composition
+      - pipeline_design
+      - productivity
+      - measurement
   avoid_duplicate_specialized_paths: true
+  linux_support_books:
+    titles:
+      - Learning Modern Linux
+      - Linux Cookbook
+      - Linux Pocket Guide
+      - Practical Linux System Administration
+    role: support_and_consultation
+    verify_exact_edition_before_chapter_citations: true
+editorial_sequence:
+  fundamentos_comunes:
+    first_block: 0
+    last_block: 1
+  bash:
+    first_block: 2
+    last_block: 69
+  zsh:
+    first_block: 70
+    last_block: 98
+  integración:
+    first_block: 99
+    last_block: 107
+editorial_notes:
+  - Editorial keys require generator implementation support.
+  - Resolve files.pedagogy from the actual repository profile location.
+  - Native Zsh requires native interpreter tests.
+  - Applied security and data exercises remain optional shell applications.

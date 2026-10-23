@@ -147,7 +147,7 @@ Las referencias a Elasticsearch pueden utilizarse únicamente como contexto hist
 - Google — *Site Reliability Engineering*. SLO, incidentes y operación. https://sre.google/books/
 
 ### Benchmarking y Search AI
-- OpenSearch Benchmark: https://opensearch.org/docs/latest/benchmark/ (comprobar ruta vigente).
+- OpenSearch Benchmark: https://docs.opensearch.org/latest/benchmark/quickstart/
 - Documentación oficial de OpenSearch: Neural Search, ML Commons, Vector Search, Search Pipelines y evaluación de relevancia. https://docs.opensearch.org/
 
 ### Data Streams, almacenamiento y migraciones
@@ -157,3 +157,68 @@ Las referencias a Elasticsearch pueden utilizarse únicamente como contexto hist
 - Documentación oficial de Terraform, Ansible, Fedora, systemd, SELinux y Podman; confirmar módulos y providers compatibles antes de utilizarlos.
 
 **Criterio:** los libros externos explican principios generales; para configuración, endpoints, versiones y disponibilidad prevalece la documentación oficial de OpenSearch.
+
+
+## Referencias específicas de la ampliación y correcciones
+
+Estas entradas complementan las fuentes anteriores. Seleccionar la versión de
+documentación que coincida con el laboratorio, registrar fecha de consulta y
+comprobar prerrequisitos, plugins y restricciones antes de ejecutar.
+
+### Bloque 61 — Data Streams
+https://docs.opensearch.org/latest/opensearch/data-streams/
+
+Uso: timestamps, backing indices, operaciones admitidas, templates y rollover.
+
+### Bloque 62 — Replicación y almacenamiento
+https://docs.opensearch.org/latest/tuning-your-cluster/availability-and-recovery/segment-replication/index/
+https://docs.opensearch.org/latest/tuning-your-cluster/availability-and-recovery/remote-store/migrating-to-remote/
+https://docs.opensearch.org/latest/tuning-your-cluster/availability-and-recovery/remote-store/remote-cluster-state/
+https://docs.opensearch.org/latest/tuning-your-cluster/separate-index-and-search-workloads/
+
+Uso: estrategias de replicación, requisitos de almacenamiento remoto y recuperación.
+Distinguir durabilidad remota, réplicas y backups recuperables en el tiempo.
+
+### Bloque 63 — Relevancia y RAG
+https://opensearch.org/platform/search-relevance/
+https://docs.opensearch.org/latest/tutorials/gen-ai/rag/index/
+https://docs.opensearch.org/latest/search-plugins/search-pipelines/rag-processor/
+
+Uso: evaluación de recuperación, búsqueda híbrida y conexión con generación.
+La evaluación de las respuestas requiere un protocolo distinto de las métricas ANN.
+
+### Bloque 64 — SRE y rendimiento
+https://sre.google/books/
+https://docs.opensearch.org/latest/benchmark/quickstart/
+https://docs.opensearch.org/latest/benchmark/reference/commands/run/
+https://github.com/opensearch-project/opensearch-benchmark-workloads
+
+Uso: objetivos de servicio, carga reproducible, métricas y ejercicios de recuperación.
+
+### Bloque 65 — IaC
+https://developer.hashicorp.com/terraform/docs
+https://docs.ansible.com/
+https://docs.fedoraproject.org/
+
+Uso: ciclo de estado, idempotencia, configuración del host y automatización.
+Documentar el provider, colección u operador elegido y su compatibilidad; no
+presuponer que un provider de un servicio administrado administra cualquier cluster.
+
+### Bloque 66 — Migraciones
+https://docs.opensearch.org/latest/migration-assistant/
+https://docs.opensearch.org/latest/migration-assistant/migration-phases/
+https://github.com/opensearch-project/opensearch-migrations
+https://docs.opensearch.org/latest/migration-assistant/migration-phases/migrate-metadata/transform-flattened-flat-object/
+
+Uso: evaluación de compatibilidad, migración de metadatos, backfill y transición.
+Comprobar la edición y versión de Migration Assistant: sus dependencias y alcance
+no deben confundirse con los de la migración manual mediante APIs.
+
+### Correcciones en bloques 6, 8 y 20
+https://docs.opensearch.org/latest/field-types/flat-object/
+https://docs.opensearch.org/latest/mappings/supported-field-types/derived/
+https://docs.opensearch.org/latest/security/multi-tenancy/tenant-index/
+https://docs.opensearch.org/latest/dashboards/workspace/workspace/
+
+Uso: nombres y semántica propios de OpenSearch, límites de campos calculados,
+aislamiento de objetos y organización por equipos.

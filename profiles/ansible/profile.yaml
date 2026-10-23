@@ -77,7 +77,7 @@ scope:
   enterprise_architecture: true
 final_project:
   block: 38
-  lessons: 108
+  lessons: 113
   acceptance_tests_required: true
   evidence_required: true
 lab_policy:
@@ -89,3 +89,30 @@ lab_policy:
   require_idempotency_check: true
   require_cleanup_or_rollback_when_applicable: true
   conceptual_lesson_alternative: análisis o experimento reproducible
+
+progression_policy:
+  navigator_and_ee_before_rhce: true
+  ee_consumption_before_ci: true
+  repeated_topics_require_distinct_objectives: true
+version_policy:
+  reference_date: "2026-10-19"
+  reference_status: proposed_not_lab_verified
+  control_os: Fedora 43
+  control_python: "3.14"
+  ansible_core: "2.20.10"
+  managed_nodes:
+    - os: Fedora 43
+      python: "3.14"
+    - os: RHEL 9
+      python: "3.9"
+  exact_collection_and_tool_locks_required: true
+  oci_digests_required: true
+  aap_and_exam_matrix_separate: true
+  validate_before_claiming_reproducibility: true
+final_evidence_policy:
+  real_secret_manager_integration: true
+  real_collection_distribution: true
+  real_ee_sbom: true
+  negative_templating_tests: true
+  partial_failure_recovery: true
+  separate_executed_designed_and_pending: true

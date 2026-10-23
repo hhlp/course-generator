@@ -11,8 +11,8 @@ La [bibliografía mantenida por Hugh Darwen](https://www.dcs.warwick.ac.uk/~hugh
 
 ## Complementos por función
 
-- **Database Design for Mere Mortals — Michael J. Hernandez.** Apoyo accesible para requisitos, entidades, relaciones y revisión del diseño. Usar la edición disponible e identificarla antes de asignar capítulos.
-- **Database System Concepts — Abraham Silberschatz, Henry F. Korth y S. Sudarshan.** Complemento de sistemas para almacenamiento, índices, procesamiento, optimización y transacciones. Es una referencia de apoyo, no un sustituto del eje de Date. [Sitio de los autores](https://www.db-book.com/).
+- **Database Design for Mere Mortals: 25th Anniversary Edition, 4.ª edición — Michael J. Hernandez.** Apoyo accesible para requisitos, entidades, relaciones y revisión del diseño. Edición base: 4.ª; contrastar los capítulos si se utiliza otra edición.
+- **Database System Concepts, 7.ª edición — Abraham Silberschatz, Henry F. Korth y S. Sudarshan.** Complemento de sistemas para almacenamiento, índices, procesamiento, optimización y transacciones. Es una referencia de apoyo, no un sustituto del eje de Date. [Sitio de los autores](https://www.db-book.com/).
 
 No es necesario adquirir todos los libros para seguir la ruta. Priorizar el libro principal de diseño, documentación oficial y ejercicios; ampliar las referencias según la etapa.
 
@@ -57,12 +57,12 @@ Estas obras complementan, pero no sustituyen, a C. J. Date. Antes de citar capí
 
 | Scope | Obra | Uso principal |
 |---|---|---|
-| Modelado conceptual y lógico (0–8, 22) | Ramez Elmasri y Shamkant B. Navathe, *Fundamentals of Database Systems* | ER/EER, restricciones, transformación y revisión de esquemas |
-| Diseño práctico (3–6, 22–24) | Michael J. Hernandez, *Database Design for Mere Mortals* | Requisitos, entrevistas, entidades y reglas de negocio |
-| Internals y diseño físico (25, 28–33) | Alex Petrov, *Database Internals* | Índices, almacenamiento y compromisos físicos; contrastar particularidades con PostgreSQL |
-| Implementación PostgreSQL (20–25, 27, 33–35) | Dimitri Fontaine, *The Art of PostgreSQL* | Casos de implementación y contraste de decisiones; no reemplaza la documentación oficial |
-| Concurrencia y consistencia (27, 34–35) | Martin Kleppmann, *Designing Data-Intensive Applications* | Consistencia, mantenimiento de derivados, fallos y sistemas distribuidos; uso selectivo |
-| Modelado analítico (26) | Ralph Kimball y Margy Ross, *The Data Warehouse Toolkit* | Granularidad, dimensiones, hechos y cambios históricos |
+| Modelado conceptual y lógico (0–8, 22) | Ramez Elmasri y Shamkant B. Navathe, *Fundamentals of Database Systems*, 7.ª edición | ER/EER, restricciones, transformación y revisión de esquemas |
+| Diseño práctico (3–6, 22–24) | Michael J. Hernandez, *Database Design for Mere Mortals*, 4.ª edición | Requisitos, entrevistas, entidades y reglas de negocio |
+| Internals y diseño físico (25, 28–33) | Alex Petrov, *Database Internals*, publicación de octubre de 2019 | Índices, almacenamiento y compromisos físicos; contrastar particularidades con PostgreSQL |
+| Implementación PostgreSQL (20–25, 27, 33–35) | Dimitri Fontaine, *The Art of PostgreSQL*, 2.ª edición, actualización de 2026 | Casos de implementación y contraste de decisiones; no reemplaza la documentación oficial |
+| Concurrencia y consistencia (27, 34–35) | Martin Kleppmann, *Designing Data-Intensive Applications*, edición de marzo de 2017 | Consistencia, mantenimiento de derivados, fallos y sistemas distribuidos; uso selectivo |
+| Modelado analítico (26) | Ralph Kimball y Margy Ross, *The Data Warehouse Toolkit*, 3.ª edición | Granularidad, dimensiones, hechos y cambios históricos |
 
 ## Reglas de asignación de lecturas
 
@@ -75,3 +75,21 @@ Estas obras complementan, pero no sustituyen, a C. J. Date. Antes de citar capí
 ## Lecturas orientadas a ejercicios cuantitativos
 
 Para los bloques 28–35, combinar *Database System Concepts*, *Database Internals* y documentación PostgreSQL. Cada ejercicio debe distinguir modelo matemático simplificado, supuestos, estimación del planificador, medición real y coste operativo. Evitar atribuir fórmulas didácticas exactas al optimizador de PostgreSQL.
+
+## Ediciones de trabajo y fuentes de verificación
+
+Estas son ediciones base elegidas para la ruta; no constituyen una afirmación de que todas sean las más recientes. No mezclar capítulos o páginas entre ediciones.
+
+- Hernandez, 4.ª edición: [Pearson](https://www.pearson.com/en-us/pearsonplus/p/9780137459667.html).
+- Elmasri y Navathe, 7.ª edición: [Pearson](https://eu.pearson.com/fundamentals-of-database-systems-global-edition/9781292097626R365).
+- Silberschatz, Korth y Sudarshan, 7.ª edición: [sitio de los autores](https://www.db-book.com/).
+- Petrov, publicación de octubre de 2019: [O’Reilly](https://www.oreilly.com/library/view/database-internals/9781492040330/).
+- Fontaine, 2.ª edición, actualización de 2026: [historial del autor](https://theartofpostgresql.com/book/updates/). Registrar la revisión del ejemplar consultado.
+- Kleppmann, edición de marzo de 2017: [O’Reilly](https://www.oreilly.com/library/view/designing-data-intensive/9781491903063/).
+- Kimball y Ross, 3.ª edición: [Wiley](https://www.wiley.com/en-gb/the-data-warehouse-toolkit-the-definitive-guide-to-dimensional-modeling-3rd-edition-p-9781118530801).
+- Para *Time and Relational Theory*, identificar año, edición e ISBN del ejemplar antes de asignar una lectura exacta; no se presupone un ejemplar concreto.
+
+### Apoyo específico para las lecciones añadidas
+
+- **21.8–21.11:** [introducción a transacciones](https://www.postgresql.org/docs/18/tutorial-transactions.html), [aislamiento](https://www.postgresql.org/docs/18/transaction-iso.html) y [bloqueos](https://www.postgresql.org/docs/18/explicit-locking.html).
+- **25.12–25.15:** [tipos de índices](https://www.postgresql.org/docs/18/indexes-types.html) y [clases de operadores](https://www.postgresql.org/docs/18/indexes-opclass.html). Contrastar la elección con la carga y las mediciones de los bloques 28–33.

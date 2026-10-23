@@ -82,7 +82,10 @@
 
 ### DMARC
 - RFC 7489 — Domain-based Message Authentication, Reporting, and Conformance (DMARC), como especificación ampliamente desplegada y referencia histórica.
-- Consultar además la especificación DMARC vigente durante el curso, ya que este estándar continúa evolucionando.
+- RFC 9989 — DMARC: protocolo vigente; sustituye RFC 7489 y RFC 9091.
+- RFC 9990 — DMARC Aggregate Reporting.
+- RFC 9991 — DMARC Failure Reporting.
+- IANA DMARC Parameters — registro vigente de etiquetas; pct figura como histórico.
 
 ### ARC
 - RFC 8617 — The Authenticated Received Chain (ARC) Protocol.
@@ -99,3 +102,31 @@
 
 ## Criterio de uso de fuentes
 Las RFC y documentación oficial constituyen la fuente primaria para comportamiento de protocolos y configuración actual. Los libros se utilizan para desarrollar intuición, arquitectura y contexto, pero una configuración concreta debe contrastarse con la documentación correspondiente a la versión instalada en Fedora/RHEL.
+
+## Fuentes operativas con enlaces
+- [Postfix SASL Howto](https://www.postfix.org/SASL_README.html): Dovecot SASL, cliente SMTP, mapas de remitente y autorización del sobre.
+- [Postfix Configuration Parameters](https://www.postfix.org/postconf.5.html): consultar cada parámetro contra la versión instalada.
+- [Postfix SMTP relay and access control](https://www.postfix.org/SMTPD_ACCESS_README.html): relay y restricciones.
+- [Dovecot CE: documentación publicada](https://doc.dovecot.org/latest/): autenticación, userdb/passdb, LMTP, quotas, ACL, namespaces y comandos doveadm.
+- [Dovecot: migración 2.3 a 2.4](https://doc.dovecot.org/2.4.2/installation/upgrade/2.3-to-2.4.html): cambios de sintaxis, mail_location y retirada de replicator/Director.
+- [Dovecot Kerberos/GSSAPI](https://doc.dovecot.org/2.4.5/core/config/auth/mechanisms/kerberos.html): tickets, keytabs y necesidad de userdb.
+- [Dovecot PAM](https://doc.dovecot.org/2.4.0/core/config/auth/databases/pam.html): límites y mecanismos compatibles; PAM no es userdb.
+- [Dovecot ManageSieve](https://doc.dovecot.org/2.4.5/core/config/sieve/managesieve.html): configuración del servicio; consultar también Sieve/Pigeonhole para ejecución durante entrega.
+- [Rspamd Documentation](https://docs.rspamd.com/): instalación, integración milter, Redis por módulo, rspamc, scoring, Bayes y firma DKIM.
+- [FreeIPA Documentation](https://www.freeipa.org/page/Documentation): principals, keytabs, políticas y modelo de identidad.
+- [SSSD Documentation](https://sssd.io/docs/): PAM/NSS, caché y diagnóstico.
+- [RFC 9989](https://www.rfc-editor.org/rfc/rfc9989.html): DMARC vigente.
+- [RFC 9990](https://www.rfc-editor.org/rfc/rfc9990.html): informes agregados DMARC.
+- [RFC 9991](https://www.rfc-editor.org/rfc/rfc9991.html): informes de fallos DMARC.
+- [IANA DMARC Parameters](https://www.iana.org/assignments/dmarc-parameters): etiquetas activas e históricas.
+- RFC 5228 — Sieve: An Email Filtering Language.
+- RFC 5804 — A Protocol for Remotely Managing Sieve Scripts.
+- RFC 5230 — Sieve Email Filtering: Vacation Extension.
+- RFC 4314 — IMAP4 Access Control List (ACL) Extension.
+- RFC 7628 — SASL OAuth mechanisms, como ampliación conceptual opcional.
+
+## Selección de fuentes por laboratorio
+Registrar fecha de consulta, versión instalada y URL de la rama correspondiente.
+Los enlaces latest sirven para localizar documentación: no autorizan a copiar
+sintaxis de una rama distinta a la del paquete. Los libros existentes se conservan
+como apoyo conceptual; los ejemplos actuales se contrastan con fuentes primarias.

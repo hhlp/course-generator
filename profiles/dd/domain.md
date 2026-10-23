@@ -1,7 +1,7 @@
 # Dominio: diseño de bases de datos relacionales
 
 ## Objetivo
-Aprender a transformar reglas de negocio en un esquema justificable, demostrar sus propiedades, implementarlo en PostgreSQL y comparar alternativas de almacenamiento y mantenimiento con evidencia. C. J. Date es la referencia principal para teoría y normalización. La ruta comprende 37 bloques (0–36) y 285 lecciones.
+Aprender a transformar reglas de negocio en un esquema justificable, demostrar sus propiedades, implementarlo en PostgreSQL y comparar alternativas de almacenamiento y mantenimiento con evidencia. C. J. Date es la referencia principal para teoría y normalización. La ruta comprende 37 bloques (0–36) y 365 lecciones.
 
 ## Alcance y separación respecto al curso SQL
 Este curso es responsable de requisitos, modelado conceptual y lógico, claves, dependencias, normalización, restricciones, diseño temporal, diseño físico, capacidad, costes y consistencia de datos derivados.
@@ -67,7 +67,7 @@ Entregar requisitos, glosario, diagrama, dependencias, claves, demostraciones, d
 
 ## Ampliación de profundidad y trazabilidad
 
-Se conservan íntegros los títulos y objetivos de las lecciones originales, ampliados con lecciones numeradas dentro de sus mismos bloques. No convertir esta ruta en un curso de sintaxis SQL, de administración PostgreSQL ni de ingeniería distribuida general.
+Se conserva la cobertura de las lecciones originales; se precisan títulos solapados y se añaden prerrequisitos y selección de índices dentro de los mismos bloques. No convertir esta ruta en un curso de sintaxis SQL, de administración PostgreSQL ni de ingeniería distribuida general.
 
 ### Evidencias mínimas por tramo
 
@@ -93,3 +93,15 @@ Cada lección debe incluir 🎯 OBJETIVO, un ejemplo explicado paso a paso, 🧪
 | Agregados y concurrencia | 15 % | Consistencia, pruebas concurrentes y reconciliación |
 
 No declarar una prueba superada sin resultados observados. Documentar la versión del motor, datos, semilla, hardware, parámetros y límites del experimento.
+
+## Secuencia y diferenciación de actividades
+
+- **5.9** descubre claves por razonamiento semántico; no exige cierres todavía. **11.7** formaliza el algoritmo después de dependencias funcionales y cierre de atributos. **11.10** analiza su coste combinatorio.
+- **12.6** introduce atomicidad relativa al dominio; **12.9** exige decidir entre tipos estructurados y relaciones separadas, justificando operaciones y hechos independientes.
+- **14.5** explica la síntesis a 3FN; **14.8** la aplica paso a paso a un caso con varias claves; **14.9** demuestra las propiedades del resultado.
+- **21.8–21.11** introducen transacciones, aislamiento, bloqueos y un laboratorio con dos sesiones antes de triggers y de los límites concurrentes de las restricciones. **27** aplica estas bases a migraciones y **35** profundiza en agregados concurrentes.
+- **25.12–25.15** comparan B-tree, Hash, GiST, SP-GiST, GIN y BRIN. Relacionar operadores, clases de operadores, distribución de datos, tamaño y coste de escritura. Las opciones físicas de un índice no equivalen a métodos de acceso distintos. Medir alternativas sobre datos y operaciones compatibles, sin imponer un ganador universal.
+- **33.7** define percentiles y throughput; **33.10** interpreta resultados bajo contención, con tamaño de muestra e incertidumbre explícitos.
+- **34.5** explica el punto de equilibrio; **34.10** resuelve un caso numérico; **34.11** compara cinco estrategias y **34.13** incorpora costes operativos adicionales.
+
+Cada reaparición debe aportar una tarea de mayor exigencia, no repetir la misma explicación. Mantener 37 bloques (0–36) y comprobar el recuento de 365 lecciones al modificar el temario.

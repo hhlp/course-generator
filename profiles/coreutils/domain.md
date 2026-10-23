@@ -6,7 +6,7 @@ Nombre: COREUTILS EN PROFUNDIDAD
 Plataforma principal: Fedora Linux
 Nivel: desde fundamentos hasta nivel experto
 Orientación: administración y uso avanzado de herramientas GNU/Unix, composición de comandos, automatización y análisis de internals.
-Lenguajes de programación: no forman parte del alcance base.
+Lenguajes de propósito general: no forman parte del alcance base. Se permiten scripts shell y el lenguaje bc para composición, automatización y cálculo; no se exige programación C para internals conceptuales.
 Entorno preferido: Fedora Linux.
 
 ## Alcance
@@ -340,7 +340,8 @@ La automatización debe favorecer herramientas reutilizables y funciones modular
 
 Cuando corresponda:
 
-- Bash para ejemplos portables;
+- POSIX sh para ejemplos declarados portables;
+- Bash para ejemplos que requieran sus extensiones, identificándolas;
 - funciones Zsh para herramientas del entorno del curso;
 - configuración separada del código;
 - validación;
@@ -425,3 +426,65 @@ Este PATH no pretende sustituir cursos específicos de:
 - programación C.
 
 Cuando estos dominios aparezcan, explicar únicamente lo necesario para comprender Coreutils y las herramientas integradas, remitiendo conceptualmente al PATH especializado cuando corresponda.
+
+
+## Cobertura, plataformas y progresión
+
+Fedora Linux es el entorno de referencia. RHEL es una plataforma secundaria:
+verificar versiones, paquetes y capacidades antes de reutilizar ejemplos.
+No prometer equivalencia de opciones ni de empaquetado entre ambas.
+Registrar la versión instalada de Coreutils, Findutils, bc y rsync en los labs.
+La presencia del programa multicall coreutils es opcional; consultar también
+la versión de una utilidad concreta. El inventario instalado se compara con
+upstream sin asumir que toda utilidad esté habilitada o empaquetada igual.
+
+Incluir explícitamente rmdir, pathchk, shuf, factor, pr, ptx, tsort, printenv,
+true, false, stty, chcon, runcon, dir, vdir, arch, echo y link. Las herramientas
+pequeñas pueden compartir lección si existe un objetivo común sustancial.
+stty se estudia con restauración del estado del terminal y fixtures seguros.
+chcon y runcon se limitan a su relación con las utilidades y la política activa;
+la administración de política SELinux corresponde a su PATH especializado.
+
+La repetición debe añadir una capacidad verificable:
+
+- bloques 3 y 27: inspección inicial -> contratos y composición de rutas;
+- bloques 21, 53 y 54: mecanismos básicos -> entorno -> diagnóstico combinado;
+- bloques 63 y 74: preservación -> diagnóstico y migración de identidades;
+- bloques 50, 84 y 89: composición -> orquestación -> interfaz reutilizable.
+
+Cada laboratorio debe declarar objetivo, datos iniciales, resultado esperado,
+criterios de verificación y limpieza. Los bloques de integración han de incorporar
+casos de fallo distintos, no repetir los ejemplos introductorios.
+
+## Dialectos, versiones y límites de seguridad
+
+Distinguir regex de expr, csplit y find; identificar -regextype cuando corresponda.
+Los globs del shell, -name/-path y filtros rsync no son el mismo lenguaje.
+El PATH de Regex desarrolla la teoría general; aquí se enseña la aplicación.
+Fijar la edición de POSIX utilizada al hablar de portabilidad: una opción puede
+haber cambiado de condición entre ediciones. Detectar capacidades localmente.
+
+No atribuir opciones comunes a todas las utilidades. No confundir encoding con
+cifrado, un checksum con autenticación, ni NUL safety con protección TOCTOU.
+NUL no puede conservarse en variables shell: usar pipes o listas en archivos.
+Una simulación no garantiza que el árbol siga igual durante la ejecución.
+La atomicidad de rename y la durabilidad tras un fallo son garantías diferentes.
+
+Para rsync, comprobar efectos de --files-from sobre recursión, formatos y --from0;
+distinguir autenticación del daemon y cifrado; comprobar compatibilidad de
+--secluded-args; proteger snapshots por hard links frente a modificaciones.
+Los ejercicios de recuperación deben verificar contenido y metadata y simular
+la indisponibilidad del origen. Evitar llamar snapshot consistente a una copia
+de datos activos que no haya sido coordinada con la aplicación.
+
+## Perfil y validación del generador
+
+scope.programming_languages=false excluye cursos de lenguajes de propósito
+general; no prohíbe los scripts shell ni bc expresamente incluidos aquí.
+Los campos de calidad describen requisitos pedagógicos. Su presencia en YAML
+no demuestra que el generador los ejecute como controles automáticos.
+validation.enabled=false conserva desactivada la ejecución automática de
+comandos: las lecciones abarcan entornos incompatibles y requieren seleccionar
+validaciones por artefacto. No activar comandos globales sin comprobar el contrato
+del generador y la disponibilidad de sus dependencias. La revisión de estos cuatro
+archivos comprueba estructura y coherencia; no ejecuta los futuros laboratorios.

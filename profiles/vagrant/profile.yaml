@@ -65,7 +65,7 @@ pedagogy:
         - consulta
       exact_references_only_when_verified: true
     lab:
-      required: false
+      required: true
       heading: "🧪 Laboratorio/ejemplos"
     common_errors:
       required: false
@@ -109,8 +109,8 @@ labs:
     - networking
     - storage
     - provisioning
-    - ansible
     - multi_machine
+    - ansible
     - custom_box
     - packer
     - final_project
@@ -168,3 +168,29 @@ deep_coverage:
       - performance_baseline
       - full_destroy_and_rebuild
       - documentation_and_runbook
+
+progression_policy:
+  teach_minimal_ruby_in_vagrantfile_block: true
+  advanced_ruby_block: 17
+  multi_machine_block: 10
+  ansible_block: 11
+  prerequisites_before_labs: true
+  labs_at_end_of_each_block: true
+
+lab_policy:
+  operational_lessons_require_practice: true
+  conceptual_lessons_may_use_reasoned_examples: true
+  practice_may_be_a_verified_phase_of_block_lab: true
+  operational_blocks_require_at_least_one_lab: true
+  acceptance_criteria_required: true
+  cleanup_required: true
+
+reproducibility_policy:
+  record_tool_versions_and_artifact_checksums: true
+  identify_package_and_repository_inputs: true
+  verify_functional_equivalence: true
+  do_not_claim_binary_determinism_without_evidence: true
+
+integration_validation:
+  yaml_syntax_is_not_loader_compatibility: true
+  verify_pedagogy_path_in_target_repository: true

@@ -2,6 +2,8 @@
 
 Objetivo general: dominar la arquitectura y administración de correo electrónico sobre Fedora/RHEL, desde SMTP e IMAP hasta Postfix, Dovecot, SASL, TLS, SPF, DKIM, DMARC, seguridad, observabilidad, troubleshooting y operación en producción.
 
+Criterio de ejecución: estudiar los bloques en orden. El modo autónomo y el modo consumidor de IAM son variantes explícitas; IAM se prepara en su propia ruta. Cada laboratorio debe generar configuración, comandos, validaciones y evidencias, sin exigir publicación en Internet.
+
 ## Bloque 0 — Fundamentos del correo electrónico
 0.1 Arquitectura del correo electrónico: MUA, MSA, MTA y MDA
 0.2 Flujo end-to-end de un mensaje de correo
@@ -14,6 +16,8 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 0.9 Puertos 25, 465, 587, 143, 993 y su función
 0.10 RFC y estándares fundamentales del ecosistema mail
 0.11 Laboratorio: inspeccionar un mensaje completo y reconstruir su recorrido
+0.12 Dependencias del laboratorio: red, DNS, tiempo, almacenamiento y conocimientos RHCSA
+0.13 Separar identidad de usuario, autenticación del dominio y cifrado del transporte
 
 ## Bloque 1 — DNS para correo
 1.1 Relación entre DNS y correo electrónico
@@ -28,6 +32,8 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 1.10 DNSSEC y su relación con mail
 1.11 Herramientas dig y host para diagnóstico
 1.12 Laboratorio: diseñar y validar DNS de un dominio de correo
+1.13 Null MX, dominios que no reciben correo y recepción sin MX explícito
+1.14 DNS interno del laboratorio y DNS público: alcance de cada validación
 
 ## Bloque 2 — SMTP desde cero
 2.1 Arquitectura cliente-servidor SMTP
@@ -143,6 +149,10 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 7.14 Arquitectura de maps SQL y LDAP
 7.15 postmap
 7.16 Laboratorio: implementar aliases, virtual aliases y transport maps
+7.17 Descubrir tipos de mapas compilados con postconf -m y dependencias RPM
+7.18 Clases de dominio: evitar solapar mydestination, virtual_mailbox_domains y relay_domains
+7.19 virtual_mailbox_maps, virtual_mailbox_domains y virtual_transport con LMTP
+7.20 Consultar y validar mapas: postmap -q, actualización y permisos de archivos sensibles
 
 ## Bloque 8 — Restricciones y control SMTP en Postfix
 8.1 Filosofía de restrictions en Postfix
@@ -160,6 +170,9 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 8.13 Prevención de open relay
 8.14 Orden y efectos de las restricciones
 8.15 Laboratorio: endurecer el relay sin romper usuarios legítimos
+8.16 Rechazar destinatarios inexistentes durante RCPT TO y evitar backscatter
+8.17 Distinguir respuesta temporal por backend caído de destinatario inexistente
+8.18 Pruebas de relay: cliente anónimo, autenticado, red confiable y dominio ajeno
 
 ## Bloque 9 — SASL y autenticación SMTP
 9.1 Qué es SASL
@@ -175,34 +188,9 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 9.11 SASL + TLS
 9.12 Diagnóstico de fallos de autenticación
 9.13 Laboratorio: Submission autenticado mediante Dovecot SASL
-
-## Bloque 9A — Mail e Identity & Access Management (IAM)
-9A.1 Papel de Mail respecto a IAM: consumidor de identidad, no proveedor central
-9A.2 Separación entre identidad, autenticación, autorización y datos del buzón
-9A.3 Escenario sin IAM centralizado: usuarios locales del sistema
-9A.4 Escenario sin IAM centralizado: usuarios virtuales administrados por el stack mail
-9A.5 Dovecot authentication backends y passdb/userdb
-9A.6 Postfix/Dovecot SASL con credenciales administradas localmente
-9A.7 Limitaciones operativas de duplicar identidades en cada servicio
-9A.8 Escenario con IAM centralizado: Mail como consumidor de identidades
-9A.9 LDAP como directorio de usuarios, atributos y grupos para servicios mail
-9A.10 Dovecot y LDAP: autenticación y resolución de usuarios
-9A.11 Postfix y LDAP maps cuando corresponda: aliases, virtual mailboxes y routing
-9A.12 Kerberos: principios, tickets y SSO aplicados al acceso a servicios de correo
-9A.13 SASL y Kerberos/GSSAPI cuando el stack y los clientes lo soporten
-9A.14 PAM/SSSD como capa de integración con identidad central cuando corresponda
-9A.15 FreeIPA como proveedor central de LDAP + Kerberos + políticas de identidad
-9A.16 Mail integrado con FreeIPA sin convertir Postfix/Dovecot en fuente de identidades
-9A.17 Service principals, keytabs y protección de credenciales de servicio
-9A.18 TLS para proteger binds LDAP y autenticación en tránsito
-9A.19 Alta disponibilidad: dependencia del servicio mail respecto al IAM central
-9A.20 Caché, indisponibilidad del IAM y comportamiento esperado del servicio
-9A.21 Logging y trazabilidad de autenticación Mail ↔ IAM
-9A.22 Troubleshooting por capas: Mail → SASL/PAM/SSSD → LDAP/Kerberos/FreeIPA
-9A.23 Comparación arquitectónica: identidad local/virtual vs identidad centralizada
-9A.24 Laboratorio A: Postfix + Dovecot funcionando sin IAM centralizado
-9A.25 Laboratorio B: integrar el stack mail como consumidor de IAM centralizado
-9A.26 Laboratorio C: provocar un fallo del IAM y diagnosticar su impacto en SMTP AUTH/IMAP
+9.14 Separar SMTP AUTH entrante de SASL del cliente SMTP hacia un smarthost
+9.15 AUTH sólo con canal protegido en Submission: validar anuncios antes y después de TLS
+9.16 Configurar un smarthost autenticado: mapas de credenciales, permisos y TLS validado
 
 ## Bloque 10 — TLS aplicado al correo
 10.1 Amenazas que TLS mitiga y las que no
@@ -223,6 +211,9 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 10.16 DANE/TLSA para SMTP
 10.17 Diagnóstico con openssl s_client
 10.18 Laboratorio: desplegar y verificar TLS en SMTP e IMAP
+10.19 TLS de laboratorio con CA interna y distribución de confianza a los clientes
+10.20 Proteger Submission/IMAP con TLS exigido y distinguirlo de SMTP interservidor oportunista
+10.21 Prueba de renovación: recarga, cadena, nombre, caducidad y nueva conexión
 
 ## Bloque 11 — IMAP en profundidad
 11.1 Arquitectura de IMAP
@@ -254,11 +245,15 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 12.7 Protocolos y listeners
 12.8 Authentication backends
 12.9 Usuarios del sistema y usuarios virtuales: conceptos
-12.10 mail_location
+12.10 Ubicación del correo: mail_location en 2.3 y equivalente mail_driver/mail_path en 2.4
 12.11 Permisos
 12.12 TLS
 12.13 doveadm
 12.14 Laboratorio: servidor IMAP funcional con Dovecot
+12.15 Inventariar dovecot --version, doveconf -n y paquetes antes de seleccionar ejemplos
+12.16 Dovecot 2.3: mail_location; Dovecot 2.4: mail_driver, mail_path y parámetros asociados
+12.17 Dovecot 2.4: dovecot_config_version y dovecot_storage_version según versión instalada
+12.18 Validar passdb y userdb con doveadm auth test y doveadm user sin registrar contraseñas
 
 ## Bloque 13 — Almacenamiento de buzones
 13.1 mbox
@@ -274,6 +269,10 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 13.11 Backup consistente de buzones
 13.12 Restauración
 13.13 Laboratorio: Maildir, quotas, backup y restore
+13.14 Consumo de inodos y tamaños de mensajes: capacidad más allá del espacio libre
+13.15 Cuotas con LMTP: validar rechazo y respuesta SMTP asociada antes de producción
+13.16 Datos, índices y metadatos: qué preservar para una restauración funcional
+13.17 Restauración selectiva de mensajes y validación de flags, UIDVALIDITY y clientes
 
 ## Bloque 14 — Integración Postfix + Dovecot
 14.1 Arquitectura completa Postfix/Dovecot
@@ -290,349 +289,483 @@ Objetivo general: dominar la arquitectura y administración de correo electróni
 14.12 Quotas
 14.13 Flujo completo end-to-end
 14.14 Laboratorio: enviar, almacenar y recuperar correo de extremo a extremo
+14.15 Cuenta técnica vmail frente a usuarios humanos: aislamiento y permisos
+14.16 Validación de destinatarios antes de aceptar correo y entrega LMTP por usuario
+14.17 Laboratorio: destinatario desconocido, cuota agotada y backend de identidad caído
 
-## Bloque 15 — SPF
-15.1 Problema que intenta resolver SPF
-15.2 Registro TXT SPF
-15.3 ip4 e ip6
-15.4 a
-15.5 mx
-15.6 include
-15.7 exists
-15.8 all
-15.9 Qualifiers +, -, ~ y ?
-15.10 redirect
-15.11 Límites de DNS lookups
-15.12 Envelope sender y SPF
-15.13 Pass, fail, softfail, neutral y otros resultados
-15.14 SPF alignment
-15.15 Limitaciones de SPF y forwarding
-15.16 Laboratorio: diseñar, publicar y validar una política SPF
+## Bloque 15 — Sieve, ManageSieve y buzones compartidos
+15.1 Pigeonhole y Sieve: procesamiento durante entrega LMTP/LDA
+15.2 Instalación y compatibilidad con la versión de Dovecot
+15.3 Reglas fileinto, keep, redirect y discard: efectos y controles
+15.4 Vacation: respuestas automáticas, límites y prevención de bucles
+15.5 Compilación y pruebas con sievec y sieve-test según paquete instalado
+15.6 ManageSieve: publicación y activación de scripts; diferencia frente a ejecución
+15.7 Listener 4190, autenticación, TLS, firewall y política de acceso
+15.8 Reglas globales y personales: orden de ejecución y diagnóstico
+15.9 Namespaces privados, compartidos y públicos
+15.10 ACL de buzones: lectura, escritura, borrado y administración
+15.11 Separar ACL de buzones de permisos para enviar como otra dirección
+15.12 Suscripciones, visibilidad y resolución de identidad para buzones compartidos
+15.13 Laboratorio: clasificar correo durante LMTP y activar reglas desde un cliente
+15.14 Laboratorio: vacaciones y controles de bucles
+15.15 Laboratorio: buzón compartido con dos usuarios y permisos distintos
+15.16 Troubleshooting: script activo que no se ejecuta, permisos y rechazo LMTP
 
-## Bloque 16 — DKIM
-16.1 Arquitectura DKIM
-16.2 Firma criptográfica de mensajes
-16.3 Private key y public key
-16.4 Selector
-16.5 Registro DNS DKIM
-16.6 DKIM-Signature
-16.7 Body hash
-16.8 Headers firmados
-16.9 Canonicalization simple y relaxed
-16.10 Key rotation
-16.11 OpenDKIM
-16.12 Postfix + OpenDKIM
-16.13 Milters
-16.14 Firma saliente
-16.15 Verificación entrante
-16.16 Diagnóstico de firmas inválidas
-16.17 Laboratorio: desplegar DKIM y verificar firmas
+## Bloque 16 — Mail e Identity & Access Management (IAM)
+16.1 Papel de Mail respecto a IAM: consumidor de identidad, no proveedor central
+16.2 Separación entre identidad, autenticación, autorización y datos del buzón
+16.3 Escenario sin IAM centralizado: usuarios locales del sistema
+16.4 Escenario sin IAM centralizado: usuarios virtuales administrados por el stack mail
+16.5 Dovecot authentication backends y passdb/userdb
+16.6 Postfix/Dovecot SASL con credenciales administradas localmente
+16.7 Limitaciones operativas de duplicar identidades en cada servicio
+16.8 Escenario con IAM centralizado: Mail como consumidor de identidades
+16.9 LDAP como directorio de usuarios, atributos y grupos para servicios mail
+16.10 Dovecot y LDAP: autenticación y resolución de usuarios
+16.11 Postfix y LDAP maps cuando corresponda: aliases, virtual mailboxes y routing
+16.12 Kerberos: principios, tickets y SSO aplicados al acceso a servicios de correo
+16.13 SASL y Kerberos/GSSAPI cuando el stack y los clientes lo soporten
+16.14 PAM/SSSD como capa de integración con identidad central cuando corresponda
+16.15 FreeIPA como proveedor central de LDAP + Kerberos + políticas de identidad
+16.16 Mail integrado con FreeIPA sin convertir Postfix/Dovecot en fuente de identidades
+16.17 Service principals, keytabs y protección de credenciales de servicio
+16.18 TLS para proteger binds LDAP y autenticación en tránsito
+16.19 Alta disponibilidad: dependencia del servicio mail respecto al IAM central
+16.20 Caché, indisponibilidad del IAM y comportamiento esperado del servicio
+16.21 Logging y trazabilidad de autenticación Mail ↔ IAM
+16.22 Troubleshooting por capas: Mail → SASL/PAM/SSSD → LDAP/Kerberos/FreeIPA
+16.23 Comparación arquitectónica: identidad local/virtual vs identidad centralizada
+16.24 Laboratorio A: Postfix + Dovecot funcionando sin IAM centralizado
+16.25 Laboratorio B: integrar el stack mail como consumidor de IAM centralizado
+16.26 Laboratorio C: provocar un fallo del IAM y diagnosticar su impacto en SMTP AUTH/IMAP
+16.27 Contrato de identidad: login, dirección principal, aliases, grupos y habilitación del servicio
+16.28 Contrato de buzón: UID/GID, home, ruta de correo y cuota; origen y propietario de cada atributo
+16.29 FreeIPA no incorpora automáticamente un esquema completo de aprovisionamiento de buzones: diseñar el mapeo
+16.30 Autenticación PAM mediante SSSD frente a bind LDAP y tickets GSSAPI: elegir y documentar cada flujo
+16.31 Kerberos/GSSAPI: userdb sigue siendo necesario aunque no se consulte passdb
+16.32 Principals imap y smtp, nombres de servicio y DNS: verificar lo que requiere cada cliente
+16.33 Cuenta de lectura LDAP con privilegio mínimo, filtros y protección de búsquedas
+16.34 Habilitación de Mail por grupo o atributo: distinguir cuenta válida de acceso autorizado
+16.35 smtpd_sender_login_maps y restricciones de remitente: identidad SASL frente a MAIL FROM
+16.36 Autorización del encabezado From: política adicional y distinción respecto al sobre SMTP
+16.37 Altas centralizadas y primer acceso: crear datos del buzón sin duplicar contraseñas
+16.38 Bajas y revocación: bloquear nuevos accesos, revisar sesiones abiertas y cachés y conservar mensajes según política
+16.39 Cambios de nombre, aliases y direcciones: continuidad del buzón y prevención de colisiones
+16.40 HBAC y servicio PAM cuando apliquen: verificar reglas y evitar heredar acceso sin revisión
+16.41 Caché SSSD y caché Dovecot: alcance distinto, expiración y límites de autenticación offline
+16.42 Prueba de caída IAM: nuevas sesiones, sesiones existentes, resolución de destinatarios y entrega LMTP
+16.43 Laboratorio: usuario existente en IAM sin permiso Mail, remitente ajeno y baja de usuario
 
-## Bloque 17 — DMARC
-17.1 Objetivo y arquitectura DMARC
-17.2 Relación DMARC ↔ SPF ↔ DKIM
-17.3 Identifier alignment
-17.4 SPF alignment
-17.5 DKIM alignment
-17.6 Relaxed vs strict alignment
-17.7 Registro _dmarc
-17.8 p=none
-17.9 p=quarantine
-17.10 p=reject
-17.11 pct
-17.12 rua
-17.13 ruf y disponibilidad/limitaciones operativas
-17.14 Aggregate reports
-17.15 Política de subdominios
-17.16 Estrategia de despliegue progresivo
-17.17 Troubleshooting DMARC
-17.18 Laboratorio: pasar de monitorización a política de enforcement
+## Bloque 17 — SPF
+17.1 Problema que intenta resolver SPF
+17.2 Registro TXT SPF
+17.3 ip4 e ip6
+17.4 a
+17.5 mx
+17.6 include
+17.7 exists
+17.8 all
+17.9 Qualifiers +, -, ~ y ?
+17.10 redirect
+17.11 Límites de DNS lookups
+17.12 Envelope sender y SPF
+17.13 Pass, fail, softfail, neutral y otros resultados
+17.14 SPF alignment
+17.15 Limitaciones de SPF y forwarding
+17.16 Laboratorio: diseñar, publicar y validar una política SPF
 
-## Bloque 18 — Autenticación moderna del dominio
-18.1 Diseño conjunto SPF + DKIM + DMARC
-18.2 Alignment en escenarios reales
-18.3 Forwarding y sus efectos
-18.4 Mailing lists y autenticación
-18.5 SRS
-18.6 ARC: objetivo
-18.7 ARC-Authentication-Results
-18.8 ARC-Message-Signature
-18.9 ARC-Seal
-18.10 MTA-STS
-18.11 TLS-RPT
-18.12 DANE/TLSA
-18.13 BIMI: concepto y dependencias
-18.14 Laboratorio: analizar forwarding, SRS, ARC y alignment
+## Bloque 18 — DKIM
+18.1 Arquitectura DKIM
+18.2 Firma criptográfica de mensajes
+18.3 Private key y public key
+18.4 Selector
+18.5 Registro DNS DKIM
+18.6 DKIM-Signature
+18.7 Body hash
+18.8 Headers firmados
+18.9 Canonicalization simple y relaxed
+18.10 Key rotation
+18.11 OpenDKIM
+18.12 Postfix + OpenDKIM
+18.13 Milters
+18.14 Firma saliente
+18.15 Verificación entrante
+18.16 Diagnóstico de firmas inválidas
+18.17 Laboratorio: desplegar DKIM y verificar firmas
 
-## Bloque 19 — Antispam
-19.1 Arquitectura antispam
-19.2 Reputation
-19.3 DNSBL/RBL
-19.4 Greylisting
-19.5 Header checks
-19.6 Body checks
-19.7 Restrictions de Postfix
-19.8 Milters
-19.9 SpamAssassin: fundamentos
-19.10 Rspamd: fundamentos
-19.11 Scoring
-19.12 Bayes
-19.13 False positives y false negatives
-19.14 Quarantine
-19.15 Tuning
-19.16 Laboratorio: construir una cadena antispam y analizar decisiones
+## Bloque 19 — DMARC
+19.1 Objetivo y arquitectura DMARC
+19.2 Relación DMARC ↔ SPF ↔ DKIM
+19.3 Identifier alignment
+19.4 SPF alignment
+19.5 DKIM alignment
+19.6 Relaxed vs strict alignment
+19.7 Registro _dmarc
+19.8 p=none
+19.9 p=quarantine
+19.10 p=reject
+19.11 pct como etiqueta histórica: compatibilidad RFC 7489 y retirada del estándar vigente
+19.12 rua
+19.13 ruf y disponibilidad/limitaciones operativas
+19.14 Aggregate reports
+19.15 Política de subdominios
+19.16 Estrategia de despliegue progresivo
+19.17 Troubleshooting DMARC
+19.18 Laboratorio: pasar de monitorización a política de enforcement
+19.19 DMARC vigente: RFC 9989; informes agregados RFC 9990 y de fallos RFC 9991
+19.20 Descubrimiento de política mediante DNS tree walk y comparación con implementaciones heredadas
+19.21 Etiquetas np, psd y t: semántica, compatibilidad y validación con la implementación elegida
+19.22 Laboratorio: evaluar alineación con una firma DKIM válida aunque SPF falle
+19.23 Privacidad, autorización de destinos externos y tratamiento seguro de informes
 
-## Bloque 20 — Seguridad y hardening
-20.1 Modelo de amenazas de un servidor mail
-20.2 Open relay prevention
-20.3 User enumeration
-20.4 Brute force y credential attacks
-20.5 Spam abuse
-20.6 Spoofing
-20.7 Phishing desde la perspectiva defensiva
-20.8 TLS y SASL
-20.9 Least privilege
-20.10 Chroot: concepto y aplicación
-20.11 Permisos de filesystem
-20.12 Rate limiting
-20.13 Fail2ban como mecanismo opcional
-20.14 Gestión segura de secretos y claves
-20.15 Hardening de Postfix
-20.16 Hardening de Dovecot
-20.17 Laboratorio: auditoría y hardening de un servidor mail
+## Bloque 20 — Autenticación moderna del dominio
+20.1 Diseño conjunto SPF + DKIM + DMARC
+20.2 Alignment en escenarios reales
+20.3 Forwarding y sus efectos
+20.4 Mailing lists y autenticación
+20.5 SRS
+20.6 ARC: objetivo
+20.7 ARC-Authentication-Results
+20.8 ARC-Message-Signature
+20.9 ARC-Seal
+20.10 MTA-STS
+20.11 TLS-RPT
+20.12 DANE/TLSA
+20.13 BIMI: concepto y dependencias
+20.14 Laboratorio: analizar forwarding, SRS, ARC y alignment
+20.15 Authentication-Results: límite de confianza y cabeceras recibidas de fuentes externas
+20.16 ARC requiere evaluar confianza en el sellador; no convierte por sí solo un mensaje en legítimo
+20.17 SRS modifica el remitente del sobre; no garantiza alineación SPF con el From visible
 
-## Bloque 21 — firewalld y SELinux
-21.1 Superficie de red del servidor mail
-21.2 Servicios y puertos en firewalld
-21.3 firewall-cmd aplicado a SMTP, Submission e IMAP
-21.4 Runtime vs permanent
-21.5 SELinux aplicado al correo
-21.6 Labels y contextos
-21.7 Booleans relacionados
-21.8 semanage
-21.9 restorecon
-21.10 ausearch
-21.11 audit2why
-21.12 Diagnóstico de AVC
-21.13 Laboratorio: resolver un fallo real provocado por SELinux/firewalld
+## Bloque 21 — Antispam
+21.1 Arquitectura antispam
+21.2 Reputation
+21.3 DNSBL/RBL
+21.4 Greylisting
+21.5 Header checks
+21.6 Body checks
+21.7 Restrictions de Postfix
+21.8 Milters
+21.9 SpamAssassin: fundamentos
+21.10 Rspamd: fundamentos
+21.11 Scoring
+21.12 Bayes
+21.13 False positives y false negatives
+21.14 Quarantine
+21.15 Tuning
+21.16 Laboratorio: construir una cadena antispam y analizar decisiones
+21.17 Rspamd: paquetes o repositorio compatible, servicios, configuración y validación de versión
+21.18 Integración Postfix/Rspamd por milter y política ante indisponibilidad del filtro
+21.19 Redis cuando el módulo lo requiera: persistencia, acceso y monitorización
+21.20 Cadena DKIM: elegir responsable de firma y evitar firma duplicada entre OpenDKIM y Rspamd
+21.21 Símbolos, puntuaciones, acciones, límites y diagnóstico de decisiones con rspamc
+21.22 Aprendizaje Bayes y recuperación de falsos positivos con mensajes de prueba controlados
+21.23 Quarantine: permisos, retención, liberación y trazabilidad
+21.24 Laboratorio: mensaje limpio, patrón de prueba antispam y caída del filtro sin correo externo
 
-## Bloque 22 — Logging y trazabilidad
-22.1 Estrategia de logging del stack mail
-22.2 journald
-22.3 journalctl por servicio y ventana temporal
-22.4 Logs de Postfix
-22.5 Logs de Dovecot
-22.6 Integración con rsyslog
-22.7 /var/log/maillog cuando la configuración/distribución lo utilice
-22.8 Routing de logs
-22.9 logrotate
-22.10 Queue ID como identificador de trazabilidad
-22.11 Message-ID
-22.12 Correlación Queue ID ↔ Message-ID
-22.13 Seguimiento de una transacción SMTP
-22.14 Logs de autenticación Dovecot
-22.15 Diagnóstico de TLS
-22.16 Diagnóstico de SASL
-22.17 Laboratorio: reconstruir end-to-end la vida de un mensaje sólo con logs
+## Bloque 22 — Seguridad y hardening
+22.1 Modelo de amenazas de un servidor mail
+22.2 Open relay prevention
+22.3 User enumeration
+22.4 Brute force y credential attacks
+22.5 Spam abuse
+22.6 Spoofing
+22.7 Phishing desde la perspectiva defensiva
+22.8 TLS y SASL
+22.9 Least privilege
+22.10 Chroot: concepto y aplicación
+22.11 Permisos de filesystem
+22.12 Rate limiting
+22.13 Fail2ban como mecanismo opcional
+22.14 Gestión segura de secretos y claves
+22.15 Hardening de Postfix
+22.16 Hardening de Dovecot
+22.17 Laboratorio: auditoría y hardening de un servidor mail
+22.18 Delimitar redes confiables y sockets: una cuenta comprometida también puede abusar del relay
+22.19 SMTP smuggling: versiones corregidas, manejo de finales de línea y pruebas defensivas controladas
+22.20 Privacidad de logs, capturas y mensajes de prueba: permisos, redacción y retención
 
-## Bloque 23 — Herramientas de diagnóstico
-23.1 dig
-23.2 host
-23.3 resolvectl
-23.4 openssl s_client
-23.5 nc
-23.6 swaks
-23.7 curl cuando sea aplicable
-23.8 ss
-23.9 lsof
-23.10 tcpdump
-23.11 tshark
-23.12 journalctl
-23.13 postconf
-23.14 postqueue
-23.15 postcat
-23.16 doveconf
-23.17 doveadm
-23.18 Laboratorio: toolkit sistemático de diagnóstico de correo
+## Bloque 23 — firewalld y SELinux
+23.1 Superficie de red del servidor mail
+23.2 Servicios y puertos en firewalld
+23.3 firewall-cmd aplicado a SMTP, Submission e IMAP
+23.4 Runtime vs permanent
+23.5 SELinux aplicado al correo
+23.6 Labels y contextos
+23.7 Booleans relacionados
+23.8 semanage
+23.9 restorecon
+23.10 ausearch
+23.11 audit2why
+23.12 Diagnóstico de AVC
+23.13 Laboratorio: resolver un fallo real provocado por SELinux/firewalld
 
-## Bloque 24 — Troubleshooting en profundidad
-24.1 Metodología de troubleshooting por capas
-24.2 Servicio que no inicia
-24.3 Servidor que no escucha
-24.4 Connection refused
-24.5 Timeout
-24.6 DNS incorrecto
-24.7 MX incorrecto
-24.8 PTR incorrecto
-24.9 Relay access denied
-24.10 SASL authentication failed
-24.11 TLS handshake failed
-24.12 Certificate errors
-24.13 Deferred queue
-24.14 Mail loops
-24.15 Bounce loops
-24.16 Problemas de permisos de mailbox
-24.17 Quota exceeded
-24.18 Fallos de autenticación IMAP
-24.19 SPF failures
-24.20 DKIM failures
-24.21 DMARC failures
-24.22 Mensajes rechazados remotamente
-24.23 Mensajes entregados en spam
-24.24 Captura y análisis de tráfico SMTP/IMAP
-24.25 Root cause analysis
-24.26 Laboratorio: escenario integral de troubleshooting
+## Bloque 24 — Logging y trazabilidad
+24.1 Estrategia de logging del stack mail
+24.2 journald
+24.3 journalctl por servicio y ventana temporal
+24.4 Logs de Postfix
+24.5 Logs de Dovecot
+24.6 Integración con rsyslog
+24.7 /var/log/maillog cuando la configuración/distribución lo utilice
+24.8 Routing de logs
+24.9 logrotate
+24.10 Queue ID como identificador de trazabilidad
+24.11 Message-ID
+24.12 Correlación Queue ID ↔ Message-ID
+24.13 Seguimiento de una transacción SMTP
+24.14 Logs de autenticación Dovecot
+24.15 Diagnóstico de TLS
+24.16 Diagnóstico de SASL
+24.17 Laboratorio: reconstruir end-to-end la vida de un mensaje sólo con logs
 
-## Bloque 25 — Monitorización y observabilidad
-25.1 Qué monitorizar en una infraestructura mail
-25.2 Estado de servicios
-25.3 SMTP probes
-25.4 IMAP probes
-25.5 Queue size
-25.6 Deferred messages
-25.7 Bounce rate
-25.8 Authentication failures
-25.9 TLS failures
-25.10 Disk usage
-25.11 Mailbox quotas
-25.12 Expiración de certificados
-25.13 Monitorización DNS/MX
-25.14 Monitorización SPF/DKIM/DMARC
-25.15 Métricas y exporters para Prometheus
-25.16 Dashboards y alertas en Grafana
-25.17 SLI/SLO aplicados al correo
-25.18 Laboratorio: dashboard operativo del servicio mail
+## Bloque 25 — Herramientas de diagnóstico
+25.1 dig
+25.2 host
+25.3 resolvectl
+25.4 openssl s_client
+25.5 nc
+25.6 swaks
+25.7 curl cuando sea aplicable
+25.8 ss
+25.9 lsof
+25.10 tcpdump
+25.11 tshark
+25.12 journalctl
+25.13 postconf
+25.14 postqueue
+25.15 postcat
+25.16 doveconf
+25.17 doveadm
+25.18 Laboratorio: toolkit sistemático de diagnóstico de correo
 
-## Bloque 26 — Backup y recuperación
-26.1 Qué componentes requieren backup
-26.2 Backup de configuración Postfix
-26.3 Backup de configuración Dovecot
-26.4 Backup de mailboxes
-26.5 DKIM private keys
-26.6 TLS private keys
-26.7 Aliases y maps
-26.8 Consistencia del backup
-26.9 Restauración
-26.10 Validación posterior al restore
-26.11 Disaster recovery
-26.12 RPO y RTO
-26.13 Laboratorio: backup, destrucción controlada y recuperación
+## Bloque 26 — Troubleshooting en profundidad
+26.1 Metodología de troubleshooting por capas
+26.2 Servicio que no inicia
+26.3 Servidor que no escucha
+26.4 Connection refused
+26.5 Timeout
+26.6 DNS incorrecto
+26.7 MX incorrecto
+26.8 PTR incorrecto
+26.9 Relay access denied
+26.10 SASL authentication failed
+26.11 TLS handshake failed
+26.12 Certificate errors
+26.13 Deferred queue
+26.14 Mail loops
+26.15 Bounce loops
+26.16 Problemas de permisos de mailbox
+26.17 Quota exceeded
+26.18 Fallos de autenticación IMAP
+26.19 SPF failures
+26.20 DKIM failures
+26.21 DMARC failures
+26.22 Mensajes rechazados remotamente
+26.23 Mensajes entregados en spam
+26.24 Captura y análisis de tráfico SMTP/IMAP
+26.25 Root cause analysis
+26.26 Laboratorio: escenario integral de troubleshooting
+26.27 Diagnosticar userdb correcta con passdb fallida y el escenario inverso
+26.28 Diagnosticar un remitente autenticado que no tiene permiso para la dirección usada
+26.29 IAM indisponible: distinguir fallo temporal de credenciales inválidas y usuario desconocido
 
-## Bloque 27 — Alta disponibilidad
-27.1 Disponibilidad en SMTP vs disponibilidad de mailbox
-27.2 Múltiples registros MX
-27.3 Prioridades MX
-27.4 SMTP redundancy
-27.5 Relay gateways
-27.6 Consideraciones sobre queue redundancy
-27.7 IMAP HA
-27.8 Mailbox replication
-27.9 Replicación Dovecot: conceptos y límites
-27.10 Load balancing para servicios mail
-27.11 HAProxy aplicado a SMTP/IMAP
-27.12 DNS en arquitecturas HA
-27.13 Consistencia y split-brain
-27.14 Health checks
-27.15 Laboratorio: diseñar una arquitectura mail tolerante a fallos
+## Bloque 27 — Monitorización y observabilidad
+27.1 Qué monitorizar en una infraestructura mail
+27.2 Estado de servicios
+27.3 SMTP probes
+27.4 IMAP probes
+27.5 Queue size
+27.6 Deferred messages
+27.7 Bounce rate
+27.8 Authentication failures
+27.9 TLS failures
+27.10 Disk usage
+27.11 Mailbox quotas
+27.12 Expiración de certificados
+27.13 Monitorización DNS/MX
+27.14 Monitorización SPF/DKIM/DMARC
+27.15 Métricas y exporters para Prometheus
+27.16 Dashboards y alertas en Grafana
+27.17 SLI/SLO aplicados al correo
+27.18 Laboratorio: dashboard operativo del servicio mail
+27.19 Edad del mensaje más antiguo y latencia extremo a extremo además del tamaño de cola
+27.20 Probes sintéticas con cuentas dedicadas y limpieza automática de mensajes
+27.21 Alertas de IAM/LDAP/Kerberos, errores LMTP, inodos y backend antispam
 
-## Bloque 28 — Operación en producción y deliverability
-28.1 Checklist de producción
-28.2 FQDN, DNS y PTR coherentes
-28.3 Reputación de IP y dominio
-28.4 Deliverability: factores técnicos
-28.5 IP warming: concepto y contexto
-28.6 Abuse handling
-28.7 Direcciones postmaster y operativas
-28.8 Gestión de queues
-28.9 Gestión del ciclo de certificados
-28.10 Rotación DKIM
-28.11 Capacity planning
-28.12 Gestión de almacenamiento
-28.13 Backups y restauraciones periódicas
-28.14 Monitoring y alerting
-28.15 Runbooks
-28.16 Change management
-28.17 Laboratorio: revisión de readiness para producción
+## Bloque 28 — Backup y recuperación
+28.1 Qué componentes requieren backup
+28.2 Backup de configuración Postfix
+28.3 Backup de configuración Dovecot
+28.4 Backup de mailboxes
+28.5 DKIM private keys
+28.6 TLS private keys
+28.7 Aliases y maps
+28.8 Consistencia del backup
+28.9 Restauración
+28.10 Validación posterior al restore
+28.11 Disaster recovery
+28.12 RPO y RTO
+28.13 Laboratorio: backup, destrucción controlada y recuperación
+28.14 Backup del contrato de atributos y políticas Mail: coordinar con el backup del IAM
+28.15 Keytabs: proteger, renovar o reemitir en recuperación según política del IAM
+28.16 Restaurar mensajes aceptados y distinguir cola pendiente de archivo de buzones
 
-## Bloque 29 — Laboratorio: servidor mail local
-29.1 Preparar Fedora/RHEL para el laboratorio
-29.2 Instalar Postfix
-29.3 Configurar SMTP local
-29.4 Enviar correo local
-29.5 Inspeccionar headers
-29.6 Inspeccionar queue
-29.7 Instalar Dovecot
-29.8 Configurar Maildir
-29.9 Configurar IMAP
-29.10 Integrar SASL
-29.11 Activar TLS
-29.12 Revisar firewalld y SELinux
-29.13 Analizar logs
-29.14 Documentar arquitectura y pruebas
+## Bloque 29 — Alta disponibilidad
+29.1 Disponibilidad en SMTP vs disponibilidad de mailbox
+29.2 Múltiples registros MX
+29.3 Prioridades MX
+29.4 SMTP redundancy
+29.5 Relay gateways
+29.6 Consideraciones sobre queue redundancy
+29.7 IMAP HA
+29.8 Mailbox replication
+29.9 Replicación Dovecot: conceptos, límites y disponibilidad según rama 2.3/2.4
+29.10 Load balancing para servicios mail
+29.11 HAProxy aplicado a SMTP/IMAP
+29.12 DNS en arquitecturas HA
+29.13 Consistencia y split-brain
+29.14 Health checks
+29.15 Laboratorio: diseñar una arquitectura mail tolerante a fallos
+29.16 Dovecot CE 2.3 frente a 2.4: replicator y Director retirados en 2.4
+29.17 doveadm sync/backup: sincronización y migración; no equivalen por sí solas a HA automática
+29.18 Almacenamiento compartido: locking, permisos, latencia, fencing y soporte de la arquitectura
+29.19 MX secundario: validar destinatarios y políticas para evitar puerta de entrada al spam
+29.20 La cola es propia de cada MTA: múltiples MX no replican mensajes ya aceptados
+29.21 Prueba de caída tras aceptar DATA: localizar el mensaje y demostrar recuperación sin pérdida
+29.22 Evitar activo/activo sin diseño de consistencia y failover documentado
 
-## Bloque 30 — Laboratorio: servidor completo
-30.1 Diseñar dominio y DNS
-30.2 Configurar A/AAAA, MX y PTR
-30.3 Configurar Postfix
-30.4 Configurar Dovecot
-30.5 Configurar SMTP Submission
-30.6 Configurar SASL
-30.7 Configurar TLS
-30.8 Configurar SPF
-30.9 Configurar DKIM
-30.10 Configurar DMARC
-30.11 Integrar firewall
-30.12 Integrar SELinux
-30.13 Configurar logging
-30.14 Configurar monitorización
-30.15 Realizar pruebas end-to-end
-30.16 Documentar resultados
+## Bloque 30 — Operación en producción y deliverability
+30.1 Checklist de producción
+30.2 FQDN, DNS y PTR coherentes
+30.3 Reputación de IP y dominio
+30.4 Deliverability: factores técnicos
+30.5 IP warming: concepto y contexto
+30.6 Abuse handling
+30.7 Direcciones postmaster y operativas
+30.8 Gestión de queues
+30.9 Gestión del ciclo de certificados
+30.10 Rotación DKIM
+30.11 Capacity planning
+30.12 Gestión de almacenamiento
+30.13 Backups y restauraciones periódicas
+30.14 Monitoring y alerting
+30.15 Runbooks
+30.16 Change management
+30.17 Laboratorio: revisión de readiness para producción
+30.18 Requisitos externos: dominio delegado, PTR del proveedor, puerto 25 y reputación
+30.19 Separar éxito funcional local de aceptación y reputación ante destinatarios públicos
 
-## Bloque 31 — Laboratorio de troubleshooting
-31.1 Romper resolución DNS
-31.2 Romper MX
-31.3 Romper PTR
-31.4 Romper TLS
-31.5 Romper SASL
-31.6 Bloquear tráfico con firewalld
-31.7 Provocar un AVC SELinux
-31.8 Provocar relay denied
-31.9 Provocar deferred mail
-31.10 Romper SPF
-31.11 Romper DKIM
-31.12 Romper DMARC
-31.13 Capturar SMTP con tcpdump/tshark
-31.14 Correlacionar Queue ID y logs
-31.15 Aplicar diagnóstico por capas
-31.16 Elaborar root cause analysis y corrección
+## Bloque 31 — Versiones, migración y cambios controlados
+31.1 Inventario reproducible: distribución, paquetes, compilación y módulos disponibles
+31.2 Seleccionar documentación exacta para Postfix, Dovecot y Pigeonhole instalados
+31.3 Matriz Dovecot 2.3/2.4: sintaxis, autenticación, almacenamiento y plugins
+31.4 Dovecot 2.4: versiones de configuración y almacenamiento y validación previa
+31.5 Migración de mail_location, variables y bloques passdb/userdb según guía oficial
+31.6 Revisar componentes retirados: replicator, Director y alternativas de arquitectura
+31.7 Migración de buzones con doveadm sync/backup y verificación de metadatos
+31.8 Ensayo en clon: mensajes, flags, ACL, cuotas, Sieve y autenticación
+31.9 Cambio de DNS y convivencia: TTL, colas pendientes y entrega durante transición
+31.10 Plan de reversión: configuración, datos compatibles, ventana y disparadores
+31.11 Rotación de secretos y keytabs durante migración sin duplicar identidades
+31.12 Laboratorio: migrar una configuración 2.3 de ejemplo a 2.4 y validar en instancia aislada
 
-## Bloque 32 — Proyecto final: servidor mail de producción
-32.1 Levantamiento de requisitos
-32.2 Diseño de arquitectura
-32.3 Diseño DNS
-32.4 Implementación Postfix
-32.5 Implementación Dovecot
-32.6 SMTP y Submission
-32.7 IMAP
-32.8 SASL
-32.9 TLS
-32.10 SPF
-32.11 DKIM
-32.12 DMARC
-32.13 ARC/SRS cuando corresponda
-32.14 Antispam
-32.15 SELinux
-32.16 firewalld
-32.17 Logging y trazabilidad
-32.18 Monitoring y alerting
-32.19 Backup y restore
-32.20 Disaster recovery
-32.21 Hardening
-32.22 Pruebas funcionales y de seguridad
-32.23 Troubleshooting controlado
-32.24 Runbook operativo
-32.25 Documentación de arquitectura
-32.26 Documentar el modelo de identidad: local/virtual o IAM centralizado
-32.27 Integrar LDAP/Kerberos/SSSD-PAM/FreeIPA cuando el diseño utilice IAM central
-32.28 Validar autenticación, autorización, logs y comportamiento ante caída del IAM
-32.29 Revisión final de producción
+## Bloque 32 — Laboratorio: servidor mail local
+32.1 Preparar Fedora/RHEL para el laboratorio
+32.2 Instalar Postfix
+32.3 Configurar SMTP local
+32.4 Enviar correo local
+32.5 Inspeccionar headers
+32.6 Inspeccionar queue
+32.7 Instalar Dovecot
+32.8 Configurar Maildir
+32.9 Configurar IMAP
+32.10 Integrar SASL
+32.11 Activar TLS
+32.12 Revisar firewalld y SELinux
+32.13 Analizar logs
+32.14 Documentar arquitectura y pruebas
+32.15 Topología privada: DNS, servidor mail, cliente y segundo MTA; IAM opcional separado
+32.16 Usar dominios mail.test y peer.test con DNS interno y CA de laboratorio
+32.17 Direcciones RFC 1918, resolución directa/inversa y hora sincronizada
+32.18 Pruebas SMTP, Submission, IMAP y LMTP sin salida a Internet
+32.19 Describir archivos de configuración, comandos y evidencia que debe producir cada laboratorio
+
+## Bloque 33 — Laboratorio: servidor completo
+33.1 Diseñar dominio y DNS
+33.2 Configurar A/AAAA, MX y PTR
+33.3 Configurar Postfix
+33.4 Configurar Dovecot
+33.5 Configurar SMTP Submission
+33.6 Configurar SASL
+33.7 Configurar TLS
+33.8 Configurar SPF
+33.9 Configurar DKIM
+33.10 Configurar DMARC
+33.11 Integrar firewall
+33.12 Integrar SELinux
+33.13 Configurar logging
+33.14 Configurar monitorización
+33.15 Realizar pruebas end-to-end
+33.16 Documentar resultados
+33.17 Ruta privada completa: SPF/DKIM/DMARC en DNS interno con receptores controlados
+33.18 Ruta pública opcional: dominio real, DNS delegado, PTR y certificados públicos
+33.19 Añadir reglas Sieve, buzón compartido y evaluación antispam
+33.20 Ejecutar variante autónoma y variante consumidora de IAM con la misma matriz funcional
+
+## Bloque 34 — Laboratorio de troubleshooting
+34.1 Romper resolución DNS
+34.2 Romper MX
+34.3 Romper PTR
+34.4 Romper TLS
+34.5 Romper SASL
+34.6 Bloquear tráfico con firewalld
+34.7 Provocar un AVC SELinux
+34.8 Provocar relay denied
+34.9 Provocar deferred mail
+34.10 Romper SPF
+34.11 Romper DKIM
+34.12 Romper DMARC
+34.13 Capturar SMTP con tcpdump/tshark
+34.14 Correlacionar Queue ID y logs
+34.15 Aplicar diagnóstico por capas
+34.16 Elaborar root cause analysis y corrección
+34.17 Romper userdb sin romper autenticación y observar entrega y acceso
+34.18 Revocar un usuario en IAM y comprobar sesiones, caché y permisos de remitente
+34.19 Simular caída del filtro y evaluar la política temporal elegida
+34.20 Simular caída después de aceptación SMTP y verificar recuperación del mensaje
+
+## Bloque 35 — Proyecto final: servidor mail de producción
+35.1 Levantamiento de requisitos
+35.2 Diseño de arquitectura
+35.3 Diseño DNS
+35.4 Implementación Postfix
+35.5 Implementación Dovecot
+35.6 SMTP y Submission
+35.7 IMAP
+35.8 SASL
+35.9 TLS
+35.10 SPF
+35.11 DKIM
+35.12 DMARC
+35.13 ARC/SRS cuando corresponda
+35.14 Antispam
+35.15 SELinux
+35.16 firewalld
+35.17 Logging y trazabilidad
+35.18 Monitoring y alerting
+35.19 Backup y restore
+35.20 Disaster recovery
+35.21 Hardening
+35.22 Pruebas funcionales y de seguridad
+35.23 Troubleshooting controlado
+35.24 Runbook operativo
+35.25 Documentación de arquitectura
+35.26 Documentar el modelo de identidad: local/virtual o IAM centralizado
+35.27 Integrar LDAP/Kerberos/SSSD-PAM/FreeIPA cuando el diseño utilice IAM central
+35.28 Validar autenticación, autorización, logs y comportamiento ante caída del IAM
+35.29 Revisión final de producción
+35.30 Entregar inventario de versiones y matriz de compatibilidad Fedora/RHEL
+35.31 Entregar contrato IAM y evidencia de no duplicación de contraseñas en el modo centralizado
+35.32 Entregar matriz de pruebas: relay, remitente autorizado, cuotas, Sieve, IAM y recuperación
+35.33 Separar validación en laboratorio de habilitación pública de producción

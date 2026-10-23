@@ -1,6 +1,6 @@
 ---
 course:
-  title: Selinux — 0 a Experto en Profundidad
+  title: SELinux — 0 a Experto en Profundidad
   language: es
   level:
     start: cero
@@ -112,6 +112,9 @@ principles:
     audit2allow_as_automatic_solution: false
   distinguish_observation_static_analysis_inference: true
   absence_of_avc_is_not_proof_of_allow: true
+  neverallow_is_compile_time_assertion: true
+  distinguish_te_and_cil_syntax: true
+  allow_query_is_not_runtime_success_proof: true
 commands:
   core:
     - getenforce
@@ -206,6 +209,8 @@ labs:
     - AVC analysis
     - policy queries
   require_explanation_of_commands: true
+  prepare_environment_in_block: 1
+  record_platform_and_tool_versions: true
   validation:
     initial_state: true
     positive_tests: true
@@ -237,6 +242,11 @@ quality:
   preserve_path_depth: true
   require_reproducible_evidence: true
   verify_fedora_version_specific_commands: true
+  group_command_options_and_record_fields: true
+  nested_entries_are_subsections: true
+  preserve_covered_entry_identifiers: true
+  require_inconclusive_result_when_evidence_is_insufficient: true
+  require_source_evidence_for_rule_module_attribution: true
 final_goal: 'El estudiante debe ser capaz de administrar, investigar,
   diagnosticar y comprender SELinux en Fedora, localizar la información
   necesaria dentro de una política desconocida, determinar por qué un acceso

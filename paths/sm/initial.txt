@@ -146,7 +146,7 @@
 4.59 Trabajo no terminado y retorno al Product Backlog para reordenación
 4.60 Anti-patrones: introducir trabajo urgente sin transparencia
 4.61 Laboratorio: incorporar un bug durante el Sprint
-4.62 Laboratorio: gestionar un hotfix crítico en producción
+4.62 Laboratorio: hotfix crítico, riesgo para el Sprint Goal y obsolescencia; distinguir renegociación de alcance y cancelación por el Product Owner
 4.63 Laboratorio: renegociar alcance y adaptar el Sprint Backlog
 
 5. Definition of Done — DoD en profundidad
@@ -312,7 +312,7 @@
 8.54 Cycle Time Scatterplot: Started/Finished, cálculo, percentiles y outliers
 8.55 histograma de Cycle Time: intervalos, frecuencias y distribución
 8.56 Aging Work in Progress Chart: items activos, edad y riesgo
-8.57 Work Item Age
+8.57 Work Item Age y primera aplicación de SLE: expectativa probabilística basada en Cycle Time histórico, sin equivalencia con una garantía
 8.58 Throughput Run Chart: items terminados por intervalo, construcción y tendencias
 8.59 WIP Chart: snapshots de WIP, construcción e interpretación
 8.60 Flow Efficiency: tiempo activo frente a tiempo total, cálculo y limitaciones
@@ -590,8 +590,8 @@
 19.15 WIP actual: items iniciados y todavía no terminados
 19.16 WIP por estado
 19.17 WIP total
-19.18 WIP medio durante un período
-19.19 WIP medido en items frente a Story Points
+19.18 WIP medio: reutilizar snapshots del bloque 8 y calcular la media ponderada por tiempo
+19.19 WIP en conteo de items y carga estimada en Story Points: no intercambiar unidades en flow metrics
 19.20 WIP no es Velocity ni Capacity
 19.21 laboratorio: calcular WIP desde un Sprint Backlog
 
@@ -608,37 +608,37 @@
 
 19.32 Cycle Time
 19.33 definición de Started y Finished
-19.34 cálculo: Cycle Time = Finished - Started
+19.34 Aplicar Cycle Time = Finished - Started con límites y calendario definidos; reutilizar cálculos del bloque 8
 19.35 Cycle Time por item
 19.36 Cycle Time medio y mediana
 19.37 distribución de Cycle Time
 19.38 percentiles de Cycle Time
 19.39 variabilidad y outliers
-19.40 laboratorio: calcular Cycle Time desde timestamps
+19.40 Laboratorio aplicado: usar Cycle Time del dataset del bloque 8 para adaptar el flujo del Sprint
 
 19.41 Work Item Age
 19.42 trabajo iniciado pero todavía no terminado
 19.43 cálculo: Work Item Age = ahora - Started
 19.44 comparar Work Item Age con Cycle Time histórico
 19.45 identificar items envejecidos y trabajo en riesgo
-19.46 laboratorio: calcular Work Item Age
+19.46 Laboratorio aplicado: usar Work Item Age para decidir colaboración y desbloqueo en Daily Scrum
 
 19.47 Throughput
 19.48 definición: items terminados por intervalo
-19.49 cálculo: Throughput = items Done / período
+19.49 Throughput: conteo de items terminados en cada intervalo; expresar la tasa en items por unidad de tiempo cuando corresponda
 19.50 throughput diario, semanal y por Sprint
 19.51 distribución y variabilidad histórica
 19.52 Throughput frente a Velocity
-19.53 laboratorio: calcular Throughput
+19.53 Laboratorio aplicado: contrastar throughput histórico con la selección del Sprint y sus incertidumbres
 
 19.54 Little's Law
-19.55 relación entre WIP, Throughput y Cycle Time
-19.56 WIP = Throughput × Cycle Time
-19.57 Cycle Time = WIP / Throughput
-19.58 Throughput = WIP / Cycle Time
+19.55 Relación entre WIP medio, tasa media de Throughput y Cycle Time medio para los mismos límites del sistema
+19.56 WIP medio = tasa media de Throughput × Cycle Time medio: relación de promedios, no por item ni por snapshot
+19.57 Cycle Time medio = WIP medio / tasa media de Throughput: tasa positiva, unidades y población compatibles
+19.58 Tasa media de Throughput = WIP medio / Cycle Time medio: coherencia de límites, calendario y unidades
 19.59 unidades compatibles
-19.60 condiciones y límites de aplicación
-19.61 laboratorio: comprobar Little's Law con datos de flujo
+19.60 Condiciones: promedios representativos, conservación del flujo y ausencia de acumulación ilimitada; efectos de fronteras y ventanas finitas
+19.61 Laboratorio: evaluar Little’s Law con medias temporales y explicar discrepancias sin forzar igualdad exacta en una muestra finita
 
 19.62 Service Level Expectation — SLE
 19.63 SLE como expectativa probabilística basada en Cycle Time histórico
@@ -648,18 +648,18 @@
 19.67 usar SLE con Work Item Age
 19.68 laboratorio: construir e interpretar una SLE
 
-19.69 charts de flujo aplicados a Scrum
+19.69 Aplicar charts del bloque 8 a decisiones del Sprint; reutilizar dataset y visualizaciones
 19.70 Cumulative Flow Diagram — CFD
-19.71 construir CFD desde estados y transiciones
+19.71 Reutilizar el CFD del bloque 8 para inspeccionar políticas y cambios del workflow
 19.72 interpretar bandas, WIP y bottlenecks
 19.73 Cycle Time Scatterplot
-19.74 construir Scatterplot desde Started/Finished
+19.74 Reutilizar el Scatterplot del bloque 8 para decidir sobre variabilidad y capacidad de respuesta
 19.75 percentiles y outliers
 19.76 Aging Work in Progress Chart
-19.77 construir Aging WIP desde items activos
+19.77 Reutilizar Aging WIP del bloque 8 para priorizar colaboración sobre items activos
 19.78 comparar edad con SLE
 19.79 Throughput Run Chart
-19.80 construir Throughput Run Chart por intervalos
+19.80 Reutilizar Throughput Run Chart del bloque 8 para contrastar tendencias y cambios de contexto
 19.81 interpretar variabilidad y tendencias
 
 19.82 políticas explícitas del workflow
@@ -685,18 +685,18 @@
 19.100 detectar y analizar cuellos de botella
 
 19.101 laboratorio integral Scrum + Kanban
-19.102 crear Product Backlog y seleccionar Sprint Backlog
+19.102 Reutilizar Product Backlog y Sprint Backlog del bloque 4 y dataset del bloque 8
 19.103 construir workflow y políticas explícitas
 19.104 relacionar DoD, DoR opcional y Acceptance Criteria con el workflow
 19.105 establecer WIP Limits
-19.106 simular movimiento de items y registrar timestamps
-19.107 calcular WIP, Cycle Time, Work Item Age y Throughput
-19.108 comprobar Little's Law
+19.106 Simular movimiento adicional de items y ampliar el dataset previo con timestamps coherentes
+19.107 Reutilizar cálculos del bloque 8 y analizar cambios de WIP, Cycle Time, Work Item Age y Throughput
+19.108 Contrastar Little’s Law con el experimento y explicar condiciones y efectos de ventana
 19.109 construir una SLE
-19.110 construir CFD
-19.111 construir Cycle Time Scatterplot
-19.112 construir Aging WIP Chart
-19.113 construir Throughput Run Chart
+19.110 Actualizar el CFD existente y justificar una adaptación del workflow
+19.111 Actualizar el Cycle Time Scatterplot existente y evaluar el experimento
+19.112 Actualizar Aging WIP y decidir acciones para items envejecidos
+19.113 Actualizar Throughput Run Chart y discutir incertidumbre y cambios de contexto
 19.114 detectar bottlenecks
 19.115 usar métricas durante los Scrum Events
 19.116 proponer y evaluar un experimento de mejora del flujo
@@ -835,7 +835,7 @@
 27. Nexus Framework for Scaling Scrum
 27.1 Nexus: propósito y teoría
 27.2 Nexus y Scrum
-27.3 tres a nueve Scrum Teams
+27.3 aproximadamente tres a nueve Scrum Teams: definición de Nexus y límites del escenario
 27.4 single Product Owner y Product Backlog
 27.5 Nexus Integration Team
 27.6 Cross-Team Refinement
@@ -941,7 +941,7 @@
 31.4 construir Product Backlog
 31.5 crear Definition of Done
 31.6 refinement y slicing
-31.7 sizing mediante Planning Poker
+31.7 sizing mediante Planning Poker como práctica elegida; variante sin Story Points con slicing y forecasting por throughput
 31.8 Sprint Planning
 31.9 ejecutar Sprint
 31.10 Daily Scrum
@@ -955,7 +955,7 @@
 31.18 forecasting probabilístico
 31.19 segundo Scrum Team
 31.20 dependencias
-31.21 escalar con Nexus
+31.21 ampliar explícitamente el escenario a tres Scrum Teams y justificar la adopción de Nexus frente a alternativas
 31.22 impedimento organizacional
 31.23 intervención con management
 31.24 organizational coaching

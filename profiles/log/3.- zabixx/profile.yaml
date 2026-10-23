@@ -171,6 +171,7 @@ api_policy:
   include_python_when_useful: true
   teach_api_tokens: true
   teach_permissions: true
+  # Lotes según método; no asumir page/offset genéricos.
   teach_pagination: true
   teach_filtering: true
   teach_error_handling: true
@@ -397,7 +398,7 @@ pedagogical_policy:
   avoid_unnecessary_repetition: true
   respect_neighbor_lessons: true
   do_not_advance_future_lessons_unnecessarily: true
-  use_ascii_diagrams_when_helpful: true
+  use_ascii_diagrams_when_helpful: false
   keep_short_path_titles_in_domain_context: true
 
 quality:
@@ -474,6 +475,9 @@ advanced_extension:
     measured_rpo_rto: true
     verify_restores: true
 
+# Validación externa: python3 validar_path.py (requiere PyYAML).
+# Integración con el esquema del generador pendiente de comprobar.
+# Orden de estudio: 0-80, 82-90 y proyecto 81 completo.
 validation:
   enabled: false
   commands: []

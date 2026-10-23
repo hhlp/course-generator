@@ -51,6 +51,9 @@ pedagogy:
     - progresivo
     - orientado_a_comprension
     - no_resumen_superficial
+    - evitar_repeticion_entre_lecciones
+    - explicitar_prerrequisitos_y_resultado_nuevo
+    - profundidad_proporcional_a_complejidad
 
 content:
   preserve_path_order: true
@@ -189,3 +192,12 @@ generation:
   require_lesson_verification: true
   require_lesson_troubleshooting: true
   avoid_unverified_version_claims: true
+
+# Política editorial complementaria desarrollada en domain.md:
+# - Cada lección declara prerrequisitos y un resultado nuevo.
+# - Referenciar fundamentos previos y graduar la longitud por complejidad.
+# - Registrar versiones y usar documentación correspondiente al laboratorio.
+# - Ensayar migraciones y restauraciones en un entorno aislado.
+# - Evaluar el proyecto por fases con evidencias y criterios medibles.
+# - Operator es integración opcional y requiere base de Kubernetes.
+# - Verificar ../../config/pedagogy.md y el esquema real del generador.

@@ -1008,6 +1008,10 @@ Utilizar para responder preguntas concretas de conectividad y flujo.
 
 ## Zabbix 7 IT Infrastructure Monitoring Cookbook
 
+Nathan Liefting y Brian van Baekel. **3.ª edición**, Packt, 2024.
+ISBN: 9781801078320.
+[Repositorio editorial y presentación de autores](https://github.com/PacktPublishing/Zabbix-7-IT-Infrastructure-Monitoring-Cookbook).
+
 Utilizar como material complementario cuando la edición y los ejemplos correspondan suficientemente a la versión estudiada.
 
 Útil especialmente para:
@@ -1226,3 +1230,35 @@ Priorizar las secciones de la **documentación oficial de Zabbix 7.4** y contras
 | 90. DR | Zabbix backup/upgrade, PostgreSQL backup and restore, continuous archiving and point-in-time recovery, documentación de TimescaleDB cuando aplique |
 
 Las fuentes de Ansible y Terraform son complementarias: no suponer que un módulo o recurso concreto existe sin verificar versión, colección y provider. Para pruebas de recuperación, la documentación PostgreSQL es la autoridad para WAL/PITR.
+
+
+# 56. Enlaces y criterios de consulta de la revisión
+
+Fecha de revisión: 22 de octubre de 2026. Mantener 7.4 como baseline explícita,
+con 7.0 LTS como comparación; comprobar el ciclo de soporte antes de desplegar.
+Los enlaces con versión fijada evitan que `/current/` cambie la referencia.
+
+| Ámbito | Fuente primaria |
+|---|---|
+| Manual base | [Zabbix 7.4](https://www.zabbix.com/documentation/7.4/en/manual) |
+| Comparación LTS | [Zabbix 7.0](https://www.zabbix.com/documentation/7.0/en/manual) |
+| API: parámetros comunes | [Reference commentary 7.4](https://www.zabbix.com/documentation/7.4/en/manual/api/reference_commentary) |
+| API: lotes y filtros de hosts | [host.get 7.4](https://www.zabbix.com/documentation/7.4/en/manual/api/reference/host/get) |
+| Self-monitoring y caches | [Internal checks 7.4](https://www.zabbix.com/documentation/7.4/en/manual/config/items/itemtypes/internal) |
+| Paquetes mantenidos por Fedora | [zabbix-server en Fedora Packages](https://packages.fedoraproject.org/pkgs/zabbix/zabbix-server/) |
+| Paquetes del proveedor | [Repositorio Zabbix](https://repo.zabbix.com/) |
+| Código fuente y templates | [Repositorio oficial Zabbix](https://github.com/zabbix/zabbix) |
+| Ejemplos del Cookbook | [Repositorio editorial Packt](https://github.com/PacktPublishing/Zabbix-7-IT-Infrastructure-Monitoring-Cookbook) |
+
+Para los bloques 82–90 localizar las secciones específicas desde el manual 7.4;
+la tabla del apartado 55 sigue siendo el mapa temático. No presentar una URL
+construida por conjetura como enlace comprobado. El código de Zabbix debe
+consultarse en una etiqueta o rama de la versión elegida, no asumir que master
+representa 7.4.
+
+Las entradas genéricas de las secciones 47–48 son categorías de consulta,
+no libros identificados: no asignarles autores ni ISBN ficticios. Las obras de
+SRE y Brendan Gregg son complementarias; no son autoridad sobre la semántica
+de Zabbix. Antes de citar capítulos o páginas completar la edición efectivamente
+consultada. Conservar el material original sin atribuirle una verificación que
+no se ha realizado.

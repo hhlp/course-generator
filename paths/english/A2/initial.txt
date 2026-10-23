@@ -5,148 +5,160 @@
 0.4 Parts of speech: overview
 0.5 Nouns
 0.6 Pronouns
-0.7 Verbs
-0.8 Adjectives
-0.9 Adverbs
-0.10 Determiners
-0.11 Prepositions
-0.12 Conjunctions
-0.13 Subject and predicate
-0.14 Subject
-0.15 Verb
-0.16 Object
-0.17 Direct object
-0.18 Indirect object
-0.19 Complement: introduction
-0.20 Subject + verb
-0.21 Subject + verb + object
-0.22 Subject + be + complement
-0.23 Main verb vs auxiliary verb
-0.24 Person and number
-0.25 Subject–verb agreement
-0.26 Base form
-0.27 Third-person -s form
-0.28 Past form
-0.29 Past participle
-0.30 -ing form
-0.31 Finite vs non-finite verb: introduction
-0.32 Tense vs time: introduction
-0.33 Aspect: simple vs continuous/perfect — introduction
-0.34 Voice: active vs passive — introduction
-0.35 Modality: introduction
-0.36 Phrase vs clause
-0.37 Main clause vs subordinate clause
-0.38 Statement
-0.39 Negative sentence
-0.40 Question
-0.41 Imperative
-0.42 Basic English word order
-0.43 Contractions: grammatical role
-0.44 Identifying grammatical structure in a sentence
-0.45 Correct vs incorrect: introduction to grammatical diagnosis
-0.46 Grammar terminology checkpoint
+0.7 Subject pronouns: I, you, he, she, it, we, they
+0.8 Object pronouns: me, you, him, her, it, us, them
+0.9 Verbs
+0.10 Adjectives
+0.11 Adverbs
+0.12 Determiners
+0.13 Prepositions
+0.14 Conjunctions
+0.15 Subject and predicate
+0.16 Subject
+0.17 Verb
+0.18 Object
+0.19 Direct object
+0.20 Indirect object
+0.21 Complement: introduction
+0.22 Subject + verb
+0.23 Subject + verb + object
+0.24 Subject + be + complement
+0.25 Main verb vs auxiliary verb
+0.26 Person and number
+0.27 Subject–verb agreement
+0.28 Base form
+0.29 Third-person -s form
+0.30 Past form
+0.31 Past participle
+0.32 -ing form
+0.33 Finite vs non-finite verb: introduction
+0.34 Tense vs time: introduction
+0.35 Aspect: simple vs continuous/perfect — introduction
+0.36 Voice: active vs passive — introduction
+0.37 Modality: introduction
+0.38 Phrase vs clause
+0.39 Main clause vs subordinate clause
+0.40 Statement
+0.41 Negative sentence
+0.42 Question
+0.43 Imperative
+0.44 Basic English word order
+0.45 Contractions: grammatical role
+0.46 Identifying grammatical structure in a sentence
+0.47 Correct vs incorrect: introduction to grammatical diagnosis
+0.48 Grammar terminology checkpoint
+0.49 Prerequisite check: subject/object pronouns and basic agreement
 
-1. Present
-1.1 Present Simple
-1.2 Present Simple: affirmative and negative
-1.3 Present Simple: questions
-1.4 Third person singular: -s / -es
-1.5 Do / does
-1.6 Present Continuous
-1.7 Present Continuous: affirmative and negative
-1.8 Present Continuous: questions
-1.9 -ing spelling rules
-1.10 Present Simple vs Present Continuous
-1.11 Stative verbs
-1.12 Have / have got
+1. Verb Forms
+1.1 Base form
+1.2 Third-person -s form
+1.3 Past form
+1.4 Past participle
+1.5 -ing form
+1.6 Regular verbs
+1.7 Irregular verbs
+1.8 Be / have / do
+1.9 Verb forms: general comparison
+1.10 Verb-form selection: modal/do + base, be + -ing, have + participle
 
-2. Past
-2.1 Be: was / were
-2.2 Past Simple
-2.3 Regular verbs
-2.4 Irregular verbs
-2.5 Past Simple: negative
-2.6 Past Simple: questions
-2.7 Did / didn't
-2.8 Past Continuous
-2.9 Past Continuous: questions and negatives
-2.10 Past Simple vs Past Continuous
-2.11 Used to
+2. Present
+2.1 Be in the present: am / is / are as a main verb
+2.2 Be: affirmative forms and contractions
+2.3 Be: negatives and contractions
+2.4 Be: questions and short answers without do/does
+2.5 Present Simple
+2.6 Present Simple: affirmative and negative
+2.7 Present Simple: questions
+2.8 Third-person singular -s form
+2.9 Do / does
+2.10 Present Simple: short answers with do/does
+2.11 Present Continuous
+2.12 Present Continuous: affirmative and negative
+2.13 Present Continuous: questions
+2.14 Present Continuous: short answers with be
+2.15 -ing spelling rules
+2.16 Present Simple vs Present Continuous
+2.17 Stative verbs
+2.18 Have / have got
+2.19 Be vs do/does: auxiliary selection and error diagnosis
 
-3. Present Perfect
-3.1 Present Perfect: have/has + past participle
-3.2 Regular and irregular past participles
-3.3 Present Perfect: affirmative
-3.4 Present Perfect: negative
-3.5 Present Perfect: questions
-3.6 Have you ever...?
-3.7 Ever / never
-3.8 Just / already / yet
-3.9 For / since
-3.10 How long...?
-3.11 Been / gone
-3.12 Present Perfect vs Past Simple
+3. Past
+3.1 Be: was / were
+3.2 Past Simple
+3.3 Regular verbs
+3.4 Irregular verbs
+3.5 Past Simple: negative
+3.6 Past Simple: questions
+3.7 Did / didn't
+3.8 Past Continuous
+3.9 Past Continuous: questions and negatives
+3.10 Past Simple vs Past Continuous
+3.11 Used to
 
-4. Passive Voice
-4.1 Active Voice
-4.2 Passive Voice
-4.3 Active vs Passive
-4.4 Be + past participle
-4.5 Present Simple Passive
-4.6 Past Simple Passive
-4.7 Future Passive
-4.8 Passive with modal verbs
-4.9 Present Continuous Passive: introduction
-4.10 By + agent
-4.11 When the agent is omitted
-4.12 Active → Passive: identifying subject, verb and object
-4.13 Active → Passive: basic transformations
+4. Present Perfect
+4.1 Present Perfect: have/has + past participle
+4.2 Regular and irregular past participles
+4.3 Present Perfect: affirmative
+4.4 Present Perfect: negative
+4.5 Present Perfect: questions
+4.6 Have you ever...?
+4.7 Ever / never
+4.8 Just / already / yet
+4.9 For / since
+4.10 How long...?
+4.11 Been / gone
+4.12 Present Perfect vs Past Simple
 
-5. Verb Forms
-5.1 Base form
-5.2 Third-person -s form
-5.3 Past form
-5.4 Past participle
-5.5 -ing form
-5.6 Regular verbs
-5.7 Irregular verbs
-5.8 Be / have / do
-5.9 Verb forms: general comparison
+5. Future
+5.1 Will
+5.2 Will: affirmative and negative
+5.3 Will: questions
+5.4 Will for predictions
+5.5 Will for decisions
+5.6 Be going to
+5.7 Will vs going to
+5.8 Present Continuous for future arrangements
+5.9 Present Simple for schedules and timetables
+5.10 Future forms: comparison
+5.11 There will be: introduction and cross-reference to Block 9
 
-6. Future
-6.1 Will
-6.2 Will: affirmative and negative
-6.3 Will: questions
-6.4 Will for predictions
-6.5 Will for decisions
-6.6 Be going to
-6.7 Will vs going to
-6.8 Present Continuous for future arrangements
-6.9 Present Simple for schedules and timetables
-6.10 Future forms: comparison
-6.11 There will be: introduction and cross-reference to Block 9
+6. Modal Verbs and Imperative
+6.1 Can / can't
+6.2 Could / couldn't
+6.3 Could for possibility
+6.4 Could for requests
+6.5 May
+6.6 Might
+6.7 Must
+6.8 Mustn't
+6.9 Have to
+6.10 Don't have to
+6.11 Mustn't vs don't have to: prohibition vs absence of obligation
+6.12 Must vs have to
+6.13 Should / shouldn't
+6.14 Would
+6.15 Would like
+6.16 I'd rather / would rather: basic preference meaning
+6.17 Would rather + base form: construction with the same subject
+6.18 Modal + base form
+6.19 Imperative
+6.20 Negative imperative
+6.21 Let's
 
-7. Modal Verbs and Imperative
-7.1 Can / can't
-7.2 Could / couldn't
-7.3 Could for possibility
-7.4 Could for requests
-7.5 May
-7.6 Might
-7.7 Must
-7.8 Mustn't
-7.9 Have to
-7.10 Don't have to
-7.11 Must vs have to
-7.12 Should / shouldn't
-7.13 Would
-7.14 Would like
-7.15 I'd rather / would rather
-7.16 Would rather + base form
-7.17 Modal + base form
-7.18 Imperative
-7.19 Negative imperative
-7.20 Let's
+7. Passive Voice
+7.1 Active Voice
+7.2 Passive Voice
+7.3 Active vs Passive
+7.4 Be + past participle
+7.5 Present Simple Passive
+7.6 Past Simple Passive
+7.7 Future Passive: optional preview after future forms; B1 development
+7.8 Passive with modal verbs: optional preview; B1 development
+7.9 Present Continuous Passive: optional recognition only; B1 development
+7.10 By + agent
+7.11 When the agent is omitted
+7.12 Active → Passive: identifying subject, verb and object
+7.13 Active → Passive: basic transformations
 
 8. Checkpoint I — A2 Foundations
 8.1 Identify parts of speech in A2 sentences
@@ -166,24 +178,25 @@
 9.6 Was there...? / Were there...?
 9.7 There has been / there have been
 9.8 Has there been...? / Have there been...?
-9.9 There will be
-9.10 There won't be
-9.11 Will there be...?
-9.12 There is going to be
-9.13 There are going to be
-9.14 There + modal + be
-9.15 There can be
-9.16 There could be
-9.17 There may be
-9.18 There might be
-9.19 There must be
-9.20 There should be
-9.21 It as subject
-9.22 It's + adjective
-9.23 It for time
-9.24 It for weather
-9.25 It for distance
-9.26 There vs it
+9.9 There hasn't been / there haven't been: negatives
+9.10 There will be
+9.11 There won't be
+9.12 Will there be...?
+9.13 There is going to be
+9.14 There are going to be
+9.15 There + modal + be
+9.16 There can be
+9.17 There could be
+9.18 There may be
+9.19 There might be
+9.20 There must be
+9.21 There should be
+9.22 It as subject
+9.23 It's + adjective
+9.24 It for time
+9.25 It for weather
+9.26 It for distance
+9.27 There vs it
 
 10. Auxiliary Verbs
 10.1 What is an auxiliary verb?
@@ -196,7 +209,7 @@
 10.8 Do as an auxiliary verb
 10.9 Modal auxiliary verbs
 10.10 Do / does / did
-10.11 Have / has / had
+10.11 Have / has / had as main verbs; have/has as Present Perfect auxiliaries
 10.12 Am / is / are / was / were
 10.13 Auxiliary verbs in negatives
 10.14 Auxiliary verbs in questions
@@ -209,7 +222,7 @@
 11.2 Wh- questions
 11.3 What
 11.4 Who
-11.5 Whom: introduction
+11.5 Whom: optional recognition in formal questions
 11.6 Whose
 11.7 Which
 11.8 When
@@ -237,41 +250,41 @@
 11.30 Question word + subject + verb
 11.31 Direct vs indirect question word order
 
-12. Reported Speech
-12.1 Direct Speech
-12.2 Reported Speech
-12.3 Direct vs Reported Speech
-12.4 Say / tell
-12.5 Reported statements
-12.6 Basic tense changes
-12.7 Pronoun changes
-12.8 Time-expression changes
-12.9 Reported questions
-12.10 Reported commands
-12.11 Tell/ask + object + to-infinitive
-12.12 Basic backshift
+12. -ing and to
+12.1 Verb + -ing
+12.2 Verb + to-infinitive
+12.3 Verb + object + to-infinitive
+12.4 Preposition + -ing
+12.5 Like / love / hate + -ing
+12.6 Want / need / would like + to
+12.7 Start / begin + -ing/to
+12.8 Go + -ing
+12.9 To + infinitive for purpose
+12.10 -ing vs to-infinitive: introduction
 
-13. -ing and to
-13.1 Verb + -ing
-13.2 Verb + to-infinitive
-13.3 Verb + object + to-infinitive
-13.4 Preposition + -ing
-13.5 Like / love / hate + -ing
-13.6 Want / need / would like + to
-13.7 Start / begin + -ing/to
-13.8 Go + -ing
-13.9 To + infinitive for purpose
-13.10 -ing vs to-infinitive: introduction
+13. Reported Speech
+13.1 Direct Speech
+13.2 Reported Speech
+13.3 Direct vs Reported Speech
+13.4 Say / tell
+13.5 Reported statements with present reporting verbs: He says that...
+13.6 Basic tense changes: optional present-to-past preview only; B1 development
+13.7 Pronoun changes
+13.8 Time-expression changes: context-dependent optional preview
+13.9 Reported questions: optional word-order preview; full system deferred to B1
+13.10 Reported commands: controlled tell/ask + object + to patterns
+13.11 Tell/ask + object + to-infinitive
+13.12 Basic backshift: optional present-to-past preview; no Past Perfect
 
 14. Go, Get, Do, Make and Have
 14.1 Go
 14.2 Go + preposition
-14.3 Go + -ing
+14.3 Go + -ing: applying the pattern to a controlled set of examples
 14.4 Get
 14.5 Get + adjective
 14.6 Get + noun
 14.7 Get to + place
-14.8 Get + past participle
+14.8 Get + past participle: fixed patterns get dressed/get married; get-passive deferred
 14.9 Do
 14.10 Do + noun
 14.11 Make
@@ -288,8 +301,8 @@
 15.3 Present Simple vs Present Continuous
 15.4 Past Simple vs Past Continuous
 15.5 Future-form contrasts
-15.6 Active ↔ Passive transformations
-15.7 Direct ↔ Reported Speech transformations
+15.6 Active to Passive: controlled present/past transformations with transitive verbs
+15.7 Direct and reported statements with present reporting verbs; no compulsory backshift
 15.8 Question formation and word-order diagnosis
 15.9 Verb complementation: -ing / to-infinitive
 15.10 Mixed verb-system laboratory
@@ -309,6 +322,8 @@
 16.12 Myself / yourself / himself...
 16.13 Possessive 's
 16.14 Whose...?
+16.15 Its vs it's: possession vs contraction
+16.16 Possessive apostrophes: singular, regular plural and irregular plural owners
 
 17. Countable and Uncountable Nouns
 17.1 Countable nouns
@@ -344,6 +359,8 @@
 18.18 Somebody vs anybody vs nobody vs everybody
 18.19 Something vs anything vs nothing vs everything
 18.20 Somewhere vs anywhere vs nowhere vs everywhere
+18.21 Indefinite pronouns and agreement: everybody is / nobody has
+18.22 No/nobody/nothing vs not any/anybody/anything: standard-English negation
 
 19. Quantity
 19.1 Much
@@ -361,6 +378,8 @@
 19.13 Enough
 19.14 Too much
 19.15 Too many
+19.16 Few vs a few: quantity and speaker perspective
+19.17 Little vs a little: quantity and speaker perspective
 
 20. Both, Either and Neither
 20.1 Both
@@ -374,7 +393,7 @@
 20.9 Either of
 20.10 Neither of
 20.11 Both/either/neither + pronoun
-20.12 So do I / Neither do I
+20.12 So do I / Neither do I: contrast auxiliary agreement with determiner/pronoun neither
 
 21. One and Ones
 21.1 One as a substitute
@@ -426,16 +445,17 @@
 23.21 The others
 23.22 Determiners used before nouns
 23.23 Pronouns used without nouns
+23.24 Each/every + singular noun and singular verb: agreement
 
 24. Adjectives and Adverbs
 24.1 Adjectives
 24.2 Adverbs
 24.3 Adjective vs adverb
-24.4 Adverbs ending in -ly
+24.4 Adverbs ending in -ly: recognition and adjective/adverb contrast
 24.5 Good vs well
 24.6 Adjective position
 24.7 Adverb position
-24.8 Adverbs of frequency
+24.8 Adverbs of frequency: recognizing common forms
 24.9 Comparative adjectives
 24.10 Superlative adjectives
 24.11 Irregular comparatives
@@ -456,22 +476,22 @@
 24.26 Colour, origin and material: adjective order
 24.27 Purpose modifiers: noun modifiers vs adjectives
 24.28 Two or more adjectives: guided ordering practice
-24.29 Coordinate vs cumulative adjectives: introduction
-24.30 Commas and and between coordinate adjectives
-24.31 Gradable vs non-gradable adjectives: introduction
+24.29 Coordinate vs cumulative adjectives: optional terminology preview
+24.30 Commas and and in short adjective sequences: controlled introduction
+24.31 Gradable vs non-gradable adjectives: optional terminology preview
 24.32 Adverbs of manner
 24.33 Adverbs of place
 24.34 Adverbs of time
-24.35 Adverbs of frequency: types and meaning
+24.35 Adverbs of frequency: meaning and frequency contrasts
 24.36 Adverbs of degree
 24.37 Adverbs of certainty and probability: introduction
-24.38 Focusing adverbs: only, also, even — introduction
+24.38 Focusing adverbs: only and also in frequent patterns; even as optional preview
 24.39 Sequence adverbs: first, then, finally
-24.40 Adverb formation: adjective + -ly
+24.40 Adverb formation: productive adjective + -ly patterns
 24.41 Adverb spelling: -y to -ily and -le to -ly
 24.42 Adverbs without -ly: fast, hard, late
 24.43 Adjectives ending in -ly: friendly, lovely
-24.44 Hard vs hardly; late vs lately — introduction
+24.44 Hard vs hardly; late vs lately: optional recognition of meaning differences
 24.45 Adverbs modifying verbs, adjectives and other adverbs
 24.46 Comparative adverbs: faster, more carefully
 24.47 Superlative adverbs: fastest, most carefully
@@ -486,7 +506,7 @@
 25.4 Place and time
 25.5 Verb + object + place + time
 25.6 Adverb position
-25.7 Frequency adverbs
+25.7 Frequency adverbs: applying basic sentence-position rules
 25.8 Still
 25.9 Yet
 25.10 Already
@@ -500,22 +520,24 @@
 25.18 Give the book to me
 25.19 Give me the book vs Give the book to me
 25.20 Pronouns with two-object structures
-25.21 Adverb placement: initial, mid and final position
-25.22 Frequency adverbs before the main verb
-25.23 Frequency adverbs after be
-25.24 Adverbs with auxiliary and modal verbs
-25.25 Manner adverbs: position with verbs and objects
-25.26 Place adverbials: typical position
-25.27 Time adverbials: initial and final position
-25.28 Basic order of manner, place and time adverbials
-25.29 Adverbial order: flexibility and emphasis — introduction
-25.30 Degree adverbs before adjectives and adverbs
-25.31 Probably and certainly: basic sentence position
-25.32 Only, also and even: position and scope — introduction
-25.33 Never, rarely and always: frequency and position
-25.34 Adverbs in negative sentences and questions
-25.35 Adjective order vs adverbial order: comparison
-25.36 Adverb placement: guided correction laboratory
+25.21 Two-object patterns with for: Buy me a ticket / Buy a ticket for me
+25.22 To vs for and verb restrictions: explain something to someone
+25.23 Adverb placement: initial, mid and final position
+25.24 Frequency adverbs before the main verb
+25.25 Frequency adverbs after be
+25.26 Adverbs with auxiliary and modal verbs
+25.27 Manner adverbs: position with verbs and objects
+25.28 Place adverbials: typical position
+25.29 Time adverbials: initial and final position
+25.30 Basic order of manner, place and time adverbials
+25.31 Adverbial order: flexibility and emphasis — introduction
+25.32 Degree adverbs before adjectives and adverbs
+25.33 Probably and certainly: basic sentence position
+25.34 Only and also: controlled placement; scope and even deferred to later development
+25.35 Never, rarely and always: frequency and position
+25.36 Adverbs in negative sentences and questions
+25.37 Adjective order vs adverbial order: comparison
+25.38 Adverb placement: guided correction laboratory
 
 26. Conjunctions and Clauses
 26.1 And
@@ -536,11 +558,15 @@
 26.16 Subordinate clauses
 26.17 Relative clauses: introduction
 26.18 Who / which / that
-26.19 Zero Conditional
-26.20 Zero Conditional: form and use
-26.21 First Conditional
-26.22 First Conditional: form and use
-26.23 Zero vs First Conditional
+26.19 Defining relative clauses: relative pronoun as subject vs object
+26.20 Object relative pronoun omission: controlled introduction only
+26.21 Zero Conditional
+26.22 Zero Conditional: form and use
+26.23 First Conditional
+26.24 First Conditional: form and use
+26.25 Zero vs First Conditional
+26.26 Future time clauses with when/after/as soon as: present form for future time
+26.27 If-clause vs result clause: present simple and will; basic word order
 
 27. Prepositions
 27.1 Prepositions: introduction
@@ -620,6 +646,7 @@
 29.13 Identify adjective types and apply the basic adjective order
 29.14 Classify adverbs by meaning and grammatical function
 29.15 Correct adjective order and adverb placement in A2 sentences
+29.16 Diagnose singular agreement and standard negation with indefinite pronouns
 
 30. Final A2 Grammar Integration
 30.1 Analyze the anatomy of an A2 sentence
@@ -635,7 +662,7 @@
 30.11 Must vs have to vs should
 30.12 There vs it
 30.13 Active vs Passive
-30.14 Direct vs Reported Speech
+30.14 Direct vs reported statements: present reporting verbs and unchanged tense
 30.15 Some/any/no/every families
 30.16 Much/many/a lot of/few/little
 30.17 Both/either/neither
@@ -646,8 +673,8 @@
 30.22 Zero vs First Conditional
 30.23 Verb + preposition vs phrasal verb
 30.24 Transform affirmative ↔ negative ↔ interrogative
-30.25 Transform active ↔ passive at A2 level
-30.26 Transform direct ↔ reported patterns at A2 level
+30.25 Transform active to passive with transitive verbs; reverse only when the agent is known
+30.26 Transform direct to reported statements with present reporting verbs; preserve context
 30.27 Diagnose agreement errors
 30.28 Diagnose auxiliary errors
 30.29 Diagnose verb-form errors
@@ -661,3 +688,4 @@
 30.37 Adjective categories and order: integrated review
 30.38 Adverb categories and placement: integrated review
 30.39 Adjective vs adverb order: cumulative correction laboratory
+30.40 Final diagnosis: prohibition vs obligation, quantity contrasts and future time clauses

@@ -7,6 +7,28 @@ Dominar Rust desde los fundamentos del lenguaje hasta programación de sistemas,
 async, unsafe, FFI, diseño idiomático, rendimiento, internals del compilador y desarrollo
 profesional de crates y aplicaciones.
 
+GUÍA DE SECUENCIA Y PRERREQUISITOS
+Los identificadores se conservan para mantener referencias y materiales existentes.
+El orden pedagógico recomendado difiere del orden numérico donde evita anticipar conceptos.
+Ruta completa de bloques (cada número identifica un bloque):
+0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 6, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 43, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 44, 38, 39, 40, 41, 45, 46, 47, 48, 49, 42, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60.
+- En 0 se introduce el ciclo básico check/run/test/fmt/clippy sin esperar al bloque 14.
+- En 2, match empieza con escalares; en 9–10 se retoma con enums y Option/Result.
+- 6 se estudia tras structs/enums; variance se anticipa y se profundiza en 39.
+- 14 tiene dos pasadas: manifiesto y CLI básica primero; features, builds, CI y
+  benchmarking se completan tras traits, testing y documentación.
+- 22–23 introducen Pin y memoria no inicializada; los contratos unsafe se completan
+  en 31 y 55. El mini executor de 29 empieza con Wake seguro; RawWaker se difiere.
+- 43 se estudia tras strings, errores, Cargo, iterators, I/O y testing (hasta 25).
+- 44 se estudia después de concurrencia, async y performance (hasta 37).
+- 45–49 preceden la pasada profesional de 42: datos, tracing, seguridad y distribución.
+- Los proyectos 59.1–59.13 se desarrollan al alcanzar sus prerrequisitos y se revisan
+  en 59; no se pospone toda la práctica hasta el final.
+- Los bloques 50 (embedded introductorio), 56 (compilador) y SQLx en 59 son
+  especializaciones; el núcleo profesional no exige hardware ni una base externa.
+- Cada lección declara edición, MSRV, versiones y toolchain requeridos. Stable es
+  el valor predeterminado; una API de una versión reciente no se presume en una MSRV anterior.
+
 0. PREPARACIÓN Y ECOSISTEMA
 0.1. Qué es Rust y systems programming
 0.2. Rust frente a C, C++ y Go
@@ -14,6 +36,11 @@ profesional de crates y aplicaciones.
 0.4. rustc, cargo, rustfmt, clippy, rustdoc y rust-analyzer
 0.5. toolchains, targets y components
 0.6. Primer proyecto con Cargo
+0.7. Instalación en Fedora: rustup frente a paquetes del sistema; compilador C, linker y PATH
+0.8. rustup show/update/default/override/toolchain/component/target y rust-toolchain.toml
+0.9. Edición Rust frente a versión del compilador; edition 2024 y MSRV explícita
+0.10. Ciclo mínimo: cargo check, run, test, fmt y clippy; diagnóstico con rustc --explain
+0.11. Laboratorio: entorno reproducible, editor y primer programa con una prueba
 
 1. FUNDAMENTOS DEL LENGUAJE
 1.1. Sintaxis; variables, mutabilidad, shadowing y constantes
@@ -21,6 +48,11 @@ profesional de crates y aplicaciones.
 1.3. Tuples y arrays
 1.4. Inferencia y anotaciones de tipos
 1.5. Type aliases, casts, coercions y never type (!)
+1.6. Literales, sufijos, separadores y conversiones numéricas checked mediante TryFrom
+1.7. Aritmética checked, wrapping, saturating y overflowing; diferencias entre perfiles
+1.8. Operadores, precedencia, cortocircuito booleano y comparaciones
+1.9. Slices y arrays: &[T], &mut [T], len, get y límites de índices
+1.10. Laboratorio: conversor numérico con límites y casos de overflow
 
 2. EXPRESIONES Y CONTROL DE FLUJO
 2.1. Statements vs expressions y bloques
@@ -29,6 +61,8 @@ profesional de crates y aplicaciones.
 2.4. break con/sin valor, continue y labels
 2.5. match
 2.6. if let, while let y let else
+2.7. Patrones de control simples antes de enums; retomar Option y Result en bloques 9–12
+2.8. Laboratorio: bucles, búsqueda y retornos desde expresiones sin clones innecesarios
 
 3. FUNCIONES
 3.1. fn, parámetros y retornos
@@ -37,6 +71,8 @@ profesional de crates y aplicaciones.
 3.4. Diverging functions
 3.5. Function items y function pointers
 3.6. Recursividad
+3.7. Separar definición, llamada y tipos de función; associated functions se completan en bloque 8
+3.8. Laboratorio: descomponer un programa en funciones y documentar entradas y retornos
 
 4. OWNERSHIP Y MOVES
 4.1. Stack vs heap
@@ -45,6 +81,9 @@ profesional de crates y aplicaciones.
 4.4. Drop, scopes y RAII
 4.5. Asignaciones, argumentos y retornos
 4.6. Partial moves y destructuring
+4.7. mem::take, mem::replace y Option::take: extraer valores sin invalidar invariantes
+4.8. Orden de destrucción, drop explícito y límites al mover campos de tipos con Drop
+4.9. Laboratorio: predecir moves, Copy, Clone y Drop a partir de diagnósticos
 
 5. REFERENCES Y BORROWING
 5.1. &T y &mut T
@@ -54,6 +93,8 @@ profesional de crates y aplicaciones.
 5.5. Dereferencing, auto-deref y deref coercion
 5.6. Dangling references
 5.7. Borrow checker
+5.8. Borrowing de slices; split_at_mut y préstamos disjuntos con APIs seguras
+5.9. Laboratorio: reparar conflictos de borrowing sin recurrir sistemáticamente a Clone
 
 6. LIFETIMES
 6.1. Concepto, inferencia y anotaciones
@@ -62,6 +103,9 @@ profesional de crates y aplicaciones.
 6.4. Structs y methods con referencias
 6.5. Lifetime bounds
 6.6. Reborrowing, variance y NLL
+6.7. T: 'static frente a &'static T; lifetimes expresan relaciones y no prolongan valores
+6.8. Introducción práctica; variance y detalles de NLL se profundizan después en bloque 39
+6.9. Laboratorio: API que devuelve referencias y diagnóstico de anotaciones innecesarias
 
 7. STRINGS Y TEXTO
 7.1. str, &str y String
@@ -70,6 +114,9 @@ profesional de crates y aplicaciones.
 7.4. Parsing, búsqueda y transformación
 7.5. OsStr/OsString y Path/PathBuf
 7.6. Unicode
+7.7. char_indices, get y fronteras UTF-8; caracteres escalares frente a grafemas
+7.8. FromStr, parse::<T>, trim, lines, split y escritura formateada en buffers
+7.9. Laboratorio: procesador Unicode con rutas no UTF-8 y errores de parseo
 
 8. STRUCTS
 8.1. Definición e instanciación
@@ -77,12 +124,17 @@ profesional de crates y aplicaciones.
 8.3. Tuple/unit structs
 8.4. Methods, associated functions, impl y Self
 8.5. Ownership dentro de structs
+8.6. Receivers self, &self y &mut self; encapsulación e invariantes del dominio
+8.7. Laboratorio: modelo de dominio con constructores y métodos sin copias superfluas
 
 9. ENUMS
 9.1. Variants y variants con datos
 9.2. Option<T> y Result<T,E>
 9.3. Discriminants y representación
 9.4. Algebraic data types
+9.5. Option: as_ref/as_mut, take, replace y combinadores; evitar unwrap por defecto
+9.6. Enums frente a strings y flags; modelar estados y transiciones válidas
+9.7. Laboratorio: representar estados de una operación con Option y Result
 
 10. PATTERN MATCHING
 10.1. match y patrones literales
@@ -90,6 +142,8 @@ profesional de crates y aplicaciones.
 10.3. Ranges, _, .. y @ bindings
 10.4. Guards y refutability
 10.5. let, if let, while let, let else y matches!
+10.6. Match ergonomics y binding modes; cambios de patrones al migrar a edition 2024
+10.7. Laboratorio: destructuring por valor y referencia sin movimientos accidentales
 
 11. COLLECTIONS
 11.1. Vec, VecDeque, LinkedList
@@ -99,6 +153,9 @@ profesional de crates y aplicaciones.
 11.5. Entry API
 11.6. Capacity, allocation y hashing
 11.7. Elección de estructura
+11.8. Slices: sort/sort_unstable, binary_search, chunks/windows y dedup
+11.9. retain, drain y extend; invalidación de referencias y mutación durante recorridos
+11.10. Laboratorio: índice de registros con Entry y elección justificada de colecciones
 
 12. ERROR HANDLING
 12.1. panic!; abort vs unwind
@@ -109,6 +166,10 @@ profesional de crates y aplicaciones.
 12.6. Custom errors y Error trait
 12.7. From/Into
 12.8. Diseño idiomático de errores
+12.9. transpose, flatten, ok_or_else y collect de Result; composición sin perder contexto
+12.10. Error::source, cadenas de causas y separación entre error público e implementación
+12.11. thiserror y anyhow: introducción; aplicación CLI desarrollada en bloque 42
+12.12. Laboratorio: parser con errores tipados y propagación hasta main
 
 13. CRATES Y MODULE SYSTEM
 13.1. Packages, crates y modules
@@ -118,6 +179,8 @@ profesional de crates y aplicaciones.
 13.5. lib.rs y main.rs
 13.6. Re-exports
 13.7. Organización de proyectos
+13.8. Edición, prelude, dependencias externas y diferencias entre rutas de tipos y archivos
+13.9. Laboratorio: dividir un binario en biblioteca y módulos con visibilidad mínima
 
 14. CARGO EN PROFUNDIDAD
 14.1. Arquitectura de Cargo
@@ -207,7 +270,7 @@ profesional de crates y aplicaciones.
 14.75. cargo metadata en profundidad
 14.76. cargo tree en profundidad
 14.77. cargo vendor
-14.78. cargo verify-project
+14.78. cargo verify-project: comando deprecado; migrar a cargo metadata y cargo check según el objetivo
 
 14.79. Cargo y variables de entorno
 14.80. CARGO_HOME
@@ -233,6 +296,16 @@ profesional de crates y aplicaciones.
 14.98. Cargo y CI/CD
 14.99. Diagnóstico y troubleshooting de Cargo
 14.100. Laboratorio — workspace multi-crate completo
+14.101. cargo fmt --check, cargo clippy y cargo fix; correcciones automáticas bajo revisión
+14.102. cargo rustc y cargo build -vv: inspeccionar invocaciones y diagnosticar el linker
+14.103. edition, rust-version y rust-toolchain.toml; resolver 3 explícito en workspaces virtuales
+14.104. workspace.dependencies, workspace.package y workspace.lints; herencia y límites
+14.105. Features aditivas, unificación y matrices compatibles; all-features no sustituye pruebas por combinación
+14.106. links, OUT_DIR, rerun-if-changed y rerun-if-env-changed en build.rs
+14.107. cargo bench en stable con Criterion y harness = false frente a #[bench] experimental
+14.108. cargo fix --edition: migración revisada, lints y pruebas antes/después
+14.109. cargo publish --dry-run, cargo package --list y credenciales sin secretos en repositorios
+14.110. Laboratorio: resolución MSRV/features, build offline preparado y publicación simulada
 
 15. TRAITS
 15.1. Definición, implementación y default methods
@@ -241,6 +314,8 @@ profesional de crates y aplicaciones.
 15.4. Associated types/constants
 15.5. Fully qualified syntax
 15.6. Coherence
+15.7. Orphan rules y conflictos de impl; distinguir contratos de traits de herencia de clases
+15.8. Laboratorio: diseñar un trait y demostrar las restricciones de coherence
 
 16. GENERICS
 16.1. Functions, structs, enums e impl genéricos
@@ -248,6 +323,8 @@ profesional de crates y aplicaciones.
 16.3. Static dispatch y turbofish
 16.4. Const generics
 16.5. Generic Associated Types
+16.6. Restricciones de const generics: separar subconjunto estable de características experimentales
+16.7. Laboratorio: biblioteca genérica con bounds mínimos y pruebas de varios tipos
 
 17. TRAIT OBJECTS Y POLIMORFISMO
 17.1. dyn Trait y dynamic dispatch
@@ -256,6 +333,8 @@ profesional de crates y aplicaciones.
 17.4. impl Trait y return-position impl Trait
 17.5. Static vs dynamic dispatch
 17.6. Diseño de APIs
+17.7. Dyn compatibility: receivers, métodos genéricos, Self y associated types
+17.8. Laboratorio: comparar API genérica y trait objects con el mismo contrato
 
 18. UTILITY TRAITS
 18.1. Clone, Copy, Drop, Default
@@ -265,6 +344,8 @@ profesional de crates y aplicaciones.
 18.5. Deref/DerefMut
 18.6. PartialEq/Eq, PartialOrd/Ord y Hash
 18.7. Iterator/IntoIterator/FromIterator/Extend
+18.8. Contratos Eq/Hash y Ord; consecuencias de implementaciones inconsistentes
+18.9. Laboratorio: newtype con conversiones falibles, Display y claves hash coherentes
 
 19. OPERATOR OVERLOADING
 19.1. Add/Sub/Mul/Div/Rem
@@ -272,6 +353,8 @@ profesional de crates y aplicaciones.
 19.3. Index/IndexMut
 19.4. Assignment operators
 19.5. PartialEq y PartialOrd
+19.6. Operadores para valores y referencias; mantener semántica predecible y errores explícitos
+19.7. Laboratorio: tipo numérico de dominio con operadores y tests de propiedades
 
 20. CLOSURES
 20.1. Sintaxis e inferencia
@@ -279,6 +362,8 @@ profesional de crates y aplicaciones.
 20.3. Fn, FnMut y FnOnce
 20.4. Closures como argumentos y retornos
 20.5. Lifetimes
+20.6. Capturas precisas, inferencia de traits y relación entre move, Send y lifetimes
+20.7. Laboratorio: callbacks Fn/FnMut/FnOnce y errores de captura explicados
 
 21. ITERATORS
 21.1. Iterator e IntoIterator
@@ -290,6 +375,9 @@ profesional de crates y aplicaciones.
 21.7. sum/product/any/all/find/position
 21.8. Lazy evaluation
 21.9. Custom iterators y rendimiento
+21.10. try_fold, try_for_each, scan, inspect y by_ref; procesamiento falible y con estado
+21.11. DoubleEndedIterator, ExactSizeIterator y FusedIterator; size_hint no siempre es tamaño exacto
+21.12. Laboratorio: iterator propio con estado, casos vacíos y short-circuiting
 
 22. SMART POINTERS
 22.1. Box, Rc, Arc
@@ -298,6 +386,10 @@ profesional de crates y aplicaciones.
 22.4. Interior mutability
 22.5. Reference counting
 22.6. Ownership patterns
+22.7. OnceCell/OnceLock y LazyCell/LazyLock; inicialización única y compatibilidad MSRV
+22.8. Ciclos Rc, Weak y errores de RefCell en runtime; Arc no vuelve thread-safe a T
+22.9. Pin como anticipo; contratos y proyección se trabajan tras unsafe en bloques 29 y 53
+22.10. Laboratorio: grafo con Weak y comparación de mutabilidad interior segura
 
 23. MEMORIA
 23.1. Stack, heap y allocations
@@ -308,6 +400,10 @@ profesional de crates y aplicaciones.
 23.6. Leaks
 23.7. MaybeUninit y ManuallyDrop
 23.8. Memoria desde la perspectiva del compilador
+23.9. DST y metadatos de punteros; Sized/?Sized y límites de garantías de representación
+23.10. repr(Rust), repr(C), repr(transparent) y niches; no asumir layout ABI estable
+23.11. MaybeUninit y ManuallyDrop: reconocer contratos; construcción manual se difiere al bloque 55
+23.12. Laboratorio: medir layouts y destrucción usando primero APIs seguras
 
 24. INPUT/OUTPUT Y FILESYSTEM
 24.1. Read, Write y BufRead
@@ -316,6 +412,9 @@ profesional de crates y aplicaciones.
 24.4. seek
 24.5. Paths/directories/metadata/permissions
 24.6. Binary I/O y buffering
+24.7. read_exact/write_all, EOF e Interrupted; lecturas parciales y framing binario
+24.8. flush frente a sync_all; atomicidad de rename frente a durabilidad de datos
+24.9. Laboratorio: copiador streaming con inyección de errores y memoria acotada
 
 25. TESTING
 25.1. #[test] y assertions
@@ -325,6 +424,10 @@ profesional de crates y aplicaciones.
 25.5. Fixtures y doctests
 25.6. Property-based testing
 25.7. Fuzzing y benchmarking
+25.8. Pruebas compile_fail con doctests y trybuild; verificar contratos de tipos
+25.9. Aislamiento de estado global, variables de entorno y pruebas paralelas
+25.10. Proptest y shrinking; cargo-fuzz/libFuzzer con toolchain y plataforma declarados
+25.11. Laboratorio: probar entradas corruptas, fallos I/O y regresiones de una biblioteca
 
 26. THREADS
 26.1. std::thread, spawn y JoinHandle
@@ -334,6 +437,10 @@ profesional de crates y aplicaciones.
 26.5. Channels/mpsc
 26.6. Thread-local storage
 26.7. Scoped threads
+26.8. Poisoning, deadlocks y orden de locks; no mantener guards durante trabajo bloqueante innecesario
+26.9. Canales acotados y cierre; worker pool y finalización sin perder trabajo
+26.10. Rayon: paralelismo de datos, iteradores paralelos y medición frente a threads manuales
+26.11. Laboratorio: pipeline con workers, backpressure, errores y join garantizado
 
 27. ATOMICS Y MEMORY MODEL
 27.1. AtomicBool y tipos Atomic*
@@ -343,6 +450,9 @@ profesional de crates y aplicaciones.
 27.5. Spin locks
 27.6. Lock-free y conceptos wait-free
 27.7. ABA problem, false sharing y cache effects
+27.8. compare_exchange: success/failure ordering y bucles con compare_exchange_weak
+27.9. Atomicidad frente a publicación de datos; ejemplos sin data races y con errores lógicos
+27.10. Laboratorio: justificar happens-before y comprobar un protocolo pequeño con Loom
 
 28. ASYNCHRONOUS PROGRAMMING
 28.1. async, async fn y .await
@@ -355,6 +465,10 @@ profesional de crates y aplicaciones.
 28.8. Channels y sincronización
 28.9. Structured concurrency
 28.10. Blocking vs async
+28.11. Tokio: spawn, JoinHandle, JoinSet y propagación de errores; tareas separadas no implican structured concurrency
+28.12. Send y lifetimes de tareas; no mantener MutexGuard inapropiados a través de await
+28.13. spawn_blocking, límites del pool y cancelación cooperativa; abort no detiene trabajo bloqueante ya iniciado
+28.14. Laboratorio: pipeline async acotado con timeout, cancelación y cierre verificable
 
 29. FUTURES EN PROFUNDIDAD
 29.1. Future trait
@@ -366,6 +480,9 @@ profesional de crates y aplicaciones.
 29.7. Combinators
 29.8. Executor internals
 29.9. Laboratorio: mini executor
+29.10. Mini executor inicial con std::task::Wake y Arc; RawWaker sólo tras bloque 31
+29.11. Lost wakeups, registro del Waker y poll sin bloquear el executor
+29.12. Laboratorio de diagnóstico: Future propio probado sin construir punteros unsafe a mano
 
 30. MACROS
 30.1. macro_rules!
@@ -374,6 +491,9 @@ profesional de crates y aplicaciones.
 30.4. Procedural macros: derive, attribute, function-like
 30.5. TokenStream, tokens, parsing y AST
 30.6. Generación de código
+30.7. syn, quote y proc-macro2; crate proc-macro, spans y errores de expansión
+30.8. cargo expand como herramienta externa; pruebas compile-pass/compile-fail con trybuild
+30.9. Laboratorio: derive con validación de entradas y diagnósticos de compilación
 
 31. UNSAFE RUST
 31.1. unsafe blocks/functions
@@ -383,6 +503,9 @@ profesional de crates y aplicaciones.
 31.5. Invariants, aliasing, validity y provenance
 31.6. Soundness
 31.7. Encapsulación segura de unsafe
+31.8. unsafe_op_in_unsafe_fn, comentarios SAFETY y separación entre precondiciones y prueba interna
+31.9. Unsafe attributes y unsafe extern en edition 2024; revisión de cada contrato
+31.10. Laboratorio: wrapper mínimo con invariantes documentadas y ejecución bajo Miri
 
 32. FOREIGN FUNCTION INTERFACE — FFI
 32.1. ABI y extern "C"
@@ -393,12 +516,18 @@ profesional de crates y aplicaciones.
 32.6. Static/dynamic linking
 32.7. bindgen/cbindgen
 32.8. Wrappers seguros
+32.9. CString/CStr, null terminators y liberar con el allocator del lado que reservó
+32.10. Unwinding entre ABIs, C-unwind y límites de catch_unwind; no usarlo como garantía general
+32.11. ABI Rust sin estabilidad general; evitar contratos de plugins binarios basados en tipos Rust
+32.12. Laboratorio: wrapper C con Drop, ownership explícito y pruebas de errores
 
 33. ATRIBUTOS Y COMPILACIÓN CONDICIONAL
 33.1. #[derive], #[cfg] y cfg!
 33.2. target_os/target_arch
 33.3. Features
 33.4. Lint/documentation/custom attributes
+33.5. check-cfg, cfg(test), docsrs y diferencias entre features y condiciones del target
+33.6. Laboratorio: compilar y probar ramas de configuración en una matriz pequeña
 
 34. RUSTDOC Y DOCUMENTACIÓN
 34.1. /// y //!
@@ -406,6 +535,8 @@ profesional de crates y aplicaciones.
 34.3. Ejemplos ejecutables y doctests
 34.4. cargo doc
 34.5. Documentación de APIs y crates
+34.6. Enlaces intra-doc, ejemplos no_run/compile_fail y secciones Errors/Panics/Safety
+34.7. Laboratorio: documentación ejecutable de una API pública con errores y garantías
 
 35. DISEÑO IDIOMÁTICO
 35.1. Ownership-oriented design
@@ -417,6 +548,8 @@ profesional de crates y aplicaciones.
 35.7. Parse, don't validate
 35.8. Estados inválidos irrepresentables
 35.9. Composición y diseño Rustacean
+35.10. Comparar builder, typestate y enum según ergonomía, coste y evolución
+35.11. Laboratorio: refactorizar una API para hacer inválidos irrepresentables
 
 36. TYPE-DRIVEN DESIGN
 36.1. Tipos como invariantes
@@ -427,6 +560,8 @@ profesional de crates y aplicaciones.
 36.6. Associated types y GATs
 36.7. HRTB
 36.8. Garantías en compile time
+36.9. PhantomData y efectos sobre variance, drop checking y auto traits
+36.10. Laboratorio: API typestate y HRTB con pruebas que deben fallar al compilar
 
 37. PERFORMANCE
 37.1. Zero-cost abstractions y monomorphization
@@ -436,6 +571,9 @@ profesional de crates y aplicaciones.
 37.5. Benchmarking y profiling
 37.6. Flamegraphs, perf y heap profiling
 37.7. Optimización basada en mediciones
+37.8. Criterion, std::hint::black_box, warm-up, ruido y datasets reproducibles
+37.9. PGO y SIMD: detectar soporte y separar auto-vectorización estable de APIs experimentales
+37.10. Laboratorio: hipótesis, baseline, perfil, cambio y comparación con pruebas de corrección
 
 38. COMPILER Y TOOLCHAIN INTERNO
 38.1. rustc
@@ -447,6 +585,8 @@ profesional de crates y aplicaciones.
 38.7. Code generation/linking
 38.8. Incremental compilation
 38.9. Diagnósticos del compilador
+38.10. rustc --emit=mir/llvm-ir/asm, cargo rustc y -Z; distinguir opciones estables y nightly
+38.11. Laboratorio: relacionar una función Rust, MIR y código generado sin prometer formatos estables
 
 39. BORROW CHECKER EN PROFUNDIDAD
 39.1. Places, moves, loans y regions
@@ -457,6 +597,8 @@ profesional de crates y aplicaciones.
 39.6. Interior mutability
 39.7. Aliasing
 39.8. Razonamiento de errores complejos
+39.9. Modelos de aliasing y experimentos de Miri; separar modelo operativo de garantías normativas
+39.10. Laboratorio: casos de variance, dropck y two-phase borrows con explicación de cada diagnóstico
 
 40. NETWORKING
 40.1. TCP/UDP
@@ -466,6 +608,9 @@ profesional de crates y aplicaciones.
 40.5. Async networking
 40.6. HTTP
 40.7. Diseño de servidores
+40.8. Framing con límites, backpressure, half-close y conexiones lentas; evitar asumir lectura completa
+40.9. Clientes y servicios HTTP con reqwest/axum; TLS con rustls y verificación de certificados
+40.10. Laboratorio: servidor local con concurrencia acotada, timeout y pruebas de protocolo
 
 41. SYSTEMS PROGRAMMING
 41.1. Procesos y threads
@@ -476,6 +621,9 @@ profesional de crates y aplicaciones.
 41.6. Unix/Linux APIs
 41.7. libc y FFI
 41.8. Abstracciones seguras sobre el SO
+41.9. OwnedFd/BorrowedFd/AsFd, RAII de descriptores y cierre de recursos
+41.10. rustix/nix frente a libc; mmap y validez de datos con mutaciones externas
+41.11. Laboratorio: pipe y proceso hijo con limpieza, errores y sin fugas de descriptores
 
 42. CLI APPLICATION DEVELOPMENT IN RUST — DE CERO A EXPERTO
 Alcance: desarrollo de aplicaciones CLI/TUI; Cargo, Regex, Big-O, async y systems programming se integran sin duplicar sus bloques.
@@ -695,6 +843,12 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 42.173. Proyecto final: completions, man pages y CI/CD
 42.174. Proyecto final: revisión de seguridad, benchmarks y release
 42.175. Checkpoint: auditoría de calidad y mantenimiento profesional
+42.176. Prerrequisitos de integración: completar 43–49 antes de la pasada profesional del bloque
+42.177. Tests aislados: Command::env/env_clear frente a mutar el entorno global en edition 2024
+42.178. Restauración TUI: Drop y hooks no garantizan limpieza ante abort o SIGKILL
+42.179. Retries sólo en operaciones reintentables: idempotencia, jitter y Retry-After
+42.180. RPM local frente a revisión para repositorios Fedora; macros, dependencias, licencias y política vigente
+42.181. Laboratorio de aceptación: no-TTY, broken pipe, rutas no UTF-8 y cancelación sin procesos huérfanos
 
 43. EXPRESIONES REGULARES EN RUST — USO E INTEGRACIÓN
 43.1. Papel de regex dentro de aplicaciones Rust; relación con el PATH específico de Regex
@@ -719,7 +873,7 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 43.20. RegexSet para comprobar muchos patrones eficientemente
 43.21. RegexBuilder: configuración programática del motor
 43.22. Flags/configuración desde Rust y cuándo preferir RegexBuilder
-43.23. Regex::escape para convertir texto no confiable en patrón literal
+43.23. regex::escape para convertir texto no confiable en patrón literal
 43.24. Regex estáticas/reutilizables con LazyLock/LazyLock<Regex> y evitar recompilación en loops
 43.25. Ownership, borrowing y lifetimes de Match/Captures respecto al texto de entrada
 43.26. Integración con iterators: map, filter_map, collect y pipelines de procesamiento
@@ -743,6 +897,13 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 43.44. Laboratorio — transformación masiva con replace_all y closures
 43.45. Laboratorio — comparación Regex vs RegexSet y coste de recompilación
 43.46. Mini proyecto — grep simplificado idiomático con archivos, iterators, errores y regex
+43.47. regex::escape frente a regex::NoExpand; escaping de patrón y replacement tienen contratos distintos
+43.48. RegexSet identifica patrones coincidentes; usar Regex adicionales si se necesitan offsets/capturas
+43.49. Captures::extract y CaptureLocations/captures_read; validar cardinalidad y reutilización
+43.50. Match conserva el lifetime del haystack; iteradores pueden depender además del préstamo de Regex
+43.51. Una búsqueda O(m*n) frente a iteración O(m*n²) en peor caso; definir m y n según documentación
+43.52. Límites RegexBuilder: size_limit, dfa_size_limit y nest_limit; motores con backtracking requieren política propia
+43.53. Laboratorio: matches vacíos, entrada hostil, límites de memoria y comportamiento por versión
 
 44. BIG-O EN RUST — APLICACIÓN Y ANÁLISIS
 44.1. Papel de Big-O al diseñar y revisar código Rust; relación con el PATH específico de Big-O
@@ -812,6 +973,11 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 44.65. Laboratorio — medir crecimiento con benchmarks sin confundir tiempo medido con notación Big-O
 44.66. Laboratorio — optimizar un procesamiento de texto manteniendo corrección y ownership idiomático
 44.67. Mini proyecto — analizador de rendimiento algorítmico de una aplicación Rust: hipótesis Big-O, benchmarks, profiling y conclusiones
+44.68. HashMap/HashSet: recorrido dependiente de capacidad según API; reservar de más también puede costar
+44.69. BinaryHeap::push: distinguir coste esperado, peor caso y reallocación según garantías vigentes
+44.70. Destrucción de elementos, Clone y hashing de claves largas: no asumir costes unitarios
+44.71. Regex: separar compilación, búsqueda e iteración; usar m y n y garantías del motor elegido
+44.72. Laboratorio: tabla documentada de costes con hipótesis, referencias y contraejemplos
 
 45. SERIALIZACIÓN Y DATOS
 45.1. JSON, TOML, YAML, CSV y formatos binarios
@@ -819,6 +985,11 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 45.3. Serialize/Deserialize
 45.4. Custom serializers
 45.5. Zero-copy cuando corresponda
+45.6. Atributos serde: rename, default, flatten, tag/content, untagged y deny_unknown_fields
+45.7. Lifetimes de Deserialize y DeserializeOwned; préstamos, buffers y límites de zero-copy
+45.8. Esquemas versionados, datos no confiables, límites y errores con ubicación
+45.9. TOML/JSON/CSV/YAML: elegir implementación mantenida y verificar compatibilidad actual
+45.10. Laboratorio: migrar configuración y procesar JSON Lines con fallos recuperables
 
 46. LOGGING, TRACING Y OBSERVABILITY
 46.1. Logging y niveles
@@ -827,6 +998,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 46.4. Métricas
 46.5. Error observability
 46.6. Observabilidad async
+46.7. tracing-subscriber, instrument y propagación de spans entre threads y tareas
+46.8. OpenTelemetry como integración opcional; métricas, cardinalidad y redacción de secretos
+46.9. Laboratorio: correlacionar petición, error y tarea sin contaminar stdout de la CLI
 
 47. SEGURIDAD
 47.1. Memory safety
@@ -838,6 +1012,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 47.7. Parsing seguro
 47.8. DoS
 47.9. Secure API design
+47.10. Entorno global en edition 2024: set_var/remove_var unsafe; preferir configuración inyectada
+47.11. Path traversal, symlinks, descompresión y tamaños; límites explícitos antes de reservar memoria
+47.12. Laboratorio: threat model y regresiones para inputs hostiles sin introducir unsafe innecesario
 
 48. DEPENDENCIAS Y SUPPLY CHAIN
 48.1. crates.io y SemVer
@@ -847,6 +1024,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 48.5. Auditing y licensing
 48.6. Reproducible builds
 48.7. Publicación de crates
+48.8. cargo audit, cargo deny, cargo vet y cargo outdated: herramientas externas y alcances diferentes
+48.9. SBOM, procedencia, build.rs/proc-macros ejecutables y revisión de dependencias
+48.10. Laboratorio: revisar árbol, licencias, features y MSRV con decisiones documentadas
 
 49. CROSS COMPILATION
 49.1. Targets y target triples
@@ -855,6 +1035,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 49.4. musl y static linking
 49.5. Cross compilation
 49.6. Builds reproducibles
+49.7. Target instalado no implica linker, sysroot ni ejecución disponibles; cross como herramienta opcional
+49.8. Pruebas sobre destino o emulador y dependencias nativas; musl no garantiza binario totalmente estático
+49.9. Laboratorio: construir para otro target y comprobar ELF y dependencias con file/readelf
 
 50. NO_STD Y EMBEDDED — INTRODUCCIÓN
 50.1. std, core y alloc
@@ -863,6 +1046,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 50.4. Allocators
 50.5. Bare metal
 50.6. Restricciones de embedded
+50.7. Embebido como especialización introductoria; esta ruta no acredita dominio experto de hardware
+50.8. embedded-hal, interrupciones y secciones críticas como orientación posterior
+50.9. Laboratorio: biblioteca no_std compatible y comprobación para un target declarado
 
 51. API / LIBRARY DESIGN
 51.1. Public API y encapsulation
@@ -871,6 +1057,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 51.4. MSRV y feature flags
 51.5. Documentation/testing
 51.6. Evolución de una crate
+51.7. #[non_exhaustive], sealed traits y cambios que rompen compatibilidad
+51.8. cargo-semver-checks y pruebas de consumidores; límites de detección automática
+51.9. Laboratorio: evolucionar una crate y evaluar cambios fuente, comportamiento y features
 
 52. ADVANCED TRAITS & TYPE SYSTEM
 52.1. HRTB y GATs
@@ -881,6 +1070,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 52.6. Variance y subtyping
 52.7. Auto traits
 52.8. Límites del type system
+52.9. Async en traits: dispatch estático frente a dyn y restricciones documentadas
+52.10. Captura de lifetimes en impl Trait, use<...> y relación con edición/MSRV
+52.11. Laboratorio: GAT/HRTB/RPITIT con casos positivos y negativos de compilación
 
 53. ASYNC INTERNO Y AVANZADO
 53.1. Transformación async → Future
@@ -891,6 +1083,10 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 53.6. Backpressure y bounded concurrency
 53.7. Async synchronization
 53.8. Debugging async
+53.9. Proyección de Pin con pin-project; no escribir proyección unsafe sin contrato revisado
+53.10. select: cancelación al descartar futures, pérdida de progreso y APIs cancellation-safe
+53.11. Límites de tareas, colas y bytes; presión inversa de extremo a extremo
+53.12. Laboratorio: servicio Tokio con shutdown cooperativo, tareas supervisadas y pruebas temporales
 
 54. CONCURRENCIA AVANZADA
 54.1. Shared state y message passing
@@ -901,6 +1097,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 54.6. Contention
 54.7. Synchronization primitives
 54.8. Diseño y verificación
+54.9. Loom para interleavings pequeños; Shuttle como complemento y límites de model checking
+54.10. Reclamación de memoria, epochs y hazard pointers: prerrequisito para estructuras lock-free propias
+54.11. Laboratorio: comprobar una primitiva mínima y documentar qué no demuestra el modelo
 
 55. UNSAFE EN PROFUNDIDAD
 55.1. Unsafe contracts e invariants
@@ -913,6 +1112,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 55.8. FFI y concurrency
 55.9. Sound abstractions
 55.10. Miri
+55.11. Strict provenance y APIs de punteros; distinguir UB, comportamiento no especificado y detalles de implementación
+55.12. Initializedness, validez, alineación y ownership; Miri no demuestra ausencia universal de UB
+55.13. Laboratorio: abstracción pequeña con Safety docs, fuzzing y revisión de invariantes
 
 56. RUST COMPILER / LANGUAGE INTERNALS
 56.1. Arquitectura rustc y query system
@@ -923,6 +1125,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 56.6. LLVM/codegen
 56.7. Diagnostics
 56.8. Evolución del lenguaje
+56.9. Contribución guiada: compilar rustc opcionalmente, tests UI y minimización de reproducciones
+56.10. RFCs, tracking issues y features: una propuesta no equivale a característica estable
+56.11. Laboratorio: seguir un diagnóstico desde un ejemplo mínimo hasta su implementación
 
 57. DEBUGGING
 57.1. Compiler diagnostics
@@ -934,6 +1139,9 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 57.7. Miri y Valgrind
 57.8. perf
 57.9. Debugging de concurrencia
+57.10. Separar fallos de compilación, panic, UB, deadlock, starvation y errores de protocolo
+57.11. Disponibilidad de sanitizers/Miri según toolchain, componentes y plataforma
+57.12. Laboratorio: diagnosticar un panic y un bloqueo con evidencia y reproducción mínima
 
 58. RUST PROFESIONAL
 58.1. Estructura de proyectos y workspaces
@@ -944,6 +1152,8 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 58.6. Dependency management/security
 58.7. Profiling/observability
 58.8. Releases y mantenimiento
+58.9. Política MSRV/edición, pruebas feature-matrix, compatibilidad y mantenimiento de dependencias
+58.10. Laboratorio: preparar una release revisable con documentación, artefactos y procedencia
 
 59. PROYECTOS PROGRESIVOS
 59.1. CLI
@@ -959,6 +1169,10 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 59.11. Procedural macro
 59.12. Synchronization primitive
 59.13. Systems utility
+59.14. Hitos por proyecto: contrato, diseño, tests, límites y retrospectiva antes de ampliarlo
+59.15. Servicio REST: router/extractors/state, errores HTTP y tests locales; persistencia opcional con SQLx
+59.16. Persistencia: transacciones, pool, migraciones y pruebas aisladas; remisión al PATH SQL
+59.17. Rúbrica común: corrección, ownership, errores, seguridad, mediciones y documentación
 
 60. PROYECTO FINAL — RUSTACEAN
 60.1. Workspace multi-crate
@@ -971,6 +1185,10 @@ Plataforma principal: Fedora Linux; Rust stable salvo necesidad justificada.
 60.8. Tests/benchmarks/profiling
 60.9. Unsafe justificado cuando sea necesario
 60.10. Documentación, CI/CD, packaging y release
+60.11. Especificación verificable, modelo de amenazas, ADRs y límites de recursos
+60.12. Plan de pruebas: unitarias, integración, compile-fail y propiedades según riesgos reales
+60.13. Ensayo de actualización, compatibilidad, despliegue local y recuperación ante fallos
+60.14. Defensa final: justificar diseño, costes y contratos; entregar limitaciones reproducibles
 
 ESTÁNDAR DE CADA LECCIÓN
 🎯 OBJETIVO
@@ -996,3 +1214,18 @@ CRITERIOS DIDÁCTICOS
 - Los bloques expertos deben conectar el lenguaje con rustc, MIR, LLVM, ABI, SO y hardware.
 - Usar documentación oficial como autoridad primaria para semántica y comportamiento del lenguaje.
 - Terminar cada bloque importante con laboratorios y cada nivel con un proyecto integrador.
+
+EVALUACIÓN Y REPRODUCIBILIDAD
+- Cada laboratorio entrega código, instrucciones, resultado esperado y casos de error.
+- Una lección sobre errores de compilación incluye ejemplo intencionalmente inválido,
+  diagnóstico y corrección; se distingue de los ejemplos que deben compilar.
+- Hito fundamentos: modelo de dominio con préstamos y errores explicados (bloques 0–13).
+- Hito intermedio: biblioteca con traits, iterators, I/O y tests (14–25 y 43).
+- Hito avanzado: servicio concurrente/async y mediciones justificadas (26–41 y 44).
+- Hito profesional: CLI/TUI con configuración, pruebas, documentación y RPM (42, 45–49).
+- Hito experto: revisar invariantes, compatibilidad y límites del proyecto final (51–60).
+- Evaluar corrección, razonamiento de tipos, contratos, errores, seguridad, pruebas y
+  documentación. Rendimiento requiere baseline y datos; unsafe exige justificación.
+- Una mejora de benchmark o una ejecución bajo Miri/Loom no equivale a una prueba universal.
+- Separar biblioteca de std, crate externa, subcomando Cargo instalado y función nightly.
+- Conservar comandos de validación y versiones para reproducir el laboratorio.

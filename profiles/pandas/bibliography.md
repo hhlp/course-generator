@@ -50,3 +50,12 @@ https://pandas.pydata.org/docs/
 3. No inventar capítulos, páginas, citas o benchmarks; comprobar antes de referenciarlos.
 4. Indicar diferencias de comportamiento entre versiones cuando afecten a la corrección.
 5. Las referencias a NumPy, SQL y Polars son contextuales, no sustituyen sus learning paths.
+
+## E. Referencias específicas de pandas 3
+- Migración del nuevo dtype de texto: diferencias entre str, string y object.
+  https://pandas.pydata.org/docs/user_guide/migration-3-strings.html
+- Cambios de pandas 3.0: resolución datetime/timedelta y anti joins.
+  https://pandas.pydata.org/docs/whatsnew/v3.0.0.html
+- En cada laboratorio, consultar la versión documental correspondiente al
+  entorno fijado; no usar documentación dev como contrato de una versión estable.
+- Ventanas y agrupación temporal: priorizar estas referencias en el bloque 13.

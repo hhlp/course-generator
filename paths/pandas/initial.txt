@@ -57,11 +57,10 @@ Bloque 2 — Selección, indexación y filtrado
 2.12 Buenas prácticas de selección en pandas 3
 2.13 Acceso escalar con at e iat
 2.14 take y selección posicional avanzada
-2.15 xs y selección transversal
-2.16 Asignación condicional de celdas y columnas
-2.17 Errores de máscaras desalineadas y NA booleanos
-2.18 Indexación con etiquetas duplicadas y slices
-2.19 Laboratorio: selección segura y pruebas de asignación
+2.15 Asignación condicional de celdas y columnas
+2.16 Errores de máscaras desalineadas y NA booleanos
+2.17 Indexación con etiquetas duplicadas y slices
+2.18 Laboratorio: selección segura y pruebas de asignación
 
 Bloque 3 — Índices y alineación
 3.1 El índice como parte del modelo de datos
@@ -75,21 +74,24 @@ Bloque 3 — Índices y alineación
 3.9 sort_index
 3.10 Índices jerárquicos: introducción
 3.11 MultiIndex básico
-3.12 Diseño de índices y errores frecuentes
-3.13 Operaciones de conjuntos sobre Index
-3.14 get_indexer y búsqueda de posiciones
-3.15 Verificación de unicidad y claves duplicadas
-3.16 align con join y fill_value
-3.17 Aritmética flexible add, sub, mul y div
-3.18 Nombres de ejes y rename_axis
-3.19 Laboratorio: reconciliación de índices
+3.12 xs y selección transversal
+3.13 Diseño de índices y errores frecuentes
+3.14 Operaciones de conjuntos sobre Index
+3.15 get_indexer y búsqueda de posiciones
+3.16 Verificación de unicidad y claves duplicadas
+3.17 align con join y fill_value
+3.18 Aritmética flexible add, sub, mul y div
+3.19 Nombres de ejes y rename_axis
+3.20 Ordenación con sort_values: múltiples claves, estabilidad y nulos
+3.21 Selección de extremos con nlargest y nsmallest: empates y restricciones
+3.22 Laboratorio: reconciliación de índices
 
 Bloque 4 — Tipos de datos y valores ausentes
 4.1 dtypes y sistema de tipos de pandas
 4.2 Conversión con astype
 4.3 Conversión segura con to_numeric
 4.4 Tipos nullable
-4.5 StringDtype
+4.5 StringDtype: object, str con NaN y string con pd.NA
 4.6 BooleanDtype
 4.7 Enteros nullable
 4.8 pd.NA, NaN y None
@@ -101,7 +103,7 @@ Bloque 4 — Tipos de datos y valores ausentes
 4.14 select_dtypes y auditoría de columnas
 4.15 Semántica de lógica ternaria con pd.NA
 4.16 Valores ausentes en comparaciones, GroupBy y joins
-4.17 Dtypes respaldados por PyArrow: introducción
+4.17 Dtypes PyArrow: almacenamiento de strings frente a ArrowDtype
 4.18 Categorical, datetime y tipos extension
 4.19 Laboratorio: contratos de tipos y nulos
 
@@ -166,7 +168,9 @@ Bloque 7 — Limpieza y preparación de datos
 7.16 Tratamiento documentado de outliers
 7.17 Control de calidad antes y después de limpieza
 7.18 Idempotencia y trazabilidad de transformaciones
-7.19 Laboratorio: limpiar dataset con casos adversos
+7.19 Propagación con ffill y bfill: límites, grupos y orden de los datos
+7.20 Interpolación: métodos, límites y prevención de rellenos indebidos
+7.21 Laboratorio: limpiar dataset con casos adversos
 
 Bloque 8 — Transformación de datos
 8.1 Operaciones vectorizadas
@@ -187,7 +191,9 @@ Bloque 8 — Transformación de datos
 8.16 Reducciones y propagación de NA
 8.17 assign con dependencias entre columnas
 8.18 Diseño de funciones pequeñas reutilizables
-8.19 Laboratorio: comparar bucles, apply y vectorización
+8.19 Discretización con cut y qcut: intervalos, etiquetas y bordes duplicados
+8.20 Operaciones acumulativas: cumsum, cumprod, cummin y cummax
+8.21 Laboratorio: comparar bucles, apply y vectorización
 
 Bloque 9 — GroupBy, agregación y ventanas
 9.1 Split-Apply-Combine
@@ -199,21 +205,17 @@ Bloque 9 — GroupBy, agregación y ventanas
 9.7 transform con grupos
 9.8 filter sobre grupos
 9.9 Grupos múltiples
-9.10 rolling
-9.11 expanding
-9.12 Patrones eficientes de agregación
-9.13 Grouper y agrupación por periodos temporales
-9.14 dropna, observed y sort en GroupBy
-9.15 rolling y expanding dentro de grupos
-9.16 ewm y ventanas ponderadas
-9.17 shift, diff, rank y pct_change por grupo
-9.18 Índices y formas de salida con as_index
-9.19 Laboratorio: indicadores segmentados y temporales
+9.10 Patrones eficientes de agregación
+9.11 dropna, observed y sort en GroupBy
+9.12 shift, diff, rank y pct_change por grupo
+9.13 Índices y formas de salida con as_index
+9.14 Numeración por grupo con cumcount y ngroup: orden y claves
+9.15 Laboratorio: indicadores segmentados y temporales
 
 Bloque 10 — Merge, join y concatenación
 10.1 Modelo relacional aplicado a pandas
 10.2 merge básico
-10.3 Tipos de join
+10.3 Tipos de join: inner, left, right, outer, cross y anti joins de pandas 3
 10.4 Claves con nombres diferentes
 10.5 Merge con múltiples claves
 10.6 Validación de cardinalidad
@@ -265,7 +267,7 @@ Bloque 12 — Texto, strings y datos categóricos
 12.10 Categorías ordenadas
 12.11 Rendimiento y memoria con categorías
 12.12 Pipeline de preparación de variables categóricas
-12.13 StringDtype moderno y almacenamiento PyArrow
+12.13 Strings str y string: almacenamiento Python/PyArrow y semántica de nulos
 12.14 Semántica de nulos en métodos str
 12.15 Normalización Unicode y comparación textual
 12.16 Regex: compilación, flags y captura aplicada
@@ -275,7 +277,7 @@ Bloque 12 — Texto, strings y datos categóricos
 
 Bloque 13 — Fechas, tiempo y series temporales
 13.1 Timestamp y DatetimeIndex
-13.2 to_datetime
+13.2 to_datetime: parseo, unidades y resolución temporal en pandas 3
 13.3 Parseo y errores de fechas
 13.4 Accessor dt
 13.5 Zonas horarias
@@ -292,7 +294,12 @@ Bloque 13 — Fechas, tiempo y series temporales
 13.16 Offsets personalizados y frecuencias ancladas
 13.17 asfreq frente a resample
 13.18 merge_asof en datos temporales
-13.19 Laboratorio: datos con zonas horarias y DST
+13.19 rolling
+13.20 expanding
+13.21 Grouper y agrupación por periodos temporales
+13.22 rolling y expanding dentro de grupos
+13.23 ewm y ventanas ponderadas
+13.24 Laboratorio: datos con zonas horarias y DST
 
 Bloque 14 — Análisis exploratorio de datos
 14.1 Flujo de trabajo EDA
@@ -329,7 +336,7 @@ Bloque 15 — Rendimiento, optimización y Pandas idiomático
 15.11 Patrones y antipatterns de Effective Pandas
 15.12 Perfilado de memoria y tiempo
 15.13 timeit, perf_counter y diseño de benchmarks
-15.14 Profiling con cProfile y herramientas de memoria
+15.14 Profiling inicial con cProfile y herramientas de memoria
 15.15 numexpr y motores de expresiones
 15.16 Numba: casos compatibles y limitaciones
 15.17 Escalabilidad: chunking y algoritmos incrementales
@@ -398,9 +405,9 @@ Bloque 18 — Apache Arrow, dtypes modernos e interoperabilidad
 18.18 Laboratorio: interoperabilidad sin pérdida de esquema
 
 Bloque 19 — Rendimiento experto y escalabilidad
-19.1 Metodología de profiling reproducible
+19.1 Profiling experto: atribución de costes y comparación de cargas representativas
 19.2 Construcción de baselines y presupuestos de memoria
-19.3 Medición de tiempo de CPU y tiempo real
+19.3 Tiempo de CPU y tiempo real: variabilidad, repeticiones y resultados comparables
 19.4 Elección de dtypes para cargas grandes
 19.5 Coste de objetos y strings
 19.6 Optimización de filtrado y proyección
@@ -408,9 +415,9 @@ Bloque 19 — Rendimiento experto y escalabilidad
 19.8 GroupBy grande: agregaciones eficientes
 19.9 Vectorización real frente a wrappers Python
 19.10 Cuándo apply es apropiado
-19.11 Numba para funciones numéricas compatibles
-19.12 Motores de evaluación de expresiones
-19.13 Procesamiento incremental por chunks
+19.11 Numba: amortizar compilación, verificar resultados y decidir con benchmarks
+19.12 Motores de expresiones: evaluar límites, conversiones y punto de equilibrio
+19.13 Chunking experto: conservar estado, orden y resultados entre particiones
 19.14 Algoritmos online y agregación parcial
 19.15 Parquet particionado y reducción de I/O
 19.16 Copy-on-Write bajo presión de memoria
@@ -421,20 +428,20 @@ Bloque 20 — Testing avanzado y arquitectura de pipelines
 20.1 Arquitectura de paquetes de transformación
 20.2 Separación de ingestión, validación y transformación
 20.3 Diseño funcional y ausencia de efectos laterales
-20.4 Contratos de datos y esquemas
+20.4 Contratos de datos: evolución de esquemas y compatibilidad de consumidores
 20.5 Validación de tipos, rangos y unicidad
 20.6 Pruebas unitarias de Series y DataFrame
 20.7 assert_frame_equal y assert_series_equal
-20.8 Fixtures pequeñas y casos representativos
+20.8 Fixtures adversas: datasets vacíos, claves duplicadas y combinaciones de dtypes
 20.9 Parametrización de escenarios adversos
-20.10 Pruebas basadas en propiedades
+20.10 Hypothesis avanzado: estrategias de generación y reducción de fallos
 20.11 Invariantes y metamorphic testing
 20.12 Idempotencia y determinismo
 20.13 Gestión de nulos y zonas horarias en pruebas
 20.14 Errores recuperables y políticas de fallo
 20.15 Logging estructurado y métricas básicas
-20.16 CI y matrices de compatibilidad
-20.17 Versionado y trazabilidad de datasets
+20.16 CI: matrices pandas/NumPy/PyArrow y regresiones entre versiones
+20.17 Trazabilidad de datasets: procedencia, hashes y reconstrucción de resultados
 20.18 Laboratorio: pipeline listo para mantenimiento
 
 Bloque 21 — Pandas 3, migración y proyecto final
@@ -452,8 +459,8 @@ Bloque 21 — Pandas 3, migración y proyecto final
 21.12 Proyecto final: pipeline Pandas 3 de extremo a extremo
 21.13 Matriz de cambios y compatibilidad pandas 2 → 3
 21.14 Auditoría de asignaciones encadenadas y Copy-on-Write
-21.15 Migración de strings, tipos y valores ausentes
-21.16 Revisión de frecuencias y APIs obsoletas
+21.15 Migración de object a str/string: tipos, nulos y conversiones
+21.16 Revisión de frecuencias, resolución temporal y APIs obsoletas
 21.17 Comparación de resultados antes y después
 21.18 Pruebas de regresión y benchmarks de migración
 21.19 Entrega final: documentación, tests y reproducibilidad

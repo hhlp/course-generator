@@ -62,7 +62,7 @@
 5.6 Atributos primos y no primos
 5.7 Identificadores artificiales y unicidad de negocio
 5.8 Laboratorio: demostrar minimalidad de las claves
-5.9 Algoritmo sistemático de enumeración de claves candidatas
+5.9 Descubrimiento intuitivo de claves candidatas con reglas de negocio
 5.10 Identidad estable y cambios de identificadores naturales
 
 6. Del modelo conceptual al relacional
@@ -128,7 +128,7 @@
 11.4 Cierre de dependencias
 11.5 Equivalencia de conjuntos de dependencias
 11.6 Atributos extraños y cubierta mínima
-11.7 Enumeración de claves candidatas
+11.7 Algoritmo sistemático de enumeración de claves mediante cierres
 11.8 Laboratorio: cálculo manual y comprobador en Python
 11.9 Demostración paso a paso de cubiertas equivalentes
 11.10 Coste combinatorio de búsqueda de claves y podas
@@ -143,7 +143,7 @@
 12.6 Atomicidad relativa al dominio
 12.7 Tipos estructurados frente a hechos independientes
 12.8 Laboratorio: modelar múltiples teléfonos
-12.9 Atomicidad relativa al dominio: casos debatibles
+12.9 Taller de decisión: tipos estructurados o relaciones separadas
 
 13. Segunda forma normal: 2FN
 13.1 Definición y requisito de 1FN
@@ -162,7 +162,7 @@
 14.5 Síntesis a 3FN
 14.6 Preservación de dependencias y relación que contiene una clave
 14.7 Laboratorio: empleados, departamentos y sedes
-14.8 Algoritmo de síntesis a 3FN completamente resuelto
+14.8 Ejercicio resuelto de síntesis a 3FN con varias claves candidatas
 14.9 Demostración de preservación y reconstrucción
 
 15. Forma normal de Boyce-Codd: BCNF
@@ -232,10 +232,14 @@
 21.5 Restricciones diferibles
 21.6 Restricciones de exclusión
 21.7 Índices frente a restricciones
-21.8 Triggers para invariantes no expresables declarativamente
-21.9 Laboratorio: DDL y pruebas positivas y negativas
-21.10 Unicidad condicional y restricciones sobre subconjuntos
-21.11 Deferrable, concurrencia y límites de triggers
+21.8 Transacciones: atomicidad, commit, rollback e invariantes
+21.9 Concurrencia: instantáneas, niveles de aislamiento y anomalías
+21.10 Bloqueos de filas: espera, orden de adquisición e interbloqueos
+21.11 Laboratorio con dos sesiones: carreras, bloqueos y reintentos
+21.12 Triggers para invariantes no expresables declarativamente
+21.13 Laboratorio: DDL y pruebas positivas y negativas
+21.14 Unicidad condicional y restricciones sobre subconjuntos
+21.15 Deferrable, concurrencia y límites de triggers
 
 22. Patrones de modelado
 22.1 Direcciones, contactos y catálogos
@@ -285,6 +289,11 @@
 25.9 Selectividad y orden de columnas de índices compuestos
 25.10 Coste de mantenimiento y amplificación de escritura
 25.11 Particionado: claves únicas y restricciones globales
+
+25.12 B-tree y Hash: operadores compatibles y criterios de elección
+25.13 GiST y SP-GiST: rangos, búsquedas y clases de operadores
+25.14 GIN y BRIN: datos multivaluados, correlación física y compromisos
+25.15 Laboratorio: seleccionar y medir métodos de índice según la carga
 
 26. Diseño transaccional y analítico
 26.1 Objetivos de OLTP y OLAP
@@ -382,7 +391,7 @@
 33.7 Latencias p50, p95 y p99 y throughput
 33.8 Laboratorio: informe reproducible de alternativas físicas
 33.9 Diseño experimental: calentamiento, repetición y dispersión
-33.10 Interpretación de p50, p95, p99 y throughput
+33.10 Taller de interpretación de percentiles y throughput bajo contención
 33.11 Control de variables y reproducibilidad de benchmarks
 
 34. Datos derivados y agregados
@@ -395,7 +404,7 @@
 34.7 SUM y COUNT para mantener AVG
 34.8 MIN, MAX y DISTINCT: límites del mantenimiento simple
 34.9 Laboratorio: comparar cinco estrategias de total de pedido
-34.10 Derivación del umbral Q/W para materializar totales
+34.10 Ejercicio resuelto del umbral Q/W con análisis de sensibilidad
 34.11 Ejercicio resuelto de costes con cinco estrategias
 34.12 Redondeo, descuentos, impuestos y hechos históricos
 34.13 Costes de refresco, invalidación y reconciliación

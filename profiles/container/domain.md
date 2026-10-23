@@ -572,7 +572,7 @@ Ese nivel de comprensión define el nivel **experto** de este dominio.
 
 ## 24. Ampliación experta — bloques 40–52
 
-Los bloques 0–39 se conservan íntegros. Los laboratorios integrales de 38 y 39 son una primera implementación; el bloque 52 constituye la ampliación experta y entrega definitiva, sin sustituir las prácticas anteriores.
+Los bloques 0–39 se conservan íntegros. Los laboratorios integrales de 38 y 39 son una primera implementación; el bloque 52 constituye la entrega experta del entorno local; el bloque 61 completa la entrega con Swarm, sin sustituir las prácticas anteriores.
 
 - **Bloque 40 — Linux Container Internals y OCI Runtime:** 21 lecciones de profundización y laboratorios.
 - **Bloque 41 — Podman — administración avanzada:** 21 lecciones de profundización y laboratorios.
@@ -586,7 +586,7 @@ Los bloques 0–39 se conservan íntegros. Los laboratorios integrales de 38 y 3
 - **Bloque 49 — Seguridad de la cadena de suministro:** 22 lecciones de profundización y laboratorios.
 - **Bloque 50 — Observabilidad y diagnóstico avanzado:** 21 lecciones de profundización y laboratorios.
 - **Bloque 51 — Operación, mantenimiento y recuperación:** 21 lecciones de profundización y laboratorios.
-- **Bloque 52 — Internals containers/* y proyecto experto integrador:** 22 lecciones de profundización y laboratorios.
+- **Bloque 52 — Internals containers/* y proyecto experto integrador:** 23 lecciones de profundización y laboratorios.
 
 ### Requisitos verificables del nivel experto
 
@@ -609,3 +609,56 @@ Docker Swarm se incorpora como materia principal de orquestación integrada en D
 Se exigen laboratorios Fedora multinodo con verificación de puertos, firewalld, SELinux, tolerancia a fallos, actualizaciones, rollback, backups y troubleshooting basado en evidencias. Swarm no debe presentarse como equivalente funcional a Kubernetes ni como solución de almacenamiento distribuido. Las capacidades y flags se validarán contra la versión instalada de Docker Engine.
 
 Los bloques 0–52 permanecen intactos. El bloque 61 amplía el proyecto container-debugger para diagnosticar servicios, tareas, nodos, redes y quorum, sin sustituir el proyecto original.
+
+
+## 26. Progresión, instalación y límites de implementación
+
+Los 62 bloques se mantienen. Las lecciones nuevas se añaden al final de sus
+bloques; las anteriores conservan identificador y título. Los temas recurrentes
+se desarrollan por resultados: fundamentos identifica y ejecuta; avanzado
+configura y diagnostica; experto justifica, mide y recupera. Cada lección debe
+explicitar lo que reutiliza y la capacidad nueva que aporta.
+
+### Instalación y Docker rootless
+
+Distinguir Docker CE del repositorio oficial y Moby distribuido por Fedora.
+Inventariar paquetes, repositorios, runtimes y plugins antes de instalar;
+resolver conflictos según la transacción real de DNF. No asumir que el paquete
+`docker` identifica siempre la misma implementación. Comprobar si `podman-docker`
+proporciona la CLI y verificar sockets, contexto y endpoint antes de operar.
+
+Docker rootless requiere una práctica propia: mapeos subordinados,
+`dockerd-rootless-setuptool.sh`, servicio systemd de usuario, linger, contexto
+rootless y socket de usuario. Comparar con Podman rootless y con `userns-remap`:
+en este último el daemon sigue siendo rootful. Registrar limitaciones de red,
+recursos y almacenamiento de la versión instalada. El laboratorio Swarm debe
+validar separadamente sus requisitos de engine, privilegios y overlay.
+
+### Compose y Swarm stacks
+
+`docker stack deploy` utiliza el formato heredado Compose v3; la Compose
+Specification moderna no constituye una garantía de compatibilidad con stacks.
+Comparar campos soportados, rechazados e ignorados y revisar los avisos del CLI.
+Construir y publicar imágenes antes del despliegue del stack; verificar acceso
+al registry desde todos los nodos y la identidad del contenido desplegado.
+
+### Hitos y aceptación del proyecto
+
+| Hito | Entrega | Evidencia mínima |
+|---|---|---|
+| 39 | Diagnóstico base local | Engine/contexto, JSON válido, PID, namespaces, cgroup, mounts y red |
+| 52 | Diagnóstico experto local | Flujo de imagen por digest/plataforma, fallos inyectados y restauración |
+| 61 | Diagnóstico final con Swarm | Nodos, servicios, tareas, redes, managers y pruebas de recuperación |
+
+El bloque 39 debe incluir un contrato JSON versionado e informe humano;
+el 52 conserva ese contrato y amplía adaptadores; el 61 añade Swarm sin romper
+los resultados locales. Todos exigen evidencias sanitizadas, estados explícitos
+para permisos insuficientes y documentación de reproducción. El informe no debe
+exportar credenciales, variables sensibles, tokens ni contenido de secrets.
+
+El modo de diagnóstico es de solo lectura. Los comandos correctivos se
+presentan como propuestas documentadas y se ejecutan aparte en el laboratorio.
+La salud y el quorum se describen según el punto de observación: distinguir
+estado local, información del manager, datos obsoletos y evidencias inaccesibles.
+Las pruebas de recuperación deben demostrar integridad de datos además de
+arranque del servicio. El bloque 61 es la entrega final del PATH completo.

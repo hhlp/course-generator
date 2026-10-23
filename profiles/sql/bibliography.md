@@ -192,7 +192,7 @@ Las fuentes cumplen funciones diferentes:
 Los libros son fuentes de apoyo, no el límite del temario. Cuando exista
 diferencia entre una edición de un libro, un tutorial y la versión actual
 de PostgreSQL utilizada en el curso, prevalece la documentación oficial
-vigente de PostgreSQL.
+de la versión de PostgreSQL utilizada.
 
 Los ejemplos procedentes de fuentes basadas en MySQL, MariaDB u otros
 dialectos pueden adaptarse a PostgreSQL siempre que se conserve el concepto
@@ -232,3 +232,30 @@ especializadas en diseño y teoría relacional.
 - **Testing y proyecto (33–34):** documentación de psql y pgTAP, con datasets mínimos reproducibles.
 
 **Regla:** mantener las nueve referencias principales existentes; ninguna fuente complementaria sustituye la documentación oficial de la versión de PostgreSQL utilizada.
+
+
+## Referencias versionadas para la revisión
+
+Base de laboratorio: PostgreSQL 18.x, registrando el minor exacto.
+Para otra versión, consultar sus páginas correspondientes antes de adaptar SQL.
+
+- SELECT, FETCH WITH TIES, conjuntos y orden:
+  https://www.postgresql.org/docs/18/sql-select.html
+- Expresiones y reglas de evaluación:
+  https://www.postgresql.org/docs/18/sql-expressions.html
+- REFRESH MATERIALIZED VIEW y requisitos de CONCURRENTLY:
+  https://www.postgresql.org/docs/18/sql-refreshmaterializedview.html
+- UPDATE FROM y múltiples coincidencias:
+  https://www.postgresql.org/docs/18/sql-update.html
+- Funciones de tabla y WITH ORDINALITY:
+  https://www.postgresql.org/docs/18/queries-table-expressions.html
+- Restauración del dataset mediante pg_restore:
+  https://www.postgresql.org/docs/18/app-pgrestore.html
+- Privilegios mínimos de objetos:
+  https://www.postgresql.org/docs/18/sql-grant.html
+  https://www.postgresql.org/docs/18/sql-revoke.html
+
+El dataset enlazado de Neon es DVD Rental (`dvdrental`); la descarga se extrae
+a `dvdrental.tar`. Registrar checksum e instrucciones de restauración y reset.
+Los tests de igualdad sobre fixtures se utilizan como evidencia de regresión,
+no como demostración universal de equivalencia de consultas.

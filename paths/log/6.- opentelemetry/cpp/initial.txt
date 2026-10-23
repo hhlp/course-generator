@@ -1,0 +1,424 @@
+OPENTELEMETRY CON C++ — DE 0 A EXPERTO EN PROFUNDIDAD
+
+Especialización independiente · idioma español · revisión 2026-10-22
+Prerrequisitos: fundamentos del curso general de OpenTelemetry y C++ básico.
+El bloque 1 es un puente técnico, no un curso completo de C++.
+Contenido de este paquete: currículo y configuración para generar lecciones.
+Los fuentes y scripts de los laboratorios se producirán al desarrollar cada lección;
+este ZIP no contiene una implementación ejecutable del laboratorio.
+Orden: bloques 0–28, 30–33; bloque 29 opcional si se usa Kubernetes.
+
+CONTRATO DE PROFUNDIDAD
+Cada lección desarrolla objetivo, mecanismo, uso, límites, ejemplo C++ completo cuando
+proceda, errores, comprobación y recapitulación; no basta enumerar opciones.
+Cada laboratorio exige versiones fijadas, archivos completos, comandos ejecutables,
+resultado esperado, validación de señal, prueba negativa, diagnóstico y limpieza.
+Las funciones opcionales requieren evidencia de soporte en la release seleccionada.
+
+0. Orientación y contrato de la especialización
+0.1 Identificar las preguntas operativas que debe responder una aplicación C++ instrumentada
+0.2 Relacionar este path con OpenTelemetry general y el path independiente de C++
+0.3 Distinguir API, SDK, exportador, Collector y backend dentro del proceso y fuera de él
+0.4 Delimitar trazas, métricas y logs frente a profiling y diagnóstico del sistema operativo
+0.5 Diseñar un laboratorio local sin exposición pública y con datos sintéticos
+0.6 Definir evidencias por señal, presupuesto de overhead y criterios de éxito
+0.7 Preparar un manifiesto de versiones, fuentes, compilador y opciones de construcción
+0.8 Leer la matriz de soporte del SDK seleccionado sin extrapolar desde otros lenguajes
+0.9 Laboratorio: Esquematizar dos servicios C++, un Collector y un backend por señal; justificar cada enlace
+0.10 Laboratorio de fallos: Detectar una capacidad inexistente en una propuesta y sustituirla por una alternativa documentada
+
+1. C++ imprescindible para instrumentar
+1.1 Revisar namespaces, headers, unidades de traducción y separación de interfaces
+1.2 Aplicar RAII y distinguir duración de ámbito de duración de una operación
+1.3 Diferenciar unique_ptr, shared_ptr, referencias y vistas no propietarias
+1.4 Razonar sobre move semantics y transferencia de propiedad hacia factories
+1.5 Evitar referencias colgantes en atributos, strings, spans y callbacks
+1.6 Modelar excepciones, retornos tempranos y destructores sin fallos secundarios
+1.7 Usar chrono y separar reloj monotónico de marcas temporales de calendario
+1.8 Comprender mutex, atomics, data races y sincronización antes de añadir telemetría
+1.9 Laboratorio: Construir una operación con RAII y retornos tempranos; demostrar la liberación de recursos
+1.10 Laboratorio de fallos: Reproducir una referencia colgante en un ejemplo aislado y localizarla con un sanitizer
+
+2. Toolchain y entorno Linux reproducible
+2.1 Instalar y verificar compilador, CMake, generador, Git y herramientas de diagnóstico en Fedora o RHEL
+2.2 Comparar GCC y Clang y registrar versión de biblioteca estándar y arquitectura
+2.3 Compilar perfiles Debug, Release y RelWithDebInfo con símbolos útiles
+2.4 Gestionar prefijos de instalación locales sin modificar bibliotecas del sistema
+2.5 Diferenciar dependencias de compilación y ejecución: TLS, protobuf, gRPC y HTTP
+2.6 Leer errores de includes, configuración CMake y dependencias transitivas
+2.7 Preparar presets y cachés aisladas por compilador y configuración
+2.8 Documentar requisitos mínimos de la release elegida en vez de asumir los de main
+2.9 Laboratorio: Compilar un programa mínimo desde un checkout limpio y guardar el manifiesto del entorno
+2.10 Laboratorio de fallos: Romper una ruta de dependencias, diagnosticar la fase fallida y reconstruir con caché limpia
+
+3. Construcción e instalación de opentelemetry-cpp
+3.1 Seleccionar una release oficial, fijar su tag o commit y consultar sus instrucciones INSTALL
+3.2 Construir API y SDK y entender las opciones que habilitan exportadores y pruebas
+3.3 Habilitar OTLP HTTP y gRPC según requisitos de dependencias documentados
+3.4 Comparar bibliotecas estáticas y compartidas y sus implicaciones de distribución
+3.5 Instalar y consumir el paquete con find_package y targets exportados comprobados
+3.6 Comparar CMake con Bazel como sistemas oficiales sin imponer el segundo al itinerario principal
+3.7 Evaluar vcpkg o Conan como rutas alternativas verificando revisión y opciones del paquete
+3.8 Construir un inventario de capacidades a partir de headers, ejemplos y pruebas de la release
+3.9 Laboratorio: Construir SDK y ejemplo con un exportador a consola y otro OTLP; registrar opciones exactas
+3.10 Laboratorio de fallos: Desactivar un exportador requerido y explicar el error de configuración o enlace resultante
+
+4. Arquitectura API y SDK en una aplicación
+4.1 Instrumentar una biblioteca contra la API y dejar la elección del SDK a la aplicación
+4.2 Entender providers globales, proveedores explícitos y comportamiento no-op
+4.3 Distinguir Resource, instrumentation scope y atributos de cada señal
+4.4 Inicializar la telemetría antes de aceptar tráfico y controlar su propiedad
+4.5 Diseñar una fachada pequeña sin ocultar semántica, contexto ni errores
+4.6 Evitar inicialización estática dependiente del orden entre unidades de traducción
+4.7 Configurar pruebas con providers aislados y prevenir contaminación entre casos
+4.8 Definir orden de destrucción entre aplicación, workers, providers y exportadores
+4.9 Laboratorio: Ejecutar la misma biblioteca con API no-op y con SDK; comparar sus emisiones
+4.10 Laboratorio de fallos: Provocar una inicialización tardía y demostrar qué operaciones quedan sin telemetría
+
+5. Primera traza y modelo de spans
+5.1 Obtener TracerProvider y Tracer con nombre y versión del scope
+5.2 Crear spans con nombres estables y distinguir span activo de span existente
+5.3 Establecer padres explícitos y verificar relaciones mediante identificadores
+5.4 Aplicar SpanKind a operaciones internas, clientes y servidores
+5.5 Añadir atributos tipados y controlar cardinalidad y tamaño
+5.6 Agregar eventos temporales y links sin confundirlos con hijos
+5.7 Marcar estado de error y registrar excepciones sin asumir automatismos
+5.8 Finalizar spans explícitamente y verificar los límites del objeto o guard usado
+5.9 Laboratorio: Emitir una traza raíz con dos hijos, evento y error sintético; comprobar su estructura
+5.10 Laboratorio de fallos: Dejar un span sin finalizar y demostrar su ausencia o comportamiento en el exportador elegido
+
+6. RAII y ciclo de vida de spans
+6.1 Diferenciar Scope de activación de contexto y finalización del span
+6.2 Diseñar un guard de finalización idempotente con propiedad inequívoca
+6.3 Evitar dobles End y uso del span después de finalizarlo
+6.4 Conservar el contexto al separar operación lógica y ámbito léxico
+6.5 Gestionar operaciones que sobreviven al stack frame que las inicia
+6.6 Aplicar atributos condicionales con IsRecording cuando el coste lo justifique
+6.7 Tratar excepciones y cancelaciones con semántica de negocio explícita
+6.8 Verificar destructores noexcept y evitar exportaciones bloqueantes desde destructores arbitrarios
+6.9 Laboratorio: Probar éxito, excepción y retorno temprano; exigir exactamente un cierre por operación
+6.10 Laboratorio de fallos: Sacar una tarea del ámbito inicial y corregir el cierre prematuro de su span
+
+7. Contexto local y propagadores
+7.1 Inspeccionar Context, RuntimeContext, tokens y restauración del contexto anterior
+7.2 Entender el almacenamiento asociado al hilo y sus límites en ejecución asíncrona
+7.3 Extraer e inyectar W3C Trace Context con carriers adaptados al transporte
+7.4 Tratar traceparent inválido y tracestate conforme al contrato del propagador
+7.5 Configurar propagadores explícitamente y comprobar qué configuración admite la release
+7.6 Introducir baggage con límites y política de datos permitidos
+7.7 Distinguir atributos del span, Resource y baggage propagado
+7.8 Probar reentrada y restauración para evitar contaminación entre solicitudes
+7.9 Laboratorio: Implementar un carrier de cabeceras y verificar un round-trip con contexto válido e inválido
+7.10 Laboratorio de fallos: Compartir un worker entre dos solicitudes y demostrar que no heredan contexto entre sí
+
+8. Hilos, pools y ejecución diferida
+8.1 Capturar Context por valor antes de enviar trabajo a std::thread
+8.2 Activar y restaurar contexto dentro del worker que ejecuta la tarea
+8.3 Propagar contexto por std::async, futures y colas de trabajo explícitas
+8.4 Diseñar tareas que no dependan de referencias al stack del productor
+8.5 Representar fan-out y fan-in con padres o links según causalidad
+8.6 Gestionar cancelación, deadlines y tareas abandonadas sin spans eternos
+8.7 Evitar deadlocks y carreras entre instrumentación y cierre del SDK
+8.8 Verificar reuso de threads y aislamiento de solicitudes con pruebas concurrentes
+8.9 Laboratorio: Instrumentar un pool con varias solicitudes concurrentes y verificar la ascendencia de cada tarea
+8.10 Laboratorio de fallos: Omitir captura o restauración del contexto y localizar spans huérfanos o mezclados
+
+9. Coroutines, event loops y callbacks
+9.1 Distinguir identidad de coroutine, thread y operación de negocio
+9.2 Capturar contexto al registrar callbacks y activarlo al ejecutarlos
+9.3 Diseñar propagación alrededor de suspend y resume sin mantener Scope en otro hilo
+9.4 Integrar contexto en un executor o scheduler en vez de usar estado global mutable
+9.5 Evaluar Boost.Asio u otro event loop mediante su contrato real de ejecución
+9.6 Tratar lifetimes de sockets, buffers y contexto en handlers asíncronos
+9.7 Controlar cancelación y rutas de error que impiden ejecutar callbacks esperados
+9.8 Comparar propagación manual y adaptadores con pruebas de migración entre threads
+9.9 Laboratorio: Implementar una operación asíncrona de dos etapas con contexto correcto tras reanudación
+9.10 Laboratorio de fallos: Forzar suspensión y cambio de worker y corregir un padre erróneo sin depender de thread_local
+
+10. Instrumentación HTTP cliente y servidor
+10.1 Extraer contexto antes de iniciar el span servidor y activarlo durante la petición
+10.2 Inyectar contexto desde el span cliente antes del envío
+10.3 Usar rutas normalizadas en lugar de URLs o identificadores dinámicos como nombres
+10.4 Aplicar convenciones HTTP y atributos de red de la versión fijada
+10.5 Distinguir transporte fallido, respuesta HTTP y error de negocio
+10.6 Medir duración y concurrencia con límites de instrumentación definidos
+10.7 Evitar captura de tokens, cookies y cuerpos sensibles
+10.8 Crear adaptadores para un framework elegido y comprobar cobertura de dependencias
+10.9 Laboratorio: Conectar dos servicios HTTP C++ y verificar continuidad de trace_id y roles cliente-servidor
+10.10 Laboratorio de fallos: Eliminar una cabecera propagada y diagnosticar dónde se rompe la traza distribuida
+
+11. Instrumentación gRPC y streaming
+11.1 Representar RPC cliente y servidor con convenciones de servicio y método
+11.2 Adaptar metadata gRPC como carrier de extracción e inyección
+11.3 Comparar interceptors disponibles y wrapping explícito según la biblioteca seleccionada
+11.4 Propagar contexto en APIs gRPC síncronas y asíncronas
+11.5 Diseñar duración de span para unary y streaming sin crear un span por byte
+11.6 Tratar códigos de estado, deadlines y cancelaciones
+11.7 Diferenciar reintentos lógicos de intentos físicos y evitar duplicación
+11.8 Verificar lifetimes de objetos asociados a completion queues
+11.9 Laboratorio: Ejecutar RPC unary y streaming con propagación y cierre verificable
+11.10 Laboratorio de fallos: Provocar deadline exceeded y demostrar el estado final y la liberación de recursos
+
+12. Datos, mensajería y tareas de fondo
+12.1 Instrumentar acceso SQL o NoSQL con wrappers cuando el driver carece de integración
+12.2 Registrar operaciones y latencia sin exportar consultas con datos sensibles
+12.3 Separar adquisición de conexión, espera en pool y operación remota
+12.4 Propagar contexto en metadatos de mensajes sin alterar su payload contractual
+12.5 Representar productor, entrega, consumidor y procesamiento por lotes
+12.6 Usar links ante múltiples mensajes y razonar sobre redelivery y causalidad
+12.7 Instrumentar jobs periódicos con raíz propia o contexto de origen explícito
+12.8 Documentar soporte real del driver o broker elegido y su alternativa manual
+12.9 Laboratorio: Crear un productor-consumidor local y correlacionar publicación, entrega y procesamiento
+12.10 Laboratorio de fallos: Reentregar un mensaje y distinguir un nuevo intento del procesamiento original
+
+13. Sampling y procesamiento de trazas
+13.1 Comparar AlwaysOn, AlwaysOff, TraceIdRatioBased y ParentBased según API disponible
+13.2 Interpretar recording y sampled y sus efectos sobre el trabajo de instrumentación
+13.3 Evitar sesgos al medir errores a partir de trazas muestreadas
+13.4 Entender SimpleSpanProcessor y BatchSpanProcessor y el coste de sus caminos
+13.5 Ajustar tamaño de cola, lotes, intervalos y plazos con unidades explícitas
+13.6 Explicar pérdida por saturación y el equilibrio entre memoria y throughput
+13.7 Diferenciar head sampling del SDK y tail sampling del Collector
+13.8 Diseñar afinidad de trazas para tail sampling y evaluar las trazas incompletas
+13.9 Laboratorio: Comparar tres políticas de sampling con una carga y tasa de error conocidas
+13.10 Laboratorio de fallos: Saturar una cola de trazas y medir pérdida, latencia y memoria sin bloquear el servicio
+
+14. Métricas: API e instrumentos
+14.1 Crear MeterProvider y Meter con scope identificable
+14.2 Elegir Counter para acumulaciones monotónicas y UpDownCounter para cantidades variables
+14.3 Elegir Histogram para distribuciones y definir unidad y descripción
+14.4 Usar instrumentos observables según soporte del SDK fijado
+14.5 Definir atributos acotados y evitar IDs de usuario o petición como dimensiones
+14.6 Distinguir datos medidos, agregación y exportación periódica
+14.7 Aplicar contexto al registrar medidas cuando la API lo permita
+14.8 Verificar comportamiento concurrente sin añadir locks innecesarios
+14.9 Laboratorio: Medir peticiones, errores, trabajos en curso y duración con instrumentos apropiados
+14.10 Laboratorio de fallos: Introducir una etiqueta de alta cardinalidad y cuantificar el crecimiento de series
+
+15. Métricas: views, readers y agregación
+15.1 Configurar MetricReader y exportador con intervalos y deadlines
+15.2 Aplicar Views para filtrar atributos y seleccionar agregaciones disponibles
+15.3 Definir límites de histogramas explícitos adecuados al SLO
+15.4 Comprobar soporte de histogramas exponenciales y exemplars antes de usarlos
+15.5 Comprender temporalidad delta y cumulative y compatibilidad del destino
+15.6 Analizar resets de proceso y diferencias entre contador y rate consultada
+15.7 Evaluar límites de cardinalidad y comportamiento overflow de la release
+15.8 Validar nombres, unidades y dimensiones después de transformaciones de exportación
+15.9 Laboratorio: Diseñar histograma de latencia y verificar buckets y series en el destino
+15.10 Laboratorio de fallos: Cambiar temporalidad o reiniciar el proceso y explicar la consulta que deja de ser válida
+
+16. Callbacks y seguridad de métricas observables
+16.1 Registrar callbacks con datos cuya vida útil supere el registro
+16.2 Dar de baja callbacks antes de destruir el estado que consultan
+16.3 Leer snapshots coherentes con atomics o sincronización de bajo coste
+16.4 Evitar I/O lento, locks anidados y excepciones en callbacks de recolección
+16.5 Prevenir contadores decrecientes y unidades inconsistentes
+16.6 Definir qué representa cada observación durante carga y reposo
+16.7 Controlar shutdown concurrente con la recolección periódica
+16.8 Probar bloqueos y carreras con timeouts y ThreadSanitizer cuando sea compatible
+16.9 Laboratorio: Exponer tamaño de cola y memoria controlada con callbacks seguros
+16.10 Laboratorio de fallos: Destruir el estado antes de desregistrar un callback en un caso aislado y corregir el lifetime
+
+17. Logs estructurados y correlación
+17.1 Inicializar LoggerProvider, Logger y procesamiento de logs según la release
+17.2 Distinguir timestamp, observed timestamp, severity, body y atributos
+17.3 Emitir logs bajo contexto activo y comprobar trace_id y span_id
+17.4 Registrar eventos sin volcar objetos ni secretos completos
+17.5 Comparar exportación OTLP directa y recolección de archivos o stdout
+17.6 Diseñar adaptación para spdlog u otra biblioteca sin asumir un bridge oficial universal
+17.7 Evitar duplicados entre handlers locales, bridges y Collector
+17.8 Entender que SIGKILL o un crash pueden perder los registros en buffers
+17.9 Laboratorio: Correlacionar un log de error con su span y comparar emisión dentro y fuera del contexto
+17.10 Laboratorio de fallos: Duplicar una ruta de ingestión y eliminar el doble conteo con evidencias
+
+18. OTLP y configuración efectiva
+18.1 Comparar OTLP gRPC y HTTP/protobuf y las dependencias de cada transporte
+18.2 Distinguir endpoint base y ruta por señal según constructor y configuración usados
+18.3 Configurar headers, timeouts, compresión y certificados según soporte efectivo
+18.4 Comprobar variables OTEL_* una a una frente a la versión, señal y factory seleccionadas
+18.5 Definir precedencia entre código y entorno con pruebas pequeñas
+18.6 Explicar reintentos y pérdidas sin prometer entrega exactamente una vez
+18.7 Separar errores DNS, TCP, TLS, protocolo, autenticación y respuesta remota
+18.8 Evitar confundir aceptación del SDK, recepción del Collector e indexación en backend
+18.9 Laboratorio: Exportar las tres señales por OTLP y documentar configuración efectiva y destinos
+18.10 Laboratorio de fallos: Intercambiar transporte y puerto para diagnosticar el fallo usando logs y tráfico local
+
+19. Collector local y backends del laboratorio
+19.1 Configurar receivers OTLP y pipelines separados de trazas, métricas y logs
+19.2 Usar debug exporter en un perfil de diagnóstico con payloads sintéticos
+19.3 Introducir batch y memory_limiter con orden justificado
+19.4 Enviar trazas a un backend elegido y métricas a Prometheus por una ruta compatible
+19.5 Enviar logs a un backend compatible con la distribución y versiones seleccionadas
+19.6 Comparar exportación directa y arquitectura con Collector intermedio
+19.7 Configurar límites locales, volúmenes, puertos y health checks en Compose
+19.8 Usar Podman o Docker y diagnosticar redes, DNS y nombres de servicios
+19.9 Laboratorio: Definir y ejecutar Compose con servicio C++, Collector y destinos; validar cada pipeline
+19.10 Laboratorio de fallos: Desactivar un pipeline y localizar la señal perdida sin atribuirlo al SDK incorrectamente
+
+20. Convenciones semánticas y diseño de esquema
+20.1 Diferenciar estabilidad del SDK y estabilidad de convenciones semánticas
+20.2 Fijar versión de convenciones y registrar schema URL cuando corresponda
+20.3 Definir service.name, namespace, instance y entorno sin cardinalidad accidental
+20.4 Separar atributos de proceso, host, contenedor y operación
+20.5 Usar nombres estables y políticas de atributos para equipos y bibliotecas
+20.6 Migrar atributos HTTP o de datos con cambios explícitos de dashboards
+20.7 Verificar detectores de recursos disponibles sin asumir detección automática completa
+20.8 Crear un contrato de telemetría compatible con servicios de otros lenguajes
+20.9 Laboratorio: Documentar el esquema de un servicio y comprobarlo contra sus emisiones
+20.10 Laboratorio de fallos: Introducir una migración de atributo y adaptar consultas manteniendo comparación temporal
+
+21. Bibliotecas reutilizables e integraciones
+21.1 Diseñar una biblioteca instrumentada sin dependencia obligatoria de SDK o backend
+21.2 Evitar instalación de providers globales desde código de terceros
+21.3 Exponer opciones de instrumentación manteniendo una API pública pequeña
+21.4 Definir ownership de tracer, meter, logger y contexto recibido
+21.5 Evaluar opentelemetry-cpp-contrib y el registro por compatibilidad, pruebas y mantenimiento
+21.6 Detectar doble instrumentación de una misma operación
+21.7 Documentar puntos de extensión para frameworks sin soporte nativo
+21.8 Validar modo no-op y coste de dependencias para consumidores que no usan telemetría
+21.9 Laboratorio: Empaquetar una biblioteca API-only e integrarla en dos ejecutables con SDK distinto
+21.10 Laboratorio de fallos: Combinar wrapper e instrumentación nativa y eliminar spans duplicados
+
+22. Pruebas unitarias y contratos de telemetría
+22.1 Usar exporters en memoria o doubles de prueba disponibles en la release
+22.2 Verificar padres, links, SpanKind, estado y atributos sin depender de orden global
+22.3 Forzar flush y esperar condiciones con límites en lugar de sleeps arbitrarios
+22.4 Probar contexto inválido, ausente, concurrente y restaurado
+22.5 Validar medidas y logs por contenido y semántica evitando snapshots frágiles
+22.6 Aislar providers globales entre casos y procesos de pruebas
+22.7 Probar caminos no muestreados y SDK deshabilitado
+22.8 Convertir límites de cardinalidad y privacidad en contratos verificables
+22.9 Laboratorio: Crear una suite de contrato para una operación correcta, un error y una tarea asíncrona
+22.10 Laboratorio de fallos: Mutar la propagación y exigir que una prueba detecte el padre incorrecto
+
+23. Pruebas de integración y resiliencia
+23.1 Validar recepción OTLP con Collector y exportadores de diagnóstico
+23.2 Generar carga determinista y comparar operaciones esperadas con emisiones
+23.3 Inyectar latencia, desconexión y rechazo remoto de exportación
+23.4 Reiniciar Collector y backend distinguiendo disponibilidad de cada capa
+23.5 Evaluar límites de retry y buffers dentro y fuera del proceso
+23.6 Probar terminación normal, SIGTERM y terminación forzada
+23.7 Identificar fallos parciales donde una señal funciona y otra falla
+23.8 Guardar evidencias estructuradas y criterios de tolerancia por escenario
+23.9 Laboratorio: Ejecutar una matriz de fallos con resultados esperados, observados y pérdidas estimadas
+23.10 Laboratorio de fallos: Interrumpir exportación durante carga y demostrar que la aplicación sigue atendiendo dentro del presupuesto
+
+24. Rendimiento, memoria y bajo overhead
+24.1 Medir baseline sin SDK, con no-op y con instrumentación activa
+24.2 Comparar spans descartados, muestreados y exportados en el benchmark
+24.3 Medir CPU, RSS, allocations, throughput y percentiles de latencia
+24.4 Evitar construcciones de strings y atributos caros cuando no se registran
+24.5 Analizar contención y colas bajo concurrencia creciente
+24.6 Ajustar batches y readers con carga representativa y métricas del propio SDK disponibles
+24.7 Usar perf y herramientas de profiling como complemento al SDK
+24.8 Documentar hardware, calentamiento, repeticiones y variabilidad del experimento
+24.9 Laboratorio: Publicar una tabla de overhead con carga fija y justificación de tuning
+24.10 Laboratorio de fallos: Introducir una asignación cara por petición y localizar la regresión con perfil y comparación
+
+25. Enlace, ABI, plugins y distribución binaria
+25.1 Distinguir compatibilidad de API y ABI al actualizar opentelemetry-cpp
+25.2 Verificar namespaces ABI y opciones del SDK contra la release seleccionada
+25.3 Investigar símbolos indefinidos, ODR y versiones incompatibles de dependencias
+25.4 Analizar duplicación de singletons al enlazar estáticamente dentro de varios plugins
+25.5 Diseñar un contrato de contexto entre host y plugins sin cruzar ABI insegura
+25.6 Controlar RPATH, RUNPATH y resolución de bibliotecas compartidas
+25.7 Inspeccionar artefactos con readelf, nm y ldd en binarios propios
+25.8 Fijar matriz de compilador, biblioteca estándar, arquitectura y opciones de enlace
+25.9 Laboratorio: Cargar un plugin instrumentado y comprobar providers y contexto compartidos con el host
+25.10 Laboratorio de fallos: Provocar una incompatibilidad de enlace controlada y resolverla sin mezclar bibliotecas arbitrarias
+
+26. Cierre, señales y procesos
+26.1 Ordenar parada de entrada, drenaje de tareas, flush y shutdown
+26.2 Distinguir ForceFlush y Shutdown según interfaz y señal
+26.3 Asignar plazos de salida sin bloquear indefinidamente un servicio
+26.4 Coordinar callbacks de métricas y workers de exportación durante el cierre
+26.5 Gestionar SIGTERM fuera del signal handler mediante mecanismos seguros
+26.6 Evitar invocar SDK, locks o asignaciones desde handlers de señal asíncronos
+26.7 Analizar fork con threads y preferir inicialización tras fork o fork-exec según el proceso
+26.8 Distinguir garantías de salida ordenada y pérdidas inevitables en crash o SIGKILL
+26.9 Laboratorio: Implementar apagado coordinado con peticiones en curso y comprobar la última emisión
+26.10 Laboratorio de fallos: Reducir el plazo de salida y cuantificar la telemetría que queda sin exportar
+
+27. Seguridad, TLS y datos sensibles
+27.1 Configurar confianza TLS y verificar nombres del servidor
+27.2 Evaluar mTLS y rotación de certificados en el transporte y versión elegidos
+27.3 Suministrar credenciales sin compilarlas en el binario ni registrarlas
+27.4 Aplicar allowlists para atributos, headers y baggage desde el origen
+27.5 Validar entradas de propagación no confiables y límites de tamaño
+27.6 Controlar cardinalidad maliciosa y saturación inducida por tráfico externo
+27.7 Definir límites de confianza entre tenants y no usar baggage para autorizar
+27.8 Revisar dependencias, SBOM y actualizaciones del SDK y sus transportes
+27.9 Laboratorio: Conectar servicio y Collector con TLS y comprobar el rechazo de una CA no confiable
+27.10 Laboratorio de fallos: Inyectar un secreto sintético y asegurar que las tres señales cumplen la política de exclusión
+
+28. Operación en systemd y contenedores
+28.1 Ejecutar el binario mediante systemd con configuración externa y permisos mínimos
+28.2 Coordinar TimeoutStopSec con el drenaje y los plazos del SDK
+28.3 Consultar logs en journald y localizar fuentes en archivo cuando se configuren
+28.4 Diagnosticar DNS, TLS y conectividad con firewalld y SELinux en Fedora o RHEL
+28.5 Construir imágenes multietapa y verificar dependencias de ejecución
+28.6 Validar CA bundles, símbolos de depuración y compatibilidad glibc de la imagen
+28.7 Medir impacto de límites CPU y memoria sobre workers y exportadores
+28.8 Configurar health checks de aplicación sin convertir el backend de telemetría en requisito de servicio
+28.9 Laboratorio: Operar el mismo servicio nativo y en contenedor con identidad de recurso verificable
+28.10 Laboratorio de fallos: Provocar denegación de red o permisos y diagnosticarla sin deshabilitar globalmente controles
+
+29. Kubernetes como despliegue opcional
+29.1 Declarar imagen, recursos y configuración OTLP de un servicio C++
+29.2 Comparar Collector sidecar, agente y gateway para este servicio
+29.3 Enriquecer recursos con contexto Kubernetes por rutas disponibles y verificadas
+29.4 Configurar probes y terminación con tiempo de drenaje suficiente
+29.5 Tratar límites de red, secretos y CA con recursos del clúster
+29.6 No asumir inyección zero-code C++ por analogía con otros lenguajes
+29.7 Validar continuidad de trazas a través de balanceo y escalado
+29.8 Remitir administración avanzada del Operator y Collector al curso general
+29.9 Laboratorio: Desplegar opcionalmente el servicio y verificar recurso, propagación y cierre durante rollout
+29.10 Laboratorio de fallos: Bloquear OTLP con una política de red y separar salud de servicio y salud de telemetría
+
+30. Troubleshooting por capas
+30.1 Diagnosticar ausencia de señal por provider no-op o inicialización incorrecta
+30.2 Rastrear spans ausentes por sampling, finalización o saturación de cola
+30.3 Explicar trazas fragmentadas por carriers y fronteras de ejecución
+30.4 Diagnosticar métricas vacías por reader, callback, temporalidad o consulta
+30.5 Diagnosticar logs sin correlación por contexto o bridge de integración
+30.6 Separar errores de compilación, enlace, carga dinámica y ejecución
+30.7 Correlacionar errores SDK, Collector y backend con tiempos y contadores
+30.8 Preparar un caso mínimo upstream sin datos sensibles ni dependencias irrelevantes
+30.9 Laboratorio: Resolver seis incidentes sembrados usando hipótesis y pruebas por capa
+30.10 Laboratorio de fallos: Demostrar con evidencia que la recepción OTLP no implica que una consulta del backend esté bien formulada
+
+31. CI, compatibilidad y evolución
+31.1 Fijar versiones del SDK, Collector, convenciones y dependencias con actualización deliberada
+31.2 Construir matrices GCC y Clang y perfiles de enlace relevantes
+31.3 Ejecutar sanitizers en combinaciones compatibles y clasificar falsos positivos documentados
+31.4 Validar contratos de telemetría e integración en CI con recursos limitados
+31.5 Revisar changelog, deprecaciones y cambios de configuración antes de actualizar
+31.6 Actualizar consultas y esquemas sin pérdida silenciosa de cobertura
+31.7 Definir pruebas de capacidad para funciones opcionales o experimentales
+31.8 Preparar rollback de binario y configuración con compatibilidad de datos conocida
+31.9 Laboratorio: Actualizar una versión fijada en rama aislada y documentar cambios y regresiones
+31.10 Laboratorio de fallos: Detectar una opción retirada en CI y sustituirla usando la documentación de esa release
+
+32. Interoperabilidad y observabilidad de extremo a extremo
+32.1 Integrar C++ con un servicio ya instrumentado en otro lenguaje sin exigir aprenderlo
+32.2 Verificar traceparent, tracestate y baggage en cada frontera
+32.3 Alinear nombres de servicios, unidades y convenciones entre equipos
+32.4 Detectar sampling incoherente y trazas incompletas entre procesos
+32.5 Correlacionar métricas y trazas con exemplars solo donde toda la cadena los soporte
+32.6 Definir consultas para disponibilidad, tasa de error y latencia del servicio
+32.7 Construir paneles y alertas basados en métricas con enlaces a trazas y logs
+32.8 Distinguir avería de aplicación, dependencia y pérdida de observabilidad
+32.9 Laboratorio: Investigar una petición lenta usando las tres señales y reconstruir su causa
+32.10 Laboratorio de fallos: Eliminar una frontera de propagación y demostrar el límite de la correlación restante
+
+33. Proyecto experto y evaluación final
+33.1 Diseñar dos servicios C++ y un worker con HTTP o gRPC y cola de trabajos
+33.2 Implementar trazas, métricas y logs con convenciones y política de datos
+33.3 Propagar contexto por red, pool y una operación asíncrona
+33.4 Entregar fuentes completas, CMake, manifiesto de versiones y configuración de Collector
+33.5 Entregar scripts de construcción, ejecución, pruebas y limpieza con alcance local
+33.6 Aportar matriz de fallos, evidencias por señal y runbooks operativos
+33.7 Justificar presupuesto de overhead, capacidad de colas y plazos de apagado
+33.8 Revisar ABI, lifetimes, privacidad y límites funcionales de la solución
+33.9 Laboratorio: Reproducir el proyecto desde un entorno limpio siguiendo únicamente su README
+33.10 Laboratorio de fallos: Superar revisión con fallo remoto, concurrencia y SIGTERM sin pérdida de contexto ni fugas detectadas

@@ -1,7 +1,7 @@
 # PANDAS 3 — DOMAIN
 
 ## Propósito
-Curso 0 → experto de **22 bloques y 414 lecciones**, conservando íntegramente las 216 lecciones de origen y ampliándolas con 198 lecciones de profundización. El objetivo es dominar manipulación tabular, semántica de tipos, análisis, ingeniería de datos con pandas, rendimiento, testing y migración a pandas 3.x.
+Curso 0 → experto de **22 bloques y 421 lecciones**, revisadas a partir de las 414 lecciones entregadas. Se conservan sus contenidos, se reubican seis lecciones para respetar prerrequisitos y se añaden siete lecciones. La conservación de las 216 lecciones históricas no se ha verificado contra su versión base. El objetivo es dominar manipulación tabular, semántica de tipos, análisis, ingeniería de datos con pandas, rendimiento, testing y migración a pandas 3.x.
 
 ## Fuentes y precedencia
 1. **Documentación oficial de pandas 3.x:** referencia normativa para API, semántica y compatibilidad.
@@ -13,7 +13,7 @@ Los libros pueden tratar versiones anteriores; sus ejemplos deben adaptarse y co
 
 ## Progresión
 - **Bloques 0–5:** entorno, Series, DataFrame, selección, índices, dtypes, nulos y Copy-on-Write.
-- **Bloques 6–13:** I/O, limpieza, transformación, GroupBy, joins, reshape, texto, categorías y tiempo.
+- **Bloques 6–13:** I/O, limpieza, transformación, GroupBy, joins, reshape, texto, categorías y tiempo. Las ventanas y Grouper temporal se desarrollan en el bloque 13, después de introducir fechas.
 - **Bloques 14–16:** EDA, rendimiento inicial, patrones idiomáticos, calidad, testing y producción.
 - **Bloque 17:** arquitectura interna, semántica de memoria y límites de APIs privadas.
 - **Bloque 18:** Apache Arrow, tipos modernos, Parquet e interoperabilidad.
@@ -41,3 +41,21 @@ NumPy, SQL, Polars, estadística avanzada, visualización especializada y diseñ
 
 ## Evaluación
 Checkpoints por etapa, ejercicios de depuración, comparaciones de implementaciones, profiling, tests automatizados y proyecto final con ingestión, validación, transformación, agregación, persistencia, informe y documentación de migración.
+
+## Precisiones de la revisión
+- Introducir MultiIndex antes de selección transversal con xs.
+- Enseñar ordenación estable, selección de extremos, discretización, relleno,
+  interpolación y operaciones acumulativas con sus casos límite.
+- Distinguir object, str (NaN), string (pd.NA), almacenamiento Python/PyArrow
+  y ArrowDtype; el backend físico no determina por sí solo la semántica de nulos.
+- No asumir resolución temporal nanosegundo: comprobar dtype, unidad,
+  precisión y rango antes de convertir o comparar resultados.
+- Incluir anti joins left_anti y right_anti y su validación de claves.
+- Bloque 15: aprender a medir y aplicar optimizaciones locales. Bloque 19:
+  atribuir costes, medir variabilidad y resolver cargas con presupuesto de memoria.
+- Bloque 16: construir y probar un pipeline pequeño. Bloque 20: evolucionar
+  contratos, generar casos adversos y verificar compatibilidad de dependencias.
+- Los laboratorios de código incluyen assertions o tests; los de instalación
+  y entorno incluyen comandos de diagnóstico y criterios de éxito verificables.
+- Fijar una versión concreta de pandas 3.x y dependencias en el lockfile de
+  cada laboratorio; contrastar las APIs con su documentación correspondiente.

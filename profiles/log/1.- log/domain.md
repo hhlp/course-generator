@@ -72,7 +72,9 @@ Al finalizar el PATH, el alumno debe poder:
 
 El PATH cubre el flujo:
 
-productor → stdout/stderr/syslog/kernel → systemd-journald → journal → rsyslog/syslog-ng → procesamiento → queues/buffers → transporte → collector → archivos/almacenamiento → logrotate
+Ruta local habitual: productor → stdout/stderr/syslog/kernel → systemd-journald → journal o socket Syslog → rsyslog/syslog-ng → procesamiento → colas → transporte → collector → almacenamiento.
+
+Rutas alternativas: aplicación → archivo → lector; emisor remoto → input de red del collector; journal → journal-upload → journal-remote. Journald no es obligatorio en cada ruta. La rotación depende del almacenamiento: journal, auditd y archivos de aplicación tienen mecanismos distintos.
 
 También debe estudiar:
 
@@ -400,7 +402,7 @@ El diagnóstico debe seguir el pipeline y evitar cambios aleatorios.
 
 Modelo recomendado:
 
-productor → captura local → journald → forwarding/input → parser/filter/ruleset → queue → transporte → firewall/red → TLS → collector → parser/routing → almacenamiento → rotación
+productor → captura correspondiente a la ruta elegida → procesamiento → cola/buffer → transporte y controles de red → recepción → routing → almacenamiento → mecanismo de retención. Inspeccionar journald cuando forme parte de esa ruta.
 
 En cada fase preguntar:
 
@@ -488,3 +490,20 @@ Cuando corresponda, desarrollar: fundamentos y arquitectura, prerequisitos, inst
 
 ### Proyecto final y criterios de aceptación
 Además de los requisitos existentes, demostrar trazabilidad de eventos, evidencia de configuración, resultados cuantificados de pérdidas y duplicados, medidas de latencia y backlog, respuesta a fallos, controles de acceso, política de retención y runbooks. Mantener el laboratorio y proyecto final como últimos bloques.
+
+## Precisiones técnicas de la revisión 2026-10-22
+
+- Conservar los 52 bloques (0–51) y todos los identificadores originales. Las nuevas lecciones se añaden al final de cada bloque sin renumerar las anteriores. Cuando se generen lecciones, usar las dependencias conceptuales para anticipar un requisito situado después de un laboratorio original.
+- Fedora es la plataforma principal; RHEL es contexto de compatibilidad. No inferir instalación predeterminada de rsyslog o syslog-ng ni existencia de archivos de texto a partir de la distribución.
+- Preparar una topología aislada de cliente, relay y collector, con inventario de paquetes/versiones, DNS o resolución estática, relojes sincronizados y snapshots. Emplear implementaciones alternativas en hosts o escenarios separados, o asignar sockets/puertos distintos y justificarlo.
+- Conservar títulos históricos como mem-buf-size y disk-buf-size para compatibilidad, mostrando la correspondencia documentada con flow-control-window-bytes y capacity-bytes según versión. Distinguir syslog-ng OSE de AxoSyslog; no mezclar manuales o asumir compatibilidad completa.
+- Enseñar -N1 para comprobar rsyslog; no presentar -N2 y -N3 como niveles de análisis progresivamente más exhaustivos sin documentación específica. Una configuración sintácticamente válida no prueba entrega ni permisos.
+- Separar consulta de configuración combinada, validación sintáctica, aplicación y comprobación funcional. daemon-reload no sustituye el reinicio o la recarga del daemon; utilizar reload solo cuando esté soportado.
+- No asociar ForwardToSyslog con el control de lectura de imjournal. Evitar doble captura de journal, sockets y kernel; comprobar fuentes efectivas.
+- Tratar estados y cursores de imfile, imjournal y syslog-ng como parte de la operación: permisos, persistencia, rotación, retención de la fuente y recuperación. No borrar estados como solución genérica.
+- Distinguir cierre ordenado, caída del proceso y pérdida de energía. saveonshutdown no protege por sí solo ante toda caída; una cola asistida por disco puede conservar eventos en memoria. Un ACK de transporte no demuestra persistencia final.
+- En logrotate, tamaño y antigüedad se evalúan al ejecutarse. No afirmar que maxsize activa por sí mismo una rotación inmediata. Separar rotación interna de journald y auditd de rotación de archivos de texto.
+- Tratar campos trusted como atribución del journal local, sin convertirlos automáticamente en prueba de autenticidad del origen remoto. Un hash aislado tampoco establece cadena de custodia.
+- Las pruebas de filesystem lleno, inodos agotados y terminación abrupta se ejecutan en recursos desechables, con límites, recuperación y evidencias. Evitar llenar la partición del host.
+- Dimensionar con unidades explícitas: volumen bruto = EPS × bytes/evento × segundos; cola mínima aproximada = tasa de entrada en bytes/s × duración de interrupción, más sobrecarga y margen. La recuperación requiere salida sostenida superior a entrada; drenaje aproximado = backlog / (salida − entrada).
+- El proyecto entrega configuraciones comentadas, inventario, instrucciones de ejecución, matriz de pruebas, mediciones y rollback. Este PATH define el currículo y los requisitos de laboratorio; estos cuatro archivos no son una implementación ejecutable del laboratorio.

@@ -90,7 +90,7 @@ Cuando aporten valor, utilizar:
 
 # 💡 IDEA IMPORTANTE
 
-Todas las lecciones deben terminar exactamente con:
+La última sección de cada lección debe titularse exactamente:
 
 # 🧠 QUÉ DEBES RECORDAR
 
@@ -842,3 +842,93 @@ Introducir sd-event, sd-bus, interfaces org.freedesktop.systemd1, job engine, se
 ### Laboratorios y proyecto final
 
 Cada laboratorio debe contener requisitos, entorno, pasos, observaciones esperadas, fallo provocado, diagnóstico, comprobación y limpieza. Para rescue/emergency, redes y boot usar VM/snapshot. El proyecto `mini-systemd-debugger` debe producir una CLI de solo lectura por defecto, informe estructurado, pruebas y documentación; las acciones de modificación deben ser explícitas y seguras.
+
+
+---
+
+## Revisión de coherencia y recorrido pedagógico
+
+Se mantienen los 38 bloques (0–37) y todos los identificadores originales.
+Las ampliaciones se añaden al final de su bloque. El identificador fija la
+identidad de la lección; el recorrido siguiente define cuándo estudiarla.
+
+### Dos pasadas por systemctl
+
+En la primera pasada por el bloque 1, priorizar observación y administración
+básica. Las operaciones avanzadas se presentan como mapa de capacidades y se
+retoman para su estudio práctico después de estos prerrequisitos:
+
+- 1.25 daemon-reexec: después de 27 y profundización en 36;
+- 1.29 clean: después de directorios gestionados en 4 y tmpfiles en 18;
+- 1.30 freeze/thaw y 1.31 set-property: después de 15;
+- 1.32 entorno del manager: después de 4 y 17;
+- 1.35 variantes user/machine: después de 17 y del contexto de máquinas;
+- 1.36 bind: después de aislamiento en 20; verificar sus restricciones.
+
+No exigir el dominio de estas operaciones antes de escribir el primer servicio.
+
+### Procesos e integración por etapas
+
+Usar 28.1–28.10 como apoyo práctico después del bloque 5 y volver a ellas tras
+15 y 17. Estudiar delegación y dispositivos después de sus fundamentos.
+El bloque 27 introduce modelos internos observables; el 36 profundiza en
+implementación, estructuras y lectura guiada del código de la versión elegida.
+No repetir la misma explicación como contenido nuevo.
+
+El bloque 30 es integración acumulativa: 30.1–30.2 tienen ampliación en 35;
+30.5 requiere completar 32; 30.7 se consolida con 31. Se puede ejecutar una
+primera práctica acotada y volver después con criterios más avanzados.
+En el proyecto final, 37.15 integra lo aprendido hasta ese punto; 37.16–37.23
+amplían y validan la entrega definitiva. El proyecto sigue siendo el bloque 37.
+
+### Cobertura operativa obligatoria
+
+- Servicios: RemainAfterExit=, active (exited), límites StartLimitIntervalSec=
+  y StartLimitBurst=, interacción con Restart= y reset-failed, espera progresiva
+  con RestartSteps=/RestartMaxDelaySec= y RestartMode= cuando esté disponible.
+- Drop-ins: distinguir asignación escalar, acumulación de listas y vaciado;
+  demostrar ExecStart= vacío antes del reemplazo y verificar la unidad efectiva.
+- Manager: system.conf, user.conf, directorios *.conf.d, valores predeterminados
+  y diferencias entre configuración del manager y configuración de unidades.
+- Entorno: environment.d, environment generators y unit generators; explicar
+  cuándo se evalúan y por qué no alteran el entorno de procesos ya ejecutados.
+- Dispositivos: udev, .device, SYSTEMD_WANTS y SYSTEMD_READY; observar eventos
+  sin manipular dispositivos críticos del host.
+- Apagado: shutdown.target, umount.target, final.target, orden de parada,
+  desmontajes, timeouts, journal y recuperación mediante VM con snapshot.
+- Seguridad: incluir explícitamente LockPersonality= y
+  MemoryDenyWriteExecute= y diagnosticar incompatibilidades con aplicaciones.
+- OOM: distinguir límites memory.*, políticas ManagedOOM*, OOMPolicy= y
+  evidencias del kernel, del servicio y de systemd-oomd.
+
+### Precisión de comandos y referencias
+
+Los modos de jobs se estudian mediante systemctl --job-mode=, la API D-Bus y
+OnFailureJobMode=/OnSuccessJobMode=. No presentar JobMode= como directiva
+configurable genérica de un unit file.
+
+En credenciales enseñar list/cat dentro del contexto adecuado y encrypt/decrypt
+con datos ficticios. No utilizar un supuesto subcomando inspect. Los ejemplos
+no deben imprimir secretos reales en el journal ni en informes del proyecto.
+
+### Contrato del mini-systemd-debugger
+
+La CLI debe ser de solo lectura por defecto y producir resultados útiles sin
+privilegios elevados. Diferenciar fallo de consulta, permiso insuficiente,
+componente no instalado, unidad inexistente y ausencia de datos. Explicar que
+un grafo observado puede estar limitado por las unidades cargadas, los permisos
+y el momento de la consulta; no prometer un inventario completo sin demostrarlo.
+
+Documentar esquema JSON, versión del informe, procedencia de los datos y códigos
+de salida. Las pruebas deben cubrir datos parciales, falta de permisos,
+componentes opcionales ausentes y cambios de estado durante la inspección.
+No ejecutar cambios ni activar servicios para completar un informe.
+
+### Compatibilidad con course-generator
+
+La validez sintáctica del YAML no confirma qué claves consume el generador.
+Antes de generar, comprobar el cargador y el esquema real de course-generator,
+la resolución de files.pedagogy y la incorporación de domain.md y bibliography.md.
+Este paquete no incluye ni modifica ../../config/pedagogy.md. Las reglas se
+expresan también en este dominio para que puedan llegar al contexto de generación
+si el generador lo incorpora. No afirmar validación del generador sin ejecutarla.

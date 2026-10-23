@@ -69,7 +69,7 @@ Elastic Stack evoluciona con rapidez. No asumir que una opción, API, componente
 
 Para contenido dependiente de versión:
 
-- tomar como referencia la versión estable actual cubierta por la documentación oficial consultada durante la generación;
+- utilizar Elastic Stack 9.5.5 como referencia congelada de esta revisión; no cambiar de versión entre lecciones;
 - indicar la versión cuando afecte al comportamiento explicado;
 - comprobar nombres de APIs, parámetros, defaults, roles de nodo, mecanismos de seguridad, ILM, Fleet, Elastic Agent, integrations y funcionalidades de Kibana;
 - diferenciar claramente funcionalidad vigente, heredada, deprecada y eliminada;
@@ -87,7 +87,7 @@ Orden de prioridad:
 3. documentación oficial de Apache Lucene para internals relevantes;
 4. documentación oficial de Fedora para integración con el sistema operativo;
 5. documentación oficial de OpenTelemetry para OTLP, Collector e instrumentación;
-6. libros técnicos seleccionados en bibliografy.md;
+6. libros técnicos seleccionados en bibliography.md;
 7. fuentes adicionales únicamente cuando aporten contexto y puedan contrastarse.
 
 No usar blogs, respuestas de foros o fragmentos sin contexto como autoridad principal para comportamiento técnico.
@@ -528,3 +528,143 @@ Al comienzo de cada laboratorio identificar versiones de Elasticsearch, Kibana, 
 ### Validación reforzada de laboratorios
 
 Cada laboratorio avanzado incluirá prerrequisitos, recursos, procedimiento, resultados verificables, pruebas de fallo seguras, troubleshooting, limpieza y criterios de aceptación. Los experimentos destructivos usarán exclusivamente datos y nodos de laboratorio.
+
+
+## 28. Referencia reproducible y actualización controlada
+
+Referencia de esta revisión: Elastic Stack **9.5.5**, modalidad self-managed.
+Fecha de contraste documental: 22 de octubre de 2026. Esto identifica la
+referencia del temario, no acredita pruebas de despliegue.
+
+Elasticsearch, Kibana, Logstash, Beats, Elastic Agent y Fleet Server tomarán
+9.5.5 como referencia. Antes de ejecutar, comprobar disponibilidad de paquetes,
+arquitectura y compatibilidad en las fuentes oficiales. No usar `latest`.
+Las versiones de integrations, plugins y OpenTelemetry Collector se fijarán
+por separado al preparar el laboratorio; no heredan el número del Stack.
+
+Cada laboratorio debe registrar en un manifiesto: componente, versión exacta,
+origen del paquete, firma o checksum, arquitectura, versión del SO, integración
+y plugin utilizados, licencia activa y URL de documentación consultada.
+No inventar versiones de dependencias que todavía no se han seleccionado.
+Registrar las versiones efectivas mediante APIs o herramientas del componente.
+
+Actualizar esta referencia requiere una revisión conjunta de los cuatro
+archivos, breaking changes, compatibilidad y ejemplos afectados. La consulta
+de documentación reciente sirve para detectar cambios, no para incorporar
+silenciosamente una sintaxis posterior a 9.5.5.
+
+Fedora es la plataforma didáctica. Distinguir ejecución funcional de soporte
+comercial certificado. Consultar la Support Matrix por componente; no inferir
+soporte Fedora a partir de soporte RHEL o de que exista un RPM instalable.
+
+## 29. Topología acumulativa del laboratorio
+
+Red privada propuesta: 192.168.56.0/24; comprobar conflictos antes de usarla.
+Dominio local: elastic.test. Resolver con DNS local o /etc/hosts coherente.
+No publicar los servicios en Internet. Sincronizar el reloj de las máquinas.
+
+| Equipo | Dirección | Función de laboratorio | Recursos iniciales |
+| --- | --- | --- | --- |
+| es1.elastic.test | 192.168.56.11 | Elasticsearch master/data/ingest | 2 vCPU, 4 GiB RAM, 30 GiB datos |
+| es2.elastic.test | 192.168.56.12 | Elasticsearch master/data/ingest | 2 vCPU, 4 GiB RAM, 30 GiB datos |
+| es3.elastic.test | 192.168.56.13 | Elasticsearch master/data/ingest | 2 vCPU, 4 GiB RAM, 30 GiB datos |
+| ops.elastic.test | 192.168.56.20 | Kibana, Fleet Server, Logstash | 4 vCPU, 8 GiB RAM, 40 GiB disco |
+| source.elastic.test | 192.168.56.30 | Productor Fedora y agente | 2 vCPU, 2 GiB RAM, 20 GiB disco |
+| backup.elastic.test | 192.168.56.40 | Almacenamiento del repositorio compartido | 2 vCPU, 2 GiB RAM, 60 GiB disco |
+
+Son presupuestos iniciales didácticos, no mínimos certificados ni sizing de
+producción. Arrancar solamente los componentes necesarios por etapa. Medir RAM,
+CPU y disco, y ampliar antes de ejercicios de vectores o carga. Para comenzar,
+usar es1, Kibana en ops y un productor; agregar es2/es3 para los bloques 11/12.
+El host debe reservar recursos propios además de los asignados a las VM.
+
+La topología inicial combina roles para ahorrar recursos. La separación de
+roles y data tiers se ensaya después mediante configuraciones específicas.
+Tres nodos en un único host permiten estudiar elecciones, pero no proporcionan
+tolerancia a la pérdida de ese host. No presentar esta maqueta como producción.
+
+Puertos de referencia: Elasticsearch HTTP 9200, transporte 9300, Kibana 5601,
+Fleet Server 8220 y entrada Beats de Logstash 5044 solo si el pipeline la usa.
+Definir origen y destino permitido en firewalld; las salidas de agentes deben
+corresponder a la policy. Otros puertos se documentan al añadir cada servicio.
+
+Crear una CA de laboratorio y certificados con SAN para los nombres y direcciones
+efectivamente utilizados. Proteger claves privadas, distribuir solo la confianza
+necesaria y validar HTTPS sin omitir la comprobación de certificados.
+Conservar secretos fuera de Git. Mantener datos, logs y configuración separados,
+con propietario de servicio correcto y diagnóstico de permisos/SELinux.
+
+Para snapshots filesystem, el repositorio debe ser realmente compartido y
+accesible bajo la misma ruta por los nodos requeridos. No confundir discos
+locales con un repositorio compartido. Verificar registro, acceso y restore.
+
+El dataset común se generará con semilla fija y timestamps controlados: al menos
+1.000 eventos JSON con event.id estable, @timestamp, host.name, service.name,
+log.level y message; incorporar métricas y trazas en sus bloques. Mantener una
+copia limpia y otra con fallos deliberados etiquetados. Registrar recuentos,
+duplicados, eventos rechazados y latencia; los resultados esperados se derivan
+del generador, no de respuestas inventadas del cluster.
+
+## 30. Orden pedagógico y conservación de identificadores
+
+Conservar los identificadores originales. Las ampliaciones se añaden al final
+de cada bloque, pero los laboratorios requieren todos sus prerrequisitos.
+La apertura de cada laboratorio enumera las lecciones que deben completarse.
+El laboratorio inicial incluye el resumen operativo de TLS y bootstrap que
+permite arrancar con seguridad; el bloque 24 profundiza después en esos conceptos.
+
+Orden explícito para instalación: 1.1–1.23, 1.25–1.32, 1.34–1.37, 1.24 y 1.33.
+La última lección es limpieza opcional al concluir los ejercicios dependientes;
+no eliminar el entorno acumulativo antes de tiempo.
+
+En el bloque 12, estudiar 12.21–12.28 antes de ejecutar 12.20. Diferenciar
+bootstrap de un cluster nuevo, incorporación de nodos, rolling restart y
+reinicio completo. Retirar cluster.initial_master_nodes tras formar el cluster;
+no reutilizarlo en nodos que se unen ni en reinicios. Ansible debe comprobar
+la identidad del cluster y no reintroducir esta opción en cada ejecución.
+
+En los demás bloques, completar las ampliaciones pertinentes antes del
+laboratorio integrador. Las lecciones nuevas de laboratorio complementan al
+original: este valida la base y aquellas validan las capacidades añadidas.
+El proyecto final usa checkpoints y evidencias por etapa; no es una única
+sesión que exige todos los componentes activos al mismo tiempo.
+
+## 31. Almacenamiento e ingestión actuales
+
+LogsDB: estudiar index.mode, aplicación de templates, defaults de la versión,
+ordenación, almacenamiento y relación con synthetic _source. Comparar con modo
+standard usando el mismo dataset y carga; no prometer porcentajes de ahorro.
+Synthetic _source: comparar el documento enviado y el reconstruido, sus cambios
+de representación y limitaciones; comprobar licencia y parámetros efectivos.
+
+TSDS: estudiar dimensiones, tipos de métricas, routing y ventanas de tiempo.
+Downsampling: explicar estadísticas conservadas, resolución perdida y consultas
+posteriores. Relacionarlo con lifecycle sin confundirlo con backup. Usar métricas,
+no aplicar mecánicamente los ejemplos de reducción a logs arbitrarios.
+
+Failure store: explicar qué fallos puede capturar, activación, permisos,
+consulta, retención y reprocesamiento en la versión fijada. Distinguirlo de
+on_failure de ingest pipelines, índices de cuarentena y DLQ de Logstash.
+Probar por separado errores de processor y de mapping, además de fallos que no
+puede resolver. La existencia de failure store no garantiza entrega sin pérdida.
+Corregir el origen del error antes del replay y verificar recuentos e idempotencia.
+
+## 32. Recorrido básico y extensiones con licencia
+
+El recorrido básico se completa localmente con las capacidades disponibles bajo
+la licencia gratuita de la distribución seleccionada, verificadas por versión.
+Debe incluir ingestión, búsqueda, TLS, permisos básicos, operación, snapshots,
+restore y pruebas de fallo. Nunca activar una trial automáticamente.
+
+Antes de cada capacidad avanzada consultar suscripciones y la licencia efectiva.
+Si no está disponible, mantener la lección conceptual y marcar la práctica como
+extensión opcional. El proyecto conserva todas sus tareas, pero CCR, determinados
+realms, DLS/FLS, searchable snapshots, tiers asociados, ranking, connectors y
+otras funciones sensibles a licencia requieren comprobación individual.
+No asumir que todos los ejemplos anteriores son de pago ni que todos son gratis.
+
+Una extensión no ejecutable debe entregar diseño, requisitos y procedimiento
+documental, identificado como no probado. El recorrido básico demuestra restore
+desde snapshots sin depender de CCR o searchable snapshots; para identidad usa
+el mecanismo disponible y deja SSO externo como extensión cuando corresponda.
+El informe final distingue ejecutado, verificado documentalmente y pendiente.

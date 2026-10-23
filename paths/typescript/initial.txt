@@ -2,6 +2,9 @@ TYPESCRIPT — LEARNING PATH 0 → EXPERTO
 
 Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hasta su sistema de tipos, Node.js, asincronía, concurrencia, paralelismo, memoria y runtime, diseño type-safe, compilador, AST, TypeChecker, Compiler API, rendimiento y seguridad, comprendiendo tanto el comportamiento en compile time como el código JavaScript resultante en runtime.
 
+Secuencia: el bloque 0 incluye el puente JavaScript necesario para comenzar desde cero. Los identificadores originales se conservan. El bloque 43 desarrolla el proyecto progresivo; la entrega final se realiza en el bloque 46, después de Regex y Big O.
+
+
 # Bloque 0 — Fundamentos y entorno
 0.1 Qué es TypeScript y qué problemas resuelve
 0.2 TypeScript vs JavaScript
@@ -13,6 +16,12 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 0.8 target, module y moduleResolution
 0.9 strict y opciones principales del compilador
 0.10 Estructura básica de un proyecto TypeScript
+0.11 Versiones reproducibles: registrar TypeScript, Node.js y gestor de paquetes
+0.12 Puente JavaScript: valores, variables, expresiones y operadores
+0.13 Puente JavaScript: decisiones, bucles, funciones, arrays y objetos
+0.14 Puente JavaScript: scope, closures, referencias, prototipos y this
+0.15 Ejecutar, comprobar tipos y compilar: tres operaciones distintas
+0.16 Laboratorio inicial: compilar con tsc, ejecutar con Node.js e inspeccionar el emit
 
 # Bloque 1 — Sistema de tipos fundamental
 1.1 Inferencia y anotaciones de tipos
@@ -32,6 +41,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 1.15 unknown
 1.16 never
 1.17 void
+1.18 object frente a {}, Object y tipos primitivos: asignabilidad y casos límite
+1.19 ReadonlyArray, readonly tuples, elementos opcionales y rest en tuplas
+1.20 Tipos como conjuntos de valores: asignabilidad, uniones e intersecciones
+1.21 Enums numéricos, de strings y const enums: emit, alternativas y compatibilidad
 
 # Bloque 2 — Variables, expresiones y control de flujo
 2.1 let, const y var
@@ -46,6 +59,7 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 2.10 spread y rest
 
 2.11 Regex como operación sobre strings: resultados y validación en runtime
+
 # Bloque 3 — Funciones
 3.1 Tipado de parámetros y retorno
 3.2 Inferencia del retorno
@@ -59,6 +73,8 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 3.10 Funciones como valores
 3.11 never en funciones
 3.12 Funciones de orden superior
+3.13 Contextual typing de funciones y callbacks
+3.14 Firmas de llamada y construcción: callable y newable objects
 
 # Bloque 4 — Objetos
 4.1 Object types
@@ -71,6 +87,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 4.8 Object destructuring
 4.9 Objetos dinámicos
 4.10 Record y estructuras indexadas
+4.11 Propiedad ausente frente a propiedad presente con undefined
+4.12 readonly es una restricción estática: aliasing, mutación y Object.freeze
+4.13 Index signatures con string, number y symbol: límites de acceso
+4.14 Laboratorio: exceso de propiedades en literales y valores previamente asignados
 
 # Bloque 5 — Clases y orientación a objetos
 5.1 Classes, constructors, fields y methods
@@ -87,6 +107,13 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 5.12 Polimorfismo
 5.13 Composición vs herencia
 5.14 ECMAScript #private fields
+5.15 Lado de instancia y lado estático de una clase; constructor types
+5.16 Inicialización de campos, strictPropertyInitialization y useDefineForClassFields
+5.17 Polymorphic this, clases genéricas y composición mediante mixins
+5.18 Decoradores modernos: funciones, contexto y orden de aplicación
+5.19 Decoradores: addInitializer, métodos, campos y accessors
+5.20 Decoradores heredados: experimentalDecorators y emitDecoratorMetadata
+5.21 Laboratorio comparativo: modelos de decoradores y JavaScript emitido
 
 # Bloque 6 — Narrowing y análisis de control de flujo
 6.1 Qué es narrowing
@@ -102,6 +129,9 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 6.11 User-defined type guards
 6.12 Type predicates
 6.13 Assertion functions
+6.14 Límites de los type guards: predicados incorrectos y falsa confianza
+6.15 Mutaciones, aliasing y callbacks: vigencia de los refinamientos
+6.16 Predicados inferidos: condiciones, límites y comprobación con el compilador
 
 # Bloque 7 — Generics
 7.1 Introducción a generics
@@ -116,6 +146,13 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 7.10 Inferencia de parámetros genéricos
 7.11 Diseño de APIs genéricas
 7.12 Errores comunes con generics
+7.13 Varianza: covarianza, contravarianza, invariancia y bivarianza
+7.14 strictFunctionTypes: funciones frente a métodos y límites de seguridad
+7.15 Anotaciones in y out: propósito y restricciones
+7.16 Parámetros genéricos const y preservación de literales
+7.17 NoInfer como control de las fuentes de inferencia
+7.18 Instantiation expressions y especialización de funciones genéricas
+7.19 Laboratorio: diseñar una API genérica a partir de sus consumidores
 
 # Bloque 8 — Operadores de tipos
 8.1 keyof
@@ -137,6 +174,9 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 9.7 satisfies
 9.8 satisfies vs as
 9.9 Preservación de tipos literales
+9.10 const, as const, readonly y Object.freeze: garantías diferentes
+9.11 Contextual typing e interacción con satisfies
+9.12 Laboratorio: satisfies comprueba compatibilidad sin sustituir validación runtime
 
 # Bloque 10 — Mapped Types
 10.1 Introducción
@@ -177,6 +217,9 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 13.7 Awaited
 13.8 ThisParameterType y OmitThisParameter
 13.9 Construcción manual de utility types
+13.10 NoInfer<T>: casos de uso y límites
+13.11 ThisType<T>: tipado contextual de this
+13.12 Laboratorio: utilidad estándar frente a implementación propia y casos límite
 
 # Bloque 14 — Módulos
 14.1 ES Modules
@@ -189,6 +232,13 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 14.8 Path aliases
 14.9 baseUrl y paths
 14.10 Resolución y debugging de módulos
+14.11 node16, nodenext y bundler: elegir resolución según el host
+14.12 Extensiones .mts, .cts, .mjs y .cjs; declaraciones .d.mts y .d.cts
+14.13 Exports condicionales y condiciones de resolución de tipos
+14.14 paths no reescribe imports: resolución estática frente a carga real
+14.15 --traceResolution y diagnóstico de fallos de carga
+14.16 Imports relativos con extensiones: allowImportingTsExtensions y rewriteRelativeImportExtensions
+14.17 Laboratorio: consumir un paquete desde ESM y CommonJS
 
 # Bloque 15 — Declaration Files
 15.1 Qué son los .d.ts
@@ -200,6 +250,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 15.7 Global augmentation
 15.8 Publicar tipos para una librería
 15.9 Generación automática de declarations
+15.10 Declaration merging: interfaces, namespaces y combinaciones admitidas
+15.11 Namespaces y triple-slash directives en bibliotecas heredadas
+15.12 Declaraciones de módulos sin tipos: restricciones frente a un declare module permisivo
+15.13 Laboratorio: comprobar declaraciones contra consumidores reales
 
 # Bloque 16 — Compilador y tsconfig en profundidad
 16.1 Arquitectura conceptual del compilador
@@ -216,6 +270,12 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 16.12 declaration y sourceMap
 16.13 incremental y composite
 16.14 Project references
+16.15 strict no incluye todas las opciones de robustez: configurar políticas explícitas
+16.16 noEmit, noEmitOnError, emitDeclarationOnly e isolatedDeclarations
+16.17 include, exclude, files, rootDir, outDir y herencia con extends
+16.18 --showConfig, --listFilesOnly y --explainFiles para diagnosticar proyectos
+16.19 erasableSyntaxOnly: sintaxis que requiere transformación
+16.20 skipLibCheck: alcance, compromisos y conflictos de declaraciones
 
 # Bloque 17 — Asincronía
 17.1 Callbacks y Promise<T>
@@ -226,10 +286,15 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 17.6 Async iterators
 17.7 Async generators
 17.8 for await...of
-17.9 Awaited<T>
+17.9 Awaited<T> aplicado a composición asíncrona y desempaquetado
 17.10 Manejo de errores asíncronos
 
 17.11 Coste temporal y espacial de Promise.all y operaciones asíncronas
+17.12 Cancelación cooperativa y límites de AbortSignal
+17.13 Timeout, cancelación y limpieza de tareas: responsabilidades distintas
+17.14 Promises rechazadas sin manejar y promesas olvidadas
+17.15 Laboratorio: limitar concurrencia y medir trabajo, latencia y memoria
+
 # Bloque 18 — Iterators y Generators
 18.1 Iterable, Iterator e IterableIterator
 18.2 Symbol.iterator
@@ -238,6 +303,8 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 18.5 Generic generators
 18.6 AsyncIterable
 18.7 Implementación de iterables propios
+18.8 Tipos de yield, return y next en Generator y AsyncGenerator
+18.9 Cierre de iteradores y limpieza al interrumpir un recorrido
 
 # Bloque 19 — Manejo de errores
 19.1 Error y try/catch/finally
@@ -248,9 +315,14 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 19.6 Discriminated unions para errores
 19.7 Excepciones vs resultados tipados
 19.8 APIs type-safe de manejo de errores
+19.9 Error.cause y preservación de contexto al propagar fallos
+19.10 using, Disposable y Symbol.dispose para recursos síncronos
+19.11 await using, AsyncDisposable y Symbol.asyncDispose
+19.12 Errores durante la limpieza, requisitos del runtime y JavaScript emitido
+19.13 Laboratorio: liberar recursos ante retorno temprano, excepción y cancelación
 
 # Bloque 20 — Tipado avanzado de funciones
-20.1 Function overloads
+20.1 Function overloads avanzados: diseño, resolución y casos ambiguos
 20.2 Generic callbacks
 20.3 Variadic tuple types
 20.4 Rest tuples
@@ -259,6 +331,9 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 20.7 Tipado de compose y pipe
 20.8 Currying
 20.9 this parameters
+20.10 Sobrecargas y conditional types: inferencia y pérdida de correlación
+20.11 Generic callbacks: quién elige el parámetro de tipo y cuándo
+20.12 Laboratorio: comprobar una API compose mediante pruebas positivas y negativas
 
 # Bloque 21 — Type-Level Programming
 21.1 Tipos como transformaciones
@@ -275,6 +350,9 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 21.12 Límites prácticos del sistema de tipos
 
 21.13 Coste del type checker al evaluar tipos recursivos
+21.14 Uniones correlacionadas y límites de representación del sistema de tipos
+21.15 Pruebas de igualdad y asignabilidad: evitar falsos positivos con any y never
+
 # Bloque 22 — Diseño de APIs Type-Safe
 22.1 Make illegal states unrepresentable
 22.2 Discriminated unions como modelo de dominio
@@ -309,6 +387,8 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 23.18 Semántica JavaScript que TypeScript no cambia
 23.19 Coerción, igualdad, prototipos y closures desde TypeScript
 23.20 Comprender el JavaScript emitido
+23.21 Repaso aplicado del puente inicial: closures, prototipos y this en código emitido
+23.22 Compatibilidad de features: versión del compilador, target, lib y runtime
 
 # Bloque 24 — Validación en Runtime
 24.1 Compile-time types vs runtime data
@@ -325,6 +405,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 24.12 Mantener sincronizados schemas y tipos
 
 24.13 Regex en fronteras de confianza: validar no equivale a tipar
+24.14 Transformaciones de schemas, tipos de entrada y tipos de salida
+24.15 Validación de mensajes entre procesos y workers
+24.16 Laboratorio: validar una entrada externa antes de construir un branded type
+
 # Bloque 25 — Node.js + TypeScript
 25.1 Configuración Node.js + TypeScript
 25.2 ESM y CommonJS
@@ -346,6 +430,13 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 25.18 APIs modernas de Node.js desde TypeScript
 
 25.19 Extracción tipada con Regex en logs, archivos y CLI
+25.20 Ejecución directa de .ts mediante type stripping: alcance y restricciones
+25.21 Node.js no comprueba tipos al eliminar anotaciones: tsc --noEmit en el flujo
+25.22 tsconfig y type stripping: resolución, extensiones y sintaxis no borrable
+25.23 Comparar tsc, ejecución directa y ejecutores de desarrollo según la versión fijada
+25.24 AsyncLocalStorage y propagación de contexto de operaciones
+25.25 Cierre ordenado: señales, recursos pendientes y errores en salida
+
 # Bloque 26 — Event Loop y modelo de ejecución
 26.1 Call stack
 26.2 Execution contexts
@@ -394,6 +485,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 27.24 Diseño de APIs concurrentes type-safe
 
 27.25 Coste de comunicación y coordinación entre workers
+27.26 Carreras lógicas incluso con un solo hilo: operaciones async intercaladas
+27.27 Validación de protocolos entre workers y recuperación ante terminación
+27.28 Laboratorio: transferir, clonar y compartir buffers con costes medidos
+
 # Bloque 28 — Memoria y Garbage Collection
 28.1 Stack y heap
 28.2 Valores primitivos y referencias
@@ -419,6 +514,9 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 28.22 Type erasure: los tipos no existen en memoria en runtime
 
 28.23 Análisis de complejidad espacial de buffers y colecciones
+28.24 Stack y heap como modelo conceptual: evitar equivalencias rígidas con tipos de valores
+28.25 WeakRef y FinalizationRegistry: limpieza no determinista y límites de uso
+
 # Bloque 29 — Runtime, motores JavaScript y V8
 29.1 TypeScript después del emit
 29.2 JavaScript engines
@@ -439,6 +537,8 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 29.17 Analizar el código JavaScript emitido
 
 29.18 Big O frente a constantes, JIT y deoptimization
+29.19 Arquitectura de V8 por versión: verificar etapas del motor antes de generalizar
+
 # Bloque 30 — Testing
 30.1 Unit e integration tests
 30.2 Mocking y tipado de mocks
@@ -454,6 +554,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 30.12 Property-based testing: introducción
 
 30.13 Pruebas de regresión de Regex y casos de rendimiento
+30.14 Pruebas positivas y negativas de tipos con tsc --noEmit
+30.15 Separar type tests, tests runtime y fixtures de consumidores
+30.16 Laboratorio: temporizadores, cancelación y fallos de workers sin tests frágiles
+
 # Bloque 31 — Tooling y calidad
 31.1 ESLint y typescript-eslint
 31.2 Formatting
@@ -467,9 +571,11 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 31.10 Debugging de Node.js + TypeScript
 31.11 Source maps en producción
 31.12 Inspección del JavaScript emitido
+31.13 npm ci, lockfile y versiones reproducibles en desarrollo y CI
+31.14 Laboratorio CI: comprobación de tipos, lint, tests, build y prueba del paquete
 
 # Bloque 32 — Monorepos y proyectos grandes
-32.1 Project references
+32.1 Project references aplicadas a grafos de paquetes en monorepos
 32.2 composite e incremental builds
 32.3 Shared tsconfig
 32.4 Packages internos
@@ -496,13 +602,16 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 33.10 Compatibilidad runtime vs compatibilidad de tipos
 33.11 API Extractor y superficies públicas: concepto
 33.12 Pruebas de consumidores
+33.13 Condiciones types, declaraciones por formato y compatibilidad de consumidores
+33.14 Laboratorio de publicación: inspeccionar npm pack antes de distribuir
+33.15 Matriz de consumidores: versiones soportadas de Node.js y TypeScript
 
 # Bloque 34 — Performance del compilador TypeScript
 34.1 Rendimiento del compilador
 34.2 --extendedDiagnostics
 34.3 --generateTrace
 34.4 Incremental compilation
-34.5 Project references
+34.5 Project references: medir invalidación y coste de recompilación
 34.6 Complejidad de tipos
 34.7 Conditional types costosos
 34.8 Uniones grandes y tipos recursivos
@@ -512,6 +621,7 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 34.12 Diseño de tipos pensando en rendimiento
 
 34.13 Complejidad de uniones, tipos condicionales y plantillas literales
+
 # Bloque 35 — Performance del runtime
 35.1 Rendimiento del compilador vs rendimiento del programa
 35.2 CPU profiling
@@ -533,6 +643,7 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 35.18 TypeScript y zero-cost abstractions: límites reales
 
 35.19 Análisis asintótico frente a benchmarks medidos
+
 # Bloque 36 — Seguridad con TypeScript
 36.1 Type safety ≠ runtime safety
 36.2 Trust boundaries
@@ -562,6 +673,7 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 36.26 TypeScript como defensa complementaria, no como sandbox
 
 36.27 Mitigación de ReDoS: límites de entrada y pruebas adversariales
+
 # Bloque 37 — Internals de TypeScript
 37.1 Arquitectura del compilador
 37.2 Scanner
@@ -599,6 +711,10 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 38.15 Codemods
 38.16 Construcción de herramientas propias
 38.17 Análisis de dependencias mediante AST
+38.18 CompilerHost y lectura de tsconfig mediante la Compiler API
+38.19 transpileModule frente a Program: transformación aislada y análisis semántico
+38.20 Transformers personalizados: integración y límites del flujo tsc habitual
+38.21 Fijar la versión de typescript y probar compatibilidad de la herramienta
 
 # Bloque 39 — Language Service y herramientas de desarrollo
 39.1 Arquitectura del Language Service
@@ -665,7 +781,7 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 42.15 Arquitectura para monorepos
 42.16 Coste del sistema de tipos a escala
 
-# Bloque 43 — Proyecto final
+# Bloque 43 — Proyecto progresivo: construcción e integración
 43.1 Diseñar una aplicación TypeScript completa
 43.2 strict mode completo
 43.3 Modelo de dominio
@@ -734,18 +850,22 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 44.38 Laboratorio: parser de logs tipado
 44.39 Laboratorio: validador type-safe
 44.40 Proyecto integrador Regex + TypeScript
+44.41 Capturas tipadas no garantizan presencia: validación de grupos en runtime
+44.42 Coincidencias que cruzan chunks de un stream: buffering, límites y decodificación
+44.43 Escape de entradas dinámicas: verificar RegExp.escape en el runtime elegido
+44.44 Laboratorio adversarial: regex síncrona, bloqueo del event loop y aislamiento
 
 # Bloque 45 — Big O Notation y complejidad algorítmica aplicada a TypeScript
-45.1 Big O aplicada a TypeScript y JavaScript
-45.2 Complejidad temporal vs espacial
-45.3 Mejor, promedio y peor caso
-45.4 O(1), O(log n), O(n) y O(n log n)
-45.5 O(n²), O(n³), O(2^n) y O(n!)
-45.6 Análisis de operaciones primitivas
-45.7 Complejidad de bucles
-45.8 Bucles anidados y dependientes
-45.9 Recursión y relaciones de recurrencia
-45.10 Complejidad de funciones y closures
+45.1 Aplicación en código TypeScript: Big O aplicada a TypeScript y JavaScript
+45.2 Aplicación en código TypeScript: Complejidad temporal vs espacial
+45.3 Aplicación en código TypeScript: Mejor, promedio y peor caso
+45.4 Aplicación en código TypeScript: O(1), O(log n), O(n) y O(n log n)
+45.5 Aplicación en código TypeScript: O(n²), O(n³), O(2^n) y O(n!)
+45.6 Aplicación en código TypeScript: Análisis de operaciones primitivas
+45.7 Aplicación en código TypeScript: Complejidad de bucles
+45.8 Aplicación en código TypeScript: Bucles anidados y dependientes
+45.9 Aplicación en código TypeScript: Recursión y relaciones de recurrencia
+45.10 Aplicación en código TypeScript: Complejidad de funciones y closures
 45.11 Complejidad de arrays
 45.12 push, pop, shift y unshift
 45.13 slice, splice y concat
@@ -757,19 +877,19 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 45.19 Objetos y acceso a propiedades
 45.20 Map y Set
 45.21 WeakMap y WeakSet
-45.22 Estructuras de datos personalizadas
-45.23 Stacks, queues y linked lists
-45.24 Hash tables y colisiones
-45.25 Árboles y recorridos
-45.26 Heaps y priority queues
-45.27 Algoritmos de búsqueda
-45.28 Algoritmos de ordenación
-45.29 Algoritmos de grafos
-45.30 Complejidad amortizada
+45.22 Aplicación en código TypeScript: Estructuras de datos personalizadas
+45.23 Aplicación en código TypeScript: Stacks, queues y linked lists
+45.24 Aplicación en código TypeScript: Hash tables y colisiones
+45.25 Aplicación en código TypeScript: Árboles y recorridos
+45.26 Aplicación en código TypeScript: Heaps y priority queues
+45.27 Aplicación en código TypeScript: Algoritmos de búsqueda
+45.28 Aplicación en código TypeScript: Algoritmos de ordenación
+45.29 Aplicación en código TypeScript: Algoritmos de grafos
+45.30 Aplicación en código TypeScript: Complejidad amortizada
 45.31 Complejidad de memoria y allocations
 45.32 Complejidad de generadores e iteradores
-45.33 Complejidad de async/await
-45.34 Promise.all y concurrencia
+45.33 Algoritmos con async/await: trabajo total, latencia y memoria
+45.34 Promise.all: trabajo, concurrencia efectiva y memoria retenida
 45.35 Complejidad de pipelines y streams
 45.36 Backpressure y memoria acotada
 45.37 Workers y paralelismo CPU-bound
@@ -790,3 +910,20 @@ Objetivo: dominar TypeScript desde la semántica de JavaScript y ECMAScript hast
 45.52 Laboratorio: complejidad de tipos
 45.53 Laboratorio: memoria y rendimiento
 45.54 Proyecto integrador de complejidad
+45.55 Modelos explícitos: tamaño de entrada, supuestos del motor y coste de callbacks
+45.56 Laboratorio: copias ocultas en acumuladores con spread y pipelines de arrays
+45.57 Laboratorio: trabajo total, latencia, concurrencia y memoria retenida en Promises
+
+# Bloque 46 — Entrega final y evaluación integradora
+46.1 Verificar todas las entregas del proyecto progresivo del bloque 43
+46.2 Integrar el parser Regex con límites de entrada y capturas comprobadas
+46.3 Resolver coincidencias entre chunks y probar Unicode y entradas adversariales
+46.4 Documentar complejidad temporal, espacial y supuestos del modelo
+46.5 Contrastar algoritmos alternativos mediante benchmarks reproducibles
+46.6 Medir memoria, backpressure y concurrencia bajo carga
+46.7 Validar cancelación y cierre de recursos ante fallos
+46.8 Ejecutar pruebas de tipos, runtime y consumidores del paquete
+46.9 Auditar resolución de módulos, JavaScript emitido y compatibilidad
+46.10 Medir coste del type checker y simplificar tipos si procede
+46.11 Presentar la herramienta AST con versión del compilador fijada
+46.12 Defender decisiones de arquitectura, seguridad y rendimiento con evidencias

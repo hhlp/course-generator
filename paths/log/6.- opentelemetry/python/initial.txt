@@ -1,0 +1,381 @@
+OpenTelemetry + Python — de 0 a experto en profundidad
+
+Especialización independiente del PATH general de OpenTelemetry.
+Numeración B.L: bloque desde 0 y lección desde 1. Orden recomendado: secuencial.
+Los títulos son objetivos de desarrollo; no equivalen a lecciones ya generadas.
+
+BLOQUE 0 — Orientación y relación con el PATH general
+0.1 Objetivos y fronteras de la especialización Python
+0.2 Diagnóstico inicial de conocimientos de Python y Linux
+0.3 Repaso aplicado de señales y correlación
+0.4 Distinguir aplicación, SDK, Collector y backend
+0.5 Mapa de laboratorios y criterios de avance
+0.6 Elegir una versión compatible sin asumir la última
+
+BLOQUE 1 — Entorno Python reproducible
+1.1 Intérprete y metadatos Requires-Python de cada paquete
+1.2 Dependencias de aplicación y de instrumentación
+1.3 Instalación con pip y alternativa con uv
+1.4 Aislamiento de dependencias y alternativa sin entorno virtual
+1.5 Lockfiles, hashes y reconstrucción del entorno
+1.6 Comprobación de imports, ejecutables y conflictos
+
+BLOQUE 2 — Arquitectura de OpenTelemetry Python
+2.1 Paquetes API, SDK, exporters e instrumentation
+2.2 Aplicación propietaria de la configuración del SDK
+2.3 Biblioteca instrumentada con API sin imponer SDK
+2.4 Providers globales, no-op y momento de inicialización
+2.5 Instrumentation scope y versión de la biblioteca
+2.6 Recorrido de una operación hasta la exportación
+
+BLOQUE 3 — Primer laboratorio de extremo a extremo
+3.1 Aplicación CLI mínima y operación observable
+3.2 Exportación a consola para aislar errores locales
+3.3 Collector local con receivers y pipelines por señal
+3.4 OTLP hacia Collector y backend de trazas Jaeger
+3.5 Métricas con Prometheus y logs con debug para la primera prueba
+3.6 Reconstruir el circuito y verificar recepción por señal
+
+BLOQUE 4 — Configuración y ciclo de vida
+4.1 Variables OTEL_* comunes y específicas de Python
+4.2 Configuración programática y orden de inicialización
+4.3 Endpoints globales y por señal, protocolo y headers
+4.4 Configuración declarativa cuando la versión la soporte
+4.5 Precedencia documentada y variables sin implementación
+4.6 Configuración centralizada, idempotencia y cierre
+
+BLOQUE 5 — Resources e identidad del servicio
+5.1 service.name y service.namespace
+5.2 Identidad de versión, entorno y despliegue
+5.3 service.instance.id y escritores de métricas
+5.4 Detectores de recursos y precedencia de atributos
+5.5 Identidad en procesos y contenedores
+5.6 Diagnóstico de servicios mezclados o fragmentados
+
+BLOQUE 6 — Trazas manuales fundamentales
+6.1 TracerProvider, Tracer y creación de spans
+6.2 Context managers y start_as_current_span
+6.3 Parent-child, spans raíz y SpanContext
+6.4 SpanKind y fronteras cliente-servidor
+6.5 Atributos tipados, límites y valores inválidos
+6.6 Finalización de spans en todos los caminos de ejecución
+
+BLOQUE 7 — Trazas manuales avanzadas
+7.1 Eventos y timestamps para hitos de una operación
+7.2 Excepciones registradas y estado del span
+7.3 Links y relaciones sin parentesco directo
+7.4 Nombres estables y convenciones semánticas
+7.5 Decoradores, wrappers y conservación de firmas
+7.6 Diseño de spans para operaciones de negocio
+
+BLOQUE 8 — Contexto en Python
+8.1 Context API y relación con contextvars
+8.2 Span activo frente a referencia a un span
+8.3 attach, detach y restauración con finally
+8.4 Context managers anidados y fuga de contexto
+8.5 Contexto de petición y aislamiento entre usuarios
+8.6 Prueba de contexto bajo operaciones concurrentes
+
+BLOQUE 9 — Propagación distribuida
+9.1 W3C traceparent y tracestate en HTTP
+9.2 Propagators, carriers, getters y setters
+9.3 Inyección y extracción manual verificables
+9.4 Baggage y límites de confianza
+9.5 Cabeceras inválidas y contexto remoto no confiable
+9.6 Dos servicios Python y continuidad de la traza
+
+BLOQUE 10 — Sampling en la aplicación
+10.1 AlwaysOn, AlwaysOff y TraceIdRatioBased
+10.2 ParentBased y decisiones remotas
+10.3 is_recording y costes de atributos diferidos
+10.4 Decisión de muestreo frente a exportación
+10.5 Interacción con tail sampling del Collector
+10.6 Pruebas de sesgo, excepciones y trazas incompletas
+
+BLOQUE 11 — Processors y exportación de trazas
+11.1 SimpleSpanProcessor y BatchSpanProcessor
+11.2 Colas, tamaños de lote y temporizadores
+11.3 SpanExporter, resultados y errores de exportación
+11.4 force_flush, shutdown y sus límites
+11.5 Comportamiento durante caída del destino
+11.6 No recursión al observar el propio exporter
+
+BLOQUE 12 — Instrumentación automática
+12.1 Distribución, bootstrap y launcher de Python
+12.2 Descubrimiento de instrumentaciones instaladas
+12.3 Monkey patching y orden de imports
+12.4 Activación selectiva y exclusión de bibliotecas
+12.5 Comparación de arranque manual y automático
+12.6 Detección de doble instrumentación
+
+BLOQUE 13 — Instrumentación híbrida y hooks
+13.1 Spans automáticos y spans de negocio
+13.2 Hooks de petición y respuesta
+13.3 Filtros de URL y exclusión de health checks
+13.4 Captura selectiva de cabeceras sin datos sensibles
+13.5 Uninstrument y restauración en pruebas
+13.6 Estabilidad de convenciones y migración de atributos
+
+BLOQUE 14 — HTTP saliente
+14.1 Requests y sesiones persistentes
+14.2 HTTPX síncrono y asíncrono
+14.3 aiohttp cliente y conectores
+14.4 Retries, timeouts y representación de intentos
+14.5 Propagación a servicios externos y dominios permitidos
+14.6 Validación de errores de red y atributos HTTP
+
+BLOQUE 15 — Flask y WSGI
+15.1 Ciclo WSGI y activación de FlaskInstrumentor
+15.2 Rutas, parámetros y nombres de spans
+15.3 Hooks y errores en handlers
+15.4 Streaming, generadores y cierre de respuesta
+15.5 Integración con clientes HTTP y SQL
+15.6 Laboratorio Flask con pruebas de trazas
+
+BLOQUE 16 — FastAPI, Starlette y ASGI
+16.1 Lifespan ASGI e inicialización del SDK
+16.2 Instrumentación de FastAPI y Starlette sin duplicados
+16.3 Middleware, dependencias y rutas parametrizadas
+16.4 Mensajes ASGI, spans internos y exclusiones
+16.5 BackgroundTasks y límites del contexto de petición
+16.6 Laboratorio FastAPI con pruebas de concurrencia
+
+BLOQUE 17 — Django
+17.1 Arranque, settings y activación de instrumentación
+17.2 Middleware y resolución de vistas
+17.3 ORM, consultas y transacciones
+17.4 Gestión de errores y señales de Django
+17.5 Comandos de administración y tareas fuera de HTTP
+17.6 Laboratorio Django con aislamiento de pruebas
+
+BLOQUE 18 — RPC y comunicaciones persistentes
+18.1 Instrumentación gRPC cliente y servidor
+18.2 Metadata y propagación de contexto RPC
+18.3 Unary, streaming y ciclo de vida de operaciones
+18.4 WebSockets y diseño manual de operaciones
+18.5 Reconexión, cancelación y plazos
+18.6 Verificación de soporte de cada librería y versión
+
+BLOQUE 19 — SQL y persistencia
+19.1 DB-API y bibliotecas de instrumentación
+19.2 SQLAlchemy y ciclo del engine
+19.3 psycopg y acceso a PostgreSQL
+19.4 Operaciones asíncronas y drivers compatibles
+19.5 Consultas parametrizadas, sanitización y PII
+19.6 Transacciones, pools y diagnóstico de latencia
+
+BLOQUE 20 — Caché y bases de datos adicionales
+20.1 Redis y operaciones individuales
+20.2 Pipelines, lotes y relaciones de spans
+20.3 PyMongo cuando exista compatibilidad comprobada
+20.4 Conexiones, timeouts y errores del cliente
+20.5 Datos de comandos y control de exposición
+20.6 Decidir instrumentación automática o manual
+
+BLOQUE 21 — Métricas e instrumentos
+21.1 MeterProvider, Meter e identidad de instrumentos
+21.2 Counter y UpDownCounter
+21.3 Histogram y medición de duración
+21.4 ObservableCounter y ObservableGauge
+21.5 Callbacks, concurrencia y coste de observación
+21.6 Selección correcta del instrumento por semántica
+
+BLOQUE 22 — Views y agregaciones
+22.1 Selección de instrumentos mediante Views
+22.2 Filtrado de atributos y agregaciones
+22.3 Histogramas explícitos y elección de buckets
+22.4 Histogramas exponenciales si están soportados
+22.5 Unidades, descripciones y nombres coherentes
+22.6 Validación de distribuciones y pérdida de resolución
+
+BLOQUE 23 — Lectura y exportación de métricas
+23.1 MetricReader y PeriodicExportingMetricReader
+23.2 Exportación OTLP y alternativa Prometheus
+23.3 Temporality delta y cumulative
+23.4 Resets, reinicios y múltiples escritores
+23.5 Exemplars y vínculo con trazas cuando esté soportado
+23.6 Cierre, última colección y diagnósticos de exportación
+
+BLOQUE 24 — Cardinalidad y métricas de aplicación
+24.1 Rutas normalizadas frente a identificadores de usuario
+24.2 Presupuesto de atributos y series temporales
+24.3 Métricas RED y operaciones de negocio
+24.4 Métricas de proceso y runtime disponibles
+24.5 Límites de cardinalidad y overflow según SDK
+24.6 Prueba de carga con comparación de volumen y memoria
+
+BLOQUE 25 — Logging de Python y correlación
+25.1 Loggers, handlers, formatters y propagación
+25.2 Niveles, severidad y timestamps
+25.3 LoggingInstrumentor y campos trace_id/span_id
+25.4 Correlación sin exportación de logs y fuera de un span
+25.5 JSON estructurado y logging de excepciones
+25.6 Evitar basicConfig tardío y handlers duplicados
+
+BLOQUE 26 — Exportación de logs con OpenTelemetry
+26.1 Estado del API y SDK de logs según versión
+26.2 LoggerProvider, processors y exporter OTLP
+26.3 Puente entre logging y LogRecord de OpenTelemetry
+26.4 Inicialización manual frente a automática
+26.5 Batching, flush, shutdown y pérdida de registros
+26.6 Evitar duplicación entre stdout, journald y OTLP
+
+BLOQUE 27 — Asincronía con asyncio
+27.1 Propagación al crear tareas y contexto capturado
+27.2 gather, TaskGroup y operaciones concurrentes
+27.3 Cancelación, timeout y finalización de spans
+27.4 Tareas duraderas fuera de una petición
+27.5 to_thread y llamadas bloqueantes
+27.6 Pruebas de aislamiento entre cientos de tareas
+
+BLOQUE 28 — Hilos y executors
+28.1 Límites de propagación a nuevos hilos
+28.2 ThreadPoolExecutor y copia explícita de contexto
+28.3 Instrumentación de threading cuando corresponda
+28.4 Callbacks y restauración del contexto
+28.5 Contención, sincronización y callbacks de métricas
+28.6 Pruebas de parentesco correcto entre hilos
+
+BLOQUE 29 — Procesos y servidores con workers
+29.1 fork, spawn y estado heredado
+29.2 Threads y locks internos de processors y readers
+29.3 Inicialización del SDK después de fork
+29.4 Gunicorn y Uvicorn con hooks compatibles
+29.5 Identidad de recurso por worker y métricas
+29.6 Reproducción de bloqueos y pérdida al reiniciar workers
+
+BLOQUE 30 — Mensajería y tareas distribuidas
+30.1 Contexto en headers de mensajes
+30.2 Producer, consumer y convenciones semánticas
+30.3 Celery y ciclo de ejecución de tareas
+30.4 RabbitMQ con cliente compatible
+30.5 Kafka con cliente compatible y soporte verificado
+30.6 Links, fan-out y procesamiento por lotes
+
+BLOQUE 31 — Semántica de tareas y fiabilidad
+31.1 Retries y nueva ejecución frente a nueva operación
+31.2 Acknowledgements, redelivery y duplicados
+31.3 Dead-letter queues y errores definitivos
+31.4 Trabajo diferido y span de larga duración
+31.5 No equiparar trace con transacción exactamente una vez
+31.6 Pruebas de caída de worker y trazas de recuperación
+
+BLOQUE 32 — Aplicaciones CLI y batch
+32.1 Inicialización de herramientas de vida corta
+32.2 Comandos, subcomandos y argumentos seguros
+32.3 Procesamiento por lotes y progreso mediante métricas
+32.4 Programación con systemd timers o cron
+32.5 SIGTERM, SIGINT y cierre acotado
+32.6 Pruebas de telemetría antes de terminar el proceso
+
+BLOQUE 33 — Pruebas unitarias de instrumentación
+33.1 Fixtures y providers locales por prueba
+33.2 Exporters en memoria compatibles con la versión
+33.3 Aserciones sobre spans, atributos y jerarquías
+33.4 Pruebas de métricas y lectores de prueba
+33.5 Logs correlacionados y aislamiento de handlers
+33.6 No depender de orden temporal ni IDs aleatorios
+
+BLOQUE 34 — Pruebas de integración y contratos
+34.1 Aplicación, Collector y backend de pruebas
+34.2 Propagación entre dos procesos reales
+34.3 Fixtures de error y datos sintéticos
+34.4 Comprobar señales sin sleeps arbitrarios
+34.5 Contratos de nombres, unidades y atributos
+34.6 Evitar dependencias de APIs privadas en el harness
+
+BLOQUE 35 — Rendimiento y resiliencia
+35.1 Medir baseline sin instrumentación
+35.2 Comparar instrumentación automática y manual
+35.3 Overhead de atributos, eventos y callbacks
+35.4 Backpressure, colas llenas y pérdida de datos
+35.5 Timeouts, retries y límites del exporter
+35.6 Presupuesto de CPU, memoria y latencia con evidencias
+
+BLOQUE 36 — Seguridad y privacidad
+36.1 TLS, certificados y confianza del exporter
+36.2 mTLS y autenticación según implementación
+36.3 Secretos en headers y configuración externa
+36.4 PII en rutas, SQL, logs y baggage
+36.5 Filtrar en origen y defensa adicional en Collector
+36.6 Pruebas de ausencia de secretos en telemetría
+
+BLOQUE 37 — Integración con Collector y backends
+37.1 Pipelines mínimos por señal y exporter debug
+37.2 Batch y memory_limiter en la versión elegida
+37.3 Prometheus y consulta de métricas de Python
+37.4 Jaeger o Tempo para inspección de trazas
+37.5 Loki para logs y consulta desde Grafana
+37.6 Alternativas Elastic y OpenSearch sin imponerlas al laboratorio
+
+BLOQUE 38 — Fedora, RHEL y systemd
+38.1 Instalación de la aplicación y usuario de servicio
+38.2 EnvironmentFile, credenciales y permisos
+38.3 Arranque instrumentado con ExecStart verificable
+38.4 SELinux, firewalld y diagnóstico de denegaciones
+38.5 journald y elección de una ruta de logs
+38.6 StopTimeout, reinicios y pruebas de cierre ordenado
+
+BLOQUE 39 — Contenedores con Podman y Docker
+39.1 Containerfile y dependencias reproducibles
+39.2 Entrypoint y launcher sin doble inicialización
+39.3 Red interna y endpoints del Collector
+39.4 Ejecución rootless, volúmenes y certificados
+39.5 Health checks y exclusión de ruido
+39.6 Señales de parada y recreación de contenedores
+
+BLOQUE 40 — Aplicaciones Python en Kubernetes
+40.1 Deployment y configuración OTEL_*
+40.2 Resources e identidad de pod y servicio
+40.3 Instrumentación manual en la imagen
+40.4 Operator e inyección Python si es compatible
+40.5 Secrets, NetworkPolicies y conexión al Collector
+40.6 Rollouts, workers, recursos y diagnóstico de inyección
+
+BLOQUE 41 — Troubleshooting por capas
+41.1 No-op provider y SDK nunca inicializado
+41.2 Imports, launcher y paquetes incompatibles
+41.3 Spans ausentes, duplicados o con padre incorrecto
+41.4 Métricas sin puntos o con series fragmentadas
+41.5 Logs sin contexto o exportados varias veces
+41.6 Endpoints, TLS, errores parciales y destinos inaccesibles
+
+BLOQUE 42 — Actualizaciones y compatibilidad
+42.1 Versionado API, SDK, contrib y exporter
+42.2 Matriz de compatibilidad con Python y frameworks
+42.3 Changelogs y deprecaciones de interfaces
+42.4 Cambios de convenciones y opt-in documentado
+42.5 Pruebas de regresión y comparación de telemetría
+42.6 Upgrade gradual, rollback y lockfiles
+
+BLOQUE 43 — Instrumentar bibliotecas reutilizables
+43.1 Dependencia de API y neutralidad de backend
+43.2 Tracer y Meter por instrumentation scope
+43.3 Diseñar atributos y convenciones de biblioteca
+43.4 Wrappers, context managers y instrumentor propio
+43.5 Packaging y entry points de instrumentación
+43.6 Pruebas con y sin SDK instalado
+
+BLOQUE 44 — Extensiones e internals de Python
+44.1 Pipeline interno de spans y processors
+44.2 Lectores, agregación y estado de métricas
+44.3 Puente de logging y procesamiento de LogRecords
+44.4 Exporter propio y contrato de resultados
+44.5 Distribution y configurator personalizados
+44.6 Depuración upstream y contribución reproducible
+
+BLOQUE 45 — Diseño de observabilidad de producto
+45.1 Objetivos SLI y métricas de servicio
+45.2 Relacionar incidente, traza, métrica y log
+45.3 Convenciones de negocio y gobernanza de atributos
+45.4 SLO y alertas basados en consultas verificables
+45.5 Runbooks con decisiones y pruebas diagnósticas
+45.6 Revisión de coste, privacidad y mantenibilidad
+
+BLOQUE 46 — Proyecto experto integrado
+46.1 Diseño de API Python, worker, PostgreSQL y Redis
+46.2 Trazas distribuidas y tareas con contexto propagado
+46.3 Métricas RED, negocio y logs correlacionados
+46.4 Despliegue local reproducible con servicios privados
+46.5 Pruebas de fallos, carga, cierre y actualización
+46.6 Entrega con código, configuración, evidencias y defensa técnica

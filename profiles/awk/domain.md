@@ -389,3 +389,102 @@ Al terminar el PATH, el alumno debe poder:
 -   diseñar, probar, perfilar, asegurar y mantener aplicaciones AWK;
 -   comprender suficientemente los internals de gawk para relacionarlos
     con su comportamiento observable.
+
+
+## Revisión técnica y baseline normativa (2026-10-16)
+
+Se conservan los 47 bloques (0–46) y todos los identificadores previos.
+Las nuevas lecciones se añaden al final de cada bloque para mantener enlaces.
+Estos archivos describen el PATH; no son las lecciones ya generadas.
+
+### Estándar y versión de implementación
+
+Declarar en cada lección si la solución exige POSIX.1-2017, POSIX.1-2024
+(Issue 8) o una capacidad de GNU awk. `nextfile`, `fflush()` y
+`delete array` aparecen en Issue 8; no clasificarlos como exclusivos de
+GNU por su origen histórico. Para sistemas anteriores, comprobar soporte
+y ofrecer alternativas cuando sea razonable. La implementación instalada
+y sus capacidades importan además de la norma citada.
+
+`gawk --posix` comprueba un modo de gawk; no demuestra por sí solo
+portabilidad entre motores. `--traditional` tampoco es un emulador de
+todas las variantes antiguas. Registrar versión, locale y capacidades.
+
+### Semántica que debe demostrarse
+
+- Campos: contrastar asignación a `$0`, asignación a `$1`, cambio de
+  `FS`, cambio de `OFS` y asignación a `NF`, con salida esperada.
+- Tipos: comparar valores procedentes de campos con literales numéricos
+  y strings; conservar identificadores con ceros iniciales.
+- Strings: `split()` es parte central del curso; explicar retorno,
+  índices, separador y limpieza del array de destino antes de `patsplit()`.
+- Sustituciones: distinguir retorno de `sub()`/`gsub()` de la cadena
+  modificada; tratar `&` y barras inversas en reemplazos.
+- Entrada: cada forma de `getline` debe indicar destino, efecto en
+  `$0`/`NF`, efecto en `NR`/`FNR`, EOF, error y cierre del recurso.
+- Archivos: mostrar con un contraejemplo por qué `NR==FNR` no identifica
+  correctamente el primer archivo cuando está vacío. Contrastar con
+  `ARGIND` en gawk y una fase explícita en soluciones portables.
+- Joins: declarar cardinalidad; no perder duplicados silenciosamente.
+- Salida: `>` abre el recurso una vez; cerrar y reabrir con `>` puede
+  truncar. Las claves de `close()` deben coincidir con las de apertura.
+- Errores: preservar el código de fallo durante `END`; no emitir un
+  informe de éxito después de un fallo fatal del programa.
+
+### CSV y formatos
+
+GNU awk incorporó `--csv` en la serie 5.3. Verificar capacidad antes del
+laboratorio. Este modo controla la separación de registros y campos,
+por encima de `RS`, `FS`, `FPAT` y `FIELDWIDTHS`; no mezclar estrategias.
+Una llamada de dos argumentos a `split()` sigue reglas CSV en este modo.
+La lectura CSV no hace que `print` genere CSV escapado automáticamente.
+La serialización debe tratar comillas, comas, CR y LF y comprobarse con
+una ronda lectura-escritura-lectura. No prometer soporte de todos los
+dialectos CSV ni presentar FPAT como solución general a CSV multilínea.
+
+### Progresión sin duplicación de otros PATH
+
+El bloque 0 es una introducción de uso: remitir a Coreutils, Bash, Zsh y
+sed para su tratamiento completo. El bloque 9 aplica ERE a AWK; remitir
+al PATH Regex para teoría general. El análisis de complejidad se aplica
+a memoria, joins y streaming; su teoría general pertenece al PATH Big-O.
+C es un prerrequisito opcional únicamente para la extensión del bloque 39.
+
+Los bloques 17, 25 y 41 sirven respectivamente de mapa de variables,
+síntesis de capacidades GNU y referencia de invocación; al reutilizar
+temas previos, aportar una comparación o un caso nuevo, no repetir teoría.
+Introducir fixtures desde el primer laboratorio y profundizar la suite
+en el bloque 44. Las lecciones añadidas se pueden consultar desde su
+tema previo sin alterar su identificador.
+
+### Contrato de laboratorio y pruebas
+
+Todo laboratorio incluirá entrada reproducible, programa completo,
+comando de ejecución, stdout esperado, estado esperado y explicación.
+Especificar stderr cuando sea relevante. Declarar capacidades opcionales
+y marcar pruebas omitidas si faltan, sin registrarlas como aprobadas.
+No asumir gawk instalado, un locale concreto ni datos reales idénticos.
+
+Casos mínimos según tema: entrada vacía, campos vacíos o ausentes,
+primer archivo vacío, claves duplicadas, datos no numéricos, Unicode,
+última línea sin newline, salida determinista y errores de apertura.
+Para multiprecisión y extensiones, verificar opciones de compilación.
+Para coprocesses, usar tiempos límite y un protocolo de cierre; para red,
+usar loopback. `--sandbox` no sustituye aislamiento del sistema operativo.
+
+El proyecto final debe demostrar contratos de entrada/salida, joins
+sin pérdida accidental de datos, CSV correcto cuando se solicite,
+fallos con estado no cero, pruebas de capacidades y memoria acotada
+o crecimiento documentado. La matriz de motores identifica qué se
+ejecutó, qué se omitió y qué versión se utilizó.
+
+### Perfil y validación del generador
+
+El perfil activa ejemplos de programación específicos de AWK y exige
+laboratorio y errores frecuentes. Se conservan las claves originales.
+`validation.enabled: false` se mantiene porque no se ha proporcionado el
+contrato de ejecución de validadores de course-generator. Esto no exime
+de aportar pruebas por lección: evita inventar comandos globales que
+podrían ejecutar un programa sin sus entradas o con efectos laterales.
+La ruta relativa de `files.pedagogy` se conserva; debe resolverse desde
+la ubicación del perfil en el repositorio del usuario.

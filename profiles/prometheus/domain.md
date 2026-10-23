@@ -165,7 +165,16 @@ Los bloques avanzados deben explicar cómo funciona Prometheus internamente sin 
 
 Se debe poder seguir conceptualmente:
 
-exporter → service discovery → target → relabeling → scrape loop → parser → sample validation → TSDB Head/WAL → blocks → query engine → recording/alerting rules → notifier → Alertmanager → remote write.
+El descubrimiento y el relabeling construyen los targets. El flujo de muestras sigue: exporter → scrape loop → parser → validación → TSDB (Head/WAL y bloques persistentes).
+
+A partir de ahí se distinguen caminos relacionados:
+
+- Consulta: almacenamiento → query engine → resultados de PromQL.
+- Reglas: evaluación de PromQL → recording rules (nuevas series) o alerting rules (estados de alerta).
+- Alertas: alerting rules → notifier → Alertmanager → receivers.
+- Remote write: lectura del WAL → colas y shards → receptor remoto. No pasa por Alertmanager. En Agent Mode se estudian su WAL y sus diferencias respecto al servidor completo.
+
+Este esquema describe dependencias lógicas; no impone que la consulta espere a la creación de bloques persistentes.
 
 ## Grafana
 
@@ -280,3 +289,36 @@ El alumno debe ser capaz de reconstruir y explicar el flujo completo de una mét
 ## Límites entre PATHs
 
 Grafana, Kubernetes, OpenTelemetry, Ansible y las plataformas de almacenamiento distribuido se tratan solo en la medida necesaria para integrar u operar Prometheus. El aprendizaje avanzado de esas tecnologías pertenece a sus respectivos PATHs.
+
+
+## Contrato pedagógico de las lecciones y dependencias
+
+Conservar todos los IDs y el orden. Una entrada breve tiene un objetivo concreto; su profundidad depende de la complejidad del concepto, sin imponer una longitud mínima artificial. No volver a desarrollar el mismo fundamento en cada lección.
+
+Cada lección debe declarar sus prerrequisitos por ID y su aportación nueva. Referenciar explicaciones previas y reservar el contenido avanzado para su bloque. Por ejemplo, 9.24 trabaja sum y agrupación; 10.28 profundiza en el orden rate/agregación; 15 aplica esa base a recording rules. Los comandos systemd se explican con el servicio real y verificaciones específicas.
+
+Distinguir presentación conceptual, uso operativo e internals. Los laboratorios acumulativos reutilizan el entorno y añaden una avería, medición o decisión nueva. No ejecutar recuperaciones destructivas sobre la instancia de trabajo: usar una copia aislada y documentar la pérdida potencial.
+
+La integración con Operator del bloque 32 es opcional y requiere conocimientos previos de Kubernetes. Cubre recursos de monitorización, selección y diagnóstico de configuración generada; la administración del clúster se deriva al PATH de Kubernetes.
+
+El perfil referencia ../../config/pedagogy.md como dependencia del repositorio de destino. No se ha facilitado ese archivo: comprobar su existencia y coherencia antes de generar. Este paquete no incluye ni sustituye esa política externa. Validar también el perfil con el esquema real de course-generator: un YAML sintácticamente válido no acredita compatibilidad con su consumidor.
+
+## Reproducibilidad y migración
+
+Antes de cada laboratorio, registrar versión de Fedora, Prometheus, promtool, Alertmanager, amtool y exporters utilizados; añadir receptor remoto y Operator cuando intervengan. Elegir versiones concretas de laboratorio y guardar flags efectivos, configuración y referencias correspondientes. No tomar latest o main como una versión reproducible.
+
+La migración 2.x → 3.x se estudia mediante la guía oficial, inventario de cambios y pruebas comparativas de configuración, consultas, scraping y reglas. Las migraciones posteriores requieren sus propias notas de versión. El rollback no presupone que un binario antiguo pueda abrir una TSDB modificada: conservar copia anterior y ensayar restauración aislada.
+
+## Proyecto final por fases y aceptación
+
+Las entradas 40.1–40.77 conservan su significado; las lecciones añadidas definen las fases. Todas las evidencias deben incluir comandos, resultados y versiones. Se proponen estos umbrales pedagógicos, ajustables en el ADR inicial:
+
+| Fase | Trabajo y referencias | Criterio verificable |
+| --- | --- | --- |
+| 1. Diseño | 40.1–40.3, 40.15–40.16, 40.23–40.24 | Inventario, ADR, versiones, presupuesto de series y SLO definidos antes del despliegue. |
+| 2. Despliegue | 40.4–40.18, 40.40–40.43 | Todos los targets previstos UP durante al menos tres scrapes; verificación TLS y de accesos permitidos/denegados; segunda aplicación Ansible sin cambios no justificados. |
+| 3. Consultas y alertas | 40.19–40.33, 40.46–40.47 | Validaciones de configuración y reglas sin errores; suite positiva y negativa superada; evidencia de pending/firing/resolución y recepción en un receptor de laboratorio. |
+| 4. Capacidad y continuidad | 40.34–40.39, 40.44–40.54 | Medir ingesta, RAM, disco, series y backlog frente al presupuesto; ejecutar fallo de réplica si hay HA; restauración que cumpla el RPO/RTO declarado. |
+| 5. Entrega | 40.55–40.77 | Repositorio, CI, runbooks e informes completos; reconstrucción en entorno limpio y trazabilidad de cada requisito a una evidencia. |
+
+Usar un receptor de pruebas para notificaciones. Los escenarios HA y remote write deben señalar topología y componentes necesarios. Un componente fuera de alcance debe justificarse; no afirmar resiliencia que no se haya probado.

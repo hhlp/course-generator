@@ -58,3 +58,10 @@ pedagogy:
     map_sources_by_scope: true
     verify_editions_and_exact_references: true
     avoid_invented_page_numbers: true
+
+# Reglas de secuencia expresadas como guía editorial; comprobar el soporte
+# del esquema de course-generator antes de añadir nuevas opciones al perfil.
+# 5.9: intuición; 11.7: algoritmo con cierres.
+# 21.8–21.11: fundamentos concurrentes previos a triggers.
+# 25.12–25.15: métodos de índice y comparación experimental.
+# Las actividades recurrentes deben aumentar la exigencia.

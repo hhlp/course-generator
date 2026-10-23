@@ -212,6 +212,13 @@ topics:
       - StandardOutput
       - StandardError
       - sd_notify
+      - RemainAfterExit
+      - StartLimitIntervalSec
+      - StartLimitBurst
+      - RestartSteps
+      - RestartMaxDelaySec
+      - RestartMode
+      - OOMPolicy
   dependencies:
     require:
       - Requires
@@ -230,7 +237,7 @@ topics:
       - PropagatesStopTo
       - StopPropagatedFrom
       - OnFailureJobMode
-      - JobMode
+      - systemctl --job-mode
       - Conditions and Assertions
   advanced:
     require:
@@ -256,6 +263,10 @@ topics:
       - systemd-sysext
       - systemd-confext
       - UKI optional
+      - manager configuration and drop-ins
+      - environment.d and environment generators
+      - udev and device activation
+      - shutdown ordering and diagnostics
 security:
   teach_hardening: true
   directives:
@@ -320,6 +331,9 @@ project:
       - export JSON reports
       - automated tests
       - RPM packaging
+      - report missing optional components
+      - handle insufficient permissions and partial results
+      - document graph scope and JSON schema
 quality:
   forbid:
     - resúmenes superficiales
@@ -350,5 +364,7 @@ curriculum:
     - 36
   final_project_block: 37
   version_sensitive_features: verify_against_installed_fedora_systemd
-  notes: Las claves ampliadas de generation son declarativas;
-    comprobar soporte del generador.
+  notes: >-
+    Las claves ampliadas son declarativas; verificar qué campos consume
+    course-generator. Las reglas de cobertura y recorrido se desarrollan
+    también en domain.md. No se ha validado el esquema del generador.

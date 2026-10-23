@@ -46,6 +46,9 @@ BLOQUE I — FUNDAMENTOS
 4.8 Construcción de operadores derivados desde AND/OR/NOT
 4.9 Relaciones entre operadores
 4.10 Tablas de verdad comparadas
+4.11 Implicación material frente a consecuencia semántica
+4.12 Condición necesaria, suficiente y necesaria y suficiente
+4.13 Equivalencias de implicación y bicondicional; negación de implicaciones
 5. Tablas de verdad
 5.1 Construcción sistemática
 5.2 Una variable: 2^1 combinaciones
@@ -57,6 +60,8 @@ BLOQUE I — FUNDAMENTOS
 5.8 Lectura e interpretación
 5.9 Tabla de verdad → expresión
 5.10 Comprobación de equivalencias
+5.11 Tautología, contradicción, contingencia y satisfacibilidad: primera aproximación
+5.12 Asignaciones que satisfacen una fórmula y búsqueda de contraejemplos
 6. Expresiones booleanas
 6.1 Literales, operandos y operadores
 6.2 Subexpresiones
@@ -75,6 +80,8 @@ BLOQUE I — FUNDAMENTOS
 7.7 Bicondicional
 7.8 Eliminación de ambigüedad
 7.9 Reescritura explícita mediante paréntesis
+7.10 Convenciones de precedencia: declarar la elegida y contrastar lenguajes
+7.11 Asociatividad sintáctica frente a asociatividad algebraica
 
 BLOQUE II — LEYES DEL ÁLGEBRA BOOLEANA
 8. Ley de identidad
@@ -120,6 +127,7 @@ BLOQUE II — LEYES DEL ÁLGEBRA BOOLEANA
 18.3 Dual de una expresión
 18.4 Dual de una identidad
 18.5 Uso de dualidad para derivar leyes
+18.6 Dualidad frente a complemento: ejemplos que distinguen ambos conceptos
 19. Teoremas derivados
 19.1 Teorema de consenso
 19.2 Redundancia
@@ -134,6 +142,9 @@ BLOQUE III — EQUIVALENCIA, DEMOSTRACIÓN Y SIMPLIFICACIÓN
 20.3 Comprobación mediante tabla de verdad
 20.4 Transformación mediante identidades
 20.5 Igualdad sintáctica vs equivalencia
+20.6 Equivalencia f ≡ g frente al bicondicional f ↔ g como fórmula
+20.7 Consecuencia semántica Γ ⊨ φ y validez de argumentos
+20.8 Equivalencia de funciones totales y equivalencia bajo restricciones
 21. Simplificación algebraica
 21.1 Aplicación sistemática de identidades
 21.2 Eliminación de términos redundantes
@@ -153,6 +164,8 @@ BLOQUE III — EQUIVALENCIA, DEMOSTRACIÓN Y SIMPLIFICACIÓN
 22.5 Demostración directa
 22.6 Refutación mediante contraejemplo
 22.7 Errores frecuentes en demostraciones
+22.8 Demostraciones sin circularidad: axiomas, leyes previas y dependencias
+22.9 Checkpoint I: formalizar, demostrar y refutar sin saltos
 
 BLOQUE IV — FUNCIONES BOOLEANAS
 23. Funciones booleanas
@@ -162,8 +175,12 @@ BLOQUE IV — FUNCIONES BOOLEANAS
 23.4 Representación algebraica
 23.5 Representación mediante tabla
 23.6 Representación mediante conjunto de minterms
-23.7 Número de funciones booleanas posibles: 2⁽²n)
+23.7 Número de funciones booleanas posibles: 2^(2^n)
 23.8 Igualdad y equivalencia de funciones
+23.9 Variables esenciales, variables ficticias y soporte de una función
+23.10 Detección de independencia de una entrada mediante tablas
+23.11 Funciones constantes y caso n = 0
+23.12 Ejemplos de conteo: 1, 2 y 3 entradas; justificar el doble exponente
 24. Literales, términos y cláusulas
 24.1 Literal positivo
 24.2 Literal negativo
@@ -182,6 +199,7 @@ BLOQUE IV — FUNCIONES BOOLEANAS
 25.6 Notación m_i
 25.7 Notación Σm(…)
 25.8 Tabla de verdad → minterms
+25.9 Convención fija del orden de variables y del bit más significativo
 26. Maxterms
 26.1 Definición
 26.2 Construcción
@@ -191,6 +209,8 @@ BLOQUE IV — FUNCIONES BOOLEANAS
 26.6 Notación M_i
 26.7 Notación ΠM(…)
 26.8 Tabla de verdad → maxterms
+26.9 Polaridad de literales en minterms y maxterms de un mismo índice
+26.10 Funciones constantes y convenciones de suma/producto vacíos
 
 BLOQUE V — FORMAS CANÓNICAS Y NORMALES
 27. SOP — Sum of Products
@@ -218,17 +238,24 @@ BLOQUE V — FORMAS CANÓNICAS Y NORMALES
 30.3 DNF completa/canónica
 30.4 Relación con SOP
 30.5 Conversión de fórmulas a DNF
+30.6 SOP y DNF como terminologías correspondientes: general y canónica
+30.7 Forma normal negativa y eliminación de → y ↔ antes de distribuir
 31. CNF — Conjunctive Normal Form
 31.1 Definición
 31.2 CNF
 31.3 CNF completa/canónica
 31.4 Relación con POS
 31.5 Conversión de fórmulas a CNF
+31.6 POS y CNF como terminologías correspondientes: general y canónica
+31.7 Explosión de tamaño al distribuir y límite de la conversión directa
+31.8 Cláusula vacía frente a conjunción vacía
 32. CNF/DNF vs SOP/POS
 32.1 Diferencias conceptuales
 32.2 Terminología de lógica matemática
 32.3 Terminología de diseño digital
 32.4 Equivalencias y matices
+32.5 Términos estándar ambiguos: declarar la definición utilizada
+32.6 Checkpoint II: tabla, índices, SOP/DNF y POS/CNF equivalentes
 
 BLOQUE VI — MINIMIZACIÓN
 33. Minimización de funciones booleanas
@@ -239,6 +266,9 @@ BLOQUE VI — MINIMIZACIÓN
 33.5 Niveles lógicos
 33.6 Coste lógico
 33.7 Solución mínima vs solución simplificada
+33.8 Fijar el objetivo antes de minimizar: términos, literales o coste ponderado
+33.9 Óptimo de dos niveles frente a optimización multinivel
+33.10 Mínimos no únicos y criterio lexicográfico términos/literales
 34. Mapas de Karnaugh
 34.1 Fundamento
 34.2 Código Gray
@@ -255,6 +285,8 @@ BLOQUE VI — MINIMIZACIÓN
 34.13 Cobertura
 34.14 Conversión tabla → K-map
 34.15 Conversión K-map → expresión
+34.16 Implicante e implicante primo: anticipo necesario para agrupar
+34.17 Grupo maximal por inclusión frente a cobertura global de coste mínimo
 35. Implicantes
 35.1 Implicante
 35.2 Implicante primo
@@ -262,12 +294,18 @@ BLOQUE VI — MINIMIZACIÓN
 35.4 Cobertura
 35.5 Selección mínima
 35.6 Prime implicant chart
+35.7 Irredundante, minimal por inclusión y mínimo global: diferencias
+35.8 Empates entre coberturas óptimas y justificación del coste
 36. Don’t-care conditions
 36.1 Significado de X
 36.2 Condiciones no alcanzables/no relevantes
 36.3 Uso opcional
 36.4 Simplificación SOP
 36.5 Simplificación POS
+36.6 Funciones parcialmente especificadas: conjuntos ON, OFF y DC disjuntos
+36.7 Cobertura de ON sin cubrir OFF; uso opcional de DC
+36.8 Equivalencia sobre el care set y completaciones posibles
+36.9 Don’t-care matemático frente a UNKNOWN SQL y estados X de simulación
 37. Karnaugh para SOP
 37.1 Agrupar unos
 37.2 Obtener implicantes
@@ -291,6 +329,9 @@ BLOQUE VI — MINIMIZACIÓN
 39.10 Selección de cobertura
 39.11 Ejemplos completos paso a paso
 39.12 Comparación con Karnaugh
+39.13 Combinación válida: mismas posiciones de guion y un bit distinto
+39.14 Incluir DC al combinar; cubrir únicamente ON en la tabla final
+39.15 Caso constante, implicante universal y ausencia de términos ON
 40. Método de Petrick
 40.1 Problema de cobertura restante
 40.2 Expresión de Petrick
@@ -298,6 +339,9 @@ BLOQUE VI — MINIMIZACIÓN
 40.4 Absorción
 40.5 Cobertura mínima
 40.6 Integración con Quine–McCluskey
+40.7 Eliminar duplicados y coberturas absorbidas sin perder soluciones óptimas
+40.8 Comparación de coberturas con un criterio de coste explícito
+40.9 Checkpoint III: Karnaugh y método tabular con empates y DC
 
 BLOQUE VII — ESTRUCTURA MATEMÁTICA AVANZADA
 41. Definición axiomática de Álgebra Booleana
@@ -307,12 +351,17 @@ BLOQUE VII — ESTRUCTURA MATEMÁTICA AVANZADA
 41.4 Elementos 0 y 1
 41.5 Axiomas
 41.6 Modelos de álgebra booleana
+41.7 Álgebra de dos elementos frente a álgebras booleanas generales
+41.8 Álgebra del conjunto potencia de un conjunto finito
+41.9 Axiomas elegidos, teoremas derivados y unicidad del complemento
 42. Orden parcial
 42.1 Definición de ≤
 42.2 Reflexividad
 42.3 Antisimetría
 42.4 Transitividad
 42.5 Orden inducido por las operaciones booleanas
+42.6 a ≤ b si y solo si a ∧ b = a; equivalencia con a ∨ b = b
+42.7 Diagramas de Hasse de ejemplos finitos y orden no necesariamente total
 43. Retículos
 43.1 Meet
 43.2 Join
@@ -321,6 +370,8 @@ BLOQUE VII — ESTRUCTURA MATEMÁTICA AVANZADA
 43.5 Distributive lattice
 43.6 Complemented lattice
 43.7 Álgebra booleana como retículo distributivo complementado
+43.8 Átomos, elementos atómicos y descomposición en átomos en el caso finito
+43.9 Supremo e ínfimo de pares; distinguir completitud del retículo
 44. Relación con teoría de conjuntos
 44.1 AND ↔ intersección
 44.2 OR ↔ unión
@@ -329,12 +380,23 @@ BLOQUE VII — ESTRUCTURA MATEMÁTICA AVANZADA
 44.5 1 ↔ conjunto universal
 44.6 Leyes de De Morgan para conjuntos
 44.7 Isomorfismo conceptual entre operaciones
+44.8 Diferencia simétrica como XOR de conjuntos
+44.9 Ejemplo concreto de P({p,q}) con cuatro elementos
 45. Homomorfismos e isomorfismos
 45.1 Preservación de operaciones
 45.2 Homomorfismo
 45.3 Isomorfismo
 45.4 Equivalencia estructural
 45.5 Ejemplos finitos introductorios
+45.6 Núcleo como ideal, imagen e identificación de estructuras: introducción
+45.7 Representación de un álgebra booleana finita por conjuntos de átomos
+45.8 Anillos booleanos: suma XOR y producto AND
+45.9 Traducciones: ¬x = 1 ⊕ x; x ∨ y = x ⊕ y ⊕ xy
+45.10 Forma normal algebraica ANF sobre GF(2): monomios multilineales
+45.11 Cálculo de ANF desde tablas mediante transformada de Möbius
+45.12 Unicidad de ANF para variables fijadas y grado algebraico
+45.13 Funciones lineales y afines sobre GF(2); diferencia respecto a OR
+45.14 Checkpoint IV: conjuntos, retículos, anillos y ANF
 
 BLOQUE VIII — COMPLETITUD FUNCIONAL
 46. Conjuntos funcionalmente completos
@@ -343,6 +405,11 @@ BLOQUE VIII — COMPLETITUD FUNCIONAL
 46.3 Construcción de funciones arbitrarias
 46.4 Bases funcionales
 46.5 Introducción a criterios de completitud
+46.6 Cierre por composición y papel de las constantes en una base
+46.7 Clases que preservan 0, preservan 1, monótonas, autoduales y afines
+46.8 Criterio de Post: no estar contenido en ninguna de las cinco clases
+46.9 Pruebas constructivas de completitud y pruebas de incompletitud
+46.10 Ejemplos: {AND, OR}, {XOR, NOT}, {AND, NOT} y {OR, NOT}
 47. NAND como operador universal
 47.1 NOT usando NAND
 47.2 AND usando NAND
@@ -367,17 +434,25 @@ BLOQUE IX — SHANNON Y REPRESENTACIÓN AVANZADA
 49.5 Cofactor negativo
 49.6 Identidad de expansión
 49.7 Ejemplos paso a paso
+49.8 Cofactor negativo f|x=0 frente al complemento de un cofactor
+49.9 Demostración de f = (¬x ∧ f|x=0) ∨ (x ∧ f|x=1)
+49.10 Soporte mediante comparación de cofactors
 50. Descomposición de Shannon
 50.1 Descomposición recursiva
 50.2 Árbol de descomposición
 50.3 Representación de funciones
 50.4 Relación con multiplexores
 50.5 Base para BDD
+50.6 Abstracción existencial: ∃x f = f|x=0 ∨ f|x=1
+50.7 Abstracción universal: ∀x f = f|x=0 ∧ f|x=1
+50.8 Eliminación de variables; diferenciar abstracción y sustitución
 51. Diferencia/derivada booleana — introducción
 51.1 Definición
 51.2 Sensibilidad respecto a una variable
 51.3 XOR entre cofactors
 51.4 Aplicaciones introductorias
+51.5 Derivada nula e independencia de una variable
+51.6 Derivación de un ejemplo desde ANF y desde cofactors
 
 BLOQUE X — BINARY DECISION DIAGRAMS
 52. Árboles binarios de decisión
@@ -393,11 +468,13 @@ BLOQUE X — BINARY DECISION DIAGRAMS
 53.4 Terminales
 53.5 Representación de funciones
 53.6 Operaciones básicas
+53.7 DAG frente a árbol: compartir subfunciones repetidas
 54. OBDD — Ordered Binary Decision Diagrams
 54.1 Orden fijo de variables
 54.2 Construcción
 54.3 Impacto del orden
 54.4 Tamaño de representación
+54.5 Comparar dos órdenes sobre la misma función contando nodos
 55. ROBDD — Reduced Ordered BDD
 55.1 Eliminación de nodos redundantes
 55.2 Fusión de subgrafos isomorfos
@@ -405,6 +482,13 @@ BLOQUE X — BINARY DECISION DIAGRAMS
 55.4 Forma canónica para un orden dado
 55.5 Comprobación de equivalencia
 55.6 Ventajas y limitaciones
+55.7 Constructor Mk: eliminar low = high y consultar la tabla única
+55.8 Algoritmo Apply para AND, OR y XOR con memoización
+55.9 Restricción, negación y cuantificación sobre ROBDD
+55.10 Canonicidad con orden fijo y comparación de raíces en un mismo gestor
+55.11 Conteo de modelos considerando niveles de variables omitidos
+55.12 Implementación pequeña con pruebas exhaustivas y medición de nodos
+55.13 Checkpoint V: Shannon, cofactors y ROBDD verificable
 
 BLOQUE XI — SATISFACIBILIDAD
 56. Clasificación de fórmulas
@@ -414,6 +498,8 @@ BLOQUE XI — SATISFACIBILIDAD
 56.4 Contradicción
 56.5 Contingencia
 56.6 Modelos/asignaciones
+56.7 Relaciones de inclusión: tautología implica satisfacibilidad
+56.8 Validez de f mediante insatisfacibilidad de ¬f
 57. Boolean SAT
 57.1 Problema SAT
 57.2 CNF-SAT
@@ -422,6 +508,13 @@ BLOQUE XI — SATISFACIBILIDAD
 57.5 Modelos
 57.6 Relación con tablas de verdad
 57.7 Introducción a complejidad computacional de SAT
+57.8 Equivalencia lógica frente a equisatisfacibilidad
+57.9 Transformación de Tseitin con variables auxiliares y raíz afirmada
+57.10 Proyección de modelos auxiliares sobre las variables originales
+57.11 Codificación de restricciones: al menos una, a lo sumo una, exactamente una
+57.12 Formato DIMACS CNF y correspondencia variable/identificador
+57.13 2-SAT mediante grafo de implicaciones y componentes fuertemente conexas
+57.14 3-SAT y SAT general: NP-completitud; 2-SAT en tiempo polinómico
 58. SAT solving — fundamentos
 58.1 Búsqueda exhaustiva
 58.2 Unit clauses
@@ -432,6 +525,15 @@ BLOQUE XI — SATISFACIBILIDAD
 58.7 Conflictos
 58.8 Introducción a CDCL
 58.9 Casos de uso de SAT solvers
+58.10 Traza completa de DPLL: decisiones, propagaciones y retrocesos
+58.11 Resolución de cláusulas y justificación de cláusulas aprendidas
+58.12 Grafo de implicaciones, niveles de decisión y conflicto
+58.13 First UIP y backjumping: ejemplo pequeño guiado
+58.14 Dos literales vigilados, reinicios y heurísticas: visión operativa
+58.15 SAT: verificar un modelo; UNSAT: introducción a certificados comprobables
+58.16 Distinguir SAT, UNSAT y resultado desconocido por límite de recursos
+58.17 Laboratorio DIMACS: ejecutar un solver y comprobar el modelo
+58.18 Checkpoint VI: codificar, resolver e interpretar restricciones
 
 BLOQUE XII — MINIMIZACIÓN A ESCALA
 59. Límites de Karnaugh
@@ -452,12 +554,17 @@ BLOQUE XII — MINIMIZACIÓN A ESCALA
 61.7 Irredundant
 61.8 Iteración heurística
 61.9 Resultado heurístico vs óptimo exacto
+61.10 Conjuntos ON/OFF/DC y cubiertas de funciones parcialmente especificadas
+61.11 Varias salidas y compartición de términos: introducción
+61.12 Laboratorio reproducible con entrada, cubierta y validación sobre care set
 62. Minimización exacta vs heurística
 62.1 Optimalidad
 62.2 Coste
 62.3 Escalabilidad
 62.4 Trade-offs
 62.5 Elección del método
+62.6 Medir términos, literales, tiempo y memoria sin confundirlos
+62.7 Repeticiones y límites de recursos en comparaciones experimentales
 
 BLOQUE XIII — APLICACIÓN A LÓGICA DIGITAL
 63. Puertas lógicas
@@ -484,6 +591,8 @@ BLOQUE XIII — APLICACIÓN A LÓGICA DIGITAL
 66.2 Reducción de puertas
 66.3 Reducción de niveles
 66.4 Validación funcional
+66.5 Equivalencia combinacional frente a comportamiento temporal
+66.6 Hazards estáticos como límite de la equivalencia funcional: ejemplo breve
 67. Implementación NAND-only
 67.1 Transformación algebraica
 67.2 Bubble pushing — introducción
@@ -512,6 +621,8 @@ BLOQUE XIII — APLICACIÓN A LÓGICA DIGITAL
 70.7 Contadores
 70.8 Relación con funciones booleanas
 70.9 Frontera con Digital Logic / Digital Design avanzado
+70.10 Función de próximo estado y función de salida: ejemplo mínimo
+70.11 La realimentación introduce estado; no evaluarla como DAG combinacional
 
 BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
 71. Booleanos en programación
@@ -527,6 +638,7 @@ BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
 72.3 Orden de evaluación
 72.4 Expresiones con efectos secundarios
 72.5 Ventajas y riesgos
+72.6 Cuándo una equivalencia pura deja de preservar efectos o excepciones
 73. Boolean vs bitwise
 73.1 Logical AND vs bitwise AND
 73.2 Logical OR vs bitwise OR
@@ -543,6 +655,8 @@ BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
 74.6 Flags múltiples
 74.7 Combinación de máscaras
 74.8 Relación con Álgebra Booleana
+74.9 Ancho de palabra, signo y máscara de truncamiento
+74.10 Verificación de flags: cualquiera, todos o exactamente los seleccionados
 75. Aplicación en Python
 75.1 bool, True y False
 75.2 and / or / not
@@ -551,27 +665,35 @@ BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
 75.5 any() / all()
 75.6 &, |, ^, ~
 75.7 Máscaras y flags
+75.8 and/or devuelven operandos; bool y orden de evaluación
+75.9 Enteros de precisión arbitraria y ~x = -x-1; enmascarar a ancho fijo
 76. Aplicación en C y C++
 76.1 bool
 76.2 && / || / !
 76.3 &, |, ^, ~
 76.4 Máscaras
 76.5 Flags
+76.6 Promociones enteras, signo y tipos sin signo para máscaras
+76.7 Desplazamientos y límites del tipo; evitar comportamiento indefinido
 77. Aplicación en Rust
 77.1 bool
 77.2 && / || / !
 77.3 &, |, ^, !
 77.4 Tipos enteros y máscaras
+77.5 Operaciones sobre bool e enteros; ! según el tipo del operando
 78. Aplicación en Go
 78.1 bool
 78.2 && / || / !
 78.3 Operadores bitwise
 78.4 Máscaras
+78.5 &^ para limpiar bits; ^ unario para complemento
+78.6 Booleanos sin conversiones numéricas implícitas
 79. Aplicación en Java
 79.1 boolean
 79.2 && / || / !
 79.3 & / | / ^ / ~
 79.4 Short-circuit vs evaluación completa
+79.5 & y | sobre booleanos evalúan ambos operandos; sobre enteros son bitwise
 80. Aplicación en JavaScript y TypeScript
 80.1 boolean
 80.2 truthy/falsy
@@ -579,6 +701,9 @@ BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
 80.4 Short-circuit y retorno de operandos
 80.5 Operadores bitwise
 80.6 Particularidades de TypeScript
+80.7 Conversión a enteros de 32 bits en operaciones bitwise con Number
+80.8 BigInt: operaciones compatibles y prohibición de mezclar Number y BigInt
+80.9 ?? frente a ||: ausencia null/undefined frente a falsedad
 81. SQL y lógica ternaria
 81.1 Predicados
 81.2 AND
@@ -590,6 +715,12 @@ BLOQUE XIV — APLICACIÓN EN INFORMÁTICA
 81.8 Tablas de verdad de tres valores
 81.9 IS NULL / IS NOT NULL
 81.10 Errores al trasladar lógica booleana clásica a SQL
+81.11 WHERE y HAVING conservan únicamente filas cuyo predicado es TRUE
+81.12 CHECK acepta TRUE o UNKNOWN: contraste con WHERE
+81.13 NOT IN con NULL y comparación con NOT EXISTS
+81.14 IS TRUE, IS FALSE e IS UNKNOWN
+81.15 Tercero excluido y no contradicción cuando un predicado es UNKNOWN
+81.16 Checkpoint VII: pureza, máscaras y semántica SQL
 
 BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
 82. Equivalencia de funciones grandes
@@ -597,17 +728,24 @@ BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
 82.2 BDD
 82.3 SAT
 82.4 Estrategias de verificación
+82.5 Miter de equivalencia: buscar un modelo de f ⊕ g
+82.6 Con restricciones C: comprobar C ∧ (f ⊕ g)
+82.7 Extraer, reproducir y explicar una asignación contraejemplo
 83. Canonicalidad
 83.1 Qué significa una representación canónica
 83.2 Formas canónicas
 83.3 ROBDD para un orden dado
 83.4 Utilidad en equivalencia
+83.5 ANF como representación canónica para variables fijadas
+83.6 CNF y DNF generales no son canónicas; fijar convenciones de índices
 84. Complejidad de representación
 84.1 Tabla de verdad
 84.2 SOP/POS
 84.3 CNF/DNF
 84.4 BDD
 84.5 Efecto del número de variables
+84.6 Comparar tamaños con funciones de paridad y familias de ejemplos
+84.7 Distinguir tamaño de la entrada, tamaño de la representación y tiempo
 85. Complejidad de minimización
 85.1 Explosión combinatoria
 85.2 Métodos exactos
@@ -619,12 +757,16 @@ BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
 86.3 BDD
 86.4 CNF para SAT
 86.5 Trade-offs
+86.6 AIG: grafos AND-inverter como puente hacia síntesis multinivel
+86.7 Compartición de subexpresiones y relación con codificación Tseitin
 87. SAT vs BDD
 87.1 Representación
 87.2 Canonicalidad
 87.3 Satisfacibilidad
 87.4 Equivalencia
 87.5 Casos de uso
+87.6 SAT responde una consulta; BDD representa una función
+87.7 Consultas repetidas, extracción de modelos y explosión de representación
 88. Métodos algebraicos vs gráficos vs algorítmicos
 88.1 Álgebra manual
 88.2 Tablas de verdad
@@ -639,6 +781,7 @@ BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
 89.3 Según necesidad de optimalidad
 89.4 Según escalabilidad
 89.5 Según verificación o síntesis
+89.6 Incluir restricciones, care set, número de salidas y recursos disponibles
 90. Problemas expertos integradores
 90.1 Requisitos → función
 90.2 Función → formas canónicas
@@ -649,6 +792,8 @@ BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
 90.7 Implementación lógica
 90.8 Implementación software
 90.9 Comparación de costes y métodos
+90.10 Batería de funciones constantes, paridad, mayoría y multiplexación
+90.11 Experimentos con instancias SAT e insatisfacibles conocidas
 91. Proyecto final integrador
 91.1 Definir requisitos lógicos reales
 91.2 Identificar variables booleanas
@@ -674,3 +819,10 @@ BLOQUE XV — NIVEL EXPERTO E INTEGRACIÓN
 91.22 Validar exhaustivamente todas las entradas
 91.23 Documentar decisiones, equivalencias y trade-offs
 91.24 Defender la selección del método utilizado
+91.25 Caso A pequeño: comparar todos los métodos exactos aplicables
+91.26 Caso B escalable: evitar tabla completa y usar SAT o BDD
+91.27 ANF del caso pequeño y comparación con SOP/POS
+91.28 Datos ON/OFF/DC y criterio de equivalencia cuando existan restricciones
+91.29 Registrar versiones de herramientas, órdenes de variables y límites
+91.30 Entregar entradas, resultados, verificaciones y contraejemplos reproducibles
+91.31 Rúbrica: corrección, justificación, reproducibilidad y límites del método

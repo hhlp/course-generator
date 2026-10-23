@@ -106,3 +106,35 @@ Examples should demonstrate not merely whether a sentence is grammatical, but wh
 ## Terminal outcome
 
 At the end of the path, the learner should be able to analyse and manipulate advanced English grammar at C1→C2 level, explain important form–meaning relationships, distinguish closely competing constructions, recognise constraints and ambiguity, and diagnose advanced grammatical errors with appropriate terminology.
+
+## Explicit advanced coverage and depth boundaries
+
+The path contains 19 blocks (0–18) and 398 lessons. All original lesson
+objectives are retained; revised titles distinguish overlapping objectives.
+
+- Block 4 distinguishes raising-to-object (also analysed as exceptional case
+  marking in some frameworks), reporting passives and ordinary passivisation.
+  Explain the adopted analysis without treating its terminology as universal.
+- Block 6 explicitly contrasts grammatical, notional and proximity agreement;
+  identify restrictions and relevant British/American variation.
+- Block 8 explicitly covers free/fused relatives, absolute constructions and
+  verbless clauses. Contrast relatives with embedded interrogatives; distinguish
+  absolute constructions with their own subject from controlled supplements.
+  Explain where traditional reduction analyses and modern analyses differ.
+- Block 9 distinguishes substitute one/ones from generic personal one. Its
+  comparative ellipsis lesson addresses recoverability and substitution;
+  Block 11 develops comparative clause structure and interpretive constraints.
+- Infinitival ellipsis distinguishes an omitted complement after retained to
+  from constructions allowing omission of to as well. Do not generalise such
+  omission to all infinitival complements.
+
+CEFR levels describe communicative proficiency, not a universal inventory of
+syntactic terminology. Raising/control diagnostics, constituency tests and
+competing parses are analytical enrichment supporting grammatical precision;
+mastery of a particular theoretical framework is not a universal C2 condition.
+Explain prerequisite concepts locally when later blocks develop them further.
+
+Every lesson includes the common-errors section. Revisited topics must add new
+constraints, contrasts, interpretations or integration tasks rather than repeat
+an earlier lesson. The final mastery project integrates the explicit additions
+as well as the original grammar domains.

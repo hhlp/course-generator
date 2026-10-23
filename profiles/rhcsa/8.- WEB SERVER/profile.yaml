@@ -75,3 +75,52 @@ final_project:
   description: "Infraestructura web multicapa Fedora/RHEL con TLS, PHP-FPM,
     HAProxy, balanceo, seguridad, logs, troubleshooting, automatización y
     comparación entre operación autónoma e integración como consumidor de IAM."
+
+prerequisites:
+  autonomous:
+    - Base RHCSA, redes, DNS y PKI aplicada al laboratorio.
+  iam_consumer:
+    - Proveedor IAM operativo con usuarios y grupos de prueba existentes.
+    - DNS y sincronización horaria correctos; CA de confianza instalada.
+    - Permisos delegados para registrar HTTP y desplegar su keytab.
+  dependency_order:
+    - DNS y TIME
+    - IAM para las prácticas consumidoras
+    - Integración de servicios web
+
+integration_contract:
+  identity_owner: PATH IAM
+  web_role: consumer
+  duplicate_human_accounts: false
+  primary_sso: Kerberos y SPNEGO con mod_auth_gssapi
+  alternative: LDAP protegido y autorización por grupos
+  nginx_pattern: auth_request con servicio Apache/SPNEGO integrado con IAM
+  haproxy_role: Proxy frontal y balanceador; no proveedor de identidades
+  host_identity_note: SSSD/PAM no autentica automáticamente peticiones HTTP.
+
+lab_requirements:
+  - Declarar versiones, repositorios, módulos y soporte de los clientes.
+  - Incluir topología, FQDN, puertos, comandos y configuraciones completas.
+  - Usar SELinux enforcing y firewall con permisos mínimos.
+  - Verificar CA, hostname y SNI hacia los backends HTTPS.
+  - Probar autenticación y autorización por separado.
+  - Proteger keytabs y coordinar su rotación y KVNO con IAM.
+  - Denegar acceso protegido ante errores del servicio de autorización.
+  - Probar tickets vigentes y cachés durante fallos del proveedor IAM.
+  - Sanear cabeceras de identidad y bloquear acceso directo a backends.
+  - Evitar filtraciones entre usuarios mediante cachés y logs.
+  - Condicionar HTTP/3 y módulos opcionales al soporte instalado.
+  - Tratar OCSP y CRL según CA; Let’s Encrypt no ofrece OCSP desde 2025.
+
+assessment:
+  preserve_original_final_project: true
+  variants:
+    - Autónoma sin IAM centralizado
+    - Consumidora con Apache/SPNEGO y Nginx/auth_request
+  required_evidence:
+    - Matriz de accesos anónimo, permitido y denegado.
+    - Autorización por grupo y efecto de cambios y cachés.
+    - Rechazo de cabeceras falsas y acceso directo al backend.
+    - Rechazo de certificados backend inválidos.
+    - Fallos IAM y autenticador con recuperación documentada.
+    - Configuraciones reproducibles, versiones y runbook sin secretos.

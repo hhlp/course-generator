@@ -1,0 +1,617 @@
+MONGODB ADMINISTRADOR — DE 0 A EXPERTO EN PROFUNDIDAD
+Este itinerario forma administradores de MongoDB desde cero hasta la operación experta.
+El foco es implementación y gestión; CRUD, agregación e índices se estudian en lo necesario
+para verificar datos, generar cargas y diagnosticar rendimiento. La programación de búsquedas,
+pipelines avanzados, relevancia y búsqueda vectorial pertenece al itinerario de desarrollo.
+La infraestructura de Search/Vector Search se revisa como extensión de capacidad y observabilidad
+cuando esté disponible en la edición y versión seleccionadas; no se promete paridad entre entornos.
+
+Base práctica: MongoDB Community autogestionado en red privada, Linux compatible, tres miembros
+con datos y configuración estática explícita por nodo. Fedora puede ser el host de VMs o
+contenedores; no asumir soporte oficial de paquetes del servidor sobre Fedora.
+Se añade Atlas para aprender las decisiones que conserva el cliente en un servicio gestionado.
+Enterprise, Kerberos, Ops Manager, backups gestionados, PITR y funciones por plan se identifican
+por requisitos. Nunca se presenta una práctica Community como equivalente completo de Enterprise.
+
+Elegir una versión soportada antes del laboratorio y fijar servidor, sistema operativo, drivers,
+mongosh, Database Tools, Atlas CLI y providers. Revisar documentación de esa versión, release notes,
+matriz de compatibilidad y ciclo de vida. No usar latest ni trasladar parámetros entre versiones
+sin comprobarlos. La versión elegida se registra en el manifiesto de cada práctica.
+
+METODOLOGÍA
+Cada lección debe desarrollar:
+- 🎯 OBJETIVO: resultado observable y prerrequisitos.
+- 💡 IDEA: fundamentos, arquitectura, decisiones y compromisos.
+- Procedimiento: comandos explicados, rutas reales y configuración completa cuando aplique.
+- 🧪 LAB: preparación, ejecución, verificación de datos, fallo controlado y recuperación.
+- Logs y diagnóstico: dónde mirar, qué significan las evidencias y siguiente comprobación.
+- ⚠️ ERRORES: síntomas comunes, causas, mitigación y cómo evitar recurrencias.
+- 🧠 RECORDAR: criterios de decisión y comprobaciones esenciales.
+- Evaluación práctica, limpieza de recursos y bibliografía oficial versionada.
+
+No basta con que un comando termine con código cero. Las prácticas verifican servicio,
+topología, permisos, datos y comportamiento del cliente según corresponda. Los fallos se
+introducen únicamente en entornos desechables. Antes de una mutación se identifican impacto,
+criterio de parada y recuperación. Los procedimientos de producción necesitan su propia
+revisión y adaptación; este paquete contiene el currículo, no scripts de despliegue terminados.
+
+PROGRESIÓN COMPLETA — 34 BLOQUES / 372 LECCIONES
+
+BLOQUE 0 — Fundamentos del administrador MongoDB
+0.1 Funciones del DBA y límites con desarrollo y SRE
+0.2 Documentos BSON, colecciones, bases de datos y namespaces
+0.3 CRUD mínimo para verificar operaciones administrativas
+0.4 Índices, agregaciones y transacciones: mapa para el administrador
+0.5 Disponibilidad, durabilidad, consistencia y escalabilidad
+0.6 RPO, RTO, SLI, SLO y presupuesto de error
+0.7 Community, Enterprise y Atlas: capacidades y responsabilidades
+0.8 Standalone, replica set y sharded cluster: criterios de elección
+0.9 Versiones, ciclo de soporte, compatibilidad y documentación versionada
+0.10 Inventario, glosario, riesgos y plan de aprendizaje
+🧪 Laboratorio integrador: Inventariar una instalación ficticia y proponer topología, edición, RPO y RTO con justificación.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 1 — Linux, redes y laboratorio reproducible
+1.1 Terminal, procesos, usuarios de servicio y permisos
+1.2 Paquetes, repositorios, firmas y versiones fijadas
+1.3 Discos, particiones, LVM, montajes y espacio disponible
+1.4 DNS directo e inverso, FQDN, resolución y /etc/hosts
+1.5 TCP, puertos, rutas y diagnóstico con ss y tcpdump
+1.6 Chrony y sincronización horaria
+1.7 systemd, límites de recursos y dependencias
+1.8 journald, /var/log y rotación de registros
+1.9 SELinux y firewalld: diagnóstico sin desactivarlos
+1.10 VMs, redes privadas, inventario y snapshots de laboratorio
+🧪 Laboratorio integrador: Crear tres VMs con nombres estables, hora sincronizada y conectividad privada; entregar inventario y pruebas DNS.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 2 — Arquitectura e internals operativos
+2.1 mongod, mongos, mongosh y Database Tools
+2.2 Ruta de una lectura y de una escritura
+2.3 WiredTiger, caché interna y caché del sistema operativo
+2.4 Journal, checkpoints y recuperación tras reinicio
+2.5 Concurrencia, locks y control de admisión
+2.6 Sesiones, cursores y operaciones de larga duración
+2.7 Replicación, oplog y avance del commit point
+2.8 Catálogo, metadatos, colecciones e índices
+2.9 Motores de ejecución y planes: implicaciones operativas
+2.10 Límites y restricciones que afectan al diseño
+🧪 Laboratorio integrador: Seguir una escritura desde el cliente hasta su persistencia y explicar qué se pierde en distintos fallos.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 3 — Instalación y primer despliegue
+3.1 Seleccionar versión y sistema operativo oficialmente compatible
+3.2 Repositorio oficial, firma y paquetes del servidor
+3.3 Instalar mongosh y Database Tools con su compatibilidad
+3.4 Instalación reproducible en Linux de la familia RHEL
+3.5 Alternativa Debian o Ubuntu y diferencias de paquetes
+3.6 Fedora como host: VM compatible o contenedor según soporte
+3.7 Directorios de datos, logs, configuración y propietario
+3.8 Servicio mongod: arranque, parada y habilitación
+3.9 Primera conexión local y comprobaciones funcionales
+3.10 Desinstalación controlada, conservación y borrado de datos de laboratorio
+🧪 Laboratorio integrador: Instalar una instancia aislada desde cero, verificar servicio y persistencia y documentar paquetes y rutas reales.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 4 — Configuración operativa y gestión del servicio
+4.1 Anatomía de mongod.conf y tipos de datos YAML
+4.2 storage.dbPath y configuración de almacenamiento
+4.3 systemLog, destino, formato y verbosity
+4.4 net.bindIp, puertos y exposición restringida
+4.5 processManagement y ejecución bajo systemd
+4.6 security y replication: preparación de configuración
+4.7 Overrides de systemd y límites efectivos del proceso
+4.8 Configuración estática por nodo en config/
+4.9 Validación, revisión de cambios y rollback de configuración
+4.10 Reinicio ordenado, readiness y comprobación posterior
+🧪 Laboratorio integrador: Crear configuraciones independientes por nodo, introducir un error YAML, diagnosticarlo en logs y recuperar el servicio.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 5 — Administración de datos y tareas cotidianas
+5.1 Explorar bases, colecciones, estadísticas y tamaños
+5.2 Crear colecciones y opciones administrativas
+5.3 Validación de documentos y cambios de esquema
+5.4 Índices básicos para diagnóstico y mantenimiento
+5.5 TTL, caducidad y efecto de borrados masivos
+5.6 Importación y exportación con mongoimport y mongoexport
+5.7 Copia lógica inicial con mongodump y restauración aislada
+5.8 Usuarios de operación y scripts seguros con mongosh
+5.9 Sesiones, cursores, currentOp y cancelación selectiva
+5.10 Checklist diaria, inventario y registro de cambios
+🧪 Laboratorio integrador: Crear datos sintéticos, aplicar validación y TTL, restaurar una copia inicial y verificar recuentos y contenido.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 6 — Almacenamiento y durabilidad
+6.1 Requisitos de filesystem y Production Notes de la versión
+6.2 XFS, ext4 y criterios de elección según soporte
+6.3 IOPS, throughput, latencia y colas de disco
+6.4 Working set, RAM, swap y presión de memoria
+6.5 Caché WiredTiger, eviction y páginas sucias
+6.6 Journal, checkpoints y write concern: diferencias
+6.7 Compresión de datos e índices y coste de CPU
+6.8 Espacio lógico, espacio asignado y fragmentación
+6.9 compact, validate y límites de las herramientas de reparación
+6.10 Mover dbPath con permisos, SELinux y validación posterior
+🧪 Laboratorio integrador: Medir una carga antes y después de cambiar de volumen; distinguir latencia de almacenamiento de presión de caché.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 7 — Conectividad y clientes desde operaciones
+7.1 URI estándar, seed list y credenciales codificadas
+7.2 mongodb+srv, registros SRV/TXT y resolución DNS
+7.3 Descubrimiento de topología y selección de servidor
+7.4 Replica set name, directConnection y uso diagnóstico
+7.5 Timeouts de conexión, selección y operaciones
+7.6 Pools, maxPoolSize, colas y tormentas de conexiones
+7.7 Retryable reads y writes y límites de idempotencia
+7.8 Firewalls, NAT y nombres anunciados por los miembros
+7.9 TLS desde el cliente y diagnóstico con OpenSSL
+7.10 Pruebas con cliente mínimo y trazas de errores
+🧪 Laboratorio integrador: Conectar un cliente al replica set futuro, reproducir fallos DNS y de certificados y explicar el error observado.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 8 — Identidades, usuarios y autorización
+8.1 Autenticación frente a autorización y authSource
+8.2 Excepción localhost y bootstrap del primer administrador
+8.3 SCRAM y credenciales de cuentas humanas y de servicio
+8.4 Roles integrados y ámbito de base de datos
+8.5 Roles personalizados y mínimo privilegio
+8.6 Separación entre userAdmin, clusterAdmin y tareas de backup
+8.7 Altas, cambios, bajas y revisión de permisos efectivos
+8.8 Rotación de contraseñas y almacenamiento de secretos
+8.9 Usuarios de emergencia y recuperación de acceso documentada
+8.10 Pruebas positivas y negativas de autorización
+🧪 Laboratorio integrador: Crear roles de lectura, aplicación, monitorización y backup; demostrar con pruebas qué puede y qué no puede hacer cada uno.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 9 — TLS y seguridad de red
+9.1 PKI, CA, cadena de confianza, SAN y vigencia
+9.2 Emitir certificados de laboratorio por hostname
+9.3 TLS entre cliente y servidor
+9.4 TLS entre miembros y routers
+9.5 Autenticación interna con keyfile y permisos
+9.6 Autenticación X.509 de clientes y miembros
+9.7 Rotación de keyfile y certificados con continuidad
+9.8 Red privada, segmentación y reglas mínimas de firewall
+9.9 Cifrado de volúmenes, copias y secretos
+9.10 Auditoría de configuración y comprobación de superficie expuesta
+🧪 Laboratorio integrador: Proteger un despliegue con TLS y autenticación interna, rotar un certificado y detectar un SAN incorrecto.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 10 — Enterprise e integración con IAM
+10.1 Matriz de capacidades Community, Enterprise y Atlas
+10.2 Kerberos: KDC, realm, principal y ticket
+10.3 DNS, hora y principals mongodb/FQDN
+10.4 Keytabs y permisos del servicio mongod
+10.5 Usuarios en $external y asignación de roles
+10.6 Configurar autenticación Kerberos en Enterprise
+10.7 Diagnosticar GSSAPI, tickets caducados y keytabs
+10.8 SSO de la consola y autenticación de base de datos: ámbitos distintos
+10.9 Auditoría Enterprise y cifrado nativo: requisitos y operación
+10.10 Diseño de integración IAM y alternativa Community con SCRAM/X.509
+🧪 Laboratorio integrador: Diseñar una integración con MIT Kerberos o FreeIPA y, si hay Enterprise disponible, validar acceso y fallos de reloj.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 11 — Replica sets desde cero
+11.1 Miembros primary y secondary y estados del replica set
+11.2 Mayoría, votos y prioridad
+11.3 Topología de tres miembros con datos
+11.4 DNS, conectividad, keyfile y TLS por nodo
+11.5 Inicialización y configuración mediante rs.initiate
+11.6 Inspección con rs.status y rs.conf
+11.7 Oplog, replicación asíncrona y replication lag
+11.8 Initial sync y requisitos de disco y red
+11.9 Conexión de clientes y escritura verificada
+11.10 Conversión de standalone a replica set
+🧪 Laboratorio integrador: Desplegar rs0 con tres miembros con datos, autenticación y TLS; demostrar replicación y acceso mediante URI de topología.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 12 — Elecciones, fallos y alta disponibilidad
+12.1 Heartbeats, términos y condiciones de elección
+12.2 Prioridad, elegibilidad y ubicación de miembros
+12.3 Mayoría y comportamiento ante pérdida de quórum
+12.4 Stepdown planificado y elecciones observadas
+12.5 Caída del primary y reconexión del cliente
+12.6 Particiones de red y evitación de dos primaries efectivos
+12.7 Arbiters: límites de durabilidad y criterios para evitarlos
+12.8 Dominios de fallo: proceso, host, zona y región
+12.9 Distribución geográfica y latencia de mayoría
+12.10 Medir disponibilidad real y validar objetivos de recuperación
+🧪 Laboratorio integrador: Detener un primary y aislar un miembro en laboratorio; medir interrupción del cliente, elección y escrituras confirmadas.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 13 — Consistencia, durabilidad y transacciones
+13.1 Write concern y acknowledgement
+13.2 majority, journaling y defaults efectivos
+13.3 Read preference y posibles lecturas atrasadas
+13.4 Read concern local, majority y snapshot
+13.5 Sesiones y consistencia causal
+13.6 Transacciones multidocumento y costes operativos
+13.7 Reintentos de transacciones y resultados inciertos
+13.8 Rollback de escrituras y análisis de consecuencias
+13.9 maxTimeMS, timeouts y problemas de semántica
+13.10 Matriz de garantías por topología y configuración
+🧪 Laboratorio integrador: Comparar lecturas y escrituras con diferentes concerns durante un failover y registrar resultados confirmados e inciertos.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 14 — Operación y mantenimiento de replica sets
+14.1 Añadir, sustituir y retirar miembros
+14.2 Cambiar votos y prioridades con control de riesgo
+14.3 Miembros hidden y delayed: aplicaciones y límites
+14.4 Planificar y redimensionar la ventana del oplog
+14.5 Diagnosticar lag y seleccionar fuente de sincronización
+14.6 Resync de miembro y coste de initial sync
+14.7 Mantenimiento rolling y reinicios controlados
+14.8 Reemplazar disco o VM sin perder mayoría
+14.9 Recuperación de miembro atrasado fuera del oplog
+14.10 Reconfiguración forzada: último recurso y riesgo de rollback
+🧪 Laboratorio integrador: Sustituir un secondary, provocar retraso controlado y recuperarlo conservando un servicio utilizable y evidencias del estado.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 15 — Monitorización, logs y alertas
+15.1 Baseline y señales de salud por componente
+15.2 serverStatus, dbStats y collStats
+15.3 mongostat y mongotop en diagnóstico
+15.4 Logs estructurados, niveles y correlación temporal
+15.5 Rotación de logs y permisos de /var/log
+15.6 FTDC y recopilación de evidencias
+15.7 Monitorizar latencia, errores, conexiones y colas
+15.8 Métricas de caché, disco, replicación y sharding
+15.9 Prometheus, exporter compatible y Grafana como integración opcional
+15.10 Alertas accionables, umbrales y runbooks
+🧪 Laboratorio integrador: Crear un panel y tres alertas con runbook; provocar lag, disco próximo al límite y errores de autenticación en laboratorio.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 16 — Rendimiento y gestión de índices
+16.1 Definir workload y objetivos p50, p95 y p99
+16.2 explain y claves/documentos examinados
+16.3 Índices compuestos, multikey, parciales y cubiertos
+16.4 Selectividad, orden de campos y coste de escritura
+16.5 Sort, agregaciones, memoria y spill a disco
+16.6 Profiler y slow query logs: coste y datos sensibles
+16.7 Plan cache y cambios de plan según versión
+16.8 Construcción de índices y commit quorum
+16.9 Índices hidden, detección de no usados y retirada controlada
+16.10 Comparación reproducible antes/después y prevención de regresiones
+🧪 Laboratorio integrador: Diagnosticar tres cargas lentas y justificar cada índice con explain, latencia y coste de escritura medidos.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 17 — Capacidad y escalado vertical
+17.1 Dimensionar documentos, índices y crecimiento
+17.2 Working set y presupuesto de RAM
+17.3 CPU, concurrencia y saturación
+17.4 Disco, IOPS y espacio de margen
+17.5 Conexiones y límites efectivos
+17.6 Coste de backups, initial sync y mantenimiento
+17.7 Pruebas de carga representativas y límites del generador
+17.8 Escalado vertical y sustitución rolling de hosts
+17.9 Compresión, retención y archivado de datos
+17.10 Informe de capacidad, coste y previsión de saturación
+🧪 Laboratorio integrador: Construir una previsión de seis meses y decidir si ampliar recursos, reducir retención o considerar sharding.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 18 — Backups y restauración verificable
+18.1 Amenazas, RPO/RTO y política de retención
+18.2 Replicación frente a backup y snapshots de VM
+18.3 mongodump y mongorestore: opciones y compatibilidad
+18.4 Consistencia de dumps, oplog y restricciones
+18.5 Restaurar bases y namespaces a destino aislado
+18.6 Snapshots de filesystem y requisitos de consistencia
+18.7 Backup coordinado de sharded clusters
+18.8 Cifrado, inmutabilidad, separación de credenciales y catálogo
+18.9 Ops Manager y Atlas: métodos gestionados y requisitos
+18.10 Pruebas periódicas de restore y medición de RPO/RTO
+🧪 Laboratorio integrador: Restaurar un backup a infraestructura limpia, validar datos e índices y medir la pérdida temporal y el tiempo total de recuperación.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 19 — Recuperación ante desastres
+19.1 Inventario de dependencias y escenarios de desastre
+19.2 Borrado accidental y corrupción lógica
+19.3 Pérdida de un miembro, mayoría y sitio completo
+19.4 Seleccionar fuente de recuperación y preservar evidencias
+19.5 PITR: requisitos, herramientas y disponibilidad
+19.6 Restaurar identidades, certificados y configuración
+19.7 Recuperación de replica set y reconexión de aplicaciones
+19.8 Recuperación coordinada de clúster sharded
+19.9 Failback, validación funcional y reconciliación
+19.10 Simulacro y retrospectiva con acciones correctivas
+🧪 Laboratorio integrador: Simular pérdida del sitio de laboratorio y reconstruir desde backup sin reutilizar los volúmenes originales.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 20 — Arquitectura y despliegue de sharding
+20.1 Cuándo sharding resuelve un problema y cuándo añade coste
+20.2 Shards como replica sets y papel de mongos
+20.3 Config server replica set y metadatos
+20.4 Topología de dos shards, tres config servers y dos routers
+20.5 TLS, autenticación y red de todos los componentes
+20.6 Shard key: cardinalidad, frecuencia y monotonicidad
+20.7 Range frente a hashed sharding
+20.8 Routing dirigido y scatter-gather
+20.9 Colecciones sharded y unsharded y bases de datos
+20.10 Desplegar y verificar distribución de una colección
+🧪 Laboratorio integrador: Desplegar dos shards de tres miembros, tres config servers y dos mongos; verificar rutas y distribución de datos.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 21 — Operación avanzada de sharding
+21.1 Distribución de rangos y comportamiento del balancer
+21.2 Migraciones de rangos y coste operativo
+21.3 Chunks, límites y comportamiento dependiente de versión
+21.4 Hotspots y claves de shard problemáticas
+21.5 Zones y colocación controlada de datos
+21.6 Añadir shards y observar redistribución
+21.7 Retirar shards y verificar drenaje completo
+21.8 Refinar shard key frente a resharding
+21.9 Monitorizar config servers, routers y shards
+21.10 Incidentes de balanceo, metadatos y operaciones distribuidas
+🧪 Laboratorio integrador: Generar un hotspot, justificar una nueva distribución y ejecutar resharding o una alternativa compatible con la versión elegida.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 22 — Actualizaciones y ciclo de vida
+22.1 Inventario de versiones de servidor, drivers y herramientas
+22.2 Leer release notes y cambios incompatibles
+22.3 Parche frente a actualización de versión
+22.4 FCV y separación entre binarios y funcionalidades
+22.5 Ensayo de upgrade sobre copia restaurada
+22.6 Actualización rolling de replica sets
+22.7 Secuencia documentada de upgrade para sharded clusters
+22.8 Compatibilidad y validación de clientes
+22.9 Rollback y downgrade: restricciones y puntos de no retorno
+22.10 Retirada de versiones y plan de soporte
+🧪 Laboratorio integrador: Ensayar un upgrade permitido por la documentación de las versiones origen y destino; comprobar datos, clientes y FCV.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 23 — Atlas: implementación y gobierno
+23.1 Responsabilidad compartida y decisiones de arquitectura
+23.2 Organizaciones, proyectos, equipos y roles
+23.3 Usuarios de plataforma frente a usuarios de base de datos
+23.4 Seleccionar proveedor, región y tipo de despliegue
+23.5 Crear y etiquetar clusters con presupuesto
+23.6 IP access lists y conectividad privada disponible
+23.7 Cargar sample datasets y crear una carga de control
+23.8 Atlas CLI y API de administración
+23.9 Service accounts o credenciales API con mínimo privilegio
+23.10 Límites por plan y matriz de prácticas ejecutables
+🧪 Laboratorio integrador: Crear o diseñar un proyecto Atlas con inventario de permisos, conectividad y presupuesto; verificar una conexión sin exposición general.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 24 — Atlas: operación, seguridad y continuidad
+24.1 Métricas, logs y Performance Advisor según plan
+24.2 Alertas, contactos operativos y actividad del proyecto
+24.3 Escalado manual y autoscaling con límites de gasto
+24.4 Backups, retención y restores según plan
+24.5 PITR y recuperación cruzada según disponibilidad
+24.6 Regiones, zonas y pruebas de resiliencia permitidas
+24.7 Mantenimiento, cambios de versión y ventanas
+24.8 Private endpoints, claves gestionadas y requisitos
+24.9 Auditoría, acceso federado y controles de organización
+24.10 Costes, facturación y revisión de consumo
+🧪 Laboratorio integrador: Restaurar en Atlas si el plan lo permite; en otro caso ejecutar restore local y documentar qué controles Atlas no se han probado.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 25 — Migración y movimiento de datos
+25.1 Evaluar origen, destino, compatibilidad y downtime
+25.2 Inventario de datos, usuarios, índices y validadores
+25.3 Migración offline con dump/restore
+25.4 Transferencias parciales y selección de namespaces
+25.5 Sincronización en línea con herramientas oficialmente compatibles
+25.6 Migración autogestionado a Atlas y trayectoria inversa
+25.7 Verificación de documentos, índices y opciones
+25.8 Ensayo, congelación de escrituras y corte de clientes
+25.9 Plan de reversión y reconciliación de escrituras
+25.10 Retirada segura del origen y cierre del cambio
+🧪 Laboratorio integrador: Migrar entre dos entornos aislados, medir la interrupción y demostrar integridad mediante manifiesto y comprobaciones de contenido.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 26 — Automatización con Ansible y Terraform
+26.1 Separar provisión de infraestructura y configuración del servicio
+26.2 Inventario Terraform y consumo desde Ansible
+26.3 Roles Ansible para paquetes, directorios y systemd
+26.4 Configuración estática explícita por nodo
+26.5 Gestión de secretos, keyfiles y certificados
+26.6 Bootstrap idempotente de usuarios y replica sets
+26.7 Automatizar backup, restore y health checks
+26.8 Terraform provider de Atlas y permisos del estado
+26.9 CI, revisión de planes, drift y validaciones
+26.10 Destrucción controlada y protección de datos persistentes
+🧪 Laboratorio integrador: Recrear tres nodos desde inventario, ejecutar Ansible dos veces sin cambios inesperados y restaurar una copia en otro entorno.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 27 — Docker y Podman: standalone local seguro
+27.1 Contenedores frente a VMs y límites del aislamiento
+27.2 Prerrequisitos de CPU, runtime y almacenamiento
+27.3 Imágenes oficiales, tags, digest y compatibilidad de entrypoints
+27.4 Docker Engine y Podman: diferencias operativas
+27.5 Rootless, rootful, UID/GID y permisos del proceso mongod
+27.6 Volúmenes nombrados, bind mounts y persistencia
+27.7 SELinux en Fedora: etiquetas de volúmenes y diagnóstico
+27.8 Red privada, DNS de contenedores y publicación en loopback
+27.9 Standalone con configuración mongod.conf montada
+27.10 Bootstrap de administrador y roles con volumen vacío
+27.11 Datos existentes e idempotencia de inicialización
+27.12 CA local y certificados TLS con SAN de servicio
+27.13 Montaje de secretos, keyfiles y claves privadas con permisos efectivos
+27.14 Conexión mongosh con SCRAM, CA y TLS obligatorio
+27.15 Logs, health checks y parada ordenada
+27.16 Recursos, OOM y límites de almacenamiento
+27.17 Backup desde contenedor y restore en volumen nuevo
+27.18 Recreación, limpieza y conservación explícita de datos
+🧪 Laboratorio integrador: Desplegar standalone persistente en Docker y repetir en Podman; protegerlo con SCRAM/TLS y restaurar datos en un volumen independiente.
+Práctica 27-A — Standalone persistente
+Trabajo: Crear red y volumen, montar mongod.conf y bootstrap de usuarios según la imagen; escribir datos y recrear el contenedor.
+Verificación: Datos y usuarios persisten, URI funciona y el puerto sólo se publica en loopback cuando se necesita acceso del host.
+Práctica 27-B — Standalone con TLS
+Trabajo: Crear CA y certificado con SAN correctos, aplicar requireTLS y montar claves con propietario y permisos adecuados.
+Verificación: Cliente con CA y usuario correcto conecta; conexiones sin TLS o con CA/hostname incorrectos fallan sin desactivar validación.
+Práctica 27-C — Backup y restore
+Trabajo: Ejecutar dump autenticado con TLS y restaurar a instancia aislada y volumen nuevo.
+Verificación: Comparar contenido, recuentos, índices y validadores; comprobar explícitamente usuarios/roles según el ámbito del backup.
+Práctica 27-D — Variante Podman
+Trabajo: Repetir persistencia y TLS con Podman; diagnosticar UID/GID, rootless y SELinux.
+Verificación: Reinicio conserva datos y los problemas se resuelven sin desactivar SELinux ni ampliar permisos indiscriminadamente.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 28 — Docker Compose y Podman: replica set, keyfile y operación
+28.1 Compose Specification y selección de proveedor Compose en Podman
+28.2 Servicios, redes, volúmenes y configuración explícita por nodo
+28.3 DNS anunciado por los miembros y resolución desde el cliente
+28.4 Secrets de Compose y permisos reales de archivos montados
+28.5 Generación y distribución del keyfile compartido
+28.6 Certificados por miembro y SAN para sus nombres anunciados
+28.7 Orden de bootstrap, primer usuario y autenticación interna
+28.8 Inicialización idempotente del replica set de tres miembros
+28.9 Health checks de proceso, readiness y primary: diferencias
+28.10 URI de replica set y cliente en la red de contenedores
+28.11 Cliente en el host: nombres, puertos y límites de directConnection
+28.12 Conversión del standalone local a replica set conservando datos
+28.13 Failover, pérdida de miembro y reconexión del cliente
+28.14 Sustitución de secondary y reconstrucción de volumen
+28.15 Rotación rolling de keyfile y certificados
+28.16 Actualización rolling de imágenes y compatibilidad
+28.17 Podman Quadlet, systemd y persistencia del servicio
+28.18 Extensión sharded con Compose y límites del host único
+🧪 Laboratorio integrador: Crear tres miembros persistentes con Compose, keyfile y TLS; medir failover, sustituir un miembro y demostrar restore y rotación.
+Práctica 28-A — Replica set seguro desde cero
+Trabajo: Preparar config/ por nodo, red, tres volúmenes, keyfile y certificados; inicializar usuarios y rs0 siguiendo el procedimiento validado para la imagen.
+Verificación: Un primary, dos secondaries, cliente con replicaSet=rs0, escritura replicada y acceso no autorizado rechazado.
+Práctica 28-B — Conversión de standalone
+Trabajo: Respaldar la instancia del bloque 27, detenerla ordenadamente, activar replicación y autenticación interna y añadir dos miembros.
+Verificación: Datos previos y usuarios se conservan; comprobar URI, roles, TLS, replicación e initial sync.
+Práctica 28-C — Fallos y rotación
+Trabajo: Detener primary y sustituir secondary; ensayar rotación de keyfile y certificados con el método de la versión elegida.
+Verificación: Medir interrupción, confirmar mayoría y escritura desde el cliente; no reiniciar simultáneamente todos los miembros.
+Práctica 28-D — Restore y servicio Podman
+Trabajo: Restaurar a un entorno aislado y representar el servicio persistente con Quadlet; verificar qué funciones dependen del proveedor Compose.
+Verificación: Datos recuperados, arranque ordenado y diferencias Docker/Podman documentadas; no asumir equivalencia automática.
+Práctica 28-E — Sharding en contenedores
+Trabajo: Adaptar la topología del bloque 20 a dos shards replicados, CSRS de tres y dos routers, por fases si faltan recursos.
+Verificación: Cliente vía mongos, distribución de datos y recuperación de un proceso; distinguirlo de tolerancia a la pérdida del host.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 29 — Kubernetes: arquitectura y despliegue MongoDB
+29.1 Prerrequisitos de Kubernetes y elección del laboratorio local
+29.2 Kind o Minikube: recursos y límites de dominios de fallo
+29.3 Namespaces, RBAC y cuentas de servicio del operador
+29.4 StatefulSet, identidad estable y reconciliación
+29.5 Headless Service, DNS y nombres anunciados del replica set
+29.6 StorageClass, PVC, PV, modo de acceso y reclaimPolicy
+29.7 ConfigMaps, Secrets y permisos de archivos montados
+29.8 Cifrado y protección de Secrets: base64 no es cifrado
+29.9 Requests, limits y diagnóstico de OOMKilled
+29.10 Startup, readiness y liveness sin provocar reinicios en cascada
+29.11 Anti-affinity, topology spread y capacidad de scheduling
+29.12 NetworkPolicy y requisitos del plugin de red
+29.13 Standalone didáctico con PVC y TLS
+29.14 Replica set manual con StatefulSet: utilidad y límites
+29.15 Selección de operator y matriz de versiones y ediciones
+29.16 Instalar operator con manifiestos o Helm según soporte
+29.17 Recursos personalizados, bootstrap, keyfile y TLS según operator
+29.18 Acceso de clientes internos y externos y validación inicial
+🧪 Laboratorio integrador: Desplegar standalone didáctico y después replica set gestionado por un operator compatible, con almacenamiento persistente, TLS y acceso limitado.
+Práctica 29-A — Standalone didáctico
+Trabajo: Crear namespace, PVC, configuración, credenciales y certificados; desplegar una instancia sin exponerla públicamente.
+Verificación: Validar TLS y permisos desde cliente interno y repetir tras recrear el pod; identificar su ausencia de HA.
+Práctica 29-B — Comprender StatefulSet
+Trabajo: Representar nombres estables y volúmenes de tres miembros y comparar un despliegue manual con el ciclo de reconciliación de un operator.
+Verificación: Explicar identidad pod/PVC, orden de bootstrap y por qué réplicas de Kubernetes no inicializan por sí mismas un replica set MongoDB.
+Práctica 29-C — Replica set con operator
+Trabajo: Seleccionar versión compatible Community o Enterprise y usar su CRD, configuración de autenticación interna y TLS documentadas.
+Verificación: Operator reconciliado, tres miembros con datos, mayoría disponible y cliente con validación de certificados; no imponer campos de otra CRD.
+Práctica 29-D — Red y scheduling
+Trabajo: Configurar acceso interno, políticas de red y colocación sobre nodos suficientes; ensayar un acceso diagnóstico mediante port-forward.
+Verificación: Tráfico permitido funciona y tráfico denegado falla; explicar limitaciones de port-forward para descubrimiento completo de topología.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 30 — Kubernetes: operación, seguridad y recuperación
+30.1 Inventario de CRDs, recursos y estado reconciliado
+30.2 Mantenimiento con operator y prevención de drift manual
+30.3 PDB, eviction y límites ante fallos involuntarios
+30.4 Drain de nodo y preservación de mayoría
+30.5 Fallos de pod, nodo y zona: diferencias de alcance
+30.6 PVC Pending, errores de attach y problemas de permisos
+30.7 Ampliación de volúmenes y soporte del CSI
+30.8 Rotación de credenciales, keyfile y certificados según operator
+30.9 Gestión externa de secretos y automatización PKI como extensiones
+30.10 Upgrade coordinado de MongoDB, operator, CRDs y Kubernetes
+30.11 Backups con Job o CronJob y herramientas compatibles
+30.12 Consistencia de VolumeSnapshots y límites del CSI
+30.13 Restore en namespace o clúster aislado
+30.14 Pérdida de PVC o clúster y reconstrucción de miembros
+30.15 Métricas, ServiceMonitor y reglas según stack instalado
+30.16 Logs, eventos, probes y diagnóstico de reconciliación
+30.17 Sharding gestionado en Kubernetes si la edición y operator lo permiten
+30.18 Runbooks, GitOps y revisión de readiness para producción
+🧪 Laboratorio integrador: Operar el replica set bajo reconciliación, ejecutar mantenimiento y rotación, recuperar datos fuera del despliegue original y resolver incidentes de almacenamiento.
+Práctica 30-A — Mantenimiento y fallo
+Trabajo: Evictar un pod o drenar un nodo respetando majority y PDB; después introducir un fallo involuntario acotado.
+Verificación: Medir disponibilidad del cliente y comprobar que PDB no evita todo tipo de fallo; separar pruebas de un nodo y multinodo.
+Práctica 30-B — Rotación y upgrade
+Trabajo: Aplicar cambios por los recursos admitidos del operator, ensayar rotación y actualización sobre una copia previa.
+Verificación: Sin drift persistente, certificados validados, datos íntegros y compatibilidad del operator/servidor/CRD registrada.
+Práctica 30-C — Backup y recuperación
+Trabajo: Programar backup consistente apropiado para la topología y restaurar en namespace aislado con PVC nuevos.
+Verificación: Validar contenido, índices y opciones; medir RPO/RTO y demostrar que exportar YAML no respalda los datos MongoDB.
+Práctica 30-D — Incidentes y almacenamiento
+Trabajo: Simular PVC Pending, permiso incorrecto o presión de recursos; diagnosticar eventos, logs y estado MongoDB.
+Verificación: Recuperar el servicio sin borrar volúmenes ni forzar reconfiguración como primera medida; entregar línea temporal.
+Práctica 30-E — Sharding condicionado
+Trabajo: Diseñar o ejecutar la topología sharded con los recursos admitidos por el operator y edición seleccionados.
+Verificación: Registrar soporte y costes; si no es ejecutable, entregar diseño explícito y ejecutar la variante local del bloque 28 sin atribuirle validación Kubernetes.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 31 — Troubleshooting por escenarios
+31.1 Método: síntomas, hipótesis, evidencia y mitigación
+31.2 mongod no inicia: YAML, permisos y rutas
+31.3 Errores SELinux, firewall y DNS
+31.4 Autenticación, certificados y expiraciones
+31.5 No primary, pérdida de mayoría y selección de servidor
+31.6 Lag, initial sync lento y oplog insuficiente
+31.7 Disco lleno, presión de caché y saturación de I/O
+31.8 Consultas lentas, pools agotados y tormentas de conexiones
+31.9 Sharding desequilibrado y fallo de mongos/config servers
+31.10 Recopilar diagnóstico para escalado y análisis causal
+🧪 Laboratorio integrador: Resolver incidentes sorpresa de cinco familias distintas y entregar una línea temporal con causa, mitigación y prevención.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 32 — SRE, gobierno y operación experta
+32.1 SLI/SLO de disponibilidad, latencia y recuperación
+32.2 Error budgets y decisiones de mantenimiento
+32.3 Gestión de incidentes y escalado
+32.4 Runbooks, checklists y revisión por pares
+32.5 Capacidad, costes y decisiones de arquitectura
+32.6 Política de datos, retención y evidencias auditables
+32.7 Gestión de vulnerabilidades y acceso privilegiado
+32.8 Game days, chaos testing acotado y criterios de parada
+32.9 Auditoría de readiness para producción
+32.10 Postmortems sin culpabilización y seguimiento de mejoras
+🧪 Laboratorio integrador: Preparar una revisión operativa con SLO, paneles, matriz de acceso, política de backup y evidencias de simulacros.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+BLOQUE 33 — Proyecto experto y defensa de arquitectura
+33.1 Recoger requisitos de negocio y workload
+33.2 Diseñar topología y dominios de fallo
+33.3 Implementar infraestructura y configuración versionadas
+33.4 Aplicar IAM, TLS y rotación de secretos
+33.5 Instrumentar métricas, logs, alertas y SLO
+33.6 Validar capacidad, índices y crecimiento
+33.7 Demostrar failover y mantenimiento rolling
+33.8 Demostrar backup, desastre y recuperación completa
+33.9 Justificar sharding, Atlas y costes con alternativas
+33.10 Defender arquitectura, límites y riesgos residuales
+🧪 Laboratorio integrador: Entregar un servicio reproducible con tres nodos, TLS, automatización, observabilidad, failover y restore medidos; añadir caso sharded y comparación Atlas.
+Criterio de superación: reproducir el resultado, conservar evidencias, explicar las decisiones y recuperar el estado previsto.
+
+HITOS
+H1 — Tras 0–5: instalar, configurar, operar y restaurar una instancia aislada.
+H2 — Tras 6–14: operar un replica set seguro y demostrar failover y mantenimiento.
+H3 — Tras 15–19: observar, dimensionar, diagnosticar y recuperar desde backup.
+H4 — Tras 20–22: operar sharding y ejecutar una actualización ensayada.
+H5 — Tras 23–26: administrar Atlas, migrar y automatizar con Ansible/Terraform.
+H6 — Tras 27–28: operar standalone y replica set en Docker/Podman con TLS y keyfile.
+H7 — Tras 29–30: desplegar y recuperar MongoDB en Kubernetes con operator compatible.
+H8 — Tras 31–33: resolver incidentes y defender una arquitectura con evidencias.
+
+Los bloques son secuenciales dentro de cada vía de ejecución. Las prácticas se amplían
+gradualmente: la conectividad del bloque 7 comienza con standalone y se completa en el 11.
+Los bloques 27–28 trasladan los conceptos de administración a contenedores; 29–30 forman
+una vía Kubernetes independiente que exige conocimientos previos de esa plataforma.
+Si no se satisfacen sus prerrequisitos se documenta el diseño y se mantiene pendiente su
+evaluación práctica; la variante Docker/Podman no certifica dominio de Kubernetes.

@@ -19,6 +19,11 @@ SQL — LEARNING PATH 0 → EXPERTO (PostgreSQL)
   Documentation sigue siendo la autoridad para sintaxis y comportamiento
   específico del motor.
 
+  Versión de referencia: PostgreSQL 18.x; registrar el minor utilizado.
+  Dataset principal: DVD Rental (dvdrental), distribuido desde Neon.
+  Los scripts de bootstrap adelantan solo la sintaxis necesaria; el
+  desarrollo conceptual de transacciones y DML sigue en bloques 19–20.
+
 0. INTRO, SETUP & DATASETS
 
 0.1 Qué es SQL y qué problemas resuelve
@@ -39,6 +44,9 @@ SQL — LEARNING PATH 0 → EXPERTO (PostgreSQL)
 0.14 \copy frente a COPY: permisos y rutas
 0.15 Automatizar scripts con -v ON_ERROR_STOP=1 y -f
 0.16 Transacciones y limpieza reproducible de laboratorios
+0.17 DVD Rental (dvdrental): descargar, extraer y restaurar con pg_restore
+0.18 Registrar versión PostgreSQL 18, dataset y reinicio del laboratorio
+0.19 Crear tablas mínimas de prueba: CREATE TABLE, INSERT y DROP TABLE
 
 1. SELECT * FROM
 
@@ -67,6 +75,8 @@ SQL — LEARNING PATH 0 → EXPERTO (PostgreSQL)
 2.8 Top-N queries
 2.9 Paginación básica con LIMIT/OFFSET
 2.10 Laboratorio: ordenación y ranking básico
+2.11 FETCH FIRST / NEXT y WITH TIES: empates y orden determinista
+2.12 Paginación por clave: comparación con OFFSET y límites bajo concurrencia
 
 3. PRIMARY VS FOREIGN KEYS & DISTINCT
 
@@ -78,7 +88,7 @@ SQL — LEARNING PATH 0 → EXPERTO (PostgreSQL)
 3.6 DISTINCT
 3.7 DISTINCT sobre varias columnas
 3.8 DISTINCT ON en PostgreSQL
-3.9 COUNT(DISTINCT ...)
+3.9 COUNT(DISTINCT ...): anticipo guiado de COUNT; desarrollo en bloque 6
 3.10 Duplicados reales frente a duplicados producidos por JOINs
 3.11 Laboratorio: claves, relaciones y eliminación de duplicados
 
@@ -151,6 +161,7 @@ FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
 6.22 date_bin() y agrupación temporal por intervalos
 6.23 ORDER BY dentro de agregados sensibles al orden
 6.24 Agregados sobre conjuntos vacíos y NULL
+6.25 Orden lógico de consulta frente a orden físico de evaluación
 
 7. BRIDGING THE GAP TO INTERMEDIATE SQL
 
@@ -185,7 +196,7 @@ INTERMEDIATE
 8.12 JOINs y NULL
 8.13 JOINs que multiplican filas
 8.14 JOIN + agregación
-8.15 Semi-join mediante EXISTS
+8.15 Semi-join mediante EXISTS: subconsulta mínima guiada; ampliar en bloque 12
 8.16 Anti-join mediante NOT EXISTS
 8.17 LATERAL JOIN en PostgreSQL
 8.18 Laboratorio: consultas multitabla
@@ -207,6 +218,7 @@ INTERMEDIATE
 9.8 Clasificación y bucketing
 9.9 Pivotado condicional
 9.10 Laboratorio: lógica condicional
+9.11 Evaluación de AND/OR y límites de CASE ante errores y agregados
 
 10. COMMON TABLE EXPRESSIONS (CTEs)
 
@@ -343,6 +355,11 @@ INTERMEDIATE
 
 16. VIEWS, MATERIALIZED VIEWS & TEMPORARY TABLES
 
+  Prerrequisito para 16.13–16.21: cápsula guiada de INSERT, UPDATE,
+  DELETE, RETURNING y ROLLBACK; profundización posterior en 19–20.
+  INSTEAD OF se presenta como puente; su implementación se desarrolla
+  en el bloque 32. No exige dominar triggers en este punto.
+
 16.1 Qué problema resuelve una view
 16.2 CREATE VIEW
 16.3 Consultar views
@@ -404,12 +421,12 @@ INTERMEDIATE
 16.57 Cuándo materializar resultados intermedios
 16.58 Laboratorio: views, materialized views y temporary tables
 
-ADVANCED
-
-
 16.59 Evolución compatible de contratos de views
 16.60 Privilegios y dependencias en cadenas de views
 16.61 Pruebas de views actualizables con CHECK OPTION
+16.62 Refresh concurrente: vista poblada e índice UNIQUE sin expresiones ni predicado
+
+ADVANCED
 
 17. ADVANCED AGGREGATION
 
@@ -451,6 +468,7 @@ ADVANCED
 18.14 jsonb_path_query() y jsonb_to_recordset()
 18.15 SQL/JSON y diferencias según versión de PostgreSQL
 18.16 LATERAL con expansión de arrays y JSON
+18.17 WITH ORDINALITY: posición de elementos al expandir arrays y funciones
 
 19. DATA MODIFICATION SQL
 
@@ -474,6 +492,7 @@ ADVANCED
 19.16 MERGE frente a ON CONFLICT: concurrencia y garantías
 19.17 RETURNING y valores OLD/NEW cuando la versión lo permita
 19.18 DML masivo: previsualización, transacciones y validación
+19.19 UPDATE FROM con varias coincidencias: ambigüedad y unicidad del origen
 
 20. TRANSACTIONS FROM SQL
 
@@ -522,13 +541,12 @@ ADVANCED
 21.15 Unpivoting mediante SQL
 21.16 Laboratorio: análisis de un dataset real
 
-EXPERT
-
-
 21.17 Análisis RFM y segmentación mediante SQL
 21.18 Medianas, percentiles y estadísticas aplicadas
 21.19 Ventanas temporales irregulares y datos faltantes
 21.20 Detección de anomalías con técnicas SQL
+
+EXPERT
 
 22. ADVANCED QUERY PATTERNS
 
@@ -548,7 +566,7 @@ EXPERT
 22.14 Laboratorio: catálogo de patrones SQL
 
 
-22.15 Demostrar equivalencia entre consultas mediante contraejemplos
+22.15 Refutar equivalencias mediante contraejemplos y justificar reescrituras
 22.16 Consultas temporales as-of con empates y claves de desempate
 
 23. SQL SEMANTICS & CORRECTNESS
@@ -569,9 +587,11 @@ EXPERT
 23.14 Laboratorio: encontrar bugs SQL sutiles
 
 
-23.15 Validación con EXCEPT ALL en ambas direcciones
+23.15 EXCEPT ALL bidireccional: igualdad de multiconjuntos sobre fixtures
 23.16 Tablas vacías, NULL y duplicados como fixtures adversariales
 23.17 Propiedades e invariantes para verificar consultas
+23.18 Tests sobre fixtures frente a demostración general de equivalencia
+23.19 Comparar orden, tipos y errores además del contenido de las filas
 
 24. QUERY PLANS & PERFORMANCE
 
@@ -588,8 +608,7 @@ EXPERT
 24.11 Reescritura de consultas basada en evidencia
 24.12 Comparar dos formulaciones SQL equivalentes
 24.13 Benchmarking básico con psql
-24.14 pg_stat_statements: introducción para identificar consultas
-costosas
+24.14 pg_stat_statements: introducción para identificar consultas costosas
 24.15 Laboratorio: tuning de consultas
 
 
@@ -618,6 +637,7 @@ costosas
 25.13 RLS desde la perspectiva del consumidor de SQL
 25.14 SQL parametrizado y separación de identificadores/valores
 25.15 Pruebas de regresión y revisión segura de SQL
+25.16 GRANT y REVOKE mínimos para probar interfaces y rutinas SQL
 
 26. POSTGRESQL BUILT-IN FUNCTIONS & OPERATORS
 
@@ -892,7 +912,7 @@ costosas
 32.29 Recursión y cascadas de triggers
 32.30 Evitar efectos secundarios inesperados
 32.31 Auditoría mediante triggers como caso práctico
-32.32 Mantener valores derivados mediante triggers: trade-offs
+32.32 Implementar mantenimiento de valores derivados ante un requisito ya fijado
 32.33 Integridad compleja mediante triggers: trade-offs
 32.34 ALTER TRIGGER
 32.35 ENABLE / DISABLE TRIGGER: frontera con DBA
@@ -963,7 +983,7 @@ costosas
 
 
 33.43 SQL testing: fixtures reproducibles y resultados esperados
-33.44 Comparación de consultas mediante EXCEPT ALL
+33.44 Comparación mediante EXCEPT ALL: alcance y límites de los tests
 33.45 Pruebas de regresión de views, funciones y procedimientos
 33.46 Introducción a pgTAP como herramienta opcional
 33.47 Pruebas de concurrencia con sesiones independientes
@@ -1010,9 +1030,10 @@ costosas
 
 34.36 Entregar fixtures y tests automatizados reproducibles
 34.37 Probar casos límite: NULL, duplicados, conjuntos vacíos
-34.38 Validar equivalencia y regresiones con EXCEPT ALL
+34.38 Comprobar igualdad de resultados y regresiones con EXCEPT ALL
 34.39 Incluir tests de concurrencia y recuperación de errores
 34.40 Documentar versión PostgreSQL y extensiones opcionales
+34.41 Entregar instrucciones de restauración, ejecución y limpieza desde cero
 
 FRONTERA CON DATABASE DESIGN
 

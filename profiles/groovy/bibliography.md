@@ -110,3 +110,28 @@ No se inventan capítulos, páginas, secciones ni números de edición. Las refe
 
 ## Política de alcance bibliográfico
 Clasificar cada lectura según el bloque y scope; no presentar herramientas o librerías opcionales como parte obligatoria del lenguaje. Verificar versiones compatibles de Groovy, JDK, Spock, Gradle y Jenkins antes de fijar comandos o dependencias.
+
+## Lecturas dirigidas para los ajustes de profundidad
+- Semántica numérica: Apache Groovy, Syntax y Operators; división,
+  promoción numérica, BigDecimal e intdiv().
+  https://groovy-lang.org/syntax.html
+  https://groovy-lang.org/operators.html
+- Closures: documentación oficial y API de groovy.lang.Closure; clone(),
+  rehydrate(), dehydrate(), trampoline() y estrategias de resolución.
+  https://groovy-lang.org/closures.html
+  https://docs.groovy-lang.org/latest/html/api/groovy/lang/Closure.html
+- BigDecimal, MathContext y RoundingMode: API oficial del JDK elegido.
+  https://docs.oracle.com/en/java/javase/
+- Jenkins: Pipeline Best Practices, ejecución en controller y delegación
+  de operaciones al agente. Lectura de la especialización opcional.
+  https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/
+- Jenkins: Shared Libraries, confianza, repositorio SCM y permisos.
+  https://www.jenkins.io/doc/book/pipeline/shared-libraries/
+
+## Uso por itinerario
+Las referencias Jenkins corresponden a la especialización opcional.
+La bibliografía administrativa de Jenkins sirve solo de consulta contextual;
+su desarrollo completo pertenece al PATH independiente de Jenkins.
+Para cada laboratorio se registra la versión exacta de la documentación
+utilizada, además de JDK, Groovy y herramientas. Los enlaces latest/current
+son puntos de entrada, no una garantía de reproducibilidad.

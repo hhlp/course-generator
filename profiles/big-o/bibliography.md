@@ -89,3 +89,44 @@ Las referencias de una lección deben corresponder realmente con su
 contenido. No inventar capítulos, secciones ni páginas. Cuando no se
 haya verificado una localización exacta, citar la obra sin atribuir
 números de capítulo o página.
+
+## Recursos académicos con acceso público
+
+### MIT OpenCourseWare — 6.006 Introduction to Algorithms
+
+https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/
+
+Apoyo para modelos de cómputo, estructuras, algoritmos, ejercicios y
+justificaciones de corrección. Introducir los prerrequisitos dentro del
+PATH: el material universitario no sustituye la progresión desde cero.
+
+### Cornell — Amortized Analysis of Hash Tables
+
+https://courses.cs.cornell.edu/cs3110/2021sp/textbook/eff/amortized_hash.html
+
+Apoyo para distinguir colisiones esperadas y redimensionamiento
+amortizado. Separar también el coste de calcular hashes de claves largas.
+
+### Jeffrey Erickson — Algorithms y notas complementarias
+
+https://jeffe.cs.illinois.edu/teaching/algorithms/
+
+Libro y materiales para demostraciones, recurrencias, diseño, reducciones
+y límites de computación. Seleccionar solo el material necesario y
+preparar inducción y matemática discreta antes de exigir demostraciones.
+
+## Mapa de utilización
+
+- Bloques 0–6: CLRS; Rosen; Concrete Mathematics como profundización.
+- Bloques 7–10: CLRS; Sedgewick y Wayne; Roughgarden; Erickson.
+- Bloques 11–13: CLRS; Cornell para amortización; textos de algoritmos.
+- Bloques 14–16: Skiena; Kleinberg y Tardos; ejercicios experimentales.
+- Bloque 17: CLRS y material académico específico para cada modelo.
+- Bloque 18: Sipser; Kleinberg y Tardos; Dasgupta y colaboradores.
+- Bloques 19–20: síntesis de los textos y documentación de herramientas
+  efectivamente utilizadas en el proyecto.
+
+Este mapa orienta lecturas; no atribuye capítulos ni páginas sin verificar.
+Rosen y Knuth figuran también en profile.yaml, respectivamente como
+matemáticas de apoyo y consulta avanzada. Las lecturas de consulta no
+son requisitos completos para cada lección.

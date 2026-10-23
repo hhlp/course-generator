@@ -115,6 +115,7 @@ openssh:
   server_validation:
     - sshd -t
     - sshd -T
+    - sshd -T -C user=usuario,host=cliente,addr=192.0.2.10
   teach_precedence: true
   teach_host_blocks: true
   teach_match_blocks: true
@@ -123,6 +124,8 @@ openssh:
   iam_integration:
     role: consumer
     provider_path: IAM
+    distinguish_identity_authentication_access_session: true
+    distinguish_pam_sssd_from_gssapi_kerberos: true
     teach_nss: true
     teach_pam: true
     teach_sssd: true
@@ -229,5 +232,12 @@ curriculum:
   expert_projects:
     - 28
     - 51
+  integrative_labs:
+    - 20
+    - 45
+  protocol_overview_block: 1
+  cryptography_block: 7
+  certificates_block: 21
+  protocol_internals_block: 23
   ssh_blocks: 1-28
   watchdog_blocks: 29-51

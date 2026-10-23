@@ -118,3 +118,74 @@ final_outcome: >
   mantener y diagnosticar una integración DHCP-DNS completa basada en Kea
   DHCPv4/DHCPv6, Kea D2 y BIND, siguiendo el ciclo lease → NCR → TSIG →
   RFC 2136 → A/AAAA/PTR y su correspondiente proceso de eliminación.
+
+
+prerequisites:
+  required:
+    - base RHCSA
+    - TIME y sincronización con Chrony
+    - DNS autoritativo y zonas forward/reverse
+    - DHCPv4 y DHCPv6
+  optional:
+    - IAM para la ampliación GSS-TSIG/Kerberos
+
+iam_relationship:
+  human_identity_consumer: false
+  required_for_base_path: false
+  base_authentication: HMAC-TSIG con secreto de servicio
+  central_user_management: PATH IAM
+  coexistence:
+    - definir ownership por nombre y zona
+    - evitar competencia entre D2 y actualizaciones de clientes
+    - usar cambios de política soportados por FreeIPA
+  optional_gss_tsig:
+    enabled_as_advanced_topic: true
+    requires_iam_path: true
+    verify_version_and_hook: true
+    require_service_principal_and_keytab: true
+    require_dns_authorization: true
+
+version_policy:
+  record_installed_versions: true
+  use_matching_official_manuals: true
+  verify_packages_units_paths_and_hooks: true
+  verify_control_agent_or_daemon_interfaces: true
+
+technical_requirements:
+  current_tsig_reference: RFC 8945
+  distinguish_tsig_integrity_from_encryption: true
+  distinguish_ttl_from_authoritative_deletion: true
+  distinguish_expiry_reclamation_remove_and_confirmation: true
+  cross_zone_atomicity: false
+  d2_queue_is_not_durable: true
+  do_not_assume_automatic_reconciliation: true
+  ddns_parameters:
+    - ddns-update-on-renew
+    - ddns-conflict-resolution-mode
+    - ddns-ttl-percent y controles TTL soportados
+    - precedencia global-subred-reserva
+    - flags Client FQDN y política cliente-servidor
+  dual_stack:
+    require_client_id_duid_analysis: true
+    require_dhcid_conflict_lab: true
+    preserve_conflict_safeguards: true
+    distinguish_dhcpv6_from_slaac: true
+    distinguish_address_from_delegated_prefix: true
+
+acceptance:
+  preserve_all_original_blocks_and_lessons: true
+  isolated_local_lab: true
+  no_public_exposure_required: true
+  require_complete_configs_in_generated_lessons: true
+  require_authoritative_and_cache_checks: true
+  require_queue_loss_and_recovery_lab: true
+  require_ownership_checks_before_repair: true
+  require_before_after_evidence: true
+  require_rpo_rto: true
+  evidence:
+    - versiones y configuración efectiva
+    - lease y FQDN
+    - NCR y logs correlacionados
+    - respuesta DNS UPDATE
+    - consultas A-AAAA-PTR-DHCID al autoritativo
+    - divergencias detectadas y recuperación validada

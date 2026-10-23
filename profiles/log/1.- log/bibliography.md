@@ -441,7 +441,7 @@ El alumno debe aprender a consultar documentación disponible en el propio siste
 - The systemd Project. systemd documentation and manual pages.
 - Fedora Project. Fedora Documentation.
 - Rainer Gerhards et al. rsyslog Documentation.
-- One Identity / AxoSyslog / syslog-ng project documentation for syslog-ng Open Source Edition, according to the currently maintained upstream documentation.
+- syslog-ng project. syslog-ng Open Source Edition documentation, matched to the installed release. AxoSyslog documentation is a separate reference for explicitly identified comparisons.
 - logrotate project. logrotate documentation and manual page.
 - IETF RFC 5424. The Syslog Protocol.
 - IETF RFC 5425. Transport Layer Security (TLS) Transport Mapping for Syslog.
@@ -484,3 +484,31 @@ El alumno debe aprender a consultar documentación disponible en el propio siste
 
 ### Política de bibliografía por lección
 Indicar scope y bloque correspondiente, separar documentación oficial vigente de bibliografía histórica, y comprobar soporte de módulos, flags y configuración en la versión Fedora instalada.
+
+## Referencias verificables y correspondencia de versiones — 2026-10-22
+
+La documentación latest puede describir funciones posteriores al paquete instalado. Registrar versión y consultar el manual o rama correspondiente. Si dos páginas upstream discrepan, explicitar la discrepancia y verificar el comportamiento; no inferir garantías de persistencia.
+
+| Referencia oficial | Aplicación en el PATH |
+| --- | --- |
+| [Fedora Docs](https://docs.fedoraproject.org/) | Paquetes, plataforma y operación |
+| [journald.conf](https://www.freedesktop.org/software/systemd/man/latest/journald.conf.html) | Persistencia, límites, forwarding, namespaces y streams |
+| [systemd-journald.service](https://www.freedesktop.org/software/systemd/man/latest/systemd-journald.service.html) | Captura, sockets y ciclo de vida |
+| [journalctl](https://www.freedesktop.org/software/systemd/man/latest/journalctl.html) | Consultas, cursores, exportación y mantenimiento |
+| [systemd.exec](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html) | Integración de servicios |
+| [journal-upload](https://www.freedesktop.org/software/systemd/man/latest/systemd-journal-upload.service.html) | Alternativa de transporte de journal |
+| [journal-remote](https://www.freedesktop.org/software/systemd/man/latest/systemd-journal-remote.service.html) | Recepción de journal remoto |
+| [rsyslog](https://docs.rsyslog.com/doc/index.html) | Configuración, módulos y colas |
+| [Validación rsyslog](https://www.rsyslog.com/how-can-i-check-the-config/) | -N1; comprobar también el manual instalado |
+| [imfile](https://docs.rsyslog.com/doc/configuration/modules/imfile.html) | Lectura de archivos, estados y rotación |
+| [PersistStateInterval](https://docs.rsyslog.com/doc/reference/parameters/imfile-persiststateinterval.html) | Frecuencia de persistencia del estado; contrastar documentación de la versión |
+| [syslog-ng OSE](https://syslog-ng.github.io/admin-guide/) | Manual del proyecto; distinguir de otros productos |
+| [Opciones syslog-ng](https://syslog-ng.github.io/admin-guide/070_Destinations/300_syslog/000_syslog_destination_options.html) | Nombres y unidades de buffers por versión |
+| [Buffering syslog-ng](https://syslog-ng.github.io/admin-guide/080_Log/020_Buffering/README.html) | Fiabilidad y control de flujo |
+| [logrotate](https://github.com/logrotate/logrotate) | Manual upstream y comportamiento de rotación |
+| [Linux Audit](https://github.com/linux-audit/audit-userspace) | auditd, reglas, consultas y rotación propia |
+| [Podman](https://docs.podman.io/en/latest/) | Drivers, consulta y ciclo de vida de logs |
+| [RFC 5426](https://www.rfc-editor.org/rfc/rfc5426.html) | Transporte UDP |
+| [RFC 5848](https://www.rfc-editor.org/rfc/rfc5848.html) | Syslog firmado, de alcance conceptual |
+
+Las referencias de libros se conservan como apoyo conceptual. No usar su sintaxis histórica como prueba de disponibilidad actual. Cada lección debe enlazar la referencia oficial concreta utilizada y especificar cualquier requisito de versión.

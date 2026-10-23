@@ -21,7 +21,8 @@ purpose: Crear un recorrido completo y progresivo desde los fundamentos de los
   networking y runtimes— y después las responsabilidades y diferencias de cada
   componente.
   La ampliación experta incorpora los bloques 40–52 conservando íntegros
-  los bloques 0–39.
+  los bloques 0–39. Docker Swarm ocupa los bloques 53–61; los hitos
+  incrementales del proyecto son 39, 52 y 61.
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -275,7 +276,9 @@ final_project:
     Podman o Docker, inventariar imágenes, contenedores, pods, redes, volúmenes,
     storage, namespaces, cgroups, mounts, capacidades, SELinux, puertos,
     registries y logs, y utilizar Buildah y Skopeo para ampliar el diagnóstico
-    de imágenes y manifests.'
+    de imágenes y manifests. Incorporar diagnósticos de Swarm sobre nodos,
+    servicios, tareas, stacks, redes overlay/ingress y estado de managers,
+    mediante evidencias accesibles sin modificar el clúster.'
 
 advanced_blocks:
   - number: 40
@@ -316,7 +319,7 @@ advanced_blocks:
     lesson_count: 21
   - number: 52
     title: Internals containers/* y proyecto experto integrador
-    lesson_count: 22
+    lesson_count: 23
 
 curriculum_policy:
   preserve_original_blocks: 0-39
@@ -324,7 +327,9 @@ curriculum_policy:
   append_swarm_blocks: 53-61
   preserve_pre_swarm_blocks: 0-52
   original_integrated_labs: 38-39 as preparatory capstones
-  final_expert_capstone: 52; consolidate container-debugger
+  standalone_expert_capstone: 52
+  final_expert_capstone: 61
+  project_milestones: [39, 52, 61]
   version_policy: verify options and support against installed Fedora packages
     and upstream documentation
 
@@ -336,3 +341,40 @@ swarm_extension:
   final_project: container-debugger with Swarm diagnostics
   lesson_policy: deep, Fedora labs, evidence-based troubleshooting,
     version verification
+
+progression_policy:
+  fundamentals: Identificar conceptos y ejecutar un flujo guiado verificable.
+  advanced: Configurar, comparar y diagnosticar fallos con autonomía.
+  expert: Justificar decisiones, medir límites y recuperar con evidencias.
+  repeated_topics: Declarar prerrequisitos y el resultado nuevo de cada lección.
+  preserve_existing_lessons: true
+  new_lessons: Append within existing blocks without renumbering old lessons.
+
+project_acceptance:
+  milestone_39:
+    - Detectar engine y contexto; emitir JSON válido e informe humano.
+    - Correlacionar contenedor, PID, namespaces, cgroup, mounts y red.
+    - Redactar secretos y distinguir permiso insuficiente de recurso ausente.
+  milestone_52:
+    - Mantener el contrato base y los adaptadores Podman/Docker.
+    - Correlacionar build, digest, plataforma, registry y despliegue.
+    - Diagnosticar fallos inyectados y verificar restauración de datos.
+    - Entregar pruebas, evidencias sanitizadas y runbook reproducible.
+  milestone_61:
+    - Inventariar nodos, servicios, tareas, stacks y redes de Swarm.
+    - Distinguir datos locales, datos de manager y evidencias no disponibles.
+    - Evaluar salud y quorum observado sin afirmar certeza sin evidencias.
+    - Probar incidentes de tareas, red, managers, rollback y restauración.
+    - Conservar compatibilidad JSON y no revelar secrets ni join tokens.
+
+bibliographic_editions:
+  docker_primary: The Ultimate Docker Container Book, 3rd ed., Packt, 2023
+  docker_isbn: '9781804613986'
+  edition_policy: Verify commands against installed version.
+
+implementation_boundaries:
+  stack_format: Legacy Compose v3 accepted by stack deploy; verify each field.
+  docker_installation: Distinguish Fedora Moby packages from official Docker CE.
+  rootless: Teach Docker rootless separately from Podman and userns-remap.
+  swarm_lab: Validate engine, privileges and overlay support before bootstrap.
+  readonly_project: No corrective mutations; sanitize exported evidence.

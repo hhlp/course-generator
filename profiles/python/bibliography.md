@@ -2,7 +2,7 @@
 
 ## Política bibliográfica
 
-Fecha de revisión: 2026-09-30. Esta selección es una propuesta de apoyo, no un inventario de libros que el usuario haya confirmado poseer. La documentación oficial de la versión objetivo prevalece sobre ejemplos antiguos. No es necesario comprar todos los libros para seguir la ruta.
+Fecha de revisión: 2026-10-22. Esta selección es una propuesta de apoyo, no un inventario de libros que el usuario haya confirmado poseer. La documentación oficial de la versión objetivo prevalece sobre ejemplos antiguos. No es necesario comprar todos los libros para seguir la ruta.
 
 No inventar capítulos, números de apartado ni páginas. Asignar lecturas por tema y, si se dispone del índice de la edición concreta, agregar referencias exactas verificadas. La edición de un libro no determina la versión de Python con la que deben ejecutarse sus ejemplos.
 
@@ -70,7 +70,7 @@ Consultar novedades y páginas concretas para verificar disponibilidad, estabili
 - Cython: https://docs.cython.org/
 - pybind11: https://pybind11.readthedocs.io/
 
-Elegir versiones compatibles con el intérprete del laboratorio y fijarlas en el proyecto. Estas referencias no implican haber probado todas las combinaciones con la RC de 3.15.
+Elegir versiones compatibles con el intérprete del laboratorio y fijarlas en el proyecto. Estas referencias no implican haber probado todas las combinaciones con cada versión final y tipo de build de Python 3.15.
 
 ## Distribución de lecturas por bloques
 
@@ -98,3 +98,15 @@ Dar título y autor del libro, edición, tema o capítulo confirmado, y enlaces 
 - **Big O Notation:** PATH independiente de Big O para fundamentos matemáticos, notaciones, recurrencias y demostraciones. En Python consultar https://wiki.python.org/moin/TimeComplexity (orientativo y dependiente de implementación), https://docs.python.org/3.15/library/timeit.html y https://docs.python.org/3.15/library/profile.html. Verificar supuestos y versión; las mediciones no demuestran cotas asintóticas. No trasladar aquí los libros especializados de ese PATH.
 
 **Asignación práctica:** bloques 4, 16–19 y 29 para Regex; 5–8, 19, 21 y 25 para Big O; bloque 31 para integración y validación de ambos.
+
+## Precisiones de esta revisión
+
+Python 3.15.0 final se publicó el 9 de octubre de 2026. Verificar el parche instalado y la compatibilidad efectiva de cada dependencia; el número que aparece en la cabecera de la documentación en línea no identifica el intérprete del laboratorio.
+
+- Estado y fecha: https://docs.python.org/3.15/whatsnew/3.15.html y https://peps.python.org/pep-0790/
+- frozendict y contratos de tipos incorporados: https://docs.python.org/3.15/library/stdtypes.html
+- partial, partialmethod y Placeholder (introducido en 3.14): https://docs.python.org/3.15/library/functools.html
+- re: https://docs.python.org/3.15/library/re.html
+- Profiling vigente: https://docs.python.org/3.15/library/profiling.html
+
+Las referencias de los puentes a NumPy y pandas se consultan en sus PATH específicos. Son ampliaciones opcionales y no requisitos del bloque numérico.

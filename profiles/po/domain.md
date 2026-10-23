@@ -131,3 +131,47 @@ refinement, ordering, métricas, roadmap, experimentos, flow, forecasting y adap
 La ruta prepara progresivamente para PSPO I (tras el bloque 11), PSPO II (tras el 20) y PSPO III (tras el 23), con un proyecto final experto tras el bloque 24. Son checkpoints pedagógicos, no equivalencias ni garantías de certificación. Cada hito exige escenarios, explicación de decisiones, evaluación de alternativas y evidencia de aprendizaje. La profundidad de cada lección debe incluir conceptos, aplicaciones, límites, anti-patrones y práctica contextualizada, sin duplicar el PATH Scrum/Kanban.
 
 El proyecto final requiere un dossier trazable de visión, estrategia, Product Goal, discovery, backlog, decisiones de ordering, experimentos, métricas, forecast y defensa argumentada con rúbrica.
+
+
+## Precisiones operativas de la revisión
+
+Las User Stories son una forma de expresar necesidades y sostener conversaciones sobre
+requisitos. No se presentan como una especificación completa ni como formato obligatorio
+para todos los PBIs. La confirmación y los ejemplos ayudan a comprobar la comprensión.
+
+El caso de bugs y hotfix debe partir de un Product Backlog visible: el PO explica impacto,
+urgencia, valor y coste de demora; los Developers adaptan su plan y colaboran con el PO
+para renegociar el alcance sin poner en peligro el Sprint Goal. El PO no introduce trabajo
+unilateralmente en el Sprint Backlog ni asigna tareas a Developers. No se reduce la calidad.
+Si el Sprint Goal queda obsoleto, solo el PO tiene autoridad para cancelar el Sprint;
+una petición urgente por sí sola no implica cancelación. Se registran las decisiones,
+el trabajo desplazado y el cambio de forecast, manteniendo la trazabilidad del incidente.
+
+El hito PSPO I conserva su posición tras el bloque 11. Antes de su evaluación se realiza
+un puente de aplicación de Scrum: empirismo, valores, accountabilities, eventos, artefactos,
+compromisos, autogestión, releases y diferencias entre Review y autorización de entrega.
+Puede reutilizarse evidencia del PATH Scrum; quien no domine estos conceptos debe
+trabajarlos antes del checkpoint. Los bloques posteriores profundizan en su aplicación
+al producto, sin exigir memorizar por adelantado su contenido completo.
+
+Cada lección exige una aplicación breve con evidencia y criterio de evaluación: analizar
+un escenario, justificar una decisión, revisar un PBI o interpretar un dato. Los laboratorios
+completos son obligatorios en las lecciones identificadas como tales y en el proyecto final;
+no es necesario convertir cada lección conceptual en un laboratorio completo.
+
+El ciclo de vida incluye lanzamiento, adopción, soporte y retirada: segmentos, canales,
+criterios de éxito, migración de usuarios, comunicación y tratamiento de datos. El proyecto
+final exige un plan contextualizado y señales para revisar esas decisiones.
+
+La experimentación debe explicitar hipótesis, unidad de análisis, población, muestra,
+duración, métricas de resultado y de protección, regla de decisión y fuentes de sesgo.
+Se distinguen correlación y causalidad; se explican incertidumbre, potencia y efecto mínimo
+relevante cuando proceda, así como el riesgo de detener un test al observar un resultado
+conveniente. Un resultado inconcluyente no demuestra ausencia de efecto. La profundidad
+estadística se ajusta a la decisión del PO, apoyándose en especialistas cuando corresponda.
+
+Little’s Law se interpreta con límites de sistema y definiciones consistentes de entrada,
+salida, WIP y tiempo. La relación utiliza promedios de largo plazo, unidades compatibles
+y un sistema estable con conservación del trabajo; las ventanas cortas, cambios de flujo
+y el trabajo que entra o sale sin registro pueden invalidar su uso práctico. No convierte
+un promedio en garantía para un PBI ni permite inferir causalidad al cambiar el WIP.

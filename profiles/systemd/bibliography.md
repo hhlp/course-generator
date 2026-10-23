@@ -106,9 +106,7 @@ Páginas de manual especialmente relevantes:
 - `systemd-sysusers(8)`
 - `sysusers.d(5)`
 - `systemd-creds(1)`
-- `systemd.security(7)`
 - `systemd.preset(5)`
-- `systemd.preset-all(1)`
 - `systemd.environment-generator(7)`
 - `systemd-system.conf(5)`
 - `systemd-user.conf(5)`
@@ -263,3 +261,35 @@ Estas referencias complementan los dos libros sin sustituirlos; verificar dispon
 | Packaging | Fedora Packaging Guidelines, Systemd packaging, RPM macros de Fedora |
 
 **Regla de compatibilidad:** no dar por disponible una directiva o utilidad por aparecer en esta lista. Comprobar `systemd --version`, `man`, `systemd-analyze verify` y las unidades/paquetes instalados.
+
+
+---
+
+## 10. Referencias complementarias de esta revisión
+
+- `systemctl(1)`: `--job-mode=`, `preset` y `preset-all`.
+- `systemd.preset(5)`: formato y precedencia de las políticas de habilitación.
+- `systemd.service(5)`: RemainAfterExit=, RestartMode=, RestartSteps=,
+  RestartMaxDelaySec= y OOMPolicy=, según versión.
+- `systemd.unit(5)`: StartLimitIntervalSec=, StartLimitBurst= y modos
+  OnFailureJobMode=/OnSuccessJobMode=.
+- `systemd.exec(5)` y `systemd-analyze(1)`: hardening y análisis de seguridad.
+- `systemd-creds(1)`: list, cat, encrypt y decrypt; contexto de credenciales.
+- `systemd-system.conf(5)`, `systemd-user.conf(5)`: ajustes del manager.
+- `environment.d(5)` y `systemd.environment-generator(7)`: entorno de usuario.
+- `udev(7)`, `udevadm(8)`, `systemd.device(5)`: dispositivos y activación.
+- `systemd.special(7)`, `bootup(7)` y `systemd-halt.service(8)`: apagado.
+
+Enlaces oficiales de referencia:
+
+- [Índice de manuales](https://www.freedesktop.org/software/systemd/man/latest/index.html)
+- [Unidades](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html)
+- [Servicios](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html)
+- [systemctl](https://www.freedesktop.org/software/systemd/man/latest/systemctl.html)
+- [Credenciales](https://www.freedesktop.org/software/systemd/man/latest/systemd-creds.html)
+- [Fedora: empaquetado systemd](https://docs.fedoraproject.org/en-US/packaging-guidelines/Systemd/)
+
+Los enlaces latest sirven para localizar documentación; no fijan la versión del
+laboratorio. Registrar la versión instalada y consultar sus manuales o la rama
+correspondiente. No confundir preset-all, subcomando de systemctl, con una
+utilidad o una página de manual independiente.

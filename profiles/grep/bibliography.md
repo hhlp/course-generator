@@ -657,3 +657,31 @@ La bibliografía debe permitir que cada lección pueda responder tres preguntas:
 3. **¿Cómo podemos verificar ese comportamiento en Fedora y, cuando sea necesario, en el código fuente?**
 
 Ese criterio debe mantenerse desde las primeras búsquedas con `grep` hasta el proyecto final `grep-rg-debugger`.
+
+
+## 23. Acceso directo y control de versiones
+
+Enlaces primarios para comenzar la consulta. Las páginas de documentación viva
+no fijan por sí solas la versión instalada: registrar versión y fecha de consulta.
+
+- [GNU Grep Manual](https://www.gnu.org/software/grep/manual/grep.html).
+- [Índice de opciones GNU grep](https://www.gnu.org/software/grep/manual/html_node/Index.html).
+- [GNU grep: buffering y registros NUL](https://www.gnu.org/software/grep/manual/html_node/Other-Options.html).
+- [Repositorio oficial de ripgrep](https://github.com/BurntSushi/ripgrep).
+- [Guía oficial de ripgrep](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md).
+- [PCRE2: índice de documentación](https://pcre.org/current/doc/html/index.html).
+- [PCRE2: sintaxis de patrones](https://pcre.org/current/doc/html/pcre2pattern.html).
+- [POSIX, Shell y utilidades, edición 2018](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html).
+
+El enlace POSIX anterior identifica la edición 2018; si se enseña otra edición,
+verificar y citar expresamente su especificación de grep y expresiones regulares.
+Las páginas `master` y `current` pueden cambiar. En internals debe sustituirse la
+referencia móvil por el tag/commit real examinado, anotando también las versiones
+de crates y PCRE2 correspondientes. No fijar aquí un tag inventado o no examinado.
+Las demás fuentes del documento se localizarán en sus sitios oficiales antes de
+atribuirles una sección o comportamiento específico.
+
+Para las lecciones añadidas, priorizar el manual de la herramienta sobre la
+documentación aislada de su motor. Comprobar las opciones con la ayuda local.
+En particular, contrastar conteos, NUL, buffering, configuración, codificación,
+JSON y salida anticipada mediante experimentos mínimos reproducibles.

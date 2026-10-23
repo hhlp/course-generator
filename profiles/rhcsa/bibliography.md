@@ -1,4 +1,4 @@
-# bibliografy.md — RHCSA / Administración RHEL 10
+# bibliography.md — RHCSA / Administración RHEL 10
 
 ## Principal
 1. Asghar Ghori — *RHCSA Red Hat Enterprise Linux 10 Training and Exam Preparation Guide (EX200)*, Fourth Edition.
@@ -27,7 +27,7 @@
 - Cockpit y tuned: documentación oficial y manuales instalados.
 
 ## Extensiones Fedora/Linux+
-- Fedora documentation para administración de Btrfs y Flatpak.
+- Fedora documentation para administración de Btrfs y ampliaciones de escritorio Flatpak.
 - Btrfs upstream documentation.
 - Flatpak documentation.
 
@@ -50,3 +50,18 @@ Los libros RHCSA organizan y refuerzan el aprendizaje, pero no limitan el temari
 
 ## Regla para el generador
 No resumir capítulos ni reproducir texto de las fuentes. Sintetizar conocimiento, explicar desde principios operativos y construir laboratorios originales y verificables.
+
+
+## Fuentes oficiales enlazadas y trazabilidad
+Fecha de contraste del alcance EX200: 2026-10-22. La documentación es evolutiva; fijar versión y paquetes del laboratorio al ejecutar procedimientos.
+
+- [Red Hat — objetivos oficiales EX200](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam): autoridad para la matriz de certificación de todos los bloques y los simulacros 40–41.
+- [Documentación RHEL 10](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10): punto de entrada para instalación, administración, networking, seguridad y contenedores.
+- [Managing file systems — RHEL 10](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html-single/managing_file_systems/index): montajes, filesystems y diagnóstico; bloques 19, 22 y 34.
+- [Managing storage devices — RHEL 10](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html-single/managing_storage_devices/index): dispositivos y administración de almacenamiento; bloques 18–22.
+- [Administering RHEL by using the GNOME desktop environment — RHEL 10](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html-single/administering_rhel_by_using_the_gnome_desktop_environment/index): remoto Red Hat Flatpak y contexto de aplicaciones de escritorio; bloque 17.
+- [Flatpak — Using Flatpak](https://docs.flatpak.org/en/latest/using-flatpak.html): operaciones sobre remotos y aplicaciones, contrastadas con RHEL; bloque 17.
+- [systemd.timer](https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html): unidades timer, OnCalendar y Persistent; contrastar la versión instalada en RHEL, bloque 28.
+- [chrony documentation](https://chrony-project.org/documentation.html): configuración y verificación del cliente, contrastadas con la versión de RHEL; bloque 29.
+
+Flatpak básico, timers, cliente de tiempo y perfiles tuned pertenecen al núcleo EX200 publicado. Podman/Quadlet se conservan como ampliación RHEL+; Btrfs como Fedora/Linux+. Estos últimos no deben incorporarse por defecto a simulacros EX200. Mantener todos los libros ya incluidos como apoyo, con la autoridad oficial por delante.

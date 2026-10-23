@@ -113,6 +113,9 @@ artifacts:
     integrator_projects: auto
     diagnostic_projects: auto
     require_project_for_every_block: false
+# Auditoría pedagógica y comandos externos son controles distintos.
+# Verificar las claves admitidas por la versión de course-generator.
+# Recorrido y prerrequisitos: domain.md, sección 33.
 validation:
   enabled: false
   commands: []

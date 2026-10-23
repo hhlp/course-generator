@@ -1,0 +1,255 @@
+---
+course:
+  title: OpenTelemetry + Python en profundidad
+  language: es
+  level:
+    start: cero en OpenTelemetry Python
+    end: experto
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+pedagogy:
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
+  remember_points: 3-7
+  optional_sections:
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+  depth: deep
+  progressive: true
+  didactic: true
+  summary_only: false
+focus:
+  vendor_neutral: true
+  upstream_first: true
+  production: true
+  troubleshooting: true
+  internals: true
+  reproducible_labs: true
+  validate_results: true
+specialization:
+  language: Python
+  independent_path: true
+  common_reference: OpenTelemetry en profundidad
+  other_languages_are_separate: true
+  requires_all_general_blocks: false
+  requires_collector_development_in_go: false
+prerequisites:
+  - 'Python: funciones, clases, excepciones y módulos'
+  - Linux y línea de comandos básicos
+  - HTTP básico; repaso antes del laboratorio web
+coverage:
+  blocks: 47
+  lessons: 282
+  first_block: 0
+  last_block: 46
+  numbering: B.L; B comienza en 0 y L en 1
+  order: sequential
+version_policy:
+  reference_date: '2026-10-22'
+  verify_upstream_before_lab_generation: true
+  pin_python_and_dependencies: true
+  check_requires_python: true
+  check_api_sdk_contrib_compatibility: true
+  check_signal_stability_independently: true
+  avoid_latest_image_tags: true
+  no_unverified_runtime_claims: true
+lab:
+  base: local-private
+  primary_application: FastAPI synthetic orders
+  framework_variants:
+    - Flask
+    - Django
+  trace_backend: Jaeger
+  trace_backend_variant: Tempo
+  metrics_backend: Prometheus
+  logs_backend: Loki
+  visualization: Grafana
+  introduce_backends_progressively: true
+  collector_required_for_end_to_end: true
+  container_runtime: Podman
+  container_alternative: Docker
+  kubernetes: advanced optional deployment variant
+  dependencies:
+    - PostgreSQL
+    - Redis
+    - compatible task queue
+  deliverables:
+    - Python source
+    - pinned dependencies
+    - Collector configuration
+    - commands
+    - expected results
+    - negative cases
+    - checks
+    - cleanup
+acceptance:
+  unique_continuous_numbering: true
+  all_initial_lessons_required: true
+  context_isolation_tests: true
+  prefork_lifecycle_tests: true
+  telemetry_contract_tests: true
+  graceful_shutdown_tests: true
+  pii_absence_tests: true
+  measure_instrumentation_overhead: true
+  distinguish_expected_from_measured: true
+bibliography_policy:
+  principal_book:
+    title: Learning OpenTelemetry
+    authors:
+      - Ted Young
+      - Austin Parker
+    publisher: O'Reilly Media
+  upstream_overrides_outdated_book_details: true
+  do_not_limit_path_to_book: true
+curriculum:
+  - block: 0
+    title: Orientación y relación con el PATH general
+    lesson_count: 6
+  - block: 1
+    title: Entorno Python reproducible
+    lesson_count: 6
+  - block: 2
+    title: Arquitectura de OpenTelemetry Python
+    lesson_count: 6
+  - block: 3
+    title: Primer laboratorio de extremo a extremo
+    lesson_count: 6
+  - block: 4
+    title: Configuración y ciclo de vida
+    lesson_count: 6
+  - block: 5
+    title: Resources e identidad del servicio
+    lesson_count: 6
+  - block: 6
+    title: Trazas manuales fundamentales
+    lesson_count: 6
+  - block: 7
+    title: Trazas manuales avanzadas
+    lesson_count: 6
+  - block: 8
+    title: Contexto en Python
+    lesson_count: 6
+  - block: 9
+    title: Propagación distribuida
+    lesson_count: 6
+  - block: 10
+    title: Sampling en la aplicación
+    lesson_count: 6
+  - block: 11
+    title: Processors y exportación de trazas
+    lesson_count: 6
+  - block: 12
+    title: Instrumentación automática
+    lesson_count: 6
+  - block: 13
+    title: Instrumentación híbrida y hooks
+    lesson_count: 6
+  - block: 14
+    title: HTTP saliente
+    lesson_count: 6
+  - block: 15
+    title: Flask y WSGI
+    lesson_count: 6
+  - block: 16
+    title: FastAPI, Starlette y ASGI
+    lesson_count: 6
+  - block: 17
+    title: Django
+    lesson_count: 6
+  - block: 18
+    title: RPC y comunicaciones persistentes
+    lesson_count: 6
+  - block: 19
+    title: SQL y persistencia
+    lesson_count: 6
+  - block: 20
+    title: Caché y bases de datos adicionales
+    lesson_count: 6
+  - block: 21
+    title: Métricas e instrumentos
+    lesson_count: 6
+  - block: 22
+    title: Views y agregaciones
+    lesson_count: 6
+  - block: 23
+    title: Lectura y exportación de métricas
+    lesson_count: 6
+  - block: 24
+    title: Cardinalidad y métricas de aplicación
+    lesson_count: 6
+  - block: 25
+    title: Logging de Python y correlación
+    lesson_count: 6
+  - block: 26
+    title: Exportación de logs con OpenTelemetry
+    lesson_count: 6
+  - block: 27
+    title: Asincronía con asyncio
+    lesson_count: 6
+  - block: 28
+    title: Hilos y executors
+    lesson_count: 6
+  - block: 29
+    title: Procesos y servidores con workers
+    lesson_count: 6
+  - block: 30
+    title: Mensajería y tareas distribuidas
+    lesson_count: 6
+  - block: 31
+    title: Semántica de tareas y fiabilidad
+    lesson_count: 6
+  - block: 32
+    title: Aplicaciones CLI y batch
+    lesson_count: 6
+  - block: 33
+    title: Pruebas unitarias de instrumentación
+    lesson_count: 6
+  - block: 34
+    title: Pruebas de integración y contratos
+    lesson_count: 6
+  - block: 35
+    title: Rendimiento y resiliencia
+    lesson_count: 6
+  - block: 36
+    title: Seguridad y privacidad
+    lesson_count: 6
+  - block: 37
+    title: Integración con Collector y backends
+    lesson_count: 6
+  - block: 38
+    title: Fedora, RHEL y systemd
+    lesson_count: 6
+  - block: 39
+    title: Contenedores con Podman y Docker
+    lesson_count: 6
+  - block: 40
+    title: Aplicaciones Python en Kubernetes
+    lesson_count: 6
+  - block: 41
+    title: Troubleshooting por capas
+    lesson_count: 6
+  - block: 42
+    title: Actualizaciones y compatibilidad
+    lesson_count: 6
+  - block: 43
+    title: Instrumentar bibliotecas reutilizables
+    lesson_count: 6
+  - block: 44
+    title: Extensiones e internals de Python
+    lesson_count: 6
+  - block: 45
+    title: Diseño de observabilidad de producto
+    lesson_count: 6
+  - block: 46
+    title: Proyecto experto integrado
+    lesson_count: 6

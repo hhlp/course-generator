@@ -454,9 +454,9 @@ Deben distinguirse claramente:
 
 Adecuado para aprendizaje, desarrollo y cargas pequeñas cuando sus límites sean aceptables.
 
-### Simple Scalable Deployment
+### Simple Scalable Deployment — compatibilidad y migración
 
-Separación funcional en read, write y backend, con object storage y capacidad de escalar grupos funcionales.
+Separación funcional en read, write y backend. Este modo está deprecado y su retirada está anunciada para Loki 4.0. Estudiarlo para operar instalaciones existentes y preparar su migración a microservices o monolítico HA; no presentarlo como destino preferente de nuevos diseños. Verificar siempre la guía de la versión elegida.
 
 ### Distributed / Microservices
 
@@ -938,3 +938,59 @@ Cada laboratorio operacional debe definir estado inicial, pasos reproducibles, c
 ### 32.6 Límites y versiones
 
 Distinguir siempre Grafana OSS, Enterprise y Cloud. Confirmar disponibilidad real de OIDC, RBAC, APIs, inhibición de alertas, componentes Alloy y opciones de Loki en la versión estudiada. No inventar defaults, rutas, nombres de métricas ni garantías de entrega.
+
+
+## 33. Recorrido pedagógico y prerrequisitos operacionales
+
+Los identificadores de bloques y lecciones son estables. El orden numérico conserva compatibilidad con el temario anterior; el recorrido recomendado que sigue define las dependencias pedagógicas. Si el generador sólo procesa orden numérico, realizar primero las prácticas indicadas como prerrequisito o generar los bloques seleccionados por separado. No afirmar que un campo YAML personalizado reordena el generador sin comprobar su implementación.
+
+Recorrido completo: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15 → 16 → 17 → 18 → 19 → 20 → 21 → 22 → 23 → 24 → 25 → 26 → 27 → 28 → 29 → 30 → 31 → 32 → 33 → 34 → 35 → 36 → 37 → 38 → 39 → 111 → 40 → 41 → 112 → 113 → 42 → 43 → 44 → 45 → 46 → 47 → 48 → 49 → 50 → 51 → 52 → 53 → 54 → 55 → 56 → 57 → 58 → 59 → 60 → 61 → 62 → 63 → 64 → 65 → 66 → 67 → 68 → 69 → 70 → 71 → 72 → 73 → 74 → 75 → 76 → 77 → 78 → 79 → 80 → 81 → 82 → 83 → 84 → 85 → 86 → 87 → 88 → 89 → 90 → 91 → 92 → 93 → 94 → 95 → 96 → 97 → 114 → 115 → 98 → 99 → 100 → 101 → 102 → 116 → 119 → 103 → 104 → 105 → 106 → 117 → 118 → 120 → 107 → 108 → 109 → 110 → 121.
+
+- Antes del laboratorio de configuración de Loki (39), preparar los archivos mínimos; ejecutarlo después de completar la instalación 111. En 35–38 los recorridos son conceptuales o utilizan una instancia preparada y documentada.
+- El bloque 111 proporciona la primera instalación de Loki; 77 analiza después los límites, HA y decisiones del modo monolítico.
+- El bloque 40 presenta fuentes y requisitos. La configuración de Alloy del bloque 41 se prepara como texto; su ejecución se realiza tras 112. Los bloques 112 y 113 preceden a los laboratorios 42–58.
+- El entorno persistente de laboratorio empieza con Loki monolítico, Alloy y logs de prueba; indicar versión, rutas, puertos, dataset y limpieza. No exigir object storage para la primera prueba local.
+- Para los bloques 6–34 utilizar TestData o fuentes preparadas cuando permitan demostrar el objetivo. Todo laboratorio que requiera Loki/Prometheus debe identificar esa dependencia y ofrecer su preparación o remitir al bloque correspondiente.
+- Los bloques 114–120 se completan antes del proyecto 110; 121 evalúa el diagnóstico después de integrar la plataforma.
+- El recorrido es una guía de estudio; no es una garantía de soporte de selección u ordenación en course-generator.
+
+## 34. Profundización progresiva y prevención de repeticiones
+
+Cada segunda pasada debe utilizar un escenario y producir evidencia nuevos:
+
+| Bloques | Primera pasada | Profundización posterior |
+|---|---|---|
+| 2, 107 | Arquitectura y ciclo de consulta | Recorrido de código ligado a un fallo concreto |
+| 7–15, 114 | Manejo de paneles, variables y Explore | Accesibilidad, calidad de datos, regresión y coste medido |
+| 19–23, 115 | Evaluación y entrega de alertas | Ausencia de series, fallos de entrega y HA comprobada |
+| 24–29, 98–101, 116 | Provisioning y API por recurso | Repositorio integrado, drift y reconstrucción automatizada |
+| 36–37, 108 | Write/read path y componentes | Evidencia operacional conectada con implementación |
+| 44–46, 74, 118 | Labels, streams y metadata | Incidente de cardinalidad y benchmark reproducible |
+| 55, 88 | Metric queries desde logs | Dashboard y recording rule con comparación de coste |
+| 89–95 | Navegación y correlación | Investigación progresiva de un mismo incidente |
+| 31, 117, 120 | Backup y restore básico | Desastre, upgrade y límites de reversibilidad |
+
+No repetir listas de definiciones para justificar otro bloque. Enunciar al inicio los conocimientos previos, el problema nuevo y el resultado verificable.
+
+## 35. Actualización de API, agentes y despliegue
+
+Estado contrastado el 21 de octubre de 2026; fijar versiones concretas al ejecutar los laboratorios.
+
+- Grafana: enseñar la familia vigente /apis y sus recursos/versiones junto con la compatibilidad legacy /api. La deprecación de /api comienza en Grafana 13; no significa que todas sus rutas estén deshabilitadas ni que exista sustitución exacta para cada recurso. Comprobar autenticación, permisos, namespaces y payloads por endpoint.
+- Promtail: alcanzó EOL el 2 de marzo de 2026. Usarlo sólo para inventario, lectura de configuraciones antiguas y migración a Alloy. No instalarlo como collector nuevo.
+- Loki SSD: modo deprecado con retirada anunciada en Loki 4.0. Los ejemplos de read/write/backend son de compatibilidad; preparar migración a microservices o monolítico HA según requisitos.
+- Mantener la referencia de dashboard JSON tradicional cuando sea necesaria y distinguir el esquema de recursos de APIs nuevas. No asumir equivalencia entre formatos.
+
+## 36. LogQL: criterios de dominio verificable
+
+Además de la sintaxis, enseñar __error__ y su filtrado en la posición adecuada, conversiones tras unwrap, valores ausentes, absent_over_time, offset y ventanas temporales. Practicar on/ignoring, group_left/group_right y bool donde el lenguaje y la versión lo permitan. Toda operación entre vectores debe razonar sobre labels y cardinalidad de salida.
+
+Mantener un dataset pequeño con timestamps controlados y consultas cuyo resultado pueda calcularse manualmente. Incluir errores de parsing, valores no convertibles, series que desaparecen y logs presentes pero fuera de la ventana consultada. Distinguir ausencia, cero y consulta fallida.
+
+## 37. Validación del perfil y límites del generador
+
+El bloque quality expresa requisitos pedagógicos de auditoría; validation.enabled permanece desactivado porque no se han definido comandos externos de validación. Son mecanismos distintos y no deben presentarse como equivalentes.
+
+Antes de usar el perfil con course-generator, comprobar en su esquema/código qué claves acepta, cuáles aplica y qué sucede con claves desconocidas. No dar por hecho que depth_policy, lab_quality, technology_policy u output implementan controles efectivos por existir en YAML. Este paquete valida sintaxis y coherencia documental; no certifica integración con el ejecutable ni ejecuta laboratorios reales.
+
+Los archivos se entregan con nombres canónicos initial.txt, domain.md, bibliography.md y profile.yaml. La ruta ../../config/pedagogy.md depende del repositorio del usuario y debe existir en su ubicación de destino; no se incluye ni se sustituye silenciosamente.

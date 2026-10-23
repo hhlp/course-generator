@@ -62,6 +62,10 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 1.31 Límites systemd, sysctl y persistencia de parámetros
 1.32 Diagnóstico de AVC SELinux sin desactivar enforcing
 1.33 Desinstalación controlada y limpieza de laboratorio
+1.34 Contrato del laboratorio: topología, recursos y manifiesto de versiones
+1.35 Dataset común determinista y criterios de aceptación del despliegue
+1.36 Laboratorio básico seguro y ampliación progresiva al entorno de HA
+1.37 Modalidad self-managed: instalación funcional frente a soporte oficial del SO
 
 2. Elasticsearch: fundamentos y REST API
 2.1 qué es Elasticsearch
@@ -123,6 +127,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 3.31 semantic_text y capacidades semánticas sujetas a versión
 3.32 indexación de vectores y restricciones de mappings
 3.33 Evolución de mappings sin pérdida de datos
+3.34 Synthetic _source: reconstrucción, diferencias y restricciones por licencia
+3.35 Comparación de _source almacenado y sintético con documentos de prueba
 
 4. Análisis de texto
 4.1 analyzer
@@ -188,6 +194,11 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 6.17 laboratorio: implementar un data stream completo
 6.18 Data stream lifecycle: condiciones de rollover y retención
 6.19 Comparación práctica DSL e ILM y criterios de elección
+6.20 LogsDB: index.mode, templates y comportamiento según versión
+6.21 LogsDB: ordenación, mappings y efectos en almacenamiento e ingestión
+6.22 TSDS: dimensiones, tipos de métricas y ventanas temporales
+6.23 Failure store: activación, consulta, límites y retención
+6.24 Laboratorio: comparar data streams standard, logsdb y time_series
 
 7. Búsquedas y Query DSL
 7.1 Search API
@@ -353,6 +364,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 12.23 Pérdida de quorum y procedimiento de recuperación
 12.24 Rolling restarts y reinicios completos comparados
 12.25 Pruebas de resiliencia por fault domain
+12.26 cluster.initial_master_nodes: uso inicial y retirada tras formar el cluster
+12.27 Unión de nodos y reinicios sin repetir el bootstrap inicial
+12.28 Automatización del bootstrap con comprobación de identidad del cluster
 
 13. Ingest pipelines
 13.1 ingest node
@@ -381,6 +395,9 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 13.24 Ingest pipelines: dead-letter strategies y quarantine indices
 13.25 Idempotencia y deduplicación en ingestión
 13.26 Tratamiento de timestamps erróneos y eventos tardíos
+13.27 Failure store frente a on_failure, cuarentena y DLQ de Logstash
+13.28 Reprocesamiento de fallos de ingestión y mapping con trazabilidad
+13.29 Laboratorio: provocar, localizar, corregir y reprocesar eventos fallidos
 
 14. Enrichment, runtime fields y scripting
 14.1 enrich policies
@@ -676,6 +693,10 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 25.21 laboratorio: implementar hot/warm/cold y retención
 25.22 Políticas de retención y obligaciones de conservación
 25.23 Simulación y verificación de lifecycle
+25.24 Downsampling de TSDS: granularidad, estadísticas y pérdida de resolución
+25.25 Downsampling con lifecycle: requisitos y disponibilidad en la versión fijada
+25.26 Retención de failure store independiente de los datos correctos
+25.27 Laboratorio: reducir métricas históricas y validar consultas y ahorro
 
 26. Snapshots, SLM y disaster recovery
 26.1 snapshots
@@ -756,6 +777,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 28.31 Medición de recall, latencia y throughput
 28.32 Dimensionamiento por tasas de ingestión y retención
 28.33 Modelo de coste de almacenamiento y data tiers
+28.34 Benchmark reproducible de LogsDB y synthetic _source
+28.35 Medición de almacenamiento, CPU y resolución tras downsampling
 
 29. JVM, memoria y almacenamiento
 29.1 JVM de Elasticsearch
@@ -806,7 +829,7 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 
 31. Troubleshooting
 31.1 metodología sistemática de diagnóstico
-31.2 estado red/yellow/red
+31.2 estado green/yellow/red
 31.3 shards unassigned
 31.4 allocation explain
 31.5 master not discovered
@@ -923,6 +946,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 34.22 CI/CD: lint, validación y pruebas de integración
 34.23 Gestión de secretos sin introducirlos en Git
 34.24 Rollback declarativo y detección de drift
+34.25 Manifiesto de versiones: RPM, integraciones, plugins y herramientas IaC
+34.26 Control de cambios de versión con regeneración y pruebas de los ejemplos
 
 35. Upgrades y migraciones
 35.1 ciclo de versiones
@@ -945,6 +970,7 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 35.18 Ensayo de upgrades en entorno aislado
 35.19 Migración de saved objects y componentes de seguridad
 35.20 Estrategias ante downgrade no soportado
+35.21 Validación previa de defaults de LogsDB, failure store y lifecycle
 
 36. Diseño de producción y hardening
 36.1 requisitos y SLO
@@ -1103,3 +1129,8 @@ ELASTIC STACK EN PROFUNDIDAD — FEDORA
 39.63 Ejecutar pruebas de resiliencia y recuperación documentadas
 39.64 Verificar compatibilidad, licencias y coste de la arquitectura
 39.65 Ejecutar pipeline CI de validación de configuraciones
+39.66 Validar LogsDB y synthetic _source con el dataset compartido
+39.67 Demostrar recuperación de eventos mediante failure store
+39.68 Implementar TSDS y downsampling con medición de pérdida de resolución
+39.69 Entregar manifiesto de versiones y matriz de capacidades por licencia
+39.70 Completar recorrido básico y documentar extensiones sujetas a licencia

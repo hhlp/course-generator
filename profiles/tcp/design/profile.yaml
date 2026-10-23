@@ -57,6 +57,12 @@ lesson_style:
     - incluir troubleshooting en los bloques prácticos
     - tratar clases A/B/C/D/E como contexto histórico, no como diseño moderno
     - utilizar CIDR como modelo moderno de direccionamiento
+    - separar pertenencia matemática, alcance on-link y selección de ruta
+    - explicar RA y flags L/A sin duplicar el PATH de protocolos
+    - distinguir broadcast IPv4 de límites numéricos IPv6 en ipaddress
+    - procesar prefijos IPv6 sin enumerar espacios de hosts masivos
+    - comprobar conflictos por VRF y familia con contención válida
+    - distinguir fusión de bloques hermanos de resumen de conjuntos
 
 labs:
   enabled: true
@@ -88,7 +94,8 @@ final_project:
     - Python validation
     - step_by_step_calculation_report
     - capacity_and_growth_table
-    - automated_nonoverlap_tests
+    - conflict_tests_per_address_family_and_routing_domain
+    - parent_child_containment_validation
     - migration_and_rollback_plan
     - design_decision_rationale
 
@@ -152,9 +159,14 @@ bibliography_scopes:
   S03:
     - How to Master Subnetting — Rene Molenaar
     - 'IP Subnetting: From Zero to Guru — Paul Browning'
-    - Subnetting — Todd Lammle (edition unverified)
+    - Subnetting — Todd Lammle (Wiley/Sybex, 2017)
   S06:
     - IPv6 Essentials — Silvia Hagen
+    - RFC 4193, RFC 4861, RFC 4862 y RFC 5942
+  S08:
+    - Linux ip-route(8) y documentación oficial NetworkManager
+  S09:
+    - Python Standard Library — ipaddress
   S10:
     - IETF RFC
     - IANA registries

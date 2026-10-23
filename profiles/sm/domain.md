@@ -194,3 +194,55 @@ Incluir criterios de severidad, riesgo, impacto de cliente, regresión, pruebas,
 5. Renegociar alcance y evaluar el trabajo no Done al finalizar el Sprint.
 
 Cada laboratorio debe aportar Sprint Backlog antes/después, decisiones y responsables, efecto sobre el Sprint Goal, evidencia de calidad, cambios de scope y reflexión crítica. Conectar con los bloques 7, 8 y 19 para capacity, charts y WIP sin repetir sus explicaciones completas.
+
+
+## Ajustes de coherencia pedagógica
+
+### Construcción de charts y aplicación al Sprint
+
+El bloque 8 es responsable del modelo de datos, cálculo y construcción de los
+charts. Introducir SLE al estudiar Work Item Age (8.57), antes del laboratorio
+8.80: probabilidad y duración basadas en Cycle Time histórico, sin garantía.
+Los bloques 9 y 19 profundizan en supuestos, construcción y uso de la SLE.
+El bloque 19 reutiliza dataset, cálculos y charts del 8, amplía los datos y
+evalúa decisiones durante los eventos Scrum, políticas, WIP Limits y
+experimentos de mejora. No repetir tutoriales completos de construcción ni
+el PATH independiente de Kanban. Las referencias cruzadas sirven para
+recuperar prerrequisitos; cada laboratorio aplicado produce decisiones nuevas.
+
+### Little’s Law y consistencia de métricas
+
+Usar WIP medio = tasa media de Throughput × Cycle Time medio, con el mismo
+punto de inicio/final, población, calendario y unidades. Distinguir conteo de
+items por intervalo de una tasa en items por unidad de tiempo. No sustituir
+WIP medio por un snapshot ni Cycle Time medio por el tiempo de un solo item.
+Explicar conservación del flujo, promedios representativos, acumulación de
+trabajo y efectos de frontera de ventanas finitas; no exigir igualdad exacta
+en cualquier dataset de un Sprint. Calcular WIP medio ponderado por tiempo
+cuando los intervalos entre observaciones no sean iguales. Tratar Story Points
+como carga estimada complementaria, sin mezclarlos con conteos de flow metrics.
+
+### Incidentes y vigencia del Sprint Goal
+
+En 4.62 comparar un incidente urgente compatible con el Sprint Goal, un riesgo
+de incumplirlo y un cambio que lo vuelve obsoleto. Renegociar alcance no cambia
+libremente el objetivo. Solo el Product Owner puede cancelar el Sprint cuando
+el Sprint Goal queda obsoleto; un hotfix no implica cancelación automática.
+Documentar hipótesis, decisiones, alternativas, impacto y cumplimiento de DoD.
+
+### Variantes del proyecto y escalado
+
+En 31.7 comparar Planning Poker como práctica elegida con una variante sin
+Story Points, usando slicing y forecasting por throughput. Conservar los
+commitments de Scrum en ambas variantes. En 31.19 incorporar un segundo
+equipo y explorar coordinación; en 31.21 ampliar expresamente el escenario
+a tres Scrum Teams antes de simular Nexus, cuya definición describe
+aproximadamente tres a nueve equipos. Justificar el escalado por valor y
+dependencias y comparar con alternativas de simplificación.
+
+### Integración de los archivos
+
+Usar nombres canónicos initial.txt, domain.md, bibliography.md y profile.yaml.
+Conservar la ruta de pedagogía declarada en el perfil y verificarla desde la
+ubicación real del perfil en el repositorio. Validar YAML y numeración local
+no equivale a haber ejecutado course-generator ni comprobado su esquema.

@@ -3,12 +3,13 @@
 ## Bibliografía principal
 
 ### Discovering Kanban
-David J. Anderson y colaboradores. *Discovering Kanban: The Evolutionary Path to Enterprise Agility*.
+David J. Anderson. *Discovering Kanban: The Evolutionary Path to Enterprise Agility*.
 
 Uso: columna vertebral sistémica y evolutiva; servicios, cambio, organización y Enterprise Kanban.
 
 ### Upstream Kanban
-Patrick Steyaert. *Upstream Kanban: Tools for Demand Managers*.
+Anna Radzikowska. *Upstream Kanban: Tools for Demand Managers*.
+Blue Hole Press, 2025. Edición de David J. Anderson.
 
 Uso: demanda, opciones, discovery, deferred commitment, selección y gestión upstream.
 
@@ -78,3 +79,22 @@ de prácticas, sin reemplazar las obras principales.
 - No atribuir a un libro técnicas que no cubre explícitamente: Kingman, bootstrap, backtesting y diseño experimental son ampliaciones analíticas del learning path.
 - Vincular cada lección avanzada a la fuente principal y, cuando sea pertinente, a una complementaria.
 - Tratar CD3 como una heurística económica contextual, no como regla universal de priorización.
+
+## Fuentes concretas para las correcciones
+
+- Upstream Kanban, catálogo editorial:
+  https://kanbanbooks.com/upstream-kanban/
+- Presentación de Upstream Kanban por Kanban+ (autoría y Service Request Review):
+  https://kanban.plus/blogs/blog/upstream-kanban-tools-for-demand-managers-a-game-changer-for-modern-knowledge-work
+- Discovering Kanban, catálogo editorial:
+  https://kanbanbooks.com/discovering-kanban/
+- Guía oficial del Método Kanban:
+  https://kanban.university/kanban-guide/
+- Glosario oficial del Método Kanban:
+  https://kanban.university/glossary/glosario-del-metodo-kanban/
+- Recursos oficiales KMM:
+  https://kanban.university/downloads/kanban-maturity-model/
+
+Las páginas web sirven para contrastar terminología y referencias; no implican
+que se haya comprobado el contenido íntegro de cada libro. Identificar la edición
+utilizada antes de citar capítulos o asignar prácticas concretas a niveles KMM.

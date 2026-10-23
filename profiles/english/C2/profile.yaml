@@ -139,7 +139,7 @@ lesson_structure:
     purpose: "manipulación, transformación, contraste, diagnóstico y análisis
         gramatical avanzado"
   common_errors:
-    required: false
+    required: true
     heading: "⚠️ Errores frecuentes"
   important_idea:
     required: false
@@ -279,3 +279,37 @@ level_specific:
     register_variation: true
     ambiguity_analysis: true
     final_mastery_project: true
+
+revision_guidance:
+  block_count: 19
+  lesson_count: 398
+  preserve_original_lesson_objectives: true
+  depth_boundaries:
+    distinguish_cefr_proficiency_from_syntactic_theory: true
+    treat_theoretical_diagnostics_as_analytical_enrichment: true
+    identify_framework_dependent_terminology: true
+    explain_prerequisites_before_forward_references: true
+  explicit_coverage:
+    - free_and_fused_relatives
+    - absolute_constructions
+    - verbless_clauses
+    - grammatical_notional_and_proximity_agreement
+  topic_distinctions:
+    raising_and_passives: >-
+      Distinguir raising-to-object/ECM, pasivas de verbos de reporte y
+      pasivizacion ordinaria; explicar la terminologia del marco adoptado.
+    one_and_ones: >-
+      Separar one/ones sustitutivos del pronombre personal generico one;
+      analizar numero, antecedentes, referencia y restricciones.
+    infinitival_ellipsis: >-
+      Distinguir elipsis del complemento conservando to y contextos que
+      permiten omitir tambien to; no generalizar esta segunda posibilidad.
+    comparative_ellipsis: >-
+      El bloque 9 aborda recuperabilidad y contraste con sustitucion;
+      el bloque 11 profundiza en estructura comparativa e interpretacion.
+  consolidation:
+    require_new_depth_for_revisited_topics: true
+    integrate_added_topics_in_final_project: true
+  common_errors:
+    require_section_in_every_lesson: true
+    explain_error_and_correction: true

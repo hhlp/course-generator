@@ -63,7 +63,7 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/
 
 Fuente normativa para endpoints, autenticación y payloads.
 
-https://grafana.com/docs/grafana/latest/developers/http_api/
+https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
 
 ### Grafana Provisioning
 
@@ -616,3 +616,16 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/
 | 121 | Grafana/Loki/Alloy troubleshooting, Prometheus como integración |
 
 Las URL anteriores son puntos de entrada; confirmar la ruta exacta y versión de cada subpágina antes de utilizarla como referencia normativa en una lección.
+
+
+## 15. Referencias verificadas para compatibilidad y migración
+
+Contraste documental: 21 de octubre de 2026. Estas páginas latest son puntos de entrada; fijar la versión utilizada en cada laboratorio.
+
+- API Grafana vigente: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/
+- Compatibilidad legacy /api y deprecación desde Grafana 13: https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/
+- Modos Loki y deprecación SSD con retirada anunciada en Loki 4.0: https://grafana.com/docs/loki/latest/get-started/deployment-modes/
+- Promtail EOL y migración: https://grafana.com/docs/loki/latest/send-data/promtail/
+- Referencia LogQL: https://grafana.com/docs/loki/latest/query/
+
+Aplicación: 28 y 120 para evolución de API; 38, 78 y 120 para SSD; 41 y 120 para Promtail; 48–58 para semántica y resultados verificables de LogQL. La existencia de una referencia no implica que todas sus funciones estén disponibles en cualquier edición o versión.

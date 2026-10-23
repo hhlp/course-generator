@@ -68,6 +68,7 @@
 
 15. promtool Documentation / Command Help
     - Validación de configuraciones y reglas, testing y utilidades TSDB.
+    - https://prometheus.io/docs/prometheus/latest/command-line/promtool/
 
 ## Arquitectura e internals
 
@@ -94,6 +95,7 @@
 
 21. Rob Ewaschuk — My Philosophy on Alerting
     - Referencia clásica para diseño de alertas orientadas a síntomas y acción.
+    - Enlace desde las prácticas oficiales: https://prometheus.io/docs/practices/alerting/
 
 ## Fedora y Linux
 
@@ -109,31 +111,35 @@
 
 24. SELinux Project / Fedora SELinux documentation
     - Diagnóstico y hardening de servicios.
+    - https://docs.fedoraproject.org/en-US/quick-docs/selinux-getting-started/
 
 25. firewalld Documentation
     - Exposición segura de Prometheus, Alertmanager y exporters.
+    - https://firewalld.org/documentation/
 
 ## Bibliografía complementaria
 
-26. Prometheus: Up & Running
+26. Julien Pivotto y Brian Brazil — Prometheus: Up & Running, 2.ª edición. O’Reilly.
+   - https://www.oreilly.com/library/view/prometheus-up/9781098131135/
     - Introducción y profundización práctica en Prometheus y PromQL.
     - Utilizar como complemento; validar comportamiento actual contra la documentación oficial.
 
 27. Prometheus community integrations
     - Catálogo de exporters e integraciones.
+    - https://prometheus.io/docs/instrumenting/exporters/
     - Debe utilizarse para aprender a localizar herramientas, no para asumir que todo exporter comunitario tiene el mismo nivel de mantenimiento.
 
 ## Criterio de precedencia
 
 Para comportamiento que pueda variar entre versiones:
 
-1. documentación oficial vigente;
-2. release notes/changelog;
-3. código fuente de la versión estudiada;
-4. documentación de Fedora para integración con el sistema;
+1. documentación oficial de la versión ejecutada y sus notas de versión;
+2. ayuda del binario instalado y configuración efectiva;
+3. código y tests del tag/commit correspondiente para detalles internos;
+4. documentación de la versión de Fedora para integración con el sistema;
 5. libros y material complementario.
 
-El curso no debe fijar como universal un comportamiento dependiente de versión sin indicarlo.
+La documentación vigente sirve para localizar conceptos; no debe reemplazar sin comprobación la de una versión anterior utilizada en el laboratorio. Registrar discrepancias y comprobar el comportamiento mediante un caso mínimo.
 
 
 ## Referencias ampliadas por scope (revisión profunda)
@@ -167,3 +173,15 @@ El curso no debe fijar como universal un comportamiento dependiente de versión 
 - Go profiling pprof: https://pkg.go.dev/net/http/pprof
 
 > Todas las referencias externas ampliadas deben contrastarse con la versión estudiada. Las plataformas externas se estudian como integración y comparación, no como PATH independientes.
+
+
+## Referencias de la revisión focalizada
+
+- Migración 2.x → 3.x: https://prometheus.io/docs/prometheus/latest/migration/
+- Releases para elegir y fijar la versión estudiada: https://github.com/prometheus/prometheus/releases
+- Prometheus Operator, introducción: https://prometheus-operator.dev/docs/getting-started/introduction/
+- API de Operator: https://prometheus-operator.dev/docs/api-reference/api/
+- Alertmanager HA: https://prometheus.io/docs/alerting/latest/high_availability/
+- Alert relabeling y configuración del notifier: https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+
+Los enlaces con latest, main o tip son puntos de entrada. Para cada ejercicio, conservar URL y versión consultada; en código, reemplazar main por el tag/commit elegido. Fijar igualmente versión de Operator/CRDs y del receptor remoto cuando proceda. No se prescribe una release no verificada como universal.

@@ -1,0 +1,474 @@
+OPENTELEMETRY CON JAVASCRIPT — DE CERO A EXPERTO
+
+Path independiente de especialización. Node.js principal; navegador y TypeScript como extensiones.
+Requiere JavaScript básico y fundamentos de OpenTelemetry; no enseña JavaScript desde cero.
+El curso general conserva arquitectura y operación transversal. Este path profundiza en implementación JavaScript.
+Este paquete define el currículo; las lecciones generadas deberán aportar código y laboratorios completos.
+
+0. Alcance y fundamentos aplicados
+
+0.1 Distinguir observabilidad, monitorización y telemetría con una petición lenta
+0.2 Relacionar trazas, métricas y logs sin tratarlos como señales intercambiables
+0.3 Comprender API, SDK, instrumentaciones, exportadores y Collector
+0.4 Leer trace ID, span ID, duración y relaciones padre-hijo
+0.5 Separar instrumentación de aplicación y operación de la plataforma
+0.6 Elegir Node.js como itinerario principal y navegador como extensión
+0.7 Reconocer los prerrequisitos de JavaScript y del curso general
+0.8 Definir objetivos observables y criterios de aceptación del proyecto
+0.9 Laboratorio: Dibujar el recorrido de una petición entre frontend, API y worker
+0.10 Prueba negativa y diagnóstico: Localizar qué evidencia falta cuando solo existe un log de error
+
+1. Entorno reproducible en Linux
+
+1.1 Seleccionar una versión Node.js LTS soportada por los paquetes elegidos
+1.2 Preparar npm, package.json y scripts de ejecución
+1.3 Distinguir dependencias de producción y herramientas de desarrollo
+1.4 Fijar versiones y conservar package-lock.json con npm ci
+1.5 Separar variables de entorno, configuración y secretos
+1.6 Usar Fedora o RHEL con puertos locales y permisos mínimos
+1.7 Organizar app, instrumentation, tests y configuraciones
+1.8 Registrar versiones de Node.js, SDK, contrib y Collector
+1.9 Laboratorio: Crear un proyecto mínimo reproducible desde un directorio limpio
+1.10 Prueba negativa y diagnóstico: Resolver una dependencia incompatible sin forzar peer dependencies
+
+2. Arquitectura del SDK JavaScript
+
+2.1 Distinguir @opentelemetry/api del SDK y paquetes experimentales
+2.2 Comprender providers, scopes, processors y exporters
+2.3 Conocer el comportamiento sin provider y la API no-op
+2.4 Registrar providers una sola vez por proceso
+2.5 Comparar NodeSDK y composición explícita de providers
+2.6 Entender compatibilidad API-SDK y duplicación de dependencias
+2.7 Separar configuración de trazas, métricas y logs
+2.8 Inspeccionar el registro global y la inicialización
+2.9 Laboratorio: Emitir una traza manual por consola con identidad de servicio
+2.10 Prueba negativa y diagnóstico: Diagnosticar una API no-op causada por provider ausente
+
+3. Arranque CommonJS, ESM y TypeScript
+
+3.1 Distinguir require, import y carga estática de módulos
+3.2 Inicializar telemetría antes de importar las bibliotecas objetivo
+3.3 Comparar precarga mediante --require y --import según runtime
+3.4 Evaluar hooks de ESM conforme a la versión de instrumentación
+3.5 Revisar NODE_OPTIONS y evitar registros duplicados
+3.6 Mantener ejemplos JavaScript ejecutables sin exigir TypeScript
+3.7 Añadir TypeScript opcional con tsconfig y source maps
+3.8 Diagnosticar transpilers, bundlers y monorepos
+3.9 Laboratorio: Comparar el mismo endpoint instrumentado en CommonJS y ESM
+3.10 Prueba negativa y diagnóstico: Reproducir spans ausentes por importar HTTP antes del SDK
+
+4. Primer servicio y exportación OTLP
+
+4.1 Construir una API HTTP mínima y una ruta de salud
+4.2 Configurar NodeSDK e instrumentación HTTP
+4.3 Exportar primero a consola y después por OTLP
+4.4 Elegir gRPC o HTTP/protobuf según entorno
+4.5 Distinguir endpoint general y endpoint específico por señal
+4.6 Entender rutas /v1/traces, /v1/metrics y /v1/logs
+4.7 Configurar identidad, timeouts y diagnóstico del SDK
+4.8 Verificar emisión, recepción y consulta como etapas separadas
+4.9 Laboratorio: Enviar una petición y localizar su traza en un backend local
+4.10 Prueba negativa y diagnóstico: Diagnosticar un endpoint con protocolo o ruta incorrectos
+
+5. Resource y convenciones semánticas
+
+5.1 Definir service.name, service.version y entorno de despliegue
+5.2 Separar resource attributes de atributos de spans
+5.3 Reconocer instrumentation scope y su versión
+5.4 Evaluar detectores de proceso, host y contenedor
+5.5 Controlar precedencia de configuración explícita y entorno
+5.6 Usar convenciones HTTP y de bases de datos de la versión fijada
+5.7 Gestionar transición de convenciones sin duplicar series
+5.8 Evitar identificadores de usuario en nombres de servicio
+5.9 Laboratorio: Comparar recursos de dos versiones del mismo servicio
+5.10 Prueba negativa y diagnóstico: Corregir servicios fragmentados por un service.name dinámico
+
+6. Instrumentación automática
+
+6.1 Seleccionar instrumentaciones desde el registro oficial
+6.2 Comparar metapaquete y selección explícita
+6.3 Revisar versiones de bibliotecas admitidas por cada plugin
+6.4 Configurar hooks, filtros y captura de atributos
+6.5 Evitar spans redundantes entre HTTP y framework
+6.6 Excluir health checks y rutas internas con criterio
+6.7 Entender límites del monkey patching y de la detección automática
+6.8 Comprobar que cada biblioteca fue parcheada al arrancar
+6.9 Laboratorio: Activar solo HTTP y Express y revisar los spans generados
+6.10 Prueba negativa y diagnóstico: Aislar una instrumentación incompatible sin perder las demás
+
+7. Trazas manuales de negocio
+
+7.1 Obtener tracers con nombre y versión del scope
+7.2 Crear spans activos y no activos
+7.3 Elegir SpanKind y establecer relaciones padre-hijo
+7.4 Usar atributos con tipos válidos y límites explícitos
+7.5 Distinguir eventos, atributos y spans nuevos
+7.6 Registrar excepciones y establecer estado de error con intención
+7.7 Cerrar spans en finally ante resolución o rechazo
+7.8 Instrumentar operaciones de negocio sin duplicar spans técnicos
+7.9 Laboratorio: Trazar validación, reserva y confirmación de un pedido
+7.10 Prueba negativa y diagnóstico: Encontrar un span que nunca termina tras una excepción
+
+8. Contexto asíncrono en Node.js
+
+8.1 Comprender context.active, context.with y context.bind
+8.2 Estudiar AsyncLocalStorage y el context manager
+8.3 Mantener contexto en promesas y async/await
+8.4 Analizar timers, callbacks y EventEmitter
+8.5 Propagar contexto en concurrencia con Promise.all
+8.6 Comparar contexto activo y propiedad del ciclo de vida del span
+8.7 Reconocer bibliotecas que rompen la cadena asíncrona
+8.8 Aislar solicitudes concurrentes para evitar contaminación
+8.9 Laboratorio: Ejecutar cien solicitudes concurrentes y verificar sus padres
+8.10 Prueba negativa y diagnóstico: Reparar pérdida de contexto en un callback de biblioteca simulada
+
+9. Propagación distribuida y baggage
+
+9.1 Interpretar W3C traceparent y tracestate
+9.2 Usar inject y extract con carriers y getters/setters
+9.3 Configurar propagadores compatibles entre servicios
+9.4 Validar contextos remotos y entradas malformadas
+9.5 Distinguir baggage de atributos exportados
+9.6 Aplicar listas permitidas y límites de baggage
+9.7 Delimitar confianza en cabeceras recibidas desde internet
+9.8 Tratar reintentos y múltiples saltos conservando relaciones
+9.9 Laboratorio: Conectar dos APIs Node.js bajo una misma traza
+9.10 Prueba negativa y diagnóstico: Demostrar que eliminar traceparent divide la traza
+
+10. HTTP y frameworks de servidor
+
+10.1 Instrumentar node:http y node:https
+10.2 Trabajar con Express, routers y middleware
+10.3 Evaluar Fastify según soporte del plugin fijado
+10.4 Evaluar NestJS y la instrumentación de sus adaptadores
+10.5 Capturar plantillas de ruta evitando URLs de alta cardinalidad
+10.6 Interpretar estados HTTP, errores y conexiones abortadas
+10.7 Medir streaming y respuestas largas sin finalizar antes de tiempo
+10.8 Comparar spans del framework y del transporte
+10.9 Laboratorio: Instrumentar una API con middleware de autenticación y rutas parametrizadas
+10.10 Prueba negativa y diagnóstico: Corregir nombres de spans que contienen IDs reales
+
+11. Clientes HTTP y RPC
+
+11.1 Distinguir node:http, fetch, Undici y clientes de terceros
+11.2 Seleccionar instrumentación de cliente según biblioteca y versión
+11.3 Propagar cabeceras sin duplicarlas
+11.4 Modelar timeout, DNS, TLS y error de conexión
+11.5 Representar reintentos y backoff como intentos observables
+11.6 Evaluar gRPC cliente y servidor cuando exista soporte
+11.7 Evitar registrar tokens, cuerpos y parámetros sensibles
+11.8 Comprobar alcance de propagación hacia destinos externos
+11.9 Laboratorio: Comparar una llamada correcta, un timeout y un reintento
+11.10 Prueba negativa y diagnóstico: Detectar doble instrumentación de un cliente HTTP
+
+12. Bases de datos y cachés
+
+12.1 Instrumentar PostgreSQL con el driver elegido
+12.2 Comparar instrumentación de driver y ORM
+12.3 Evaluar MongoDB según versiones soportadas
+12.4 Añadir Redis como caché y distinguir hit y miss
+12.5 Evitar captura indiscriminada de consultas y parámetros
+12.6 Representar pools, espera de conexión y saturación
+12.7 Relacionar transacciones, spans y errores de base de datos
+12.8 Aplicar convenciones semánticas sin exponer datos personales
+12.9 Laboratorio: Explicar una petición lenta mediante espera de pool y consulta
+12.10 Prueba negativa y diagnóstico: Detectar filtración de un parámetro sensible en un atributo
+
+13. Mensajería y procesamiento diferido
+
+13.1 Modelar productor, consumidor y operación de procesamiento
+13.2 Elegir Kafka o RabbitMQ mediante un adaptador soportado
+13.3 Transportar contexto en headers del mensaje
+13.4 Distinguir padre-hijo y links para lotes y fan-in
+13.5 Modelar ack, nack, redelivery y dead-letter queues
+13.6 Representar reintentos sin fabricar una ejecución exitosa
+13.7 Separar tiempo en cola y tiempo de procesamiento
+13.8 Evitar contexto compartido entre mensajes concurrentes
+13.9 Laboratorio: Trazar API, publicación y consumo de un trabajo
+13.10 Prueba negativa y diagnóstico: Seguir un mensaje fallido hasta su reentrega o cola de errores
+
+14. Workers y fronteras de proceso
+
+14.1 Distinguir worker_threads, child_process y cluster
+14.2 Reconocer que el contexto asíncrono no cruza procesos automáticamente
+14.3 Serializar contexto en mensajes y reconstruirlo al recibir
+14.4 Inicializar SDK y shutdown dentro de cada proceso
+14.5 Controlar identidad de servicio e instancia en workers
+14.6 Representar trabajos programados sin padre remoto
+14.7 Usar links cuando la relación causal lo requiera
+14.8 Evitar exportadores y buffers creados accidentalmente por tarea
+14.9 Laboratorio: Instrumentar un worker de CPU comunicado por mensajes
+14.10 Prueba negativa y diagnóstico: Mostrar una traza rota al omitir la extracción en el worker
+
+15. Métricas e instrumentos
+
+15.1 Obtener meters e identificar instrumentation scope
+15.2 Elegir Counter y UpDownCounter según semántica
+15.3 Usar Histogram para distribuciones de latencia
+15.4 Comparar instrumentos síncronos y observables
+15.5 Diseñar callbacks observables sin trabajo bloqueante
+15.6 Definir unidades, descripción y nombres coherentes
+15.7 Distinguir métricas de negocio y runtime
+15.8 Evitar derivar cualquier métrica exclusivamente de spans muestreados
+15.9 Laboratorio: Medir pedidos, trabajos activos y latencia de negocio
+15.10 Prueba negativa y diagnóstico: Corregir un contador usado como valor instantáneo
+
+16. Agregación, vistas y cardinalidad
+
+16.1 Comprender aggregations, temporality y MetricReader
+16.2 Configurar PeriodicExportingMetricReader y tiempos de exportación
+16.3 Aplicar views a selección de atributos e instrumentos
+16.4 Diseñar límites de histogramas según SLO
+16.5 Evaluar histogramas exponenciales según SDK y backend
+16.6 Controlar cardinalidad por ruta y dimensión
+16.7 Interpretar delta y cumulative con reinicios de proceso
+16.8 Evaluar exemplars según soporte real de la cadena
+16.9 Laboratorio: Comparar histogramas y series antes y después de una view
+16.10 Prueba negativa y diagnóstico: Provocar crecimiento de series con IDs y eliminar la dimensión
+
+17. Runtime y rendimiento de Node.js
+
+17.1 Interpretar memoria heap, RSS y límites del proceso
+17.2 Relacionar event loop delay con latencia percibida
+17.3 Observar GC mediante herramientas e instrumentaciones disponibles
+17.4 Distinguir CPU alta, bloqueo síncrono y espera de I/O
+17.5 Comparar métricas del proceso con métricas del contenedor
+17.6 Medir overhead del SDK y de cada instrumentación
+17.7 Evaluar coste de atributos, stacks y callbacks
+17.8 Evitar exportación y diagnóstico excesivo en rutas críticas
+17.9 Laboratorio: Medir una carga de CPU y otra de I/O con igual concurrencia
+17.10 Prueba negativa y diagnóstico: Diagnosticar un bloqueo del event loop aunque la base de datos responda
+
+18. Logs y correlación
+
+18.1 Separar logs de aplicación y diag del SDK
+18.2 Evaluar Pino y Winston con sus plugins concretos
+18.3 Inyectar trace_id y span_id cuando exista contexto activo
+18.4 Distinguir enriquecimiento, envío directo y recolección de stdout
+18.5 Estudiar Logs API y SDK señalando su madurez
+18.6 Configurar processors y exportación solo con paquetes compatibles
+18.7 Preservar severidad, timestamp y estructura JSON
+18.8 Prevenir duplicados y redacción tardía de datos sensibles
+18.9 Laboratorio: Relacionar un log JSON con su span mediante IDs
+18.10 Prueba negativa y diagnóstico: Detectar logs duplicados por dos rutas simultáneas de exportación
+
+19. Sampling y límites de las trazas
+
+19.1 Comparar AlwaysOn, AlwaysOff y ratio de trazas
+19.2 Aplicar ParentBased y entender la decisión remota
+19.3 Distinguir recording del bit sampled
+19.4 Configurar límites de atributos, eventos y links
+19.5 Analizar sesgo del muestreo sobre errores poco frecuentes
+19.6 Separar head sampling en SDK y tail sampling en Collector
+19.7 Evitar asumir que tail sampling recupera spans descartados
+19.8 Mantener métricas completas cuando se muestrean trazas
+19.9 Laboratorio: Medir trazas conservadas con ratio y padres remotos
+19.10 Prueba negativa y diagnóstico: Explicar por qué una traza de error no llega al muestreo de cola
+
+20. Exportadores y fiabilidad
+
+20.1 Comparar SimpleSpanProcessor y BatchSpanProcessor
+20.2 Ajustar colas, lotes, timeouts y retrasos
+20.3 Configurar TLS y credenciales de exportación fuera del código
+20.4 Examinar reintentos y errores no recuperables por exportador
+20.5 Entender buffers en memoria y pérdida ante caída abrupta
+20.6 Controlar flush y shutdown con plazos finitos
+20.7 Evaluar compresión y tamaño del payload
+20.8 Separar caída del backend de error de la aplicación
+20.9 Laboratorio: Interrumpir el receptor y medir pérdidas y recuperación
+20.10 Prueba negativa y diagnóstico: Identificar saturación de cola bajo un receptor lento
+
+21. Collector aplicado a JavaScript
+
+21.1 Construir un pipeline OTLP mínimo para las tres señales
+21.2 Activar recepción solo en interfaces necesarias
+21.3 Aplicar memory_limiter, batch y transformaciones justificadas
+21.4 Eliminar secretos antes de reenviar a backends
+21.5 Separar processors de SDK y processors de Collector
+21.6 Configurar rutas hacia backend de trazas y métricas
+21.7 Consultar telemetría interna y logs del Collector
+21.8 Validar configuración con la distribución y versión elegidas
+21.9 Laboratorio: Recorrer aplicación, Collector y backend con una petición conocida
+21.10 Prueba negativa y diagnóstico: Distinguir fallo de recepción de fallo de exportación
+
+22. Stack local y consultas
+
+22.1 Elegir Docker Compose o Podman Compose y verificar compatibilidad
+22.2 Publicar interfaces de laboratorio en loopback
+22.3 Preparar backend de trazas con ingestión OTLP comprobada
+22.4 Preparar Prometheus y Grafana con datasource correspondiente
+22.5 Añadir Loki solo cuando el objetivo incluya logs
+22.6 Buscar trazas por servicio, atributos y duración
+22.7 Consultar tasas, percentiles y errores con ventanas coherentes
+22.8 Correlacionar señales sin exigir funcionalidades de todos los backends
+22.9 Laboratorio: Construir un panel de tasa, errores y latencia para la API
+22.10 Prueba negativa y diagnóstico: Comprobar que un panel vacío puede deberse a una consulta incorrecta
+
+23. Pruebas automatizadas de instrumentación
+
+23.1 Usar exporters en memoria para inspeccionar spans
+23.2 Comprobar relaciones causales y cierre de spans
+23.3 Verificar estado y registro de excepción por separado
+23.4 Testear atributos obligatorios y ausencia de datos sensibles
+23.5 Aislar providers globales entre procesos de prueba
+23.6 Evitar aserciones frágiles sobre IDs y tiempos exactos
+23.7 Capturar métricas con lectores de prueba compatibles
+23.8 Separar pruebas unitarias y pruebas OTLP de integración
+23.9 Laboratorio: Crear pruebas de contrato para un checkout exitoso y otro fallido
+23.10 Prueba negativa y diagnóstico: Detectar una regresión que pierde contexto bajo concurrencia
+
+24. Troubleshooting sistemático
+
+24.1 Activar diag y reducir su nivel tras la investigación
+24.2 Diagnosticar API no-op y registro duplicado
+24.3 Detectar imports anteriores al parcheo
+24.4 Investigar ESM y módulos no soportados
+24.5 Distinguir fallo DNS, TLS, autenticación y protocolo OTLP
+24.6 Resolver ausencia de service.name y recursos inesperados
+24.7 Investigar métricas sin exportar por reader ausente
+24.8 Crear un procedimiento por emisión, transporte, recepción y consulta
+24.9 Laboratorio: Resolver tres fallos inyectados con evidencias independientes
+24.10 Prueba negativa y diagnóstico: Evitar atribuir una traza ausente al backend sin verificar emisión
+
+25. Ciclo de vida y despliegue de Node.js
+
+25.1 Coordinar SIGTERM, servidor HTTP y solicitudes en curso
+25.2 Cerrar consumidores y dejar de aceptar trabajo nuevo
+25.3 Ejecutar shutdown con un presupuesto temporal
+25.4 Distinguir salida normal, exit abrupto y fallo irrecuperable
+25.5 Configurar systemd y consultar journalctl en Linux
+25.6 Ejecutar como usuario sin privilegios
+25.7 Desplegar en contenedor con identidad y variables controladas
+25.8 Evitar doble SDK con process managers y precargas
+25.9 Laboratorio: Terminar el servicio bajo carga y medir spans finales recibidos
+25.10 Prueba negativa y diagnóstico: Demostrar pérdidas al usar process.exit antes de completar el cierre
+
+26. Kubernetes y automatización de despliegue
+
+26.1 Inyectar configuración y secretos por mecanismos del clúster
+26.2 Configurar service.name y atributos de recurso coherentes
+26.3 Comparar inicialización explícita y auto-instrumentación del Operator
+26.4 Evaluar soporte de Node.js, módulos y framework antes de inyectar
+26.5 Evitar instrumentación duplicada por imagen y Operator
+26.6 Relacionar terminationGracePeriod con shutdown
+26.7 Verificar red y certificados hacia Collector gateway
+26.8 Relacionar identidad de aplicación y metadata de Kubernetes
+26.9 Laboratorio: Desplegar una API instrumentada y realizar un rolling update
+26.10 Prueba negativa y diagnóstico: Diagnosticar una inyección que cambia el orden de arranque
+
+27. Serverless y runtimes alternativos
+
+27.1 Comprender cold start, freeze y reutilización de instancia
+27.2 Inicializar SDK fuera del handler cuando proceda
+27.3 Gestionar flush sin exportar indiscriminadamente por petición
+27.4 Evaluar AWS Lambda mediante componentes documentados
+27.5 Separar soporte del proveedor y soporte de paquetes upstream
+27.6 Analizar límites de ejecución y conectividad OTLP
+27.7 Evaluar Bun, Deno y edge como ampliación condicionada
+27.8 Diseñar una alternativa manual si no existe auto-instrumentación
+27.9 Laboratorio: Simular invocaciones breves y medir telemetría antes del cierre
+27.10 Prueba negativa y diagnóstico: Detectar instrumentación registrada de nuevo en cada invocación
+
+28. Fundamentos del SDK de navegador
+
+28.1 Separar bundle de navegador y dependencias de Node.js
+28.2 Inicializar WebTracerProvider y un context manager adecuado
+28.3 Elegir instrumentación manual y plugins web compatibles
+28.4 Crear un span de carga de documento
+28.5 Instrumentar fetch y XMLHttpRequest
+28.6 Limitar destinos que reciben contexto de trazado
+28.7 Relacionar acciones de usuario con solicitudes sin trazar cada evento
+28.8 Documentar la naturaleza experimental de esta rama
+28.9 Laboratorio: Instrumentar una página mínima que llama a la API Node.js
+28.10 Prueba negativa y diagnóstico: Detectar una dependencia exclusiva de Node.js dentro del bundle web
+
+29. Red, seguridad y privacidad del navegador
+
+29.1 Exportar mediante OTLP/HTTP según capacidades del navegador
+29.2 Distinguir CORS de CSP y permisos connect-src
+29.3 Configurar preflight y cabeceras de propagación permitidas
+29.4 Separar acceso OTLP y acceso a la API de negocio
+29.5 Usar proxy o gateway con validación, cuotas y límites
+29.6 Mantener credenciales de backend fuera del bundle
+29.7 Aplicar consentimiento, minimización y retención según el proyecto
+29.8 Excluir URLs sensibles, entradas de formulario y datos personales
+29.9 Laboratorio: Conectar frontend y API bajo una traza a través de un gateway
+29.10 Prueba negativa y diagnóstico: Corregir CORS sin abrir indiscriminadamente todos los orígenes
+
+30. SPA, SSR e hidratación
+
+30.1 Modelar navegación cliente sin asumir navegación de documento
+30.2 Instrumentar acciones de negocio y cambios de ruta
+30.3 Evaluar React y otros frameworks sin asumir plugin universal
+30.4 Distinguir SSR Node.js, render cliente e hidratación
+30.5 Evaluar Next.js conforme a su runtime e integración oficial
+30.6 Separar ejecución Node.js y edge dentro de una aplicación
+30.7 Evitar spans duplicados por remontajes y modo de desarrollo
+30.8 Gestionar navegación, cancelación y cambio de página
+30.9 Laboratorio: Seguir una acción de una SPA hasta base de datos y respuesta
+30.10 Prueba negativa y diagnóstico: Identificar spans duplicados al montar un componente dos veces
+
+31. RUM y límites de la telemetría web
+
+31.1 Distinguir trazas web y una plataforma completa de RUM
+31.2 Evaluar Web Vitals mediante fuentes y bibliotecas oficiales
+31.3 Correlacionar métricas web sin IDs de usuario como etiquetas
+31.4 Gestionar errores JavaScript y promesas rechazadas con política explícita
+31.5 Considerar pérdida de telemetría al cerrar o suspender pestañas
+31.6 Medir tamaño de bundle y coste de instrumentación
+31.7 Analizar bloqueadores, offline y redes intermitentes
+31.8 Establecer muestreo y presupuesto por sesión sin seguimiento innecesario
+31.9 Laboratorio: Comparar una navegación con red rápida y otra degradada
+31.10 Prueba negativa y diagnóstico: Documentar pérdidas al cerrar pestaña sin prometer entrega garantizada
+
+32. Instrumentación de bibliotecas reutilizables
+
+32.1 Depender de la API sin imponer SDK al consumidor
+32.2 Definir scope, versión y contrato de atributos
+32.3 Crear spans bajo el contexto que aporta la aplicación
+32.4 Permitir funcionamiento no-op sin configuración
+32.5 Diseñar hooks y opciones para atributos del dominio
+32.6 Desarrollar un plugin solo cuando la API pública no baste
+32.7 Probar versiones de la biblioteca instrumentada
+32.8 Publicar documentación de costes y compatibilidad
+32.9 Laboratorio: Crear una biblioteca de cliente de pagos instrumentada
+32.10 Prueba negativa y diagnóstico: Comprobar que funciona correctamente con y sin SDK registrado
+
+33. Seguridad, costes y gobernanza
+
+33.1 Definir política de atributos permitidos por señal
+33.2 Redactar tokens, cookies y parámetros antes de exportar
+33.3 Tratar baggage y contexto remoto como entrada no confiable
+33.4 Limitar tasas, cardinalidad, volumen y retención
+33.5 Proteger endpoints del Collector y credenciales de servidor
+33.6 Controlar dependencias e instrumentaciones de terceros
+33.7 Establecer contratos de telemetría entre equipos
+33.8 Distinguir identidad técnica y datos personales de usuarios
+33.9 Laboratorio: Auditar una captura de las tres señales con datos sintéticos
+33.10 Prueba negativa y diagnóstico: Detectar un secreto en un log antes de que llegue al backend
+
+34. Internals, migraciones y optimización
+
+34.1 Leer código del SDK y límites entre paquetes estables y experimentales
+34.2 Estudiar resolución de contexto y registro global
+34.3 Analizar ciclo de vida de processors y exporters
+34.4 Examinar extracción de métricas y operaciones de agregación
+34.5 Leer changelogs y guías de migración antes de actualizar
+34.6 Gestionar cambios de Node.js y plugins como matriz de compatibilidad
+34.7 Comparar benchmarks con y sin instrumentación bajo carga equivalente
+34.8 Contribuir un caso mínimo reproducible o corrección al proyecto
+34.9 Laboratorio: Actualizar una matriz fijada conservando contratos de telemetría
+34.10 Prueba negativa y diagnóstico: Aislar una regresión de rendimiento a una instrumentación concreta
+
+35. Proyecto experto y evaluación final
+
+35.1 Diseñar frontend opcional, dos APIs, base de datos y worker
+35.2 Definir preguntas operativas y contrato de las tres señales
+35.3 Implementar trazas automáticas y spans de negocio
+35.4 Añadir métricas de SLO y logs correlacionados
+35.5 Controlar propagación, contexto, reintentos y shutdown
+35.6 Aplicar límites de cardinalidad, privacidad y muestreo
+35.7 Crear pruebas de contrato y pruebas de fallo de transporte
+35.8 Entregar configuraciones, scripts, consultas y runbook reproducibles
+35.9 Laboratorio: Resolver un incidente de latencia desde navegador hasta worker
+35.10 Prueba negativa y diagnóstico: Defender con evidencias causas, pérdidas observadas y límites del diseño

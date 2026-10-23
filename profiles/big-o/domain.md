@@ -86,13 +86,24 @@ asintótica.
 
 ## Progresión
 
-La progresión pedagógica es:
+La progresión combina una primera aproximación intuitiva con revisiones
+formales posteriores:
 
-intuición → conteo de operaciones → funciones T(n) → simplificación
-asintótica → definiciones formales → análisis de algoritmos clásicos →
-recurrencias → análisis amortizado → estructuras de datos → grafos →
-optimización → lower bounds → modelos avanzados → complejidad
-computacional.
+- Bloques 0–2: modelos elementales, crecimiento y conteo de operaciones.
+- Bloques 3–6: notaciones formales, casos, espacio y matemáticas de apoyo.
+- Bloques 7–8: búsqueda y ordenación, primero con razonamiento intuitivo.
+- Bloques 9–10: recurrencias y formalización de los algoritmos anteriores.
+- Bloques 11–13: amortización, estructuras, árboles y grafos.
+- Bloques 14–16: optimización, medición y auditoría de errores.
+- Bloques 17–18: modelos avanzados y complejidad computacional.
+- Bloques 19–20: síntesis independiente del lenguaje y proyecto final.
+
+Las lecciones nuevas se añaden al final de cada bloque para conservar los
+identificadores originales. Un laboratorio original puede actuar como
+checkpoint intermedio; el laboratorio añadido integra la ampliación.
+Las herramientas matemáticas se presentan intuitivamente cuando aparecen
+por primera vez y se formalizan en el bloque 6. Los ejemplos iniciales de
+espacio recursivo se trazan manualmente antes del estudio de recurrencias.
 
 ## Matemáticas requeridas
 
@@ -149,3 +160,73 @@ derivar y simplificar su complejidad temporal y espacial, distinguir
 tipos de cotas y casos, analizar recurrencias comunes y razonar sobre la
 elección de estructuras y algoritmos sin depender de un lenguaje
 concreto.
+
+## Precisión del modelo y de las garantías
+
+Cada análisis declara tamaños, representación, operaciones elementales,
+caso o distribución, fuente de aleatoriedad y recursos medidos. Separar
+el número de elementos de la longitud en bits. En Word-RAM se explicitan
+el tamaño de palabra y las operaciones consideradas constantes; las
+operaciones sobre enteros arbitrarios o claves largas requieren otro
+coste cuando exceden esas hipótesis.
+
+El espacio se mide como máximo simultáneamente necesario. Diferenciar
+entrada, espacio auxiliar, salida y volumen acumulado de asignaciones.
+Una salida materializada impone su propio coste; un recorrido incremental
+puede cambiar el espacio auxiliar sin eliminar el coste de producirla.
+
+Para hashing, separar el coste de calcular y comparar claves, el efecto
+de colisiones y la amortización del redimensionamiento. Para grafos,
+declarar representación, región recorrida, pesos y estructura de prioridad.
+Para Union-Find, asociar las cotas a las heurísticas realmente utilizadas.
+Para ordenación, declarar el modelo de comparación o los parámetros de
+rango, base y longitud de las claves.
+
+## Demostración, probabilidad y corrección
+
+Introducir precondiciones, postcondiciones, invariantes, terminación e
+inducción. La optimización debe preservar la especificación del problema.
+Los algoritmos greedy y las ventanas deslizantes necesitan condiciones de
+corrección; no son transformaciones universales.
+
+El análisis promedio declara una distribución de entradas. El análisis
+esperado de un algoritmo aleatorizado declara la aleatoriedad interna y
+puede hacerse para una entrada fija. Explicar también cotas esperadas
+amortizadas y distinguir esperanza de garantías con alta probabilidad.
+No exigir independencia para utilizar linealidad de la esperanza.
+
+## Profundidad y evaluación
+
+El núcleo requiere derivaciones completas, contraejemplos y problemas
+nuevos. Caché, memoria externa, paralelismo y complejidad parametrizada
+son introducciones avanzadas con ejercicios guiados, no especializaciones
+exhaustivas. La etiqueta experto describe el objetivo de análisis del
+núcleo; no implica dominar toda la teoría de complejidad computacional.
+
+Los laboratorios expresamente nombrados en el temario son obligatorios.
+Cada uno entrega supuestos, razonamiento, resultado y límites. Los
+benchmarks añaden entradas, entorno, repeticiones y dispersión.
+
+## Contrato del proyecto final
+
+Algorithm Complexity Analyzer será un analizador educativo de un
+subconjunto explícito de pseudocódigo, acompañado de análisis manuales.
+No se plantea resolver automáticamente la complejidad de programas
+arbitrarios. Debe admitir secuencias, bucles con límites reconocibles,
+condicionales y llamadas con costes declarados; las recurrencias se
+resuelven solo cuando encajan en plantillas justificadas.
+
+El resultado distingue cota demostrada bajo supuestos, estimación y
+no determinado. No inventar cotas para construcciones desconocidas.
+Documentar gramática, anotaciones, casos admitidos, rechazo de entradas,
+limitaciones y pruebas representativas. Evaluar por separado corrección
+del analizador, calidad del razonamiento y reproducibilidad experimental.
+
+## Fuentes académicas de apoyo
+
+- MIT 6.006, recursos de modelos y análisis:
+  https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/
+- Cornell, análisis amortizado de tablas hash:
+  https://courses.cs.cornell.edu/cs3110/2021sp/textbook/eff/amortized_hash.html
+- Jeffrey Erickson, Algorithms y materiales complementarios:
+  https://jeffe.cs.illinois.edu/teaching/algorithms/

@@ -45,38 +45,38 @@ concurrencia y systems programming. Especialmente 23, 37, 40, 41 y proyectos.
 David Drysdale.
 
 Usar después de dominar los fundamentos. Bloques 12, 15–22, 35, 37, 45, 46,
-49 y 56. Orientado a decisiones prácticas, APIs mantenibles y código efectivo.
+48, 51 y 58. Orientado a decisiones prácticas, APIs mantenibles y código efectivo.
 
 ### Idiomatic Rust: Code like a Rustacean
 Brenden Matthews.
 
-Bloques 15–22, 35–36, 42–49 y 56. Reforzar patrones idiomáticos, diseño,
+Bloques 15–22, 35–36, 42–49, 51 y 58. Reforzar patrones idiomáticos, diseño,
 errores, iterators, traits, APIs y mantenibilidad.
 
 ### Code Like a Pro in Rust
 Brenden Matthews.
 
 Nivel intermedio → profesional. Arquitectura, calidad, testing, herramientas,
-aplicaciones reales y prácticas profesionales. Bloques 35, 42–46, 49 y 56–58.
+aplicaciones reales y prácticas profesionales. Bloques 35, 42–46, 48–49, 51 y 57–58.
 
 ### Rust for Rustaceans: Idiomatic Programming for Experienced Developers
 Jon Gjengset.
 
 Texto central avanzado → experto. Ownership/lifetimes avanzados, traits, API
 design, type system, concurrency, async, unsafe y ecosystem.
-Bloques 35–36, 39, 49–54 y 56–58.
+Bloques 35–36, 39, 51–55 y 58; apoyo complementario a 49 y 56–57.
 
 ### Rust Atomics and Locks
 Mara Bos.
 
-Referencia central para bloques 26, 27 y 52:
+Referencia central para bloques 26, 27 y 54:
 atomics, memory ordering, happens-before, locks, synchronization, cache effects,
 lock-free reasoning y construcción de primitivas de sincronización.
 
 ### Async Rust: Unleashing the Power of Fearless Concurrency
 Maxwell Flitton, Caroline Morton.
 
-Referencia especializada para bloques 28, 29 y 51:
+Referencia especializada para bloques 28, 29 y 53:
 async/await, futures, runtimes, tasks, synchronization, networking y diseño
 de aplicaciones concurrentes asíncronas.
 
@@ -160,3 +160,80 @@ contrastar hipótesis de rendimiento, no para sustituir el análisis asintótico
 ### Política didáctica
 
 Explicar las APIs de cada crate con ejemplos compilables y comparar alternativas según necesidad; comprobar compatibilidad de versiones y documentación vigente al generar cada lección. Regex, Big-O, async y systems programming se reutilizan desde sus bloques especializados.
+
+
+## Referencias primarias para la revisión
+
+Comprobación documental: 19 de octubre de 2026. Al generar cada lección,
+consultar la documentación correspondiente a sus versiones y MSRV.
+
+- The Book: https://doc.rust-lang.org/book/
+- Rust Reference: https://doc.rust-lang.org/reference/
+- Cargo Book: https://doc.rust-lang.org/cargo/
+- Edition Guide (2024): https://doc.rust-lang.org/edition-guide/rust-2024/
+- Unsafe extern: https://doc.rust-lang.org/edition-guide/rust-2024/unsafe-extern.html
+- APIs de entorno: https://doc.rust-lang.org/edition-guide/rust-2024/newly-unsafe-functions.html
+- Resolver 3: https://doc.rust-lang.org/edition-guide/rust-2024/cargo-resolver.html
+- Comandos deprecados: https://doc.rust-lang.org/cargo/commands/deprecated-and-removed.html
+- cargo bench: https://doc.rust-lang.org/cargo/commands/cargo-bench.html
+- Costes de collections: https://doc.rust-lang.org/std/collections/
+- regex (API y garantías): https://docs.rs/regex/
+- regex::escape: https://docs.rs/regex/latest/regex/fn.escape.html
+- Reemplazos literales: https://docs.rs/regex/latest/regex/struct.NoExpand.html
+- Rustonomicon: https://doc.rust-lang.org/nomicon/
+- rustc-dev-guide: https://rustc-dev-guide.rust-lang.org/
+- Rust API Guidelines: https://rust-lang.github.io/api-guidelines/
+- Performance Book: https://nnethercote.github.io/perf-book/
+- Embedded Book: https://docs.rust-embedded.org/book/
+
+## Herramientas para laboratorios avanzados
+
+Las páginas siguientes son referencias de implementación que deben verificarse
+al preparar el laboratorio; no todas se ejecutaron ni se auditaron en esta revisión.
+
+| Tema | Documentación primaria | Bloques |
+| --- | --- | --- |
+| Runtime y tareas | https://tokio.rs/tokio/tutorial | 28, 40, 42, 53 |
+| Paralelismo de datos | https://docs.rs/rayon/ | 26, 37, 54 |
+| Property testing | https://proptest-rs.github.io/proptest/ | 25, 44, 59 |
+| Compile-fail | https://docs.rs/trybuild/ | 25, 30, 36, 52 |
+| Fuzzing | https://rust-fuzz.github.io/book/ | 25, 47, 55 |
+| Model checking | https://docs.rs/loom/ | 27, 54 |
+| Interleavings | https://docs.rs/shuttle/ | 54 |
+| Miri | https://github.com/rust-lang/miri | 31, 55, 57 |
+| Pin projection | https://docs.rs/pin-project/ | 53 |
+| Procedural macros | https://docs.rs/syn/ y https://docs.rs/quote/ | 30 |
+| Unix seguro | https://docs.rs/rustix/ y https://docs.rs/nix/ | 41, 42 |
+| HTTP service | https://docs.rs/axum/ | 40, 59 |
+| TLS | https://docs.rs/rustls/ | 40, 47 |
+| SQL opcional | https://docs.rs/sqlx/ | 59, 60 |
+| API compatibility | https://github.com/obi1kenobi/cargo-semver-checks | 51, 58 |
+| Dependency audit | https://rustsec.org/ y https://docs.rs/cargo-deny/ | 47, 48 |
+| Dependency review | https://mozilla.github.io/cargo-vet/ | 48 |
+| Benchmarks | https://bheisler.github.io/criterion.rs/book/ | 14, 37, 44 |
+| Fedora Rust RPM | https://docs.fedoraproject.org/en-US/packaging-guidelines/Rust/ | 42 |
+
+## Uso de libros y ediciones
+
+Se conservan todos los títulos y ediciones aportados por el usuario. No se ha
+realizado una verificación editorial completa de cada edición, autoría o índice.
+Las asignaciones por bloque son orientaciones pedagógicas, no afirmaciones de
+que cada libro cubra exhaustivamente todos los temas o las APIs actuales.
+Si un libro discrepa de la documentación de la versión usada, documentar la
+diferencia y seguir la semántica oficial; no inventar páginas ni capítulos.
+
+## Mapa bibliográfico complementario
+
+- 0–13: The Book, Programming Rust y std; fundamentos y errores.
+- 14, 33–34, 48–49, 58: Cargo Book, Edition Guide y documentación de herramientas.
+- 15–22, 35–36, 51–52: Rust for Rustaceans, Effective Rust y API Guidelines.
+- 23, 31–32, 39, 55: Reference, Rustonomicon, Miri y Rust in Action.
+- 25, 30: herramientas de pruebas, macros, syn/quote y trybuild.
+- 26–27 y 54: Rust Atomics and Locks, std, Rayon y Loom.
+- 28–29 y 53: Async Rust, Tokio, Future/Pin y documentación del runtime usado.
+- 37 y 44: garantías de std, Performance Book, Criterion y perfiles Cargo.
+- 38 y 56: rustc-dev-guide y Reference; los libros no sustituyen estas fuentes.
+- 40–42 y 45–47: documentación de crates, CLI Book y libros de sistemas/profesionales.
+- 43: regex y std; el PATH Regex aporta la teoría externa.
+- 50: Embedded Book; alcance introductorio.
+- 57–60: fuentes de los subsistemas usados y evidencias del proyecto.

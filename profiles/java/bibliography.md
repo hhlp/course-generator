@@ -76,7 +76,7 @@ En Java se estudia cómo aplicar patrones previamente aprendidos mediante:
 - reutilización de `Pattern`, rendimiento y thread-safety;
 - integración con I/O y procesamiento de texto.
 
-**Bloque principal:** 15.
+**Bloque principal:** 16.
 
 Para sintaxis, construcción de patrones, metacaracteres, cuantificadores, alternancia,
 lookarounds, backreferences, teoría de motores y regex avanzado, utilizar el PATH Regex.
@@ -85,7 +85,7 @@ lookarounds, backreferences, teoría de motores y regex avanzado, utilizar el PA
 
 ## Generics y Collections
 
-### Maurice Naftalin, Philip Wadler, Stuart Marks — *Java Generics and Collections*, 2nd Edition: Fundamentals and Recommended Practices
+### Maurice Naftalin, Philip Wadler — *Java Generics and Collections*, 2nd Edition: Fundamentals and Recommended Practices
 
 Referencia especializada para estudiar el sistema de tipos genérico y Collections más allá
 del uso superficial.
@@ -188,9 +188,10 @@ refactoring y organización de aplicaciones.
 ---
 
 
-## Cobertura explícita de Core Java Vol. I & II, 14th Edition
+## Áreas de Core Java Vol. I & II, 14th Edition presentes en el PATH
 
-Para asegurar que el PATH no omita capítulos del libro troncal, se estudian explícitamente:
+El PATH incluye explícitamente las siguientes áreas. Esta lista acredita cobertura
+temática; no certifica equivalencia exhaustiva capítulo por capítulo con el libro:
 
 - assertions dentro del bloque de excepciones;
 - XML (DOM, SAX, StAX, XPath, XSLT y seguridad);
@@ -246,3 +247,59 @@ características Preview/Incubator y comportamiento específico de una versión.
 No es necesario leer todos los libros secuencialmente. `Core Java` actúa como texto
 principal. Los demás entran cuando el PATH alcanza su especialidad. La documentación oficial
 se usa continuamente para verificar el comportamiento de la versión moderna del JDK.
+
+
+## Fuentes oficiales concretas para la base JDK 25
+
+Consultadas para la revisión del 19 de octubre de 2026. El estado indicado se
+refiere al JDK 25 elegido, no al último JDK que pudiera existir.
+
+- [JLS 25](https://docs.oracle.com/javase/specs/jls/se25/html/index.html):
+  sintaxis, tipos, inicialización, sobrecarga, excepciones y modelo de memoria.
+- [JVMS 25](https://docs.oracle.com/javase/specs/jvms/se25/html/index.html):
+  class files, bytecode, carga, linking e inicialización.
+- [API Java SE 25](https://docs.oracle.com/en/java/javase/25/docs/api/index.html):
+  contratos exactos de las clases y métodos usados en cada lección.
+- [Preview APIs de JDK 25](https://docs.oracle.com/en/java/javase/25/docs/api/preview-list.html):
+  Structured Concurrency es quinta preview; no presentarla como API final.
+- [Cambios del lenguaje por versión](https://docs.oracle.com/en/java/javase/25/language/java-language-changes-release.html):
+  archivos compactos, main de instancia, imports de módulos y constructores flexibles.
+- [Sequenced Collections](https://docs.oracle.com/en/java/javase/21/core/creating-sequenced-collections-sets-and-maps.html):
+  interfaces incorporadas en JDK 21; contratos actuales en la API 25.
+- [Cambios JDK 24](https://docs.oracle.com/en/java/javase/25/migrate/significant-changes-jdk-24.html):
+  Gatherers, Class-File API, virtual threads y restricciones de interoperabilidad.
+- [Cambios JDK 25](https://docs.oracle.com/en/java/javase/25/migrate/significant-changes-jdk-25.html):
+  ScopedValue, AOT caches y evolución de la plataforma.
+- [ScopedValue](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/ScopedValue.html):
+  contexto léxico final desde Java 25.
+- [Structured Concurrency](https://docs.oracle.com/en/java/javase/25/core/structured-concurrency.html):
+  laboratorio separado y fijado a JDK 25 con preview habilitada.
+- [FFM](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/foreign/package-summary.html):
+  API estable desde JDK 22; lifetime, layouts y native access del JDK elegido.
+- [Página del autor de Core Java](https://horstmann.com/corejava/):
+  edición 14, código de ejemplos y erratas.
+- [Ficha editorial de Java Generics and Collections, 2nd Edition](https://www.oreilly.com/library/view/java-generics-and/9781098136710/):
+  autoría acreditada: Maurice Naftalin y Philip Wadler.
+
+## Lectura y trazabilidad de la revisión
+
+| Área | Bloques | Evidencia requerida al generar las lecciones |
+|---|---|---|
+| Lenguaje y objetos | 0–10, 17, 51 | Sección de JLS/API y pruebas de contratos |
+| Collections y complejidad aplicada | 11–12 | API concreta y supuestos de coste |
+| Funcional y texto | 13–16 | Contratos de Streams y regex de Java |
+| I/O y red | 18–20 | API, ownership y cierre de recursos |
+| Reflection y compilación | 21–22, 57 | API y límites de encapsulación |
+| Concurrencia | 23–29 | JMM, contratos, estado final/preview y pruebas |
+| Persistencia | 30–32 | JDBC, documentación pgJDBC y proveedor ORM |
+| Desktop | 33–34, 58–59 | OpenJFX y API Java desktop |
+| Ingeniería | 35–38, 46–50, 52–54 | Documentación de herramientas fijadas |
+| JVM y medición | 39–45 | JVMS, documentación JDK y JMH |
+| i18n y XML | 55–56 | API y configuración segura |
+| Interoperabilidad | 60 | API FFM, ABI y biblioteca del laboratorio |
+
+La lectura especializada de performance se retoma después de aprender las APIs
+que se miden. La comprobación con JMH del bloque 12 se realiza tras 45.
+Para afirmar cobertura exhaustiva de Core Java se requiere todavía una matriz
+capítulo/sección del índice de ambos volúmenes frente a IDs del PATH; no se
+inventa esa equivalencia a partir de títulos generales.

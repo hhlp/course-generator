@@ -57,6 +57,9 @@ pedagogy:
     recovery: true
     version_caveats: true
     independent_exercises: true
+# Completar matriz de versiones y evidencias conforme a domain.md.
+# CLI inicial: 3; diagnóstico: 11; RBAC: 13; nodos: 23; API: 33.
+# Helm/Kustomize operativo: 16; puente Go: 34; profundización Helm: 53.
 technical_policy:
   upstream_first: true
   explain_version_dependent_behavior: true
@@ -78,6 +81,7 @@ lab_policy:
     - ctr
     - nerdctl
     - etcdctl
+    - etcdutl
     - journalctl
     - ip
     - ss
@@ -91,6 +95,7 @@ lab_policy:
 environments:
   primary:
     - kubeadm
+  # Primer cluster kind en bloque 0; kubeadm se desarrolla en bloque 18.
   labs:
     - kind
     - minikube
@@ -115,7 +120,7 @@ milestones:
   - id: cks
     title: HITO CKS
     purpose: Validar seguridad avanzada de Kubernetes.
-    prerequisite: Active CKA certification
+    prerequisite: Haber aprobado CKA previamente; no requiere vigencia activa
     after_block: 31
   - id: kubestronaut
     title: HITO KUBESTRONAUT

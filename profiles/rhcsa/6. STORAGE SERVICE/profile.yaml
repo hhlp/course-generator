@@ -1,10 +1,10 @@
 ---
 course:
-  title: "FILE / STORAGE SERVICES — 0 → Experto en profundidad"
-  language: "es"
+  title: FILE / STORAGE SERVICES — 0 → Experto en profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   platform:
     primary:
       - Fedora
@@ -21,13 +21,12 @@ course:
     - iSCSI
     - LIO
     - multipath
-  mode: "deep"
+  mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 
 teaching:
   approach: theory-to-production
@@ -46,22 +45,24 @@ teaching:
   include_observability: true
   include_troubleshooting: true
   include_final_project: true
-
+  include_backup_restore: true
+  include_quotas: true
+  include_failure_injection: true
+  include_version_support_checks: true
 lesson_structure:
-  start: "🎯 OBJETIVO"
+  start: 🎯 OBJETIVO
   sections:
-    - "Conceptos"
-    - "Arquitectura"
-    - "Instalación"
-    - "Configuración"
-    - "Comandos"
-    - "🧪 Laboratorio"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-    - "Logs y diagnóstico"
-    - "Troubleshooting"
-  end: "🧠 QUÉ DEBES RECORDAR"
-
+    - Conceptos
+    - Arquitectura
+    - Instalación
+    - Configuración
+    - Comandos
+    - 🧪 Laboratorio
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+     - Logs y diagnóstico
+    - Troubleshooting
+  end: 🧠 QUÉ DEBES RECORDAR
 prerequisites:
   - Linux fundamentals
   - TCP/IP
@@ -70,7 +71,8 @@ prerequisites:
   - SELinux
   - firewalld
   - DNS
-
+  - 'TIME: Chrony y sincronización para Kerberos'
+  - IAM operativo solo para escenarios centralizados
 identity_model:
   provider: external-iam-path
   progression:
@@ -78,21 +80,50 @@ identity_model:
     - centralized-identity-consumer
   consumers:
     nfs:
-      standalone: "UID/GID + sec=sys"
-      centralized: "Kerberos/FreeIPA + sec=krb5/krb5i/krb5p"
+      standalone: UID/GID + sec=sys
+      centralized: Kerberos/FreeIPA + sec=krb5/krb5i/krb5p
     samba:
-      standalone: "local users/groups + smbpasswd/pdbedit"
-      centralized: "directory identity + Kerberos; SSSD/winbind as appropriate"
+      standalone: local users/groups + smbpasswd/pdbedit
+      centralized: 'AD: winbindd para servidor Samba en RHEL; IdM:
+        recorrido ipa-client-samba con soporte validado por versión'
     iscsi:
-      standalone: "IQN + ACL + CHAP"
-      centralized: "normally not a human-IAM consumer"
-
+      standalone: IQN + ACL + CHAP
+      centralized: normally not a human-IAM consumer
+    autofs:
+      standalone: mapas locales
+      centralized: mapas IdM/LDAP mediante SSSD; acceso al recurso validado por
+        separado
 integrations:
   - Kerberos
   - IAM
   - Prometheus
   - Grafana
+final_outcome: 'Diseñar, instalar, configurar, asegurar, monitorizar, optimizar
+  y diagnosticar servicios NFS, autofs, Samba/SMB e iSCSI en Fedora/RHEL.
 
-final_outcome: >
-  Diseñar, instalar, configurar, asegurar, monitorizar, optimizar y
-  diagnosticar servicios NFS, autofs, Samba/SMB e iSCSI en Fedora/RHEL.
+  '
+lab_environment:
+  preferred: máquinas virtuales Fedora/RHEL
+  network: privada sin exposición pública
+  storage: discos y datos desechables
+  identity_scenarios:
+    - autónomo
+    - NFS/autofs con IdM
+    - Samba con AD
+    - Samba con IdM según soporte de versión
+  provider_owner: PATH IAM; reutilizar identidades centrales existentes
+operational_requirements:
+  - Restauración de datos, ACL, xattrs e identidades; verificar SELinux
+  - RPO/RTO medidos en laboratorio
+  - Separar fallos de path, target, directorio, DNS y TIME
+  - Validar configuración efectiva y logs reales por versión
+  - Multipath no garantiza HA del target
+  - Sin escrituras concurrentes multihost con XFS/ext4 sobre el mismo LUN
+compatibility_notes:
+  rhel_samba_domain_member: winbindd; SSSD no sustituye al backend soportado del
+    servidor SMB
+  rhel9_samba_idm: Technology Preview en documentación consultada; revalidar por
+    versión
+  nfs: NFSv4 principal; NFSv3 interoperabilidad; NFSv2 histórico
+  course_generator: Sintaxis YAML validada; compatibilidad del esquema pendiente
+    de ejecutar en el repositorio

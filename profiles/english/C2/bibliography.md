@@ -50,3 +50,23 @@ For lesson generation, prefer sources in this order according to the question be
 Do not invent page numbers, unit numbers, quotations or exact claims from a reference. Exact references should be given only when verified against the source available to the generator. Otherwise identify the relevant book and grammatical topic without fabricating bibliographic precision.
 
 The course must paraphrase and teach the grammatical concepts in its own words. It must not reproduce substantial copyrighted passages or exercises from any source.
+
+## Guidance for the refined advanced topics
+
+Use the existing references selectively; no additional book is required.
+
+- Agreement: consult the descriptive grammars for grammatical, notional and
+  proximity agreement; use the corpus-based grammar for register and variety.
+- Free/fused relatives, absolute constructions and verbless clauses: consult
+  the advanced descriptive grammars, explaining differences in terminology.
+- Raising, exceptional case marking and passive interactions: use the modern
+  syntactic reference alongside the pedagogical references. Identify analyses
+  as framework-dependent where appropriate.
+- One/ones, generic one and infinitival/comparative ellipsis: combine learner
+  explanation with reference-grammar constraints and original contrast pairs.
+
+The source order above is question-sensitive rather than an authority ranking:
+corpus distribution, pedagogical sequencing and structural analysis answer
+complementary questions. Do not infer that a construction or theoretical term
+is a mandatory C2 requirement merely because it appears in a reference grammar.
+No new page or unit references are asserted by this revision.

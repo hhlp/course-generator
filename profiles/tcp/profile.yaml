@@ -1,27 +1,33 @@
 ---
 course:
-  title: "TCP/IP — 0 a experto en profundidad"
-  language: "es"
+  title: TCP/IP — 0 a experto en profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   platform:
     primary:
       - Fedora
       - RHEL
-  mode: "deep"
-
+  mode: deep
 objectives:
-  - Comprender los modelos OSI y TCP/IP y la función de cada capa.
-  - Seguir la encapsulación y desencapsulación extremo a extremo.
-  - Dominar Ethernet, IPv4, IPv6, ARP/NDP, ICMP, routing, UDP y TCP.
-  - Comprender sockets, puertos, procesos y el stack de red Linux.
-  - Dominar ss, lsof, tcpdump, tshark y Nmap CLI desde básico hasta experto.
-  - Analizar PCAP y correlacionar paquetes con sockets, procesos,
-    routing y estado del kernel.
-  - Diagnosticar fallos de conectividad, rendimiento, MTU, NAT y aplicaciones.
-  - Construir laboratorios reproducibles con Linux network namespaces.
-
+  - >-
+    Comprender los modelos OSI y TCP/IP y la función de cada capa.
+  - >-
+    Seguir la encapsulación y desencapsulación extremo a extremo.
+  - >-
+    Dominar Ethernet, IPv4, IPv6, ARP/NDP, ICMP, routing, UDP y TCP.
+  - >-
+    Comprender sockets, puertos, procesos y el stack de red Linux.
+  - >-
+    Dominar ss, lsof, tcpdump, tshark y Nmap CLI desde básico hasta experto.
+  - >-
+    Analizar PCAP y correlacionar paquetes con sockets, procesos, routing
+    y estado del kernel.
+  - >-
+    Diagnosticar fallos de conectividad, rendimiento, MTU, NAT y aplicaciones.
+  - >-
+    Construir laboratorios reproducibles con Linux network namespaces.
 teaching:
   progression:
     - concepto
@@ -37,20 +43,21 @@ teaching:
   command_explanations: true
   packet_analysis: true
   fedora_rhel_focus: true
-
+  preserve_lesson_identifiers: true
+  study_extensions_before_block_closure: true
+  introduce_lab_namespaces_in_block_zero: true
 lesson_structure:
-  start: "🎯 OBJETIVO"
+  start: 🎯 OBJETIVO
   sections:
-    - "Conceptos y fundamentos"
-    - "Comandos y sintaxis"
-    - "Ejemplos"
-    - "🧪 Laboratorio"
-    - "⚠️ Errores frecuentes"
-    - "Troubleshooting"
-    - "Logs, counters y evidencias"
-    - "💡 Idea importante"
-  end: "🧠 QUÉ DEBES RECORDAR"
-
+    - Conceptos y fundamentos
+    - Comandos y sintaxis
+    - Ejemplos
+    - 🧪 Laboratorio
+    - ⚠️ Errores frecuentes
+    - Troubleshooting
+    - Logs, counters y evidencias
+    - 💡 Idea importante
+  end: 🧠 QUÉ DEBES RECORDAR
 tools:
   core:
     - ip
@@ -69,15 +76,23 @@ tools:
     - iperf3
     - ncat
     - journalctl
-
+    - nmcli
+    - getent
+    - dig
+    - nft
+    - firewall-cmd
+    - tc
+    - dumpcap
+    - curl
+    - openssl
+    - sysctl
 security:
   nmap:
     authorized_targets_only: true
-    preference: "laboratorios locales, namespaces y sistemas
-        expresamente autorizados"
-
+    preference: >-
+      laboratorios locales, namespaces y sistemas expresamente autorizados
 final_project:
-  type: "TCP/IP troubleshooting lab"
+  type: TCP/IP troubleshooting lab
   requirements:
     - Linux network namespaces
     - IPv4
@@ -90,15 +105,28 @@ final_project:
     - PCAP_analysis
     - intentional_failures
     - evidence_based_diagnosis
-
+    - setup_and_cleanup_scripts
+    - version_record
+    - diagnostic_report
+    - post_fix_verification
 scope_policy:
-  bibliography_scopes: [S01, S02, S03, S04, S05, S06, S07, S08, S09]
+  bibliography_scopes:
+    - S01
+    - S02
+    - S03
+    - S04
+    - S05
+    - S06
+    - S07
+    - S08
+    - S09
   choose_references_by_block: true
   verify_rfc_currency: true
   prefer_current_upstream_for_cli: true
-
+  classic_books_are_conceptual_support: true
+  verify_book_edition_before_attribution: true
 ipv4_ipv6_boundary:
-  independent_path: "Diseño de redes IPv4/IPv6"
+  independent_path: Diseño de redes IPv4/IPv6
   include:
     - address_and_header_interpretation
     - operational_prefix_and_mask_calculations
@@ -106,13 +134,14 @@ ipv4_ipv6_boundary:
     - cidr_and_route_reading
     - historical_classful_context
     - dual_stack_diagnostics
+    - minimal_lab_topology
+    - ipv4_31_32_interpretation
   exclude:
     - exhaustive_vlsm_design
     - address_plan_design
     - subnet_capacity_planning
     - hierarchical_network_design
-    - topology_design
-
+    - production_network_topology_design
 advanced_depth:
   preserve_existing_lessons: true
   protocol_packet_evidence: true
@@ -120,3 +149,38 @@ advanced_depth:
   tcp_loss_recovery_and_ecn: true
   performance_tc_and_bufferbloat: true
   dual_stack_troubleshooting: true
+laboratory_contract:
+  required:
+    - prerequisites
+    - versions
+    - privileges
+    - initial_state
+    - explained_commands
+    - expected_observations
+    - evidence
+    - diagnosis
+    - correction
+    - verification
+    - cleanup
+  local_services_preferred: true
+  record_scope_of_changes: true
+  restore_modified_configuration: true
+  distinguish_veth_from_physical_nic: true
+interpretation_policy:
+  proc_pid_net_is_namespace_scoped: true
+  correlate_fd_inode_and_namespace: true
+  distinguish_tcp_conntrack_nmap_states: true
+  validate_capture_quality_before_tcp_analysis: true
+  consider_offloads_and_asymmetric_capture: true
+  check_algorithm_availability: true
+  record_units_and_tool_versions: true
+assessment:
+  pass_requires:
+    - reproduce_symptom
+    - form_hypotheses
+    - collect_discriminating_evidence
+    - justify_cause
+    - apply_correction
+    - repeat_test
+    - verify_cleanup
+  final_project_hidden_faults: true

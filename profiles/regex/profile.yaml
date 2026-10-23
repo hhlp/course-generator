@@ -48,6 +48,13 @@ regex_policy:
   require_engine_or_dialect_label_when_nonportable: true
   require_positive_and_negative_examples_when_useful: true
   require_performance_security_notes_when_relevant: true
+  require_operation_contract: true
+  require_explicit_offset_unit: true
+  require_empty_match_progress_policy: true
+  require_semantics_preserving_optimization_checks: true
+  distinguish_selection_semantics_from_execution: true
+  distinguish_utf_from_unicode_properties: true
+  distinguish_heuristics_from_security_guarantees: true
 
 lesson_structure:
   objective:
@@ -106,3 +113,26 @@ artifacts:
 validation:
   enabled: false
   commands: []
+
+# Content guidance; automatic enforcement depends on course-generator.
+project_scope:
+  required_deliverable: conceptual_analysis_dossier
+  executable_implementation: optional_in_separate_programming_path
+  supported_syntax: explicitly_declared_subset
+  unknown_syntax: report_as_unsupported
+  redos_analysis: justified_heuristics
+  required_evidence:
+    - specification_and_operation
+    - manually_constructed_ast
+    - positive_negative_and_boundary_corpus
+    - expected_and_observed_results
+    - engine_version_flags_and_relevant_locale
+    - explicit_offsets_and_empty_match_policy
+    - portability_performance_and_limitations
+
+curriculum_policy:
+  preserve_original_lesson_ids: true
+  preserve_blocks_0_to_48: true
+  introduce_minimum_prerequisites_before_use: true
+  block_43_role: intermediate_integrator
+  block_48_role: expert_capstone

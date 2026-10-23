@@ -28,6 +28,8 @@
 0.26 cuándo no utilizar AWK
 0.27 AWK dentro de la filosofía Unix
 0.28 laboratorio: construir pipelines sencillos de procesamiento de texto
+0.29 contratos de texto: encoding, fin de línea y última línea sin newline
+0.30 prerrequisitos y enlaces a los PATH Bash, Zsh, Coreutils, sed y Regex
 
 1. Introducción a AWK
 
@@ -59,6 +61,9 @@
 1.26 programas almacenados en archivos
 1.27 awk -f programa.awk archivo
 1.28 laboratorio: descubrir completamente AWK/gawk instalado en Fedora
+1.29 instalación con dnf e identificación del ejecutable mediante command -v
+1.30 registrar implementación, versión, locale y capacidades del laboratorio
+1.31 diferenciar awk --version dependiente de implementación de la interfaz portable
 
 2. Modelo fundamental pattern-action
 
@@ -84,6 +89,9 @@
 2.20 múltiples BEGIN
 2.21 múltiples END
 2.22 laboratorio: visualizar mentalmente el ciclo de ejecución de AWK
+2.23 trazar un registro a través de varias reglas sin reiniciar el estado
+2.24 diferenciar programa vacío de acción vacía y patrón sin acción
+2.25 entradas vacías: ejecución de BEGIN y END sin reglas normales
 
 3. Registros
 
@@ -106,6 +114,9 @@
 3.17 modificar $0
 3.18 reconstrucción del registro
 3.19 laboratorio: procesar datos con distintos formatos de registro
+3.20 RS vacío: líneas vacías iniciales, separadores y efecto sobre campos
+3.21 RS como regex en gawk: coincidencias, fin de archivo y RT
+3.22 distinguir registros vacíos de archivos vacíos
 
 4. Campos
 
@@ -138,6 +149,11 @@
 4.27 definir qué constituye un campo
 4.28 diferencias FS ↔ FPAT ↔ FIELDWIDTHS
 4.29 laboratorio: analizar /etc/passwd, logs y datos delimitados
+4.30 asignar $0 vuelve a dividir campos; asignar un campo reconstruye $0
+4.31 forzar reconstrucción con $1=$1 y efectos de OFS
+4.32 asignar NF: truncar o extender campos y comprobar implementación objetivo
+4.33 campos ausentes, índices negativos y errores de acceso
+4.34 momento de aplicación de FS al registro actual y al siguiente
 
 5. Variables
 
@@ -167,6 +183,9 @@
 5.24 variables de entorno
 5.25 alcance de variables
 5.26 laboratorio: parametrizar programas AWK desde el shell
+5.27 asignaciones entre archivos: qué valor observan BEGIN y cada archivo
+5.28 valores con barras inversas: escapes de -v frente a ENVIRON
+5.29 variables no inicializadas: distinguir vacío, cero y ausencia de datos
 
 6. Tipos y conversiones
 
@@ -191,6 +210,10 @@
 6.19 valores no inicializados
 6.20 comparación y coerción
 6.21 laboratorio: descubrir conversiones implícitas problemáticas
+6.22 matriz de comparaciones: literal numérico, string literal y campo de entrada
+6.23 identificadores con ceros iniciales y claves que deben conservar texto
+6.24 typeof() e isarray() de gawk para diagnosticar tipos
+6.25 límites de enteros exactos y por qué AWK no garantiza aritmética decimal exacta
 
 7. Operadores y expresiones
 
@@ -220,6 +243,7 @@
 7.24 asociatividad
 7.25 paréntesis
 7.26 laboratorio: construir expresiones complejas sin ambigüedad
+7.27 orden de evaluación y efectos laterales: evitar expresiones ambiguas
 
 8. Patterns
 
@@ -240,6 +264,8 @@
 8.15 BEGINFILE en gawk
 8.16 ENDFILE en gawk
 8.17 laboratorio: diseñar filtros declarativos complejos
+8.18 rangos inclusivos: inicio y fin en el mismo registro
+8.19 rangos y múltiples archivos: estado persistente y reinicio explícito
 
 9. Expresiones regulares en AWK
 
@@ -268,6 +294,10 @@
 9.23 interval expressions
 9.24 locale y regex
 9.25 laboratorio: construir filtros AWK basados en ERE
+9.26 leftmost-longest de ERE y diferencias frente a motores PCRE
+9.27 doble interpretación de escapes en strings con regex dinámicas
+9.28 por qué las backreferences no son operadores ERE portables
+9.29 regex tipadas @/.../ de gawk frente a /.../ en contexto de expresión
 
 10. Control de flujo
 
@@ -289,6 +319,8 @@
 10.16 exit status
 10.17 exit y ejecución de END
 10.18 laboratorio: controlar explícitamente el ciclo de procesamiento
+10.19 exit desde BEGIN y END: finalización, estado y preservación de errores
+10.20 nextfile en POSIX.1-2024 y compatibilidad con sistemas anteriores
 
 11. Salida
 
@@ -315,6 +347,10 @@
 11.21 close()
 11.22 descriptores y recursos
 11.23 laboratorio: generar informes tabulares profesionales
+11.24 fflush(): alcance, retorno y diferencias por edición POSIX
+11.25 redirección persistente: > abre una vez hasta close(), no en cada print
+11.26 reabrir con > tras close() puede truncar el archivo
+11.27 usar formato printf fijo para tratar la entrada como datos
 
 12. Strings
 
@@ -338,6 +374,13 @@
 12.18 escaping
 12.19 caracteres especiales
 12.20 laboratorio: construir un normalizador de texto
+12.21 split(string, array, separador): retorno, índices y vaciado del destino
+12.22 split(): separador por defecto, campos vacíos y límites de portabilidad
+12.23 split() con cuarto argumento en gawk para conservar separadores
+12.24 patsplit(): contraste entre patrón de campo y patrón separador
+12.25 sub() y gsub(): número de sustituciones y destino modificable
+12.26 ampersand y barras inversas en el texto de reemplazo
+12.27 match() sin coincidencia: RSTART, RLENGTH y capturas específicas de gawk
 
 13. Funciones matemáticas
 
@@ -355,6 +398,8 @@
 13.12 generación pseudoaleatoria
 13.13 precisión numérica
 13.14 laboratorio: estadísticas básicas sobre datasets
+13.15 media y varianza incremental con Welford; errores de cancelación
+13.16 semillas reproducibles sin exigir secuencias idénticas entre motores
 
 14. Arrays asociativos
 
@@ -379,6 +424,10 @@
 14.19 histogramas
 14.20 agrupaciones
 14.21 laboratorio: construir uniq -c utilizando únicamente AWK
+14.22 lectura de claves ausentes: creación accidental y uso de in
+14.23 vaciar arrays con delete array frente a borrado elemento a elemento
+14.24 no mezclar escalar y array en el mismo identificador
+14.25 length(array): comprobar estándar y soporte de la implementación
 
 15. Arrays multidimensionales
 
@@ -394,6 +443,8 @@
 15.10 diferencias POSIX ↔ gawk
 15.11 estructuras de datos complejas
 15.12 laboratorio: representar tablas y relaciones mediante arrays
+15.13 colisiones de SUBSEP cuando los datos contienen el separador
+15.14 conservar claves compuestas sin intentar reconstruirlas ambiguamente
 
 16. Funciones definidas por el usuario
 
@@ -411,6 +462,9 @@
 16.12 funciones reutilizables
 16.13 organización de programas grandes
 16.14 laboratorio: crear una biblioteca de funciones AWK
+16.15 escalares por valor y arrays compartidos: demostrar efectos observables
+16.16 argumentos omitidos, parámetros locales y conflictos de nombres
+16.17 llamadas indirectas de gawk mediante @nombre y límites de portabilidad
 
 17. Variables predefinidas
 
@@ -446,6 +500,7 @@
 17.30 TEXTDOMAIN
 17.31 laboratorio: construir un inspector del estado interno de gawk
 
+
 18. Procesamiento de múltiples archivos
 
 18.1 múltiples archivos de entrada
@@ -465,6 +520,10 @@
 18.15 errores de apertura
 18.16 ERRNO
 18.17 laboratorio: procesador multiarchivo
+18.18 NR==FNR falla para identificar el primer archivo cuando está vacío
+18.19 ARGIND y BEGINFILE frente a selección explícita de fase portable
+18.20 archivos repetidos, stdin y archivos vacíos en pruebas multiarchivo
+18.21 BEGINFILE con ERRNO: saltar aperturas fallidas según versión de gawk
 
 19. Entrada explícita con getline
 
@@ -485,6 +544,11 @@
 19.15 errores frecuentes con getline
 19.16 cuándo evitarlo
 19.17 laboratorio: combinar varias fuentes de datos
+19.18 matriz de variantes de getline: destino, contadores y campos
+19.19 getline var < archivo y comando | getline var sin alterar $0
+19.20 bucle seguro: while ((estado = getline var < archivo) > 0)
+19.21 no confundir EOF con error: revisar estado negativo y ERRNO en gawk
+19.22 leer entrada principal consume registros que no recorrerán todas las reglas
 
 20. Interacción con el sistema
 
@@ -505,6 +569,9 @@
 20.15 riesgos de shell injection
 20.16 quoting seguro
 20.17 laboratorio: AWK como coordinador de herramientas Unix
+20.18 close(): usar exactamente la misma cadena para archivo o comando
+20.19 cerrar dirección to/from en coprocesses y protocolo de terminación
+20.20 system() y close(pipe): estado del hijo y diferencias documentadas
 
 21. AWK y el shell
 
@@ -528,6 +595,9 @@
 21.18 #!/usr/bin/gawk -f
 21.19 /usr/bin/env y sus consideraciones
 21.20 laboratorio: construir comandos shell + AWK robustos
+21.21 operandos nombre=valor: usar rutas ./ para nombres ambiguos
+21.22 -- termina opciones pero no desactiva la sintaxis de asignación de operandos
+21.23 pipefail en Bash/Zsh frente al estado del último comando del pipeline
 
 22. Procesamiento de datos reales
 
@@ -553,6 +623,8 @@
 22.20 cuándo utilizar jq
 22.21 cuándo utilizar herramientas específicas
 22.22 laboratorio: analizar información real de un sistema Fedora
+22.23 preferir interfaces estructuradas o formatos estables a tablas para humanos
+22.24 usar fixtures de rpm y journalctl en lugar de depender del host del alumno
 
 23. Agregación y análisis
 
@@ -575,6 +647,9 @@
 23.17 comparación de datasets
 23.18 diferencias entre archivos
 23.19 laboratorio: motor de estadísticas con AWK
+23.20 inicializar mínimo/máximo desde el primer dato válido, no desde cero
+23.21 valores faltantes, inválidos y división por cero en agregaciones
+23.22 estadísticas por grupo sin almacenar todos los registros
 
 24. Algoritmos clásicos en AWK
 
@@ -597,6 +672,9 @@
 24.17 máquinas de estados
 24.18 parsers lineales
 24.19 laboratorio: implementar operaciones similares a una pequeña base de datos
+24.20 joins uno-a-muchos: no sobrescribir duplicados de la tabla de búsqueda
+24.21 política de claves ausentes, duplicadas y salida determinista
+24.22 complejidad aplicada a arrays y streaming; remisión al PATH general Big-O
 
 25. GNU awk en profundidad
 
@@ -625,6 +703,8 @@
 25.23 bibliotecas
 25.24 extensiones dinámicas
 25.25 laboratorio: reescribir un programa POSIX aprovechando gawk
+25.26 @/.../, typeof(), isarray() y llamadas indirectas como herramientas GNU
+25.27 distinguir origen histórico GNU de incorporación posterior a POSIX
 
 26. Ordenación de arrays
 
@@ -642,6 +722,8 @@
 26.12 funciones de comparación personalizadas
 26.13 estabilidad y consideraciones
 26.14 laboratorio: rankings y tablas ordenadas
+26.15 asort() y asorti(): retorno, reemplazo de índices y efectos sobre destino
+26.16 comparadores coherentes y desempates explícitos para salida reproducible
 
 27. Tiempo y fechas
 
@@ -656,6 +738,8 @@
 27.9 diferencias temporales
 27.10 agrupación temporal
 27.11 laboratorio: análisis temporal de logs
+27.12 DST, fechas ambiguas y TZ en pruebas reproducibles
+27.13 validar retorno de mktime() y fechas inválidas antes de agregar
 
 28. Bitwise y representación numérica
 
@@ -673,6 +757,9 @@
 28.12 MPFR/GMP en gawk
 28.13 --bignum
 28.14 laboratorio: manipulación de máscaras y valores binarios
+28.15 verificar soporte MPFR/GMP compilado antes de usar -M
+28.16 PREC y ROUNDMODE cuando esté disponible la aritmética multiprecisión
+28.17 entradas negativas y límites documentados en funciones bitwise
 
 29. Locales, Unicode e internacionalización
 
@@ -691,6 +778,8 @@
 29.13 TEXTDOMAIN
 29.14 bindtextdomain()
 29.15 laboratorio: comportamiento de AWK bajo diferentes locales
+29.16 longitud de caracteres no equivale a grafemas ni a anchura visual
+29.17 LC_ALL=C para pruebas por bytes: documentar pérdida de semántica Unicode
 
 30. Programas AWK grandes
 
@@ -710,6 +799,8 @@
 30.14 convenciones de nombres
 30.15 mantenibilidad
 30.16 laboratorio: convertir un one-liner complejo en aplicación AWK
+30.17 @namespace, resolución de nombres y uso deliberado de awk::
+30.18 separar módulo de lectura, transformación y serialización
 
 31. Depuración
 
@@ -734,6 +825,8 @@
 31.19 errores NR/FNR
 31.20 errores con getline
 31.21 laboratorio: diagnosticar deliberadamente programas AWK defectuosos
+31.22 reducir un fallo a un fixture mínimo y una salida esperada
+31.23 distinguir error de sintaxis de error dependiente del registro de entrada
 
 32. Portabilidad
 
@@ -752,6 +845,9 @@
 32.13 scripts multiplataforma
 32.14 detectar dependencias GNU
 32.15 laboratorio: convertir un programa gawk en POSIX awk
+32.16 baseline explícita POSIX.1-2017 frente a POSIX.1-2024 Issue 8
+32.17 nextfile, fflush() y delete array: matriz normativa y de implementaciones
+32.18 --posix y --traditional no sustituyen pruebas con otros motores
 
 33. Rendimiento
 
@@ -776,6 +872,9 @@
 33.19 optimización basada en medidas
 33.20 cuándo AWK deja de ser la herramienta adecuada
 33.21 laboratorio: optimizar un programa sobre millones de registros
+33.22 crecimiento de claves únicas y memoria O(k), además del tamaño de entrada
+33.23 comparar hash join y merge sobre archivos ordenados con memoria limitada
+33.24 separar mediciones de E/S, CPU y arranque; repetir con fixtures iguales
 
 34. Seguridad
 
@@ -793,6 +892,9 @@
 34.12 manejo de errores
 34.13 principio de mínimo privilegio
 34.14 laboratorio: auditar un script AWK inseguro
+34.15 --sandbox: restricciones documentadas y límites como aislamiento de seguridad
+34.16 separar datos de código AWK, comandos shell y cadenas de formato
+34.17 salida a rutas controladas y límites de archivos abiertos
 
 35. AWK avanzado como parser
 
@@ -812,6 +914,7 @@
 35.14 generación de diagnósticos
 35.15 límites de AWK como parser
 35.16 laboratorio: parser completo de un formato textual propio
+35.17 diagnósticos con FILENAME y FNR y recuperación definida ante errores
 
 36. AWK como lenguaje de informes
 
@@ -833,6 +936,8 @@
 36.16 salida CSV
 36.17 salida Markdown
 36.18 laboratorio: generador universal de informes
+36.19 escapar CSV de salida: comillas, separadores y saltos de línea
+36.20 evitar confundir lectura --csv con serialización automática mediante print
 
 37. Integración avanzada en Fedora
 
@@ -854,6 +959,8 @@
 37.16 cuándo AWK sustituye varias etapas del pipeline
 37.17 cuándo mantener herramientas separadas
 37.18 laboratorio: herramienta de diagnóstico Fedora basada en gawk
+37.19 datos NUL y nombres arbitrarios: usar herramientas compatibles y verificar gawk
+37.20 entorno RHEL: comprobar capacidades sin asumir la versión de Fedora
 
 38. Internals de AWK/gawk
 
@@ -876,6 +983,8 @@
 38.17 arquitectura de GNU awk
 38.18 código fuente de gawk
 38.19 laboratorio: relacionar comportamiento observable con internals
+38.20 distinguir AST conceptual de representación ejecutable de una versión
+38.21 fijar release o commit antes de describir estructuras internas
 
 39. Extensiones de GNU awk
 
@@ -893,6 +1002,8 @@
 39.12 compilación en Fedora
 39.13 laboratorio: cargar y utilizar una extensión de gawk
 39.14 laboratorio avanzado: construir una extensión mínima en C
+39.15 ABI, cabeceras de desarrollo y dependencias verificadas en el host
+39.16 extensión opcional con alternativa documentada y prueba de carga
 
 40. Ingeniería de programas AWK
 
@@ -920,6 +1031,8 @@
 40.22 empaquetado
 40.23 mantenimiento
 40.24 laboratorio: diseñar AWK como software y no como simple one-liner
+40.25 criterios de aceptación por stdout, stderr, estado y memoria
+40.26 configuración del generador frente a opciones del programa AWK generado
 
 41. CLI, modos de ejecución y herramientas de gawk
 41.1 arquitectura de invocación de awk/gawk
@@ -960,6 +1073,8 @@
 41.36 diagnósticos de sintaxis
 41.37 diagnósticos en tiempo de ejecución
 41.38 laboratorio: construir una matriz de modos de ejecución de gawk
+41.39 --csv de gawk 5.3 o posterior: detección y prueba funcional
+41.40 no asumir que gawk --posix emula todas las ediciones del estándar
 
 42. CSV, datos tabulares y formatos difíciles
 42.1 por qué CSV no es simplemente FS=","
@@ -990,6 +1105,11 @@
 42.26 cuándo utilizar yq para YAML
 42.27 cuándo abandonar AWK para un parser formal
 42.28 laboratorio: procesador robusto de datos tabulares
+42.29 gawk --csv: sustituye RS y la división con FS, FPAT o FIELDWIDTHS
+42.30 split() de dos argumentos bajo --csv: semántica específica del modo
+42.31 CRLF y CSV multilínea: fixtures con valores esperados exactos
+42.32 limitaciones del modo CSV ante dialectos con separadores distintos de coma
+42.33 ronda lectura-escritura-lectura para comprobar serialización CSV
 
 43. Networking, coprocesses y comunicación avanzada en gawk
 43.1 AWK y descriptores de entrada/salida
@@ -1016,6 +1136,9 @@
 43.22 cuándo utilizar nc/socat/curl y dejar AWK como procesador
 43.23 laboratorio: protocolo textual mediante coproceso
 43.24 laboratorio avanzado: procesar un flujo de red controlado
+43.25 protocolo request/response con fflush() y cierre de escritura
+43.26 timeouts y reintentos acotados con capacidades documentadas
+43.27 laboratorio de red en loopback con limpieza determinista
 
 44. Pruebas de programas AWK
 44.1 por qué probar programas AWK
@@ -1052,6 +1175,10 @@
 44.32 automatización desde Makefile
 44.33 integración en CI
 44.34 laboratorio: crear una suite de regresión para una aplicación AWK
+44.35 fixtures de primer archivo vacío y de claves duplicadas en joins
+44.36 pruebas de split(), reconstrucción de $0 y comparación strnum
+44.37 pruebas CSV condicionadas a capacidad: skipped explícito si falta --csv
+44.38 no exigir mismo diagnóstico literal entre implementaciones diferentes
 
 45. Distribución, empaquetado y ecosistema AWK
 45.1 distribuir un script AWK
@@ -1085,6 +1212,7 @@
 45.29 changelog
 45.30 publicación y mantenimiento
 45.31 laboratorio: preparar una aplicación AWK para distribución
+45.32 publicar matriz de capacidades con versión y resultado de pruebas
 
 46. Proyecto final — awk-toolkit
 
@@ -1145,3 +1273,7 @@
 46.55 documentación de dependencias y extensiones GNU
 46.56 empaquetado/distribución del toolkit
 46.57 proyecto final: construir awk-toolkit como aplicación mantenible, portable cuando sea posible y especializada en GNU awk cuando aporte ventajas reales
+46.58 aceptación: joins correctos con primer archivo vacío y claves duplicadas
+46.59 aceptación: CSV multilínea con salida escapada verificable
+46.60 aceptación: errores conservan estado no cero incluso tras END
+46.61 aceptación: presupuesto de memoria, resultados reproducibles y capacidades documentadas

@@ -11,20 +11,20 @@ BLOQUE 0 — FUNDAMENTOS PREVIOS DE PYTHON Y CÁLCULO NUMÉRICO
 0.9 Importaciones, módulos y excepciones
 0.10 Mutabilidad, referencias y copias en Python
 0.11 Escalares, vectores, matrices y dimensiones
-0.12 Laboratorio: resolver un problema con listas y bucles
-0.13 Coste de operaciones numéricas: tiempo, memoria y precisión
+0.12 Coste de operaciones numéricas: tiempo, memoria y precisión
+0.13 Laboratorio: resolver un problema con listas y bucles
 
 BLOQUE 1 — ENTORNO DE TRABAJO Y DOCUMENTACIÓN
 
 1.1 Instalación en un entorno virtual con uv o venv
-1.2 Selección de versiones compatibles de Python y NumPy
+1.2 Seleccionar y fijar versiones compatibles para toda la generación
 1.3 Organización de un proyecto numérico
 1.4 Scripts, IPython y Jupyter
 1.5 Importación convencional: import numpy as np
 1.6 Consultar versiones y configuración
 1.7 Leer documentación, firmas y ejemplos
-1.8 Laboratorio: preparar un entorno reproducible
-1.9 Inspección de configuración BLAS y diagnóstico del entorno
+1.8 Inspección de configuración BLAS y diagnóstico del entorno
+1.9 Laboratorio: preparar y registrar un entorno reproducible con dependencias fijadas
 
 BLOQUE 2 — EL OBJETO NDARRAY
 
@@ -35,9 +35,9 @@ BLOQUE 2 — EL OBJETO NDARRAY
 2.5 dtype, itemsize y nbytes
 2.6 Ejes: significado y representación
 2.7 Escalares NumPy y escalares Python
-2.8 Laboratorio: interpretar arrays de sensores e imágenes
-2.9 Dimensiones vacías, arrays de tamaño cero y arrays 0-D
-2.10 Diferencia entre tamaño lógico y almacenamiento real
+2.8 Dimensiones vacías, arrays de tamaño cero y arrays 0-D
+2.9 Diferencia entre tamaño lógico y almacenamiento real
+2.10 Laboratorio: interpretar arrays de sensores e imágenes
 
 BLOQUE 3 — CREACIÓN DE ARRAYS
 
@@ -48,8 +48,8 @@ BLOQUE 3 — CREACIÓN DE ARRAYS
 3.5 linspace, logspace y geomspace
 3.6 eye, identity y diag
 3.7 fromiter y frombuffer
-3.8 Laboratorio: construir datasets sintéticos
-3.9 np.require, np.asarray_chkfinite y criterios de selección de constructores
+3.8 np.require, np.asarray_chkfinite y criterios de selección de constructores
+3.9 Laboratorio: construir datasets sintéticos
 
 BLOQUE 4 — TIPOS DE DATOS Y CONVERSIONES
 
@@ -60,13 +60,13 @@ BLOQUE 4 — TIPOS DE DATOS Y CONVERSIONES
 4.5 Límites numéricos: iinfo y finfo
 4.6 Conversión mediante astype
 4.7 Promoción de tipos y result_type
-4.8 Casting y pérdida de información
-4.9 dtype object: comportamiento y costes
-4.10 Laboratorio: detectar desbordamientos y conversiones incorrectas
-4.11 Promoción de tipos NEP 50: escalares Python y NumPy
-4.12 can_cast, promote_types y reglas de casting
-4.13 DTypes parametrizados y extensibles: modelo conceptual
-4.14 StringDType: valores ausentes y semántica de almacenamiento
+4.8 Promoción de tipos NEP 50: escalares Python y NumPy
+4.9 can_cast, promote_types y reglas de casting
+4.10 Casting y pérdida de información
+4.11 dtype object: comportamiento y costes
+4.12 DTypes parametrizados y extensibles: introducción conceptual y límites de alcance
+4.13 StringDType: valores ausentes y semántica de almacenamiento
+4.14 Laboratorio: detectar desbordamientos y conversiones incorrectas
 
 BLOQUE 5 — INDEXACIÓN BÁSICA Y TRANSFORMACIÓN DE DIMENSIONES
 
@@ -79,12 +79,12 @@ BLOQUE 5 — INDEXACIÓN BÁSICA Y TRANSFORMACIÓN DE DIMENSIONES
 5.7 transpose, T, swapaxes y moveaxis
 5.8 squeeze y expand_dims
 5.9 Diferencias entre formas (n,), (n, 1) y (1, n)
-5.10 Proyecto: representar y reorganizar mediciones multidimensionales
-5.11 Indexación con slices de paso negativo y ejes vacíos
+5.10 Indexación con slices de paso negativo y ejes vacíos
+5.11 Proyecto: representar y reorganizar mediciones multidimensionales
 
 BLOQUE 6 — VISTAS, COPIAS Y MEMORIA COMPARTIDA
 
-6.1 Asignación, alias y propiedad de los datos
+6.1 Asignación, alias, propiedad y modelo inicial de strides y contigüidad
 6.2 Qué es una vista
 6.3 Qué es una copia
 6.4 Slicing básico y memoria compartida
@@ -93,9 +93,9 @@ BLOQUE 6 — VISTAS, COPIAS Y MEMORIA COMPARTIDA
 6.7 base, shares_memory y may_share_memory
 6.8 Arrays de solo lectura
 6.9 Copias de arrays con dtype object
-6.10 Laboratorio: diagnosticar modificaciones inesperadas
-6.11 Aliasing en expresiones y asignaciones solapadas
-6.12 Ownership y tiempo de vida de buffers externos
+6.10 Aliasing en expresiones y asignaciones solapadas
+6.11 Ownership y tiempo de vida de buffers externos
+6.12 Laboratorio: diagnosticar modificaciones inesperadas
 
 BLOQUE 7 — INDEXACIÓN AVANZADA Y MÁSCARAS
 
@@ -104,13 +104,13 @@ BLOQUE 7 — INDEXACIÓN AVANZADA Y MÁSCARAS
 7.3 Combinación de condiciones con &, | y ~
 7.4 Precedencia de operadores y uso de paréntesis
 7.5 Indexación avanzada sobre varios ejes
-7.6 Selección cartesiana con ix_
-7.7 take y take_along_axis
-7.8 put y put_along_axis
-7.9 Asignación con índices repetidos
-7.10 Laboratorio: filtrar y actualizar observaciones
-7.11 Indexación mixta básica/avanzada y orden de ejes
-7.12 np.add.at frente a asignación con índices repetidos
+7.6 Indexación mixta básica/avanzada y orden de ejes
+7.7 Selección cartesiana con ix_
+7.8 take y take_along_axis
+7.9 put y put_along_axis
+7.10 Asignación con índices repetidos
+7.11 np.add.at frente a asignación con índices repetidos
+7.12 Laboratorio: filtrar y actualizar observaciones
 
 BLOQUE 8 — BROADCASTING
 
@@ -120,12 +120,12 @@ BLOQUE 8 — BROADCASTING
 8.4 Operaciones entre vectores y matrices
 8.5 Alineación explícita mediante ejes de longitud uno
 8.6 Broadcasting en tres o más dimensiones
-8.7 broadcast_to y broadcast_arrays
-8.8 Interpretación de errores de dimensiones
-8.9 Tamaño del resultado y costes de memoria
-8.10 Laboratorio: normalizar datos por variable y por muestra
-8.11 broadcast_shapes, broadcast y análisis estático de shapes
-8.12 Vistas de stride cero y riesgos de escritura
+8.7 broadcast_shapes, broadcast y análisis estático de shapes
+8.8 broadcast_to y broadcast_arrays
+8.9 Vistas de stride cero: interpretación y restricciones de escritura
+8.10 Interpretación de errores de dimensiones
+8.11 Tamaño del resultado y costes de memoria
+8.12 Laboratorio: normalizar datos por variable y por muestra
 
 BLOQUE 9 — OPERACIONES VECTORIZADAS Y UFUNCS
 
@@ -135,14 +135,14 @@ BLOQUE 9 — OPERACIONES VECTORIZADAS Y UFUNCS
 9.4 Funciones trigonométricas
 9.5 Redondeo, división y resto
 9.6 Comparaciones y operaciones lógicas
-9.7 Parámetros out y where
+9.7 out y where: inicialización del resultado y posiciones no calculadas
 9.8 reduce, accumulate y outer
 9.9 reduceat y at
-9.10 np.vectorize y frompyfunc: utilidad y límites
-9.11 Laboratorio: transformar un algoritmo con bucles
+9.10 Identity y reducciones segmentadas: segmentos vacíos, límites y validación
+9.11 np.vectorize y frompyfunc: utilidad y límites
 9.12 Ufuncs: resolución de bucles, firmas, types y casting
-9.13 Ufuncs: identity, reduceat y semántica de acumulación
-9.14 Buffers temporales, aliasing y evaluación de expresiones
+9.13 Buffers temporales, aliasing y evaluación de expresiones
+9.14 Laboratorio: transformar un algoritmo con bucles
 
 BLOQUE 10 — REDUCCIONES Y OPERACIONES ACUMULATIVAS
 
@@ -155,9 +155,9 @@ BLOQUE 10 — REDUCCIONES Y OPERACIONES ACUMULATIVAS
 10.7 cumsum y cumprod
 10.8 dtype de acumulación
 10.9 Arrays vacíos, initial y máscaras
-10.10 Laboratorio: generar indicadores de un dataset
-10.11 Acumulación estable, overflow y elección de dtype
-10.12 Reducciones reproducibles y orden de operaciones
+10.10 Acumulación estable, overflow y elección de dtype
+10.11 Reducciones reproducibles y orden de operaciones
+10.12 Laboratorio: generar indicadores de un dataset
 
 BLOQUE 11 — COMPOSICIÓN Y ORGANIZACIÓN DE ARRAYS
 
@@ -169,8 +169,8 @@ BLOQUE 11 — COMPOSICIÓN Y ORGANIZACIÓN DE ARRAYS
 11.6 pad y condiciones de borde
 11.7 flip, rot90 y roll
 11.8 insert, delete y append: costes y alternativas
-11.9 Laboratorio: preparar lotes de datos
-11.10 Concatenación de arrays vacíos y compatibilidad de shapes
+11.9 Concatenación de arrays vacíos y compatibilidad de shapes
+11.10 Laboratorio: preparar lotes de datos
 
 BLOQUE 12 — ORDENACIÓN, BÚSQUEDA Y CONJUNTOS
 
@@ -184,9 +184,9 @@ BLOQUE 12 — ORDENACIÓN, BÚSQUEDA Y CONJUNTOS
 12.8 unique: valores, índices, inversos y frecuencias
 12.9 isin y operaciones de conjuntos
 12.10 bincount y digitize
-12.11 Proyecto: clasificación, ranking y agrupación de observaciones
-12.12 Ordenación de NaN, complejos y claves estructuradas
-12.13 Complejidad y memoria de ordenación y búsqueda
+12.11 Ordenación de NaN, complejos y claves estructuradas
+12.12 Complejidad y memoria de ordenación y búsqueda
+12.13 Proyecto: clasificación, ranking y agrupación de observaciones
 
 BLOQUE 13 — PRECISIÓN Y ESTABILIDAD NUMÉRICA
 
@@ -199,11 +199,11 @@ BLOQUE 13 — PRECISIÓN Y ESTABILIDAD NUMÉRICA
 13.7 seterr y errstate
 13.8 log1p y expm1
 13.9 Orden de operaciones y errores de acumulación
-13.10 Laboratorio: comparar formulaciones numéricamente equivalentes
-13.11 Epsilon de máquina, ULP y nextafter
-13.12 Suma compensada y reducción de errores
-13.13 Estabilidad hacia delante y hacia atrás
-13.14 Propagación de error y sensibilidad del problema
+13.10 Epsilon de máquina, ULP y nextafter
+13.11 Suma compensada y reducción de errores
+13.12 Estabilidad hacia delante y hacia atrás
+13.13 Propagación de error y sensibilidad del problema
+13.14 Laboratorio: comparar formulaciones numéricamente equivalentes
 13.15 Laboratorio: error residual frente a error de solución
 
 BLOQUE 14 — ESTADÍSTICA DESCRIPTIVA Y DATOS AUSENTES
@@ -217,26 +217,26 @@ BLOQUE 14 — ESTADÍSTICA DESCRIPTIVA Y DATOS AUSENTES
 14.7 Funciones nanmean, nanstd y equivalentes
 14.8 Arrays enmascarados con numpy.ma
 14.9 Detección de valores atípicos y límites de la imputación
-14.10 Laboratorio: informe estadístico con datos incompletos
-14.11 Pesos y métodos de percentiles: compatibilidad por versión
-14.12 Algoritmos estables para varianza y estadística incremental
+14.10 Pesos y métodos de percentiles: compatibilidad por versión
+14.11 Algoritmos estables para varianza y estadística incremental
+14.12 Laboratorio: informe estadístico con datos incompletos
 
 BLOQUE 15 — GENERACIÓN ALEATORIA Y REPRODUCIBILIDAD
 
 15.1 Generadores pseudoaleatorios
 15.2 Generator y default_rng
-15.3 Semillas y estado del generador
-15.4 Distribuciones uniforme y normal
-15.5 Distribuciones binomial, Poisson y exponencial
-15.6 Muestreo con choice
-15.7 shuffle y permutation
-15.8 Muestreo con y sin reemplazo
-15.9 SeedSequence y creación de flujos independientes
-15.10 Límites de reproducibilidad entre entornos y versiones
-15.11 Laboratorio: construir un experimento reproducible
-15.12 BitGenerator, PCG64 y PCG64DXSM
-15.13 Flujos independientes con SeedSequence.spawn
-15.14 Reproducibilidad bit a bit frente a reproducibilidad estadística
+15.3 BitGenerator, PCG64 y PCG64DXSM
+15.4 Semillas y estado del generador
+15.5 Distribuciones uniforme y normal
+15.6 Distribuciones binomial, Poisson y exponencial
+15.7 Muestreo con choice
+15.8 shuffle y permutation
+15.9 Muestreo con y sin reemplazo
+15.10 SeedSequence: entropía, mezcla de semillas y diseño de flujos
+15.11 SeedSequence.spawn: flujos por tarea y asignación reproducible en paralelo
+15.12 Límites de reproducibilidad entre entornos y versiones
+15.13 Reproducibilidad bit a bit frente a reproducibilidad estadística
+15.14 Laboratorio: construir un experimento reproducible
 
 BLOQUE 16 — SIMULACIÓN Y MONTE CARLO
 
@@ -248,9 +248,9 @@ BLOQUE 16 — SIMULACIÓN Y MONTE CARLO
 16.6 Pruebas por permutación
 16.7 Error de muestreo y convergencia
 16.8 Simulación vectorizada por lotes
-16.9 Proyecto: simulador con estimaciones de incertidumbre
-16.10 Intervalos de confianza y validación de simulaciones
-16.11 Reducción de varianza y control de error Monte Carlo
+16.9 Intervalos de confianza y validación de simulaciones
+16.10 Reducción de varianza y control de error Monte Carlo
+16.11 Proyecto: simulador con estimaciones de incertidumbre
 
 BLOQUE 17 — ÁLGEBRA LINEAL
 
@@ -259,19 +259,19 @@ BLOQUE 17 — ÁLGEBRA LINEAL
 17.3 matmul, @, dot y vdot
 17.4 Transposición y conjugación compleja
 17.5 Normas de vectores y matrices
-17.6 Resolver sistemas con solve
-17.7 Inversa, determinante y slogdet
-17.8 Rango y número de condición
-17.9 Mínimos cuadrados con lstsq
-17.10 Pseudoinversa con pinv
-17.11 Descomposiciones QR y SVD
-17.12 Autovalores y autovectores: eig y eigh
-17.13 Operaciones matriciales por lotes
-17.14 Laboratorio: regresión lineal y diagnóstico de estabilidad
-17.15 Sistemas mal condicionados y errores residuales
-17.16 Factorización de Cholesky y matrices definidas positivas
-17.17 vecdot, vector_norm y matrix_norm según versión
-17.18 Convergencia y límites de factorizaciones numéricas
+17.6 vecdot, vector_norm y matrix_norm según versión
+17.7 Resolver sistemas con solve
+17.8 Inversa, determinante y slogdet
+17.9 Rango y número de condición
+17.10 Sistemas mal condicionados y errores residuales
+17.11 Mínimos cuadrados con lstsq
+17.12 Pseudoinversa con pinv
+17.13 Descomposiciones QR y SVD
+17.14 Factorización de Cholesky y matrices definidas positivas
+17.15 Autovalores y autovectores: eig y eigh
+17.16 Operaciones matriciales por lotes
+17.17 Convergencia y límites de factorizaciones numéricas
+17.18 Laboratorio: regresión lineal y diagnóstico de estabilidad
 
 BLOQUE 18 — TENSORES Y CONTRACCIONES
 
@@ -284,28 +284,28 @@ BLOQUE 18 — TENSORES Y CONTRACCIONES
 18.7 einsum: productos y contracciones
 18.8 einsum_path y orden de cálculo
 18.9 Distancias por pares y costes cuadráticos
-18.10 Laboratorio: implementar operaciones tensoriales verificables
-18.11 Einsum: índices repetidos, broadcasting y optimización
-18.12 Comparación de einsum, matmul y tensordot mediante mediciones
+18.10 Einsum: índices repetidos, broadcasting y optimización
+18.11 Comparación de einsum, matmul y tensordot mediante mediciones
+18.12 Laboratorio: implementar operaciones tensoriales verificables
 
 BLOQUE 19 — SEÑALES Y MÉTODOS NUMÉRICOS
 
 19.1 Muestreo, frecuencia y aliasing
-19.2 FFT e inversa
-19.3 rfft e irfft para señales reales
-19.4 fftfreq, rfftfreq y fftshift
-19.5 Normalización y lectura del espectro
-19.6 Ventanas y fuga espectral
-19.7 Convolución y correlación
-19.8 Diferencias discretas con diff
-19.9 Derivación aproximada con gradient
-19.10 Integración con trapezoid
-19.11 Interpolación lineal con interp
-19.12 numpy.polynomial: evaluación y ajuste
-19.13 Proyecto: analizar una señal con ruido
-19.14 Teorema de muestreo y resolución frecuencial
-19.15 Convenciones de normalización de FFT
-19.16 Condiciones de borde, ventanas y artefactos numéricos
+19.2 Teorema de muestreo y resolución frecuencial
+19.3 FFT e inversa
+19.4 rfft e irfft para señales reales
+19.5 fftfreq, rfftfreq y fftshift
+19.6 Normalización de amplitud y lectura del espectro
+19.7 Normalización de FFT: inversa, conservación de energía y verificación de Parseval
+19.8 Ventanas y fuga espectral
+19.9 Convolución y correlación
+19.10 Diferencias discretas con diff
+19.11 Derivación aproximada con gradient
+19.12 Integración con trapezoid
+19.13 Interpolación lineal con interp
+19.14 numpy.polynomial: evaluación y ajuste
+19.15 Condiciones de borde, ventanas y artefactos numéricos
+19.16 Proyecto: analizar una señal con ruido
 
 BLOQUE 20 — FECHAS, TEXTO Y DATOS ESTRUCTURADOS
 
@@ -316,12 +316,12 @@ BLOQUE 20 — FECHAS, TEXTO Y DATOS ESTRUCTURADOS
 20.5 Limitaciones respecto a zonas horarias
 20.6 Cadenas de ancho fijo y bytes
 20.7 StringDType y operaciones con numpy.strings
-20.8 Arrays estructurados y campos
-20.9 Tipos compuestos, offsets y alineación
-20.10 Operaciones bit a bit, packbits y unpackbits
-20.11 Laboratorio: procesar registros de sensores
-20.12 StringDType frente a cadenas de ancho fijo
-20.13 Layouts estructurados: alineación y compatibilidad binaria
+20.8 StringDType frente a ancho fijo: migración, interoperabilidad y costes
+20.9 Arrays estructurados y campos
+20.10 Tipos compuestos, offsets y alineación
+20.11 Layouts estructurados: alineación y compatibilidad binaria
+20.12 Operaciones bit a bit, packbits y unpackbits
+20.13 Laboratorio: procesar registros de sensores
 
 BLOQUE 21 — LECTURA, ESCRITURA Y PERSISTENCIA
 
@@ -334,29 +334,29 @@ BLOQUE 21 — LECTURA, ESCRITURA Y PERSISTENCIA
 21.7 Metadatos, dtype y orden de bytes
 21.8 allow_pickle y tratamiento de archivos no confiables
 21.9 memmap y open_memmap
-21.10 Laboratorio: diseñar un formato de intercambio reproducible
-21.11 Seguridad de archivos .npy y .npz de origen externo
-21.12 Portabilidad de endianess y metadatos de formatos
-21.13 Persistencia atómica e integridad de datos
+21.10 Seguridad de archivos .npy y .npz de origen externo
+21.11 Portabilidad de endianess y metadatos de formatos
+21.12 Persistencia atómica e integridad de datos
+21.13 Laboratorio: diseñar un formato de intercambio reproducible
 
 BLOQUE 22 — DISEÑO DE FUNCIONES Y PRUEBAS
 
 22.1 Contratos de entrada: forma, tipo y valores
-22.2 Validación mediante asarray
-22.3 Diseñar funciones compatibles con broadcasting
-22.4 Controlar mutaciones y copias
-22.5 numpy.typing: ArrayLike, DTypeLike y NDArray
-22.6 Límites del tipado estático de formas
-22.7 Pruebas con numpy.testing
-22.8 Tolerancias numéricas justificadas
-22.9 Casos límite: vacíos, NaN, infinitos y vistas
-22.10 Propiedades e invariantes matemáticos
-22.11 Laboratorio: convertir un notebook en un módulo probado
-22.12 Contratos de API: precondiciones y postcondiciones
+22.2 Contratos de API: precondiciones y postcondiciones
+22.3 Validación mediante asarray
+22.4 Diseñar funciones compatibles con broadcasting
+22.5 Controlar mutaciones y copias
+22.6 numpy.typing: ArrayLike, DTypeLike y NDArray
+22.7 Qué garantiza NDArray y qué no expresa sobre las formas
+22.8 Contratos de shape en ejecución y herramientas de tipado complementarias
+22.9 Pruebas con numpy.testing
+22.10 Tolerancias numéricas justificadas
+22.11 Casos límite: vacíos, NaN, infinitos y vistas
+22.12 Propiedades e invariantes matemáticos
 22.13 Pruebas de propiedades con Hypothesis
 22.14 Pruebas diferenciales, metamórficas e invariantes
-22.15 Tipado de shape: posibilidades y limitaciones
-22.16 Diseño de errores, documentación y compatibilidad de APIs
+22.15 Diseño de errores, documentación y compatibilidad de APIs
+22.16 Laboratorio: convertir un notebook en un módulo probado
 
 BLOQUE 23 — RENDIMIENTO Y USO DE MEMORIA
 
@@ -370,28 +370,28 @@ BLOQUE 23 — RENDIMIENTO Y USO DE MEMORIA
 23.8 Orden C frente a orden Fortran
 23.9 Costes de indexación, copias y conversiones
 23.10 Vectorización frente a procesamiento por bloques
-23.11 Laboratorio: reducir tiempo y memoria con mediciones
-23.12 Cachés CPU, localidad y ancho de banda de memoria
-23.13 SIMD, alineación y selección de kernels
-23.14 Benchmarks estadísticos: calentamiento y variabilidad
-23.15 Perfilado de asignaciones y picos de memoria
+23.11 Cachés CPU, localidad y ancho de banda de memoria
+23.12 SIMD, alineación y selección de kernels
+23.13 Benchmarks estadísticos: calentamiento y variabilidad
+23.14 Perfilado de asignaciones y picos de memoria
+23.15 Laboratorio: reducir tiempo y memoria con mediciones
 
 BLOQUE 24 — GRANDES VOLÚMENES Y CONCURRENCIA
 
 24.1 Estimar memoria antes de ejecutar
 24.2 Procesamiento por bloques
 24.3 Lectura parcial con memory mapping
-24.4 Reducciones incrementales
-24.5 BLAS, LAPACK y bibliotecas subyacentes
-24.6 Hilos internos y sobresuscripción
-24.7 GIL y operaciones numéricas
-24.8 Seguridad al compartir arrays entre hilos
-24.9 Multiprocesamiento y costes de transferencia
-24.10 Proyecto: procesar datos que superan la memoria disponible
-24.11 threadpoolctl y control de hilos BLAS
-24.12 Sobresuscripción entre procesos y bibliotecas
-24.13 Reducciones por bloques y precisión
-24.14 Mapeo de memoria, page faults y límites de I/O
+24.4 Mapeo de memoria, page faults y límites de I/O
+24.5 Reducciones incrementales
+24.6 Reducciones por bloques y precisión
+24.7 BLAS, LAPACK y bibliotecas subyacentes
+24.8 Hilos internos y sobresuscripción
+24.9 threadpoolctl y control de hilos BLAS
+24.10 Diagnóstico de sobresuscripción: procesos, bibliotecas y mediciones
+24.11 GIL, liberación durante operaciones numéricas y Python free-threaded
+24.12 Arrays compartidos entre hilos: carreras, sincronización y dtype object
+24.13 Multiprocesamiento y costes de transferencia
+24.14 Proyecto: procesar datos que superan la memoria disponible
 
 BLOQUE 25 — INTEROPERABILIDAD CON EL ECOSISTEMA
 
@@ -405,9 +405,9 @@ BLOQUE 25 — INTEROPERABILIDAD CON EL ECOSISTEMA
 25.8 CuPy: arrays en GPU
 25.9 JAX y PyTorch: diferencias de ejecución y semántica
 25.10 Transferencias de memoria y conversiones entre bibliotecas
-25.11 Laboratorio: preparar una canalización numérica interoperable
-25.12 Semántica de copias y transferencia entre CPU y GPU
-25.13 Array API: compatibilidad y diferencias de backends
+25.11 Semántica de copias y transferencia entre CPU y GPU
+25.12 Array API: compatibilidad y diferencias de backends
+25.13 Laboratorio: preparar una canalización numérica interoperable
 
 BLOQUE 26 — INTERNALS DEL NDARRAY
 
@@ -421,26 +421,26 @@ BLOQUE 26 — INTERNALS DEL NDARRAY
 26.8 sliding_window_view
 26.9 as_strided: condiciones de seguridad y riesgos
 26.10 Iteración con nditer
-26.11 Laboratorio: explicar el layout real de varias vistas
-26.12 Layout interno de ndarray y descriptores dtype
-26.13 Iteradores internos y estrategias de recorrido
-26.14 Reinterpretación segura de memoria y alineación
+26.11 Layout interno de ndarray y descriptores dtype
+26.12 Iteradores internos y estrategias de recorrido
+26.13 Reinterpretación segura de memoria y alineación
+26.14 Laboratorio: explicar el layout real de varias vistas
 
 BLOQUE 27 — PROTOCOLOS Y EXTENSIBILIDAD
 
 27.1 Protocolo de buffer
-27.2 array y conversión a ndarray
-27.3 array_interface
-27.4 array_ufunc
-27.5 array_function
+27.2 __array__: conversión a ndarray y contratos de dtype y copy
+27.3 __array_interface__: metadatos, punteros y tiempo de vida
+27.4 __array_ufunc__: personalización de ufuncs
+27.5 __array_function__: personalización de funciones NumPy
 27.6 Concepto de duck array
 27.7 Array API y portabilidad
 27.8 DLPack y transferencia de arrays
 27.9 Subclases de ndarray y alternativas por composición
-27.10 Laboratorio: implementar un adaptador con comportamiento explícito
-27.11 __array_namespace__ y compatibilidad Array API
-27.12 Precedencia y dispatch de __array_ufunc__ y __array_function__
-27.13 DLPack: ownership, sincronización y dispositivos
+27.10 __array_namespace__ y compatibilidad Array API
+27.11 Precedencia y dispatch de __array_ufunc__ y __array_function__
+27.12 DLPack: ownership, sincronización y dispositivos
+27.13 Laboratorio: implementar un adaptador con comportamiento explícito
 
 BLOQUE 28 — EXTENSIONES COMPILADAS
 
@@ -453,12 +453,12 @@ BLOQUE 28 — EXTENSIONES COMPILADAS
 28.7 Ufuncs y generalized ufuncs
 28.8 F2PY e integración con Fortran
 28.9 Compilación, empaquetado y compatibilidad binaria
-28.10 Laboratorio: comparar una extensión con NumPy puro
-28.11 Gestión de referencias y errores en C-API
-28.12 ABI y compatibilidad binaria de extensiones NumPy 2
-28.13 NPY_NO_DEPRECATED_API y evolución de la C-API
-28.14 Construcción, wheels y pruebas de extensiones
-28.15 Ufuncs personalizados y firma de generalized ufunc
+28.10 Gestión de referencias y errores en C-API
+28.11 ABI y compatibilidad binaria de extensiones NumPy 2
+28.12 NPY_NO_DEPRECATED_API y evolución de la C-API
+28.13 Construcción, wheels y pruebas de extensiones
+28.14 Ufuncs personalizados y firma de generalized ufunc
+28.15 Laboratorio: comparar una extensión con NumPy puro
 
 BLOQUE 29 — NUMPY 2.X Y MANTENIMIENTO
 
@@ -470,28 +470,28 @@ BLOQUE 29 — NUMPY 2.X Y MANTENIMIENTO
 29.6 Compatibilidad de extensiones compiladas
 29.7 Automatización de migraciones con Ruff NPY201
 29.8 Matrices de pruebas y versiones soportadas
-29.9 Laboratorio: migrar y verificar un proyecto antiguo
-29.10 NEP 50 y pruebas de promoción de tipos
-29.11 Compatibilidad de paquetes con NumPy 1.x y 2.x
-29.12 Revisión de deprecaciones y pruebas de regresión
+29.9 Auditoría de promoción: pruebas de regresión de dtype y precisión
+29.10 Compatibilidad de paquetes con NumPy 1.x y 2.x
+29.11 Revisión de deprecaciones y pruebas de regresión
+29.12 Laboratorio: migrar y verificar un proyecto antiguo
 
 BLOQUE 30 — PROYECTO FINAL DE NIVEL EXPERTO
 
 30.1 Definir un problema de análisis de sensores
-30.2 Diseñar formas, ejes y tipos del dataset
-30.3 Generar datos sintéticos reproducibles
-30.4 Implementar carga y persistencia
-30.5 Detectar datos ausentes y valores inválidos
-30.6 Calcular estadísticas por sensor y periodo
-30.7 Aplicar normalización y ventanas temporales
-30.8 Analizar señales mediante FFT
-30.9 Ajustar un modelo mediante mínimos cuadrados
-30.10 Estimar incertidumbre mediante remuestreo
-30.11 Incorporar procesamiento por bloques
-30.12 Escribir pruebas e invariantes
-30.13 Medir y optimizar tiempo y memoria
-30.14 Documentar decisiones y límites numéricos
-30.15 Entregar una biblioteca y una aplicación de línea de comandos
-30.16 Establecer presupuestos de memoria, precisión y rendimiento
+30.2 Establecer presupuestos de memoria, precisión y rendimiento
+30.3 Diseñar formas, ejes y tipos del dataset
+30.4 Generar datos sintéticos reproducibles
+30.5 Implementar carga y persistencia
+30.6 Detectar datos ausentes y valores inválidos
+30.7 Calcular estadísticas por sensor y periodo
+30.8 Aplicar normalización y ventanas temporales
+30.9 Analizar señales mediante FFT
+30.10 Ajustar un modelo mediante mínimos cuadrados
+30.11 Estimar incertidumbre mediante remuestreo
+30.12 Incorporar procesamiento por bloques
+30.13 Escribir pruebas e invariantes
+30.14 Medir y optimizar tiempo y memoria
+30.15 Documentar decisiones y límites numéricos
+30.16 Empaquetar la biblioteca y una aplicación de línea de comandos
 30.17 Auditar reproducibilidad, seguridad y compatibilidad
-30.18 Entrega con CI, benchmarks y documentación técnica
+30.18 Entrega final con CI, benchmarks y documentación técnica

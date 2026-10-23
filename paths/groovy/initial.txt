@@ -17,6 +17,7 @@
 0.15 groovyConsole y herramientas interactivas
 0.16 Dependencias con @Grab y riesgos de reproducibilidad
 0.17 Laboratorio reproducible: primer proyecto y diagnóstico
+0.18 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 1. Sintaxis y sistema de tipos
 1.1 Variables
@@ -47,6 +48,11 @@
 1.25 asType(), asBoolean() y coerción personalizada
 1.26 Type checking extensions y resolución de métodos
 1.27 Compatibilidad semántica según versión de Groovy
+1.28 Literales numéricos, sufijos, promoción y tipos de resultados
+1.29 División /, intdiv(), resto y potencia: diferencias con Java
+1.30 BigDecimal: precisión, escala, MathContext y RoundingMode
+1.31 Laboratorio: errores numéricos, comparación y redondeo verificable
+1.32 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 2. Strings y GStrings
 2.1 String
@@ -66,6 +72,7 @@
 2.14 stripIndent(), stripMargin() y normalización
 2.15 Codificaciones Unicode, Charset y escapes
 2.16 StringBuilder y costes de concatenación
+2.17 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 3. Control de flujo
 3.1 if / else
@@ -82,6 +89,7 @@
 3.11 switch avanzado: casos de tipo, rangos y patrones soportados
 3.12 Control de flujo con excepciones y finally
 3.13 Sentencias y expresiones switch según versión
+3.14 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 4. Colecciones
 4.1 List
@@ -112,6 +120,7 @@
 4.25 Lazy evaluation e iteradores
 4.26 Complejidad y costes de transformaciones encadenadas
 4.27 Map con claves String y GString: trampas
+4.28 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 5. Métodos y funciones
 5.1 Definición de métodos
@@ -128,6 +137,7 @@
 5.11 Coerción SAM y adaptación de closures
 5.12 Métodos con argumentos map y ambigüedad de named arguments
 5.13 Recursión, tail recursion y @TailRecursive
+5.14 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 6. Closures
 6.1 Qué es una Closure
@@ -158,7 +168,12 @@
 6.25 @DelegatesTo y type checking en DSL
 6.26 @ClosureParams y firmas inferidas
 6.27 Trampas de captura y concurrencia
-6.28 Trampas CPS al usar closures en Jenkins
+6.28 Laboratorio: captura, delegación y resolución de closures anidadas
+6.29 clone() y rehydrate(): thisObject, owner y delegate
+6.30 dehydrate() y rehydrate(): límites de aislamiento y serialización
+6.31 trampoline(): recursión sin crecimiento de la pila y sus costes
+6.32 TO_SELF y resolución mediante subclases de Closure
+6.33 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 7. Programación orientada a objetos
 7.1 Classes
@@ -184,6 +199,7 @@
 7.20 Records y compatibilidad por versión
 7.21 Clases internas, anónimas y sealed types cuando corresponda
 7.22 Inmutabilidad, igualdad y contratos hashCode
+7.23 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 8. Transformaciones AST
 8.1 Qué es una AST
@@ -204,6 +220,7 @@
 8.15 @AutoClone y @Sortable
 8.16 @Field y @PackageScope
 8.17 Compatibilidad de AST transforms con @CompileStatic
+8.18 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 9. Excepciones
 9.1 Throwable
@@ -217,6 +234,7 @@
 9.8 Causas, suppressed exceptions y stack traces
 9.9 Try-with-resources e interoperabilidad Java
 9.10 Diseño de jerarquías de errores y recuperación
+9.11 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 10. Archivos, streams e I/O
 10.1 File
@@ -236,6 +254,7 @@
 10.14 Streams binarios y buffers
 10.15 Recorrido de árboles y enlaces simbólicos
 10.16 Seguridad: path traversal y TOCTOU
+10.17 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 11. Regex y procesamiento de texto
 11.1 Expresiones regulares
@@ -249,6 +268,7 @@
 11.8 Grupos nombrados, replacement y escaping en Groovy
 11.9 Regex en logs: rendimiento y ReDoS
 11.10 Límites: aplicación de regex, no teoría completa
+11.11 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 12. JSON, XML y datos
 12.1 JsonSlurper
@@ -265,6 +285,7 @@
 12.11 CSV con bibliotecas interoperables
 12.12 YAML con librerías JVM y carga segura
 12.13 Validación de esquemas y errores de datos
+12.14 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 13. Scripts y automatización
 13.1 Anatomía de un script Groovy
@@ -284,6 +305,7 @@
 13.14 Signals, shutdown hooks y cleanup
 13.15 Idempotencia y dry-run
 13.16 Logging estructurado y configuración externa
+13.17 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 14. Interoperabilidad Java
 14.1 Usar Java desde Groovy
@@ -301,6 +323,7 @@
 14.12 Module path, classloaders y dependencias
 14.13 Generics: erasure y restricciones
 14.14 Java records y APIs modernas
+14.15 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 15. Groovy Development Kit
 15.1 Qué es el GDK
@@ -317,6 +340,7 @@
 15.11 Extension modules propios
 15.12 Resolución y conflictos de métodos de extensión
 15.13 Inspección del GDK y documentación API
+15.14 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 16. Programación funcional
 16.1 Funciones de orden superior
@@ -332,6 +356,7 @@
 16.10 Efectos laterales y pureza
 16.11 Lazy pipelines y memoria
 16.12 Comparación de costes con Java Streams
+16.13 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 17. Metaprogramación
 17.1 Qué es metaprogramación
@@ -354,6 +379,7 @@
 17.17 Cachés, concurrencia y fugas en metaprogramación
 17.18 ExpandoMetaClass por instancia vs por clase
 17.19 Pruebas de MOP y comportamiento dinámico
+17.20 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 18. DSL
 18.1 Qué es un DSL
@@ -374,6 +400,7 @@
 18.15 Validación de gramática y errores útiles
 18.16 DSL seguro con límites de ejecución
 18.17 Diseño de DSL versionado y compatible
+18.18 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 19. AST avanzada
 19.1 Fases del compilador
@@ -390,6 +417,7 @@
 19.11 ASTTransformationCustomizer
 19.12 Testing de transformaciones con compilación real
 19.13 Type checking extensions: hooks y reglas
+19.14 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 20. Concurrencia
 20.1 Threads JVM
@@ -410,6 +438,7 @@
 20.15 GPars: actores, dataflow y compatibilidad
 20.16 Structured concurrency y virtual threads: interoperabilidad según JDK
 20.17 Diagnóstico de deadlocks y thread dumps
+20.18 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 21. Testing
 21.1 Testing en Groovy
@@ -432,6 +461,7 @@
 21.17 Testcontainers e integración cuando proceda
 21.18 Cobertura con JaCoCo y mutation testing
 21.19 Testing de CLI, scripts y procesos
+21.20 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 22. Build y dependencias
 22.1 Gradle y Groovy
@@ -452,6 +482,7 @@
 22.15 Test, cobertura y quality gates
 22.16 Publicación Maven y firmas
 22.17 Build cache y configuration cache: compatibilidad
+22.18 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 23. Rendimiento e internals
 23.1 Compilador Groovy
@@ -472,6 +503,7 @@
 23.15 GC, allocations y coste de GString
 23.16 Benchmarks dinámico vs @CompileStatic
 23.17 Classloaders, metaspace y fugas
+23.18 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 24. Seguridad
 24.1 Ejecutar código dinámico
@@ -489,6 +521,7 @@
 24.12 Secretos, logging y credenciales
 24.13 Dependency scanning y supply chain
 24.14 Amenazas de Script Console y privilegios Jenkins
+24.15 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 25. Groovy embebido
 25.1 GroovyShell
@@ -504,8 +537,9 @@
 25.10 Timeouts y límites de recursos externos
 25.11 Arquitectura de plugins y extensibilidad
 25.12 Tests de integración del motor embebido
+25.13 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
-26. Groovy para Jenkins
+26. Especialización opcional: fundamentos de Groovy en Jenkins
 26.1 Por qué Jenkins utiliza Groovy
 26.2 Pipeline DSL
 26.3 Jenkinsfile
@@ -533,8 +567,9 @@
 26.24 Timeouts, retries y control de errores
 26.25 Pipeline as Code y linting
 26.26 Agentes y ejecución en controller
+26.27 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
-27. Jenkins Shared Libraries
+27. Especialización opcional: fundamentos de Shared Libraries
 27.1 Qué es una Shared Library
 27.2 Estructura src/
 27.3 vars/
@@ -557,28 +592,22 @@
 27.19 JenkinsPipelineUnit: mocks y límites
 27.20 Pruebas reales de Jenkins Pipeline
 27.21 Documentación de API y versionado de librerías
+27.22 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
-28. Jenkins internals y Groovy
-28.1 Jenkins object model
-28.2 Jenkins API desde Groovy
-28.3 Script Console
-28.4 init.groovy.d
-28.5 Jobs
-28.6 Nodes
-28.7 Builds
-28.8 Credentials
-28.9 Plugins
-28.10 Script Approval
-28.11 Groovy Sandbox
-28.12 Administración automatizada
-
-28.13 Modelo de seguridad y permisos de Script Console
-28.14 Jenkins.instance y API con control de acceso
-28.15 init.groovy.d: idempotencia y orden de carga
-28.16 Jenkins Configuration as Code: frontera de responsabilidades
-28.17 Administración de credenciales sin exposición
-28.18 Jenkins CPS: introducción al motor de ejecución
-28.19 Seguridad del controller y agents
+28. Especialización opcional: límites de ejecución de Groovy en Jenkins
+28.1 Contrato del entorno: Groovy local frente al runtime de Pipeline
+28.2 Versiones del runtime y APIs disponibles: verificación reproducible
+28.3 Clases del lenguaje, pasos Jenkins y APIs de plugins
+28.4 Groovy en controller y pasos que operan en agents
+28.5 new File() frente a readFile/writeFile en el workspace
+28.6 ProcessBuilder y execute() frente a sh/bat
+28.7 JsonSlurper y reducción de datos antes de volver al controller
+28.8 Classpath y dependencias de bibliotecas en el entorno Jenkins
+28.9 Script Console, init.groovy.d y Pipeline: contextos distintos
+28.10 APIs administrativas: lectura crítica y remisión al PATH Jenkins
+28.11 Script Security y aprobaciones: diagnóstico contextual
+28.12 Laboratorio: identificar dónde se ejecuta cada operación
+28.13 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 29. Diseño profesional
 29.1 Groovy idiomático
@@ -596,6 +625,7 @@
 29.12 Observabilidad, trazabilidad y diagnósticos
 29.13 Revisión de código y compatibilidad de versiones
 29.14 Estrategia de migración de Groovy y Jenkins
+29.15 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 30. Tooling, debugging y calidad profesional
 30.1 GroovyConsole, groovysh e IDE
@@ -608,6 +638,7 @@
 30.8 jcmd, jstack, jmap y JFR
 30.9 Diagnóstico de classloaders y dependencias
 30.10 Laboratorio: depuración de fallo complejo
+30.11 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 31. HTTP, APIs REST y formatos de integración
 31.1 java.net.http.HttpClient desde Groovy
@@ -622,8 +653,9 @@
 31.10 Tests HTTP con servidor simulado
 31.11 Diseño de cliente REST reutilizable
 31.12 Laboratorio: CLI integradora con API
+31.13 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
-32. Groovy avanzado para Jenkins CPS
+32. Especialización opcional: Groovy avanzado para Jenkins CPS
 32.1 Qué es CPS y por qué Jenkins transforma Pipeline
 32.2 Continuations, checkpoints y reanudación
 32.3 @NonCPS: alcance y restricciones
@@ -638,22 +670,26 @@
 32.12 Ejecución controller vs agents
 32.13 Sandbox, Script Approval y trusted libraries
 32.14 Laboratorio: reproducir y corregir fallos CPS
+32.15 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
-33. Ingeniería de Shared Libraries profesionales
-33.1 Diseño de capas vars/, src/ y resources/
+33. Especialización opcional: ingeniería de Shared Libraries profesionales
+33.1 Refactorización de una biblioteca existente en capas y responsabilidades
 33.2 APIs estables y contratos para pipelines
 33.3 Paso explícito de steps y contexto
 33.4 Estado, serialización y CPS en clases
 33.5 Diseño seguro de credenciales
 33.6 Configuración, defaults y validación
 33.7 Versionado semántico y compatibilidad
-33.8 Carga implícita, @Library y library()
+33.8 Política de carga, versiones fijadas y gobierno de bibliotecas confiables
 33.9 Tests unitarios con JenkinsPipelineUnit
 33.10 Pruebas de integración en Jenkins real
 33.11 Estrategias de release y rollback
 33.12 Documentación, ejemplos y catálogo
 33.13 Observabilidad y diagnóstico de pipelines
 33.14 Proyecto: librería reutilizable versionada
+33.15 Trusted y untrusted libraries: permisos SCM y revisión de cambios
+33.16 Regresión de contratos y recuperación ante cambios incompatibles
+33.17 Checkpoint: laboratorio integrador, fallo diagnosticado y criterios de aceptación del bloque
 
 34. Proyecto final experto
 34.1 Definición de requisitos y criterios de aceptación
@@ -665,10 +701,11 @@
 34.7 Metaprogramación y AST justificada
 34.8 Testing Spock, cobertura y calidad
 34.9 Gradle wrapper y dependencias reproducibles
-34.10 Shared Library con API estable
-34.11 Jenkinsfile Declarative y Scripted consumidor
-34.12 Pruebas CPS, serialización y reanudación
+34.10 Ampliación opcional Jenkins: Shared Library con API estable
+34.11 Ampliación opcional Jenkins: Jenkinsfile Declarative y Scripted consumidor
+34.12 Ampliación opcional Jenkins: pruebas CPS, serialización y reanudación
 34.13 Seguridad, credenciales y análisis estático
 34.14 CI/CD, publicación y rollback
 34.15 Profiling, troubleshooting y documentación
-34.16 Defensa técnica y evaluación final
+34.16 Defensa técnica y evaluación del núcleo Groovy con rúbrica
+34.17 Evaluación independiente de la ampliación opcional Jenkins

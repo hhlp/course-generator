@@ -50,6 +50,12 @@ lesson_structure:
   lab:
     required: false
     heading: 🧪 Laboratorio/ejemplos
+    required_for_explicit_lab_lessons: true
+    required_for_capstone: true
+  practical_application:
+    required: true
+    format: ejercicio breve, decisión justificada o artefacto revisable
+    evaluation_criteria_required: true
   common_errors:
     required: false
     heading: ⚠️ Errores frecuentes
@@ -147,3 +153,38 @@ refinement_depth:
     developers_are_responsible_for_sizing: true
     product_owner_is_accountable_for_backlog_ordering: true
     avoid_repeating_scrum_and_kanban_mechanics: true
+
+review_requirements:
+  user_stories:
+    express_needs_and_support_requirements_conversations: true
+    not_a_mandatory_format_for_all_pbis: true
+  sprint_changes:
+    product_owner_must_not_add_sprint_work_unilaterally: true
+    developers_adapt_sprint_backlog: true
+    scope_negotiated_with_product_owner: true
+    protect_sprint_goal_and_quality: true
+    include_bug_and_hotfix_case: true
+    only_product_owner_can_cancel_sprint: true
+  pspo_i_bridge:
+    before_checkpoint: true
+    block: 11
+    topics:
+      - empirismo, valores y accountabilities
+      - eventos, artefactos y compromisos
+      - autogestión, Sprint Goal y Definition of Done
+      - releases, Sprint Review y límites del forecast
+    reuse_scrum_path_evidence_when_available: true
+  lifecycle:
+    - lanzamiento y criterios de éxito
+    - adopción, soporte y evolución
+    - retirada, comunicación, migración y datos
+  experimentation:
+    - hipótesis, muestra, duración y regla de decisión
+    - sesgos, causalidad e incertidumbre
+    - métricas de protección y efectos no deseados
+    - resultados negativos e inconcluyentes
+  littles_law:
+    - límites del sistema y conservación del trabajo
+    - promedios de largo plazo y unidades compatibles
+    - estabilidad, ventanas de observación y cambios de flujo
+    - ausencia de garantías de plazo para elementos individuales

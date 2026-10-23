@@ -31,7 +31,7 @@ Los modelos pedagógicos no deben presentarse como si fueran mecanismos literale
 La materia no termina en async/await. La progresión requerida es:
 callbacks → Promises → async/await → composición concurrente → Event Loop → cancelación/timeouts → concurrency limits → queues/backpressure → workers → message passing → shared memory/Atomics → problemas clásicos de concurrencia → Agents/Agent Clusters → diagnóstico y profiling.
 
-Los bloques 14 y 15 constituyen el núcleo. Los bloques 11, 12, 13, 17, 18, 20, 22, 26 y 29 refuerzan el tema desde protocolos, módulos, errores, memoria, Node.js, testing, especificación, rendimiento y proyecto final.
+Los bloques 14 y 15 constituyen el núcleo. Los bloques 11, 12, 13, 17, 18, 20, 22, 26, 29 y 30 refuerzan el tema desde protocolos, módulos, errores, memoria, Node.js, testing, especificación, rendimiento y proyecto final.
 
 ## Eje especial: Big O aplicado a JavaScript
 El Bloque 27 analiza complejidad temporal y espacial sobre código y APIs reales de JavaScript. No sustituye ni repite el learning path general de Big O. Debe distinguir complejidad asintótica, garantías de ECMAScript, costes esperados de implementación y medidas empíricas en Node.js/V8. Se incluyen bucles, recursión, colecciones, strings, algoritmos, memoria, benchmarks, profiling y laboratorios de refactorización.
@@ -71,3 +71,36 @@ Los laboratorios de Big O deben exigir estimación, medición y justificación d
 ## Nivel experto
 El dominio experto implica poder explicar un comportamiento desde varias capas:
 código fuente → modelo conceptual → semántica ECMAScript → runtime/host → Event Loop/concurrencia → motor/memoria → medición y diagnóstico.
+
+
+## Base reproducible y versiones
+- Runtime base: Node.js 24.x. Cada ejecución debe registrar versión exacta de Node.js, npm, V8, sistema y arquitectura. No fijar un parche inventado ni asumir que todos los 24.x incluyen las mismas APIs.
+- Referencia normativa estable: ECMAScript 2025 (ECMA-262, 16.ª edición). El borrador vivo se consulta para extensiones posteriores y se identifica expresamente como tal.
+- Para cada característica moderna: registrar edición o estado TC39, versión mínima verificada del runtime, soporte nativo o necesidad de flags y alternativa si falta soporte. Una entrada en la especificación no acredita disponibilidad en Node.js.
+- Intl se contrasta con ECMA-402 y con los datos ICU del runtime. Las APIs de host se contrastan con Node.js y sus estándares aplicables.
+- Iterator helpers, operaciones modernas de Set, groupBy, Promise.withResolvers/try, RegExp.escape, buffers redimensionables y disposición explícita se enseñan con esta política de compatibilidad.
+
+## Orden pedagógico y prerrequisitos
+Se conservan los bloques 0–30 y los identificadores originales. La numeración es un índice temático; las siguientes segundas pasadas son obligatorias:
+- 6.38 y 6.44 se introducen como diseño; su práctica completa se realiza en el Bloque 18, después de archivos, streams y decodificación incremental.
+- 6.39–6.40 anticipan criterios; los benchmarks se realizan en el Bloque 26. Los patrones adversariales se ejecutan con aislamiento y límites en el Bloque 28.
+- 6.42 introduce casos de prueba; el fuzzing se realiza después de aprender testing en el Bloque 20.
+- 11.13–11.15 son un panorama inicial. La implementación se retoma al final del Bloque 14 tras Promises y async/await.
+- 12.14 introduce sintaxis; la evaluación de ciclos con top-level await se retoma después del Bloque 14.
+- Antes de 15.35–15.42, estudiar 17.1–17.5 y las lecciones de vistas y representación binaria del Bloque 17; regresar después al bloque 15 para sincronización.
+- El Bloque 15 es propietario del desarrollo de coordinación, carreras y Atomics. El 17 desarrolla representación, vistas, endianness y copias; utiliza enlaces al 15 para evitar repetir explicaciones.
+- Los errores de ASI, igualdad, paso por valor, serialización y recursos deben aparecer explícitamente en ejemplos y evaluación.
+
+## Diagnóstico y evolución del motor
+Priorizar AsyncLocalStorage y Diagnostics Channel para contexto y diagnóstico de aplicaciones. Los hooks de bajo nivel se estudian para comprender y diagnosticar sistemas existentes, explicando las advertencias de la documentación oficial.
+En V8, estudiar Ignition, Sparkplug, Maglev y el nivel optimizador superior con TurboFan/Turboshaft, registrando versión, plataforma y flags. No afirmar que toda función recorre todos los niveles.
+WeakRef y FinalizationRegistry no ofrecen cierre determinista. La gestión explícita de recursos se estudia aparte, con limpieza, propagación de fallos y comprobación de soporte.
+
+## Proyectos intermedios y evaluación
+- Bloque 5: gestor de estado con factories y closures; justificar bindings, identidad y mutaciones.
+- Bloque 12: biblioteca ESM; retomar su validación automatizada en el Bloque 20.
+- Bloque 14: pipeline asíncrono; comprobar resultados, propagación de errores y límites antes de profundizar en cancelación.
+- Bloque 18: CLI de archivos; manejar chunks, Unicode, backpressure, señales, fallos y cierre.
+- Bloque 20: checkpoint de pruebas de biblioteca y CLI, con aislamiento y recursos liberados.
+- Bloque 30: proyecto final integrador. Rúbrica de 100 puntos: corrección 25; diseño y explicación 15; pruebas 20; gestión de recursos y concurrencia 15; medición y complejidad 10; seguridad 10; reproducibilidad y documentación 5. Exigir al menos 80 y corregir fallos críticos de corrección o seguridad antes de aprobar.
+Los laboratorios son obligatorios en los temas que los requieren; no todas las lecciones necesitan un laboratorio independiente. Las lecturas sí son obligatorias, con enlaces o referencias verificadas y sin inventar páginas.

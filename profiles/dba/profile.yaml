@@ -10,8 +10,9 @@ course:
     - RHEL
     - Linux
   database: PostgreSQL
-  version_policy: PostgreSQL moderno; priorizar la versión estable actual y
-    señalar diferencias relevantes entre versiones
+  version_policy: >-
+    PostgreSQL 18 como major principal; comparar con 16 y 17. Registrar
+    la minor exacta de cada laboratorio y revisar antes de cambiar de major.
   mode: deep
 
 pedagogy:
@@ -28,7 +29,7 @@ pedagogy:
     max_points: 7
     avoid_repeating_objective: true
   indentation: false
-  numbering: single-level
+  numbering: block.lesson
   depth_contract:
     minimum_level: deep_mechanistic_and_operational
     required_when_applicable:
@@ -46,6 +47,7 @@ pedagogy:
       - common_mistakes
     avoid_recipe_only_lessons: true
     preserve_original_lessons: true
+    allow_dependency_reordering_and_renumbering: true
     numbering_pattern: block.lesson
 
 files:
@@ -84,6 +86,12 @@ content:
     - DDL and migrations with rollback
     - plan cache and query regression
     - buffer pins and memory contexts
+    - native incremental backups and pg_combinebackup
+    - PostgreSQL 18 asynchronous IO and pg_aios
+    - MAINTAIN pg_maintain and transaction_timeout
+    - OAuth authentication and identity validation
+    - version-specific checksums and upgrade statistics
+    - administrative SQL prerequisites and project milestones
 
 platform:
   linux:

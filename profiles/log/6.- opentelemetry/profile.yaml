@@ -312,3 +312,44 @@ validation:
   original_lessons_retained: true
   reproducible_labs: true
   expert_project_acceptance_tests: true
+
+language_instrumentation:
+  label: OpenTelemetry {Python, C++, Go, JavaScript, Java}
+  languages:
+    - Python
+    - C++
+    - Go
+    - JavaScript
+    - Java
+  role: reference_variants_of_common_instrumentation_concepts
+  mandatory_primary_language: null
+  student_selects_example_language: true
+  require_all_language_labs: false
+  separate_programming_courses: false
+  support_and_stability_checked_per_version: true
+  collector_component_development:
+    language: Go
+    stage: expert
+    distinguish_from_application_language: true
+
+revision_policy:
+  revision: 7
+  original_block_ids_retained: true
+  original_lesson_ids_retained: true
+  preserve_original_technical_coverage: true
+  precision_corrections_documented: true
+  deepen_with_topic_specific_lessons: true
+  map_generic_titles_to_concrete_mechanisms: true
+  never_invent_configuration_for_abstract_topics: true
+  recommended_sequence_in_domain: true
+  early_local_synthetic_lab: true
+  head_sampling_before_tail_sampling_in_study_order: true
+  profiles_support_matrix_required: true
+  metrics_single_writer_required: true
+  grafana_oss_datasource_architecture: true
+  distinguish_grafana_cloud_ingestion: true
+  sdk_configuration_precedence_is_implementation_specific: true
+  component_names_checked_against_selected_distribution: true
+  base_lab_public_exposure: false
+  distinguish_expected_and_observed_results: true
+  curriculum_files_are_not_executed_labs: true

@@ -519,35 +519,20 @@ Para las partes específicas de Fedora utilizar:
 
 Cada lección debe contener una sección `📚 LECTURA` con referencias específicas para esa lección.
 
-Formato conceptual:
+Formato conceptual (mismas categorías que profile.yaml):
 
 ```text
 📚 LECTURA
-
-Principal:
-  <fuente principal>
-  └── capítulo/sección relevante
-
-Complementaria:
-  <fuente complementaria>
-  └── capítulo/sección relevante
-
-Profundización:
-  <fuente de profundización>
-  └── capítulo/sección relevante
-
-Consulta:
-  <fuente de referencia>
-  └── sección relevante
-
-C++ moderno:
-  <C++17/C++20/C++23 — The Complete Guide>
-  └── cuando corresponda
-
-Adicional:
-  <Templates / Concurrency / documentación técnica>
-  └── cuando corresponda
+Principal: fuente pedagógica específica del tema.
+Complementaria: segunda explicación o perspectiva.
+Normativa: estándar y sección verificada aplicable.
+Profundización: tratamiento avanzado del tema.
+Consulta: API, documentación del compilador o herramienta.
 ```
+
+En YAML, «profundizacion» es el identificador de «Profundización».
+Las fuentes de C++ moderno y de herramientas se incluyen en la categoría que
+corresponda a su función; no constituyen categorías adicionales obligatorias.
 
 No es obligatorio rellenar artificialmente todas las categorías.
 
@@ -602,3 +587,59 @@ Distinguir complejidad asintótica, garantías de la biblioteca, coste amortizad
 ## 28. Integración transversal de Regex y Big-O
 
 En las lecciones 1.25 (parsing), 1.28–1.29 (algoritmos y contenedores), 3.26–3.29 (STL e iteradores), 4.7–4.11 (Ranges), 8.17–8.20 (profiling y optimización) y 8.26 (proyecto final), introducir conexiones breves y referencias cruzadas a los bloques 9 y 10 sin duplicar sus contenidos.
+
+
+## 29. Fuentes para las ampliaciones
+
+| Lecciones | Fuentes y propósito |
+|---|---|
+| 1.42–1.52 | PPP3 y C++ Primer 5e: tipos, expresiones, funciones y streams; contrastar reglas con C++23 |
+| 1.53–1.55 | Manuales oficiales GCC/Clang, CMake y CTest: primera compilación y pruebas |
+| 2.41–2.56 | C++ Primer, Effective Modern C++, TC++PL y texto normativo C++23: semántica, lifetime y diseño |
+| 3.31–3.42 | C++17 Complete Guide, TC++PL y especificación de biblioteca: STL, allocators y PMR |
+| 4.45–4.59 | C++20/C++23 Complete Guide y documentación del toolchain: constraints, ranges, coroutines y módulos |
+| 5.30–5.39 | C++ Templates 2e, C++20 Complete Guide y texto normativo: instanciación y diseño genérico |
+| 6.37–6.46 | Concurrency in Action 2e y especificación C++23: sincronización, progreso y lifetime |
+| 7.40–7.47 | Binutils, GCC, libstdc++, glibc, GDB y LLVM: enlace, carga, ABI y diagnóstico |
+| 8.27–8.36 | CMake/CTest, GoogleTest, LLVM libFuzzer, Google Benchmark y Fedora: ingeniería reproducible |
+| 9.31–9.34 | Especificación regex de C++23, libstdc++/libc++ y PCRE2: lifetime, entradas y limitaciones |
+| 10.42–10.47 | Requisitos de complejidad de C++23 y Google Benchmark/perf: contratos y medición |
+
+## 30. Referencias oficiales localizables
+
+- Documentos WG21: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/
+- Borrador N4950, referencia pública de C++23:
+  https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/n4950.pdf
+- CMake y CTest: https://cmake.org/cmake/help/latest/
+- GCC: https://gcc.gnu.org/onlinedocs/
+- libstdc++: https://gcc.gnu.org/onlinedocs/libstdc++/
+- Clang: https://clang.llvm.org/docs/
+- libc++: https://libcxx.llvm.org/docs/
+- GNU Binutils: https://sourceware.org/binutils/docs/
+- GDB: https://sourceware.org/gdb/current/onlinedocs/gdb.html
+- Itanium C++ ABI: https://itanium-cxx-abi.github.io/cxx-abi/abi.html
+- GoogleTest: https://google.github.io/googletest/
+- Google Benchmark: https://github.com/google/benchmark
+- LLVM libFuzzer: https://llvm.org/docs/LibFuzzer.html
+- PCRE2: https://www.pcre.org/current/doc/html/
+
+Estas direcciones identifican las fuentes; antes de generar comandos dependientes
+de versión, consultar la documentación correspondiente a la versión instalada.
+Los enlaces latest y current evolucionan y no son una especificación congelada.
+
+## 31. Límites normativos y bibliográficos
+
+Para el estándar objetivo usar texto de C++23 (por ejemplo N4950 como borrador
+público de referencia); no sustituirlo sin aviso por el borrador vivo, que puede
+incluir características posteriores. Identificar defect reports cuando cambien
+la interpretación. ISO/IEC 14882 sigue siendo la autoridad normativa publicada.
+
+El libro C++23 — The Complete Guide de Nicolai M. Josuttis está identificado en
+la web del autor: https://www.cppstd23.com/cppstd23.html . Registrar la edición
+realmente consultada al citarlo, sin inventar paginación. Los libros anteriores
+a C++20 necesitan complemento para las incorporaciones posteriores.
+
+Para hazard pointers y reclamación por épocas, usar las publicaciones originales
+de las técnicas y documentación de la biblioteca externa elegida; no presentar
+propuestas WG21 ni APIs posteriores como parte de C++23. Para fuzzing y benchmarks,
+la documentación oficial de cada herramienta define sus propias interfaces.

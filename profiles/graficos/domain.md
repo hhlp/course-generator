@@ -2,7 +2,7 @@
 
 ## Objetivo y alcance
 
-Desarrollar desde cero la capacidad de preparar datos con Polars, crear visualizaciones con Matplotlib y realizar exploración estadística con Seaborn. Culminar en pipelines reproducibles, verificables y eficientes. El programa canónico es initial.txt: 29 bloques (0–28) y 312 lecciones. No omitir ni fusionar lecciones al generar contenidos. El temario es un índice de lecciones que se desarrollarán, no un curso ya redactado.
+Desarrollar desde cero la capacidad de preparar datos con Polars, crear visualizaciones con Matplotlib y realizar exploración estadística con Seaborn. Culminar en pipelines reproducibles, verificables y eficientes. El programa canónico es initial.txt: 29 bloques (0–28) y 354 lecciones. No omitir ni fusionar lecciones al generar contenidos. El temario es un índice de lecciones que se desarrollarán, no un curso ya redactado.
 
 Polars es la biblioteca de datos; no confundirla con gráficos polares, que se estudian en 15.4. Matplotlib aporta el control de figuras; Seaborn, visualización estadística. NumPy, pandas, Arrow y estadística son conocimientos auxiliares. No convertir esta ruta en un curso completo de pandas, desarrollo web, aprendizaje automático o administración de bases de datos.
 
@@ -68,7 +68,7 @@ Ubicar los cuatro archivos en paths/python-graficos/. El perfil referencia el ar
 
 ## Profundidad ampliada y criterios de dominio experto
 
-Conservar íntegramente las lecciones originales; las lecciones añadidas complementan y no sustituyen sus contenidos. En cada lección desarrollar progresivamente fundamentos, mecanismo interno, API actual, casos límite, costes, decisiones de diseño, ejemplo ejecutable, validación y diagnóstico cuando aplique. No afirmar compatibilidad de APIs sin comprobar versiones.
+Conservar la cobertura de todas las lecciones originales. Se permite reubicarlas y precisar sus títulos para resolver prerrequisitos y solapamientos; las nuevas lecciones amplían su contenido. La numeración vigente es la de initial.txt. En cada lección desarrollar progresivamente fundamentos, mecanismo interno, API actual, casos límite, costes, decisiones de diseño, ejemplo ejecutable, validación y diagnóstico cuando aplique. No afirmar compatibilidad de APIs sin comprobar versiones.
 
 ### Polars avanzado (3–9)
 
@@ -89,3 +89,22 @@ Construir pipelines de datos a figuras con contratos de entrada/salida, pruebas 
 ### Criterios de evaluación
 
 En los laboratorios avanzados pedir una implementación funcional, una explicación de decisiones, un caso de fallo y su diagnóstico, una comprobación automatizada y una reflexión sobre límites. Mantener el formato de lecciones numeradas N.M y las convenciones de OBJETIVO, Laboratorio, Errores, Idea, Lectura y QUÉ DEBES RECORDAR.
+
+
+## Progresión, práctica y checkpoints de esta revisión
+
+La introducción a expresiones precede a sus namespaces. Las ventanas con over se desarrollan después de group_by; el bloque temporal las retoma con orden, calendario y zonas horarias. La lectura scan_* se introduce después de explicar DataFrame, LazyFrame y collect; el bloque 9 profundiza en optimización, ejecución y escritura. Los contenidos repetidos deben distinguir introducción, mecanismo y diagnóstico, con ejemplos y resultados diferentes.
+
+Los laboratorios originales son prácticas iniciales y conservan su alcance. Los laboratorios avanzados de cierre integran todas las ampliaciones del bloque, exigen un caso de fallo y una comprobación de corrección. Los checkpoints se realizan después de esas prácticas, con datos y preguntas nuevos, sin copiar una solución anterior. En el bloque 0, la primera figura es un ejemplo guiado: explicar únicamente el código imprescindible y reservar la arquitectura gráfica para el bloque 10.
+
+Incluir en Polars lógica de tres valores, filtro de condiciones nulas, evaluación de todas las ramas de when sin asumir cortocircuito, formas y alineación de ventanas, garantías de orden por operación y sinks. Diferenciar procesar en streaming de materializar el resultado final en memoria; elegir formato y motor según la versión instalada.
+
+En Matplotlib explicar ausencias y máscaras, discontinuidades, zorder, clipping y calibración de imágenes mediante origin, extent, aspect e interpolación. Las figuras científicas deben comprobar orientación, coordenadas, unidades y tratamiento de valores fuera de rango.
+
+La estadística auxiliar debe hacer explícitos denominadores, ponderaciones, tamaño muestral por grupo y paradoja de Simpson. Retomar estos criterios al interpretar estimadores, distribuciones y comparaciones de categorías.
+
+### Rúbrica común de checkpoints
+
+Evaluar cinco dimensiones de 0 a 2: corrección de datos y cálculos; elección e interpretación del gráfico; reproducción del resultado; diagnóstico y validación; explicación de decisiones y límites. Obtener al menos 8/10, sin cero en corrección ni reproducción. Un resultado visual atractivo no compensa cálculos incorrectos. Si no se alcanza el umbral, proponer una reparación y un segundo ejercicio con datos distintos.
+
+Checkpoints al terminar fundamentos (bloque 2), Polars (9), Matplotlib (17), Seaborn (23) e integración y diagnóstico (27). En el bloque 28 aplicar la misma rúbrica y exigir evidencia ejecutable, pruebas, documentación y defensa del proyecto. Estos umbrales son criterios internos de aprendizaje, no una certificación profesional.

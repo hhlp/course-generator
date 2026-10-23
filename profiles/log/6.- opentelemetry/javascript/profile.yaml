@@ -1,0 +1,233 @@
+---
+course:
+  title: OpenTelemetry con JavaScript
+  language: es
+  level:
+    start: cero en instrumentación JavaScript
+    end: experto
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
+pedagogy:
+  required_opening: 🎯 OBJETIVO
+  required_closing: 🧠 QUÉ DEBES RECORDAR
+  remember_points: 3-7
+  optional_sections:
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+  depth: deep
+  progressive: true
+  didactic: true
+  summary_only: false
+prerequisites:
+  - JavaScript básico, promesas y async/await
+  - Node.js, npm y módulos
+  - Fundamentos del curso general de OpenTelemetry
+scope:
+  independent_specialization: true
+  primary_runtime: Node.js
+  optional_extensions:
+    - TypeScript
+    - Navegador
+    - Kubernetes
+    - Serverless
+  other_language_implementations_required: false
+  general_course_duplication: false
+focus:
+  vendor_neutral: true
+  upstream_first: true
+  production: true
+  troubleshooting: true
+  internals: true
+  reproducible_labs: true
+  validate_results: true
+compatibility:
+  review_date: '2026-10-22'
+  traces: stable
+  metrics: stable
+  logs: development
+  browser_instrumentation: experimental
+  pin_dependency_matrix: true
+  require_lockfile: true
+  verify_each_contrib_plugin: true
+  do_not_assume_esm_support: true
+  runtime_policy: Node.js LTS activo o en mantenimiento, admitido por los
+    paquetes fijados
+lesson_contract:
+  include:
+    - objetivo verificable
+    - mecanismo y arquitectura
+    - código JavaScript completo cuando aplique
+    - instalación y configuración completas
+    - comandos de ejecución
+    - salida esperada y cómo verificarla
+    - prueba negativa y diagnóstico
+    - limpieza reversible
+    - versiones y límites de soporte
+  no_pseudocode_as_executable_lab: true
+  typescript_must_not_replace_javascript: true
+  browser_maturity_must_be_explicit: true
+  avoid_sensitive_telemetry: true
+lab_policy:
+  default: local sin exposición pública
+  ports: publicar solo en loopback
+  containers:
+    - Docker Compose
+    - Podman Compose con compatibilidad verificada
+  backends: elegir un stack mínimo y fijar versiones
+  required_evidence:
+    - traza con relaciones causales
+    - métrica consultable
+    - log correlacionado
+    - fallo explicado con evidencia
+  baseline_language: JavaScript
+  optional_language: TypeScript
+bibliography_policy:
+  authority_order:
+    - Especificaciones y convenciones OpenTelemetry
+    - Documentación y código de OpenTelemetry JavaScript
+    - Documentación de cada instrumentación contrib
+    - Documentación del runtime y framework
+    - Learning OpenTelemetry
+  upstream_overrides_outdated_book_details: true
+  do_not_limit_path_to_book: true
+curriculum:
+  block_count: 36
+  lesson_count: 360
+  blocks:
+    - id: 0
+      title: Alcance y fundamentos aplicados
+      lessons: 10
+    - id: 1
+      title: Entorno reproducible en Linux
+      lessons: 10
+    - id: 2
+      title: Arquitectura del SDK JavaScript
+      lessons: 10
+    - id: 3
+      title: Arranque CommonJS, ESM y TypeScript
+      lessons: 10
+    - id: 4
+      title: Primer servicio y exportación OTLP
+      lessons: 10
+    - id: 5
+      title: Resource y convenciones semánticas
+      lessons: 10
+    - id: 6
+      title: Instrumentación automática
+      lessons: 10
+    - id: 7
+      title: Trazas manuales de negocio
+      lessons: 10
+    - id: 8
+      title: Contexto asíncrono en Node.js
+      lessons: 10
+    - id: 9
+      title: Propagación distribuida y baggage
+      lessons: 10
+    - id: 10
+      title: HTTP y frameworks de servidor
+      lessons: 10
+    - id: 11
+      title: Clientes HTTP y RPC
+      lessons: 10
+    - id: 12
+      title: Bases de datos y cachés
+      lessons: 10
+    - id: 13
+      title: Mensajería y procesamiento diferido
+      lessons: 10
+    - id: 14
+      title: Workers y fronteras de proceso
+      lessons: 10
+    - id: 15
+      title: Métricas e instrumentos
+      lessons: 10
+    - id: 16
+      title: Agregación, vistas y cardinalidad
+      lessons: 10
+    - id: 17
+      title: Runtime y rendimiento de Node.js
+      lessons: 10
+    - id: 18
+      title: Logs y correlación
+      lessons: 10
+    - id: 19
+      title: Sampling y límites de las trazas
+      lessons: 10
+    - id: 20
+      title: Exportadores y fiabilidad
+      lessons: 10
+    - id: 21
+      title: Collector aplicado a JavaScript
+      lessons: 10
+    - id: 22
+      title: Stack local y consultas
+      lessons: 10
+    - id: 23
+      title: Pruebas automatizadas de instrumentación
+      lessons: 10
+    - id: 24
+      title: Troubleshooting sistemático
+      lessons: 10
+    - id: 25
+      title: Ciclo de vida y despliegue de Node.js
+      lessons: 10
+    - id: 26
+      title: Kubernetes y automatización de despliegue
+      lessons: 10
+    - id: 27
+      title: Serverless y runtimes alternativos
+      lessons: 10
+    - id: 28
+      title: Fundamentos del SDK de navegador
+      lessons: 10
+    - id: 29
+      title: Red, seguridad y privacidad del navegador
+      lessons: 10
+    - id: 30
+      title: SPA, SSR e hidratación
+      lessons: 10
+    - id: 31
+      title: RUM y límites de la telemetría web
+      lessons: 10
+    - id: 32
+      title: Instrumentación de bibliotecas reutilizables
+      lessons: 10
+    - id: 33
+      title: Seguridad, costes y gobernanza
+      lessons: 10
+    - id: 34
+      title: Internals, migraciones y optimización
+      lessons: 10
+    - id: 35
+      title: Proyecto experto y evaluación final
+      lessons: 10
+assessment:
+  checkpoints:
+    - after_block: 7
+      evidence: Servicio con trazas manuales y automáticas
+    - after_block: 15
+      evidence: HTTP, base de datos y worker con propagación causal
+    - after_block: 25
+      evidence: Tres señales, pruebas y cierre controlado
+    - after_block: 31
+      evidence: Frontend opcional conectado con privacidad y límites
+        documentados
+  final_project_block: 35
+  rubric:
+    - Corrección causal
+    - Calidad de señales
+    - Reproducibilidad
+    - Diagnóstico de fallos
+    - Coste y privacidad
+    - Operación y documentación

@@ -65,8 +65,14 @@ cursos completos de análisis numérico, estadística, probabilidad,
 
 ## Plataforma y versiones
 
-La referencia principal debe ser la documentación oficial de la versión
-estable de NumPy 2.x disponible durante la generación de cada lección.
+Antes de generar el curso completo, seleccionar una versión estable de
+NumPy 2.x compatible con la versión elegida de Python y fijar ambas como
+objetivo de toda la generación. Registrar versiones exactas, dependencias
+y configuración BLAS. Consultar documentación correspondiente a ese
+objetivo; las URLs /stable/ pueden cambiar y no fijan una versión.
+
+Actualizar el objetivo debe ser una decisión explícita acompañada de
+validación de ejemplos, pruebas y compatibilidad de extensiones.
 
 Cuando una API o comportamiento dependa de la versión:
 
@@ -295,3 +301,45 @@ Comprobar disponibilidad y firma de cada API en la versión objetivo antes de ge
 ## Requisitos del proyecto final ampliado
 
 El proyecto de sensores debe establecer objetivos medibles de precisión, memoria y rendimiento, ofrecer CLI reproducible, pruebas automatizadas, validación de datos, política de persistencia segura, trazabilidad de dependencias, benchmarks y documentación de limitaciones.
+
+## Progresión y delimitación de contenidos
+
+Mantener 31 bloques y 405 lecciones. En cada bloque de contenido situar
+los laboratorios integradores después de sus prerrequisitos. El bloque
+13 contiene dos laboratorios complementarios al cierre. El bloque 30
+desarrolla un proyecto por etapas: los presupuestos de precisión, memoria
+y rendimiento se acuerdan al principio y se auditan antes de entregar.
+
+Introducir strides y contigüidad de manera elemental en el bloque 6,
+antes de explicar copias en reshape. Reservar el cálculo de direcciones,
+los flags y el análisis profundo del layout para el bloque 26.
+
+Distinguir introducción y aplicación avanzada en las lecciones sobre
+reduceat, SeedSequence, normalización FFT, StringDType y tipado de formas.
+No repetir una misma explicación como si fuera un contenido nuevo.
+
+## Casos técnicos obligatorios
+
+En ufuncs con where, explicar que, si out no se proporciona, las
+posiciones con condición falsa pueden quedar sin inicializar. Contrastar
+con un out inicializado y con np.where, que selecciona entre expresiones
+ya evaluadas y no evita por sí mismo evaluar una operación inválida.
+
+En concurrencia distinguir liberación del GIL y ejecución con Python
+free-threaded. Verificar soporte en las versiones objetivo. Explicar
+carreras de datos, sincronización, tiempo de vida y riesgos de object;
+la ausencia del GIL no garantiza seguridad al compartir arrays.
+
+En protocolos utilizar los nombres exactos __array__,
+__array_interface__, __array_ufunc__, __array_function__ y
+__array_namespace__. Explicar el contrato vigente de dtype y copy de
+__array__ y verificar qué objetos implementan cada protocolo.
+
+## Integración con el generador
+
+El YAML expresa la intención pedagógica de este PATH. La sintaxis válida
+no garantiza que el cargador interprete todas las claves. Antes de
+generar, contrastar el esquema y la resolución de files.pedagogy con
+la implementación instalada de course-generator. Las instrucciones
+esenciales también se expresan en este documento para evitar que
+dependan exclusivamente de claves opcionales del perfil.

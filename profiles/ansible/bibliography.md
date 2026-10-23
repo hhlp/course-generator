@@ -1017,13 +1017,78 @@ Las cuatro obras principales se conservan. La versión instalada de ansible-core
 | 33–37 | Mastering Ansible; Ansible for Real-Life Automation | Ansible/AAP: seguridad, operación, rendimiento y arquitectura |
 | 38 | Las cuatro obras como apoyo | Documentación de cada tecnología integrada y pruebas verificables |
 
-## Referencias editoriales a completar antes de generar lecciones
+## Referencias editoriales identificadas
 
-- **Ansible: Up & Running**: registrar autores, edición y año exactos del ejemplar disponible; no asumir que describe la versión instalada.
-- **Mastering Ansible, 4th Edition**: mantener James Freeman y Jesse Keating como figuran en esta bibliografía y comprobar la ficha editorial antes de citar capítulos.
-- **Ansible for Real-Life Automation**: mantener Gineesh Madapparambath y verificar edición/año del ejemplar.
-- **Practical Ansible, 2nd Edition**: completar autoría y año con el ejemplar realmente utilizado.
+Estas fichas identifican las ediciones de referencia; comprobar que coinciden
+con los ejemplares utilizados antes de asignar capítulos o páginas.
+
+| Obra | Autoría | Edición y año | Ficha editorial |
+|---|---|---|---|
+| Ansible: Up and Running | Bas Meijer, Lorin Hochstein, René Moser | 3.ª, 2022 | https://www.oreilly.com/library/view/ansible-up-and/9781098109141/ |
+| Mastering Ansible | James Freeman, Jesse Keating | 4.ª, 2021 | https://www.packtpub.com/en-us/product/mastering-ansible-4th-edition-9781801818780 |
+| Ansible for Real-Life Automation | Gineesh Madapparambath | 1.ª, 2022 | https://www.packtpub.com/en-us/product/ansible-for-real-life-automation-9781803235417 |
+| Practical Ansible | James Freeman, Fabio Alessandro Locati, Daniel Oh | 2.ª, 2023 | https://www.packtpub.com/en-us/product/practical-ansible-9781805129974 |
+
+Practical Ansible de Packt no es Practical Ansible: Configuration Management
+from Start to Finish de Vincent Sesto (Apress). No mezclar autorías o capítulos.
 
 ## Política de precisión técnica
 
 Para cada lección registrar, cuando corresponda, la versión de ansible-core, de Python, de la collection y de Fedora/RHEL empleada. Distinguir API estable, comportamiento dependiente de versión, funciones obsoletas y características específicas de AAP. Los comandos de instalación y las rutas deben probarse en el laboratorio antes de presentarse como verificados.
+
+
+# 32. Referencias oficiales localizables y política de versiones
+
+Fecha de revisión: 2026-10-19. Los enlaces latest/devel sirven para localizar
+contenido; para laboratorios conservar la página correspondiente a la versión
+fijada, fecha de consulta y restricciones. No usar un roadmap como demostración
+de que una característica está disponible o soportada.
+
+| Área | Fuente oficial |
+|---|---|
+| ansible-core 2.20 | https://docs.ansible.com/projects/ansible-core/2.20/ |
+| Mantenimiento y Python | https://docs.ansible.com/projects/ansible-core/devel/reference_appendices/release_and_maintenance.html |
+| Migración de templating 2.19 | https://docs.ansible.com/projects/ansible-core/2.19/porting_guides/porting_guide_core_2.19.html |
+| Migración 2.20 | https://docs.ansible.com/projects/ansible-core/2.20/porting_guides/porting_guide_core_2.20.html |
+| Artefacto ansible-core 2.20.10 | https://pypi.org/project/ansible-core/2.20.10/ |
+| Objectives EX294 | https://www.redhat.com/en/services/training/ex294-red-hat-certified-engineer-rhce-exam-red-hat-enterprise-linux |
+| AAP: elegir versión y método de instalación | https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/ |
+| AWX | https://ansible.readthedocs.io/projects/awx/en/latest/ |
+| AWX Operator | https://ansible.readthedocs.io/projects/awx-operator/en/latest/ |
+| Ansible Builder | https://ansible.readthedocs.io/projects/builder/en/latest/ |
+| Ansible Navigator | https://ansible.readthedocs.io/projects/navigator/ |
+| Ansible Runner | https://ansible.readthedocs.io/projects/runner/en/stable/ |
+| Event-Driven Ansible | https://ansible.readthedocs.io/projects/rulebook/en/latest/ |
+| Molecule | https://ansible.readthedocs.io/projects/molecule/ |
+| ansible-lint | https://ansible.readthedocs.io/projects/lint/ |
+| Collections y metadatos | https://galaxy.ansible.com/ |
+| Código ansible-core | https://github.com/ansible/ansible |
+| Linux System Roles | https://linux-system-roles.github.io/ |
+| Fedora | https://docs.fedoraproject.org/ |
+| RHEL: elegir versión | https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/ |
+| Podman y Quadlet | https://docs.podman.io/en/latest/ |
+| Buildah | https://github.com/containers/buildah |
+| Skopeo | https://github.com/containers/skopeo |
+| Kubernetes | https://kubernetes.io/docs/ |
+| OpenShift: elegir versión | https://docs.redhat.com/en/documentation/openshift_container_platform/ |
+| Terraform | https://developer.hashicorp.com/terraform/docs |
+| OpenTofu | https://opentofu.org/docs/ |
+
+Para networking consultar ansible.netcommon, ansible.utils y la collection
+del fabricante y versión de dispositivo seleccionados. Para cloud consultar
+la documentación del proveedor y la versión exacta de su collection. No
+atribuir a todos los módulos los estados o garantías de un módulo concreto.
+
+# 33. Matriz técnica y evidencias
+
+La base propuesta está definida en domain.md y profile.yaml. Su selección
+se apoya en la matriz oficial de Python y en la existencia del artefacto
+ansible-core 2.20.10; no certifica una ejecución completa del curso.
+Las collections y herramientas auxiliares se fijan tras resolver dependencias
+y probar el escenario. No inventar versiones de AAP, EE o componentes para
+rellenar una matriz incompleta. La variante RHCE sigue la versión del examen.
+
+En el bloque 16 añadir documentación de Navigator, consumo de EE y Podman.
+En los bloques 8, 30–33 y 38 consultar guías de migración y documentación de
+templating antes de usar interfaces internas o etiquetar plantillas como
+confiables. No tratar internals de ansible-core como API pública estable.

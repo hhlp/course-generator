@@ -1,5 +1,7 @@
 GIT — LEARNING PATH DE 0 A EXPERTO EN PROFUNDIDAD
 Progresión: fundamentos → colaboración → avanzado → internals → seguridad → ingeniería experta
+Guía: el bloque 3 introduce el mapa de .git por observación; sus laboratorios avanzados se retoman tras los bloques de operaciones, internals y recuperación.
+Numeración: X.Y identifica lecciones; X.Y.Z amplía la lección padre y no sustituye sus prerrequisitos.
 
 BLOQUE 0 — INTRODUCCIÓN AL CONTROL DE VERSIONES Y GIT
 0.1 Historia y objetivos
@@ -22,6 +24,8 @@ BLOQUE 1 — INSTALACIÓN Y CONFIGURACIÓN PROFESIONAL
 1.8 Alias y funciones de shell
 1.9 Variables de entorno
 1.10 Configuración SSH y GPG
+1.11 Consultar configuración efectiva con --show-origin y --show-scope
+1.12 Comprobar capacidades y versión antes de opciones recientes
 
 BLOQUE 2 — MODELO DE REPOSITORIO Y TRES ÁRBOLES
 2.1 Working tree
@@ -36,75 +40,79 @@ BLOQUE 2 — MODELO DE REPOSITORIO Y TRES ÁRBOLES
 
 BLOQUE 3 — ANATOMÍA Y CICLO DE VIDA DE .GIT
 3.1 git init paso a paso y plantillas
-3.1.1 Condiciones de creación y comandos responsables
-3.1.2 Formato, inspección y cambios observables
-3.1.3 Borrado, riesgos, recuperación y laboratorio
+3.1.1 Identificar qué crea init y qué depende de plantillas y configuración
+3.1.2 Inspeccionar el estado inicial antes de add y del primer commit
+3.1.3 Recrear un repositorio efímero y documentar qué no recupera init
 3.2 Diferencia .git directorio archivo gitdir y repositorio bare
 3.3 HEAD y symbolic refs
 3.4 config y config.worktree
 3.5 description y archivos de metadatos
 3.6 index y stages
-3.6.1 Condiciones de creación y comandos responsables
-3.6.2 Formato, inspección y cambios observables
-3.6.3 Borrado, riesgos, recuperación y laboratorio
+3.6.1 Creación y actualización de index y entradas por stage: comandos y precondiciones
+3.6.2 Inspección de index y entradas por stage: formato y diferencias antes y después
+3.6.3 Eliminación y recuperación de index y entradas por stage: límites y laboratorio diferido
 3.7 objects loose y pack
-3.7.1 Condiciones de creación y comandos responsables
-3.7.2 Formato, inspección y cambios observables
-3.7.3 Borrado, riesgos, recuperación y laboratorio
+3.7.1 Creación y actualización de objetos loose y packs: comandos y precondiciones
+3.7.2 Inspección de objetos loose y packs: formato y diferencias antes y después
+3.7.3 Eliminación y recuperación de objetos loose y packs: límites y laboratorio diferido
 3.8 refs heads tags remotes
-3.8.1 Condiciones de creación y comandos responsables
-3.8.2 Formato, inspección y cambios observables
-3.8.3 Borrado, riesgos, recuperación y laboratorio
+3.8.1 Creación y actualización de referencias locales y remotas: comandos y precondiciones
+3.8.2 Inspección de referencias locales y remotas: formato y diferencias antes y después
+3.8.3 Eliminación y recuperación de referencias locales y remotas: límites y laboratorio diferido
 3.9 packed-refs y backend reftable
 3.10 logs y reflogs
 3.11 FETCH_HEAD y ORIG_HEAD
-3.11.1 Condiciones de creación y comandos responsables
-3.11.2 Formato, inspección y cambios observables
-3.11.3 Borrado, riesgos, recuperación y laboratorio
+3.11.1 Creación y actualización de FETCH_HEAD y ORIG_HEAD: comandos y precondiciones
+3.11.2 Inspección de FETCH_HEAD y ORIG_HEAD: formato y diferencias antes y después
+3.11.3 Eliminación y recuperación de FETCH_HEAD y ORIG_HEAD: límites y laboratorio diferido
 3.12 MERGE_HEAD MERGE_MSG y MERGE_MODE
-3.12.1 Condiciones de creación y comandos responsables
-3.12.2 Formato, inspección y cambios observables
-3.12.3 Borrado, riesgos, recuperación y laboratorio
+3.12.1 Creación y actualización de estado de merge: comandos y precondiciones
+3.12.2 Inspección de estado de merge: formato y diferencias antes y después
+3.12.3 Eliminación y recuperación de estado de merge: límites y laboratorio diferido
 3.13 CHERRY_PICK_HEAD REVERT_HEAD y sequencer
-3.13.1 Condiciones de creación y comandos responsables
-3.13.2 Formato, inspección y cambios observables
-3.13.3 Borrado, riesgos, recuperación y laboratorio
+3.13.1 Creación y actualización de estado de cherry-pick y revert: comandos y precondiciones
+3.13.2 Inspección de estado de cherry-pick y revert: formato y diferencias antes y después
+3.13.3 Eliminación y recuperación de estado de cherry-pick y revert: límites y laboratorio diferido
 3.14 REBASE_HEAD y rebase-merge rebase-apply
-3.14.1 Condiciones de creación y comandos responsables
-3.14.2 Formato, inspección y cambios observables
-3.14.3 Borrado, riesgos, recuperación y laboratorio
+3.14.1 Creación y actualización de estado de rebase: comandos y precondiciones
+3.14.2 Inspección de estado de rebase: formato y diferencias antes y después
+3.14.3 Eliminación y recuperación de estado de rebase: límites y laboratorio diferido
 3.15 COMMIT_EDITMSG y mensajes transitorios
 3.16 hooks y core.hooksPath
 3.17 info exclude y attributes
 3.18 worktrees y commondir
-3.18.1 Condiciones de creación y comandos responsables
-3.18.2 Formato, inspección y cambios observables
-3.18.3 Borrado, riesgos, recuperación y laboratorio
+3.18.1 Creación y actualización de metadatos compartidos y privados de worktrees: comandos y precondiciones
+3.18.2 Inspección de metadatos compartidos y privados de worktrees: formato y diferencias antes y después
+3.18.3 Eliminación y recuperación de metadatos compartidos y privados de worktrees: límites y laboratorio diferido
 3.19 modules y gitlinks
 3.20 rr-cache y rerere
 3.21 shallow y promisor objects
 3.22 commit-graph multi-pack-index y maintenance
 3.23 Comandos que crean modifican leen y eliminan cada elemento
-3.23.1 Condiciones de creación y comandos responsables
-3.23.2 Formato, inspección y cambios observables
-3.23.3 Borrado, riesgos, recuperación y laboratorio
+3.23.1 Construir la matriz: creadores, modificadores y lectores por comando
+3.23.2 Completar condiciones, formatos, eliminación y retención por artefacto
+3.23.3 Validar la matriz mediante estados antes y después y pruebas de recuperación
 3.24 Transacciones lockfiles y atomicidad
-3.24.1 Condiciones de creación y comandos responsables
-3.24.2 Formato, inspección y cambios observables
-3.24.3 Borrado, riesgos, recuperación y laboratorio
+3.24.1 Creación y ciclo de vida de locks; operaciones concurrentes
+3.24.2 Inspección de procesos y atomicidad de actualizaciones
+3.24.3 Distinguir locks activos de abandonados y recuperar con evidencia
 3.25 Inspección segura con git rev-parse --git-path
-3.25.1 Condiciones de creación y comandos responsables
-3.25.2 Formato, inspección y cambios observables
-3.25.3 Borrado, riesgos, recuperación y laboratorio
+3.25.1 Resolver index, objects y refs con --git-path y --git-common-dir
+3.25.2 Comparar rutas en bare, repositorio normal y worktree vinculado
+3.25.3 Laboratorio de resolución de rutas sin asumir que .git es un directorio
 3.26 Diagnóstico y recuperación de metadatos
-3.26.1 Condiciones de creación y comandos responsables
-3.26.2 Formato, inspección y cambios observables
-3.26.3 Borrado, riesgos, recuperación y laboratorio
-3.27 Laboratorio comparativo git add commit merge rebase fetch gc
-3.27.1 Condiciones de creación y comandos responsables
-3.27.2 Formato, inspección y cambios observables
-3.27.3 Borrado, riesgos, recuperación y laboratorio
-3.28 Laboratorio corrupción controlada y restauración
+3.26.1 Clasificar síntomas: index, refs, objetos y operación interrumpida
+3.26.2 Elegir inspección y recuperación según el artefacto y la evidencia
+3.26.3 Documentar límites de recuperación y derivar casos avanzados al bloque 60
+3.27 Laboratorio inicial add y commit; comparación merge rebase fetch gc al completar sus prerrequisitos
+3.27.1 Observar init add y commit en un repositorio efímero
+3.27.2 Retomar merge rebase y fetch tras estudiar sus comandos
+3.27.3 Comparar gc y restauración tras bloques de retención y forense
+3.28 Diseño del laboratorio de corrupción controlada; ejecución tras bloques 44 y 60
+3.29 Mapa inicial mínimo: HEAD config objects refs e index opcional
+3.30 AUTO_MERGE y MERGE_AUTOSTASH: condiciones y ciclo de vida; ampliar en conflictos
+3.31 Archivos persistentes, opcionales y transitorios según backend y versión
+3.32 Checkpoint de observación: posponer manipulación avanzada hasta sus prerrequisitos
 
 BLOQUE 4 — INICIALIZACIÓN CLONACIÓN Y ARCHIVOS
 4.1 git init
@@ -130,6 +138,8 @@ BLOQUE 5 — STAGING Y COMMITS
 5.9 Fechas y metadatos
 5.10 Commits vacíos
 5.11 Atomicidad
+5.12 Untracked vacío y directorios vacíos: qué puede registrar Git
+5.13 Trailers y coautoría; efectos sobre mensajes y trazabilidad
 
 BLOQUE 6 — HISTORIAL Y DIFERENCIAS
 6.1 git log
@@ -142,6 +152,11 @@ BLOQUE 6 — HISTORIAL Y DIFERENCIAS
 6.8 git shortlog
 6.9 git range-diff
 6.10 Revisiones y rangos
+6.11 Comparar snapshots: diff A B y diff A..B frente a rangos de log
+6.12 Triple punto: log A...B frente a diff A...B y merge-base
+6.13 git log -L y --follow: historia de líneas, renames y limitaciones
+6.14 Simplificación del historial por rutas: --full-history --simplify-merges y TREESAME
+6.15 git grep entre working tree, index y revisiones
 
 BLOQUE 7 — REFERENCIAS HEAD Y TAGS
 7.1 HEAD simbólico
@@ -160,10 +175,16 @@ BLOQUE 7 — REFERENCIAS HEAD Y TAGS
 7.14 Composición de operadores: HEAD^^, HEAD~2^2 y HEAD^2~3
 7.15 Peeling y tipos de objetos: ^{commit}, ^{tree}, ^{tag}, ^{object}, ^{}
 7.16 Conjuntos de commits: ^@, ^!, ^-, .. y ...
-7.17 Exclusiones y negaciones: ^rev, --not y --ancestry-path
+7.17 Exclusiones y negaciones de conjuntos: ^rev y --not
 7.18 Selectores de reflog: HEAD@{N}, @{u}, @{push} y fechas
 7.19 Resolución y validación: rev-parse, rev-list y cat-file
 7.20 Laboratorio: navegar de HEAD hacia atrás en historia lineal y merges
+7.21 HEAD antes del primer commit: rama unborn y errores de resolución
+7.22 HEAD~2 frente a HEAD^2: generaciones y posición de padre
+7.23 Distinguir HEAD@{1}, HEAD~1 y @{-1}; historial de movimientos y de checkout
+7.24 Objetos por ruta: rev:ruta y :ruta; entradas :1:ruta :2:ruta :3:ruta
+7.25 Validación con rev-parse --verify y separación de revisiones y rutas con --
+7.26 Laboratorio con predicción de hashes, resolución y comprobación por padres
 
 BLOQUE 8 — RAMAS
 8.1 git branch
@@ -199,6 +220,7 @@ BLOQUE 10 — IGNORADOS ATRIBUTOS Y POLÍTICAS DE ARCHIVO
 10.8 Merge drivers por atributos
 10.9 Export-ignore
 10.10 Archivos generados
+10.11 Atributos por precedencia, git check-attr y git add --renormalize
 
 BLOQUE 11 — LABORATORIO GIT LOCAL
 11.1 Crear repositorio desde cero
@@ -221,6 +243,9 @@ BLOQUE 12 — MERGE
 12.8 Merge --no-ff
 12.9 Merge --abort
 12.10 Análisis de resultados
+12.11 Fast-forward y --ff-only frente a --no-ff y --squash
+12.12 Comprobar orden de padres con show --no-patch --pretty=raw
+12.13 Estrategia ours frente a opción -X ours; efectos sobre el árbol resultante
 
 BLOQUE 13 — REBASE
 13.1 Modelo rebase
@@ -248,6 +273,10 @@ BLOQUE 14 — CONFLICTOS Y RESOLUCIÓN
 14.8 Rename conflicts
 14.9 rerere
 14.10 Estrategias de prevención
+14.11 diff3 y zdiff3: contexto del ancestro y lectura de marcadores
+14.12 Inspección con git diff AUTO_MERGE durante resolución con ort
+14.13 Modify/delete, add/add, binarios y conflicto archivo/directorio
+14.14 Validar ausencia de conflictos pendientes y continuar la operación correcta
 
 BLOQUE 15 — STASH
 15.1 git stash push
@@ -271,6 +300,9 @@ BLOQUE 16 — REMOTOS
 16.9 Push default
 16.10 Mirror y múltiples remotos
 16.11 Negociación y transferencia
+16.12 Clon independiente, mirror y alternates: dependencias y límites de backup
+16.13 Force-with-lease con valor esperado explícito y fetch en segundo plano
+16.14 remote HEAD, branch upstream y refs locales: diferencias y diagnóstico
 
 BLOQUE 17 — TRANSPORTE Y AUTENTICACIÓN
 17.1 SSH remotes
@@ -334,6 +366,8 @@ BLOQUE 22 — REFLOG Y RECUPERACIÓN
 22.6 Recuperar rebase
 22.7 Commits dangling
 22.8 Limitaciones de reflog
+22.9 Reflog local, datos sin commit y objetos podados: límites de recuperación
+22.10 Crear una referencia de rescate antes de nuevas operaciones destructivas
 
 BLOQUE 23 — CHERRY-PICK Y REVERT AVANZADO
 23.1 git cherry-pick
@@ -344,6 +378,8 @@ BLOQUE 23 — CHERRY-PICK Y REVERT AVANZADO
 23.6 git revert -m
 23.7 Revertir merge
 23.8 Backports seguros
+23.9 Elegir mainline y analizar padres antes de revertir un merge
+23.10 Revertir un merge y volver a integrar: efectos sobre futuros merges
 
 BLOQUE 24 — BISECT
 24.1 git bisect start
@@ -400,6 +436,8 @@ BLOQUE 29 — REPOSITORIOS PARCIALES
 29.6 Deepen unshallow
 29.7 Limitaciones de comandos
 29.8 Escalabilidad
+29.9 Sparse checkout frente a sparse index; cobertura y límites distintos
+29.10 Partial frente a shallow: ausencia de objetos frente a truncado de historia
 
 BLOQUE 30 — GIT LFS Y BINARIOS
 30.1 Git LFS arquitectura
@@ -419,6 +457,8 @@ BLOQUE 31 — PATCHES Y BUNDLES
 31.6 git request-pull
 31.7 Firmas y procedencia
 31.8 Laboratorio offline
+31.9 Bundles completos e incrementales: prerequisites y git bundle verify
+31.10 Qué no contiene un bundle: working tree, index, hooks y objetos externos
 
 BLOQUE 32 — REESCRITURA DE HISTORIA
 32.1 Riesgos de reescritura
@@ -428,6 +468,8 @@ BLOQUE 32 — REESCRITURA DE HISTORIA
 32.5 Mapeo de commits
 32.6 Coordinación de clones
 32.7 Verificación post-migración
+32.8 Incidente con secretos: revocar y rotar antes de limpiar historial
+32.9 Refs restantes, clones, forks, cachés y LFS tras una reescritura
 
 BLOQUE 33 — LABORATORIO AVANZADO
 33.1 Recuperación de commits
@@ -447,6 +489,7 @@ BLOQUE 34 — MODELO DE OBJETOS
 34.6 Content-addressed storage
 34.7 git cat-file
 34.8 Object traversal
+34.9 Git no almacena ramas dentro de commits ni renames como objetos propios
 
 BLOQUE 35 — INTEGRIDAD Y HASHES
 35.1 SHA-1
@@ -471,7 +514,7 @@ BLOQUE 36 — DAG Y ANCESTRY
 36.11 Rutas de ancestry, merge-base y commits alcanzables
 36.12 Diferencia entre recorrido del grafo y representación gráfica de ramas
 36.13 Laboratorio de DAG con merges, octopus y padres numerados
-36.8 Generaciones
+36.14 Generaciones y relación con commit-graph
 
 BLOQUE 37 — INDEX INTERNALS
 37.1 Formato del index
@@ -494,6 +537,7 @@ BLOQUE 38 — REFERENCIAS INTERNALS
 38.7 Transactions
 38.8 git update-ref
 38.9 Reftable
+38.10 git notes y refs/notes: metadatos y transferencia explícita
 
 BLOQUE 39 — PLUMBING
 39.1 git hash-object
@@ -558,6 +602,7 @@ BLOQUE 44 — GC Y MANTENIMIENTO
 44.7 Object retention
 44.8 Safe cleanup
 44.9 Recuperación antes de limpiar
+44.10 Retención frente a backup: objetos alcanzables, reflogs y expiración
 
 BLOQUE 45 — LABORATORIO PLUMBING
 45.1 Crear blob manual
@@ -588,6 +633,7 @@ BLOQUE 47 — FIRMAS Y VERIFICACIÓN
 47.7 Allowed signers
 47.8 Rotación de claves
 47.9 Políticas
+47.10 Firma válida frente a identidad confiable; verificación y política de confianza
 
 BLOQUE 48 — CREDENCIALES Y SECRETOS
 48.1 SSH keys
@@ -620,6 +666,11 @@ BLOQUE 50 — AUTOMATIZACIÓN CON SCRIPTS
 50.6 Idempotencia
 50.7 Mensajes de error
 50.8 Testing de hooks
+50.9 Salida estable con status --porcelain y formatos explícitos
+50.10 Delimitación NUL con -z y rutas con espacios, saltos de línea o guiones
+50.11 Códigos de salida y --quiet: distinguir diferencias de errores
+50.12 Separar opciones, revisiones y rutas; validar entradas no confiables
+50.13 Automatización reproducible sin depender de aliases ni mensajes traducidos
 
 BLOQUE 51 — GIT Y CI/CD
 51.1 GitHub Actions integración
@@ -699,6 +750,9 @@ BLOQUE 58 — SERVIDORES BARE
 58.6 Backups
 58.7 Replicación
 58.8 Retención
+58.9 Backup verificable de refs, objetos, configuración y hooks
+58.10 Objetos LFS y repositorios de submódulos: copias independientes
+58.11 Restauración en entorno aislado y comprobación de refs y objetos
 
 BLOQUE 59 — SERVICIOS Y HOSTING
 59.1 SSH server
@@ -718,6 +772,8 @@ BLOQUE 60 — FORENSE Y CORRUPCIÓN
 60.6 Pack corrupto
 60.7 Restauración desde clones
 60.8 Backups y pruebas
+60.9 Alternates ausentes y objetos promisor: diagnosticar antes de declarar corrupción
+60.10 Cambios sin commit: qué preservan y qué excluyen cada tipo de copia
 
 BLOQUE 61 — TROUBLESHOOTING EXPERTO
 61.1 Detached HEAD
@@ -767,3 +823,5 @@ BLOQUE 65 — PROYECTO FINAL GIT EXPERT ENGINEERING
 65.7 Optimización
 65.8 Auditoría
 65.9 Defensa final
+65.10 Informe de navegación: resolver ancestros y conjuntos en un DAG con merges
+65.11 Prueba de restauración y matriz documentada de cobertura del backup

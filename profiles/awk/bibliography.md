@@ -15,6 +15,9 @@ implementación y bibliografía didáctica.
 
 ### Learning AWK Programming
 
+Autor: Shiwang Kalkhanda. Packt, 2018.
+Ficha editorial: https://www.packtpub.com/en-us/product/learning-awk-programming-9781788391030
+
 Libro principal indicado para este PATH.
 
 Uso:
@@ -44,6 +47,9 @@ profundización.
 ## Segunda referencia principal
 
 ### sed & awk — Dale Dougherty, Arnold Robbins
+
+Segunda edición. O’Reilly, 1997. Mantener ambos autores correctamente.
+Ficha editorial: https://www.oreilly.com/library/view/sed-awk/1565922255/
 
 Referencia pedagógica clásica y transversal para estudiar AWK dentro del ecosistema Unix de procesamiento de texto y comprender su relación con `sed`.
 
@@ -483,3 +489,48 @@ La bibliografía debe permitir que el curso enseñe simultáneamente:
 
 sin mezclar estas capas ni presentar características específicas de GNU
 como parte universal del lenguaje.
+
+
+## Fuentes verificadas para la revisión técnica
+
+Fecha de consulta: 2026-10-16. Los enlaces fijan la fuente, no garantizan
+que el manual web coincida con la versión instalada. No se verificó el
+texto completo de los libros; no atribuirles capítulos ni cobertura
+exacta sin consultar la edición utilizada.
+
+| Fuente | Enlace | Uso |
+| --- | --- | --- |
+| POSIX.1-2024, Issue 8, awk | https://pubs.opengroup.org/onlinepubs/9799919799/utilities/awk.html | Baseline normativa moderna |
+| POSIX.1-2017, Issue 7, awk | https://pubs.opengroup.org/onlinepubs/9699919799/utilities/awk.html | Contraste con sistemas anteriores |
+| GNU Awk User’s Guide | https://www.gnu.org/software/gawk/manual/gawk.html | Implementación y capacidades GNU |
+| GNU awk: CSV | https://www.gnu.org/software/gawk/manual/html_node/Comma-Separated-Fields.html | --csv, registros y campos |
+| GNU awk: splitting por contenido | https://www.gnu.org/software/gawk/manual/html_node/Splitting-By-Content.html | FPAT y transición a CSV nativo |
+| GNU awk: salida CSV | https://www.gnu.org/software/gawk/manual/html_node/To-CSV-Function.html | Serialización separada de la lectura |
+| BWK awk | https://github.com/onetrueawk/awk | Implementación y pruebas comparativas |
+| mawk | https://invisible-island.net/mawk/ | Implementación y documentación |
+
+### Clasificaciones que requieren contexto
+
+Issue 8 incluye `nextfile`, `fflush()` y borrado completo con
+`delete array`. No etiquetarlos universalmente como extensiones GNU.
+Para portabilidad a Issue 7, consultar esa edición y comprobar motores.
+El soporte de `--csv` comienza en gawk 5.3; verificar que el binario
+objetivo lo ofrece. El manual web puede describir versiones posteriores.
+
+*Effective AWK Programming* y el manual GNU están relacionados: cuando
+sean la misma obra o documentación, cuentan como una fuente técnica,
+no como dos verificaciones independientes.
+
+### Mapa de refuerzo
+
+- Bloques 3–6 y 12–16: manual GNU y POSIX para campos, coerciones,
+  split, sustituciones, arrays y parámetros.
+- Bloques 18–21: manual GNU y POSIX para entrada y E/S; documentación
+  del shell para quoting y estados de pipelines.
+- Bloques 24 y 33: programas y mediciones reproducibles para joins,
+  cardinalidad y consumo de memoria, sin atribuir benchmarks a libros.
+- Bloques 32 y 44: norma declarada más pruebas en motores disponibles.
+- Bloque 42: documentación CSV del motor y fixtures con campos
+  multilínea; la serialización tiene pruebas propias.
+- Bloque 46: contratos y resultados de la suite, con capacidades y
+  versiones registradas.

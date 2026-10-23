@@ -101,3 +101,39 @@ Para comandos y opciones susceptibles de cambiar, contrastar con la versión vig
 
 ## Aplicación de referencias por lección
 Cada lección debe citar su referencia primaria concreta, la versión del software comprobada cuando corresponda y, en laboratorios, los manuales de comandos utilizados. Los libros existentes son referencias conceptuales, no sustitutos de la documentación técnica vigente.
+
+## Catálogo de referencias concretas por bloque
+
+Usar el manual correspondiente a la versión instalada. Los enlaces a documentación continua pueden cambiar; registrar en cada lección la versión y fecha consultadas. Las entradas anteriores de libros sirven de apoyo conceptual: verificar la edición de la copia utilizada antes de asignar capítulos, sin inventar paginación.
+
+| Bloques | Fuente primaria | Aplicación |
+| --- | --- | --- |
+| 2–11, 24, 32, 34, 36 | [OpenVPN Community Docs](https://openvpn.net/community-docs/) | Elegir manual y notas de versión. |
+| 2–11, 32, 34 | [Manual OpenVPN 2.6](https://openvpn.net/community-docs/community-articles/openvpn-2-6-manual.html) | Opciones y compatibilidad si se utiliza 2.6. |
+| 2–11, 32, 34 | [Manual OpenVPN 2.7](https://openvpn.net/community-docs/community-articles/openvpn-2-7-manual.html) | Contrastar diferencias si se utiliza 2.7; no asumir disponibilidad. |
+| 3, 24 | [Easy-RSA](https://easy-rsa.readthedocs.io/en/latest/) | CA, emisión y revocación. |
+| 1, 3, 5 | [OpenSSL Docs](https://docs.openssl.org/) | Seleccionar versión, x509, verify, ca y proveedores. |
+| 12–21, 33, 35 | [WireGuard Quick Start](https://www.wireguard.com/quickstart/) | Puesta en marcha y keepalive. |
+| 13, 33, 36 | [WireGuard Protocol & Cryptography](https://www.wireguard.com/protocol/) | Mensajes y temporizadores. |
+| 13, 33, 36 | [Whitepaper WireGuard](https://www.wireguard.com/papers/wireguard.pdf) | Diseño y modelo de seguridad. |
+| 14–21, 35 | [wg(8), fuente oficial](https://git.zx2c4.com/wireguard-tools/tree/src/man/wg.8) | Consultas, cambios de peers y salida con secretos. |
+| 14–22 | [wg-quick(8), fuente oficial](https://git.zx2c4.com/wireguard-tools/tree/src/man/wg-quick.8) | SaveConfig, strip, rutas, DNS y hooks. |
+| 20, 33 | [Network namespaces de WireGuard](https://www.wireguard.com/netns/) | Namespace de interfaz y socket UDP. |
+| 0, 6–7, 16–18, 29 | [Linux IP sysctl](https://docs.kernel.org/networking/ip-sysctl.html) | Forwarding, rp_filter y accept_ra. |
+| 7, 18 | [firewalld Docs](https://firewalld.org/documentation/) | Zonas, policies y persistencia. |
+| 7, 18, 29 | [nftables Wiki](https://wiki.nftables.org/) | Chains, hooks, conntrack y marks. |
+| 8, 19, 22 | [NetworkManager Reference](https://networkmanager.dev/docs/api/latest/) | Perfiles VPN/WireGuard, rutas y DNS. |
+| 10–11, 21, 26 | [journald.conf](https://www.freedesktop.org/software/systemd/man/latest/journald.conf.html) | Storage, límites y retención. |
+| 10–11, 21, 26 | [journalctl](https://www.freedesktop.org/software/systemd/man/latest/journalctl.html) | Consultas por unidad, boot y tiempo. |
+| 22 | [systemd-resolved](https://www.freedesktop.org/software/systemd/man/latest/systemd-resolved.service.html) | Resolver y routing DNS. |
+| 9, 34 | [Linux-PAM](https://www.linux-pam.org/) | Pila de autenticación y módulos. |
+| 9, 34 | [SSSD Docs](https://sssd.io/docs/) | PAM, proveedores y caché. |
+| 34 | [FreeIPA Docs](https://www.freeipa.org/page/Documentation) | Identidad central y políticas. |
+| 34 | [RFC 2865](https://www.rfc-editor.org/rfc/rfc2865) | Base RADIUS; complementar con documentación del servidor y transporte elegidos. |
+| 23 | [RFC 1191](https://www.rfc-editor.org/rfc/rfc1191), [RFC 8201](https://www.rfc-editor.org/rfc/rfc8201), [RFC 8899](https://www.rfc-editor.org/rfc/rfc8899) | PMTUD IPv4/IPv6 y datagram PLPMTUD. |
+| 26, 37 | [Prometheus Docs](https://prometheus.io/docs/introduction/overview/) | Métricas y alertas. |
+| 27 | [Ansible Docs](https://docs.ansible.com/), [Molecule](https://ansible.readthedocs.io/projects/molecule/) | Automatización y validación. |
+| 29 | [FRRouting Docs](https://docs.frrouting.org/en/latest/) | OSPF/BGP, filtrado y convergencia. |
+| 30 | [Keepalived Docs](https://www.keepalived.org/documentation.html) | VRRP; no confundir con replicación de sesiones VPN. |
+
+Para Fedora/RHEL, complementar con los manuales instalados y la documentación oficial de la versión concreta de la distribución, especialmente para paquetes, repositorios, políticas criptográficas, SELinux y unidades systemd. No asumir que Fedora y RHEL ofrecen las mismas versiones o componentes.

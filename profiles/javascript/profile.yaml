@@ -1,26 +1,30 @@
 ---
 course:
-  title: "Javascript — 0 a Experto en Profundidad"
-  language: "es"
+  title: JavaScript — 0 a Experto en Profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   runtime_focus: Node.js
   browser_focus: secundario
   specification: ECMAScript / ECMA-262
-  mode: "deep"
-
+  mode: deep
+  runtime_baseline: Node.js 24.x; registrar versión exacta de Node.js,
+    npm y V8
+  specification_baseline: ECMAScript 2025 / ECMA-262, 16th edition
+  modern_extensions: Verificar estado normativo y soporte por versión
+    del runtime
 pedagogy:
-  style: profundo, práctico, progresivo y orientado a comprensión real del
-    lenguaje y runtime
+  style: profundo, práctico, progresivo y orientado a comprensión real
+    del lenguaje y runtime
   lesson_structure:
     required_opening: 🎯 OBJETIVO
     required_closing: 🧠 QUÉ DEBES RECORDAR
     optional_sections:
-      - 📚 LECTURA
       - 🧪 Laboratorio/ejemplos
       - ⚠️ Errores frecuentes
       - 💡 Idea importante
+    required_reading: 📚 LECTURA
   closing_requirements:
     min_points: 3
     max_points: 7
@@ -60,7 +64,6 @@ lesson_structure:
     heading: 🧠 QUÉ DEBES RECORDAR
     min_items: 3
     max_items: 7
-
 content:
   code_examples: true
   runnable_examples_preferred: true
@@ -79,7 +82,6 @@ content:
     - objects
     - prototypes
     - classes
-    - async
   async_topics:
     - callbacks
     - promises
@@ -136,14 +138,36 @@ content:
       - testing
     avoid_reteaching_regex_theory: true
     verify_runtime_support: true
-
+  compatibility_policy:
+    record_exact_versions: true
+    verify_per_feature: true
+    distinguish_standard_draft_and_proposal: true
+    unsupported_features_require_explicit_alternative: true
+    do_not_assume_all_minor_versions_equal: true
+  async_diagnostics:
+    preferred:
+      - AsyncLocalStorage
+      - Diagnostics Channel
+    low_level_async_hooks: Diagnóstico avanzado; explicar limitaciones
+      oficiales
+  additional_required_topics:
+    - automatic_semicolon_insertion
+    - pass_by_value_and_object_identity
+    - same_value_zero
+    - iterator_closing_and_helpers
+    - promise_resolution_and_thenables
+    - unhandled_rejections
+    - json_serialization
+    - incremental_text_decoding
+    - explicit_resource_management
+    - sparkplug_maglev_turboshaft
 bibliography:
   principal:
     - 'JavaScript: The Definitive Guide, 7th Edition — David Flanagan'
     - Head First JavaScript Programming, Second Edition — Eric Freeman,
       Elisabeth Robson
-    - 'JavaScript Cookbook: Programming the Web, 3rd Edition — Adam D. Scott,
-      Matthew MacDonald et al.'
+    - 'JavaScript Cookbook: Programming the Web, 3rd Edition — Adam
+      D. Scott, Matthew MacDonald, Shelley Powers'
   conceptual_depth:
     - title: You Don't Know JS Yet
       author: Kyle Simpson
@@ -158,24 +182,37 @@ bibliography:
         - objects
         - prototypes
         - classes
-        - async
       normative_authority: false
+      volumes:
+        - title: Get Started
+          status: published
+        - title: Scope & Closures
+          status: published
+        - title: Objects & Classes
+          status: stable_draft_in_The_Unbooks
+        - title: Types & Grammar
+          status: rough_draft_in_The_Unbooks
+      excluded_cancelled_volumes:
+        - Sync & Async
+        - ES.Next & Beyond
   concurrency:
-    - 'Multithreaded JavaScript: Concurrency Beyond the Event Loop —
-      Thomas Hunter II, Bryan English'
+    - 'Multithreaded JavaScript: Concurrency Beyond the Event Loop
+      — Thomas Hunter II, Bryan English'
   ecosystem:
     - JavaScript Everywhere — Adam D. Scott
   normative:
-    - ECMA-262
-    - TC39
-    - Node.js official documentation
-    - MDN Web Docs
+    - ECMA-262, 16th edition (ECMAScript 2025)
+    - ECMA-402
+    - 'TC39: estado de extensiones posteriores'
   applied_big_o_regex:
     - ECMA-262 (Array, Map, Set, String, RegExp)
     - MDN Web Docs (RegExp, String and collections)
     - Node.js official documentation (perf_hooks, Inspector, profiling)
     - V8 official technical documentation
-
+  runtime:
+    - Node.js 24.x official documentation
+  reference:
+    - 'MDN Web Docs: referencia complementaria'
 source_policy:
   normative_precedence:
     - ECMA-262
@@ -186,7 +223,6 @@ source_policy:
   exact_chapter_or_page_references_only_when_verified: true
   do_not_attribute_unverified_content_to_book_volumes: true
   exclude_regex_path_specialist_books: true
-
 assessment:
   require_reasoning: true
   require_debugging: true
@@ -204,3 +240,36 @@ assessment:
     - security
     - big_o_applied
     - regexp_api_and_redos
+  intermediate_project_blocks:
+    - 5
+    - 12
+    - 14
+    - 18
+    - 20
+  lab_policy: Obligatorios en temas prácticos; no en cada lección individual
+  final_project_block: 30
+  final_rubric:
+    correctness: 25
+    design_and_explanation: 15
+    testing: 20
+    resources_and_concurrency: 15
+    measurement_and_complexity: 10
+    security: 10
+    reproducibility_and_documentation: 5
+  minimum_score: 80
+  critical_correctness_or_security_failures_must_be_fixed: true
+progression:
+  preserve_block_ids: true
+  block_count: 31
+  deferred_practice:
+    regex_streams: '6.38 y 6.44: práctica en Bloque 18'
+    regex_benchmarks: '6.39–6.40: práctica en Bloque 26'
+    regex_fuzzing: '6.42: práctica en Bloque 20'
+    async_iteration: '11.13–11.15: práctica tras async/await en Bloque
+      14'
+    top_level_await: '12.14: segunda pasada después del Bloque 14'
+    shared_memory: Antes de 15.35–15.42, estudiar representación y
+      vistas del Bloque 17
+  topic_ownership:
+    coordination_and_atomics: 15
+    binary_layout_and_views: 17

@@ -16,7 +16,14 @@
 0.15 Prepositions review
 0.16 Building longer sentences
 0.17 Linking ideas: and, but, because, so, although
-0.18 B1 transition checkpoint
+0.18 Grammatical levels: word, phrase, clause and sentence — foundations
+0.19 Phrase heads and dependents: NP, VP, AdjP, AdvP and PP — introduction
+0.20 Grammatical functions: subject, objects and complements — introduction
+0.21 Complements, modifiers and adjuncts — practical first distinctions
+0.22 Finite and non-finite clauses — first recognition
+0.23 Main and subordinate clauses: coordination and embedding — introduction
+0.24 Form vs function: a consistent framework for grammatical analysis
+0.25 B1 transition checkpoint
 
 1. Present time
 1.1 Present continuous: I am doing
@@ -137,10 +144,10 @@
 8.8 Third conditional
 8.9 if I had known...
 8.10 Mixed time relationships: introduction
-8.11 I wish I knew...
-8.12 I wish I had known...
-8.13 wish + past
-8.14 wish + past perfect
+8.11 I wish I knew...: form and present unreal meaning
+8.12 I wish I had known...: form and past regret
+8.13 wish + past: time reference, be/were and contrast with hope
+8.14 wish + past perfect: contrast with wish + past and error correction
 8.15 wish + would
 8.16 if vs wish
 8.17 Conditional structures in context
@@ -466,17 +473,17 @@
 25.10 Phrasal verbs with on
 25.11 Phrasal verbs with off I
 25.12 Phrasal verbs with off II
-25.13 Phrasal verbs with up
+25.13 Phrasal verbs with up: literal movement and particle position
 25.14 Phrasal verbs with down
-25.15 Phrasal verbs with up I
-25.16 Phrasal verbs with up II
+25.15 Phrasal verbs with up I: completion and change of state
+25.16 Phrasal verbs with up II: separability, pronouns and structural contrasts
 25.17 Phrasal verbs with away
 25.18 Phrasal verbs with back
 25.19 Literal vs idiomatic meaning
 25.20 Particle meaning
 25.21 Phrasal-verb consolidation
 
-26. B1 grammar integration
+26. B1 grammar integration — core assessment and extension review
 26.1 Present vs past systems
 26.2 Present perfect vs past
 26.3 Present perfect simple vs continuous
@@ -485,7 +492,7 @@
 26.6 Modal verbs: ability, possibility and permission
 26.7 Modal verbs: obligation, necessity and advice
 26.8 First and second conditionals
-26.9 Passive voice
+26.9 Passive voice: core forms; reporting passives as extension review
 26.10 Reported speech
 26.11 Questions and auxiliary verbs
 26.12 Gerunds and infinitives
@@ -496,7 +503,7 @@
 26.17 Conjunctions
 26.18 Prepositions
 26.19 Phrasal verbs
-26.20 B1 grammar checkpoint
+26.20 B1 grammar checkpoint: core targets assessed separately from extensions
 
 27. B2 tense and aspect — system, meaning and viewpoint
 27.1 Tense vs aspect
@@ -955,9 +962,9 @@
 39.25 Multi-word verb error analysis
 39.26 Multi-word verb consolidation
 
-40. B2 grammatical structure — word, phrase, clause and sentence
-40.1 Levels of grammatical structure: word → phrase → clause → sentence
-40.2 Constituent: introduction and identification
+40. B2 grammatical structure — synthesis of word, phrase, clause and sentence
+40.1 Levels of grammatical structure: word → phrase → clause → sentence — integrated review
+40.2 Constituents: identification, boundaries and integrated analysis
 40.3 Phrase: definition and boundaries
 40.4 Phrase head and dependents
 40.5 Noun phrase (NP)
@@ -982,31 +989,32 @@
 40.24 S + V + A
 40.25 S + V + IO + DO
 40.26 S + V + O + C
-40.27 Finite vs non-finite clauses
-40.28 Main vs subordinate clauses
-40.29 Declarative clauses
-40.30 Interrogative clauses
-40.31 Imperative clauses
-40.32 Relative clauses
-40.33 Conditional clauses
-40.34 Time, reason, purpose, result and concession clauses
-40.35 that-clauses
-40.36 wh-clauses
-40.37 to-infinitive clauses
-40.38 -ing clauses
-40.39 -ed clauses
-40.40 Clause embedding
-40.41 Clause complementation
-40.42 Clause reduction
-40.43 Coordination vs subordination
-40.44 Combining phrases and clauses into complex sentences
-40.45 Sentence decomposition: sentence → clauses → phrases → words
-40.46 Sentence construction: words → phrases → clauses → sentence
-40.47 Structural transformations
-40.48 Structural ambiguity: B2 introduction
-40.49 Complex grammar error analysis
-40.50 B2 grammatical analysis laboratory
-40.51 Complex grammar consolidation
+40.27 S + V + O + A: obligatory locative/directional complements
+40.28 Finite vs non-finite clauses
+40.29 Main vs subordinate clauses
+40.30 Declarative clauses
+40.31 Interrogative clauses
+40.32 Imperative clauses
+40.33 Relative clauses
+40.34 Conditional clauses
+40.35 Time, reason, purpose, result and concession clauses
+40.36 that-clauses
+40.37 wh-clauses
+40.38 to-infinitive clauses
+40.39 -ing clauses
+40.40 -ed clauses
+40.41 Clause embedding
+40.42 Clause complementation
+40.43 Clause reduction
+40.44 Coordination vs subordination
+40.45 Combining phrases and clauses into complex sentences
+40.46 Sentence decomposition: sentence → clauses → phrases → words
+40.47 Sentence construction: words → phrases → clauses → sentence
+40.48 Structural transformations
+40.49 Structural ambiguity: B2 introduction
+40.50 Complex grammar error analysis
+40.51 B2 grammatical analysis laboratory
+40.52 Complex grammar consolidation
 
 41. Final B1 → B2 grammar integration
 41.1 Present tense system

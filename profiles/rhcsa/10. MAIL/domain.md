@@ -98,3 +98,95 @@ El curso aborda seguridad desde una perspectiva defensiva y operacional: evitar 
 
 ## Resultado final
 El estudiante debe ser capaz de recibir una incidencia como «el correo no llega», «el mensaje queda deferred», «SASL falla», «DKIM no valida» o «el destinatario rechaza por DMARC» y recorrer sistemáticamente DNS, red, TLS, SMTP, autenticación, queue, entrega, mailbox, políticas del dominio y logs hasta identificar la causa raíz.
+
+## Secuencia y variantes de identidad
+Se mantiene toda la cobertura original y se reorganiza la secuencia: Postfix y
+SASL, TLS, IMAP, Dovecot, almacenamiento e integración LMTP preceden a Sieve y
+al bloque de IAM. Autenticación SMTP de usuarios y autenticación del cliente
+Postfix hacia un smarthost se enseñan por separado.
+
+En la variante autónoma se estudian usuarios locales y virtuales. En la variante
+centralizada los usuarios humanos y sus credenciales se administran en IAM.
+Mail consume las identidades y mantiene sus datos operativos: mensajes, índices,
+reglas Sieve, ACL y metadatos del buzón. Una cuenta técnica vmail no representa
+una nueva fuente de identidades humanas.
+
+## Contrato entre IAM y Mail
+Documentar origen, formato, propietario, consulta y actualización de: login,
+dirección principal, aliases, grupos, habilitación de correo, UID/GID, home,
+ruta y cuota. Un atributo puede resolverse desde IAM o una política Mail
+explícita; no se supone que FreeIPA proporcione un esquema completo de buzones.
+Las búsquedas LDAP se limitan con filtros, ACL y cuenta de servicio de sólo
+lectura. No se presupone acceso a hashes de contraseñas del proveedor.
+
+Distinguir tres diseños: autenticación con contraseña por PAM/SSSD; consultas o
+binds LDAP protegidos; autenticación Kerberos/GSSAPI con tickets y clientes
+compatibles. GSSAPI sigue necesitando userdb para resolver el buzón. Verificar
+principals imap/smtp, keytabs, permisos, resolución DNS y sincronización horaria.
+PAM no sustituye userdb. HBAC sólo se aplica donde el servicio PAM y la política
+lo integren y se haya comprobado el resultado.
+
+Autenticar no habilita automáticamente acceso a Mail ni autoriza cualquier
+remitente. Enseñar habilitación por grupo/atributo, MAIL FROM frente a identidad
+SASL y política separada del encabezado From. Las ACL de buzones compartidos no
+equivalen al permiso para enviar como otra dirección.
+
+En altas y bajas verificar primer acceso, aprovisionamiento del directorio del
+buzón, revocación de nuevas sesiones, sesiones existentes, cachés y retención.
+Ante caída de IAM probar por separado SMTP AUTH, IMAP, consulta de destinatarios
+y entrega LMTP. No asumir que la caché SSSD cubre LDAP directo o GSSAPI; distinguir
+error temporal de backend de credenciales inválidas o destinatario inexistente.
+
+## Compatibilidad y actualización
+Registrar versiones y características compiladas antes de aplicar ejemplos.
+Dovecot 2.3 y 2.4 requieren ejemplos diferenciados: mail_location en 2.3 frente
+a mail_driver/mail_path y otros ajustes en 2.4. Enseñar los parámetros de versión
+de configuración y almacenamiento exigidos por 2.4. No mezclar plugins ni
+configuraciones entre ramas sin una validación explícita.
+
+En Dovecot CE 2.4 se retiraron replicator y Director. doveadm sync/backup sirve
+para sincronización y migración; no constituye por sí solo HA automática.
+Estudiar HA con almacenamiento y consistencia, fencing, pruebas de pérdida de
+nodo y plan de reversión según arquitectura soportada. Múltiples MX no replican
+la cola de un servidor que ya aceptó un mensaje.
+
+DMARC usa RFC 9989, 9990 y 9991 como referencias actuales, manteniendo RFC 7489
+para compatibilidad histórica. Tratar pct como histórico; estudiar descubrimiento
+de política, np, psd y t, informes y diferencias de implementación.
+
+## Funciones de buzón y filtrado
+Incluir Pigeonhole/Sieve, ejecución durante LMTP/LDA, ManageSieve sobre TLS,
+reglas globales/personales, vacaciones, pruebas y diagnóstico. Incluir namespaces,
+buzones compartidos, ACL y validación de permisos con identidades distintas.
+Rspamd requiere instalación, integración milter, configuración validada,
+dependencias por módulo, scoring, aprendizaje y tratamiento de falsos positivos.
+Elegir un responsable de firma DKIM entre OpenDKIM y Rspamd cuando se solapen.
+
+## Laboratorio privado reproducible
+Topología mínima: DNS interno, servidor Postfix/Dovecot, cliente y segundo MTA
+para intercambio controlado. IAM se añade en una instancia separada para la
+variante centralizada. Usar red privada, mail.test y peer.test, registros directos,
+inversos, MX y TXT internos, CA de laboratorio y reloj sincronizado.
+
+La ruta privada permite probar SMTP, Submission, IMAP, LMTP, SPF, DKIM, DMARC,
+antispam, Sieve, ACL, fallos IAM y recuperación con receptores bajo control.
+No demuestra reputación ni aceptación por proveedores públicos. La extensión
+pública requiere dominio delegado, PTR gestionable, conectividad SMTP y
+certificados adecuados; evaluar estas condiciones antes de esa variante.
+
+Cada laboratorio debe proporcionar al generar las lecciones: inventario y
+versiones, archivos de configuración completos con rutas, comandos por host,
+validación previa a recarga, pruebas positivas/negativas, logs esperados,
+criterios de éxito, limpieza y reversión. Estos cuatro archivos definen el curso;
+no son por sí mismos scripts de despliegue ni configuraciones ejecutables.
+
+## Evidencia mínima del proyecto
+- Mensaje trazado de Submission a IMAP y entre dos MTA.
+- Relay anónimo externo bloqueado y destinatario inexistente rechazado a tiempo.
+- Usuario autenticado sin permiso Mail y remitente no autorizado denegados.
+- Alta y baja centralizadas sin contraseñas humanas duplicadas en Mail.
+- Cuota, regla Sieve y ACL de buzón compartido verificadas.
+- Caída IAM y del filtro con comportamiento temporal y recuperación documentados.
+- Backup restaurado con mensajes y metadatos comprobados.
+- Prueba de fallo tras aceptación SMTP y localización del mensaje aceptado.
+- Matriz de versiones, configuración efectiva, runbook y plan de reversión.

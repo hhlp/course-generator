@@ -1,10 +1,10 @@
 ---
 course:
-  title: "DHCP 0 → Experto en profundidad"
-  language: "es"
+  title: DHCP 0 → Experto en profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   platform:
     primary:
       - Fedora
@@ -12,6 +12,11 @@ course:
       - Linux
     dhcp_implementation:
       - ISC Kea
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
 
 objectives:
   - comprender DHCPv4 en profundidad
@@ -35,19 +40,17 @@ teaching:
   troubleshooting_first_class: true
   labs_required: true
   packet_analysis: true
-
 lesson_structure:
-  start: "🎯 OBJETIVO"
+  start: 🎯 OBJETIVO
   recommended_sections:
-    - "Conceptos"
-    - "Ejemplos"
-    - "🧪 Laboratorio"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-    - "Troubleshooting"
-    - "Logs"
-  end: "🧠 QUÉ DEBES RECORDAR"
-
+    - Conceptos
+    - Ejemplos
+    - 🧪 Laboratorio
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+    - Troubleshooting
+    - Logs
+  end: 🧠 QUÉ DEBES RECORDAR
 core_topics:
   - DHCPv4
   - DHCPv6
@@ -65,7 +68,11 @@ core_topics:
   - troubleshooting
   - security
   - observability
-
+  - client classification
+  - Lease File Cleanup
+  - SQL backend operations
+  - backup and restore
+  - capacity testing
 logging:
   required: true
   topics:
@@ -77,7 +84,6 @@ logging:
     - file logging
     - log rotation
     - log correlation
-
 troubleshooting:
   required: true
   methodology:
@@ -107,7 +113,6 @@ troubleshooting:
     - jq
     - curl
     - dig
-
 labs:
   environment: isolated
   public_access_required: false
@@ -127,9 +132,28 @@ labs:
     - SELinux diagnostics
     - relay failure
     - HA failure
-
+    - client classification
+    - LFC maintenance
+    - PostgreSQL backend
+    - backup restoration
+    - load testing
+    - RA missing
+    - IA_PD routing
+    - CONFIRM and Rapid Commit
+  required_evidence:
+    - topology and versions
+    - complete configuration
+    - commands and expected results
+    - positive and negative verification
+    - logs and PCAP
+    - cleanup and rollback
+  progression:
+    - single segment
+    - two subnets with relay
+    - HA pair
+    - SQL backend and IA_PD router
 next_path:
-  name: "DHCP + DNS Integration"
+  name: DHCP + DNS Integration
   topics:
     - DDNS
     - Kea DHCP-DDNS
@@ -138,3 +162,82 @@ next_path:
     - reverse updates
     - TSIG
     - integration troubleshooting
+revision:
+  date: '2026-10-23'
+  preserve_existing_lesson_ids: true
+  study_order:
+    - 0-10
+    - '25'
+    - 11-24
+  protocol_reference: RFC 9915
+  historical_reference: RFC 8415
+  ia_ta: historical_obsolete
+version_policy:
+  record_installed_versions: true
+  manual_matches_installed_version: true
+  discover_packages_services_paths: true
+  control_api:
+    - 'Kea 3.0: direct API; Control Agent deprecated'
+    - 'Kea 3.2: Control Agent removed'
+    - 'Older versions: compatibility itinerary'
+  configuration_validation:
+    - Kea parser validation
+    - Extended checks when supported
+    - Runtime and packet verification
+  json_note: jq checks strict JSON only; Kea configuration can contain comments
+service_relationships:
+  iam_required: false
+  dhcp_identity_consumer: false
+  host_admin_iam: optional and independent
+  reservations_are_authentication: false
+  dns: Advertise resolvers; DDNS in the next path
+  time: Advertise supported time options; verify client behavior
+  ddns_tsig: Authenticates DNS updater, not DHCP clients
+advanced_practice:
+  classification:
+    - expressions
+    - evaluation order
+    - pools and options
+    - shared networks
+    - positive and negative tests
+  persistence:
+    - memfile
+    - LFC
+    - consistent backup
+    - isolated restore
+  sql:
+    - PostgreSQL primary lab
+     - MySQL or MariaDB alternative
+    - schema version
+    - least privilege
+    - failure recovery
+    - migration tools supported by installed version
+  ha:
+    - lease replication versus configuration distribution
+    - process failure
+    - host failure
+    - network partition
+    - recovery verification
+  performance:
+    - perfdhcp in isolation
+    - offered and answered rate
+    - loss and latency
+    - multithreading
+    - queues
+    - backend bottlenecks
+assessment:
+  measurable_acceptance: true
+  rpo_rto_exercise: true
+  final_project_uses_all_required_topics: true
+  deliverables:
+    - configuration
+    - inventory
+    - packet captures
+    - metrics
+    - runbooks
+    - recovery report
+scope_notes:
+  - DHCP plus DNS remains a separate path
+  - These files specify a course; they are not executable deployment scripts
+  - IPv6 default route comes from RA
+  - Administration IAM does not change DHCP client assignment

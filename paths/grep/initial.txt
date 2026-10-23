@@ -55,6 +55,9 @@
 1.24 grep -o
 1.25 combinar opciones
 1.26 laboratorio: búsquedas básicas sobre archivos reales
+1.27 grep -m/--max-count: limitar líneas seleccionadas por archivo
+1.28 grep -s/--no-messages frente a redirigir stderr
+1.29 interacciones de -v, -c y -o: líneas seleccionadas frente a coincidencias
 
 2. Coincidencias y límites
 
@@ -109,6 +112,7 @@
 3.29 backreferences
 3.30 \1, \2, etc.
 3.31 laboratorio BRE
+3.32 extensiones GNU en BRE: \|, \+ y \? frente a sintaxis POSIX
 
 4. ERE — Extended Regular Expressions
 
@@ -160,6 +164,8 @@
 6.11 listas blancas
 6.12 listas negras
 6.13 laboratorio: motor de clasificación por patrones
+6.14 archivo de patrones vacío frente a patrón vacío: cero patrones frente a una cadena vacía
+6.15 OR entre patrones frente a AND entre condiciones sobre una línea
 
 7. Contexto de las coincidencias
 
@@ -215,6 +221,7 @@
 9.13 salida destinada a scripts
 9.14 por qué no parsear salida coloreada
 9.15 laboratorio
+9.16 grep --line-buffered: latencia de salida frente a rendimiento
 
 10. Archivos binarios
 
@@ -246,6 +253,9 @@
 11.10 pipelines NUL-safe
 11.11 diseño robusto de scripts
 11.12 laboratorio con nombres de archivo adversos
+11.13 grep -z/--null-data: registros de entrada y salida delimitados por NUL
+11.14 -Z frente a -z: nombres de archivo frente a registros de contenido
+11.15 grep -z con datos sin NUL: tamaño del registro y consumo de memoria
 
 12. grep + shell
 
@@ -266,6 +276,10 @@
 12.15 funciones shell
 12.16 scripts robustos
 12.17 laboratorio: biblioteca Zsh para búsquedas
+12.18 grep -q: salida anticipada y estado 0 incluso ante ciertos errores
+12.19 SIGPIPE del productor al cerrar grep -q y consecuencias con pipefail
+12.20 distinguir ausencia de coincidencias de fallo: preservar y comprobar el estado
+12.21 transportar listas de archivos en arrays o streams NUL sin command substitution
 
 13. grep en pipelines Unix
 
@@ -310,6 +324,8 @@
 14.14 tamaños
 14.15 búsqueda compleja combinando metadata y contenido
 14.16 laboratorio
+14.17 xargs -0 -r: evitar ejecutar grep sin archivos en GNU/Linux
+14.18 propagación de errores y estados agregados de find -exec y xargs
 
 15. grep + sed + AWK
 
@@ -349,6 +365,8 @@
 16.18 limitaciones de grep -P
 16.19 portabilidad
 16.20 laboratorio PCRE
+16.21 grep -P -z: búsqueda entre líneas, disponibilidad y límites de memoria
+16.22 semántica de \d y clases POSIX frente a rg -P y PCRE2: verificar la integración
 
 17. Locale, Unicode y caracteres
 
@@ -367,6 +385,9 @@
 17.13 efectos sobre rendimiento
 17.14 búsqueda byte-oriented frente a character-oriented
 17.15 laboratorio
+17.16 CRLF: retorno de carro y efecto sobre anclas y resultados
+17.17 BOM y UTF-16: reconocer la codificación antes de buscar
+17.18 normalización Unicode NFC/NFD: equivalencia visual frente a coincidencia textual
 
 18. Rendimiento de GNU grep
 
@@ -427,6 +448,8 @@ PARTE II — RIPGREP
 20.16 rg -l
 20.17 rg --files-without-match
 20.18 laboratorio
+20.19 rg --count-matches frente a -c: coincidencias frente a líneas
+20.20 rg -q/--quiet y -m/--max-count: existencia y límites
 
 21. Regex en ripgrep
 
@@ -480,6 +503,8 @@ PARTE II — RIPGREP
 23.14 por qué rg parece "no encontrar" algo
 23.15 diagnosticar reglas de ignore
 23.16 laboratorio dentro de un repositorio Git
+23.17 rg --debug y --trace: investigar exclusiones sin asumir un formato estable
+23.18 paths explícitos frente a recorrido: verificar excepciones a reglas de ignore
 
 24. Globs con ripgrep
 
@@ -526,6 +551,8 @@ PARTE II — RIPGREP
 26.9 dispositivos
 26.10 riesgos de búsquedas indiscriminadas
 26.11 laboratorio
+26.12 rg --encoding y --no-encoding: transcodificación y búsqueda de bytes
+26.13 BOM, UTF-16 y CRLF: experimentos con archivos equivalentes
 
 27. Contexto y salida con rg
 
@@ -543,6 +570,9 @@ PARTE II — RIPGREP
 27.12 colores
 27.13 --color
 27.14 laboratorio
+27.15 rg -0/--null: terminación NUL para nombres de archivo
+27.16 rg --line-buffered y --block-buffered: salida interactiva y pipelines
+27.17 rg --stats: interpretar estadísticas sin confundirlas con resultados
 
 28. Multiline con ripgrep
 
@@ -601,6 +631,8 @@ PARTE II — RIPGREP
 31.11 riesgos de cambiar defaults
 31.12 scripts reproducibles frente a configuración personal
 31.13 laboratorio: crear configuración propia
+31.14 rg --no-config: aislar la configuración personal en scripts y benchmarks
+31.15 registrar versión, locale, directorio de trabajo y reglas ignore efectivas
 
 32. ripgrep en proyectos de código
 
@@ -678,6 +710,8 @@ PARTE II — RIPGREP
 35.14 zgrep
 35.15 rotación de logs
 35.16 laboratorio Fedora
+35.17 rg -z/--search-zip frente a grep -z: compresión frente a delimitación NUL
+35.18 filtrado nativo de journalctl antes de buscar texto: conservar contexto útil
 
 36. Investigación del sistema Fedora
 
@@ -778,6 +812,8 @@ PARTE II — RIPGREP
 40.18 rg PCRE2
 40.19 interpretar resultados
 40.20 laboratorio completo
+40.21 comprobar igualdad de resultados antes de comparar duraciones
+40.22 medir con rg --no-config y declarar el paralelismo utilizado
 
 41. Robustez y casos extremos
 
@@ -799,6 +835,8 @@ PARTE II — RIPGREP
 41.16 exit status
 41.17 scripts fiables
 41.18 laboratorio adversarial
+41.19 patrón vacío y patrones que no consumen caracteres: efectos sobre -o
+41.20 fixtures reproducibles para errores, NUL, CRLF, codificación y líneas enormes
 
 42. Automatización avanzada
 
@@ -872,7 +910,7 @@ PARTE II — RIPGREP
 45.9 SIMD
 45.10 complejidad temporal
 45.11 complejidad espacial
-45.12 Unicode y automatización
+45.12 Unicode y autómatas
 45.13 por qué diferentes motores tienen diferentes capacidades
 45.14 seguridad frente a regex patológicas
 45.15 laboratorio experimental
@@ -895,6 +933,10 @@ PARTE II — RIPGREP
 46.14 estadísticas
 46.15 navegación entre resultados
 46.16 laboratorio: buscador programático
+46.17 JSON: variantes text y bytes en rutas y contenido; decodificación base64
+46.18 submatches y offsets de bytes frente a posiciones de caracteres
+46.19 consumo incremental, errores y estado final del proceso rg
+46.20 invocar rg con argumentos separados: evitar concatenar comandos del shell
 
 47. Proyecto final — grep/rg search debugger
 
@@ -929,3 +971,6 @@ PARTE II — RIPGREP
 47.29 ejecutar sobre árboles reales de Fedora
 47.30 ejecutar sobre repositorios Git reales
 47.31 proyecto final: mini motor de investigación de texto para Fedora y código fuente
+47.32 diagnóstico heurístico del coste: límites, medición y ausencia de garantía general
+47.33 verificación del proyecto con fixtures y estados de salida esperados
+47.34 registrar límites del diagnóstico de ignores y la versión de la herramienta

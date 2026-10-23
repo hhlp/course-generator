@@ -167,7 +167,7 @@ Debe quedar cubierta la instalación, operación, networking, storage, mantenimi
 
 Debe quedar cubierta la seguridad avanzada de cluster, workloads, supply chain y runtime.
 
-CKS requiere mantener un CKA válido para obtener la certificación.
+Para acceder al examen CKS se requiere haber aprobado CKA previamente; CKA no necesita seguir activo. Verificar las condiciones oficiales antes de reservar el examen. La vigencia conjunta para Kubestronaut se comprueba por separado.
 
 ### Kubestronaut
 
@@ -303,3 +303,42 @@ Para las APIs y características sujetas a evolución (DRA, Gateway API, Helm, a
 - Los bloques de producción incorporan runbooks, objetivos SLI/SLO y pruebas de restauración cuando apliquen.
 - El proyecto final entrega manifiestos reproducibles, procedimientos, decisiones arquitectónicas, pruebas y evidencias.
 - Mantener separados los conceptos Kubernetes de los detalles de herramientas externas con PATH propio; enseñar su integración práctica aquí.
+
+## Secuencia práctica y dependencias
+
+El bloque 0 crea, valida y elimina un cluster kind antes de explorar Kubernetes.
+El bloque 3 enseña la CLI inicial; diagnóstico avanzado se practica en el 11,
+autorización en el 13, operaciones de nodos en el 23 y API avanzada en el 33.
+Los comandos imperativos iniciales son demostraciones guiadas que se retoman
+al estudiar los recursos correspondientes. Helm y Kustomize tienen una primera
+práctica en el bloque 16 y diagnóstico antes del hito CKA; los bloques 53 y 54
+profundizan en su ingeniería. El bloque 34 incluye un puente Go antes de crear
+controllers. No sustituye al PATH completo de Go.
+
+Cada unidad numerada debe resolver una pregunta o tarea concreta. Si corresponde
+a un único parámetro, se desarrolla con ejemplos, límites y validación dentro
+de su contexto; evitar lecciones que solo reformulen la ayuda del comando.
+Las repeticiones entre niveles deben añadir casos nuevos y referencias previas.
+
+## Contrato de reproducibilidad por laboratorio
+
+Antes de generar y ejecutar un laboratorio, completar esta matriz con versiones
+concretas comprobadas contra upstream. No interpretar “latest” como versión fija.
+
+| Componente | Registro obligatorio | Validación |
+| --- | --- | --- |
+| Linux y kernel | Distribución, versión, arquitectura y kernel | cgroup v2, SELinux y firewall |
+| Kubernetes y kubectl | Versiones exactas | Soporte y version skew |
+| Runtime | containerd, runc y configuración CRI | Compatibilidad y cgroup driver |
+| Laboratorio | kind/minikube o kubeadm y versiones | Recursos y topología |
+| Networking | CNI, configuración y dataplane | NetworkPolicy, MTU e IPv4/IPv6 |
+| Storage | Driver CSI y sidecars | Snapshots, expansión y topología |
+| Gateway API | Versión de CRDs y controlador | Canal, madurez y funciones soportadas |
+| Helm y Kustomize | Versiones del cliente y plugins | CLI, renderizado y compatibilidad |
+| etcd | Servidor, etcdctl y etcdutl | Compatibilidad de snapshot y restore |
+
+Registrar fecha de verificación, enlaces versionados, imágenes por digest cuando
+proceda, feature gates y limitaciones del entorno. Los laboratorios con nodos
+kind no demuestran por sí solos todas las propiedades de hosts kubeadm reales.
+Las restauraciones de etcd incluyen una validación de integridad y reconciliación,
+y documentan revision bump y mark-compacted cuando la versión lo requiera.

@@ -13,6 +13,7 @@ course:
   block_start: 0
 
 files:
+  # Preserve until the repository loader and directory layout are verified.
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
@@ -127,7 +128,7 @@ lesson_structure:
     purpose: práctica gramatical, transformaciones, contrastes y análisis de
         forma, significado y uso
   common_errors:
-    required: false
+    required: true
     heading: ⚠️ Errores frecuentes
   important_idea:
     required: false
@@ -279,3 +280,28 @@ level_specific:
     do_not_use_as_b2_core_references:
       - Cambridge Grammar of English — Carter & McCarthy
       - The Cambridge Grammar of the English Language — Huddleston & Pullum
+
+progression_rules:
+  structural_foundations:
+    first_introduction: block_0
+    local_refresh_before_use: true
+    final_synthesis: block_40
+    rule: Introducir forma y función antes del análisis avanzado; recuperar
+      cada término al utilizarlo y reservar el bloque 40 para integración.
+  analytical_framework:
+    distinguish_category_from_function: true
+    distinguish_required_adverbial_from_optional_adjunct: true
+    explain_vp_convention_before_analysis: true
+    use_consistent_terminology: true
+    rule: En SVA y SVOA, A puede representar un complemento adverbial exigido
+      por el verbo; no identificar automáticamente A con adjunto opcional.
+  repeated_topics:
+    require_distinct_learning_objective: true
+    require_new_contrast_constraint_or_integration: true
+    avoid_reusing_same_exercises: true
+  checkpoint_26:
+    purpose: B1 core diagnostic with separately labelled extension review
+    assess_core_and_extensions_separately: true
+    do_not_require_b2_extensions_for_b1_pass: true
+    rule: El alcance del diagnóstico B1 se define por objetivos y ejemplos,
+      no por asumir que toda lección anterior es requisito obligatorio B1.

@@ -83,7 +83,7 @@ Las referencias exactas de una lección solo deben incluirse cuando hayan sido v
 | KVM/libvirt y provider (1, 12) | vagrant-libvirt Documentation; libvirt Documentation | Fedora Documentation; QEMU Documentation; Linux kernel KVM documentation |
 | Boxes y distribución (3, 14) | HashiCorp Vagrant Documentation; vagrant-libvirt Documentation | Fedora Documentation; Packer Documentation |
 | Networking y storage (6, 7, 8, 13) | libvirt Documentation; vagrant-libvirt Documentation | QEMU Documentation; Fedora Documentation |
-| Provisioning y Ansible (9, 10, 11) | HashiCorp Vagrant Documentation; Ansible Documentation | Pro Vagrant |
+| Provisioning, multi-machine y Ansible (9, 10, 11) | HashiCorp Vagrant Documentation; Ansible Documentation | Pro Vagrant |
 | Packer e imágenes (15) | HashiCorp Packer Documentation | Fedora Documentation; Vagrant Documentation |
 | Plugins, Ruby e internals (16, 17, 24) | HashiCorp Vagrant Documentation y código fuente de Vagrant | Pro Vagrant |
 | Seguridad, troubleshooting, rendimiento (18, 19, 20) | Fedora Documentation; libvirt Documentation; QEMU Documentation | vagrant-libvirt Documentation; Linux kernel KVM documentation |
@@ -96,3 +96,48 @@ Las referencias exactas de una lección solo deben incluirse cuando hayan sido v
 - No extrapolar ejemplos de VirtualBox a libvirt sin verificar equivalencia.
 - Para internals, recurrir al código fuente y tests de la versión estudiada, sin inventar rutas internas.
 - Mantener los dos libros como apoyo conceptual y práctico; la documentación vigente manda en la sintaxis.
+
+## Enlaces de referencia
+
+- Vagrant: https://developer.hashicorp.com/vagrant/docs
+- Vagrantfile y orden de carga:
+  https://developer.hashicorp.com/vagrant/docs/vagrantfile
+- Actualización de boxes:
+  https://developer.hashicorp.com/vagrant/docs/cli/box
+- Provisioners y run:
+  https://developer.hashicorp.com/vagrant/docs/provisioning/basic_usage
+- vagrant-libvirt:
+  https://vagrant-libvirt.github.io/vagrant-libvirt/
+- Configuración del provider:
+  https://vagrant-libvirt.github.io/vagrant-libvirt/configuration.html
+- Código y configuración del provider:
+  https://github.com/vagrant-libvirt/vagrant-libvirt
+- libvirt: https://libvirt.org/docs.html
+- QEMU: https://www.qemu.org/docs/master/
+- qemu-img y advertencias sobre imágenes activas:
+  https://www.qemu.org/docs/master/tools/qemu-img.html
+- Fedora: https://docs.fedoraproject.org/
+- KVM: https://docs.kernel.org/virt/kvm/index.html
+- Packer: https://developer.hashicorp.com/packer/docs
+- Ansible: https://docs.ansible.com/
+- Terraform: https://developer.hashicorp.com/terraform/docs
+- OpenTofu: https://opentofu.org/docs/
+
+## Versiones y trazabilidad de las fuentes
+
+Registrar la versión instalada de cada herramienta al iniciar el laboratorio.
+Para opciones del provider, enlazar la documentación de esa versión o un tag
+concreto de su repositorio; las ramas main/master son referencias móviles.
+Las páginas QEMU master tampoco sustituyen el manual de la versión instalada.
+No presentar una combinación Fedora/Vagrant/plugin como probada sin ejecutar
+su laboratorio y conservar los resultados. Verificar la disponibilidad real de
+boxes y servicios de publicación al generar cada lección.
+
+## Correspondencia de bloques revisada
+
+- Bloque 4: Ruby mínimo y Vagrantfile para una máquina.
+- Bloque 10: entornos multi-machine y topologías.
+- Bloque 11: integración Ansible sobre máquinas ya definidas.
+- Bloque 17: Ruby avanzado aplicado al DSL y refactorización.
+
+Los dos libros originales siguen siendo las fuentes conceptuales principales.

@@ -20,7 +20,7 @@
 
 ## Anti-patrones, problemas comunes y recuperación
 
-6. Verwijs, Christiaan; Klootwijk, Johannes; Sutherland, Barry. **The Zombie Scrum Survival Guide**.
+6. Verwijs, Christiaan; Schartau, Johannes; Overeem, Barry. **The Zombie Scrum Survival Guide**.
    Referencia principal para reconocer Scrum mecánico, diagnosticar síntomas y recuperar
    empirismo, autonomía, participación de stakeholders y entrega frecuente de valor.
 
@@ -46,7 +46,9 @@
     Priorizar esta edición para el desarrollo de las lecciones y utilizar la primera edición
     como complemento histórico y conceptual.
 
-11. Literatura especializada sobre **Retrospectives Antipatterns**.
+11. **Retrospectives Antipatterns — categoría temática, no título bibliográfico**.
+    Estudiar los casos de las referencias 7, 8 y 10; no atribuir esta categoría
+    a un libro sin identificar autoría, título y edición.
     Utilizar para diagnosticar retrospective fatigue, falta de seguridad, ausencia de datos,
     dominación de conversaciones, acciones sin seguimiento, repetición mecánica de formatos
     y otros patrones disfuncionales.
@@ -57,13 +59,18 @@
 
 ## Scrum Team
 
-13. **Professional Scrum Team** — material/libro de referencia.
+13. Götz, Peter; Schirmer, Uwe M. **The Professional Scrum Team**.
+    Primera edición, Addison-Wesley Professional, copyright 2021.
+    https://www.informit.com/store/professional-scrum-team-9780134862262
     Utilizar para cross-functionality, self-management, colaboración, calidad y profesionalismo,
     contrastándolo siempre con The Scrum Guide cuando se describan reglas formales.
 
 ## Escalado
 
-14. Schwaber, Ken; Scrum.org. **The Nexus Framework for Scaling Scrum**.
+14. Bittner, Kurt; Kong, Patricia; West, Dave. **The Nexus Framework for Scaling Scrum:
+    Continuously Delivering an Integrated Product with Multiple Scrum Teams**.
+    Primera edición, Addison-Wesley Professional, copyright 2018.
+    https://www.informit.com/store/nexus-framework-for-scaling-scrum-continuously-delivering-9780134682662
     Referencia práctica para aplicar Nexus a múltiples Scrum Teams sobre un único producto.
 
 ## Métricas, flujo y forecasting
@@ -113,7 +120,8 @@ transparencia, inspección, adaptación, aprendizaje y mejores decisiones.
 20. Cohn, Mike. **User Stories Applied**.
     User Stories, estimación y planificación como prácticas complementarias.
 21. Wake, Bill. **INVEST** y literatura relacionada.
-22. Lawrence, Richard; Connaughton, Peter. **50 Quick Ideas to Improve Your User Stories**.
+22. Adzic, Gojko; Evans, David. **Fifty Quick Ideas to Improve Your User Stories**.
+    Leanpub. https://leanpub.com/50quickideas
     Slicing y mejora de historias.
 
 ## Coaching, liderazgo y cambio
@@ -177,6 +185,27 @@ complementarias amplían la práctica, pero no redefinen Scrum.
 - **The Scrum Guide** (Schwaber y Sutherland): referencia normativa para Sprint Goal, Sprint Backlog, responsabilidades de Developers, adaptación del plan, calidad y negociación del alcance durante el Sprint.
 - **Mastering Professional Scrum** (Ockerman y Reindl): práctica profesional de autogestión, planificación empírica, transparencia y colaboración con el Product Owner.
 - **Fixing Your Scrum** (Ripley y Miller): casos y anti-patrones de cambios de alcance, urgencias, intervenciones del Scrum Master y problemas del equipo.
-- **Professional Scrum Team**: colaboración y responsabilidad colectiva frente a defectos, trabajo no planificado y calidad.
+- **The Professional Scrum Team** (Götz y Schirmer): colaboración y responsabilidad colectiva frente a defectos, trabajo no planificado y calidad.
 
 Estas referencias fundamentan las lecciones 4.18–4.63. Los mecanismos concretos de clasificación de incidentes, tickets y hotfixes son prácticas operativas complementarias, no reglas obligatorias de Scrum. Para gráficos, capacidad y flujo, reutilizar las fuentes ya asignadas a los bloques 7, 8 y 19.
+
+
+## Fuentes verificables y control de versiones
+
+- Scrum Guide: https://scrumguides.org/scrum-guide.html
+- Nexus Guide: https://www.scrum.org/resources/online-nexus-guide
+- PSM III: https://www.scrum.org/assessments/professional-scrum-master-iii-certification
+- Zombie Scrum: https://www.scrum.org/resources/zombie-scrum-survival-guide
+- Scrum Anti-Patterns: https://www.informit.com/store/scrum-anti-patterns-guide-challenges-every-scrum-team-9780137977963
+
+Comprobación de estas fuentes: 2026-10-16. Registrar la edición o fecha de cada
+guía utilizada al generar lecciones. Los contenidos históricos de los libros
+se contrastan con la guía correspondiente; no convertir diferencias entre
+ediciones en reglas actuales. Verificar el formato oficial de cada examen
+antes de preparar un simulacro, sin prometer equivalencia ni usar preguntas
+confidenciales.
+
+Little’s Law se trabaja como relación de promedios bajo condiciones explícitas;
+reutilizar las referencias 16 y 18 para flujo, límites del sistema y unidades.
+Los charts se construyen en el bloque 8; en el 19 se reutilizan para decisiones
+en los eventos y experimentos del workflow, sin repetir el PATH de Kanban.

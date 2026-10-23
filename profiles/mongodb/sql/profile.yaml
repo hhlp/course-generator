@@ -1,0 +1,794 @@
+---
+course:
+  title: 'MongoDB: consultas y búsquedas de cero a experto'
+  language: es
+  level:
+    start: cero
+    end: experto
+  domain: MongoDB Administrator
+  mode: deep
+  format: Especificación pedagógica independiente; adaptar claves si el
+    generador exige otro esquema.
+  primary_environment: Exclusivamente MongoDB Atlas con datasets oficiales;
+    herramientas cliente en el equipo del alumno
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+tools:
+  - mongosh
+  - MongoDB Compass
+  - PyMongo
+prerequisites:
+  - Uso básico de terminal y archivos
+  - Python básico antes del bloque de PyMongo
+lesson_structure:
+  - 🎯 OBJETIVO medible
+  - Conceptos y modelo mental
+  - Sintaxis y opciones relevantes
+  - Ejemplos progresivos ejecutables
+  - 🧪 Lab con dataset, prerrequisitos y comprobaciones
+  - ⚠️ Errores frecuentes y diagnóstico
+  - 💡 Idea clave y alternativas
+  - 🧠 Recordar
+  - Ejercicios y soluciones razonadas
+  - Referencias oficiales y compatibilidad
+depth_requirements:
+  - 'No limitarse a enumerar operadores: explicar semántica, límites,
+    coste y alternativas.'
+  - Cada laboratorio debe indicar entradas, pasos, resultados verificables
+    y limpieza.
+  - Inspeccionar tipos y campos reales; no depender de conteos exactos
+    de datasets mutables.
+  - Separar scripts de mongosh, código Python, JSON de índices y comandos
+    de terminal.
+  - Explicar la cardinalidad de cada etapa de agregación y el efecto de
+    arrays y joins.
+  - Comprobar versión del servidor, driver, plan y disponibilidad antes
+    de usar funciones.
+  - Registrar modelo, dimensión, métrica y representación BSON de cada
+    campo vectorial.
+  - No introducir vectores arbitrarios ni mezclar embeddings de modelos
+    diferentes.
+  - Medir calidad y latencia de búsqueda con corpus de consultas y juicios
+    de relevancia.
+  - La profundidad se centra en consultas y recuperación de información,
+    sin operar servidores.
+  - RAG es una ampliación opcional, posterior a evaluar la recuperación.
+  - Cada práctica indica las capacidades de Atlas necesarias y alternativas
+    dentro de su alcance.
+datasets:
+  main: sample_mflix
+  additional:
+    - sample_supplies
+    - sample_airbnb
+    - sample_analytics
+    - sample_geospatial
+    - sample_training
+    - sample_guides
+lab_safety:
+  writes: Colecciones derivadas en lab_mongodb; conservar los datos de
+    ejemplo de referencia.
+  credentials: Variables externas y ejemplos ficticios; nunca secretos
+    en archivos.
+  network: Acceso acotado al entorno del alumno.
+  cost: Verificar plan y estimar costes antes de crear recursos adicionales.
+assessment:
+  pass: Resolver consultas sin copiar, justificar semántica e índices
+    y aportar resultados reproducibles.
+  evidence:
+    - Consultas y pipelines
+    - Planes explain
+    - Pruebas de resultados y cardinalidad
+    - Benchmark ANN/ENN
+    - Juicios de relevancia
+    - Comparación de búsqueda textual, vectorial e híbrida
+estimated_effort:
+  hours: 300–450
+  nature: Estimación orientativa para estudiar y practicar; avance por
+    dominio demostrado.
+blocks:
+  - id: 0
+    title: Fundamentos de bases de datos documentales
+    lessons:
+      - id: '0.1'
+        title: Datos, información y persistencia
+      - id: '0.2'
+        title: 'Relacional y documental: decisiones por patrón de acceso'
+      - id: '0.3'
+        title: Documento, colección, base de datos y namespace
+      - id: '0.4'
+        title: Arquitectura cliente, driver, mongos y mongod
+      - id: '0.5'
+        title: JSON frente a BSON y Extended JSON
+      - id: '0.6'
+        title: 'CRUD, agregación y búsqueda: mapa de capacidades'
+      - id: '0.7'
+        title: Consistencia, disponibilidad y particiones sin simplificar
+          CAP
+      - id: '0.8'
+        title: 'OLTP y analítica operacional: límites'
+      - id: '0.9'
+        title: 'Atlas, Community y Enterprise: responsabilidades'
+      - id: '0.10'
+        title: Lectura de documentación y matriz de versiones
+    lab: Dibujar la arquitectura de una aplicación de catálogo y justificar
+      el modelo documental.
+  - id: 1
+    title: Atlas y preparación del entorno
+    lessons:
+      - id: '1.1'
+        title: Organización, proyecto, clúster y regiones
+      - id: '1.2'
+        title: Elegir un despliegue según capacidades y presupuesto
+      - id: '1.3'
+        title: Usuarios de Atlas frente a usuarios de base de datos
+      - id: '1.4'
+        title: Acceso de red, DNS SRV y TLS
+      - id: '1.5'
+        title: Instalar mongosh y MongoDB Compass
+      - id: '1.6'
+        title: URI, opciones, secretos y variables de entorno
+      - id: '1.7'
+        title: Cargar sample_mflix desde Atlas
+      - id: '1.8'
+        title: Inventariar colecciones, índices y tipos reales
+      - id: '1.9'
+        title: Cargar datasets adicionales de forma selectiva
+      - id: '1.10'
+        title: Crear bitácora reproducible de versiones y capacidades
+    lab: Conectar mongosh y Compass, inventariar sample_mflix y registrar
+      permisos y capacidades sin exponer secretos.
+  - id: 2
+    title: BSON y semántica del documento
+    lessons:
+      - id: '2.1'
+        title: 'ObjectId: estructura, generación y límites de orden temporal'
+      - id: '2.2'
+        title: String, boolean, null y campo ausente
+      - id: '2.3'
+        title: Int32, Int64, double y Decimal128
+      - id: '2.4'
+        title: Fechas UTC, zonas horarias y timestamps
+      - id: '2.5'
+        title: Documentos anidados y rutas con punto
+      - id: '2.6'
+        title: Arrays homogéneos y heterogéneos
+      - id: '2.7'
+        title: BinData, UUID y subtipos
+      - id: '2.8'
+        title: Extended JSON canónico y relajado
+      - id: '2.9'
+        title: Límites del documento, profundidad y tamaño
+      - id: '2.10'
+        title: Comparaciones por tipo y calidad de datos
+    lab: Auditar tipos de movies y sales, detectar campos ausentes y diseñar
+      conversiones sin pérdida.
+  - id: 3
+    title: 'CRUD I: lectura desde cero'
+    lessons:
+      - id: '3.1'
+        title: findOne, find y cursores
+      - id: '3.2'
+        title: Filtros de igualdad y proyecciones
+      - id: '3.3'
+        title: 'Comparación: $eq, $ne, $gt, $gte, $lt y $lte'
+      - id: '3.4'
+        title: '$in y $nin: selectividad y semántica'
+      - id: '3.5'
+        title: $and, $or, $nor y $not
+      - id: '3.6'
+        title: Ordenación estable y desempate por _id
+      - id: '3.7'
+        title: 'limit y skip: comportamiento y coste'
+      - id: '3.8'
+        title: countDocuments, estimatedDocumentCount y distinct
+      - id: '3.9'
+        title: null frente a missing con $exists y $type
+      - id: '3.10'
+        title: Consultas con fechas, números y ObjectId
+    lab: Resolver veinte preguntas del catálogo con filtros y proyecciones;
+      explicar null frente a missing.
+  - id: 4
+    title: 'CRUD II: arrays y consultas avanzadas'
+    lessons:
+      - id: '4.1'
+        title: Dot notation sobre objetos anidados
+      - id: '4.2'
+        title: Igualdad de array frente a pertenencia
+      - id: '4.3'
+        title: $all y $size
+      - id: '4.4'
+        title: $elemMatch y coincidencia dentro del mismo elemento
+      - id: '4.5'
+        title: Arrays de documentos y predicados cruzados
+      - id: '4.6'
+        title: Proyecciones con $slice y $elemMatch
+      - id: '4.7'
+        title: $expr y expresiones en consultas
+      - id: '4.8'
+        title: 'Regex: anclaje, opciones y coste'
+      - id: '4.9'
+        title: Collation y comparación lingüística
+      - id: '4.10'
+        title: Paginación por rango y cursores compuestos
+    lab: Comparar filtros con y sin $elemMatch en listingsAndReviews y
+      construir paginación sin duplicados.
+  - id: 5
+    title: 'CRUD III: inserción y actualización'
+    lessons:
+      - id: '5.1'
+        title: insertOne e insertMany
+      - id: '5.2'
+        title: replaceOne frente a updateOne
+      - id: '5.3'
+        title: $set, $unset y $rename
+      - id: '5.4'
+        title: $inc, $mul, $min, $max y $currentDate
+      - id: '5.5'
+        title: updateMany y escrituras acotadas
+      - id: '5.6'
+        title: upsert y $setOnInsert
+      - id: '5.7'
+        title: findOneAndUpdate y documento devuelto
+      - id: '5.8'
+        title: matchedCount, modifiedCount y upsertedId
+      - id: '5.9'
+        title: Índices únicos e idempotencia
+      - id: '5.10'
+        title: deleteOne y deleteMany con control de alcance
+    lab: Crear lab_mongodb con copias pequeñas; ejecutar upserts idempotentes
+      y comprobar resultados de escritura.
+  - id: 6
+    title: 'CRUD IV: arrays y escrituras masivas'
+    lessons:
+      - id: '6.1'
+        title: $push con $each, $sort y $slice
+      - id: '6.2'
+        title: $addToSet y deduplicación
+      - id: '6.3'
+        title: $pull, $pullAll y $pop
+      - id: '6.4'
+        title: Operador posicional $
+      - id: '6.5'
+        title: Todos los elementos con $[]
+      - id: '6.6'
+        title: arrayFilters y $[identificador]
+      - id: '6.7'
+        title: Actualización mediante pipeline
+      - id: '6.8'
+        title: Expresiones y $literal en datos de usuario
+      - id: '6.9'
+        title: bulkWrite ordenado y no ordenado
+      - id: '6.10'
+        title: Errores parciales, lotes y reanudación
+    lab: Actualizar carritos y reseñas en una colección derivada, provocar
+      un error parcial y recuperar el lote.
+  - id: 7
+    title: Modelado documental I
+    lessons:
+      - id: '7.1'
+        title: Partir de casos de uso y consultas
+      - id: '7.2'
+        title: Cardinalidad uno a uno, uno a muchos y muchos a muchos
+      - id: '7.3'
+        title: Embedding y referencias
+      - id: '7.4'
+        title: Agregados e invariantes de negocio
+      - id: '7.5'
+        title: Crecimiento del documento y arrays sin límite
+      - id: '7.6'
+        title: Duplicación intencionada y consistencia
+      - id: '7.7'
+        title: Referencias manuales y resolución
+      - id: '7.8'
+        title: Dinero con Decimal128
+      - id: '7.9'
+        title: Fechas de negocio y auditoría
+      - id: '7.10'
+        title: ADR y evaluación del modelo
+    lab: Diseñar catálogo, usuarios y reseñas derivados de mflix y justificar
+      cada embedding o referencia.
+  - id: 8
+    title: Validación y evolución del esquema
+    lessons:
+      - id: '8.1'
+        title: Esquema flexible y contrato explícito
+      - id: '8.2'
+        title: $jsonSchema y bsonType
+      - id: '8.3'
+        title: required, enum y rangos
+      - id: '8.4'
+        title: Validación de objetos y arrays
+      - id: '8.5'
+        title: validationLevel y validationAction
+      - id: '8.6'
+        title: collMod y despliegue gradual
+      - id: '8.7'
+        title: Versionado de documentos
+      - id: '8.8'
+        title: Migraciones expand-contract
+      - id: '8.9'
+        title: Backfill idempotente y lotes
+      - id: '8.10'
+        title: Inventario de documentos inválidos
+    lab: Añadir validación a una colección de laboratorio, migrar dos
+      versiones y documentar rollback.
+  - id: 9
+    title: Patrones de modelado avanzados
+    lessons:
+      - id: '9.1'
+        title: Subset pattern
+      - id: '9.2'
+        title: Computed pattern
+      - id: '9.3'
+        title: Bucket pattern
+      - id: '9.4'
+        title: Outlier pattern
+      - id: '9.5'
+        title: Attribute pattern
+      - id: '9.6'
+        title: Extended reference pattern
+      - id: '9.7'
+        title: Polimorfismo controlado
+      - id: '9.8'
+        title: Relaciones jerárquicas y árboles
+      - id: '9.9'
+        title: Multitenancy y aislamiento
+      - id: '9.10'
+        title: 'Antipatrones: joins excesivos, arrays enormes y duplicación
+          incontrolada'
+    lab: Comparar tres modelos del mismo catálogo mediante tamaño, consultas,
+      escrituras y complejidad.
+  - id: 10
+    title: Aggregation Pipeline I
+    lessons:
+      - id: '10.1'
+        title: Documento de entrada y salida de cada etapa
+      - id: '10.2'
+        title: aggregate, cursor y opciones
+      - id: '10.3'
+        title: $match y reducción temprana
+      - id: '10.4'
+        title: $project, $set, $addFields y $unset
+      - id: '10.5'
+        title: $sort, $skip y $limit
+      - id: '10.6'
+        title: $count y acumuladores elementales
+      - id: '10.7'
+        title: $group y claves compuestas
+      - id: '10.8'
+        title: $sum, $avg, $min, $max y $push
+      - id: '10.9'
+        title: $unwind y preserveNullAndEmptyArrays
+      - id: '10.10'
+        title: Explicar cardinalidad y orden en el pipeline
+    lab: Obtener rankings por década y género, contrastando conteos antes
+      y después de $unwind.
+  - id: 11
+    title: 'Aggregation Pipeline II: expresiones'
+    lessons:
+      - id: '11.1'
+        title: Expresiones frente a etapas y acumuladores
+      - id: '11.2'
+        title: $cond, $switch y $ifNull
+      - id: '11.3'
+        title: $convert frente a $toInt y errores de conversión
+      - id: '11.4'
+        title: Operaciones de strings y normalización
+      - id: '11.5'
+        title: Operaciones de fecha y zona horaria
+      - id: '11.6'
+        title: $map, $filter y $reduce
+      - id: '11.7'
+        title: $let, variables y $$ROOT
+      - id: '11.8'
+        title: Operaciones de conjuntos sobre arrays
+      - id: '11.9'
+        title: $objectToArray, $arrayToObject y campos dinámicos
+      - id: '11.10'
+        title: Separar calidad de datos y lógica de negocio
+    lab: Normalizar ratings y fechas heterogéneas sin abortar; conservar
+      registros rechazados con su causa.
+  - id: 12
+    title: 'Aggregation Pipeline III: relaciones y composición'
+    lessons:
+      - id: '12.1'
+        title: $lookup de igualdad
+      - id: '12.2'
+        title: Índices y tipos en claves de unión
+      - id: '12.3'
+        title: $lookup con let, pipeline y $expr
+      - id: '12.4'
+        title: Desanidar joins sin duplicar métricas
+      - id: '12.5'
+        title: $graphLookup y límites de recorrido
+      - id: '12.6'
+        title: $unionWith y esquemas compatibles
+      - id: '12.7'
+        title: $facet y subpipelines
+      - id: '12.8'
+        title: $bucket y $bucketAuto
+      - id: '12.9'
+        title: $replaceRoot y $replaceWith
+      - id: '12.10'
+        title: Vistas y composición reutilizable
+    lab: Unir movies y comments, producir facetas y comprobar que las
+      películas sin comentarios siguen presentes.
+  - id: 13
+    title: 'Aggregation Pipeline IV: analítica avanzada'
+    lessons:
+      - id: '13.1'
+        title: $setWindowFields y particionado
+      - id: '13.2'
+        title: $documentNumber, $rank y $denseRank
+      - id: '13.3'
+        title: $shift y variación entre filas
+      - id: '13.4'
+        title: Ventanas por documentos y por rango
+      - id: '13.5'
+        title: Acumulados y medias móviles
+      - id: '13.6'
+        title: $dateTrunc, $dateDiff y $dateAdd
+      - id: '13.7'
+        title: $densify y huecos temporales
+      - id: '13.8'
+        title: $fill, interpolación y supuestos
+      - id: '13.9'
+        title: $topN, $bottomN y estadística según versión
+      - id: '13.10'
+        title: $percentile y $median según versión y exactitud
+    lab: Construir un análisis temporal con ventas o datos meteorológicos
+      y justificar ventanas y tratamiento de huecos.
+  - id: 14
+    title: 'Aggregation Pipeline V: producción'
+    lessons:
+      - id: '14.1'
+        title: $merge, claves de coincidencia y política de actualización
+      - id: '14.2'
+        title: $out y sustitución de colecciones
+      - id: '14.3'
+        title: Agregados materializados e incrementales
+      - id: '14.4'
+        title: Idempotencia de transformaciones
+      - id: '14.5'
+        title: Explain de pipelines
+      - id: '14.6'
+        title: Pushdown de filtros y ordenaciones
+      - id: '14.7'
+        title: Memoria, spill y allowDiskUse según entorno
+      - id: '14.8'
+        title: Costes de $lookup, $facet y arrays intermedios
+      - id: '14.9'
+        title: Pruebas con conjuntos pequeños y resultados esperados
+      - id: '14.10'
+        title: Diseño de un pipeline mantenible
+    lab: Materializar métricas, repetir el proceso sin duplicados y medir
+      un cuello de botella con explain.
+  - id: 15
+    title: 'Índices I: fundamentos y diseño'
+    lessons:
+      - id: '15.1'
+        title: B-tree y coste de lectura/escritura
+      - id: '15.2'
+        title: createIndex, getIndexes y dropIndex
+      - id: '15.3'
+        title: Índices simples y compuestos
+      - id: '15.4'
+        title: Prefijos de índices compuestos
+      - id: '15.5'
+        title: Regla ESR como heurística y sus excepciones
+      - id: '15.6'
+        title: Sort cubierto por índice
+      - id: '15.7'
+        title: Consultas cubiertas y proyecciones
+      - id: '15.8'
+        title: Selectividad y cardinalidad
+      - id: '15.9'
+        title: Índice único y datos existentes
+      - id: '15.10'
+        title: Redundancia y presupuesto de índices
+    lab: Diseñar y medir índices para cinco consultas de movies; justificar
+      cada índice con un plan.
+  - id: 16
+    title: 'Índices II: especialización y planes'
+    lessons:
+      - id: '16.1'
+        title: Índices multikey y límites de arrays
+      - id: '16.2'
+        title: Índices parciales
+      - id: '16.3'
+        title: Índices sparse y semántica de campos ausentes
+      - id: '16.4'
+        title: TTL y expiración asíncrona
+      - id: '16.5'
+        title: Collation e índices
+      - id: '16.6'
+        title: Índices wildcard y su coste
+      - id: '16.7'
+        title: Índices hashed y restricciones
+      - id: '16.8'
+        title: Índices ocultos según disponibilidad
+      - id: '16.9'
+        title: 'explain: queryPlanner y executionStats'
+      - id: '16.10'
+        title: COLLSCAN, IXSCAN, FETCH, SORT y métricas examinadas
+    lab: Comparar planes antes/después, eliminar un índice redundante
+      y demostrar los efectos en lectura y escritura.
+  - title: Consultas y búsquedas desde PyMongo
+    lessons:
+      - title: Conexión a Atlas y configuración externa
+        id: '17.1'
+      - title: MongoClient y reutilización del cliente
+        id: '17.2'
+      - title: ObjectId, Decimal128 y datetime en filtros
+        id: '17.3'
+      - title: Filtros, proyecciones, orden y paginación
+        id: '17.4'
+      - title: Cursores, lotes y consumo de resultados
+        id: '17.5'
+      - title: Ejecutar pipelines desde Python
+        id: '17.6'
+      - title: Crear y comprobar índices de búsqueda según API soportada
+        id: '17.7'
+      - title: Ejecutar Search y Vector Search desde Python
+        id: '17.8'
+      - title: Timeouts, cancelación y diagnóstico de consultas
+        id: '17.9'
+      - title: Pruebas reproducibles de resultados y relevancia
+        id: '17.10'
+    lab: Implementar un cliente de búsqueda Mflix con filtros, paginación,
+      pipeline y tratamiento de errores; validar resultados con consultas
+      equivalentes en mongosh.
+    id: 17
+  - id: 18
+    title: 'MongoDB Search I: búsqueda textual'
+    lessons:
+      - id: '18.1'
+        title: 'find, regex, $text y Search: diferencias'
+      - id: '18.2'
+        title: Índices Search frente a índices de base de datos
+      - id: '18.3'
+        title: Mappings dinámicos y estáticos
+      - id: '18.4'
+        title: Analizadores, tokenización e idioma
+      - id: '18.5'
+        title: Crear un índice sobre movies
+      - id: '18.6'
+        title: $search y posición de la etapa
+      - id: '18.7'
+        title: Operador text y múltiples campos
+      - id: '18.8'
+        title: 'compound: must, should, filter y mustNot'
+      - id: '18.9'
+        title: Score y metadatos de relevancia
+      - id: '18.10'
+        title: Consistencia eventual e indexación
+    lab: Crear un buscador textual de películas con filtros de género
+      y año; explicar el índice y el ranking.
+  - id: 19
+    title: 'MongoDB Search II: relevancia y experiencia'
+    lessons:
+      - id: '19.1'
+        title: phrase y proximidad
+      - id: '19.2'
+        title: autocomplete y estrategia de campos
+      - id: '19.3'
+        title: Fuzzy search y tolerancia a errores
+      - id: '19.4'
+        title: Sinónimos y mantenimiento
+      - id: '19.5'
+        title: Boost y funciones de score
+      - id: '19.6'
+        title: Highlight y presentación
+      - id: '19.7'
+        title: Facetas y $searchMeta
+      - id: '19.8'
+        title: Paginación de búsqueda según versión
+      - id: '19.9'
+        title: Explain y rendimiento de Search
+      - id: '19.10'
+        title: Evaluación de relevancia con juicios humanos
+    lab: Añadir autocompletado, facetas y resaltado; evaluar diez consultas
+      y documentar fallos del ranking.
+  - id: 20
+    title: 'Vectores y embeddings: fundamentos'
+    lessons:
+      - id: '20.1'
+        title: Vector y representación semántica
+      - id: '20.2'
+        title: Embeddings de texto, imagen y modalidades
+      - id: '20.3'
+        title: Modelo, dimensión y espacio vectorial
+      - id: '20.4'
+        title: Coseno, producto escalar y distancia euclídea
+      - id: '20.5'
+        title: Normalización y significado de la similitud
+      - id: '20.6'
+        title: Chunking, solapamiento y metadatos
+      - id: '20.7'
+        title: ANN frente a ENN
+      - id: '20.8'
+        title: Recall, latencia, memoria y coste
+      - id: '20.9'
+        title: Inspección de embedded_movies y BinData
+      - id: '20.10'
+        title: Versionado de embeddings y migración de modelo
+    lab: Inventariar campos vectoriales reales, seleccionar uno y documentar
+      modelo, dimensión, formato y métrica compatibles.
+  - id: 21
+    title: 'MongoDB Vector Search I: indexación y consultas'
+    lessons:
+      - id: '21.1'
+        title: Separar índice vectorial, Search y B-tree
+      - id: '21.2'
+        title: Definición del campo vector y dimensiones
+      - id: '21.3'
+        title: Campos filter en el índice vectorial
+      - id: '21.4'
+        title: Creación, estado y disponibilidad del índice
+      - id: '21.5'
+        title: Generar queryVector con el mismo modelo
+      - id: '21.6'
+        title: $vectorSearch y restricciones de posición
+      - id: '21.7'
+        title: path, index, limit y numCandidates
+      - id: '21.8'
+        title: exact y ENN según compatibilidad
+      - id: '21.9'
+        title: vectorSearchScore y proyección
+      - id: '21.10'
+        title: Diagnóstico de dimensión, tipo y modelo incorrectos
+    lab: Ejecutar búsquedas ANN y ENN sobre embedded_movies y explicar
+      sus diferencias sin mezclar modelos de embeddings.
+  - id: 22
+    title: 'MongoDB Vector Search II: evaluación y rendimiento'
+    lessons:
+      - id: '22.1'
+        title: 'Prefiltros y posfiltros: efecto sobre resultados'
+      - id: '22.2'
+        title: Filtros por metadatos y restricciones del índice
+      - id: '22.3'
+        title: Barrido experimental de numCandidates
+      - id: '22.4'
+        title: Recall@k frente a referencia ENN
+      - id: '22.5'
+        title: Latencia p50, p95 y p99
+      - id: '22.6'
+        title: Cuantización y su disponibilidad
+      - id: '22.7'
+        title: Memoria, dimensiones y tamaño del índice
+      - id: '22.8'
+        title: Reindexación y transición entre modelos
+      - id: '22.9'
+        title: Multitenancy y filtros de autorización
+      - id: '22.10'
+        title: Coste de embeddings, búsqueda y mantenimiento
+    lab: Crear un benchmark reproducible de al menos veinte consultas
+      y comparar recall, latencia y filtros.
+  - id: 23
+    title: Búsqueda híbrida, reranking y RAG
+    lessons:
+      - id: '23.1'
+        title: Recuperación lexical frente a semántica
+      - id: '23.2'
+        title: Fusionar rankings mediante RRF
+      - id: '23.3'
+        title: $rankFusion y compatibilidad
+      - id: '23.4'
+        title: $scoreFusion, normalización y compatibilidad
+      - id: '23.5'
+        title: Fusión en aplicación como alternativa portable
+      - id: '23.6'
+        title: Reranking y selección de candidatos
+      - id: '23.7'
+        title: 'RAG: recuperar, contextualizar y generar (ampliación opcional
+          RAG)'
+      - id: '23.8'
+        title: Citas verificables y abstención (ampliación opcional RAG)
+      - id: '23.9'
+        title: Prompt injection en documentos recuperados (ampliación
+          opcional RAG)
+      - id: '23.10'
+        title: Evaluación separada de retrieval y generación
+    lab: Construir un buscador híbrido y medir calidad frente a búsqueda
+      textual y vectorial. Como ampliación opcional, crear un RAG con
+      citas y abstención ante falta de evidencia.
+  - title: Búsquedas geoespaciales en Atlas
+    lessons:
+      - title: GeoJSON y orden longitud-latitud
+        id: '24.1'
+      - title: Inspección de sample_mflix.theaters
+        id: '24.2'
+      - title: Puntos, líneas y polígonos
+        id: '24.3'
+      - title: Índices 2dsphere
+        id: '24.4'
+      - title: Búsqueda de proximidad con $near
+        id: '24.5'
+      - title: Áreas con $geoWithin
+        id: '24.6'
+      - title: Intersecciones con $geoIntersects
+        id: '24.7'
+      - title: Distancias y agregación con $geoNear
+        id: '24.8'
+      - title: Filtros combinados e índices geoespaciales
+        id: '24.9'
+      - title: Validación de coordenadas y evaluación de resultados
+        id: '24.10'
+    lab: Buscar cines por proximidad y dentro de una zona; contrastar
+      coordenadas, distancias y planes de consulta.
+    id: 24
+  - title: Optimización y evaluación integral de consultas
+    lessons:
+      - title: Catálogo de consultas y objetivos medibles
+        id: '25.1'
+      - title: Diseño de datos para los patrones de búsqueda
+        id: '25.2'
+      - title: Presupuesto de índices y coste de actualización
+        id: '25.3'
+      - title: Explain y documentos/claves examinados
+        id: '25.4'
+      - title: Diagnóstico de pipelines lentos
+        id: '25.5'
+      - title: Latencia, paginación y tamaño de respuestas
+        id: '25.6'
+      - title: Evaluación de relevancia y juicios humanos
+        id: '25.7'
+      - title: Comparar texto, vectores e híbrida con filtros idénticos
+        id: '25.8'
+      - title: Regresiones, reproducibilidad y control de costes
+        id: '25.9'
+      - title: Runbook de consultas sin resultados, lentas o irrelevantes
+        id: '25.10'
+    lab: Construir un informe reproducible con al menos cinco consultas
+      estructuradas y veinte consultas de búsqueda; presentar planes,
+      latencias, relevancia y decisiones de mejora.
+    id: 25
+  - title: 'Proyecto experto: buscador de películas en Atlas'
+    lessons:
+      - title: Requisitos, consultas e intenciones de búsqueda
+        id: '26.1'
+      - title: Inventario y preparación de sample_mflix
+        id: '26.2'
+      - title: Filtros, arrays y paginación estable
+        id: '26.3'
+      - title: Pipelines de análisis y facetas
+        id: '26.4'
+      - title: Índices de consultas y búsqueda textual
+        id: '26.5'
+      - title: Embeddings e índice vectorial compatible
+        id: '26.6'
+      - title: Comparación ANN y ENN
+        id: '26.7'
+      - title: Búsqueda híbrida y reranking
+        id: '26.8'
+      - title: Interfaz de consulta Python y RAG opcional
+        id: '26.9'
+      - title: Evaluación final y defensa de decisiones
+        id: '26.10'
+    lab: Entregar un buscador Mflix reproducible en Atlas con CRUD acotado,
+      filtros, pipelines, Search, Vector Search, búsqueda híbrida y benchmark;
+      RAG como ampliación opcional.
+    id: 26
+scope:
+  required:
+    - CRUD
+    - Modelado y validación para consultas
+    - Aggregation Pipeline
+    - Índices y explain
+    - PyMongo para consultar Atlas
+    - MongoDB Search
+    - Vector Search
+    - Búsqueda híbrida y evaluación
+    - Búsqueda geoespacial
+  optional:
+    - RAG como consumidor de la recuperación
+  excluded:
+    - Administración de servidores y nodos
+    - Replica sets y elecciones
+    - Alta disponibilidad operativa
+    - Sharding
+    - Backups y recuperación de infraestructura
+    - Laboratorios locales de MongoDB
+    - Terraform y Ansible

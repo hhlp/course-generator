@@ -316,7 +316,7 @@ Utilizar la documentación oficial actual de FreeIPA y la documentación Fedora/
 
 ### Regla arquitectónica IAM
 
-No recomendar crear cuentas locales duplicadas para representar usuarios que deben proceder del provider central. Los laboratorios deben demostrar la cadena `sshd → PAM/NSS → SSSD → IAM` y enseñar a diagnosticar DNS, sincronización temporal, Kerberos, SSSD y OpenSSH por capas. Watchdog queda fuera de esta integración.
+No recomendar crear cuentas locales duplicadas para representar usuarios que deben proceder del provider central. Los laboratorios deben distinguir las rutas de resolución NSS/SSSD, autenticación PAM/SSSD y autenticación GSSAPI/Kerberos, así como las comprobaciones de acceso y sesión. Diagnosticar DNS y sincronización temporal antes de investigar las dependencias de cada ruta. Watchdog queda fuera de esta integración.
 
 ---
 
@@ -403,3 +403,15 @@ Barrett, Daniel J.; Silverman, Richard E.; Byrnes, Robert G.
 ### Política de comprobación experta
 
 No dar por garantizado el soporte de FIDO2, opciones de OpenSSH, pretimeout, drivers de virtualización ni sysctl. Verificar versión, compilación, empaquetado, permisos y capacidades efectivas en el laboratorio Fedora antes de ofrecer comandos modificadores. Los ensayos que puedan reiniciar un host deben ejecutarse únicamente en VM desechable o entorno expresamente aislado.
+
+
+### Referencias operativas concretas para la revisión
+
+- API del framework watchdog del kernel:
+  https://docs.kernel.org/watchdog/watchdog-kernel-api.html
+  Consultar watchdog_register_device(), watchdog_unregister_device() y la
+  variante con recursos administrados devm_watchdog_register_device().
+- Dispositivos watchdog en libvirt:
+  https://www.libvirt.org/formatdomain.html
+  Consultar la sección Watchdog device, sus modelos y acciones; contrastar
+  con las capacidades instaladas de QEMU/libvirt y el tipo de máquina elegido.

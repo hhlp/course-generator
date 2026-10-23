@@ -91,8 +91,8 @@ La progresión recomendada es:
 3. Networking.
 4. Storage.
 5. Provisioning.
-6. Ansible.
-7. Multi-machine.
+6. Multi-machine.
+7. Ansible sobre varias máquinas.
 8. Box propia.
 9. Packer.
 10. Proyecto final integrado.
@@ -154,3 +154,46 @@ Preferir aislamiento y redes privadas, proteger secretos y claves, verificar ori
 ### Criterios de evaluación
 
 Cada bloque operativo incluye al menos un laboratorio con requisitos, comandos, resultados esperados, verificación, errores deliberados y limpieza. Los bloques avanzados incluyen pruebas de recuperación. El proyecto final exige arranque desde cero, conectividad entre nodos, provisioning idempotente, tests, logs, medidas básicas de rendimiento y destrucción completa sin recursos huérfanos.
+
+## Prerrequisitos y progresión revisada
+
+El bloque 4 introduce el Ruby mínimo antes de utilizar arrays, hashes, bloques
+e iteraciones en el Vagrantfile. El bloque 17 profundiza en evaluación del DSL,
+alcance y refactorización, con la experiencia previa de los laboratorios.
+
+El bloque 10 enseña entornos multi-machine; el bloque 11 aplica Ansible a esas
+máquinas. No exigir configuración distribuida antes de enseñar config.vm.define.
+Cada bloque desarrolla primero los conceptos y termina con sus laboratorios.
+
+## Contrato de laboratorios y evaluación
+
+Es obligatorio al menos un laboratorio por bloque operativo. Las lecciones
+operativas incluyen práctica o una fase verificable del laboratorio del bloque;
+las lecciones puramente conceptuales pueden utilizar ejemplos razonados.
+No exigir repetir un despliegue completo en cada lección conceptual.
+
+Cada laboratorio declara prerrequisitos, recursos, versiones, acciones,
+resultados esperados, criterios de aceptación, diagnóstico y limpieza.
+Los escenarios avanzados incorporan fallos deliberados y recuperación.
+
+## Precisiones operativas
+
+- Diferenciar la red de gestión del provider de las redes de datos del proyecto.
+  Explicar su papel en descubrimiento de IP y SSH antes de depurar conectividad.
+- Diferenciar bridge Linux y macvtap y comprobar sus restricciones de conexión.
+- Actualizar una box no modifica las máquinas existentes. Enseñar una recreación
+  controlada, identificando primero los datos que deben conservarse.
+- No modificar imágenes activas mediante qemu-img. Explicar qué operaciones
+  requieren VM apagada y cuándo debe utilizarse la gestión de discos de libvirt.
+- Distinguir el metadata.json incluido en la box del catálogo JSON que publica
+  versiones, providers, arquitecturas, URLs y checksums.
+- Definir reproducibilidad como reconstrucción verificable con entradas
+  identificadas y criterios de equivalencia. No prometer igualdad binaria por
+  utilizar Packer: requiere controlar también fuentes, paquetes y otras entradas.
+
+## Integración con course-generator
+
+Los nombres finales son initial.txt, profile.yaml, domain.md y bibliography.md.
+La referencia ../../config/pedagogy.md conserva la configuración recibida y debe
+resolverse según las reglas del cargador y la ubicación real del perfil en el
+repositorio. No inferir la compatibilidad del cargador solo por validar YAML.

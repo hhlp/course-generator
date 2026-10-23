@@ -108,6 +108,8 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 2.39 Verificación de la configuración efectiva y flags activos
 2.40 Rollback con compatibilidad de TSDB y binarios
 2.41 Laboratorio: actualizar, verificar y revertir sin pérdida de datos
+2.42 Migración Prometheus 2.x a 3.x: inventario, cambios incompatibles y matriz de versiones
+2.43 Laboratorio: ensayar migración con copia aislada de datos y comparar consultas y targets
 
 3. Configuración de Prometheus
 3.1 estructura de prometheus.yml
@@ -150,6 +152,7 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 3.38 scrape_native_histograms y opciones dependientes de versión
 3.39 Configuración de timeouts HTTP y cabeceras
 3.40 Laboratorio: probar límites y errores de scraping
+3.41 Compatibilidad de configuración: campos retirados, defaults y feature flags entre versiones
 
 4. Modelo de datos
 4.1 modelo dimensional de Prometheus
@@ -236,6 +239,7 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 5.30 Diferencia entre sample limit y metric relabeling
 5.31 Análisis de scrape_timeout y latencias
 5.32 Laboratorio: reproducir fallos de exposición e ingesta
+5.33 Migración de exposición: Content-Type, fallback y validación de nombres UTF-8 según versión
 
 6. Exporters
 6.1 qué es un exporter
@@ -443,6 +447,7 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 9.40 Selectores con matching vacío y errores frecuentes
 9.41 Comparación bool y filtrado de vectores
 9.42 Laboratorio: explorar evaluaciones con timestamps
+9.43 Migración de PromQL: regex, semántica temporal y comparación de resultados entre versiones
 
 10. PromQL — Funciones y counters
 10.1 funciones PromQL
@@ -889,6 +894,7 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 24.25 VictoriaMetrics: compatibilidad y diferencias arquitectónicas
 24.26 Fallos correlacionados y dominios de fallo
 24.27 Laboratorio: simular caída de una réplica y del query path
+24.28 HA de alertas: eliminar etiquetas de réplica con alert_relabel_configs y enviar a todos los Alertmanager
 
 25. Escalabilidad y rendimiento
 25.1 límites de una instancia
@@ -1066,6 +1072,7 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 29.20 Pruebas de integración de Alertmanager y receivers
 29.21 Pruebas de rollback y compatibilidad de versiones
 29.22 Laboratorio: pipeline de tests con casos negativos
+29.23 Regresión entre versiones: corpus de consultas, reglas y resultados esperados
 
 30. Diseño de monitorización
 30.1 empezar por objetivos
@@ -1132,6 +1139,9 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 32.19 Exemplars y correlación conceptual con trazas
 32.20 Interoperabilidad de OpenMetrics y Remote Write
 32.21 Laboratorio: diagrama de integración sin duplicar otros PATH
+32.22 Prometheus Operator: reconciliación y diferencia frente a Kubernetes service discovery
+32.23 ServiceMonitor, PodMonitor y PrometheusRule: selectores, namespaces y configuración generada
+32.24 Laboratorio opcional: diagnosticar un ServiceMonitor no seleccionado y verificar el target resultante
 
 33. Internals — Scraping e ingestion
 33.1 arquitectura interna del servidor
@@ -1248,6 +1258,7 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 36.23 Fallos y reintentos de notifier y remote write
 36.24 Trazado de una alerta hasta el receiver
 36.25 Laboratorio: analizar backpressure
+36.26 Separación del pipeline de muestras hacia remote write y del pipeline de alertas hacia Alertmanager
 
 37. Código fuente y desarrollo de Prometheus
 37.1 repositorio de Prometheus
@@ -1338,6 +1349,8 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 39.31 Backup y restauración: medición de RPO y RTO
 39.32 Meta-monitoring externo e incident response
 39.33 Laboratorio: ejecutar simulacro de disaster recovery
+39.34 Migraciones mayores: preflight, entorno de ensayo y criterios de aceptación
+39.35 Rollback: conservar backup previo y verificar compatibilidad antes de reutilizar una TSDB
 
 40. Proyecto final — Plataforma Prometheus
 40.1 definir requisitos
@@ -1417,3 +1430,8 @@ PATH — PROMETHEUS DE 0 A EXPERTO
 40.75 Entregable: matriz de amenazas y controles
 40.76 Entregable: informe de fallos inyectados y recuperación
 40.77 Evaluación final: criterios de aceptación y evidencias
+40.78 Fase 1: requisitos, topología y versiones; aceptación mediante inventario y ADR
+40.79 Fase 2: despliegue y scraping; aceptación mediante targets y pruebas de permisos
+40.80 Fase 3: consultas y alertas; aceptación mediante tests y notificación de prueba
+40.81 Fase 4: capacidad y resiliencia; aceptación mediante mediciones y recuperación
+40.82 Fase 5: entrega operativa; aceptación mediante reconstrucción documentada y evidencias

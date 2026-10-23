@@ -227,7 +227,9 @@ un componente y dónde está documentada una configuración.
 
 OpenSSH debe tratarse como **consumer de IAM**, no como sistema proveedor de identidades.
 
-El PATH debe explicar la cadena `sshd → PAM/NSS → SSSD → IAM central (LDAP/Kerberos/FreeIPA)` y cubrir NSS, PAM, SSSD, Kerberos/GSSAPI, FreeIPA, enrolamiento del host, resolución de usuarios y grupos, HBAC, caché/offline y troubleshooting.
+La integración no es una cadena única: NSS resuelve usuarios y grupos, habitualmente mediante SSSD; PAM gestiona las fases de autenticación, cuenta y sesión que correspondan; GSSAPI permite autenticación Kerberos en OpenSSH. El uso de PAM/SSSD depende del método y de la configuración. La autenticación GSSAPI no elimina las comprobaciones de identidad, autorización y sesión. Diagnosticar primero DNS y tiempo y después la ruta de identidad, el método de autenticación y las políticas de acceso efectivamente utilizados.
+
+Cubrir NSS, PAM, SSSD, Kerberos/GSSAPI, FreeIPA, enrolamiento del host, resolución de usuarios y grupos, HBAC, caché/offline y troubleshooting.
 
 No duplicar el PATH IAM: la creación, provisión, gobierno y administración profunda de usuarios, grupos, directorio, Kerberos y FreeIPA pertenecen al PATH IAM. Aquí se estudia cómo OpenSSH **consume** esas identidades y políticas.
 
@@ -464,3 +466,21 @@ El proyecto OpenSSH incluirá configuración modular, CA de usuarios y hosts, ba
 ## 23. Integración bibliográfica de Pro OpenSSH — Michael Stahnke
 
 Usar *Pro OpenSSH* (Apress) como referencia complementaria orientada a administración práctica. Relacionar sus contenidos con las lecciones existentes de configuración cliente/servidor, autenticación, claves y agentes, forwarding, transferencia de archivos, hardening y troubleshooting. No crear un bloque artificial dedicado exclusivamente al libro ni eliminar contenidos existentes. Contrastar siempre ejemplos históricos con OpenSSH Portable y Fedora actuales. No atribuirle cobertura de certificados modernos, FIDO2 u otras capacidades posteriores a su edición sin comprobación bibliográfica.
+
+
+## 24. Estructura y progresión verificadas
+
+- Mantener 51 bloques: OpenSSH 1–28 y Watchdog 29–51.
+- Numerar las lecciones exclusivamente como bloque.lección, sin tercer nivel.
+- Expresar estructuras de directorios en el texto o en ejemplos, no como niveles
+  adicionales de numeración del PATH.
+- El bloque 1 presenta el protocolo; el 7 desarrolla criptografía y el 23 los
+  mecanismos internos, mensajes, derivación de claves y canales.
+- Las referencias a certificados en los bloques 17 y 19 son introductorias;
+  emisión, validación y revocación se desarrollan en el bloque 21.
+- Los bloques 20 y 45 son laboratorios integradores; los proyectos expertos
+  cierran cada parte en los bloques 28 y 51.
+- Emplear los nombres reales watchdog_register_device() y
+  watchdog_unregister_device() al estudiar la API del kernel.
+- Para virtualización, elegir modelos documentados para QEMU/libvirt y verificar
+  su soporte real según arquitectura, máquina y versiones del laboratorio.

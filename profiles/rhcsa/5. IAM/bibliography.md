@@ -169,3 +169,38 @@ La documentación oficial de Fedora, Red Hat, FreeIPA, SSSD, MIT Kerberos, OpenL
 Los libros se utilizarán principalmente para fundamentos, arquitectura, protocolos y explicación conceptual.
 
 Los RFC se utilizarán en los bloques avanzados para comprender LDAP y Kerberos a nivel de protocolo.
+
+
+## Fuentes operativas enlazadas para la revisión
+
+- [Red Hat: usuarios, grupos y reglas de acceso IdM (RHEL 9)](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/managing_idm_users_groups_hosts_and_access_control_rules/index): bajas de cuentas, tickets, HBAC, lifecycle, passkeys y políticas Kerberos.
+- [Red Hat: reglas HBAC (RHEL 10)](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_idm_users_groups_hosts_and_access_control_rules/configuring-host-based-access-control-rules): contrastar versiones y retirada de allow_all.
+- [FreeIPA: autenticación de aplicaciones web](https://www.freeipa.org/page/Web_App_Authentication): distinguir GSSAPI de autorización mediante PAM/HBAC; comprobar vigencia de ejemplos y módulos.
+- [MIT Kerberos: servidores de aplicaciones](https://web.mit.edu/Kerberos/krb5-1.20/doc/admin/appl_servers.html): keytabs, ktadd y cambio de claves; contrastar con la versión instalada.
+- [MIT Kerberos: administración de la base de datos](https://web.mit.edu/kerberos/krb5-latest/doc/admin/database.html): KDC independiente y recuperación.
+- [Red Hat: soporte de servidores LDAP](https://access.redhat.com/solutions/2440481): disponibilidad y soporte según versión; puede requerir acceso al portal.
+- [SSSD Documentation](https://sssd.io/docs/): cachés, offline, providers, diagnóstico y failover.
+- [FreeIPA Documentation](https://www.freeipa.org/en/documentation.html): instalación, replicación, certificados y operación.
+- [OpenLDAP Administrator’s Guide](https://www.openldap.org/doc/admin26/): cn=config, schemas, ACL, syncrepl y recuperación en el laboratorio independiente.
+- [systemd credentials](https://systemd.io/CREDENTIALS/): entrega y protección de secretos, contrastando con la versión instalada.
+
+## Protocolos POSIX y extensión de federación
+
+- [RFC 2307](https://www.rfc-editor.org/rfc/rfc2307): atributos para servicios de nombres en LDAP; RFC2307bis se estudia como modelo relacionado, sin tratarlo como RFC final equivalente.
+- [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html): autenticación y relación con OAuth 2.0.
+- [RFC 6749](https://www.rfc-editor.org/rfc/rfc6749) y [RFC 9700](https://www.rfc-editor.org/rfc/rfc9700): marco OAuth 2.0 y prácticas de seguridad actuales para el panorama conceptual.
+- [OASIS SAML 2.0](https://docs.oasis-open.org/security/saml/v2.0/): conceptos de federación.
+- [RFC 7643](https://www.rfc-editor.org/rfc/rfc7643) y [RFC 7644](https://www.rfc-editor.org/rfc/rfc7644): modelo y protocolo de aprovisionamiento SCIM.
+
+## Aplicación de las fuentes y antigüedad
+
+Los libros existentes se conservan como apoyo conceptual e histórico. Las
+recetas de instalación, algoritmos, TLS, schemas y hardening se contrastan con
+documentación oficial de la versión usada. Cada integración Samba, passkey,
+smart card, trust o módulo HTTP declara soporte y limitaciones. Las menciones
+genéricas de seguridad Linux son complementarias, no manuales de IdM.
+
+Las fuentes sobre usuarios y HBAC se usan para corregir la distinción entre
+autenticación, autorización y revocación. Las prácticas registran evidencia
+de tickets y sesiones preexistentes; no prometen revocación inmediata global.
+Las extensiones de federación sólo delimitan el alcance de este PATH.

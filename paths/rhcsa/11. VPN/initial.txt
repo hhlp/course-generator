@@ -1,6 +1,8 @@
 LEARNING PATH — OPENVPN + WIREGUARD
 0 → EXPERTO
 Orientación: Linux / Fedora / RHEL
+Revisión: 2026-10-23
+Orden pedagógico: 9B se estudia después de 21; se conservan sus IDs.
 
 BLOQUE 0 — Fundamentos de VPN y redes
 0.1 Qué es una VPN
@@ -34,6 +36,9 @@ BLOQUE 0 — Fundamentos de VPN y redes
 0.29 DNS leaks
 0.30 IPv6 leaks
 0.31 Laboratorio base de networking
+0.32 Inventario de versiones, paquetes y repositorios Fedora/RHEL por laboratorio
+0.33 Topología local aislada: WAN simulada, dos sedes y cliente remoto
+0.34 Plan IPv4/IPv6, snapshots, acceso de recuperación y limpieza del laboratorio
 
 BLOQUE 1 — Criptografía aplicada a VPN
 1.1 Confidencialidad, integridad y autenticación
@@ -147,6 +152,9 @@ BLOQUE 5 — TLS y seguridad OpenVPN
 5.17 Hardening criptográfico
 5.18 Eliminar configuraciones legacy
 5.19 Laboratorio de hardening
+5.20 Data Channel Offload (DCO): requisitos y restricciones según versión
+5.21 Compresión: riesgos y configuración explícita sin compresión
+5.22 Distinguir tls-auth/tls-crypt del modo legacy de túnel con clave estática
 
 BLOQUE 6 — Routing con OpenVPN
 6.1 Red virtual VPN
@@ -250,29 +258,20 @@ BLOQUE 9A — VPN e Identity & Access Management (IAM)
 9A.20 Laboratorio: OpenVPN completamente independiente de IAM
 9A.21 Laboratorio: OpenVPN como consumidor de FreeIPA mediante PAM/SSSD
 9A.22 Comparar ambos modelos y sus dependencias
-
-BLOQUE 9B — WireGuard e IAM: modelo indirecto
-9B.1 Por qué WireGuard no autentica usuarios mediante PAM/LDAP/Kerberos
-9B.2 Identidad nativa de WireGuard: clave pública del peer
-9B.3 Peer no equivale necesariamente a usuario
-9B.4 WireGuard sin IAM: gestión autónoma de peers
-9B.5 Alta, baja y rotación manual de peers
-9B.6 Revocación mediante eliminación de claves/peers
-9B.7 AllowedIPs y autorización de red
-9B.8 Separar data plane y control plane
-9B.9 IAM como fuente externa de identidad
-9B.10 Usuario IAM → autorización → provisioning de peer
-9B.11 Lifecycle de usuario IAM → lifecycle de peer
-9B.12 Baja de usuario → retirada/deshabilitación del peer
-9B.13 Grupos IAM → políticas externas de provisioning
-9B.14 Automatización con Ansible/API/scripts
-9B.15 Auditoría y trazabilidad usuario ↔ peer
-9B.16 Riesgos de confundir clave WireGuard con identidad humana
-9B.17 Qué ocurre cuando IAM no está disponible
-9B.18 WireGuard sigue operando con configuración ya provisionada
-9B.19 Laboratorio: WireGuard completamente independiente de IAM
-9B.20 Laboratorio: provisioning de peers gobernado externamente por IAM
-9B.21 Comparación OpenVPN consumidor IAM vs WireGuard gestionado externamente
+9A.23 Plugin auth-pam: instalación, ruta real y nombre del servicio PAM
+9A.24 Servicio PAM dedicado: fases auth/account y validación del acceso
+9A.25 SSSD y FreeIPA: unión del gateway, DNS, hora y confianza TLS
+9A.26 Kerberos mediante SSSD: distinguir validación de contraseña de SSO con tickets
+9A.27 HBAC y grupos: verificar autorización para el servicio PAM elegido
+9A.28 Vinculación certificado-usuario y prevención de identidades intercambiadas
+9A.29 MFA, desafíos y límites del plugin/cliente seleccionado
+9A.30 reneg-sec, auth-gen-token y política de reautenticación
+9A.31 Tokens válidos frente a cuenta bloqueada: efectos de external-auth
+9A.32 Caché SSSD, acceso offline y decisión explícita fail-closed
+9A.33 Baja de usuario: bloquear nuevas conexiones y terminar sesiones activas
+9A.34 Laboratorio: usuario bloqueado, grupo denegado y certificado revocado
+9A.35 Laboratorio: pérdida de DNS, desfase horario e indisponibilidad de IAM
+9A.36 Matriz de evidencias: resultado PAM, decisión de acceso y sesión VPN
 
 BLOQUE 10 — Operación OpenVPN
 10.1 systemd units
@@ -293,6 +292,9 @@ BLOQUE 10 — Operación OpenVPN
 10.16 Actualizaciones
 10.17 Certificate lifecycle
 10.18 Operación de producción
+10.19 Rutas reales de configuración y plugins según paquete instalado
+10.20 journald y /var/log: destinos configurados, persistencia y permisos
+10.21 Management interface: acceso local restringido y cierre de sesiones
 
 BLOQUE 11 — Troubleshooting OpenVPN
 11.1 Metodología de diagnóstico
@@ -397,6 +399,9 @@ BLOQUE 14 — Herramientas WireGuard
 14.14 Archivos wg0.conf
 14.15 Permisos de claves
 14.16 Laboratorio CLI
+14.17 wg frente a wg-quick: separar configuración nativa y extensiones
+14.18 SaveConfig y cambios runtime: evitar sobrescribir la fuente declarativa
+14.19 wg showconf y dumps: tratamiento de salidas que contienen secretos
 
 BLOQUE 15 — Configuración WireGuard
 15.1 [Interface]
@@ -436,6 +441,10 @@ BLOQUE 16 — Cryptokey Routing y AllowedIPs
 16.13 Errores comunes de AllowedIPs
 16.14 Diseño de direccionamiento
 16.15 Laboratorio avanzado
+16.16 FIB Linux y selección criptográfica de peer: dos decisiones distintas
+16.17 AllowedIPs no sustituye un firewall por puertos y servicios
+16.18 Rutas automáticas de wg-quick y peer-routes de NetworkManager
+16.19 Laboratorio: ruta presente con peer incorrecto y peer correcto sin ruta
 
 BLOQUE 17 — Routing y NAT WireGuard
 17.1 IP forwarding
@@ -490,6 +499,9 @@ BLOQUE 19 — WireGuard + NetworkManager/systemd
 19.13 Dependencias de red
 19.14 Múltiples interfaces WireGuard
 19.15 Laboratorio Fedora
+19.16 Un único gestor por interfaz: NetworkManager o wg-quick
+19.17 Default routes, fwmark e ip4/ip6-auto-default-route
+19.18 DNS= en wg-quick: dependencia del integrador de resolución disponible
 
 BLOQUE 20 — WireGuard avanzado
 20.1 NAT traversal
@@ -509,6 +521,9 @@ BLOQUE 20 — WireGuard avanzado
 20.15 Kubernetes: introducción
 20.16 Overlay networking
 20.17 WireGuard como building block
+20.18 Keepalive conserva mappings NAT; no ofrece descubrimiento o relay
+20.19 CGNAT en ambos extremos: gateway alcanzable o plano externo
+20.20 Endpoint con nombre DNS: resolución y actualización según herramienta
 
 BLOQUE 21 — Troubleshooting WireGuard
 21.1 Metodología de diagnóstico
@@ -559,6 +574,36 @@ BLOQUE 21 — Troubleshooting WireGuard
 21.46 Laboratorio: handshake existe pero no hay conectividad
 21.47 Laboratorio: localizar un fallo mediante wg + logs + tcpdump
 21.48 Laboratorio completo de troubleshooting
+BLOQUE 9B — WireGuard e IAM: modelo indirecto
+9B.1 Por qué WireGuard no autentica usuarios mediante PAM/LDAP/Kerberos
+9B.2 Identidad nativa de WireGuard: clave pública del peer
+9B.3 Peer no equivale necesariamente a usuario
+9B.4 WireGuard sin IAM: gestión autónoma de peers
+9B.5 Alta, baja y rotación manual de peers
+9B.6 Revocación mediante eliminación de claves/peers
+9B.7 AllowedIPs y autorización de red
+9B.8 Separar data plane y control plane
+9B.9 IAM como fuente externa de identidad
+9B.10 Usuario IAM → autorización → provisioning de peer
+9B.11 Lifecycle de usuario IAM → lifecycle de peer
+9B.12 Baja de usuario → retirada/deshabilitación del peer
+9B.13 Grupos IAM → políticas externas de provisioning
+9B.14 Automatización con Ansible/API/scripts
+9B.15 Auditoría y trazabilidad usuario ↔ peer
+9B.16 Riesgos de confundir clave WireGuard con identidad humana
+9B.17 Qué ocurre cuando IAM no está disponible
+9B.18 WireGuard sigue operando con configuración ya provisionada
+9B.19 Laboratorio: WireGuard completamente independiente de IAM
+9B.20 Laboratorio: provisioning de peers gobernado externamente por IAM
+9B.21 Comparación OpenVPN consumidor IAM vs WireGuard gestionado externamente
+9B.22 Reconciliación periódica, eventos perdidos y tiempo máximo de revocación
+9B.23 Generación local de claves privadas y registro de claves públicas
+9B.24 Retirada del peer en runtime y configuración persistente
+9B.25 Separar baja IAM, rotación de clave y bloqueo de tráfico
+9B.26 Autorización por subred/puerto mediante firewall además de AllowedIPs
+9B.27 Laboratorio: baja IAM con controlador disponible e indisponible
+9B.28 Recuperar el controlador y reconciliar peers sin reintroducir bajas
+
 BLOQUE 22 — DNS para VPN
 22.1 DNS dentro de VPN
 22.2 Resolver Linux
@@ -657,6 +702,8 @@ BLOQUE 26 — Observabilidad
 26.16 Latency monitoring
 26.17 Packet loss
 26.18 Capacity planning
+26.19 Sondas de conectividad: handshake reciente no acredita acceso al servicio
+26.20 Logs en journald y archivos: retención, acceso y anonimización
 
 BLOQUE 27 — Automatización
 27.1 Automatizar despliegues VPN
@@ -719,6 +766,9 @@ BLOQUE 29 — Routing avanzado
 29.15 WireGuard + FRR
 29.16 OpenVPN + routing dinámico
 29.17 Laboratorio multi-site
+29.18 OSPF sobre WireGuard: vecinos unicast, interfaces y límites multicast
+29.19 Relación entre prefijos dinámicos, FIB y AllowedIPs
+29.20 Laboratorio FRR: ruta aprendida cuyo prefijo no está autorizado al peer
 
 BLOQUE 30 — Alta disponibilidad
 30.1 Qué significa HA para una VPN
@@ -735,6 +785,13 @@ BLOQUE 30 — Alta disponibilidad
 30.12 Failover testing
 30.13 Recovery
 30.14 Disaster recovery
+30.15 HA OpenVPN: reconexión de cliente y redundancia de endpoints
+30.16 HA WireGuard: gateways con claves distintas y selección de camino
+30.17 Identidad compartida en active/passive: fencing y riesgo de split-brain
+30.18 Estado criptográfico, sesiones y conntrack: límites de la continuidad
+30.19 Disponibilidad de DNS, IAM, PKI y controlador externo
+30.20 Medir detección, reconexión, pérdida de paquetes y recuperación de rutas
+30.21 Laboratorio: pérdida de gateway y retorno sin split-brain
 
 BLOQUE 31 — OpenVPN vs WireGuard
 31.1 Diferencias arquitectónicas
@@ -815,6 +872,12 @@ BLOQUE 34 — Laboratorios expertos
 34.20 Ansible deployment
 34.21 Rotación de claves
 34.22 Incident troubleshooting
+34.23 Laboratorio OpenVPN: certificado más PAM/SSSD/FreeIPA y grupos
+34.24 Laboratorio MFA: renovación de token y retirada de sesión activa
+34.25 Laboratorio WireGuard: alta y baja mediante control externo IAM
+34.26 Laboratorio comparativo: VPN autónoma e IAM caído
+34.27 Validación dual-stack: fugas DNS/IPv6 y kill switch tras reconexión
+34.28 Restauración desde backup y verificación de revocaciones persistentes
 
 BLOQUE 35 — Proyecto final
 35.1 Analizar requisitos
@@ -840,3 +903,6 @@ BLOQUE 35 — Proyecto final
 35.21 Documentación
 35.22 Runbook operacional
 35.23 Arquitectura final de producción
+35.24 Matriz de aceptación con pruebas positivas y negativas por escenario
+35.25 Presupuesto de interrupción y revocación medido
+35.26 Inventario de versiones, restricciones y decisiones de compatibilidad

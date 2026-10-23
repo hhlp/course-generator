@@ -8,6 +8,8 @@ course:
   platform:
     primary: PostgreSQL
     cli: psql
+    reference_major: 18
+    record_exact_server_version: true
   description: >
     Curso profundo de SQL como lenguaje de consulta, transformación, análisis,
     manipulación y programación de datos, usando PostgreSQL como plataforma
@@ -141,7 +143,7 @@ pedagogy:
 
 laboratories:
   primary_dataset:
-    name: "PostgreSQL Sample Database"
+    name: "DVD Rental (dvdrental)"
     provider: Neon
     url: "https://neon.com/postgresql/getting-started/sample-database"
     role: canonical
@@ -266,6 +268,11 @@ final_project:
     - stored procedure examples
     - justified trigger implementation
     - routine safety and performance validation
+    - deterministic fixtures and expected results
+    - independent concurrent-session scenario
+    - exact PostgreSQL server version and optional extensions
+    - dataset checksum and restoration instructions
+    - clean execution and reset instructions
 
 deep_learning_requirements:
   preserve_existing_blocks_and_lessons: true
@@ -306,3 +313,38 @@ sql_testing:
   optional_tools:
     - pgTAP
   capstone_required: true
+
+revision_execution_policy:
+  official_documentation_base: "https://www.postgresql.org/docs/18/"
+  dataset:
+    archive: dvdrental.tar
+    restore_tool: pg_restore
+    record_download_checksum: true
+    disposable_database: true
+    reset_instructions_required: true
+  prerequisite_bridges:
+    count_before_aggregation: guided_introduction
+    exists_before_subqueries: guided_introduction
+    updatable_views_before_dml: guided_dml_and_rollback_capsule
+    view_triggers_before_trigger_block: conceptual_preview
+  progression:
+    plan_basics: 15
+    advanced_plan_diagnosis: 24
+    integration_with_new_problems: 33
+  scope_clarifications:
+    fixture_ddl_on_provided_schemas: allowed
+    object_grant_revoke_for_interface_tests: allowed
+    derived_value_trigger_implementation: predefined_requirement_only
+    derived_value_storage_decision: excluded
+
+equivalence_testing_policy:
+  counterexample_can_refute_equivalence: true
+  passing_fixtures_prove_universal_equivalence: false
+  except_all_compares: bags_for_tested_inputs
+  require_comparable_types: true
+  use_same_snapshot_or_immutable_inputs: true
+  separately_check_when_relevant:
+    - output_order
+    - output_types
+    - raised_errors
+    - side_effects

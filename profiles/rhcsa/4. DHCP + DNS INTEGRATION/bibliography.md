@@ -36,7 +36,9 @@ Referencia: *BIND 9 Administrator Reference Manual*, Internet Systems Consortium
 ## RFC fundamentales
 
 - RFC 2136 — Dynamic Updates in the Domain Name System (DNS UPDATE).
-- RFC 2845 — Secret Key Transaction Authentication for DNS (TSIG).
+- RFC 8945 — Secret Key Transaction Authentication for DNS (TSIG).
+  Referencia vigente que sustituye RFC 2845 y RFC 4635.
+- RFC 2845 — TSIG: lectura histórica, sustituida por RFC 8945.
 - RFC 4701 — A DNS Resource Record (RR) for Encoding Dynamic Host Configuration Protocol (DHCP) Information (DHCID RR).
 - RFC 4702 — The DHCP Client FQDN Option.
 - RFC 4703 — Resolution of FQDN Conflicts among DHCP Clients.
@@ -106,3 +108,48 @@ captura de red cuando sea necesaria
 
 Para opciones de Kea/BIND que puedan cambiar entre versiones, prevalece la
 documentación oficial correspondiente a la versión instalada.
+
+
+## Referencias adicionales para las ampliaciones
+
+- RFC 3645 — Generic Security Service Algorithm for Secret Key Transaction
+  Authentication for DNS (GSS-TSIG): https://www.rfc-editor.org/info/rfc3645/
+- RFC 4361 — Node-specific Client Identifiers for DHCPv4:
+  https://www.rfc-editor.org/info/rfc4361/
+- RFC 2308 — Negative Caching of DNS Queries (DNS NCACHE):
+  https://www.rfc-editor.org/info/rfc2308/
+- RFC 8945 — TSIG vigente: https://www.rfc-editor.org/info/rfc8945/
+
+### Documentación oficial con enlaces
+
+- Kea ARM, D2 y limitaciones de colas:
+  https://kea.readthedocs.io/en/stable/arm/ddns.html
+- Kea ARM, parámetros DDNS y conflictos DHCPv4:
+  https://kea.readthedocs.io/en/stable/arm/dhcp4-srv.html
+- Kea ARM, DHCPv6:
+  https://kea.readthedocs.io/en/stable/arm/dhcp6-srv.html
+- Kea ARM, hooks y GSS-TSIG:
+  https://kea.readthedocs.io/en/stable/arm/hooks.html
+- BIND 9 ARM:
+  https://bind9.readthedocs.io/en/stable/
+- Documentación de FreeIPA, para la ampliación opcional:
+  https://www.freeipa.org/page/Documentation
+
+Seleccionar secciones sobre permisos de actualización DNS y Kerberos cuando se
+practique GSS-TSIG. La presencia de un hook en la documentación no garantiza
+su empaquetado en la distribución instalada: verificarlo antes de diseñar el lab.
+
+### Mapa de lectura
+
+| Bloques | Referencia prioritaria |
+|---|---|
+| 0–4 | Kea D2, BIND ARM y RFC 2136 |
+| 5 | RFC 8945, BIND ARM y diagnóstico TSIG |
+| 6–8 | Kea ARM de D2, DHCPv4 y DHCPv6 de la versión usada |
+| 9–12 | RFC 4701–4704, RFC 4361 y parámetros DDNS de Kea |
+| 13–14 | Logging Kea/BIND y herramientas de captura |
+| 15 | BIND update-policy; RFC 3645 y hooks para la ampliación IAM |
+| 16–18 | Limitaciones D2, Kea HA y operación de zonas dinámicas BIND |
+
+Los libros complementarios conservan valor conceptual, pero no deben usarse
+para deducir opciones actuales de Kea, algoritmos TSIG o disponibilidad de hooks.

@@ -11,6 +11,8 @@ BLOQUE 0 — Fundamentos del tiempo en Linux
 0.7 Por qué se desincronizan los relojes
 0.8 Impacto sobre logs, auditoría, bases de datos y sistemas distribuidos
 0.9 Impacto sobre Kerberos, TLS y certificados
+0.10 TIME como servicio base independiente de LDAP, Kerberos y FreeIPA
+0.11 IAM depende de TIME: tickets, desfase y validez temporal de certificados
 
 BLOQUE 1 — Administración del tiempo en Linux
 1.1 `date`: lectura, formatos, UTC y Unix timestamps
@@ -22,6 +24,7 @@ BLOQUE 1 — Administración del tiempo en Linux
 1.7 System Clock → RTC y RTC → System Clock
 1.8 RTC en UTC vs localtime
 1.9 Laboratorio completo de fecha, timezone y RTC
+1.10 tzdata: actualización de zonas y distinción entre presentación local y sincronización UTC
 
 BLOQUE 2 — Fundamentos de sincronización y NTP
 2.1 Necesidad de sincronización
@@ -61,6 +64,9 @@ BLOQUE 5 — Archivos, estado y configuración
 5.6 `driftfile`, `makestep`, `rtcsync`, `leapsectz`
 5.7 Validación y despliegue de cambios
 5.8 Configuración mínima y configuración empresarial
+5.9 include, confdir y sourcedir: configuración efectiva y fuentes suministradas por la red
+5.10 Validación de configuración con chronyd -p según versión; distinguir parseo y sincronización real
+5.11 Recarga de fuentes frente a reinicio del servicio: persistencia y rollback
 
 BLOQUE 6 — chronyc en profundidad
 6.1 `chronyc tracking`
@@ -75,6 +81,9 @@ BLOQUE 6 — chronyc en profundidad
 6.10 `chronyc sourcestats`
 6.11 `chronyc activity`, `ntpdata` y `serverstats`
 6.12 Laboratorio de interpretación de métricas
+6.13 chronyc waitsync: espera acotada, corrección pendiente, skew y código de salida
+6.14 chronyc authdata y selectdata: autenticación y motivos de selección según versión
+6.15 chronyc clients, accheck y salida CSV para observabilidad y automatización
 
 BLOQUE 7 — Step, Slew y corrección del reloj
 7.1 Clock stepping vs clock slewing
@@ -96,6 +105,9 @@ BLOQUE 8 — Chrony como servidor NTP
 8.8 `local` y local stratum
 8.9 Holdover y failover
 8.10 Laboratorio servidor + clientes
+8.11 local orphan: elección de referencia interna y recuperación de conectividad
+8.12 Coherencia interna sin referencia UTC: limitaciones de local y crecimiento de incertidumbre
+8.13 Separar NTP UDP/123, NTS-KE TCP/4460 y administración chronyc UDP/323 o socket Unix
 
 BLOQUE 9 — Logs: journald y /var/log/chrony
 9.1 Logging del servicio mediante systemd-journald
@@ -127,6 +139,7 @@ BLOQUE 10 — Troubleshooting sistemático
 10.7 Firewalld y SELinux
 10.8 Conflictos con otros mecanismos de sincronización
 10.9 Construcción de un árbol de diagnóstico reproducible
+10.10 chronyd activo no equivale a reloj sincronizado: verificar estado y error estimado
 
 BLOQUE 11 — Herramientas de diagnóstico
 11.1 `systemctl`, `journalctl` y `chronyc`
@@ -155,6 +168,9 @@ BLOQUE 12 — Casos reales de troubleshooting
 12.13 Problemas en VM
 12.14 Clientes que no sincronizan
 12.15 Recuperación después de una caída prolongada
+12.16 Arranque sin DNS interno: fuentes accesibles y recuperación tras restablecer resolución
+12.17 Fallo Kerberos por clock skew: correlacionar evidencias de cliente, KDC y Chrony
+12.18 Evitar corregir un fallo de reloj ampliando indiscriminadamente la tolerancia de Kerberos
 
 BLOQUE 13 — Seguridad y NTS
 13.1 Manipulación del tiempo y amenazas
@@ -166,6 +182,11 @@ BLOQUE 13 — Seguridad y NTS
 13.7 Network Time Security (NTS)
 13.8 Chrony + NTS
 13.9 Validación y troubleshooting NTS
+13.10 Cliente NTS: server con nts, confianza de la CA y comprobación de authdata
+13.11 Servidor NTS: ntsservercert, ntsserverkey, ntsdumpdir y acceso mínimo a claves
+13.12 NTS-KE TCP/4460 y NTP UDP/123: reglas distintas del canal de administración
+13.13 Renovación del certificado y reinicio controlado con verificación posterior
+13.14 Arranque con hora incorrecta: restauración de una referencia inicial confiable para TLS
 
 BLOQUE 14 — Virtualización, containers y Kubernetes
 14.1 Host clock vs guest clock
@@ -177,6 +198,8 @@ BLOQUE 14 — Virtualización, containers y Kubernetes
 14.7 Podman
 14.8 Kubernetes y sincronización de nodos
 14.9 Impacto de nodos desincronizados
+14.10 Time namespaces: offsets de CLOCK_MONOTONIC y CLOCK_BOOTTIME; CLOCK_REALTIME compartido
+14.11 Laboratorios de cambio de hora en VM desechables; contenedores no aíslan el reloj realtime
 
 BLOQUE 15 — Arquitectura empresarial
 15.1 Fuentes externas e internas
@@ -189,6 +212,10 @@ BLOQUE 15 — Arquitectura empresarial
 15.8 Arquitectura multi-site
 15.9 Alta disponibilidad
 15.10 Monitorización centralizada
+15.11 Disponibilidad con dos servidores frente a detección de fuentes falsas con tres o cuatro
+15.12 Independencia de fuentes: proveedores, referencias y rutas; evitar redundancia aparente
+15.13 Arranque TIME, resolución DNS e IAM: eliminar dependencias circulares
+15.14 TIME para infraestructura con IAM y sin IAM: misma función, distintos consumidores
 
 BLOQUE 16 — GPS, GNSS, PPS y fuentes avanzadas
 16.1 Reference clocks
@@ -222,6 +249,9 @@ BLOQUE 18 — Monitorización
 18.7 Métricas de Chrony
 18.8 Grafana
 18.9 Logs centralizados
+18.10 Exportadores: documentar origen, permisos, unidades y compatibilidad de versión
+18.11 Presupuesto de error y SLO: umbrales por aplicación, incertidumbre y ventana de convergencia
+18.12 Monitorizar autenticación NTS, caducidad de certificados y pérdida de fuentes independientes
 
 BLOQUE 19 — Automatización con Ansible
 19.1 Instalación del paquete
@@ -233,6 +263,9 @@ BLOQUE 19 — Automatización con Ansible
 19.7 Roles cliente/servidor
 19.8 Variables por datacenter
 19.9 Idempotencia y testing
+19.10 Validar sintaxis antes del handler y esperar sincronización con timeout y fallo explícito
+19.11 Detectar versión y capacidades antes de emitir directivas o comandos opcionales
+19.12 Despliegue gradual y rollback conservando al menos una referencia útil
 
 BLOQUE 20 — Hardening y buenas prácticas
 20.1 Múltiples fuentes fiables
@@ -244,6 +277,8 @@ BLOQUE 20 — Hardening y buenas prácticas
 20.7 Monitorizar offset y reachability
 20.8 Centralizar logs
 20.9 Auditoría periódica
+20.10 Administración local por socket Unix; cmdallow y bindcmdaddress solo con necesidad justificada
+20.11 Rate limiting y separación de fuentes autenticadas, autorizadas y realmente correctas
 
 BLOQUE 21 — Linux Timekeeping Internals
 21.1 Arquitectura interna del timekeeping del kernel Linux
@@ -296,7 +331,7 @@ BLOQUE 23 — Chrony Internals
 23.11 Combining de múltiples fuentes
 23.12 Polling adaptativo
 23.13 Interleaved mode: concepto y casos de uso
-23.14 Presminsamples/presmaxsamples y control de muestras: conceptos
+23.14 minsamples/maxsamples y control de muestras: conceptos
 23.15 Drift estimation
 23.16 Persistencia del drift
 23.17 Startup behavior
@@ -353,6 +388,8 @@ BLOQUE 26 — NTS Internals
 26.13 Fallos NTS-KE
 26.14 Fallback y política operativa
 26.15 Troubleshooting forense de NTS
+26.16 Política explícita ante fallo NTS: evitar degradación silenciosa a fuentes sin autenticar
+26.17 Práctica de certificados caducados, CA incorrecta, DNS roto y NTS-KE bloqueado
 
 BLOQUE 27 — PPS, PHC y hardware timestamping en profundidad
 27.1 PPS en Linux
@@ -384,6 +421,10 @@ BLOQUE 28 — PTP Internals e integración Chrony/PTP
 28.12 Chrony + PHC/PTP
 28.13 Arquitecturas híbridas NTP/PTP
 28.14 Troubleshooting PTP con logs y herramientas
+28.15 Un responsable por reloj: asignar disciplina PHC y CLOCK_REALTIME entre servicios
+28.16 Chrony con refclock PHC y linuxptp: evitar que phc2sys y chronyd ajusten el mismo reloj
+28.17 UTC y TAI en la integración PTP: comprobar offset y escala temporal
+28.18 Transporte PTP, dominios y capacidades del switch/NIC según el perfil utilizado
 
 BLOQUE 29 — Troubleshooting forense
 29.1 Metodología evidence-first
@@ -419,6 +460,13 @@ BLOQUE 30 — Laboratorios avanzados
 30.13 Laboratorio PPS/PHC cuando haya hardware disponible
 30.14 Laboratorio PTP con linuxptp
 30.15 RCA completo de una avería temporal
+30.16 Topología base reproducible: un servidor, dos clientes y red privada sin exposición pública
+30.17 Extensión de selección: tres o cuatro fuentes controladas y contraste con solo dos
+30.18 netem en red de laboratorio: latencia, pérdida, asimetría y retirada de reglas
+30.19 Registrar estado inicial, hipótesis, resultado esperado, métricas y recuperación en cada práctica
+30.20 Prácticas PTP por software separadas de precisión con timestamping de hardware
+30.21 Práctica IAM opcional: reutilizar realm existente, provocar desfase en VM y restaurarlo
+30.22 NTS reproducible con CA de laboratorio, DNS o resolución local y nombres de certificados válidos
 
 BLOQUE 31 — Proyecto final experto
 31.1 Dos servidores Chrony redundantes
@@ -438,3 +486,8 @@ BLOQUE 31 — Proyecto final experto
 31.15 Informe RCA
 31.16 Justificación arquitectónica NTP vs PTP
 31.17 Defensa técnica del diseño
+31.18 Comparar arquitectura mínima de dos servidores con ampliación de tres o cuatro fuentes
+31.19 Demostrar funcionamiento sin IAM y explicar por qué IAM depende de TIME
+31.20 Entrega de configuración, inventario, evidencias, criterios de aceptación y rollback
+31.21 NTS obligatorio en el laboratorio controlado; justificar su aplicabilidad en el diseño real
+31.22 Extensión PTP/PPS condicionada a hardware; documentar límites de simulación

@@ -46,16 +46,19 @@ operativo o distribución es idéntico al de Fedora.
 
 ## 2A. Secuencia obligatoria y separación Bash/Zsh
 
-El itinerario se recorre en este orden, sin alternar bloques completos de Bash y Zsh:
+- **Fundamentos comunes: bloques 0–1.**
+- **Bash: bloques 2–69.**
+- **Zsh: bloques 70–98.**
+- **Integración: bloques 99–107.**
 
-1. **Fundamentos comunes (bloques 0–1):** terminal, procesos, POSIX y entorno de laboratorio.
-2. **Bash de cero a experto (bloques 2–69):** sintaxis, scripting, administración, seguridad, automatización, internals y proyecto Bash. Es la primera especialización completa.
-3. **Zsh de cero a experto (bloques 70–92):** estudiar Zsh como lenguaje propio, desde sus diferencias fundamentales y modo nativo hasta ZLE, completion, internals, dotfiles y proyectos. Los fundamentos comunes se recuperan con ejercicios Zsh, no se dan por equivalentes los dialectos.
-4. **Comparación e integración (bloques 93–100):** portabilidad, migración, antipatrones, herramientas y proyectos conjuntos.
+Primero se completan los fundamentos comunes y Bash; después, Zsh nativo;
+por último se realizan las comparaciones y proyectos conjuntos.
+Las comparaciones breves pueden señalar diferencias, pero no sustituyen
+las lecciones completas del dialecto correspondiente.
 
-Los títulos de `initial.txt` incluyen un prefijo de ámbito (Fundamentos comunes, Bash, Zsh o Integración). Las lecciones heredadas que mencionan el otro dialecto dentro de una especialización son **puntos de contraste**, no autorización para fusionar ambos lenguajes ni enseñar su semántica como idéntica. En los bloques Bash, cualquier código Zsh debe identificarse como comparación y viceversa. Los bloques de integración sí pueden usar ambos dialectos explícitamente.
-
-El bloque de Regex se limita a su **aplicación** en los shells; el PATH independiente de Regex contiene su teoría y bibliografía especializada.
+Regex aplicada requiere arrays, condicionales, estados de salida y funciones.
+Su teoría general y bibliografía especializada pertenecen al PATH Regex.
+Readline se estudia en Bash; ZLE, compsys y zprof se estudian en Zsh.
 
 ## 3. Alcance funcional
 
@@ -214,22 +217,29 @@ propia de esas herramientas, debe remitirse al PATH correspondiente.
 El foco aquí es cómo Bash/Zsh invocan, conectan y controlan dichas
 herramientas.
 
-## 8A. Idiomas Bash y eficiencia de la CLI
+## 8A. Expresiones idiomáticas Bash y eficiencia de la CLI
 
-El PATH incorpora *bash Idioms* para enseñar diseño, legibilidad, refactorización y patrones idiomáticos de Bash, sin convertirlos en reglas universales de Zsh.
+El PATH incorpora *bash Idioms* para enseñar diseño, legibilidad,
+refactorización y patrones idiomáticos de Bash, sin convertirlos en reglas
+universales de Zsh.
 
 *Efficient Linux at the Command Line* apoya la composición de comandos, los pipelines observables y la productividad interactiva. Los ejemplos deben distinguir el trabajo realizado por el shell de la semántica propia de las herramientas externas. En los bloques Zsh, reescribir los ejemplos con semántica Zsh nativa cuando corresponda.
 
-Priorizar claridad, mediciones reproducibles, control de errores, quoting correcto y pruebas sobre trucos crípticos o microoptimizaciones. No duplicar contenidos especializados de Coreutils, sed, awk, Regex ni administración de Linux.
+Priorizar claridad, mediciones reproducibles, control de errores, quoting
+correcto y pruebas sobre trucos crípticos o microoptimizaciones. No duplicar
+contenidos especializados de Coreutils, sed, awk, Regex ni administración de
+Linux.
 
-## 8A. Aplicaciones de Bash a seguridad y datos
+## 8B. Aplicaciones acotadas: seguridad y datos
 
-Además del lenguaje, se estudian dos aplicaciones prácticas completas sin requerir PATH independientes de ciberseguridad o ciencia de datos:
+Las lecciones de auditoría defensiva y datos se conservan como aplicaciones
+opcionales de composición shell. No constituyen cursos completos de
+ciberseguridad ni ciencia de datos y no requieren las dos obras excluidas
+de la bibliografía. Enseñar contratos de entrada/salida, errores,
+reproducibilidad, privacidad y límites de las herramientas invocadas.
 
-- **Operaciones de seguridad con Bash:** auditorías defensivas, inventario, logs, redes, recopilación de evidencias y automatización segura; toda prueba intrusiva se limita a entornos propios, aislados y autorizados.
-- **Procesamiento y análisis de datos desde Bash:** adquisición, limpieza, transformación, validación, pipelines ETL, CSV/TSV, JSON/NDJSON, análisis exploratorio y reproducibilidad.
-
-En ambas áreas, el centro pedagógico es la composición, ejecución, control de errores, seguridad, rendimiento y pruebas de scripts Bash. No se duplican los cursos especializados de Coreutils, sed, awk o Regex. Los ejemplos de Zsh se tratan únicamente como adaptaciones o contrastes etiquetados, sin confundir dialectos.
+Las comprobaciones intrusivas solo se realizan en laboratorios propios y
+autorizados. La seguridad del propio lenguaje sigue siendo obligatoria.
 
 ## 9. Bash
 
@@ -309,6 +319,13 @@ Una estructura válida de referencia es:
 ├── plugins/
 └── conf.d/
 ```
+
+Crear `~/.config/zsh/` no activa su lectura automáticamente. Hay que
+establecer `ZDOTDIR` antes de que Zsh busque los archivos reubicados, por
+el entorno de lanzamiento o mediante un bootstrap mínimo en `~/.zshenv`.
+Documentar dónde vive el bootstrap, evitar recursión y comprobar el orden
+con un HOME temporal. Las rutas globales dependen de la compilación y
+empaquetado: verificarlas en Fedora/RHEL antes de fijarlas en un ejemplo.
 
 La estructura no debe imponerse como única solución, pero sí utilizarse
 para enseñar separación de responsabilidades, orden de carga,
@@ -590,3 +607,43 @@ Al terminar el PATH, el alumno debe ser capaz de:
 - perfilar y optimizar configuraciones y scripts;
 - leer documentación y código fuente upstream;
 - construir y mantener una arquitectura Bash/Zsh de producción.
+
+## 25. Validación por dialecto y límites de las herramientas
+
+- Bash: `bash -n`, ShellCheck en modo Bash y pruebas reales con Bash.
+- Zsh: `zsh -n`, ejecución con Zsh y ShellSpec cuando corresponda.
+- POSIX: identificar la edición objetivo y probar con las implementaciones
+  elegidas; un análisis estático por sí solo no demuestra portabilidad.
+- No tratar Bats, ShellCheck o shfmt como herramientas universales para
+  Zsh. Separar el runner de pruebas del intérprete que ejecuta el código.
+- La comprobación sintáctica no valida expansiones, señales, quoting ni
+  estados de salida. Añadir casos positivos, negativos y límite.
+- `validation.enabled` describe configuración del generador; no significa
+  que este PATH ni sus ejemplos hayan sido ejecutados automáticamente.
+
+## 26. Portabilidad normativa y disponibilidad real
+
+Distinguir POSIX.1-2017 de POSIX.1-2024 y del soporte implementado.
+POSIX.1-2024 contempla dollar-single-quotes y pipefail; esto no garantiza
+su disponibilidad en shells antiguos. Citar la edición aplicable.
+Las formas `${ comando; }` y `${| comando; }` se enseñan como funciones
+Bash 5.3, con detección de versión y alternativas para versiones previas.
+RHEL y Fedora pueden tener versiones diferentes; comprobar cada entorno.
+
+## 27. Controles expertos obligatorios
+
+Desarrollar Readline, herencia de errexit y traps, estados de pipelines,
+SIGPIPE, fallos de process substitution, cancelación de procesos hijos,
+límites de datos binarios en Bash y ARG_MAX. En Zsh desarrollar scripting,
+cleanup, debugging y testing antes de frameworks. Evitar colisiones de
+variables locales, ocultación de errores por declaraciones y source
+cruzado de bibliotecas incompatibles.
+
+## 28. Integración con course-generator
+
+Las claves editoriales de `profile.yaml` documentan intención pedagógica.
+No afirmar que son funciones ejecutables, comandos o validaciones del
+generador sin comprobar su implementación. Conservar la configuración de
+validación del proyecto y ejecutar comprobaciones de ejemplos de acuerdo
+con cada intérprete. La ruta `files.pedagogy` debe resolverse desde la
+ubicación real del perfil en el repositorio.

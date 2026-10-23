@@ -10,7 +10,7 @@ NumPy, pandas, Polars, Matplotlib y Seaborn tienen PATH propios. Introducir sus 
 
 ## Versión y fuentes
 
-Objetivo: Python 3.15. Fecha de revisión: 2026-09-30. Python 3.15 permanece en fase de candidato de lanzamiento a esta fecha; no presentar Python 3.15.0 final como publicado hasta verificarlo en la documentación oficial. Antes de desarrollar o ejecutar material, registrar versión exacta, implementación, sistema y tipo de build. Revisar la documentación 3.15 vigente y las dependencias compatibles. No sustituir el Python que utiliza Fedora para administrar el sistema; utilizar un intérprete y entorno aislados.
+Objetivo: Python 3.15. Fecha de revisión: 2026-10-22. Python 3.15.0 final se publicó el 9 de octubre de 2026, según What’s New y PEP 790. Utilizar una versión final 3.15.x y registrar el parche exacto; reservar las RC para ejercicios históricos de migración. Antes de desarrollar o ejecutar material, registrar versión exacta, implementación, sistema y tipo de build. Revisar la documentación 3.15 vigente y las dependencias compatibles. No sustituir el Python que utiliza Fedora para administrar el sistema; utilizar un intérprete y entorno aislados.
 
 La referencia oficial determina firmas, métodos, excepciones y comportamiento. Los libros aportan pedagogía, ejemplos y diseño; no constituyen una referencia normativa de 3.15. Etiquetar la versión de introducción cuando proceda: una característica utilizada en 3.15 no necesariamente apareció en 3.15.
 
@@ -36,6 +36,19 @@ Los PATH independientes de **Regex** y **Big O Notation** ya existen y son la fu
 0–6: fundamentos y colecciones. 7–10: funciones, iteración, recursos y módulos. 11–15: objetos, protocolos, decoradores, tipos y modelado. 16–21: persistencia e ingeniería profesional. 22–24: concurrencia, asincronía y redes. 25–30: rendimiento, metaprogramación, internals, interoperabilidad, seguridad y evolución. 31: integración y evaluación.
 
 Los ejemplos deben utilizar conceptos ya explicados. Si resulta imprescindible uno posterior, dar una introducción mínima y remitir a su bloque. Introducir pruebas sencillas desde los primeros laboratorios y reservar la estrategia completa para el bloque 19. La interoperabilidad nativa requiere fundamentos de C o C++; proporcionar preparación y no exigirlos en bloques iniciales.
+
+## Reglas concretas de recorrido y evaluación
+
+- Bloques 0–6: cuando haga falta import, una llamada con argumentos por nombre o un context manager de decimal, proporcionar una introducción mínima, ejecutable y guiada. Su explicación completa permanece en los bloques 7, 9 y 10. No exigir todavía clases o callbacks propios.
+- En el bloque 6 usar funciones incorporadas como predicados y transformaciones para map/filter. Retomar callbacks y lambda después del bloque 7. Los patrones de clases se completan tras el bloque 11.
+- Decoradores asíncronos y pruebas asíncronas son lecciones de segunda pasada después del bloque 23. Antes de ese punto no cuentan como requisitos de avance. El laboratorio asíncrono debe integrar ambas.
+- La introducción operativa a re del bloque 16 prepara el procesamiento de archivos; el bloque 17 amplía la API, sus objetos y variantes. Evitar repetir los mismos ejemplos y explicaciones.
+- Las ampliaciones de NumPy y pandas del bloque 3 son opcionales y no intervienen en su evaluación. No instalar esas dependencias para completar el recorrido básico.
+- Todos los laboratorios de cierre incorporan los temas de Regex y Big O del bloque que sean aplicables. En el bloque 20 cada laboratorio evalúa su propio gestor; el hito profesional reúne el flujo elegido.
+- Realizar el hito de fundamentos al terminar el bloque 7, el de lenguaje al terminar el 15, el profesional al terminar el 20 y el avanzado al terminar el 23. El bloque 31 conserva sus especificaciones, rúbricas y revisión final. Los conceptos de protocolos y generadores ya estudiados se evalúan con código ejecutable.
+- Conservar los identificadores de bloque 0–31. La numeración interna de lecciones se recalcula al añadir contenido o situar el laboratorio al final; generar de nuevo los índices y no reutilizar referencias antiguas a lecciones renumeradas.
+
+En frozendict cubrir copy, fromkeys, get, items, keys y values, orden de inserción, igualdad, unión, hashabilidad condicionada por claves y valores, inmutabilidad superficial y diferencias con una vista MappingProxyType. No suponer que todos sus valores son inmutables.
 
 ## Estructura obligatoria de cada lección
 
@@ -88,7 +101,7 @@ Los ejemplos deben contener imports, datos e instrucciones de ejecución necesar
 
 ## Cobertura exhaustiva de métodos solicitados
 
-Cubrir todos los métodos públicos documentados de str, list, dict, set, frozenset y tuple. El índice dedica una lección explícita a cada uno de los 96 métodos del inventario inicial; cotejarlo contra la referencia de la versión exacta al generar el curso y documentar incorporaciones sin omitirlas. Distinguir métodos públicos específicos, métodos heredados y métodos especiales; estos últimos se desarrollan en el modelo de datos.
+Cubrir todos los métodos públicos documentados de str, list, dict, set, frozenset, tuple y frozendict. El índice dedica una lección explícita a cada uno de los 102 métodos del inventario explícito, incluidos seis de frozendict; cotejarlo contra la referencia de la versión exacta al generar el curso y documentar incorporaciones sin omitirlas. Distinguir métodos públicos específicos, métodos heredados y métodos especiales; estos últimos se desarrollan en el modelo de datos.
 
 Para cada método explicar: firma y valores por defecto; parámetros posicionales y por nombre; tipo y valor de retorno; mutación o creación de resultado; complejidad cuando esté justificada; ejemplos básico y aplicado; colección vacía, elemento ausente u otros límites relevantes; excepciones; comparación con alternativas; ejercicio y solución.
 
@@ -130,9 +143,9 @@ Rúbrica: corrección 30 %, pruebas y fallos 20 %, diseño 20 %, explicación t�
 
 Colocar estos archivos juntos en paths/python/. El initial.txt empieza directamente por el bloque 0, contiene una línea por bloque/lección y no incluye un título suelto anterior. Conservar nombres y saltos de línea UTF-8.
 
-profile.yml sigue las claves del perfil existente consultado; files.bibliography apunta deliberadamente a bibliografy.md, tal como pidió el usuario. files.pedagogy referencia ../../config/pedagogy.md, archivo compartido ya perteneciente al proyecto: no se incluye ni se sobrescribe aquí.
+Los nombres canónicos son initial.txt, profile.yaml, domain.md y bibliography.md. files.domain y files.bibliography apuntan a los archivos de esta misma carpeta. files.pedagogy referencia ../../config/pedagogy.md, archivo compartido del proyecto que no se incluye ni se sobrescribe aquí.
 
-La extensión solicitada es .yml. Si el cargador local solo busca profile.yaml, renombrar profile.yml a profile.yaml sin modificar su contenido. Verificar esa resolución con el cargador real. No se ha ejecutado course-generator desde este entorno ni se dispone de su código; validación.enabled: false no equivale a pruebas aprobadas. Las reglas pedagógicas específicas residen en este domain.md para que se incorporen como contexto del generador.
+No se ha ejecutado course-generator desde este entorno ni se ha inspeccionado su cargador. La sintaxis YAML válida no demuestra que el generador reconozca todas las claves del perfil. Comprobar el esquema y la resolución de rutas con el código real; no interpretar validation.enabled: false como pruebas aprobadas ni modificarlo para simular validación.
 
 Comprobación local sugerida, una vez registrado el perfil python:
 

@@ -30,7 +30,9 @@ y migración.
 
 ## Complementaria
 
-### Python for Data Analysis --- Wes McKinney
+### Python for Data Analysis — Wes McKinney, 3.ª edición
+
+[Texto oficial del autor](https://wesmckinney.com/book/).
 
 Uso principal:
 
@@ -44,7 +46,11 @@ Uso principal:
 Debe contrastarse con NumPy 2.x cuando el libro utilice versiones
 anteriores.
 
-### Python Data Science Handbook --- Jake VanderPlas
+### Python Data Science Handbook — Jake VanderPlas
+
+[Texto web del autor](https://jakevdp.github.io/PythonDataScienceHandbook/)
+y [repositorio oficial](https://github.com/jakevdp/PythonDataScienceHandbook).
+Distinguir la edición del texto web de la edición de los notebooks usados.
 
 Uso principal:
 
@@ -61,7 +67,9 @@ Adecuado para reforzar los bloques fundamentales e intermedios.
 
 ## Profundización numérica
 
-### Numerical Python: Scientific Computing and Data Science Applications with Numpy, SciPy and Matplotlib --- Robert Johansson
+### Numerical Python — Robert Johansson, 3.ª edición
+
+[Ficha editorial](https://link.springer.com/book/10.1007/979-8-8688-0413-7).
 
 Uso principal:
 
@@ -112,7 +120,9 @@ Especialmente relevante para los bloques 13, 17 y el proyecto final.
 
 ## Rendimiento e internals
 
-### High Performance Python --- Micha Gorelick e Ian Ozsvald
+### High Performance Python — Micha Gorelick e Ian Ozsvald, 3.ª edición
+
+[Ficha editorial](https://www.oreilly.com/library/view/high-performance-python/9781098165956/).
 
 Uso principal:
 
@@ -201,41 +211,20 @@ bibliotecas.
 
 ## Mapa bibliográfico por bloques
 
-  -----------------------------------------------------------------------
-  Bloques                             Fuentes prioritarias
-  ----------------------------------- -----------------------------------
-  0--4                                NumPy docs, Python Data Science
-                                      Handbook, Python for Data Analysis
-
-  5--12                               NumPy docs, Python Data Science
-                                      Handbook
-
-  13--16                              NumPy docs, Numerical Python,
-                                      textos de análisis numérico
-
-  17--18                              NumPy docs, Strang, Trefethen & Bau
-
-  19                                  NumPy docs, Numerical Python
-
-  20--22                              NumPy docs y documentación Python
-
-  23--24                              NumPy docs, High Performance Python
-
-  25                                  documentación oficial de cada
-                                      biblioteca interoperable
-
-  26--27                              NumPy internals, interoperability,
-                                      Array API y DLPack
-
-  28                                  NumPy C-API, Numba, Cython, F2PY,
-                                      Python/C API
-
-  29                                  NumPy release notes y migration
-                                      guides
-
-  30                                  conjunto completo de fuentes según
-                                      cada componente
-  -----------------------------------------------------------------------
+| Bloques | Fuentes prioritarias |
+| --- | --- |
+| 0–4 | NumPy, Python Data Science Handbook, Python for Data Analysis |
+| 5–12 | NumPy, Python Data Science Handbook |
+| 13–16 | NumPy, Numerical Python, textos de análisis numérico |
+| 17–18 | NumPy, Strang, Trefethen y Bau |
+| 19 | NumPy, Numerical Python |
+| 20–22 | NumPy y Python |
+| 23–24 | NumPy, High Performance Python |
+| 25 | Documentación oficial de cada biblioteca |
+| 26–27 | Internals, interoperabilidad, Array API y DLPack |
+| 28 | C-API, Numba, Cython, F2PY, Python/C API |
+| 29 | Notas de publicación y guías de migración |
+| 30 | Fuentes de cada componente del proyecto |
 
 ## Política para material antiguo
 
@@ -288,3 +277,36 @@ explicar la diferencia y enseñar primero la práctica moderna.
 ## Política de consulta por lección
 
 Priorizar documentación oficial de la versión objetivo; usar libros para modelos conceptuales y ejemplos. Verificar deprecaciones, disponibilidad de APIs y compatibilidad antes de generar ejercicios. Las fuentes externas de interoperabilidad no amplían el alcance a cursos completos de otras bibliotecas.
+
+## Enlaces oficiales de consulta
+
+Elegir la versión documentada al inicio de la generación. Los enlaces
+/stable/ sirven como entrada; registrar la versión concreta consultada.
+Para libros sin edición identificada, registrar la edición del ejemplar
+utilizado antes de citar capítulos o páginas. No inferirla por el título.
+
+| Área | Fuente |
+| --- | --- |
+| NumPy: guía y API | [Documentación](https://numpy.org/doc/) |
+| Ufuncs, out y where | [Referencia](https://numpy.org/doc/stable/reference/ufuncs.html) |
+| Migración a NumPy 2 | [Guía](https://numpy.org/doc/stable/numpy_2_0_migration_guide.html) |
+| Memoria y copias | [Guía](https://numpy.org/doc/stable/user/basics.copies.html) |
+| Concurrencia y free-threaded | [Thread safety](https://numpy.org/doc/stable/reference/thread_safety.html) |
+| Array API | [Compatibilidad NumPy](https://numpy.org/doc/stable/reference/array_api.html) |
+| Protocolos | [Interoperabilidad](https://numpy.org/doc/stable/user/basics.interoperability.html) |
+| NEP 50 | [Propuesta](https://numpy.org/neps/nep-0050-scalar-promotion.html) |
+| NEP 52 | [Propuesta](https://numpy.org/neps/nep-0052-python-api-cleanup.html) |
+| NEP 47 | [Propuesta histórica](https://numpy.org/neps/nep-0047-array-api-standard.html) |
+| Estándar Array API | [Especificación](https://data-apis.org/array-api/latest/) |
+| DLPack | [Documentación](https://dmlc.github.io/dlpack/latest/) |
+| Tipado | [numpy.typing](https://numpy.org/doc/stable/reference/typing.html) |
+| Pruebas | [numpy.testing](https://numpy.org/doc/stable/reference/routines.testing.html) |
+| pytest | [Documentación](https://docs.pytest.org/) |
+| Hypothesis | [Documentación](https://hypothesis.readthedocs.io/) |
+| Pools de hilos | [threadpoolctl](https://github.com/joblib/threadpoolctl) |
+| C-API | [Referencia](https://numpy.org/doc/stable/reference/c-api/) |
+| Python/C API | [Referencia](https://docs.python.org/3/c-api/) |
+| Cython | [Documentación](https://docs.cython.org/) |
+| Numba | [Documentación](https://numba.readthedocs.io/) |
+| F2PY | [Documentación](https://numpy.org/doc/stable/f2py/) |
+| Empaquetado | [Guía oficial](https://packaging.python.org/) |

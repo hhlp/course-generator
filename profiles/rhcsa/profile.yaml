@@ -62,6 +62,7 @@ storage:
   core:
     - XFS
     - ext4
+    - VFAT
     - LVM
     - swap
   rhel_extended:
@@ -72,9 +73,13 @@ software:
   core:
     - RPM
     - DNF
-  fedora_extended:
+  exam_software:
     - Flatpak
+  desktop_extensions:
+    - Flatpak_portals_and_permissions
 containers:
+  scope: RHEL+
+  included_in_current_exam_objectives: false
   runtime: Podman
   include_rootless: true
   include_selinux: true
@@ -129,3 +134,40 @@ bibliography:
     - 'Daniel J. Barrett — Linux Pocket Guide: Essential Commands'
     - 'Kenneth Hess — Practical Linux System Administration: A Guide to
       Installation, Configuration, and Management'
+
+review:
+  date: '2026-10-22'
+  official_exam_url: "https://www.redhat.com/en/services/training/\
+    ex200-red-hat-certified-system-administrator-rhcsa-exam"
+  preserve_existing_block_and_lesson_ids: true
+  exam_scope_recheck_before_mock: true
+  exam_core_emphasis:
+    - Flatpak_remotes_install_remove
+    - VFAT_ext4_XFS
+    - systemd_timer_units
+    - time_service_clients
+    - tuning_profiles
+  expanded_administration:
+    - Podman_Quadlet
+    - Stratis
+    - Apache_administration
+    - advanced_performance_diagnosis
+  fedora_extensions:
+    - Btrfs
+  early_lab_prerequisites:
+    - two_RHEL_nodes
+    - private_network
+    - recovery_console
+    - introductory_SSH_and_transfer
+  evaluation_policy:
+    - guided_then_unassisted_exercises
+    - observable_functional_results
+    - persistent_state_when_applicable
+    - evidence_based_diagnosis
+    - safe_recovery_when_applicable
+    - separate_EX200_and_extended_administration_assessments
+  evaluation_details: domain.md
+  validation_limits:
+    - curriculum_files_checked_locally
+    - generator_integration_not_executed
+    - labs_not_executed_on_RHEL_10

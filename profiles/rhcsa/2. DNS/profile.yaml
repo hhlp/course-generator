@@ -194,7 +194,10 @@ references:
     - RFC2136
     - RFC2308
     - RFC2317
-    - RFC2845
+    - RFC8945
+    - RFC3645
+    - RFC1982
+    - RFC8914
     - RFC4033
     - RFC4034
     - RFC4035
@@ -215,3 +218,90 @@ constraints:
   - "No enseñar un open resolver como configuración válida de producción."
   - "Validar named.conf y las zonas antes de reload/restart siempre
     que sea posible."
+
+
+revision_policy:
+  preserve_existing_blocks_and_lessons: true
+  architecture_block: 33
+  implementation_block: 34
+  distinguish_review_order_from_deployment_order: true
+  lab_configurations_are_generated_with_lessons: true
+
+dependencies:
+  learning_order:
+    - RHCSA base
+    - TIME and basic DNS
+    - operational DNS
+    - IAM
+    - DNS and IAM integrations
+  standalone_dns_requires_iam: false
+  time_sensitive_functions:
+    - DNSSEC RRSIG inception and expiration
+    - TSIG time window and BADTIME
+    - Kerberos in integrated mode
+  bootstrap:
+    avoid_dns_time_cycle: true
+    require_documented_initial_time_source: true
+    verify_after_cold_boot: true
+    systemd_order_is_not_readiness: true
+    do_not_disable_validation_as_permanent_fix: true
+
+integration_policy:
+  identities_owned_by: IAM
+  standalone_bind_has_no_parallel_user_directory: true
+  freeipa_integrated_dns_managed_by_platform: true
+  external_dns_publish_idm_required_records: true
+  gss_tsig_practice:
+    - DNS service principal and platform-managed keytab
+    - kinit and klist
+    - nsupdate -g
+    - least-privilege update-policy
+    - denied update and evidence-based diagnosis
+
+lab_contract:
+  network: isolated private network without public exposure
+  reference_domain: lab.example.test
+  ipv4_subnet: 192.168.56.0/24
+  ipv6: generated ULA prefix with documented reverse zones
+  roles:
+    primary: 192.168.56.10
+    secondary: 192.168.56.11
+    resolver: 192.168.56.12
+    client: 192.168.56.20
+    time_source: 192.168.56.30
+    optional_iam: 192.168.56.40
+    optional_kea: 192.168.56.50
+  private_dnssec_chain: local parent-child hierarchy or explicit trust anchor
+  required_evidence:
+    - installed versions and capability matrix
+    - complete commented configuration and validation
+    - expected queries and access denials
+    - relevant logs and packet captures
+    - failure diagnosis and recovery
+    - restore and post-reboot verification
+  final_profiles:
+    - full standalone DNS infrastructure
+    - extension with centrally managed IAM
+  clock_failure_scope: disposable snapshot-based VMs only
+
+advanced_operations:
+  serial_arithmetic: RFC1982
+  tsig_reference: RFC8945
+  gss_tsig_reference: RFC3645
+  extended_dns_errors: RFC8914
+  require_dnstap_capability_check: true
+  encrypted_dns_matrix:
+    - incoming server support
+    - outgoing resolver support
+    - client tool support
+    - package version and build features
+  dnssec_rollover:
+    - document TTL and propagation windows
+    - coordinate DS with parent
+    - verify through independent validating resolver
+    - recover broken chain without permanent validation bypass
+  backup_restore:
+    - coherent dynamic zones and journal state
+    - keys and DNSSEC metadata
+    - isolated restore with permissions and SELinux checks
+    - documented RPO and RTO

@@ -335,6 +335,21 @@ Uso:
 
 ## GitOps y packaging
 
+### Learning Helm: Managing Apps on Kubernetes
+Matt Butcher, Matt Farina y Josh Dolitsky.
+O’Reilly Media, 2021.
+
+Referencia editorial: https://www.oreilly.com/library/view/learning-helm/9781492083641/
+
+Uso:
+- introducción operativa a Helm antes del hito CKA
+- comprensión de charts, values y releases
+- instalación, actualización, historial y rollback
+- creación de charts y templates en el bloque 53
+
+El libro explica Helm 3. Contrastar comandos, opciones, plugins y comportamiento
+con la documentación oficial de la versión objetivo, especialmente al usar Helm 4.
+
 ### Helm Documentation
 
 Uso:
@@ -454,8 +469,8 @@ Uso:
 
 ## Platform Engineering
 
-### Platform Engineering on Kubernetes
-Consultar documentación y literatura actual de CNCF y proyectos relevantes.
+### Material sobre Platform Engineering en Kubernetes
+Categoría temática, no referencia a un libro concreto. Consultar documentación y literatura actual de CNCF y proyectos relevantes.
 
 Uso:
 - internal developer platforms
@@ -535,6 +550,8 @@ Uso:
 - Kubernetes Documentation
 
 ### Administración → CKA
+- Learning Helm: Managing Apps on Kubernetes
+- Helm y Kustomize: documentación oficial versionada
 - CKA Study Guide
 - Kubernetes: The Hard Way
 - Kubernetes in Action
@@ -551,6 +568,7 @@ Uso:
 - Falco documentation
 
 ### Después de Kubestronaut
+- Learning Helm: profundización en charts y templates
 - Programming Kubernetes
 - Kubebuilder Book
 - Kubernetes source
@@ -601,3 +619,26 @@ Documentación oficial de Kubernetes sobre administración, upgrades, alta dispo
 
 ### Kubernetes Authentication / OIDC
 Documentación oficial sobre autenticación, tokens de ServiceAccount, OIDC y autorización RBAC.
+
+## Enlaces primarios para verificación y preparación
+
+- Kubernetes: https://kubernetes.io/docs/
+- Referencia kubectl: https://kubernetes.io/docs/reference/kubectl/
+- Currículos oficiales versionados: https://github.com/cncf/curriculum
+- CKA: https://www.cncf.io/training/certification/cka/
+- CKAD: https://www.cncf.io/training/certification/ckad/
+- CKS y prerrequisito CKA: https://www.cncf.io/training/certification/cks/
+- Helm: https://helm.sh/docs/
+- Kustomize: https://kubectl.docs.kubernetes.io/references/kustomize/
+- etcd y recuperación: https://etcd.io/docs/
+- Kubebuilder: https://book.kubebuilder.io/
+- Go y puente para controllers: https://go.dev/doc/
+- Gateway API: https://gateway-api.sigs.k8s.io/
+- CRI/containerd: https://containerd.io/docs/
+- CNI: https://www.cni.dev/docs/
+- CSI: https://github.com/container-storage-interface/spec
+
+Para cada libro, registrar la edición realmente consultada antes de generar
+lecciones que dependan de ella. Las entradas sin edición identifican una obra,
+no presuponen una edición concreta ni garantizan actualidad técnica.
+Para currículos y documentación viva, registrar fecha y revisión o versión.

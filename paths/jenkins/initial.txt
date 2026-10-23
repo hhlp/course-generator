@@ -1,6 +1,12 @@
 JENKINS — LEARNING PATH 0 → EXPERTO EN PROFUNDIDAD
 
 Alcance: Groovy como lenguaje se estudia en su path independiente; aquí solo Groovy aplicado a Jenkins.
+Prerrequisitos: Linux, Git y shell básicos; consultar sus paths si faltan bases.
+Progresión: cada tema recurrente distingue introducción, aplicación e internals.
+Evaluación: cada laboratorio debe incluir resultado esperado, comprobación,
+fallo controlado, diagnóstico y limpieza; ver criterios por bloque en domain.md.
+No asumir que las claves pedagógicas del perfil ejecutan validaciones: comprobar
+qué campos interpreta course-generator y qué controles deben realizarse aparte.
 
 BLOQUE 0 — FUNDAMENTOS PREVIOS
 0.1 Qué es integración continua (CI)
@@ -76,6 +82,10 @@ BLOQUE 3 — PIPELINE AS CODE
 3.4 Declarative Pipeline
 3.5 Scripted Pipeline
 3.6 Declarative vs Scripted
+3.6.1 Modelo mínimo de ejecución: Groovy en controller y comandos en agentes
+3.6.2 Introducción a CPS: suspensión, estado persistido y serialización
+3.6.3 Restricciones iniciales: objetos serializables y límites de @NonCPS
+3.6.4 Prerrequisito de lectura: Groovy del path independiente para expresiones
 3.7 agent
 3.8 stages
 3.9 stage
@@ -107,6 +117,13 @@ BLOQUE 3 — PIPELINE AS CODE
 3.35 Pipeline durability y reanudación
 3.36 Validación de Jenkinsfile y pruebas antes de merge
 3.37 Laboratorio: pipeline con fallos, retries y concurrencia
+3.38 sh: exit codes y returnStatus frente a excepciones
+3.39 sh: returnStdout, trim, encoding y límites de tamaño
+3.40 Shell de sh: intérprete, shebang, quoting y trazas de ejecución
+3.41 deleteDir y cleanWs: limpieza y plugin requerido cuando corresponda
+3.42 Interrupciones: abort, timeout y propagación de FlowInterruptedException
+3.43 retry condicionado: pérdida de agente, idempotencia y efectos externos
+3.44 Laboratorio: shell con error, cancelación y limpieza verificable
 
 BLOQUE 4 — GROOVY ESENCIAL APLICADO A JENKINSFILE
 4.1 Relación Jenkins Pipeline DSL y Groovy: alcance y límites
@@ -165,6 +182,8 @@ BLOQUE 6 — AGENTS Y EJECUCIÓN DISTRIBUIDA
 6.20 Diferencia entre controller y agentes: no ejecutar builds en controller
 6.21 Estrategia de labels, pools y capacidad
 6.22 Diagnóstico de latencia y problemas de red
+6.23 Java del runtime del agente frente al JDK de las aplicaciones compiladas
+6.24 Laboratorio: demostrar dónde se ejecutan Groovy, sh y accesos a archivos
 
 BLOQUE 7 — CREDENCIALES Y SEGURIDAD
 7.1 Modelo de seguridad de Jenkins
@@ -315,6 +334,7 @@ BLOQUE 13 — ADMINISTRACIÓN AVANZADA
 13.20 Restauración probada, RPO y RTO
 13.21 Actualización LTS: core, plugins y Java
 13.22 Rollback seguro y compatibilidad de datos
+13.23 Mapa de continuidad: introducción aquí; profundización en bloques 22 y 26
 
 BLOQUE 14 — GROOVY APLICADO A JENKINS PIPELINE AVANZADO (SIN DUPLICAR EL LENGUAJE)
 14.1 Del path Groovy al runtime de Jenkins: prerrequisitos
@@ -367,6 +387,7 @@ BLOQUE 15 — GROOVY DENTRO DE JENKINS: CPS E INTERNALS DE PIPELINE
 15.28 Errores NotSerializableException: investigación
 15.29 Comparadores, closures y métodos no CPS
 15.30 Laboratorio: restart controlado y reanudación
+15.31 Prerrequisitos: modelo mínimo 3.6.1–3.6.3; pasar de uso a internals
 
 BLOQUE 16 — SHARED LIBRARIES
 16.1 Por qué usar Shared Libraries
@@ -397,6 +418,8 @@ BLOQUE 16 — SHARED LIBRARIES
 16.26 Jenkins Test Harness: integración
 16.27 SemVer, contratos y deprecaciones
 16.28 Publicación segura y revisión de librerías
+16.29 Evitar sobrescribir steps incorporados y APIs globales excesivas
+16.30 Separar pruebas unitarias simuladas de ejecución CPS real
 
 BLOQUE 17 — JENKINS INTERNALS Y AUTOMATIZACIÓN ADMINISTRATIVA CON GROOVY
 17.1 Jenkins object model
@@ -421,6 +444,8 @@ BLOQUE 17 — JENKINS INTERNALS Y AUTOMATIZACIÓN ADMINISTRATIVA CON GROOVY
 17.20 Descriptor, ExtensionList y APIs internas
 17.21 Script Console: auditoría y acceso restringido
 17.22 API de plugins y compatibilidad de versiones
+17.23 Jenkins.get(): uso administrativo; no trasladarlo a Jenkinsfiles
+17.24 Frontera de confianza: scripts administrativos frente a librerías de Pipeline
 
 BLOQUE 18 — DISEÑO DE PIPELINES A ESCALA
 18.1 Arquitectura de pipelines
@@ -500,6 +525,10 @@ BLOQUE 20 — RENDIMIENTO, ESCALABILIDAD Y OPERACIÓN
 BLOQUE 21 — JENKINS PLUGIN ARCHITECTURE & DEVELOPMENT
 21.1 Arquitectura extensible de Jenkins Core
 21.2 Plugin lifecycle y compatibilidad de versiones
+21.2.1 Puente Java: clases, interfaces, anotaciones, genéricos y excepciones
+21.2.2 Puente Maven: pom.xml, dependencias, scopes y ciclo de construcción
+21.2.3 JDK de desarrollo, baseline de core y requisitos de herramientas
+21.2.4 Laboratorio previo: compilar y probar un proyecto mínimo Java/Maven
 21.3 Maven, HPI y estructura del proyecto
 21.4 Plugin BOM y dependencias
 21.5 Extension points y @Extension
@@ -513,6 +542,9 @@ BLOQUE 21 — JENKINS PLUGIN ARCHITECTURE & DEVELOPMENT
 21.13 Pruebas de integración y regresión
 21.14 Publicación, mantenimiento y seguridad
 21.15 Laboratorio: desarrollar y probar un plugin pequeño
+21.16 Permisos, validación de entradas, CSRF y escape de salida en plugins
+21.17 StepExecution: estado persistible, reinicios y pruebas de reanudación
+21.18 Pruebas de permisos positivos y negativos con Jenkins Test Harness
 
 BLOQUE 22 — JENKINS CONFIGURATION AS CODE, JOB DSL Y GITOPS
 22.1 JCasC: modelo y configuración declarativa
@@ -528,6 +560,8 @@ BLOQUE 22 — JENKINS CONFIGURATION AS CODE, JOB DSL Y GITOPS
 22.11 GitOps y reconciliación: límites reales
 22.12 Pruebas de configuración y rollback
 22.13 Laboratorio: reconstrucción automatizada desde Git
+22.14 Prerrequisitos: JCasC básico del bloque 13 y seguridad del bloque 7
+22.15 Laboratorio: detectar drift y documentar lo que JCasC no reconcilia
 
 BLOQUE 23 — TESTING PROFESIONAL DE PIPELINES Y SHARED LIBRARIES
 23.1 Pirámide de pruebas para Jenkins
@@ -542,6 +576,9 @@ BLOQUE 23 — TESTING PROFESIONAL DE PIPELINES Y SHARED LIBRARIES
 23.10 Pruebas de seguridad y secretos
 23.11 Pruebas de regresión en upgrades
 23.12 Laboratorio: suite CI para Shared Library
+23.13 Prerrequisitos: librerías del bloque 16 y plugin mínimo del bloque 21
+23.14 Pruebas con RestartableJenkinsRule para escenarios de reinicio
+23.15 Límites de mocks: steps, plugins, sandbox y serialización real
 
 BLOQUE 24 — JENKINS REMOTING E INTERNALS DE EJECUCIÓN DISTRIBUIDA
 24.1 Arquitectura de Jenkins Remoting
@@ -557,6 +594,7 @@ BLOQUE 24 — JENKINS REMOTING E INTERNALS DE EJECUCIÓN DISTRIBUIDA
 24.11 Aislamiento y modelos de confianza
 24.12 Troubleshooting de desconexiones y timeouts
 24.13 Laboratorio: fallos simulados de agentes
+24.14 Prerrequisitos: agentes operativos del bloque 6; profundización en Remoting
 
 BLOQUE 25 — JENKINS REST API, CLI Y AUTOMATIZACIÓN ADMINISTRATIVA
 25.1 REST API y modelos de objetos
@@ -572,6 +610,8 @@ BLOQUE 25 — JENKINS REST API, CLI Y AUTOMATIZACIÓN ADMINISTRATIVA
 25.11 Automatización idempotente y control de errores
 25.12 Scripts administrativos auditables
 25.13 Laboratorio: cliente de administración segura
+25.14 Prerrequisitos: CLI básica 1.16 y APIs administrativas del bloque 17
+25.15 Laboratorio: seguir queue item hasta build y gestionar cancelación o fallo
 
 BLOQUE 26 — UPGRADES, BACKUPS, DISASTER RECOVERY Y CONTINUIDAD
 26.1 Inventario de core, plugins, Java y agentes
@@ -588,6 +628,8 @@ BLOQUE 26 — UPGRADES, BACKUPS, DISASTER RECOVERY Y CONTINUIDAD
 26.12 Alta disponibilidad: límites del controller tradicional
 26.13 Runbooks, incidentes y continuidad
 26.14 Laboratorio: simulacro de desastre y restauración
+26.15 Prerrequisitos: restauración inicial del bloque 13 y operación del bloque 20
+26.16 Laboratorio: restaurar en red aislada sin disparar despliegues ni webhooks
 
 BLOQUE 27 — PROYECTO FINAL — JENKINS PLATFORM ENGINEERING
 27.1 Diseñar la arquitectura
@@ -615,3 +657,6 @@ BLOQUE 27 — PROYECTO FINAL — JENKINS PLATFORM ENGINEERING
 27.23 Simulación de fallo de agente y restart
 27.24 Restore verificado y evidencia RPO/RTO
 27.25 Threat model y revisión de seguridad
+27.26 Rúbrica: aceptación funcional, seguridad, resiliencia y recuperación
+27.27 Evidencias: commits, resultados de pruebas, métricas y runbooks
+27.28 Defensa: justificar plugins, fronteras de confianza y límites operativos

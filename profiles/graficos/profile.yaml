@@ -25,4 +25,5 @@ pedagogy:
   reading_section: 📚 LECTURA
   depth_guidance: Desarrollar mecanismo, API, ejemplos ejecutables, casos
     límite, rendimiento, troubleshooting y validación; preservar cada lección
-    del initial.txt.
+    del initial.txt; respetar prerrequisitos, laboratorios de cierre y
+    checkpoints definidos en domain.md.

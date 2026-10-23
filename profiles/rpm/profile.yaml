@@ -1,24 +1,24 @@
 ---
 course:
   title: RPM PACKAGING EN PROFUNDIDAD — FEDORA
-  language: es
+  language: "es"
   level:
-    start: cero
-    end: experto
+    start: "cero"
+    end: "experto"
+  domain: "RPM PACKAGING"
+  mode: "deep"
   platform:
     primary: Fedora Linux
     ecosystem:
       - Fedora
       - RHEL
       - Linux
-  domain: rpm-packaging
-  description: 'Ruta de aprendizaje completa y progresiva sobre RPM y el
-    ecosistema de empaquetado de Fedora. Parte de los fundamentos del formato
-    RPM y progresa hacia SPEC files, SRPM, dependencias, scriptlets, rpmdb,
-    macros, generación automática de dependencias, Mock, rpmlint, Fedora
-    Packaging Guidelines, COPR, dist-git, Koji, Bodhi, repositorios RPM e
-    internals de RPM.'
-  mode: deep
+  description: Ruta de aprendizaje completa y progresiva sobre RPM y el
+    ecosistema de empaquetado de Fedora. Parte de los fundamentos del
+    formato RPM y progresa hacia SPEC files, SRPM, dependencias, scriptlets,
+    rpmdb, macros, generación automática de dependencias, Mock, rpmlint,
+    Fedora Packaging Guidelines, COPR, dist-git, Koji, Bodhi, repositorios
+    RPM e internals de RPM.
 
 files:
   pedagogy: ../../config/pedagogy.md
@@ -37,13 +37,16 @@ objectives:
   - Dominar scriptlets, triggers, file triggers y transfiletriggers.
   - Comprender rpmdb y las operaciones internas de RPM.
   - Comprender la resolución de dependencias mediante libsolv.
-  - Construir paquetes en entornos reproducibles con Mock.
+  - Construir en entornos limpios y verificar reproducibilidad por separado.
   - Validar paquetes mediante rpmlint.
   - Aplicar las Fedora Packaging Guidelines.
   - Comprender Fedora Package Review, COPR, dist-git, Koji y Bodhi.
   - Crear y administrar repositorios RPM y comprender firmas.
   - Comprender internals de RPM y automatizar workflows de packaging.
-
+  - Validar .rpmnew, .rpmsave y persistencia durante actualizaciones.
+  - Mantener paquetes con rpmautospec y un historial Git verificable.
+  - Completar un único mini-solver C/libsolv mediante hitos progresivos.
+  - Separar las rutas de publicación COPR y Fedora oficial.
 pedagogy:
   progression: 0-to-expert
   depth: deep
@@ -62,7 +65,6 @@ pedagogy:
   preserve_existing_lessons: true
   troubleshooting_per_block: true
   hands_on_validation: true
-
 lesson_structure:
   first_section:
     title: 🎯 OBJETIVO
@@ -85,7 +87,6 @@ lesson_structure:
     key_points:
       minimum: 3
       maximum: 7
-
 technical_environment:
   distribution:
     - Fedora
@@ -111,6 +112,11 @@ technical_environment:
     - koji
     - bodhi
     - copr
+    - rpmsign
+    - rpmdeps
+    - rpmgraph
+    - rpm2archive
+    - rpmlua
   validation_tools:
     - yamllint
     - rpmlint
@@ -118,21 +124,18 @@ technical_environment:
     - rpminspect
     - mock
     - diffoscope
-
+  shell_roles:
+    interactive: zsh
+    spec_and_scriptlets: Comprobar intérprete efectivo; no asumir Zsh.
 final_workflow:
   - upstream
   - source archive
   - SPEC
   - SRPM
   - Mock
-  - rpmlint
-  - Fedora Package Review
-  - COPR
-  - dist-git
-  - Koji
-  - Bodhi
-  - repository
-
+  - binary RPM
+  - validation
+  - distribution route
 quality:
   factual_accuracy: high
   technical_depth: high
@@ -147,7 +150,10 @@ quality:
   verify_macro_availability_on_target_fedora: true
   separate_historical_and_current_practices: true
   prefer_fedora_packaging_guidelines: true
-
+  distinguish_clean_isolated_hermetic_reproducible: true
+  configuration_upgrade_matrix: true
+  avoid_duplicate_capstone_implementation: true
+  validate_generator_integration_separately: true
 curriculum:
   blocks:
     - 0
@@ -160,6 +166,54 @@ curriculum:
     - 7
     - 8
     - 9
-  numbering_policy: preserve-existing-identifiers; append reviewed content
-    under X.900
-  capstone: RPM-DNF-libsolv end-to-end
+  numbering_policy: Preserve all IDs; integrate additions by topic.
+  capstone: Single incremental mini-solver; accepted in block 9.
+  ordering_reference: domain.md sections 38-41
+  entry_semantics:
+    headings: Organize content; do not generate standalone lessons.
+    topics: Group into lessons around a verifiable competence.
+    project_tasks: 2.112.1-2.112.300 are steps grouped by milestone.
+  capstone_milestones:
+    - id: S1
+      tasks: 2.112.1-2.112.38
+      after:
+        - block 4
+        - '2.113'
+    - id: S2
+      tasks: 2.112.39-2.112.132
+      after:
+        - S1
+        - block 4 labs
+    - id: S3
+      tasks: 2.112.133-2.112.199
+      after:
+        - S2
+        - block 6
+    - id: S4
+      tasks: 2.112.200-2.112.250
+      after:
+        - S3
+        - block 8
+    - id: S5
+      tasks: 2.112.251-2.112.300
+      after:
+        - S4
+      during: block 9
+  prerequisites:
+    packaging: Linux CLI, permissions and basic shell; develop progressively.
+    solver_c: 'Pass 2.113: pointers, structs, memory, compile and link.'
+publication_routes:
+  copr:
+    - validated package
+    - COPR project
+    - build
+    - own repository
+  fedora:
+    - validated package
+    - Package Review
+    - authorized dist-git
+    - Koji
+    - Bodhi when applicable
+    - Fedora repositories
+  copr_required_for_fedora: false
+  simulate_when_permissions_missing: true

@@ -9,8 +9,10 @@ valor, visión, estrategia, Product Backlog, stakeholders y profesionalización 
 
 ## Normativa
 
-- Ken Schwaber; Jeff Sutherland. *The Scrum Guide*.
-- Scrum.org. *Evidence-Based Management Guide*.
+- Ken Schwaber; Jeff Sutherland. *The Scrum Guide*. Noviembre de 2020.
+  [Texto oficial](https://scrumguides.org/scrum-guide.html).
+- Scrum.org. *Evidence-Based Management Guide*. Mayo de 2024.
+  [Guía oficial](https://www.scrum.org/resources/online-evidence-based-management-guide).
 
 La normativa prevalece cuando se definen Scrum, sus accountabilities, artefactos,
 compromisos y eventos.
@@ -66,7 +68,8 @@ pero contextualizados aquí para decisiones del Product Owner y sin duplicar el 
 
 ## Scrum avanzado y escalado
 
-- Scrum.org. *The Nexus Guide*.
+- Scrum.org. *The Nexus Guide*. Enero de 2021.
+  [Guía oficial](https://www.scrum.org/resources/online-nexus-guide).
 
 ## Relación con el PATH Scrum
 
@@ -97,3 +100,24 @@ bibliográficas exactas cuando hayan sido verificadas.
 - *The Scrum Guide* y *Evidence-Based Management Guide*: referencias normativas transversales a los tres hitos.
 
 La bibliografía del PATH se aplica mediante casos de producto y análisis de decisiones; ninguna referencia garantiza superar una evaluación oficial.
+
+
+## Aplicación de las referencias en esta revisión
+
+- Scrum Guide 2020: accountabilities, autogestión, Sprint Backlog, negociación de
+  alcance, protección del Sprint Goal, calidad y cancelación del Sprint.
+- Scrum.org: [certificaciones PSPO](https://www.scrum.org/professional-scrum-product-owner-certifications).
+  Usar las orientaciones oficiales para revisar los checkpoints; su posición en
+  este temario es una decisión pedagógica propia, no una secuencia oficial.
+- Scrum.org: [capacidades del Product Owner](https://www.scrum.org/learning-series/product-owner/).
+  Complemento para lanzamiento, evolución y retirada del producto.
+- *Testing Business Ideas*, *Continuous Discovery Habits* y *Lean Analytics*:
+  diseño de experimentos e interpretación de evidencia. Complementar los aspectos
+  estadísticos con fuentes verificadas; no atribuir a estos libros cobertura de
+  procedimientos concretos que no se haya comprobado.
+- Vacanti: interpretación de flujo y previsiones; explicitar condiciones y límites
+  al aplicar Little’s Law y evitar promesas basadas en promedios.
+
+Versiones de las guías contrastadas el 16 de octubre de 2026. EBM orienta la gestión
+basada en evidencia; Nexus se utiliza para escalado y no sustituye la definición
+básica de Scrum de la Scrum Guide. No se inventan páginas ni capítulos de los libros.

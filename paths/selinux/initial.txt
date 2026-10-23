@@ -73,6 +73,11 @@
 1.29 rpm -ql
 1.30 dnf provides
 1.31 laboratorio: inventario completo del stack SELinux instalado en Fedora
+1.32 preparar VM Fedora, snapshot inicial y recuperación desde consola
+1.33 registrar versión de Fedora, kernel, política y herramientas disponibles
+1.34 instalar herramientas de administración y análisis verificando paquetes con dnf
+1.35 verificar policycoreutils-python-utils, setools-console y dependencias del laboratorio
+1.36 comprobar enforcing, auditd y acceso a registros antes de los experimentos
 
 2. Estado y configuración de SELinux
 2.1 getenforce
@@ -477,47 +482,47 @@
 14.10 ausearch -ts
 14.11 ausearch -c
 14.12 interpretar un registro AVC
-14.13 pid
-14.14 comm
-14.15 path
-14.16 scontext
-14.17 tcontext
-14.18 tclass
-14.19 denied {}
-14.20 permissive=
-14.21 audit2why
-14.22 audit2allow
-14.23 diferencias
-14.24 riesgos de audit2allow
-14.25 setroubleshoot
-14.26 sealert
-14.27 detectar contexto incorrecto
-14.28 detectar boolean existente
-14.29 detectar port type incorrecto
-14.30 detectar política faltante
-14.31 detectar bug de aplicación
-14.32 permissive domains
-14.33 semanage permissive
-14.34 dontaudit
-14.35 semodule -DB
-14.36 semodule -B
-14.37 workflow correcto de diagnóstico
-14.37.1 denial
-14.37.1.1 label incorrecto?
-14.37.1.2 configuración incorrecta?
-14.37.1.3 boolean existente?
-14.37.1.4 port type?
-14.37.1.5 transición?
-14.37.1.6 constraint?
-14.37.1.7 policy insuficiente?
-14.38 laboratorio: diagnosticar un AVC sin usar audit2allow como primera solución
+14.12.1 pid
+14.12.2 comm
+14.12.3 path
+14.12.4 scontext
+14.12.5 tcontext
+14.12.6 tclass
+14.12.7 denied {}
+14.12.8 permissive=
+14.13 audit2why
+14.14 audit2allow
+14.15 diferencias
+14.16 riesgos de audit2allow
+14.17 setroubleshoot
+14.18 sealert
+14.19 detectar contexto incorrecto
+14.20 detectar boolean existente
+14.21 detectar port type incorrecto
+14.22 detectar política faltante
+14.23 detectar bug de aplicación
+14.24 permissive domains
+14.25 semanage permissive
+14.26 dontaudit
+14.27 semodule -DB
+14.28 semodule -B
+14.29 workflow correcto de diagnóstico
+14.29.1 denial
+14.29.1.1 label incorrecto?
+14.29.1.2 configuración incorrecta?
+14.29.1.3 boolean existente?
+14.29.1.4 port type?
+14.29.1.5 transición?
+14.29.1.6 constraint?
+14.29.1.7 policy insuficiente?
+14.30 laboratorio: diagnosticar un AVC sin usar audit2allow como primera solución
 
 15. SETools avanzado
 15.1 arquitectura de SETools
 15.2 seinfo avanzado
 15.3 sesearch avanzado
 15.4 consultar allow
-15.5 consultar neverallow
+15.5 límites de SETools: neverallow se estudia en fuentes/CIL y se valida al compilar
 15.6 consultar type_transition
 15.7 consultar atributos
 15.8 consultar booleans
@@ -566,7 +571,7 @@
 17.2 modular policy
 17.3 base policy
 17.4 module store
-17.5 /etc/selinux/targeted/active/
+17.5 descubrir store-root en semanage.conf; almacén predeterminado /var/lib/selinux/targeted/
 17.6 módulos instalados
 17.7 semodule
 17.8 semodule -l
@@ -712,7 +717,7 @@
 22.9 :z
 22.10 :Z
 22.11 diferencia :z / :Z
-22.12 Podman/docker/scopeo/buildha
+22.12 Podman, Docker, Skopeo y Buildah: ejecución, transporte y construcción de imágenes
 22.13 contexto de proceso del contenedor
 22.14 contexto de archivos
 22.15 contexto MCS
@@ -836,7 +841,7 @@
 27.7 user, role, userrole y roletype
 27.8 sensitivity, category, level y range
 27.9 allow, auditallow, dontaudit y neverallow
-27.10 type_transition, type_change y type_member
+27.10 typetransition, typechange y typemember; correspondencia con sintaxis TE
 27.11 roletransition y rangetransition
 27.12 boolean, booleanif y tunableif
 27.13 block, blockinherit y blockabstract
@@ -929,10 +934,10 @@
 31.6 Analizar rutas de transiciones entre dominios
 31.7 Reconstruir contextos de ejecutables y entrypoints
 31.8 Inspeccionar booleans y ramas activas
-31.9 Inspeccionar constraints y reglas neverallow
+31.9 Inspeccionar constraints; localizar neverallow en fuentes/CIL y validar al compilar
 31.10 Comparar políticas cargadas y políticas en disco
 31.11 Comparar políticas entre versiones Fedora
-31.12 Correlacionar reglas con módulos de origen
+31.12 Correlacionar reglas con módulos mediante fuentes/CIL; documentar ambigüedades
 31.13 Correlacionar módulos con paquetes RPM
 31.14 Analizar superficie de acceso de un dominio
 31.15 Detectar permisos excesivos y oportunidades de reducción
@@ -981,11 +986,11 @@
 32.34 detectar contexto esperado diferente
 32.35 detectar boolean relevante
 32.36 detectar port type relevante
-32.37 detectar política realmente ausente
+32.37 evaluar posible permiso faltante tras descartar otras causas; admitir resultado inconcluso
 32.38 detectar reglas indirectas mediante atributos
-32.39 explicar por qué una operación está permitida
-32.40 explicar por qué está denegada
-32.41 modo --why SOURCE │ PERMISSION ▼ CLASS ▼ TARGET
+32.39 explicar permisos SELinux bajo el estado consultado y contrastar con ejecución real
+32.40 explicar denegaciones respaldadas por evidencia y declarar causas no determinadas
+32.41 modo --why SOURCE TARGET CLASS PERMISSION: alcance, evidencia y límites del análisis
 32.42 correlación con RPM
 32.43 correlación con systemd
 32.44 correlación con procesos
@@ -994,4 +999,7 @@
 32.47 salida JSON
 32.48 salida Graphviz DOT
 32.49 mapa de relaciones
-32.50 laboratorio/proyecto final: investigar automáticamente un objeto desconocido y justificar cada decisión SELinux encontrada
+32.50 laboratorio/proyecto final: investigar un objeto desconocido con conclusiones trazables
+32.51 distinguir resultados confirmado, inferido e inconcluso y expresar evidencia faltante
+32.52 registrar versiones, política consultada, booleans y momento de cada observación
+32.53 pruebas de regresión del debugger: conclusiones correctas y abstención ante evidencia insuficiente

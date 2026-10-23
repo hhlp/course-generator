@@ -66,7 +66,7 @@ lesson:
     terminology_consistent: true
 
 version_policy:
-  prefer_current_stable_documentation: true
+  prefer_current_stable_documentation: false
   verify_version_sensitive_features: true
   distinguish:
     - current
@@ -357,3 +357,50 @@ advanced_depth:
     - failure_injection
     - troubleshooting
     - cleanup
+
+
+revision_contract:
+  reviewed_on: '2026-10-22'
+  deployment: self_managed
+  stack_reference: '9.5.5'
+  documentation_policy: pinned_version_with_explicit_upgrade_review
+  package_versions_must_be_recorded: true
+  integration_and_plugin_versions_pinned_separately: true
+  never_use_latest_in_labs: true
+  fedora_support_must_be_checked_per_component: true
+  executed_lab_validation: false
+  generator_schema_compatibility_verified: false
+  topology_source: domain.md
+  common_dataset:
+    minimum_events: 1000
+    deterministic_seed: true
+    stable_event_ids: true
+    controlled_timestamps: true
+    count_rejected_and_duplicated_events: true
+  prerequisite_order:
+    installation:
+      - '1.1-1.23'
+      - '1.25-1.32'
+      - '1.34-1.37'
+      - '1.24'
+      - '1.33: optional cleanup after dependent labs'
+    cluster:
+      - '12.1-12.19'
+      - '12.21-12.28'
+      - '12.20'
+  preserve_original_ids: true
+  original_lessons: 1024
+  additions_20261022: 31
+  current_lessons: 1055
+  advanced_storage:
+    - logsdb
+    - synthetic_source
+    - tsds_dimensions_and_metric_types
+    - downsampling
+    - failure_store
+    - failure_reprocessing
+  license_paths:
+    basic: local_free_capabilities_verified_for_selected_version
+    extensions: check_each_feature_and_mark_unavailable_labs_optional
+    never_activate_trial_automatically: true
+    report_execution_status_per_objective: true

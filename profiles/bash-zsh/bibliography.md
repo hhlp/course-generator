@@ -349,7 +349,9 @@ Uso recomendado:
 - expansión de parámetros, control de flujo y funciones;
 - diseño de scripts robustos sin complejidad innecesaria.
 
-Aplicar especialmente en los bloques Bash 46 y 50, y en la revisión de antipatrones del bloque 95. No atribuir a Zsh las construcciones específicas de Bash.
+Aplicar especialmente en los bloques Bash 46 y 50, y en la revisión de
+antipatrones del bloque 102. No atribuir a Zsh las construcciones específicas
+de Bash.
 
 ------------------------------------------------------------------------
 
@@ -364,39 +366,41 @@ Uso recomendado:
 - selección adecuada de herramientas externas y builtins;
 - eficiencia del trabajo interactivo y diagnóstico de flujos CLI.
 
-Aplicar en Bash 30 y 57 y, como contraste de uso interactivo, en Zsh 86. No duplicar los PATH especializados de Coreutils, sed, awk o Regex.
+Aplicar en Bash 30 y 57 y, como contraste de uso interactivo, en Zsh 91. No
+duplicar los PATH especializados de Coreutils, sed, awk o Regex.
 
 ------------------------------------------------------------------------
 
-## D8. Troncone, Paul; Albing, Carl — Cybersecurity Ops with bash
+## D8. Hausenblas, Michael — Learning Modern Linux
 
-**Título:** *Cybersecurity Ops with bash: Attack, Defend, and Analyze from the Command Line*.
+Uso de apoyo: entorno Linux, procesos, recursos y herramientas del sistema.
+No sustituye los manuales de Bash/Zsh ni introduce otro curso de Linux.
+Editorial: O’Reilly. Ficha:
+<https://www.oreilly.com/library/view/learning-modern-linux/9781098108939/>.
 
-Uso recomendado:
+## D9. Schroder, Carla — Linux Cookbook, 2nd Edition
 
-- automatización de auditorías y diagnóstico de seguridad con Bash;
-- recopilación de evidencias, inspección de procesos, redes y logs;
-- análisis defensivo, correlación de eventos y triage;
-- laboratorios autorizados y aislados para comprender técnicas ofensivas y defensivas;
-- validación, registro y seguridad operacional de los scripts.
+Uso de apoyo: recetas de administración y composición Unix. Seleccionar
+recetas que refuercen scripting, diagnóstico y ejecución de herramientas.
+Editorial: O’Reilly. Ficha:
+<https://www.oreilly.com/library/view/linux-cookbook-2nd/9781492087151/>.
 
-Aplicar especialmente en Bash 33, 41 y 56. El objetivo es la aplicación de Bash a operaciones de seguridad, no sustituir una formación integral en ciberseguridad.
+## D10. Barrett, Daniel J. — Linux Pocket Guide, 4th Edition
 
-------------------------------------------------------------------------
+Uso de consulta: sintaxis de comandos y comprobaciones rápidas. La
+semántica avanzada de cada utilidad pertenece a su PATH especializado.
+Editorial: O’Reilly. Ficha:
+<https://www.oreilly.com/library/view/linux-pocket-guide/9781098157951/>.
 
-## D9. Janssens, Jeroen — Data Science at the Command Line
+## D11. Hess, Kenneth — Practical Linux System Administration
 
-**Título:** *Data Science at the Command Line: Obtain, Scrub, Explore, and Model Data with Unix Power Tools*. Preferir la segunda edición.
+Uso de apoyo: scripts y tareas de administración, mantenimiento y
+diagnóstico. No reemplaza los PATH especializados de administración.
+Editorial: O’Reilly. Ficha:
+<https://www.oreilly.com/library/view/practical-linux-system/9781098109028/>.
 
-Uso recomendado:
-
-- obtención, limpieza, transformación y exploración de datos desde CLI;
-- composición de herramientas Unix y pipelines reproducibles;
-- CSV, TSV, JSON/NDJSON y herramientas apropiadas para cada formato;
-- procesamiento incremental, control de calidad y medición de rendimiento;
-- proyectos ETL y análisis exploratorio básico desde Bash.
-
-Aplicar especialmente en Bash 12, 30, 57 y 64. La semántica profunda de sed, awk, Coreutils y Regex pertenece a sus PATH respectivos; aquí se enseña la orquestación desde el shell.
+Las fichas identifican las obras seleccionadas. Verificar las secciones
+del ejemplar utilizado antes de citar capítulos o ejemplos concretos.
 
 ------------------------------------------------------------------------
 
@@ -648,3 +652,26 @@ Antes de generar un bloque cuya precisión dependa de versión:
 La bibliografía puede actualizarse sin modificar la arquitectura
 pedagógica del PATH cuando aparezcan nuevas versiones de Bash, Zsh o
 POSIX.
+
+# 11. ENLACES OFICIALES Y REPRODUCIBILIDAD
+
+- Bash Reference Manual:
+  <https://www.gnu.org/software/bash/manual/bash.html>
+- Bash: command substitution:
+  <https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html>
+- Bash: Readline:
+  <https://www.gnu.org/software/bash/manual/html_node/Command-Line-Editing.html>
+- Zsh Manual: <https://zsh.sourceforge.io/Doc/Release/>
+- Zsh startup: <https://zsh.sourceforge.io/Doc/Release/Files.html>
+- Zsh source: <https://www.zsh.org/>
+- Bash source: <https://www.gnu.org/software/bash/>
+- POSIX.1-2024 Shell Command Language:
+  <https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html>
+- ShellCheck: <https://github.com/koalaman/shellcheck>
+- ShellSpec: <https://github.com/shellspec/shellspec>
+- Bats: <https://github.com/bats-core/bats-core>
+- shfmt: <https://github.com/mvdan/sh>
+
+Registrar versión y fecha de consulta cuando una lección dependa de
+semántica reciente. Las fichas editoriales identifican obras; no verifican por sí solas
+un capítulo concreto.

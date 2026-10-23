@@ -17,13 +17,17 @@
 0.16 Estructura general de un programa
 0.17 package main
 0.18 Función main()
-0.19 Primer programa
-0.20 go run
-0.21 go build
-0.22 go install
-0.23 go fmt
-0.24 go doc
-0.25 Laboratorio: entorno Go completo
+0.19 go mod init: crear el módulo del primer laboratorio
+0.20 go.mod mínimo y directorio de trabajo
+0.21 Editor, gopls y navegación de documentación
+0.22 Versión objetivo, go directive y compatibilidad de ejemplos
+0.23 Primer programa
+0.24 go run
+0.25 go build
+0.26 go install
+0.27 go fmt
+0.28 go doc
+0.29 Laboratorio: entorno Go completo
 
 1. Léxico, sintaxis y sistema básico de tipos
 1.1 Tokens
@@ -57,7 +61,13 @@
 1.29 Scope
 1.30 Shadowing
 1.31 Lifetime
-1.32 Laboratorio
+1.32 Tipos definidos frente a alias de tipos
+1.33 Underlying type e identidad de tipos
+1.34 Asignabilidad frente a convertibilidad
+1.35 Comparabilidad y tipos no comparables
+1.36 Representación numérica, precisión y NaN
+1.37 Declaraciones de tipos y alcance del identificador
+1.38 Laboratorio
 
 2. Expresiones y operadores
 2.1 Expresiones
@@ -94,7 +104,11 @@
 3.16 Múltiples casos
 3.17 fallthrough
 3.18 Type switch
-3.19 Laboratorio
+3.19 range sobre enteros y dependencia de versión
+3.20 Variables de iteración: declaración frente a asignación
+3.21 Captura de variables de bucle y semántica según versión
+3.22 Type switch como anticipo: retomar tras interfaces en el bloque 10
+3.23 Laboratorio
 
 4. Funciones
 4.1 Declaración de funciones
@@ -118,7 +132,10 @@
 4.19 Evaluación de argumentos de defer
 4.20 Stack de defer
 4.21 Patrones idiomáticos
-4.22 Laboratorio
+4.22 Paso por valor de todos los argumentos y efectos del aliasing
+4.23 defer y retornos nombrados: efectos observables
+4.24 Diseñar funciones comprobables sin estado global
+4.25 Laboratorio
 
 5. Arrays, slices y strings
 5.1 Arrays
@@ -150,7 +167,13 @@
 5.27 strconv
 5.28 unicode
 5.29 unicode/utf8
-5.30 Laboratorio
+5.30 Full slice expressions y control de capacidad
+5.31 Copia superficial frente a copia profunda
+5.32 Slices compartidos y modificación del backing array
+5.33 Strings como secuencias de bytes: UTF-8 válido e inválido
+5.34 Runes frente a grafemas y normalización Unicode
+5.35 slices.Clone, Equal, Delete e Insert: semántica y retención
+5.36 Laboratorio
 
 6. Maps
 6.1 Concepto
@@ -172,7 +195,12 @@
 6.17 Maps de slices
 6.18 Sets mediante maps
 6.19 Concurrencia y maps
-6.20 Laboratorio
+6.20 Addressability: límites de modificar valores almacenados en maps
+6.21 NaN y otras claves problemáticas
+6.22 Claves de interfaz y panic por valor dinámico no comparable
+6.23 maps.Clone y copia superficial
+6.24 Garantías del lenguaje frente a implementación del runtime
+6.25 Laboratorio
 
 7. Structs
 7.1 Definición
@@ -180,15 +208,18 @@
 7.3 Literals
 7.4 Anonymous structs
 7.5 Acceso
-7.6 Punteros a structs
-7.7 Embedding
-7.8 Promoted fields
-7.9 Composición
-7.10 Comparación
-7.11 Struct tags
-7.12 Reflection y tags
-7.13 Diseño de estructuras
-7.14 Laboratorio
+7.6 Anticipo de punteros para structs: &T{}, nil y acceso a campos
+7.7 Punteros a structs
+7.8 Embedding
+7.9 Promoted fields
+7.10 Composición
+7.11 Comparación
+7.12 Struct tags
+7.13 Reflection y tags
+7.14 Diseño de estructuras
+7.15 Embedding: promoción y conflictos de nombres
+7.16 Tags como metadatos: lectura básica sin reflection avanzada
+7.17 Laboratorio
 
 8. Punteros y modelo de memoria
 8.1 Direcciones
@@ -207,7 +238,10 @@
 8.14 Garbage collector
 8.15 Cuándo utilizar punteros
 8.16 Errores comunes
-8.17 Laboratorio
+8.17 new con tipo y con expresión: distinguir versiones de Go
+8.18 Dirección de variables, temporales y duración de vida
+8.19 Stack o heap como decisión del compilador, sin garantías inventadas
+8.20 Laboratorio
 
 9. Methods
 9.1 Methods
@@ -219,7 +253,10 @@
 9.7 Métodos sobre tipos definidos
 9.8 Composición mediante métodos
 9.9 Diseño de APIs
-9.10 Laboratorio
+9.10 Method expressions frente a method values
+9.11 Captura del receiver y copias implícitas
+9.12 Receivers nil y contratos de los métodos
+9.13 Laboratorio
 
 10. Interfaces
 10.1 Concepto de interfaz
@@ -242,7 +279,10 @@
 10.18 Diseño basado en interfaces
 10.19 Aceptar interfaces y devolver tipos concretos
 10.20 Dependency inversion idiomática
-10.21 Laboratorio
+10.21 Igualdad de interfaces y valores dinámicos no comparables
+10.22 Typed nil en retornos error y cómo evitarlo
+10.23 Verificación de implementación de interfaces en compilación
+10.24 Laboratorio
 
 11. Generics
 11.1 Por qué generics
@@ -261,7 +301,16 @@
 11.14 Cuándo no utilizar generics
 11.15 Generic methods y evolución de la especificación
 11.16 Patrones modernos
-11.17 Laboratorio
+11.17 Alias genéricos y compatibilidad desde Go 1.24
+11.18 Constraints de operaciones frente a contratos semánticos
+11.19 Tipos genéricos con métodos y parámetros del receiver
+11.20 Métodos con parámetros propios: verificar soporte en la versión objetivo
+11.21 iter.Seq e iter.Seq2
+11.22 range sobre funciones iteradoras desde Go 1.23
+11.23 Iteradores: yield, parada temprana y limpieza de recursos
+11.24 slices y maps: integración con iteradores
+11.25 Constraints autorreferentes: ampliación de Go 1.26
+11.26 Laboratorio
 
 12. Error handling
 12.1 Errores como valores
@@ -282,7 +331,12 @@
 12.16 Relación defer/panic/recover
 12.17 Cuándo utilizar panic
 12.18 Diseño idiomático
-12.19 Laboratorio
+12.19 errors.Join y árboles de errores
+12.20 Múltiples %w y recorrido de errores compuestos
+12.21 Unwrap() error frente a Unwrap() []error
+12.22 errors.AsType desde Go 1.26
+12.23 Errores de cancelación y contratos de APIs
+12.24 Laboratorio
 
 13. Packages
 13.1 Packages
@@ -328,7 +382,15 @@
 14.24 go.work
 14.25 Multi-module development
 14.26 Publicación de módulos
-14.27 Laboratorio
+14.27 Directivas go y toolchain; selección con GOTOOLCHAIN
+14.28 GOPRIVATE, GONOPROXY y GONOSUMDB
+14.29 go mod verify y límites de go.sum
+14.30 Dependencias de herramientas: tool y go get -tool
+14.31 Anticipo de testing: archivos _test.go, Test y go test
+14.32 Anticipo de table-driven tests y casos límite
+14.33 Anticipo de benchmarks: testing.B, b.Loop y -benchmem
+14.34 Anticipo de fuzzing: seeds, propiedades y ejecución acotada
+14.35 Laboratorio
 
 15. Standard Library esencial
 15.1 Filosofía de la stdlib
@@ -360,7 +422,14 @@
 15.27 log
 15.28 log/slog
 15.29 context
-15.30 Laboratorio
+15.30 math/rand/v2 frente a crypto/rand
+15.31 crypto/rand para secretos: contratos y tratamiento de errores
+15.32 time: reloj monotónico, zonas horarias y duraciones
+15.33 Timers y tickers: parada, reset y cambios según versión
+15.34 os/exec: procesos, argumentos y contexto
+15.35 net/netip y direcciones IP tipadas
+15.36 iter y uso transversal en la biblioteca estándar
+15.37 Laboratorio
 
 16. Expresiones regulares aplicadas a Go — regexp
 16.1 Motor RE2 y diferencias respecto a PCRE
@@ -391,10 +460,15 @@
 16.26 Regex frente a strings, bytes y parsers especializados
 16.27 Lectura de logs, entradas CLI y archivos grandes
 16.28 Complejidad de RE2, tamaño del patrón y memoria
-16.29 Table-driven tests, casos límite y fuzzing
-16.30 Benchmarks, allocations y profiling de regexp
-16.31 Seguridad: patrones no confiables y límites de recursos
-16.32 Laboratorio: extractor de logs con tests y benchmarks
+16.29 Antes del laboratorio: ejecutar tests, fuzzing y benchmarks básicos
+16.30 Table-driven tests, casos límite y fuzzing
+16.31 Benchmarks, allocations y profiling de regexp
+16.32 Seguridad: patrones no confiables y límites de recursos
+16.33 Leftmost-first, Longest y CompilePOSIX
+16.34 Flags de regexp y límites de clases ASCII frente a Unicode
+16.35 Capturas opcionales, coincidencias vacías y expansión de $nombre
+16.36 FindReader y MatchReader: lectura adelantada y límites del streaming
+16.37 Laboratorio: extractor de logs con tests y benchmarks
 
 17. Filesystem e I/O
 17.1 Modelo io.Reader/io.Writer
@@ -411,43 +485,56 @@
 17.12 Temporary files
 17.13 Filesystem traversal
 17.14 Permisos
-17.15 Laboratorio
+17.15 Contrato de Read: procesar n bytes antes del error
+17.16 io.EOF, io.ErrUnexpectedEOF y lecturas parciales
+17.17 io.ReadFull, io.ReadAtLeast e io.LimitReader
+17.18 Escrituras parciales, io.ErrShortWrite y propagación de errores
+17.19 bufio.Scanner: límites de token y alternativas con Reader
+17.20 Cerrar recursos: errores de Close y política de defer
+17.21 Symlinks, rutas relativas y riesgos de TOCTOU
+17.22 os.Root y operaciones resistentes a path traversal
+17.23 Escritura mediante temporal y rename: alcance de atomicidad y durabilidad
+17.24 os/exec: stdin, stdout, stderr, ExitError y cancelación
+17.25 Laboratorio
 
 18. Complejidad algorítmica y Big O aplicado a Go
 18.1 Big O en Go: alcance y relación con el PATH general
-18.2 Tiempo, espacio y tamaño de entrada n
-18.3 O(1), O(log n), O(n), O(n log n), O(n²) y exponencial
-18.4 Mejor, promedio, peor caso y análisis amortizado
-18.5 Análisis de secuencias, bucles y bucles anidados
-18.6 Recursión, profundidad de pila y coste de llamadas
-18.7 Coste de asignaciones, copias y conversiones
-18.8 Arrays: acceso, recorrido y copia por valor
-18.9 Slices: acceso, recorrido, reslicing y backing array
-18.10 append: capacidad, realocaciones y amortización
-18.11 copy, slices.Clone, slices.Insert y slices.Delete
-18.12 Retención de memoria y capacidad de slices
-18.13 Maps: hash, búsqueda, inserción y eliminación
-18.14 Complejidad esperada vs peor caso de maps
-18.15 Iteración y orden no especificado en maps
-18.16 Strings: bytes, runes, Unicode y conversiones
-18.17 strings.Builder, concatenación y buffers
-18.18 Búsqueda lineal, slices.Index y búsqueda binaria
-18.19 sort y slices.Sort: contratos y costes
-18.20 slices.BinarySearch y precondición de ordenación
-18.21 container/list, container/heap y container/ring
-18.22 Estructuras genéricas: stacks, queues y sets
-18.23 Árboles, grafos y algoritmos implementados en Go
-18.24 Comparar algoritmos y estructuras según la carga
-18.25 Complejidad de goroutines, channels y worker pools
-18.26 Concurrencia: trabajo total, span, speedup y contención
-18.27 Complejidad asintótica vs costes constantes reales
-18.28 Benchmarking con testing.B y sub-benchmarks
-18.29 go test -bench, -benchmem y benchstat
-18.30 pprof, allocations, CPU y perfiles de heap
-18.31 Escalado de tamaños de entrada y sesgos de benchmark
-18.32 Trade-offs tiempo-memoria, GC y cache locality
-18.33 Laboratorio: comparar búsqueda y ordenación
-18.34 Laboratorio: optimizar estructura y verificar resultados
+18.2 Prerrequisitos de medición: repaso guiado del anticipo del bloque 14
+18.3 Tiempo, espacio y tamaño de entrada n
+18.4 O(1), O(log n), O(n), O(n log n), O(n²) y exponencial
+18.5 Mejor, promedio, peor caso y análisis amortizado
+18.6 Análisis de secuencias, bucles y bucles anidados
+18.7 Recursión, profundidad de pila y coste de llamadas
+18.8 Coste de asignaciones, copias y conversiones
+18.9 Arrays: acceso, recorrido y copia por valor
+18.10 Slices: acceso, recorrido, reslicing y backing array
+18.11 append: capacidad, realocaciones y amortización
+18.12 copy, slices.Clone, slices.Insert y slices.Delete
+18.13 Retención de memoria y capacidad de slices
+18.14 Maps: hash, búsqueda, inserción y eliminación
+18.15 Complejidad esperada vs peor caso de maps
+18.16 Iteración y orden no especificado en maps
+18.17 Strings: bytes, runes, Unicode y conversiones
+18.18 strings.Builder, concatenación y buffers
+18.19 Búsqueda lineal, slices.Index y búsqueda binaria
+18.20 sort y slices.Sort: contratos y costes
+18.21 slices.BinarySearch y precondición de ordenación
+18.22 container/list, container/heap y container/ring
+18.23 Estructuras genéricas: stacks, queues y sets
+18.24 Árboles, grafos y algoritmos implementados en Go
+18.25 Comparar algoritmos y estructuras según la carga
+18.26 Complejidad de goroutines, channels y worker pools
+18.27 Concurrencia: trabajo total, span, speedup y contención
+18.28 Complejidad asintótica vs costes constantes reales
+18.29 Benchmarking con testing.B y sub-benchmarks
+18.30 go test -bench, -benchmem y benchstat
+18.31 pprof, allocations, CPU y perfiles de heap
+18.32 Escalado de tamaños de entrada y sesgos de benchmark
+18.33 Trade-offs tiempo-memoria, GC y cache locality
+18.34 Laboratorio: comparar búsqueda y ordenación
+18.35 Garantías documentadas frente a hipótesis sobre maps y append
+18.36 Segunda pasada tras 19–23: complejidad y rendimiento concurrente
+18.37 Laboratorio: optimizar estructura y verificar resultados
 
 19. Concurrencia I — Goroutines
 19.1 Concurrencia frente a paralelismo
@@ -460,9 +547,11 @@
 19.8 Lifecycle
 19.9 Anonymous goroutines
 19.10 Closures y concurrencia
-19.11 Coordinación
-19.12 Goroutine leaks
-19.13 Laboratorio
+19.11 Unirse a goroutines: anticipo mínimo de sync.WaitGroup
+19.12 Publicación de resultados y sincronización explícita
+19.13 Coordinación
+19.14 Goroutine leaks
+19.15 Laboratorio
 
 20. Concurrencia II — Channels
 20.1 Channels
@@ -488,7 +577,11 @@
 20.21 Worker pools
 20.22 Semaphore patterns
 20.23 Backpressure
-20.24 Laboratorio
+20.24 Tabla de operaciones: channels nil, abiertos y cerrados
+20.25 Cerrar desde el productor y gestionar múltiples productores
+20.26 select: ausencia de garantías de orden o ausencia de starvation
+20.27 Cancelación del consumidor y terminación de productores
+20.28 Laboratorio
 
 21. Concurrencia III — Memoria compartida
 21.1 sync
@@ -509,7 +602,13 @@
 21.16 Starvation
 21.17 Lock contention
 21.18 Diseño lock-free
-21.19 Laboratorio
+21.19 sync.WaitGroup.Go desde Go 1.25 y contrato de la función
+21.20 No copiar Mutex, WaitGroup, Once ni atomics después de usarlos
+21.21 sync.OnceFunc, OnceValue y OnceValues
+21.22 Atomics tipados y atomic.Pointer
+21.23 sync.Map frente a map protegido por mutex
+21.24 sync.Pool: caché temporal sin garantía de retención
+21.25 Laboratorio
 
 22. Go Memory Model
 22.1 Modelo formal de memoria
@@ -526,7 +625,9 @@
 22.12 Compiler reorderings
 22.13 Patrones correctos
 22.14 Patrones incorrectos
-22.15 Laboratorio
+22.15 Programas sin data races y garantías de consistencia
+22.16 Límites del race detector: ejecución y rutas no cubiertas
+22.17 Laboratorio
 
 23. Context y concurrencia estructurada
 23.1 context.Context
@@ -543,7 +644,13 @@
 23.12 Database y context
 23.13 Anti-patterns
 23.14 Graceful cancellation
-23.15 Laboratorio
+23.15 WithCancelCause, Cause y causas de terminación
+23.16 WithDeadlineCause y WithTimeoutCause
+23.17 AfterFunc y coordinación de cancelación
+23.18 WithoutCancel y límites de desacoplar tareas
+23.19 Cancelar no equivale a esperar: join y liberación de recursos
+23.20 Introducción práctica a errgroup y concurrencia acotada
+23.21 Laboratorio
 
 24. Networking
 24.1 Networking en Go
@@ -558,7 +665,11 @@
 24.10 Deadlines
 24.11 TLS
 24.12 crypto/tls
-24.13 Laboratorio
+24.13 net.Dialer y DialContext
+24.14 net/netip y parsing de direcciones IPv4/IPv6
+24.15 Resolución DNS, cancelación y comportamiento según plataforma
+24.16 TLS: certificados, trust roots y verificación de hostname
+24.17 Laboratorio
 
 25. HTTP
 25.1 net/http
@@ -584,7 +695,15 @@
 25.21 Graceful shutdown
 25.22 HTTP/2
 25.23 HTTP/3 y ecosistema
-25.24 Laboratorio: REST API
+25.24 Cerrar response.Body y reutilizar conexiones correctamente
+25.25 Limitar cuerpos con MaxBytesReader y LimitReader
+25.26 Timeouts de servidor, cliente y transporte: diferencias
+25.27 ServeMux: métodos, wildcards, PathValue y versión mínima
+25.28 Errores y validación al decodificar JSON
+25.29 Redirecciones, proxies y límites de clientes HTTP
+25.30 Pruebas con httptest: anticipo para el laboratorio REST
+25.31 Shutdown, conexiones activas y tareas en segundo plano
+25.32 Laboratorio: REST API
 
 26. Databases
 26.1 database/sql
@@ -603,7 +722,14 @@
 26.14 Errores
 26.15 SQL injection
 26.16 Repository patterns
-26.17 Laboratorio
+26.17 QueryContext, ExecContext y QueryRowContext
+26.18 Cerrar Rows y comprobar Rows.Err
+26.19 Transacciones: defer Rollback y tratamiento de Commit
+26.20 sql.DBStats y diagnóstico de agotamiento del pool
+26.21 SetMaxOpenConns, SetMaxIdleConns y vida de conexiones
+26.22 Consultas parametrizadas frente a identificadores dinámicos
+26.23 Pruebas de rollback, cancelación y concurrencia de transacciones
+26.24 Laboratorio
 
 27. Testing
 27.1 testing
@@ -626,7 +752,15 @@
 27.18 Fuzzing
 27.19 Race testing
 27.20 Testing concurrent code
-27.21 Laboratorio
+27.21 t.Cleanup y gestión de recursos de pruebas
+27.22 t.Parallel, aislamiento y captura de variables
+27.23 testing/synctest para pruebas de concurrencia desde Go 1.25
+27.24 testing.B.Loop frente a patrones históricos con b.N
+27.25 Fuzzing: invariantes, corpus, minimización y regresiones
+27.26 -count, -shuffle y detección de pruebas frágiles
+27.27 go test -json y artefactos de CI
+27.28 Coverage: límites como indicador de calidad
+27.29 Laboratorio
 
 28. Toolchain profesional
 28.1 go command
@@ -649,7 +783,13 @@
 28.18 Cross compilation
 28.19 Linker flags
 28.20 Reproducible builds
-28.21 Laboratorio
+28.21 gopls y flujo de trabajo con editor
+28.22 Delve: breakpoints, stack, variables y goroutines
+28.23 Depuración de bloqueos y fallos de concurrencia
+28.24 go version -m y debug.ReadBuildInfo
+28.25 go clean, cachés y diagnóstico de dependencias
+28.26 -trimpath, información VCS y condiciones de reproducibilidad
+28.27 Laboratorio
 
 29. Desarrollo profesional de aplicaciones CLI en Go
 29.1 CLI idiomática: diseño, UX y contratos
@@ -676,7 +816,12 @@
 29.22 Cross-compilation GOOS/GOARCH y CGO_ENABLED
 29.23 Instalación y distribución de binarios
 29.24 Seguridad: argumentos, secretos y permisos
-29.25 Laboratorio: CLI modular para analizar logs
+29.25 Diseñar run(ctx, args, stdin, stdout, stderr) y main mínimo
+29.26 os.Exit no ejecuta defer: limpieza y códigos de salida
+29.27 Broken pipe y terminación en pipelines Unix
+29.28 os/exec sin shell: argumentos y límites de cancelación
+29.29 Pruebas de señales, cancelación y códigos de salida
+29.30 Laboratorio: CLI modular para analizar logs
 
 30. Seguridad
 30.1 Secure coding
@@ -694,7 +839,11 @@
 30.13 Supply-chain security
 30.14 Module verification
 30.15 Fuzzing para seguridad
-30.16 Laboratorio
+30.16 Límites de recursos frente a entradas no confiables
+30.17 SSRF y restricciones de destinos HTTP
+30.18 Permisos mínimos y publicación segura de diagnósticos
+30.19 Aleatoriedad criptográfica frente a simulación reproducible
+30.20 Laboratorio
 
 31. Reflection
 31.1 Reflection
@@ -721,7 +870,11 @@
 32.7 Memory layout
 32.8 Interacción con runtime
 32.9 Riesgos
-32.10 Laboratorio
+32.10 unsafe.String, unsafe.Slice y requisitos de vida útil
+32.11 uintptr no mantiene vivo un objeto
+32.12 runtime.KeepAlive y límites de uso
+32.13 checkptr y validación de ejemplos de bajo nivel
+32.14 Laboratorio
 
 33. cgo e interoperabilidad
 33.1 Qué es cgo
@@ -734,7 +887,10 @@
 33.8 Overhead
 33.9 Reglas del GC
 33.10 Cuándo evitar cgo
-33.11 Laboratorio
+33.11 runtime/cgo.Handle para referencias en callbacks
+33.12 runtime.Pinner y límites de punteros entre Go y C
+33.13 cgo y compilación cruzada: toolchain y bibliotecas nativas
+33.14 Laboratorio
 
 34. Runtime de Go
 34.1 Arquitectura runtime
@@ -756,7 +912,10 @@
 34.17 GOGC
 34.18 GOMEMLIMIT
 34.19 Runtime metrics
-34.20 Laboratorio
+34.20 Límites de contenedores y comportamiento versionado de GOMAXPROCS
+34.21 GOMEMLIMIT: límite blando y memoria fuera del runtime
+34.22 Separar API estable de detalles internos del GC
+34.23 Laboratorio
 
 35. Compiler e internals
 35.1 Pipeline de compilación
@@ -793,7 +952,10 @@
 36.14 Flight recording y diagnóstico continuo
 36.15 Goroutine leak profiling
 36.16 Diagnóstico en producción
-36.17 Laboratorio
+36.17 Captura guiada de perfiles antes de interpretación avanzada
+36.18 FlightRecorder: versión mínima y presupuesto de recursos
+36.19 Protección y exposición controlada de endpoints pprof
+36.20 Laboratorio
 
 37. Performance Engineering — Efficient Go
 37.1 Metodología de optimización
@@ -821,7 +983,10 @@
 37.23 Zero-copy concepts
 37.24 PGO
 37.25 Performance regression testing
-37.26 Laboratorio
+37.26 benchstat: repeticiones, variabilidad y comparación estadística
+37.27 PGO: perfil representativo, integración y comparación
+37.28 Verificación de corrección tras cada optimización
+37.29 Laboratorio
 
 38. Arquitectura y diseño idiomático
 38.1 Idiomatic Go
@@ -880,7 +1045,10 @@
 40.12 Ownership
 40.13 Avoiding goroutine leaks
 40.14 Deterministic shutdown
-40.15 Laboratorio
+40.15 errgroup.WithContext, SetLimit y errores de terminación
+40.16 Pruebas de cancelación bajo carga y productores bloqueados
+40.17 Revisitar complejidad concurrente del bloque 18 con mediciones
+40.18 Laboratorio
 
 41. Code generation y tooling
 41.1 go generate
@@ -894,7 +1062,10 @@
 41.9 Custom linters
 41.10 Code generators
 41.11 Tooling propio
-41.12 Laboratorio
+41.12 golang.org/x/tools/go/analysis: módulo externo y compatibilidad
+41.13 go/packages para cargar proyectos con información de tipos
+41.14 Tests de analyzers y generadores reproducibles
+41.15 Laboratorio
 
 42. Go en producción
 42.1 Configuración
@@ -914,7 +1085,11 @@
 42.15 Security scanning
 42.16 Deployment
 42.17 Observabilidad
-42.18 Laboratorio
+42.18 Servicio systemd en Fedora: usuario, señales y reinicio
+42.19 journald y log/slog: campos útiles y correlación
+42.20 SIGTERM, presupuesto de apagado y Kubernetes
+42.21 Laboratorio de incidente: latencia, leaks y presión de memoria
+42.22 Laboratorio
 
 43. Internals avanzados
 43.1 Source tree de Go
@@ -964,3 +1139,8 @@
 44.28 Documentación
 44.29 Análisis de runtime
 44.30 Auditoría final de arquitectura y rendimiento
+44.31 Subcomando extractor de logs con regexp y streaming acotado
+44.32 Tests, fuzzing y benchmarks del extractor de logs
+44.33 Documento de complejidad temporal y espacial con supuestos
+44.34 Ensayos de cancelación, fallos de persistencia y apagado
+44.35 Criterios de aceptación, SLO y presupuesto de recursos

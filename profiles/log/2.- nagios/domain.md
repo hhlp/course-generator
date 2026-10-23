@@ -2,11 +2,15 @@
 
 ## 1. Identidad del PATH
 
-Este PATH enseña Nagios desde fundamentos de monitorización hasta administración avanzada, arquitectura distribuida, alta disponibilidad, troubleshooting e internals de Nagios Core.
+Este PATH enseña Nagios desde fundamentos de monitorización hasta administración
+avanzada, arquitectura distribuida, alta disponibilidad, troubleshooting e
+internals de Nagios Core.
 
-El entorno principal es Fedora Linux, utilizando RHEL y sistemas compatibles cuando resulte útil para explicar diferencias operativas o de empaquetado.
+El entorno principal es Fedora Linux, utilizando RHEL y sistemas compatibles
+cuando resulte útil para explicar diferencias operativas o de empaquetado.
 
-El PATH no debe tratar Nagios únicamente como una interfaz web o como un conjunto de archivos de configuración.
+El PATH no debe tratar Nagios únicamente como una interfaz web o como un
+conjunto de archivos de configuración.
 
 Debe estudiar el sistema completo:
 
@@ -61,7 +65,8 @@ Event Broker
 NEB
 proyecto final experto
 
-El objetivo final es que el estudiante pueda diseñar, desplegar, administrar, asegurar, automatizar, escalar y diagnosticar una plataforma Nagios Core real.
+El objetivo final es que el estudiante pueda diseñar, desplegar, administrar,
+asegurar, automatizar, escalar y diagnosticar una plataforma Nagios Core real.
 
 
 ## 2. Nivel
@@ -70,11 +75,13 @@ Nivel inicial:
 
 cero conocimientos específicos de Nagios.
 
-Se presuponen progresivamente conocimientos generales de administración Linux, pero los conceptos específicos necesarios deben explicarse cuando aparezcan.
+Se presuponen progresivamente conocimientos generales de administración Linux,
+pero los conceptos específicos necesarios deben explicarse cuando aparezcan.
 
 Nivel final:
 
-administrador avanzado de Nagios Core capaz de comprender también una parte significativa de sus mecanismos internos.
+administrador avanzado de Nagios Core capaz de comprender también una parte
+significativa de sus mecanismos internos.
 
 La progresión debe ser:
 
@@ -98,7 +105,8 @@ fundamentos
 
 La plataforma de referencia es Fedora Linux.
 
-Siempre que resulte relevante deben utilizarse herramientas y conceptos reales del sistema:
+Siempre que resulte relevante deben utilizarse herramientas y conceptos reales
+del sistema:
 
 dnf
 rpm
@@ -119,7 +127,8 @@ ssh
 snmpget
 snmpwalk
 
-No asumir rutas, nombres de paquetes, usuarios, grupos, unidades systemd o políticas SELinux universales.
+No asumir rutas, nombres de paquetes, usuarios, grupos, unidades systemd o
+políticas SELinux universales.
 
 Distinguir cuando sea necesario entre:
 
@@ -136,7 +145,8 @@ Si una ruta depende del método de instalación, explicarlo explícitamente.
 
 Nagios Core constituye el núcleo tecnológico del PATH.
 
-Debe explicarse su arquitectura y no limitarse a enseñar recetas de configuración.
+Debe explicarse su arquitectura y no limitarse a enseñar recetas de
+configuración.
 
 El estudiante debe comprender:
 
@@ -156,16 +166,19 @@ cómo se procesan external commands
 cómo se conserva estado
 cómo se procesa performance data.
 
-Cuando el PATH alcance internals, relacionar estos conceptos con la implementación de Nagios Core.
+Cuando el PATH alcance internals, relacionar estos conceptos con la
+implementación de Nagios Core.
 
 
 ## 5. Nagios Core frente a Nagios XI
 
 El objeto principal del PATH es Nagios Core.
 
-Nagios XI puede mencionarse para contextualizar el ecosistema, pero no debe desplazar el estudio de Nagios Core.
+Nagios XI puede mencionarse para contextualizar el ecosistema, pero no debe
+desplazar el estudio de Nagios Core.
 
-No convertir las lecciones en instrucciones específicas de Nagios XI salvo que el título de la lección lo requiera explícitamente.
+No convertir las lecciones en instrucciones específicas de Nagios XI salvo que
+el título de la lección lo requiera explícitamente.
 
 
 ## 6. Modelo de objetos
@@ -198,7 +211,8 @@ resolución de objetos
 additive inheritance
 relaciones entre objetos.
 
-No enseñar configuraciones aisladas sin explicar cómo se relacionan dentro del object model.
+No enseñar configuraciones aisladas sin explicar cómo se relacionan dentro del
+object model.
 
 
 ## 7. Hosts y services
@@ -221,7 +235,8 @@ freshness
 flapping
 event handlers.
 
-Cuando se muestren configuraciones, explicar cada directiva relevante y su efecto operativo.
+Cuando se muestren configuraciones, explicar cada directiva relevante y su
+efecto operativo.
 
 
 ## 8. Checks
@@ -310,7 +325,8 @@ crit
 min
 max.
 
-Relacionar siempre el código de salida del proceso con el estado que interpreta Nagios.
+Relacionar siempre el código de salida del proceso con el estado que interpreta
+Nagios.
 
 
 ## 11. Desarrollo de plugins
@@ -484,7 +500,8 @@ SELinux
 seguridad
 troubleshooting.
 
-Tratar NRPE como tecnología importante del ecosistema Nagios pero contextualizar sus limitaciones y alternativas modernas.
+Tratar NRPE como tecnología importante del ecosistema Nagios pero contextualizar
+sus limitaciones y alternativas modernas.
 
 
 ## 19. NCPA
@@ -594,7 +611,8 @@ rsyslog
 logrotate
 debug logging.
 
-Las lecciones deben enseñar a utilizar los logs como herramienta de troubleshooting.
+Las lecciones deben enseñar a utilizar los logs como herramienta de
+troubleshooting.
 
 
 ## 25. State retention
@@ -614,7 +632,8 @@ Diferenciar configuración persistente y estado retenido.
 
 ## 26. Web y CGI
 
-La interfaz web debe tratarse como una capa sobre Nagios Core, no como el núcleo del sistema.
+La interfaz web debe tratarse como una capa sobre Nagios Core, no como el núcleo
+del sistema.
 
 Cubrir:
 
@@ -668,7 +687,8 @@ audit2why.
 
 Explicar dominios, tipos, labels, puertos y AVC relacionados con Nagios.
 
-Las políticas locales deben considerarse después de comprender la causa del bloqueo.
+Las políticas locales deben considerarse después de comprender la causa del
+bloqueo.
 
 
 ## 29. Firewalld
@@ -781,7 +801,8 @@ split brain
 recuperación
 pruebas de fallo.
 
-Distinguir HA del engine, HA de la interfaz y redundancia de los mecanismos de checks.
+Distinguir HA del engine, HA de la interfaz y redundancia de los mecanismos de
+checks.
 
 
 ## 34. Escalabilidad
@@ -804,7 +825,8 @@ No asumir que aumentar frecuencia de checks siempre mejora la monitorización.
 
 ## 35. Integraciones
 
-Explicar integraciones únicamente con la profundidad necesaria para comprender Nagios dentro de una plataforma moderna.
+Explicar integraciones únicamente con la profundidad necesaria para comprender
+Nagios dentro de una plataforma moderna.
 
 Puede relacionarse con:
 
@@ -822,7 +844,8 @@ No convertir estas lecciones en cursos completos de dichas tecnologías.
 
 ## 36. Troubleshooting
 
-Las lecciones de troubleshooting deben enseñar metodología, no listas de comandos.
+Las lecciones de troubleshooting deben enseñar metodología, no listas de
+comandos.
 
 Secuencia recomendada:
 
@@ -899,13 +922,15 @@ Sí debe poder relacionar comportamiento observable con arquitectura interna.
 
 Cuando una lección estudie internals:
 
-usar preferentemente el código fuente oficial correspondiente a la versión estudiada
+usar preferentemente el código fuente oficial correspondiente a la versión
+estudiada
 identificar archivos y funciones relevantes
 explicar estructuras antes de fragmentos de código
 seguir flujos de ejecución
 evitar volcados extensos de código.
 
-Distinguir comportamiento documentado de detalles de implementación que pueden cambiar entre versiones.
+Distinguir comportamiento documentado de detalles de implementación que pueden
+cambiar entre versiones.
 
 
 ## 39. Versiones
@@ -919,7 +944,8 @@ no presentar comportamiento histórico como actual
 consultar documentación correspondiente
 diferenciar Nagios Core, plugins, NRPE y NCPA.
 
-Las lecciones deben priorizar versiones actuales compatibles con el entorno de estudio.
+Las lecciones deben priorizar versiones actuales compatibles con el entorno de
+estudio.
 
 
 ## 40. Fuentes
@@ -1030,7 +1056,8 @@ distributed monitoring
 HA
 troubleshooting.
 
-El estudiante debe terminar siendo capaz de operar y diagnosticar la plataforma, no únicamente instalarla.
+El estudiante debe terminar siendo capaz de operar y diagnosticar la plataforma,
+no únicamente instalarla.
 
 
 ## 45. Estructura pedagógica obligatoria
@@ -1092,7 +1119,8 @@ Por ejemplo:
 "dependencies" significa host/service dependencies de Nagios.
 "macros" significa macros de Nagios.
 
-El contexto global de este documento debe prevalecer sobre interpretaciones genéricas.
+El contexto global de este documento debe prevalecer sobre interpretaciones
+genéricas.
 
 
 ## 48. Resultado esperado
@@ -1115,31 +1143,105 @@ y diagnosticar cualquier punto relevante de esa cadena.
 
 ## 49. Profundización experta adicional — bloques 50–56
 
-Los bloques 0–49 se mantienen íntegros. El proyecto final anterior se conserva y amplía en el bloque 56.
+Los bloques 0–49 se mantienen íntegros. El proyecto final anterior se conserva y
+amplía en el bloque 56.
 
 ### 49.1 Monitorización avanzada de aplicaciones (50)
-Explicar comprobaciones de síntomas y componentes, HTTP/HTTPS, APIs REST, JSON, TLS, DNS, procesos, systemd, bases de datos y colas. Distinguir liveness, readiness y comprobación funcional. Para cada check: objetivo, permisos, límites, umbrales, comando, salida esperable, falsos positivos, verificación y troubleshooting.
+Explicar comprobaciones de síntomas y componentes, HTTP/HTTPS, APIs REST, JSON,
+TLS, DNS, procesos, systemd, bases de datos y colas. Distinguir liveness,
+readiness y comprobación funcional. Para cada check: objetivo, permisos,
+límites, umbrales, comando, salida esperable, falsos positivos, verificación y
+troubleshooting.
 
 ### 49.2 Métricas históricas (51)
-Explicar el contrato de perfdata y rangos de thresholds con ejemplos límite; procesamiento, almacenamiento, retención, RRDTool, PNP4Nagios como referencia histórica y alternativas externas actuales. No presentar RRD o Grafana como capacidades integradas de Nagios Core.
+Explicar el contrato de perfdata y rangos de thresholds con ejemplos límite;
+procesamiento, almacenamiento, retención, RRDTool, PNP4Nagios como referencia
+histórica y alternativas externas actuales. No presentar RRD o Grafana como
+capacidades integradas de Nagios Core.
 
 ### 49.3 Gestión operativa de alertas (52)
-Diseñar alertas accionables y evaluar ruido, dependencias, flapping, reintentos, escalaciones, acknowledgements y downtime. Distinguir correlación y deduplicación externas de funciones nativas de Nagios. Usar SLI/SLO como contexto de diseño, no como función nativa.
+Diseñar alertas accionables y evaluar ruido, dependencias, flapping, reintentos,
+escalaciones, acknowledgements y downtime. Distinguir correlación y
+deduplicación externas de funciones nativas de Nagios. Usar SLI/SLO como
+contexto de diseño, no como función nativa.
 
 ### 49.4 Nagios como código (53)
-Construir un rol Ansible reproducible, inventario y templates, validación previa `nagios -v`, CI, pruebas Molecule donde proceda, secretos, rollback y detección de drift. Diferenciar instalación empaquetada y upstream; verificar unit systemd y rutas reales.
+Construir un rol Ansible reproducible, inventario y templates, validación previa
+`nagios -v`, CI, pruebas Molecule donde proceda, secretos, rollback y detección
+de drift. Diferenciar instalación empaquetada y upstream; verificar unit systemd
+y rutas reales.
 
 ### 49.5 HA, DR y arquitecturas empresariales (54)
-Diferenciar engine, web, transporte y datos. Enseñar active/passive, riesgos active/active, fencing, failover, backup/restauración y pruebas de RPO/RTO. Pacemaker/Corosync es integración opcional, no funcionalidad nativa. Evitar notificaciones y checks duplicados tras conmutación.
+Diferenciar engine, web, transporte y datos. Enseñar active/passive, riesgos
+active/active, fencing, failover, backup/restauración y pruebas de RPO/RTO.
+Pacemaker/Corosync es integración opcional, no funcionalidad nativa. Evitar
+notificaciones y checks duplicados tras conmutación.
 
 ### 49.6 Internals aplicados (55)
-Vincular source code y comportamiento observable mediante strace, gdb, perf y sanitizers en laboratorio. Explicar Event Broker y NEB, scheduler, workers, estados y retención. Identificar versión, archivos y funciones realmente existentes antes de presentar rutas de código.
+Vincular source code y comportamiento observable mediante strace, gdb, perf y
+sanitizers en laboratorio. Explicar Event Broker y NEB, scheduler, workers,
+estados y retención. Identificar versión, archivos y funciones realmente
+existentes antes de presentar rutas de código.
 
 ### 49.7 Proyecto final experto (56)
-Conservar todos los entregables anteriores, añadir checks de aplicaciones, métricas, automatización, HA/DR y diagnóstico interno. Exigir arquitectura documentada, reproducibilidad, runbooks, pruebas de fallo, validación de seguridad y demostración de recuperación.
+Conservar todos los entregables anteriores, añadir checks de aplicaciones,
+métricas, automatización, HA/DR y diagnóstico interno. Exigir arquitectura
+documentada, reproducibilidad, runbooks, pruebas de fallo, validación de
+seguridad y demostración de recuperación.
 
 ## 50. Reglas transversales de profundidad y reproducibilidad
 
-Cada lección técnica debe contener, cuando aplique: arquitectura y prerequisitos, configuración completa contextualizada, parámetros explicados, comandos reproducibles, interpretación de resultados, pruebas negativas, seguridad, SELinux/firewalld, logs, verificación, troubleshooting y criterios de aceptación. Mantener 🎯 OBJETIVO al principio y 🧠 QUÉ DEBES RECORDAR al final. No repetir cursos independientes de Apache, systemd, SELinux, Python, Ansible o bases de datos.
+Cada lección técnica debe contener, cuando aplique: arquitectura y
+prerequisitos, configuración completa contextualizada, parámetros explicados,
+comandos reproducibles, interpretación de resultados, pruebas negativas,
+seguridad, SELinux/firewalld, logs, verificación, troubleshooting y criterios de
+aceptación. Mantener 🎯 OBJETIVO al principio y 🧠 QUÉ DEBES RECORDAR al final. No
+repetir cursos independientes de Apache, systemd, SELinux, Python, Ansible o
+bases de datos.
 
-No inventar nombres de paquetes, rutas, unidades, políticas, opciones ni salidas exactas. Verificar diferencias de Fedora/RHEL y versiones upstream. Nunca presentar herramientas históricas como integraciones actuales sin advertencia de compatibilidad.
+No inventar nombres de paquetes, rutas, unidades, políticas, opciones ni salidas
+exactas. Verificar diferencias de Fedora/RHEL y versiones upstream. Nunca
+presentar herramientas históricas como integraciones actuales sin advertencia de
+compatibilidad.
+
+
+## 51. Ajustes de progresión, transporte y evaluación
+
+### Progresión en los primeros laboratorios
+Antes de utilizar estados y macros en los bloques 3–4, introducir únicamente
+lo necesario: resultado OK/CRITICAL, reintentos, SOFT/HARD y las macros del
+ejemplo. Emplear configuraciones guiadas con prerrequisitos explícitos.
+Los bloques 15 y 26 desarrollan después el modelo completo. Las lecciones
+tempranas no deben exigir conocimientos todavía no explicados.
+
+### Identidad y contrato de plugins
+Nagios Plugins y Monitoring Plugins son proyectos diferentes. Documentar el
+proveedor del paquete, versión, opciones de compilación y salida de --help.
+No trasladar automáticamente la disponibilidad de check_curl ni la política
+de check_http de un proyecto al otro. Las guías de Monitoring Plugins son
+una referencia complementaria identificada, no documentación del otro proyecto.
+El contrato OK/WARNING/CRITICAL/UNKNOWN de servicios no debe confundirse con
+la interpretación de códigos de retorno de checks activos de hosts.
+
+### Transporte de resultados pasivos
+NRDP es un componente adicional. Explicar receptor, emisor, integración con
+Core, HTTPS con certificado validado, tokens y permisos. Crear previamente
+los objetos y comprobar sus nombres exactos. Relacionar el modo pasivo NCPA
+con la configuración NRDP correspondiente a la versión instalada.
+No dar por implementados buffering, reintentos, deduplicación o entrega
+exactamente una vez: comprobar qué ofrece cada emisor y diseñar lo restante.
+Probar caída de transporte, resultados antiguos, desfase horario y freshness.
+NSCA se presenta como alternativa cuya seguridad y compatibilidad se evalúan.
+
+### Estados pasivos de hosts
+Explicar passive_host_checks_are_soft y translate_passive_host_checks con
+ejemplos de topología desde el punto de vista del receptor. Comparar con
+servicios pasivos y hosts activos, verificando comportamiento por versión.
+
+### Proyecto final sin repetición de despliegues
+Las lecciones 56.1–56.50 conservan la construcción y operación del proyecto.
+Las lecciones 56.51–56.78 evalúan esa misma plataforma mediante entregables,
+pruebas de aceptación y defensa técnica; no repiten la instalación.
+Cada prueba define condición inicial, estímulo, resultado esperado, evidencia
+y criterio de aprobado. Distinguir diseño propuesto de despliegue ejecutado.
+Un laboratorio se considera ejecutado únicamente si hay evidencia real.

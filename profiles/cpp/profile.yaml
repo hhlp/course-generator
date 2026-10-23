@@ -1,6 +1,6 @@
 ---
 course:
-  title: "c++ — 0 a Experto en Profundidad"
+  title: "C++ — 0 a Experto en Profundidad"
   language: "es"
   level:
     start: "cero"
@@ -25,20 +25,20 @@ lesson_structure:
     heading: 📚 LECTURA
     categories:
       - principal
+      - complementaria
       - normativa
-      - motor
       - profundizacion
       - consulta
     exact_references_only_when_verified: true
   lab:
     required: false
-    heading: 🧪 Laboratorio/ejemplos
+    heading: 🧪 LABORATORIO
   common_errors:
     required: false
-    heading: ⚠️ Errores frecuentes
+    heading: ⚠️ ERRORES FRECUENTES
   important_idea:
     required: false
-    heading: 💡 Idea importante
+    heading: 💡 IDEA IMPORTANTE
   remember:
     required: true
     position: last
@@ -59,6 +59,7 @@ output:
   write_index: true
   write_manifest: true
 
+# El orden de estudio y los prerrequisitos por lección están en domain.md.
 artifacts:
   enabled: true
   default_strategy: auto
@@ -147,7 +148,7 @@ artifacts:
       project_type: integrator
 
     '8.26':
-      strategy: final_integrator_project
+      strategy: standalone_project
       project_id: proyecto-cpp23-completo
       knowledge_dependencies:
         - bloque-1
@@ -174,10 +175,6 @@ artifacts:
         - bloque-1
         - bloque-2
         - bloque-3
-        - bloque-4
-        - bloque-5
-        - bloque-6
-        - bloque-7
         - bloque-8
         - bloque-9
       artifact_dependencies: []
@@ -197,11 +194,7 @@ artifacts:
         - bloque-2
         - bloque-3
         - bloque-4
-        - bloque-5
-        - bloque-6
-        - bloque-7
         - bloque-8
-        - bloque-9
         - bloque-10
       artifact_dependencies: []
       required_files:
@@ -219,7 +212,7 @@ artifacts:
 
 validation:
   enabled: true
-  require_tools: false
+  require_tools: true
   stop_on_failure: true
   timeout_seconds: 180
   commands:
@@ -235,3 +228,4 @@ validation:
       - --test-dir
       - build
       - --output-on-failure
+      - --no-tests=error

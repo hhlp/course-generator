@@ -190,3 +190,78 @@ iam_integration:
     - IAM-troubleshooting
   boundary: teach the consumer side; central identity lifecycle and
     governance belong to the IAM learning path
+
+revision_contract:
+  preserve_original_blocks: true
+  preserve_original_lessons: true
+  original_blocks: 28
+  original_lessons: 540
+  append_lessons_within_existing_blocks: true
+  lesson_ids_must_be_unique_and_contiguous: true
+  scope: curriculum-inputs-for-course-generator
+  implementation_status: labs-specified-not-deployed
+prerequisites:
+  common:
+    - RHCSA-foundations
+    - TCP-IP-HTTP-TLS-foundations
+  central_identity_labs:
+    - IAM-provider-already-provisioned
+    - working-DNS-and-time-synchronization
+    - trusted-CA-and-protected-service-credentials
+lab_acceptance:
+  required_items:
+    - topology-and-inventory
+    - installed-versions-build-and-modules
+    - commented-configuration-and-explained-commands
+    - client-proxy-backend-validation
+    - expected-results-and-positive-negative-tests
+    - sanitized-evidence
+    - failure-injection-and-recovery
+    - cleanup-and-rollback
+  outcomes:
+    - no-open-proxy-or-authentication-bypass
+    - private-cache-isolation-between-users
+    - verified-TLS-on-required-hops
+    - measured-failover-and-client-reconnection
+    - bounded-retries-with-idempotency-analysis
+squid_authentication_constraints:
+  client_mode: explicit-proxy
+  intercept_tproxy_proxy_authentication: unsupported
+  distinguish_proxy_407_from_origin_401: true
+  basic_is_encryption: false
+  protect_client_proxy_and_proxy_directory_hops: true
+  connect_does_not_protect_proxy_credentials_by_itself: true
+  group_helpers_and_cache_revocation: required
+nginx_extensions:
+  delegated_authentication:
+    module: auth_request
+    verify_installed_module: true
+    external_authenticator_required: true
+    identity_source: existing-central-IAM
+    allow_public_routes: true
+    protected_routes_fail_closed: true
+    sanitize_identity_headers: true
+    prevent_direct_backend_bypass: true
+  reverse_proxy_cache:
+    - proxy_cache-and-cache-key
+    - Vary-cookies-and-Authorization
+    - bypass-vs-no-cache
+    - revalidation-lock-and-controlled-stale
+    - two-user-private-response-isolation
+resilience_extensions:
+  retries: bounded-and-idempotency-aware
+  haproxy:
+    - peers-and-stick-tables
+    - reload-vs-restart-vs-node-failure
+    - runtime-vs-persistent-configuration
+  keepalived:
+    - VRRP-IP-protocol-112
+    - multicast-unicast-network-constraints
+    - VIP-bind-and-startup-order
+    - preemption-failback-and-split-brain
+    - measure-TCP-reconnection-after-VIP-move
+documentation_contract:
+  verify_product_version_and_edition: true
+  verify_package_paths_and_logging_destination: true
+  official_version_matched_documentation_first: true
+  web_server_boundary: reuse-applications-and-focus-on-proxying

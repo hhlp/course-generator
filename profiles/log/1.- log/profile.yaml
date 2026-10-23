@@ -9,19 +9,19 @@ course:
     primary:
       - Fedora
       - Linux
+    compatibility_context:
       - RHEL
   course_goal: Enseñar logging en Linux sobre Fedora desde los fundamentos
-    hasta diseño, seguridad, rendimiento, fiabilidad, troubleshooting e
-    internals, cubriendo systemd-journald, journalctl, Syslog, rsyslog,
-    syslog-ng, logging remoto, TLS, RELP, parsing, colas, buffers, logging
-    estructurado y logrotate.
+    hasta diseño, seguridad, rendimiento, fiabilidad, troubleshooting
+    e internals, cubriendo systemd-journald, journalctl, Syslog, rsyslog,
+    syslog-ng, logging remoto, TLS, RELP, parsing, colas, buffers,
+    logging estructurado y logrotate.
   mode: deep
 
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 scope:
   include:
     - fundamentos del logging
@@ -82,7 +82,6 @@ scope:
     - OpenTelemetry Collector
     - Zabbix
     - Nagios
-
 pedagogy:
   objective_first: true
   objective_heading: 🎯 OBJETIVO
@@ -108,7 +107,6 @@ pedagogy:
     - sudo indiscriminado
     - desactivar SELinux como solución
     - afirmaciones absolutas sobre entrega garantizada
-
 lesson_rules:
   explain_concept_before_command: true
   explain_pipeline_position: true
@@ -124,7 +122,6 @@ lesson_rules:
   include_logs_and_troubleshooting_when_relevant: true
   include_safe_failure_and_recovery_when_relevant: true
   verify_delivery_guarantees_empirically: true
-
 fedora_rules:
   prefer_rpm_dnf: true
   prefer_systemd_native_tools: true
@@ -132,7 +129,6 @@ fedora_rules:
   keep_selinux_enforcing: true
   use_real_fedora_paths: true
   use_real_fedora_units: true
-
 journald:
   treat_as_structured_event_store: true
   emphasize:
@@ -152,7 +148,6 @@ journald:
     - rate limiting
     - forwarding
     - sealing
-
 syslog:
   separate_architecture_protocol_implementation: true
   standards:
@@ -160,12 +155,13 @@ syslog:
     - RFC5424
     - RFC5425
     - RFC6587
+    - RFC5426
+    - RFC5848
   distinguish_transports:
     - UDP
     - TCP
     - TLS
     - RELP
-
 rsyslog:
   prefer_modern_configuration: true
   teach_legacy_selectors_for_context: true
@@ -188,7 +184,6 @@ rsyslog:
     - normalization
     - TLS
     - RELP
-
 syslog_ng:
   pipeline_model: source -> parser/filter/rewrite -> log path -> destination
   emphasize:
@@ -205,7 +200,6 @@ syslog_ng:
     - disk-buffer
     - TLS
     - routing
-
 reliability:
   explain:
     - loss
@@ -220,7 +214,6 @@ reliability:
     - at-most-once
     - at-least-once
     - limits_of_exactly_once
-
 security:
   include:
     - least privilege
@@ -239,7 +232,6 @@ security:
     - disabling SELinux as a fix
     - opening broad firewall access without justification
     - skipping certificate verification in production
-
 logrotate:
   emphasize:
     - open file descriptors
@@ -249,7 +241,6 @@ logrotate:
     - copytruncate risks
     - application-managed rotation
     - journal internal rotation
-
 troubleshooting:
   methodology: pipeline-first
   pipeline:
@@ -288,7 +279,6 @@ troubleshooting:
     - jq
     - df
     - du
-
 labs:
   required_when_relevant: true
   workflow:
@@ -306,7 +296,14 @@ labs:
     - loss duplicate and reordering measurements
     - baseline and post recovery checks
     - documented rollback
-
+  deliverables:
+    - commented configuration
+    - version inventory
+    - reproducible commands
+    - event accounting report
+    - recovery and rollback instructions
+  artifact_scope: Curriculum requirements; executable lab assets are
+    generated separately.
 internals:
   depth: operationally_relevant
   include:
@@ -327,30 +324,27 @@ internals:
     - backpressure
   avoid:
     - turning the course into full source-code development training
-
 references:
   priority:
-    - official upstream documentation
-    - installed man pages
+    - installed man pages for installed behavior
+    - official upstream documentation matching installed version
     - Fedora documentation
     - applicable RFCs
     - upstream library documentation
     - advanced books
-
 final_project:
   required: true
-  goal: Construir una plataforma centralizada, segura, persistente y tolerante
-    a fallos de logging sobre Fedora, con journald, rsyslog o syslog-ng,
-    transporte seguro, queues/buffers, parsing, routing, almacenamiento,
-    logrotate, SELinux, firewalld, troubleshooting, recuperación y
-    dimensionamiento básico.
+  goal: Construir una plataforma centralizada, segura, persistente
+    y tolerante a fallos de logging sobre Fedora, con journald, rsyslog
+    o syslog-ng, transporte seguro, queues/buffers, parsing, routing,
+    almacenamiento, logrotate, SELinux, firewalld, troubleshooting,
+    recuperación y dimensionamiento básico.
   acceptance_criteria:
     - demonstrate end-to-end traceability
     - quantify loss duplicates latency and queue backlog
     - document security and retention controls
     - provide incident and recovery runbooks
     - retain evidence of failure and recovery tests
-
 advanced_blocks:
   - id: 45
     title: Linux Audit y logging de seguridad
@@ -367,7 +361,6 @@ advanced_blocks:
   - id: 49
     title: Pruebas de resiliencia, rendimiento y recuperación
     focus: profundidad operativa, validación y laboratorio reproducible
-
 course_structure:
   original_topic_blocks_preserved: true
   advanced_blocks:
@@ -378,3 +371,33 @@ course_structure:
     - 49
   integration_lab_block: 50
   final_project_block: 51
+  total_blocks: 52
+  total_lessons: 1315
+  original_lessons_preserved: 1247
+  numbering_policy: append within existing blocks; retain original
+    identifiers
+technical_review:
+  date: '2026-10-22'
+  version_policy: Match official documentation to installed packages
+    before using options.
+  routing:
+    - local journal or syslog socket
+    - direct file input
+    - direct network input
+    - optional journal upload and remote
+  required_distinctions:
+    - ForwardToSyslog versus imjournal reading
+    - syntax validation versus functional delivery
+    - graceful shutdown versus abrupt failure
+    - transport acknowledgement versus final durability
+    - syslog-ng OSE versus AxoSyslog documentation
+    - daemon-reload versus daemon reload or restart
+  syslog_ng_option_mapping:
+    mem-buf-size: flow-control-window-bytes
+    disk-buf-size: capacity-bytes
+    mem-buf-length: flow-control-window-size
+  option_mapping_rule: Verify names and aliases against installed
+    version.
+  rsyslog_validation: Use -N1; document other levels before teaching
+    them.
+  lab_safety: Use bounded disposable filesystems for capacity failures.

@@ -10,6 +10,37 @@ profiling, seguridad, arquitectura, observabilidad, XML, internacionalización, 
 El aprendizaje será práctico. Cada bloque debe combinar teoría, ejemplos ejecutables,
 laboratorios y, cuando corresponda, análisis interno de la JVM y herramientas CLI.
 
+
+PLATAFORMA Y RUTA DE ESTUDIO — REVISIÓN 2026-10-19
+Base: OpenJDK 25, APIs estables por defecto; preview en laboratorio separado.
+Se conservan los IDs de las lecciones originales. Los números identifican contenidos;
+las siguientes dependencias determinan cuándo ejecutar las prácticas avanzadas.
+
+- Bloque 0: configurar un build mínimo y JUnit antes del primer proyecto.
+- 4.17–4.18: wrappers/boxing antes de generics y Collections; 17 los consolida.
+- 8.3: presentación conceptual; uso profundo de EnumSet/EnumMap después del 11.
+- Bloque 12, primera pasada: 12.1–12.19, 12.24, 12.32–12.36 con código conocido.
+  Retomar 12.20–12.23 tras 15; 12.25 tras 19; 12.26 tras 32; 12.27 tras 29;
+  12.28–12.31 tras 41–45. Las comparaciones completas de APIs se hacen tras estudiarlas.
+- Laboratorios 11–12: razonar operaciones y contratos; JMH solo tras 45.
+- 15: parallel streams se presentan con restricciones y se retoman tras 26.
+  Los streams respaldados por recursos se retoman tras 18–19.
+- 19: servidor con NIO secuencial/event loop; versión con threads después del 26.
+- 20.10: visión conceptual; implementación HTTP async tras 27 y servidor concurrente
+  tras 26. WebSocket avanzado se retoma tras dominar asincronía.
+- 21: laboratorio de reflexión primero; completar anotaciones después del 22.
+- 23–29: estudiar después de 20; retomar VarHandle tras JMM y atomics.
+- Introducir testing desde 0; 35 profundiza y consolida la suite acumulada.
+- 37–38 profundizan el build mínimo; JavaFX/JPA/tests usan versiones fijadas desde
+  su primer laboratorio. El material debe proporcionar pom/build y wrapper completos.
+- 54 es la entrega base; la defensa final ocurre después de 55–60 y de integrar
+  las extensiones pertinentes. No se exige incorporar FFM sin una necesidad real.
+
+Cada laboratorio declara prerrequisitos, comandos, salida esperada, pruebas y limpieza.
+Las pruebas de concurrencia se coordinan explícitamente; sleep no demuestra corrección.
+Regex y Big-O requieren únicamente sus fundamentos externos al llegar a su aplicación;
+sus teorías generales no se vuelven a desarrollar en este PATH.
+
 ===============================================================================
 0. ENTORNO, PLATAFORMA Y ECOSISTEMA JAVA
 ===============================================================================
@@ -30,6 +61,13 @@ laboratorios y, cuando corresponda, análisis interno de la JVM y herramientas C
 0.15 IDE frente a CLI
 0.16 Maven y Gradle: visión general
 0.17 Git en proyectos Java
+0.18 Plataforma de laboratorio: OpenJDK 25; registrar distribución y java -version
+0.19 java --source 25: ejecución de archivos fuente y archivos compactos
+0.20 main clásico frente a main de instancia; java.lang.IO en Java 25
+0.21 Separar ejemplos estables y preview: --enable-preview al compilar y ejecutar
+0.22 Primer build reproducible con Maven Wrapper y release 25 antes de usar librerías
+0.23 Primeras pruebas JUnit: dependencia fijada, ejecución por CLI y fallo esperado
+0.24 Manifiesto del laboratorio: JDK, wrappers, dependencias y servicios externos
 LAB: instalar el JDK, compilar y ejecutar sin IDE, crear un JAR y explorar una clase con javap.
 
 ===============================================================================
@@ -58,6 +96,11 @@ LAB: instalar el JDK, compilar y ejecutar sin IDE, crear un JAR y explorar una c
 1.21 while / do-while
 1.22 break / continue
 1.23 bloques y scope
+1.24 null y referencias; valores predeterminados de campos y elementos de arrays
+1.25 Asignación definida: variables locales sin inicialización y errores de compilación
+1.26 Evaluación de izquierda a derecha y cortocircuito con efectos secundarios
+1.27 Promoción numérica, división entera, NaN, infinitos y comparación de float/double
+1.28 Pruebas de frontera para fundamentos; distinguir assert del lenguaje y JUnit
 LAB: calculadora CLI y pequeños problemas algorítmicos.
 
 ===============================================================================
@@ -75,6 +118,10 @@ LAB: calculadora CLI y pequeños problemas algorítmicos.
 2.10 Paso de argumentos en Java
 2.11 Paso por valor y referencias a objetos
 2.12 Diseño de métodos pequeños y cohesivos
+2.13 Resolución de sobrecargas: widening, boxing, varargs y llamadas ambiguas
+2.14 Desbordamiento de pila y ausencia de garantía de tail-call optimization
+2.15 Depuración básica con breakpoints, stepping e inspección de variables
+2.16 Pruebas unitarias de métodos: casos normales, fronteras y entradas inválidas
 LAB: biblioteca de utilidades y algoritmos recursivos.
 
 ===============================================================================
@@ -111,6 +158,11 @@ LAB: estadísticas, matrices, búsqueda y ordenación.
 4.14 Inmutabilidad
 4.15 Records como objetos de datos
 4.16 Ciclo de vida de objetos
+4.17 Wrappers y autoboxing/unboxing: preparación para generics y Collections
+4.18 Unboxing de null, cachés de wrappers y errores al comparar con ==
+4.19 Orden de inicialización: campos static, bloques, campos de instancia y constructores
+4.20 Encadenamiento de constructores y cuerpos flexibles de constructores en Java 25
+4.21 Escape de this durante construcción y métodos sobrescribibles en constructores
 PROYECTO 1: aplicación CLI orientada a objetos.
 
 ===============================================================================
@@ -131,6 +183,9 @@ PROYECTO 1: aplicación CLI orientada a objetos.
 5.13 Jerarquías cerradas
 5.14 Composición frente a herencia
 5.15 Principio de sustitución
+5.16 Sobrescritura frente a sobrecarga y ocultación de métodos static/campos
+5.17 Tipos de retorno covariantes y restricciones de visibilidad y excepciones
+5.18 Conflictos de métodos default e interfaces con métodos private
 LAB: modelar una jerarquía extensible y otra sellada.
 
 ===============================================================================
@@ -147,6 +202,9 @@ LAB: modelar una jerarquía extensible y otra sellada.
 6.9 Value objects
 6.10 Copias defensivas
 6.11 Diseño de tipos inmutables
+6.12 Igualdad con herencia, simetría y límites de instanceof/getClass
+6.13 Claves mutables y corrupción lógica de búsquedas en colecciones hash
+6.14 Inmutabilidad superficial de records y copias defensivas de componentes
 LAB: implementar correctamente entidades y value objects.
 
 ===============================================================================
@@ -174,6 +232,9 @@ LAB: implementar correctamente entidades y value objects.
 7.20 Assertions vs exceptions
 7.21 Assertions vs validación de entrada
 7.22 Cuándo NO usar assert
+7.23 Orden inverso de cierre y excepciones suprimidas en try-with-resources
+7.24 getSuppressed(), fallo del cuerpo frente al cierre y preservación de la causa
+7.25 Pruebas de contratos de error y cierre efectivo de recursos
 LAB: capa robusta de validación y errores; experimentar con assertions activadas/desactivadas.
 
 ===============================================================================
@@ -188,6 +249,9 @@ LAB: capa robusta de validación y errores; experimentar con assertions activada
 8.7 Pattern matching
 8.8 Patrones con switch
 8.9 Modelado algebraico de dominios en Java
+8.10 Record patterns: desestructuración y patrones anidados
+8.11 Switch con patrones: guards when, dominio, exhaustividad, dominancia y null
+8.12 Variables y patrones sin nombre con _: usos permitidos y límites
 LAB: modelar estados y resultados mediante tipos modernos.
 
 ===============================================================================
@@ -207,6 +271,10 @@ LAB: modelar estados y resultados mediante tipos modernos.
 9.12 jdeps
 9.13 jlink
 9.14 jpackage
+9.15 ServiceLoader y proveedores en classpath y module-path
+9.16 Módulos automáticos y unnamed module; migración de bibliotecas
+9.17 Split packages y diferencias entre exports y opens para reflection
+9.18 Import module en Java 25 frente a requires en module-info.java
 LAB: convertir una aplicación en proyecto modular y crear runtime/package.
 
 ===============================================================================
@@ -265,7 +333,17 @@ LAB: construir una API genérica type-safe y analizar su bytecode.
 11.24 Árboles y ordenación
 11.25 Big-O de las colecciones
 11.26 Elección de estructura de datos
-LAB: benchmark y comparación razonada de estructuras.
+11.27 EnumSet y EnumMap en profundidad: elección, orden y restricciones
+11.28 SequencedCollection, SequencedSet y SequencedMap
+11.29 getFirst/getLast, operaciones de extremos y vistas reversed()
+11.30 Vistas respaldadas: keySet, values, entrySet y subList
+11.31 Arrays.asList: tamaño fijo, backing array y diferencias frente a List.of
+11.32 copyOf, wrappers no modificables e inmutabilidad superficial
+11.33 Map.get con null, getOrDefault, putIfAbsent, compute y merge
+11.34 Contratos de Comparator: orden total, consistencia con equals y nulls
+11.35 Fail-fast como detección best-effort; no constituye sincronización
+LAB: comparar contratos, operaciones y selección de estructuras con pruebas funcionales.
+La comparación de rendimiento formal se completa tras el bloque 45 con JMH.
 
 ===============================================================================
 12. BIG-O APLICADO A JAVA — COMPLEJIDAD Y ELECCIÓN DE ESTRUCTURAS
@@ -306,7 +384,12 @@ LAB: benchmark y comparación razonada de estructuras.
 12.34 Refactorizar una solución Java manteniendo comportamiento y mejorando complejidad
 12.35 Documentar supuestos de complejidad en APIs y revisiones de código
 12.36 Anti-patrones: optimizar por Big-O sin medir, ignorar tamaños reales y confundir complejidad con tiempo absoluto
-LAB: implementar varias soluciones Java equivalentes, derivar su complejidad usando conocimientos del PATH Big-O, contrastar ArrayList/LinkedList/HashMap/TreeMap/ArrayDeque/PriorityQueue y verificar experimentalmente tendencias con JMH sin confundir benchmark con análisis asintótico.
+12.37 Itinerario diferido: Streams tras 15; I/O tras 19; JDBC tras 32; concurrencia tras 29
+12.38 Comparación formal con JMH tras 45: tendencias, incertidumbre y límites del experimento
+LAB POR ETAPAS: implementar soluciones Java equivalentes y razonar su complejidad con
+los fundamentos del PATH Big-O; contrastar estructuras ya conocidas. Retomar Streams,
+I/O, JDBC y concurrencia tras sus bloques. Verificar tendencias con JMH solo tras 45,
+sin confundir medición experimental con demostración asintótica.
 
 NOTA DE ALCANCE: este bloque NO vuelve a enseñar desde cero la teoría matemática de Big-O,
 Big-Theta/Big-Omega, demostraciones, familias de crecimiento, recurrencias ni análisis algorítmico
@@ -379,6 +462,15 @@ LAB: pipeline funcional sin estado mutable compartido.
 15.23 ForkJoinPool y parallel streams
 15.24 Side effects y non-interference
 15.25 Cuándo NO usar Streams
+15.26 Stream.toList(), Collectors.toList() y toUnmodifiableList(): contratos distintos
+15.27 Asociatividad, identidad y compatibilidad de acumulador/combiner en reduce
+15.28 Collector supplier/accumulator/combiner/finisher y characteristics
+15.29 Orden de encuentro, unordered y diferencias entre findAny y findFirst
+15.30 Streams de un solo uso y cierre de fuentes con recursos; retomar en I/O
+15.31 mapMulti y alternativas a flatMap según el caso
+15.32 Gatherer y Stream.gather: operaciones intermedias personalizadas
+15.33 Gatherers.fold, scan, windowFixed, windowSliding y mapConcurrent
+15.34 Restricciones de parallel streams: common pool, bloqueo y costes de partición
 PROYECTO 2: procesamiento y análisis de datos con Streams.
 
 ===============================================================================
@@ -424,6 +516,9 @@ PROYECTO 2: procesamiento y análisis de datos con Streams.
 16.38 Diagnóstico de patrones desde aplicaciones Java
 16.39 Diseño de APIs Java que reciben o encapsulan Pattern
 16.40 Cuándo usar regex desde Java y cuándo preferir parser/API especializada
+16.41 Offsets UTF-16 de Matcher frente a code points y grafemas
+16.42 Cadenas de reemplazo frente a patrones: $ y barras en quoteReplacement
+16.43 Patrones no confiables: limitar entrada y trabajo; no asumir timeout de Matcher
 LAB: aplicar patrones ya estudiados en el PATH Regex mediante Pattern/Matcher, extracción,
 reemplazo, split y Streams sobre texto Unicode, comparando compilación repetida frente a
 reutilización de Pattern.
@@ -452,6 +547,11 @@ esos patrones dentro de programas Java.
 17.12 Duration / Period
 17.13 DateTimeFormatter
 17.14 Zonas horarias
+17.15 BigDecimal desde String frente a double; equals frente a compareTo
+17.16 Divisiones no terminantes, MathContext y redondeo explícito
+17.17 DST: gaps y overlaps; diferencias entre Duration y Period
+17.18 Clock inyectable para pruebas temporales deterministas
+17.19 Consolidación de wrappers: identidad, unboxing, boxing y coste en colecciones
 LAB: cálculo monetario y planificación temporal segura.
 
 ===============================================================================
@@ -468,6 +568,10 @@ LAB: cálculo monetario y planificación temporal segura.
 18.9 Charset
 18.10 try-with-resources
 18.11 Console
+18.12 Lecturas parciales, EOF, excepciones de codificación y ownership de streams
+18.13 Cierre de Files.lines, Files.list y Files.walk; retomar tras el bloque 19
+18.14 Deserialización: ObjectInputFilter y límites; no aceptar objetos no confiables
+18.15 Procesamiento incremental sin cargar ficheros completos en memoria
 LAB: lector/escritor de formatos y procesamiento de ficheros grandes.
 
 ===============================================================================
@@ -487,6 +591,10 @@ LAB: lector/escritor de formatos y procesamiento de ficheros grandes.
 19.12 Selectors
 19.13 AsynchronousFileChannel
 19.14 AsynchronousSocketChannel
+19.15 ByteBuffer: position, limit, capacity, flip, clear y compact
+19.16 Lecturas/escrituras parciales en channels y máquinas de estado con selectors
+19.17 Symlinks, normalización, rutas reales y riesgos TOCTOU
+19.18 Archivos temporales, permisos y movimientos atómicos según filesystem
 LAB: monitor de directorios y servidor I/O.
 
 ===============================================================================
@@ -504,7 +612,12 @@ LAB: monitor de directorios y servidor I/O.
 20.10 Requests asíncronos
 20.11 WebSocket API
 20.12 Timeouts y errores
-LAB: cliente HTTP y servicio TCP concurrente.
+20.13 HTTP: códigos de estado, headers, redirects, bodies y cierre de recursos
+20.14 URI frente a URL: construcción y encoding de componentes
+20.15 Reintentos limitados con backoff e idempotencia; implementación tras concurrencia
+20.16 Límites de tamaño, streaming de respuestas y reutilización de HttpClient
+LAB: cliente HTTP síncrono y servicio TCP secuencial con cierre de recursos.
+CONTINUACIÓN: servicio TCP concurrente tras 26; cliente HTTP asíncrono tras 27.
 
 ===============================================================================
 21. REFLECTION, METHOD HANDLES Y DINAMISMO
@@ -520,7 +633,10 @@ LAB: cliente HTTP y servicio TCP concurrente.
 21.9 MethodType
 21.10 Dynamic proxies
 21.11 Costes y casos de uso
-LAB: mini-framework basado en reflexión/anotaciones.
+21.12 VarHandle: acceso tipado a campos/arrays; memoria y atomics tras 24–25
+21.13 Encapsulación fuerte y diagnóstico de InaccessibleObjectException
+LAB: inspección e invocación mediante reflexión.
+CONTINUACIÓN tras 22: mini-framework basado en reflexión/anotaciones.
 
 ===============================================================================
 22. ANNOTATIONS Y ANNOTATION PROCESSING
@@ -534,6 +650,8 @@ LAB: mini-framework basado en reflexión/anotaciones.
 22.7 Compile-time annotation processing
 22.8 Processor API
 22.9 Generación de código
+22.10 Rounds de procesamiento, Filer, Messager y elementos del modelo javax.lang.model
+22.11 Activación explícita de annotation processors y aislamiento de sus dependencias
 LAB: annotation processor sencillo.
 
 ===============================================================================
@@ -558,6 +676,9 @@ LAB: annotation processor sencillo.
 23.17 Livelock
 23.18 Starvation
 23.19 Thread safety
+23.20 Interrupción cooperativa: propagar o restaurar el estado al capturar InterruptedException
+23.21 Guarded blocks: esperar en while y contemplar spurious wakeups
+23.22 Pruebas coordinadas con barreras/latches tras 25; evitar sleep como sincronización
 LAB: reproducir y corregir race conditions y deadlocks.
 
 ===============================================================================
@@ -597,6 +718,10 @@ LAB: experimentos de visibilidad, volatile y publicación segura.
 25.15 BlockingQueue
 25.16 ConcurrentLinkedQueue
 25.17 Lock-free y CAS: fundamentos
+25.18 CAS: bucles de reintento, ABA y límites de progreso
+25.19 VarHandle: accesos plain, opaque, acquire/release y volatile
+25.20 Callbacks de ConcurrentHashMap: atomicidad por operación y límites de composición
+25.21 Bounded BlockingQueue y backpressure aplicada a productores/consumidores
 LAB: productor/consumidor y estructuras concurrentes.
 
 ===============================================================================
@@ -616,6 +741,9 @@ LAB: productor/consumidor y estructuras concurrentes.
 26.12 Work stealing
 26.13 CPU-bound vs I/O-bound
 26.14 Shutdown ordenado
+26.15 submit frente a execute: propagación de errores y observación de Future
+26.16 shutdown, awaitTermination y shutdownNow: interrupción best-effort
+26.17 Fixed rate frente a fixed delay y fallos en tareas periódicas
 LAB: servidor de tareas con pools medidos y configurados.
 
 ===============================================================================
@@ -638,6 +766,10 @@ LAB: servidor de tareas con pools medidos y configurados.
 27.15 Executors personalizados
 27.16 Cancelación y timeouts
 27.17 Pipelines asíncronos
+27.18 Continuaciones async/no async: thread de ejecución y selección de Executor
+27.19 Timeout del resultado frente a detener el trabajo subyacente
+27.20 CompletableFuture.cancel(true): no garantiza interrumpir la computación
+27.21 Evitar bloqueo circular y agotamiento de pools al encadenar join/get
 LAB: agregador asíncrono de múltiples servicios.
 
 ===============================================================================
@@ -656,6 +788,9 @@ LAB: agregador asíncrono de múltiples servicios.
 28.11 ThreadLocal y virtual threads
 28.12 Escalabilidad
 28.13 Cuándo usar y cuándo no usar virtual threads
+28.14 Límites de DB, sockets y servicios: Semaphore en lugar de pool de virtual threads
+28.15 JDK 24+: synchronized deja de ser la causa general de pinning anterior; casos nativos
+28.16 ThreadLocal: limpieza, retención y coste al multiplicar tareas
 LAB: comparar platform threads, pools y virtual threads.
 
 ===============================================================================
@@ -670,7 +805,12 @@ LAB: comparar platform threads, pools y virtual threads.
 29.7 Structured Concurrency API según el JDK objetivo
 29.8 Scoped values/contexto según el JDK objetivo
 29.9 Estado preview/final de APIs: verificar para la versión estudiada
-LAB: servicio concurrente estructurado.
+29.10 ScopedValue final en JDK 25: binding léxico, inmutabilidad y comparación con ThreadLocal
+29.11 StructuredTaskScope en JDK 25: quinta preview; open, fork, join y Joiner
+29.12 Separar compilación y ejecución preview del resto del proyecto
+29.13 Presupuesto temporal, cancelación y cierre del scope con tareas no cooperativas
+LAB: ScopedValue con APIs estables y servicio estructurado en un módulo preview JDK 25.
+Compilar con --enable-preview --release 25; ejecutar con --enable-preview y JDK 25.
 PROYECTO 3: aplicación concurrente/async con virtual threads.
 
 ===============================================================================
@@ -698,6 +838,10 @@ PROYECTO 3: aplicación concurrente/async con virtual threads.
 30.20 ResultSetMetaData
 30.21 Manejo correcto de recursos
 30.22 PostgreSQL como BD principal de laboratorio
+30.23 NULL SQL, wasNull, getObject y conversiones de tipos temporales
+30.24 Fetch size y cursores con PostgreSQL: autocommit, transacción y lectura incremental
+30.25 SQLState, SQLException encadenadas y diagnóstico de errores del driver
+30.26 Timeout de conexión, consulta y red: alcance y cancelación según driver
 LAB: CRUD JDBC completo con PostgreSQL.
 
 ===============================================================================
@@ -712,6 +856,9 @@ LAB: CRUD JDBC completo con PostgreSQL.
 31.7 Timeouts
 31.8 Leak detection
 31.9 Transacciones en capas de aplicación
+31.10 Deadlocks y serialization failures: rollback y reintento limitado de la transacción completa
+31.11 Restauración de autocommit, isolation, readOnly y estado de sesión al devolver conexiones
+31.12 Virtual threads y pool JDBC: limitar demanda al presupuesto real de conexiones
 LAB: medir JDBC directo frente a pooling.
 
 ===============================================================================
@@ -732,6 +879,9 @@ LAB: medir JDBC directo frente a pooling.
 32.13 N+1
 32.14 Transactions
 32.15 JDBC vs ORM
+32.16 Dirty checking, flush y separación entre persistencia y commit
+32.17 Optimistic locking con versionado y comparación con bloqueo pesimista
+32.18 Migraciones de esquema versionadas, pruebas y compatibilidad de despliegues
 LAB: implementar el mismo dominio con JDBC y JPA/Hibernate.
 
 ===============================================================================
@@ -779,6 +929,8 @@ LAB: aplicación JavaFX modular.
 34.15 Pool de conexiones
 34.16 Arquitectura de aplicación desktop
 34.17 Empaquetado con jpackage
+34.18 Cancelación de Task, manejo de errores y cierre de executors y pool JDBC
+34.19 Pruebas de separación UI/servicios y límites entre JavaFX Thread y background
 PROYECTO 4: aplicación JavaFX + PostgreSQL + JDBC/HikariCP.
 
 ===============================================================================
@@ -800,6 +952,10 @@ PROYECTO 4: aplicación JavaFX + PostgreSQL + JDBC/HikariCP.
 35.14 Tests concurrentes
 35.15 Tests deterministas
 35.16 Coverage y sus límites
+35.17 Consolidación de pruebas progresivas iniciadas en 0, 1, 2, 7 y proyectos
+35.18 Fixtures, limpieza y aislamiento de estado entre pruebas
+35.19 Timeouts acotados y coordinación explícita en pruebas concurrentes
+35.20 Testcontainers: runtime OCI compatible, imagen fijada y ciclo de vida del contenedor
 LAB: suite completa para proyectos anteriores.
 
 ===============================================================================
@@ -816,6 +972,7 @@ LAB: suite completa para proyectos anteriores.
 36.9 Structured logging
 36.10 Rotación y configuración
 36.11 Datos sensibles en logs
+36.12 MDC y cambios de thread: propagación explícita y limpieza con executors y virtual threads
 LAB: instrumentar una aplicación para diagnóstico.
 
 ===============================================================================
@@ -837,6 +994,9 @@ LAB: instrumentar una aplicación para diagnóstico.
 37.14 Repositories
 37.15 Reproducible builds
 37.16 mvn dependency:tree
+37.17 Toolchains, maven.compiler.release y versiones explícitas de plugins/dependencias
+37.18 Surefire frente a Failsafe y separación de pruebas unitarias/integración
+37.19 Dependency convergence, BOMs y verificación de dependencias del build
 LAB: proyecto multi-module reproducible.
 
 ===============================================================================
@@ -853,6 +1013,8 @@ LAB: proyecto multi-module reproducible.
 38.9 Incremental builds
 38.10 Build cache
 38.11 Dependency insight
+38.12 Java toolchains, release y compatibilidad del Gradle Wrapper con JDK 25
+38.13 Dependency locking, verificación y versiones fijadas en builds reproducibles
 LAB: reproducir el proyecto Maven con Gradle.
 
 ===============================================================================
@@ -892,6 +1054,8 @@ LAB: observar carga de clases y runtime con herramientas JDK.
 40.11 invokedynamic
 40.12 Lambdas y bytecode
 40.13 Generics y erasure en bytecode
+40.14 Class-File API estándar desde JDK 24: lectura, generación y transformación
+40.15 java.lang.classfile: ClassFile, ClassModel y transformación con validación
 LAB: desensamblar ejemplos de POO, lambdas y generics.
 
 ===============================================================================
@@ -915,6 +1079,9 @@ LAB: desensamblar ejemplos de POO, lambdas y generics.
 41.16 GC logs
 41.17 Memory leaks en Java
 41.18 OutOfMemoryError
+41.19 Cleaner frente a cierre determinista: no depender del GC para liberar recursos
+41.20 Finalización obsoleta: contexto histórico, riesgos y alternativas
+41.21 Distinguir heap, metaspace, direct buffers, stacks y memoria nativa
 LAB: provocar, observar y diagnosticar presión de memoria.
 
 ===============================================================================
@@ -932,6 +1099,8 @@ LAB: provocar, observar y diagnosticar presión de memoria.
 42.10 Deoptimization
 42.11 Code cache
 42.12 Por qué el warmup importa
+42.13 CDS/AppCDS y arranque: compartir metadatos frente a compilar código nativo
+42.14 AOT caches en JDK 25 y method profiling; diferencia frente a native image
 LAB: observar warmup y compilación JIT.
 
 ===============================================================================
@@ -975,6 +1144,9 @@ LAB: localizar y corregir un cuello de botella real.
 44.14 Deadlock diagnosis
 44.15 High CPU diagnosis
 44.16 Memory leak diagnosis
+44.17 jdb y JDWP: sesión local, breakpoints, threads y evaluación de expresiones
+44.18 JFR CLI: start/dump/stop con jcmd y análisis de grabaciones
+44.19 Herramientas incluidas en JDK frente a JMC/VisualVM instalados aparte
 LAB: incidente simulado de producción.
 
 ===============================================================================
@@ -992,6 +1164,8 @@ LAB: incidente simulado de producción.
 45.10 Constant folding
 45.11 Benchmarking concurrente
 45.12 Interpretación de resultados
+45.13 Retomar el laboratorio 12: parametrizar tamaños y comparar tendencias con supuestos
+45.14 Errores, intervalos, entorno, profilers de allocations y límites de inferencia
 LAB: comparar implementaciones evitando benchmarks engañosos.
 
 ===============================================================================
@@ -1065,6 +1239,10 @@ PROYECTO 5: reorganizar el proyecto de BD/GUI con arquitectura explícita.
 49.14 Deserialization risks
 49.15 Secret management
 49.16 Dependencias vulnerables
+49.17 Security Manager deshabilitado desde JDK 24: aislamiento externo de código no confiable
+49.18 TLS: validación de hostname/cadena; no usar TrustManager permisivo
+49.19 Password hashing con algoritmo adecuado; no sustituirlo por digest rápido
+49.20 ReDoS aplicado a Java y límites de recursos sin duplicar el PATH Regex
 LAB: endurecer una aplicación existente.
 
 ===============================================================================
@@ -1080,6 +1258,8 @@ LAB: endurecer una aplicación existente.
 50.8 Connection pool metrics
 50.9 Correlation IDs
 50.10 Diagnóstico basado en evidencia
+50.11 Shutdown hooks: límites, cierre acotado y coordinación de recursos
+50.12 Presupuesto de threads, conexiones y memoria en entornos limitados
 LAB: preparar una aplicación para operación y troubleshooting.
 
 ===============================================================================
@@ -1099,6 +1279,9 @@ LAB: preparar una aplicación para operación y troubleshooting.
 51.12 Migración entre versiones
 51.13 Deprecation y removal
 51.14 jdeps y compatibilidad
+51.15 Matriz JDK 25: características finales, preview e incubator con fuentes verificables
+51.16 Compatibilidad source/target/release, versión de class file y bibliotecas
+51.17 Ejemplos preview fijados al mismo major JDK de compilación y ejecución
 LAB: migrar un proyecto y analizar incompatibilidades.
 
 ===============================================================================
@@ -1118,6 +1301,11 @@ LAB: migrar un proyecto y analizar incompatibilidades.
 52.12 Distribución con jpackage
 52.13 Contenedores: conceptos aplicados a Java
 52.14 Builds reproducibles
+52.15 Javadoc: contratos, @param/@return/@throws, enlaces y doclint
+52.16 ProcessBuilder: argumentos, entorno, salida/error y prevención de bloqueo por pipes
+52.17 Procesos externos: exit status, timeout, interrupción y destrucción del proceso
+52.18 Contenedores JVM: CPU/memoria, heap frente a consumo total y señales de cierre
+52.19 Manifiesto reproducible con versiones exactas y evidencias de build y pruebas
 LAB: pipeline de build/test/package.
 
 ===============================================================================
@@ -1145,6 +1333,9 @@ LAB: pipeline de build/test/package.
 53.20 JFR
 53.21 GC logs
 53.22 Correlación de métricas, logs y dumps
+53.23 UnsupportedClassVersionError, NoSuchMethodError e incompatibilidades de dependencias
+53.24 InaccessibleObjectException y conflictos de módulos/encapsulación
+53.25 Fallos de charset, DST y precisión decimal con casos mínimos reproducibles
 LAB: resolver una colección de incidentes reproducibles.
 
 ===============================================================================
@@ -1177,6 +1368,9 @@ LAB: resolver una colección de incidentes reproducibles.
 54.25 Análisis de memoria y GC
 54.26 Documentación técnica
 54.27 Troubleshooting drill final
+54.28 Entrega base del proyecto: requisitos, contratos y pruebas de aceptación
+54.29 Entrega de cierre tras 55–60: i18n y extensión justificada con XML, GUI legacy o FFM
+54.30 Informe final: reproducibilidad, mediciones, riesgos y simulación de incidentes
 
 ===============================================================================
 55. INTERNATIONALIZATION (I18N) — EN PROFUNDIDAD
@@ -1246,6 +1440,8 @@ LAB: leer el mismo documento con DOM, SAX y StAX; validar y consultar con XPath 
 57.16 Scripting: concepto y evolución en la plataforma
 57.17 Engines externos cuando proceda
 57.18 Carga/ejecución dinámica y sus riesgos
+57.19 ScriptEngineManager y ausencia de motor JavaScript integrado garantizado
+57.20 Código generado/no confiable: compilar no es sandbox; aislamiento fuera de la JVM
 LAB: compilar código desde una aplicación Java e inspeccionar diagnósticos y bytecode.
 
 ===============================================================================
@@ -1323,6 +1519,10 @@ LAB: aplicación Swing con JTable/JTree y trabajo en background sin bloquear el 
 60.21 Rendimiento y costes de transición Java/native
 60.22 FFM vs JNI: criterios de elección
 60.23 Estado exacto de la API según el JDK objetivo
+60.24 FFM final desde JDK 22: paquete java.lang.foreign y compatibilidad del ejemplo JDK 25
+60.25 --enable-native-access para el módulo autorizado; restricciones y warnings del JDK
+60.26 Arena.ofConfined frente a ofShared: lifetime y acceso entre threads
+60.27 ABI, tipos C, biblioteca nativa requerida y portabilidad del laboratorio
 LAB: reservar memoria nativa, modelar una estructura y llamar una función de una librería C.
 
 RESULTADO FINAL

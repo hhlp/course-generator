@@ -160,7 +160,7 @@ Utilizar para:
 
 ### Rust `regex` / `regex-automata` — documentación oficial
 
-Fuentes complementarias para estudiar implementaciones modernas basadas en múltiples estrategias de automátas.
+Fuentes complementarias para estudiar implementaciones modernas basadas en múltiples estrategias de autómatas.
 
 Utilizar cuando sea útil para comprender:
 
@@ -414,3 +414,73 @@ Cada lección debe poder responder:
 6. ¿Cómo puede verificarse el comportamiento sin confundir la herramienta de prueba con Regex como concepto?
 
 Ese criterio debe mantenerse desde el primer literal hasta el Regex Analyzer final.
+
+
+## 16. Ediciones de trabajo y enlaces concretos
+
+Las ediciones siguientes identifican el material de trabajo; no se presentan
+como una afirmación de última edición disponible. Los libros proporcionan
+fundamentos y técnicas. La sintaxis actual se contrasta con el motor utilizado.
+
+- Michael Fitzgerald, *Introducing Regular Expressions*, O'Reilly.
+  https://www.oreilly.com/library/view/introducing-regular-expressions/9781449338879/
+- Jeffrey E. F. Friedl, *Mastering Regular Expressions*, 3.ª edición, O'Reilly.
+  https://www.oreilly.com/library/view/mastering-regular-expressions/0596528124/
+- Jan Goyvaerts y Steven Levithan, *Regular Expressions Cookbook*, 2.ª edición.
+  https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/
+- The Open Group, POSIX.1-2024, Base Definitions, capítulo 9, Regular Expressions.
+  https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap09.html
+- PCRE2, sintaxis y semántica del patrón.
+  https://www.pcre.org/current/doc/html/pcre2pattern.html
+- PCRE2, comparación de algoritmos de matching.
+  https://www.pcre.org/current/doc/html/pcre2matching.html
+- PCRE2, Unicode y propiedades.
+  https://www.pcre.org/current/doc/html/pcre2unicode.html
+- RE2, documentación del proyecto y garantías.
+  https://github.com/google/re2
+- Rust regex, documentación del motor y complejidad.
+  https://docs.rs/regex/latest/regex/
+- Rust regex-automata, arquitectura y estrategias.
+  https://docs.rs/regex-automata/latest/regex_automata/
+- Unicode, UTS #18: Unicode Regular Expressions.
+  https://www.unicode.org/reports/tr18/
+- Unicode, UAX #15: Unicode Normalization Forms.
+  https://www.unicode.org/reports/tr15/
+- Unicode, UAX #29: Unicode Text Segmentation.
+  https://www.unicode.org/reports/tr29/
+- Russ Cox, *Regular Expression Matching Can Be Simple And Fast*.
+  https://swtch.com/~rsc/regexp/regexp1.html
+- Russ Cox, *Regular Expression Matching: the Virtual Machine Approach*.
+  https://swtch.com/~rsc/regexp/regexp2.html
+- Russ Cox, *Regular Expression Matching in the Wild*.
+  https://swtch.com/~rsc/regexp/regexp3.html
+
+Para fundamentos formales complementar Cox y regex-automata con estas fuentes
+académicas primarias de acceso abierto:
+
+- Michael Sipser, MIT OpenCourseWare, 18.404J, Theory of Computation, Fall 2020.
+  Lecciones 1 a 3: autómatas, equivalencias, cierre y pumping lemma regular.
+  https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/pages/lecture-notes/
+- Ryan Williams, MIT, 6.1400 / 18.400, curso 2025.
+  La programación identifica DFA Minimization; consultar sus materiales.
+  https://people.csail.mit.edu/rrw/6.1400-2025/index.html
+
+No inventar páginas ni atribuir temas a artículos que no los desarrollen.
+No se exige una compra adicional para seguir el PATH.
+
+## 17. Uso de fuentes en las ampliaciones
+
+| Tema | Fuente prioritaria | Precaución |
+|---|---|---|
+| Selección de subcoincidencias y locale | POSIX, capítulo 9 | Separar estándar y extensión |
+| Longitud de lookbehind | PCRE2 pattern y matching | Registrar versión y función |
+| Atomicidad de aserciones | PCRE2 pattern | Separar evaluación y reentrada |
+| UTF y UCP | PCRE2 Unicode | Son opciones diferentes |
+| Equivalencia canónica | UTS #18 y UAX #15 | No asumir normalización automática |
+| Segmentación y grafemas | UAX #29 y manual del motor | No equiparar toda frontera a \b |
+| Complejidad y autómatas | Cox, RE2 y regex-automata | Declarar patrón y entrada |
+| Recorrido de matches | Manual de la herramienta usada | Avance vacío y offsets explícitos |
+
+Los enlaces current/latest pueden cambiar. Cada laboratorio registra la versión
+real utilizada y consulta la documentación correspondiente. Este mapa no implica
+que se hayan ejecutado todos los motores ni verificado todas las recetas.

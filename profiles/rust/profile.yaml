@@ -1,14 +1,14 @@
 ---
 course:
-  title: "Rust 0 → Experto en Profundidad"
-  language: "es"
+  title: Rust 0 → Experto en Profundidad
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   primary_platform:
     - Fedora
     - Linux
-  mode: "deep"
+  mode: deep
   focus:
     - language_fundamentals
     - ownership
@@ -31,24 +31,25 @@ course:
     - cli_application_development
     - terminal_user_interfaces
     - fedora_rpm_distribution
-
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 toolchain:
   default_channel: stable
   package_manager: cargo
   components:
-    - rustc
-    - cargo
     - rustfmt
     - clippy
-    - rustdoc
     - rust-analyzer
   nightly_policy: Usar sólo cuando el contenido lo requiera explícitamente.
-
+  edition: '2024'
+  msrv_policy: Declarar y probar la MSRV de cada proyecto y dependencia.
+  version_policy: Fijar toolchain y dependencias en laboratorios reproducibles.
+  bundled_tools:
+    - rustc
+    - cargo
+    - rustdoc
 pedagogy:
   approach: theory_to_practice
   explain_mental_models: true
@@ -66,7 +67,6 @@ pedagogy:
   cli_development_in_depth: true
   cli_tui_progressive_labs: true
   cli_cross_reference_existing_blocks: true
-
 lesson_template:
   - 🎯 OBJETIVO
   - Teoría y modelo mental
@@ -77,14 +77,12 @@ lesson_template:
   - 💡 Idea importante
   - 📚 LECTURA
   - 🧠 QUÉ DEBES RECORDAR
-
 sources:
   official_docs: primary
   books: primary_and_supplementary
   reference_semantics: official_rust_reference
   unsafe_reference: rustonomicon
   compiler_reference: rustc_dev_guide
-
 quality:
   require_compilable_examples: true
   distinguish_safe_and_unsafe: true
@@ -100,6 +98,9 @@ quality:
     require_compilable_examples: true
     cover_unicode_and_bytes: true
     cover_performance_and_security: true
+    pattern_escape_api: regex::escape
+    literal_replacement_api: regex::NoExpand
+    distinguish_search_and_iteration_complexity: true
   big_o_policy:
     teach_big_o_theory: false
     teach_rust_application_and_analysis: true
@@ -117,3 +118,106 @@ quality:
     require_completions_manpages_rpm_and_ci: true
     avoid_duplicate_cargo_regex_big_o_theory: true
     require_progressive_cli_projects: true
+    avoid_global_environment_mutation: true
+  require_declared_edition_and_msrv: true
+  separate_stable_and_nightly: true
+  require_laboratory_acceptance_criteria: true
+  include_compile_fail_examples: true
+  distinguish_tests_from_proofs: true
+  verify_external_tool_availability: true
+  unsafe_policy:
+    require_safety_contracts: true
+    require_explicit_unsafe_blocks: true
+    miri_is_not_a_soundness_proof: true
+    defer_raw_waker_until_unsafe: true
+curriculum:
+  block_count: 61
+  preserve_existing_lesson_ids: true
+  study_order:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 7
+    - 8
+    - 9
+    - 10
+    - 6
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 43
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 36
+    - 37
+    - 44
+    - 38
+    - 39
+    - 40
+    - 41
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+    - 42
+    - 50
+    - 51
+    - 52
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+  cargo_two_passes: true
+  cli_prerequisites:
+    - 24
+    - 25
+    - 28
+    - 40
+    - 41
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+  specialization_scope:
+    embedded: introductorio
+    compiler: avanzado y experto
+    sql_persistence: opcional
+validation:
+  yaml_max_line_length: 80
+  unique_lesson_ids: true
+  contiguous_lesson_numbers: true
+  preserve_all_original_lessons: true
+  pedagogy_file_external: true
+  generator_execution: Requiere course-generator y config/pedagogy.md
+    del repositorio.

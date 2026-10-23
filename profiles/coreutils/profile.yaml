@@ -16,11 +16,13 @@ files:
   bibliography: bibliography.md
 
 scope:
+  # Excluye cursos de lenguajes generales; shell y bc se permiten en domain.md.
   programming_languages: false
   windows: false
   base_language_agnostic: true
   preferred_environment: Fedora Linux
 regex_policy:
+  # Aplicar a expr, csplit y find; separar globs y filtros rsync.
   distinguish_dialect_specific_features: true
   distinguish_engine_specific_behavior: true
   prefer_language_agnostic_examples: true
@@ -76,5 +78,7 @@ artifacts:
     diagnostic_projects: auto
     require_project_for_every_block: false
 validation:
+  # Activar por artefacto tras verificar el contrato del generador.
+  # Esta revisión no cambia su mecanismo de ejecución.
   enabled: false
   commands: []

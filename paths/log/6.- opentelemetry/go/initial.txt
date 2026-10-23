@@ -1,0 +1,530 @@
+OPENTELEMETRY CON GO — 0 A EXPERTO EN PROFUNDIDAD
+
+Especialización independiente de instrumentación de aplicaciones Go.
+Tronco común relacionado: OpenTelemetry en profundidad.
+No obliga a cursar Python, C++, JavaScript o Java.
+Cero se refiere a OpenTelemetry con Go; se requieren fundamentos de Go.
+La formación general de programación y de administración del Collector tiene PATH propio.
+Los archivos definen un currículo para course-generator, no laboratorios ya ejecutados.
+Secuencia, contrato pedagógico y criterios de aceptación en domain.md.
+
+
+0. Encuadre y requisitos de Go
+
+0.1 Separar aplicación Go, API, SDK, Collector y backend
+0.2 Relacionar una pregunta operativa con trazas, métricas y logs
+0.3 Situar esta especialización respecto al PATH común y al PATH de programación Go
+0.4 Repasar interfaces, errores, defer y módulos necesarios para instrumentar
+0.5 Repasar goroutines, canales y context.Context desde la perspectiva de telemetría
+0.6 Identificar límites de instrumentación manual, bibliotecas y zero-code
+0.7 Crear una matriz de versiones de Go, módulos, Collector y backends
+0.8 Definir criterios de éxito, costes y privacidad para el servicio de ejemplo
+0.9 Laboratorio: Preparar repositorio y ejecutar un servicio HTTP local sin instrumentación
+0.10 Laboratorio de fallos: Provocar una respuesta lenta y otra fallida para establecer la línea base
+
+1. Entorno reproducible y primer circuito
+
+1.1 Instalar el toolchain compatible en Fedora/RHEL y comprobar arquitectura
+1.2 Crear go.mod y conservar go.sum sin imponer igual versión a todos los módulos
+1.3 Organizar cmd, internal/telemetry, configuración y pruebas
+1.4 Comparar ejecución nativa con Podman y Docker en red privada
+1.5 Preparar un Collector mínimo con receptor OTLP y exporter debug
+1.6 Distinguir binding local del host y escucha interna de un contenedor
+1.7 Crear un primer span con stdouttrace y un TracerProvider
+1.8 Exportar ese span al Collector mediante OTLP
+1.9 Laboratorio: Levantar el primer circuito Go a Collector con configuración completa
+1.10 Laboratorio de fallos: Romper el endpoint OTLP y localizar el salto donde desaparece el span
+
+2. API, SDK y arquitectura del bootstrap
+
+2.1 Separar los paquetes trace, metric y log de sus SDKs
+2.2 Comparar proveedores globales con inyección explícita de dependencias
+2.3 Comprender no-op y comportamiento antes de instalar un proveedor
+2.4 Crear tracers y meters con nombre y versión de instrumentation scope
+2.5 Diseñar una función de inicialización que devuelva cierre y error
+2.6 Resolver inicialización parcial y liberar recursos ya construidos
+2.7 Configurar manejador de errores internos sin crear recursión de logs
+2.8 Separar errores de negocio de errores de exportación
+2.9 Laboratorio: Construir internal/telemetry con proveedores inyectables y limpieza
+2.10 Laboratorio de fallos: Omitir la instalación del proveedor y distinguir no-op de fallo de red
+
+3. Resource y convenciones semánticas
+
+3.1 Configurar service.name, service.version y deployment environment según semconv elegida
+3.2 Distinguir Resource de atributos de span, métrica y log
+3.3 Aplicar detectores de proceso, host y contenedor cuando correspondan
+3.4 Comprender merge de Resources y conflictos de schema URL
+3.5 Versionar imports de semconv y migraciones de atributos
+3.6 Normalizar nombres de operación y evitar IDs en nombres de span
+3.7 Separar identificadores de instancia y dimensiones de alta cardinalidad
+3.8 Definir atributos de negocio y documentación de su significado
+3.9 Laboratorio: Distinguir dos servicios Go y dos instancias en el mismo backend
+3.10 Laboratorio de fallos: Introducir service.name incorrecto y una incompatibilidad de schema
+
+4. context.Context y propagación dentro del proceso
+
+4.1 Distinguir cancelación, deadline y valores de contexto
+4.2 Usar el contexto devuelto por tracer.Start para operaciones hijas
+4.3 Extraer Span y SpanContext sin almacenar contextos en campos duraderos
+4.4 Propagar r.Context a servicios y repositorios
+4.5 Explicar por qué una goroutine no hereda contexto automáticamente
+4.6 Elegir contexto raíz para procesos batch y comandos CLI
+4.7 Evaluar context.WithoutCancel solo para trabajo desacoplado justificado
+4.8 Evitar context.Background en rutas que deben mantener causalidad
+4.9 Laboratorio: Construir una cadena handler a servicio a repositorio con spans hijos
+4.10 Laboratorio de fallos: Sustituir el contexto en un salto y encontrar la traza fragmentada
+
+5. Spans y errores idiomáticos
+
+5.1 Elegir SpanKind Internal, Server, Client, Producer y Consumer
+5.2 Controlar inicio y fin de spans con defer y tiempos explícitos
+5.3 Distinguir atributos iniciales, SetAttributes y decisiones del sampler
+5.4 Registrar eventos para hitos y evitar un span por iteración trivial
+5.5 Usar RecordError y SetStatus explicando sus efectos independientes
+5.6 Clasificar errores envueltos con errors.Is y errors.As
+5.7 Registrar panic y recuperación respetando el comportamiento del programa
+5.8 Usar IsRecording y límites de atributos, eventos y links
+5.9 Laboratorio: Instrumentar una operación con errores envueltos y un panic recuperado
+5.10 Laboratorio de fallos: Registrar un error sin status y comparar la interpretación del backend
+
+6. Propagación distribuida y Baggage
+
+6.1 Configurar propagadores W3C Trace Context y Baggage
+6.2 Inyectar y extraer contexto con TextMapCarrier y HeaderCarrier
+6.3 Distinguir traceparent, tracestate y flags de muestreo
+6.4 Validar contexto remoto y políticas de frontera de confianza
+6.5 Usar Baggage sin asumir su conversión automática en atributos
+6.6 Limitar tamaño y contenido del Baggage para evitar filtración
+6.7 Comparar parent-child con links en trabajo desacoplado
+6.8 Diagnosticar headers eliminados por proxies y gateways
+6.9 Laboratorio: Conectar dos servicios y transportar un atributo Baggage permitido
+6.10 Laboratorio de fallos: Eliminar traceparent y enviar un header mal formado
+
+7. HTTP servidor con net/http
+
+7.1 Envolver handlers mediante otelhttp.NewHandler
+7.2 Relacionar router, nombre de operación y atributo de ruta normalizada
+7.3 Examinar captura de status, bytes y duración según versión de otelhttp
+7.4 Excluir health checks con filtros documentados
+7.5 Tratar streaming, cancelación del cliente y ResponseWriter
+7.6 Combinar spans automáticos del servidor con spans de negocio
+7.7 Controlar qué headers y parámetros pueden registrarse
+7.8 Distinguir error HTTP, error de transporte y política semántica
+7.9 Laboratorio: Instrumentar endpoints de éxito, error y streaming en net/http
+7.10 Laboratorio de fallos: Introducir rutas con IDs y un wrapper que rompe capacidades del writer
+
+8. HTTP cliente y diagnóstico de red
+
+8.1 Crear clientes reutilizables con otelhttp.NewTransport
+8.2 Propagar contexto con http.NewRequestWithContext
+8.3 Comprender el fin del span cliente y cierre del response body
+8.4 Distinguir timeout de conexión, headers y deadline total
+8.5 Representar retries y redirects sin duplicar spans accidentalmente
+8.6 Usar httptrace cuando aporte diagnóstico de DNS, conexión y TLS
+8.7 Mantener propagación en llamadas salientes y proxies
+8.8 Evitar instrumentar el propio transporte del exporter en bucle
+8.9 Laboratorio: Conectar frontend y backend con cliente HTTP instrumentado
+8.10 Laboratorio de fallos: Dejar un body sin cerrar y provocar timeout en el backend
+
+9. gRPC unary y streaming
+
+9.1 Instalar otelgrpc mediante StatsHandler según API de la versión fijada
+9.2 Instrumentar servidor y cliente gRPC con proveedores explícitos
+9.3 Transportar contexto mediante metadata y propagadores
+9.4 Distinguir spans de RPC de eventos por mensaje
+9.5 Relacionar status gRPC, error Go y cancelación
+9.6 Analizar streaming bidireccional, concurrencia y cierre
+9.7 Combinar instrumentación gRPC con interceptores de negocio
+9.8 Evitar doble instrumentación al mezclar opciones antiguas y actuales
+9.9 Laboratorio: Construir un RPC unary y otro streaming entre servicios Go
+9.10 Laboratorio de fallos: Cancelar un stream y bloquear la extracción de metadata
+
+10. Concurrencia, fan-out y workers
+
+10.1 Transmitir contexto explícitamente al lanzar goroutines
+10.2 Diseñar fan-out y fan-in con errgroup y deadlines
+10.3 Medir espera de cola y ejecución como operaciones distintas
+10.4 Instrumentar pools de workers con tareas y propietarios de contexto
+10.5 Representar trabajo que sobrevive a la petición con links
+10.6 Tratar canales cerrados, goroutines huérfanas y cancelación
+10.7 Evitar contadores desequilibrados en ramas de error
+10.8 Ejecutar el detector de carreras sobre código instrumentado
+10.9 Laboratorio: Implementar fan-out y un pool cancelable con trazas causales
+10.10 Laboratorio de fallos: Perder contexto de una tarea y retener una goroutine tras cancelación
+
+11. Persistencia SQL y cachés
+
+11.1 Elegir instrumentación del driver, wrapper o spans manuales de repositorio
+11.2 Verificar mantenimiento, licencia y compatibilidad de bibliotecas SQL externas
+11.3 Propagar contexto con QueryContext, ExecContext y transacciones
+11.4 Separar tiempo de pool, consulta y consumo de filas
+11.5 Registrar operaciones SQL sin parámetros sensibles
+11.6 Tratar commit, rollback y reintentos transaccionales
+11.7 Instrumentar caché con hit, miss y latencia sin claves de usuario
+11.8 Evitar spans duplicados entre ORM, driver y capa de repositorio
+11.9 Laboratorio: Instrumentar PostgreSQL y una caché en una operación de negocio
+11.10 Laboratorio de fallos: Agotar el pool y ejecutar una consulta lenta sin registrar datos sensibles
+
+12. Mensajería y operaciones asíncronas
+
+12.1 Modelar publish, receive y process según semconv de mensajería fijada
+12.2 Inyectar y extraer contexto en headers del cliente seleccionado
+12.3 Distinguir parent-child y links al procesar lotes
+12.4 Representar ack, nack, redelivery y dead-letter queues
+12.5 Separar latencia de publicación, permanencia y procesamiento
+12.6 Relacionar idempotencia de negocio con duplicados de mensajes
+12.7 Limitar atributos de destino, routing key y message ID
+12.8 Comprobar soporte real de Kafka, RabbitMQ o NATS por biblioteca
+12.9 Laboratorio: Implementar productor y consumidor en un broker local elegido
+12.10 Laboratorio de fallos: Reentregar un mensaje y eliminar sus headers de propagación
+
+13. Métricas y elección de instrumentos
+
+13.1 Inicializar MeterProvider e identificar el scope de cada instrumento
+13.2 Elegir Counter para incrementos acumulables
+13.3 Usar UpDownCounter para cantidades que suben y bajan
+13.4 Usar Histogram para distribuciones y unidades coherentes
+13.5 Elegir instrumentos observables para muestras de estado
+13.6 Aplicar Gauge síncrono solo si está soportado en la versión fijada
+13.7 Nombrar métricas y describir unidad y significado
+13.8 Separar medidas de negocio de métricas técnicas
+13.9 Laboratorio: Añadir peticiones, operaciones activas y latencia a un servicio
+13.10 Laboratorio de fallos: Usar un instrumento o una unidad inadecuados y observar la distorsión
+
+14. Callbacks y métricas del runtime Go
+
+14.1 Registrar y eliminar callbacks observables de forma controlada
+14.2 Mantener callbacks rápidos, concurrentemente seguros y sin I/O bloqueante
+14.3 Recoger estado sin duplicar mediciones entre callbacks
+14.4 Comparar runtime/metrics y bibliotecas de instrumentación contrib
+14.5 Interpretar goroutines, heap, asignaciones y pausas de GC
+14.6 Distinguir métricas de proceso, runtime, contenedor y host
+14.7 Relacionar GOMAXPROCS y límites de recursos con latencia
+14.8 Analizar coste y frecuencia de lectura de métricas del runtime
+14.9 Laboratorio: Correlacionar carga y presión de memoria con métricas del runtime
+14.10 Laboratorio de fallos: Bloquear un callback y detectar el efecto en la recolección
+
+15. Views, histogramas y cardinalidad
+
+15.1 Construir Views para seleccionar instrumentos y atributos
+15.2 Elegir agregaciones y límites explícitos de histogramas
+15.3 Evaluar histogramas exponenciales y compatibilidad del backend
+15.4 Distinguir delta y cumulative en readers y exporters
+15.5 Aplicar filtros de atributos antes de crear series innecesarias
+15.6 Estimar cardinalidad como producto de dimensiones
+15.7 Analizar límites de cardinalidad y overflow según SDK fijado
+15.8 Evaluar exemplars y su relación con trazas muestreadas
+15.9 Laboratorio: Comparar dos vistas sobre una distribución de latencia controlada
+15.10 Laboratorio de fallos: Añadir user_id como dimensión y medir crecimiento de series
+
+16. Exportación de métricas y Prometheus
+
+16.1 Configurar PeriodicReader y distinguirlo de ManualReader para pruebas
+16.2 Comparar OTLP push y exporter Prometheus de la aplicación
+16.3 Evitar recoger dos veces la misma métrica en la misma ruta
+16.4 Mantener identidad de Resource y unicidad del escritor
+16.5 Interpretar resets de contador y reinicios del proceso
+16.6 Revisar traducción de nombres, unidades y sufijos Prometheus
+16.7 Relacionar intervalos de exportación, scrape y evaluación
+16.8 Verificar compatibilidad de temporality e histogramas extremo a extremo
+16.9 Laboratorio: Publicar métricas de Go y consultar sus series en Prometheus
+16.10 Laboratorio de fallos: Introducir doble ingestión y reiniciar una instancia
+
+17. Logs estructurados con slog y otelslog
+
+17.1 Diseñar logs estructurados con log/slog
+17.2 Distinguir Logger de slog, bridge otelslog y LoggerProvider del SDK
+17.3 Configurar bridge y exportación OTLP de logs
+17.4 Usar InfoContext y ErrorContext para aportar contexto al bridge
+17.5 Comprender severity, timestamps, body y atributos del LogRecord
+17.6 Revisar conversión de grupos, valores y tipos de slog
+17.7 Separar stdout JSON con forwarding de exportación directa
+17.8 Gestionar niveles, filtrado y datos sensibles antes de emitir
+17.9 Laboratorio: Emitir logs de una petición mediante slog y el bridge seleccionado
+17.10 Laboratorio de fallos: Usar una llamada sin contexto y detectar pérdida de correlación
+
+18. Correlación entre señales
+
+18.1 Relacionar TraceID y SpanID de logs con spans activos
+18.2 Configurar navegación entre logs y trazas en el backend elegido
+18.3 Usar exemplars para conectar histogramas con trazas
+18.4 Entender por qué un log puede referenciar una traza no almacenada
+18.5 Mantener Resource coherente entre tres proveedores
+18.6 Evitar convertir trace ID en atributo de métrica
+18.7 Comparar captura stdout más filelog con salida OTLP directa
+18.8 Diagnosticar duplicación de logs y discrepancias temporales
+18.9 Laboratorio: Reconstruir una petición lenta desde métrica a traza y log
+18.10 Laboratorio de fallos: Activar dos rutas de logs y aplicar sampling a las trazas
+
+19. OTLP y configuración de exporters Go
+
+19.1 Configurar exporters por señal para OTLP gRPC y HTTP/protobuf
+19.2 Distinguir endpoint general, endpoint por señal y rutas /v1
+19.3 Verificar opciones de código y variables admitidas por cada exporter
+19.4 No asumir que todas las variables OTEL son implementadas por Go
+19.5 Configurar TLS, CA y autenticación sin exponer credenciales
+19.6 Ajustar timeout, compresión, tamaño y retries según implementación
+19.7 Distinguir error local, error de transporte y rechazo remoto
+19.8 Evitar bloquear el arranque indefinidamente por un Collector ausente
+19.9 Laboratorio: Comparar envío HTTP y gRPC usando el mismo servicio Go
+19.10 Laboratorio de fallos: Cruzar protocolo y puerto e introducir una CA no confiable
+
+20. Ciclo de vida y apagado ordenado
+
+20.1 Diseñar creación única de proveedores por proceso
+20.2 Coordinar signal.NotifyContext con el servidor HTTP
+20.3 Detener admisión y esperar peticiones antes del cierre del SDK
+20.4 Separar contexto de negocio cancelado del contexto acotado de shutdown
+20.5 Cerrar readers, processors y exporters mediante sus propietarios
+20.6 Distinguir ForceFlush de Shutdown y sus garantías limitadas
+20.7 Cerrar recursos en orden inverso y agregar errores de limpieza
+20.8 Tratar procesos CLI breves, SIGTERM, SIGKILL y os.Exit
+20.9 Laboratorio: Apagar un servicio con tráfico y drenar los tres proveedores
+20.10 Laboratorio de fallos: Usar el contexto ya cancelado o finalizar con os.Exit prematuro
+
+21. Sampling y control de volumen
+
+21.1 Comparar AlwaysOn, AlwaysOff y TraceIDRatioBased
+21.2 Configurar ParentBased y comportamiento del parent remoto
+21.3 Entender diferencia entre IsRecording y sampled flag
+21.4 Aportar atributos relevantes al sampler en Start
+21.5 Diseñar sampler personalizado solo con datos disponibles al inicio
+21.6 Explicar límites de head sampling para conservar errores futuros
+21.7 Aplicar tail sampling en Collector y mantener afinidad por trace ID
+21.8 Evitar sesgos al derivar tasas de error a partir de trazas
+21.9 Laboratorio: Comparar head sampling con retención de errores por tail sampling
+21.10 Laboratorio de fallos: Aplicar head sampling antes del tail y medir errores irrecuperables
+
+22. Pruebas de instrumentación de trazas
+
+22.1 Usar tracetest con recorder o exporter en memoria
+22.2 Verificar nombres, kinds y relaciones de spans
+22.3 Probar atributos, eventos, status y errores sin backend externo
+22.4 Usar httptest para verificar propagación de headers
+22.5 Probar gRPC local con transporte de prueba adecuado
+22.6 Evitar dependencias en tiempos exactos e IDs aleatorios
+22.7 Aislar proveedores por prueba y restaurar globals inevitables
+22.8 Verificar que las bibliotecas funcionan con no-op
+22.9 Laboratorio: Construir pruebas deterministas de una operación HTTP instrumentada
+22.10 Laboratorio de fallos: Introducir un parent incorrecto y comprobar que la prueba falla
+
+23. Pruebas de métricas, logs e integración
+
+23.1 Usar ManualReader y metricdata para recolectar métricas en pruebas
+23.2 Comparar puntos, atributos y agregaciones con helpers disponibles
+23.3 Probar histogramas con valores y límites conocidos
+23.4 Usar logtest o exporter de prueba propio según versión disponible
+23.5 Capturar LogRecords sin comprobar detalles no contractuales
+23.6 Diseñar un receptor OTLP local para pruebas de integración
+23.7 Controlar lote, temporizadores y flush para reducir flakiness
+23.8 Integrar go test, race y validación de configuración en CI
+23.9 Laboratorio: Validar un flujo de negocio con trazas, métricas y logs
+23.10 Laboratorio de fallos: Modificar unidad, atributo y contexto en regresiones independientes
+
+24. Collector para aplicaciones Go
+
+24.1 Diseñar pipelines separados por señal con receptores OTLP
+24.2 Comprobar componentes de la distribución elegida
+24.3 Aplicar límites de memoria, batch y colas sin trasladarlos al SDK
+24.4 Enriquecer Resource sin destruir identidad de la aplicación
+24.5 Aplicar OTTL para filtrar o redactar en contextos correctos
+24.6 Distinguir queues y retries del SDK de los del Collector
+24.7 Observar aceptación, rechazo, fallos y presión de memoria
+24.8 Diseñar pérdida y recuperación sin prometer exactamente una vez
+24.9 Laboratorio: Integrar tres señales de Go con Collector y backend local
+24.10 Laboratorio de fallos: Parar el backend hasta llenar una cola acotada
+
+25. Backends, consultas y SLOs
+
+25.1 Elegir un backend de trazas local entre Jaeger y Tempo
+25.2 Usar Grafana como interfaz con datasources configurados
+25.3 Consultar métricas de Go con PromQL y agregación correcta
+25.4 Construir consultas de logs estructurados en Loki u otro backend
+25.5 Validar rutas de ingestión y compatibilidad de señales por backend
+25.6 Diseñar indicadores RED y SLIs desde métricas no sesgadas por sampling
+25.7 Definir alertas y dashboards que respondan preguntas operativas
+25.8 Separar fallos de aplicación, Collector, backend y visualización
+25.9 Laboratorio: Crear un dashboard y un recorrido de diagnóstico de un incidente
+25.10 Laboratorio de fallos: Romper un datasource y distinguirlo de pérdida de ingestión
+
+26. Seguridad, privacidad y fronteras de confianza
+
+26.1 Clasificar datos en Resource, atributos, eventos, logs y Baggage
+26.2 Evitar tokens, contraseñas y valores SQL sensibles desde el origen
+26.3 Aplicar allowlists para headers y dimensiones de negocio
+26.4 Autenticar OTLP y validar identidad TLS del Collector
+26.5 Limitar confianza en contexto remoto y etiquetas de tenant
+26.6 Gestionar secretos fuera del repositorio y del log de arranque
+26.7 Proteger pprof, endpoints de métricas y diagnósticos
+26.8 Probar redacción y restricciones sin deshabilitar SELinux
+26.9 Laboratorio: Auditar una petición con datos señuelo y exportación autenticada
+26.10 Laboratorio de fallos: Enviar un secreto señuelo y un tenant no autorizado
+
+27. Rendimiento y coste de instrumentación
+
+27.1 Medir latencia, throughput y asignaciones con y sin instrumentación
+27.2 Usar go test -bench y benchmem con carga representativa
+27.3 Distinguir coste de API, atributos, SDK, serialización y exportación
+27.4 Aprovechar IsRecording cuando evita cómputo costoso real
+27.5 Reutilizar tracers, meters e instrumentos sin cachés ilimitadas
+27.6 Dimensionar BatchSpanProcessor y colas de logs
+27.7 Evaluar bloqueo, descarte, intervalos y presión del GC
+27.8 Fijar presupuesto de overhead y documentar incertidumbre
+27.9 Laboratorio: Comparar no-op, SDK local y OTLP bajo la misma carga
+27.10 Laboratorio de fallos: Añadir atributos costosos y un exporter lento
+
+28. pprof y perfiles en Go
+
+28.1 Distinguir profiling del runtime y señal Profiles de OpenTelemetry
+28.2 Capturar CPU y heap con runtime/pprof y net/http/pprof
+28.3 Analizar perfiles de goroutines, bloqueo y mutex cuando proceda
+28.4 Relacionar runtime/trace con trazas distribuidas sin confundir formatos
+28.5 Usar pprof labels con cardinalidad y privacidad controladas
+28.6 Correlacionar un perfil y una traza mediante una ventana temporal
+28.7 Verificar soporte OTLP Profiles por componente y versión antes de integrarlo
+28.8 Evitar afirmar un SDK de perfiles Go universal o estable sin evidencia
+28.9 Laboratorio: Diagnosticar una degradación con spans, heap y perfil CPU
+28.10 Laboratorio de fallos: Provocar retención de memoria y contención de mutex por separado
+
+29. Instrumentación con bibliotecas y frameworks
+
+29.1 Consultar contrib y Registry por paquete y versión
+29.2 Distinguir biblioteca oficial, integración de tercero y wrapper propio
+29.3 Instrumentar un router elegido entre chi, Gin o Echo
+29.4 Ordenar middleware de errores, recuperación y telemetría
+29.5 Inyectar proveedores en servicios que ya tienen instrumentación
+29.6 Inventariar qué señales produce cada integración
+29.7 Probar exclusión de rutas, propagación y conventions de cada wrapper
+29.8 Eliminar instrumentación duplicada al migrar de framework
+29.9 Laboratorio: Comparar net/http con un framework en el mismo contrato HTTP
+29.10 Laboratorio de fallos: Instalar dos wrappers sobre la misma operación
+
+30. Zero-code, eBPF y compilación instrumentada
+
+30.1 Comparar instrumentación en ejecución y durante la compilación
+30.2 Evaluar OBI y su matriz de lenguajes y bibliotecas
+30.3 Evaluar otelc y reproducibilidad del binario instrumentado
+30.4 Comprobar toolchain, arquitectura, kernel y permisos requeridos
+30.5 Examinar compatibilidad de Auto SDK con spans manuales y eBPF
+30.6 Evitar combinar indiscriminadamente TracerProvider estándar y Auto SDK
+30.7 Comparar cobertura real de señales, rutas y operaciones
+30.8 Definir fallback manual cuando una dependencia no está soportada
+30.9 Laboratorio: Comparar una aplicación manual con una modalidad zero-code compatible
+30.10 Laboratorio de fallos: Ejecutar una dependencia fuera de matriz y documentar el hueco de cobertura
+
+31. Aplicaciones CLI, batch y tareas programadas
+
+31.1 Modelar un comando como operación con resultado y duración
+31.2 Crear contexto raíz y plazo máximo para una ejecución batch
+31.3 Evitar pérdida de spans en programas de vida corta
+31.4 Diseñar métricas de jobs sin depender de un scrape posterior al fin
+31.5 Instrumentar lotes, checkpoints y reanudación sin cardinalidad ilimitada
+31.6 Relacionar scheduler externo con contexto remoto solo si hay contrato
+31.7 Registrar errores parciales y retries por unidad de trabajo
+31.8 Compatibilizar códigos de salida y cierre de telemetría
+31.9 Laboratorio: Instrumentar un comando y ejecutarlo mediante un timer systemd
+31.10 Laboratorio de fallos: Forzar timeout y salida no cero durante un lote
+
+32. Despliegue Linux y contenedores
+
+32.1 Construir binarios reproducibles con metadatos de versión
+32.2 Configurar systemd, EnvironmentFile y usuario de servicio
+32.3 Gestionar journald o stdout JSON según la ruta de logs elegida
+32.4 Ajustar SELinux, firewalld y permisos con evidencias de denegación
+32.5 Construir imagen mínima con CA y usuario no privilegiado
+32.6 Propagar SIGTERM y evitar shells que lo intercepten
+32.7 Configurar Podman/Docker sin exponer receptores públicamente
+32.8 Probar upgrade, rollback y consistencia de service.version
+32.9 Laboratorio: Desplegar la aplicación Go y Collector en un entorno local Fedora
+32.10 Laboratorio de fallos: Eliminar CA de la imagen y bloquear una conexión con política de red
+
+33. Kubernetes para servicios Go
+
+33.1 Inyectar Resource y metadatos mediante Downward API y enriquecimiento
+33.2 Elegir envío a Collector gateway o agent según requisitos
+33.3 Ajustar terminationGracePeriodSeconds y secuencia de drenaje
+33.4 Configurar probes que no generen ruido desproporcionado
+33.5 Aplicar requests, limits y observar throttling y memoria
+33.6 Configurar Secrets, NetworkPolicy y OTLP interno
+33.7 Evaluar Operator e instrumentación Go según modalidad y compatibilidad
+33.8 Evitar asumir que el SDK Go admite toda configuración declarativa
+33.9 Laboratorio: Desplegar dos réplicas Go y ejecutar un rolling update con tráfico
+33.10 Laboratorio de fallos: Reducir el periodo de gracia y bloquear el endpoint OTLP
+
+34. Troubleshooting por capas
+
+34.1 Diagnosticar API no-op y proveedores omitidos
+34.2 Localizar spans abiertos y contexto roto entre goroutines
+34.3 Detectar protocolo, ruta OTLP, DNS y TLS incorrectos
+34.4 Investigar métricas ausentes, callbacks bloqueados y Resource divergente
+34.5 Diagnosticar logs sin contexto, niveles filtrados y doble forwarding
+34.6 Correlacionar colas llenas, drops, retries y backend lento
+34.7 Separar reloj desajustado de causalidad y duración incorrectas
+34.8 Construir runbooks con síntoma, hipótesis, evidencia y remedio
+34.9 Laboratorio: Resolver un incidente ciego con fallos de contexto, exportación y backend
+34.10 Laboratorio de fallos: Introducir fallos simultáneos y demostrar el orden de aislamiento
+
+35. Diseño de bibliotecas instrumentables
+
+35.1 Depender de API en bibliotecas y delegar SDK a la aplicación
+35.2 Recibir proveedores y opciones sin cambiar globals del proceso
+35.3 Diseñar wrappers que preserven interfaces y semántica del cliente
+35.4 Definir nombres de scope, versión y contrato de atributos
+35.5 Soportar no-op y propagar errores de negocio sin alterarlos
+35.6 Versionar cambios de nombres y convenciones semánticas
+35.7 Escribir documentación y pruebas de cobertura de instrumentación
+35.8 Mantener compatibilidad y coste razonable para consumidores
+35.9 Laboratorio: Publicar localmente un módulo Go con instrumentación opcional
+35.10 Laboratorio de fallos: Usarlo desde dos aplicaciones con proveedores distintos
+
+36. Extensión del SDK y lectura de internals
+
+36.1 Seguir SpanProcessor desde OnStart hasta OnEnd y exportación
+36.2 Examinar sincronía, orden y requisitos de concurrencia del processor
+36.3 Diseñar un exporter de prueba con cancelación y errores
+36.4 Estudiar selección de agregación y temporality de métricas
+36.5 Crear un sampler acotado y probar ParentBased cuando corresponda
+36.6 Analizar límites, pérdida y coste de extensiones propias
+36.7 Distinguir interfaces públicas de detalles internos no compatibles
+36.8 Leer cambios upstream y preparar una contribución mínima
+36.9 Laboratorio: Implementar un SpanProcessor pequeño con pruebas de carrera
+36.10 Laboratorio de fallos: Introducir I/O bloqueante en OnEnd y medir su efecto en la aplicación
+
+37. Componentes Collector en Go como extensión opcional
+
+37.1 Separar instrumentación de aplicaciones y desarrollo del Collector
+37.2 Usar OpenTelemetry Collector Builder para una distribución acotada
+37.3 Comprender factories, configuración y ciclo de vida de componentes
+37.4 Manipular pdata respetando ownership y mutabilidad
+37.5 Implementar un processor sencillo sin sustituir OTTL innecesariamente
+37.6 Distinguir errores permanentes y transitorios del consumer
+37.7 Probar configuración, Start, Shutdown y concurrencia
+37.8 Mantener compatibilidad por versión del Collector y sus módulos
+37.9 Laboratorio: Construir y probar un processor local con OCB
+37.10 Laboratorio de fallos: Rechazar configuración inválida y comprobar que no arranca parcialmente
+
+38. Gobernanza y mantenimiento de la telemetría
+
+38.1 Mantener inventario de módulos, señales, scopes y convenciones
+38.2 Registrar decisiones de instrumentación y presupuestos de cardinalidad
+38.3 Crear contratos de telemetría y guías para equipos Go
+38.4 Revisar changelogs de API, SDK, contrib y componentes externos
+38.5 Planificar migraciones de semconv y dashboards consumidores
+38.6 Validar cambios de dependencia y vulnerabilidades en CI
+38.7 Probar compatibilidad antes de ampliar rollout
+38.8 Gestionar rollback y observabilidad del propio cambio
+38.9 Laboratorio: Migrar una dependencia y comparar contratos antes y después
+38.10 Laboratorio de fallos: Introducir una renombración de métrica incompatible con una alerta
+
+39. Proyecto experto de OpenTelemetry con Go
+
+39.1 Definir arquitectura con API HTTP, RPC, worker y persistencia
+39.2 Establecer SLOs, carga, presupuesto de overhead y política de datos
+39.3 Instrumentar flujos síncronos y asíncronos con contexto correcto
+39.4 Integrar métricas, logs y trazas con Resource coherente
+39.5 Configurar Collector y backends con versiones y rutas explícitas
+39.6 Construir pruebas unitarias, de integración y de fallos
+39.7 Preparar despliegue local, dashboard, runbooks y rollback
+39.8 Revisar cobertura y límites de la solución con evidencias
+39.9 Laboratorio: Construir el sistema y ejecutar su plan de aceptación completo
+39.10 Laboratorio de fallos: Simular caída de backend, pérdida de contexto, duplicación y SIGTERM

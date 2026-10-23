@@ -14,10 +14,10 @@ Referencia para profundizar en diseño de tipos, funciones, generics, programaci
 ### TypeScript Quickly — Yakov Fain y Anton Moiseev
 Apoyo práctico para desarrollo de aplicaciones, tooling y adopción de TypeScript.
 
-## Referencias normativas y oficiales
+## Documentación oficial y especificaciones
 
 ### TypeScript Handbook
-Referencia normativa-práctica principal para sintaxis, tipos, narrowing, generics, type manipulation, clases, módulos y declaration files.
+Guía oficial principal para sintaxis, tipos, narrowing, generics, type manipulation, clases, módulos y declaration files.
 
 ### TypeScript TSConfig Reference
 Referencia para opciones del compilador y configuración de proyectos.
@@ -83,3 +83,43 @@ Diagnóstico del coste de type checking, organización de proyectos, tipos compl
 
 ### V8 Documentation / V8 Blog
 Contexto de optimizaciones del motor, GC y efectos del runtime que no pueden deducirse únicamente de Big O.
+
+
+## Enlaces de documentación y correspondencia con el temario
+
+| Fuente | Enlace | Uso principal |
+| --- | --- | --- |
+| TypeScript Handbook | https://www.typescriptlang.org/docs/handbook/intro.html | Bloques 0–13 y 20–24; guía oficial, no especificación completa |
+| Compatibilidad de tipos | https://www.typescriptlang.org/docs/handbook/type-compatibility.html | Bloques 6–7 y 41; límites de soundness y bivarianza |
+| Generics | https://www.typescriptlang.org/docs/handbook/2/generics.html | Bloque 7; inferencia y varianza |
+| TSConfig | https://www.typescriptlang.org/tsconfig/ | Bloques 0, 14 y 16; opciones según versión |
+| Modules Reference | https://www.typescriptlang.org/docs/handbook/modules/reference.html | Bloques 14, 25 y 33; resolución y formatos |
+| TypeScript 5.0 | https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html | Decoradores y parámetros genéricos const |
+| TypeScript 5.2 | https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html | using, await using y protocolos de disposición |
+| TypeScript 5.4 | https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html | NoInfer |
+| Ejecución TS en Node.js | https://nodejs.org/api/typescript.html | Bloque 25; type stripping y restricciones |
+| Node.js API | https://nodejs.org/api/ | Bloques 17–19 y 25–28; runtime y recursos |
+| Compiler API | https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API | Bloques 37–39; contrastar con versión instalada |
+| Rendimiento de TypeScript | https://github.com/microsoft/TypeScript/wiki/Performance | Bloques 32, 34 y 45 |
+| ECMA-262 | https://tc39.es/ecma262/ | Semántica JavaScript y RegExp |
+| MDN RegExp | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp | Consulta complementaria del bloque 44 |
+| OWASP ReDoS | https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS | Bloques 36 y 44 |
+| V8 | https://v8.dev/ | Bloques 28–29 y 35; detalles dependientes de versión |
+
+Las notas de versiones antiguas identifican el origen de características; no
+fijan la versión del curso. Registrar el compilador y runtime usados en cada
+laboratorio y contrastar documentación, declaraciones instaladas y ejecución.
+
+## Uso de los libros por etapa
+
+- Learning TypeScript: apoyo de fundamentos y progresión inicial.
+- Effective TypeScript: criterio de diseño y revisión de APIs y tipos.
+- Programming TypeScript: contraste de modelos y diseño avanzado.
+- TypeScript Quickly: ejercicios e integración de aplicaciones.
+- Los títulos complementarios de JavaScript, concurrencia y algoritmos se usan
+  solo donde aporten contexto a un laboratorio TypeScript.
+
+No se asignan capítulos, páginas ni ediciones no verificadas. Al utilizar un
+libro concreto, registrar la edición consultada y contrastar ejemplos antiguos
+con el compilador fijado. La documentación oficial prevalece para comportamiento
+actual; ECMA-262 es la referencia normativa de la semántica JavaScript.

@@ -1,222 +1,240 @@
-# Domain — sed
-
-## Identidad del curso
-
-**Nombre:** sed — Learning Path 0 → Experto en profundidad
-**Plataforma principal:** Fedora
-**Implementación principal:** GNU sed
-**Shell de laboratorio:** Bash/Zsh
-**Idioma:** Español
+# LATEX --- DOMAIN
 
 ## Propósito
 
-Este curso enseña `sed` desde cero hasta un dominio avanzado, tratándolo como un
-lenguaje especializado para seleccionar, transformar y procesar streams de texto,
-no simplemente como una colección de comandos de sustitución.
-
-El alumno debe terminar siendo capaz de leer, explicar, depurar, diseñar y mantener
-programas `sed`, comprendiendo su modelo interno de ejecución.
+Este dominio define un curso progresivo de LaTeX desde cero hasta nivel
+experto. El objetivo no es limitarse a aprender comandos para producir
+PDF, sino comprender la composición tipográfica, el ecosistema
+TeX/LaTeX, matemáticas, bibliografía, gráficos, automatización,
+programación moderna con expl3 y los fundamentos internos de TeX
+necesarios para diseñar paquetes y clases mantenibles.
 
 ## Alcance
 
-El dominio incluye:
+El curso cubre:
 
-- modelo Unix de stdin, stdout, pipes y streams;
-- sintaxis y ciclo de ejecución de `sed`;
-- impresión automática y `-n`;
-- direcciones y rangos;
-- comando `s`;
-- BRE y ERE;
-- backreferences;
-- comandos de eliminación, inserción, adición y cambio;
-- lectura y escritura;
-- pattern space;
-- hold space;
-- procesamiento multilínea;
-- `n`, `N`, `d`, `D`, `p`, `P`;
-- `h`, `H`, `g`, `G`, `x`;
-- labels;
-- `b`, `t` y extensiones GNU relacionadas;
-- loops y pequeñas máquinas de estados;
-- scripts `.sed`;
-- edición in-place;
-- quoting e interacción con shell;
-- GNU sed;
-- POSIX sed;
-- procesamiento NUL;
-- múltiples archivos;
-- integración con `grep`, `awk`, `find` y `xargs`;
-- comparación explícita del modelo orientado a líneas de `sed` con el modelo de registros y campos de `awk`;
-- criterios para migrar una solución de `sed` a `awk` cuando aumente la complejidad;
-- transformación de configuraciones y logs;
-- debugging;
-- seguridad;
-- rendimiento;
-- portabilidad;
-- internals.
+-   TeX, LaTeX y LaTeX2e.
+-   pdfTeX, XeTeX y LuaTeX.
+-   TeX Live y un entorno de trabajo orientado a Fedora/Linux.
+-   Sintaxis, comandos, entornos, grupos, longitudes, contadores, cajas
+    y glue.
+-   Estructuración de artículos, informes, libros, tesis y proyectos
+    grandes.
+-   Tipografía y composición profesional.
+-   Matemáticas desde modo matemático básico hasta composición avanzada
+    con AMS.
+-   Tablas, floats, imágenes y referencias cruzadas.
+-   BibTeX, Biber y biblatex.
+-   Índices, glosarios, acrónimos y nomenclatura.
+-   TikZ/PGF y PGFPlots.
+-   Unicode, OpenType, fontspec y unicode-math.
+-   Internacionalización.
+-   KOMA-Script, memoir y clases especializadas.
+-   Beamer.
+-   Documentos científicos y técnicos.
+-   latexmk, Make, arara, Git y CI/CD.
+-   Diagnóstico sistemático de errores.
+-   Macros y entornos personalizados.
+-   Programación moderna con expl3, l3keys e interfaces del kernel;
+    xparse como contexto histórico y de compatibilidad.
+-   Fundamentos internos de TeX: tokens, category codes, expansión,
+    ejecución, registros, glue, boxes y modos.
+-   Desarrollo de paquetes `.sty` y clases `.cls`.
+-   doc, docstrip, `.dtx`, `.ins` y l3build.
+-   LuaLaTeX y extensibilidad con Lua.
+-   Rendimiento, testing, compatibilidad y mantenimiento.
+-   Accesibilidad, PDF etiquetado, validación y proyecto final experto.
 
-## Modelo mental obligatorio
+## Fuera de alcance principal
 
-El curso debe reforzar continuamente el siguiente modelo:
+No se convierte el curso en un curso general de diseño gráfico, edición
+editorial comercial, Lua generalista, Git, Docker/Podman o CI/CD. Estas
+tecnologías aparecen únicamente en la profundidad necesaria para un
+flujo de trabajo LaTeX profesional.
 
-`entrada → pattern space → direcciones → comandos → hold space/estado → salida → siguiente ciclo`
+## Entorno de referencia
 
-Las explicaciones avanzadas no deben presentar `sed` como magia sintáctica. Cada
-transformación compleja debe poder explicarse siguiendo el estado del pattern
-space, hold space, flujo de control y ciclo de ejecución.
+El entorno principal es Fedora/Linux con TeX Live. Los ejemplos deben
+ser portables siempre que sea razonable y deben distinguir entre
+características de LaTeX y particularidades de una distribución, motor o
+herramienta externa.
 
-## Expresiones regulares
+## Progresión
 
-Las regex forman parte del curso solamente en el contexto necesario para dominar
-`sed`.
+La progresión conceptual es:
 
-Se estudiarán:
+LaTeX básico → composición de texto → matemáticas →
+tablas/figuras/referencias → bibliografía → TikZ/PGFPlots → documentos
+científicos y grandes proyectos → automatización → macros → expl3 →
+internos de TeX → paquetes y clases → LuaLaTeX → testing y mantenimiento
+→ accesibilidad y PDF avanzado → proyecto final experto.
 
-- BRE;
-- ERE;
-- anchors;
-- clases POSIX;
-- cuantificadores;
-- agrupación;
-- alternancia cuando corresponda;
-- backreferences;
-- escaping;
-- interacción entre regex, shell quoting y `sed`.
+## Filosofía del curso
 
-El curso puede recordar fundamentos de regex, pero debe evitar convertirse en un
-segundo learning path completo de expresiones regulares.
+El alumno debe aprender primero la interfaz documental de LaTeX y
+después descender progresivamente hacia sus mecanismos internos. Los
+detalles de expansión, category codes o registros no deben adelantarse
+innecesariamente, pero deben explicarse con profundidad cuando pasan a
+ser necesarios para comprender programación avanzada y debugging.
 
-## GNU sed y POSIX
+## Práctica
 
-GNU sed será la implementación principal porque Fedora es la plataforma de
-laboratorio.
+Las lecciones deben favorecer ejemplos compilables y laboratorios
+reproducibles. Cuando se enseñe sintaxis, se debe mostrar código LaTeX
+real y explicar qué produce y por qué. En debugging se deben usar
+Minimal Working Examples. En los bloques avanzados deben aparecer
+pequeños paquetes, clases y tests reales.
 
-Toda característica relevante debe clasificarse conceptualmente como:
+## Matemáticas
 
-- portable POSIX;
-- extensión GNU;
-- comportamiento cuya portabilidad requiere atención.
+La composición matemática constituye un eje principal del curso. Debe
+explicarse la diferencia entre significado matemático y representación
+tipográfica, el uso correcto de operadores, delimitadores, espaciado,
+alineación, numeración y estructuras AMS.
 
-El alumno debe aprender tanto a aprovechar GNU sed como a reconocer cuándo una
-solución deja de ser portable.
+## TikZ y gráficos
 
-## Fedora
+TikZ debe progresar desde coordenadas, paths y nodes hasta estilos
+reutilizables, libraries, layers, clipping, pics y externalization.
+PGFPlots se trata como la capa principal para visualización científica
+reproducible basada en datos.
 
-Los ejemplos reales pueden utilizar copias o fixtures inspirados en:
+## Programación
 
-- archivos `.conf`;
-- `/etc/hosts`;
-- `/etc/fstab`;
-- archivos `.repo`;
-- unidades systemd;
-- SPEC files RPM;
-- salida de `rpm`;
-- salida de `dnf`;
-- salida de `systemctl`;
-- salida de `journalctl`;
-- herramientas de red.
+La personalización documental básica precede a expl3. En el nivel
+avanzado se priorizan interfaces mantenibles, separación entre API
+pública e implementación, mensajes de error adecuados, key-value
+interfaces, documentación y tests.
 
-Nunca debe requerirse modificar configuraciones críticas reales para completar un
-laboratorio.
+## Fuentes de autoridad
 
-## Relación con otras herramientas
+La documentación oficial de LaTeX, TeX Live, CTAN y la documentación
+oficial de los paquetes tratados tienen prioridad para comportamiento
+actual y sintaxis exacta. Los libros de la bibliografía proporcionan
+explicación, progresión, ejemplos y profundidad conceptual.
 
-El curso debe enseñar las fronteras de responsabilidad:
+## Reglas bibliográficas
 
-**grep** → localizar/filtrar texto.
-**sed** → seleccionar y transformar streams.
-**awk** → procesamiento de registros y campos con lógica más estructurada.
-**find** → localizar objetos del filesystem.
-**xargs** → construir ejecuciones a partir de streams de argumentos.
+Las referencias de lectura deben ser exactas solamente cuando capítulo,
+sección o página hayan sido verificados. Si no se ha verificado una
+localización concreta, se cita el libro o documentación relevante sin
+inventar números de página o secciones.
 
-La relación `sed`/`awk` debe estudiarse también mediante soluciones equivalentes y
-pipelines combinados. El objetivo no es enseñar `awk` de 0 a experto dentro de este
-PATH, sino reconocer el punto en el que una transformación deja de ser naturalmente
-orientada a líneas y pasa a beneficiarse del modelo de registros, campos, variables y
-acciones de `awk`.
+## Resultado esperado
 
-También debe enseñarse cuándo una transformación debería pasar a Perl, Python,
-`jq`, `yq` u otro parser especializado.
+Al finalizar, el alumno debe poder diseñar, implementar, automatizar,
+diagnosticar, probar y mantener proyectos LaTeX complejos; crear
+documentos científicos de alta calidad; construir gráficos con
+TikZ/PGFPlots; desarrollar paquetes y clases; y comprender
+suficientemente el modelo de ejecución de TeX para razonar sobre
+problemas avanzados.
 
-## Datos estructurados
+## CTAN y aprendizaje autónomo de paquetes
 
-No se debe enseñar `sed` como parser general de JSON, YAML, XML, HTML o CSV
-complejo.
+El curso debe enseñar CTAN como parte operativa del flujo de trabajo, no únicamente como un repositorio que se menciona. El alumno debe aprender a pasar de una necesidad concreta a localizar un paquete, evaluar su propósito, encontrar y leer su documentación, comprobar si está instalado, cargarlo correctamente y validar su uso mediante un ejemplo mínimo compilable.
 
-Estos formatos se utilizarán principalmente para demostrar los límites de una
-herramienta basada en transformación textual y para aprender a seleccionar una
-herramienta adecuada.
+El flujo de referencia es:
 
-## Seguridad
+Necesidad → buscar en CTAN → identificar el paquete → consultar documentación → `texdoc` → comprobar instalación con `kpsewhich` → revisar dependencias y opciones → cargar con `\usepackage` → construir un ejemplo mínimo → compilar → diagnosticar errores y warnings.
 
-Las lecciones avanzadas deben cubrir:
+Cuando se introduzca un paquete nuevo, la lección debe explicar, según corresponda:
 
-- edición destructiva;
-- backups;
-- symlinks;
-- permisos;
-- datos no confiables;
-- regex injection;
-- replacement injection;
-- generación dinámica de programas sed;
-- validación previa;
-- dry-run;
-- uso apropiado de `--sandbox`;
-- principio de mínimo privilegio.
+- qué problema resuelve y cuándo usarlo;
+- nombre del paquete y relación entre nombre CTAN, paquete TeX Live y archivo `.sty`/`.cls`;
+- dónde localizar su página y documentación;
+- cómo consultar su manual con `texdoc`;
+- cómo comprobar archivos instalados con `kpsewhich`;
+- cómo cargarlo mediante `\usepackage{...}` o el mecanismo apropiado;
+- opciones importantes y orden de carga cuando sea relevante;
+- dependencias, incompatibilidades o requisitos importantes;
+- un Minimal Working Example compilable;
+- errores habituales, especialmente archivos no encontrados y conflictos de paquetes.
 
-## Rendimiento
+La instalación manual en árboles TEXMF debe enseñarse después de la gestión normal mediante TeX Live/distribución y debe explicarse cuándo es apropiada y cuándo conviene evitarla. En Fedora se distinguirán los paquetes del sistema, TeX Live y el árbol TEXMF del usuario.
 
-El alumno debe comprender:
+Esta metodología se aplica transversalmente a paquetes como `amsmath`, `booktabs`, `hyperref`, `cleveref`, `biblatex`, `tikz`, `pgfplots`, `fontspec`, `unicode-math`, `tcolorbox` y los demás paquetes introducidos durante el curso.
 
-- naturaleza streaming de `sed`;
-- buffering;
-- coste de regex;
-- pattern spaces grandes;
-- procesos innecesarios;
-- pipelines;
-- medición;
-- relación entre rendimiento, claridad y mantenibilidad.
 
-## Metodología
+## Profundidad experta y evaluación
 
-Cada concepto debe avanzar preferentemente mediante:
+Cada lección debe diferenciar conceptos, mecanismos internos, sintaxis, compatibilidad y casos reales. Incluir ejemplos compilables cuando corresponda, comandos de compilación, resultado esperado, interpretación, errores frecuentes y ejercicios de diagnóstico. No inventar salidas de herramientas ni garantizar compatibilidad sin verificar motor y versión.
 
-`concepto → sintaxis → ejemplo mínimo → ejemplo real → explicación del estado interno → laboratorio → errores frecuentes`
+Los laboratorios integradores de matemáticas, gráficos, automatización y programación deben producir artefactos verificables y reutilizables. Los proyectos avanzados incorporan tests de regresión, documentación y control de versiones.
 
-Las lecciones avanzadas deben incluir trazado manual del ciclo de ejecución cuando
-sea útil.
+## Seguridad de compilación
 
-## Proyecto final
+Explicar riesgos de ejecutar documentos de origen desconocido, shell escape, herramientas externas, lectura/escritura de archivos y entornos de compilación. Usar el mínimo privilegio y aislar builds cuando sea pertinente.
 
-El proyecto final será un `sed-toolkit` modular capaz de realizar transformaciones
-reutilizables sobre fixtures de configuraciones y salidas de herramientas Fedora.
+## Accesibilidad y PDF avanzado
 
-Debe incluir:
+El bloque 34 aborda PDF etiquetado, PDF/UA, DocumentMetadata, tagpdf, semántica, idioma, alternativas textuales, orden de lectura, tablas, enlaces y validación. Distinguir objetivos normativos de la compatibilidad real y cambiante del kernel, motor, clase y paquetes; combinar validación automática con revisión manual. El proyecto final experto se desplaza al bloque 35 y debe integrar estas competencias cuando sea viable.
 
-- scripts `.sed`;
-- stdin y archivos;
-- dry-run;
-- diff previo;
-- backups;
-- validación;
-- manejo de errores;
-- tests;
-- idempotencia;
-- documentación;
-- identificación explícita de dependencias GNU;
-- variantes POSIX de operaciones seleccionadas.
+## Gestión avanzada de CTAN y TeX Live
 
-## Criterio de dominio experto
+Distinguir paquetes RPM de Fedora de instalaciones TeX Live administradas por tlmgr; evitar mezclar gestores en el mismo árbol. Enseñar TDS, TEXMFHOME, TEXMFLOCAL, mktexlsr/texhash, texdoc -l y diagnóstico de versiones.
 
-Al finalizar, el alumno debe poder recibir una transformación desconocida y:
 
-1. definir claramente entrada y salida;
-2. decidir si `sed` es apropiado;
-3. diseñar direcciones y regex;
-4. decidir si necesita estado o procesamiento multilínea;
-5. implementar la transformación;
-6. explicar pattern space y hold space durante su ejecución;
-7. depurarla;
-8. probar edge cases;
-9. evaluar seguridad y portabilidad;
-10. simplificarla o migrarla a otra herramienta cuando `sed` deje de ser la opción adecuada.
+## Prerrequisitos y progresión operativa
+
+- En el bloque 0, producir un documento mínimo en español con Unicode,
+  idioma, acentos y guionado. Explicar únicamente la configuración necesaria
+  para el motor elegido; ampliar fuentes e idiomas en los bloques 18 y 19.
+- Antes del laboratorio 7.27, estudiar 6.21 y 6.22: referencias mínimas,
+  texto en fórmulas y elección del entorno. El bloque 10 profundiza en
+  referencias, enlaces y automatización sin repetir toda la introducción.
+- Completar 26.16–26.18 antes del bloque 27. Introducen tokens, expansión y
+  ejecución con ejemplos pequeños; el bloque 28 desarrolla el modelo interno.
+- Al introducir 27.24, comprobar que se distingue token, valor y nombre de
+  variable. Las firmas de argumentos no se presentan como intercambiables.
+- Mantener las lecciones existentes y sus identificadores. Las ampliaciones
+  se añaden al final del bloque; las dependencias pedagógicas se explicitan
+  al inicio de la lección que las necesita.
+
+## Interfaces modernas y compatibilidad histórica
+
+Priorizar las interfaces documentales incorporadas al kernel, entre ellas
+`\NewDocumentCommand`. No cargar `xparse` por rutina en documentos modernos.
+Las lecciones históricas sobre xparse explican su relación con las interfaces
+actuales y las necesidades de compatibilidad de documentos antiguos.
+En paquetes y clases, distinguir `\usepackage`, `\RequirePackage`,
+`\LoadClass`, requisitos de formato y gestión de opciones. Consultar la guía
+actual para autores de clases y paquetes antes de recomendar una interfaz.
+
+La búsqueda de CTAN se adapta al recurso: las bibliotecas TikZ se cargan con
+`\usetikzlibrary`, las clases con `\documentclass` y los paquetes con su
+mecanismo apropiado. No identificar automáticamente el nombre CTAN con el
+archivo que se carga ni con el nombre del paquete RPM.
+
+## Herramientas externas y ejemplos por versión
+
+En minted, distinguir la versión del paquete, el ejecutable latexminted y
+Pygments. Verificar requisitos reales de instalación y ejecución; no afirmar
+que siempre hace falta shell escape completo. Explicar la ejecución
+restringida, su configuración efectiva y los casos que requieren otro flujo.
+En Beamer, introducir frames `fragile` antes de integrar contenido verbatim.
+
+Cada laboratorio sensible a versiones registra motor, versión del formato,
+clase, paquetes y herramientas externas. La documentación local puede
+corresponder a una versión distinta de la publicada en CTAN: contrastarlas.
+
+## Evaluación del proyecto final
+
+El bloque 35 produce fuentes modulares, clase y paquete documentados,
+recursos, instrucciones de compilación, pruebas y resultados verificables.
+La evaluación utiliza estos criterios:
+
+1. Compilación reproducible con motor y dependencias declarados; explicar
+   diferencias entre reproducir el proceso y obtener bytes PDF idénticos.
+2. Corrección tipográfica y funcional: matemáticas, referencias, bibliografía,
+   índices y gráficos; resolver o justificar los avisos relevantes.
+3. Interfaces mantenibles y pruebas de regresión con resultados registrados.
+4. Accesibilidad: idioma, estructura, alternativas, navegación y orden de
+   lectura; combinar revisión automática y manual con herramientas declaradas.
+5. Documentación suficiente para instalar, compilar, probar y mantener.
+
+Antes de exigir conformidad PDF/UA, declarar la versión objetivo y comprobar
+la compatibilidad de la combinación utilizada. Una compilación correcta o un
+validador sin errores no demuestran por sí solos accesibilidad completa.
+Documentar limitaciones y alternativas; no declarar conformidad no verificada.
+En el bloque 34, colocar `\DocumentMetadata` antes de `\documentclass` y
+seleccionar sus claves a partir de la documentación aplicable a la versión.

@@ -59,8 +59,8 @@ definido a continuación.
 
 ## Dataset canónico de laboratorio
 
-La base de datos de ejemplo principal del PATH es **PostgreSQL Sample
-Database** publicada por Neon:
+La base de datos de ejemplo principal del PATH es **DVD Rental (`dvdrental`)**, distribuida mediante PostgreSQL Sample
+Database de Neon:
 
 https://neon.com/postgresql/getting-started/sample-database
 
@@ -110,7 +110,7 @@ laboratorios.
 
 No sustituye a la documentación oficial de PostgreSQL. Si existe una
 diferencia o ambigüedad sobre el comportamiento actual del motor, prevalece
-la documentación oficial vigente.
+la documentación oficial de la versión utilizada.
 
 ## Frontera estricta con Relational Database Design
 
@@ -212,3 +212,47 @@ Cada lección avanzada debe diferenciar: **sintaxis**, **semántica**, **supuest
 ### Criterios de aceptación del proyecto final
 
 El proyecto debe incluir scripts ejecutables con `psql`, versión del servidor documentada, datos de prueba deterministas, resultados esperados, pruebas de NULL/duplicados/conjuntos vacíos, pruebas de regresión de rutinas y views, al menos un escenario de concurrencia reproducible y evidencia de optimización con planes comparados. pgTAP es opcional.
+
+
+## Contrato de ejecución y progresión revisado
+
+- La versión de referencia es PostgreSQL 18.x. Registrar el minor exacto con
+  `SHOW server_version` y usar documentación `/docs/18/` para sus laboratorios.
+  Otras versiones requieren comprobar compatibilidad y adaptar los ejemplos.
+- El dataset principal es DVD Rental (`dvdrental`). Conservar el archivo de
+  descarga, su checksum y las instrucciones de extracción y restauración con
+  `pg_restore`; usar una base desechable y documentar el reinicio desde cero.
+- `CREATE TABLE`, `INSERT` y `DROP TABLE` se enseñan de forma operativa para
+  crear fixtures sobre esquemas proporcionados; no introducen modelado.
+- Las apariciones tempranas de COUNT, EXISTS, DML y transacciones incluyen
+  cápsulas guiadas y referencias a los bloques de desarrollo. Los triggers
+  sobre views se anticipan conceptualmente y se implementan en el bloque 32.
+- Los bloques 15 y 24 progresan desde lectura y reescritura básica de planes
+  hasta diagnóstico, estimaciones, caché de planes y medición reproducible.
+  El bloque 33 integra conocimientos mediante problemas nuevos y exige los
+  bloques de fundamentos correspondientes, evitando repetir explicaciones.
+- GRANT y REVOKE se limitan a permisos de objetos para verificar interfaces y
+  rutinas; no se amplían a administración general de identidades.
+
+### Límites de verificación semántica
+
+Un contraejemplo refuta una equivalencia; la ausencia de diferencias sobre
+fixtures no prueba que dos consultas sean equivalentes para cualquier entrada.
+`EXCEPT ALL` en ambas direcciones compara multiconjuntos sobre los datos
+ensayados y requiere tipos comparables. Comparar por separado orden de salida,
+tipos, errores y efectos laterales cuando formen parte del contrato. Mantener
+el mismo snapshot o datos inmutables al comparar resultados concurrentes.
+
+### Frontera de programación con triggers
+
+La lección 32.32 implementa un requisito de mantenimiento de valores derivados
+ya decidido. Sus pruebas cubren corrección, rollback y concurrencia. Decidir
+si un atributo debe almacenarse o calcularse sigue fuera de este PATH.
+
+### Precisiones técnicas obligatorias
+
+Incluir paginación por clave y sus límites bajo concurrencia; WITH TIES;
+WITH ORDINALITY; ambigüedad de UPDATE FROM con múltiples coincidencias;
+orden lógico frente a evaluación física; y límites de CASE como protección
+ante errores. Para REFRESH CONCURRENTLY verificar que la vista esté poblada
+y tenga un índice UNIQUE sobre columnas, sin expresiones ni predicado parcial.

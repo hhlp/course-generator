@@ -732,7 +732,8 @@ Cada proyecto debe plantear:
 
 `proyecto-final-ppp3`
 
-Integra los fundamentos del Bloque 1.
+Integra los fundamentos del Bloque 1. Antes de desarrollarlo deben completarse
+las ampliaciones 1.42–1.55, incluida la introducción a CMake y CTest.
 
 ## 47. Proyecto 3.30
 
@@ -762,7 +763,7 @@ Debe exigir razonamiento sobre shared state, synchronization, ownership, cancell
 
 `proyecto-cpp23-completo`
 
-Proyecto integrador final:
+Proyecto integrador de los Bloques 1–8:
 
 ```text
 C++23
@@ -787,7 +788,7 @@ Cuando una lección produzca un proyecto validable:
 ```text
 cmake -S . -B build
 cmake --build build
-ctest --test-dir build --output-on-failure
+ctest --test-dir build --output-on-failure --no-tests=error
 ```
 
 Un fallo de compilación o tests no debe considerarse un proyecto válido.
@@ -851,3 +852,129 @@ Los identificadores 1–8 permanecen intactos para conservar los proyectos y dep
 Vincular Regex con parsing (1.25) y procesamiento de archivos (1.24); Big-O con algoritmos y contenedores (1.28–1.29, 3.26–3.29), Ranges (4.7–4.11), profiling (8.17–8.20) y el proyecto final (8.26).
 
 Los bloques nuevos deben respetar las mismas secciones pedagógicas, exactitud bibliográfica, requisitos de compilación, laboratorios y validación establecidos para el resto del PATH.
+
+
+## 57. Revisión de profundidad y conservación de identificadores
+
+Se conservan las 356 lecciones originales, sus títulos e identificadores y los
+10 bloques. Las ampliaciones se añaden al final de cada bloque. La posición en
+el fichero no constituye por sí sola el orden pedagógico: las siguientes rutas
+indican cuándo incorporar el material nuevo. Los proyectos conservan su ID.
+
+- Bloque 1: ampliación 1.42–1.55; 55 lecciones en total.
+- Bloque 2: ampliación 2.41–2.56; 56 lecciones en total.
+- Bloque 3: ampliación 3.31–3.42; 42 lecciones en total.
+- Bloque 4: ampliación 4.45–4.59; 59 lecciones en total.
+- Bloque 5: ampliación 5.30–5.39; 39 lecciones en total.
+- Bloque 6: ampliación 6.37–6.46; 46 lecciones en total.
+- Bloque 7: ampliación 7.40–7.47; 47 lecciones en total.
+- Bloque 8: ampliación 8.27–8.36; 36 lecciones en total.
+- Bloque 9: ampliación 9.31–9.34; 34 lecciones en total.
+- Bloque 10: ampliación 10.42–10.47; 47 lecciones en total.
+
+## 58. Orden efectivo de estudio y proyectos
+
+| Bloque | Orden recomendado |
+|---|---|
+| 1 | 1.1–1.40, incorporando 1.42–1.55 antes de 1.41 |
+| 2 | 2.1–2.40 con las ampliaciones 2.41–2.56 |
+| 3 | 3.1–3.29, después 3.31–3.42 y proyecto 3.30 |
+| 4 | 4.1–4.43, después 4.45–4.59 y proyecto 4.44 |
+| 5 | 5.1–5.28, después 5.30–5.39 y proyecto 5.29 |
+| 6 | 6.1–6.35, después 6.37–6.46 y proyecto 6.36 |
+| 7 | 7.1–7.39, después 7.40–7.47 |
+| 8 | 8.1–8.25, después 8.27–8.36 y proyecto 8.26 |
+| 9 | 9.1–9.29, después 9.31–9.34 y proyecto 9.30 |
+| 10 | 10.1–10.40, después 10.42–10.47 y proyecto 10.41 |
+
+En el Bloque 1 introducir 1.42–1.48 con tipos y expresiones; 1.49–1.51 con
+funciones; 1.52 con streams; 1.53–1.55 antes del proyecto. No enseñar toda la
+aritmética avanzada antes de que el estudiante pueda ejecutar ejemplos simples.
+
+El formato plano de initial.txt no codifica esta ruta. Al generar en orden
+numérico, los proyectos deben incluir un recordatorio autocontenido y guiado de
+los prerrequisitos posteriores; el estudiante los completa después de estudiar
+las ampliaciones. No presuponer que course-generator reordene las lecciones.
+
+El proyecto 8.26 integra los Bloques 1–8. Los proyectos 9.30 y 10.41 son
+integradores especializados posteriores; ninguno exige haber completado el otro.
+El perfil usa standalone_project para 8.26 y conserva project_type: integrator.
+No se exige reutilizar artefactos previos: artifact_dependencies permanece vacío.
+
+## 59. Contrato de profundidad por área
+
+- Fundamentos: explicar límites, conversiones y narrowing con predicción de
+  resultados; diferenciar overflow signed y comportamiento modular unsigned.
+  Separar precedencia, asociatividad y secuenciación; no deducir una de otra.
+- Semántica: estudiar lookup antes de resolución de sobrecarga; incluir ADL,
+  hidden friends, cv/ref qualifiers y conversiones de usuario. Distinguir la
+  semántica de prvalues desde C++17 de NRVO opcional; no prometer NRVO.
+- Memoria: diferenciar almacenamiento y lifetime. Analizar temporales, dangling,
+  invalidación, alineación y acceso mediante tipos; limitar placement new a
+  laboratorios donde se justifique y preferir RAII en código de aplicación.
+- Excepciones: construir un ejemplo de rollback, explicar invariantes y
+  comprobar garantías básica/fuerte/no-throw. Relacionar noexcept con movimiento.
+- STL: enseñar contratos de comparadores, hash e igualdad antes de personalizar
+  contenedores. std::pmr no es ownership automático: el recurso debe sobrevivir
+  a sus usuarios y se debe medir su efecto antes de recomendarlo.
+- Coroutines: distinguir frame, handle y objeto de retorno; asignar explícitamente
+  ownership y destrucción. Una coroutine no crea un thread por sí sola.
+- Ranges: inspeccionar lifetime, borrowed_range y reevaluación de pipelines.
+  No suponer que todas las vistas almacenan resultados ni admiten multipass.
+- Módulos: comprobar compilador, biblioteca y build system por separado;
+  documentar versiones y comandos realmente probados, sin prometer portabilidad
+  de artefactos compilados de módulos entre versiones o toolchains.
+- Concurrencia: desarrollar un protocolo de reclamación antes de liberar nodos
+  lock-free. Hazard pointers y épocas se tratan como técnicas o dependencias
+  externas, sin atribuirles una API estándar de C++23.
+- Regex: limitar entrada y aislar patrones patológicos en un proceso con timeout
+  externo. std::regex no ofrece un mecanismo general de cancelación por timeout.
+- Big-O: distinguir número de comparaciones y de incrementos de iterador;
+  costes del predicado, asignaciones y copias; medición experimental y garantía.
+
+## 60. Delimitación de lecciones próximas
+
+4.36 conserva el título histórico «deducing this»: motivación, deducción de Self,
+eliminación de sobrecargas y patrones de diseño. 4.37 desarrolla la sintaxis y
+las restricciones del parámetro objeto explícito, resolución y diagnóstico.
+Son dos tratamientos del mismo mecanismo, con objetivos distintos.
+
+2.23 presenta perfect forwarding; 3.4–3.6 enseñan deducción y uso de std::forward;
+el Bloque 5 evalúa restricciones y diseño genérico. Repetir solo el recordatorio
+necesario, con ejercicios distintos y referencias cruzadas.
+
+Las ampliaciones de STL, Ranges y semántica fijan contratos. El Bloque 10 aplica
+esos contratos al análisis de costes. El Bloque 9 aplica regex a C++ sin repetir
+la teoría general del PATH Regex ni atribuir sintaxis de PCRE2 a std::regex.
+
+## 61. Herramientas y evidencia de validación
+
+Los proyectos deben proporcionar CMakeLists.txt, activar pruebas con
+include(CTest) o enable_testing(), y registrar al menos una prueba con add_test
+o descubrimiento de GoogleTest. Un archivo tests/test_main.cpp por sí solo no
+registra pruebas. En 1.41 basta un ejecutable de tests con comprobaciones
+explícitas y código de salida distinto de cero al fallar; GoogleTest se enseña
+después. No depender exclusivamente de assert, que puede desaparecer con NDEBUG.
+
+La validación exige herramientas disponibles (require_tools: true) y configura,
+compila y ejecuta CTest con --no-tests=error. Si faltan herramientas, no declarar
+el proyecto validado; registrar la causa. El timeout es del comando de validación,
+no una garantía de cancelación interna de regex o de tareas del programa.
+
+Separar configuraciones ASan/UBSan y TSan. No mezclar resultados de builds con
+flags diferentes. En CI registrar compilador, biblioteca estándar, versiones,
+CMake, flags y pruebas ejecutadas. La validación sintáctica de estos cuatro
+archivos no demuestra que los futuros proyectos generados compilen.
+
+## 62. Lecturas y criterios de finalización
+
+Las categorías canónicas son principal, complementaria, normativa,
+profundizacion y consulta. Herramientas y motores se citan dentro de consulta;
+material de C++ moderno se clasifica por su función en la lección. Usar solo
+categorías pertinentes y no inventar números de capítulos o secciones.
+
+Cada ampliación debe incluir un ejemplo compilable, un caso límite y una
+explicación del resultado cuando proceda. Los proyectos exigen requisitos,
+pruebas de corrección y documentación; las conclusiones de rendimiento exigen
+mediciones reproducibles. Los ejemplos intencionadamente incorrectos se marcan
+y no forman parte de los targets que deben compilar satisfactoriamente.

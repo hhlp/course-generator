@@ -31,6 +31,10 @@ BLOQUE 0 — FUNDAMENTOS DE FILE & STORAGE SERVICES
 0.28 File/Storage como consumer de IAM: alcance y límites
 0.29 Transición pedagógica: identidad local → identidad central
 0.30 NFS, Samba e iSCSI: diferencias respecto a IAM
+0.31 Dependencias por escenario: base Linux → red/DNS y TIME → IAM existente → Storage consumidor
+0.32 Inventario de versiones: Fedora/RHEL, kernel, nfs-utils, Samba, autofs y soporte por distribución
+0.33 Laboratorio en máquinas virtuales: red privada, discos desechables y snapshots de referencia
+0.34 Contratos de identidad: usuarios/grupos provistos por IAM y autorización administrada en Storage
 
 BLOQUE 1 — NFS: FUNDAMENTOS E INSTALACIÓN
 1.1 Qué es NFS
@@ -55,6 +59,9 @@ BLOQUE 1 — NFS: FUNDAMENTOS E INSTALACIÓN
 1.20 Instalación y habilitación del servidor
 1.21 Instalación del cliente
 1.22 Verificación inicial con systemctl, ss y rpcinfo
+1.23 NFSv2 como contexto histórico; NFSv4 como laboratorio principal y NFSv3 para interoperabilidad
+1.24 /etc/nfs.conf y drop-ins: configuración efectiva y diferencias por versión
+1.25 Servidor NFSv4-only: servicios y puertos realmente necesarios
 
 BLOQUE 2 — NFS SERVER
 2.1 /etc/exports
@@ -75,6 +82,9 @@ BLOQUE 2 — NFS SERVER
 2.16 Verificar exports
 2.17 Persistencia
 2.18 Laboratorio NFS server
+2.19 Pseudoroot NFSv4, fsid=0 y rutas vistas por el cliente
+2.20 Límites de showmount en servidores NFSv4-only
+2.21 Validación de exports antes y después de recargar; prueba positiva y negativa
 
 BLOQUE 3 — NFS CLIENT
 3.1 Descubrir exports
@@ -93,6 +103,9 @@ BLOQUE 3 — NFS CLIENT
 3.14 findmnt / mount / umount
 3.15 nfsstat / nfsiostat
 3.16 Laboratorio cliente NFS
+3.17 Semántica de caché close-to-open y efectos sobre aplicaciones
+3.18 Bloqueos, leases, delegations y recuperación de estado NFSv4
+3.19 Evaluar hard/soft según integridad y requisitos de la aplicación
 
 BLOQUE 4 — NFS SECURITY
 4.1 Modelo de seguridad
@@ -114,6 +127,13 @@ BLOQUE 4 — NFS SECURITY
 4.13 rpc.gssd
 4.14 Principals y keytabs
 4.15 Laboratorio NFS seguro
+4.16 DNS, FQDN y Chrony: prerrequisitos verificables para Kerberos
+4.17 Principal nfs/FQDN, aprovisionamiento de keytabs y permisos de los secretos
+4.18 gssproxy en el servidor y rpc.gssd en el cliente: flujo RPCSEC_GSS según versión
+4.19 Identidad NSS/SSSD, idmapping NFSv4 y autorización POSIX: responsabilidades diferentes
+4.20 Tickets de usuario frente a credenciales de máquina; expiración y renovación
+4.21 Laboratorio sec=krb5p: acceso permitido, usuario denegado y ticket expirado
+4.22 ACL POSIX frente a NFSv4 ACL: capacidades del servidor y filesystem real
 
 BLOQUE 5 — NFS PERFORMANCE, LOGS & TROUBLESHOOTING
 5.1 rsize / wsize / nconnect
@@ -132,6 +152,9 @@ BLOQUE 5 — NFS PERFORMANCE, LOGS & TROUBLESHOOTING
 5.14 Hung mounts
 5.15 Recuperación ante servidor caído
 5.16 Laboratorio de troubleshooting
+5.17 Reinicio del servidor: grace period, reclaim y recuperación de bloqueos
+5.18 Diagnosticar nobody/nogroup, dominio idmap y credenciales GSS
+5.19 Pruebas separadas de caída de DNS, KDC y servidor NFS
 
 BLOQUE 6 — AUTOFS: FUNDAMENTOS E INSTALACIÓN
 6.1 Qué es autofs
@@ -166,6 +189,12 @@ BLOQUE 7 — AUTOFS AVANZADO
 7.12 Seguridad y SELinux
 7.13 systemd integration
 7.14 Laboratorio avanzado
+7.15 Mapas centrales IdM: locations, master maps, keys y responsabilidades del proveedor IAM
+7.16 ipa-client-automount: integrar un cliente previamente enrolado
+7.17 SSSD como fuente de mapas: automount en nsswitch y configuración según versión
+7.18 Caché de mapas, invalidación y límites de operación sin conexión
+7.19 Laboratorio comparativo de mapas locales y centrales con NFS Kerberos
+7.20 CIFS con Kerberos: cifs.upcall, keyutils, sec=krb5 y credenciales del usuario
 
 BLOQUE 8 — AUTOFS LOGS & TROUBLESHOOTING
 8.1 systemctl status autofs
@@ -179,6 +208,8 @@ BLOQUE 8 — AUTOFS LOGS & TROUBLESHOOTING
 8.9 lsof / fuser / strace
 8.10 Localización y configuración de logs
 8.11 Laboratorio troubleshooting
+8.12 Diagnosticar por separado recuperación del mapa, montaje y autorización al recurso
+8.13 Fallo del directorio y caché: comprobar comportamiento sin asumir acceso garantizado
 
 BLOQUE 9 — SAMBA / SMB: FUNDAMENTOS E INSTALACIÓN
 9.1 SMB/CIFS
@@ -216,6 +247,8 @@ BLOQUE 10 — SAMBA SERVER
 10.14.3 Limitaciones del modelo de identidad local
 10.15 Shares públicos, privados y homes
 10.16 Laboratorio Samba server
+10.17 Cuenta POSIX y cuenta Samba local: diferencias y ciclo de habilitación
+10.18 Cuotas de usuarios/grupos y project quotas según filesystem; validación desde el cliente
 
 BLOQUE 11 — SAMBA CLIENT
 11.1 smbclient
@@ -231,6 +264,9 @@ BLOQUE 11 — SAMBA CLIENT
 11.11 systemd mounts
 11.12 autofs + CIFS
 11.13 Laboratorio cliente Linux
+11.14 Kerberos en smbclient: requerir autenticación y verificar el ticket de servicio
+11.15 mount.cifs con sec=krb5: cruid, caché de credenciales y montaje multiuser
+11.16 Credenciales por usuario frente a una sesión SMB compartida; límites de uid/gid locales
 
 BLOQUE 12 — SAMBA PERMISSIONS & SECURITY
 12.1 Permisos Samba vs filesystem
@@ -248,6 +284,9 @@ BLOQUE 12 — SAMBA PERMISSIONS & SECURITY
 12.13 Guest access y riesgos
 12.14 Hardening Samba
 12.15 Laboratorio de seguridad
+12.16 vfs_acl_xattr y security.NTACL: elegir modelo de ACL y comprobar sus efectos
+12.17 Cuotas y auditoría con full_audit: eventos útiles, volumen y datos registrados
+12.18 No inferir permisos de servidor desde file_mode/dir_mode de un cliente CIFS
 
 BLOQUE 13 — SAMBA + IAM / DIRECTORIOS CENTRALIZADOS
 13.0 De Samba autónomo a consumer de IAM
@@ -267,6 +306,16 @@ BLOQUE 13 — SAMBA + IAM / DIRECTORIOS CENTRALIZADOS
 13.11 Shares para usuarios AD
 13.12 ACL con usuarios/grupos AD
 13.13 Laboratorio member server
+13.14 Recorrido AD: DNS/TIME, realm join con backend winbind y verificación net ads testjoin
+13.15 RHEL: winbindd para el servidor Samba miembro; SSSD no es un sustituto soportado
+13.16 Backends idmap tdb/ad/rid/autorid: rangos, RFC2307 y estabilidad de propietarios
+13.17 Recorrido FreeIPA/IdM: requisitos del dominio y preparación coordinada con PATH IAM
+13.18 ipa-client-samba, principal cifs/FQDN y verificación Kerberos desde cliente IdM
+13.19 Matriz de soporte por versión: Samba en IdM como Technology Preview en RHEL 9 consultado
+13.20 Limitaciones de clientes Windows y dominios con trust en el escenario Samba sobre IdM
+13.21 LDAP genérico y Kerberos no equivalen por sí solos a un dominio AD apto para Samba
+13.22 Migración de propietarios y ACL: preservar UID/GID, SID y bases idmap
+13.23 Laboratorios separados AD y IdM; usar identidades ya creadas en el proveedor central
 
 BLOQUE 14 — SAMBA LOGS, TROUBLESHOOTING & PERFORMANCE
 14.1 testparm / smbstatus / smbclient / pdbedit
@@ -282,6 +331,8 @@ BLOQUE 14 — SAMBA LOGS, TROUBLESHOOTING & PERFORMANCE
 14.11 Performance tuning
 14.12 Multichannel: conceptos
 14.13 Laboratorio troubleshooting
+14.14 Comprobar resolución NSS, confianza de máquina, ticket CIFS y autorización por separado
+14.15 Respaldo y recuperación de configuración, secretos de dominio y bases idmap pertinentes
 
 BLOQUE 15 — iSCSI: FUNDAMENTOS E INSTALACIÓN
 15.1 File vs block storage
@@ -313,6 +364,8 @@ BLOQUE 16 — iSCSI TARGET
 16.10 firewalld y SELinux
 16.11 Verificación
 16.12 Laboratorio target
+16.13 Atributos de autenticación de discovery y de sesiones: validar ambos recorridos
+16.14 Guardar configuración LIO, reiniciar target y verificar persistencia de ACL/LUN
 
 BLOQUE 17 — iSCSI INITIATOR
 17.1 /etc/iscsi/initiatorname.iscsi
@@ -328,6 +381,8 @@ BLOQUE 17 — iSCSI INITIATOR
 17.11 /etc/fstab / _netdev
 17.12 systemd dependencies
 17.13 Laboratorio initiator
+17.14 Identificadores persistentes, UUID de filesystem y WWID: elegir la capa correcta
+17.15 Desconexión planificada: detener consumidores, desmontar y cerrar sesiones ordenadamente
 
 BLOQUE 18 — iSCSI + LVM
 18.1 iSCSI como block device
@@ -342,6 +397,10 @@ BLOQUE 18 — iSCSI + LVM
 18.10 Riesgos de acceso concurrente
 18.11 Filesystem local vs cluster filesystem
 18.12 Laboratorio expansión online
+18.13 LVM devices file y filtros: evitar consumir paths individuales de un mismo LUN
+18.14 Snapshots de LUN: consistencia de aplicación, fsfreeze y coordinación de escrituras
+18.15 TRIM/discard, UNMAP y thin provisioning: compatibilidad y recuperación de capacidad
+18.16 Montaje concurrente de XFS/ext4: no habilitar escrituras desde varios hosts sobre el mismo LUN
 
 BLOQUE 19 — iSCSI MULTIPATH
 19.1 Redundancia y múltiples paths
@@ -357,6 +416,10 @@ BLOQUE 19 — iSCSI MULTIPATH
 19.11 iSCSI + multipath
 19.12 Network redundancy
 19.13 Laboratorio multipath
+19.14 Redundancia de paths frente a alta disponibilidad del target: fallos diferentes
+19.15 ALUA, políticas de selección y parámetros recomendados por el fabricante
+19.16 Timeouts iSCSI, no_path_retry y queue_if_no_path: evitar esperas ilimitadas sin evaluación
+19.17 Laboratorio: caída de un enlace, de todos los paths y del target; medir recuperación
 
 BLOQUE 20 — iSCSI SECURITY
 20.1 Network isolation y storage VLAN
@@ -372,6 +435,8 @@ BLOQUE 20 — iSCSI SECURITY
 20.8 Least privilege
 20.9 Hardening y auditoría
 20.10 Laboratorio seguridad
+20.11 CHAP autentica pero no cifra datos; IQN es identificador y no prueba criptográfica
+20.12 Rotación de credenciales CHAP con procedimiento y prueba de reconexión
 
 BLOQUE 21 — iSCSI PERFORMANCE
 21.1 Latencia / IOPS / throughput
@@ -385,6 +450,8 @@ BLOQUE 21 — iSCSI PERFORMANCE
 21.9 ss / ethtool / ip -s link
 21.10 Baselines y benchmarking correcto
 21.11 Laboratorio rendimiento
+21.12 fio en volúmenes de laboratorio desechables: separar pruebas de archivo y dispositivo bruto
+21.13 Matriz de pruebas: bloques, concurrencia, lectura/escritura, percentiles y fsync
 
 BLOQUE 22 — iSCSI LOGS & TROUBLESHOOTING
 22.1 iscsiadm: session / node / discovery
@@ -416,6 +483,8 @@ BLOQUE 23 — SYSTEMD + NETWORK STORAGE
 23.11 Fallos del storage remoto
 23.12 Evitar bloquear el boot
 23.13 Laboratorio systemd
+23.14 Distinguir red disponible, resolución DNS y disponibilidad efectiva del servicio
+23.15 Reinicio completo de cliente/servidor y verificación de montajes y aplicaciones
 
 BLOQUE 24 — OBSERVABILIDAD
 24.1 Availability / capacity / latency
@@ -429,6 +498,9 @@ BLOQUE 24 — OBSERVABILIDAD
 24.9 Alerting
 24.10 Capacity planning
 24.11 Laboratorio observabilidad
+24.12 Cuotas, thin-pool data/metadata y predicción de agotamiento
+24.13 Distinguir métricas disponibles en node_exporter de sondas o exporters específicos
+24.14 Alertas por ticket/credencial, fallo de montaje, path degradado y restauración pendiente
 
 BLOQUE 25 — DISEÑO Y ARQUITECTURA
 25.1 Cuándo usar NFS / SMB / iSCSI / autofs
@@ -449,6 +521,12 @@ BLOQUE 25 — DISEÑO Y ARQUITECTURA
 25.10 Backup y disaster recovery
 25.11 Capacity planning
 25.12 Documentación de arquitectura
+25.13 Cuotas de usuarios, grupos y proyectos: diseño, límites y responsabilidades
+25.14 RPO/RTO, copias completas/incrementales y prueba de recuperación
+25.15 Restaurar contenido con propietarios, ACL, xattrs y contexto SELinux correcto
+25.16 Snapshots frente a backups independientes; consistencia de aplicación
+25.17 HA de NFS/Samba/iSCSI: visión de arquitectura, estado y fencing; implementación en PATH HA
+25.18 Migración de servicios: preservar identidades, exports, shares, UUID y permisos
 
 BLOQUE 26 — TROUBLESHOOTING METÓDICO
 26.1 Diagnóstico por capas
@@ -461,6 +539,8 @@ BLOQUE 26 — TROUBLESHOOTING METÓDICO
 26.8 nfsstat / smbstatus / iscsiadm / multipath
 26.9 Árboles de diagnóstico
 26.10 Runbooks
+26.11 Diagnóstico de autenticación frente a autorización y cachés de identidad
+26.12 Runbook de restauración verificada y retorno al servicio
 
 BLOQUE 27 — LABORATORIO FINAL
 27.1 Diseñar infraestructura de almacenamiento
@@ -487,3 +567,9 @@ BLOQUE 27 — LABORATORIO FINAL
 27.18 Runbook operativo
 27.19 Runbook de troubleshooting
 27.20 Proyecto final
+27.21 Cuotas: alcanzar el límite y comprobar rechazo y recuperación
+27.22 Restaurar archivos y permisos en un destino alternativo; verificar ACL y xattrs
+27.23 Comparar caída de enlace, servidor Storage, DNS, TIME y proveedor IAM
+27.24 Documentar versiones, restricciones de soporte y decisiones AD/IdM
+27.25 Medir RPO/RTO y entregar evidencias de recuperación e integridad
+27.26 Criterios finales: accesos permitidos/denegados, reinicio, restauración y fallo de paths

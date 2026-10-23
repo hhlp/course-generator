@@ -1,41 +1,42 @@
 ---
 course:
-  title: "GO — DE 0 A EXPERTO Profundidad"
-  description: "Learning Path profundo de Go: lenguaje, concurrencia,
-      servicios, runtime, profiling, performance e internals."
-  language: "es"
+  title: 'GO — DE 0 A EXPERTO: revisión profunda'
+  description: 'Learning Path profundo de Go: lenguaje, concurrencia, servicios,
+    runtime, profiling, performance e internals.'
+  language: es
   level:
-    start: "cero"
-    end: "experto"
+    start: cero
+    end: experto
   platform:
     - Fedora
     - Linux
-  mode: "deep"
+  mode: deep
   official_docs_priority: true
-
+  version_policy:
+    minimum_go: 1.26.0
+    pin_exact_toolchain_in_labs: true
+    verify_release_notes: true
+    experimental_features_opt_in: true
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 pedagogy:
-  opening_section: "🎯 OBJETIVO"
-  closing_section: "🧠 QUÉ DEBES RECORDAR"
+  opening_section: 🎯 OBJETIVO
+  closing_section: 🧠 QUÉ DEBES RECORDAR
   closing_key_points_min: 3
   closing_key_points_max: 7
   optional_sections:
-    - "🧪 Laboratorio/ejemplos"
-    - "⚠️ Errores frecuentes"
-    - "💡 Idea importante"
-  reading_section: "📚 LECTURA"
-
+    - 🧪 Laboratorio/ejemplos
+    - ⚠️ Errores frecuentes
+    - 💡 Idea importante
+  reading_section: 📚 LECTURA
 code:
   language: go
   format_with_gofmt: true
   runnable_examples: true
   prefer_standard_library: true
   explain_output_when_useful: true
-
 focus:
   - lenguaje Go y programación idiomática
   - biblioteca estándar
@@ -57,26 +58,27 @@ focus:
   - profiling y tracing
   - performance engineering y PGO
   - producción, contenedores y Kubernetes
-
+  - iteradores y range sobre funciones
+  - depuración con Delve y gopls
+  - I/O parcial y límites de recursos
+  - diagnóstico de servicios en Fedora con systemd y journald
 references:
   principal:
-    - "Learning Go — Jon Bodner"
+    - Learning Go — Jon Bodner
   performance:
-    - "Efficient Go — Bartłomiej Płotka"
+    - Efficient Go — Bartłomiej Płotka
   concurrency:
-    - "Learn Concurrent Programming with Go — James Cutajar"
+    - Learn Concurrent Programming with Go — James Cutajar
   professional:
-    - "Go in Action, Second Edition — Joel Holmes, Andrew Walker,
-        William Kennedy"
+    - Go in Action, Second Edition — Joel Holmes, Andrew Walker, William Kennedy
   cookbook:
-    - "Go Cookbook: Expert Solutions for Commonly Needed Go
-        Tasks — Sau Sheong Chang"
+    - 'Go Cookbook: Expert Solutions for Commonly Needed Go Tasks — Sau Sheong
+      Chang'
   authoritative:
-    - "Official Go Documentation"
-    - "The Go Programming Language Specification"
-    - "Go Memory Model"
-    - "Go standard library documentation"
-
+    - Official Go Documentation
+    - The Go Programming Language Specification
+    - Go Memory Model
+    - Go standard library documentation
 quality:
   avoid_superficial_summaries: true
   explain_tradeoffs: true
@@ -88,20 +90,45 @@ quality:
   regex_go_specific_not_general_theory: true
   benchmarks_are_not_asymptotic_proofs: true
   cli_standard_library_first: true
-
+  preserve_block_count: 45
+  teach_prerequisites_before_use: true
+  preserve_original_lesson_titles: true
+  distinguish_spec_from_implementation: true
+  require_final_acceptance_evidence: true
+  yaml_line_length_max: 80
 specializations:
   big_o:
-    focus: "Complejidad aplicada a estructuras, algoritmos y
-        concurrencia en Go"
+    focus: Complejidad aplicada a estructuras, algoritmos y concurrencia en
+      Go
     cross_reference_general_path: true
     require_time_and_space_analysis: true
     require_benchmarks_and_profiling: true
+    avoid_repeating_general_theory: true
   regex:
-    engine: "RE2 / Go regexp"
+    engine: RE2 / Go regexp
     cross_reference_general_path: true
     require_utf8_byte_index_explanation: true
     require_tests_fuzzing_benchmarks: true
+    avoid_repeating_general_theory: true
   cli:
     prefer_standard_library: true
     require_signal_handling: true
     require_exit_code_and_stream_testing: true
+progression:
+  early_module_setup_block: 0
+  testing_primer_block: 14
+  testing_deep_block: 27
+  complexity_concurrency_second_pass_after:
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+  complexity_concurrency_integration_block: 40
+  forward_references_require_minimal_explanation: true
+final_project:
+  block: 44
+  require_regex_log_subcommand: true
+  require_time_space_complexity_document: true
+  require_cancellation_failure_shutdown_tests: true
+  require_resource_budget_and_slo: true

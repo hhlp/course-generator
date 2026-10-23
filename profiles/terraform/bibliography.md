@@ -104,3 +104,43 @@ La documentación oficial se utiliza para:
 - Separar documentación de Core, providers, HCP Terraform y OpenTofu.
 - Registrar fecha de verificación y URL oficial al desarrollar cada lección sensible a versión.
 - No atribuir capítulos específicos a libros sin comprobar su índice o texto.
+
+## Referencias verificadas para esta revisión — 2026-10-19
+
+- [CLI modules: requisito >= 1.10](https://developer.hashicorp.com/terraform/cli/commands/modules).
+- [CLI query y descubrimiento](https://developer.hashicorp.com/terraform/cli/commands/query).
+- [Importación masiva y list blocks](https://developer.hashicorp.com/terraform/language/import/bulk).
+- [CLI Stacks](https://developer.hashicorp.com/terraform/cli/commands/stacks).
+- [Datos sensibles, ephemeral y write-only](https://developer.hashicorp.com/terraform/language/manage-sensitive-data).
+- [Check: advertencias en plan/apply](https://developer.hashicorp.com/terraform/language/block/check).
+- [Terraform test y expect_failures](https://developer.hashicorp.com/terraform/language/tests).
+- [Mocks de providers](https://developer.hashicorp.com/terraform/language/tests/mocking).
+- [Permisos de terraform_remote_state](https://developer.hashicorp.com/terraform/language/state/remote-state-data).
+- [Lock file: providers y límites para módulos](https://developer.hashicorp.com/terraform/language/files/dependency-lock).
+- [untaint y recuperación](https://developer.hashicorp.com/terraform/cli/commands/untaint).
+- [state replace-provider](https://developer.hashicorp.com/terraform/cli/commands/state/replace-provider).
+- [Resource identities en state](https://developer.hashicorp.com/terraform/cli/commands/state/identities).
+- [Actions y extensión de CRUD](https://developer.hashicorp.com/terraform/language/invoke-actions).
+
+## Matriz técnica de referencia
+
+| Capacidad | Umbral confirmado o regla de uso |
+|---|---|
+| terraform modules | Terraform 1.10 o posterior |
+| Variables/outputs de módulos hijos efímeros y bloques ephemeral | Core 1.10 o posterior; recursos según provider |
+| Argumentos write-only | Core 1.11 o posterior y soporte del recurso |
+| query, list y resource identity | Verificar la versión exacta de Core y el soporte de cada provider |
+| Actions y action_trigger | Verificar Core, schema y disponibilidad de actions en el provider |
+| Stacks | Verificar CLI/plugin, acceso HCP y capacidades disponibles para la cuenta |
+
+Estos umbrales no fijan la versión universal del curso. Cada laboratorio mantiene
+su matriz exacta y debe volver a verificar las páginas al generarse. No se exige
+la versión más reciente ni se incorporan release candidates por defecto.
+
+Los cuatro libros aportados se conservan como fuentes pedagógicas. No se han
+verificado sus ediciones, índices completos ni cobertura de funciones recientes;
+los títulos no constituyen evidencia de soporte técnico actual. En internals,
+Stacks, APIs de providers y acciones prevalecen documentación y código oficiales.
+Para OpenTofu, Fedora/RHEL, libvirt y Ansible verificar las fuentes oficiales de
+la versión elegida al desarrollar cada laboratorio; esta revisión no certifica
+una combinación concreta de esas plataformas.

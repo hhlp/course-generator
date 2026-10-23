@@ -51,3 +51,12 @@ El curso no pretende sustituir un PATH completo de routing dinámico, switching,
 
 ## Separación respecto al PATH TCP/IP
 Este PATH profundiza en cálculos y diseño de direccionamiento. Protocolos TCP/UDP, análisis exhaustivo de capturas, routing dinámico, DNS y DHCP completos pertenecen a sus PATH independientes; aquí solo se tratan las interfaces imprescindibles para el diseño y diagnóstico.
+
+## Precisiones técnicas obligatorias
+- Separar pertenencia matemática a un prefijo, alcance on-link y ruta elegida por el sistema. `ip route get` consulta una decisión de ruta; verificar pertenencia con AND o `ipaddress`.
+- En IPv6, una dirección asignada no declara automáticamente su prefijo on-link. Explicar RA, flags L/A y la diferencia entre asignación por SLAAC/DHCPv6 y aprendizaje del router por RA, en el alcance necesario para diseñar direccionamiento.
+- La fusión elemental requiere dos bloques hermanos contiguos del mismo tamaño y alineados. Un conjunto de bloques de tamaños distintos también puede reducirse mediante fusiones sucesivas; distinguir unión exacta, conjunto mínimo de CIDR y superred con sobrecobertura.
+- IPv6 no tiene broadcast. En `ipaddress`, interpretar `broadcast_address` como límite superior numérico del prefijo IPv6; explicar `hosts()` y sus casos /31, /32, /127 y /128 conforme a la documentación de la versión utilizada.
+- No enumerar ni materializar el conjunto de hosts de una /64. Validar prefijos con intervalos, enteros, contención e iteración acotada.
+- En IPAM, distinguir contenedores de asignaciones. La contención padre-hijo es válida; los conflictos de asignaciones se evalúan dentro de la misma familia y VRF o dominio de direccionamiento. La reutilización entre dominios aislados debe quedar documentada y revisarse al interconectarlos.
+- ULA: distinguir fc00::/7 del espacio de asignación local fd00::/8 y generar Global ID según RFC 4193; evitar prometer ausencia absoluta de colisiones.

@@ -2042,7 +2042,7 @@ El objetivo es **comprenderlo suficientemente bien como para investigar, adminis
 
 ## 60. Profundización operativa adicional (ampliación)
 
-Las ampliaciones del temario preservan las lecciones originales. En cada lección sobre herramientas externas se debe distinguir claramente el núcleo PostgreSQL de los componentes externos.
+Las ampliaciones preservan los títulos y la cobertura originales; su numeración puede cambiar para respetar las dependencias. En cada lección sobre herramientas externas se debe distinguir claramente el núcleo PostgreSQL de los componentes externos.
 
 ### Backups profesionales
 
@@ -2070,4 +2070,98 @@ Para cada tema, cuando aplique: objetivo verificable; prerequisitos y versión; 
 
 ## 62. Control de calidad del temario
 
-Mantener numeración `bloque.lección`, conservar todos los títulos originales, verificar continuidad, evitar repeticiones didácticas y exigir ejercicios de integración que combinen PostgreSQL, SQL administrativo, systemd, SELinux, firewalld, observabilidad, backup y recuperación. La documentación oficial de la versión objetivo prevalece en cualquier discrepancia.
+Mantener numeración `bloque.lección`, conservar la cobertura y los títulos originales; permitir reordenación y renumeración justificadas, verificar continuidad, evitar repeticiones didácticas y exigir ejercicios de integración que combinen PostgreSQL, SQL administrativo, systemd, SELinux, firewalld, observabilidad, backup y recuperación. La documentación oficial de la versión objetivo prevalece en cualquier discrepancia.
+
+
+## 63. Versión reproducible y matriz de compatibilidad
+
+La versión principal de esta revisión es PostgreSQL 18. Comparar con 16 y 17
+cuando cambien procedimientos o disponibilidad. No cambiar automáticamente de
+major durante la generación. Una nueva major requiere revisar el PATH.
+Registrar en cada laboratorio `SELECT version()`, `SHOW server_version_num`,
+versión de clientes, origen de paquetes, sistema operativo y extensiones.
+Seleccionar una minor mantenida de la major elegida y registrar su número exacto.
+Usar /docs/18/ como referencia principal; /docs/current/ sirve para descubrir
+cambios, no para alterar silenciosamente los procedimientos de esta edición.
+
+| Capacidad | PostgreSQL 16 | PostgreSQL 17 | PostgreSQL 18 |
+| --- | --- | --- | --- |
+| Incrementales nativos con pg_basebackup y pg_combinebackup | No | Sí | Sí |
+| MAINTAIN, pg_maintain y transaction_timeout | No | Sí | Sí |
+| I/O asíncrona con io_method y pg_aios | No | No | Sí |
+| OAuth nativo | No | No | Sí |
+| Checksums habilitados por defecto al ejecutar initdb | No | No | Sí |
+| pg_upgrade conserva estadísticas del optimizador | No | No | Sí, con límites que deben verificarse según origen |
+
+## 64. Progresión, SQL mínimo y laboratorios
+
+El bloque 0 proporciona un mapa conceptual. No exigir comprensión de los
+internals de MVCC, WAL o VACUUM antes de sus bloques específicos.
+El bloque 8 incorpora SQL mínimo para consultar catálogos: SELECT, filtros,
+NULL, joins, agregaciones, CTE y subconsultas. Aplicarlo siempre a tareas DBA.
+El bloque 14 integra esas competencias; los bloques posteriores profundizan
+los mecanismos sin repetir el mismo desarrollo completo.
+
+Los laboratorios integradores cierran cada bloque después de las ampliaciones.
+Si hay varias prácticas, la última integra sus resultados. Toda práctica debe
+especificar entorno, datos iniciales, privilegios, pasos, resultados esperados,
+evidencias, limpieza y criterios de aceptación verificables.
+Los títulos originales se conservan, pero se permite reordenar y renumerar.
+No utilizar identificadores de esta revisión para reanudar una generación de
+otra revisión sin comprobar antes los títulos correspondientes.
+
+## 65. Backups y recuperación: dependencias obligatorias
+
+Orden: backup lógico (34), físico nativo e incrementales (35), archivado WAL
+(36), PITR nativo (37), DR y herramientas externas (38).
+pgBackRest y Barman se desarrollan íntegramente en el bloque 38, después de
+esas bases. Son contenidos obligatorios de esta edición.
+Los incrementales nativos incluyen summarize_wal, summaries, manifiestos,
+retención de cadenas, pg_combinebackup y pruebas de restauración.
+No confundir los incrementales nativos con formatos propios de otras herramientas.
+Comprobar dependencias antes de eliminar copias y no sustituir una restauración
+de prueba por la mera verificación de un manifiesto.
+PITR físico recupera el cluster: para rescatar una tabla, restaurar en un cluster
+auxiliar aislado y extraerla después con herramientas lógicas.
+
+## 66. Cobertura moderna y observabilidad
+
+Enseñar explícitamente MAINTAIN y pg_maintain, transaction_timeout,
+pg_createsubscriber, OAuth, I/O asíncrona, io_method, pg_aios, skip scan,
+idle_replication_slot_timeout y cambios de checksums y pg_upgrade según versión.
+En OAuth distinguir proveedor de identidad, validación del token y rol local;
+no asumir que SSO concede privilegios ni que sustituye automáticamente TLS.
+Mantener SCRAM y GSSAPI como recorridos operativos completos.
+
+Distinguir pg_replication_slots (estado de slots físicos y lógicos) de
+pg_stat_replication_slots (estadísticas de slots lógicos).
+Incluir pg_stat_database_conflicts, track_io_timing y track_wal_io_timing,
+sus permisos, coste, snapshots, resets y limitaciones de interpretación.
+La conservación de estadísticas durante pg_upgrade no exime de revisar qué
+estadísticas se transfieren desde la versión origen ni de validar los planes.
+
+## 67. Hitos y aceptación del proyecto final
+
+Las tareas del bloque 81 forman siete hitos secuenciales, no 103 proyectos
+independientes. Cada hito entrega configuración versionada, procedimiento
+reproducible, evidencias y límites conocidos:
+
+1. Instalación: reconstruir y comprobar conectividad y configuración.
+2. Seguridad: verificar accesos permitidos y denegados con mínimo privilegio.
+3. Recovery nativo: restaurar full/incremental y alcanzar un objetivo PITR.
+4. Herramientas de backup: restaurar con pgBackRest y Barman y medir RPO/RTO.
+5. Replicación/HA: probar failover, fencing y reintegración sin doble escritor.
+6. Rendimiento: comparar baseline y cambios con workload y métricas iguales.
+7. Operación: automatización repetible, alertas accionables y game day documentado.
+
+La aceptación final exige reconstrucción en entorno limpio y cumplimiento de
+los RPO/RTO definidos por el alumno. Registrar desviaciones y decisiones.
+No declarar disponibilidad o ausencia de pérdida de datos sin evidencias.
+
+## 68. Integración con course-generator
+
+Entregar initial.txt, domain.md, bibliography.md y profile.yaml juntos.
+La ruta ../../config/pedagogy.md pertenece al repositorio del generador y no
+es un archivo incluido en este paquete. Resolverla desde la ubicación prevista
+en ese repositorio antes de ejecutar. La validación de sintaxis YAML no equivale
+a comprobar el esquema del generador ni su ejecución.

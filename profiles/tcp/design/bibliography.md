@@ -16,7 +16,7 @@ Cada referencia tiene un scope principal y puede apoyar otros scopes. Los scopes
 ### S03 — Subnetting y cálculo IPv4 (bloques 3–6)
 - Rene Molenaar — *How to Master Subnetting*. Principal: S03. Secundario: S04.
 - Paul Browning — *IP Subnetting: From Zero to Guru*. Principal: S03. Secundario: S04.
-- Todd Lammle — *Subnetting* (título facilitado; edición por verificar). Principal: S03. Secundario: S04.
+- Todd Lammle — *Subnetting*. Wiley/Sybex, octubre de 2017, e-book, ISBN 978-1-119-47276-6. [Ficha editorial](https://www.wiley.com/en-jp/subnetting-p-9781119472766). Principal: S03. Secundario: S04.
 
 ### S04 — CIDR, FLSM y VLSM (bloques 7–11)
 - Paul Browning — *IP Subnetting: From Zero to Guru* (referencia cruzada a S03).
@@ -34,6 +34,10 @@ Cada referencia tiene un scope principal y puede apoyar otros scopes. Los scopes
 - RFC 4291 — IP Version 6 Addressing Architecture.
 - RFC 5952 — A Recommendation for IPv6 Address Text Representation.
 - RFC 6164 — Using 127-Bit IPv6 Prefixes on Inter-Router Links.
+- [RFC 4193 — Unique Local IPv6 Unicast Addresses](https://www.rfc-editor.org/rfc/rfc4193.html): ULA y generación del Global ID.
+- [RFC 4861 — Neighbor Discovery for IP version 6](https://www.rfc-editor.org/rfc/rfc4861.html): RA, prefijos on-link y routers, con alcance limitado al direccionamiento.
+- [RFC 4862 — IPv6 Stateless Address Autoconfiguration](https://www.rfc-editor.org/rfc/rfc4862.html): SLAAC y DAD.
+- [RFC 5942 — IPv6 Subnet Model](https://www.rfc-editor.org/rfc/rfc5942.html): separar dirección, prefijo y alcance on-link.
 - RFC 8200 — Internet Protocol, Version 6 (IPv6) Specification.
 - IANA IPv6 Special-Purpose Address Registry.
 
@@ -45,15 +49,16 @@ Cada referencia tiene un scope principal y puede apoyar otros scopes. Los scopes
 
 ### S08 — Linux, verificación y troubleshooting (bloques 17, 19, 21)
 - Linux manual pages: `ip(8)`, `ip-address(8)`, `ip-route(8)`, `ip-neighbour(8)`.
-- NetworkManager y `nmcli`: documentación oficial.
+- [NetworkManager y nmcli — documentación oficial](https://networkmanager.dev/docs/api/latest/nmcli.html).
+- [ip-route(8)](https://man7.org/linux/man-pages/man8/ip-route.8.html): `get` resuelve la ruta al destino; no es una prueba matemática de pertenencia.
 - Kevin R. Fall; W. Richard Stevens — *TCP/IP Illustrated, Volume 1* (consulta contextual).
 
 ### S09 — Automatización e IPAM (bloques 18, 20–21)
-- Python Standard Library — `ipaddress` (documentación oficial).
+- [Python Standard Library — ipaddress](https://docs.python.org/3/library/ipaddress.html): constructores, `strict`, `hosts()`, casos límite y agregación. Consultar la versión de Python utilizada; limitar la iteración en IPv6.
 - Documentación oficial de las herramientas IPAM utilizadas en laboratorio (según implementación elegida).
 
 ### S10 — Normativa y registros (transversal)
-- RFC 791, 950, 1519, 1918, 3021, 4291, 4632, 5952, 6164, 6177, 6890, 8200.
+- RFC 791, 950, 1519, 1918, 3021, 4291, 4632, 5952, 6164, 6177, 6890, 8200; además 4193, 4861, 4862 y 5942 (véase S06).
 - IANA IPv4/IPv6 Special-Purpose Address Registries.
 
 ### Referencias complementarias fuera del scope central
@@ -66,3 +71,8 @@ Cada referencia tiene un scope principal y puede apoyar otros scopes. Los scopes
 3. Aplicar Molenaar, Browning y Lammle prioritariamente a subnetting IPv4; no presentarlos como bibliografía principal de diseño IPv6.
 4. Emplear RFC e IANA para casos especiales y vigencia de asignaciones.
 5. Separar claramente diseño de direccionamiento de la enseñanza integral de TCP, UDP, DNS, DHCP o routing.
+
+## Aplicación de las fuentes en los ejercicios
+- S05: demostrar fusión de bloques hermanos y normalización de conjuntos heterogéneos sin confundir resumen exacto con cobertura ampliada.
+- S06/S07/S08: contrastar pertenencia a prefijos con alcance on-link y selección de ruta; incorporar evidencias de RA cuando corresponda.
+- S09: verificar `hosts()`, contención y límites numéricos sin enumerar una /64; separar conflictos de asignación de contenedores jerárquicos válidos y reutilización en VRF independientes.
