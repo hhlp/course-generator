@@ -30,8 +30,8 @@ def validate_profiles(
     json_output: bool = False,
 ) -> int:
     profiles_root = root / "profiles"
-    paths = [target.resolve()] if target else sorted(
-        profiles_root.rglob("profile.yaml")
+    paths = (
+        [target.resolve()] if target else sorted(profiles_root.rglob("profile.yaml"))
     )
     results: list[dict[str, Any]] = []
     for path in paths:
@@ -52,36 +52,42 @@ def validate_profiles(
                 value = profile.data.get(key)
                 if value is not None and not isinstance(value, dict):
                     errors.append(f"{key} debe ser un mapa YAML")
-        except (ConfigError, OSError, UnicodeError, yaml.YAMLError,
-                ValueError) as exc:
+        except (ConfigError, OSError, UnicodeError, yaml.YAMLError, ValueError) as exc:
             errors.append(str(exc))
-        results.append({
-            "path": str(path),
-            "status": "FAIL" if errors else "PASS",
-            "items": items,
-            "errors": errors,
-            "warnings": warnings,
-        })
+        results.append(
+            {
+                "path": str(path),
+                "status": "FAIL" if errors else "PASS",
+                "items": items,
+                "errors": errors,
+                "warnings": warnings,
+            }
+        )
     if not paths:
-        results.append({
-            "path": str(profiles_root),
-            "status": "FAIL",
-            "items": [],
-            "errors": ["No se encontraron profile.yaml"],
-            "warnings": [],
-        })
+        results.append(
+            {
+                "path": str(profiles_root),
+                "status": "FAIL",
+                "items": [],
+                "errors": ["No se encontraron profile.yaml"],
+                "warnings": [],
+            }
+        )
     if json_output:
         print(json.dumps(results, ensure_ascii=False, indent=2))
     else:
         for result in results:
-            print(f"[{result['status']}] {result['path']} "
-                  f"({len(result['items'])} rutas de claves)")
+            print(
+                f"[{result['status']}] {result['path']} "
+                f"({len(result['items'])} rutas de claves)"
+            )
             for error in result["errors"]:
                 print(f"  ERROR: {error}")
             if show_items:
                 for item in result["items"]:
                     print(f"  {item}")
         passed = sum(r["status"] == "PASS" for r in results)
-        print(f"Perfiles: {len(results)} | PASS: {passed} | "
-              f"FAIL: {len(results) - passed}")
+        print(
+            f"Perfiles: {len(results)} | PASS: {passed} | FAIL: {len(results) - passed}"
+        )
     return int(any(r["status"] == "FAIL" for r in results))

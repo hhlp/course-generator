@@ -31,19 +31,24 @@ def build_parser() -> argparse.ArgumentParser:
         help="Nombre del perfil definido en profiles/<nombre>/",
     )
     p.add_argument(
-        "--validate-profiles", action="store_true",
+        "--validate-profiles",
+        action="store_true",
         help="Valida todos los profiles sin utilizar la API",
     )
     p.add_argument(
-        "--validate-profile", type=Path, metavar="FILE",
+        "--validate-profile",
+        type=Path,
+        metavar="FILE",
         help="Valida un profile.yaml concreto sin utilizar la API",
     )
     p.add_argument(
-        "--profile-items", action="store_true",
+        "--profile-items",
+        action="store_true",
         help="Muestra todas las rutas de claves encontradas",
     )
     p.add_argument(
-        "--profiles-json", action="store_true",
+        "--profiles-json",
+        action="store_true",
         help="Emite el informe de perfiles en JSON",
     )
     p.add_argument("--lesson", help="Generar sólo una lección, p. ej. 1.7 o 1.7.2")
@@ -127,17 +132,17 @@ def _main() -> None:
     root = (args.root or project_root()).resolve()
     if args.validate_profiles or args.validate_profile is not None:
         if args.validate_profiles and args.validate_profile is not None:
-            raise SystemExit(
-                "Usa --validate-profiles o --validate-profile, no ambos."
-            )
+            raise SystemExit("Usa --validate-profiles o --validate-profile, no ambos.")
         from .profile_validation import validate_profiles
 
-        raise SystemExit(validate_profiles(
-            root,
-            args.validate_profile,
-            show_items=args.profile_items,
-            json_output=args.profiles_json,
-        ))
+        raise SystemExit(
+            validate_profiles(
+                root,
+                args.validate_profile,
+                show_items=args.profile_items,
+                json_output=args.profiles_json,
+            )
+        )
 
     if args.path is None or not args.profile:
         raise SystemExit(
