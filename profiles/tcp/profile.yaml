@@ -10,6 +10,12 @@ course:
       - Fedora
       - RHEL
   mode: deep
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 objectives:
   - >-
     Comprender los modelos OSI y TCP/IP y la función de cada capa.

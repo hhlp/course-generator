@@ -11,10 +11,12 @@ course:
     generador exige otro esquema.
   primary_environment: Exclusivamente MongoDB Atlas con datasets oficiales;
     herramientas cliente en el equipo del alumno
+
 files:
-  pedagogy: ../../config/pedagogy.md
+  pedagogy: ../../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 tools:
   - mongosh
   - MongoDB Compass

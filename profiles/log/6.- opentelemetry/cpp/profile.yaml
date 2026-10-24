@@ -10,10 +10,12 @@ course:
     - RHEL
     - Linux
   mode: deep
+
 files:
-  pedagogy: ../../config/pedagogy.md
+  pedagogy: ../../../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 pedagogy:
   required_opening: 🎯 OBJETIVO
   required_closing: 🧠 QUÉ DEBES RECORDAR

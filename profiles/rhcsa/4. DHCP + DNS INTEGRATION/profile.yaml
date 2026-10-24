@@ -12,6 +12,11 @@ course:
       - RHEL
       - Linux
 
+files:
+  pedagogy: ../../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 scope:
   include:
     - Kea DHCPv4

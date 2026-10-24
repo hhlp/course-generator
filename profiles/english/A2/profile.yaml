@@ -15,7 +15,7 @@ course:
   english_variety: American English; labelled British alternatives accepted
 
 files:
-  pedagogy: ../../config/pedagogy.md
+  pedagogy: ../../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 

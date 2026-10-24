@@ -14,7 +14,7 @@ course:
 
 files:
   # Preserve until the repository loader and directory layout are verified.
-  pedagogy: ../../config/pedagogy.md
+  pedagogy: ../../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 

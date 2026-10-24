@@ -14,6 +14,12 @@ course:
   specification_baseline: ECMAScript 2025 / ECMA-262, 16th edition
   modern_extensions: Verificar estado normativo y soporte por versión
     del runtime
+
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+
 pedagogy:
   style: profundo, práctico, progresivo y orientado a comprensión real
     del lenguaje y runtime

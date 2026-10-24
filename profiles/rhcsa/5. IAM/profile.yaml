@@ -28,7 +28,7 @@ course:
     - auditd
 
 files:
-  pedagogy: ../../config/pedagogy.md
+  pedagogy: ../../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
 

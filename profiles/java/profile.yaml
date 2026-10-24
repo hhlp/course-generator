@@ -10,10 +10,12 @@ course:
     edition: 14th
     author: Cay S. Horstmann
   mode: deep
+
 files:
   pedagogy: ../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
+
 learner:
   assumed_knowledge:
     - Ningún conocimiento previo de Java
