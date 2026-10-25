@@ -146,7 +146,138 @@ de los objetivos evaluados.
 
 ## Dependencia externa de pedagogía
 
-El perfil conserva `../../config/pedagogy.md`. Su validez depende del directorio
+El perfil conserva `../../../config/pedagogy.md`. Su validez depende del directorio
 real del perfil y de cómo resuelva rutas el cargador de course-generator.
 Antes de ejecutar, comprobar la resolución con el repositorio real; estos cuatro
 archivos no incluyen el cargador ni config/pedagogy.md para verificarla.
+
+## Cobertura explícita de conectores B1–B2
+
+Inventario pedagógico amplio, no lista oficial exhaustiva del CEFR. Las
+etiquetas B1/B2 son orientativas y dependen del uso y la estructura.
+
+Distinguir coordinator, subordinator, linking adverb, prepositional expression
+y discourse marker; no llamar conjunción a toda expresión.
+
+En cada familia explicar significado, complemento, posición, puntuación,
+registro, alcance, restricciones, errores y transformaciones originales.
+
+Admitir más de una función por expresión. Separar los sentidos de as, since,
+while, so, still, yet, besides, otherwise y apart from.
+
+Enseñar paralelismo en correlativas y concordancia con ejemplos claros. No
+convertir not only inicial con inversión en objetivo central B2.
+
+Distinguir hecho y condición en even though/even if; precaución y condición en
+in case/if; finalidad y resultado en so that/so.
+
+Distinguir oposición de perspectivas y refutación: on the other hand frente a
+on the contrary. Actually no equivale a actualmente.
+
+Contrastar although + clause con despite + noun/-ing y con despite the fact
+that + clause; because frente a because of.
+
+Explicar la unión entre oraciones independientes con however/therefore: punto
+o punto y coma; evitar comma splices en los modelos escritos.
+
+En cláusulas temporales futuras enseñar presente simple o perfecto según el
+significado; distinguirlas de preguntas indirectas con will.
+
+Separar so ... that y such ... that de finalidad; diferenciar función for +
+-ing e intención to + infinitive, sin generalizar for a toda finalidad.
+
+Los marcadores discursivos se analizan por posición, alcance y relación entre
+enunciados, sin crear bloques de conversación, escritura o léxico.
+
+Las variantes formales menos frecuentes se trabajan como ampliación B2 y
+reconocimiento; no son requisitos automáticos del checkpoint B1.
+
+Bloque 13: finalidad; 22: fundamentos; 29: condiciones; 37: contraste e
+integración; 41: diagnóstico final. Evitar repetir el mismo objetivo.
+
+### Inventario de cobertura por función
+
+Una expresión puede aparecer en varias funciones. La presencia de una
+forma básica exige nueva profundidad gramatical, no repetición de A1–A2.
+
+**addition**
+
+and; also; too; as well; as well as; in addition; in addition to; besides;
+moreover; furthermore; what's more; not only ... but also ...; both ... and
+....
+
+**contrast**
+
+but; however; whereas; while; unlike; in contrast; in contrast to/with; on the
+one hand ... on the other hand ...; on the other hand; instead; instead of;
+rather than; on the contrary.
+
+**concession**
+
+although; though; even though; despite; in spite of; despite the fact that; in
+spite of the fact that; nevertheless; nonetheless; even so; still; yet; all
+the same; final though.
+
+**reason**
+
+because; because of; since; as; now that; seeing that; seeing as; due to;
+owing to; thanks to; given that.
+
+**result**
+
+so; therefore; as a result; as a result of; consequently; for this/that
+reason; that's why; otherwise; or else; so + adjective/adverb + that; such +
+noun phrase + that.
+
+**purpose**
+
+to + infinitive; in order to; so as to; in order not to; so as not to; so
+that; in order that; for + noun/-ing.
+
+**condition_and_precaution**
+
+if; unless; as long as; so long as; provided/providing (that); on condition
+that; only if; even if; whether ... or ...; whether or not; in case; in case
+of; suppose/supposing (that); what if ...?.
+
+**time**
+
+when; while; as; before; after; until; till; since; as soon as; once; by the
+time; whenever; every time (that); the moment (that); meanwhile; in the
+meantime; at the same time.
+
+**sequence**
+
+first/firstly; first of all; to begin/start with; second/secondly; next; then;
+after that; afterwards; before that; finally/lastly; in the end; eventually.
+
+**exemplification**
+
+for example; for instance; such as; like; including; especially; particularly;
+in particular; specifically; namely.
+
+**comparison_and_manner**
+
+similarly; likewise; in the same way; like + noun phrase; as + clause; as if;
+as though; just as; as ... as ...; not as/so ... as ...; than; the more ...,
+the more ....
+
+**alternatives_and_exclusion**
+
+or; either ... or ...; neither ... nor ...; whether ... or ...; alternatively;
+apart from; except; except for; except that; otherwise.
+
+**reformulation**
+
+in other words; that is; that is to say; I mean; what I mean is; or rather;
+actually; in fact; as a matter of fact.
+
+**summary**
+
+in short; in brief; to sum up; in summary; in conclusion; to conclude;
+overall; all in all; on balance.
+
+**discourse_markers**
+
+well; so; anyway; by the way; actually; after all; to be honest; I suppose; I
+guess; as for; regarding; concerning.

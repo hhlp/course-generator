@@ -282,7 +282,7 @@ level_specific:
 
 revision_guidance:
   block_count: 19
-  lesson_count: 398
+  lesson_count: 425
   preserve_original_lesson_objectives: true
   depth_boundaries:
     distinguish_cefr_proficiency_from_syntactic_theory: true
@@ -313,3 +313,348 @@ revision_guidance:
   common_errors:
     require_section_in_every_lesson: true
     explain_error_and_correction: true
+
+advanced_linking:
+  scope: grammatical form, meaning, constraints and choice
+  inventory_status: open teaching inventory; not an official CEFR
+    list
+  exclusive_c1_c2_labels: false
+  preserve_original_lesson_objectives: true
+  independent_rhetoric_or_skills_lessons: false
+  terminology_rule: Distinguish conjunctions, linking adjuncts, prepositions
+    and clause constructions; identify framework-dependent analyses.
+  required_analysis:
+    - 'complement type: finite clause, noun phrase or non-finite clause'
+    - coordination vs subordination vs supplementary linking
+    - position, mobility, attachment and semantic scope
+    - clause boundaries and punctuation; diagnose comma splices
+    - factual concession vs hypothetical concession
+    - precaution vs condition; purpose vs result
+    - correlative parallelism, agreement and ellipsis
+    - fronting and triggers or absence of inversion
+    - reduced-clause subjects and dangling supplements
+    - register and variety without equating rarity with C2
+    - multifunctionality and non-interchangeable alternatives
+  teaching_rule: Use inventory items as grammatical contrasts, not
+    isolated vocabulary targets. Group compatible forms; distinguish
+    individual restrictions and meanings. Existing basic items require
+    new analytical depth.
+  marker_boundary: Conversational and summarising markers are examples
+    for syntax, attachment, scope and inference only; do not generate
+    conversation, composition or rhetoric training.
+  mastery_lessons:
+    - '18.33'
+    - '18.34'
+    - '18.35'
+    - '18.36'
+  families:
+    addition:
+      lesson_refs: '10.22'
+      forms:
+        - furthermore
+        - moreover
+        - in addition
+        - additionally
+        - besides
+        - what is more
+        - on top of that
+        - over and above that
+        - not to mention
+        - to say nothing of
+        - indeed
+        - in fact
+        - as well as
+    contrast:
+      lesson_refs: '10.23'
+      forms:
+        - however
+        - nevertheless
+        - nonetheless
+        - yet
+        - still
+        - even so
+        - all the same
+        - that said
+        - having said that
+        - then again
+        - on the other hand
+        - by contrast
+        - in contrast
+        - conversely
+        - on the contrary
+        - whereas
+        - while
+        - whilst
+    concession:
+      lesson_refs: 13.19-13.21
+      forms:
+        - although
+        - though
+        - even though
+        - albeit
+        - even if
+        - despite
+        - in spite of
+        - notwithstanding
+        - despite the fact that
+        - for all
+        - much as
+        - adjective/adverb + as/though
+        - however + adjective/adverb
+        - no matter how/what/who
+        - whatever
+        - whoever
+        - whichever
+        - whether...or
+        - whether or not
+        - be that as it may
+    cause_and_grounds:
+      lesson_refs: 12.13; 13.22
+      forms:
+        - because
+        - since
+        - as
+        - seeing that
+        - seeing as
+        - given that
+        - considering that
+        - now that
+        - in that
+        - insofar as
+        - in so far as
+        - on the grounds that
+        - for
+        - because of
+        - owing to
+        - due to
+        - on account of
+        - in view of
+        - by virtue of
+        - thanks to
+    result_and_inference:
+      lesson_refs: 10.24; 13.24
+      forms:
+        - therefore
+        - thus
+        - hence
+        - consequently
+        - as a result
+        - as a consequence
+        - accordingly
+        - for this reason
+        - thereby
+        - so...that
+        - such...that
+        - such that
+        - to the point that
+        - to the point where
+        - with the result that
+        - it follows that
+        - otherwise
+    purpose:
+      lesson_refs: 12.14; 13.23
+      forms:
+        - to + infinitive
+        - in order to
+        - so as to
+        - in order not to
+        - so as not to
+        - so that
+        - in order that
+        - with a view to
+        - with the aim of
+        - for the purpose of
+        - lest
+    condition:
+      lesson_refs: 14.23-14.26
+      forms:
+        - if
+        - unless
+        - provided that
+        - providing that
+        - as long as
+        - so long as
+        - on condition that
+        - only if
+        - if and only if
+        - assuming that
+        - supposing that
+        - suppose
+        - on the assumption that
+        - in the event that
+        - in case
+        - in case of
+        - failing that
+        - otherwise
+        - or else
+        - should/were/had inversion
+    exception_and_reservation:
+      lesson_refs: 12.15; 14.25
+      forms:
+        - except that
+        - except for
+        - apart from
+        - aside from
+        - other than
+        - save
+        - save for
+        - barring
+        - but for
+        - short of
+        - with the exception of
+        - subject to
+        - with the proviso that
+    time:
+      lesson_refs: 13.25; 16.13-16.14
+      forms:
+        - once
+        - until
+        - till
+        - by the time
+        - as soon as
+        - the moment that
+        - the minute that
+        - the instant that
+        - immediately that
+        - directly that
+        - whenever
+        - meanwhile
+        - in the meantime
+        - subsequently
+        - thereafter
+        - beforehand
+        - henceforth
+        - from then on
+        - pending
+        - on + -ing
+        - upon + -ing
+        - no sooner...than
+        - hardly...when
+        - scarcely...when
+    comparison_and_alternatives:
+      lesson_refs: 13.26-13.27; 11.7
+      forms:
+        - similarly
+        - likewise
+        - in the same way
+        - by the same token
+        - correspondingly
+        - just as...so
+        - as with
+        - as opposed to
+        - rather than
+        - instead of
+        - alternatively
+        - either...or
+        - neither...nor
+        - both...and
+        - not only...but also
+        - let alone
+        - the more...the less
+    manner_and_appearance:
+      lesson_refs: 13.12; 14.20; 16.33
+      forms:
+        - as
+        - as if
+        - as though
+        - in the way that
+        - the way
+        - however + clause
+        - as it were
+    exemplification:
+      lesson_refs: '16.32'
+      forms:
+        - for example
+        - for instance
+        - such as
+        - including
+        - in particular
+        - particularly
+        - notably
+        - specifically
+        - to illustrate
+        - by way of illustration
+        - a case in point is
+        - namely
+    reformulation_and_correction:
+      lesson_refs: '16.32'
+      forms:
+        - in other words
+        - to put it another way
+        - that is
+        - that is to say
+        - more precisely
+        - more accurately
+        - or rather
+        - rather
+        - to be precise
+        - strictly speaking
+        - in effect
+        - essentially
+        - in essence
+        - if anything
+    topic_and_limitation:
+      lesson_refs: 16.32; 13.22
+      forms:
+        - regarding
+        - concerning
+        - as regards
+        - with regard to
+        - with respect to
+        - in respect of
+        - as for
+        - when it comes to
+        - in terms of
+        - insofar as...is concerned
+        - to the extent that
+        - in this respect
+        - in that regard
+        - incidentally
+        - by the way
+        - turning to
+        - leaving aside
+    concession_balance_and_summary:
+      lesson_refs: '16.33'
+      forms:
+        - admittedly
+        - granted
+        - granted that
+        - conceding that
+        - to be sure
+        - of course
+        - even granting that
+        - all things considered
+        - on balance
+        - by and large
+        - on the whole
+        - in any case
+        - at any rate
+        - either way
+        - ultimately
+        - in conclusion
+        - to conclude
+        - to sum up
+        - in summary
+        - in short
+        - in brief
+    conversational_markers:
+      lesson_refs: '16.33'
+      forms:
+        - mind you
+        - for that matter
+        - come to think of it
+        - speaking of which
+        - anyway
+        - anyhow
+        - after all
+        - at least
+        - better still
+        - worse still
+        - not that
+        - if not
+  quality_checks:
+    - Explain why a proposed replacement changes syntax or meaning.
+    - Verify natural examples, punctuation and subject reference.
+    - Do not force optional that or omit required complements.
+    - Do not treat all discourse markers as conjunctions.
+    - Final project must integrate linking contrasts with prior grammar.

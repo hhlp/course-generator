@@ -240,7 +240,11 @@
 10.18 quite, rather, fairly and pretty
 10.19 Intensifiers and maximisers
 10.20 already, still and yet
-10.21 C1→C2 adjectives and adverbs checkpoint
+10.21 Linking adjuncts vs conjunctions: clause boundaries and mobility
+10.22 Additive and reinforcing adjuncts: moreover, indeed and besides
+10.23 Contrastive and corrective adjuncts: however, conversely and rather
+10.24 Result and inference adjuncts: therefore, hence and thereby
+10.25 C1→C2 adjectives and adverbs checkpoint
 
 11. COMPARISON
 11.1 Comparative adjectives and adverbs: advanced patterns
@@ -267,7 +271,11 @@
 12.9 Prepositional phrases
 12.10 Preposition placement and stranding
 12.11 Preposition fronting
-12.12 C1→C2 prepositions checkpoint
+12.12 Concessive prepositions: notwithstanding, for all and despite
+12.13 Cause and grounds: owing to, in view of and by virtue of
+12.14 Purpose: with a view to, with the aim of and infinitival alternatives
+12.15 Exception and restriction: save for, barring, short of and subject to
+12.16 C1→C2 prepositions checkpoint
 
 13. CONJUNCTIONS AND ADVERBIAL CLAUSES
 13.1 Coordination and subordination
@@ -288,7 +296,17 @@
 13.16 Shared constituents and coordination ellipsis
 13.17 Coordination, constituency and scope
 13.18 Coordination ambiguity
-13.19 C1→C2 conjunctions and adverbial clauses checkpoint
+13.19 Concessive supplements with albeit: finite and reduced patterns
+13.20 Concessive fronting: much as, adjective + though and however + degree
+13.21 Unconditional clauses: whatever, no matter and whether alternatives
+13.22 Grounds and limitation: in that, given that and insofar as
+13.23 Purpose with lest: subjunctive, should and register constraints
+13.24 Result clauses: so/such, such that and with the result that
+13.25 Temporal links: by the time, the moment and upon + -ing
+13.26 Correlative links: parallelism, scope, agreement and ellipsis
+13.27 Comparison and alternatives: just as...so, rather than and let alone
+13.28 Linking constructions: complement types and reduced-subject control
+13.29 C1→C2 conjunctions and adverbial clauses checkpoint
 
 14. CONDITIONALS AND HYPOTHETICAL MEANING
 14.1 Conditional system: advanced review
@@ -313,7 +331,11 @@
 14.20 as if and as though
 14.21 Unreal past and hypothetical distance
 14.22 Counterfactual meaning
-14.23 C1→C2 conditionals and hypothetical meaning checkpoint
+14.23 In case vs if: precaution, contingency and tense selection
+14.24 Conditional grounds: assuming, in the event that and only if
+14.25 But for and failing that: counterfactuality and contingency
+14.26 Conditions vs concessions: even if, even though and unless
+14.27 C1→C2 conditionals and hypothetical meaning checkpoint
 
 15. NEGATION, POLARITY AND SCOPE
 15.1 Negation: advanced grammatical overview
@@ -365,7 +387,10 @@
 16.28 Contrastive focus
 16.29 Focus, scope and interpretation
 16.30 Information structure and grammatical alternatives
-16.31 C1→C2 organising information checkpoint
+16.31 Linking adjunct placement: punctuation, attachment and scope
+16.32 Reformulation, exemplification and topic adjuncts: grammatical contrasts
+16.33 Concessive and conversational markers: syntax, inference and register
+16.34 C1→C2 organising information checkpoint
 
 17. ADVANCED CLAUSE AND SENTENCE ARCHITECTURE
 17.1 Simple, compound and complex clause structures
@@ -431,5 +456,7 @@
 18.30 Standard, formal, informal and register-sensitive grammatical variation
 18.31 Corpus-informed grammatical choice
 18.32 Multi-analysis problems: competing parses and interpretations
-18.33 C1→C2 comprehensive grammar checkpoint
-18.34 Final C1→C2 grammar mastery project
+18.33 Advanced linking integration: syntax, scope, register and punctuation
+18.34 Linking error diagnosis: false equivalence, attachment and inference
+18.35 C1→C2 comprehensive grammar checkpoint
+18.36 Final C1→C2 grammar mastery project

@@ -138,3 +138,29 @@ could be read more broadly. No optional topic is a compulsory checkpoint target.
 American English is the default; valid labelled British alternatives are accepted.
 Exact edition/unit/page references for later-level books require verification before
 use. Those books are progression references, not required reading for this A2 course.
+
+
+## Connector inventory: A1 foundations and controlled A2 expansion
+
+Follow the inventory, construction limits and core/optional distinction in
+domain.md and profile.yaml. Block 26 adds explicit connector lessons;
+Blocks 29 and 30 assess taught core patterns. Preserve relative clauses
+as a separate grammatical topic.
+
+Consult Cambridge English Grammar Today for grammatical categories,
+coordination/subordination, linking-adverb placement and punctuation:
+https://dictionary.cambridge.org/grammar/british-grammar/subordinating-conjunctions
+
+Topic index for targeted reference consultation:
+https://dictionary.cambridge.org/uk/grammar/british-grammar/linking-words
+
+These are descriptive references, not evidence of universal A1/A2 word
+assignments. Select only the elementary constructions in this curriculum.
+Use independent explanations and original examples; do not copy exercises
+or invent unit/page references for Basic Grammar in Use.
+
+Explicit coverage includes addition, contrast, alternatives, cause/result,
+sequence, time, condition, purpose, exemplification and optional simple
+reformulation. Consult the existing reference for also/too/as well and
+because/because of when generating those contrasts. However, in order to
+and I mean are guided optional extensions rather than compulsory mastery.

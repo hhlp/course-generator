@@ -313,3 +313,96 @@ British variants are accepted and labelled when relevant; do not mark them incor
 The reference spans A1–B1, so select its content; inclusion in the book does not make
 a construction an obligatory A2 target. Use short natural examples and label British
 usage when contrasting Present Perfect/Past Simple or have got patterns.
+
+
+## Connectors: explicit A1 foundations and A2 development
+
+Keep this an A2 course. A1 foundations are prerequisites to diagnose and
+consolidate, not a new independent A1 course. This is the course's explicit
+working inventory, not a universal or exhaustive CEFR-certified word list.
+A connector's level depends on its construction and use. Restrict all work
+to short, natural grammatical examples. Develop discourse nuance later.
+
+| Function | A1 foundations to review | Controlled A2 development |
+| --- | --- | --- |
+| Addition | and; also; too | as well; placement contrasts |
+| Contrast | but | although; however as optional guided extension |
+| Alternative | or | either ... or with parallel words or phrases |
+| Cause | because + clause | because of + noun phrase |
+| Result | so + result clause | because vs so; no double linking |
+| Sequence | first; then; next; finally | first of all; after that; before that |
+| Time | before; after in simple patterns | when; while; until/till; as soon as |
+| Condition | prerequisite recognition where known | if; unless in simple conditions |
+| Purpose | to + base form | in order to as optional guided extension |
+| Example | for example | such as + noun phrase |
+| Reformulation | none required | I mean: optional recognition only |
+
+Preserve the existing lessons on unless, Zero/First Conditional and future
+forms in time clauses. Teach unless as an if-not relation only in transparent
+contexts; do not promise interchangeable wording in every conditional.
+Use while for simultaneous events here; defer contrastive discourse uses.
+Who, which and that remain relative words in their own lessons, not
+interchangeable discourse connectors.
+
+### Grammar and placement
+
+Distinguish coordinating/subordinating conjunctions, linking adverbs,
+prepositional expressions and infinitival purpose clauses. A functional
+label such as connector does not make all these items conjunctions.
+
+- Also normally goes before a main lexical verb, after main-verb be,
+  or after the first auxiliary/modal. Too and as well normally go at the end
+  in the controlled additive patterns taught here. Defer detailed scope.
+- Because takes a clause; because of takes a noun phrase in this course.
+  Before/after can take a clause or a noun phrase; after that/before that
+  use that as a pronoun referring to an event, not as a clause introducer.
+- Contrast two independent clauses with but; although introduces a
+  subordinate clause. Teach However, at the start of a separate sentence
+  in the optional expansion; do not introduce semicolon rules as a target.
+- Use a comma after an initial subordinate clause in controlled examples.
+  Teach a comma before and/but/or/so joining independent clauses in the
+  American English examples. Do not insert one automatically between
+  coordinated words, phrases or verbs sharing a subject.
+- Do not join independent sentences using only a comma plus however.
+  Avoid double conjunctions in *Because it rained, so we stayed home and
+  *Although it rained, but we went out. Teach each correct alternative.
+- To/in order to express purpose with a base-form verb and a shared
+  understood subject in the selected examples; because expresses reason.
+- For example can introduce an example sentence; such as introduces
+  examples within a noun phrase. Teach function and syntax together.
+- Use present forms for future reference after if, when, after and
+  as soon as in the patterns already taught; contrast main-clause will.
+
+### Original controlled examples and diagnostic practice
+
+1. Addition: She also works here. She is also a student.
+   She can also drive. She works here too/as well.
+2. Cause: We stayed home because it rained.
+   We stayed home because of the rain.
+3. Result: It rained, so we stayed home.
+   Do not assess a transformation without preserving cause and result.
+4. Contrast: It was cold, but we went out.
+   Although it was cold, we went out.
+   Optional: It was cold. However, we went out.
+5. Time: After lunch, we walked home. After we ate, we walked home.
+   We ate. After that, we walked home.
+6. Future time: When she arrives, we will eat.
+7. Purpose: I went to the store to buy milk.
+   Optional: I went to the store in order to buy milk.
+8. Examples: I like fruit, such as apples and pears.
+   I like fruit. For example, I eat apples every day.
+9. Alternatives: You can have either tea or coffee.
+10. Optional reformulation: It is cheap. I mean, it costs only two dollars.
+
+Require original selection, construction, classification, reordering,
+meaning-preserving transformation where possible, and error correction.
+Every exercise needs a key; diagnostic/contrast tasks need a brief reason.
+Accept contextually valid alternatives. Correct *because the rain to
+because of the rain or because it rained, explaining the complement type.
+Correct *She also is tired to the neutral teaching pattern She is also tired;
+explain that other placement can be grammatical with a different emphasis.
+
+Integrate taught core connectors in 29.17-29.18 and 30.41-30.42.
+However, in order to and I mean are optional guided extensions, excluded
+from compulsory core checkpoint scores. Existing optional-content policy
+applies. Do not infer advanced discourse or speaking/writing objectives.

@@ -8,21 +8,19 @@ course:
     to: B2
     framework: CEFR
   scope: grammar-only
-  primary_reference: English Grammar in Use, Fifth Edition — Raymond Murphy
+  primary_reference: English Grammar in Use, Fifth Edition — Raymond
+    Murphy
   independent_course: true
   block_start: 0
-
 files:
-  # Preserve until the repository loader and directory layout are verified.
   pedagogy: ../../../config/pedagogy.md
   domain: domain.md
   bibliography: bibliography.md
-
 objective:
-  primary: Consolidar y ampliar la gramática inglesa desde B1 hasta B2 mediante
-      un estudio progresivo y contrastivo de forma, significado, uso,
-      restricciones, transformaciones y relaciones entre estructuras
-      gramaticales.
+  primary: Consolidar y ampliar la gramática inglesa desde B1
+    hasta B2 mediante un estudio progresivo y contrastivo de forma,
+    significado, uso, restricciones, transformaciones y relaciones
+    entre estructuras gramaticales.
 curriculum:
   grammar_required: true
   independent_strands:
@@ -34,9 +32,9 @@ curriculum:
     speaking: false
     integrated_skills: false
   incidental_context_allowed: true
-  incidental_context_rule: El vocabulario y las oraciones contextuales pueden
-           utilizarse para demostrar gramática, pero nunca deben convertirse en
-           objetivos independientes de la lección.
+  incidental_context_rule: El vocabulario y las oraciones contextuales
+    pueden utilizarse para demostrar gramática, pero nunca deben
+    convertirse en objetivos independientes de la lección.
 level_model:
   type: continuum
   artificial_b1_b2_split: false
@@ -65,8 +63,8 @@ level_model:
     C2: mastery, nuance and grammatical analysis
   avoid_repetition_without_new_depth: true
 pedagogy:
-  style: profundo, práctico, progresivo, contrastivo y orientado al dominio
-      gramatical
+  style: profundo, práctico, progresivo, contrastivo y orientado
+    al dominio gramatical
   explanation_language: Spanish
   grammar_terminology: English
   examples_language: English
@@ -98,8 +96,8 @@ lesson_structure:
   reading:
     required: true
     heading: 📚 LECTURA
-    purpose: referencia bibliográfica gramatical; no actividad de
-        comprensión lectora
+    purpose: referencia bibliográfica gramatical; no actividad
+      de comprensión lectora
     categories:
       - principal
       - supplementary
@@ -111,7 +109,8 @@ lesson_structure:
       - Explicar la estructura gramatical con precisión.
       - Distinguir forma, significado y uso.
       - Incluir afirmativa, negativa e interrogativa cuando corresponda.
-      - Explicar auxiliares, orden y contracciones cuando sean relevantes.
+      - Explicar auxiliares, orden y contracciones cuando sean
+        relevantes.
       - Comparar estructuras que suelen confundirse.
       - Incluir excepciones y restricciones relevantes al nivel.
   examples:
@@ -121,12 +120,13 @@ lesson_structure:
       - Usar ejemplos naturales en inglés.
       - Aumentar progresivamente la dificultad.
       - Incluir contrastes mínimos cuando sean útiles.
-      - Incluir análisis o transformación cuando ayude a entender la regla.
+      - Incluir análisis o transformación cuando ayude a entender
+        la regla.
   practice:
     required: true
     heading: 🧪 Laboratorio/ejemplos
-    purpose: práctica gramatical, transformaciones, contrastes y análisis de
-        forma, significado y uso
+    purpose: práctica gramatical, transformaciones, contrastes
+      y análisis de forma, significado y uso
   common_errors:
     required: true
     heading: ⚠️ Errores frecuentes
@@ -138,9 +138,10 @@ lesson_structure:
     heading: 🔬 ANÁLISIS GRAMATICAL
     use_when:
       - sea útil identificar constituyentes y funciones
-      - una transformación requiera explicar relaciones entre cláusulas
-      - sea necesario justificar orden, complemento, adjunto o elección
-        estructural
+      - una transformación requiera explicar relaciones entre
+        cláusulas
+      - sea necesario justificar orden, complemento, adjunto o
+        elección estructural
   remember:
     required: true
     position: last
@@ -194,22 +195,24 @@ references:
   supplementary:
     - author: Michael Swan
       title: Practical English Usage
-      role: B1-B2 usage, contrast, exceptions and common learner problems
+      role: B1-B2 usage, contrast, exceptions and common learner
+        problems
   reserved_for_c1_c2:
     - author: Ronald Carter; Michael McCarthy
       title: Cambridge Grammar of English
-      role: advanced descriptive grammar reserved for the C1-C2 path
+      role: advanced descriptive grammar reserved for the C1-C2
+        path
     - author: Rodney Huddleston; Geoffrey K. Pullum
       title: The Cambridge Grammar of the English Language
-      role: advanced formal/descriptive reference reserved for C1-C2
-          or expert analysis
+      role: advanced formal/descriptive reference reserved for
+        C1-C2 or expert analysis
   bibliography_policy:
     course_sources:
       - principal
       - supplementary
     web_reference_sites_as_course_bibliography: false
     rule: Cambridge Dictionary Grammar and British Council LearnEnglish
-        Grammar are not course bibliography sources.
+      Grammar are not course bibliography sources.
 generation:
   lesson_depth: high
   standalone_lessons: true
@@ -221,10 +224,10 @@ generation:
     - B1 grammar
     - B2 grammar
     - Final B1 → B2 integration
-  lesson_depth_rule: 'Profundidad alta dentro del nivel B1-B2: explicar forma,
-      significado, uso, contraste, restricciones, excepciones relevantes,
-      transformaciones y análisis estructural, sin convertir la lección en
-      gramática avanzada C1-C2.'
+  lesson_depth_rule: 'Profundidad alta dentro del nivel B1-B2:
+    explicar forma, significado, uso, contraste, restricciones,
+    excepciones relevantes, transformaciones y análisis estructural,
+    sin convertir la lección en gramática avanzada C1-C2.'
   respect_c1_c2_boundary: true
 quality_checks:
   require_objective_first: true
@@ -243,12 +246,13 @@ level_specific:
   boundaries:
     from: B1
     to: B2
-    rule: Consolidar estructuras introducidas en A2 solo cuando exista nueva
-        profundidad, contraste, restricción, excepción o integración propia
-        de B1-B2. En B2 se permite análisis de word, phrase, clause, sentence,
-        constituent, head, modifier, complement, adjunct y funciones
-        gramaticales cuando apoye la comprensión; no desarrollar como objetivo
-        central la gramática avanzada reservada para C1-C2.
+    rule: Consolidar estructuras introducidas en A2 solo cuando
+      exista nueva profundidad, contraste, restricción, excepción
+      o integración propia de B1-B2. En B2 se permite análisis
+      de word, phrase, clause, sentence, constituent, head, modifier,
+      complement, adjunct y funciones gramaticales cuando apoye
+      la comprensión; no desarrollar como objetivo central la
+      gramática avanzada reservada para C1-C2.
   required_topics:
     contrastive_teaching: true
     exceptions_when_level_relevant: true
@@ -274,34 +278,296 @@ level_specific:
       - advanced_complementation
       - advanced_discourse_grammar
       - marked_word_order
-    policy: Los contenidos puente pueden introducirse de forma limitada en B2,
-        pero su análisis sistemático, excepciones avanzadas, variación
-        discursiva y dominio formal pertenecen al path C1-C2.
+    policy: Los contenidos puente pueden introducirse de forma
+      limitada en B2, pero su análisis sistemático, excepciones
+      avanzadas, variación discursiva y dominio formal pertenecen
+      al path C1-C2.
     do_not_use_as_b2_core_references:
       - Cambridge Grammar of English — Carter & McCarthy
-      - The Cambridge Grammar of the English Language — Huddleston & Pullum
-
+      - The Cambridge Grammar of the English Language — Huddleston
+        & Pullum
 progression_rules:
   structural_foundations:
     first_introduction: block_0
     local_refresh_before_use: true
     final_synthesis: block_40
-    rule: Introducir forma y función antes del análisis avanzado; recuperar
-      cada término al utilizarlo y reservar el bloque 40 para integración.
+    rule: Introducir forma y función antes del análisis avanzado;
+      recuperar cada término al utilizarlo y reservar el bloque
+      40 para integración.
   analytical_framework:
     distinguish_category_from_function: true
     distinguish_required_adverbial_from_optional_adjunct: true
     explain_vp_convention_before_analysis: true
     use_consistent_terminology: true
-    rule: En SVA y SVOA, A puede representar un complemento adverbial exigido
-      por el verbo; no identificar automáticamente A con adjunto opcional.
+    rule: En SVA y SVOA, A puede representar un complemento adverbial
+      exigido por el verbo; no identificar automáticamente A con
+      adjunto opcional.
   repeated_topics:
     require_distinct_learning_objective: true
     require_new_contrast_constraint_or_integration: true
     avoid_reusing_same_exercises: true
   checkpoint_26:
-    purpose: B1 core diagnostic with separately labelled extension review
+    purpose: B1 core diagnostic with separately labelled extension
+      review
     assess_core_and_extensions_separately: true
     do_not_require_b2_extensions_for_b1_pass: true
-    rule: El alcance del diagnóstico B1 se define por objetivos y ejemplos,
-      no por asumir que toda lección anterior es requisito obligatorio B1.
+    rule: El alcance del diagnóstico B1 se define por objetivos
+      y ejemplos, no por asumir que toda lección anterior es requisito
+      obligatorio B1.
+linking_coverage:
+  scope: 'B1-B2 grammar: clause, phrase and sentence linking'
+  official_exhaustive_cefr_list: false
+  level_labels_are_orientative: true
+  categories:
+    - coordinator
+    - subordinator
+    - linking_adverb
+    - prepositional_expression
+    - discourse_marker
+  block_roles:
+    block_13: purpose
+    block_22: foundations
+    block_29: conditions
+    block_37: contrast and integration
+    block_41: final diagnostic
+  inventory:
+    addition:
+      - and
+      - also
+      - too
+      - as well
+      - as well as
+      - in addition
+      - in addition to
+      - besides
+      - moreover
+      - furthermore
+      - what's more
+      - not only ... but also ...
+      - both ... and ...
+    contrast:
+      - but
+      - however
+      - whereas
+      - while
+      - unlike
+      - in contrast
+      - in contrast to/with
+      - on the one hand ... on the other hand ...
+      - on the other hand
+      - instead
+      - instead of
+      - rather than
+      - on the contrary
+    concession:
+      - although
+      - though
+      - even though
+      - despite
+      - in spite of
+      - despite the fact that
+      - in spite of the fact that
+      - nevertheless
+      - nonetheless
+      - even so
+      - still
+      - yet
+      - all the same
+      - final though
+    reason:
+      - because
+      - because of
+      - since
+      - as
+      - now that
+      - seeing that
+      - seeing as
+      - due to
+      - owing to
+      - thanks to
+      - given that
+    result:
+      - so
+      - therefore
+      - as a result
+      - as a result of
+      - consequently
+      - for this/that reason
+      - that's why
+      - otherwise
+      - or else
+      - so + adjective/adverb + that
+      - such + noun phrase + that
+    purpose:
+      - to + infinitive
+      - in order to
+      - so as to
+      - in order not to
+      - so as not to
+      - so that
+      - in order that
+      - for + noun/-ing
+    condition_and_precaution:
+      - if
+      - unless
+      - as long as
+      - so long as
+      - provided/providing (that)
+      - on condition that
+      - only if
+      - even if
+      - whether ... or ...
+      - whether or not
+      - in case
+      - in case of
+      - suppose/supposing (that)
+      - what if ...?
+    time:
+      - when
+      - while
+      - as
+      - before
+      - after
+      - until
+      - till
+      - since
+      - as soon as
+      - once
+      - by the time
+      - whenever
+      - every time (that)
+      - the moment (that)
+      - meanwhile
+      - in the meantime
+      - at the same time
+    sequence:
+      - first/firstly
+      - first of all
+      - to begin/start with
+      - second/secondly
+      - next
+      - then
+      - after that
+      - afterwards
+      - before that
+      - finally/lastly
+      - in the end
+      - eventually
+    exemplification:
+      - for example
+      - for instance
+      - such as
+      - like
+      - including
+      - especially
+      - particularly
+      - in particular
+      - specifically
+      - namely
+    comparison_and_manner:
+      - similarly
+      - likewise
+      - in the same way
+      - like + noun phrase
+      - as + clause
+      - as if
+      - as though
+      - just as
+      - as ... as ...
+      - not as/so ... as ...
+      - than
+      - the more ..., the more ...
+    alternatives_and_exclusion:
+      - or
+      - either ... or ...
+      - neither ... nor ...
+      - whether ... or ...
+      - alternatively
+      - apart from
+      - except
+      - except for
+      - except that
+      - otherwise
+    reformulation:
+      - in other words
+      - that is
+      - that is to say
+      - I mean
+      - what I mean is
+      - or rather
+      - actually
+      - in fact
+      - as a matter of fact
+    summary:
+      - in short
+      - in brief
+      - to sum up
+      - in summary
+      - in conclusion
+      - to conclude
+      - overall
+      - all in all
+      - on balance
+    discourse_markers:
+      - well
+      - so
+      - anyway
+      - by the way
+      - actually
+      - after all
+      - to be honest
+      - I suppose
+      - I guess
+      - as for
+      - regarding
+      - concerning
+  teaching_rules:
+    - Inventario pedagógico amplio, no lista oficial exhaustiva
+      del CEFR. Las etiquetas B1/B2 son orientativas y dependen
+      del uso y la estructura.
+    - Distinguir coordinator, subordinator, linking adverb, prepositional
+      expression y discourse marker; no llamar conjunción a toda
+      expresión.
+    - En cada familia explicar significado, complemento, posición,
+      puntuación, registro, alcance, restricciones, errores y
+      transformaciones originales.
+    - Admitir más de una función por expresión. Separar los sentidos
+      de as, since, while, so, still, yet, besides, otherwise
+      y apart from.
+    - Enseñar paralelismo en correlativas y concordancia con ejemplos
+      claros. No convertir not only inicial con inversión en objetivo
+      central B2.
+    - Distinguir hecho y condición en even though/even if; precaución
+      y condición en in case/if; finalidad y resultado en so that/so.
+    - 'Distinguir oposición de perspectivas y refutación: on the
+      other hand frente a on the contrary. Actually no equivale
+      a actualmente.'
+    - Contrastar although + clause con despite + noun/-ing y con
+      despite the fact that + clause; because frente a because
+      of.
+    - 'Explicar la unión entre oraciones independientes con however/therefore:
+      punto o punto y coma; evitar comma splices en los modelos
+      escritos.'
+    - En cláusulas temporales futuras enseñar presente simple
+      o perfecto según el significado; distinguirlas de preguntas
+      indirectas con will.
+    - Separar so ... that y such ... that de finalidad; diferenciar
+      función for + -ing e intención to + infinitive, sin generalizar
+      for a toda finalidad.
+    - Los marcadores discursivos se analizan por posición, alcance
+      y relación entre enunciados, sin crear bloques de conversación,
+      escritura o léxico.
+    - Las variantes formales menos frecuentes se trabajan como
+      ampliación B2 y reconocimiento; no son requisitos automáticos
+      del checkpoint B1.
+    - 'Bloque 13: finalidad; 22: fundamentos; 29: condiciones;
+      37: contraste e integración; 41: diagnóstico final. Evitar
+      repetir el mismo objetivo.'
+  validation:
+    require_complement_pattern: true
+    require_position_and_punctuation: true
+    require_register_and_scope: true
+    require_semantic_contrasts: true
+    avoid_comma_splices_and_double_links: true
+    keep_discourse_markers_grammar_focused: true
+    assess_b1_core_and_b2_extensions_separately: true

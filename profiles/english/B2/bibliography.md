@@ -41,3 +41,19 @@ concreta a Murphy o Swan sin verificarla en la fuente.
 La organización de bloques y checkpoints es una decisión pedagógica del curso;
 no se presenta como una equivalencia oficial entre cada estructura y un nivel
 CEFR. Las extensiones se distinguen del núcleo evaluado en el checkpoint B1.
+
+## Aplicación a conectores B1–B2
+
+Murphy sigue siendo la referencia principal para conjunctions, cláusulas
+temporales, finalidad, condición, concesión y enlaces entre estructuras.
+Swan complementa restricciones, puntuación, posición, registro, alcance,
+construcciones correlativas y contrastes de uso cuando sean pertinentes.
+
+El inventario añadido en domain.md y profile.yaml organiza objetivos del
+curso; no reproduce un índice de estas obras ni atribuye cada expresión a
+una unidad concreta. Verificar cada referencia al generar la lección.
+Las formas menos frecuentes se identifican como ampliaciones B2 y no como
+requisitos automáticos del núcleo B1. Los ejemplos y ejercicios serán propios.
+
+Se mantiene la política bibliográfica: no se incorporan sitios web como
+fuentes del curso ni gramáticas avanzadas como base del PATH B1–B2.

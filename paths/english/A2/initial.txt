@@ -568,6 +568,26 @@
 26.26 Future time clauses with when/after/as soon as: present form for future time
 26.27 If-clause vs result clause: present simple and will; basic word order
 
+26.28 Connector inventory: A1 foundations and controlled A2 extension
+26.29 Addition: also, too and as well; position with be, auxiliaries and main verbs
+26.30 Alternatives: either ... or with parallel words and phrases
+26.31 Because + clause vs because of + noun phrase
+26.32 Because vs so: cause and result without double linking
+26.33 But vs although: coordination, subordination and basic punctuation
+26.34 However: optional guided extension with separate sentences; B1 consolidation
+26.35 Sequence: first, first of all, then, next and finally
+26.36 Sequence: after that and before that vs after/before + clause
+26.37 Until and till: temporal endpoint; contrast with before and by
+26.38 Purpose: to + base form; contrast with because + clause
+26.39 In order to + base form: optional guided extension; B1 consolidation
+26.40 Examples: for example + example clause vs such as + noun phrase
+26.41 I mean: optional recognition of simple reformulation; no speaking strand
+26.42 Classify conjunctions, linking adverbs and prepositional expressions
+26.43 Connector constraints: no because ... so or although ... but double linking
+26.44 Connector punctuation: initial subordinate clause and sentence boundaries
+26.45 Controlled connector choice: meaning, construction and valid alternatives
+26.46 Connector troubleshooting: explain the error, correct it and retry
+
 27. Prepositions
 27.1 Prepositions: introduction
 27.2 At / on / in: time
@@ -648,6 +668,9 @@
 29.15 Correct adjective order and adverb placement in A2 sentences
 29.16 Diagnose singular agreement and standard negation with indefinite pronouns
 
+29.17 Connector functions, construction, placement and punctuation
+29.18 Connector contrasts and correction with reasons; core patterns only
+
 30. Final A2 Grammar Integration
 30.1 Analyze the anatomy of an A2 sentence
 30.2 Identify form, grammatical meaning and use
@@ -689,3 +712,5 @@
 30.38 Adverb categories and placement: integrated review
 30.39 Adjective vs adverb order: cumulative correction laboratory
 30.40 Final diagnosis: prohibition vs obligation, quantity contrasts and future time clauses
+30.41 A1-A2 connectors: integrated choice, construction and diagnosis
+30.42 Connector inventory and level boundary: core vs optional recognition

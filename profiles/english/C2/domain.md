@@ -109,7 +109,7 @@ At the end of the path, the learner should be able to analyse and manipulate adv
 
 ## Explicit advanced coverage and depth boundaries
 
-The path contains 19 blocks (0–18) and 398 lessons. All original lesson
+The path contains 19 blocks (0–18) and 425 lessons. All original lesson
 objectives are retained; revised titles distinguish overlapping objectives.
 
 - Block 4 distinguishes raising-to-object (also analysed as exceptional case
@@ -138,3 +138,83 @@ Every lesson includes the common-errors section. Revisited topics must add new
 constraints, contrasts, interpretations or integration tasks rather than repeat
 an earlier lesson. The final mastery project integrates the explicit additions
 as well as the original grammar domains.
+
+
+## Advanced linking: explicit grammatical coverage
+
+The expanded path preserves all 398 original lesson objectives and adds
+27 lessons, retaining 19 blocks (0-18). Insertions precede each affected
+checkpoint; original checkpoint numbers change, as do the final checkpoint
+and project numbers. Blocks without insertions retain their numbering.
+
+Connectors is an umbrella teaching label, not a single syntactic category.
+Distinguish coordinators, subordinators, linking adjuncts, prepositional
+expressions, supplements and correlative constructions. Explain differences
+between reference-grammar frameworks when relevant.
+
+- Block 10, lessons 10.21-10.24: linking adjuncts vs conjunctions; additive,
+  contrastive, corrective, result and inferential meanings and restrictions.
+- Block 12, lessons 12.12-12.15: concessive, causal, purposive, exceptive and
+  restrictive prepositional constructions and their complement types.
+- Block 13, lessons 13.19-13.28: advanced concession, unconditional clauses,
+  grounds, limitation, lest, result, temporal links, correlatives, comparison,
+  alternatives and reduced-clause subject constraints.
+- Block 14, lessons 14.23-14.26: precaution vs condition, conditional grounds,
+  counterfactual but for, contingency and factual vs hypothetical concession.
+- Block 16, lessons 16.31-16.33: placement, clause boundaries, punctuation,
+  attachment, reformulation, exemplification and marker-sensitive grammar.
+- Block 18, lessons 18.33-18.34: cumulative analysis and error diagnosis;
+  checkpoint 18.35 and final mastery project 18.36 integrate the additions.
+
+The profile contains the explicit inventory for all 16 functional families:
+addition; contrast; concession; cause and grounds; result and inference;
+purpose; condition; exception and reservation; time; comparison and
+alternatives; manner and appearance; exemplification; reformulation and
+correction; topic and limitation; concession, balance and summary; and
+conversational markers. Lesson references identify primary teaching locations;
+individual forms may also need cross-references to existing lessons.
+
+This is an open pedagogical inventory, not an exhaustive lexical dictionary
+or an official CEFR allocation. Earlier-level forms remain relevant where
+advanced contrasts, restrictions, scope or ambiguity supply new depth.
+Formal, legal or literary forms are not inherently C2 requirements.
+
+### Required contrasts and constraints
+
+Compare although + finite clause with despite + noun phrase/-ing and
+despite the fact that + finite clause. Contrast even though with even if,
+in case with if, purpose with result, and on the contrary with on the other
+hand. Distinguish causal for from prepositional for and concessive however
++ adjective/adverb from the mobile linking adjunct however.
+
+Analyse both the semantic relation and syntactic construction. A connective
+is not interchangeable with another merely because a Spanish translation
+matches. In particular, the instrumental or result relations expressed by thereby
+must not be reduced to a generic therefore reading; thereby normally links
+the result to the preceding action or means.
+
+Treat lest through attested finite patterns, including subjunctive and should
+constructions; do not insert redundant negation mechanically. Explain that
+albeit commonly introduces reduced expressions without claiming that finite
+uses never occur. Concessive fronting with as/though has construction-specific
+restrictions and is not ordinary subject-auxiliary inversion.
+
+For linking adjuncts, explain sentence-initial, medial and final positions
+where natural. Compare a full stop, semicolon and coordination as ways of
+separating independent clauses; diagnose comma splices without banning
+sentence-initial conjunctions. Teach inversion only when the actual trigger
+and its scope require it: Only if you agree will we proceed, but We will
+proceed only if you agree.
+
+For correlative constructions, analyse parallelism, scope, agreement and
+ellipsis. For reduced clauses, identify the understood subject and diagnose
+dangling attachments. Treat lexicalised phrases, complete framing clauses
+and grammatical adjuncts as different structures.
+
+Conversational, exemplifying, topic and summary markers serve only to
+illustrate grammar, attachment, scope, inference and register. They must not
+become independent conversation, essay-writing or rhetoric lessons.
+
+Use original contrast pairs, controlled transformations and error diagnosis.
+The final project integrates these choices with tense, modality, negation,
+reference, coordination, subordination and information structure.

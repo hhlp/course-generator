@@ -421,8 +421,15 @@
 22.17 by
 22.18 until
 22.19 by the time
-22.20 Building complex sentences
-22.21 Conjunction consolidation
+22.20 Coordinators and correlatives: and, but, or; both ... and ...
+22.21 Alternatives: either ... or ...; neither ... nor ...
+22.22 Addition: also, too, as well; position and scope
+22.23 Basic sentence links: however, therefore, for example
+22.24 Time clauses: when, before, after, as soon as, once, since
+22.25 Future time clauses: present forms and time reference
+22.26 Conjunction vs linking adverb: clause structure and punctuation
+22.27 Building complex sentences
+22.28 Conjunction consolidation
 
 23. Prepositions of time and place
 23.1 at / on / in: time
@@ -896,9 +903,61 @@
 37.28 Condition clauses
 37.29 Comparison clauses: introduction
 37.30 Choosing clause vs phrase linking structures
-37.31 Clause-linking transformations
-37.32 Clause-linking error analysis
-37.33 Clause-linking consolidation
+37.31 Conjunctions, linking adverbs, prepositions and discourse markers
+37.32 Linking adverbs: full stops, semicolons, commas and position
+37.33 Addition: also, too, as well; scope and placement
+37.34 Addition: as well as, in addition to, besides; noun/-ing patterns
+37.35 Addition: in addition, moreover, furthermore, what's more
+37.36 Correlatives: both ... and; either ... or; neither ... nor
+37.37 Not only ... but also: parallel structures without fronted inversion
+37.38 Contrast: but, however, whereas, while
+37.39 Contrast: unlike, in contrast to/with; phrase vs clause
+37.40 Perspectives vs contradiction: on the other hand / on the contrary
+37.41 Alternatives: instead, instead of, rather than, alternatively
+37.42 Concession: nevertheless, nonetheless, even so, still, yet
+37.43 Concession: all the same and final though; register and position
+37.44 Despite / in spite of the fact that: rebuilding a clause
+37.45 Fact vs hypothesis: even though / even if
+37.46 Reason: since, as, now that, given that; context and ambiguity
+37.47 Reason: seeing that/as; conversational use
+37.48 Reason: due to, owing to, thanks to; complements and meaning
+37.49 Result: as a result, consequently, for this/that reason, that's why
+37.50 Negative consequences: otherwise / or else
+37.51 Degree and result: so ... that / such ... that
+37.52 Purpose: so as not to / in order not to; negation and subjects
+37.53 Purpose: so that / in order that; modals and register
+37.54 Function vs intention: for + noun/-ing vs to + infinitive
+37.55 Result vs purpose: so / so that; context and interpretation
+37.56 Conditions: so long as, on condition that, only if
+37.57 Conditions: whether ... or ..., whether or not
+37.58 Hypotheses: suppose/supposing (that), what if ...?
+37.59 Precaution vs condition: in case / if; in case of + noun
+37.60 Time: once, whenever, every time, the moment (that)
+37.61 Simultaneity: meanwhile, in the meantime, at the same time
+37.62 Sequence: first/firstly, next, then, after that, afterwards
+37.63 Sequence: first of all, to begin/start with, second/secondly
+37.64 Final step vs outcome: finally/lastly, in the end, eventually
+37.65 Examples: for example, for instance, such as, like, including
+37.66 Focus and specification: especially, particularly, in particular
+37.67 Specification: specifically / namely; examples vs exact identification
+37.68 Similarity: similarly, likewise, in the same way, just as
+37.69 Comparison links: than, as ... as, not as/so ... as
+37.70 Proportional comparison: the more ..., the more ...
+37.71 Exclusion: apart from, except, except for, except that
+37.72 Reformulation: in other words, that is (to say), I mean
+37.73 Reformulation: what I mean is, or rather; correction and scope
+37.74 Correction and emphasis: actually, in fact, as a matter of fact
+37.75 Summary: in short/brief, to sum up, in summary
+37.76 Conclusion: in conclusion, to conclude, overall, all in all, on balance
+37.77 Discourse links: well, so, anyway, by the way, after all
+37.78 Stance markers: to be honest, I suppose, I guess; limited analysis
+37.79 Topic framing: as for, regarding, concerning; noun phrase complements
+37.80 Polysemy: as, since, while, so, still, yet, besides, apart from
+37.81 No duplicate links: although ... but; because ... so
+37.82 Linking transformations: preserve meaning, tense, subject and focus
+37.83 Clause-linking transformations
+37.84 Clause-linking error analysis
+37.85 Clause-linking consolidation
 
 38. B2 preposition and prepositional-phrase system
 38.1 Preposition vs particle

@@ -70,3 +70,37 @@ corpus distribution, pedagogical sequencing and structural analysis answer
 complementary questions. Do not infer that a construction or theoretical term
 is a mandatory C2 requirement merely because it appears in a reference grammar.
 No new page or unit references are asserted by this revision.
+
+
+## Advanced linking constructions: use of existing references
+
+No additional core textbook is required. Use Advanced Grammar in Use for
+advanced adverbial clauses and linking contrasts; Cambridge Grammar of
+English for contextual grammar, linking adjuncts and spoken/written
+variation; and the descriptive grammars for syntactic category, complement
+selection, concession, coordination, supplements, scope and attachment.
+Use Longman Grammar of Spoken and Written English for distribution and
+register, and Practical English Usage for learner-oriented contrasts.
+These are topic-level consultation directions, not verified unit mappings.
+
+### Supplementary online consultation
+
+Cambridge Dictionary - English Grammar Today.
+Conjunctions and linking words:
+https://dictionary.cambridge.org/grammar/british-grammar/conjunctions-and-
+
+Use for supplementary explanations and contrasts. Its terminology need not
+coincide with every descriptive grammar; explain the analysis adopted.
+
+Council of Europe - CEFR, qualitative aspects of spoken language use,
+Table 3 (CEFR 3.3), coherence descriptors. Framework context only:
+https://www.coe.int/en/web/common-european-framework-reference-languages
+
+C1-C2 descriptors concern appropriate control and range of cohesive devices;
+they are not a closed connector list or an allocation of every item to a
+single level. The course inventory is a teaching selection. Do not infer a
+C2 label from low frequency, formal register or appearance in a reference.
+
+Retain the existing source hierarchy and bibliographic policy. Do not invent
+pages, unit numbers, corpus frequencies or quotations. Verify uncommon or
+register-sensitive patterns before asserting acceptability judgments.

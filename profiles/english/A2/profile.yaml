@@ -466,6 +466,58 @@ level_specific:
         - gradable/non-gradable terminology
         - even and detailed focusing scope
         - hardly/lately contrasts
+    connectors:
+      scope: A1 prerequisite review and controlled A2 development
+      inventory_is_course_specific_not_universal_CEFR_list: true
+      inventory:
+        addition: [and, also, too, as well]
+        contrast: [but, although]
+        alternative: [or, either ... or]
+        cause: [because, because of]
+        result: [so]
+        sequence:
+          - first
+          - first of all
+          - then
+          - next
+          - finally
+          - after that
+          - before that
+        time: [before, after, when, while, until, till, as soon as]
+        condition: [if, unless]
+        purpose: [to + base form]
+        example: [for example, such as]
+      optional_guided_extension:
+        - however with a separate sentence and initial comma
+        - in order to + base form with shared understood subject
+        - I mean for recognition of simple reformulation
+      required_contrasts:
+        - because + clause vs because of + noun phrase
+        - cause with because vs result with so
+        - but vs although
+        - also vs too vs as well placement
+        - after/before + clause vs after that/before that
+        - to + base form for purpose vs because + clause for reason
+        - for example vs such as + noun phrase
+        - conjunction vs linking adverb vs prepositional expression
+      constraints:
+        - no because ... so or although ... but double linking
+        - while for simultaneous events only in this block
+        - unless in transparent if-not contexts; no universal equivalence
+        - either ... or links parallel words or phrases
+        - future time and if clauses use taught present-form patterns
+        - initial subordinate clauses and basic sentence punctuation
+        - comma before coordinators between independent clauses
+        - no automatic comma between words or shared-subject verbs
+        - optional however does not license comma splices
+        - relative who/which/that remain a separate grammatical category
+      assessment:
+        checkpoint_lessons: ['29.17', '29.18']
+        integration_lessons: ['30.41', '30.42']
+        require_answer_keys_and_diagnostic_reasons: true
+        accept_contextually_valid_alternatives: true
+        exclude_optional_extensions_from_core_scores: true
+      defer_advanced_discourse_and_scope: true
     additional_contrasts:
       - be vs do in questions
       - mustn't vs don't have to
