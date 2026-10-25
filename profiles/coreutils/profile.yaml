@@ -82,3 +82,9 @@ validation:
   # Esta revisión no cambia su mecanismo de ejecución.
   enabled: false
   commands: []
+
+# Extensión awesome-cli: bloques 99–110; alcance y matriz en domain.md.
+# Integraciones de otros PATH son opcionales y de alcance acotado.
+# Bash es referencia en los nuevos labs; documentar variantes Zsh.
+# No se añaden claves sin comprobar el contrato del generador.
+# Los adaptadores modernos no son dependencias del núcleo del toolkit.

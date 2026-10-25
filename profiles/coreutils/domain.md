@@ -507,3 +507,122 @@ comandos: las lecciones abarcan entornos incompatibles y requieren seleccionar
 validaciones por artefacto. No activar comandos globales sin comprobar el contrato
 del generador y la disponibilidad de sus dependencias. La revisión de estos cuatro
 archivos comprueba estructura y coherencia; no ejecuta los futuros laboratorios.
+
+
+## Extensión del PATH: fzf y archivado/compresión (bloques 91–98)
+
+Se incorporan `fzf`, GNU tar, gzip, bzip2, xz, zstd, zip/unzip y
+herramientas paralelas relacionadas como extensiones del ecosistema, no
+como componentes del paquete GNU Coreutils. La progresión debe conservar
+las lecciones originales 0–90 y cubrir las nuevas lecciones 91–98 con
+igual profundidad, laboratorios y pruebas de recuperación.
+
+`fzf` se estudia como selector interactivo y filtro no interactivo, con
+previews, bindings, integración con Findutils/Coreutils, seguridad y
+selección NUL-safe cuando la versión instalada lo permita. No asumir
+que los nombres arbitrarios puedan almacenarse en variables shell.
+
+Separar archivado (tar), compresión (gzip/bzip2/xz/zstd), contenedores
+ZIP, transferencia (rsync) y backup verificable. Contrastar rendimiento,
+portabilidad, metadatos, integridad, autenticidad y recuperación.
+Tratar explícitamente extracción insegura, archivos hostiles, bombas de
+descompresión, interrupciones y restauración comprobada.
+
+Los PATH especializados de TCP, Grep, Ripgrep, AWK y Sed conservan su
+propiedad temática: `tcpdump`, `ss`, `lsof`, `tshark`, `grep`, `rg`, `awk`
+y `sed` pueden citarse en integraciones, pero no se desarrollan aquí
+como cursos completos ni como bloques independientes.
+
+### Ampliación del proyecto coreutils-toolkit
+
+Extender el proyecto final del bloque 90, sin renumerar sus lecciones,
+con módulos `select`, `archive`, `compress` y `restore`; selección
+interactiva opcional mediante fzf, alternativa desatendida, listas NUL,
+manifestación de errores, checksums, retención, pruebas de restauración
+y verificación de metadatos. Las lecciones 97 y 98 materializan estas
+capacidades como ampliación integradora del proyecto existente.
+
+
+## Extensión awesome-cli: bloques 99–110
+
+Se incorporan las 28 entradas del catálogo jmparis/awesome-cli consultado
+el 25 de octubre de 2026. El catálogo sirve para descubrimiento; sus
+descripciones no sustituyen los contratos de los proyectos upstream.
+Conservar las 792 lecciones de los bloques 0–98. fzf conserva su desarrollo
+en 91–93; hyperfine se amplía desde 56.6 sin duplicar una introducción.
+
+Los bloques 99–105 desarrollan herramientas relacionadas directamente con
+el trabajo de archivos, texto, navegación, consulta y rendimiento. Los
+bloques 106–108 son integraciones acotadas y opcionales: no transfieren a
+este PATH la propiedad de Grep/Ripgrep, Sed, Regex, monitorización, HTTP,
+TCP o DNS. Cubrir uso práctico, diferencias y un laboratorio delimitado;
+remitir la profundización completa a los PATH especializados. Los bloques
+109–110 integran y evalúan las capacidades sin exigir todas las dependencias.
+
+exa se conserva como referencia histórica: su README declara falta de
+mantenimiento y recomienda eza. Usar eza en prácticas nuevas, verificando
+su versión. Para las restantes herramientas no inferir mantenimiento,
+disponibilidad ni compatibilidad desde la antigüedad del catálogo: verificar
+estado upstream y proveedor antes de generar instrucciones de instalación.
+Los enlaces históricos de jq y lsd pueden redirigir; resolver el proyecto
+oficial vigente. Distinguir bottom de btm y HTTPie de http/https.
+
+No equiparar alternativas visuales con sustituciones transparentes. Explicar
+defaults de archivos ocultos/ignorados, alcance, symlinks, permisos, locale,
+colores, paginación y códigos de salida. Ninguna tabla humana se utiliza
+como inventario de rutas. Un formato estructurado o NUL solo se promete
+después de comprobar soporte y contrato en toda la cadena.
+
+Bash es el shell de referencia para los nuevos laboratorios; indicar
+variantes Zsh cuando aporten valor. Usar configuración temporal reversible,
+sin modificar globalmente aliases ni sustituir ejecutables del sistema.
+No exigir aprender Rust, Go, Python o JavaScript por utilizar estas CLI.
+No instalar desde scripts remotos sin revisar proveedor e instrucciones.
+
+Los laboratorios de la extensión deben declarar objetivo, prerrequisitos,
+versiones, fixture, comandos, resultados esperados, criterios verificables,
+fallos y limpieza. La comparación find/fd exige igualdad de selección antes
+de medir. JSON inválido, cancelación de fzf, permisos insuficientes y
+dependencias ausentes deben tener resultados explícitos. Los ejercicios
+HTTP/DNS/ICMP se limitan a servicios locales preparados o destinos autorizados;
+los monitores observan cargas propias acotadas y no exponen servicios.
+
+Cada XX.YY sigue siendo una lección sustancial con objetivo y evidencia;
+las agrupaciones comparativas no deben convertirse en listas superficiales.
+El núcleo del toolkit funciona sin estas extensiones. Si un adaptador JSON
+requiere jq, declarar esa dependencia y fallar claramente cuando falte.
+Las pruebas de esta revisión son documentales y estructurales: los futuros
+laboratorios no se consideran ejecutados por haber sido incluidos aquí.
+
+### Correspondencia completa del catálogo
+
+| Entrada | Bloque | Alcance |
+| --- | --- | --- |
+| bat | 100 | Desarrollo aplicado y comparación |
+| exa | 101 | Referencia histórica; prácticas con eza |
+| lsd | 101 | Desarrollo aplicado y comparación |
+| delta | 100 | Desarrollo aplicado y comparación |
+| dust | 103 | Desarrollo aplicado y comparación |
+| duf | 103 | Desarrollo aplicado y comparación |
+| broot | 102 | Desarrollo aplicado y comparación |
+| fd | 102 | Desarrollo aplicado y comparación |
+| ripgrep | 106 | Integración opcional y remisión especializada |
+| ag | 106 | Integración opcional y remisión especializada |
+| fzf | 91–93 | Desarrollo existente |
+| mcfly | 107 | Integración opcional y remisión especializada |
+| choose | 104 | Desarrollo aplicado y comparación |
+| jq | 104 | Desarrollo aplicado y comparación |
+| sd | 106 | Integración opcional y remisión especializada |
+| cheat | 105 | Desarrollo aplicado y comparación |
+| tldr | 105 | Desarrollo aplicado y comparación |
+| bottom | 107 | Integración opcional y remisión especializada |
+| glances | 107 | Integración opcional y remisión especializada |
+| gtop | 107 | Integración opcional y remisión especializada |
+| hyperfine | 105 | Desarrollo aplicado y comparación |
+| gping | 108 | Integración opcional y remisión especializada |
+| procs | 107 | Integración opcional y remisión especializada |
+| httpie | 108 | Integración opcional y remisión especializada |
+| curlie | 108 | Integración opcional y remisión especializada |
+| xh | 108 | Integración opcional y remisión especializada |
+| zoxide | 102 | Desarrollo aplicado y comparación |
+| dog | 108 | Integración opcional y remisión especializada |

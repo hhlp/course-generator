@@ -533,3 +533,100 @@ No deducir número de edición o capítulo del título bibliográfico. Para TLPI
 APUE, la lectura de C es profundización opcional, no prerrequisito del recorrido.
 Los snippets de buscadores sirven para localizar fuentes, no sustituyen la
 verificación de una opción contra el manual de la versión que usa el laboratorio.
+
+
+## Fuentes principales para los bloques 91–98
+
+### fzf
+
+- Repositorio y documentación upstream: https://github.com/junegunn/fzf
+- Manual local `man fzf`, `fzf --help` y versión instalada.
+- Verificar soporte real de `--read0`, `--print0`, `--preview`,
+  `--bind`, `--filter` y variables de entorno en la versión utilizada.
+
+### GNU tar y formatos de archivado
+
+- GNU tar Manual: https://www.gnu.org/software/tar/manual/
+- `tar(1)` local; POSIX para ustar/pax cuando corresponda.
+- Comprobar opciones GNU de ACL, xattrs, SELinux y archivos incrementales.
+
+### Compresión
+
+- gzip: https://www.gnu.org/software/gzip/manual/
+- bzip2: https://sourceware.org/bzip2/
+- XZ Utils: https://tukaani.org/xz/
+- Zstandard: https://facebook.github.io/zstd/
+- Documentación local: `gzip(1)`, `bzip2(1)`, `xz(1)`, `zstd(1)`.
+
+### ZIP y compresión paralela
+
+- `zip(1)`, `unzip(1)`, `zipinfo(1)` y documentación de las
+  implementaciones instaladas.
+- `pigz(1)`, `pixz(1)` y opciones multithread de `zstd(1)`;
+  verificar proveedores, disponibilidad y versiones con RPM/DNF.
+
+### Criterios de lectura y verificación
+
+Aplicar la jerarquía de fuentes ya definida: manual de la versión
+instalada, pruebas reproducibles, documentación upstream y normas
+aplicables. No confundir CRC/checksum de formato con autenticación,
+ni una extracción exitosa con una restauración verificada.
+
+
+## Fuentes para la extensión awesome-cli (99–110)
+
+Catálogo de descubrimiento: https://github.com/jmparis/awesome-cli
+README consultado el 25 de octubre de 2026; blob
+`5b302f64391ce43ca22faacde1ed434c2799dbfc`.
+No reproducir sus calificativos de velocidad o compatibilidad como garantías.
+Para cada lección consultar README, manual y documentación de la versión
+instalada del proyecto correspondiente. Registrar release/tag/commit cuando
+se cite implementación; comprobar proveedores locales con RPM/DNF.
+
+| Herramienta | Proyecto de referencia | Aplicación |
+| --- | --- | --- |
+| bat | https://github.com/sharkdp/bat | Bloque 100 |
+| exa | https://github.com/ogham/exa | Bloque 101 |
+| lsd | https://github.com/Peltoche/lsd | Bloque 101 |
+| delta | https://github.com/dandavison/delta | Bloque 100 |
+| dust | https://github.com/bootandy/dust | Bloque 103 |
+| duf | https://github.com/muesli/duf | Bloque 103 |
+| broot | https://github.com/Canop/broot | Bloque 102 |
+| fd | https://github.com/sharkdp/fd | Bloque 102 |
+| ripgrep | https://github.com/BurntSushi/ripgrep | Bloque 106 |
+| ag | https://github.com/ggreer/the_silver_searcher | Bloque 106 |
+| fzf | https://github.com/junegunn/fzf | Bloque 91–93 |
+| mcfly | https://github.com/cantino/mcfly | Bloque 107 |
+| choose | https://github.com/theryangeary/choose | Bloque 104 |
+| jq | https://github.com/stedolan/jq | Bloque 104 |
+| sd | https://github.com/chmln/sd | Bloque 106 |
+| cheat | https://github.com/cheat/cheat | Bloque 105 |
+| tldr | https://github.com/tldr-pages/tldr | Bloque 105 |
+| bottom | https://github.com/ClementTsang/bottom | Bloque 107 |
+| glances | https://github.com/nicolargo/glances | Bloque 107 |
+| gtop | https://github.com/aksakalli/gtop | Bloque 107 |
+| hyperfine | https://github.com/sharkdp/hyperfine | Bloque 105 |
+| gping | https://github.com/orf/gping | Bloque 108 |
+| procs | https://github.com/dalance/procs | Bloque 107 |
+| httpie | https://github.com/httpie/httpie | Bloque 108 |
+| curlie | https://github.com/rs/curlie | Bloque 108 |
+| xh | https://github.com/ducaale/xh | Bloque 108 |
+| zoxide | https://github.com/ajeetdsouza/zoxide | Bloque 102 |
+| dog | https://github.com/ogham/dog | Bloque 108 |
+
+Referencias actualizadas adicionales:
+
+- eza: https://github.com/eza-community/eza y manuales del proyecto.
+- exa: https://github.com/ogham/exa; la advertencia de su README justifica
+  tratarlo como antecedente y remitir a eza.
+- jq: https://github.com/jqlang/jq y https://jqlang.org/manual/.
+- lsd: https://github.com/lsd-rs/lsd; comprobar redirección del enlace histórico.
+- Bash: https://www.gnu.org/software/bash/manual/.
+- Zsh: https://www.zsh.org/Doc/.
+
+cheat y tldr son ayudas comunitarias, no fuentes normativas. Distinguir
+la colección tldr-pages del cliente instalado. Medir con hyperfine no
+demuestra equivalencia semántica; verificar primero los resultados.
+No trasladar a sd, choose, fd o rg las opciones y dialectos de otras herramientas.
+En HTTP, DNS y monitorización prevalece el manual de la implementación y
+se remite al PATH especializado para desarrollar el dominio completo.

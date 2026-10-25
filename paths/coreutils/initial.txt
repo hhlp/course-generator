@@ -880,3 +880,226 @@
 90.33 proyecto: generar informe final
 90.34 proyecto: empaquetar coreutils-toolkit como RPM
 90.35 proyecto final: coreutils-toolkit completo
+
+91. FZF — fundamentos y selección interactiva
+91.1 qué es fzf — paquete y proveedor Fedora/RHEL — versión — documentación — arquitectura de filtro interactivo
+91.2 entrada por stdin — listas de candidatos — interfaz TUI — teclado — aceptación y cancelación
+91.3 fuzzy matching — coincidencia exacta — prefijos — sufijos — operadores de búsqueda — quoting de patrones
+91.4 ordenación y relevancia — scoring — desempates — normalización — límites del modelo de coincidencia
+91.5 --filter — modo no interactivo — comportamiento de salida — exit status — scripts reproducibles
+91.6 --multi — selección múltiple — orden de resultados — separación segura de elementos
+91.7 --delimiter — --with-nth — --nth — campos visibles frente a campos utilizados para búsqueda
+91.8 --layout — --height — --border — --prompt — --header — --info — accesibilidad y terminales
+91.9 --read0 y --print0 según versión — listas de rutas con saltos de línea — compatibilidad NUL
+91.10 FZF_DEFAULT_COMMAND — FZF_DEFAULT_OPTS — precedencia y configuración por entorno
+91.11 laboratorio: buscar, filtrar y seleccionar rutas en un árbol temporal con nombres hostiles
+
+92. FZF — composición con Coreutils, Findutils y shell
+92.1 find -print0 | fzf --read0 --print0 — preservar nombres arbitrarios — límites de herramientas posteriores
+92.2 find frente a fuentes predeterminadas de fzf — alcance — archivos ocultos — exclusiones — permisos
+92.3 fzf + stat — inspección de metadata — rutas relativas y absolutas — tratamiento de symlinks
+92.4 fzf + du + sort — selección de archivos grandes — evitar parsear salidas para humanos
+92.5 fzf + sha256sum — selección y verificación de integridad — manifiestos seguros
+92.6 fzf + cp/mv — confirmación de destino — -- — rutas con guiones — dry-run
+92.7 fzf + rm — evitar borrado accidental — revisión explícita — separación selección/ejecución — TOCTOU
+92.8 fzf + xargs -0 — diferencias entre selección y ejecución por lotes — estado de salida
+92.9 Bash y Zsh — command substitution — arrays — límites de NUL en variables shell
+92.10 modo interactivo frente a scripts desatendidos — cuándo usar --filter o find sin fzf
+92.11 laboratorio: selector seguro de archivos para inventario y copia con verificación
+
+93. FZF — previews, bindings y workflows expertos
+93.1 --preview — placeholders {} — argumentos y quoting — riesgos de inyección de shell
+93.2 --preview-window — scroll — coste de previews — latencia y límites de recursos
+93.3 --bind — acciones — navegación — change-query — reload — ejecución de acciones
+93.4 --expect — teclas de decisión — múltiples acciones — diseño de interfaz consistente
+93.5 reload y fuentes dinámicas — procesos concurrentes — cancelación — manejo de fallos
+93.6 previews de texto y binarios — file — stat — head — límites y saneamiento de salida
+93.7 previews de archivos comprimidos — listar antes de extraer — evitar ejecutar contenido no confiable
+93.8 configuración modular — variables de entorno — scripts y funciones — portabilidad
+93.9 optimización en árboles grandes — coste de generación de candidatos — caché y filtros previos
+93.10 seguridad — comandos con privilegios — nombres hostiles — enlaces simbólicos — carreras
+93.11 laboratorio: interfaz TUI de auditoría y selección con pruebas de error
+
+94. TAR — archivado, extracción y metadatos
+94.1 archivar frente a comprimir — formato tar — headers — miembros — rutas y metadatos
+94.2 GNU tar y alternativas — versión — paquete Fedora/RHEL — POSIX ustar y pax
+94.3 -c — -t — -x — -f — -v — -C — creación, listado y extracción controlada
+94.4 -p — --same-owner — --numeric-owner — permisos y UID/GID — privilegios
+94.5 --acls — --xattrs — --selinux — soporte real y preservación de metadatos
+94.6 symlinks — hard links — FIFOs — dispositivos — archivos sparse — límites del formato
+94.7 --files-from — --null — listas NUL-safe — rutas arbitrarias y nombres con guiones
+94.8 --exclude — patrones — --one-file-system — límites de recorrido y filtros
+94.9 --transform — --strip-components — rutas absolutas — traversal y extracción insegura
+94.10 --compare — verificación — diferencias de metadata — archivos cambiantes
+94.11 archivos incrementales GNU tar — --listed-incremental — semántica y límites
+94.12 errores — exit status — archivos truncados — recuperación parcial — no asumir restauración íntegra
+94.13 laboratorio: archivar y restaurar un árbol con ACL, xattrs, enlaces y nombres hostiles
+
+95. Compresión — gzip, bzip2, xz y zstd
+95.1 compresión sin pérdida — ratio — throughput — memoria — entropía — compresión frente a archivado
+95.2 gzip — gunzip — zcat — formato gzip — streams — niveles y compatibilidad
+95.3 bzip2 — bunzip2 — bzcat — formato bzip2 — niveles y memoria
+95.4 xz — unxz — xzcat — LZMA2 — presets — threads — consumo de memoria
+95.5 zstd — unzstd — zstdcat — niveles — threads — long mode — diccionarios
+95.6 archivos individuales frente a tarballs — .tar.gz — .tar.bz2 — .tar.xz — .tar.zst
+95.7 streaming por stdin/stdout — pipes — SIGPIPE — pipefail — salida binaria
+95.8 integridad de formatos — checksums internos — límites frente a autenticación criptográfica
+95.9 descompresión de datos corruptos o truncados — exit status — límites de recuperación
+95.10 compresión de datos no confiables — límites de recursos — decompression bombs
+95.11 reproducibilidad — timestamps de gzip — metadata — versiones y opciones
+95.12 laboratorio: comparar ratios, velocidad y memoria con datasets heterogéneos
+
+96. ZIP, herramientas paralelas y compatibilidad de formatos
+96.1 zip y unzip — formato ZIP — miembros — rutas — métodos de compresión
+96.2 listar, probar y extraer ZIP — permisos y timestamps — diferencias entre plataformas
+96.3 archivos ZIP con rutas maliciosas — Zip Slip — symlinks — extracción en directorio aislado
+96.4 zipinfo y pruebas de integridad — CRC frente a autenticidad
+96.5 contraseñas ZIP — límites de protección — preferir cifrado autenticado cuando sea necesario
+96.6 pigz — compresión gzip paralela — CPU, memoria y límites de paralelismo
+96.7 pixz — compresión xz paralela — índices y compatibilidad según implementación
+96.8 zstd multithread — comparación con pigz/pixz — efectos de tamaño de archivo
+96.9 formatos y magic bytes — file — extensiones engañosas — compatibilidad Fedora/RHEL
+96.10 elección de formato por portabilidad, CPU, memoria, tamaño y capacidad de restauración
+96.11 laboratorio: intercambio de archivos entre entornos y restauración verificada
+
+97. Integración — tar, compresión, find, Coreutils y rsync
+97.1 find -print0 + tar --null -T — selección segura y límites de snapshot consistente
+97.2 archivado con tar -C — rutas relativas — manifiestos y reproducibilidad
+97.3 pipelines tar | gzip/xz/zstd — pipefail — fallos parciales — atomicidad de publicación
+97.4 generación de hashes de archivos comprimidos — checksum frente a autenticidad
+97.5 rsync de tarballs frente a rsync de árboles — delta, deduplicación y archivos cambiantes
+97.6 rsync --compress frente a comprimir antes de transferir — doble compresión
+97.7 preservación de ACL/xattrs — tar frente a cp -a y rsync -aAX — pruebas reales
+97.8 fzf para selección interactiva de fuentes y destinos — modo no interactivo alternativo
+97.9 flock y mktemp — exclusión mutua — temporales — publicación y cleanup
+97.10 systemd timer para archivado programado — retención y políticas de error
+97.11 laboratorio: pipeline de backup con manifiesto, transferencia y restauración
+
+98. Laboratorios expertos — rendimiento, integridad y recuperación
+98.1 diseño de fixtures reproducibles — datos compresibles, binarios, árboles grandes y sparse files
+98.2 benchmark de compresores — wall time — CPU — memoria — page cache — tamaños de bloque
+98.3 comparación de niveles — datasets ya comprimidos — rendimiento local y remoto
+98.4 pruebas de corrupción y truncamiento — detección — fallos esperados — límites de reparación
+98.5 pruebas de extracción insegura — rutas relativas/absolutas — traversal — symlinks
+98.6 pruebas de preservación — UID/GID — mode — timestamps — ACL — xattrs — SELinux
+98.7 pruebas de restauración — recuperar en árbol limpio — comparar contenido y metadata
+98.8 recuperación ante falta de espacio, permisos insuficientes e interrupciones
+98.9 diseño de política de retención — copias completas e incrementales — pruebas de recuperación
+98.10 integración con coreutils-toolkit — comandos archive/compress/restore/select
+98.11 proyecto integrador: backup comprimido verificable y restauración ante pérdida del origen
+
+
+99. CLI modernas — contratos, instalación y elección de herramientas
+99.1 catálogo awesome-cli como descubrimiento — documentación upstream como contrato — Coreutils frente a alternativas externas
+99.2 inventario de versiones y capacidades — proveedor RPM/DNF — disponibilidad Fedora/RHEL sin asumir equivalencia
+99.3 comandos, paquetes y aliases — resolver ejecutables con type — instalación opcional sin sustituir utilidades del sistema
+99.4 salida humana frente a datos estructurados — colores, paginadores, TTY y códigos de salida
+99.5 compatibilidad de opciones y semántica — diferencias de defaults — no prometer sustituciones transparentes
+99.6 nombres hostiles — Unicode — delimitación NUL — comprobar el soporte de cada productor y consumidor
+99.7 laboratorio: construir matriz de capacidades y justificar la herramienta elegida con una alternativa base
+
+100. BAT y DELTA — inspección y comparación visual
+100.1 bat frente a cat — resaltado, numeración y contexto — lectura de archivos y stdin
+100.2 paginación, estilo y colores — ejecución con y sin terminal — configuración local reversible
+100.3 archivos binarios, codificación y contenido no confiable — limitar previews y recursos
+100.4 delta como visualizador de diferencias — productor diff o Git — responsabilidades y estados de salida separados
+100.5 comparar cambios en archivos y configuraciones — contexto, navegación y presentación según versión
+100.6 integración bat/delta con fzf — argumentos seguros — evitar interpretar la salida coloreada como datos
+100.7 laboratorio: inspeccionar y revisar cambios en fixtures de texto, binarios y rutas hostiles; verificar cancelación y fallos
+
+101. EZA y LSD — listados avanzados y migración desde exa
+101.1 exa como antecedente sin mantenimiento — recomendación upstream de eza — elección y verificación de versión
+101.2 eza frente a ls — listados largos, árboles, profundidad, ordenación y archivos ocultos
+101.3 metadatos, enlaces y estado Git según capacidades — no inferir permisos efectivos desde una vista resumida
+101.4 lsd — vistas, ordenación, iconos y configuración — compatibilidad real frente a ls y eza
+101.5 terminales sin iconos — colores desactivados — accesibilidad — configuración opcional
+101.6 aliases interactivos frente a scripts — preservar ls explícito — listados visuales no son inventarios seguros
+101.7 laboratorio: comparar ls, eza y lsd sobre el mismo árbol y explicar diferencias sin parsear las vistas
+
+102. FD, BROOT y ZOXIDE — búsqueda de rutas y navegación
+102.1 fd frente a find — patrones, ámbito y diferencias de selección — rutas ocultas e ignoradas
+102.2 regex frente a búsqueda literal y globs — tipos, extensiones, profundidad y symlinks según versión
+102.3 salida NUL y ejecución sobre resultados — batching y errores — comprobar equivalencia de conjuntos antes de medir
+102.4 fd como productor de fzf — evitar que los defaults omitan archivos requeridos por una auditoría
+102.5 broot — explorar árboles, filtrar y navegar — configuración y acciones sobre fixtures
+102.6 broot y shell — cambiar el directorio del shell padre requiere integración explícita — deshacer configuración
+102.7 zoxide — ranking de directorios, consultas e integración Bash/Zsh — cd como builtin y límites de un proceso externo
+102.8 historial de rutas y privacidad — limpiar datos de prueba — alternativa sin integración persistente
+102.9 laboratorio: resolver búsquedas y navegación con fd/broot/zoxide y contrastarlas con find, pwd y cd
+
+103. DUST y DUF — análisis visual del almacenamiento
+103.1 dust frente a du — distribución de tamaños, profundidad y selección — verificar significado de las métricas
+103.2 tamaño lógico frente a bloques — sparse files, hard links, permisos y puntos de montaje
+103.3 duf frente a df — capacidad, uso, inodes y tipos de filesystem según versión
+103.4 filtros y salidas estructuradas cuando existan — documentación del esquema — no parsear tablas para humanos
+103.5 resultados parciales por permisos — archivos cambiantes — diferenciar fallo de medición y espacio disponible
+103.6 laboratorio: explicar diferencias dust/du y duf/df con fixtures y registrar versión, privilegios y filesystem
+
+104. CHOOSE y JQ — campos de texto y datos JSON
+104.1 choose frente a cut — selección y reordenación de campos — índices, rangos y delimitadores según implementación
+104.2 campos vacíos, espacios y Unicode — límites frente a CSV con quoting y JSON — comparar resultados esperados
+104.3 jq — valores JSON, objetos, arrays y tipos — filtros de acceso y proyección
+104.4 jq — selección, transformación, agrupación y reducción en datasets locales controlados
+104.5 salida raw y compacta — null frente a ausente — múltiples documentos y NDJSON — slurp frente a streaming
+104.6 paso de datos con --arg y --argjson — no construir código concatenando entradas no confiables
+104.7 estado de salida con jq -e — errores de parsing — validación de esquema como responsabilidad distinta
+104.8 números, precisión y límites de la implementación — elegir bc cuando se exija cálculo decimal controlado
+104.9 laboratorio: transformar un inventario JSON y contrastar contenido y errores; evitar JSON construido con printf sin escaping
+
+105. HYPERFINE, CHEAT y TLDR — medición y consulta reproducible
+105.1 hyperfine — relación con el bloque 56 — hipótesis, repeticiones, calentamiento y variabilidad
+105.2 preparación y limpieza por medición — caché, I/O y costes de lanzamiento — comandos equivalentes
+105.3 exportar resultados según versión — estadísticas y límites de inferencia — registrar hardware y entorno
+105.4 cheat — consultas y hojas propias — configuración — revisar ejemplos antes de ejecutarlos
+105.5 tldr — colección comunitaria y cliente elegido — actualización de caché y trabajo offline
+105.6 man, info y --help como contrato — cheat/tldr como ayuda práctica — resolver discrepancias por versión
+105.7 laboratorio: medir find/fd con selección equivalente y redactar una ficha verificada con límites y evidencia
+
+106. Integración acotada — RIPGREP, AG y SD
+106.1 ripgrep/rg y ag — búsqueda de contenido frente a fd/find — remisión a los PATH de búsqueda especializados
+106.2 defaults de ignorados, ocultos, binarios y enlaces — comparación controlada sin asumir resultados idénticos
+106.3 dialectos regex y capacidades — patrones literales, quoting y estado de salida; remitir teoría al PATH Regex
+106.4 sd — sustitución literal y regex — diferencias de sintaxis con sed — previsualización y copias de prueba
+106.5 edición de archivos — backups explícitos, permisos y fallos — no atribuir atomicidad sin verificar el contrato
+106.6 integración con fzf y selección de rutas — separar datos, patrones y comandos — alternativa desatendida
+106.7 laboratorio de integración: localizar y proponer cambios en un árbol temporal; comprobar selección, diferencias y recuperación
+
+107. Integración opcional — MCFly y observación de procesos
+107.1 mcfly — búsqueda de historial e integración del shell — configuración reversible y uso sobre historial de prueba
+107.2 privacidad del historial — credenciales, datos sensibles y retención — no importar historial personal al laboratorio
+107.3 procs frente a ps — identificación, filtrado y vistas de procesos propios — permisos y salida por versión
+107.4 bottom — nombre de proyecto y ejecutable btm — procesos, CPU, memoria e I/O según plataforma
+107.5 glances — diagnóstico local — límites de las métricas — sin habilitar servicios o listeners externos
+107.6 gtop — panel de terminal y dependencias — comprobar mantenimiento y compatibilidad antes de recomendar instalación
+107.7 observación de cp, sort, compresores y rsync — muestreo, sobrecarga y métricas que no prueban causalidad
+107.8 laboratorio opcional: observar una carga acotada del curso y documentar limitaciones; ampliar monitorización en su PATH
+
+108. Integración opcional — HTTPIE, CURLIE, XH, GPING y DOG
+108.1 HTTPie, curlie y xh — proyectos frente a ejecutables http/https/curlie/xh — verificar nombres y capacidades instaladas
+108.2 peticiones HTTP a un servicio local de pruebas ya preparado — métodos, cabeceras, JSON y separación cuerpo/diagnósticos
+108.3 redirecciones, errores HTTP frente a fallo de transporte — exit status, timeout y reintentos según cliente
+108.4 TLS y autenticación — no desactivar verificación — fixtures sin secretos reales; profundización en PATH HTTP/Web
+108.5 descargas temporales — verificar contenido y estado antes de publicar — límites de tamaño y de recursos
+108.6 gping — visualización de latencia ICMP — permisos, pérdida y límites para inferir rendimiento de una transferencia
+108.7 dog — consultas DNS y tipos de registro — verificar mantenimiento, disponibilidad y transporte antes de instalar
+108.8 DNS y latencia como diagnóstico acotado — no equivalen a disponibilidad HTTP o integridad de un backup
+108.9 laboratorio opcional: interpretar respuestas HTTP, DNS y latencia en un entorno autorizado; remisión a PATH TCP/DNS/Web
+
+109. CLI modernas — integración con coreutils-toolkit
+109.1 adaptadores opcionales — selección explícita de backend — capacidades detectadas y mensajes útiles
+109.2 núcleo funcional con Coreutils/Findutils/bc/rsync — ninguna alternativa visual es requisito de ejecución desatendida
+109.3 bat para preview, fd para candidatos y fzf para selección — soporte NUL verificado extremo a extremo
+109.4 eza/lsd/broot/dust/duf como vistas humanas — inventario estructurado independiente
+109.5 jq como adaptador JSON opcional — contrato de datos y dependencia declarada — no fallback JSON mal escapado
+109.6 hyperfine para comparar backends — verificar equivalencia funcional antes de comparar velocidad
+109.7 tests de dependencia ausente, salida parcial, cancelación, permisos y configuración contaminante
+109.8 laboratorio: integrar adaptadores y demostrar que el toolkit funciona sin las extensiones opcionales
+
+110. Evaluación integradora — elección, compatibilidad y recuperación
+110.1 matriz de las 28 entradas del catálogo — papel de cada herramienta, fuente oficial, versión y alternativa base
+110.2 caso de auditoría — elegir herramientas para inspección, selección e informe con justificación técnica
+110.3 caso de transformación — texto frente a JSON — validación del resultado y conservación de errores
+110.4 caso de rendimiento — mismo dataset y mismo contrato — repeticiones y resultados exportables
+110.5 caso de fallo — herramienta ausente, entorno sin TTY y nombres hostiles — degradación explícita
+110.6 caso de backup — seleccionar, archivar, transferir y restaurar sin depender de interfaces interactivas
+110.7 entrega final: toolkit ampliado, matriz de decisiones, evidencia de pruebas y recuperación; sin exigir desarrollar cursos externos
