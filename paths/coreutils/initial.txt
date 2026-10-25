@@ -102,17 +102,30 @@
 8.5 link frente a ln — interfaz mínima de enlace duro — unlink frente a rm — fallos por tipo de archivo y límites del filesystem
 8.6 laboratorio
 
-9. Permisos y propiedad
+9. Permisos, propiedad y ACL
 9.1 chmod — representación octal — representación simbólica
 9.2 u/g/o/a — r/w/x — X — s
 9.3 t — setuid — setgid — sticky bit
 9.4 chmod -R — chmod --reference — chown — user
 9.5 group — UID — GID — chown -R
 9.6 symlinks y ownership — chgrp — umask frente a chmod
-9.7 ACL como mecanismo relacionado — SELinux frente a permisos DAC
-9.8 chcon — contextos SELinux — --reference — persistencia del etiquetado — restorecon y semanage como herramientas relacionadas
-9.9 runcon — ejecutar con un contexto SELinux — restricciones de política — diferencias frente a cambiar UID y frente a chcon
-9.10 laboratorio
+9.7 permisos DAC — ACL POSIX — modelo de evaluación
+9.8 ACL access — ACL default — entradas y permisos efectivos
+9.9 getfacl — sintaxis — interpretación — opciones — getfacl -e
+9.10 setfacl — -m — -x — -b — -k — -R — -n — --set
+9.11 ACL mask — recálculo — permisos efectivos — chmod
+9.12 ACL predeterminadas — herencia — umask — creación
+9.13 getfacl -R — copias de seguridad — setfacl --restore
+9.14 diagnóstico ACL — ls -l — stat — namei -l — namei -om
+9.15 ACL y filesystems — cp -a — mv — rsync -A
+9.16 SELinux frente a permisos DAC y ACL
+9.17 chcon — contextos SELinux — --reference
+9.18 persistencia del etiquetado — restorecon — semanage
+9.19 runcon — contexto SELinux — política — UID frente a contexto
+9.20 laboratorio: permisos tradicionales y ACL
+9.21 laboratorio: ACL predeterminadas y herencia
+9.22 laboratorio: backup y restauración de ACL
+9.23 laboratorio: diagnóstico de permission denied
 
 10. Visualización de archivos
 10.1 cat — cat -n — cat -b — cat -A

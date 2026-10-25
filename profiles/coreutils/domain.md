@@ -146,6 +146,25 @@ Cuando corresponda, estudiar:
 
 No asumir que todos los filesystems soportan las mismas propiedades.
 
+## ACL POSIX en Linux (herramientas complementarias)
+
+El bloque 9 debe cubrir explícitamente `getfacl` y `setfacl`, utilidades
+externas del paquete `acl`, no integrantes de GNU Coreutils.
+
+Distinguir permisos tradicionales, ACL de acceso, ACL predeterminadas,
+entradas de usuario/grupo, máscara y permisos efectivos. Explicar la
+interacción de `chmod` con la máscara ACL, la herencia al crear archivos
+y directorios y el papel de `umask`, sin prometer una regla universal
+independiente del sistema de archivos y del modo solicitado.
+
+Cubrir consulta, modificación, eliminación, recorrido recursivo,
+respaldo y restauración. Contrastar `ls -l`, `stat`, `getfacl` y `namei`
+en diagnósticos de acceso, diferenciando DAC/ACL de denegaciones SELinux.
+
+Integrar la preservación de ACL con `cp`, `mv` y `rsync -A`, comprobando
+soporte y privilegios en origen y destino. Usar laboratorios con árboles
+temporales y cuentas de prueba; verificar resultados y limpieza.
+
 ## Tiempo y locale
 
 El comportamiento dependiente del locale debe indicarse explícitamente, especialmente en:

@@ -30,6 +30,23 @@ Usar para:
 
 Preferir el manual correspondiente a la versión instalada o una versión upstream compatible con la lección.
 
+### Linux ACL — acl(5), getfacl(1), setfacl(1)
+
+Fuentes principales para ACL POSIX en Linux y las utilidades del paquete
+`acl`, que no forman parte de GNU Coreutils.
+
+Usar para:
+
+- modelo de entradas ACL y algoritmo de permisos efectivos;
+- ACL de acceso y predeterminadas, máscara y herencia;
+- `getfacl` y `setfacl`: lectura, modificación y eliminación;
+- copias de seguridad y restauración de ACL;
+- diferencias entre permisos tradicionales, ACL y SELinux;
+- soporte del filesystem y límites de portabilidad.
+
+Verificar la implementación y versión instalada en Fedora/RHEL con
+`rpm -q acl`, `rpm -qf /usr/bin/getfacl` y `man acl`.
+
 ### GNU Findutils Manual — Finding Files
 
 Fuente principal para GNU Findutils.
@@ -326,7 +343,8 @@ Especialmente:
 - `find(1)`;
 - `xargs(1)`;
 - `rsync(1)`;
-- `bc(1)`.
+- `bc(1)`;
+- `acl(5)`, `getfacl(1)` y `setfacl(1)`.
 
 Las páginas man deben contrastarse con `info` cuando el manual GNU contenga explicaciones más completas.
 
@@ -368,6 +386,14 @@ The Linux Programming Interface.
 
 Consulta:
 `info coreutils`, páginas man y `--help`.
+
+### ACL (herramientas relacionadas)
+
+Principal:
+`acl(5)`, `getfacl(1)` y `setfacl(1)` de la versión instalada.
+
+Consulta:
+`getfacl --help`, `setfacl --help`, `rpm -q acl` y manuales locales.
 
 ### Findutils
 
