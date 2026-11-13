@@ -1,0 +1,293 @@
+0. FUNDAMENTOS DE IAC Y PRIMER LABORATORIO
+
+0.1 Mapa del bloque, prerrequisitos y práctica con un recurso integrado
+0.2 IaC, estado deseado, convergencia y drift
+0.3 Provisionamiento declarativo frente a configuración imperativa
+0.4 Qué problema resuelven OpenTofu, Ansible y cloud-init
+0.5 Core, providers, Registry, backends y APIs
+0.6 Origen, gobernanza y ecosistema de OpenTofu
+0.7 Nivelación Linux: shell, permisos, Git, JSON y redes
+0.8 Instalación y actualización en Fedora/RHEL; versión y firma de distribución
+0.9 Estructura mínima: main.tf, variables.tf, outputs.tf y versions.tf
+0.10 Primer proyecto local con terraform_data y datos ficticios
+0.11 Leer, aprobar y aplicar el plan; comprobar un segundo plan vacío
+0.12 Inspección básica de state y outputs sin exponer valores
+0.13 Limpieza con plan de destrucción en un directorio desechable
+
+1. CLI DE OPENTOFU — FLUJO DIARIO E INSPECCIÓN
+
+1.1 Mapa del bloque y práctica guiada de los comandos cotidianos
+1.2 tofu, tofu -help, ayuda por subcomando y tofu version -json
+1.3 Opciones globales, -chdir y autocompletado en Bash y Zsh
+1.4 tofu init: módulos, providers y configuración inicial del backend
+1.5 init -upgrade y -lockfile=readonly; efectos sobre el lock file
+1.6 init -backend=false, -reconfigure y -migrate-state; prácticas tras el bloque 9
+1.7 init -backend-config y gestión externa de credenciales
+1.8 init -var y -var-file para expresiones que se resuelven temprano
+1.9 tofu fmt -check -diff -recursive
+1.10 tofu validate y validate -json: alcance y diagnósticos
+1.11 tofu plan: acciones, valores desconocidos y reemplazos
+1.12 Asignación de entradas: -var, -var-file y precedencia
+1.13 plan -out; alcance, protección y obsolescencia de un plan guardado
+1.14 tofu show y show -json para state y plan
+1.15 tofu apply interactivo y apply de un plan guardado
+1.16 tofu destroy frente a plan -destroy y apply del plan revisado
+1.17 tofu output: nombre, -raw y -json; límites de sensitive
+1.18 tofu console y tofu graph con Graphviz
+1.19 tofu providers, providers schema -json y tofu metadata functions -json
+1.20 tofu get, providers lock y providers mirror; práctica tras el bloque 5
+1.21 tofu workspace list, show, new, select y delete
+1.22 tofu env: alias deprecado y uso de workspace
+1.23 tofu login y logout con servicios que implementen autenticación compatible
+1.24 tofu test: descubrimiento, -filter y diagnóstico; práctica tras el bloque 11
+
+2. LENGUAJE HCL Y ESTRUCTURA DE CONFIGURACIÓN
+
+2.1 Mapa del bloque y lectura de un root module completo
+2.2 Bloques, argumentos, comentarios e identificadores
+2.3 terraform, required_version y required_providers
+2.4 resource, data, variable, locals, output y module
+2.5 Carga de archivos .tf, .tofu, .tf.json y .tofu.json
+2.6 Precedencia por nombre base y variantes override
+2.7 Referencias, namespaces y direcciones absolutas
+2.8 Heredocs, plantillas e interpolación de cadenas
+2.9 Generación con JSON y límites de su uso
+2.10 Laboratorio: configuración común y variante .tofu
+
+3. TIPOS, EXPRESIONES Y VALIDACIONES
+
+3.1 Mapa del bloque y contrato de entradas y salidas tipadas
+3.2 string, number, bool, null, any y tipos estructurales
+3.3 list, set, map, tuple, object y atributos opcionales
+3.4 Conversión de tipos, valores por defecto y nullable
+3.5 Variables de entrada, .tfvars y archivos auto
+3.6 Referencias a locals y composición de outputs
+3.7 Operadores, condicionales, for, splat y dynamic
+3.8 Funciones de colecciones, texto, JSON/YAML y ficheros
+3.9 try, can y tratamiento de errores dinámicos
+3.10 Valores nulos, desconocidos y sensibles durante el plan
+3.11 Validation, preconditions, postconditions y check
+3.12 Laboratorio: entradas inválidas y errores explicables
+
+4. RECURSOS, GRAFO Y CICLO DE VIDA
+
+4.1 Mapa del bloque y predicción de acciones del plan
+4.2 Recursos administrados, data sources y terraform_data
+4.3 Dependencias implícitas y explícitas; uso acotado de depends_on
+4.4 count, for_each y claves estables
+4.5 Direcciones de instancias y cambio de estrategia de indexación
+4.6 create_before_destroy y coexistencia de recursos
+4.7 prevent_destroy y evaluación según versión
+4.8 ignore_changes, drift e interfaces con otros gestores
+4.9 replace_triggered_by y terraform_data
+4.10 Data sources y lecturas aplazadas hasta apply
+4.11 Ciclos, dependencias ocultas y visualización del grafo
+4.12 Provisioners y alternativas con cloud-init y Ansible
+4.13 Laboratorio: evolucionar una configuración sin reemplazos inesperados
+
+5. PROVIDERS, REGISTRY Y CADENA DE SUMINISTRO
+
+5.1 Mapa del bloque y trazabilidad de Core, plugin y API
+5.2 Direcciones completas, Registry y descubrimiento de servicios
+5.3 Selección de versiones y restricciones transitivas
+5.4 .terraform.lock.hcl, checksums y plataformas
+5.5 providers schema -json y lectura del esquema instalado
+5.6 provider, alias, credenciales y configuración por entorno
+5.7 Instancias dinámicas de provider con for_each
+5.8 Paso de aliases e instancias a módulos; retirada en fases
+5.9 Funciones definidas por providers según versión y esquema
+5.10 Mirrors filesystem y HTTP; instalación directa y caché
+5.11 OCI como fuente secundaria de paquetes de provider
+5.12 Verificación de procedencia, firma, lock y actualización revisada
+5.13 Laboratorio: mirror offline con lock multiplataforma
+
+6. MÓDULOS, VERSIONADO Y EVALUACIÓN TEMPRANA
+
+6.1 Mapa del bloque y diseño de un módulo reutilizable
+6.2 Root y child modules; entradas, salidas y encapsulación
+6.3 Composición, inversión de dependencias y tamaño de interfaz
+6.4 Providers en módulos y configuration_aliases
+6.5 count, for_each y depends_on sobre módulos
+6.6 Sources locales, Git, Registry, archivos y OCI
+6.7 Versionado, tags, restricciones y actualización de dependencias
+6.8 Evaluación temprana de variables y locals en source y version
+6.9 Dependencias no disponibles durante init y diagnóstico de errores
+6.10 Refactorización modular con moved y política de compatibilidad
+6.11 Laboratorio: publicar, consumir y actualizar un módulo
+
+7. PLAN, APPLY, DRIFT Y DIAGNÓSTICO
+
+7.1 Mapa del bloque y seguimiento de un cambio de principio a fin
+7.2 Refresh, plan normal, plan de destrucción y -refresh-only
+7.3 -replace y -target como mecanismos de intervención acotada
+7.4 -parallelism, rate limits, concurrencia y dependencias
+7.5 UI de plan -json y -json-into frente a documento show -json
+7.6 Códigos de salida de plan -detailed-exitcode y uso en Bash
+7.7 Aplicación parcial, persistencia de state y reconciliación
+7.8 Drift legítimo, cambios fuera de banda y políticas de remediación
+7.9 Diagnóstico de plan obsoleto y regeneración con aprobación
+7.10 Laboratorio: fallo a mitad de apply y convergencia posterior
+
+8. STATE, IMPORTACIÓN Y REFACTORIZACIÓN
+
+8.1 Mapa del bloque y separación de configuración, state y objetos reales
+8.2 Direcciones, ID remoto, lineage, serial y snapshots
+8.3 tofu state list y state show; filtros y sensibilidad
+8.4 state mv y state rm; lectura del plan posterior
+8.5 state pull y state push; precondiciones y guardas
+8.6 state replace-provider; cambio de dirección, esquema y compatibilidad
+8.7 tofu import y configuración previa del recurso
+8.8 Bloques import, iteración y soporte de identidad según provider
+8.9 Generación con -generate-config-out y revisión del HCL
+8.10 Bloques moved y removed; adopción y desasociación declarativas
+8.11 refresh y taint deprecados; alternativas con -refresh-only y -replace
+8.12 untaint: diagnóstico y retirada consciente de la marca
+8.13 Laboratorio: adoptar, mover y retirar sin destrucción no prevista
+
+9. BACKENDS, WORKSPACES Y BLOQUEO
+
+9.1 Mapa del bloque y contrato de aislamiento para state remoto
+9.2 Backend local y remoto; acceso, versionado y bloqueo
+9.3 Backends S3 y compatibles; contrastar endpoints y semántica
+9.4 S3 con use_lockfile y transición desde bloqueo DynamoDB
+9.5 Backend HTTP y contrato de endpoints de lock/unlock
+9.6 Backend parcial y configuración temprana con variables y locals
+9.7 Migración del backend con init -migrate-state y verificación
+9.8 init -reconfigure y recuperación de configuración local
+9.9 tofu force-unlock, ID de bloqueo y comprobación del escritor
+9.10 Workspaces CLI, TF_WORKSPACE y límites como frontera de seguridad
+9.11 terraform_remote_state y acceso al snapshot; contratos explícitos de outputs
+9.12 Roots y credenciales por entorno, cuenta y radio de impacto
+9.13 Laboratorio: dos runners, contención y restauración de una versión
+
+10. SEGURIDAD Y CIFRADO NATIVO DE STATE Y PLANES
+
+10.1 Mapa del bloque y modelo de amenazas de los artefactos IaC
+10.2 sensitive, secretos y exposición por state, planes, JSON y logs
+10.3 Artefactos transitorios, permisos, retención y eliminación
+10.4 Bloque encryption y TF_ENCRYPTION; precedencia y controles
+10.5 Separación entre key_provider, method, state y plan
+10.6 Cifrado con AES-GCM y proveedores de claves documentados
+10.7 Ejercicio local con PBKDF2 y prueba posterior con KMS de laboratorio
+10.8 Migración desde texto plano mediante fallback temporal
+10.9 Rotación de claves, fallback y retiro de acceso anterior
+10.10 Acceso a state cifrado mediante terraform_remote_state
+10.11 Cifrado a nivel de aplicación, cifrado del backend e IAM
+10.12 Pérdida de acceso a claves, copias cifradas y restauración comprobada
+10.13 Laboratorio: migrar, rotar y recuperar sin imprimir secretos
+
+11. TESTING Y CALIDAD
+
+11.1 Mapa del bloque y pirámide de pruebas de infraestructura
+11.2 fmt, validate, lint y límites de la validación estática
+11.3 Archivos .tftest.hcl y .tofutest.hcl y reglas de precedencia
+11.4 Bloques run, plan, apply y assertions
+11.5 Variables, fixtures, módulos auxiliares y estado de las pruebas
+11.6 Mocks, overrides y diferencia entre simulación y API real
+11.7 Errores esperados y pruebas negativas
+11.8 tofu test -filter, salida JSON según versión y limpieza
+11.9 Pruebas de contrato, integración y regresión de planes
+11.10 Laboratorio: fallos tipados, mocks y prueba de integración aislada
+
+12. CLI AVANZADA, SHELL Y CI/CD
+
+12.1 Mapa del bloque y ejecución automatizada reproducible
+12.2 .tofurc, configuración XDG y TF_CLI_CONFIG_FILE
+12.3 TF_VAR_*, TF_INPUT, TF_IN_AUTOMATION y -no-color
+12.4 TF_CLI_ARGS y TF_CLI_ARGS_<subcommand>; orden de precedencia
+12.5 TF_DATA_DIR y aislamiento de metadatos por trabajo
+12.6 TF_PLUGIN_CACHE_DIR, mirrors y seguridad de caché
+12.7 TF_LOG, TF_LOG_PATH y redacción antes de publicar diagnósticos
+12.8 stdout, stderr, JSON, jq y códigos de salida con set -e y pipefail
+12.9 Paralelismo operativo, timeouts y exclusión por backend
+12.10 Lock file revisado y binario fijado por versión
+12.11 CI de PR: formato, validación, pruebas y revisión de planes
+12.12 OIDC y credenciales efímeras separadas por rol y etapa
+12.13 Apply con plan aprobado, concurrencia y caducidad de artefactos
+12.14 Políticas sobre plan JSON, excepciones y controles de procedencia
+12.15 Ejecución remota compatible y requisitos de autenticación
+12.16 Laboratorio: pipeline con plan vacío, cambios, error y artefactos protegidos
+
+13. ON-PREMISES — FEDORA/RHEL, LIBVIRT Y ANSIBLE
+
+13.1 Mapa del bloque y requisitos de un host KVM de laboratorio
+13.2 Provider libvirt: versión, origen, esquema y permisos
+13.3 Red privada, pools, discos y máquinas virtuales
+13.4 Imágenes cloud, checksum y cloud-init
+13.5 Direcciones, SSH y outputs mínimos para inventario
+13.6 Inventario Ansible a partir de tofu output -json
+13.7 Roles Ansible, idempotencia y separación de responsabilidades
+13.8 Firewalld, SELinux y diagnóstico del plano anfitrión/invitado
+13.9 Estado remoto privado y observación del ciclo de vida
+13.10 Laboratorio: dos VM, cloud-init, roles y segundo plan sin cambios
+
+14. MIGRACIÓN TERRAFORM ↔ OPENTOFU
+
+14.1 Mapa del bloque y criterios para autorizar el cambio de motor
+14.2 Inventario de Core, providers, Registry, backend y automatización
+14.3 Matriz por pareja de versiones, tipos de recurso y funcionalidades
+14.4 Copias verificadas, congelación de escritores y límites de rollback
+14.5 Inicialización en copia y comparación de planes normalizados
+14.6 Aprobación y cambio piloto con revisión antes y después
+14.7 Direcciones de provider, lock files y migración de dependencias
+14.8 Configuraciones interdependientes y terraform_remote_state
+14.9 Migrar pipelines, credenciales y operadores
+14.10 Cifrado nativo y barreras para volver a Terraform
+14.11 Rollback con reconciliación de cambios reales posteriores
+14.12 Laboratorio: migrar dos raíces, detectar divergencia y ensayar reversión
+
+15. ESCALA, GOBERNANZA Y OPERACIÓN
+
+15.1 Mapa del bloque y diseño de una plataforma con varios equipos
+15.2 Separación por dominios, cuentas y radio de impacto
+15.3 Orquestación de roots, grafos de dependencias y contratos
+15.4 Monorepo, multirepo, versionado y promoción de módulos
+15.5 Catálogo de módulos, ownership y deprecación gradual
+15.6 TACOS, GitOps y criterios de evaluación de plataformas
+15.7 Policy as code, auditoría y excepciones con vencimiento
+15.8 Drift periódico, SLIs y alertas de pipelines
+15.9 Timeouts, cuotas y capacidad de runners
+15.10 Operación aislada con registry privado y mirrors
+15.11 Laboratorio: dos equipos con permisos, estados y despliegues separados
+
+16. TROUBLESHOOTING Y RECUPERACIÓN ANTE DESASTRES
+
+16.1 Mapa del bloque y preparación de un simulacro medible
+16.2 Clasificar fallos de Core, HCL, provider, API y backend
+16.3 Diagnóstico de plugins, versiones, esquemas y autenticación
+16.4 Aislar ciclos, unknowns y fallos de evaluación temprana
+16.5 Lock atascado, escritor concurrente y desbloqueo verificado
+16.6 Apply interrumpido, recursos huérfanos y drift posterior
+16.7 Análisis de versiones de state, lineage y serial
+16.8 Restauración de state remoto y recuperación de claves
+16.9 Recuperación de datos de aplicación como procedimiento separado
+16.10 RPO, RTO, evidencias y revisión posterior al incidente
+16.11 Laboratorio: recuperar el control sin duplicar ni destruir recursos
+
+17. INTERNALS, EXTENSIBILIDAD Y VERSIONES
+
+17.1 Mapa del bloque y seguimiento de una operación dentro de Core
+17.2 Carga HCL, evaluación, cty, grafo y paseo del grafo
+17.3 Planificación, persistencia de state y protocolo con providers
+17.4 Schemas, RPC, plugins y negociación de capacidades
+17.5 Discovery, protocolos de Registry, mirror y autenticación
+17.6 Desarrollo opcional en Go de un provider mínimo
+17.7 Pruebas de aceptación, evolución de schema y state upgrades
+17.8 JSON de plan, state y UI; consumidores tolerantes a evolución
+17.9 Capacidades efímeras y write-only según versión y provider
+17.10 Funciones convert/assume* y reducción de unknowns en 1.13
+17.11 Lint integrado y Symbol Libraries: seguimiento experimental
+17.12 Laboratorio: reproducir y documentar un cambio de compatibilidad
+
+18. PROYECTO EXPERTO — PLATAFORMA IAC CON OPENTOFU
+
+18.1 Mapa del bloque, criterios de aceptación y defensa del diseño
+18.2 Diseñar dos raíces con contratos, módulos versionados y backend privado
+18.3 Provisionar máquinas Fedora/RHEL con libvirt, cloud-init y Ansible
+18.4 Adoptar un recurso existente y ejecutar un refactor conservador
+18.5 Configurar locking, cifrado, rotación y copias verificadas
+18.6 Construir CI con pruebas, revisión, policy y apply protegido
+18.7 Ensayar migración Terraform a OpenTofu en un entorno gemelo
+18.8 Simular drift, bloqueo, pérdida de state y recuperación de datos
+18.9 Proyecto integrador: entregar plataforma, evidencias y runbooks
+18.10 Defensa: demostrar convergencia, recuperación y límites de compatibilidad

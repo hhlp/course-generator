@@ -1,0 +1,124 @@
+---
+title: OPENTOFU EN PROFUNDIDAD — LEARNING PATH 0 → EXPERTO
+course:
+  title: OPENTOFU EN PROFUNDIDAD — LEARNING PATH 0 → EXPERTO
+  language: es
+  level:
+    start: cero
+    end: experto
+  platform:
+    - Fedora
+    - RHEL
+    - Linux
+  mode: deep
+  milestones:
+    - id: opentofu-foundations
+      after_block: 4
+      name: Primer workflow reproducible y lectura del grafo
+    - id: opentofu-state
+      after_block: 10
+      name: Operación de state, backends y cifrado nativo
+    - id: opentofu-operations
+      after_block: 16
+      name: Automatización, migración y recuperación verificadas
+    - id: opentofu-expert
+      after_block: 18
+      name: Defensa de la plataforma y simulacro de recuperación
+files:
+  pedagogy: ../../config/pedagogy.md
+  domain: domain.md
+  bibliography: bibliography.md
+lesson_structure:
+  objective:
+    required: true
+    position: first
+  reading:
+    required: true
+  lab:
+    required: true
+  common_errors:
+    required: true
+  important_idea:
+    required: true
+  remember:
+    required: true
+    position: last
+    min_items: 3
+    max_items: 7
+quality:
+  forbid_generic_scaffold: true
+  require_topic_specific_headings: true
+  require_topic_specific_examples: true
+  require_self_contained_lesson: true
+  distinguish_core_from_provider_behavior: true
+  verify_version_sensitive_features: true
+  require_cli_command_context: true
+  distinguish_interactive_from_automation_cli: true
+  mark_legacy_or_deprecated_cli_commands: true
+  audit_before_save: true
+  repair_on_fail: true
+  require_expected_lab_results: true
+  require_troubleshooting_scenarios: true
+  require_safe_recovery_guidance: true
+  require_security_considerations: true
+  require_version_compatibility_notes: true
+  require_on_premises_examples: true
+output:
+  format: markdown
+  zip_block: true
+  write_index: true
+  write_manifest: true
+artifacts:
+  enabled: true
+  default_strategy: auto
+  overrides:
+    '18.9':
+      strategy: standalone_project
+      project_id: opentofu-onpremises-expert
+      knowledge_dependencies:
+        - bloque-2
+        - bloque-5
+        - bloque-6
+        - bloque-7
+        - bloque-8
+        - bloque-9
+        - bloque-10
+        - bloque-11
+        - bloque-12
+        - bloque-13
+        - bloque-14
+        - bloque-15
+        - bloque-16
+      artifact_dependencies: []
+      required_files:
+        - README.md
+        - versions.tf
+        - main.tf
+        - variables.tf
+        - outputs.tf
+        - .gitignore
+        - modules/README.md
+        - tests/README.md
+        - cloud-init/README.md
+        - ansible/site.yml
+        - ci/README.md
+        - docs/recovery.md
+        - docs/compatibility.md
+        - docs/evidence.md
+      validation_required: true
+      project_type: integrator
+  project_policy:
+    integrator_projects: auto
+    diagnostic_projects: auto
+    require_project_for_every_block: false
+validation:
+  enabled: true
+  commands:
+    - tofu fmt -check -recursive
+    - tofu init -backend=false -input=false
+    - tofu validate
+  notes: Ejecutar por root o fixture confiable en un directorio aislado.
+    Proporcionar entradas tempranas cuando el módulo las requiera.
+    Usar un root de prueba para cada child module. Plan y test pueden
+    requerir APIs, plugins y credenciales de laboratorio. Los proyectos
+    de provider en Go tienen su propia validación.

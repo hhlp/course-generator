@@ -1,8 +1,9 @@
+1.0   Fundamentos de C++: del primer programa a tipos, funciones, clases, STL y gestión segura de recursos
 1.1   Introducción a C++ y filosofía del lenguaje
 1.2   Toolchain: g++, clang++, -std=c++23
 1.3   Primer programa: compilación → linking → ejecución
-1.4   Objetos, valores y tipos
-1.5   Variables, inicialización y scope
+1.4   Objetos, valores y tipos: tipos fundamentales y tipos definidos por el usuario
+1.5   Variables: declaración, definición, inicialización, asignación y scope; introducción a auto y const
 1.6   Expresiones y operadores
 1.7   Control de flujo
 1.8   Funciones
@@ -14,7 +15,7 @@
 1.14   referencias
 1.15   punteros
 1.16   memoria y lifetime
-1.17   clases
+1.17   struct y class: miembros, objetos y diferencias de acceso por defecto
 1.18   constructores
 1.19   destructores
 1.20   invariantes
@@ -39,13 +40,13 @@
 1.39   RAII
 1.40   resource management
 1.41   proyecto final PPP3
-1.42   Tipos fundamentales, tamaños, límites y representación numérica
+1.42   Tipos enteros: short, int, long, long long; signed/unsigned, tamaños, límites y representación
 1.43   Literales, sufijos, bases numéricas y separadores de dígitos
 1.44   Promociones y conversiones aritméticas: signed/unsigned y narrowing
 1.45   Inicialización por defecto, valor, directa y lista: diferencias y errores
 1.46   Precedencia, asociatividad, cortocircuito y orden de evaluación
 1.47   Aritmética entera: overflow, división, módulo y operaciones bit a bit
-1.48   Punto flotante: precisión, redondeo, NaN e infinito
+1.48   float, double y long double: precisión, redondeo, NaN e infinito
 1.49   Funciones: paso por valor y referencia, retorno y parámetros por defecto
 1.50   Sobrecarga de funciones: candidatos, conversiones y ambigüedades básicas
 1.51   Recursividad, casos base y límites de la pila
@@ -53,7 +54,11 @@
 1.53   Compilación guiada con warnings y símbolos de depuración
 1.54   CMake mínimo: targets, configure, build y estándar de C++
 1.55   Pruebas iniciales: casos límite, ejecutable de tests y CTest
+1.56   bool y tipos de carácter: char, signed char, unsigned char, wchar_t, char8_t, char16_t y char32_t
+1.57   Portabilidad numérica: sizeof, CHAR_BIT, numeric_limits, cstdint y size_t; disponibilidad de tipos de ancho exacto
+1.58   struct en la práctica: miembros, acceso con punto, inicialización de agregados, inicializadores designados y composición
 
+2.0   Modelo de objetos y recursos en profundidad: lifetime, copia, movimiento, ownership y polimorfismo
 2.1   Modelo de objetos de C++
 2.2   storage duration
 2.3   lifetime
@@ -111,6 +116,7 @@
 2.55   Lifetime de almacenamiento reutilizado: placement new y std::construct_at
 2.56   Diseño por composición, semántica de valor y límites de la herencia
 
+3.0   C++ moderno hasta C++17: deducción de tipos, lambdas, templates y biblioteca estándar
 3.1   auto
 3.2   decltype
 3.3   type deduction
@@ -154,6 +160,7 @@
 3.41   std::optional, variant y any: acceso seguro, visita y errores
 3.42   std::filesystem: error_code, excepciones, permisos y enlaces simbólicos
 
+4.0   C++20 y C++23: concepts, ranges, coroutines, módulos y nuevas utilidades de biblioteca
 4.1   Qué cambió en C++20
 4.2   concepts
 4.3   requires
@@ -214,6 +221,7 @@
 4.58   Formato y salida: seguridad de tipos, formatters y diagnóstico
 4.59   std::mdspan: extents, layouts, accessors y ownership externo
 
+5.0   Programación genérica en profundidad: templates, metaprogramación y diseño de bibliotecas
 5.1   template model
 5.2   function templates
 5.3   class templates
@@ -254,6 +262,7 @@
 5.38   Type erasure: diseño, ownership y costes frente a templates
 5.39   Compilación separada, ODR y pruebas de bibliotecas header-only
 
+6.0   Concurrencia y paralelismo: threads, sincronización, atomics y modelo de memoria
 6.1   concurrencia vs paralelismo
 6.2   procesos vs threads
 6.3   std::thread
@@ -301,6 +310,7 @@
 6.45   Colas acotadas, backpressure y cierre cooperativo
 6.46   Pruebas concurrentes: stress, TSan y límites de la evidencia experimental
 
+7.0   Compilación y diagnóstico en Linux: enlace, ELF, ABI, GDB y herramientas de memoria
 7.1   proceso completo de compilación C++
 7.2   preprocessing
 7.3   compilation
@@ -349,6 +359,7 @@
 7.46   DWARF, builds optimizados y límites del debugging
 7.47   Sanitizers: builds separados, compatibilidad y lectura de informes
 
+8.0   Ingeniería de proyectos C++: construcción, pruebas, análisis, rendimiento y empaquetado
 8.1   estructura de un proyecto C++
 8.2   headers
 8.3   source files
@@ -386,6 +397,7 @@
 8.35   Diseño de API, compatibilidad de fuentes y evolución de bibliotecas
 8.36   Build reproducible, licencias y empaquetado de dependencias
 
+9.0   Expresiones regulares en C++: std::regex, extracción, validación, límites y rendimiento
 9.1   Introducción a std::regex y relación con el PATH general de Regex
 9.2   Cabeceras <regex>, tipos y requisitos de C++23
 9.3   Gramáticas ECMAScript, basic, extended, awk, grep y egrep
@@ -421,6 +433,7 @@
 9.33   Bytes, locale y Unicode: elección explícita del motor y codificación
 9.34   ReDoS: aislamiento del proceso, límites de entrada y timeout externo
 
+10.0   Complejidad algorítmica aplicada a C++: costes de algoritmos, contenedores y mediciones
 10.1   Big-O aplicado a C++: alcance y relación con el PATH general
 10.2   Tiempo, memoria, tamaño de entrada y modelo de coste
 10.3   O(1), O(log n), O(n), O(n log n), O(n²) y exponencial
